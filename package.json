@@ -1,0 +1,15 @@
+{
+  "name": "bs-material-ui",
+  "version": "0.1.0",
+  "description": "Reason bindings for material-ui",
+  "main": "src/MaterialUi.bs.js",
+  "repository": "git@github.com:jsiebern/bs-material-ui.git",
+  "author": "Jonathan Siebern <jsiebern88@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "bs-platform": "^2.0.0"
+  },
+  "dependencies": {
+    "reason-react": "^0.2.4"
+  }
+}

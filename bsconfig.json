@@ -1,0 +1,19 @@
+{
+    "name": "bs-material-ui",
+    "sources": "src",
+    "package-specs": {
+        "module": "commonjs",
+        "in-source": true
+    },
+    "bs-dependencies": [
+        "reason-react"
+    ],
+    "reason": {
+        "react-jsx": 2
+    },
+    "bsc-flags": [
+        "-bs-super-errors"
+    ],
+    "refmt": 3,
+    "suffix": ".bs.js"
+}
