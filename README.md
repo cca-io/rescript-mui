@@ -92,8 +92,8 @@ Example:
   render=(
     (classes) =>
       <MaterialUi.Button color=MaterialUi.Button.Color.Primary raised=true classes=[MaterialUi.Button.Classes.Root(classes##fSize), MaterialUi.Button.Classes.RaisedPrimary(classes##bgColor)]>
-        (ReasonReact.stringToElement(Helpers.translate("Example Button")))
-      <MaterialUi.Button />
+        (ReasonReact.stringToElement("Example Button"))
+      </MaterialUi.Button>
   )
 />
 ```
