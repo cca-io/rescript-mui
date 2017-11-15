@@ -49,7 +49,8 @@ module WithStyles = {
 
 module Colors = {
   module BlueGrey = {
-    [@bs.module] external blueGreyExt : Js.Dict.t(string) = "material-ui/colors/blueGrey";
+    [@bs.module "material-ui/colors/blueGrey"] external blueGreyExt : Js.Dict.t(string) =
+      "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(blueGreyExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(blueGreyExt, "A700");
     let a400: string = Js.Dict.unsafeGet(blueGreyExt, "A400");
@@ -67,7 +68,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(blueGreyExt, "50");
   };
   module Grey = {
-    [@bs.module] external greyExt : Js.Dict.t(string) = "material-ui/colors/grey";
+    [@bs.module "material-ui/colors/grey"] external greyExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(greyExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(greyExt, "A700");
     let a400: string = Js.Dict.unsafeGet(greyExt, "A400");
@@ -85,7 +86,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(greyExt, "50");
   };
   module Brown = {
-    [@bs.module] external brownExt : Js.Dict.t(string) = "material-ui/colors/brown";
+    [@bs.module "material-ui/colors/brown"] external brownExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(brownExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(brownExt, "A700");
     let a400: string = Js.Dict.unsafeGet(brownExt, "A400");
@@ -103,7 +104,8 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(brownExt, "50");
   };
   module DeepOrange = {
-    [@bs.module] external deepOrangeExt : Js.Dict.t(string) = "material-ui/colors/deepOrange";
+    [@bs.module "material-ui/colors/deepOrange"] external deepOrangeExt : Js.Dict.t(string) =
+      "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(deepOrangeExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(deepOrangeExt, "A700");
     let a400: string = Js.Dict.unsafeGet(deepOrangeExt, "A400");
@@ -121,7 +123,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(deepOrangeExt, "50");
   };
   module Orange = {
-    [@bs.module] external orangeExt : Js.Dict.t(string) = "material-ui/colors/orange";
+    [@bs.module "material-ui/colors/orange"] external orangeExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(orangeExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(orangeExt, "A700");
     let a400: string = Js.Dict.unsafeGet(orangeExt, "A400");
@@ -139,7 +141,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(orangeExt, "50");
   };
   module Amber = {
-    [@bs.module] external amberExt : Js.Dict.t(string) = "material-ui/colors/amber";
+    [@bs.module "material-ui/colors/amber"] external amberExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(amberExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(amberExt, "A700");
     let a400: string = Js.Dict.unsafeGet(amberExt, "A400");
@@ -157,7 +159,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(amberExt, "50");
   };
   module Yellow = {
-    [@bs.module] external yellowExt : Js.Dict.t(string) = "material-ui/colors/yellow";
+    [@bs.module "material-ui/colors/yellow"] external yellowExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(yellowExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(yellowExt, "A700");
     let a400: string = Js.Dict.unsafeGet(yellowExt, "A400");
@@ -175,7 +177,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(yellowExt, "50");
   };
   module Lime = {
-    [@bs.module] external limeExt : Js.Dict.t(string) = "material-ui/colors/lime";
+    [@bs.module "material-ui/colors/lime"] external limeExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(limeExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(limeExt, "A700");
     let a400: string = Js.Dict.unsafeGet(limeExt, "A400");
@@ -193,7 +195,8 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(limeExt, "50");
   };
   module LightGreen = {
-    [@bs.module] external lightGreenExt : Js.Dict.t(string) = "material-ui/colors/lightGreen";
+    [@bs.module "material-ui/colors/lightGreen"] external lightGreenExt : Js.Dict.t(string) =
+      "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(lightGreenExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(lightGreenExt, "A700");
     let a400: string = Js.Dict.unsafeGet(lightGreenExt, "A400");
@@ -211,7 +214,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(lightGreenExt, "50");
   };
   module Green = {
-    [@bs.module] external greenExt : Js.Dict.t(string) = "material-ui/colors/green";
+    [@bs.module "material-ui/colors/green"] external greenExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(greenExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(greenExt, "A700");
     let a400: string = Js.Dict.unsafeGet(greenExt, "A400");
@@ -229,7 +232,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(greenExt, "50");
   };
   module Teal = {
-    [@bs.module] external tealExt : Js.Dict.t(string) = "material-ui/colors/teal";
+    [@bs.module "material-ui/colors/teal"] external tealExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(tealExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(tealExt, "A700");
     let a400: string = Js.Dict.unsafeGet(tealExt, "A400");
@@ -247,7 +250,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(tealExt, "50");
   };
   module Cyan = {
-    [@bs.module] external cyanExt : Js.Dict.t(string) = "material-ui/colors/cyan";
+    [@bs.module "material-ui/colors/cyan"] external cyanExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(cyanExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(cyanExt, "A700");
     let a400: string = Js.Dict.unsafeGet(cyanExt, "A400");
@@ -265,7 +268,8 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(cyanExt, "50");
   };
   module LightBlue = {
-    [@bs.module] external lightBlueExt : Js.Dict.t(string) = "material-ui/colors/lightBlue";
+    [@bs.module "material-ui/colors/lightBlue"] external lightBlueExt : Js.Dict.t(string) =
+      "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(lightBlueExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(lightBlueExt, "A700");
     let a400: string = Js.Dict.unsafeGet(lightBlueExt, "A400");
@@ -283,7 +287,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(lightBlueExt, "50");
   };
   module Blue = {
-    [@bs.module] external blueExt : Js.Dict.t(string) = "material-ui/colors/blue";
+    [@bs.module "material-ui/colors/blue"] external blueExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(blueExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(blueExt, "A700");
     let a400: string = Js.Dict.unsafeGet(blueExt, "A400");
@@ -301,7 +305,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(blueExt, "50");
   };
   module Indigo = {
-    [@bs.module] external indigoExt : Js.Dict.t(string) = "material-ui/colors/indigo";
+    [@bs.module "material-ui/colors/indigo"] external indigoExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(indigoExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(indigoExt, "A700");
     let a400: string = Js.Dict.unsafeGet(indigoExt, "A400");
@@ -319,7 +323,8 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(indigoExt, "50");
   };
   module DeepPurple = {
-    [@bs.module] external deepPurpleExt : Js.Dict.t(string) = "material-ui/colors/deepPurple";
+    [@bs.module "material-ui/colors/deepPurple"] external deepPurpleExt : Js.Dict.t(string) =
+      "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(deepPurpleExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(deepPurpleExt, "A700");
     let a400: string = Js.Dict.unsafeGet(deepPurpleExt, "A400");
@@ -337,7 +342,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(deepPurpleExt, "50");
   };
   module Purple = {
-    [@bs.module] external purpleExt : Js.Dict.t(string) = "material-ui/colors/purple";
+    [@bs.module "material-ui/colors/purple"] external purpleExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(purpleExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(purpleExt, "A700");
     let a400: string = Js.Dict.unsafeGet(purpleExt, "A400");
@@ -355,7 +360,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(purpleExt, "50");
   };
   module Pink = {
-    [@bs.module] external pinkExt : Js.Dict.t(string) = "material-ui/colors/pink";
+    [@bs.module "material-ui/colors/pink"] external pinkExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(pinkExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(pinkExt, "A700");
     let a400: string = Js.Dict.unsafeGet(pinkExt, "A400");
@@ -373,7 +378,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(pinkExt, "50");
   };
   module Red = {
-    [@bs.module] external redExt : Js.Dict.t(string) = "material-ui/colors/red";
+    [@bs.module "material-ui/colors/red"] external redExt : Js.Dict.t(string) = "default";
     let contrastDefaultColor: string = Js.Dict.unsafeGet(redExt, "contrastDefaultColor");
     let a700: string = Js.Dict.unsafeGet(redExt, "A700");
     let a400: string = Js.Dict.unsafeGet(redExt, "A400");
@@ -391,7 +396,7 @@ module Colors = {
     let c50: string = Js.Dict.unsafeGet(redExt, "50");
   };
   module Common = {
-    [@bs.module] external commonExt : Js.Dict.t(string) = "material-ui/colors/common";
+    [@bs.module "material-ui/colors/common"] external commonExt : Js.Dict.t(string) = "default";
     let lightWhite: string = Js.Dict.unsafeGet(commonExt, "lightWhite");
     let darkWhite: string = Js.Dict.unsafeGet(commonExt, "darkWhite");
     let fullWhite: string = Js.Dict.unsafeGet(commonExt, "fullWhite");

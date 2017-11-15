@@ -14,22 +14,22 @@ var MaterialUi$slashIcon$slashIcon                               = require("mate
 var MaterialUi$slashList$slashList                               = require("material-ui/List/List");
 var MaterialUi$slashMenu$slashMenu                               = require("material-ui/Menu/Menu");
 var MaterialUi$slashTabs$slashTabs                               = require("material-ui/Tabs/Tabs");
-var RedExt                                                       = require("material-ui/colors/red");
+var MaterialUi$slashcolors$slashred                              = require("material-ui/colors/red");
 var Caml_builtin_exceptions                                      = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 var MaterialUi$slashBadge$slashBadge                             = require("material-ui/Badge/Badge");
 var MaterialUi$slashInput$slashInput                             = require("material-ui/Input/Input");
 var MaterialUi$slashPaper$slashPaper                             = require("material-ui/Paper/Paper");
 var MaterialUi$slashRadio$slashRadio                             = require("material-ui/Radio/Radio");
 var MaterialUi$slashTable$slashTable                             = require("material-ui/Table/Table");
-var BlueExt                                                      = require("material-ui/colors/blue");
-var CyanExt                                                      = require("material-ui/colors/cyan");
-var GreyExt                                                      = require("material-ui/colors/grey");
-var LimeExt                                                      = require("material-ui/colors/lime");
-var PinkExt                                                      = require("material-ui/colors/pink");
-var TealExt                                                      = require("material-ui/colors/teal");
-var AmberExt                                                     = require("material-ui/colors/amber");
-var BrownExt                                                     = require("material-ui/colors/brown");
-var GreenExt                                                     = require("material-ui/colors/green");
+var MaterialUi$slashcolors$slashblue                             = require("material-ui/colors/blue");
+var MaterialUi$slashcolors$slashcyan                             = require("material-ui/colors/cyan");
+var MaterialUi$slashcolors$slashgrey                             = require("material-ui/colors/grey");
+var MaterialUi$slashcolors$slashlime                             = require("material-ui/colors/lime");
+var MaterialUi$slashcolors$slashpink                             = require("material-ui/colors/pink");
+var MaterialUi$slashcolors$slashteal                             = require("material-ui/colors/teal");
+var MaterialUi$slashcolors$slashamber                            = require("material-ui/colors/amber");
+var MaterialUi$slashcolors$slashbrown                            = require("material-ui/colors/brown");
+var MaterialUi$slashcolors$slashgreen                            = require("material-ui/colors/green");
 var MaterialUi$slashAppBar$slashAppBar                           = require("material-ui/AppBar/AppBar");
 var MaterialUi$slashAvatar$slashAvatar                           = require("material-ui/Avatar/Avatar");
 var MaterialUi$slashButton$slashButton                           = require("material-ui/Button/Button");
@@ -41,11 +41,11 @@ var MaterialUi$slashMenu$slashMenuItem                           = require("mate
 var MaterialUi$slashMenu$slashMenuList                           = require("material-ui/Menu/MenuList");
 var MaterialUi$slashSelect$slashSelect                           = require("material-ui/Select/Select");
 var MaterialUi$slashSwitch$slashSwitch                           = require("material-ui/Switch/Switch");
-var CommonExt                                                    = require("material-ui/colors/common");
-var IndigoExt                                                    = require("material-ui/colors/indigo");
-var OrangeExt                                                    = require("material-ui/colors/orange");
-var PurpleExt                                                    = require("material-ui/colors/purple");
-var YellowExt                                                    = require("material-ui/colors/yellow");
+var MaterialUi$slashcolors$slashcommon                           = require("material-ui/colors/common");
+var MaterialUi$slashcolors$slashindigo                           = require("material-ui/colors/indigo");
+var MaterialUi$slashcolors$slashorange                           = require("material-ui/colors/orange");
+var MaterialUi$slashcolors$slashpurple                           = require("material-ui/colors/purple");
+var MaterialUi$slashcolors$slashyellow                           = require("material-ui/colors/yellow");
 var MaterialUi$slashCard$slashCardMedia                          = require("material-ui/Card/CardMedia");
 var MaterialUi$slashForm$slashFormGroup                          = require("material-ui/Form/FormGroup");
 var MaterialUi$slashForm$slashFormLabel                          = require("material-ui/Form/FormLabel");
@@ -59,13 +59,13 @@ var MaterialUi$slashTable$slashTableCell                         = require("mate
 var MaterialUi$slashTable$slashTableHead                         = require("material-ui/Table/TableHead");
 var MaterialUi$slashToolbar$slashToolbar                         = require("material-ui/Toolbar/Toolbar");
 var MaterialUi$slashTooltip$slashTooltip                         = require("material-ui/Tooltip/Tooltip");
-var BlueGreyExt                                                  = require("material-ui/colors/blueGrey");
+var MaterialUi$slashcolors$slashblueGrey                         = require("material-ui/colors/blueGrey");
 var MaterialUi$slashCard$slashCardActions                        = require("material-ui/Card/CardActions");
 var MaterialUi$slashCard$slashCardContent                        = require("material-ui/Card/CardContent");
 var MaterialUi$slashForm$slashFormControl                        = require("material-ui/Form/FormControl");
 var MaterialUi$slashInput$slashInputLabel                        = require("material-ui/Input/InputLabel");
 var MaterialUi$slashRadio$slashRadioGroup                        = require("material-ui/Radio/RadioGroup");
-var LightBlueExt                                                 = require("material-ui/colors/lightBlue");
+var MaterialUi$slashcolors$slashlightBlue                        = require("material-ui/colors/lightBlue");
 var MaterialUi$slashtransitions$slashFade                        = require("material-ui/transitions/Fade");
 var MaterialUi$slashtransitions$slashGrow                        = require("material-ui/transitions/Grow");
 var MaterialUi$slashCheckbox$slashCheckbox                       = require("material-ui/Checkbox/Checkbox");
@@ -74,9 +74,9 @@ var MaterialUi$slashList$slashListItemIcon                       = require("mate
 var MaterialUi$slashList$slashListItemText                       = require("material-ui/List/ListItemText");
 var MaterialUi$slashSnackbar$slashSnackbar                       = require("material-ui/Snackbar/Snackbar");
 var MaterialUi$slashTable$slashTableFooter                       = require("material-ui/Table/TableFooter");
-var DeepOrangeExt                                                = require("material-ui/colors/deepOrange");
-var DeepPurpleExt                                                = require("material-ui/colors/deepPurple");
-var LightGreenExt                                                = require("material-ui/colors/lightGreen");
+var MaterialUi$slashcolors$slashdeepOrange                       = require("material-ui/colors/deepOrange");
+var MaterialUi$slashcolors$slashdeepPurple                       = require("material-ui/colors/deepPurple");
+var MaterialUi$slashcolors$slashlightGreen                       = require("material-ui/colors/lightGreen");
 var MaterialUi$slashtransitions$slashSlide                       = require("material-ui/transitions/Slide");
 var MaterialUi$slashDialog$slashDialogTitle                      = require("material-ui/Dialog/DialogTitle");
 var MaterialUi$slashList$slashListSubheader                      = require("material-ui/List/ListSubheader");
@@ -152,35 +152,35 @@ function make($staropt$star, render, children) {
             }, children);
 }
 
-var contrastDefaultColor = BlueGreyExt["contrastDefaultColor"];
+var contrastDefaultColor = MaterialUi$slashcolors$slashblueGrey.default["contrastDefaultColor"];
 
-var a700 = BlueGreyExt["A700"];
+var a700 = MaterialUi$slashcolors$slashblueGrey.default["A700"];
 
-var a400 = BlueGreyExt["A400"];
+var a400 = MaterialUi$slashcolors$slashblueGrey.default["A400"];
 
-var a200 = BlueGreyExt["A200"];
+var a200 = MaterialUi$slashcolors$slashblueGrey.default["A200"];
 
-var a100 = BlueGreyExt["A100"];
+var a100 = MaterialUi$slashcolors$slashblueGrey.default["A100"];
 
-var c900 = BlueGreyExt["900"];
+var c900 = MaterialUi$slashcolors$slashblueGrey.default["900"];
 
-var c800 = BlueGreyExt["800"];
+var c800 = MaterialUi$slashcolors$slashblueGrey.default["800"];
 
-var c700 = BlueGreyExt["700"];
+var c700 = MaterialUi$slashcolors$slashblueGrey.default["700"];
 
-var c600 = BlueGreyExt["600"];
+var c600 = MaterialUi$slashcolors$slashblueGrey.default["600"];
 
-var c500 = BlueGreyExt["500"];
+var c500 = MaterialUi$slashcolors$slashblueGrey.default["500"];
 
-var c400 = BlueGreyExt["400"];
+var c400 = MaterialUi$slashcolors$slashblueGrey.default["400"];
 
-var c300 = BlueGreyExt["300"];
+var c300 = MaterialUi$slashcolors$slashblueGrey.default["300"];
 
-var c200 = BlueGreyExt["200"];
+var c200 = MaterialUi$slashcolors$slashblueGrey.default["200"];
 
-var c100 = BlueGreyExt["100"];
+var c100 = MaterialUi$slashcolors$slashblueGrey.default["100"];
 
-var c50 = BlueGreyExt["50"];
+var c50 = MaterialUi$slashcolors$slashblueGrey.default["50"];
 
 var BlueGrey = /* module */[
   /* contrastDefaultColor */contrastDefaultColor,
@@ -200,35 +200,35 @@ var BlueGrey = /* module */[
   /* c50 */c50
 ];
 
-var contrastDefaultColor$1 = GreyExt["contrastDefaultColor"];
+var contrastDefaultColor$1 = MaterialUi$slashcolors$slashgrey.default["contrastDefaultColor"];
 
-var a700$1 = GreyExt["A700"];
+var a700$1 = MaterialUi$slashcolors$slashgrey.default["A700"];
 
-var a400$1 = GreyExt["A400"];
+var a400$1 = MaterialUi$slashcolors$slashgrey.default["A400"];
 
-var a200$1 = GreyExt["A200"];
+var a200$1 = MaterialUi$slashcolors$slashgrey.default["A200"];
 
-var a100$1 = GreyExt["A100"];
+var a100$1 = MaterialUi$slashcolors$slashgrey.default["A100"];
 
-var c900$1 = GreyExt["900"];
+var c900$1 = MaterialUi$slashcolors$slashgrey.default["900"];
 
-var c800$1 = GreyExt["800"];
+var c800$1 = MaterialUi$slashcolors$slashgrey.default["800"];
 
-var c700$1 = GreyExt["700"];
+var c700$1 = MaterialUi$slashcolors$slashgrey.default["700"];
 
-var c600$1 = GreyExt["600"];
+var c600$1 = MaterialUi$slashcolors$slashgrey.default["600"];
 
-var c500$1 = GreyExt["500"];
+var c500$1 = MaterialUi$slashcolors$slashgrey.default["500"];
 
-var c400$1 = GreyExt["400"];
+var c400$1 = MaterialUi$slashcolors$slashgrey.default["400"];
 
-var c300$1 = GreyExt["300"];
+var c300$1 = MaterialUi$slashcolors$slashgrey.default["300"];
 
-var c200$1 = GreyExt["200"];
+var c200$1 = MaterialUi$slashcolors$slashgrey.default["200"];
 
-var c100$1 = GreyExt["100"];
+var c100$1 = MaterialUi$slashcolors$slashgrey.default["100"];
 
-var c50$1 = GreyExt["50"];
+var c50$1 = MaterialUi$slashcolors$slashgrey.default["50"];
 
 var Grey = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$1,
@@ -248,35 +248,35 @@ var Grey = /* module */[
   /* c50 */c50$1
 ];
 
-var contrastDefaultColor$2 = BrownExt["contrastDefaultColor"];
+var contrastDefaultColor$2 = MaterialUi$slashcolors$slashbrown.default["contrastDefaultColor"];
 
-var a700$2 = BrownExt["A700"];
+var a700$2 = MaterialUi$slashcolors$slashbrown.default["A700"];
 
-var a400$2 = BrownExt["A400"];
+var a400$2 = MaterialUi$slashcolors$slashbrown.default["A400"];
 
-var a200$2 = BrownExt["A200"];
+var a200$2 = MaterialUi$slashcolors$slashbrown.default["A200"];
 
-var a100$2 = BrownExt["A100"];
+var a100$2 = MaterialUi$slashcolors$slashbrown.default["A100"];
 
-var c900$2 = BrownExt["900"];
+var c900$2 = MaterialUi$slashcolors$slashbrown.default["900"];
 
-var c800$2 = BrownExt["800"];
+var c800$2 = MaterialUi$slashcolors$slashbrown.default["800"];
 
-var c700$2 = BrownExt["700"];
+var c700$2 = MaterialUi$slashcolors$slashbrown.default["700"];
 
-var c600$2 = BrownExt["600"];
+var c600$2 = MaterialUi$slashcolors$slashbrown.default["600"];
 
-var c500$2 = BrownExt["500"];
+var c500$2 = MaterialUi$slashcolors$slashbrown.default["500"];
 
-var c400$2 = BrownExt["400"];
+var c400$2 = MaterialUi$slashcolors$slashbrown.default["400"];
 
-var c300$2 = BrownExt["300"];
+var c300$2 = MaterialUi$slashcolors$slashbrown.default["300"];
 
-var c200$2 = BrownExt["200"];
+var c200$2 = MaterialUi$slashcolors$slashbrown.default["200"];
 
-var c100$2 = BrownExt["100"];
+var c100$2 = MaterialUi$slashcolors$slashbrown.default["100"];
 
-var c50$2 = BrownExt["50"];
+var c50$2 = MaterialUi$slashcolors$slashbrown.default["50"];
 
 var Brown = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$2,
@@ -296,35 +296,35 @@ var Brown = /* module */[
   /* c50 */c50$2
 ];
 
-var contrastDefaultColor$3 = DeepOrangeExt["contrastDefaultColor"];
+var contrastDefaultColor$3 = MaterialUi$slashcolors$slashdeepOrange.default["contrastDefaultColor"];
 
-var a700$3 = DeepOrangeExt["A700"];
+var a700$3 = MaterialUi$slashcolors$slashdeepOrange.default["A700"];
 
-var a400$3 = DeepOrangeExt["A400"];
+var a400$3 = MaterialUi$slashcolors$slashdeepOrange.default["A400"];
 
-var a200$3 = DeepOrangeExt["A200"];
+var a200$3 = MaterialUi$slashcolors$slashdeepOrange.default["A200"];
 
-var a100$3 = DeepOrangeExt["A100"];
+var a100$3 = MaterialUi$slashcolors$slashdeepOrange.default["A100"];
 
-var c900$3 = DeepOrangeExt["900"];
+var c900$3 = MaterialUi$slashcolors$slashdeepOrange.default["900"];
 
-var c800$3 = DeepOrangeExt["800"];
+var c800$3 = MaterialUi$slashcolors$slashdeepOrange.default["800"];
 
-var c700$3 = DeepOrangeExt["700"];
+var c700$3 = MaterialUi$slashcolors$slashdeepOrange.default["700"];
 
-var c600$3 = DeepOrangeExt["600"];
+var c600$3 = MaterialUi$slashcolors$slashdeepOrange.default["600"];
 
-var c500$3 = DeepOrangeExt["500"];
+var c500$3 = MaterialUi$slashcolors$slashdeepOrange.default["500"];
 
-var c400$3 = DeepOrangeExt["400"];
+var c400$3 = MaterialUi$slashcolors$slashdeepOrange.default["400"];
 
-var c300$3 = DeepOrangeExt["300"];
+var c300$3 = MaterialUi$slashcolors$slashdeepOrange.default["300"];
 
-var c200$3 = DeepOrangeExt["200"];
+var c200$3 = MaterialUi$slashcolors$slashdeepOrange.default["200"];
 
-var c100$3 = DeepOrangeExt["100"];
+var c100$3 = MaterialUi$slashcolors$slashdeepOrange.default["100"];
 
-var c50$3 = DeepOrangeExt["50"];
+var c50$3 = MaterialUi$slashcolors$slashdeepOrange.default["50"];
 
 var DeepOrange = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$3,
@@ -344,35 +344,35 @@ var DeepOrange = /* module */[
   /* c50 */c50$3
 ];
 
-var contrastDefaultColor$4 = OrangeExt["contrastDefaultColor"];
+var contrastDefaultColor$4 = MaterialUi$slashcolors$slashorange.default["contrastDefaultColor"];
 
-var a700$4 = OrangeExt["A700"];
+var a700$4 = MaterialUi$slashcolors$slashorange.default["A700"];
 
-var a400$4 = OrangeExt["A400"];
+var a400$4 = MaterialUi$slashcolors$slashorange.default["A400"];
 
-var a200$4 = OrangeExt["A200"];
+var a200$4 = MaterialUi$slashcolors$slashorange.default["A200"];
 
-var a100$4 = OrangeExt["A100"];
+var a100$4 = MaterialUi$slashcolors$slashorange.default["A100"];
 
-var c900$4 = OrangeExt["900"];
+var c900$4 = MaterialUi$slashcolors$slashorange.default["900"];
 
-var c800$4 = OrangeExt["800"];
+var c800$4 = MaterialUi$slashcolors$slashorange.default["800"];
 
-var c700$4 = OrangeExt["700"];
+var c700$4 = MaterialUi$slashcolors$slashorange.default["700"];
 
-var c600$4 = OrangeExt["600"];
+var c600$4 = MaterialUi$slashcolors$slashorange.default["600"];
 
-var c500$4 = OrangeExt["500"];
+var c500$4 = MaterialUi$slashcolors$slashorange.default["500"];
 
-var c400$4 = OrangeExt["400"];
+var c400$4 = MaterialUi$slashcolors$slashorange.default["400"];
 
-var c300$4 = OrangeExt["300"];
+var c300$4 = MaterialUi$slashcolors$slashorange.default["300"];
 
-var c200$4 = OrangeExt["200"];
+var c200$4 = MaterialUi$slashcolors$slashorange.default["200"];
 
-var c100$4 = OrangeExt["100"];
+var c100$4 = MaterialUi$slashcolors$slashorange.default["100"];
 
-var c50$4 = OrangeExt["50"];
+var c50$4 = MaterialUi$slashcolors$slashorange.default["50"];
 
 var Orange = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$4,
@@ -392,35 +392,35 @@ var Orange = /* module */[
   /* c50 */c50$4
 ];
 
-var contrastDefaultColor$5 = AmberExt["contrastDefaultColor"];
+var contrastDefaultColor$5 = MaterialUi$slashcolors$slashamber.default["contrastDefaultColor"];
 
-var a700$5 = AmberExt["A700"];
+var a700$5 = MaterialUi$slashcolors$slashamber.default["A700"];
 
-var a400$5 = AmberExt["A400"];
+var a400$5 = MaterialUi$slashcolors$slashamber.default["A400"];
 
-var a200$5 = AmberExt["A200"];
+var a200$5 = MaterialUi$slashcolors$slashamber.default["A200"];
 
-var a100$5 = AmberExt["A100"];
+var a100$5 = MaterialUi$slashcolors$slashamber.default["A100"];
 
-var c900$5 = AmberExt["900"];
+var c900$5 = MaterialUi$slashcolors$slashamber.default["900"];
 
-var c800$5 = AmberExt["800"];
+var c800$5 = MaterialUi$slashcolors$slashamber.default["800"];
 
-var c700$5 = AmberExt["700"];
+var c700$5 = MaterialUi$slashcolors$slashamber.default["700"];
 
-var c600$5 = AmberExt["600"];
+var c600$5 = MaterialUi$slashcolors$slashamber.default["600"];
 
-var c500$5 = AmberExt["500"];
+var c500$5 = MaterialUi$slashcolors$slashamber.default["500"];
 
-var c400$5 = AmberExt["400"];
+var c400$5 = MaterialUi$slashcolors$slashamber.default["400"];
 
-var c300$5 = AmberExt["300"];
+var c300$5 = MaterialUi$slashcolors$slashamber.default["300"];
 
-var c200$5 = AmberExt["200"];
+var c200$5 = MaterialUi$slashcolors$slashamber.default["200"];
 
-var c100$5 = AmberExt["100"];
+var c100$5 = MaterialUi$slashcolors$slashamber.default["100"];
 
-var c50$5 = AmberExt["50"];
+var c50$5 = MaterialUi$slashcolors$slashamber.default["50"];
 
 var Amber = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$5,
@@ -440,35 +440,35 @@ var Amber = /* module */[
   /* c50 */c50$5
 ];
 
-var contrastDefaultColor$6 = YellowExt["contrastDefaultColor"];
+var contrastDefaultColor$6 = MaterialUi$slashcolors$slashyellow.default["contrastDefaultColor"];
 
-var a700$6 = YellowExt["A700"];
+var a700$6 = MaterialUi$slashcolors$slashyellow.default["A700"];
 
-var a400$6 = YellowExt["A400"];
+var a400$6 = MaterialUi$slashcolors$slashyellow.default["A400"];
 
-var a200$6 = YellowExt["A200"];
+var a200$6 = MaterialUi$slashcolors$slashyellow.default["A200"];
 
-var a100$6 = YellowExt["A100"];
+var a100$6 = MaterialUi$slashcolors$slashyellow.default["A100"];
 
-var c900$6 = YellowExt["900"];
+var c900$6 = MaterialUi$slashcolors$slashyellow.default["900"];
 
-var c800$6 = YellowExt["800"];
+var c800$6 = MaterialUi$slashcolors$slashyellow.default["800"];
 
-var c700$6 = YellowExt["700"];
+var c700$6 = MaterialUi$slashcolors$slashyellow.default["700"];
 
-var c600$6 = YellowExt["600"];
+var c600$6 = MaterialUi$slashcolors$slashyellow.default["600"];
 
-var c500$6 = YellowExt["500"];
+var c500$6 = MaterialUi$slashcolors$slashyellow.default["500"];
 
-var c400$6 = YellowExt["400"];
+var c400$6 = MaterialUi$slashcolors$slashyellow.default["400"];
 
-var c300$6 = YellowExt["300"];
+var c300$6 = MaterialUi$slashcolors$slashyellow.default["300"];
 
-var c200$6 = YellowExt["200"];
+var c200$6 = MaterialUi$slashcolors$slashyellow.default["200"];
 
-var c100$6 = YellowExt["100"];
+var c100$6 = MaterialUi$slashcolors$slashyellow.default["100"];
 
-var c50$6 = YellowExt["50"];
+var c50$6 = MaterialUi$slashcolors$slashyellow.default["50"];
 
 var Yellow = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$6,
@@ -488,35 +488,35 @@ var Yellow = /* module */[
   /* c50 */c50$6
 ];
 
-var contrastDefaultColor$7 = LimeExt["contrastDefaultColor"];
+var contrastDefaultColor$7 = MaterialUi$slashcolors$slashlime.default["contrastDefaultColor"];
 
-var a700$7 = LimeExt["A700"];
+var a700$7 = MaterialUi$slashcolors$slashlime.default["A700"];
 
-var a400$7 = LimeExt["A400"];
+var a400$7 = MaterialUi$slashcolors$slashlime.default["A400"];
 
-var a200$7 = LimeExt["A200"];
+var a200$7 = MaterialUi$slashcolors$slashlime.default["A200"];
 
-var a100$7 = LimeExt["A100"];
+var a100$7 = MaterialUi$slashcolors$slashlime.default["A100"];
 
-var c900$7 = LimeExt["900"];
+var c900$7 = MaterialUi$slashcolors$slashlime.default["900"];
 
-var c800$7 = LimeExt["800"];
+var c800$7 = MaterialUi$slashcolors$slashlime.default["800"];
 
-var c700$7 = LimeExt["700"];
+var c700$7 = MaterialUi$slashcolors$slashlime.default["700"];
 
-var c600$7 = LimeExt["600"];
+var c600$7 = MaterialUi$slashcolors$slashlime.default["600"];
 
-var c500$7 = LimeExt["500"];
+var c500$7 = MaterialUi$slashcolors$slashlime.default["500"];
 
-var c400$7 = LimeExt["400"];
+var c400$7 = MaterialUi$slashcolors$slashlime.default["400"];
 
-var c300$7 = LimeExt["300"];
+var c300$7 = MaterialUi$slashcolors$slashlime.default["300"];
 
-var c200$7 = LimeExt["200"];
+var c200$7 = MaterialUi$slashcolors$slashlime.default["200"];
 
-var c100$7 = LimeExt["100"];
+var c100$7 = MaterialUi$slashcolors$slashlime.default["100"];
 
-var c50$7 = LimeExt["50"];
+var c50$7 = MaterialUi$slashcolors$slashlime.default["50"];
 
 var Lime = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$7,
@@ -536,35 +536,35 @@ var Lime = /* module */[
   /* c50 */c50$7
 ];
 
-var contrastDefaultColor$8 = LightGreenExt["contrastDefaultColor"];
+var contrastDefaultColor$8 = MaterialUi$slashcolors$slashlightGreen.default["contrastDefaultColor"];
 
-var a700$8 = LightGreenExt["A700"];
+var a700$8 = MaterialUi$slashcolors$slashlightGreen.default["A700"];
 
-var a400$8 = LightGreenExt["A400"];
+var a400$8 = MaterialUi$slashcolors$slashlightGreen.default["A400"];
 
-var a200$8 = LightGreenExt["A200"];
+var a200$8 = MaterialUi$slashcolors$slashlightGreen.default["A200"];
 
-var a100$8 = LightGreenExt["A100"];
+var a100$8 = MaterialUi$slashcolors$slashlightGreen.default["A100"];
 
-var c900$8 = LightGreenExt["900"];
+var c900$8 = MaterialUi$slashcolors$slashlightGreen.default["900"];
 
-var c800$8 = LightGreenExt["800"];
+var c800$8 = MaterialUi$slashcolors$slashlightGreen.default["800"];
 
-var c700$8 = LightGreenExt["700"];
+var c700$8 = MaterialUi$slashcolors$slashlightGreen.default["700"];
 
-var c600$8 = LightGreenExt["600"];
+var c600$8 = MaterialUi$slashcolors$slashlightGreen.default["600"];
 
-var c500$8 = LightGreenExt["500"];
+var c500$8 = MaterialUi$slashcolors$slashlightGreen.default["500"];
 
-var c400$8 = LightGreenExt["400"];
+var c400$8 = MaterialUi$slashcolors$slashlightGreen.default["400"];
 
-var c300$8 = LightGreenExt["300"];
+var c300$8 = MaterialUi$slashcolors$slashlightGreen.default["300"];
 
-var c200$8 = LightGreenExt["200"];
+var c200$8 = MaterialUi$slashcolors$slashlightGreen.default["200"];
 
-var c100$8 = LightGreenExt["100"];
+var c100$8 = MaterialUi$slashcolors$slashlightGreen.default["100"];
 
-var c50$8 = LightGreenExt["50"];
+var c50$8 = MaterialUi$slashcolors$slashlightGreen.default["50"];
 
 var LightGreen = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$8,
@@ -584,35 +584,35 @@ var LightGreen = /* module */[
   /* c50 */c50$8
 ];
 
-var contrastDefaultColor$9 = GreenExt["contrastDefaultColor"];
+var contrastDefaultColor$9 = MaterialUi$slashcolors$slashgreen.default["contrastDefaultColor"];
 
-var a700$9 = GreenExt["A700"];
+var a700$9 = MaterialUi$slashcolors$slashgreen.default["A700"];
 
-var a400$9 = GreenExt["A400"];
+var a400$9 = MaterialUi$slashcolors$slashgreen.default["A400"];
 
-var a200$9 = GreenExt["A200"];
+var a200$9 = MaterialUi$slashcolors$slashgreen.default["A200"];
 
-var a100$9 = GreenExt["A100"];
+var a100$9 = MaterialUi$slashcolors$slashgreen.default["A100"];
 
-var c900$9 = GreenExt["900"];
+var c900$9 = MaterialUi$slashcolors$slashgreen.default["900"];
 
-var c800$9 = GreenExt["800"];
+var c800$9 = MaterialUi$slashcolors$slashgreen.default["800"];
 
-var c700$9 = GreenExt["700"];
+var c700$9 = MaterialUi$slashcolors$slashgreen.default["700"];
 
-var c600$9 = GreenExt["600"];
+var c600$9 = MaterialUi$slashcolors$slashgreen.default["600"];
 
-var c500$9 = GreenExt["500"];
+var c500$9 = MaterialUi$slashcolors$slashgreen.default["500"];
 
-var c400$9 = GreenExt["400"];
+var c400$9 = MaterialUi$slashcolors$slashgreen.default["400"];
 
-var c300$9 = GreenExt["300"];
+var c300$9 = MaterialUi$slashcolors$slashgreen.default["300"];
 
-var c200$9 = GreenExt["200"];
+var c200$9 = MaterialUi$slashcolors$slashgreen.default["200"];
 
-var c100$9 = GreenExt["100"];
+var c100$9 = MaterialUi$slashcolors$slashgreen.default["100"];
 
-var c50$9 = GreenExt["50"];
+var c50$9 = MaterialUi$slashcolors$slashgreen.default["50"];
 
 var Green = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$9,
@@ -632,35 +632,35 @@ var Green = /* module */[
   /* c50 */c50$9
 ];
 
-var contrastDefaultColor$10 = TealExt["contrastDefaultColor"];
+var contrastDefaultColor$10 = MaterialUi$slashcolors$slashteal.default["contrastDefaultColor"];
 
-var a700$10 = TealExt["A700"];
+var a700$10 = MaterialUi$slashcolors$slashteal.default["A700"];
 
-var a400$10 = TealExt["A400"];
+var a400$10 = MaterialUi$slashcolors$slashteal.default["A400"];
 
-var a200$10 = TealExt["A200"];
+var a200$10 = MaterialUi$slashcolors$slashteal.default["A200"];
 
-var a100$10 = TealExt["A100"];
+var a100$10 = MaterialUi$slashcolors$slashteal.default["A100"];
 
-var c900$10 = TealExt["900"];
+var c900$10 = MaterialUi$slashcolors$slashteal.default["900"];
 
-var c800$10 = TealExt["800"];
+var c800$10 = MaterialUi$slashcolors$slashteal.default["800"];
 
-var c700$10 = TealExt["700"];
+var c700$10 = MaterialUi$slashcolors$slashteal.default["700"];
 
-var c600$10 = TealExt["600"];
+var c600$10 = MaterialUi$slashcolors$slashteal.default["600"];
 
-var c500$10 = TealExt["500"];
+var c500$10 = MaterialUi$slashcolors$slashteal.default["500"];
 
-var c400$10 = TealExt["400"];
+var c400$10 = MaterialUi$slashcolors$slashteal.default["400"];
 
-var c300$10 = TealExt["300"];
+var c300$10 = MaterialUi$slashcolors$slashteal.default["300"];
 
-var c200$10 = TealExt["200"];
+var c200$10 = MaterialUi$slashcolors$slashteal.default["200"];
 
-var c100$10 = TealExt["100"];
+var c100$10 = MaterialUi$slashcolors$slashteal.default["100"];
 
-var c50$10 = TealExt["50"];
+var c50$10 = MaterialUi$slashcolors$slashteal.default["50"];
 
 var Teal = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$10,
@@ -680,35 +680,35 @@ var Teal = /* module */[
   /* c50 */c50$10
 ];
 
-var contrastDefaultColor$11 = CyanExt["contrastDefaultColor"];
+var contrastDefaultColor$11 = MaterialUi$slashcolors$slashcyan.default["contrastDefaultColor"];
 
-var a700$11 = CyanExt["A700"];
+var a700$11 = MaterialUi$slashcolors$slashcyan.default["A700"];
 
-var a400$11 = CyanExt["A400"];
+var a400$11 = MaterialUi$slashcolors$slashcyan.default["A400"];
 
-var a200$11 = CyanExt["A200"];
+var a200$11 = MaterialUi$slashcolors$slashcyan.default["A200"];
 
-var a100$11 = CyanExt["A100"];
+var a100$11 = MaterialUi$slashcolors$slashcyan.default["A100"];
 
-var c900$11 = CyanExt["900"];
+var c900$11 = MaterialUi$slashcolors$slashcyan.default["900"];
 
-var c800$11 = CyanExt["800"];
+var c800$11 = MaterialUi$slashcolors$slashcyan.default["800"];
 
-var c700$11 = CyanExt["700"];
+var c700$11 = MaterialUi$slashcolors$slashcyan.default["700"];
 
-var c600$11 = CyanExt["600"];
+var c600$11 = MaterialUi$slashcolors$slashcyan.default["600"];
 
-var c500$11 = CyanExt["500"];
+var c500$11 = MaterialUi$slashcolors$slashcyan.default["500"];
 
-var c400$11 = CyanExt["400"];
+var c400$11 = MaterialUi$slashcolors$slashcyan.default["400"];
 
-var c300$11 = CyanExt["300"];
+var c300$11 = MaterialUi$slashcolors$slashcyan.default["300"];
 
-var c200$11 = CyanExt["200"];
+var c200$11 = MaterialUi$slashcolors$slashcyan.default["200"];
 
-var c100$11 = CyanExt["100"];
+var c100$11 = MaterialUi$slashcolors$slashcyan.default["100"];
 
-var c50$11 = CyanExt["50"];
+var c50$11 = MaterialUi$slashcolors$slashcyan.default["50"];
 
 var Cyan = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$11,
@@ -728,35 +728,35 @@ var Cyan = /* module */[
   /* c50 */c50$11
 ];
 
-var contrastDefaultColor$12 = LightBlueExt["contrastDefaultColor"];
+var contrastDefaultColor$12 = MaterialUi$slashcolors$slashlightBlue.default["contrastDefaultColor"];
 
-var a700$12 = LightBlueExt["A700"];
+var a700$12 = MaterialUi$slashcolors$slashlightBlue.default["A700"];
 
-var a400$12 = LightBlueExt["A400"];
+var a400$12 = MaterialUi$slashcolors$slashlightBlue.default["A400"];
 
-var a200$12 = LightBlueExt["A200"];
+var a200$12 = MaterialUi$slashcolors$slashlightBlue.default["A200"];
 
-var a100$12 = LightBlueExt["A100"];
+var a100$12 = MaterialUi$slashcolors$slashlightBlue.default["A100"];
 
-var c900$12 = LightBlueExt["900"];
+var c900$12 = MaterialUi$slashcolors$slashlightBlue.default["900"];
 
-var c800$12 = LightBlueExt["800"];
+var c800$12 = MaterialUi$slashcolors$slashlightBlue.default["800"];
 
-var c700$12 = LightBlueExt["700"];
+var c700$12 = MaterialUi$slashcolors$slashlightBlue.default["700"];
 
-var c600$12 = LightBlueExt["600"];
+var c600$12 = MaterialUi$slashcolors$slashlightBlue.default["600"];
 
-var c500$12 = LightBlueExt["500"];
+var c500$12 = MaterialUi$slashcolors$slashlightBlue.default["500"];
 
-var c400$12 = LightBlueExt["400"];
+var c400$12 = MaterialUi$slashcolors$slashlightBlue.default["400"];
 
-var c300$12 = LightBlueExt["300"];
+var c300$12 = MaterialUi$slashcolors$slashlightBlue.default["300"];
 
-var c200$12 = LightBlueExt["200"];
+var c200$12 = MaterialUi$slashcolors$slashlightBlue.default["200"];
 
-var c100$12 = LightBlueExt["100"];
+var c100$12 = MaterialUi$slashcolors$slashlightBlue.default["100"];
 
-var c50$12 = LightBlueExt["50"];
+var c50$12 = MaterialUi$slashcolors$slashlightBlue.default["50"];
 
 var LightBlue = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$12,
@@ -776,35 +776,35 @@ var LightBlue = /* module */[
   /* c50 */c50$12
 ];
 
-var contrastDefaultColor$13 = BlueExt["contrastDefaultColor"];
+var contrastDefaultColor$13 = MaterialUi$slashcolors$slashblue.default["contrastDefaultColor"];
 
-var a700$13 = BlueExt["A700"];
+var a700$13 = MaterialUi$slashcolors$slashblue.default["A700"];
 
-var a400$13 = BlueExt["A400"];
+var a400$13 = MaterialUi$slashcolors$slashblue.default["A400"];
 
-var a200$13 = BlueExt["A200"];
+var a200$13 = MaterialUi$slashcolors$slashblue.default["A200"];
 
-var a100$13 = BlueExt["A100"];
+var a100$13 = MaterialUi$slashcolors$slashblue.default["A100"];
 
-var c900$13 = BlueExt["900"];
+var c900$13 = MaterialUi$slashcolors$slashblue.default["900"];
 
-var c800$13 = BlueExt["800"];
+var c800$13 = MaterialUi$slashcolors$slashblue.default["800"];
 
-var c700$13 = BlueExt["700"];
+var c700$13 = MaterialUi$slashcolors$slashblue.default["700"];
 
-var c600$13 = BlueExt["600"];
+var c600$13 = MaterialUi$slashcolors$slashblue.default["600"];
 
-var c500$13 = BlueExt["500"];
+var c500$13 = MaterialUi$slashcolors$slashblue.default["500"];
 
-var c400$13 = BlueExt["400"];
+var c400$13 = MaterialUi$slashcolors$slashblue.default["400"];
 
-var c300$13 = BlueExt["300"];
+var c300$13 = MaterialUi$slashcolors$slashblue.default["300"];
 
-var c200$13 = BlueExt["200"];
+var c200$13 = MaterialUi$slashcolors$slashblue.default["200"];
 
-var c100$13 = BlueExt["100"];
+var c100$13 = MaterialUi$slashcolors$slashblue.default["100"];
 
-var c50$13 = BlueExt["50"];
+var c50$13 = MaterialUi$slashcolors$slashblue.default["50"];
 
 var Blue = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$13,
@@ -824,35 +824,35 @@ var Blue = /* module */[
   /* c50 */c50$13
 ];
 
-var contrastDefaultColor$14 = IndigoExt["contrastDefaultColor"];
+var contrastDefaultColor$14 = MaterialUi$slashcolors$slashindigo.default["contrastDefaultColor"];
 
-var a700$14 = IndigoExt["A700"];
+var a700$14 = MaterialUi$slashcolors$slashindigo.default["A700"];
 
-var a400$14 = IndigoExt["A400"];
+var a400$14 = MaterialUi$slashcolors$slashindigo.default["A400"];
 
-var a200$14 = IndigoExt["A200"];
+var a200$14 = MaterialUi$slashcolors$slashindigo.default["A200"];
 
-var a100$14 = IndigoExt["A100"];
+var a100$14 = MaterialUi$slashcolors$slashindigo.default["A100"];
 
-var c900$14 = IndigoExt["900"];
+var c900$14 = MaterialUi$slashcolors$slashindigo.default["900"];
 
-var c800$14 = IndigoExt["800"];
+var c800$14 = MaterialUi$slashcolors$slashindigo.default["800"];
 
-var c700$14 = IndigoExt["700"];
+var c700$14 = MaterialUi$slashcolors$slashindigo.default["700"];
 
-var c600$14 = IndigoExt["600"];
+var c600$14 = MaterialUi$slashcolors$slashindigo.default["600"];
 
-var c500$14 = IndigoExt["500"];
+var c500$14 = MaterialUi$slashcolors$slashindigo.default["500"];
 
-var c400$14 = IndigoExt["400"];
+var c400$14 = MaterialUi$slashcolors$slashindigo.default["400"];
 
-var c300$14 = IndigoExt["300"];
+var c300$14 = MaterialUi$slashcolors$slashindigo.default["300"];
 
-var c200$14 = IndigoExt["200"];
+var c200$14 = MaterialUi$slashcolors$slashindigo.default["200"];
 
-var c100$14 = IndigoExt["100"];
+var c100$14 = MaterialUi$slashcolors$slashindigo.default["100"];
 
-var c50$14 = IndigoExt["50"];
+var c50$14 = MaterialUi$slashcolors$slashindigo.default["50"];
 
 var Indigo = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$14,
@@ -872,35 +872,35 @@ var Indigo = /* module */[
   /* c50 */c50$14
 ];
 
-var contrastDefaultColor$15 = DeepPurpleExt["contrastDefaultColor"];
+var contrastDefaultColor$15 = MaterialUi$slashcolors$slashdeepPurple.default["contrastDefaultColor"];
 
-var a700$15 = DeepPurpleExt["A700"];
+var a700$15 = MaterialUi$slashcolors$slashdeepPurple.default["A700"];
 
-var a400$15 = DeepPurpleExt["A400"];
+var a400$15 = MaterialUi$slashcolors$slashdeepPurple.default["A400"];
 
-var a200$15 = DeepPurpleExt["A200"];
+var a200$15 = MaterialUi$slashcolors$slashdeepPurple.default["A200"];
 
-var a100$15 = DeepPurpleExt["A100"];
+var a100$15 = MaterialUi$slashcolors$slashdeepPurple.default["A100"];
 
-var c900$15 = DeepPurpleExt["900"];
+var c900$15 = MaterialUi$slashcolors$slashdeepPurple.default["900"];
 
-var c800$15 = DeepPurpleExt["800"];
+var c800$15 = MaterialUi$slashcolors$slashdeepPurple.default["800"];
 
-var c700$15 = DeepPurpleExt["700"];
+var c700$15 = MaterialUi$slashcolors$slashdeepPurple.default["700"];
 
-var c600$15 = DeepPurpleExt["600"];
+var c600$15 = MaterialUi$slashcolors$slashdeepPurple.default["600"];
 
-var c500$15 = DeepPurpleExt["500"];
+var c500$15 = MaterialUi$slashcolors$slashdeepPurple.default["500"];
 
-var c400$15 = DeepPurpleExt["400"];
+var c400$15 = MaterialUi$slashcolors$slashdeepPurple.default["400"];
 
-var c300$15 = DeepPurpleExt["300"];
+var c300$15 = MaterialUi$slashcolors$slashdeepPurple.default["300"];
 
-var c200$15 = DeepPurpleExt["200"];
+var c200$15 = MaterialUi$slashcolors$slashdeepPurple.default["200"];
 
-var c100$15 = DeepPurpleExt["100"];
+var c100$15 = MaterialUi$slashcolors$slashdeepPurple.default["100"];
 
-var c50$15 = DeepPurpleExt["50"];
+var c50$15 = MaterialUi$slashcolors$slashdeepPurple.default["50"];
 
 var DeepPurple = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$15,
@@ -920,35 +920,35 @@ var DeepPurple = /* module */[
   /* c50 */c50$15
 ];
 
-var contrastDefaultColor$16 = PurpleExt["contrastDefaultColor"];
+var contrastDefaultColor$16 = MaterialUi$slashcolors$slashpurple.default["contrastDefaultColor"];
 
-var a700$16 = PurpleExt["A700"];
+var a700$16 = MaterialUi$slashcolors$slashpurple.default["A700"];
 
-var a400$16 = PurpleExt["A400"];
+var a400$16 = MaterialUi$slashcolors$slashpurple.default["A400"];
 
-var a200$16 = PurpleExt["A200"];
+var a200$16 = MaterialUi$slashcolors$slashpurple.default["A200"];
 
-var a100$16 = PurpleExt["A100"];
+var a100$16 = MaterialUi$slashcolors$slashpurple.default["A100"];
 
-var c900$16 = PurpleExt["900"];
+var c900$16 = MaterialUi$slashcolors$slashpurple.default["900"];
 
-var c800$16 = PurpleExt["800"];
+var c800$16 = MaterialUi$slashcolors$slashpurple.default["800"];
 
-var c700$16 = PurpleExt["700"];
+var c700$16 = MaterialUi$slashcolors$slashpurple.default["700"];
 
-var c600$16 = PurpleExt["600"];
+var c600$16 = MaterialUi$slashcolors$slashpurple.default["600"];
 
-var c500$16 = PurpleExt["500"];
+var c500$16 = MaterialUi$slashcolors$slashpurple.default["500"];
 
-var c400$16 = PurpleExt["400"];
+var c400$16 = MaterialUi$slashcolors$slashpurple.default["400"];
 
-var c300$16 = PurpleExt["300"];
+var c300$16 = MaterialUi$slashcolors$slashpurple.default["300"];
 
-var c200$16 = PurpleExt["200"];
+var c200$16 = MaterialUi$slashcolors$slashpurple.default["200"];
 
-var c100$16 = PurpleExt["100"];
+var c100$16 = MaterialUi$slashcolors$slashpurple.default["100"];
 
-var c50$16 = PurpleExt["50"];
+var c50$16 = MaterialUi$slashcolors$slashpurple.default["50"];
 
 var Purple = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$16,
@@ -968,35 +968,35 @@ var Purple = /* module */[
   /* c50 */c50$16
 ];
 
-var contrastDefaultColor$17 = PinkExt["contrastDefaultColor"];
+var contrastDefaultColor$17 = MaterialUi$slashcolors$slashpink.default["contrastDefaultColor"];
 
-var a700$17 = PinkExt["A700"];
+var a700$17 = MaterialUi$slashcolors$slashpink.default["A700"];
 
-var a400$17 = PinkExt["A400"];
+var a400$17 = MaterialUi$slashcolors$slashpink.default["A400"];
 
-var a200$17 = PinkExt["A200"];
+var a200$17 = MaterialUi$slashcolors$slashpink.default["A200"];
 
-var a100$17 = PinkExt["A100"];
+var a100$17 = MaterialUi$slashcolors$slashpink.default["A100"];
 
-var c900$17 = PinkExt["900"];
+var c900$17 = MaterialUi$slashcolors$slashpink.default["900"];
 
-var c800$17 = PinkExt["800"];
+var c800$17 = MaterialUi$slashcolors$slashpink.default["800"];
 
-var c700$17 = PinkExt["700"];
+var c700$17 = MaterialUi$slashcolors$slashpink.default["700"];
 
-var c600$17 = PinkExt["600"];
+var c600$17 = MaterialUi$slashcolors$slashpink.default["600"];
 
-var c500$17 = PinkExt["500"];
+var c500$17 = MaterialUi$slashcolors$slashpink.default["500"];
 
-var c400$17 = PinkExt["400"];
+var c400$17 = MaterialUi$slashcolors$slashpink.default["400"];
 
-var c300$17 = PinkExt["300"];
+var c300$17 = MaterialUi$slashcolors$slashpink.default["300"];
 
-var c200$17 = PinkExt["200"];
+var c200$17 = MaterialUi$slashcolors$slashpink.default["200"];
 
-var c100$17 = PinkExt["100"];
+var c100$17 = MaterialUi$slashcolors$slashpink.default["100"];
 
-var c50$17 = PinkExt["50"];
+var c50$17 = MaterialUi$slashcolors$slashpink.default["50"];
 
 var Pink = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$17,
@@ -1016,35 +1016,35 @@ var Pink = /* module */[
   /* c50 */c50$17
 ];
 
-var contrastDefaultColor$18 = RedExt["contrastDefaultColor"];
+var contrastDefaultColor$18 = MaterialUi$slashcolors$slashred.default["contrastDefaultColor"];
 
-var a700$18 = RedExt["A700"];
+var a700$18 = MaterialUi$slashcolors$slashred.default["A700"];
 
-var a400$18 = RedExt["A400"];
+var a400$18 = MaterialUi$slashcolors$slashred.default["A400"];
 
-var a200$18 = RedExt["A200"];
+var a200$18 = MaterialUi$slashcolors$slashred.default["A200"];
 
-var a100$18 = RedExt["A100"];
+var a100$18 = MaterialUi$slashcolors$slashred.default["A100"];
 
-var c900$18 = RedExt["900"];
+var c900$18 = MaterialUi$slashcolors$slashred.default["900"];
 
-var c800$18 = RedExt["800"];
+var c800$18 = MaterialUi$slashcolors$slashred.default["800"];
 
-var c700$18 = RedExt["700"];
+var c700$18 = MaterialUi$slashcolors$slashred.default["700"];
 
-var c600$18 = RedExt["600"];
+var c600$18 = MaterialUi$slashcolors$slashred.default["600"];
 
-var c500$18 = RedExt["500"];
+var c500$18 = MaterialUi$slashcolors$slashred.default["500"];
 
-var c400$18 = RedExt["400"];
+var c400$18 = MaterialUi$slashcolors$slashred.default["400"];
 
-var c300$18 = RedExt["300"];
+var c300$18 = MaterialUi$slashcolors$slashred.default["300"];
 
-var c200$18 = RedExt["200"];
+var c200$18 = MaterialUi$slashcolors$slashred.default["200"];
 
-var c100$18 = RedExt["100"];
+var c100$18 = MaterialUi$slashcolors$slashred.default["100"];
 
-var c50$18 = RedExt["50"];
+var c50$18 = MaterialUi$slashcolors$slashred.default["50"];
 
 var Red = /* module */[
   /* contrastDefaultColor */contrastDefaultColor$18,
@@ -1064,27 +1064,27 @@ var Red = /* module */[
   /* c50 */c50$18
 ];
 
-var lightWhite = CommonExt["lightWhite"];
+var lightWhite = MaterialUi$slashcolors$slashcommon.default["lightWhite"];
 
-var darkWhite = CommonExt["darkWhite"];
+var darkWhite = MaterialUi$slashcolors$slashcommon.default["darkWhite"];
 
-var fullWhite = CommonExt["fullWhite"];
+var fullWhite = MaterialUi$slashcolors$slashcommon.default["fullWhite"];
 
-var faintBlack = CommonExt["faintBlack"];
+var faintBlack = MaterialUi$slashcolors$slashcommon.default["faintBlack"];
 
-var minBlack = CommonExt["minBlack"];
+var minBlack = MaterialUi$slashcolors$slashcommon.default["minBlack"];
 
-var lightBlack = CommonExt["lightBlack"];
+var lightBlack = MaterialUi$slashcolors$slashcommon.default["lightBlack"];
 
-var darkBlack = CommonExt["darkBlack"];
+var darkBlack = MaterialUi$slashcolors$slashcommon.default["darkBlack"];
 
-var fullBlack = CommonExt["fullBlack"];
+var fullBlack = MaterialUi$slashcolors$slashcommon.default["fullBlack"];
 
-var transparent = CommonExt["transparent"];
+var transparent = MaterialUi$slashcolors$slashcommon.default["transparent"];
 
-var white = CommonExt["white"];
+var white = MaterialUi$slashcolors$slashcommon.default["white"];
 
-var black = CommonExt["black"];
+var black = MaterialUi$slashcolors$slashcommon.default["black"];
 
 var Common = /* module */[
   /* lightWhite */lightWhite,
