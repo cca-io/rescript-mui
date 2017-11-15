@@ -41,9 +41,9 @@ let make = (_children) => {
 
 In material-ui, the `withStyles` [HOC](https://reactjs.org/docs/higher-order-components.html) takes care of turning React styles into CSS via [react-jss](https://github.com/cssinjs/react-jss). It passes a `classes` prop onto the component with the first level keys of the style object passed on.
 
-HOC do not translate well into Reaon which is why we are using a [render prop](http://reactpatterns.com/#render-callback) to make things easier to use. [(More information on the topic).](https://www.youtube.com/watch?v=BcVAq3YFiuc)
+HOC do not translate well into Reason which is why we are using a [render prop](http://reactpatterns.com/#render-callback) to make things easier. [(More information on the topic).](https://www.youtube.com/watch?v=BcVAq3YFiuc)
 
-You need to pass a `styles` prop of type `Js.t({..})` and a render function to the component. See the following example:
+You need to pass a `styles` prop of type `Js.t({..})` and a `render` function to the component. See the following example:
 
 ```ml
 let component = ReasonReact.statelessComponent("Example");
@@ -65,7 +65,7 @@ let make = (_children) => {
 
 ## Todo
 
-- [ ] Expose a nested `Colors` module
+- [x] ~~Expose a nested `Colors` module~~ (2017-11-15)
 - [ ] Think of a way to use `theme => object` pattern as `withStyles` argument
 - [ ] Add `WithTheme` component
 - [ ] Add `ThemeProvider` component

@@ -14,12 +14,22 @@ var MaterialUi$slashIcon$slashIcon                               = require("mate
 var MaterialUi$slashList$slashList                               = require("material-ui/List/List");
 var MaterialUi$slashMenu$slashMenu                               = require("material-ui/Menu/Menu");
 var MaterialUi$slashTabs$slashTabs                               = require("material-ui/Tabs/Tabs");
+var RedExt                                                       = require("material-ui/colors/red");
 var Caml_builtin_exceptions                                      = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 var MaterialUi$slashBadge$slashBadge                             = require("material-ui/Badge/Badge");
 var MaterialUi$slashInput$slashInput                             = require("material-ui/Input/Input");
 var MaterialUi$slashPaper$slashPaper                             = require("material-ui/Paper/Paper");
 var MaterialUi$slashRadio$slashRadio                             = require("material-ui/Radio/Radio");
 var MaterialUi$slashTable$slashTable                             = require("material-ui/Table/Table");
+var BlueExt                                                      = require("material-ui/colors/blue");
+var CyanExt                                                      = require("material-ui/colors/cyan");
+var GreyExt                                                      = require("material-ui/colors/grey");
+var LimeExt                                                      = require("material-ui/colors/lime");
+var PinkExt                                                      = require("material-ui/colors/pink");
+var TealExt                                                      = require("material-ui/colors/teal");
+var AmberExt                                                     = require("material-ui/colors/amber");
+var BrownExt                                                     = require("material-ui/colors/brown");
+var GreenExt                                                     = require("material-ui/colors/green");
 var MaterialUi$slashAppBar$slashAppBar                           = require("material-ui/AppBar/AppBar");
 var MaterialUi$slashAvatar$slashAvatar                           = require("material-ui/Avatar/Avatar");
 var MaterialUi$slashButton$slashButton                           = require("material-ui/Button/Button");
@@ -31,6 +41,11 @@ var MaterialUi$slashMenu$slashMenuItem                           = require("mate
 var MaterialUi$slashMenu$slashMenuList                           = require("material-ui/Menu/MenuList");
 var MaterialUi$slashSelect$slashSelect                           = require("material-ui/Select/Select");
 var MaterialUi$slashSwitch$slashSwitch                           = require("material-ui/Switch/Switch");
+var CommonExt                                                    = require("material-ui/colors/common");
+var IndigoExt                                                    = require("material-ui/colors/indigo");
+var OrangeExt                                                    = require("material-ui/colors/orange");
+var PurpleExt                                                    = require("material-ui/colors/purple");
+var YellowExt                                                    = require("material-ui/colors/yellow");
 var MaterialUi$slashCard$slashCardMedia                          = require("material-ui/Card/CardMedia");
 var MaterialUi$slashForm$slashFormGroup                          = require("material-ui/Form/FormGroup");
 var MaterialUi$slashForm$slashFormLabel                          = require("material-ui/Form/FormLabel");
@@ -44,11 +59,13 @@ var MaterialUi$slashTable$slashTableCell                         = require("mate
 var MaterialUi$slashTable$slashTableHead                         = require("material-ui/Table/TableHead");
 var MaterialUi$slashToolbar$slashToolbar                         = require("material-ui/Toolbar/Toolbar");
 var MaterialUi$slashTooltip$slashTooltip                         = require("material-ui/Tooltip/Tooltip");
+var BlueGreyExt                                                  = require("material-ui/colors/blueGrey");
 var MaterialUi$slashCard$slashCardActions                        = require("material-ui/Card/CardActions");
 var MaterialUi$slashCard$slashCardContent                        = require("material-ui/Card/CardContent");
 var MaterialUi$slashForm$slashFormControl                        = require("material-ui/Form/FormControl");
 var MaterialUi$slashInput$slashInputLabel                        = require("material-ui/Input/InputLabel");
 var MaterialUi$slashRadio$slashRadioGroup                        = require("material-ui/Radio/RadioGroup");
+var LightBlueExt                                                 = require("material-ui/colors/lightBlue");
 var MaterialUi$slashtransitions$slashFade                        = require("material-ui/transitions/Fade");
 var MaterialUi$slashtransitions$slashGrow                        = require("material-ui/transitions/Grow");
 var MaterialUi$slashCheckbox$slashCheckbox                       = require("material-ui/Checkbox/Checkbox");
@@ -57,6 +74,9 @@ var MaterialUi$slashList$slashListItemIcon                       = require("mate
 var MaterialUi$slashList$slashListItemText                       = require("material-ui/List/ListItemText");
 var MaterialUi$slashSnackbar$slashSnackbar                       = require("material-ui/Snackbar/Snackbar");
 var MaterialUi$slashTable$slashTableFooter                       = require("material-ui/Table/TableFooter");
+var DeepOrangeExt                                                = require("material-ui/colors/deepOrange");
+var DeepPurpleExt                                                = require("material-ui/colors/deepPurple");
+var LightGreenExt                                                = require("material-ui/colors/lightGreen");
 var MaterialUi$slashtransitions$slashSlide                       = require("material-ui/transitions/Slide");
 var MaterialUi$slashDialog$slashDialogTitle                      = require("material-ui/Dialog/DialogTitle");
 var MaterialUi$slashList$slashListSubheader                      = require("material-ui/List/ListSubheader");
@@ -131,6 +151,977 @@ function make($staropt$star, render, children) {
               render: render
             }, children);
 }
+
+var contrastDefaultColor = BlueGreyExt["contrastDefaultColor"];
+
+var a700 = BlueGreyExt["A700"];
+
+var a400 = BlueGreyExt["A400"];
+
+var a200 = BlueGreyExt["A200"];
+
+var a100 = BlueGreyExt["A100"];
+
+var c900 = BlueGreyExt["900"];
+
+var c800 = BlueGreyExt["800"];
+
+var c700 = BlueGreyExt["700"];
+
+var c600 = BlueGreyExt["600"];
+
+var c500 = BlueGreyExt["500"];
+
+var c400 = BlueGreyExt["400"];
+
+var c300 = BlueGreyExt["300"];
+
+var c200 = BlueGreyExt["200"];
+
+var c100 = BlueGreyExt["100"];
+
+var c50 = BlueGreyExt["50"];
+
+var BlueGrey = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor,
+  /* a700 */a700,
+  /* a400 */a400,
+  /* a200 */a200,
+  /* a100 */a100,
+  /* c900 */c900,
+  /* c800 */c800,
+  /* c700 */c700,
+  /* c600 */c600,
+  /* c500 */c500,
+  /* c400 */c400,
+  /* c300 */c300,
+  /* c200 */c200,
+  /* c100 */c100,
+  /* c50 */c50
+];
+
+var contrastDefaultColor$1 = GreyExt["contrastDefaultColor"];
+
+var a700$1 = GreyExt["A700"];
+
+var a400$1 = GreyExt["A400"];
+
+var a200$1 = GreyExt["A200"];
+
+var a100$1 = GreyExt["A100"];
+
+var c900$1 = GreyExt["900"];
+
+var c800$1 = GreyExt["800"];
+
+var c700$1 = GreyExt["700"];
+
+var c600$1 = GreyExt["600"];
+
+var c500$1 = GreyExt["500"];
+
+var c400$1 = GreyExt["400"];
+
+var c300$1 = GreyExt["300"];
+
+var c200$1 = GreyExt["200"];
+
+var c100$1 = GreyExt["100"];
+
+var c50$1 = GreyExt["50"];
+
+var Grey = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$1,
+  /* a700 */a700$1,
+  /* a400 */a400$1,
+  /* a200 */a200$1,
+  /* a100 */a100$1,
+  /* c900 */c900$1,
+  /* c800 */c800$1,
+  /* c700 */c700$1,
+  /* c600 */c600$1,
+  /* c500 */c500$1,
+  /* c400 */c400$1,
+  /* c300 */c300$1,
+  /* c200 */c200$1,
+  /* c100 */c100$1,
+  /* c50 */c50$1
+];
+
+var contrastDefaultColor$2 = BrownExt["contrastDefaultColor"];
+
+var a700$2 = BrownExt["A700"];
+
+var a400$2 = BrownExt["A400"];
+
+var a200$2 = BrownExt["A200"];
+
+var a100$2 = BrownExt["A100"];
+
+var c900$2 = BrownExt["900"];
+
+var c800$2 = BrownExt["800"];
+
+var c700$2 = BrownExt["700"];
+
+var c600$2 = BrownExt["600"];
+
+var c500$2 = BrownExt["500"];
+
+var c400$2 = BrownExt["400"];
+
+var c300$2 = BrownExt["300"];
+
+var c200$2 = BrownExt["200"];
+
+var c100$2 = BrownExt["100"];
+
+var c50$2 = BrownExt["50"];
+
+var Brown = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$2,
+  /* a700 */a700$2,
+  /* a400 */a400$2,
+  /* a200 */a200$2,
+  /* a100 */a100$2,
+  /* c900 */c900$2,
+  /* c800 */c800$2,
+  /* c700 */c700$2,
+  /* c600 */c600$2,
+  /* c500 */c500$2,
+  /* c400 */c400$2,
+  /* c300 */c300$2,
+  /* c200 */c200$2,
+  /* c100 */c100$2,
+  /* c50 */c50$2
+];
+
+var contrastDefaultColor$3 = DeepOrangeExt["contrastDefaultColor"];
+
+var a700$3 = DeepOrangeExt["A700"];
+
+var a400$3 = DeepOrangeExt["A400"];
+
+var a200$3 = DeepOrangeExt["A200"];
+
+var a100$3 = DeepOrangeExt["A100"];
+
+var c900$3 = DeepOrangeExt["900"];
+
+var c800$3 = DeepOrangeExt["800"];
+
+var c700$3 = DeepOrangeExt["700"];
+
+var c600$3 = DeepOrangeExt["600"];
+
+var c500$3 = DeepOrangeExt["500"];
+
+var c400$3 = DeepOrangeExt["400"];
+
+var c300$3 = DeepOrangeExt["300"];
+
+var c200$3 = DeepOrangeExt["200"];
+
+var c100$3 = DeepOrangeExt["100"];
+
+var c50$3 = DeepOrangeExt["50"];
+
+var DeepOrange = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$3,
+  /* a700 */a700$3,
+  /* a400 */a400$3,
+  /* a200 */a200$3,
+  /* a100 */a100$3,
+  /* c900 */c900$3,
+  /* c800 */c800$3,
+  /* c700 */c700$3,
+  /* c600 */c600$3,
+  /* c500 */c500$3,
+  /* c400 */c400$3,
+  /* c300 */c300$3,
+  /* c200 */c200$3,
+  /* c100 */c100$3,
+  /* c50 */c50$3
+];
+
+var contrastDefaultColor$4 = OrangeExt["contrastDefaultColor"];
+
+var a700$4 = OrangeExt["A700"];
+
+var a400$4 = OrangeExt["A400"];
+
+var a200$4 = OrangeExt["A200"];
+
+var a100$4 = OrangeExt["A100"];
+
+var c900$4 = OrangeExt["900"];
+
+var c800$4 = OrangeExt["800"];
+
+var c700$4 = OrangeExt["700"];
+
+var c600$4 = OrangeExt["600"];
+
+var c500$4 = OrangeExt["500"];
+
+var c400$4 = OrangeExt["400"];
+
+var c300$4 = OrangeExt["300"];
+
+var c200$4 = OrangeExt["200"];
+
+var c100$4 = OrangeExt["100"];
+
+var c50$4 = OrangeExt["50"];
+
+var Orange = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$4,
+  /* a700 */a700$4,
+  /* a400 */a400$4,
+  /* a200 */a200$4,
+  /* a100 */a100$4,
+  /* c900 */c900$4,
+  /* c800 */c800$4,
+  /* c700 */c700$4,
+  /* c600 */c600$4,
+  /* c500 */c500$4,
+  /* c400 */c400$4,
+  /* c300 */c300$4,
+  /* c200 */c200$4,
+  /* c100 */c100$4,
+  /* c50 */c50$4
+];
+
+var contrastDefaultColor$5 = AmberExt["contrastDefaultColor"];
+
+var a700$5 = AmberExt["A700"];
+
+var a400$5 = AmberExt["A400"];
+
+var a200$5 = AmberExt["A200"];
+
+var a100$5 = AmberExt["A100"];
+
+var c900$5 = AmberExt["900"];
+
+var c800$5 = AmberExt["800"];
+
+var c700$5 = AmberExt["700"];
+
+var c600$5 = AmberExt["600"];
+
+var c500$5 = AmberExt["500"];
+
+var c400$5 = AmberExt["400"];
+
+var c300$5 = AmberExt["300"];
+
+var c200$5 = AmberExt["200"];
+
+var c100$5 = AmberExt["100"];
+
+var c50$5 = AmberExt["50"];
+
+var Amber = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$5,
+  /* a700 */a700$5,
+  /* a400 */a400$5,
+  /* a200 */a200$5,
+  /* a100 */a100$5,
+  /* c900 */c900$5,
+  /* c800 */c800$5,
+  /* c700 */c700$5,
+  /* c600 */c600$5,
+  /* c500 */c500$5,
+  /* c400 */c400$5,
+  /* c300 */c300$5,
+  /* c200 */c200$5,
+  /* c100 */c100$5,
+  /* c50 */c50$5
+];
+
+var contrastDefaultColor$6 = YellowExt["contrastDefaultColor"];
+
+var a700$6 = YellowExt["A700"];
+
+var a400$6 = YellowExt["A400"];
+
+var a200$6 = YellowExt["A200"];
+
+var a100$6 = YellowExt["A100"];
+
+var c900$6 = YellowExt["900"];
+
+var c800$6 = YellowExt["800"];
+
+var c700$6 = YellowExt["700"];
+
+var c600$6 = YellowExt["600"];
+
+var c500$6 = YellowExt["500"];
+
+var c400$6 = YellowExt["400"];
+
+var c300$6 = YellowExt["300"];
+
+var c200$6 = YellowExt["200"];
+
+var c100$6 = YellowExt["100"];
+
+var c50$6 = YellowExt["50"];
+
+var Yellow = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$6,
+  /* a700 */a700$6,
+  /* a400 */a400$6,
+  /* a200 */a200$6,
+  /* a100 */a100$6,
+  /* c900 */c900$6,
+  /* c800 */c800$6,
+  /* c700 */c700$6,
+  /* c600 */c600$6,
+  /* c500 */c500$6,
+  /* c400 */c400$6,
+  /* c300 */c300$6,
+  /* c200 */c200$6,
+  /* c100 */c100$6,
+  /* c50 */c50$6
+];
+
+var contrastDefaultColor$7 = LimeExt["contrastDefaultColor"];
+
+var a700$7 = LimeExt["A700"];
+
+var a400$7 = LimeExt["A400"];
+
+var a200$7 = LimeExt["A200"];
+
+var a100$7 = LimeExt["A100"];
+
+var c900$7 = LimeExt["900"];
+
+var c800$7 = LimeExt["800"];
+
+var c700$7 = LimeExt["700"];
+
+var c600$7 = LimeExt["600"];
+
+var c500$7 = LimeExt["500"];
+
+var c400$7 = LimeExt["400"];
+
+var c300$7 = LimeExt["300"];
+
+var c200$7 = LimeExt["200"];
+
+var c100$7 = LimeExt["100"];
+
+var c50$7 = LimeExt["50"];
+
+var Lime = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$7,
+  /* a700 */a700$7,
+  /* a400 */a400$7,
+  /* a200 */a200$7,
+  /* a100 */a100$7,
+  /* c900 */c900$7,
+  /* c800 */c800$7,
+  /* c700 */c700$7,
+  /* c600 */c600$7,
+  /* c500 */c500$7,
+  /* c400 */c400$7,
+  /* c300 */c300$7,
+  /* c200 */c200$7,
+  /* c100 */c100$7,
+  /* c50 */c50$7
+];
+
+var contrastDefaultColor$8 = LightGreenExt["contrastDefaultColor"];
+
+var a700$8 = LightGreenExt["A700"];
+
+var a400$8 = LightGreenExt["A400"];
+
+var a200$8 = LightGreenExt["A200"];
+
+var a100$8 = LightGreenExt["A100"];
+
+var c900$8 = LightGreenExt["900"];
+
+var c800$8 = LightGreenExt["800"];
+
+var c700$8 = LightGreenExt["700"];
+
+var c600$8 = LightGreenExt["600"];
+
+var c500$8 = LightGreenExt["500"];
+
+var c400$8 = LightGreenExt["400"];
+
+var c300$8 = LightGreenExt["300"];
+
+var c200$8 = LightGreenExt["200"];
+
+var c100$8 = LightGreenExt["100"];
+
+var c50$8 = LightGreenExt["50"];
+
+var LightGreen = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$8,
+  /* a700 */a700$8,
+  /* a400 */a400$8,
+  /* a200 */a200$8,
+  /* a100 */a100$8,
+  /* c900 */c900$8,
+  /* c800 */c800$8,
+  /* c700 */c700$8,
+  /* c600 */c600$8,
+  /* c500 */c500$8,
+  /* c400 */c400$8,
+  /* c300 */c300$8,
+  /* c200 */c200$8,
+  /* c100 */c100$8,
+  /* c50 */c50$8
+];
+
+var contrastDefaultColor$9 = GreenExt["contrastDefaultColor"];
+
+var a700$9 = GreenExt["A700"];
+
+var a400$9 = GreenExt["A400"];
+
+var a200$9 = GreenExt["A200"];
+
+var a100$9 = GreenExt["A100"];
+
+var c900$9 = GreenExt["900"];
+
+var c800$9 = GreenExt["800"];
+
+var c700$9 = GreenExt["700"];
+
+var c600$9 = GreenExt["600"];
+
+var c500$9 = GreenExt["500"];
+
+var c400$9 = GreenExt["400"];
+
+var c300$9 = GreenExt["300"];
+
+var c200$9 = GreenExt["200"];
+
+var c100$9 = GreenExt["100"];
+
+var c50$9 = GreenExt["50"];
+
+var Green = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$9,
+  /* a700 */a700$9,
+  /* a400 */a400$9,
+  /* a200 */a200$9,
+  /* a100 */a100$9,
+  /* c900 */c900$9,
+  /* c800 */c800$9,
+  /* c700 */c700$9,
+  /* c600 */c600$9,
+  /* c500 */c500$9,
+  /* c400 */c400$9,
+  /* c300 */c300$9,
+  /* c200 */c200$9,
+  /* c100 */c100$9,
+  /* c50 */c50$9
+];
+
+var contrastDefaultColor$10 = TealExt["contrastDefaultColor"];
+
+var a700$10 = TealExt["A700"];
+
+var a400$10 = TealExt["A400"];
+
+var a200$10 = TealExt["A200"];
+
+var a100$10 = TealExt["A100"];
+
+var c900$10 = TealExt["900"];
+
+var c800$10 = TealExt["800"];
+
+var c700$10 = TealExt["700"];
+
+var c600$10 = TealExt["600"];
+
+var c500$10 = TealExt["500"];
+
+var c400$10 = TealExt["400"];
+
+var c300$10 = TealExt["300"];
+
+var c200$10 = TealExt["200"];
+
+var c100$10 = TealExt["100"];
+
+var c50$10 = TealExt["50"];
+
+var Teal = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$10,
+  /* a700 */a700$10,
+  /* a400 */a400$10,
+  /* a200 */a200$10,
+  /* a100 */a100$10,
+  /* c900 */c900$10,
+  /* c800 */c800$10,
+  /* c700 */c700$10,
+  /* c600 */c600$10,
+  /* c500 */c500$10,
+  /* c400 */c400$10,
+  /* c300 */c300$10,
+  /* c200 */c200$10,
+  /* c100 */c100$10,
+  /* c50 */c50$10
+];
+
+var contrastDefaultColor$11 = CyanExt["contrastDefaultColor"];
+
+var a700$11 = CyanExt["A700"];
+
+var a400$11 = CyanExt["A400"];
+
+var a200$11 = CyanExt["A200"];
+
+var a100$11 = CyanExt["A100"];
+
+var c900$11 = CyanExt["900"];
+
+var c800$11 = CyanExt["800"];
+
+var c700$11 = CyanExt["700"];
+
+var c600$11 = CyanExt["600"];
+
+var c500$11 = CyanExt["500"];
+
+var c400$11 = CyanExt["400"];
+
+var c300$11 = CyanExt["300"];
+
+var c200$11 = CyanExt["200"];
+
+var c100$11 = CyanExt["100"];
+
+var c50$11 = CyanExt["50"];
+
+var Cyan = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$11,
+  /* a700 */a700$11,
+  /* a400 */a400$11,
+  /* a200 */a200$11,
+  /* a100 */a100$11,
+  /* c900 */c900$11,
+  /* c800 */c800$11,
+  /* c700 */c700$11,
+  /* c600 */c600$11,
+  /* c500 */c500$11,
+  /* c400 */c400$11,
+  /* c300 */c300$11,
+  /* c200 */c200$11,
+  /* c100 */c100$11,
+  /* c50 */c50$11
+];
+
+var contrastDefaultColor$12 = LightBlueExt["contrastDefaultColor"];
+
+var a700$12 = LightBlueExt["A700"];
+
+var a400$12 = LightBlueExt["A400"];
+
+var a200$12 = LightBlueExt["A200"];
+
+var a100$12 = LightBlueExt["A100"];
+
+var c900$12 = LightBlueExt["900"];
+
+var c800$12 = LightBlueExt["800"];
+
+var c700$12 = LightBlueExt["700"];
+
+var c600$12 = LightBlueExt["600"];
+
+var c500$12 = LightBlueExt["500"];
+
+var c400$12 = LightBlueExt["400"];
+
+var c300$12 = LightBlueExt["300"];
+
+var c200$12 = LightBlueExt["200"];
+
+var c100$12 = LightBlueExt["100"];
+
+var c50$12 = LightBlueExt["50"];
+
+var LightBlue = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$12,
+  /* a700 */a700$12,
+  /* a400 */a400$12,
+  /* a200 */a200$12,
+  /* a100 */a100$12,
+  /* c900 */c900$12,
+  /* c800 */c800$12,
+  /* c700 */c700$12,
+  /* c600 */c600$12,
+  /* c500 */c500$12,
+  /* c400 */c400$12,
+  /* c300 */c300$12,
+  /* c200 */c200$12,
+  /* c100 */c100$12,
+  /* c50 */c50$12
+];
+
+var contrastDefaultColor$13 = BlueExt["contrastDefaultColor"];
+
+var a700$13 = BlueExt["A700"];
+
+var a400$13 = BlueExt["A400"];
+
+var a200$13 = BlueExt["A200"];
+
+var a100$13 = BlueExt["A100"];
+
+var c900$13 = BlueExt["900"];
+
+var c800$13 = BlueExt["800"];
+
+var c700$13 = BlueExt["700"];
+
+var c600$13 = BlueExt["600"];
+
+var c500$13 = BlueExt["500"];
+
+var c400$13 = BlueExt["400"];
+
+var c300$13 = BlueExt["300"];
+
+var c200$13 = BlueExt["200"];
+
+var c100$13 = BlueExt["100"];
+
+var c50$13 = BlueExt["50"];
+
+var Blue = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$13,
+  /* a700 */a700$13,
+  /* a400 */a400$13,
+  /* a200 */a200$13,
+  /* a100 */a100$13,
+  /* c900 */c900$13,
+  /* c800 */c800$13,
+  /* c700 */c700$13,
+  /* c600 */c600$13,
+  /* c500 */c500$13,
+  /* c400 */c400$13,
+  /* c300 */c300$13,
+  /* c200 */c200$13,
+  /* c100 */c100$13,
+  /* c50 */c50$13
+];
+
+var contrastDefaultColor$14 = IndigoExt["contrastDefaultColor"];
+
+var a700$14 = IndigoExt["A700"];
+
+var a400$14 = IndigoExt["A400"];
+
+var a200$14 = IndigoExt["A200"];
+
+var a100$14 = IndigoExt["A100"];
+
+var c900$14 = IndigoExt["900"];
+
+var c800$14 = IndigoExt["800"];
+
+var c700$14 = IndigoExt["700"];
+
+var c600$14 = IndigoExt["600"];
+
+var c500$14 = IndigoExt["500"];
+
+var c400$14 = IndigoExt["400"];
+
+var c300$14 = IndigoExt["300"];
+
+var c200$14 = IndigoExt["200"];
+
+var c100$14 = IndigoExt["100"];
+
+var c50$14 = IndigoExt["50"];
+
+var Indigo = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$14,
+  /* a700 */a700$14,
+  /* a400 */a400$14,
+  /* a200 */a200$14,
+  /* a100 */a100$14,
+  /* c900 */c900$14,
+  /* c800 */c800$14,
+  /* c700 */c700$14,
+  /* c600 */c600$14,
+  /* c500 */c500$14,
+  /* c400 */c400$14,
+  /* c300 */c300$14,
+  /* c200 */c200$14,
+  /* c100 */c100$14,
+  /* c50 */c50$14
+];
+
+var contrastDefaultColor$15 = DeepPurpleExt["contrastDefaultColor"];
+
+var a700$15 = DeepPurpleExt["A700"];
+
+var a400$15 = DeepPurpleExt["A400"];
+
+var a200$15 = DeepPurpleExt["A200"];
+
+var a100$15 = DeepPurpleExt["A100"];
+
+var c900$15 = DeepPurpleExt["900"];
+
+var c800$15 = DeepPurpleExt["800"];
+
+var c700$15 = DeepPurpleExt["700"];
+
+var c600$15 = DeepPurpleExt["600"];
+
+var c500$15 = DeepPurpleExt["500"];
+
+var c400$15 = DeepPurpleExt["400"];
+
+var c300$15 = DeepPurpleExt["300"];
+
+var c200$15 = DeepPurpleExt["200"];
+
+var c100$15 = DeepPurpleExt["100"];
+
+var c50$15 = DeepPurpleExt["50"];
+
+var DeepPurple = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$15,
+  /* a700 */a700$15,
+  /* a400 */a400$15,
+  /* a200 */a200$15,
+  /* a100 */a100$15,
+  /* c900 */c900$15,
+  /* c800 */c800$15,
+  /* c700 */c700$15,
+  /* c600 */c600$15,
+  /* c500 */c500$15,
+  /* c400 */c400$15,
+  /* c300 */c300$15,
+  /* c200 */c200$15,
+  /* c100 */c100$15,
+  /* c50 */c50$15
+];
+
+var contrastDefaultColor$16 = PurpleExt["contrastDefaultColor"];
+
+var a700$16 = PurpleExt["A700"];
+
+var a400$16 = PurpleExt["A400"];
+
+var a200$16 = PurpleExt["A200"];
+
+var a100$16 = PurpleExt["A100"];
+
+var c900$16 = PurpleExt["900"];
+
+var c800$16 = PurpleExt["800"];
+
+var c700$16 = PurpleExt["700"];
+
+var c600$16 = PurpleExt["600"];
+
+var c500$16 = PurpleExt["500"];
+
+var c400$16 = PurpleExt["400"];
+
+var c300$16 = PurpleExt["300"];
+
+var c200$16 = PurpleExt["200"];
+
+var c100$16 = PurpleExt["100"];
+
+var c50$16 = PurpleExt["50"];
+
+var Purple = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$16,
+  /* a700 */a700$16,
+  /* a400 */a400$16,
+  /* a200 */a200$16,
+  /* a100 */a100$16,
+  /* c900 */c900$16,
+  /* c800 */c800$16,
+  /* c700 */c700$16,
+  /* c600 */c600$16,
+  /* c500 */c500$16,
+  /* c400 */c400$16,
+  /* c300 */c300$16,
+  /* c200 */c200$16,
+  /* c100 */c100$16,
+  /* c50 */c50$16
+];
+
+var contrastDefaultColor$17 = PinkExt["contrastDefaultColor"];
+
+var a700$17 = PinkExt["A700"];
+
+var a400$17 = PinkExt["A400"];
+
+var a200$17 = PinkExt["A200"];
+
+var a100$17 = PinkExt["A100"];
+
+var c900$17 = PinkExt["900"];
+
+var c800$17 = PinkExt["800"];
+
+var c700$17 = PinkExt["700"];
+
+var c600$17 = PinkExt["600"];
+
+var c500$17 = PinkExt["500"];
+
+var c400$17 = PinkExt["400"];
+
+var c300$17 = PinkExt["300"];
+
+var c200$17 = PinkExt["200"];
+
+var c100$17 = PinkExt["100"];
+
+var c50$17 = PinkExt["50"];
+
+var Pink = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$17,
+  /* a700 */a700$17,
+  /* a400 */a400$17,
+  /* a200 */a200$17,
+  /* a100 */a100$17,
+  /* c900 */c900$17,
+  /* c800 */c800$17,
+  /* c700 */c700$17,
+  /* c600 */c600$17,
+  /* c500 */c500$17,
+  /* c400 */c400$17,
+  /* c300 */c300$17,
+  /* c200 */c200$17,
+  /* c100 */c100$17,
+  /* c50 */c50$17
+];
+
+var contrastDefaultColor$18 = RedExt["contrastDefaultColor"];
+
+var a700$18 = RedExt["A700"];
+
+var a400$18 = RedExt["A400"];
+
+var a200$18 = RedExt["A200"];
+
+var a100$18 = RedExt["A100"];
+
+var c900$18 = RedExt["900"];
+
+var c800$18 = RedExt["800"];
+
+var c700$18 = RedExt["700"];
+
+var c600$18 = RedExt["600"];
+
+var c500$18 = RedExt["500"];
+
+var c400$18 = RedExt["400"];
+
+var c300$18 = RedExt["300"];
+
+var c200$18 = RedExt["200"];
+
+var c100$18 = RedExt["100"];
+
+var c50$18 = RedExt["50"];
+
+var Red = /* module */[
+  /* contrastDefaultColor */contrastDefaultColor$18,
+  /* a700 */a700$18,
+  /* a400 */a400$18,
+  /* a200 */a200$18,
+  /* a100 */a100$18,
+  /* c900 */c900$18,
+  /* c800 */c800$18,
+  /* c700 */c700$18,
+  /* c600 */c600$18,
+  /* c500 */c500$18,
+  /* c400 */c400$18,
+  /* c300 */c300$18,
+  /* c200 */c200$18,
+  /* c100 */c100$18,
+  /* c50 */c50$18
+];
+
+var lightWhite = CommonExt["lightWhite"];
+
+var darkWhite = CommonExt["darkWhite"];
+
+var fullWhite = CommonExt["fullWhite"];
+
+var faintBlack = CommonExt["faintBlack"];
+
+var minBlack = CommonExt["minBlack"];
+
+var lightBlack = CommonExt["lightBlack"];
+
+var darkBlack = CommonExt["darkBlack"];
+
+var fullBlack = CommonExt["fullBlack"];
+
+var transparent = CommonExt["transparent"];
+
+var white = CommonExt["white"];
+
+var black = CommonExt["black"];
+
+var Common = /* module */[
+  /* lightWhite */lightWhite,
+  /* darkWhite */darkWhite,
+  /* fullWhite */fullWhite,
+  /* faintBlack */faintBlack,
+  /* minBlack */minBlack,
+  /* lightBlack */lightBlack,
+  /* darkBlack */darkBlack,
+  /* fullBlack */fullBlack,
+  /* transparent */transparent,
+  /* white */white,
+  /* black */black
+];
+
+var Colors = /* module */[
+  /* BlueGrey */BlueGrey,
+  /* Grey */Grey,
+  /* Brown */Brown,
+  /* DeepOrange */DeepOrange,
+  /* Orange */Orange,
+  /* Amber */Amber,
+  /* Yellow */Yellow,
+  /* Lime */Lime,
+  /* LightGreen */LightGreen,
+  /* Green */Green,
+  /* Teal */Teal,
+  /* Cyan */Cyan,
+  /* LightBlue */LightBlue,
+  /* Blue */Blue,
+  /* Indigo */Indigo,
+  /* DeepPurple */DeepPurple,
+  /* Purple */Purple,
+  /* Pink */Pink,
+  /* Red */Red,
+  /* Common */Common
+];
 
 function to_string(param) {
   if (param !== 0) {
@@ -2553,6 +3544,7 @@ var DialogContentText = /* module */[/* make */make$78];
 var WithStyles = [make];
 
 exports.WithStyles              = WithStyles;
+exports.Colors                  = Colors;
 exports.Select                  = Select;
 exports.InputAdornment          = InputAdornment;
 exports.BottomNavigation        = BottomNavigation;
