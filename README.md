@@ -63,10 +63,45 @@ let make = (_children) => {
 };
 ```
 
+## Colors
+
+All Colors are accessible in Submodules of the Module `Colors`. Color keys that are a pure number begin with a `c`. [(MUI Docs Reference).](https://material-ui-1dab0.firebaseapp.com/style/color/)
+
+Example:
+
+```ml
+<MaterialUi.WithStyles
+  styles={"bgColor": {"backgroundColor": MaterialUi.Colors.Red.c300}}
+  render=(
+    (classes) =>
+      <div className=classes##bgColor />
+  )
+/>
+```
+
+## Overriding with classes
+
+To take advantage of Reasons type system when overriding classes directly on components they have been converted into Variants and need to be passed as a `list` to the components `classes` prop. It is best used in combination with the `MaterialUi.WithStyles` component.
+
+[(MUI Docs Reference).](https://material-ui-1dab0.firebaseapp.com/customization/overrides/#overriding-with-classes)
+
+Example:
+```ml
+<MaterialUi.WithStyles
+  styles={"fSize": {"fontSize": "30px"}, "bgColor": {"backgroundColor": MaterialUi.Colors.Red.c300}}
+  render=(
+    (classes) =>
+      <MaterialUi.Button color=MaterialUi.Button.Color.Primary raised=true classes=[MaterialUi.Button.Classes.Root(classes##fSize), MaterialUi.Button.Classes.RaisedPrimary(classes##bgColor)]>
+        (ReasonReact.stringToElement(Helpers.translate("Example Button")))
+      <MaterialUi.Button />
+  )
+/>
+```
+
 ## Todo
 
 - [x] ~~Expose a nested `Colors` module~~ (2017-11-15)
 - [ ] Think of a way to use `theme => object` pattern as `withStyles` argument
 - [ ] Add `WithTheme` component
 - [ ] Add `ThemeProvider` component
-- [ ] Think of a way to type classname overrides
+- [x] ~~Think of a way to type classname overrides~~ (2017-11-15)

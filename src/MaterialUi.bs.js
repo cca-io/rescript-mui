@@ -3,6 +3,7 @@
 
 var Curry                                                        = require("bs-platform/lib/js/curry.js");
 var Js_boolean                                                   = require("bs-platform/lib/js/js_boolean.js");
+var ListLabels                                                   = require("bs-platform/lib/js/listLabels.js");
 var ReasonReact                                                  = require("reason-react/src/reasonReact.js");
 var Js_null_undefined                                            = require("bs-platform/lib/js/js_null_undefined.js");
 var MaterialUi$slashstyles                                       = require("material-ui/styles");
@@ -1133,6 +1134,34 @@ function to_string(param) {
 
 var Margin = /* module */[/* to_string */to_string];
 
+function to_string$1(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "select";
+    case 2 : 
+        return "selectMenu";
+    case 3 : 
+        return "disabled";
+    case 4 : 
+        return "icon";
+    
+  }
+}
+
+function to_obj(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$1(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes = /* module */[
+  /* to_string */to_string$1,
+  /* to_obj */to_obj
+];
+
 function make$1(value, renderValue, mMenuProps, iInputClasses, autoWidth, multiple, $$native, input, displayEmpty, classes, disableUnderline, fullWidth, multiline, type_, autoComplete, autoFocus, className, defaultValue, disabled, endAdornment, error, id, inputComponent, inputProps, inputRef, margin, name, readOnly, onBlur, onChange, onClean, onDirty, onFocus, onKeyDown, onKeyUp, placeholder, rows, rowsMax, startAdornment, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashSelect$slashSelect.default, {
               value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
@@ -1144,7 +1173,7 @@ function make$1(value, renderValue, mMenuProps, iInputClasses, autoWidth, multip
               native: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, $$native)),
               input: Js_null_undefined.from_opt(input),
               displayEmpty: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, displayEmpty)),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj, classes)),
               disableUnderline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableUnderline)),
               fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
               multiline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, multiline)),
@@ -1179,10 +1208,11 @@ function make$1(value, renderValue, mMenuProps, iInputClasses, autoWidth, multip
 
 var Select = /* module */[
   /* Margin */Margin,
+  /* Classes */Classes,
   /* make */make$1
 ];
 
-function to_string$1(param) {
+function to_string$2(param) {
   if (param !== 0) {
     return "end";
   } else {
@@ -1190,21 +1220,62 @@ function to_string$1(param) {
   }
 }
 
-var Position = /* module */[/* to_string */to_string$1];
+var Position = /* module */[/* to_string */to_string$2];
+
+function to_string$3(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "positionStart";
+    case 2 : 
+        return "positionEnd";
+    
+  }
+}
+
+function to_obj$1(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$3(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$1 = /* module */[
+  /* to_string */to_string$3,
+  /* to_obj */to_obj$1
+];
 
 function make$2(position, className, disableTypography, component, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashInput$slashInputAdornment.default, {
-              position: to_string$1(position),
+              position: to_string$2(position),
               className: Js_null_undefined.from_opt(className),
               disableTypography: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTypography)),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$1, classes))
             }, children);
 }
 
 var InputAdornment = /* module */[
   /* Position */Position,
+  /* Classes */Classes$1,
   /* make */make$2
+];
+
+function to_string$4() {
+  return "root";
+}
+
+function to_obj$2(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$2 = /* module */[
+  /* to_string */to_string$4,
+  /* to_obj */to_obj$2
 ];
 
 function make$3(value, onChange, className, showLabels, classes, children) {
@@ -1213,13 +1284,16 @@ function make$3(value, onChange, className, showLabels, classes, children) {
               onChange: Js_null_undefined.from_opt(onChange),
               className: Js_null_undefined.from_opt(className),
               showLabels: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, showLabels)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$2, classes))
             }, children);
 }
 
-var BottomNavigation = /* module */[/* make */make$3];
+var BottomNavigation = /* module */[
+  /* Classes */Classes$2,
+  /* make */make$3
+];
 
-function to_string$2(param) {
+function to_string$5(param) {
   if (param !== 0) {
     return "bottom";
   } else {
@@ -1227,9 +1301,9 @@ function to_string$2(param) {
   }
 }
 
-var TitlePosition = /* module */[/* to_string */to_string$2];
+var TitlePosition = /* module */[/* to_string */to_string$5];
 
-function to_string$3(param) {
+function to_string$6(param) {
   if (param !== 0) {
     return "right";
   } else {
@@ -1237,7 +1311,47 @@ function to_string$3(param) {
   }
 }
 
-var ActionPosition = /* module */[/* to_string */to_string$3];
+var ActionPosition = /* module */[/* to_string */to_string$6];
+
+function to_string$7(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "rootBottom";
+    case 2 : 
+        return "rootTop";
+    case 3 : 
+        return "rootWithSubtitle";
+    case 4 : 
+        return "titleWrap";
+    case 5 : 
+        return "titleWrapActionLeft";
+    case 6 : 
+        return "titleWrapActionRight";
+    case 7 : 
+        return "title";
+    case 8 : 
+        return "subtitle";
+    case 9 : 
+        return "actionIconPositionLeft";
+    case 10 : 
+        return "childImg";
+    
+  }
+}
+
+function to_obj$3(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$7(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$3 = /* module */[
+  /* to_string */to_string$7,
+  /* to_obj */to_obj$3
+];
 
 function make$4(title, subtitle, className, actionIcon, titlePosition, classes, actionPosition, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashGridList$slashGridListTileBar.default, {
@@ -1245,27 +1359,47 @@ function make$4(title, subtitle, className, actionIcon, titlePosition, classes, 
               subtitle: Js_null_undefined.from_opt(subtitle),
               className: Js_null_undefined.from_opt(className),
               actionIcon: Js_null_undefined.from_opt(actionIcon),
-              titlePosition: Js_null_undefined.from_opt(optionMap(to_string$2, titlePosition)),
-              classes: Js_null_undefined.from_opt(classes),
-              actionPosition: Js_null_undefined.from_opt(optionMap(to_string$3, actionPosition))
+              titlePosition: Js_null_undefined.from_opt(optionMap(to_string$5, titlePosition)),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$3, classes)),
+              actionPosition: Js_null_undefined.from_opt(optionMap(to_string$6, actionPosition))
             }, children);
 }
 
 var GridListTileBar = /* module */[
   /* TitlePosition */TitlePosition,
   /* ActionPosition */ActionPosition,
+  /* Classes */Classes$3,
   /* make */make$4
+];
+
+function to_string$8() {
+  return "root";
+}
+
+function to_obj$4(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$4 = /* module */[
+  /* to_string */to_string$8,
+  /* to_obj */to_obj$4
 ];
 
 function make$5(className, component, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTable$slashTableBody.default, {
               className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$4, classes))
             }, children);
 }
 
-var TableBody = /* module */[/* make */make$5];
+var TableBody = /* module */[
+  /* Classes */Classes$4,
+  /* make */make$5
+];
 
 function make$6(style, onExit, onEntering, onEnter, in_, theme, timeout, appear, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashtransitions$slashFade.default, {
@@ -1282,6 +1416,26 @@ function make$6(style, onExit, onEntering, onEnter, in_, theme, timeout, appear,
 
 var Fade = /* module */[/* make */make$6];
 
+function to_string$9(param) {
+  if (param.tag) {
+    return "rootMedia";
+  } else {
+    return "root";
+  }
+}
+
+function to_obj$5(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$9(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$5 = /* module */[
+  /* to_string */to_string$9,
+  /* to_obj */to_obj$5
+];
+
 function make$7(style, src, image, className, component, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashCard$slashCardMedia.default, {
               style: Js_null_undefined.from_opt(style),
@@ -1289,22 +1443,48 @@ function make$7(style, src, image, className, component, classes, children) {
               image: Js_null_undefined.from_opt(image),
               className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$5, classes))
             }, children);
 }
 
-var CardMedia = /* module */[/* make */make$7];
+var CardMedia = /* module */[
+  /* Classes */Classes$5,
+  /* make */make$7
+];
+
+function to_string$10(param) {
+  if (param.tag) {
+    return "icon";
+  } else {
+    return "root";
+  }
+}
+
+function to_obj$6(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$10(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$6 = /* module */[
+  /* to_string */to_string$10,
+  /* to_obj */to_obj$6
+];
 
 function make$8(className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashList$slashListItemAvatar.default, {
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$6, classes))
             }, children);
 }
 
-var ListItemAvatar = /* module */[/* make */make$8];
+var ListItemAvatar = /* module */[
+  /* Classes */Classes$6,
+  /* make */make$8
+];
 
-function to_string$4(param) {
+function to_string$11(param) {
   switch (param) {
     case 0 : 
         return "default";
@@ -1316,20 +1496,67 @@ function to_string$4(param) {
   }
 }
 
-var Color = /* module */[/* to_string */to_string$4];
+var Color = /* module */[/* to_string */to_string$11];
+
+function to_string$12(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "badge";
+    case 2 : 
+        return "colorPrimary";
+    case 3 : 
+        return "colorAccent";
+    
+  }
+}
+
+function to_obj$7(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$12(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$7 = /* module */[
+  /* to_string */to_string$12,
+  /* to_obj */to_obj$7
+];
 
 function make$9(color, className, badgeContent, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashBadge$slashBadge.default, {
-              color: Js_null_undefined.from_opt(optionMap(to_string$4, color)),
+              color: Js_null_undefined.from_opt(optionMap(to_string$11, color)),
               className: Js_null_undefined.from_opt(className),
               badgeContent: badgeContent,
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$7, classes))
             }, children);
 }
 
 var Badge = /* module */[
   /* Color */Color,
+  /* Classes */Classes$7,
   /* make */make$9
+];
+
+function to_string$13(param) {
+  if (param.tag) {
+    return "disabled";
+  } else {
+    return "root";
+  }
+}
+
+function to_obj$8(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$13(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$8 = /* module */[
+  /* to_string */to_string$13,
+  /* to_obj */to_obj$8
 ];
 
 function make$10(type_, tabIndex, rootRef, role, onTouchStart, onTouchMove, onTouchEnd, onMouseUp, onMouseLeave, onMouseDown, onKeyUp, onKeyDown, onKeyboardFocus, onFocus, onClick, onBlur, keyboardFocusedClassName, focusRipple, disableRipple, disabled, component, className, centerRipple, classes, children) {
@@ -1357,17 +1584,20 @@ function make$10(type_, tabIndex, rootRef, role, onTouchStart, onTouchMove, onTo
               component: Js_null_undefined.from_opt(component),
               className: Js_null_undefined.from_opt(className),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$8, classes))
             }, children);
 }
 
-var ButtonBase = /* module */[/* make */make$10];
+var ButtonBase = /* module */[
+  /* Classes */Classes$8,
+  /* make */make$10
+];
 
-function to_string$5() {
+function to_string$14() {
   return "auto";
 }
 
-var Timeout = /* module */[/* to_string */to_string$5];
+var Timeout = /* module */[/* to_string */to_string$14];
 
 function make$11(transitionClasses, style, rootRef, onExited, onExiting, onExit, onEntered, onEntering, onEnter, in_, theme, timeout, appear, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashtransitions$slashGrow.default, {
@@ -1401,7 +1631,7 @@ var Grow = /* module */[
   /* make */make$11
 ];
 
-function to_string$6(param) {
+function to_string$15(param) {
   switch (param) {
     case 0 : 
         return "default";
@@ -1417,17 +1647,53 @@ function to_string$6(param) {
   }
 }
 
-var Color$1 = /* module */[/* to_string */to_string$6];
+var Color$1 = /* module */[/* to_string */to_string$15];
+
+function to_string$16(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "colorAccent";
+    case 2 : 
+        return "colorContrast";
+    case 3 : 
+        return "colorPrimary";
+    case 4 : 
+        return "colorInherit";
+    case 5 : 
+        return "disabled";
+    case 6 : 
+        return "label";
+    case 7 : 
+        return "icon";
+    case 8 : 
+        return "keyboardFocused";
+    
+  }
+}
+
+function to_obj$9(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$16(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$9 = /* module */[
+  /* to_string */to_string$16,
+  /* to_obj */to_obj$9
+];
 
 function make$12(rootRef, disableRipple, disabled, color, className, buttonRef, classes, centerRipple, component, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashIconButton$slashIconButton.default, {
               rootRef: Js_null_undefined.from_opt(rootRef),
               disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              color: Js_null_undefined.from_opt(optionMap(to_string$6, color)),
+              color: Js_null_undefined.from_opt(optionMap(to_string$15, color)),
               className: Js_null_undefined.from_opt(className),
               buttonRef: Js_null_undefined.from_opt(buttonRef),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$9, classes)),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
               component: Js_null_undefined.from_opt(component),
               focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
@@ -1452,10 +1718,11 @@ function make$12(rootRef, disableRipple, disabled, color, className, buttonRef, 
 
 var IconButton = /* module */[
   /* Color */Color$1,
+  /* Classes */Classes$9,
   /* make */make$12
 ];
 
-function to_string$7(param) {
+function to_string$17(param) {
   switch (param) {
     case 0 : 
         return "none";
@@ -1467,11 +1734,37 @@ function to_string$7(param) {
   }
 }
 
-var Margin$1 = /* module */[/* to_string */to_string$7];
+var Margin$1 = /* module */[/* to_string */to_string$17];
+
+function to_string$18(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "marginNormal";
+    case 2 : 
+        return "marginDense";
+    case 3 : 
+        return "fullWidth";
+    
+  }
+}
+
+function to_obj$10(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$18(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$10 = /* module */[
+  /* to_string */to_string$18,
+  /* to_obj */to_obj$10
+];
 
 function make$13(margin, value, type_, sSelectProps, select, rowsMax, rows, rootRef, required, placeholder, onChange, name, multiline, labelClassName, label, inputRef, iInputProps, inputProps, iInputLabelProps, iInputClassName, inputClassName, id, helperTextClassName, helperText, fullWidth, fFormHelperTextProps, error, disabled, defaultValue, className, autoFocus, autoComplete, classes, component, onBlur, onFocus, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTextField$slashTextField.default, {
-              margin: Js_null_undefined.from_opt(optionMap(to_string$7, margin)),
+              margin: Js_null_undefined.from_opt(optionMap(to_string$17, margin)),
               value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
               type: Js_null_undefined.from_opt(type_),
               SelectProps: Js_null_undefined.from_opt(sSelectProps),
@@ -1503,7 +1796,7 @@ function make$13(margin, value, type_, sSelectProps, select, rowsMax, rows, root
               className: Js_null_undefined.from_opt(className),
               autoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, autoFocus)),
               autoComplete: Js_null_undefined.from_opt(autoComplete),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$10, classes)),
               component: Js_null_undefined.from_opt(component),
               onBlur: Js_null_undefined.from_opt(onBlur),
               onFocus: Js_null_undefined.from_opt(onFocus)
@@ -1512,10 +1805,11 @@ function make$13(margin, value, type_, sSelectProps, select, rowsMax, rows, root
 
 var TextField = /* module */[
   /* Margin */Margin$1,
+  /* Classes */Classes$10,
   /* make */make$13
 ];
 
-function to_string$8(param) {
+function to_string$19(param) {
   switch (param) {
     case 0 : 
         return "default";
@@ -1527,47 +1821,130 @@ function to_string$8(param) {
   }
 }
 
-var Color$2 = /* module */[/* to_string */to_string$8];
+var Color$2 = /* module */[/* to_string */to_string$19];
+
+function to_string$20(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "colorPrimary";
+    case 2 : 
+        return "colorInherit";
+    case 3 : 
+        return "inset";
+    case 4 : 
+        return "sticky";
+    
+  }
+}
+
+function to_obj$11(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$20(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$11 = /* module */[
+  /* to_string */to_string$20,
+  /* to_obj */to_obj$11
+];
 
 function make$14(inset, disableSticky, color, className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashList$slashListSubheader.default, {
               inset: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, inset)),
               disableSticky: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableSticky)),
-              color: Js_null_undefined.from_opt(optionMap(to_string$8, color)),
+              color: Js_null_undefined.from_opt(optionMap(to_string$19, color)),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$11, classes))
             }, children);
 }
 
 var ListSubheader = /* module */[
   /* Color */Color$2,
+  /* Classes */Classes$11,
   /* make */make$14
+];
+
+function to_string$21() {
+  return "root";
+}
+
+function to_obj$12(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$12 = /* module */[
+  /* to_string */to_string$21,
+  /* to_obj */to_obj$12
 ];
 
 function make$15(disableTypography, className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashDialog$slashDialogTitle.default, {
               disableTypography: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTypography)),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$12, classes))
             }, children);
 }
 
-var DialogTitle = /* module */[/* make */make$15];
+var DialogTitle = /* module */[
+  /* Classes */Classes$12,
+  /* make */make$15
+];
+
+function to_string$22() {
+  return "root";
+}
+
+function to_obj$13(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$13 = /* module */[
+  /* to_string */to_string$22,
+  /* to_obj */to_obj$13
+];
 
 function make$16(className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashDialog$slashDialogContent.default, {
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$13, classes))
             }, children);
 }
 
-var DialogContent = /* module */[/* make */make$16];
+var DialogContent = /* module */[
+  /* Classes */Classes$13,
+  /* make */make$16
+];
 
-function to_string$9() {
+function to_string$23() {
   return "auto";
 }
 
-var TransitionDuration = /* module */[/* to_string */to_string$9];
+var TransitionDuration = /* module */[/* to_string */to_string$23];
+
+function to_string$24() {
+  return "paper";
+}
+
+function to_obj$14(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["paper"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$14 = /* module */[
+  /* to_string */to_string$24,
+  /* to_obj */to_obj$14
+];
 
 function make$17(transitionDuration, transitionClasses, role, pPaperProps, open_, onRequestClose, onExited, onExiting, onExit, onEntered, onEntering, onEnter, getContentAnchorEl, elevation, anchorEl, marginThreshold, transformOrigin, classes, anchorOrigin, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashPopover$slashPopover.default, {
@@ -1597,14 +1974,39 @@ function make$17(transitionDuration, transitionClasses, role, pPaperProps, open_
               anchorEl: Js_null_undefined.from_opt(anchorEl),
               marginThreshold: Js_null_undefined.from_opt(marginThreshold),
               transformOrigin: Js_null_undefined.from_opt(transformOrigin),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$14, classes)),
               anchorOrigin: Js_null_undefined.from_opt(anchorOrigin)
             }, children);
 }
 
 var Popover = /* module */[
   /* TransitionDuration */TransitionDuration,
+  /* Classes */Classes$14,
   /* make */make$17
+];
+
+function to_string$25(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "colorDefault";
+    case 2 : 
+        return "img";
+    
+  }
+}
+
+function to_obj$15(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$25(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$15 = /* module */[
+  /* to_string */to_string$25,
+  /* to_obj */to_obj$15
 ];
 
 function make$18(srcSet, src, sizes, imgProps, className, childrenClassName, alt, component, classes, children) {
@@ -1617,13 +2019,16 @@ function make$18(srcSet, src, sizes, imgProps, className, childrenClassName, alt
               childrenClassName: Js_null_undefined.from_opt(childrenClassName),
               alt: Js_null_undefined.from_opt(alt),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$15, classes))
             }, children);
 }
 
-var Avatar = /* module */[/* make */make$18];
+var Avatar = /* module */[
+  /* Classes */Classes$15,
+  /* make */make$18
+];
 
-function to_string$10(param) {
+function to_string$26(param) {
   switch (param) {
     case 0 : 
         return "accent";
@@ -1635,9 +2040,9 @@ function to_string$10(param) {
   }
 }
 
-var TextColor = /* module */[/* to_string */to_string$10];
+var TextColor = /* module */[/* to_string */to_string$26];
 
-function to_string$11(param) {
+function to_string$27(param) {
   switch (param) {
     case 0 : 
         return "auto";
@@ -1649,9 +2054,9 @@ function to_string$11(param) {
   }
 }
 
-var ScrollButtons = /* module */[/* to_string */to_string$11];
+var ScrollButtons = /* module */[/* to_string */to_string$27];
 
-function to_string$12(param) {
+function to_string$28(param) {
   if (param !== 0) {
     return "primary";
   } else {
@@ -1659,13 +2064,45 @@ function to_string$12(param) {
   }
 }
 
-var IndicatorColor = /* module */[/* to_string */to_string$12];
+var IndicatorColor = /* module */[/* to_string */to_string$28];
+
+function to_string$29(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "flexContainer";
+    case 2 : 
+        return "scrollingContainer";
+    case 3 : 
+        return "fixed";
+    case 4 : 
+        return "scrollable";
+    case 5 : 
+        return "centered";
+    case 6 : 
+        return "buttonAuto";
+    
+  }
+}
+
+function to_obj$16(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$29(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$16 = /* module */[
+  /* to_string */to_string$29,
+  /* to_obj */to_obj$16
+];
 
 function make$19(value, textColor, scrollButtons, scrollable, onChange, indicatorClassName, fullWidth, className, centered, buttonClassName, theme, tTabScrollButton, indicatorColor, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTabs$slashTabs.default, {
               value: value,
-              textColor: Js_null_undefined.from_opt(optionMap(to_string$10, textColor)),
-              scrollButtons: Js_null_undefined.from_opt(optionMap(to_string$11, scrollButtons)),
+              textColor: Js_null_undefined.from_opt(optionMap(to_string$26, textColor)),
+              scrollButtons: Js_null_undefined.from_opt(optionMap(to_string$27, scrollButtons)),
               scrollable: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, scrollable)),
               onChange: onChange,
               indicatorClassName: Js_null_undefined.from_opt(indicatorClassName),
@@ -1681,11 +2118,11 @@ function make$19(value, textColor, scrollButtons, scrollable, onChange, indicato
                           } else {
                             return unwrapValue(/* `String */[
                                         -976970511,
-                                        to_string$12(x[1])
+                                        to_string$28(x[1])
                                       ]);
                           }
                         }), indicatorColor)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$16, classes))
             }, children);
 }
 
@@ -1693,7 +2130,34 @@ var Tabs = /* module */[
   /* TextColor */TextColor,
   /* ScrollButtons */ScrollButtons,
   /* IndicatorColor */IndicatorColor,
+  /* Classes */Classes$16,
   /* make */make$19
+];
+
+function to_string$30(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "padding";
+    case 2 : 
+        return "dense";
+    case 3 : 
+        return "subheader";
+    
+  }
+}
+
+function to_obj$17(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$30(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$17 = /* module */[
+  /* to_string */to_string$30,
+  /* to_obj */to_obj$17
 ];
 
 function make$20(subheader, rootRef, disablePadding, dense, className, component, classes, children) {
@@ -1704,11 +2168,42 @@ function make$20(subheader, rootRef, disablePadding, dense, className, component
               dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
               className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$17, classes))
             }, children);
 }
 
-var List = /* module */[/* make */make$20];
+var List = /* module */[
+  /* Classes */Classes$17,
+  /* make */make$20
+];
+
+function to_string$31(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "head";
+    case 2 : 
+        return "footer";
+    case 3 : 
+        return "hover";
+    case 4 : 
+        return "selected";
+    
+  }
+}
+
+function to_obj$18(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$31(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$18 = /* module */[
+  /* to_string */to_string$31,
+  /* to_obj */to_obj$18
+];
 
 function make$21(className, selected, hover, component, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTable$slashTableRow.default, {
@@ -1716,11 +2211,38 @@ function make$21(className, selected, hover, component, classes, children) {
               selected: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, selected)),
               hover: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, hover)),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$18, classes))
             }, children);
 }
 
-var TableRow = /* module */[/* make */make$21];
+var TableRow = /* module */[
+  /* Classes */Classes$18,
+  /* make */make$21
+];
+
+function to_string$32(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "default";
+    case 1 : 
+        return "checked";
+    case 2 : 
+        return "disabled";
+    
+  }
+}
+
+function to_obj$19(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$32(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$19 = /* module */[
+  /* to_string */to_string$32,
+  /* to_obj */to_obj$19
+];
 
 function make$22(value, tabIndex, onChange, name, inputRef, inputProps, icon, disableRipple, disabledClassName, disabled, defaultChecked, className, checkedIcon, checkedClassName, checked, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashRadio$slashRadio.default, {
@@ -1739,32 +2261,97 @@ function make$22(value, tabIndex, onChange, name, inputRef, inputProps, icon, di
               checkedIcon: Js_null_undefined.from_opt(checkedIcon),
               checkedClassName: Js_null_undefined.from_opt(checkedClassName),
               checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$19, classes))
             }, children);
 }
 
-var Radio = /* module */[/* make */make$22];
+var Radio = /* module */[
+  /* Classes */Classes$19,
+  /* make */make$22
+];
+
+function to_string$33() {
+  return "root";
+}
+
+function to_obj$20(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$20 = /* module */[
+  /* to_string */to_string$33,
+  /* to_obj */to_obj$20
+];
 
 function make$23(viewBox, titleAccess, className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashSvgIcon$slashSvgIcon.default, {
               viewBox: Js_null_undefined.from_opt(viewBox),
               titleAccess: Js_null_undefined.from_opt(titleAccess),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$20, classes))
             }, children);
 }
 
-var SvgIcon = /* module */[/* make */make$23];
+var SvgIcon = /* module */[
+  /* Classes */Classes$20,
+  /* make */make$23
+];
+
+function to_string$34() {
+  return "root";
+}
+
+function to_obj$21(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$21 = /* module */[
+  /* to_string */to_string$34,
+  /* to_obj */to_obj$21
+];
 
 function make$24(className, component, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTable$slashTable.default, {
               className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$21, classes))
             }, children);
 }
 
-var Table = /* module */[/* make */make$24];
+var Table = /* module */[
+  /* Classes */Classes$21,
+  /* make */make$24
+];
+
+function to_string$35(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "disabled";
+    case 2 : 
+        return "label";
+    
+  }
+}
+
+function to_obj$22(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$35(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$22 = /* module */[
+  /* to_string */to_string$35,
+  /* to_obj */to_obj$22
+];
 
 function make$25(value, onChange, name, label, inputRef, disabled, control, className, checked, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashForm$slashFormControlLabel.default, {
@@ -1777,11 +2364,14 @@ function make$25(value, onChange, name, label, inputRef, disabled, control, clas
               control: control,
               className: Js_null_undefined.from_opt(className),
               checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$22, classes))
             }, children);
 }
 
-var FormControlLabel = /* module */[/* make */make$25];
+var FormControlLabel = /* module */[
+  /* Classes */Classes$22,
+  /* make */make$25
+];
 
 function make$26(theme, sheetsManager, disableStylesGeneration, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashstyles$slashMuiThemeProvider.default, {
@@ -1793,7 +2383,7 @@ function make$26(theme, sheetsManager, disableStylesGeneration, children) {
 
 var MuiThemeProvider = /* module */[/* make */make$26];
 
-function to_string$13(param) {
+function to_string$36(param) {
   switch (param) {
     case 0 : 
         return "default";
@@ -1809,7 +2399,53 @@ function to_string$13(param) {
   }
 }
 
-var Color$3 = /* module */[/* to_string */to_string$13];
+var Color$3 = /* module */[/* to_string */to_string$36];
+
+function to_string$37(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "dense";
+    case 2 : 
+        return "label";
+    case 3 : 
+        return "flatPrimary";
+    case 4 : 
+        return "flatAccent";
+    case 5 : 
+        return "flatContrast";
+    case 6 : 
+        return "colorInherit";
+    case 7 : 
+        return "raised";
+    case 8 : 
+        return "keyboardFocused";
+    case 9 : 
+        return "raisedPrimary";
+    case 10 : 
+        return "raisedAccent";
+    case 11 : 
+        return "raisedContrast";
+    case 12 : 
+        return "disabled";
+    case 13 : 
+        return "fab";
+    
+  }
+}
+
+function to_obj$23(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$37(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$23 = /* module */[
+  /* to_string */to_string$37,
+  /* to_obj */to_obj$23
+];
 
 function make$27(href, component, className, type_, disableRipple, raised, disableFocusRipple, fab, disabled, dense, color, classes, centerRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, rootRef, tabIndex, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashButton$slashButton.default, {
@@ -1823,8 +2459,8 @@ function make$27(href, component, className, type_, disableRipple, raised, disab
               fab: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fab)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
-              color: Js_null_undefined.from_opt(optionMap(to_string$13, color)),
-              classes: Js_null_undefined.from_opt(classes),
+              color: Js_null_undefined.from_opt(optionMap(to_string$36, color)),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$23, classes)),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
               focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
               keyboardFocusedClassName: Js_null_undefined.from_opt(keyboardFocusedClassName),
@@ -1848,14 +2484,31 @@ function make$27(href, component, className, type_, disableRipple, raised, disab
 
 var Button = /* module */[
   /* Color */Color$3,
+  /* Classes */Classes$23,
   /* make */make$27
 ];
 
-function to_string$14() {
+function to_string$38() {
   return "auto";
 }
 
-var TransitionDuration$1 = /* module */[/* to_string */to_string$14];
+var TransitionDuration$1 = /* module */[/* to_string */to_string$38];
+
+function to_string$39() {
+  return "paper";
+}
+
+function to_obj$24(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["paper"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$24 = /* module */[
+  /* to_string */to_string$39,
+  /* to_obj */to_obj$24
+];
 
 function make$28(transitionDuration, pPopoverClasses, pPaperProps, open_, onRequestClose, onExited, onExiting, onExit, onEntered, onEntering, onEnter, mMenuListProps, anchorEl, theme, classes, anchorOrigin, transformOrigin, marginThreshold, elevation, getContentAnchorEl, role, transitionClasses, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashMenu$slashMenu.default, {
@@ -1882,7 +2535,7 @@ function make$28(transitionDuration, pPopoverClasses, pPaperProps, open_, onRequ
               MenuListProps: Js_null_undefined.from_opt(mMenuListProps),
               anchorEl: Js_null_undefined.from_opt(anchorEl),
               theme: Js_null_undefined.from_opt(theme),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$24, classes)),
               anchorOrigin: Js_null_undefined.from_opt(anchorOrigin),
               transformOrigin: Js_null_undefined.from_opt(transformOrigin),
               marginThreshold: Js_null_undefined.from_opt(marginThreshold),
@@ -1895,20 +2548,40 @@ function make$28(transitionDuration, pPopoverClasses, pPaperProps, open_, onRequ
 
 var Menu = /* module */[
   /* TransitionDuration */TransitionDuration$1,
+  /* Classes */Classes$24,
   /* make */make$28
+];
+
+function to_string$40() {
+  return "root";
+}
+
+function to_obj$25(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$25 = /* module */[
+  /* to_string */to_string$40,
+  /* to_obj */to_obj$25
 ];
 
 function make$29(className, component, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTable$slashTableFooter.default, {
               className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$25, classes))
             }, children);
 }
 
-var TableFooter = /* module */[/* make */make$29];
+var TableFooter = /* module */[
+  /* Classes */Classes$25,
+  /* make */make$29
+];
 
-function to_string$15(param) {
+function to_string$41(param) {
   switch (param) {
     case 0 : 
         return "1";
@@ -1938,9 +2611,9 @@ function to_string$15(param) {
   }
 }
 
-var Xl = /* module */[/* to_string */to_string$15];
+var Xl = /* module */[/* to_string */to_string$41];
 
-function to_string$16(param) {
+function to_string$42(param) {
   switch (param) {
     case 0 : 
         return "1";
@@ -1970,9 +2643,9 @@ function to_string$16(param) {
   }
 }
 
-var Lg = /* module */[/* to_string */to_string$16];
+var Lg = /* module */[/* to_string */to_string$42];
 
-function to_string$17(param) {
+function to_string$43(param) {
   switch (param) {
     case 0 : 
         return "1";
@@ -2002,9 +2675,9 @@ function to_string$17(param) {
   }
 }
 
-var Md = /* module */[/* to_string */to_string$17];
+var Md = /* module */[/* to_string */to_string$43];
 
-function to_string$18(param) {
+function to_string$44(param) {
   switch (param) {
     case 0 : 
         return "1";
@@ -2034,9 +2707,9 @@ function to_string$18(param) {
   }
 }
 
-var Sm = /* module */[/* to_string */to_string$18];
+var Sm = /* module */[/* to_string */to_string$44];
 
-function to_string$19(param) {
+function to_string$45(param) {
   switch (param) {
     case 0 : 
         return "1";
@@ -2066,9 +2739,9 @@ function to_string$19(param) {
   }
 }
 
-var Xs = /* module */[/* to_string */to_string$19];
+var Xs = /* module */[/* to_string */to_string$45];
 
-function to_string$20(param) {
+function to_string$46(param) {
   switch (param) {
     case 0 : 
         return "nowrap";
@@ -2080,9 +2753,9 @@ function to_string$20(param) {
   }
 }
 
-var Wrap = /* module */[/* to_string */to_string$20];
+var Wrap = /* module */[/* to_string */to_string$46];
 
-function to_string$21(param) {
+function to_string$47(param) {
   switch (param) {
     case 0 : 
         return "flex-start";
@@ -2098,9 +2771,9 @@ function to_string$21(param) {
   }
 }
 
-var Justify = /* module */[/* to_string */to_string$21];
+var Justify = /* module */[/* to_string */to_string$47];
 
-function to_string$22(param) {
+function to_string$48(param) {
   switch (param) {
     case 0 : 
         return "0";
@@ -2116,9 +2789,9 @@ function to_string$22(param) {
   }
 }
 
-var Spacing = /* module */[/* to_string */to_string$22];
+var Spacing = /* module */[/* to_string */to_string$48];
 
-function to_string$23(param) {
+function to_string$49(param) {
   switch (param) {
     case 0 : 
         return "row";
@@ -2132,9 +2805,9 @@ function to_string$23(param) {
   }
 }
 
-var Direction = /* module */[/* to_string */to_string$23];
+var Direction = /* module */[/* to_string */to_string$49];
 
-function to_string$24(param) {
+function to_string$50(param) {
   switch (param) {
     case 0 : 
         return "flex-start";
@@ -2150,9 +2823,9 @@ function to_string$24(param) {
   }
 }
 
-var AlignItems = /* module */[/* to_string */to_string$24];
+var AlignItems = /* module */[/* to_string */to_string$50];
 
-function to_string$25(param) {
+function to_string$51(param) {
   switch (param) {
     case 0 : 
         return "stretch";
@@ -2170,7 +2843,97 @@ function to_string$25(param) {
   }
 }
 
-var AlignContent = /* module */[/* to_string */to_string$25];
+var AlignContent = /* module */[/* to_string */to_string$51];
+
+function to_string$52(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "typeContainer";
+    case 1 : 
+        return "typeItem";
+    case 2 : 
+        return "direction-xs-column";
+    case 3 : 
+        return "direction-xs-column-reverse";
+    case 4 : 
+        return "direction-xs-row-reverse";
+    case 5 : 
+        return "wrap-xs-nowrap";
+    case 6 : 
+        return "align-items-xs-center";
+    case 7 : 
+        return "align-items-xs-flex-start";
+    case 8 : 
+        return "align-items-xs-flex-end";
+    case 9 : 
+        return "align-items-xs-baseline";
+    case 10 : 
+        return "align-content-xs-center";
+    case 11 : 
+        return "align-content-xs-flex-start";
+    case 12 : 
+        return "align-content-xs-flex-end";
+    case 13 : 
+        return "align-content-xs-space-between";
+    case 14 : 
+        return "align-content-xs-space-around";
+    case 15 : 
+        return "justify-xs-center";
+    case 16 : 
+        return "justify-xs-flex-end";
+    case 17 : 
+        return "justify-xs-space-between";
+    case 18 : 
+        return "justify-xs-space-around";
+    case 19 : 
+        return "spacing-xs-8";
+    case 20 : 
+        return "spacing-xs-16";
+    case 21 : 
+        return "spacing-xs-24";
+    case 22 : 
+        return "spacing-xs-40";
+    case 23 : 
+        return "grid-xs";
+    case 24 : 
+        return "grid-xs-1";
+    case 25 : 
+        return "grid-xs-2";
+    case 26 : 
+        return "grid-xs-3";
+    case 27 : 
+        return "grid-xs-4";
+    case 28 : 
+        return "grid-xs-5";
+    case 29 : 
+        return "grid-xs-6";
+    case 30 : 
+        return "grid-xs-7";
+    case 31 : 
+        return "grid-xs-8";
+    case 32 : 
+        return "grid-xs-9";
+    case 33 : 
+        return "grid-xs-10";
+    case 34 : 
+        return "grid-xs-11";
+    case 35 : 
+        return "grid-xs-12";
+    
+  }
+}
+
+function to_obj$26(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$52(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$26 = /* module */[
+  /* to_string */to_string$52,
+  /* to_obj */to_obj$26
+];
 
 function make$30(xl, lg, md, sm, xs, wrap, justify, hidden, spacing, direction, alignItems, alignContent, item, container, className, component, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashGrid$slashGrid.default, {
@@ -2180,7 +2943,7 @@ function make$30(xl, lg, md, sm, xs, wrap, justify, hidden, spacing, direction, 
                           } else {
                             return unwrapValue(/* `String */[
                                         -976970511,
-                                        to_string$15(x[1])
+                                        to_string$41(x[1])
                                       ]);
                           }
                         }), xl)),
@@ -2190,7 +2953,7 @@ function make$30(xl, lg, md, sm, xs, wrap, justify, hidden, spacing, direction, 
                           } else {
                             return unwrapValue(/* `String */[
                                         -976970511,
-                                        to_string$16(x[1])
+                                        to_string$42(x[1])
                                       ]);
                           }
                         }), lg)),
@@ -2200,7 +2963,7 @@ function make$30(xl, lg, md, sm, xs, wrap, justify, hidden, spacing, direction, 
                           } else {
                             return unwrapValue(/* `String */[
                                         -976970511,
-                                        to_string$17(x[1])
+                                        to_string$43(x[1])
                                       ]);
                           }
                         }), md)),
@@ -2210,7 +2973,7 @@ function make$30(xl, lg, md, sm, xs, wrap, justify, hidden, spacing, direction, 
                           } else {
                             return unwrapValue(/* `String */[
                                         -976970511,
-                                        to_string$18(x[1])
+                                        to_string$44(x[1])
                                       ]);
                           }
                         }), sm)),
@@ -2220,22 +2983,22 @@ function make$30(xl, lg, md, sm, xs, wrap, justify, hidden, spacing, direction, 
                           } else {
                             return unwrapValue(/* `String */[
                                         -976970511,
-                                        to_string$19(x[1])
+                                        to_string$45(x[1])
                                       ]);
                           }
                         }), xs)),
-              wrap: Js_null_undefined.from_opt(optionMap(to_string$20, wrap)),
-              justify: Js_null_undefined.from_opt(optionMap(to_string$21, justify)),
+              wrap: Js_null_undefined.from_opt(optionMap(to_string$46, wrap)),
+              justify: Js_null_undefined.from_opt(optionMap(to_string$47, justify)),
               hidden: Js_null_undefined.from_opt(hidden),
-              spacing: Js_null_undefined.from_opt(optionMap(to_string$22, spacing)),
-              direction: Js_null_undefined.from_opt(optionMap(to_string$23, direction)),
-              alignItems: Js_null_undefined.from_opt(optionMap(to_string$24, alignItems)),
-              alignContent: Js_null_undefined.from_opt(optionMap(to_string$25, alignContent)),
+              spacing: Js_null_undefined.from_opt(optionMap(to_string$48, spacing)),
+              direction: Js_null_undefined.from_opt(optionMap(to_string$49, direction)),
+              alignItems: Js_null_undefined.from_opt(optionMap(to_string$50, alignItems)),
+              alignContent: Js_null_undefined.from_opt(optionMap(to_string$51, alignContent)),
               item: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, item)),
               container: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, container)),
               className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$26, classes))
             }, children);
 }
 
@@ -2251,21 +3014,135 @@ var Grid = /* module */[
   /* Direction */Direction,
   /* AlignItems */AlignItems,
   /* AlignContent */AlignContent,
+  /* Classes */Classes$26,
   /* make */make$30
+];
+
+function to_string$53(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "rounded";
+    case 2 : 
+        return "shadow0";
+    case 3 : 
+        return "shadow1";
+    case 4 : 
+        return "shadow2";
+    case 5 : 
+        return "shadow3";
+    case 6 : 
+        return "shadow4";
+    case 7 : 
+        return "shadow5";
+    case 8 : 
+        return "shadow6";
+    case 9 : 
+        return "shadow7";
+    case 10 : 
+        return "shadow8";
+    case 11 : 
+        return "shadow9";
+    case 12 : 
+        return "shadow10";
+    case 13 : 
+        return "shadow11";
+    case 14 : 
+        return "shadow12";
+    case 15 : 
+        return "shadow13";
+    case 16 : 
+        return "shadow14";
+    case 17 : 
+        return "shadow15";
+    case 18 : 
+        return "shadow16";
+    case 19 : 
+        return "shadow17";
+    case 20 : 
+        return "shadow18";
+    case 21 : 
+        return "shadow19";
+    case 22 : 
+        return "shadow20";
+    case 23 : 
+        return "shadow21";
+    case 24 : 
+        return "shadow22";
+    case 25 : 
+        return "shadow23";
+    case 26 : 
+        return "shadow24";
+    
+  }
+}
+
+function to_obj$27(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$53(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$27 = /* module */[
+  /* to_string */to_string$53,
+  /* to_obj */to_obj$27
 ];
 
 function make$31(className, raised, classes, component, elevation, square, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashCard$slashCard.default, {
               className: Js_null_undefined.from_opt(className),
               raised: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, raised)),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$27, classes)),
               component: Js_null_undefined.from_opt(component),
               elevation: Js_null_undefined.from_opt(elevation),
               square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square))
             }, children);
 }
 
-var Card = /* module */[/* make */make$31];
+var Card = /* module */[
+  /* Classes */Classes$27,
+  /* make */make$31
+];
+
+function to_string$54(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "container";
+    case 2 : 
+        return "keyboardFocused";
+    case 3 : 
+        return "default";
+    case 4 : 
+        return "dense";
+    case 5 : 
+        return "disabled";
+    case 6 : 
+        return "divider";
+    case 7 : 
+        return "gutters";
+    case 8 : 
+        return "button";
+    case 9 : 
+        return "secondaryAction";
+    
+  }
+}
+
+function to_obj$28(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$54(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$28 = /* module */[
+  /* to_string */to_string$54,
+  /* to_obj */to_obj$28
+];
 
 function make$32(divider, disableGutters, disabled, dense, className, button, component, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashList$slashListItem.default, {
@@ -2276,18 +3153,47 @@ function make$32(divider, disableGutters, disabled, dense, className, button, co
               className: Js_null_undefined.from_opt(className),
               button: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, button)),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$28, classes))
             }, children);
 }
 
-var ListItem = /* module */[/* make */make$32];
+var ListItem = /* module */[
+  /* Classes */Classes$28,
+  /* make */make$32
+];
+
+function to_string$55(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "padding";
+    case 2 : 
+        return "dense";
+    case 3 : 
+        return "subheader";
+    
+  }
+}
+
+function to_obj$29(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$55(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$29 = /* module */[
+  /* to_string */to_string$55,
+  /* to_obj */to_obj$29
+];
 
 function make$33(onKeyDown, onBlur, className, classes, component, dense, disablePadding, rootRef, subheader, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashMenu$slashMenuList.default, {
               onKeyDown: Js_null_undefined.from_opt(onKeyDown),
               onBlur: Js_null_undefined.from_opt(onBlur),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$29, classes)),
               component: Js_null_undefined.from_opt(component),
               dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
               disablePadding: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disablePadding)),
@@ -2296,18 +3202,40 @@ function make$33(onKeyDown, onBlur, className, classes, component, dense, disabl
             }, children);
 }
 
-var MenuList = /* module */[/* make */make$33];
+var MenuList = /* module */[
+  /* Classes */Classes$29,
+  /* make */make$33
+];
+
+function to_string$56() {
+  return "root";
+}
+
+function to_obj$30(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$30 = /* module */[
+  /* to_string */to_string$56,
+  /* to_obj */to_obj$30
+];
 
 function make$34(className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashCard$slashCardContent.default, {
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$30, classes))
             }, children);
 }
 
-var CardContent = /* module */[/* make */make$34];
+var CardContent = /* module */[
+  /* Classes */Classes$30,
+  /* make */make$34
+];
 
-function to_string$26(param) {
+function to_string$57(param) {
   switch (param) {
     case 0 : 
         return "inherit";
@@ -2327,19 +3255,76 @@ function to_string$26(param) {
   }
 }
 
-var Color$4 = /* module */[/* to_string */to_string$26];
+var Color$4 = /* module */[/* to_string */to_string$57];
+
+function to_string$58(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "colorAccent";
+    case 2 : 
+        return "colorAction";
+    case 3 : 
+        return "colorContrast";
+    case 4 : 
+        return "colorDisabled";
+    case 5 : 
+        return "colorError";
+    case 6 : 
+        return "colorPrimary";
+    
+  }
+}
+
+function to_obj$31(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$58(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$31 = /* module */[
+  /* to_string */to_string$58,
+  /* to_obj */to_obj$31
+];
 
 function make$35(className, color, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashIcon$slashIcon.default, {
               className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(to_string$26, color)),
-              classes: Js_null_undefined.from_opt(classes)
+              color: Js_null_undefined.from_opt(optionMap(to_string$57, color)),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$31, classes))
             }, children);
 }
 
 var Icon = /* module */[
   /* Color */Color$4,
+  /* Classes */Classes$31,
   /* make */make$35
+];
+
+function to_string$59(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "default";
+    case 1 : 
+        return "checked";
+    case 2 : 
+        return "disabled";
+    
+  }
+}
+
+function to_obj$32(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$59(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$32 = /* module */[
+  /* to_string */to_string$59,
+  /* to_obj */to_obj$32
 ];
 
 function make$36(value, tabIndex, onChange, name, inputRef, inputProps, indeterminateIcon, indeterminate, icon, disableRipple, disabledClassName, disabled, defaultChecked, className, checkedIcon, checkedClassName, checked, classes, children) {
@@ -2361,13 +3346,16 @@ function make$36(value, tabIndex, onChange, name, inputRef, inputProps, indeterm
               checkedIcon: Js_null_undefined.from_opt(checkedIcon),
               checkedClassName: Js_null_undefined.from_opt(checkedClassName),
               checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$32, classes))
             }, children);
 }
 
-var Checkbox = /* module */[/* make */make$36];
+var Checkbox = /* module */[
+  /* Classes */Classes$32,
+  /* make */make$36
+];
 
-function to_string$27(param) {
+function to_string$60(param) {
   switch (param) {
     case 0 : 
         return "xs";
@@ -2379,7 +3367,39 @@ function to_string$27(param) {
   }
 }
 
-var MaxWidth = /* module */[/* to_string */to_string$27];
+var MaxWidth = /* module */[/* to_string */to_string$60];
+
+function to_string$61(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "paper";
+    case 2 : 
+        return "paperWidthXs";
+    case 3 : 
+        return "paperWidthSm";
+    case 4 : 
+        return "paperWidthMd";
+    case 5 : 
+        return "fullWidth";
+    case 6 : 
+        return "fullScreen";
+    
+  }
+}
+
+function to_obj$33(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$61(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$33 = /* module */[
+  /* to_string */to_string$61,
+  /* to_obj */to_obj$33
+];
 
 function make$37(open_, onRequestClose, onExited, onExiting, onExit, onEscapeKeyUp, onEntered, onEntering, onEnter, onBackdropClick, fullWidth, maxWidth, transitionDuration, ignoreEscapeKeyUp, ignoreBackdropClick, fullScreen, className, transition, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashDialog$slashDialog.default, {
@@ -2394,23 +3414,24 @@ function make$37(open_, onRequestClose, onExited, onExiting, onExit, onEscapeKey
               onEnter: Js_null_undefined.from_opt(onEnter),
               onBackdropClick: Js_null_undefined.from_opt(onBackdropClick),
               fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              maxWidth: Js_null_undefined.from_opt(optionMap(to_string$27, maxWidth)),
+              maxWidth: Js_null_undefined.from_opt(optionMap(to_string$60, maxWidth)),
               transitionDuration: Js_null_undefined.from_opt(transitionDuration),
               ignoreEscapeKeyUp: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, ignoreEscapeKeyUp)),
               ignoreBackdropClick: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, ignoreBackdropClick)),
               fullScreen: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullScreen)),
               className: Js_null_undefined.from_opt(className),
               transition: Js_null_undefined.from_opt(transition),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$33, classes))
             }, children);
 }
 
 var Dialog = /* module */[
   /* MaxWidth */MaxWidth,
+  /* Classes */Classes$33,
   /* make */make$37
 ];
 
-function to_string$28(param) {
+function to_string$62(param) {
   if (param !== 0) {
     return "desc";
   } else {
@@ -2418,13 +3439,41 @@ function to_string$28(param) {
   }
 }
 
-var Direction$1 = /* module */[/* to_string */to_string$28];
+var Direction$1 = /* module */[/* to_string */to_string$62];
+
+function to_string$63(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "active";
+    case 2 : 
+        return "icon";
+    case 3 : 
+        return "desc";
+    case 4 : 
+        return "asc";
+    
+  }
+}
+
+function to_obj$34(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$63(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$34 = /* module */[
+  /* to_string */to_string$63,
+  /* to_obj */to_obj$34
+];
 
 function make$38(className, direction, classes, active, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, rootRef, tabIndex, type_, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTable$slashTableSortLabel.default, {
               className: Js_null_undefined.from_opt(className),
-              direction: Js_null_undefined.from_opt(optionMap(to_string$28, direction)),
-              classes: Js_null_undefined.from_opt(classes),
+              direction: Js_null_undefined.from_opt(optionMap(to_string$62, direction)),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$34, classes)),
               active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
               component: Js_null_undefined.from_opt(component),
@@ -2453,14 +3502,31 @@ function make$38(className, direction, classes, active, centerRipple, component,
 
 var TableSortLabel = /* module */[
   /* Direction */Direction$1,
+  /* Classes */Classes$34,
   /* make */make$38
 ];
 
-function to_string$29() {
+function to_string$64() {
   return "auto";
 }
 
-var CellHeight = /* module */[/* to_string */to_string$29];
+var CellHeight = /* module */[/* to_string */to_string$64];
+
+function to_string$65() {
+  return "root";
+}
+
+function to_obj$35(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$35 = /* module */[
+  /* to_string */to_string$65,
+  /* to_obj */to_obj$35
+];
 
 function make$39(style, className, component, cellHeight, spacing, cols, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashGridList$slashGridList.default, {
@@ -2479,13 +3545,86 @@ function make$39(style, className, component, cellHeight, spacing, cols, classes
                         }), cellHeight)),
               spacing: Js_null_undefined.from_opt(spacing),
               cols: Js_null_undefined.from_opt(cols),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$35, classes))
             }, children);
 }
 
 var GridList = /* module */[
   /* CellHeight */CellHeight,
+  /* Classes */Classes$35,
   /* make */make$39
+];
+
+function to_string$66(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "rounded";
+    case 2 : 
+        return "shadow0";
+    case 3 : 
+        return "shadow1";
+    case 4 : 
+        return "shadow2";
+    case 5 : 
+        return "shadow3";
+    case 6 : 
+        return "shadow4";
+    case 7 : 
+        return "shadow5";
+    case 8 : 
+        return "shadow6";
+    case 9 : 
+        return "shadow7";
+    case 10 : 
+        return "shadow8";
+    case 11 : 
+        return "shadow9";
+    case 12 : 
+        return "shadow10";
+    case 13 : 
+        return "shadow11";
+    case 14 : 
+        return "shadow12";
+    case 15 : 
+        return "shadow13";
+    case 16 : 
+        return "shadow14";
+    case 17 : 
+        return "shadow15";
+    case 18 : 
+        return "shadow16";
+    case 19 : 
+        return "shadow17";
+    case 20 : 
+        return "shadow18";
+    case 21 : 
+        return "shadow19";
+    case 22 : 
+        return "shadow20";
+    case 23 : 
+        return "shadow21";
+    case 24 : 
+        return "shadow22";
+    case 25 : 
+        return "shadow23";
+    case 26 : 
+        return "shadow24";
+    
+  }
+}
+
+function to_obj$36(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$66(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$36 = /* module */[
+  /* to_string */to_string$66,
+  /* to_obj */to_obj$36
 ];
 
 function make$40(className, square, elevation, component, classes, children) {
@@ -2494,21 +3633,75 @@ function make$40(className, square, elevation, component, classes, children) {
               square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
               elevation: Js_null_undefined.from_opt(elevation),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$36, classes))
             }, children);
 }
 
-var Paper = /* module */[/* make */make$40];
+var Paper = /* module */[
+  /* Classes */Classes$36,
+  /* make */make$40
+];
+
+function to_string$67(param) {
+  if (param.tag) {
+    return "row";
+  } else {
+    return "root";
+  }
+}
+
+function to_obj$37(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$67(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$37 = /* module */[
+  /* to_string */to_string$67,
+  /* to_obj */to_obj$37
+];
 
 function make$41(row, className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashForm$slashFormGroup.default, {
               row: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, row)),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$37, classes))
             }, children);
 }
 
-var FormGroup = /* module */[/* make */make$41];
+var FormGroup = /* module */[
+  /* Classes */Classes$37,
+  /* make */make$41
+];
+
+function to_string$68(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "avatar";
+    case 2 : 
+        return "content";
+    case 3 : 
+        return "title";
+    case 4 : 
+        return "subheader";
+    
+  }
+}
+
+function to_obj$38(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$68(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$38 = /* module */[
+  /* to_string */to_string$68,
+  /* to_obj */to_obj$38
+];
 
 function make$42(title, subheader, className, avatar, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashCard$slashCardHeader.default, {
@@ -2516,21 +3709,75 @@ function make$42(title, subheader, className, avatar, classes, children) {
               subheader: Js_null_undefined.from_opt(subheader),
               className: Js_null_undefined.from_opt(className),
               avatar: Js_null_undefined.from_opt(avatar),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$38, classes))
             }, children);
 }
 
-var CardHeader = /* module */[/* make */make$42];
+var CardHeader = /* module */[
+  /* Classes */Classes$38,
+  /* make */make$42
+];
+
+function to_string$69(param) {
+  if (param.tag) {
+    return "gutters";
+  } else {
+    return "root";
+  }
+}
+
+function to_obj$39(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$69(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$39 = /* module */[
+  /* to_string */to_string$69,
+  /* to_obj */to_obj$39
+];
 
 function make$43(disableGutters, className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashToolbar$slashToolbar.default, {
               disableGutters: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableGutters)),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$39, classes))
             }, children);
 }
 
-var Toolbar = /* module */[/* make */make$43];
+var Toolbar = /* module */[
+  /* Classes */Classes$39,
+  /* make */make$43
+];
+
+function to_string$70(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "inset";
+    case 2 : 
+        return "dense";
+    case 3 : 
+        return "text";
+    case 4 : 
+        return "textDense";
+    
+  }
+}
+
+function to_obj$40(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$70(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$40 = /* module */[
+  /* to_string */to_string$70,
+  /* to_obj */to_obj$40
+];
 
 function make$44(secondary, primary, inset, disableTypography, className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashList$slashListItemText.default, {
@@ -2539,21 +3786,75 @@ function make$44(secondary, primary, inset, disableTypography, className, classe
               inset: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, inset)),
               disableTypography: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTypography)),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$40, classes))
             }, children);
 }
 
-var ListItemText = /* module */[/* make */make$44];
+var ListItemText = /* module */[
+  /* Classes */Classes$40,
+  /* make */make$44
+];
+
+function to_string$71(param) {
+  if (param.tag) {
+    return "actionSpacing";
+  } else {
+    return "root";
+  }
+}
+
+function to_obj$41(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$71(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$41 = /* module */[
+  /* to_string */to_string$71,
+  /* to_obj */to_obj$41
+];
 
 function make$45(className, disableActionSpacing, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashCard$slashCardActions.default, {
               className: Js_null_undefined.from_opt(className),
               disableActionSpacing: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableActionSpacing)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$41, classes))
             }, children);
 }
 
-var CardActions = /* module */[/* make */make$45];
+var CardActions = /* module */[
+  /* Classes */Classes$41,
+  /* make */make$45
+];
+
+function to_string$72(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "default";
+    case 2 : 
+        return "inset";
+    case 3 : 
+        return "light";
+    case 4 : 
+        return "absolute";
+    
+  }
+}
+
+function to_obj$42(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$72(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$42 = /* module */[
+  /* to_string */to_string$72,
+  /* to_obj */to_obj$42
+];
 
 function make$46(light, inset, className, absolute, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashDivider$slashDivider.default, {
@@ -2561,17 +3862,46 @@ function make$46(light, inset, className, absolute, classes, children) {
               inset: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, inset)),
               className: Js_null_undefined.from_opt(className),
               absolute: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, absolute)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$42, classes))
             }, children);
 }
 
-var Divider = /* module */[/* make */make$46];
+var Divider = /* module */[
+  /* Classes */Classes$42,
+  /* make */make$46
+];
 
-function to_string$30() {
+function to_string$73() {
   return "auto";
 }
 
-var Timeout$1 = /* module */[/* to_string */to_string$30];
+var Timeout$1 = /* module */[/* to_string */to_string$73];
+
+function to_string$74(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "container";
+    case 1 : 
+        return "entered";
+    case 2 : 
+        return "wrapper";
+    case 3 : 
+        return "wrapperInner";
+    
+  }
+}
+
+function to_obj$43(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$74(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$43 = /* module */[
+  /* to_string */to_string$74,
+  /* to_obj */to_obj$43
+];
 
 function make$47(style, onExiting, onExit, onEntered, onEntering, onEnter, in_, theme, timeout, collapsedHeight, classes, appear, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashtransitions$slashCollapse.default, {
@@ -2594,13 +3924,14 @@ function make$47(style, onExiting, onExit, onEntered, onEntering, onEnter, in_, 
                           }
                         }), timeout)),
               collapsedHeight: Js_null_undefined.from_opt(collapsedHeight),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$43, classes)),
               appear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, appear))
             }, children);
 }
 
 var Collapse = /* module */[
   /* Timeout */Timeout$1,
+  /* Classes */Classes$43,
   /* make */make$47
 ];
 
@@ -2612,7 +3943,7 @@ function make$48(onClickAway, children) {
 
 var ClickAwayListener = /* module */[/* make */make$48];
 
-function to_string$31(param) {
+function to_string$75(param) {
   switch (param) {
     case 0 : 
         return "inherit";
@@ -2630,9 +3961,9 @@ function to_string$31(param) {
   }
 }
 
-var Color$5 = /* module */[/* to_string */to_string$31];
+var Color$5 = /* module */[/* to_string */to_string$75];
 
-function to_string$32(param) {
+function to_string$76(param) {
   switch (param) {
     case 0 : 
         return "inherit";
@@ -2648,9 +3979,9 @@ function to_string$32(param) {
   }
 }
 
-var Align = /* module */[/* to_string */to_string$32];
+var Align = /* module */[/* to_string */to_string$76];
 
-function to_string$33(param) {
+function to_string$77(param) {
   switch (param) {
     case 0 : 
         return "display4";
@@ -2678,20 +4009,86 @@ function to_string$33(param) {
   }
 }
 
-var Type = /* module */[/* to_string */to_string$33];
+var Type = /* module */[/* to_string */to_string$77];
+
+function to_string$78(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "display4";
+    case 2 : 
+        return "display3";
+    case 3 : 
+        return "display2";
+    case 4 : 
+        return "display1";
+    case 5 : 
+        return "headline";
+    case 6 : 
+        return "title";
+    case 7 : 
+        return "subheading";
+    case 8 : 
+        return "body2";
+    case 9 : 
+        return "body1";
+    case 10 : 
+        return "caption";
+    case 11 : 
+        return "button";
+    case 12 : 
+        return "alignLeft";
+    case 13 : 
+        return "alignCenter";
+    case 14 : 
+        return "alignRight";
+    case 15 : 
+        return "alignJustify";
+    case 16 : 
+        return "noWrap";
+    case 17 : 
+        return "gutterBottom";
+    case 18 : 
+        return "paragraph";
+    case 19 : 
+        return "colorInherit";
+    case 20 : 
+        return "colorPrimary";
+    case 21 : 
+        return "colorSecondary";
+    case 22 : 
+        return "colorAccent";
+    case 23 : 
+        return "colorError";
+    
+  }
+}
+
+function to_obj$44(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$78(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$44 = /* module */[
+  /* to_string */to_string$78,
+  /* to_obj */to_obj$44
+];
 
 function make$49(paragraph, noWrap, gutterBottom, color, component, className, align, type_, headlineMapping, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTypography$slashTypography.default, {
               paragraph: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, paragraph)),
               noWrap: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, noWrap)),
               gutterBottom: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, gutterBottom)),
-              color: Js_null_undefined.from_opt(optionMap(to_string$31, color)),
+              color: Js_null_undefined.from_opt(optionMap(to_string$75, color)),
               component: Js_null_undefined.from_opt(component),
               className: Js_null_undefined.from_opt(className),
-              align: Js_null_undefined.from_opt(optionMap(to_string$32, align)),
-              type: Js_null_undefined.from_opt(optionMap(to_string$33, type_)),
+              align: Js_null_undefined.from_opt(optionMap(to_string$76, align)),
+              type: Js_null_undefined.from_opt(optionMap(to_string$77, type_)),
               headlineMapping: Js_null_undefined.from_opt(headlineMapping),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$44, classes))
             }, children);
 }
 
@@ -2699,10 +4096,11 @@ var Typography = /* module */[
   /* Color */Color$5,
   /* Align */Align,
   /* Type */Type,
+  /* Classes */Classes$44,
   /* make */make$49
 ];
 
-function to_string$34(param) {
+function to_string$79(param) {
   switch (param) {
     case 0 : 
         return "determinate";
@@ -2716,9 +4114,9 @@ function to_string$34(param) {
   }
 }
 
-var Mode = /* module */[/* to_string */to_string$34];
+var Mode = /* module */[/* to_string */to_string$79];
 
-function to_string$35(param) {
+function to_string$80(param) {
   if (param !== 0) {
     return "accent";
   } else {
@@ -2726,23 +4124,104 @@ function to_string$35(param) {
   }
 }
 
-var Color$6 = /* module */[/* to_string */to_string$35];
+var Color$6 = /* module */[/* to_string */to_string$80];
+
+function to_string$81(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "primaryColor";
+    case 2 : 
+        return "primaryColorBar";
+    case 3 : 
+        return "primaryDashed";
+    case 4 : 
+        return "accentColor";
+    case 5 : 
+        return "accentColorBar";
+    case 6 : 
+        return "accentDashed";
+    case 7 : 
+        return "bar";
+    case 8 : 
+        return "dashed";
+    case 9 : 
+        return "bufferBar2";
+    case 10 : 
+        return "rootBuffer";
+    case 11 : 
+        return "rootQuery";
+    case 12 : 
+        return "indeterminateBar1";
+    case 13 : 
+        return "indeterminateBar2";
+    case 14 : 
+        return "determinateBar1";
+    case 15 : 
+        return "bufferBar1";
+    case 16 : 
+        return "bufferBar2Primary";
+    case 17 : 
+        return "bufferBar2Accent";
+    
+  }
+}
+
+function to_obj$45(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$81(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$45 = /* module */[
+  /* to_string */to_string$81,
+  /* to_obj */to_obj$45
+];
 
 function make$50(valueBuffer, value, mode, color, className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashProgress$slashLinearProgress.default, {
               valueBuffer: Js_null_undefined.from_opt(valueBuffer),
               value: Js_null_undefined.from_opt(value),
-              mode: Js_null_undefined.from_opt(optionMap(to_string$34, mode)),
-              color: Js_null_undefined.from_opt(optionMap(to_string$35, color)),
+              mode: Js_null_undefined.from_opt(optionMap(to_string$79, mode)),
+              color: Js_null_undefined.from_opt(optionMap(to_string$80, color)),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$45, classes))
             }, children);
 }
 
 var LinearProgress = /* module */[
   /* Mode */Mode,
   /* Color */Color$6,
+  /* Classes */Classes$45,
   /* make */make$50
+];
+
+function to_string$82(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "focused";
+    case 2 : 
+        return "error";
+    case 3 : 
+        return "disabled";
+    
+  }
+}
+
+function to_obj$46(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$82(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$46 = /* module */[
+  /* to_string */to_string$82,
+  /* to_obj */to_obj$46
 ];
 
 function make$51(required, focused, error, disabled, className, component, classes, children) {
@@ -2753,11 +4232,40 @@ function make$51(required, focused, error, disabled, className, component, class
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$46, classes))
             }, children);
 }
 
-var FormLabel = /* module */[/* make */make$51];
+var FormLabel = /* module */[
+  /* Classes */Classes$46,
+  /* make */make$51
+];
+
+function to_string$83(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "dense";
+    case 2 : 
+        return "error";
+    case 3 : 
+        return "disabled";
+    
+  }
+}
+
+function to_obj$47(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$83(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$47 = /* module */[
+  /* to_string */to_string$83,
+  /* to_obj */to_obj$47
+];
 
 function make$52(margin, error, disabled, className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashForm$slashFormHelperText.default, {
@@ -2765,13 +4273,16 @@ function make$52(margin, error, disabled, className, classes, children) {
               error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$47, classes))
             }, children);
 }
 
-var FormHelperText = /* module */[/* make */make$52];
+var FormHelperText = /* module */[
+  /* Classes */Classes$47,
+  /* make */make$52
+];
 
-function to_string$36(param) {
+function to_string$84(param) {
   switch (param) {
     case 0 : 
         return "default";
@@ -2785,7 +4296,41 @@ function to_string$36(param) {
   }
 }
 
-var Padding = /* module */[/* to_string */to_string$36];
+var Padding = /* module */[/* to_string */to_string$84];
+
+function to_string$85(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "toolbar";
+    case 2 : 
+        return "spacer";
+    case 3 : 
+        return "caption";
+    case 4 : 
+        return "input";
+    case 5 : 
+        return "selectRoot";
+    case 6 : 
+        return "select";
+    case 7 : 
+        return "actions";
+    
+  }
+}
+
+function to_obj$48(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$85(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$48 = /* module */[
+  /* to_string */to_string$85,
+  /* to_obj */to_obj$48
+];
 
 function make$53(rowsPerPage, page, onChangeRowsPerPage, onChangePage, count, colSpan, theme, rowsPerPageOptions, labelDisplayedRows, labelRowsPerPage, component, classes, padding, numeric, className, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTable$slashTablePagination.default, {
@@ -2800,8 +4345,8 @@ function make$53(rowsPerPage, page, onChangeRowsPerPage, onChangePage, count, co
               labelDisplayedRows: Js_null_undefined.from_opt(labelDisplayedRows),
               labelRowsPerPage: Js_null_undefined.from_opt(labelRowsPerPage),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes),
-              padding: Js_null_undefined.from_opt(optionMap(to_string$36, padding)),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$48, classes)),
+              padding: Js_null_undefined.from_opt(optionMap(to_string$84, padding)),
               numeric: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, numeric)),
               className: Js_null_undefined.from_opt(className)
             }, children);
@@ -2809,7 +4354,40 @@ function make$53(rowsPerPage, page, onChangeRowsPerPage, onChangePage, count, co
 
 var TablePagination = /* module */[
   /* Padding */Padding,
+  /* Classes */Classes$48,
   /* make */make$53
+];
+
+function to_string$86(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "clickable";
+    case 2 : 
+        return "deletable";
+    case 3 : 
+        return "avatar";
+    case 4 : 
+        return "avatarChildren";
+    case 5 : 
+        return "label";
+    case 6 : 
+        return "deleteIcon";
+    
+  }
+}
+
+function to_obj$49(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$86(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$49 = /* module */[
+  /* to_string */to_string$86,
+  /* to_obj */to_obj$49
 ];
 
 function make$54(tabIndex, onRequestDelete, onKeyDown, onClick, label, deleteIcon, className, avatar, classes, children) {
@@ -2822,11 +4400,34 @@ function make$54(tabIndex, onRequestDelete, onKeyDown, onClick, label, deleteIco
               deleteIcon: Js_null_undefined.from_opt(deleteIcon),
               className: Js_null_undefined.from_opt(className),
               avatar: Js_null_undefined.from_opt(avatar),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$49, classes))
             }, children);
 }
 
-var Chip = /* module */[/* make */make$54];
+var Chip = /* module */[
+  /* Classes */Classes$49,
+  /* make */make$54
+];
+
+function to_string$87(param) {
+  if (param.tag) {
+    return "row";
+  } else {
+    return "root";
+  }
+}
+
+function to_obj$50(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$87(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$50 = /* module */[
+  /* to_string */to_string$87,
+  /* to_obj */to_obj$50
+];
 
 function make$55(value, onKeyDown, onChange, onBlur, name, classes, className, row, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashRadio$slashRadioGroup.default, {
@@ -2835,15 +4436,18 @@ function make$55(value, onKeyDown, onChange, onBlur, name, classes, className, r
               onChange: Js_null_undefined.from_opt(onChange),
               onBlur: Js_null_undefined.from_opt(onBlur),
               name: Js_null_undefined.from_opt(name),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$50, classes)),
               className: Js_null_undefined.from_opt(className),
               row: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, row))
             }, children);
 }
 
-var RadioGroup = /* module */[/* make */make$55];
+var RadioGroup = /* module */[
+  /* Classes */Classes$50,
+  /* make */make$55
+];
 
-function to_string$37(param) {
+function to_string$88(param) {
   switch (param) {
     case 0 : 
         return "default";
@@ -2857,24 +4461,57 @@ function to_string$37(param) {
   }
 }
 
-var Padding$1 = /* module */[/* to_string */to_string$37];
+var Padding$1 = /* module */[/* to_string */to_string$88];
+
+function to_string$89(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "numeric";
+    case 2 : 
+        return "head";
+    case 3 : 
+        return "paddingDefault";
+    case 4 : 
+        return "paddingDense";
+    case 5 : 
+        return "paddingCheckbox";
+    case 6 : 
+        return "footer";
+    
+  }
+}
+
+function to_obj$51(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$89(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$51 = /* module */[
+  /* to_string */to_string$89,
+  /* to_obj */to_obj$51
+];
 
 function make$56(component, className, numeric, padding, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTable$slashTableCell.default, {
               component: Js_null_undefined.from_opt(component),
               className: Js_null_undefined.from_opt(className),
               numeric: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, numeric)),
-              padding: Js_null_undefined.from_opt(optionMap(to_string$37, padding)),
-              classes: Js_null_undefined.from_opt(classes)
+              padding: Js_null_undefined.from_opt(optionMap(to_string$88, padding)),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$51, classes))
             }, children);
 }
 
 var TableCell = /* module */[
   /* Padding */Padding$1,
+  /* Classes */Classes$51,
   /* make */make$56
 ];
 
-function to_string$38(param) {
+function to_string$90(param) {
   if (param !== 0) {
     return "none";
   } else {
@@ -2882,7 +4519,55 @@ function to_string$38(param) {
   }
 }
 
-var Margin$2 = /* module */[/* to_string */to_string$38];
+var Margin$2 = /* module */[/* to_string */to_string$90];
+
+function to_string$91(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "formControl";
+    case 2 : 
+        return "inkbar";
+    case 3 : 
+        return "error";
+    case 4 : 
+        return "input";
+    case 5 : 
+        return "inputDense";
+    case 6 : 
+        return "disabled";
+    case 7 : 
+        return "focused";
+    case 8 : 
+        return "underline";
+    case 9 : 
+        return "multiline";
+    case 10 : 
+        return "inputDisabled";
+    case 11 : 
+        return "inputSingleline";
+    case 12 : 
+        return "inputSearch";
+    case 13 : 
+        return "inputMultiline";
+    case 14 : 
+        return "fullWidth";
+    
+  }
+}
+
+function to_obj$52(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$91(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$52 = /* module */[
+  /* to_string */to_string$91,
+  /* to_obj */to_obj$52
+];
 
 function make$57(value, startAdornment, rowsMax, rows, placeholder, onKeyUp, onKeyDown, onFocus, onDirty, onClean, onChange, onBlur, readOnly, name, margin, inputRef, inputProps, inputComponent, id, error, endAdornment, disabled, defaultValue, className, autoFocus, autoComplete, type_, multiline, fullWidth, disableUnderline, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashInput$slashInput.default, {
@@ -2900,7 +4585,7 @@ function make$57(value, startAdornment, rowsMax, rows, placeholder, onKeyUp, onK
               onBlur: Js_null_undefined.from_opt(onBlur),
               readOnly: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, readOnly)),
               name: Js_null_undefined.from_opt(name),
-              margin: Js_null_undefined.from_opt(optionMap(to_string$38, margin)),
+              margin: Js_null_undefined.from_opt(optionMap(to_string$90, margin)),
               inputRef: Js_null_undefined.from_opt(inputRef),
               inputProps: Js_null_undefined.from_opt(inputProps),
               inputComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, inputComponent)),
@@ -2916,16 +4601,17 @@ function make$57(value, startAdornment, rowsMax, rows, placeholder, onKeyUp, onK
               multiline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, multiline)),
               fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
               disableUnderline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableUnderline)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$52, classes))
             }, children);
 }
 
 var Input = /* module */[
   /* Margin */Margin$2,
+  /* Classes */Classes$52,
   /* make */make$57
 ];
 
-function to_string$39(param) {
+function to_string$92(param) {
   switch (param) {
     case 0 : 
         return "bottom-end";
@@ -2955,7 +4641,43 @@ function to_string$39(param) {
   }
 }
 
-var Placement = /* module */[/* to_string */to_string$39];
+var Placement = /* module */[/* to_string */to_string$92];
+
+function to_string$93(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "popper";
+    case 2 : 
+        return "popperClose";
+    case 3 : 
+        return "tooltip";
+    case 4 : 
+        return "tooltipLeft";
+    case 5 : 
+        return "tooltipRight";
+    case 6 : 
+        return "tooltipTop";
+    case 7 : 
+        return "tooltipBottom";
+    case 8 : 
+        return "tooltipOpen";
+    
+  }
+}
+
+function to_obj$53(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$93(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$53 = /* module */[
+  /* to_string */to_string$93,
+  /* to_obj */to_obj$53
+];
 
 function make$58(pPopperProps, title, open_, onRequestOpen, onRequestClose, id, className, theme, placement, leaveDelay, enterDelay, disableTriggerTouch, disableTriggerHover, disableTriggerFocus, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTooltip$slashTooltip.default, {
@@ -2967,22 +4689,23 @@ function make$58(pPopperProps, title, open_, onRequestOpen, onRequestClose, id, 
               id: Js_null_undefined.from_opt(id),
               className: Js_null_undefined.from_opt(className),
               theme: Js_null_undefined.from_opt(theme),
-              placement: Js_null_undefined.from_opt(optionMap(to_string$39, placement)),
+              placement: Js_null_undefined.from_opt(optionMap(to_string$92, placement)),
               leaveDelay: Js_null_undefined.from_opt(leaveDelay),
               enterDelay: Js_null_undefined.from_opt(enterDelay),
               disableTriggerTouch: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTriggerTouch)),
               disableTriggerHover: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTriggerHover)),
               disableTriggerFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTriggerFocus)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$53, classes))
             }, children);
 }
 
 var Tooltip = /* module */[
   /* Placement */Placement,
+  /* Classes */Classes$53,
   /* make */make$58
 ];
 
-function to_string$40(param) {
+function to_string$94(param) {
   switch (param) {
     case 0 : 
         return "static";
@@ -2994,9 +4717,9 @@ function to_string$40(param) {
   }
 }
 
-var Position$1 = /* module */[/* to_string */to_string$40];
+var Position$1 = /* module */[/* to_string */to_string$94];
 
-function to_string$41(param) {
+function to_string$95(param) {
   switch (param) {
     case 0 : 
         return "inherit";
@@ -3010,14 +4733,46 @@ function to_string$41(param) {
   }
 }
 
-var Color$7 = /* module */[/* to_string */to_string$41];
+var Color$7 = /* module */[/* to_string */to_string$95];
+
+function to_string$96(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "positionFixed";
+    case 2 : 
+        return "positionAbsolute";
+    case 3 : 
+        return "positionStatic";
+    case 4 : 
+        return "colorDefault";
+    case 5 : 
+        return "colorPrimary";
+    case 6 : 
+        return "colorAccent";
+    
+  }
+}
+
+function to_obj$54(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$96(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$54 = /* module */[
+  /* to_string */to_string$96,
+  /* to_obj */to_obj$54
+];
 
 function make$59(className, position, color, classes, component, elevation, square, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashAppBar$slashAppBar.default, {
               className: Js_null_undefined.from_opt(className),
-              position: Js_null_undefined.from_opt(optionMap(to_string$40, position)),
-              color: Js_null_undefined.from_opt(optionMap(to_string$41, color)),
-              classes: Js_null_undefined.from_opt(classes),
+              position: Js_null_undefined.from_opt(optionMap(to_string$94, position)),
+              color: Js_null_undefined.from_opt(optionMap(to_string$95, color)),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$54, classes)),
               component: Js_null_undefined.from_opt(component),
               elevation: Js_null_undefined.from_opt(elevation),
               square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square))
@@ -3027,10 +4782,11 @@ function make$59(className, position, color, classes, component, elevation, squa
 var AppBar = /* module */[
   /* Position */Position$1,
   /* Color */Color$7,
+  /* Classes */Classes$54,
   /* make */make$59
 ];
 
-function to_string$42(param) {
+function to_string$97(param) {
   switch (param) {
     case 0 : 
         return "text";
@@ -3042,9 +4798,9 @@ function to_string$42(param) {
   }
 }
 
-var Type$1 = /* module */[/* to_string */to_string$42];
+var Type$1 = /* module */[/* to_string */to_string$97];
 
-function to_string$43(param) {
+function to_string$98(param) {
   switch (param) {
     case 0 : 
         return "bottom";
@@ -3056,7 +4812,41 @@ function to_string$43(param) {
   }
 }
 
-var Position$2 = /* module */[/* to_string */to_string$43];
+var Position$2 = /* module */[/* to_string */to_string$98];
+
+function to_string$99(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "positionBottom";
+    case 2 : 
+        return "positionTop";
+    case 3 : 
+        return "positionStatic";
+    case 4 : 
+        return "dots";
+    case 5 : 
+        return "dot";
+    case 6 : 
+        return "dotActive";
+    case 7 : 
+        return "progress";
+    
+  }
+}
+
+function to_obj$55(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$99(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$55 = /* module */[
+  /* to_string */to_string$99,
+  /* to_obj */to_obj$55
+];
 
 function make$60(steps, nextButton, className, backButton, type_, position, classes, activeStep, component, elevation, square, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashMobileStepper$slashMobileStepper.default, {
@@ -3064,9 +4854,9 @@ function make$60(steps, nextButton, className, backButton, type_, position, clas
               nextButton: nextButton,
               className: Js_null_undefined.from_opt(className),
               backButton: backButton,
-              type: Js_null_undefined.from_opt(optionMap(to_string$42, type_)),
-              position: Js_null_undefined.from_opt(optionMap(to_string$43, position)),
-              classes: Js_null_undefined.from_opt(classes),
+              type: Js_null_undefined.from_opt(optionMap(to_string$97, type_)),
+              position: Js_null_undefined.from_opt(optionMap(to_string$98, position)),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$55, classes)),
               activeStep: Js_null_undefined.from_opt(activeStep),
               component: Js_null_undefined.from_opt(component),
               elevation: Js_null_undefined.from_opt(elevation),
@@ -3077,7 +4867,38 @@ function make$60(steps, nextButton, className, backButton, type_, position, clas
 var MobileStepper = /* module */[
   /* Type */Type$1,
   /* Position */Position$2,
+  /* Classes */Classes$55,
   /* make */make$60
+];
+
+function to_string$100(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "formControl";
+    case 2 : 
+        return "labelDense";
+    case 3 : 
+        return "shrink";
+    case 4 : 
+        return "animated";
+    case 5 : 
+        return "disabled";
+    
+  }
+}
+
+function to_obj$56(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$100(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$56 = /* module */[
+  /* to_string */to_string$100,
+  /* to_obj */to_obj$56
 ];
 
 function make$61(shrink, required, margin, focused, fFormControlClasses, error, className, disableAnimation, disabled, classes, children) {
@@ -3091,13 +4912,16 @@ function make$61(shrink, required, margin, focused, fFormControlClasses, error, 
               className: Js_null_undefined.from_opt(className),
               disableAnimation: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAnimation)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$56, classes))
             }, children);
 }
 
-var InputLabel = /* module */[/* make */make$61];
+var InputLabel = /* module */[
+  /* Classes */Classes$56,
+  /* make */make$61
+];
 
-function to_string$44(param) {
+function to_string$101(param) {
   switch (param) {
     case 0 : 
         return "none";
@@ -3109,7 +4933,33 @@ function to_string$44(param) {
   }
 }
 
-var Margin$3 = /* module */[/* to_string */to_string$44];
+var Margin$3 = /* module */[/* to_string */to_string$101];
+
+function to_string$102(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "marginNormal";
+    case 2 : 
+        return "marginDense";
+    case 3 : 
+        return "fullWidth";
+    
+  }
+}
+
+function to_obj$57(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$102(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$57 = /* module */[
+  /* to_string */to_string$102,
+  /* to_obj */to_obj$57
+];
 
 function make$62(onFocus, onBlur, className, required, margin, fullWidth, error, component, classes, disabled, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashForm$slashFormControl.default, {
@@ -3117,18 +4967,39 @@ function make$62(onFocus, onBlur, className, required, margin, fullWidth, error,
               onBlur: Js_null_undefined.from_opt(onBlur),
               className: Js_null_undefined.from_opt(className),
               required: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, required)),
-              margin: Js_null_undefined.from_opt(optionMap(to_string$44, margin)),
+              margin: Js_null_undefined.from_opt(optionMap(to_string$101, margin)),
               fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
               error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$57, classes)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled))
             }, children);
 }
 
 var FormControl = /* module */[
   /* Margin */Margin$3,
+  /* Classes */Classes$57,
   /* make */make$62
+];
+
+function to_string$103(param) {
+  if (param.tag) {
+    return "selected";
+  } else {
+    return "root";
+  }
+}
+
+function to_obj$58(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$103(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$58 = /* module */[
+  /* to_string */to_string$103,
+  /* to_obj */to_obj$58
 ];
 
 function make$63(component, className, selected, role, classes, button, dense, disabled, disableGutters, divider, children) {
@@ -3137,7 +5008,7 @@ function make$63(component, className, selected, role, classes, button, dense, d
               className: Js_null_undefined.from_opt(className),
               selected: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, selected)),
               role: Js_null_undefined.from_opt(role),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$58, classes)),
               button: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, button)),
               dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
@@ -3146,7 +5017,44 @@ function make$63(component, className, selected, role, classes, button, dense, d
             }, children);
 }
 
-var MenuItem = /* module */[/* make */make$63];
+var MenuItem = /* module */[
+  /* Classes */Classes$58,
+  /* make */make$63
+];
+
+function to_string$104(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "selected";
+    case 2 : 
+        return "selectedIconOnly";
+    case 3 : 
+        return "wrapper";
+    case 4 : 
+        return "label";
+    case 5 : 
+        return "selectedLabel";
+    case 6 : 
+        return "hiddenLabel";
+    case 7 : 
+        return "icon";
+    
+  }
+}
+
+function to_obj$59(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$104(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$59 = /* module */[
+  /* to_string */to_string$104,
+  /* to_obj */to_obj$59
+];
 
 function make$64(value, showLabel, selected, onClick, onChange, label, icon, className, classes, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, rootRef, tabIndex, type_, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashBottomNavigation$slashBottomNavigationButton.default, {
@@ -3158,7 +5066,7 @@ function make$64(value, showLabel, selected, onClick, onChange, label, icon, cla
               label: Js_null_undefined.from_opt(label),
               icon: Js_null_undefined.from_opt(optionMap(unwrapValue, icon)),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$59, classes)),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
               component: Js_null_undefined.from_opt(component),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
@@ -3183,7 +5091,36 @@ function make$64(value, showLabel, selected, onClick, onChange, label, icon, cla
             }, children);
 }
 
-var BottomNavigationButton = /* module */[/* make */make$64];
+var BottomNavigationButton = /* module */[
+  /* Classes */Classes$59,
+  /* make */make$64
+];
+
+function to_string$105(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "tile";
+    case 2 : 
+        return "imgFullHeight";
+    case 3 : 
+        return "imgFullWidth";
+    
+  }
+}
+
+function to_obj$60(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$105(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$60 = /* module */[
+  /* to_string */to_string$105,
+  /* to_obj */to_obj$60
+];
 
 function make$65(rows, component, cols, className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashGridList$slashGridListTile.default, {
@@ -3191,13 +5128,16 @@ function make$65(rows, component, cols, className, classes, children) {
               component: Js_null_undefined.from_opt(component),
               cols: Js_null_undefined.from_opt(cols),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$60, classes))
             }, children);
 }
 
-var GridListTile = /* module */[/* make */make$65];
+var GridListTile = /* module */[
+  /* Classes */Classes$60,
+  /* make */make$65
+];
 
-function to_string$45(param) {
+function to_string$106(param) {
   if (param !== 0) {
     return "css";
   } else {
@@ -3205,12 +5145,12 @@ function to_string$45(param) {
   }
 }
 
-var Implementation = /* module */[/* to_string */to_string$45];
+var Implementation = /* module */[/* to_string */to_string$106];
 
 function make$66(initialWidth, implementation, xlDown, lgDown, mdDown, smDown, xsDown, xlUp, lgUp, mdUp, smUp, xsUp, only, className, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashHidden$slashHidden.default, {
               initialWidth: Js_null_undefined.from_opt(initialWidth),
-              implementation: Js_null_undefined.from_opt(optionMap(to_string$45, implementation)),
+              implementation: Js_null_undefined.from_opt(optionMap(to_string$106, implementation)),
               xlDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, xlDown)),
               lgDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, lgDown)),
               mdDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, mdDown)),
@@ -3231,25 +5171,71 @@ var Hidden = /* module */[
   /* make */make$66
 ];
 
+function to_string$107(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "action";
+    case 2 : 
+        return "button";
+    
+  }
+}
+
+function to_obj$61(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$107(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$61 = /* module */[
+  /* to_string */to_string$107,
+  /* to_obj */to_obj$61
+];
+
 function make$67(className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashDialog$slashDialogActions.default, {
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$61, classes))
             }, children);
 }
 
-var DialogActions = /* module */[/* make */make$67];
+var DialogActions = /* module */[
+  /* Classes */Classes$61,
+  /* make */make$67
+];
+
+function to_string$108() {
+  return "root";
+}
+
+function to_obj$62(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$62 = /* module */[
+  /* to_string */to_string$108,
+  /* to_obj */to_obj$62
+];
 
 function make$68(className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashList$slashListItemSecondaryAction.default, {
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$62, classes))
             }, children);
 }
 
-var ListItemSecondaryAction = /* module */[/* make */make$68];
+var ListItemSecondaryAction = /* module */[
+  /* Classes */Classes$62,
+  /* make */make$68
+];
 
-function to_string$46(param) {
+function to_string$109(param) {
   switch (param) {
     case 0 : 
         return "accent";
@@ -3261,7 +5247,57 @@ function to_string$46(param) {
   }
 }
 
-var TextColor$1 = /* module */[/* to_string */to_string$46];
+var TextColor$1 = /* module */[/* to_string */to_string$109];
+
+function to_string$110(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "rootLabelIcon";
+    case 2 : 
+        return "rootAccent";
+    case 3 : 
+        return "rootAccentSelected";
+    case 4 : 
+        return "rootAccentDisabled";
+    case 5 : 
+        return "rootPrimary";
+    case 6 : 
+        return "rootPrimarySelected";
+    case 7 : 
+        return "rootPrimaryDisabled";
+    case 8 : 
+        return "rootInherit";
+    case 9 : 
+        return "rootInheritSelected";
+    case 10 : 
+        return "rootInheritDisabled";
+    case 11 : 
+        return "fullWidth";
+    case 12 : 
+        return "wrapper";
+    case 13 : 
+        return "labelContainer";
+    case 14 : 
+        return "label";
+    case 15 : 
+        return "labelWrapped";
+    
+  }
+}
+
+function to_obj$63(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$110(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$63 = /* module */[
+  /* to_string */to_string$110,
+  /* to_obj */to_obj$63
+];
 
 function make$69(value, textColor, style, selected, onClick, onChange, label, indicator, icon, fullWidth, disabled, className, classes, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, rootRef, tabIndex, type_, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTabs$slashTab.default, {
@@ -3272,7 +5308,7 @@ function make$69(value, textColor, style, selected, onClick, onChange, label, in
                           } else {
                             return unwrapValue(/* `String */[
                                         -976970511,
-                                        to_string$46(x[1])
+                                        to_string$109(x[1])
                                       ]);
                           }
                         }), textColor)),
@@ -3286,7 +5322,7 @@ function make$69(value, textColor, style, selected, onClick, onChange, label, in
               fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$63, classes)),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
               component: Js_null_undefined.from_opt(component),
               disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
@@ -3312,19 +5348,39 @@ function make$69(value, textColor, style, selected, onClick, onChange, label, in
 
 var Tab = /* module */[
   /* TextColor */TextColor$1,
+  /* Classes */Classes$63,
   /* make */make$69
+];
+
+function to_string$111() {
+  return "root";
+}
+
+function to_obj$64(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$64 = /* module */[
+  /* to_string */to_string$111,
+  /* to_obj */to_obj$64
 ];
 
 function make$70(className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashList$slashListItemIcon.default, {
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$64, classes))
             }, children);
 }
 
-var ListItemIcon = /* module */[/* make */make$70];
+var ListItemIcon = /* module */[
+  /* Classes */Classes$64,
+  /* make */make$70
+];
 
-function to_string$47(param) {
+function to_string$112(param) {
   switch (param) {
     case 0 : 
         return "left";
@@ -3338,7 +5394,7 @@ function to_string$47(param) {
   }
 }
 
-var Direction$2 = /* module */[/* to_string */to_string$47];
+var Direction$2 = /* module */[/* to_string */to_string$112];
 
 function make$71(style, onExited, onExiting, onExit, onEntered, onEntering, onEnter, in_, direction, theme, timeout, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashtransitions$slashSlide.default, {
@@ -3350,7 +5406,7 @@ function make$71(style, onExited, onExiting, onExit, onEntered, onEntering, onEn
               onEntering: Js_null_undefined.from_opt(onEntering),
               onEnter: Js_null_undefined.from_opt(onEnter),
               in: Js_boolean.to_js_boolean(in_),
-              direction: Js_null_undefined.from_opt(optionMap(to_string$47, direction)),
+              direction: Js_null_undefined.from_opt(optionMap(to_string$112, direction)),
               theme: Js_null_undefined.from_opt(theme),
               timeout: Js_null_undefined.from_opt(timeout)
             }, children);
@@ -3361,7 +5417,7 @@ var Slide = /* module */[
   /* make */make$71
 ];
 
-function to_string$48(param) {
+function to_string$113(param) {
   switch (param) {
     case 0 : 
         return "permanent";
@@ -3373,9 +5429,9 @@ function to_string$48(param) {
   }
 }
 
-var Type$2 = /* module */[/* to_string */to_string$48];
+var Type$2 = /* module */[/* to_string */to_string$113];
 
-function to_string$49(param) {
+function to_string$114(param) {
   switch (param) {
     case 0 : 
         return "left";
@@ -3389,7 +5445,47 @@ function to_string$49(param) {
   }
 }
 
-var Anchor = /* module */[/* to_string */to_string$49];
+var Anchor = /* module */[/* to_string */to_string$114];
+
+function to_string$115(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "docked";
+    case 1 : 
+        return "paper";
+    case 2 : 
+        return "paperAnchorLeft";
+    case 3 : 
+        return "paperAnchorRight";
+    case 4 : 
+        return "paperAnchorTop";
+    case 5 : 
+        return "paperAnchorBottom";
+    case 6 : 
+        return "paperAnchorDockedLeft";
+    case 7 : 
+        return "paperAnchorDockedTop";
+    case 8 : 
+        return "paperAnchorDockedRight";
+    case 9 : 
+        return "paperAnchorDockedBottom";
+    case 10 : 
+        return "modal";
+    
+  }
+}
+
+function to_obj$65(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$115(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$65 = /* module */[
+  /* to_string */to_string$115,
+  /* to_obj */to_obj$65
+];
 
 function make$72(sSlideProps, theme, onRequestClose, mModalProps, className, type_, open_, transitionDuration, elevation, classes, anchor, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashDrawer$slashDrawer.default, {
@@ -3398,19 +5494,52 @@ function make$72(sSlideProps, theme, onRequestClose, mModalProps, className, typ
               onRequestClose: Js_null_undefined.from_opt(onRequestClose),
               ModalProps: Js_null_undefined.from_opt(mModalProps),
               className: Js_null_undefined.from_opt(className),
-              type: Js_null_undefined.from_opt(optionMap(to_string$48, type_)),
+              type: Js_null_undefined.from_opt(optionMap(to_string$113, type_)),
               open: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
               transitionDuration: Js_null_undefined.from_opt(transitionDuration),
               elevation: Js_null_undefined.from_opt(elevation),
-              classes: Js_null_undefined.from_opt(classes),
-              anchor: Js_null_undefined.from_opt(optionMap(to_string$49, anchor))
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$65, classes)),
+              anchor: Js_null_undefined.from_opt(optionMap(to_string$114, anchor))
             }, children);
 }
 
 var Drawer = /* module */[
   /* Type */Type$2,
   /* Anchor */Anchor,
+  /* Classes */Classes$65,
   /* make */make$72
+];
+
+function to_string$116(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "anchorTopCenter";
+    case 2 : 
+        return "anchorBottomCenter";
+    case 3 : 
+        return "anchorTopRight";
+    case 4 : 
+        return "anchorBottomRight";
+    case 5 : 
+        return "anchorTopLeft";
+    case 6 : 
+        return "anchorBottomLeft";
+    
+  }
+}
+
+function to_obj$66(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$116(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$66 = /* module */[
+  /* to_string */to_string$116,
+  /* to_obj */to_obj$66
 ];
 
 function make$73(transitionDuration, transition, sSnackbarContentProps, open_, onRequestClose, onMouseLeave, onMouseEnter, onExited, onExiting, onExit, onEntered, onEntering, onEnter, message, className, resumeHideDuration, autoHideDuration, action, classes, anchorOrigin, children) {
@@ -3433,14 +5562,17 @@ function make$73(transitionDuration, transition, sSnackbarContentProps, open_, o
               resumeHideDuration: Js_null_undefined.from_opt(resumeHideDuration),
               autoHideDuration: Js_null_undefined.from_opt(autoHideDuration),
               action: Js_null_undefined.from_opt(action),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$66, classes)),
               anchorOrigin: Js_null_undefined.from_opt(anchorOrigin)
             }, children);
 }
 
-var Snackbar = /* module */[/* make */make$73];
+var Snackbar = /* module */[
+  /* Classes */Classes$66,
+  /* make */make$73
+];
 
-function to_string$50(param) {
+function to_string$117(param) {
   if (param !== 0) {
     return "indeterminate";
   } else {
@@ -3448,9 +5580,9 @@ function to_string$50(param) {
   }
 }
 
-var Mode$1 = /* module */[/* to_string */to_string$50];
+var Mode$1 = /* module */[/* to_string */to_string$117];
 
-function to_string$51(param) {
+function to_string$118(param) {
   switch (param) {
     case 0 : 
         return "primary";
@@ -3462,7 +5594,39 @@ function to_string$51(param) {
   }
 }
 
-var Color$8 = /* module */[/* to_string */to_string$51];
+var Color$8 = /* module */[/* to_string */to_string$118];
+
+function to_string$119(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "primaryColor";
+    case 2 : 
+        return "accentColor";
+    case 3 : 
+        return "svgIndeterminate";
+    case 4 : 
+        return "svgDeterminate";
+    case 5 : 
+        return "circle";
+    case 6 : 
+        return "circleIndeterminate";
+    
+  }
+}
+
+function to_obj$67(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$119(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$67 = /* module */[
+  /* to_string */to_string$119,
+  /* to_obj */to_obj$67
+];
 
 function make$74(thickness, style, className, max, min, value, mode, size, color, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashProgress$slashCircularProgress.default, {
@@ -3472,17 +5636,48 @@ function make$74(thickness, style, className, max, min, value, mode, size, color
               max: Js_null_undefined.from_opt(max),
               min: Js_null_undefined.from_opt(min),
               value: Js_null_undefined.from_opt(value),
-              mode: Js_null_undefined.from_opt(optionMap(to_string$50, mode)),
+              mode: Js_null_undefined.from_opt(optionMap(to_string$117, mode)),
               size: Js_null_undefined.from_opt(size),
-              color: Js_null_undefined.from_opt(optionMap(to_string$51, color)),
-              classes: Js_null_undefined.from_opt(classes)
+              color: Js_null_undefined.from_opt(optionMap(to_string$118, color)),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$67, classes))
             }, children);
 }
 
 var CircularProgress = /* module */[
   /* Mode */Mode$1,
   /* Color */Color$8,
+  /* Classes */Classes$67,
   /* make */make$74
+];
+
+function to_string$120(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "bar";
+    case 2 : 
+        return "icon";
+    case 3 : 
+        return "default";
+    case 4 : 
+        return "checked";
+    case 5 : 
+        return "disabled";
+    
+  }
+}
+
+function to_obj$68(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$120(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$68 = /* module */[
+  /* to_string */to_string$120,
+  /* to_obj */to_obj$68
 ];
 
 function make$75(value, tabIndex, onChange, name, inputRef, inputProps, icon, disableRipple, disabledClassName, disabled, defaultChecked, className, checkedIcon, checkedClassName, checked, classes, children) {
@@ -3502,44 +5697,112 @@ function make$75(value, tabIndex, onChange, name, inputRef, inputProps, icon, di
               checkedIcon: Js_null_undefined.from_opt(checkedIcon),
               checkedClassName: Js_null_undefined.from_opt(checkedClassName),
               checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$68, classes))
             }, children);
 }
 
-var Switch = /* module */[/* make */make$75];
+var Switch = /* module */[
+  /* Classes */Classes$68,
+  /* make */make$75
+];
+
+function to_string$121() {
+  return "root";
+}
+
+function to_obj$69(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$69 = /* module */[
+  /* to_string */to_string$121,
+  /* to_obj */to_obj$69
+];
 
 function make$76(className, component, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashTable$slashTableHead.default, {
               className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(component),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$69, classes))
             }, children);
 }
 
-var TableHead = /* module */[/* make */make$76];
+var TableHead = /* module */[
+  /* Classes */Classes$69,
+  /* make */make$76
+];
+
+function to_string$122(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "message";
+    case 2 : 
+        return "action";
+    
+  }
+}
+
+function to_obj$70(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$122(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$70 = /* module */[
+  /* to_string */to_string$122,
+  /* to_obj */to_obj$70
+];
 
 function make$77(message, className, action, classes, component, elevation, square, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashSnackbar$slashSnackbarContent.default, {
               message: message,
               className: Js_null_undefined.from_opt(className),
               action: Js_null_undefined.from_opt(action),
-              classes: Js_null_undefined.from_opt(classes),
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$70, classes)),
               component: Js_null_undefined.from_opt(component),
               elevation: Js_null_undefined.from_opt(elevation),
               square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square))
             }, children);
 }
 
-var SnackbarContent = /* module */[/* make */make$77];
+var SnackbarContent = /* module */[
+  /* Classes */Classes$70,
+  /* make */make$77
+];
+
+function to_string$123() {
+  return "root";
+}
+
+function to_obj$71(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["root"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$71 = /* module */[
+  /* to_string */to_string$123,
+  /* to_obj */to_obj$71
+];
 
 function make$78(className, classes, children) {
   return ReasonReact.wrapJsForReason(MaterialUi$slashDialog$slashDialogContentText.default, {
               className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(classes)
+              classes: Js_null_undefined.from_opt(optionMap(to_obj$71, classes))
             }, children);
 }
 
-var DialogContentText = /* module */[/* make */make$78];
+var DialogContentText = /* module */[
+  /* Classes */Classes$71,
+  /* make */make$78
+];
 
 var WithStyles = [make];
 

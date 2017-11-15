@@ -354,6 +354,17 @@ module Select: {
       | None;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Select(string)
+      | SelectMenu(string)
+      | Disabled(string)
+      | Icon(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Select
        @param value The input value, required for a controlled component.
@@ -419,7 +430,7 @@ module Select: {
       ~native: bool=?,
       ~input: ReasonReact.reactElement=?,
       ~displayEmpty: bool=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~disableUnderline: bool=?,
       ~fullWidth: bool=?,
       ~multiline: bool=?,
@@ -465,6 +476,15 @@ module InputAdornment: {
       | End;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | PositionStart(string)
+      | PositionEnd(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component InputAdornment
        @param position The position this adornment should appear relative to the `Input`.
@@ -479,7 +499,7 @@ module InputAdornment: {
       ~className: string=?,
       ~disableTypography: bool=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -490,6 +510,13 @@ module InputAdornment: {
 };
 
 module BottomNavigation: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component BottomNavigation
        @param value The value of the currently selected `BottomNavigationButton`.
@@ -507,7 +534,7 @@ module BottomNavigation: {
       ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
       ~className: string=?,
       ~showLabels: bool=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -530,6 +557,23 @@ module GridListTileBar: {
       | Right;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | RootBottom(string)
+      | RootTop(string)
+      | RootWithSubtitle(string)
+      | TitleWrap(string)
+      | TitleWrapActionLeft(string)
+      | TitleWrapActionRight(string)
+      | Title(string)
+      | Subtitle(string)
+      | ActionIconPositionLeft(string)
+      | ChildImg(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component GridListTileBar
        @param title Title to be displayed on tile.
@@ -547,7 +591,7 @@ module GridListTileBar: {
       ~className: string=?,
       ~actionIcon: ReasonReact.reactElement=?,
       ~titlePosition: TitlePosition.t=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~actionPosition: ActionPosition.t=?,
       array(ReasonReact.reactElement)
     ) =>
@@ -559,6 +603,13 @@ module GridListTileBar: {
 };
 
 module TableBody: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component TableBody
        @param className @ignore
@@ -569,7 +620,7 @@ module TableBody: {
     (
       ~className: string=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -611,6 +662,14 @@ module Fade: {
 };
 
 module CardMedia: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | RootMedia(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component CardMedia
        @param style @ignore
@@ -630,7 +689,7 @@ module CardMedia: {
       ~image: string=?,
       ~className: string=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -641,12 +700,20 @@ module CardMedia: {
 };
 
 module ListItemAvatar: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Icon(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component ListItemAvatar
        @param className @ignore
        @param classes Useful to extend the style applied to components. */
   let make:
-    (~className: string=?, ~classes: Js.t({..})=?, array(ReasonReact.reactElement)) =>
+    (~className: string=?, ~classes: Classes.t=?, array(ReasonReact.reactElement)) =>
     ReasonReact.component(
       ReasonReact.stateless,
       ReasonReact.noRetainedProps,
@@ -662,6 +729,16 @@ module Badge: {
       | Accent;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Badge(string)
+      | ColorPrimary(string)
+      | ColorAccent(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Badge
        @param color The color of the component. It's using the theme palette when that makes sense.
@@ -673,7 +750,7 @@ module Badge: {
       ~color: Color.t=?,
       ~className: string=?,
       ~badgeContent: ReasonReact.reactElement,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -684,6 +761,14 @@ module Badge: {
 };
 
 module ButtonBase: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component ButtonBase
        @param type @ignore
@@ -740,7 +825,7 @@ module ButtonBase: {
       ~component: Js.t({..})=?,
       ~className: string=?,
       ~centerRipple: bool=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -824,6 +909,21 @@ module IconButton: {
       | Accent;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | ColorAccent(string)
+      | ColorContrast(string)
+      | ColorPrimary(string)
+      | ColorInherit(string)
+      | Disabled(string)
+      | Label(string)
+      | Icon(string)
+      | KeyboardFocused(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component IconButton
        @param rootRef Use that property to pass a ref callback to the root component.
@@ -865,7 +965,7 @@ module IconButton: {
       ~color: Color.t=?,
       ~className: string=?,
       ~buttonRef: 'b=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~centerRipple: bool=?,
       ~component: Js.t({..})=?,
       ~focusRipple: bool=?,
@@ -901,6 +1001,16 @@ module TextField: {
       | Dense
       | Normal;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | MarginNormal(string)
+      | MarginDense(string)
+      | FullWidth(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component TextField
@@ -981,7 +1091,7 @@ module TextField: {
       ~className: string=?,
       ~autoFocus: bool=?,
       ~autoComplete: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~component: Js.t({..})=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
@@ -1002,6 +1112,17 @@ module ListSubheader: {
       | Inherit;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | ColorPrimary(string)
+      | ColorInherit(string)
+      | Inset(string)
+      | Sticky(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component ListSubheader
        @param inset If `true`, the List Subheader will be indented.
@@ -1015,7 +1136,7 @@ module ListSubheader: {
       ~disableSticky: bool=?,
       ~color: Color.t=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1026,6 +1147,13 @@ module ListSubheader: {
 };
 
 module DialogTitle: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component DialogTitle
        @param disableTypography If `true`, the children won't be wrapped by a typography component.
@@ -1036,7 +1164,7 @@ module DialogTitle: {
     (
       ~disableTypography: bool=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1047,12 +1175,19 @@ module DialogTitle: {
 };
 
 module DialogContent: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component DialogContent
        @param className @ignore
        @param classes Useful to extend the style applied to components. */
   let make:
-    (~className: string=?, ~classes: Js.t({..})=?, array(ReasonReact.reactElement)) =>
+    (~className: string=?, ~classes: Classes.t=?, array(ReasonReact.reactElement)) =>
     ReasonReact.component(
       ReasonReact.stateless,
       ReasonReact.noRetainedProps,
@@ -1065,6 +1200,13 @@ module Popover: {
     type t =
       | Auto;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Paper(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component Popover
@@ -1144,7 +1286,7 @@ module Popover: {
       ~anchorEl: Js.t({..})=?,
       ~marginThreshold: float=?,
       ~transformOrigin: {. "horizontal": _, "vertical": _}=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~anchorOrigin: {. "horizontal": _, "vertical": _}=?,
       array(ReasonReact.reactElement)
     ) =>
@@ -1156,6 +1298,15 @@ module Popover: {
 };
 
 module Avatar: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | ColorDefault(string)
+      | Img(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Avatar
        @param srcSet The `srcSet` attribute for the `img` element.
@@ -1182,7 +1333,7 @@ module Avatar: {
       ~childrenClassName: string=?,
       ~alt: string=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1212,6 +1363,19 @@ module Tabs: {
       | Accent
       | Primary;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | FlexContainer(string)
+      | ScrollingContainer(string)
+      | Fixed(string)
+      | Scrollable(string)
+      | Centered(string)
+      | ButtonAuto(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component Tabs
@@ -1254,7 +1418,7 @@ module Tabs: {
       ~theme: Js.t({..})=?,
       ~tTabScrollButton: Js.t({..})=?,
       ~indicatorColor: [ | `Enum(IndicatorColor.t) | `String(string)]=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1265,6 +1429,16 @@ module Tabs: {
 };
 
 module List: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Padding(string)
+      | Dense(string)
+      | Subheader(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component List
        @param subheader The content of the component, normally `ListItem`.
@@ -1285,7 +1459,7 @@ module List: {
       ~dense: bool=?,
       ~className: string=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1296,6 +1470,17 @@ module List: {
 };
 
 module TableRow: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Head(string)
+      | Footer(string)
+      | Hover(string)
+      | Selected(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component TableRow
        @param className @ignore
@@ -1310,7 +1495,7 @@ module TableRow: {
       ~selected: bool=?,
       ~hover: bool=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1321,6 +1506,15 @@ module TableRow: {
 };
 
 module Radio: {
+  module Classes: {
+    type classesType =
+      | Default(string)
+      | Checked(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Radio
        @param value The value of the component.
@@ -1360,7 +1554,7 @@ module Radio: {
       ~checkedIcon: ReasonReact.reactElement=?,
       ~checkedClassName: string=?,
       ~checked: [ | `Bool(bool) | `String(string)]=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1371,6 +1565,13 @@ module Radio: {
 };
 
 module SvgIcon: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component SvgIcon
        @param viewBox Allows you to redefine what the coordinates without units mean inside an svg element.
@@ -1387,7 +1588,7 @@ module SvgIcon: {
       ~viewBox: string=?,
       ~titleAccess: string=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1398,6 +1599,13 @@ module SvgIcon: {
 };
 
 module Table: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Table
        @param className @ignore
@@ -1408,7 +1616,7 @@ module Table: {
     (
       ~className: string=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1419,6 +1627,15 @@ module Table: {
 };
 
 module FormControlLabel: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Disabled(string)
+      | Label(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component FormControlLabel
        @param value The value of the component.
@@ -1444,7 +1661,7 @@ module FormControlLabel: {
       ~control: ReasonReact.reactElement,
       ~className: string=?,
       ~checked: [ | `Bool(bool) | `String(string)]=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1490,6 +1707,26 @@ module Button: {
       | Accent
       | Contrast;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Dense(string)
+      | Label(string)
+      | FlatPrimary(string)
+      | FlatAccent(string)
+      | FlatContrast(string)
+      | ColorInherit(string)
+      | Raised(string)
+      | KeyboardFocused(string)
+      | RaisedPrimary(string)
+      | RaisedAccent(string)
+      | RaisedContrast(string)
+      | Disabled(string)
+      | Fab(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component Button
@@ -1543,7 +1780,7 @@ module Button: {
       ~disabled: bool=?,
       ~dense: bool=?,
       ~color: Color.t=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~centerRipple: bool=?,
       ~focusRipple: bool=?,
       ~keyboardFocusedClassName: string=?,
@@ -1576,6 +1813,13 @@ module Menu: {
     type t =
       | Auto;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Paper(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component Menu
@@ -1640,7 +1884,7 @@ module Menu: {
       ~mMenuListProps: Js.t({..})=?,
       ~anchorEl: Js.t({..})=?,
       ~theme: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~anchorOrigin: {. "horizontal": _, "vertical": _}=?,
       ~transformOrigin: {. "horizontal": _, "vertical": _}=?,
       ~marginThreshold: float=?,
@@ -1672,6 +1916,13 @@ module Menu: {
 };
 
 module TableFooter: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component TableFooter
        @param className @ignore
@@ -1682,7 +1933,7 @@ module TableFooter: {
     (
       ~className: string=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1825,6 +2076,48 @@ module Grid: {
       | Space_around;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | TypeContainer(string)
+      | TypeItem(string)
+      | Direction_xs_column(string)
+      | Direction_xs_column_reverse(string)
+      | Direction_xs_row_reverse(string)
+      | Wrap_xs_nowrap(string)
+      | Align_items_xs_center(string)
+      | Align_items_xs_flex_start(string)
+      | Align_items_xs_flex_end(string)
+      | Align_items_xs_baseline(string)
+      | Align_content_xs_center(string)
+      | Align_content_xs_flex_start(string)
+      | Align_content_xs_flex_end(string)
+      | Align_content_xs_space_between(string)
+      | Align_content_xs_space_around(string)
+      | Justify_xs_center(string)
+      | Justify_xs_flex_end(string)
+      | Justify_xs_space_between(string)
+      | Justify_xs_space_around(string)
+      | Spacing_xs_8(string)
+      | Spacing_xs_16(string)
+      | Spacing_xs_24(string)
+      | Spacing_xs_40(string)
+      | Grid_xs(string)
+      | Grid_xs_1(string)
+      | Grid_xs_2(string)
+      | Grid_xs_3(string)
+      | Grid_xs_4(string)
+      | Grid_xs_5(string)
+      | Grid_xs_6(string)
+      | Grid_xs_7(string)
+      | Grid_xs_8(string)
+      | Grid_xs_9(string)
+      | Grid_xs_10(string)
+      | Grid_xs_11(string)
+      | Grid_xs_12(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Grid
        @param xl Defines the number of grids the component is going to use.
@@ -1876,7 +2169,7 @@ module Grid: {
       ~container: bool=?,
       ~className: string=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1887,6 +2180,39 @@ module Grid: {
 };
 
 module Card: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Rounded(string)
+      | Shadow0(string)
+      | Shadow1(string)
+      | Shadow2(string)
+      | Shadow3(string)
+      | Shadow4(string)
+      | Shadow5(string)
+      | Shadow6(string)
+      | Shadow7(string)
+      | Shadow8(string)
+      | Shadow9(string)
+      | Shadow10(string)
+      | Shadow11(string)
+      | Shadow12(string)
+      | Shadow13(string)
+      | Shadow14(string)
+      | Shadow15(string)
+      | Shadow16(string)
+      | Shadow17(string)
+      | Shadow18(string)
+      | Shadow19(string)
+      | Shadow20(string)
+      | Shadow21(string)
+      | Shadow22(string)
+      | Shadow23(string)
+      | Shadow24(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Card
        @param className @ignore
@@ -1901,7 +2227,7 @@ module Card: {
     (
       ~className: string=?,
       ~raised: bool=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~component: Js.t({..})=?,
       ~elevation: float=?,
       ~square: bool=?,
@@ -1915,6 +2241,22 @@ module Card: {
 };
 
 module ListItem: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Container(string)
+      | KeyboardFocused(string)
+      | Default(string)
+      | Dense(string)
+      | Disabled(string)
+      | Divider(string)
+      | Gutters(string)
+      | Button(string)
+      | SecondaryAction(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component ListItem
        @param divider If `true`, a 1px light border is added to the bottom of the list item.
@@ -1935,7 +2277,7 @@ module ListItem: {
       ~className: string=?,
       ~button: bool=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -1946,6 +2288,16 @@ module ListItem: {
 };
 
 module MenuList: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Padding(string)
+      | Dense(string)
+      | Subheader(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component MenuList
        @param onKeyDown @ignore
@@ -1965,7 +2317,7 @@ module MenuList: {
       ~onKeyDown: (ReactEventRe.UI.t, string) => unit=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~component: Js.t({..})=?,
       ~dense: bool=?,
       ~disablePadding: bool=?,
@@ -1981,12 +2333,19 @@ module MenuList: {
 };
 
 module CardContent: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component CardContent
        @param className @ignore
        @param classes Useful to extend the style applied to components. */
   let make:
-    (~className: string=?, ~classes: Js.t({..})=?, array(ReasonReact.reactElement)) =>
+    (~className: string=?, ~classes: Classes.t=?, array(ReasonReact.reactElement)) =>
     ReasonReact.component(
       ReasonReact.stateless,
       ReasonReact.noRetainedProps,
@@ -2006,6 +2365,19 @@ module Icon: {
       | Primary;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | ColorAccent(string)
+      | ColorAction(string)
+      | ColorContrast(string)
+      | ColorDisabled(string)
+      | ColorError(string)
+      | ColorPrimary(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Icon
        @param className @ignore
@@ -2015,7 +2387,7 @@ module Icon: {
     (
       ~className: string=?,
       ~color: Color.t=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2026,6 +2398,15 @@ module Icon: {
 };
 
 module Checkbox: {
+  module Classes: {
+    type classesType =
+      | Default(string)
+      | Checked(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Checkbox
        @param value The value of the component.
@@ -2070,7 +2451,7 @@ module Checkbox: {
       ~checkedIcon: ReasonReact.reactElement=?,
       ~checkedClassName: string=?,
       ~checked: [ | `Bool(bool) | `String(string)]=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2087,6 +2468,19 @@ module Dialog: {
       | Sm
       | Md;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Paper(string)
+      | PaperWidthXs(string)
+      | PaperWidthSm(string)
+      | PaperWidthMd(string)
+      | FullWidth(string)
+      | FullScreen(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component Dialog
@@ -2135,7 +2529,7 @@ module Dialog: {
       ~fullScreen: bool=?,
       ~className: string=?,
       ~transition: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2151,6 +2545,17 @@ module TableSortLabel: {
       | Asc
       | Desc;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Active(string)
+      | Icon(string)
+      | Desc(string)
+      | Asc(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component TableSortLabel
@@ -2189,7 +2594,7 @@ module TableSortLabel: {
     (
       ~className: string=?,
       ~direction: Direction.t=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~active: bool=?,
       ~centerRipple: bool=?,
       ~component: Js.t({..})=?,
@@ -2228,6 +2633,13 @@ module GridList: {
       | Auto;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component GridList
        @param style @ignore
@@ -2248,7 +2660,7 @@ module GridList: {
       ~cellHeight: [ | `Enum(CellHeight.t) | `Float(float)]=?,
       ~spacing: float=?,
       ~cols: float=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2259,6 +2671,39 @@ module GridList: {
 };
 
 module Paper: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Rounded(string)
+      | Shadow0(string)
+      | Shadow1(string)
+      | Shadow2(string)
+      | Shadow3(string)
+      | Shadow4(string)
+      | Shadow5(string)
+      | Shadow6(string)
+      | Shadow7(string)
+      | Shadow8(string)
+      | Shadow9(string)
+      | Shadow10(string)
+      | Shadow11(string)
+      | Shadow12(string)
+      | Shadow13(string)
+      | Shadow14(string)
+      | Shadow15(string)
+      | Shadow16(string)
+      | Shadow17(string)
+      | Shadow18(string)
+      | Shadow19(string)
+      | Shadow20(string)
+      | Shadow21(string)
+      | Shadow22(string)
+      | Shadow23(string)
+      | Shadow24(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Paper
        @param className @ignore
@@ -2274,7 +2719,7 @@ module Paper: {
       ~square: bool=?,
       ~elevation: float=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2285,18 +2730,21 @@ module Paper: {
 };
 
 module FormGroup: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Row(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component FormGroup
        @param row Display group of elements in a compact row.
        @param className @ignore
        @param classes Useful to extend the style applied to components. */
   let make:
-    (
-      ~row: bool=?,
-      ~className: string=?,
-      ~classes: Js.t({..})=?,
-      array(ReasonReact.reactElement)
-    ) =>
+    (~row: bool=?, ~className: string=?, ~classes: Classes.t=?, array(ReasonReact.reactElement)) =>
     ReasonReact.component(
       ReasonReact.stateless,
       ReasonReact.noRetainedProps,
@@ -2305,6 +2753,17 @@ module FormGroup: {
 };
 
 module CardHeader: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Avatar(string)
+      | Content(string)
+      | Title(string)
+      | Subheader(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component CardHeader
        @param title The content of the Card Title.
@@ -2318,7 +2777,7 @@ module CardHeader: {
       ~subheader: ReasonReact.reactElement=?,
       ~className: string=?,
       ~avatar: ReasonReact.reactElement=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2329,6 +2788,14 @@ module CardHeader: {
 };
 
 module Toolbar: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Gutters(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Toolbar
        @param disableGutters If `true`, disables gutter padding.
@@ -2338,7 +2805,7 @@ module Toolbar: {
     (
       ~disableGutters: bool=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2349,6 +2816,17 @@ module Toolbar: {
 };
 
 module ListItemText: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Inset(string)
+      | Dense(string)
+      | Text(string)
+      | TextDense(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component ListItemText
        @param inset If `true`, the children will be indented.
@@ -2364,7 +2842,7 @@ module ListItemText: {
       ~inset: bool=?,
       ~disableTypography: bool=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2375,6 +2853,14 @@ module ListItemText: {
 };
 
 module CardActions: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | ActionSpacing(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component CardActions
        @param className @ignore
@@ -2384,7 +2870,7 @@ module CardActions: {
     (
       ~className: string=?,
       ~disableActionSpacing: bool=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2395,6 +2881,17 @@ module CardActions: {
 };
 
 module Divider: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Default(string)
+      | Inset(string)
+      | Light(string)
+      | Absolute(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Divider
        @param light If `true`, the divider will have a lighter color.
@@ -2407,7 +2904,7 @@ module Divider: {
       ~inset: bool=?,
       ~className: string=?,
       ~absolute: bool=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2422,6 +2919,16 @@ module Collapse: {
     type t =
       | Auto;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Container(string)
+      | Entered(string)
+      | Wrapper(string)
+      | WrapperInner(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component Collapse
@@ -2453,7 +2960,7 @@ module Collapse: {
       ~timeout: [ | `Enum(Timeout.t) | `Float(float) | `Object({. "enter": float, "exit": float})]
                   =?,
       ~collapsedHeight: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~appear: bool=?,
       array(ReasonReact.reactElement)
     ) =>
@@ -2512,6 +3019,36 @@ module Typography: {
       | Button;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Display4(string)
+      | Display3(string)
+      | Display2(string)
+      | Display1(string)
+      | Headline(string)
+      | Title(string)
+      | Subheading(string)
+      | Body2(string)
+      | Body1(string)
+      | Caption(string)
+      | Button(string)
+      | AlignLeft(string)
+      | AlignCenter(string)
+      | AlignRight(string)
+      | AlignJustify(string)
+      | NoWrap(string)
+      | GutterBottom(string)
+      | Paragraph(string)
+      | ColorInherit(string)
+      | ColorPrimary(string)
+      | ColorSecondary(string)
+      | ColorAccent(string)
+      | ColorError(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Typography
        @param paragraph If `true`, the text will have a bottom margin.
@@ -2538,7 +3075,7 @@ module Typography: {
       ~align: Align.t=?,
       ~type_: Type.t=?,
       ~headlineMapping: {. "unionProp": string}=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2563,6 +3100,30 @@ module LinearProgress: {
       | Accent;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | PrimaryColor(string)
+      | PrimaryColorBar(string)
+      | PrimaryDashed(string)
+      | AccentColor(string)
+      | AccentColorBar(string)
+      | AccentDashed(string)
+      | Bar(string)
+      | Dashed(string)
+      | BufferBar2(string)
+      | RootBuffer(string)
+      | RootQuery(string)
+      | IndeterminateBar1(string)
+      | IndeterminateBar2(string)
+      | DeterminateBar1(string)
+      | BufferBar1(string)
+      | BufferBar2Primary(string)
+      | BufferBar2Accent(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component LinearProgress
        @param valueBuffer The value of buffer, only works in buffer mode.
@@ -2581,7 +3142,7 @@ module LinearProgress: {
       ~mode: Mode.t=?,
       ~color: Color.t=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2592,6 +3153,16 @@ module LinearProgress: {
 };
 
 module FormLabel: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Focused(string)
+      | Error(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component FormLabel
        @param required If `true`, the label will indicate that the input is required.
@@ -2610,7 +3181,7 @@ module FormLabel: {
       ~disabled: bool=?,
       ~className: string=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2621,6 +3192,16 @@ module FormLabel: {
 };
 
 module FormHelperText: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Dense(string)
+      | Error(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component FormHelperText
        @param margin If `dense`, will adjust vertical spacing. This is normally obtained via context from
@@ -2635,7 +3216,7 @@ module FormHelperText: {
       ~error: bool=?,
       ~disabled: bool=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2653,6 +3234,20 @@ module TablePagination: {
       | Dense
       | None;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Toolbar(string)
+      | Spacer(string)
+      | Caption(string)
+      | Input(string)
+      | SelectRoot(string)
+      | Select(string)
+      | Actions(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component TablePagination
@@ -2690,7 +3285,7 @@ module TablePagination: {
                              =?,
       ~labelRowsPerPage: ReasonReact.reactElement=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~padding: Padding.t=?,
       ~numeric: bool=?,
       ~className: string=?,
@@ -2704,6 +3299,19 @@ module TablePagination: {
 };
 
 module Chip: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Clickable(string)
+      | Deletable(string)
+      | Avatar(string)
+      | AvatarChildren(string)
+      | Label(string)
+      | DeleteIcon(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Chip
        @param tabIndex @ignore
@@ -2726,7 +3334,7 @@ module Chip: {
       ~deleteIcon: ReasonReact.reactElement=?,
       ~className: string=?,
       ~avatar: ReasonReact.reactElement=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2737,6 +3345,14 @@ module Chip: {
 };
 
 module RadioGroup: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Row(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component RadioGroup
        @param value Value of the selected radio button.
@@ -2757,7 +3373,7 @@ module RadioGroup: {
       ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~name: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~className: string=?,
       ~row: bool=?,
       array(ReasonReact.reactElement)
@@ -2778,6 +3394,19 @@ module TableCell: {
       | None;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Numeric(string)
+      | Head(string)
+      | PaddingDefault(string)
+      | PaddingDense(string)
+      | PaddingCheckbox(string)
+      | Footer(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component TableCell
        @param component The component used for the root node.
@@ -2792,7 +3421,7 @@ module TableCell: {
       ~className: string=?,
       ~numeric: bool=?,
       ~padding: Padding.t=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2808,6 +3437,27 @@ module Input: {
       | Dense
       | None;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | FormControl(string)
+      | Inkbar(string)
+      | Error(string)
+      | Input(string)
+      | InputDense(string)
+      | Disabled(string)
+      | Focused(string)
+      | Underline(string)
+      | Multiline(string)
+      | InputDisabled(string)
+      | InputSingleline(string)
+      | InputSearch(string)
+      | InputMultiline(string)
+      | FullWidth(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component Input
@@ -2883,7 +3533,7 @@ module Input: {
       ~multiline: bool=?,
       ~fullWidth: bool=?,
       ~disableUnderline: bool=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2909,6 +3559,21 @@ module Tooltip: {
       | Top_start
       | Top;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Popper(string)
+      | PopperClose(string)
+      | Tooltip(string)
+      | TooltipLeft(string)
+      | TooltipRight(string)
+      | TooltipTop(string)
+      | TooltipBottom(string)
+      | TooltipOpen(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component Tooltip
@@ -2948,7 +3613,7 @@ module Tooltip: {
       ~disableTriggerTouch: bool=?,
       ~disableTriggerHover: bool=?,
       ~disableTriggerFocus: bool=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -2974,6 +3639,19 @@ module AppBar: {
       | Default;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | PositionFixed(string)
+      | PositionAbsolute(string)
+      | PositionStatic(string)
+      | ColorDefault(string)
+      | ColorPrimary(string)
+      | ColorAccent(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component AppBar
        @param className @ignore
@@ -2990,7 +3668,7 @@ module AppBar: {
       ~className: string=?,
       ~position: Position.t=?,
       ~color: Color.t=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~component: Js.t({..})=?,
       ~elevation: float=?,
       ~square: bool=?,
@@ -3018,6 +3696,20 @@ module MobileStepper: {
       | Static;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | PositionBottom(string)
+      | PositionTop(string)
+      | PositionStatic(string)
+      | Dots(string)
+      | Dot(string)
+      | DotActive(string)
+      | Progress(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component MobileStepper
        @param steps The total steps.
@@ -3042,7 +3734,7 @@ module MobileStepper: {
       ~backButton: ReasonReact.reactElement,
       ~type_: Type.t=?,
       ~position: Position.t=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~activeStep: float=?,
       ~component: Js.t({..})=?,
       ~elevation: float=?,
@@ -3057,6 +3749,18 @@ module MobileStepper: {
 };
 
 module InputLabel: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | FormControl(string)
+      | LabelDense(string)
+      | Shrink(string)
+      | Animated(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component InputLabel
        @param shrink If `true`, the label is shrunk.
@@ -3081,7 +3785,7 @@ module InputLabel: {
       ~className: string=?,
       ~disableAnimation: bool=?,
       ~disabled: bool=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -3098,6 +3802,16 @@ module FormControl: {
       | Dense
       | Normal;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | MarginNormal(string)
+      | MarginDense(string)
+      | FullWidth(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component FormControl
@@ -3123,7 +3837,7 @@ module FormControl: {
       ~fullWidth: bool=?,
       ~error: bool=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~disabled: bool=?,
       array(ReasonReact.reactElement)
     ) =>
@@ -3135,6 +3849,14 @@ module FormControl: {
 };
 
 module MenuItem: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Selected(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component MenuItem
        @param component The component used for the root node.
@@ -3154,7 +3876,7 @@ module MenuItem: {
       ~className: string=?,
       ~selected: bool=?,
       ~role: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~button: bool=?,
       ~dense: bool=?,
       ~disabled: bool=?,
@@ -3170,6 +3892,20 @@ module MenuItem: {
 };
 
 module BottomNavigationButton: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Selected(string)
+      | SelectedIconOnly(string)
+      | Wrapper(string)
+      | Label(string)
+      | SelectedLabel(string)
+      | HiddenLabel(string)
+      | Icon(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component BottomNavigationButton
        @param value You can provide your own value. Otherwise, we fallback to the child position index.
@@ -3217,7 +3953,7 @@ module BottomNavigationButton: {
       ~label: ReasonReact.reactElement=?,
       ~icon: [ | `String(string) | `Element(ReasonReact.reactElement)]=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~centerRipple: bool=?,
       ~component: Js.t({..})=?,
       ~disabled: bool=?,
@@ -3249,6 +3985,16 @@ module BottomNavigationButton: {
 };
 
 module GridListTile: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Tile(string)
+      | ImgFullHeight(string)
+      | ImgFullWidth(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component GridListTile
        @param rows Height of the tile in number of grid cells.
@@ -3263,7 +4009,7 @@ module GridListTile: {
       ~component: Js.t({..})=?,
       ~cols: float=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -3331,12 +4077,21 @@ module Hidden: {
 };
 
 module DialogActions: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Action(string)
+      | Button(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component DialogActions
        @param className @ignore
        @param classes Useful to extend the style applied to components. */
   let make:
-    (~className: string=?, ~classes: Js.t({..})=?, array(ReasonReact.reactElement)) =>
+    (~className: string=?, ~classes: Classes.t=?, array(ReasonReact.reactElement)) =>
     ReasonReact.component(
       ReasonReact.stateless,
       ReasonReact.noRetainedProps,
@@ -3345,12 +4100,19 @@ module DialogActions: {
 };
 
 module ListItemSecondaryAction: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component ListItemSecondaryAction
        @param className @ignore
        @param classes Useful to extend the style applied to components. */
   let make:
-    (~className: string=?, ~classes: Js.t({..})=?, array(ReasonReact.reactElement)) =>
+    (~className: string=?, ~classes: Classes.t=?, array(ReasonReact.reactElement)) =>
     ReasonReact.component(
       ReasonReact.stateless,
       ReasonReact.noRetainedProps,
@@ -3365,6 +4127,28 @@ module Tab: {
       | Primary
       | Inherit;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | RootLabelIcon(string)
+      | RootAccent(string)
+      | RootAccentSelected(string)
+      | RootAccentDisabled(string)
+      | RootPrimary(string)
+      | RootPrimarySelected(string)
+      | RootPrimaryDisabled(string)
+      | RootInherit(string)
+      | RootInheritSelected(string)
+      | RootInheritDisabled(string)
+      | FullWidth(string)
+      | Wrapper(string)
+      | LabelContainer(string)
+      | Label(string)
+      | LabelWrapped(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component Tab
@@ -3422,7 +4206,7 @@ module Tab: {
       ~fullWidth: bool=?,
       ~disabled: bool=?,
       ~className: string=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~centerRipple: bool=?,
       ~component: Js.t({..})=?,
       ~disableRipple: bool=?,
@@ -3453,12 +4237,19 @@ module Tab: {
 };
 
 module ListItemIcon: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component ListItemIcon
        @param className @ignore
        @param classes Useful to extend the style applied to components. */
   let make:
-    (~className: string=?, ~classes: Js.t({..})=?, array(ReasonReact.reactElement)) =>
+    (~className: string=?, ~classes: Classes.t=?, array(ReasonReact.reactElement)) =>
     ReasonReact.component(
       ReasonReact.stateless,
       ReasonReact.noRetainedProps,
@@ -3527,6 +4318,23 @@ module Drawer: {
       | Bottom;
     let to_string: t => string;
   };
+  module Classes: {
+    type classesType =
+      | Docked(string)
+      | Paper(string)
+      | PaperAnchorLeft(string)
+      | PaperAnchorRight(string)
+      | PaperAnchorTop(string)
+      | PaperAnchorBottom(string)
+      | PaperAnchorDockedLeft(string)
+      | PaperAnchorDockedTop(string)
+      | PaperAnchorDockedRight(string)
+      | PaperAnchorDockedBottom(string)
+      | Modal(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Drawer
        @param SlideProps Properties applied to the `Slide` element.
@@ -3554,7 +4362,7 @@ module Drawer: {
       ~open_: bool=?,
       ~transitionDuration: Js.t({..})=?,
       ~elevation: float=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~anchor: Anchor.t=?,
       array(ReasonReact.reactElement)
     ) =>
@@ -3566,6 +4374,19 @@ module Drawer: {
 };
 
 module Snackbar: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | AnchorTopCenter(string)
+      | AnchorBottomCenter(string)
+      | AnchorTopRight(string)
+      | AnchorBottomRight(string)
+      | AnchorTopLeft(string)
+      | AnchorBottomLeft(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Snackbar
        @param transitionDuration The duration for the transition, in milliseconds.
@@ -3622,7 +4443,7 @@ module Snackbar: {
       ~resumeHideDuration: float=?,
       ~autoHideDuration: float=?,
       ~action: ReasonReact.reactElement=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~anchorOrigin: {. "horizontal": _, "vertical": _}=?,
       array(ReasonReact.reactElement)
     ) =>
@@ -3646,6 +4467,19 @@ module CircularProgress: {
       | Accent
       | Inherit;
     let to_string: t => string;
+  };
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | PrimaryColor(string)
+      | AccentColor(string)
+      | SvgIndeterminate(string)
+      | SvgDeterminate(string)
+      | Circle(string)
+      | CircleIndeterminate(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
   };
 
   /*** Component CircularProgress
@@ -3672,7 +4506,7 @@ module CircularProgress: {
       ~mode: Mode.t=?,
       ~size: float=?,
       ~color: Color.t=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -3683,6 +4517,18 @@ module CircularProgress: {
 };
 
 module Switch: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Bar(string)
+      | Icon(string)
+      | Default(string)
+      | Checked(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component Switch
        @param value The value of the component.
@@ -3722,7 +4568,7 @@ module Switch: {
       ~checkedIcon: ReasonReact.reactElement=?,
       ~checkedClassName: string=?,
       ~checked: [ | `Bool(bool) | `String(string)]=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -3733,6 +4579,13 @@ module Switch: {
 };
 
 module TableHead: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component TableHead
        @param className @ignore
@@ -3743,7 +4596,7 @@ module TableHead: {
     (
       ~className: string=?,
       ~component: Js.t({..})=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       array(ReasonReact.reactElement)
     ) =>
     ReasonReact.component(
@@ -3754,6 +4607,15 @@ module TableHead: {
 };
 
 module SnackbarContent: {
+  module Classes: {
+    type classesType =
+      | Root(string)
+      | Message(string)
+      | Action(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component SnackbarContent
        @param message The message to display.
@@ -3770,7 +4632,7 @@ module SnackbarContent: {
       ~message: ReasonReact.reactElement,
       ~className: string=?,
       ~action: ReasonReact.reactElement=?,
-      ~classes: Js.t({..})=?,
+      ~classes: Classes.t=?,
       ~component: Js.t({..})=?,
       ~elevation: float=?,
       ~square: bool=?,
@@ -3784,12 +4646,19 @@ module SnackbarContent: {
 };
 
 module DialogContentText: {
+  module Classes: {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string: classesType => string;
+    let to_obj: t => Js.Dict.t(string);
+  };
 
   /*** Component DialogContentText
        @param className @ignore
        @param classes Useful to extend the style applied to components. */
   let make:
-    (~className: string=?, ~classes: Js.t({..})=?, array(ReasonReact.reactElement)) =>
+    (~className: string=?, ~classes: Classes.t=?, array(ReasonReact.reactElement)) =>
     ReasonReact.component(
       ReasonReact.stateless,
       ReasonReact.noRetainedProps,

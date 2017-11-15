@@ -421,6 +421,38 @@ module Select = {
       | Dense => "dense"
       | None => "none";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Select(string)
+      | SelectMenu(string)
+      | Disabled(string)
+      | Icon(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Select(_) => "select"
+      | SelectMenu(_) => "selectMenu"
+      | Disabled(_) => "disabled"
+      | Icon(_) => "icon";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Select(className)
+               | SelectMenu(className)
+               | Disabled(className)
+               | Icon(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Select/Select"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -434,7 +466,7 @@ module Select = {
         ~native: option(bool)=?,
         ~input: option(ReasonReact.reactElement)=?,
         ~displayEmpty: option(bool)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~disableUnderline: option(bool)=?,
         ~fullWidth: option(bool)=?,
         ~multiline: option(bool)=?,
@@ -478,7 +510,7 @@ module Select = {
         "native": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, native)),
         "input": Js.Nullable.from_opt(input),
         "displayEmpty": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, displayEmpty)),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "disableUnderline":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableUnderline)),
         "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
@@ -524,6 +556,32 @@ module InputAdornment = {
       | Start => "start"
       | End => "end";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | PositionStart(string)
+      | PositionEnd(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | PositionStart(_) => "positionStart"
+      | PositionEnd(_) => "positionEnd";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | PositionStart(className)
+               | PositionEnd(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Input/InputAdornment"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -532,7 +590,7 @@ module InputAdornment = {
         ~className: option(string)=?,
         ~disableTypography: option(bool)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -543,13 +601,33 @@ module InputAdornment = {
         "disableTypography":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTypography)),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module BottomNavigation = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/BottomNavigation/BottomNavigation"]
   external reactClass : ReasonReact.reactClass =
     "default";
@@ -559,7 +637,7 @@ module BottomNavigation = {
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
         ~className: option(string)=?,
         ~showLabels: option(bool)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -569,7 +647,7 @@ module BottomNavigation = {
         "onChange": Js.Nullable.from_opt(onChange),
         "className": Js.Nullable.from_opt(className),
         "showLabels": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, showLabels)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -594,6 +672,56 @@ module GridListTileBar = {
       | Left => "left"
       | Right => "right";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | RootBottom(string)
+      | RootTop(string)
+      | RootWithSubtitle(string)
+      | TitleWrap(string)
+      | TitleWrapActionLeft(string)
+      | TitleWrapActionRight(string)
+      | Title(string)
+      | Subtitle(string)
+      | ActionIconPositionLeft(string)
+      | ChildImg(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | RootBottom(_) => "rootBottom"
+      | RootTop(_) => "rootTop"
+      | RootWithSubtitle(_) => "rootWithSubtitle"
+      | TitleWrap(_) => "titleWrap"
+      | TitleWrapActionLeft(_) => "titleWrapActionLeft"
+      | TitleWrapActionRight(_) => "titleWrapActionRight"
+      | Title(_) => "title"
+      | Subtitle(_) => "subtitle"
+      | ActionIconPositionLeft(_) => "actionIconPositionLeft"
+      | ChildImg(_) => "childImg";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | RootBottom(className)
+               | RootTop(className)
+               | RootWithSubtitle(className)
+               | TitleWrap(className)
+               | TitleWrapActionLeft(className)
+               | TitleWrapActionRight(className)
+               | Title(className)
+               | Subtitle(className)
+               | ActionIconPositionLeft(className)
+               | ChildImg(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/GridList/GridListTileBar"]
   external reactClass : ReasonReact.reactClass =
     "default";
@@ -604,7 +732,7 @@ module GridListTileBar = {
         ~className: option(string)=?,
         ~actionIcon: option(ReasonReact.reactElement)=?,
         ~titlePosition: option(TitlePosition.t)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~actionPosition: option(ActionPosition.t)=?,
         children
       ) =>
@@ -616,7 +744,7 @@ module GridListTileBar = {
         "className": Js.Nullable.from_opt(className),
         "actionIcon": Js.Nullable.from_opt(actionIcon),
         "titlePosition": Js.Nullable.from_opt(optionMap(TitlePosition.to_string, titlePosition)),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "actionPosition": Js.Nullable.from_opt(optionMap(ActionPosition.to_string, actionPosition))
       },
       children
@@ -624,13 +752,33 @@ module GridListTileBar = {
 };
 
 module TableBody = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Table/TableBody"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
         ~className: option(string)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -638,7 +786,7 @@ module TableBody = {
       ~props={
         "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -676,6 +824,29 @@ module Fade = {
 };
 
 module CardMedia = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | RootMedia(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | RootMedia(_) => "rootMedia";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | RootMedia(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Card/CardMedia"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -685,7 +856,7 @@ module CardMedia = {
         ~image: option(string)=?,
         ~className: option(string)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -696,21 +867,44 @@ module CardMedia = {
         "image": Js.Nullable.from_opt(image),
         "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module ListItemAvatar = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Icon(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Icon(_) => "icon";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Icon(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/List/ListItemAvatar"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~className: option(string)=?, ~classes: option(Js.t({..}))=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -728,13 +922,42 @@ module Badge = {
       | Primary => "primary"
       | Accent => "accent";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Badge(string)
+      | ColorPrimary(string)
+      | ColorAccent(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Badge(_) => "badge"
+      | ColorPrimary(_) => "colorPrimary"
+      | ColorAccent(_) => "colorAccent";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Badge(className)
+               | ColorPrimary(className)
+               | ColorAccent(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Badge/Badge"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
         ~color: option(Color.t)=?,
         ~className: option(string)=?,
         ~badgeContent: ReasonReact.reactElement,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -743,13 +966,36 @@ module Badge = {
         "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
         "className": Js.Nullable.from_opt(className),
         "badgeContent": badgeContent,
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module ButtonBase = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/ButtonBase/ButtonBase"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -777,7 +1023,7 @@ module ButtonBase = {
         ~component: option(Js.t({..}))=?,
         ~className: option(string)=?,
         ~centerRipple: option(bool)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -806,7 +1052,7 @@ module ButtonBase = {
         "component": Js.Nullable.from_opt(component),
         "className": Js.Nullable.from_opt(className),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -903,6 +1149,50 @@ module IconButton = {
       | Contrast => "contrast"
       | Accent => "accent";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | ColorAccent(string)
+      | ColorContrast(string)
+      | ColorPrimary(string)
+      | ColorInherit(string)
+      | Disabled(string)
+      | Label(string)
+      | Icon(string)
+      | KeyboardFocused(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | ColorAccent(_) => "colorAccent"
+      | ColorContrast(_) => "colorContrast"
+      | ColorPrimary(_) => "colorPrimary"
+      | ColorInherit(_) => "colorInherit"
+      | Disabled(_) => "disabled"
+      | Label(_) => "label"
+      | Icon(_) => "icon"
+      | KeyboardFocused(_) => "keyboardFocused";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | ColorAccent(className)
+               | ColorContrast(className)
+               | ColorPrimary(className)
+               | ColorInherit(className)
+               | Disabled(className)
+               | Label(className)
+               | Icon(className)
+               | KeyboardFocused(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/IconButton/IconButton"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -913,7 +1203,7 @@ module IconButton = {
         ~color: option(Color.t)=?,
         ~className: option(string)=?,
         ~buttonRef: option('b)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~centerRipple: option(bool)=?,
         ~component: option(Js.t({..}))=?,
         ~focusRipple: option(bool)=?,
@@ -944,7 +1234,7 @@ module IconButton = {
         "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
         "className": Js.Nullable.from_opt(className),
         "buttonRef": Js.Nullable.from_opt(buttonRef),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
         "component": Js.Nullable.from_opt(component),
         "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
@@ -980,6 +1270,35 @@ module TextField = {
       | None => "none"
       | Dense => "dense"
       | Normal => "normal";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | MarginNormal(string)
+      | MarginDense(string)
+      | FullWidth(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | MarginNormal(_) => "marginNormal"
+      | MarginDense(_) => "marginDense"
+      | FullWidth(_) => "fullWidth";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | MarginNormal(className)
+               | MarginDense(className)
+               | FullWidth(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
   };
   [@bs.module "material-ui/TextField/TextField"] external reactClass : ReasonReact.reactClass =
     "default";
@@ -1017,7 +1336,7 @@ module TextField = {
         ~className: option(string)=?,
         ~autoFocus: option(bool)=?,
         ~autoComplete: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~component: option(Js.t({..}))=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
@@ -1058,7 +1377,7 @@ module TextField = {
         "className": Js.Nullable.from_opt(className),
         "autoFocus": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, autoFocus)),
         "autoComplete": Js.Nullable.from_opt(autoComplete),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "component": Js.Nullable.from_opt(component),
         "onBlur": Js.Nullable.from_opt(onBlur),
         "onFocus": Js.Nullable.from_opt(onFocus)
@@ -1079,6 +1398,38 @@ module ListSubheader = {
       | Primary => "primary"
       | Inherit => "inherit";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | ColorPrimary(string)
+      | ColorInherit(string)
+      | Inset(string)
+      | Sticky(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | ColorPrimary(_) => "colorPrimary"
+      | ColorInherit(_) => "colorInherit"
+      | Inset(_) => "inset"
+      | Sticky(_) => "sticky";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | ColorPrimary(className)
+               | ColorInherit(className)
+               | Inset(className)
+               | Sticky(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/List/ListSubheader"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -1087,7 +1438,7 @@ module ListSubheader = {
         ~disableSticky: option(bool)=?,
         ~color: option(Color.t)=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1097,20 +1448,40 @@ module ListSubheader = {
         "disableSticky": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableSticky)),
         "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module DialogTitle = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Dialog/DialogTitle"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
         ~disableTypography: option(bool)=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1119,21 +1490,41 @@ module DialogTitle = {
         "disableTypography":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTypography)),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module DialogContent = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Dialog/DialogContent"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~className: option(string)=?, ~classes: option(Js.t({..}))=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -1146,6 +1537,26 @@ module Popover = {
     let to_string =
       fun
       | Auto => "auto";
+  };
+  module Classes = {
+    type classesType =
+      | Paper(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Paper(_) => "paper";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Paper(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
   };
   [@bs.module "material-ui/Popover/Popover"] external reactClass : ReasonReact.reactClass =
     "default";
@@ -1191,7 +1602,7 @@ module Popover = {
         ~anchorEl: option(Js.t({..}))=?,
         ~marginThreshold: option(float)=?,
         ~transformOrigin: option({. "horizontal": _, "vertical": _})=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~anchorOrigin: option({. "horizontal": _, "vertical": _})=?,
         children
       ) =>
@@ -1223,7 +1634,7 @@ module Popover = {
         "anchorEl": Js.Nullable.from_opt(anchorEl),
         "marginThreshold": Js.Nullable.from_opt(marginThreshold),
         "transformOrigin": Js.Nullable.from_opt(transformOrigin),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "anchorOrigin": Js.Nullable.from_opt(anchorOrigin)
       },
       children
@@ -1231,6 +1642,32 @@ module Popover = {
 };
 
 module Avatar = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | ColorDefault(string)
+      | Img(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | ColorDefault(_) => "colorDefault"
+      | Img(_) => "img";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | ColorDefault(className)
+               | Img(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Avatar/Avatar"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -1243,7 +1680,7 @@ module Avatar = {
         ~childrenClassName: option(string)=?,
         ~alt: option(string)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1257,7 +1694,7 @@ module Avatar = {
         "childrenClassName": Js.Nullable.from_opt(childrenClassName),
         "alt": Js.Nullable.from_opt(alt),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -1295,6 +1732,44 @@ module Tabs = {
       | Accent => "accent"
       | Primary => "primary";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | FlexContainer(string)
+      | ScrollingContainer(string)
+      | Fixed(string)
+      | Scrollable(string)
+      | Centered(string)
+      | ButtonAuto(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | FlexContainer(_) => "flexContainer"
+      | ScrollingContainer(_) => "scrollingContainer"
+      | Fixed(_) => "fixed"
+      | Scrollable(_) => "scrollable"
+      | Centered(_) => "centered"
+      | ButtonAuto(_) => "buttonAuto";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | FlexContainer(className)
+               | ScrollingContainer(className)
+               | Fixed(className)
+               | Scrollable(className)
+               | Centered(className)
+               | ButtonAuto(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Tabs/Tabs"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
@@ -1311,7 +1786,7 @@ module Tabs = {
         ~theme: option(Js.t({..}))=?,
         ~tTabScrollButton: option(Js.t({..}))=?,
         ~indicatorColor: option([ | `Enum(IndicatorColor.t) | `String(string)])=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1338,13 +1813,42 @@ module Tabs = {
               indicatorColor
             )
           ),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module List = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Padding(string)
+      | Dense(string)
+      | Subheader(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Padding(_) => "padding"
+      | Dense(_) => "dense"
+      | Subheader(_) => "subheader";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Padding(className)
+               | Dense(className)
+               | Subheader(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/List/List"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
@@ -1354,7 +1858,7 @@ module List = {
         ~dense: option(bool)=?,
         ~className: option(string)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1366,13 +1870,45 @@ module List = {
         "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
         "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module TableRow = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Head(string)
+      | Footer(string)
+      | Hover(string)
+      | Selected(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Head(_) => "head"
+      | Footer(_) => "footer"
+      | Hover(_) => "hover"
+      | Selected(_) => "selected";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Head(className)
+               | Footer(className)
+               | Hover(className)
+               | Selected(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Table/TableRow"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -1381,7 +1917,7 @@ module TableRow = {
         ~selected: option(bool)=?,
         ~hover: option(bool)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1391,13 +1927,39 @@ module TableRow = {
         "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
         "hover": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, hover)),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module Radio = {
+  module Classes = {
+    type classesType =
+      | Default(string)
+      | Checked(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Default(_) => "default"
+      | Checked(_) => "checked"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Default(className)
+               | Checked(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Radio/Radio"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
@@ -1416,7 +1978,7 @@ module Radio = {
         ~checkedIcon: option(ReasonReact.reactElement)=?,
         ~checkedClassName: option(string)=?,
         ~checked: option([ | `Bool(bool) | `String(string)])=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1437,13 +1999,33 @@ module Radio = {
         "checkedIcon": Js.Nullable.from_opt(checkedIcon),
         "checkedClassName": Js.Nullable.from_opt(checkedClassName),
         "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module SvgIcon = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/SvgIcon/SvgIcon"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -1451,7 +2033,7 @@ module SvgIcon = {
         ~viewBox: option(string)=?,
         ~titleAccess: option(string)=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1460,19 +2042,39 @@ module SvgIcon = {
         "viewBox": Js.Nullable.from_opt(viewBox),
         "titleAccess": Js.Nullable.from_opt(titleAccess),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module Table = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Table/Table"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
         ~className: option(string)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1480,13 +2082,39 @@ module Table = {
       ~props={
         "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module FormControlLabel = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Disabled(string)
+      | Label(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Disabled(_) => "disabled"
+      | Label(_) => "label";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Disabled(className)
+               | Label(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Form/FormControlLabel"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -1500,7 +2128,7 @@ module FormControlLabel = {
         ~control: ReasonReact.reactElement,
         ~className: option(string)=?,
         ~checked: option([ | `Bool(bool) | `String(string)])=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1515,7 +2143,7 @@ module FormControlLabel = {
         "control": control,
         "className": Js.Nullable.from_opt(className),
         "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -1558,6 +2186,65 @@ module Button = {
       | Accent => "accent"
       | Contrast => "contrast";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Dense(string)
+      | Label(string)
+      | FlatPrimary(string)
+      | FlatAccent(string)
+      | FlatContrast(string)
+      | ColorInherit(string)
+      | Raised(string)
+      | KeyboardFocused(string)
+      | RaisedPrimary(string)
+      | RaisedAccent(string)
+      | RaisedContrast(string)
+      | Disabled(string)
+      | Fab(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Dense(_) => "dense"
+      | Label(_) => "label"
+      | FlatPrimary(_) => "flatPrimary"
+      | FlatAccent(_) => "flatAccent"
+      | FlatContrast(_) => "flatContrast"
+      | ColorInherit(_) => "colorInherit"
+      | Raised(_) => "raised"
+      | KeyboardFocused(_) => "keyboardFocused"
+      | RaisedPrimary(_) => "raisedPrimary"
+      | RaisedAccent(_) => "raisedAccent"
+      | RaisedContrast(_) => "raisedContrast"
+      | Disabled(_) => "disabled"
+      | Fab(_) => "fab";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Dense(className)
+               | Label(className)
+               | FlatPrimary(className)
+               | FlatAccent(className)
+               | FlatContrast(className)
+               | ColorInherit(className)
+               | Raised(className)
+               | KeyboardFocused(className)
+               | RaisedPrimary(className)
+               | RaisedAccent(className)
+               | RaisedContrast(className)
+               | Disabled(className)
+               | Fab(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Button/Button"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -1573,7 +2260,7 @@ module Button = {
         ~disabled: option(bool)=?,
         ~dense: option(bool)=?,
         ~color: option(Color.t)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~centerRipple: option(bool)=?,
         ~focusRipple: option(bool)=?,
         ~keyboardFocusedClassName: option(string)=?,
@@ -1609,7 +2296,7 @@ module Button = {
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
         "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
         "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
         "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
@@ -1641,6 +2328,26 @@ module Menu = {
       fun
       | Auto => "auto";
   };
+  module Classes = {
+    type classesType =
+      | Paper(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Paper(_) => "paper";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Paper(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Menu/Menu"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
@@ -1665,7 +2372,7 @@ module Menu = {
         ~mMenuListProps: option(Js.t({..}))=?,
         ~anchorEl: option(Js.t({..}))=?,
         ~theme: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~anchorOrigin: option({. "horizontal": _, "vertical": _})=?,
         ~transformOrigin: option({. "horizontal": _, "vertical": _})=?,
         ~marginThreshold: option(float)=?,
@@ -1716,7 +2423,7 @@ module Menu = {
         "MenuListProps": Js.Nullable.from_opt(mMenuListProps),
         "anchorEl": Js.Nullable.from_opt(anchorEl),
         "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "anchorOrigin": Js.Nullable.from_opt(anchorOrigin),
         "transformOrigin": Js.Nullable.from_opt(transformOrigin),
         "marginThreshold": Js.Nullable.from_opt(marginThreshold),
@@ -1730,13 +2437,33 @@ module Menu = {
 };
 
 module TableFooter = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Table/TableFooter"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
         ~className: option(string)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1744,7 +2471,7 @@ module TableFooter = {
       ~props={
         "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -1982,6 +2709,131 @@ module Grid = {
       | Space_between => "space-between"
       | Space_around => "space-around";
   };
+  module Classes = {
+    type classesType =
+      | TypeContainer(string)
+      | TypeItem(string)
+      | Direction_xs_column(string)
+      | Direction_xs_column_reverse(string)
+      | Direction_xs_row_reverse(string)
+      | Wrap_xs_nowrap(string)
+      | Align_items_xs_center(string)
+      | Align_items_xs_flex_start(string)
+      | Align_items_xs_flex_end(string)
+      | Align_items_xs_baseline(string)
+      | Align_content_xs_center(string)
+      | Align_content_xs_flex_start(string)
+      | Align_content_xs_flex_end(string)
+      | Align_content_xs_space_between(string)
+      | Align_content_xs_space_around(string)
+      | Justify_xs_center(string)
+      | Justify_xs_flex_end(string)
+      | Justify_xs_space_between(string)
+      | Justify_xs_space_around(string)
+      | Spacing_xs_8(string)
+      | Spacing_xs_16(string)
+      | Spacing_xs_24(string)
+      | Spacing_xs_40(string)
+      | Grid_xs(string)
+      | Grid_xs_1(string)
+      | Grid_xs_2(string)
+      | Grid_xs_3(string)
+      | Grid_xs_4(string)
+      | Grid_xs_5(string)
+      | Grid_xs_6(string)
+      | Grid_xs_7(string)
+      | Grid_xs_8(string)
+      | Grid_xs_9(string)
+      | Grid_xs_10(string)
+      | Grid_xs_11(string)
+      | Grid_xs_12(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | TypeContainer(_) => "typeContainer"
+      | TypeItem(_) => "typeItem"
+      | Direction_xs_column(_) => "direction-xs-column"
+      | Direction_xs_column_reverse(_) => "direction-xs-column-reverse"
+      | Direction_xs_row_reverse(_) => "direction-xs-row-reverse"
+      | Wrap_xs_nowrap(_) => "wrap-xs-nowrap"
+      | Align_items_xs_center(_) => "align-items-xs-center"
+      | Align_items_xs_flex_start(_) => "align-items-xs-flex-start"
+      | Align_items_xs_flex_end(_) => "align-items-xs-flex-end"
+      | Align_items_xs_baseline(_) => "align-items-xs-baseline"
+      | Align_content_xs_center(_) => "align-content-xs-center"
+      | Align_content_xs_flex_start(_) => "align-content-xs-flex-start"
+      | Align_content_xs_flex_end(_) => "align-content-xs-flex-end"
+      | Align_content_xs_space_between(_) => "align-content-xs-space-between"
+      | Align_content_xs_space_around(_) => "align-content-xs-space-around"
+      | Justify_xs_center(_) => "justify-xs-center"
+      | Justify_xs_flex_end(_) => "justify-xs-flex-end"
+      | Justify_xs_space_between(_) => "justify-xs-space-between"
+      | Justify_xs_space_around(_) => "justify-xs-space-around"
+      | Spacing_xs_8(_) => "spacing-xs-8"
+      | Spacing_xs_16(_) => "spacing-xs-16"
+      | Spacing_xs_24(_) => "spacing-xs-24"
+      | Spacing_xs_40(_) => "spacing-xs-40"
+      | Grid_xs(_) => "grid-xs"
+      | Grid_xs_1(_) => "grid-xs-1"
+      | Grid_xs_2(_) => "grid-xs-2"
+      | Grid_xs_3(_) => "grid-xs-3"
+      | Grid_xs_4(_) => "grid-xs-4"
+      | Grid_xs_5(_) => "grid-xs-5"
+      | Grid_xs_6(_) => "grid-xs-6"
+      | Grid_xs_7(_) => "grid-xs-7"
+      | Grid_xs_8(_) => "grid-xs-8"
+      | Grid_xs_9(_) => "grid-xs-9"
+      | Grid_xs_10(_) => "grid-xs-10"
+      | Grid_xs_11(_) => "grid-xs-11"
+      | Grid_xs_12(_) => "grid-xs-12";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | TypeContainer(className)
+               | TypeItem(className)
+               | Direction_xs_column(className)
+               | Direction_xs_column_reverse(className)
+               | Direction_xs_row_reverse(className)
+               | Wrap_xs_nowrap(className)
+               | Align_items_xs_center(className)
+               | Align_items_xs_flex_start(className)
+               | Align_items_xs_flex_end(className)
+               | Align_items_xs_baseline(className)
+               | Align_content_xs_center(className)
+               | Align_content_xs_flex_start(className)
+               | Align_content_xs_flex_end(className)
+               | Align_content_xs_space_between(className)
+               | Align_content_xs_space_around(className)
+               | Justify_xs_center(className)
+               | Justify_xs_flex_end(className)
+               | Justify_xs_space_between(className)
+               | Justify_xs_space_around(className)
+               | Spacing_xs_8(className)
+               | Spacing_xs_16(className)
+               | Spacing_xs_24(className)
+               | Spacing_xs_40(className)
+               | Grid_xs(className)
+               | Grid_xs_1(className)
+               | Grid_xs_2(className)
+               | Grid_xs_3(className)
+               | Grid_xs_4(className)
+               | Grid_xs_5(className)
+               | Grid_xs_6(className)
+               | Grid_xs_7(className)
+               | Grid_xs_8(className)
+               | Grid_xs_9(className)
+               | Grid_xs_10(className)
+               | Grid_xs_11(className)
+               | Grid_xs_12(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Grid/Grid"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
@@ -2001,7 +2853,7 @@ module Grid = {
         ~container: option(bool)=?,
         ~className: option(string)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2063,19 +2915,117 @@ module Grid = {
         "container": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, container)),
         "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module Card = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Rounded(string)
+      | Shadow0(string)
+      | Shadow1(string)
+      | Shadow2(string)
+      | Shadow3(string)
+      | Shadow4(string)
+      | Shadow5(string)
+      | Shadow6(string)
+      | Shadow7(string)
+      | Shadow8(string)
+      | Shadow9(string)
+      | Shadow10(string)
+      | Shadow11(string)
+      | Shadow12(string)
+      | Shadow13(string)
+      | Shadow14(string)
+      | Shadow15(string)
+      | Shadow16(string)
+      | Shadow17(string)
+      | Shadow18(string)
+      | Shadow19(string)
+      | Shadow20(string)
+      | Shadow21(string)
+      | Shadow22(string)
+      | Shadow23(string)
+      | Shadow24(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Rounded(_) => "rounded"
+      | Shadow0(_) => "shadow0"
+      | Shadow1(_) => "shadow1"
+      | Shadow2(_) => "shadow2"
+      | Shadow3(_) => "shadow3"
+      | Shadow4(_) => "shadow4"
+      | Shadow5(_) => "shadow5"
+      | Shadow6(_) => "shadow6"
+      | Shadow7(_) => "shadow7"
+      | Shadow8(_) => "shadow8"
+      | Shadow9(_) => "shadow9"
+      | Shadow10(_) => "shadow10"
+      | Shadow11(_) => "shadow11"
+      | Shadow12(_) => "shadow12"
+      | Shadow13(_) => "shadow13"
+      | Shadow14(_) => "shadow14"
+      | Shadow15(_) => "shadow15"
+      | Shadow16(_) => "shadow16"
+      | Shadow17(_) => "shadow17"
+      | Shadow18(_) => "shadow18"
+      | Shadow19(_) => "shadow19"
+      | Shadow20(_) => "shadow20"
+      | Shadow21(_) => "shadow21"
+      | Shadow22(_) => "shadow22"
+      | Shadow23(_) => "shadow23"
+      | Shadow24(_) => "shadow24";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Rounded(className)
+               | Shadow0(className)
+               | Shadow1(className)
+               | Shadow2(className)
+               | Shadow3(className)
+               | Shadow4(className)
+               | Shadow5(className)
+               | Shadow6(className)
+               | Shadow7(className)
+               | Shadow8(className)
+               | Shadow9(className)
+               | Shadow10(className)
+               | Shadow11(className)
+               | Shadow12(className)
+               | Shadow13(className)
+               | Shadow14(className)
+               | Shadow15(className)
+               | Shadow16(className)
+               | Shadow17(className)
+               | Shadow18(className)
+               | Shadow19(className)
+               | Shadow20(className)
+               | Shadow21(className)
+               | Shadow22(className)
+               | Shadow23(className)
+               | Shadow24(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Card/Card"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
         ~className: option(string)=?,
         ~raised: option(bool)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~component: option(Js.t({..}))=?,
         ~elevation: option(float)=?,
         ~square: option(bool)=?,
@@ -2086,7 +3036,7 @@ module Card = {
       ~props={
         "className": Js.Nullable.from_opt(className),
         "raised": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, raised)),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "component": Js.Nullable.from_opt(component),
         "elevation": Js.Nullable.from_opt(elevation),
         "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square))
@@ -2096,6 +3046,53 @@ module Card = {
 };
 
 module ListItem = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Container(string)
+      | KeyboardFocused(string)
+      | Default(string)
+      | Dense(string)
+      | Disabled(string)
+      | Divider(string)
+      | Gutters(string)
+      | Button(string)
+      | SecondaryAction(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Container(_) => "container"
+      | KeyboardFocused(_) => "keyboardFocused"
+      | Default(_) => "default"
+      | Dense(_) => "dense"
+      | Disabled(_) => "disabled"
+      | Divider(_) => "divider"
+      | Gutters(_) => "gutters"
+      | Button(_) => "button"
+      | SecondaryAction(_) => "secondaryAction";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Container(className)
+               | KeyboardFocused(className)
+               | Default(className)
+               | Dense(className)
+               | Disabled(className)
+               | Divider(className)
+               | Gutters(className)
+               | Button(className)
+               | SecondaryAction(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/List/ListItem"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2107,7 +3104,7 @@ module ListItem = {
         ~className: option(string)=?,
         ~button: option(bool)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2120,13 +3117,42 @@ module ListItem = {
         "className": Js.Nullable.from_opt(className),
         "button": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, button)),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module MenuList = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Padding(string)
+      | Dense(string)
+      | Subheader(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Padding(_) => "padding"
+      | Dense(_) => "dense"
+      | Subheader(_) => "subheader";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Padding(className)
+               | Dense(className)
+               | Subheader(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Menu/MenuList"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2134,7 +3160,7 @@ module MenuList = {
         ~onKeyDown: option(((ReactEventRe.UI.t, string) => unit))=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~component: option(Js.t({..}))=?,
         ~dense: option(bool)=?,
         ~disablePadding: option(bool)=?,
@@ -2148,7 +3174,7 @@ module MenuList = {
         "onKeyDown": Js.Nullable.from_opt(onKeyDown),
         "onBlur": Js.Nullable.from_opt(onBlur),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "component": Js.Nullable.from_opt(component),
         "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
         "disablePadding": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disablePadding)),
@@ -2160,14 +3186,34 @@ module MenuList = {
 };
 
 module CardContent = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Card/CardContent"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~className: option(string)=?, ~classes: option(Js.t({..}))=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -2193,12 +3239,50 @@ module Icon = {
       | Error => "error"
       | Primary => "primary";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | ColorAccent(string)
+      | ColorAction(string)
+      | ColorContrast(string)
+      | ColorDisabled(string)
+      | ColorError(string)
+      | ColorPrimary(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | ColorAccent(_) => "colorAccent"
+      | ColorAction(_) => "colorAction"
+      | ColorContrast(_) => "colorContrast"
+      | ColorDisabled(_) => "colorDisabled"
+      | ColorError(_) => "colorError"
+      | ColorPrimary(_) => "colorPrimary";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | ColorAccent(className)
+               | ColorAction(className)
+               | ColorContrast(className)
+               | ColorDisabled(className)
+               | ColorError(className)
+               | ColorPrimary(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Icon/Icon"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
         ~className: option(string)=?,
         ~color: option(Color.t)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2206,13 +3290,39 @@ module Icon = {
       ~props={
         "className": Js.Nullable.from_opt(className),
         "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module Checkbox = {
+  module Classes = {
+    type classesType =
+      | Default(string)
+      | Checked(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Default(_) => "default"
+      | Checked(_) => "checked"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Default(className)
+               | Checked(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Checkbox/Checkbox"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2234,7 +3344,7 @@ module Checkbox = {
         ~checkedIcon: option(ReasonReact.reactElement)=?,
         ~checkedClassName: option(string)=?,
         ~checked: option([ | `Bool(bool) | `String(string)])=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2257,7 +3367,7 @@ module Checkbox = {
         "checkedIcon": Js.Nullable.from_opt(checkedIcon),
         "checkedClassName": Js.Nullable.from_opt(checkedClassName),
         "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -2274,6 +3384,44 @@ module Dialog = {
       | Xs => "xs"
       | Sm => "sm"
       | Md => "md";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Paper(string)
+      | PaperWidthXs(string)
+      | PaperWidthSm(string)
+      | PaperWidthMd(string)
+      | FullWidth(string)
+      | FullScreen(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Paper(_) => "paper"
+      | PaperWidthXs(_) => "paperWidthXs"
+      | PaperWidthSm(_) => "paperWidthSm"
+      | PaperWidthMd(_) => "paperWidthMd"
+      | FullWidth(_) => "fullWidth"
+      | FullScreen(_) => "fullScreen";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Paper(className)
+               | PaperWidthXs(className)
+               | PaperWidthSm(className)
+               | PaperWidthMd(className)
+               | FullWidth(className)
+               | FullScreen(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
   };
   [@bs.module "material-ui/Dialog/Dialog"] external reactClass : ReasonReact.reactClass =
     "default";
@@ -2297,7 +3445,7 @@ module Dialog = {
         ~fullScreen: option(bool)=?,
         ~className: option(string)=?,
         ~transition: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2323,7 +3471,7 @@ module Dialog = {
         "fullScreen": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullScreen)),
         "className": Js.Nullable.from_opt(className),
         "transition": Js.Nullable.from_opt(transition),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -2339,13 +3487,45 @@ module TableSortLabel = {
       | Asc => "asc"
       | Desc => "desc";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Active(string)
+      | Icon(string)
+      | Desc(string)
+      | Asc(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Active(_) => "active"
+      | Icon(_) => "icon"
+      | Desc(_) => "desc"
+      | Asc(_) => "asc";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Active(className)
+               | Icon(className)
+               | Desc(className)
+               | Asc(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Table/TableSortLabel"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
         ~className: option(string)=?,
         ~direction: option(Direction.t)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~active: option(bool)=?,
         ~centerRipple: option(bool)=?,
         ~component: option(Js.t({..}))=?,
@@ -2376,7 +3556,7 @@ module TableSortLabel = {
       ~props={
         "className": Js.Nullable.from_opt(className),
         "direction": Js.Nullable.from_opt(optionMap(Direction.to_string, direction)),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
         "component": Js.Nullable.from_opt(component),
@@ -2413,6 +3593,26 @@ module GridList = {
       fun
       | Auto => "auto";
   };
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/GridList/GridList"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2423,7 +3623,7 @@ module GridList = {
         ~cellHeight: option([ | `Enum(CellHeight.t) | `Float(float)])=?,
         ~spacing: option(float)=?,
         ~cols: option(float)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2443,13 +3643,111 @@ module GridList = {
           ),
         "spacing": Js.Nullable.from_opt(spacing),
         "cols": Js.Nullable.from_opt(cols),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module Paper = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Rounded(string)
+      | Shadow0(string)
+      | Shadow1(string)
+      | Shadow2(string)
+      | Shadow3(string)
+      | Shadow4(string)
+      | Shadow5(string)
+      | Shadow6(string)
+      | Shadow7(string)
+      | Shadow8(string)
+      | Shadow9(string)
+      | Shadow10(string)
+      | Shadow11(string)
+      | Shadow12(string)
+      | Shadow13(string)
+      | Shadow14(string)
+      | Shadow15(string)
+      | Shadow16(string)
+      | Shadow17(string)
+      | Shadow18(string)
+      | Shadow19(string)
+      | Shadow20(string)
+      | Shadow21(string)
+      | Shadow22(string)
+      | Shadow23(string)
+      | Shadow24(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Rounded(_) => "rounded"
+      | Shadow0(_) => "shadow0"
+      | Shadow1(_) => "shadow1"
+      | Shadow2(_) => "shadow2"
+      | Shadow3(_) => "shadow3"
+      | Shadow4(_) => "shadow4"
+      | Shadow5(_) => "shadow5"
+      | Shadow6(_) => "shadow6"
+      | Shadow7(_) => "shadow7"
+      | Shadow8(_) => "shadow8"
+      | Shadow9(_) => "shadow9"
+      | Shadow10(_) => "shadow10"
+      | Shadow11(_) => "shadow11"
+      | Shadow12(_) => "shadow12"
+      | Shadow13(_) => "shadow13"
+      | Shadow14(_) => "shadow14"
+      | Shadow15(_) => "shadow15"
+      | Shadow16(_) => "shadow16"
+      | Shadow17(_) => "shadow17"
+      | Shadow18(_) => "shadow18"
+      | Shadow19(_) => "shadow19"
+      | Shadow20(_) => "shadow20"
+      | Shadow21(_) => "shadow21"
+      | Shadow22(_) => "shadow22"
+      | Shadow23(_) => "shadow23"
+      | Shadow24(_) => "shadow24";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Rounded(className)
+               | Shadow0(className)
+               | Shadow1(className)
+               | Shadow2(className)
+               | Shadow3(className)
+               | Shadow4(className)
+               | Shadow5(className)
+               | Shadow6(className)
+               | Shadow7(className)
+               | Shadow8(className)
+               | Shadow9(className)
+               | Shadow10(className)
+               | Shadow11(className)
+               | Shadow12(className)
+               | Shadow13(className)
+               | Shadow14(className)
+               | Shadow15(className)
+               | Shadow16(className)
+               | Shadow17(className)
+               | Shadow18(className)
+               | Shadow19(className)
+               | Shadow20(className)
+               | Shadow21(className)
+               | Shadow22(className)
+               | Shadow23(className)
+               | Shadow24(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Paper/Paper"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
@@ -2457,7 +3755,7 @@ module Paper = {
         ~square: option(bool)=?,
         ~elevation: option(float)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2467,34 +3765,84 @@ module Paper = {
         "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square)),
         "elevation": Js.Nullable.from_opt(elevation),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module FormGroup = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Row(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Row(_) => "row";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Row(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Form/FormGroup"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
-      (
-        ~row: option(bool)=?,
-        ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
-        children
-      ) =>
+      (~row: option(bool)=?, ~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
         "row": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, row)),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module CardHeader = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Avatar(string)
+      | Content(string)
+      | Title(string)
+      | Subheader(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Avatar(_) => "avatar"
+      | Content(_) => "content"
+      | Title(_) => "title"
+      | Subheader(_) => "subheader";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Avatar(className)
+               | Content(className)
+               | Title(className)
+               | Subheader(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Card/CardHeader"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2503,7 +3851,7 @@ module CardHeader = {
         ~subheader: option(ReasonReact.reactElement)=?,
         ~className: option(string)=?,
         ~avatar: option(ReasonReact.reactElement)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2513,20 +3861,43 @@ module CardHeader = {
         "subheader": Js.Nullable.from_opt(subheader),
         "className": Js.Nullable.from_opt(className),
         "avatar": Js.Nullable.from_opt(avatar),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module Toolbar = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Gutters(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Gutters(_) => "gutters";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Gutters(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Toolbar/Toolbar"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
         ~disableGutters: option(bool)=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2534,13 +3905,45 @@ module Toolbar = {
       ~props={
         "disableGutters": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableGutters)),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module ListItemText = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Inset(string)
+      | Dense(string)
+      | Text(string)
+      | TextDense(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Inset(_) => "inset"
+      | Dense(_) => "dense"
+      | Text(_) => "text"
+      | TextDense(_) => "textDense";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Inset(className)
+               | Dense(className)
+               | Text(className)
+               | TextDense(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/List/ListItemText"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2550,7 +3953,7 @@ module ListItemText = {
         ~inset: option(bool)=?,
         ~disableTypography: option(bool)=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2562,20 +3965,43 @@ module ListItemText = {
         "disableTypography":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTypography)),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module CardActions = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | ActionSpacing(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | ActionSpacing(_) => "actionSpacing";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | ActionSpacing(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Card/CardActions"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
         ~className: option(string)=?,
         ~disableActionSpacing: option(bool)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2584,13 +4010,45 @@ module CardActions = {
         "className": Js.Nullable.from_opt(className),
         "disableActionSpacing":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableActionSpacing)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module Divider = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Default(string)
+      | Inset(string)
+      | Light(string)
+      | Absolute(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Default(_) => "default"
+      | Inset(_) => "inset"
+      | Light(_) => "light"
+      | Absolute(_) => "absolute";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Default(className)
+               | Inset(className)
+               | Light(className)
+               | Absolute(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Divider/Divider"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2599,7 +4057,7 @@ module Divider = {
         ~inset: option(bool)=?,
         ~className: option(string)=?,
         ~absolute: option(bool)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2609,7 +4067,7 @@ module Divider = {
         "inset": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, inset)),
         "className": Js.Nullable.from_opt(className),
         "absolute": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, absolute)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -2622,6 +4080,35 @@ module Collapse = {
     let to_string =
       fun
       | Auto => "auto";
+  };
+  module Classes = {
+    type classesType =
+      | Container(string)
+      | Entered(string)
+      | Wrapper(string)
+      | WrapperInner(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Container(_) => "container"
+      | Entered(_) => "entered"
+      | Wrapper(_) => "wrapper"
+      | WrapperInner(_) => "wrapperInner";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Container(className)
+               | Entered(className)
+               | Wrapper(className)
+               | WrapperInner(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
   };
   [@bs.module "material-ui/transitions/Collapse"] external reactClass : ReasonReact.reactClass =
     "default";
@@ -2640,7 +4127,7 @@ module Collapse = {
              [ | `Enum(Timeout.t) | `Float(float) | `Object({. "enter": float, "exit": float})]
            )=?,
         ~collapsedHeight: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~appear: option(bool)=?,
         children
       ) =>
@@ -2665,7 +4152,7 @@ module Collapse = {
             )
           ),
         "collapsedHeight": Js.Nullable.from_opt(collapsedHeight),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "appear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, appear))
       },
       children
@@ -2739,6 +4226,95 @@ module Typography = {
       | Caption => "caption"
       | Button => "button";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Display4(string)
+      | Display3(string)
+      | Display2(string)
+      | Display1(string)
+      | Headline(string)
+      | Title(string)
+      | Subheading(string)
+      | Body2(string)
+      | Body1(string)
+      | Caption(string)
+      | Button(string)
+      | AlignLeft(string)
+      | AlignCenter(string)
+      | AlignRight(string)
+      | AlignJustify(string)
+      | NoWrap(string)
+      | GutterBottom(string)
+      | Paragraph(string)
+      | ColorInherit(string)
+      | ColorPrimary(string)
+      | ColorSecondary(string)
+      | ColorAccent(string)
+      | ColorError(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Display4(_) => "display4"
+      | Display3(_) => "display3"
+      | Display2(_) => "display2"
+      | Display1(_) => "display1"
+      | Headline(_) => "headline"
+      | Title(_) => "title"
+      | Subheading(_) => "subheading"
+      | Body2(_) => "body2"
+      | Body1(_) => "body1"
+      | Caption(_) => "caption"
+      | Button(_) => "button"
+      | AlignLeft(_) => "alignLeft"
+      | AlignCenter(_) => "alignCenter"
+      | AlignRight(_) => "alignRight"
+      | AlignJustify(_) => "alignJustify"
+      | NoWrap(_) => "noWrap"
+      | GutterBottom(_) => "gutterBottom"
+      | Paragraph(_) => "paragraph"
+      | ColorInherit(_) => "colorInherit"
+      | ColorPrimary(_) => "colorPrimary"
+      | ColorSecondary(_) => "colorSecondary"
+      | ColorAccent(_) => "colorAccent"
+      | ColorError(_) => "colorError";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Display4(className)
+               | Display3(className)
+               | Display2(className)
+               | Display1(className)
+               | Headline(className)
+               | Title(className)
+               | Subheading(className)
+               | Body2(className)
+               | Body1(className)
+               | Caption(className)
+               | Button(className)
+               | AlignLeft(className)
+               | AlignCenter(className)
+               | AlignRight(className)
+               | AlignJustify(className)
+               | NoWrap(className)
+               | GutterBottom(className)
+               | Paragraph(className)
+               | ColorInherit(className)
+               | ColorPrimary(className)
+               | ColorSecondary(className)
+               | ColorAccent(className)
+               | ColorError(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Typography/Typography"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2752,7 +4328,7 @@ module Typography = {
         ~align: option(Align.t)=?,
         ~type_: option(Type.t)=?,
         ~headlineMapping: option({. "unionProp": string})=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2767,7 +4343,7 @@ module Typography = {
         "align": Js.Nullable.from_opt(optionMap(Align.to_string, align)),
         "type": Js.Nullable.from_opt(optionMap(Type.to_string, type_)),
         "headlineMapping": Js.Nullable.from_opt(headlineMapping),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -2796,6 +4372,77 @@ module LinearProgress = {
       | Primary => "primary"
       | Accent => "accent";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | PrimaryColor(string)
+      | PrimaryColorBar(string)
+      | PrimaryDashed(string)
+      | AccentColor(string)
+      | AccentColorBar(string)
+      | AccentDashed(string)
+      | Bar(string)
+      | Dashed(string)
+      | BufferBar2(string)
+      | RootBuffer(string)
+      | RootQuery(string)
+      | IndeterminateBar1(string)
+      | IndeterminateBar2(string)
+      | DeterminateBar1(string)
+      | BufferBar1(string)
+      | BufferBar2Primary(string)
+      | BufferBar2Accent(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | PrimaryColor(_) => "primaryColor"
+      | PrimaryColorBar(_) => "primaryColorBar"
+      | PrimaryDashed(_) => "primaryDashed"
+      | AccentColor(_) => "accentColor"
+      | AccentColorBar(_) => "accentColorBar"
+      | AccentDashed(_) => "accentDashed"
+      | Bar(_) => "bar"
+      | Dashed(_) => "dashed"
+      | BufferBar2(_) => "bufferBar2"
+      | RootBuffer(_) => "rootBuffer"
+      | RootQuery(_) => "rootQuery"
+      | IndeterminateBar1(_) => "indeterminateBar1"
+      | IndeterminateBar2(_) => "indeterminateBar2"
+      | DeterminateBar1(_) => "determinateBar1"
+      | BufferBar1(_) => "bufferBar1"
+      | BufferBar2Primary(_) => "bufferBar2Primary"
+      | BufferBar2Accent(_) => "bufferBar2Accent";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | PrimaryColor(className)
+               | PrimaryColorBar(className)
+               | PrimaryDashed(className)
+               | AccentColor(className)
+               | AccentColorBar(className)
+               | AccentDashed(className)
+               | Bar(className)
+               | Dashed(className)
+               | BufferBar2(className)
+               | RootBuffer(className)
+               | RootQuery(className)
+               | IndeterminateBar1(className)
+               | IndeterminateBar2(className)
+               | DeterminateBar1(className)
+               | BufferBar1(className)
+               | BufferBar2Primary(className)
+               | BufferBar2Accent(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Progress/LinearProgress"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2805,7 +4452,7 @@ module LinearProgress = {
         ~mode: option(Mode.t)=?,
         ~color: option(Color.t)=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2816,13 +4463,42 @@ module LinearProgress = {
         "mode": Js.Nullable.from_opt(optionMap(Mode.to_string, mode)),
         "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module FormLabel = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Focused(string)
+      | Error(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Focused(_) => "focused"
+      | Error(_) => "error"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Focused(className)
+               | Error(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Form/FormLabel"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2833,7 +4509,7 @@ module FormLabel = {
         ~disabled: option(bool)=?,
         ~className: option(string)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2845,13 +4521,42 @@ module FormLabel = {
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module FormHelperText = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Dense(string)
+      | Error(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Dense(_) => "dense"
+      | Error(_) => "error"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Dense(className)
+               | Error(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Form/FormHelperText"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2860,7 +4565,7 @@ module FormHelperText = {
         ~error: option(bool)=?,
         ~disabled: option(bool)=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2870,7 +4575,7 @@ module FormHelperText = {
         "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -2889,6 +4594,47 @@ module TablePagination = {
       | Checkbox => "checkbox"
       | Dense => "dense"
       | None => "none";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Toolbar(string)
+      | Spacer(string)
+      | Caption(string)
+      | Input(string)
+      | SelectRoot(string)
+      | Select(string)
+      | Actions(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Toolbar(_) => "toolbar"
+      | Spacer(_) => "spacer"
+      | Caption(_) => "caption"
+      | Input(_) => "input"
+      | SelectRoot(_) => "selectRoot"
+      | Select(_) => "select"
+      | Actions(_) => "actions";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Toolbar(className)
+               | Spacer(className)
+               | Caption(className)
+               | Input(className)
+               | SelectRoot(className)
+               | Select(className)
+               | Actions(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
   };
   [@bs.module "material-ui/Table/TablePagination"] external reactClass : ReasonReact.reactClass =
     "default";
@@ -2911,7 +4657,7 @@ module TablePagination = {
            )=?,
         ~labelRowsPerPage: option(ReasonReact.reactElement)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~padding: option(Padding.t)=?,
         ~numeric: option(bool)=?,
         ~className: option(string)=?,
@@ -2931,7 +4677,7 @@ module TablePagination = {
         "labelDisplayedRows": Js.Nullable.from_opt(labelDisplayedRows),
         "labelRowsPerPage": Js.Nullable.from_opt(labelRowsPerPage),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "padding": Js.Nullable.from_opt(optionMap(Padding.to_string, padding)),
         "numeric": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, numeric)),
         "className": Js.Nullable.from_opt(className)
@@ -2941,6 +4687,44 @@ module TablePagination = {
 };
 
 module Chip = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Clickable(string)
+      | Deletable(string)
+      | Avatar(string)
+      | AvatarChildren(string)
+      | Label(string)
+      | DeleteIcon(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Clickable(_) => "clickable"
+      | Deletable(_) => "deletable"
+      | Avatar(_) => "avatar"
+      | AvatarChildren(_) => "avatarChildren"
+      | Label(_) => "label"
+      | DeleteIcon(_) => "deleteIcon";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Clickable(className)
+               | Deletable(className)
+               | Avatar(className)
+               | AvatarChildren(className)
+               | Label(className)
+               | DeleteIcon(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Chip/Chip"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
@@ -2952,7 +4736,7 @@ module Chip = {
         ~deleteIcon: option(ReasonReact.reactElement)=?,
         ~className: option(string)=?,
         ~avatar: option(ReasonReact.reactElement)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -2966,13 +4750,36 @@ module Chip = {
         "deleteIcon": Js.Nullable.from_opt(deleteIcon),
         "className": Js.Nullable.from_opt(className),
         "avatar": Js.Nullable.from_opt(avatar),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module RadioGroup = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Row(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Row(_) => "row";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Row(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Radio/RadioGroup"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -2982,7 +4789,7 @@ module RadioGroup = {
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~name: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~className: option(string)=?,
         ~row: option(bool)=?,
         children
@@ -2995,7 +4802,7 @@ module RadioGroup = {
         "onChange": Js.Nullable.from_opt(onChange),
         "onBlur": Js.Nullable.from_opt(onBlur),
         "name": Js.Nullable.from_opt(name),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "className": Js.Nullable.from_opt(className),
         "row": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, row))
       },
@@ -3017,6 +4824,44 @@ module TableCell = {
       | Dense => "dense"
       | None => "none";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Numeric(string)
+      | Head(string)
+      | PaddingDefault(string)
+      | PaddingDense(string)
+      | PaddingCheckbox(string)
+      | Footer(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Numeric(_) => "numeric"
+      | Head(_) => "head"
+      | PaddingDefault(_) => "paddingDefault"
+      | PaddingDense(_) => "paddingDense"
+      | PaddingCheckbox(_) => "paddingCheckbox"
+      | Footer(_) => "footer";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Numeric(className)
+               | Head(className)
+               | PaddingDefault(className)
+               | PaddingDense(className)
+               | PaddingCheckbox(className)
+               | Footer(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Table/TableCell"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -3025,7 +4870,7 @@ module TableCell = {
         ~className: option(string)=?,
         ~numeric: option(bool)=?,
         ~padding: option(Padding.t)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -3035,7 +4880,7 @@ module TableCell = {
         "className": Js.Nullable.from_opt(className),
         "numeric": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, numeric)),
         "padding": Js.Nullable.from_opt(optionMap(Padding.to_string, padding)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -3050,6 +4895,68 @@ module Input = {
       fun
       | Dense => "dense"
       | None => "none";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | FormControl(string)
+      | Inkbar(string)
+      | Error(string)
+      | Input(string)
+      | InputDense(string)
+      | Disabled(string)
+      | Focused(string)
+      | Underline(string)
+      | Multiline(string)
+      | InputDisabled(string)
+      | InputSingleline(string)
+      | InputSearch(string)
+      | InputMultiline(string)
+      | FullWidth(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | FormControl(_) => "formControl"
+      | Inkbar(_) => "inkbar"
+      | Error(_) => "error"
+      | Input(_) => "input"
+      | InputDense(_) => "inputDense"
+      | Disabled(_) => "disabled"
+      | Focused(_) => "focused"
+      | Underline(_) => "underline"
+      | Multiline(_) => "multiline"
+      | InputDisabled(_) => "inputDisabled"
+      | InputSingleline(_) => "inputSingleline"
+      | InputSearch(_) => "inputSearch"
+      | InputMultiline(_) => "inputMultiline"
+      | FullWidth(_) => "fullWidth";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | FormControl(className)
+               | Inkbar(className)
+               | Error(className)
+               | Input(className)
+               | InputDense(className)
+               | Disabled(className)
+               | Focused(className)
+               | Underline(className)
+               | Multiline(className)
+               | InputDisabled(className)
+               | InputSingleline(className)
+               | InputSearch(className)
+               | InputMultiline(className)
+               | FullWidth(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
   };
   [@bs.module "material-ui/Input/Input"] external reactClass : ReasonReact.reactClass = "default";
   let make =
@@ -3084,7 +4991,7 @@ module Input = {
         ~multiline: option(bool)=?,
         ~fullWidth: option(bool)=?,
         ~disableUnderline: option(bool)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -3121,7 +5028,7 @@ module Input = {
         "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
         "disableUnderline":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableUnderline)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -3157,6 +5064,50 @@ module Tooltip = {
       | Top_start => "top-start"
       | Top => "top";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Popper(string)
+      | PopperClose(string)
+      | Tooltip(string)
+      | TooltipLeft(string)
+      | TooltipRight(string)
+      | TooltipTop(string)
+      | TooltipBottom(string)
+      | TooltipOpen(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Popper(_) => "popper"
+      | PopperClose(_) => "popperClose"
+      | Tooltip(_) => "tooltip"
+      | TooltipLeft(_) => "tooltipLeft"
+      | TooltipRight(_) => "tooltipRight"
+      | TooltipTop(_) => "tooltipTop"
+      | TooltipBottom(_) => "tooltipBottom"
+      | TooltipOpen(_) => "tooltipOpen";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Popper(className)
+               | PopperClose(className)
+               | Tooltip(className)
+               | TooltipLeft(className)
+               | TooltipRight(className)
+               | TooltipTop(className)
+               | TooltipBottom(className)
+               | TooltipOpen(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Tooltip/Tooltip"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -3175,7 +5126,7 @@ module Tooltip = {
         ~disableTriggerTouch: option(bool)=?,
         ~disableTriggerHover: option(bool)=?,
         ~disableTriggerFocus: option(bool)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -3198,7 +5149,7 @@ module Tooltip = {
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTriggerHover)),
         "disableTriggerFocus":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTriggerFocus)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -3229,6 +5180,44 @@ module AppBar = {
       | Accent => "accent"
       | Default => "default";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | PositionFixed(string)
+      | PositionAbsolute(string)
+      | PositionStatic(string)
+      | ColorDefault(string)
+      | ColorPrimary(string)
+      | ColorAccent(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | PositionFixed(_) => "positionFixed"
+      | PositionAbsolute(_) => "positionAbsolute"
+      | PositionStatic(_) => "positionStatic"
+      | ColorDefault(_) => "colorDefault"
+      | ColorPrimary(_) => "colorPrimary"
+      | ColorAccent(_) => "colorAccent";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | PositionFixed(className)
+               | PositionAbsolute(className)
+               | PositionStatic(className)
+               | ColorDefault(className)
+               | ColorPrimary(className)
+               | ColorAccent(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/AppBar/AppBar"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -3236,7 +5225,7 @@ module AppBar = {
         ~className: option(string)=?,
         ~position: option(Position.t)=?,
         ~color: option(Color.t)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~component: option(Js.t({..}))=?,
         ~elevation: option(float)=?,
         ~square: option(bool)=?,
@@ -3248,7 +5237,7 @@ module AppBar = {
         "className": Js.Nullable.from_opt(className),
         "position": Js.Nullable.from_opt(optionMap(Position.to_string, position)),
         "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "component": Js.Nullable.from_opt(component),
         "elevation": Js.Nullable.from_opt(elevation),
         "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square))
@@ -3280,6 +5269,47 @@ module MobileStepper = {
       | Top => "top"
       | Static => "static";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | PositionBottom(string)
+      | PositionTop(string)
+      | PositionStatic(string)
+      | Dots(string)
+      | Dot(string)
+      | DotActive(string)
+      | Progress(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | PositionBottom(_) => "positionBottom"
+      | PositionTop(_) => "positionTop"
+      | PositionStatic(_) => "positionStatic"
+      | Dots(_) => "dots"
+      | Dot(_) => "dot"
+      | DotActive(_) => "dotActive"
+      | Progress(_) => "progress";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | PositionBottom(className)
+               | PositionTop(className)
+               | PositionStatic(className)
+               | Dots(className)
+               | Dot(className)
+               | DotActive(className)
+               | Progress(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/MobileStepper/MobileStepper"]
   external reactClass : ReasonReact.reactClass =
     "default";
@@ -3291,7 +5321,7 @@ module MobileStepper = {
         ~backButton: ReasonReact.reactElement,
         ~type_: option(Type.t)=?,
         ~position: option(Position.t)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~activeStep: option(float)=?,
         ~component: option(Js.t({..}))=?,
         ~elevation: option(float)=?,
@@ -3307,7 +5337,7 @@ module MobileStepper = {
         "backButton": backButton,
         "type": Js.Nullable.from_opt(optionMap(Type.to_string, type_)),
         "position": Js.Nullable.from_opt(optionMap(Position.to_string, position)),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "activeStep": Js.Nullable.from_opt(activeStep),
         "component": Js.Nullable.from_opt(component),
         "elevation": Js.Nullable.from_opt(elevation),
@@ -3318,6 +5348,41 @@ module MobileStepper = {
 };
 
 module InputLabel = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | FormControl(string)
+      | LabelDense(string)
+      | Shrink(string)
+      | Animated(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | FormControl(_) => "formControl"
+      | LabelDense(_) => "labelDense"
+      | Shrink(_) => "shrink"
+      | Animated(_) => "animated"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | FormControl(className)
+               | LabelDense(className)
+               | Shrink(className)
+               | Animated(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Input/InputLabel"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -3331,7 +5396,7 @@ module InputLabel = {
         ~className: option(string)=?,
         ~disableAnimation: option(bool)=?,
         ~disabled: option(bool)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -3347,7 +5412,7 @@ module InputLabel = {
         "disableAnimation":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableAnimation)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -3365,6 +5430,35 @@ module FormControl = {
       | Dense => "dense"
       | Normal => "normal";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | MarginNormal(string)
+      | MarginDense(string)
+      | FullWidth(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | MarginNormal(_) => "marginNormal"
+      | MarginDense(_) => "marginDense"
+      | FullWidth(_) => "fullWidth";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | MarginNormal(className)
+               | MarginDense(className)
+               | FullWidth(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Form/FormControl"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -3377,7 +5471,7 @@ module FormControl = {
         ~fullWidth: option(bool)=?,
         ~error: option(bool)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~disabled: option(bool)=?,
         children
       ) =>
@@ -3392,7 +5486,7 @@ module FormControl = {
         "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
         "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled))
       },
       children
@@ -3400,6 +5494,29 @@ module FormControl = {
 };
 
 module MenuItem = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Selected(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Selected(_) => "selected";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Selected(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Menu/MenuItem"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -3408,7 +5525,7 @@ module MenuItem = {
         ~className: option(string)=?,
         ~selected: option(bool)=?,
         ~role: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~button: option(bool)=?,
         ~dense: option(bool)=?,
         ~disabled: option(bool)=?,
@@ -3423,7 +5540,7 @@ module MenuItem = {
         "className": Js.Nullable.from_opt(className),
         "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
         "role": Js.Nullable.from_opt(role),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "button": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, button)),
         "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
@@ -3435,6 +5552,47 @@ module MenuItem = {
 };
 
 module BottomNavigationButton = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Selected(string)
+      | SelectedIconOnly(string)
+      | Wrapper(string)
+      | Label(string)
+      | SelectedLabel(string)
+      | HiddenLabel(string)
+      | Icon(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Selected(_) => "selected"
+      | SelectedIconOnly(_) => "selectedIconOnly"
+      | Wrapper(_) => "wrapper"
+      | Label(_) => "label"
+      | SelectedLabel(_) => "selectedLabel"
+      | HiddenLabel(_) => "hiddenLabel"
+      | Icon(_) => "icon";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Selected(className)
+               | SelectedIconOnly(className)
+               | Wrapper(className)
+               | Label(className)
+               | SelectedLabel(className)
+               | HiddenLabel(className)
+               | Icon(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/BottomNavigation/BottomNavigationButton"]
   external reactClass : ReasonReact.reactClass =
     "default";
@@ -3448,7 +5606,7 @@ module BottomNavigationButton = {
         ~label: option(ReasonReact.reactElement)=?,
         ~icon: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~centerRipple: option(bool)=?,
         ~component: option(Js.t({..}))=?,
         ~disabled: option(bool)=?,
@@ -3483,7 +5641,7 @@ module BottomNavigationButton = {
         "label": Js.Nullable.from_opt(label),
         "icon": Js.Nullable.from_opt(optionMap(unwrapValue, icon)),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
         "component": Js.Nullable.from_opt(component),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
@@ -3511,6 +5669,35 @@ module BottomNavigationButton = {
 };
 
 module GridListTile = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Tile(string)
+      | ImgFullHeight(string)
+      | ImgFullWidth(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Tile(_) => "tile"
+      | ImgFullHeight(_) => "imgFullHeight"
+      | ImgFullWidth(_) => "imgFullWidth";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Tile(className)
+               | ImgFullHeight(className)
+               | ImgFullWidth(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/GridList/GridListTile"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -3519,7 +5706,7 @@ module GridListTile = {
         ~component: option(Js.t({..}))=?,
         ~cols: option(float)=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -3529,7 +5716,7 @@ module GridListTile = {
         "component": Js.Nullable.from_opt(component),
         "cols": Js.Nullable.from_opt(cols),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -3588,29 +5775,75 @@ module Hidden = {
 };
 
 module DialogActions = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Action(string)
+      | Button(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Action(_) => "action"
+      | Button(_) => "button";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Action(className)
+               | Button(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Dialog/DialogActions"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~className: option(string)=?, ~classes: option(Js.t({..}))=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module ListItemSecondaryAction = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/List/ListItemSecondaryAction"]
   external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~className: option(string)=?, ~classes: option(Js.t({..}))=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -3628,6 +5861,71 @@ module Tab = {
       | Primary => "primary"
       | Inherit => "inherit";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | RootLabelIcon(string)
+      | RootAccent(string)
+      | RootAccentSelected(string)
+      | RootAccentDisabled(string)
+      | RootPrimary(string)
+      | RootPrimarySelected(string)
+      | RootPrimaryDisabled(string)
+      | RootInherit(string)
+      | RootInheritSelected(string)
+      | RootInheritDisabled(string)
+      | FullWidth(string)
+      | Wrapper(string)
+      | LabelContainer(string)
+      | Label(string)
+      | LabelWrapped(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | RootLabelIcon(_) => "rootLabelIcon"
+      | RootAccent(_) => "rootAccent"
+      | RootAccentSelected(_) => "rootAccentSelected"
+      | RootAccentDisabled(_) => "rootAccentDisabled"
+      | RootPrimary(_) => "rootPrimary"
+      | RootPrimarySelected(_) => "rootPrimarySelected"
+      | RootPrimaryDisabled(_) => "rootPrimaryDisabled"
+      | RootInherit(_) => "rootInherit"
+      | RootInheritSelected(_) => "rootInheritSelected"
+      | RootInheritDisabled(_) => "rootInheritDisabled"
+      | FullWidth(_) => "fullWidth"
+      | Wrapper(_) => "wrapper"
+      | LabelContainer(_) => "labelContainer"
+      | Label(_) => "label"
+      | LabelWrapped(_) => "labelWrapped";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | RootLabelIcon(className)
+               | RootAccent(className)
+               | RootAccentSelected(className)
+               | RootAccentDisabled(className)
+               | RootPrimary(className)
+               | RootPrimarySelected(className)
+               | RootPrimaryDisabled(className)
+               | RootInherit(className)
+               | RootInheritSelected(className)
+               | RootInheritDisabled(className)
+               | FullWidth(className)
+               | Wrapper(className)
+               | LabelContainer(className)
+               | Label(className)
+               | LabelWrapped(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Tabs/Tab"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
@@ -3643,7 +5941,7 @@ module Tab = {
         ~fullWidth: option(bool)=?,
         ~disabled: option(bool)=?,
         ~className: option(string)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~centerRipple: option(bool)=?,
         ~component: option(Js.t({..}))=?,
         ~disableRipple: option(bool)=?,
@@ -3689,7 +5987,7 @@ module Tab = {
         "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
         "component": Js.Nullable.from_opt(component),
         "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
@@ -3716,14 +6014,34 @@ module Tab = {
 };
 
 module ListItemIcon = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/List/ListItemIcon"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~className: option(string)=?, ~classes: option(Js.t({..}))=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
@@ -3804,6 +6122,56 @@ module Drawer = {
       | Right => "right"
       | Bottom => "bottom";
   };
+  module Classes = {
+    type classesType =
+      | Docked(string)
+      | Paper(string)
+      | PaperAnchorLeft(string)
+      | PaperAnchorRight(string)
+      | PaperAnchorTop(string)
+      | PaperAnchorBottom(string)
+      | PaperAnchorDockedLeft(string)
+      | PaperAnchorDockedTop(string)
+      | PaperAnchorDockedRight(string)
+      | PaperAnchorDockedBottom(string)
+      | Modal(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Docked(_) => "docked"
+      | Paper(_) => "paper"
+      | PaperAnchorLeft(_) => "paperAnchorLeft"
+      | PaperAnchorRight(_) => "paperAnchorRight"
+      | PaperAnchorTop(_) => "paperAnchorTop"
+      | PaperAnchorBottom(_) => "paperAnchorBottom"
+      | PaperAnchorDockedLeft(_) => "paperAnchorDockedLeft"
+      | PaperAnchorDockedTop(_) => "paperAnchorDockedTop"
+      | PaperAnchorDockedRight(_) => "paperAnchorDockedRight"
+      | PaperAnchorDockedBottom(_) => "paperAnchorDockedBottom"
+      | Modal(_) => "modal";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Docked(className)
+               | Paper(className)
+               | PaperAnchorLeft(className)
+               | PaperAnchorRight(className)
+               | PaperAnchorTop(className)
+               | PaperAnchorBottom(className)
+               | PaperAnchorDockedLeft(className)
+               | PaperAnchorDockedTop(className)
+               | PaperAnchorDockedRight(className)
+               | PaperAnchorDockedBottom(className)
+               | Modal(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Drawer/Drawer"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -3817,7 +6185,7 @@ module Drawer = {
         ~open_: option(bool)=?,
         ~transitionDuration: option(Js.t({..}))=?,
         ~elevation: option(float)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~anchor: option(Anchor.t)=?,
         children
       ) =>
@@ -3833,7 +6201,7 @@ module Drawer = {
         "open": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
         "transitionDuration": Js.Nullable.from_opt(transitionDuration),
         "elevation": Js.Nullable.from_opt(elevation),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "anchor": Js.Nullable.from_opt(optionMap(Anchor.to_string, anchor))
       },
       children
@@ -3841,6 +6209,44 @@ module Drawer = {
 };
 
 module Snackbar = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | AnchorTopCenter(string)
+      | AnchorBottomCenter(string)
+      | AnchorTopRight(string)
+      | AnchorBottomRight(string)
+      | AnchorTopLeft(string)
+      | AnchorBottomLeft(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | AnchorTopCenter(_) => "anchorTopCenter"
+      | AnchorBottomCenter(_) => "anchorBottomCenter"
+      | AnchorTopRight(_) => "anchorTopRight"
+      | AnchorBottomRight(_) => "anchorBottomRight"
+      | AnchorTopLeft(_) => "anchorTopLeft"
+      | AnchorBottomLeft(_) => "anchorBottomLeft";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | AnchorTopCenter(className)
+               | AnchorBottomCenter(className)
+               | AnchorTopRight(className)
+               | AnchorBottomRight(className)
+               | AnchorTopLeft(className)
+               | AnchorBottomLeft(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Snackbar/Snackbar"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -3863,7 +6269,7 @@ module Snackbar = {
         ~resumeHideDuration: option(float)=?,
         ~autoHideDuration: option(float)=?,
         ~action: option(ReasonReact.reactElement)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~anchorOrigin: option({. "horizontal": _, "vertical": _})=?,
         children
       ) =>
@@ -3888,7 +6294,7 @@ module Snackbar = {
         "resumeHideDuration": Js.Nullable.from_opt(resumeHideDuration),
         "autoHideDuration": Js.Nullable.from_opt(autoHideDuration),
         "action": Js.Nullable.from_opt(action),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "anchorOrigin": Js.Nullable.from_opt(anchorOrigin)
       },
       children
@@ -3916,6 +6322,45 @@ module CircularProgress = {
       | Accent => "accent"
       | Inherit => "inherit";
   };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | PrimaryColor(string)
+      | AccentColor(string)
+      | SvgIndeterminate(string)
+      | SvgDeterminate(string)
+      | Circle(string)
+      | CircleIndeterminate(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | PrimaryColor(_) => "primaryColor"
+      | AccentColor(_) => "accentColor"
+      | SvgIndeterminate(_) => "svgIndeterminate"
+      | SvgDeterminate(_) => "svgDeterminate"
+      | Circle(_) => "circle"
+      | CircleIndeterminate(_) => "circleIndeterminate";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | PrimaryColor(className)
+               | AccentColor(className)
+               | SvgIndeterminate(className)
+               | SvgDeterminate(className)
+               | Circle(className)
+               | CircleIndeterminate(className) =>
+                 Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Progress/CircularProgress"]
   external reactClass : ReasonReact.reactClass =
     "default";
@@ -3930,7 +6375,7 @@ module CircularProgress = {
         ~mode: option(Mode.t)=?,
         ~size: option(float)=?,
         ~color: option(Color.t)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -3945,13 +6390,48 @@ module CircularProgress = {
         "mode": Js.Nullable.from_opt(optionMap(Mode.to_string, mode)),
         "size": Js.Nullable.from_opt(size),
         "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module Switch = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Bar(string)
+      | Icon(string)
+      | Default(string)
+      | Checked(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Bar(_) => "bar"
+      | Icon(_) => "icon"
+      | Default(_) => "default"
+      | Checked(_) => "checked"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Bar(className)
+               | Icon(className)
+               | Default(className)
+               | Checked(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Switch/Switch"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
@@ -3971,7 +6451,7 @@ module Switch = {
         ~checkedIcon: option(ReasonReact.reactElement)=?,
         ~checkedClassName: option(string)=?,
         ~checked: option([ | `Bool(bool) | `String(string)])=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -3992,20 +6472,40 @@ module Switch = {
         "checkedIcon": Js.Nullable.from_opt(checkedIcon),
         "checkedClassName": Js.Nullable.from_opt(checkedClassName),
         "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module TableHead = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Table/TableHead"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
         ~className: option(string)=?,
         ~component: option(Js.t({..}))=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -4013,13 +6513,39 @@ module TableHead = {
       ~props={
         "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(component),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
 module SnackbarContent = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Message(string)
+      | Action(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Message(_) => "message"
+      | Action(_) => "action";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Message(className)
+               | Action(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Snackbar/SnackbarContent"]
   external reactClass : ReasonReact.reactClass =
     "default";
@@ -4028,7 +6554,7 @@ module SnackbarContent = {
         ~message: ReasonReact.reactElement,
         ~className: option(string)=?,
         ~action: option(ReasonReact.reactElement)=?,
-        ~classes: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
         ~component: option(Js.t({..}))=?,
         ~elevation: option(float)=?,
         ~square: option(bool)=?,
@@ -4040,7 +6566,7 @@ module SnackbarContent = {
         "message": message,
         "className": Js.Nullable.from_opt(className),
         "action": Js.Nullable.from_opt(action),
-        "classes": Js.Nullable.from_opt(classes),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "component": Js.Nullable.from_opt(component),
         "elevation": Js.Nullable.from_opt(elevation),
         "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square))
@@ -4050,15 +6576,35 @@ module SnackbarContent = {
 };
 
 module DialogContentText = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
   [@bs.module "material-ui/Dialog/DialogContentText"]
   external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~className: option(string)=?, ~classes: option(Js.t({..}))=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
         "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(classes)
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
