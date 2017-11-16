@@ -107,3 +107,4 @@ Example:
 - [x] ~~Think of a way to type classname overrides~~ (2017-11-15)
 - [ ] Apply default values to generation script
 - [ ] Implement ref function signatures
+- [ ] Ignore "theme" prop in generation
