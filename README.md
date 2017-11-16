@@ -105,3 +105,4 @@ Example:
 - [ ] Add `WithTheme` component
 - [ ] Add `ThemeProvider` component
 - [x] ~~Think of a way to type classname overrides~~ (2017-11-15)
+- [ ] Apply default values to generation script
