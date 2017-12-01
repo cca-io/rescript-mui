@@ -487,31 +487,119 @@ module Colors = {
   };
 };
 
-module Select = {
-  module Margin = {
+module Typography = {
+  module Type = {
     type t =
-      | Dense
-      | None;
+      | Display4
+      | Display3
+      | Display2
+      | Display1
+      | Headline
+      | Title
+      | Subheading
+      | Body2
+      | Body1
+      | Caption
+      | Button;
     let to_string =
       fun
-      | Dense => "dense"
-      | None => "none";
+      | Display4 => "display4"
+      | Display3 => "display3"
+      | Display2 => "display2"
+      | Display1 => "display1"
+      | Headline => "headline"
+      | Title => "title"
+      | Subheading => "subheading"
+      | Body2 => "body2"
+      | Body1 => "body1"
+      | Caption => "caption"
+      | Button => "button";
+  };
+  module Color = {
+    type t =
+      | Inherit
+      | Primary
+      | Secondary
+      | Accent
+      | Error
+      | Default;
+    let to_string =
+      fun
+      | Inherit => "inherit"
+      | Primary => "primary"
+      | Secondary => "secondary"
+      | Accent => "accent"
+      | Error => "error"
+      | Default => "default";
+  };
+  module Align = {
+    type t =
+      | Inherit
+      | Left
+      | Center
+      | Right
+      | Justify;
+    let to_string =
+      fun
+      | Inherit => "inherit"
+      | Left => "left"
+      | Center => "center"
+      | Right => "right"
+      | Justify => "justify";
   };
   module Classes = {
     type classesType =
       | Root(string)
-      | Select(string)
-      | SelectMenu(string)
-      | Disabled(string)
-      | Icon(string);
+      | Display4(string)
+      | Display3(string)
+      | Display2(string)
+      | Display1(string)
+      | Headline(string)
+      | Title(string)
+      | Subheading(string)
+      | Body2(string)
+      | Body1(string)
+      | Caption(string)
+      | Button(string)
+      | AlignLeft(string)
+      | AlignCenter(string)
+      | AlignRight(string)
+      | AlignJustify(string)
+      | NoWrap(string)
+      | GutterBottom(string)
+      | Paragraph(string)
+      | ColorInherit(string)
+      | ColorPrimary(string)
+      | ColorSecondary(string)
+      | ColorAccent(string)
+      | ColorError(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | Select(_) => "select"
-      | SelectMenu(_) => "selectMenu"
-      | Disabled(_) => "disabled"
-      | Icon(_) => "icon";
+      | Display4(_) => "display4"
+      | Display3(_) => "display3"
+      | Display2(_) => "display2"
+      | Display1(_) => "display1"
+      | Headline(_) => "headline"
+      | Title(_) => "title"
+      | Subheading(_) => "subheading"
+      | Body2(_) => "body2"
+      | Body1(_) => "body1"
+      | Caption(_) => "caption"
+      | Button(_) => "button"
+      | AlignLeft(_) => "alignLeft"
+      | AlignCenter(_) => "alignCenter"
+      | AlignRight(_) => "alignRight"
+      | AlignJustify(_) => "alignJustify"
+      | NoWrap(_) => "noWrap"
+      | GutterBottom(_) => "gutterBottom"
+      | Paragraph(_) => "paragraph"
+      | ColorInherit(_) => "colorInherit"
+      | ColorPrimary(_) => "colorPrimary"
+      | ColorSecondary(_) => "colorSecondary"
+      | ColorAccent(_) => "colorAccent"
+      | ColorError(_) => "colorError";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -519,130 +607,124 @@ module Select = {
              (obj, classType) => {
                switch classType {
                | Root(className)
-               | Select(className)
-               | SelectMenu(className)
-               | Disabled(className)
-               | Icon(className) => Js.Dict.set(obj, to_string(classType), className)
+               | Display4(className)
+               | Display3(className)
+               | Display2(className)
+               | Display1(className)
+               | Headline(className)
+               | Title(className)
+               | Subheading(className)
+               | Body2(className)
+               | Body1(className)
+               | Caption(className)
+               | Button(className)
+               | AlignLeft(className)
+               | AlignCenter(className)
+               | AlignRight(className)
+               | AlignJustify(className)
+               | NoWrap(className)
+               | GutterBottom(className)
+               | Paragraph(className)
+               | ColorInherit(className)
+               | ColorPrimary(className)
+               | ColorSecondary(className)
+               | ColorAccent(className)
+               | ColorError(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/Select/Select"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/Typography/Typography"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
-        ~value: option([ | `Object('a) | `String(string) | `Float(float)])=?,
-        ~renderValue: option('b)=?,
-        ~mMenuProps: option(Js.t({..}))=?,
-        ~multiple: bool,
-        ~native: bool,
-        ~input: ReasonReact.reactElement,
-        ~displayEmpty: bool,
-        ~autoWidth: bool,
+        ~type_: option(Type.t)=?,
+        ~paragraph: option(bool)=?,
+        ~noWrap: option(bool)=?,
+        ~headlineMapping: option({. "unionProp": string})=?,
+        ~gutterBottom: option(bool)=?,
+        ~color: option(Color.t)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~align: option(Align.t)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
-        ~autoComplete: option(string)=?,
-        ~autoFocus: option(bool)=?,
-        ~className: option(string)=?,
-        ~defaultValue: option([ | `String(string) | `Float(float)])=?,
-        ~disabled: option(bool)=?,
-        ~disableUnderline: option(bool)=?,
-        ~endAdornment: option(ReasonReact.reactElement)=?,
-        ~error: option(bool)=?,
-        ~fullWidth: option(bool)=?,
-        ~id: option(string)=?,
-        ~inputComponent: option([ | `String(string) | `Object(Js.t({..}))])=?,
-        ~inputProps: option(Js.t({..}))=?,
-        ~inputRef: option('c)=?,
-        ~margin: option(Margin.t)=?,
-        ~multiline: option(bool)=?,
-        ~name: option(string)=?,
-        ~readOnly: option(bool)=?,
-        ~onBlur: option((ReactEventRe.Focus.t => unit))=?,
-        ~onChange: option((ReactEventRe.Form.t => unit))=?,
-        ~onClean: option(unit)=?,
-        ~onDirty: option(unit)=?,
-        ~onFocus: option((ReactEventRe.Focus.t => unit))=?,
-        ~onKeyDown: option((ReactEventRe.Keyboard.t => unit))=?,
-        ~onKeyUp: option((ReactEventRe.Keyboard.t => unit))=?,
-        ~placeholder: option(string)=?,
-        ~rows: option([ | `String(string) | `Float(float)])=?,
-        ~rowsMax: option([ | `String(string) | `Float(float)])=?,
-        ~startAdornment: option(ReasonReact.reactElement)=?,
-        ~type_: option(string)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
-        "renderValue": Js.Nullable.from_opt(renderValue),
-        "MenuProps": Js.Nullable.from_opt(mMenuProps),
-        "multiple": Js.Boolean.to_js_boolean(multiple),
-        "native": Js.Boolean.to_js_boolean(native),
-        "input": input,
-        "displayEmpty": Js.Boolean.to_js_boolean(displayEmpty),
-        "autoWidth": Js.Boolean.to_js_boolean(autoWidth),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "autoComplete": Js.Nullable.from_opt(autoComplete),
-        "autoFocus": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, autoFocus)),
+        "type": Js.Nullable.from_opt(optionMap(Type.to_string, type_)),
+        "paragraph": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, paragraph)),
+        "noWrap": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, noWrap)),
+        "headlineMapping": Js.Nullable.from_opt(headlineMapping),
+        "gutterBottom": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, gutterBottom)),
+        "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
+        "component": Js.Nullable.from_opt(component),
         "className": Js.Nullable.from_opt(className),
-        "defaultValue": Js.Nullable.from_opt(optionMap(unwrapValue, defaultValue)),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "disableUnderline":
-          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableUnderline)),
-        "endAdornment": Js.Nullable.from_opt(endAdornment),
-        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
-        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
-        "id": Js.Nullable.from_opt(id),
-        "inputComponent": Js.Nullable.from_opt(optionMap(unwrapValue, inputComponent)),
-        "inputProps": Js.Nullable.from_opt(inputProps),
-        "inputRef": Js.Nullable.from_opt(inputRef),
-        "margin": Js.Nullable.from_opt(optionMap(Margin.to_string, margin)),
-        "multiline": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, multiline)),
-        "name": Js.Nullable.from_opt(name),
-        "readOnly": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, readOnly)),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "onChange": Js.Nullable.from_opt(onChange),
-        "onClean": Js.Nullable.from_opt(onClean),
-        "onDirty": Js.Nullable.from_opt(onDirty),
-        "onFocus": Js.Nullable.from_opt(onFocus),
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
-        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
-        "placeholder": Js.Nullable.from_opt(placeholder),
-        "rows": Js.Nullable.from_opt(optionMap(unwrapValue, rows)),
-        "rowsMax": Js.Nullable.from_opt(optionMap(unwrapValue, rowsMax)),
-        "startAdornment": Js.Nullable.from_opt(startAdornment),
-        "type": Js.Nullable.from_opt(type_)
+        "align": Js.Nullable.from_opt(optionMap(Align.to_string, align)),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
     );
 };
 
-module InputAdornment = {
-  module Position = {
+module Tooltip = {
+  module Placement = {
     type t =
-      | Start
-      | End;
+      | Bottom_end
+      | Bottom_start
+      | Bottom
+      | Left_end
+      | Left_start
+      | Left
+      | Right_end
+      | Right_start
+      | Right
+      | Top_end
+      | Top_start
+      | Top;
     let to_string =
       fun
-      | Start => "start"
-      | End => "end";
+      | Bottom_end => "bottom-end"
+      | Bottom_start => "bottom-start"
+      | Bottom => "bottom"
+      | Left_end => "left-end"
+      | Left_start => "left-start"
+      | Left => "left"
+      | Right_end => "right-end"
+      | Right_start => "right-start"
+      | Right => "right"
+      | Top_end => "top-end"
+      | Top_start => "top-start"
+      | Top => "top";
   };
   module Classes = {
     type classesType =
       | Root(string)
-      | PositionStart(string)
-      | PositionEnd(string);
+      | Popper(string)
+      | PopperClose(string)
+      | Tooltip(string)
+      | TooltipLeft(string)
+      | TooltipRight(string)
+      | TooltipTop(string)
+      | TooltipBottom(string)
+      | TooltipOpen(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | PositionStart(_) => "positionStart"
-      | PositionEnd(_) => "positionEnd";
+      | Popper(_) => "popper"
+      | PopperClose(_) => "popperClose"
+      | Tooltip(_) => "tooltip"
+      | TooltipLeft(_) => "tooltipLeft"
+      | TooltipRight(_) => "tooltipRight"
+      | TooltipTop(_) => "tooltipTop"
+      | TooltipBottom(_) => "tooltipBottom"
+      | TooltipOpen(_) => "tooltipOpen";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -650,21 +732,36 @@ module InputAdornment = {
              (obj, classType) => {
                switch classType {
                | Root(className)
-               | PositionStart(className)
-               | PositionEnd(className) => Js.Dict.set(obj, to_string(classType), className)
+               | Popper(className)
+               | PopperClose(className)
+               | Tooltip(className)
+               | TooltipLeft(className)
+               | TooltipRight(className)
+               | TooltipTop(className)
+               | TooltipBottom(className)
+               | TooltipOpen(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/Input/InputAdornment"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/Tooltip/Tooltip"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
-        ~position: Position.t,
-        ~disableTypography: bool,
-        ~component: Js.t({..}),
+        ~pPopperProps: option(Js.t({..}))=?,
+        ~placement: option(Placement.t)=?,
+        ~leaveDelay: option(float)=?,
+        ~enterDelay: option(float)=?,
+        ~title: ReasonReact.reactElement,
+        ~open_: option(bool)=?,
+        ~onRequestOpen: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
+        ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
+        ~id: option(string)=?,
+        ~disableTriggerTouch: option(bool)=?,
+        ~disableTriggerHover: option(bool)=?,
+        ~disableTriggerFocus: option(bool)=?,
         ~className: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
@@ -673,9 +770,21 @@ module InputAdornment = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "position": Position.to_string(position),
-        "disableTypography": Js.Boolean.to_js_boolean(disableTypography),
-        "component": component,
+        "PopperProps": Js.Nullable.from_opt(pPopperProps),
+        "placement": Js.Nullable.from_opt(optionMap(Placement.to_string, placement)),
+        "leaveDelay": Js.Nullable.from_opt(leaveDelay),
+        "enterDelay": Js.Nullable.from_opt(enterDelay),
+        "title": title,
+        "open": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
+        "onRequestOpen": Js.Nullable.from_opt(onRequestOpen),
+        "onRequestClose": Js.Nullable.from_opt(onRequestClose),
+        "id": Js.Nullable.from_opt(id),
+        "disableTriggerTouch":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTriggerTouch)),
+        "disableTriggerHover":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTriggerHover)),
+        "disableTriggerFocus":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTriggerFocus)),
         "className": Js.Nullable.from_opt(className),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -684,7 +793,301 @@ module InputAdornment = {
     );
 };
 
-module BottomNavigation = {
+module Toolbar = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Gutters(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Gutters(_) => "gutters";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Gutters(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Toolbar/Toolbar"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~disableGutters: option(bool)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "disableGutters": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableGutters)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module TextField = {
+  module Margin = {
+    type t =
+      | None
+      | Dense
+      | Normal;
+    let to_string =
+      fun
+      | None => "none"
+      | Dense => "dense"
+      | Normal => "normal";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | MarginNormal(string)
+      | MarginDense(string)
+      | FullWidth(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | MarginNormal(_) => "marginNormal"
+      | MarginDense(_) => "marginDense"
+      | FullWidth(_) => "fullWidth";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | MarginNormal(className)
+               | MarginDense(className)
+               | FullWidth(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/TextField/TextField"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~margin: option(Margin.t)=?,
+        ~value: option([ | `String(string) | `Float(float)])=?,
+        ~type_: option(string)=?,
+        ~sSelectProps: option(Js.t({..}))=?,
+        ~select: option(bool)=?,
+        ~rowsMax: option([ | `String(string) | `Float(float)])=?,
+        ~rows: option([ | `String(string) | `Float(float)])=?,
+        ~rootRef: option('a)=?,
+        ~required: option(bool)=?,
+        ~placeholder: option(string)=?,
+        ~onChange: option((ReactEventRe.Form.t => unit))=?,
+        ~name: option(string)=?,
+        ~multiline: option(bool)=?,
+        ~labelClassName: option(string)=?,
+        ~label: option(ReasonReact.reactElement)=?,
+        ~inputRef: option('b)=?,
+        ~iInputProps: option(Js.t({..}))=?,
+        ~inputProps: option(Js.t({..}))=?,
+        ~iInputLabelProps: option(Js.t({..}))=?,
+        ~iInputClassName: option(string)=?,
+        ~inputClassName: option(string)=?,
+        ~id: option(string)=?,
+        ~helperTextClassName: option(string)=?,
+        ~helperText: option(ReasonReact.reactElement)=?,
+        ~fullWidth: option(bool)=?,
+        ~fFormHelperTextProps: option(Js.t({..}))=?,
+        ~error: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~defaultValue: option(string)=?,
+        ~className: option(string)=?,
+        ~autoFocus: option(bool)=?,
+        ~autoComplete: option(string)=?,
+        ~classes: option(Classes.t)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~component: option(Js.t({..}))=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "margin": Js.Nullable.from_opt(optionMap(Margin.to_string, margin)),
+        "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
+        "type": Js.Nullable.from_opt(type_),
+        "SelectProps": Js.Nullable.from_opt(sSelectProps),
+        "select": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, select)),
+        "rowsMax": Js.Nullable.from_opt(optionMap(unwrapValue, rowsMax)),
+        "rows": Js.Nullable.from_opt(optionMap(unwrapValue, rows)),
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "required": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, required)),
+        "placeholder": Js.Nullable.from_opt(placeholder),
+        "onChange": Js.Nullable.from_opt(onChange),
+        "name": Js.Nullable.from_opt(name),
+        "multiline": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, multiline)),
+        "labelClassName": Js.Nullable.from_opt(labelClassName),
+        "label": Js.Nullable.from_opt(label),
+        "inputRef": Js.Nullable.from_opt(inputRef),
+        "InputProps": Js.Nullable.from_opt(iInputProps),
+        "inputProps": Js.Nullable.from_opt(inputProps),
+        "InputLabelProps": Js.Nullable.from_opt(iInputLabelProps),
+        "InputClassName": Js.Nullable.from_opt(iInputClassName),
+        "inputClassName": Js.Nullable.from_opt(inputClassName),
+        "id": Js.Nullable.from_opt(id),
+        "helperTextClassName": Js.Nullable.from_opt(helperTextClassName),
+        "helperText": Js.Nullable.from_opt(helperText),
+        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
+        "FormHelperTextProps": Js.Nullable.from_opt(fFormHelperTextProps),
+        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "defaultValue": Js.Nullable.from_opt(defaultValue),
+        "className": Js.Nullable.from_opt(className),
+        "autoFocus": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, autoFocus)),
+        "autoComplete": Js.Nullable.from_opt(autoComplete),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "theme": Js.Nullable.from_opt(theme),
+        "component": Js.Nullable.from_opt(component),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "onFocus": Js.Nullable.from_opt(onFocus)
+      },
+      children
+    );
+};
+
+module Tabs = {
+  module TextColor = {
+    type t =
+      | Accent
+      | Primary
+      | Inherit;
+    let to_string =
+      fun
+      | Accent => "accent"
+      | Primary => "primary"
+      | Inherit => "inherit";
+  };
+  module ScrollButtons = {
+    type t =
+      | Auto
+      | On
+      | Off;
+    let to_string =
+      fun
+      | Auto => "auto"
+      | On => "on"
+      | Off => "off";
+  };
+  module IndicatorColor = {
+    type t =
+      | Accent
+      | Primary;
+    let to_string =
+      fun
+      | Accent => "accent"
+      | Primary => "primary";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | FlexContainer(string)
+      | ScrollingContainer(string)
+      | Fixed(string)
+      | Scrollable(string)
+      | Centered(string)
+      | ButtonAuto(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | FlexContainer(_) => "flexContainer"
+      | ScrollingContainer(_) => "scrollingContainer"
+      | Fixed(_) => "fixed"
+      | Scrollable(_) => "scrollable"
+      | Centered(_) => "centered"
+      | ButtonAuto(_) => "buttonAuto";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | FlexContainer(className)
+               | ScrollingContainer(className)
+               | Fixed(className)
+               | Scrollable(className)
+               | Centered(className)
+               | ButtonAuto(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Tabs/Tabs"] external reactClass : ReasonReact.reactClass = "default";
+  let make =
+      (
+        ~value: 'a,
+        ~textColor: option(TextColor.t)=?,
+        ~tTabScrollButton: option(Js.t({..}))=?,
+        ~scrollButtons: option(ScrollButtons.t)=?,
+        ~scrollable: option(bool)=?,
+        ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t),
+        ~indicatorColor: option([ | `Enum(IndicatorColor.t) | `String(string)])=?,
+        ~indicatorClassName: option(string)=?,
+        ~fullWidth: option(bool)=?,
+        ~className: option(string)=?,
+        ~centered: option(bool)=?,
+        ~buttonClassName: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": value,
+        "textColor": Js.Nullable.from_opt(optionMap(TextColor.to_string, textColor)),
+        "TabScrollButton": Js.Nullable.from_opt(tTabScrollButton),
+        "scrollButtons": Js.Nullable.from_opt(optionMap(ScrollButtons.to_string, scrollButtons)),
+        "scrollable": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, scrollable)),
+        "onChange": onChange,
+        "indicatorColor":
+          Js.Nullable.from_opt(
+            optionMap(
+              fun
+              | `Enum(e) => unwrapValue(`String(IndicatorColor.to_string(e)))
+              | x => unwrapValue(x),
+              indicatorColor
+            )
+          ),
+        "indicatorClassName": Js.Nullable.from_opt(indicatorClassName),
+        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
+        "className": Js.Nullable.from_opt(className),
+        "centered": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centered)),
+        "buttonClassName": Js.Nullable.from_opt(buttonClassName),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Table = {
   module Classes = {
     type classesType =
       | Root(string);
@@ -705,14 +1108,10 @@ module BottomNavigation = {
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/BottomNavigation/BottomNavigation"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
+  [@bs.module "material-ui/Table/Table"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
-        ~value: 'a,
-        ~showLabels: bool,
-        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~component: option(Js.t({..}))=?,
         ~className: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
@@ -721,9 +1120,7 @@ module BottomNavigation = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "value": value,
-        "showLabels": Js.Boolean.to_js_boolean(showLabels),
-        "onChange": Js.Nullable.from_opt(onChange),
+        "component": Js.Nullable.from_opt(component),
         "className": Js.Nullable.from_opt(className),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -732,52 +1129,31 @@ module BottomNavigation = {
     );
 };
 
-module GridListTileBar = {
-  module TitlePosition = {
+module TableSortLabel = {
+  module Direction = {
     type t =
-      | Top
-      | Bottom;
+      | Asc
+      | Desc;
     let to_string =
       fun
-      | Top => "top"
-      | Bottom => "bottom";
-  };
-  module ActionPosition = {
-    type t =
-      | Left
-      | Right;
-    let to_string =
-      fun
-      | Left => "left"
-      | Right => "right";
+      | Asc => "asc"
+      | Desc => "desc";
   };
   module Classes = {
     type classesType =
       | Root(string)
-      | RootBottom(string)
-      | RootTop(string)
-      | RootWithSubtitle(string)
-      | TitleWrap(string)
-      | TitleWrapActionLeft(string)
-      | TitleWrapActionRight(string)
-      | Title(string)
-      | Subtitle(string)
-      | ActionIconPositionLeft(string)
-      | ChildImg(string);
+      | Active(string)
+      | Icon(string)
+      | Desc(string)
+      | Asc(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | RootBottom(_) => "rootBottom"
-      | RootTop(_) => "rootTop"
-      | RootWithSubtitle(_) => "rootWithSubtitle"
-      | TitleWrap(_) => "titleWrap"
-      | TitleWrapActionLeft(_) => "titleWrapActionLeft"
-      | TitleWrapActionRight(_) => "titleWrapActionRight"
-      | Title(_) => "title"
-      | Subtitle(_) => "subtitle"
-      | ActionIconPositionLeft(_) => "actionIconPositionLeft"
-      | ChildImg(_) => "childImg";
+      | Active(_) => "active"
+      | Icon(_) => "icon"
+      | Desc(_) => "desc"
+      | Asc(_) => "asc";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -785,33 +1161,125 @@ module GridListTileBar = {
              (obj, classType) => {
                switch classType {
                | Root(className)
-               | RootBottom(className)
-               | RootTop(className)
-               | RootWithSubtitle(className)
-               | TitleWrap(className)
-               | TitleWrapActionLeft(className)
-               | TitleWrapActionRight(className)
-               | Title(className)
-               | Subtitle(className)
-               | ActionIconPositionLeft(className)
-               | ChildImg(className) => Js.Dict.set(obj, to_string(classType), className)
+               | Active(className)
+               | Icon(className)
+               | Desc(className)
+               | Asc(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/GridList/GridListTileBar"]
-  external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/Table/TableSortLabel"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
-        ~titlePosition: option(TitlePosition.t)=?,
-        ~title: ReasonReact.reactElement,
-        ~subtitle: option(ReasonReact.reactElement)=?,
+        ~direction: option(Direction.t)=?,
         ~className: option(string)=?,
-        ~actionPosition: option(ActionPosition.t)=?,
-        ~actionIcon: option(ReasonReact.reactElement)=?,
+        ~active: option(bool)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~centerRipple: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~disabled: option(bool)=?,
+        ~disableRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~keyboardFocusedClassName: option(string)=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
+        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~rootRef: option('a)=?,
+        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "direction": Js.Nullable.from_opt(optionMap(Direction.to_string, direction)),
+        "className": Js.Nullable.from_opt(className),
+        "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
+        "component": Js.Nullable.from_opt(component),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
+        "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
+        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "onClick": Js.Nullable.from_opt(onClick),
+        "onFocus": Js.Nullable.from_opt(onFocus),
+        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
+        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
+        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
+        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
+        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
+        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
+        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_)
+      },
+      children
+    );
+};
+
+module TableRow = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Head(string)
+      | Footer(string)
+      | Hover(string)
+      | Selected(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Head(_) => "head"
+      | Footer(_) => "footer"
+      | Hover(_) => "hover"
+      | Selected(_) => "selected";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Head(className)
+               | Footer(className)
+               | Hover(className)
+               | Selected(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Table/TableRow"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~selected: option(bool)=?,
+        ~hover: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
         children
@@ -819,12 +1287,276 @@ module GridListTileBar = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "titlePosition": Js.Nullable.from_opt(optionMap(TitlePosition.to_string, titlePosition)),
-        "title": title,
-        "subtitle": Js.Nullable.from_opt(subtitle),
+        "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
+        "hover": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, hover)),
+        "component": Js.Nullable.from_opt(component),
         "className": Js.Nullable.from_opt(className),
-        "actionPosition": Js.Nullable.from_opt(optionMap(ActionPosition.to_string, actionPosition)),
-        "actionIcon": Js.Nullable.from_opt(actionIcon),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module TablePagination = {
+  module Padding = {
+    type t =
+      | Default
+      | Checkbox
+      | Dense
+      | None;
+    let to_string =
+      fun
+      | Default => "default"
+      | Checkbox => "checkbox"
+      | Dense => "dense"
+      | None => "none";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Toolbar(string)
+      | Spacer(string)
+      | Caption(string)
+      | Input(string)
+      | SelectRoot(string)
+      | Select(string)
+      | Actions(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Toolbar(_) => "toolbar"
+      | Spacer(_) => "spacer"
+      | Caption(_) => "caption"
+      | Input(_) => "input"
+      | SelectRoot(_) => "selectRoot"
+      | Select(_) => "select"
+      | Actions(_) => "actions";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Toolbar(className)
+               | Spacer(className)
+               | Caption(className)
+               | Input(className)
+               | SelectRoot(className)
+               | Select(className)
+               | Actions(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Table/TablePagination"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~rowsPerPageOptions: option(array(float))=?,
+        ~rowsPerPage: float,
+        ~page: float,
+        ~onChangeRowsPerPage: ReactEventRe.Form.t => unit,
+        ~onChangePage: (_, int) => unit,
+        ~labelRowsPerPage: option(ReasonReact.reactElement)=?,
+        ~labelDisplayedRows:
+           option(
+             ({. "from": int, "to": int, "count": int, "page": int} => ReasonReact.reactElement)
+           )=?,
+        ~count: float,
+        ~colSpan: option(float)=?,
+        ~component: option(Js.t({..}))=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~className: option(string)=?,
+        ~numeric: option(bool)=?,
+        ~padding: option(Padding.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "rowsPerPageOptions": Js.Nullable.from_opt(rowsPerPageOptions),
+        "rowsPerPage": rowsPerPage,
+        "page": page,
+        "onChangeRowsPerPage": onChangeRowsPerPage,
+        "onChangePage": onChangePage,
+        "labelRowsPerPage": Js.Nullable.from_opt(labelRowsPerPage),
+        "labelDisplayedRows": Js.Nullable.from_opt(labelDisplayedRows),
+        "count": count,
+        "colSpan": Js.Nullable.from_opt(colSpan),
+        "component": Js.Nullable.from_opt(component),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "className": Js.Nullable.from_opt(className),
+        "numeric": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, numeric)),
+        "padding": Js.Nullable.from_opt(optionMap(Padding.to_string, padding))
+      },
+      children
+    );
+};
+
+module TableHead = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Table/TableHead"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module TableFooter = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Table/TableFooter"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module TableCell = {
+  module Padding = {
+    type t =
+      | Default
+      | Checkbox
+      | Dense
+      | None;
+    let to_string =
+      fun
+      | Default => "default"
+      | Checkbox => "checkbox"
+      | Dense => "dense"
+      | None => "none";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Numeric(string)
+      | Head(string)
+      | PaddingDefault(string)
+      | PaddingDense(string)
+      | PaddingCheckbox(string)
+      | Footer(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Numeric(_) => "numeric"
+      | Head(_) => "head"
+      | PaddingDefault(_) => "paddingDefault"
+      | PaddingDense(_) => "paddingDense"
+      | PaddingCheckbox(_) => "paddingCheckbox"
+      | Footer(_) => "footer";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Numeric(className)
+               | Head(className)
+               | PaddingDefault(className)
+               | PaddingDense(className)
+               | PaddingCheckbox(className)
+               | Footer(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Table/TableCell"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~padding: option(Padding.t)=?,
+        ~numeric: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "padding": Js.Nullable.from_opt(optionMap(Padding.to_string, padding)),
+        "numeric": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, numeric)),
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -857,7 +1589,7 @@ module TableBody = {
     "default";
   let make =
       (
-        ~component: Js.t({..}),
+        ~component: option(Js.t({..}))=?,
         ~className: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
@@ -866,7 +1598,7 @@ module TableBody = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "component": component,
+        "component": Js.Nullable.from_opt(component),
         "className": Js.Nullable.from_opt(className),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -875,203 +1607,55 @@ module TableBody = {
     );
 };
 
-module Fade = {
-  [@bs.module "material-ui/transitions/Fade"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~timeout: Js.t({..}),
-        ~style: option(Js.t({..}))=?,
-        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~in_: bool,
-        ~appear: bool,
-        ~theme: Js.t({..}),
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "timeout": timeout,
-        "style": Js.Nullable.from_opt(style),
-        "onExit": Js.Nullable.from_opt(onExit),
-        "onEntering": Js.Nullable.from_opt(onEntering),
-        "onEnter": Js.Nullable.from_opt(onEnter),
-        "in": Js.Boolean.to_js_boolean(in_),
-        "appear": Js.Boolean.to_js_boolean(appear),
-        "theme": theme
-      },
-      children
-    );
-};
-
-module CardMedia = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | RootMedia(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | RootMedia(_) => "rootMedia";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | RootMedia(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Card/CardMedia"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~component: Js.t({..}),
-        ~style: option(Js.t({..}))=?,
-        ~src: option(string)=?,
-        ~image: option(string)=?,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "component": component,
-        "style": Js.Nullable.from_opt(style),
-        "src": Js.Nullable.from_opt(src),
-        "image": Js.Nullable.from_opt(image),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module ExpansionPanelActions = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Action(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Action(_) => "action";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Action(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/ExpansionPanel/ExpansionPanelActions"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module ListItemAvatar = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Icon(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Icon(_) => "icon";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Icon(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/List/ListItemAvatar"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Badge = {
-  module Color = {
+module Tab = {
+  module TextColor = {
     type t =
-      | Default
+      | Accent
       | Primary
-      | Accent;
+      | Inherit;
     let to_string =
       fun
-      | Default => "default"
+      | Accent => "accent"
       | Primary => "primary"
-      | Accent => "accent";
+      | Inherit => "inherit";
   };
   module Classes = {
     type classesType =
       | Root(string)
-      | Badge(string)
-      | ColorPrimary(string)
-      | ColorAccent(string);
+      | RootLabelIcon(string)
+      | RootAccent(string)
+      | RootAccentSelected(string)
+      | RootAccentDisabled(string)
+      | RootPrimary(string)
+      | RootPrimarySelected(string)
+      | RootPrimaryDisabled(string)
+      | RootInherit(string)
+      | RootInheritSelected(string)
+      | RootInheritDisabled(string)
+      | FullWidth(string)
+      | Wrapper(string)
+      | LabelContainer(string)
+      | Label(string)
+      | LabelWrapped(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | Badge(_) => "badge"
-      | ColorPrimary(_) => "colorPrimary"
-      | ColorAccent(_) => "colorAccent";
+      | RootLabelIcon(_) => "rootLabelIcon"
+      | RootAccent(_) => "rootAccent"
+      | RootAccentSelected(_) => "rootAccentSelected"
+      | RootAccentDisabled(_) => "rootAccentDisabled"
+      | RootPrimary(_) => "rootPrimary"
+      | RootPrimarySelected(_) => "rootPrimarySelected"
+      | RootPrimaryDisabled(_) => "rootPrimaryDisabled"
+      | RootInherit(_) => "rootInherit"
+      | RootInheritSelected(_) => "rootInheritSelected"
+      | RootInheritDisabled(_) => "rootInheritDisabled"
+      | FullWidth(_) => "fullWidth"
+      | Wrapper(_) => "wrapper"
+      | LabelContainer(_) => "labelContainer"
+      | Label(_) => "label"
+      | LabelWrapped(_) => "labelWrapped";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -1079,47 +1663,133 @@ module Badge = {
              (obj, classType) => {
                switch classType {
                | Root(className)
-               | Badge(className)
-               | ColorPrimary(className)
-               | ColorAccent(className) => Js.Dict.set(obj, to_string(classType), className)
+               | RootLabelIcon(className)
+               | RootAccent(className)
+               | RootAccentSelected(className)
+               | RootAccentDisabled(className)
+               | RootPrimary(className)
+               | RootPrimarySelected(className)
+               | RootPrimaryDisabled(className)
+               | RootInherit(className)
+               | RootInheritSelected(className)
+               | RootInheritDisabled(className)
+               | FullWidth(className)
+               | Wrapper(className)
+               | LabelContainer(className)
+               | Label(className)
+               | LabelWrapped(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/Badge/Badge"] external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "material-ui/Tabs/Tab"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
-        ~color: Color.t,
+        ~value: option('a)=?,
+        ~textColor: option([ | `Enum(TextColor.t) | `String(string)])=?,
+        ~style: option(Js.t({..}))=?,
+        ~selected: option(bool)=?,
+        ~onClick: option((ReactEventRe.Synthetic.t => unit))=?,
+        ~onChange: option(((ReactEventRe.Synthetic.t, _) => unit))=?,
+        ~label: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
+        ~indicator: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
+        ~icon: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
+        ~fullWidth: option(bool)=?,
+        ~disabled: option(bool)=?,
         ~className: option(string)=?,
-        ~badgeContent: ReasonReact.reactElement,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
+        ~centerRipple: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~disableRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~keyboardFocusedClassName: option(string)=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
+        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~rootRef: option('b)=?,
+        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "color": Color.to_string(color),
+        "value": Js.Nullable.from_opt(value),
+        "textColor":
+          Js.Nullable.from_opt(
+            optionMap(
+              fun
+              | `Enum(e) => unwrapValue(`String(TextColor.to_string(e)))
+              | x => unwrapValue(x),
+              textColor
+            )
+          ),
+        "style": Js.Nullable.from_opt(style),
+        "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
+        "onClick": Js.Nullable.from_opt(onClick),
+        "onChange": Js.Nullable.from_opt(onChange),
+        "label": Js.Nullable.from_opt(optionMap(unwrapValue, label)),
+        "indicator": Js.Nullable.from_opt(optionMap(unwrapValue, indicator)),
+        "icon": Js.Nullable.from_opt(optionMap(unwrapValue, icon)),
+        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "className": Js.Nullable.from_opt(className),
-        "badgeContent": badgeContent,
         "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
+        "component": Js.Nullable.from_opt(component),
+        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
+        "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
+        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "onFocus": Js.Nullable.from_opt(onFocus),
+        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
+        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
+        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
+        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
+        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
+        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
+        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_)
       },
       children
     );
 };
 
-module ButtonBase = {
+module Switch = {
   module Classes = {
     type classesType =
       | Root(string)
+      | Bar(string)
+      | Icon(string)
+      | Default(string)
+      | Checked(string)
       | Disabled(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
+      | Bar(_) => "bar"
+      | Icon(_) => "icon"
+      | Default(_) => "default"
+      | Checked(_) => "checked"
       | Disabled(_) => "disabled";
     let to_obj = (listOfClasses) =>
       listOfClasses
@@ -1128,6 +1798,10 @@ module ButtonBase = {
              (obj, classType) => {
                switch classType {
                | Root(className)
+               | Bar(className)
+               | Icon(className)
+               | Default(className)
+               | Checked(className)
                | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
@@ -1135,33 +1809,76 @@ module ButtonBase = {
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/ButtonBase/ButtonBase"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/Switch/Switch"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
-        ~type_: string,
-        ~tabIndex: [ | `Float(float) | `String(string)],
-        ~rootRef: option('a)=?,
-        ~role: option(string)=?,
-        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
-        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~keyboardFocusedClassName: option(string)=?,
-        ~focusRipple: bool,
-        ~disableRipple: bool,
+        ~value: option(string)=?,
+        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
+        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~name: option(string)=?,
+        ~inputRef: option('a)=?,
+        ~inputProps: option(Js.t({..}))=?,
+        ~icon: option(ReasonReact.reactElement)=?,
+        ~disableRipple: option(bool)=?,
         ~disabled: option(bool)=?,
-        ~component: option(Js.t({..}))=?,
+        ~defaultChecked: option(bool)=?,
         ~className: option(string)=?,
-        ~centerRipple: bool,
+        ~checkedIcon: option(ReasonReact.reactElement)=?,
+        ~checked: option([ | `Bool(bool) | `String(string)])=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": Js.Nullable.from_opt(value),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "onChange": Js.Nullable.from_opt(onChange),
+        "name": Js.Nullable.from_opt(name),
+        "inputRef": Js.Nullable.from_opt(inputRef),
+        "inputProps": Js.Nullable.from_opt(inputProps),
+        "icon": Js.Nullable.from_opt(icon),
+        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "defaultChecked": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, defaultChecked)),
+        "className": Js.Nullable.from_opt(className),
+        "checkedIcon": Js.Nullable.from_opt(checkedIcon),
+        "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module SvgIcon = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/SvgIcon/SvgIcon"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~viewBox: option(string)=?,
+        ~titleAccess: option(string)=?,
+        ~className: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
         children
@@ -1169,31 +1886,148 @@ module ButtonBase = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "type": type_,
-        "tabIndex": unwrapValue(tabIndex),
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "role": Js.Nullable.from_opt(role),
-        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
-        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
-        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
-        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
-        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
-        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
-        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
-        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
-        "onFocus": Js.Nullable.from_opt(onFocus),
-        "onClick": Js.Nullable.from_opt(onClick),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
-        "focusRipple": Js.Boolean.to_js_boolean(focusRipple),
-        "disableRipple": Js.Boolean.to_js_boolean(disableRipple),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "component": Js.Nullable.from_opt(component),
+        "viewBox": Js.Nullable.from_opt(viewBox),
+        "titleAccess": Js.Nullable.from_opt(titleAccess),
         "className": Js.Nullable.from_opt(className),
-        "centerRipple": Js.Boolean.to_js_boolean(centerRipple),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Stepper = {
+  module Orientation = {
+    type t =
+      | Horizontal
+      | Vertical;
+    let to_string =
+      fun
+      | Horizontal => "horizontal"
+      | Vertical => "vertical";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Horizontal(string)
+      | Vertical(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Horizontal(_) => "horizontal"
+      | Vertical(_) => "vertical";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Horizontal(className)
+               | Vertical(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Stepper/Stepper"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~className: option(string)=?,
+        ~orientation: option(Orientation.t)=?,
+        ~nonLinear: option(bool)=?,
+        ~connector:
+           option([ | `Element(ReasonReact.reactElement) | `Element(ReasonReact.reactElement)])=?,
+        ~classes: option(Classes.t)=?,
+        ~alternativeLabel: option(bool)=?,
+        ~activeStep: option(float)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~component: option(Js.t({..}))=?,
+        ~elevation: option(float)=?,
+        ~square: option(bool)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "orientation": Js.Nullable.from_opt(optionMap(Orientation.to_string, orientation)),
+        "nonLinear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, nonLinear)),
+        "connector": Js.Nullable.from_opt(optionMap(unwrapValue, connector)),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "alternativeLabel":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
+        "activeStep": Js.Nullable.from_opt(activeStep),
+        "theme": Js.Nullable.from_opt(theme),
+        "component": Js.Nullable.from_opt(component),
+        "elevation": Js.Nullable.from_opt(elevation),
+        "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square))
+      },
+      children
+    );
+};
+
+module Step = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Horizontal(string)
+      | AlternativeLabel(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Horizontal(_) => "horizontal"
+      | AlternativeLabel(_) => "alternativeLabel";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Horizontal(className)
+               | AlternativeLabel(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Stepper/Step"] external reactClass : ReasonReact.reactClass = "default";
+  let make =
+      (
+        ~orientation: option(Js.t({..}))=?,
+        ~last: option(bool)=?,
+        ~index: option(float)=?,
+        ~connector: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
+        ~alternativeLabel: option(bool)=?,
+        ~optional: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~classes: option(Classes.t)=?,
+        ~completed: option(bool)=?,
+        ~active: option(bool)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "orientation": Js.Nullable.from_opt(orientation),
+        "last": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, last)),
+        "index": Js.Nullable.from_opt(index),
+        "connector": Js.Nullable.from_opt(connector),
+        "className": Js.Nullable.from_opt(className),
+        "alternativeLabel":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
+        "optional": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, optional)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "completed": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, completed)),
+        "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active))
       },
       children
     );
@@ -1282,113 +2116,18 @@ module StepLabel = {
     );
 };
 
-module Grow = {
-  module Timeout = {
-    type t =
-      | Auto;
-    let to_string =
-      fun
-      | Auto => "auto";
-  };
-  [@bs.module "material-ui/transitions/Grow"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~timeout: [ | `Enum(Timeout.t) | `Float(float) | `Object({. "enter": int, "exit": int})],
-        ~transitionClasses: [
-           | `String(string)
-           | `Object(
-               {
-                 .
-                 "appear": string,
-                 "appearActive": string,
-                 "enter": string,
-                 "enterActive": string,
-                 "exit": string,
-                 "exitActive": string
-               }
-             )
-         ],
-        ~style: option(Js.t({..}))=?,
-        ~rootRef: option('a)=?,
-        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~in_: bool,
-        ~appear: bool,
-        ~theme: Js.t({..}),
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "timeout":
-          (
-            fun
-            | `Enum(e) => unwrapValue(`String(Timeout.to_string(e)))
-            | x => unwrapValue(x)
-          )(
-            timeout
-          ),
-        "transitionClasses": unwrapValue(transitionClasses),
-        "style": Js.Nullable.from_opt(style),
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "onExited": Js.Nullable.from_opt(onExited),
-        "onExiting": Js.Nullable.from_opt(onExiting),
-        "onExit": Js.Nullable.from_opt(onExit),
-        "onEntered": Js.Nullable.from_opt(onEntered),
-        "onEntering": Js.Nullable.from_opt(onEntering),
-        "onEnter": Js.Nullable.from_opt(onEnter),
-        "in": Js.Boolean.to_js_boolean(in_),
-        "appear": Js.Boolean.to_js_boolean(appear),
-        "theme": theme
-      },
-      children
-    );
-};
-
-module IconButton = {
-  module Color = {
-    type t =
-      | Default
-      | Inherit
-      | Primary
-      | Contrast
-      | Accent;
-    let to_string =
-      fun
-      | Default => "default"
-      | Inherit => "inherit"
-      | Primary => "primary"
-      | Contrast => "contrast"
-      | Accent => "accent";
-  };
+module StepContent = {
   module Classes = {
     type classesType =
       | Root(string)
-      | ColorAccent(string)
-      | ColorContrast(string)
-      | ColorPrimary(string)
-      | ColorInherit(string)
-      | Disabled(string)
-      | Label(string)
-      | Icon(string)
-      | KeyboardFocused(string);
+      | Last(string)
+      | Transition(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | ColorAccent(_) => "colorAccent"
-      | ColorContrast(_) => "colorContrast"
-      | ColorPrimary(_) => "colorPrimary"
-      | ColorInherit(_) => "colorInherit"
-      | Disabled(_) => "disabled"
-      | Label(_) => "label"
-      | Icon(_) => "icon"
-      | KeyboardFocused(_) => "keyboardFocused";
+      | Last(_) => "last"
+      | Transition(_) => "transition";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -1396,35 +2135,92 @@ module IconButton = {
              (obj, classType) => {
                switch classType {
                | Root(className)
-               | ColorAccent(className)
-               | ColorContrast(className)
-               | ColorPrimary(className)
-               | ColorInherit(className)
-               | Disabled(className)
-               | Label(className)
-               | Icon(className)
-               | KeyboardFocused(className) => Js.Dict.set(obj, to_string(classType), className)
+               | Last(className)
+               | Transition(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/IconButton/IconButton"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/Stepper/StepContent"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
-        ~rootRef: option('a)=?,
-        ~disableRipple: bool,
-        ~disabled: bool,
-        ~color: Color.t,
+        ~orientation: option(Js.t({..}))=?,
+        ~optional: option(bool)=?,
+        ~last: option(bool)=?,
+        ~completed: option(bool)=?,
         ~className: option(string)=?,
-        ~buttonRef: option('b)=?,
-        ~theme: option(Js.t({..}))=?,
+        ~alternativeLabel: option(bool)=?,
+        ~active: option(bool)=?,
+        ~transitionDuration: option(Js.t({..}))=?,
+        ~transition: option('a)=?,
         ~classes: option(Classes.t)=?,
-        ~centerRipple: bool,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "orientation": Js.Nullable.from_opt(orientation),
+        "optional": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, optional)),
+        "last": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, last)),
+        "completed": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, completed)),
+        "className": Js.Nullable.from_opt(className),
+        "alternativeLabel":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
+        "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
+        "transitionDuration": Js.Nullable.from_opt(transitionDuration),
+        "transition": Js.Nullable.from_opt(transition),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module StepButton = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | AlternativeLabel(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | AlternativeLabel(_) => "alternativeLabel";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | AlternativeLabel(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Stepper/StepButton"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~orientation: Js.t({..}),
+        ~optional: option(bool)=?,
+        ~last: option(bool)=?,
+        ~icon: option([ | `Element(ReasonReact.reactElement) | `String(string) | `Float(float)])=?,
+        ~disabled: option(bool)=?,
+        ~completed: option(bool)=?,
+        ~className: option(string)=?,
+        ~alternativeLabel: option(bool)=?,
+        ~active: option(bool)=?,
+        ~classes: option(Classes.t)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~centerRipple: option(bool)=?,
         ~component: option(Js.t({..}))=?,
-        ~focusRipple: bool,
+        ~disableRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
         ~keyboardFocusedClassName: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
@@ -1439,24 +2235,30 @@ module IconButton = {
         ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~role: option(string)=?,
-        ~tabIndex: [ | `Float(float) | `String(string)],
-        ~type_: string,
+        ~rootRef: option('a)=?,
+        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "disableRipple": Js.Boolean.to_js_boolean(disableRipple),
-        "disabled": Js.Boolean.to_js_boolean(disabled),
-        "color": Color.to_string(color),
+        "orientation": orientation,
+        "optional": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, optional)),
+        "last": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, last)),
+        "icon": Js.Nullable.from_opt(optionMap(unwrapValue, icon)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "completed": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, completed)),
         "className": Js.Nullable.from_opt(className),
-        "buttonRef": Js.Nullable.from_opt(buttonRef),
-        "theme": Js.Nullable.from_opt(theme),
+        "alternativeLabel":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
+        "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "centerRipple": Js.Boolean.to_js_boolean(centerRipple),
+        "theme": Js.Nullable.from_opt(theme),
+        "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
         "component": Js.Nullable.from_opt(component),
-        "focusRipple": Js.Boolean.to_js_boolean(focusRipple),
+        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
+        "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
         "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
         "onBlur": Js.Nullable.from_opt(onBlur),
         "onClick": Js.Nullable.from_opt(onClick),
@@ -1471,169 +2273,34 @@ module IconButton = {
         "onTouchMove": Js.Nullable.from_opt(onTouchMove),
         "onTouchStart": Js.Nullable.from_opt(onTouchStart),
         "role": Js.Nullable.from_opt(role),
-        "tabIndex": unwrapValue(tabIndex),
-        "type": type_
-      },
-      children
-    );
-};
-
-module TextField = {
-  module Margin = {
-    type t =
-      | None
-      | Dense
-      | Normal;
-    let to_string =
-      fun
-      | None => "none"
-      | Dense => "dense"
-      | Normal => "normal";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | MarginNormal(string)
-      | MarginDense(string)
-      | FullWidth(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | MarginNormal(_) => "marginNormal"
-      | MarginDense(_) => "marginDense"
-      | FullWidth(_) => "fullWidth";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | MarginNormal(className)
-               | MarginDense(className)
-               | FullWidth(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/TextField/TextField"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~margin: option(Margin.t)=?,
-        ~value: option([ | `String(string) | `Float(float)])=?,
-        ~type_: option(string)=?,
-        ~sSelectProps: option(Js.t({..}))=?,
-        ~select: option(bool)=?,
-        ~rowsMax: option([ | `String(string) | `Float(float)])=?,
-        ~rows: option([ | `String(string) | `Float(float)])=?,
-        ~rootRef: option('a)=?,
-        ~required: option(bool)=?,
-        ~placeholder: option(string)=?,
-        ~onChange: option((ReactEventRe.Form.t => unit))=?,
-        ~name: option(string)=?,
-        ~multiline: option(bool)=?,
-        ~labelClassName: option(string)=?,
-        ~label: option(ReasonReact.reactElement)=?,
-        ~inputRef: option('b)=?,
-        ~iInputProps: option(Js.t({..}))=?,
-        ~inputProps: option(Js.t({..}))=?,
-        ~iInputLabelProps: option(Js.t({..}))=?,
-        ~iInputClassName: option(string)=?,
-        ~inputClassName: option(string)=?,
-        ~id: option(string)=?,
-        ~helperTextClassName: option(string)=?,
-        ~helperText: option(ReasonReact.reactElement)=?,
-        ~fullWidth: option(bool)=?,
-        ~fFormHelperTextProps: option(Js.t({..}))=?,
-        ~error: option(bool)=?,
-        ~disabled: option(bool)=?,
-        ~defaultValue: option(string)=?,
-        ~className: option(string)=?,
-        ~autoFocus: option(bool)=?,
-        ~autoComplete: option(string)=?,
-        ~classes: option(Classes.t)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~component: Js.t({..}),
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "margin": Js.Nullable.from_opt(optionMap(Margin.to_string, margin)),
-        "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
-        "type": Js.Nullable.from_opt(type_),
-        "SelectProps": Js.Nullable.from_opt(sSelectProps),
-        "select": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, select)),
-        "rowsMax": Js.Nullable.from_opt(optionMap(unwrapValue, rowsMax)),
-        "rows": Js.Nullable.from_opt(optionMap(unwrapValue, rows)),
         "rootRef": Js.Nullable.from_opt(rootRef),
-        "required": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, required)),
-        "placeholder": Js.Nullable.from_opt(placeholder),
-        "onChange": Js.Nullable.from_opt(onChange),
-        "name": Js.Nullable.from_opt(name),
-        "multiline": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, multiline)),
-        "labelClassName": Js.Nullable.from_opt(labelClassName),
-        "label": Js.Nullable.from_opt(label),
-        "inputRef": Js.Nullable.from_opt(inputRef),
-        "InputProps": Js.Nullable.from_opt(iInputProps),
-        "inputProps": Js.Nullable.from_opt(inputProps),
-        "InputLabelProps": Js.Nullable.from_opt(iInputLabelProps),
-        "InputClassName": Js.Nullable.from_opt(iInputClassName),
-        "inputClassName": Js.Nullable.from_opt(inputClassName),
-        "id": Js.Nullable.from_opt(id),
-        "helperTextClassName": Js.Nullable.from_opt(helperTextClassName),
-        "helperText": Js.Nullable.from_opt(helperText),
-        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
-        "FormHelperTextProps": Js.Nullable.from_opt(fFormHelperTextProps),
-        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "defaultValue": Js.Nullable.from_opt(defaultValue),
-        "className": Js.Nullable.from_opt(className),
-        "autoFocus": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, autoFocus)),
-        "autoComplete": Js.Nullable.from_opt(autoComplete),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "theme": Js.Nullable.from_opt(theme),
-        "component": component,
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "onFocus": Js.Nullable.from_opt(onFocus)
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_)
       },
       children
     );
 };
 
-module ListSubheader = {
-  module Color = {
-    type t =
-      | Default
-      | Primary
-      | Inherit;
-    let to_string =
-      fun
-      | Default => "default"
-      | Primary => "primary"
-      | Inherit => "inherit";
-  };
+module Snackbar = {
   module Classes = {
     type classesType =
       | Root(string)
-      | ColorPrimary(string)
-      | ColorInherit(string)
-      | Inset(string)
-      | Sticky(string);
+      | AnchorTopCenter(string)
+      | AnchorBottomCenter(string)
+      | AnchorTopRight(string)
+      | AnchorBottomRight(string)
+      | AnchorTopLeft(string)
+      | AnchorBottomLeft(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | ColorPrimary(_) => "colorPrimary"
-      | ColorInherit(_) => "colorInherit"
-      | Inset(_) => "inset"
-      | Sticky(_) => "sticky";
+      | AnchorTopCenter(_) => "anchorTopCenter"
+      | AnchorBottomCenter(_) => "anchorBottomCenter"
+      | AnchorTopRight(_) => "anchorTopRight"
+      | AnchorBottomRight(_) => "anchorBottomRight"
+      | AnchorTopLeft(_) => "anchorTopLeft"
+      | AnchorBottomLeft(_) => "anchorBottomLeft";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -1641,640 +2308,312 @@ module ListSubheader = {
              (obj, classType) => {
                switch classType {
                | Root(className)
-               | ColorPrimary(className)
-               | ColorInherit(className)
-               | Inset(className)
-               | Sticky(className) => Js.Dict.set(obj, to_string(classType), className)
+               | AnchorTopCenter(className)
+               | AnchorBottomCenter(className)
+               | AnchorTopRight(className)
+               | AnchorBottomRight(className)
+               | AnchorTopLeft(className)
+               | AnchorBottomLeft(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/List/ListSubheader"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/Snackbar/Snackbar"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
-        ~inset: option(bool)=?,
-        ~disableSticky: option(bool)=?,
-        ~color: option(Color.t)=?,
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "inset": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, inset)),
-        "disableSticky": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableSticky)),
-        "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module DialogTitle = {
-  module Classes = {
-    type classesType =
-      | Root(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Dialog/DialogTitle"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~disableTypography: bool,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "disableTypography": Js.Boolean.to_js_boolean(disableTypography),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module DialogContent = {
-  module Classes = {
-    type classesType =
-      | Root(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Dialog/DialogContent"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Popover = {
-  module TransitionDuration = {
-    type t =
-      | Auto;
-    let to_string =
-      fun
-      | Auto => "auto";
-  };
-  module AnchorReference = {
-    type t =
-      | AnchorEl
-      | AnchorPosition;
-    let to_string =
-      fun
-      | AnchorEl => "anchorEl"
-      | AnchorPosition => "anchorPosition";
-  };
-  module Classes = {
-    type classesType =
-      | Paper(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Paper(_) => "paper";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Paper(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Popover/Popover"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~transitionDuration:
-           option(
-             [
-               | `Enum(TransitionDuration.t)
-               | `Float(float)
-               | `Object({. "enter": int, "exit": int})
-             ]
-           )=?,
-        ~transitionClasses:
-           option(
-             [
-               | `String(string)
-               | `Object(
-                   {
-                     .
-                     "appear": string,
-                     "appearActive": string,
-                     "enter": string,
-                     "enterActive": string,
-                     "exit": string,
-                     "exitActive": string
-                   }
-                 )
-             ]
-           )=?,
-        ~transformOrigin: {. "horizontal": _, "vertical": _},
-        ~role: option(string)=?,
-        ~pPaperProps: option(Js.t({..}))=?,
+        ~transitionDuration: option(Js.t({..}))=?,
+        ~transition: option(Js.t({..}))=?,
+        ~sSnackbarContentProps: option(Js.t({..}))=?,
         ~open_: bool,
-        ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
+        ~onRequestClose: option(((ReactEventRe.Synthetic.t, string) => unit))=?,
+        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseEnter: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
         ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
         ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
         ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
         ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
         ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~marginThreshold: float,
-        ~getContentAnchorEl: option('a)=?,
-        ~elevation: option(float)=?,
-        ~anchorOrigin: {. "horizontal": _, "vertical": _},
-        ~anchorReference: option(AnchorReference.t)=?,
-        ~anchorPosition: option({. "top": int, "left": int})=?,
-        ~anchorEl: option(Js.t({..}))=?,
+        ~message: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
+        ~resumeHideDuration: option(float)=?,
+        ~autoHideDuration: option(float)=?,
+        ~anchorOrigin: option({. "horizontal": _, "vertical": _})=?,
+        ~action: option(ReasonReact.reactElement)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
-        ~bBackdropClassName: option(string)=?,
-        ~bBackdropComponent: Js.t({..}),
-        ~bBackdropInvisible: bool,
-        ~bBackdropTransitionDuration: Js.t({..}),
-        ~className: option(string)=?,
-        ~keepMounted: bool,
-        ~disableBackdrop: bool,
-        ~ignoreBackdropClick: bool,
-        ~ignoreEscapeKeyUp: bool,
-        ~modalManager: Js.t({..}),
-        ~onBackdropClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onEscapeKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~show: bool,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "transitionDuration":
-          Js.Nullable.from_opt(
-            optionMap(
-              fun
-              | `Enum(e) => unwrapValue(`String(TransitionDuration.to_string(e)))
-              | x => unwrapValue(x),
-              transitionDuration
-            )
-          ),
-        "transitionClasses": Js.Nullable.from_opt(optionMap(unwrapValue, transitionClasses)),
-        "transformOrigin": transformOrigin,
-        "role": Js.Nullable.from_opt(role),
-        "PaperProps": Js.Nullable.from_opt(pPaperProps),
+        "transitionDuration": Js.Nullable.from_opt(transitionDuration),
+        "transition": Js.Nullable.from_opt(transition),
+        "SnackbarContentProps": Js.Nullable.from_opt(sSnackbarContentProps),
         "open": Js.Boolean.to_js_boolean(open_),
         "onRequestClose": Js.Nullable.from_opt(onRequestClose),
+        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
+        "onMouseEnter": Js.Nullable.from_opt(onMouseEnter),
         "onExited": Js.Nullable.from_opt(onExited),
         "onExiting": Js.Nullable.from_opt(onExiting),
         "onExit": Js.Nullable.from_opt(onExit),
         "onEntered": Js.Nullable.from_opt(onEntered),
         "onEntering": Js.Nullable.from_opt(onEntering),
         "onEnter": Js.Nullable.from_opt(onEnter),
-        "marginThreshold": marginThreshold,
-        "getContentAnchorEl": Js.Nullable.from_opt(getContentAnchorEl),
+        "message": Js.Nullable.from_opt(message),
+        "className": Js.Nullable.from_opt(className),
+        "resumeHideDuration": Js.Nullable.from_opt(resumeHideDuration),
+        "autoHideDuration": Js.Nullable.from_opt(autoHideDuration),
+        "anchorOrigin": Js.Nullable.from_opt(anchorOrigin),
+        "action": Js.Nullable.from_opt(action),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module SnackbarContent = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Message(string)
+      | Action(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Message(_) => "message"
+      | Action(_) => "action";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Message(className)
+               | Action(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Snackbar/SnackbarContent"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~message: ReasonReact.reactElement,
+        ~className: option(string)=?,
+        ~action: option(ReasonReact.reactElement)=?,
+        ~classes: option(Classes.t)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~component: option(Js.t({..}))=?,
+        ~elevation: option(float)=?,
+        ~square: option(bool)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "message": message,
+        "className": Js.Nullable.from_opt(className),
+        "action": Js.Nullable.from_opt(action),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "theme": Js.Nullable.from_opt(theme),
+        "component": Js.Nullable.from_opt(component),
         "elevation": Js.Nullable.from_opt(elevation),
-        "anchorOrigin": anchorOrigin,
-        "anchorReference":
-          Js.Nullable.from_opt(optionMap(AnchorReference.to_string, anchorReference)),
-        "anchorPosition": Js.Nullable.from_opt(anchorPosition),
-        "anchorEl": Js.Nullable.from_opt(anchorEl),
+        "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square))
+      },
+      children
+    );
+};
+
+module Slide = {
+  module Direction = {
+    type t =
+      | Left
+      | Right
+      | Up
+      | Down;
+    let to_string =
+      fun
+      | Left => "left"
+      | Right => "right"
+      | Up => "up"
+      | Down => "down";
+  };
+  [@bs.module "material-ui/transitions/Slide"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~timeout: option(Js.t({..}))=?,
+        ~style: option(Js.t({..}))=?,
+        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~in_: bool,
+        ~direction: Direction.t,
+        ~theme: Js.t({..}),
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "timeout": Js.Nullable.from_opt(timeout),
+        "style": Js.Nullable.from_opt(style),
+        "onExited": Js.Nullable.from_opt(onExited),
+        "onExiting": Js.Nullable.from_opt(onExiting),
+        "onExit": Js.Nullable.from_opt(onExit),
+        "onEntered": Js.Nullable.from_opt(onEntered),
+        "onEntering": Js.Nullable.from_opt(onEntering),
+        "onEnter": Js.Nullable.from_opt(onEnter),
+        "in": Js.Boolean.to_js_boolean(in_),
+        "direction": Direction.to_string(direction),
+        "theme": theme
+      },
+      children
+    );
+};
+
+module Select = {
+  module Margin = {
+    type t =
+      | Dense
+      | None;
+    let to_string =
+      fun
+      | Dense => "dense"
+      | None => "none";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Select(string)
+      | SelectMenu(string)
+      | Disabled(string)
+      | Icon(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Select(_) => "select"
+      | SelectMenu(_) => "selectMenu"
+      | Disabled(_) => "disabled"
+      | Icon(_) => "icon";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Select(className)
+               | SelectMenu(className)
+               | Disabled(className)
+               | Icon(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Select/Select"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~value: option([ | `Object('a) | `String(string) | `Float(float)])=?,
+        ~renderValue: option('b)=?,
+        ~mMenuProps: option(Js.t({..}))=?,
+        ~multiple: option(bool)=?,
+        ~native: option(bool)=?,
+        ~input: option(ReasonReact.reactElement)=?,
+        ~displayEmpty: option(bool)=?,
+        ~autoWidth: option(bool)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~autoComplete: option(string)=?,
+        ~autoFocus: option(bool)=?,
+        ~className: option(string)=?,
+        ~defaultValue: option([ | `String(string) | `Float(float)])=?,
+        ~disabled: option(bool)=?,
+        ~disableUnderline: option(bool)=?,
+        ~endAdornment: option(ReasonReact.reactElement)=?,
+        ~error: option(bool)=?,
+        ~fullWidth: option(bool)=?,
+        ~id: option(string)=?,
+        ~inputComponent: option([ | `String(string) | `Object(Js.t({..}))])=?,
+        ~inputProps: option(Js.t({..}))=?,
+        ~inputRef: option('c)=?,
+        ~margin: option(Margin.t)=?,
+        ~multiline: option(bool)=?,
+        ~name: option(string)=?,
+        ~readOnly: option(bool)=?,
+        ~onBlur: option((ReactEventRe.Focus.t => unit))=?,
+        ~onChange: option((ReactEventRe.Form.t => unit))=?,
+        ~onClean: option(unit)=?,
+        ~onDirty: option(unit)=?,
+        ~onFocus: option((ReactEventRe.Focus.t => unit))=?,
+        ~onKeyDown: option((ReactEventRe.Keyboard.t => unit))=?,
+        ~onKeyUp: option((ReactEventRe.Keyboard.t => unit))=?,
+        ~placeholder: option(string)=?,
+        ~rows: option([ | `String(string) | `Float(float)])=?,
+        ~rowsMax: option([ | `String(string) | `Float(float)])=?,
+        ~startAdornment: option(ReasonReact.reactElement)=?,
+        ~type_: option(string)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
+        "renderValue": Js.Nullable.from_opt(renderValue),
+        "MenuProps": Js.Nullable.from_opt(mMenuProps),
+        "multiple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, multiple)),
+        "native": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, native)),
+        "input": Js.Nullable.from_opt(input),
+        "displayEmpty": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, displayEmpty)),
+        "autoWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, autoWidth)),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "BackdropClassName": Js.Nullable.from_opt(bBackdropClassName),
-        "BackdropComponent": bBackdropComponent,
-        "BackdropInvisible": Js.Boolean.to_js_boolean(bBackdropInvisible),
-        "BackdropTransitionDuration": bBackdropTransitionDuration,
+        "autoComplete": Js.Nullable.from_opt(autoComplete),
+        "autoFocus": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, autoFocus)),
         "className": Js.Nullable.from_opt(className),
-        "keepMounted": Js.Boolean.to_js_boolean(keepMounted),
-        "disableBackdrop": Js.Boolean.to_js_boolean(disableBackdrop),
-        "ignoreBackdropClick": Js.Boolean.to_js_boolean(ignoreBackdropClick),
-        "ignoreEscapeKeyUp": Js.Boolean.to_js_boolean(ignoreEscapeKeyUp),
-        "modalManager": modalManager,
-        "onBackdropClick": Js.Nullable.from_opt(onBackdropClick),
-        "onEscapeKeyUp": Js.Nullable.from_opt(onEscapeKeyUp),
-        "show": Js.Boolean.to_js_boolean(show)
-      },
-      children
-    );
-};
-
-module Avatar = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | ColorDefault(string)
-      | Img(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | ColorDefault(_) => "colorDefault"
-      | Img(_) => "img";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | ColorDefault(className)
-               | Img(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Avatar/Avatar"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~srcSet: option(string)=?,
-        ~src: option(string)=?,
-        ~sizes: option(string)=?,
-        ~imgProps: option(Js.t({..}))=?,
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~childrenClassName: option(string)=?,
-        ~alt: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "srcSet": Js.Nullable.from_opt(srcSet),
-        "src": Js.Nullable.from_opt(src),
-        "sizes": Js.Nullable.from_opt(sizes),
-        "imgProps": Js.Nullable.from_opt(imgProps),
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "childrenClassName": Js.Nullable.from_opt(childrenClassName),
-        "alt": Js.Nullable.from_opt(alt),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Stepper = {
-  module Orientation = {
-    type t =
-      | Horizontal
-      | Vertical;
-    let to_string =
-      fun
-      | Horizontal => "horizontal"
-      | Vertical => "vertical";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Horizontal(string)
-      | Vertical(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Horizontal(_) => "horizontal"
-      | Vertical(_) => "vertical";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Horizontal(className)
-               | Vertical(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Stepper/Stepper"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~className: option(string)=?,
-        ~orientation: option(Orientation.t)=?,
-        ~nonLinear: option(bool)=?,
-        ~connector:
-           option([ | `Element(ReasonReact.reactElement) | `Element(ReasonReact.reactElement)])=?,
-        ~classes: option(Classes.t)=?,
-        ~alternativeLabel: option(bool)=?,
-        ~activeStep: option(float)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~component: Js.t({..}),
-        ~elevation: float,
-        ~square: bool,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "className": Js.Nullable.from_opt(className),
-        "orientation": Js.Nullable.from_opt(optionMap(Orientation.to_string, orientation)),
-        "nonLinear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, nonLinear)),
-        "connector": Js.Nullable.from_opt(optionMap(unwrapValue, connector)),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "alternativeLabel":
-          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
-        "activeStep": Js.Nullable.from_opt(activeStep),
-        "theme": Js.Nullable.from_opt(theme),
-        "component": component,
-        "elevation": elevation,
-        "square": Js.Boolean.to_js_boolean(square)
-      },
-      children
-    );
-};
-
-module Tabs = {
-  module TextColor = {
-    type t =
-      | Accent
-      | Primary
-      | Inherit;
-    let to_string =
-      fun
-      | Accent => "accent"
-      | Primary => "primary"
-      | Inherit => "inherit";
-  };
-  module ScrollButtons = {
-    type t =
-      | Auto
-      | On
-      | Off;
-    let to_string =
-      fun
-      | Auto => "auto"
-      | On => "on"
-      | Off => "off";
-  };
-  module IndicatorColor = {
-    type t =
-      | Accent
-      | Primary;
-    let to_string =
-      fun
-      | Accent => "accent"
-      | Primary => "primary";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | FlexContainer(string)
-      | ScrollingContainer(string)
-      | Fixed(string)
-      | Scrollable(string)
-      | Centered(string)
-      | ButtonAuto(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | FlexContainer(_) => "flexContainer"
-      | ScrollingContainer(_) => "scrollingContainer"
-      | Fixed(_) => "fixed"
-      | Scrollable(_) => "scrollable"
-      | Centered(_) => "centered"
-      | ButtonAuto(_) => "buttonAuto";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | FlexContainer(className)
-               | ScrollingContainer(className)
-               | Fixed(className)
-               | Scrollable(className)
-               | Centered(className)
-               | ButtonAuto(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Tabs/Tabs"] external reactClass : ReasonReact.reactClass = "default";
-  let make =
-      (
-        ~value: 'a,
-        ~textColor: TextColor.t,
-        ~tTabScrollButton: Js.t({..}),
-        ~scrollButtons: ScrollButtons.t,
-        ~scrollable: bool,
-        ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t),
-        ~indicatorColor: [ | `Enum(IndicatorColor.t) | `String(string)],
-        ~indicatorClassName: option(string)=?,
-        ~fullWidth: bool,
-        ~className: option(string)=?,
-        ~centered: bool,
-        ~buttonClassName: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "value": value,
-        "textColor": TextColor.to_string(textColor),
-        "TabScrollButton": tTabScrollButton,
-        "scrollButtons": ScrollButtons.to_string(scrollButtons),
-        "scrollable": Js.Boolean.to_js_boolean(scrollable),
-        "onChange": onChange,
-        "indicatorColor":
-          (
-            fun
-            | `Enum(e) => unwrapValue(`String(IndicatorColor.to_string(e)))
-            | x => unwrapValue(x)
-          )(
-            indicatorColor
-          ),
-        "indicatorClassName": Js.Nullable.from_opt(indicatorClassName),
-        "fullWidth": Js.Boolean.to_js_boolean(fullWidth),
-        "className": Js.Nullable.from_opt(className),
-        "centered": Js.Boolean.to_js_boolean(centered),
-        "buttonClassName": Js.Nullable.from_opt(buttonClassName),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module List = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Padding(string)
-      | Dense(string)
-      | Subheader(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Padding(_) => "padding"
-      | Dense(_) => "dense"
-      | Subheader(_) => "subheader";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Padding(className)
-               | Dense(className)
-               | Subheader(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/List/List"] external reactClass : ReasonReact.reactClass = "default";
-  let make =
-      (
-        ~subheader: option(ReasonReact.reactElement)=?,
-        ~rootRef: option('a)=?,
-        ~disablePadding: bool,
-        ~dense: bool,
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "subheader": Js.Nullable.from_opt(subheader),
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "disablePadding": Js.Boolean.to_js_boolean(disablePadding),
-        "dense": Js.Boolean.to_js_boolean(dense),
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module TableRow = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Head(string)
-      | Footer(string)
-      | Hover(string)
-      | Selected(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Head(_) => "head"
-      | Footer(_) => "footer"
-      | Hover(_) => "hover"
-      | Selected(_) => "selected";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Head(className)
-               | Footer(className)
-               | Hover(className)
-               | Selected(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Table/TableRow"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~selected: bool,
-        ~hover: bool,
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "selected": Js.Boolean.to_js_boolean(selected),
-        "hover": Js.Boolean.to_js_boolean(hover),
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+        "defaultValue": Js.Nullable.from_opt(optionMap(unwrapValue, defaultValue)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "disableUnderline":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableUnderline)),
+        "endAdornment": Js.Nullable.from_opt(endAdornment),
+        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
+        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
+        "id": Js.Nullable.from_opt(id),
+        "inputComponent": Js.Nullable.from_opt(optionMap(unwrapValue, inputComponent)),
+        "inputProps": Js.Nullable.from_opt(inputProps),
+        "inputRef": Js.Nullable.from_opt(inputRef),
+        "margin": Js.Nullable.from_opt(optionMap(Margin.to_string, margin)),
+        "multiline": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, multiline)),
+        "name": Js.Nullable.from_opt(name),
+        "readOnly": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, readOnly)),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "onChange": Js.Nullable.from_opt(onChange),
+        "onClean": Js.Nullable.from_opt(onClean),
+        "onDirty": Js.Nullable.from_opt(onDirty),
+        "onFocus": Js.Nullable.from_opt(onFocus),
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
+        "placeholder": Js.Nullable.from_opt(placeholder),
+        "rows": Js.Nullable.from_opt(optionMap(unwrapValue, rows)),
+        "rowsMax": Js.Nullable.from_opt(optionMap(unwrapValue, rowsMax)),
+        "startAdornment": Js.Nullable.from_opt(startAdornment),
+        "type": Js.Nullable.from_opt(type_)
       },
       children
     );
@@ -2350,105 +2689,16 @@ module Radio = {
     );
 };
 
-module SvgIcon = {
-  module Classes = {
-    type classesType =
-      | Root(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/SvgIcon/SvgIcon"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~viewBox: string,
-        ~titleAccess: option(string)=?,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "viewBox": viewBox,
-        "titleAccess": Js.Nullable.from_opt(titleAccess),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Table = {
-  module Classes = {
-    type classesType =
-      | Root(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Table/Table"] external reactClass : ReasonReact.reactClass = "default";
-  let make =
-      (
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module FormControlLabel = {
+module RadioGroup = {
   module Classes = {
     type classesType =
       | Root(string)
-      | Disabled(string)
-      | Label(string);
+      | Row(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | Disabled(_) => "disabled"
-      | Label(_) => "label";
+      | Row(_) => "row";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -2456,27 +2706,308 @@ module FormControlLabel = {
              (obj, classType) => {
                switch classType {
                | Root(className)
-               | Disabled(className)
-               | Label(className) => Js.Dict.set(obj, to_string(classType), className)
+               | Row(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/Form/FormControlLabel"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/Radio/RadioGroup"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
         ~value: option(string)=?,
+        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~name: option(string)=?,
-        ~label: ReasonReact.reactElement,
-        ~inputRef: option('a)=?,
-        ~disabled: option(bool)=?,
-        ~control: ReasonReact.reactElement,
+        ~classes: option(Classes.t)=?,
+        ~theme: option(Js.t({..}))=?,
         ~className: option(string)=?,
-        ~checked: option([ | `Bool(bool) | `String(string)])=?,
+        ~row: option(bool)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": Js.Nullable.from_opt(value),
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onChange": Js.Nullable.from_opt(onChange),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "name": Js.Nullable.from_opt(name),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "theme": Js.Nullable.from_opt(theme),
+        "className": Js.Nullable.from_opt(className),
+        "row": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, row))
+      },
+      children
+    );
+};
+
+module Popover = {
+  module TransitionDuration = {
+    type t =
+      | Auto;
+    let to_string =
+      fun
+      | Auto => "auto";
+  };
+  module AnchorReference = {
+    type t =
+      | AnchorEl
+      | AnchorPosition;
+    let to_string =
+      fun
+      | AnchorEl => "anchorEl"
+      | AnchorPosition => "anchorPosition";
+  };
+  module Classes = {
+    type classesType =
+      | Paper(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Paper(_) => "paper";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Paper(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Popover/Popover"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~transitionDuration:
+           option(
+             [
+               | `Enum(TransitionDuration.t)
+               | `Float(float)
+               | `Object({. "enter": int, "exit": int})
+             ]
+           )=?,
+        ~transitionClasses:
+           option(
+             [
+               | `String(string)
+               | `Object(
+                   {
+                     .
+                     "appear": string,
+                     "appearActive": string,
+                     "enter": string,
+                     "enterActive": string,
+                     "exit": string,
+                     "exitActive": string
+                   }
+                 )
+             ]
+           )=?,
+        ~transformOrigin: option({. "horizontal": _, "vertical": _})=?,
+        ~role: option(string)=?,
+        ~pPaperProps: option(Js.t({..}))=?,
+        ~open_: bool,
+        ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
+        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~marginThreshold: option(float)=?,
+        ~getContentAnchorEl: option('a)=?,
+        ~elevation: option(float)=?,
+        ~anchorOrigin: option({. "horizontal": _, "vertical": _})=?,
+        ~anchorReference: option(AnchorReference.t)=?,
+        ~anchorPosition: option({. "top": int, "left": int})=?,
+        ~anchorEl: option(Js.t({..}))=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~bBackdropClassName: option(string)=?,
+        ~bBackdropComponent: option(Js.t({..}))=?,
+        ~bBackdropInvisible: option(bool)=?,
+        ~bBackdropTransitionDuration: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~keepMounted: option(bool)=?,
+        ~disableBackdrop: option(bool)=?,
+        ~ignoreBackdropClick: option(bool)=?,
+        ~ignoreEscapeKeyUp: option(bool)=?,
+        ~modalManager: option(Js.t({..}))=?,
+        ~onBackdropClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onEscapeKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~show: bool,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "transitionDuration":
+          Js.Nullable.from_opt(
+            optionMap(
+              fun
+              | `Enum(e) => unwrapValue(`String(TransitionDuration.to_string(e)))
+              | x => unwrapValue(x),
+              transitionDuration
+            )
+          ),
+        "transitionClasses": Js.Nullable.from_opt(optionMap(unwrapValue, transitionClasses)),
+        "transformOrigin": Js.Nullable.from_opt(transformOrigin),
+        "role": Js.Nullable.from_opt(role),
+        "PaperProps": Js.Nullable.from_opt(pPaperProps),
+        "open": Js.Boolean.to_js_boolean(open_),
+        "onRequestClose": Js.Nullable.from_opt(onRequestClose),
+        "onExited": Js.Nullable.from_opt(onExited),
+        "onExiting": Js.Nullable.from_opt(onExiting),
+        "onExit": Js.Nullable.from_opt(onExit),
+        "onEntered": Js.Nullable.from_opt(onEntered),
+        "onEntering": Js.Nullable.from_opt(onEntering),
+        "onEnter": Js.Nullable.from_opt(onEnter),
+        "marginThreshold": Js.Nullable.from_opt(marginThreshold),
+        "getContentAnchorEl": Js.Nullable.from_opt(getContentAnchorEl),
+        "elevation": Js.Nullable.from_opt(elevation),
+        "anchorOrigin": Js.Nullable.from_opt(anchorOrigin),
+        "anchorReference":
+          Js.Nullable.from_opt(optionMap(AnchorReference.to_string, anchorReference)),
+        "anchorPosition": Js.Nullable.from_opt(anchorPosition),
+        "anchorEl": Js.Nullable.from_opt(anchorEl),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "BackdropClassName": Js.Nullable.from_opt(bBackdropClassName),
+        "BackdropComponent": Js.Nullable.from_opt(bBackdropComponent),
+        "BackdropInvisible":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, bBackdropInvisible)),
+        "BackdropTransitionDuration": Js.Nullable.from_opt(bBackdropTransitionDuration),
+        "className": Js.Nullable.from_opt(className),
+        "keepMounted": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, keepMounted)),
+        "disableBackdrop":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableBackdrop)),
+        "ignoreBackdropClick":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, ignoreBackdropClick)),
+        "ignoreEscapeKeyUp":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, ignoreEscapeKeyUp)),
+        "modalManager": Js.Nullable.from_opt(modalManager),
+        "onBackdropClick": Js.Nullable.from_opt(onBackdropClick),
+        "onEscapeKeyUp": Js.Nullable.from_opt(onEscapeKeyUp),
+        "show": Js.Boolean.to_js_boolean(show)
+      },
+      children
+    );
+};
+
+module Paper = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Rounded(string)
+      | Shadow0(string)
+      | Shadow1(string)
+      | Shadow2(string)
+      | Shadow3(string)
+      | Shadow4(string)
+      | Shadow5(string)
+      | Shadow6(string)
+      | Shadow7(string)
+      | Shadow8(string)
+      | Shadow9(string)
+      | Shadow10(string)
+      | Shadow11(string)
+      | Shadow12(string)
+      | Shadow13(string)
+      | Shadow14(string)
+      | Shadow15(string)
+      | Shadow16(string)
+      | Shadow17(string)
+      | Shadow18(string)
+      | Shadow19(string)
+      | Shadow20(string)
+      | Shadow21(string)
+      | Shadow22(string)
+      | Shadow23(string)
+      | Shadow24(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Rounded(_) => "rounded"
+      | Shadow0(_) => "shadow0"
+      | Shadow1(_) => "shadow1"
+      | Shadow2(_) => "shadow2"
+      | Shadow3(_) => "shadow3"
+      | Shadow4(_) => "shadow4"
+      | Shadow5(_) => "shadow5"
+      | Shadow6(_) => "shadow6"
+      | Shadow7(_) => "shadow7"
+      | Shadow8(_) => "shadow8"
+      | Shadow9(_) => "shadow9"
+      | Shadow10(_) => "shadow10"
+      | Shadow11(_) => "shadow11"
+      | Shadow12(_) => "shadow12"
+      | Shadow13(_) => "shadow13"
+      | Shadow14(_) => "shadow14"
+      | Shadow15(_) => "shadow15"
+      | Shadow16(_) => "shadow16"
+      | Shadow17(_) => "shadow17"
+      | Shadow18(_) => "shadow18"
+      | Shadow19(_) => "shadow19"
+      | Shadow20(_) => "shadow20"
+      | Shadow21(_) => "shadow21"
+      | Shadow22(_) => "shadow22"
+      | Shadow23(_) => "shadow23"
+      | Shadow24(_) => "shadow24";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Rounded(className)
+               | Shadow0(className)
+               | Shadow1(className)
+               | Shadow2(className)
+               | Shadow3(className)
+               | Shadow4(className)
+               | Shadow5(className)
+               | Shadow6(className)
+               | Shadow7(className)
+               | Shadow8(className)
+               | Shadow9(className)
+               | Shadow10(className)
+               | Shadow11(className)
+               | Shadow12(className)
+               | Shadow13(className)
+               | Shadow14(className)
+               | Shadow15(className)
+               | Shadow16(className)
+               | Shadow17(className)
+               | Shadow18(className)
+               | Shadow19(className)
+               | Shadow20(className)
+               | Shadow21(className)
+               | Shadow22(className)
+               | Shadow23(className)
+               | Shadow24(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Paper/Paper"] external reactClass : ReasonReact.reactClass = "default";
+  let make =
+      (
+        ~square: option(bool)=?,
+        ~elevation: option(float)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
         children
@@ -2484,15 +3015,10 @@ module FormControlLabel = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "value": Js.Nullable.from_opt(value),
-        "onChange": Js.Nullable.from_opt(onChange),
-        "name": Js.Nullable.from_opt(name),
-        "label": label,
-        "inputRef": Js.Nullable.from_opt(inputRef),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "control": control,
+        "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square)),
+        "elevation": Js.Nullable.from_opt(elevation),
+        "component": Js.Nullable.from_opt(component),
         "className": Js.Nullable.from_opt(className),
-        "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -2521,55 +3047,16 @@ module MuiThemeProvider = {
     );
 };
 
-module Button = {
-  module Color = {
-    type t =
-      | Default
-      | Inherit
-      | Primary
-      | Accent
-      | Contrast;
-    let to_string =
-      fun
-      | Default => "default"
-      | Inherit => "inherit"
-      | Primary => "primary"
-      | Accent => "accent"
-      | Contrast => "contrast";
-  };
+module Modal = {
   module Classes = {
     type classesType =
       | Root(string)
-      | Dense(string)
-      | Label(string)
-      | FlatPrimary(string)
-      | FlatAccent(string)
-      | FlatContrast(string)
-      | ColorInherit(string)
-      | Raised(string)
-      | KeyboardFocused(string)
-      | RaisedPrimary(string)
-      | RaisedAccent(string)
-      | RaisedContrast(string)
-      | Disabled(string)
-      | Fab(string);
+      | Hidden(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | Dense(_) => "dense"
-      | Label(_) => "label"
-      | FlatPrimary(_) => "flatPrimary"
-      | FlatAccent(_) => "flatAccent"
-      | FlatContrast(_) => "flatContrast"
-      | ColorInherit(_) => "colorInherit"
-      | Raised(_) => "raised"
-      | KeyboardFocused(_) => "keyboardFocused"
-      | RaisedPrimary(_) => "raisedPrimary"
-      | RaisedAccent(_) => "raisedAccent"
-      | RaisedContrast(_) => "raisedContrast"
-      | Disabled(_) => "disabled"
-      | Fab(_) => "fab";
+      | Hidden(_) => "hidden";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -2577,96 +3064,172 @@ module Button = {
              (obj, classType) => {
                switch classType {
                | Root(className)
-               | Dense(className)
-               | Label(className)
-               | FlatPrimary(className)
-               | FlatAccent(className)
-               | FlatContrast(className)
-               | ColorInherit(className)
-               | Raised(className)
-               | KeyboardFocused(className)
-               | RaisedPrimary(className)
-               | RaisedAccent(className)
-               | RaisedContrast(className)
-               | Disabled(className)
-               | Fab(className) => Js.Dict.set(obj, to_string(classType), className)
+               | Hidden(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/Button/Button"] external reactClass : ReasonReact.reactClass =
-    "default";
+  [@bs.module "material-ui/Modal/Modal"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
-        ~type_: string,
-        ~raised: bool,
-        ~href: option(string)=?,
-        ~fab: bool,
-        ~disableRipple: bool,
-        ~disableFocusRipple: bool,
-        ~disabled: bool,
-        ~dense: bool,
-        ~component: option(Js.t({..}))=?,
-        ~color: Color.t,
+        ~show: bool,
+        ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
+        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEscapeKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onBackdropClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~modalManager: option(Js.t({..}))=?,
+        ~ignoreEscapeKeyUp: option(bool)=?,
+        ~ignoreBackdropClick: option(bool)=?,
+        ~disableBackdrop: option(bool)=?,
+        ~keepMounted: option(bool)=?,
         ~className: option(string)=?,
+        ~bBackdropTransitionDuration: option(Js.t({..}))=?,
+        ~bBackdropInvisible: option(bool)=?,
+        ~bBackdropComponent: option(Js.t({..}))=?,
+        ~bBackdropClassName: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
-        ~centerRipple: bool,
-        ~focusRipple: bool,
-        ~keyboardFocusedClassName: option(string)=?,
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
-        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~role: option(string)=?,
-        ~rootRef: option('a)=?,
-        ~tabIndex: [ | `Float(float) | `String(string)],
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "type": type_,
-        "raised": Js.Boolean.to_js_boolean(raised),
-        "href": Js.Nullable.from_opt(href),
-        "fab": Js.Boolean.to_js_boolean(fab),
-        "disableRipple": Js.Boolean.to_js_boolean(disableRipple),
-        "disableFocusRipple": Js.Boolean.to_js_boolean(disableFocusRipple),
-        "disabled": Js.Boolean.to_js_boolean(disabled),
-        "dense": Js.Boolean.to_js_boolean(dense),
-        "component": Js.Nullable.from_opt(component),
-        "color": Color.to_string(color),
+        "show": Js.Boolean.to_js_boolean(show),
+        "onRequestClose": Js.Nullable.from_opt(onRequestClose),
+        "onExited": Js.Nullable.from_opt(onExited),
+        "onExiting": Js.Nullable.from_opt(onExiting),
+        "onExit": Js.Nullable.from_opt(onExit),
+        "onEscapeKeyUp": Js.Nullable.from_opt(onEscapeKeyUp),
+        "onEntered": Js.Nullable.from_opt(onEntered),
+        "onEntering": Js.Nullable.from_opt(onEntering),
+        "onEnter": Js.Nullable.from_opt(onEnter),
+        "onBackdropClick": Js.Nullable.from_opt(onBackdropClick),
+        "modalManager": Js.Nullable.from_opt(modalManager),
+        "ignoreEscapeKeyUp":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, ignoreEscapeKeyUp)),
+        "ignoreBackdropClick":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, ignoreBackdropClick)),
+        "disableBackdrop":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableBackdrop)),
+        "keepMounted": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, keepMounted)),
         "className": Js.Nullable.from_opt(className),
+        "BackdropTransitionDuration": Js.Nullable.from_opt(bBackdropTransitionDuration),
+        "BackdropInvisible":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, bBackdropInvisible)),
+        "BackdropComponent": Js.Nullable.from_opt(bBackdropComponent),
+        "BackdropClassName": Js.Nullable.from_opt(bBackdropClassName),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module MobileStepper = {
+  module Type = {
+    type t =
+      | Text
+      | Dots
+      | Progress;
+    let to_string =
+      fun
+      | Text => "text"
+      | Dots => "dots"
+      | Progress => "progress";
+  };
+  module Position = {
+    type t =
+      | Bottom
+      | Top
+      | Static;
+    let to_string =
+      fun
+      | Bottom => "bottom"
+      | Top => "top"
+      | Static => "static";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | PositionBottom(string)
+      | PositionTop(string)
+      | PositionStatic(string)
+      | Dots(string)
+      | Dot(string)
+      | DotActive(string)
+      | Progress(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | PositionBottom(_) => "positionBottom"
+      | PositionTop(_) => "positionTop"
+      | PositionStatic(_) => "positionStatic"
+      | Dots(_) => "dots"
+      | Dot(_) => "dot"
+      | DotActive(_) => "dotActive"
+      | Progress(_) => "progress";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | PositionBottom(className)
+               | PositionTop(className)
+               | PositionStatic(className)
+               | Dots(className)
+               | Dot(className)
+               | DotActive(className)
+               | Progress(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/MobileStepper/MobileStepper"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~type_: option(Type.t)=?,
+        ~steps: float,
+        ~position: option(Position.t)=?,
+        ~nextButton: ReasonReact.reactElement,
+        ~className: option(string)=?,
+        ~backButton: ReasonReact.reactElement,
+        ~activeStep: option(float)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~component: option(Js.t({..}))=?,
+        ~elevation: option(float)=?,
+        ~square: option(bool)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "type": Js.Nullable.from_opt(optionMap(Type.to_string, type_)),
+        "steps": steps,
+        "position": Js.Nullable.from_opt(optionMap(Position.to_string, position)),
+        "nextButton": nextButton,
+        "className": Js.Nullable.from_opt(className),
+        "backButton": backButton,
+        "activeStep": Js.Nullable.from_opt(activeStep),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "centerRipple": Js.Boolean.to_js_boolean(centerRipple),
-        "focusRipple": Js.Boolean.to_js_boolean(focusRipple),
-        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "onClick": Js.Nullable.from_opt(onClick),
-        "onFocus": Js.Nullable.from_opt(onFocus),
-        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
-        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
-        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
-        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
-        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
-        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
-        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
-        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
-        "role": Js.Nullable.from_opt(role),
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "tabIndex": unwrapValue(tabIndex)
+        "component": Js.Nullable.from_opt(component),
+        "elevation": Js.Nullable.from_opt(elevation),
+        "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square))
       },
       children
     );
@@ -2712,14 +3275,17 @@ module Menu = {
   [@bs.module "material-ui/Menu/Menu"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
-        ~transitionDuration: [
-           | `Enum(TransitionDuration.t)
-           | `Float(float)
-           | `Object({. "enter": int, "exit": int})
-         ],
+        ~transitionDuration:
+           option(
+             [
+               | `Enum(TransitionDuration.t)
+               | `Float(float)
+               | `Object({. "enter": int, "exit": int})
+             ]
+           )=?,
         ~pPopoverClasses: option(Js.t({..}))=?,
         ~pPaperProps: option(Js.t({..}))=?,
-        ~open_: bool,
+        ~open_: option(bool)=?,
         ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
         ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
         ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
@@ -2733,12 +3299,12 @@ module Menu = {
         ~classes: option(Classes.t)=?,
         ~anchorPosition: option({. "top": int, "left": int})=?,
         ~anchorReference: option(AnchorReference.t)=?,
-        ~anchorOrigin: {. "horizontal": _, "vertical": _},
+        ~anchorOrigin: option({. "horizontal": _, "vertical": _})=?,
         ~elevation: option(float)=?,
         ~getContentAnchorEl: option('a)=?,
-        ~marginThreshold: float,
+        ~marginThreshold: option(float)=?,
         ~role: option(string)=?,
-        ~transformOrigin: {. "horizontal": _, "vertical": _},
+        ~transformOrigin: option({. "horizontal": _, "vertical": _})=?,
         ~transitionClasses:
            option(
              [
@@ -2762,16 +3328,17 @@ module Menu = {
       ~reactClass,
       ~props={
         "transitionDuration":
-          (
-            fun
-            | `Enum(e) => unwrapValue(`String(TransitionDuration.to_string(e)))
-            | x => unwrapValue(x)
-          )(
-            transitionDuration
+          Js.Nullable.from_opt(
+            optionMap(
+              fun
+              | `Enum(e) => unwrapValue(`String(TransitionDuration.to_string(e)))
+              | x => unwrapValue(x),
+              transitionDuration
+            )
           ),
         "PopoverClasses": Js.Nullable.from_opt(pPopoverClasses),
         "PaperProps": Js.Nullable.from_opt(pPaperProps),
-        "open": Js.Boolean.to_js_boolean(open_),
+        "open": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
         "onRequestClose": Js.Nullable.from_opt(onRequestClose),
         "onExited": Js.Nullable.from_opt(onExited),
         "onExiting": Js.Nullable.from_opt(onExiting),
@@ -2786,19 +3353,416 @@ module Menu = {
         "anchorPosition": Js.Nullable.from_opt(anchorPosition),
         "anchorReference":
           Js.Nullable.from_opt(optionMap(AnchorReference.to_string, anchorReference)),
-        "anchorOrigin": anchorOrigin,
+        "anchorOrigin": Js.Nullable.from_opt(anchorOrigin),
         "elevation": Js.Nullable.from_opt(elevation),
         "getContentAnchorEl": Js.Nullable.from_opt(getContentAnchorEl),
-        "marginThreshold": marginThreshold,
+        "marginThreshold": Js.Nullable.from_opt(marginThreshold),
         "role": Js.Nullable.from_opt(role),
-        "transformOrigin": transformOrigin,
+        "transformOrigin": Js.Nullable.from_opt(transformOrigin),
         "transitionClasses": Js.Nullable.from_opt(optionMap(unwrapValue, transitionClasses))
       },
       children
     );
 };
 
-module TableFooter = {
+module MenuList = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Padding(string)
+      | Dense(string)
+      | Subheader(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Padding(_) => "padding"
+      | Dense(_) => "dense"
+      | Subheader(_) => "subheader";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Padding(className)
+               | Dense(className)
+               | Subheader(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Menu/MenuList"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~onKeyDown: option(((ReactEventRe.UI.t, string) => unit))=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~className: option(string)=?,
+        ~classes: option(Classes.t)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~component: option(Js.t({..}))=?,
+        ~dense: option(bool)=?,
+        ~disablePadding: option(bool)=?,
+        ~rootRef: option('a)=?,
+        ~subheader: option(ReasonReact.reactElement)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "theme": Js.Nullable.from_opt(theme),
+        "component": Js.Nullable.from_opt(component),
+        "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
+        "disablePadding": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disablePadding)),
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "subheader": Js.Nullable.from_opt(subheader)
+      },
+      children
+    );
+};
+
+module MenuItem = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Selected(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Selected(_) => "selected";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Selected(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Menu/MenuItem"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~selected: option(bool)=?,
+        ~role: option(string)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~button: option(bool)=?,
+        ~dense: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~disableGutters: option(bool)=?,
+        ~divider: option(bool)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
+        "role": Js.Nullable.from_opt(role),
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "button": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, button)),
+        "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "disableGutters": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableGutters)),
+        "divider": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, divider))
+      },
+      children
+    );
+};
+
+module List = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Padding(string)
+      | Dense(string)
+      | Subheader(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Padding(_) => "padding"
+      | Dense(_) => "dense"
+      | Subheader(_) => "subheader";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Padding(className)
+               | Dense(className)
+               | Subheader(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/List/List"] external reactClass : ReasonReact.reactClass = "default";
+  let make =
+      (
+        ~subheader: option(ReasonReact.reactElement)=?,
+        ~rootRef: option('a)=?,
+        ~disablePadding: option(bool)=?,
+        ~dense: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "subheader": Js.Nullable.from_opt(subheader),
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "disablePadding": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disablePadding)),
+        "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module ListSubheader = {
+  module Color = {
+    type t =
+      | Default
+      | Primary
+      | Inherit;
+    let to_string =
+      fun
+      | Default => "default"
+      | Primary => "primary"
+      | Inherit => "inherit";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | ColorPrimary(string)
+      | ColorInherit(string)
+      | Inset(string)
+      | Sticky(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | ColorPrimary(_) => "colorPrimary"
+      | ColorInherit(_) => "colorInherit"
+      | Inset(_) => "inset"
+      | Sticky(_) => "sticky";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | ColorPrimary(className)
+               | ColorInherit(className)
+               | Inset(className)
+               | Sticky(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/List/ListSubheader"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~inset: option(bool)=?,
+        ~disableSticky: option(bool)=?,
+        ~color: option(Color.t)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "inset": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, inset)),
+        "disableSticky": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableSticky)),
+        "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module ListItem = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Container(string)
+      | KeyboardFocused(string)
+      | Default(string)
+      | Dense(string)
+      | Disabled(string)
+      | Divider(string)
+      | Gutters(string)
+      | Button(string)
+      | SecondaryAction(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Container(_) => "container"
+      | KeyboardFocused(_) => "keyboardFocused"
+      | Default(_) => "default"
+      | Dense(_) => "dense"
+      | Disabled(_) => "disabled"
+      | Divider(_) => "divider"
+      | Gutters(_) => "gutters"
+      | Button(_) => "button"
+      | SecondaryAction(_) => "secondaryAction";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Container(className)
+               | KeyboardFocused(className)
+               | Default(className)
+               | Dense(className)
+               | Disabled(className)
+               | Divider(className)
+               | Gutters(className)
+               | Button(className)
+               | SecondaryAction(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/List/ListItem"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~divider: option(bool)=?,
+        ~disableGutters: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~dense: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~button: option(bool)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "divider": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, divider)),
+        "disableGutters": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableGutters)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
+        "button": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, button)),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module ListItemText = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Inset(string)
+      | Dense(string)
+      | Text(string)
+      | TextDense(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Inset(_) => "inset"
+      | Dense(_) => "dense"
+      | Text(_) => "text"
+      | TextDense(_) => "textDense";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Inset(className)
+               | Dense(className)
+               | Text(className)
+               | TextDense(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/List/ListItemText"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~secondary: option(ReasonReact.reactElement)=?,
+        ~primary: option(ReasonReact.reactElement)=?,
+        ~inset: option(bool)=?,
+        ~disableTypography: option(bool)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "secondary": Js.Nullable.from_opt(secondary),
+        "primary": Js.Nullable.from_opt(primary),
+        "inset": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, inset)),
+        "disableTypography":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTypography)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module ListItemSecondaryAction = {
   module Classes = {
     type classesType =
       | Root(string);
@@ -2819,11 +3783,45 @@ module TableFooter = {
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/Table/TableFooter"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/List/ListItemSecondaryAction"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module ListItemIcon = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/List/ListItemIcon"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
-        ~component: Js.t({..}),
         ~className: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
@@ -2832,10 +3830,793 @@ module TableFooter = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "component": component,
         "className": Js.Nullable.from_opt(className),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module ListItemAvatar = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Icon(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Icon(_) => "icon";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Icon(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/List/ListItemAvatar"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module LinearProgress = {
+  module Mode = {
+    type t =
+      | Determinate
+      | Indeterminate
+      | Buffer
+      | Query;
+    let to_string =
+      fun
+      | Determinate => "determinate"
+      | Indeterminate => "indeterminate"
+      | Buffer => "buffer"
+      | Query => "query";
+  };
+  module Color = {
+    type t =
+      | Primary
+      | Accent;
+    let to_string =
+      fun
+      | Primary => "primary"
+      | Accent => "accent";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | PrimaryColor(string)
+      | PrimaryColorBar(string)
+      | PrimaryDashed(string)
+      | AccentColor(string)
+      | AccentColorBar(string)
+      | AccentDashed(string)
+      | Bar(string)
+      | Dashed(string)
+      | BufferBar2(string)
+      | RootBuffer(string)
+      | RootQuery(string)
+      | IndeterminateBar1(string)
+      | IndeterminateBar2(string)
+      | DeterminateBar1(string)
+      | BufferBar1(string)
+      | BufferBar2Primary(string)
+      | BufferBar2Accent(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | PrimaryColor(_) => "primaryColor"
+      | PrimaryColorBar(_) => "primaryColorBar"
+      | PrimaryDashed(_) => "primaryDashed"
+      | AccentColor(_) => "accentColor"
+      | AccentColorBar(_) => "accentColorBar"
+      | AccentDashed(_) => "accentDashed"
+      | Bar(_) => "bar"
+      | Dashed(_) => "dashed"
+      | BufferBar2(_) => "bufferBar2"
+      | RootBuffer(_) => "rootBuffer"
+      | RootQuery(_) => "rootQuery"
+      | IndeterminateBar1(_) => "indeterminateBar1"
+      | IndeterminateBar2(_) => "indeterminateBar2"
+      | DeterminateBar1(_) => "determinateBar1"
+      | BufferBar1(_) => "bufferBar1"
+      | BufferBar2Primary(_) => "bufferBar2Primary"
+      | BufferBar2Accent(_) => "bufferBar2Accent";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | PrimaryColor(className)
+               | PrimaryColorBar(className)
+               | PrimaryDashed(className)
+               | AccentColor(className)
+               | AccentColorBar(className)
+               | AccentDashed(className)
+               | Bar(className)
+               | Dashed(className)
+               | BufferBar2(className)
+               | RootBuffer(className)
+               | RootQuery(className)
+               | IndeterminateBar1(className)
+               | IndeterminateBar2(className)
+               | DeterminateBar1(className)
+               | BufferBar1(className)
+               | BufferBar2Primary(className)
+               | BufferBar2Accent(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Progress/LinearProgress"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~valueBuffer: option(float)=?,
+        ~value: option(float)=?,
+        ~mode: option(Mode.t)=?,
+        ~color: option(Color.t)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "valueBuffer": Js.Nullable.from_opt(valueBuffer),
+        "value": Js.Nullable.from_opt(value),
+        "mode": Js.Nullable.from_opt(optionMap(Mode.to_string, mode)),
+        "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Input = {
+  module Margin = {
+    type t =
+      | Dense
+      | None;
+    let to_string =
+      fun
+      | Dense => "dense"
+      | None => "none";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | FormControl(string)
+      | Inkbar(string)
+      | Error(string)
+      | Disabled(string)
+      | Focused(string)
+      | Underline(string)
+      | Multiline(string)
+      | FullWidth(string)
+      | Input(string)
+      | InputDense(string)
+      | InputDisabled(string)
+      | InputSingleline(string)
+      | InputMultiline(string)
+      | InputSearch(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | FormControl(_) => "formControl"
+      | Inkbar(_) => "inkbar"
+      | Error(_) => "error"
+      | Disabled(_) => "disabled"
+      | Focused(_) => "focused"
+      | Underline(_) => "underline"
+      | Multiline(_) => "multiline"
+      | FullWidth(_) => "fullWidth"
+      | Input(_) => "input"
+      | InputDense(_) => "inputDense"
+      | InputDisabled(_) => "inputDisabled"
+      | InputSingleline(_) => "inputSingleline"
+      | InputMultiline(_) => "inputMultiline"
+      | InputSearch(_) => "inputSearch";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | FormControl(className)
+               | Inkbar(className)
+               | Error(className)
+               | Disabled(className)
+               | Focused(className)
+               | Underline(className)
+               | Multiline(className)
+               | FullWidth(className)
+               | Input(className)
+               | InputDense(className)
+               | InputDisabled(className)
+               | InputSingleline(className)
+               | InputMultiline(className)
+               | InputSearch(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Input/Input"] external reactClass : ReasonReact.reactClass = "default";
+  let make =
+      (
+        ~value: option([ | `String(string) | `Float(float) | `Object(Js.t({..}))])=?,
+        ~type_: option(string)=?,
+        ~startAdornment: option(ReasonReact.reactElement)=?,
+        ~rowsMax: option([ | `String(string) | `Float(float)])=?,
+        ~rows: option([ | `String(string) | `Float(float)])=?,
+        ~placeholder: option(string)=?,
+        ~onKeyUp: option((ReactEventRe.Keyboard.t => unit))=?,
+        ~onKeyDown: option((ReactEventRe.Keyboard.t => unit))=?,
+        ~onFocus: option((ReactEventRe.Focus.t => unit))=?,
+        ~onDirty: option(unit)=?,
+        ~onClean: option(unit)=?,
+        ~onChange: option((ReactEventRe.Form.t => unit))=?,
+        ~onBlur: option((ReactEventRe.Focus.t => unit))=?,
+        ~readOnly: option(bool)=?,
+        ~name: option(string)=?,
+        ~multiline: option(bool)=?,
+        ~margin: option(Margin.t)=?,
+        ~inputRef: option('a)=?,
+        ~inputProps: option(Js.t({..}))=?,
+        ~inputComponent: option([ | `String(string) | `Object(Js.t({..}))])=?,
+        ~id: option(string)=?,
+        ~fullWidth: option(bool)=?,
+        ~error: option(bool)=?,
+        ~endAdornment: option(ReasonReact.reactElement)=?,
+        ~disableUnderline: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~defaultValue: option([ | `String(string) | `Float(float)])=?,
+        ~className: option(string)=?,
+        ~autoFocus: option(bool)=?,
+        ~autoComplete: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
+        "type": Js.Nullable.from_opt(type_),
+        "startAdornment": Js.Nullable.from_opt(startAdornment),
+        "rowsMax": Js.Nullable.from_opt(optionMap(unwrapValue, rowsMax)),
+        "rows": Js.Nullable.from_opt(optionMap(unwrapValue, rows)),
+        "placeholder": Js.Nullable.from_opt(placeholder),
+        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onFocus": Js.Nullable.from_opt(onFocus),
+        "onDirty": Js.Nullable.from_opt(onDirty),
+        "onClean": Js.Nullable.from_opt(onClean),
+        "onChange": Js.Nullable.from_opt(onChange),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "readOnly": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, readOnly)),
+        "name": Js.Nullable.from_opt(name),
+        "multiline": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, multiline)),
+        "margin": Js.Nullable.from_opt(optionMap(Margin.to_string, margin)),
+        "inputRef": Js.Nullable.from_opt(inputRef),
+        "inputProps": Js.Nullable.from_opt(inputProps),
+        "inputComponent": Js.Nullable.from_opt(optionMap(unwrapValue, inputComponent)),
+        "id": Js.Nullable.from_opt(id),
+        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
+        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
+        "endAdornment": Js.Nullable.from_opt(endAdornment),
+        "disableUnderline":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableUnderline)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "defaultValue": Js.Nullable.from_opt(optionMap(unwrapValue, defaultValue)),
+        "className": Js.Nullable.from_opt(className),
+        "autoFocus": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, autoFocus)),
+        "autoComplete": Js.Nullable.from_opt(autoComplete),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module InputLabel = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | FormControl(string)
+      | LabelDense(string)
+      | Shrink(string)
+      | Animated(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | FormControl(_) => "formControl"
+      | LabelDense(_) => "labelDense"
+      | Shrink(_) => "shrink"
+      | Animated(_) => "animated"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | FormControl(className)
+               | LabelDense(className)
+               | Shrink(className)
+               | Animated(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Input/InputLabel"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~shrink: option(bool)=?,
+        ~required: option(bool)=?,
+        ~margin: option(Js.t({..}))=?,
+        ~focused: option(bool)=?,
+        ~fFormControlClasses: option(Js.t({..}))=?,
+        ~error: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~disableAnimation: option(bool)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "shrink": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, shrink)),
+        "required": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, required)),
+        "margin": Js.Nullable.from_opt(margin),
+        "focused": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focused)),
+        "FormControlClasses": Js.Nullable.from_opt(fFormControlClasses),
+        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "disableAnimation":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableAnimation)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module InputAdornment = {
+  module Position = {
+    type t =
+      | Start
+      | End;
+    let to_string =
+      fun
+      | Start => "start"
+      | End => "end";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | PositionStart(string)
+      | PositionEnd(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | PositionStart(_) => "positionStart"
+      | PositionEnd(_) => "positionEnd";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | PositionStart(className)
+               | PositionEnd(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Input/InputAdornment"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~position: Position.t,
+        ~disableTypography: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "position": Position.to_string(position),
+        "disableTypography":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTypography)),
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Icon = {
+  module Color = {
+    type t =
+      | Inherit
+      | Accent
+      | Action
+      | Contrast
+      | Disabled
+      | Error
+      | Primary;
+    let to_string =
+      fun
+      | Inherit => "inherit"
+      | Accent => "accent"
+      | Action => "action"
+      | Contrast => "contrast"
+      | Disabled => "disabled"
+      | Error => "error"
+      | Primary => "primary";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | ColorAccent(string)
+      | ColorAction(string)
+      | ColorContrast(string)
+      | ColorDisabled(string)
+      | ColorError(string)
+      | ColorPrimary(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | ColorAccent(_) => "colorAccent"
+      | ColorAction(_) => "colorAction"
+      | ColorContrast(_) => "colorContrast"
+      | ColorDisabled(_) => "colorDisabled"
+      | ColorError(_) => "colorError"
+      | ColorPrimary(_) => "colorPrimary";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | ColorAccent(className)
+               | ColorAction(className)
+               | ColorContrast(className)
+               | ColorDisabled(className)
+               | ColorError(className)
+               | ColorPrimary(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Icon/Icon"] external reactClass : ReasonReact.reactClass = "default";
+  let make =
+      (
+        ~color: option(Color.t)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module IconButton = {
+  module Color = {
+    type t =
+      | Default
+      | Inherit
+      | Primary
+      | Contrast
+      | Accent;
+    let to_string =
+      fun
+      | Default => "default"
+      | Inherit => "inherit"
+      | Primary => "primary"
+      | Contrast => "contrast"
+      | Accent => "accent";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | ColorAccent(string)
+      | ColorContrast(string)
+      | ColorPrimary(string)
+      | ColorInherit(string)
+      | Disabled(string)
+      | Label(string)
+      | Icon(string)
+      | KeyboardFocused(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | ColorAccent(_) => "colorAccent"
+      | ColorContrast(_) => "colorContrast"
+      | ColorPrimary(_) => "colorPrimary"
+      | ColorInherit(_) => "colorInherit"
+      | Disabled(_) => "disabled"
+      | Label(_) => "label"
+      | Icon(_) => "icon"
+      | KeyboardFocused(_) => "keyboardFocused";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | ColorAccent(className)
+               | ColorContrast(className)
+               | ColorPrimary(className)
+               | ColorInherit(className)
+               | Disabled(className)
+               | Label(className)
+               | Icon(className)
+               | KeyboardFocused(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/IconButton/IconButton"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~rootRef: option('a)=?,
+        ~disableRipple: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~color: option(Color.t)=?,
+        ~className: option(string)=?,
+        ~buttonRef: option('b)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~centerRipple: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~focusRipple: option(bool)=?,
+        ~keyboardFocusedClassName: option(string)=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
+        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
+        "className": Js.Nullable.from_opt(className),
+        "buttonRef": Js.Nullable.from_opt(buttonRef),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
+        "component": Js.Nullable.from_opt(component),
+        "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
+        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "onClick": Js.Nullable.from_opt(onClick),
+        "onFocus": Js.Nullable.from_opt(onFocus),
+        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
+        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
+        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
+        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
+        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
+        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
+        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_)
+      },
+      children
+    );
+};
+
+module Hidden = {
+  module Implementation = {
+    type t =
+      | Js
+      | Css;
+    let to_string =
+      fun
+      | Js => "js"
+      | Css => "css";
+  };
+  [@bs.module "material-ui/Hidden/Hidden"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~initialWidth: option(float)=?,
+        ~implementation: option(Implementation.t)=?,
+        ~xlDown: option(bool)=?,
+        ~lgDown: option(bool)=?,
+        ~mdDown: option(bool)=?,
+        ~smDown: option(bool)=?,
+        ~xsDown: option(bool)=?,
+        ~xlUp: option(bool)=?,
+        ~lgUp: option(bool)=?,
+        ~mdUp: option(bool)=?,
+        ~smUp: option(bool)=?,
+        ~xsUp: option(bool)=?,
+        ~only: option([ | `Object(Js.t({..})) | `Object(Js.t({..}))])=?,
+        ~className: option(string)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "initialWidth": Js.Nullable.from_opt(initialWidth),
+        "implementation": Js.Nullable.from_opt(optionMap(Implementation.to_string, implementation)),
+        "xlDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, xlDown)),
+        "lgDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, lgDown)),
+        "mdDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, mdDown)),
+        "smDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, smDown)),
+        "xsDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, xsDown)),
+        "xlUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, xlUp)),
+        "lgUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, lgUp)),
+        "mdUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, mdUp)),
+        "smUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, smUp)),
+        "xsUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, xsUp)),
+        "only": Js.Nullable.from_opt(optionMap(unwrapValue, only)),
+        "className": Js.Nullable.from_opt(className)
+      },
+      children
+    );
+};
+
+module Grow = {
+  module Timeout = {
+    type t =
+      | Auto;
+    let to_string =
+      fun
+      | Auto => "auto";
+  };
+  [@bs.module "material-ui/transitions/Grow"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~timeout:
+           option([ | `Enum(Timeout.t) | `Float(float) | `Object({. "enter": int, "exit": int})])=?,
+        ~transitionClasses:
+           option(
+             [
+               | `String(string)
+               | `Object(
+                   {
+                     .
+                     "appear": string,
+                     "appearActive": string,
+                     "enter": string,
+                     "enterActive": string,
+                     "exit": string,
+                     "exitActive": string
+                   }
+                 )
+             ]
+           )=?,
+        ~style: option(Js.t({..}))=?,
+        ~rootRef: option('a)=?,
+        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~in_: bool,
+        ~appear: option(bool)=?,
+        ~theme: Js.t({..}),
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "timeout":
+          Js.Nullable.from_opt(
+            optionMap(
+              fun
+              | `Enum(e) => unwrapValue(`String(Timeout.to_string(e)))
+              | x => unwrapValue(x),
+              timeout
+            )
+          ),
+        "transitionClasses": Js.Nullable.from_opt(optionMap(unwrapValue, transitionClasses)),
+        "style": Js.Nullable.from_opt(style),
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "onExited": Js.Nullable.from_opt(onExited),
+        "onExiting": Js.Nullable.from_opt(onExiting),
+        "onExit": Js.Nullable.from_opt(onExit),
+        "onEntered": Js.Nullable.from_opt(onEntered),
+        "onEntering": Js.Nullable.from_opt(onEntering),
+        "onEnter": Js.Nullable.from_opt(onEnter),
+        "in": Js.Boolean.to_js_boolean(in_),
+        "appear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, appear)),
+        "theme": theme
       },
       children
     );
@@ -3209,16 +4990,16 @@ module Grid = {
         ~md: option([ | `Enum(Md.t) | `Bool(bool)])=?,
         ~sm: option([ | `Enum(Sm.t) | `Bool(bool)])=?,
         ~xs: option([ | `Enum(Xs.t) | `Bool(bool)])=?,
-        ~wrap: Wrap.t,
-        ~justify: Justify.t,
+        ~wrap: option(Wrap.t)=?,
+        ~justify: option(Justify.t)=?,
         ~hidden: option(Js.t({..}))=?,
-        ~spacing: Spacing.t,
-        ~direction: Direction.t,
-        ~alignItems: AlignItems.t,
-        ~alignContent: AlignContent.t,
-        ~item: bool,
-        ~container: bool,
-        ~component: Js.t({..}),
+        ~spacing: option(Spacing.t)=?,
+        ~direction: option(Direction.t)=?,
+        ~alignItems: option(AlignItems.t)=?,
+        ~alignContent: option(AlignContent.t)=?,
+        ~item: option(bool)=?,
+        ~container: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
         ~className: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
@@ -3272,17 +5053,1681 @@ module Grid = {
               xs
             )
           ),
-        "wrap": Wrap.to_string(wrap),
-        "justify": Justify.to_string(justify),
+        "wrap": Js.Nullable.from_opt(optionMap(Wrap.to_string, wrap)),
+        "justify": Js.Nullable.from_opt(optionMap(Justify.to_string, justify)),
         "hidden": Js.Nullable.from_opt(hidden),
-        "spacing": Spacing.to_string(spacing),
-        "direction": Direction.to_string(direction),
-        "alignItems": AlignItems.to_string(alignItems),
-        "alignContent": AlignContent.to_string(alignContent),
-        "item": Js.Boolean.to_js_boolean(item),
-        "container": Js.Boolean.to_js_boolean(container),
-        "component": component,
+        "spacing": Js.Nullable.from_opt(optionMap(Spacing.to_string, spacing)),
+        "direction": Js.Nullable.from_opt(optionMap(Direction.to_string, direction)),
+        "alignItems": Js.Nullable.from_opt(optionMap(AlignItems.to_string, alignItems)),
+        "alignContent": Js.Nullable.from_opt(optionMap(AlignContent.to_string, alignContent)),
+        "item": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, item)),
+        "container": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, container)),
+        "component": Js.Nullable.from_opt(component),
         "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module GridList = {
+  module CellHeight = {
+    type t =
+      | Auto;
+    let to_string =
+      fun
+      | Auto => "auto";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/GridList/GridList"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~style: option(Js.t({..}))=?,
+        ~spacing: option(float)=?,
+        ~component: option(Js.t({..}))=?,
+        ~cols: option(float)=?,
+        ~className: option(string)=?,
+        ~cellHeight: option([ | `Enum(CellHeight.t) | `Float(float)])=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "style": Js.Nullable.from_opt(style),
+        "spacing": Js.Nullable.from_opt(spacing),
+        "component": Js.Nullable.from_opt(component),
+        "cols": Js.Nullable.from_opt(cols),
+        "className": Js.Nullable.from_opt(className),
+        "cellHeight":
+          Js.Nullable.from_opt(
+            optionMap(
+              fun
+              | `Enum(e) => unwrapValue(`String(CellHeight.to_string(e)))
+              | x => unwrapValue(x),
+              cellHeight
+            )
+          ),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module GridListTile = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Tile(string)
+      | ImgFullHeight(string)
+      | ImgFullWidth(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Tile(_) => "tile"
+      | ImgFullHeight(_) => "imgFullHeight"
+      | ImgFullWidth(_) => "imgFullWidth";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Tile(className)
+               | ImgFullHeight(className)
+               | ImgFullWidth(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/GridList/GridListTile"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~rows: option(float)=?,
+        ~component: option(Js.t({..}))=?,
+        ~cols: option(float)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "rows": Js.Nullable.from_opt(rows),
+        "component": Js.Nullable.from_opt(component),
+        "cols": Js.Nullable.from_opt(cols),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module GridListTileBar = {
+  module TitlePosition = {
+    type t =
+      | Top
+      | Bottom;
+    let to_string =
+      fun
+      | Top => "top"
+      | Bottom => "bottom";
+  };
+  module ActionPosition = {
+    type t =
+      | Left
+      | Right;
+    let to_string =
+      fun
+      | Left => "left"
+      | Right => "right";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | RootBottom(string)
+      | RootTop(string)
+      | RootWithSubtitle(string)
+      | TitleWrap(string)
+      | TitleWrapActionLeft(string)
+      | TitleWrapActionRight(string)
+      | Title(string)
+      | Subtitle(string)
+      | ActionIconPositionLeft(string)
+      | ChildImg(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | RootBottom(_) => "rootBottom"
+      | RootTop(_) => "rootTop"
+      | RootWithSubtitle(_) => "rootWithSubtitle"
+      | TitleWrap(_) => "titleWrap"
+      | TitleWrapActionLeft(_) => "titleWrapActionLeft"
+      | TitleWrapActionRight(_) => "titleWrapActionRight"
+      | Title(_) => "title"
+      | Subtitle(_) => "subtitle"
+      | ActionIconPositionLeft(_) => "actionIconPositionLeft"
+      | ChildImg(_) => "childImg";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | RootBottom(className)
+               | RootTop(className)
+               | RootWithSubtitle(className)
+               | TitleWrap(className)
+               | TitleWrapActionLeft(className)
+               | TitleWrapActionRight(className)
+               | Title(className)
+               | Subtitle(className)
+               | ActionIconPositionLeft(className)
+               | ChildImg(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/GridList/GridListTileBar"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~titlePosition: option(TitlePosition.t)=?,
+        ~title: ReasonReact.reactElement,
+        ~subtitle: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
+        ~actionPosition: option(ActionPosition.t)=?,
+        ~actionIcon: option(ReasonReact.reactElement)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "titlePosition": Js.Nullable.from_opt(optionMap(TitlePosition.to_string, titlePosition)),
+        "title": title,
+        "subtitle": Js.Nullable.from_opt(subtitle),
+        "className": Js.Nullable.from_opt(className),
+        "actionPosition": Js.Nullable.from_opt(optionMap(ActionPosition.to_string, actionPosition)),
+        "actionIcon": Js.Nullable.from_opt(actionIcon),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module FormLabel = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Focused(string)
+      | Error(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Focused(_) => "focused"
+      | Error(_) => "error"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Focused(className)
+               | Error(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Form/FormLabel"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~required: option(bool)=?,
+        ~focused: option(bool)=?,
+        ~error: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "required": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, required)),
+        "focused": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focused)),
+        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module FormHelperText = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Dense(string)
+      | Error(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Dense(_) => "dense"
+      | Error(_) => "error"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Dense(className)
+               | Error(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Form/FormHelperText"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~margin: option(Js.t({..}))=?,
+        ~error: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "margin": Js.Nullable.from_opt(margin),
+        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module FormGroup = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Row(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Row(_) => "row";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Row(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Form/FormGroup"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~row: option(bool)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "row": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, row)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module FormControl = {
+  module Margin = {
+    type t =
+      | None
+      | Dense
+      | Normal;
+    let to_string =
+      fun
+      | None => "none"
+      | Dense => "dense"
+      | Normal => "normal";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | MarginNormal(string)
+      | MarginDense(string)
+      | FullWidth(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | MarginNormal(_) => "marginNormal"
+      | MarginDense(_) => "marginDense"
+      | FullWidth(_) => "fullWidth";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | MarginNormal(className)
+               | MarginDense(className)
+               | FullWidth(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Form/FormControl"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~required: option(bool)=?,
+        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~margin: option(Margin.t)=?,
+        ~fullWidth: option(bool)=?,
+        ~error: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "required": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, required)),
+        "onFocus": Js.Nullable.from_opt(onFocus),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "margin": Js.Nullable.from_opt(optionMap(Margin.to_string, margin)),
+        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
+        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module FormControlLabel = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Disabled(string)
+      | Label(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Disabled(_) => "disabled"
+      | Label(_) => "label";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Disabled(className)
+               | Label(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Form/FormControlLabel"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~value: option(string)=?,
+        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~name: option(string)=?,
+        ~label: ReasonReact.reactElement,
+        ~inputRef: option('a)=?,
+        ~disabled: option(bool)=?,
+        ~control: ReasonReact.reactElement,
+        ~className: option(string)=?,
+        ~checked: option([ | `Bool(bool) | `String(string)])=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": Js.Nullable.from_opt(value),
+        "onChange": Js.Nullable.from_opt(onChange),
+        "name": Js.Nullable.from_opt(name),
+        "label": label,
+        "inputRef": Js.Nullable.from_opt(inputRef),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "control": control,
+        "className": Js.Nullable.from_opt(className),
+        "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Fade = {
+  [@bs.module "material-ui/transitions/Fade"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~timeout: option(Js.t({..}))=?,
+        ~style: option(Js.t({..}))=?,
+        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~in_: bool,
+        ~appear: option(bool)=?,
+        ~theme: Js.t({..}),
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "timeout": Js.Nullable.from_opt(timeout),
+        "style": Js.Nullable.from_opt(style),
+        "onExit": Js.Nullable.from_opt(onExit),
+        "onEntering": Js.Nullable.from_opt(onEntering),
+        "onEnter": Js.Nullable.from_opt(onEnter),
+        "in": Js.Boolean.to_js_boolean(in_),
+        "appear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, appear)),
+        "theme": theme
+      },
+      children
+    );
+};
+
+module ExpansionPanel = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Expanded(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Expanded(_) => "expanded"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Expanded(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/ExpansionPanel/ExpansionPanel"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~expanded: option(bool)=?,
+        ~cCollapseProps: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~disabled: option(bool)=?,
+        ~defaultExpanded: option(bool)=?,
+        ~classes: option(Classes.t)=?,
+        ~component: option(Js.t({..}))=?,
+        ~elevation: option(float)=?,
+        ~square: option(bool)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "onChange": Js.Nullable.from_opt(onChange),
+        "expanded": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, expanded)),
+        "CollapseProps": Js.Nullable.from_opt(cCollapseProps),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "defaultExpanded":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, defaultExpanded)),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "component": Js.Nullable.from_opt(component),
+        "elevation": Js.Nullable.from_opt(elevation),
+        "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square))
+      },
+      children
+    );
+};
+
+module ExpansionPanelSummary = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Expanded(string)
+      | Focused(string)
+      | Disabled(string)
+      | Content(string)
+      | ContentExpanded(string)
+      | ExpandIcon(string)
+      | ExpandIconExpanded(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Expanded(_) => "expanded"
+      | Focused(_) => "focused"
+      | Disabled(_) => "disabled"
+      | Content(_) => "content"
+      | ContentExpanded(_) => "contentExpanded"
+      | ExpandIcon(_) => "expandIcon"
+      | ExpandIconExpanded(_) => "expandIconExpanded";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Expanded(className)
+               | Focused(className)
+               | Disabled(className)
+               | Content(className)
+               | ContentExpanded(className)
+               | ExpandIcon(className)
+               | ExpandIconExpanded(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/ExpansionPanel/ExpansionPanelSummary"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~expandIcon: option(ReasonReact.reactElement)=?,
+        ~expanded: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~centerRipple: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~disableRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~keyboardFocusedClassName: option(string)=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
+        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~rootRef: option('a)=?,
+        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "onClick": Js.Nullable.from_opt(onClick),
+        "onChange": Js.Nullable.from_opt(onChange),
+        "expandIcon": Js.Nullable.from_opt(expandIcon),
+        "expanded": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, expanded)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
+        "component": Js.Nullable.from_opt(component),
+        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
+        "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
+        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "onFocus": Js.Nullable.from_opt(onFocus),
+        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
+        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
+        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
+        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
+        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
+        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
+        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_)
+      },
+      children
+    );
+};
+
+module ExpansionPanelDetails = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/ExpansionPanel/ExpansionPanelDetails"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module ExpansionPanelActions = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Action(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Action(_) => "action";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Action(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/ExpansionPanel/ExpansionPanelActions"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Drawer = {
+  module Type = {
+    type t =
+      | Permanent
+      | Persistent
+      | Temporary;
+    let to_string =
+      fun
+      | Permanent => "permanent"
+      | Persistent => "persistent"
+      | Temporary => "temporary";
+  };
+  module Anchor = {
+    type t =
+      | Left
+      | Top
+      | Right
+      | Bottom;
+    let to_string =
+      fun
+      | Left => "left"
+      | Top => "top"
+      | Right => "right"
+      | Bottom => "bottom";
+  };
+  module Classes = {
+    type classesType =
+      | Docked(string)
+      | Paper(string)
+      | PaperAnchorLeft(string)
+      | PaperAnchorRight(string)
+      | PaperAnchorTop(string)
+      | PaperAnchorBottom(string)
+      | PaperAnchorDockedLeft(string)
+      | PaperAnchorDockedTop(string)
+      | PaperAnchorDockedRight(string)
+      | PaperAnchorDockedBottom(string)
+      | Modal(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Docked(_) => "docked"
+      | Paper(_) => "paper"
+      | PaperAnchorLeft(_) => "paperAnchorLeft"
+      | PaperAnchorRight(_) => "paperAnchorRight"
+      | PaperAnchorTop(_) => "paperAnchorTop"
+      | PaperAnchorBottom(_) => "paperAnchorBottom"
+      | PaperAnchorDockedLeft(_) => "paperAnchorDockedLeft"
+      | PaperAnchorDockedTop(_) => "paperAnchorDockedTop"
+      | PaperAnchorDockedRight(_) => "paperAnchorDockedRight"
+      | PaperAnchorDockedBottom(_) => "paperAnchorDockedBottom"
+      | Modal(_) => "modal";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Docked(className)
+               | Paper(className)
+               | PaperAnchorLeft(className)
+               | PaperAnchorRight(className)
+               | PaperAnchorTop(className)
+               | PaperAnchorBottom(className)
+               | PaperAnchorDockedLeft(className)
+               | PaperAnchorDockedTop(className)
+               | PaperAnchorDockedRight(className)
+               | PaperAnchorDockedBottom(className)
+               | Modal(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Drawer/Drawer"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~type_: option(Type.t)=?,
+        ~sSlideProps: option(Js.t({..}))=?,
+        ~open_: option(bool)=?,
+        ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
+        ~mModalProps: option(Js.t({..}))=?,
+        ~transitionDuration: option(Js.t({..}))=?,
+        ~elevation: option(float)=?,
+        ~className: option(string)=?,
+        ~anchor: option(Anchor.t)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~bBackdropClassName: option(string)=?,
+        ~bBackdropComponent: option(Js.t({..}))=?,
+        ~bBackdropInvisible: option(bool)=?,
+        ~bBackdropTransitionDuration: option(Js.t({..}))=?,
+        ~keepMounted: option(bool)=?,
+        ~disableBackdrop: option(bool)=?,
+        ~ignoreBackdropClick: option(bool)=?,
+        ~ignoreEscapeKeyUp: option(bool)=?,
+        ~modalManager: option(Js.t({..}))=?,
+        ~onBackdropClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEscapeKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~show: bool,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "type": Js.Nullable.from_opt(optionMap(Type.to_string, type_)),
+        "SlideProps": Js.Nullable.from_opt(sSlideProps),
+        "open": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
+        "onRequestClose": Js.Nullable.from_opt(onRequestClose),
+        "ModalProps": Js.Nullable.from_opt(mModalProps),
+        "transitionDuration": Js.Nullable.from_opt(transitionDuration),
+        "elevation": Js.Nullable.from_opt(elevation),
+        "className": Js.Nullable.from_opt(className),
+        "anchor": Js.Nullable.from_opt(optionMap(Anchor.to_string, anchor)),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "BackdropClassName": Js.Nullable.from_opt(bBackdropClassName),
+        "BackdropComponent": Js.Nullable.from_opt(bBackdropComponent),
+        "BackdropInvisible":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, bBackdropInvisible)),
+        "BackdropTransitionDuration": Js.Nullable.from_opt(bBackdropTransitionDuration),
+        "keepMounted": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, keepMounted)),
+        "disableBackdrop":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableBackdrop)),
+        "ignoreBackdropClick":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, ignoreBackdropClick)),
+        "ignoreEscapeKeyUp":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, ignoreEscapeKeyUp)),
+        "modalManager": Js.Nullable.from_opt(modalManager),
+        "onBackdropClick": Js.Nullable.from_opt(onBackdropClick),
+        "onEnter": Js.Nullable.from_opt(onEnter),
+        "onEntering": Js.Nullable.from_opt(onEntering),
+        "onEntered": Js.Nullable.from_opt(onEntered),
+        "onEscapeKeyUp": Js.Nullable.from_opt(onEscapeKeyUp),
+        "onExit": Js.Nullable.from_opt(onExit),
+        "onExiting": Js.Nullable.from_opt(onExiting),
+        "onExited": Js.Nullable.from_opt(onExited),
+        "show": Js.Boolean.to_js_boolean(show)
+      },
+      children
+    );
+};
+
+module Divider = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Default(string)
+      | Inset(string)
+      | Light(string)
+      | Absolute(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Default(_) => "default"
+      | Inset(_) => "inset"
+      | Light(_) => "light"
+      | Absolute(_) => "absolute";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Default(className)
+               | Inset(className)
+               | Light(className)
+               | Absolute(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Divider/Divider"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~light: option(bool)=?,
+        ~inset: option(bool)=?,
+        ~className: option(string)=?,
+        ~absolute: option(bool)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "light": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, light)),
+        "inset": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, inset)),
+        "className": Js.Nullable.from_opt(className),
+        "absolute": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, absolute)),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Dialog = {
+  module MaxWidth = {
+    type t =
+      | Xs
+      | Sm
+      | Md;
+    let to_string =
+      fun
+      | Xs => "xs"
+      | Sm => "sm"
+      | Md => "md";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Paper(string)
+      | PaperWidthXs(string)
+      | PaperWidthSm(string)
+      | PaperWidthMd(string)
+      | FullWidth(string)
+      | FullScreen(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Paper(_) => "paper"
+      | PaperWidthXs(_) => "paperWidthXs"
+      | PaperWidthSm(_) => "paperWidthSm"
+      | PaperWidthMd(_) => "paperWidthMd"
+      | FullWidth(_) => "fullWidth"
+      | FullScreen(_) => "fullScreen";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Paper(className)
+               | PaperWidthXs(className)
+               | PaperWidthSm(className)
+               | PaperWidthMd(className)
+               | FullWidth(className)
+               | FullScreen(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Dialog/Dialog"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~transition: option(Js.t({..}))=?,
+        ~open_: option(bool)=?,
+        ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
+        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEscapeKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onBackdropClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~fullWidth: option(bool)=?,
+        ~maxWidth: option(MaxWidth.t)=?,
+        ~transitionDuration: option(Js.t({..}))=?,
+        ~ignoreEscapeKeyUp: option(bool)=?,
+        ~ignoreBackdropClick: option(bool)=?,
+        ~fullScreen: option(bool)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~bBackdropClassName: option(string)=?,
+        ~bBackdropComponent: option(Js.t({..}))=?,
+        ~bBackdropInvisible: option(bool)=?,
+        ~bBackdropTransitionDuration: option(Js.t({..}))=?,
+        ~keepMounted: option(bool)=?,
+        ~disableBackdrop: option(bool)=?,
+        ~modalManager: option(Js.t({..}))=?,
+        ~show: bool,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "transition": Js.Nullable.from_opt(transition),
+        "open": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
+        "onRequestClose": Js.Nullable.from_opt(onRequestClose),
+        "onExited": Js.Nullable.from_opt(onExited),
+        "onExiting": Js.Nullable.from_opt(onExiting),
+        "onExit": Js.Nullable.from_opt(onExit),
+        "onEscapeKeyUp": Js.Nullable.from_opt(onEscapeKeyUp),
+        "onEntered": Js.Nullable.from_opt(onEntered),
+        "onEntering": Js.Nullable.from_opt(onEntering),
+        "onEnter": Js.Nullable.from_opt(onEnter),
+        "onBackdropClick": Js.Nullable.from_opt(onBackdropClick),
+        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
+        "maxWidth": Js.Nullable.from_opt(optionMap(MaxWidth.to_string, maxWidth)),
+        "transitionDuration": Js.Nullable.from_opt(transitionDuration),
+        "ignoreEscapeKeyUp":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, ignoreEscapeKeyUp)),
+        "ignoreBackdropClick":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, ignoreBackdropClick)),
+        "fullScreen": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullScreen)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "BackdropClassName": Js.Nullable.from_opt(bBackdropClassName),
+        "BackdropComponent": Js.Nullable.from_opt(bBackdropComponent),
+        "BackdropInvisible":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, bBackdropInvisible)),
+        "BackdropTransitionDuration": Js.Nullable.from_opt(bBackdropTransitionDuration),
+        "keepMounted": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, keepMounted)),
+        "disableBackdrop":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableBackdrop)),
+        "modalManager": Js.Nullable.from_opt(modalManager),
+        "show": Js.Boolean.to_js_boolean(show)
+      },
+      children
+    );
+};
+
+module DialogTitle = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Dialog/DialogTitle"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~disableTypography: option(bool)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "disableTypography":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTypography)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module DialogContent = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Dialog/DialogContent"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module DialogContentText = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Dialog/DialogContentText"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module DialogActions = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Action(string)
+      | Button(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Action(_) => "action"
+      | Button(_) => "button";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Action(className)
+               | Button(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Dialog/DialogActions"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Collapse = {
+  module Timeout = {
+    type t =
+      | Auto;
+    let to_string =
+      fun
+      | Auto => "auto";
+  };
+  module Classes = {
+    type classesType =
+      | Container(string)
+      | Entered(string)
+      | Wrapper(string)
+      | WrapperInner(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Container(_) => "container"
+      | Entered(_) => "entered"
+      | Wrapper(_) => "wrapper"
+      | WrapperInner(_) => "wrapperInner";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Container(className)
+               | Entered(className)
+               | Wrapper(className)
+               | WrapperInner(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/transitions/Collapse"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~unmountOnExit: option(bool)=?,
+        ~timeout:
+           option([ | `Enum(Timeout.t) | `Float(float) | `Object({. "enter": int, "exit": int})])=?,
+        ~style: option(Js.t({..}))=?,
+        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
+        ~in_: bool,
+        ~containerProps: option(Js.t({..}))=?,
+        ~collapsedHeight: option(string)=?,
+        ~component: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~appear: option(bool)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "unmountOnExit": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, unmountOnExit)),
+        "timeout":
+          Js.Nullable.from_opt(
+            optionMap(
+              fun
+              | `Enum(e) => unwrapValue(`String(Timeout.to_string(e)))
+              | x => unwrapValue(x),
+              timeout
+            )
+          ),
+        "style": Js.Nullable.from_opt(style),
+        "onExiting": Js.Nullable.from_opt(onExiting),
+        "onExit": Js.Nullable.from_opt(onExit),
+        "onEntered": Js.Nullable.from_opt(onEntered),
+        "onEntering": Js.Nullable.from_opt(onEntering),
+        "onEnter": Js.Nullable.from_opt(onEnter),
+        "in": Js.Boolean.to_js_boolean(in_),
+        "containerProps": Js.Nullable.from_opt(containerProps),
+        "collapsedHeight": Js.Nullable.from_opt(collapsedHeight),
+        "component": Js.Nullable.from_opt(component),
+        "className": Js.Nullable.from_opt(className),
+        "appear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, appear)),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module ClickAwayListener = {
+  [@bs.module "material-ui/utils/ClickAwayListener"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make = (~onClickAway: ReactEventRe.Synthetic.t => unit, children) =>
+    ReasonReact.wrapJsForReason(~reactClass, ~props={"onClickAway": onClickAway}, children);
+};
+
+module CircularProgress = {
+  module Mode = {
+    type t =
+      | Determinate
+      | Indeterminate;
+    let to_string =
+      fun
+      | Determinate => "determinate"
+      | Indeterminate => "indeterminate";
+  };
+  module Color = {
+    type t =
+      | Primary
+      | Accent
+      | Inherit;
+    let to_string =
+      fun
+      | Primary => "primary"
+      | Accent => "accent"
+      | Inherit => "inherit";
+  };
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | PrimaryColor(string)
+      | AccentColor(string)
+      | SvgIndeterminate(string)
+      | SvgDeterminate(string)
+      | Circle(string)
+      | CircleIndeterminate(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | PrimaryColor(_) => "primaryColor"
+      | AccentColor(_) => "accentColor"
+      | SvgIndeterminate(_) => "svgIndeterminate"
+      | SvgDeterminate(_) => "svgDeterminate"
+      | Circle(_) => "circle"
+      | CircleIndeterminate(_) => "circleIndeterminate";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | PrimaryColor(className)
+               | AccentColor(className)
+               | SvgIndeterminate(className)
+               | SvgDeterminate(className)
+               | Circle(className)
+               | CircleIndeterminate(className) =>
+                 Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Progress/CircularProgress"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~value: option(float)=?,
+        ~thickness: option(float)=?,
+        ~style: option(Js.t({..}))=?,
+        ~size: option(float)=?,
+        ~mode: option(Mode.t)=?,
+        ~min: option(float)=?,
+        ~max: option(float)=?,
+        ~color: option(Color.t)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": Js.Nullable.from_opt(value),
+        "thickness": Js.Nullable.from_opt(thickness),
+        "style": Js.Nullable.from_opt(style),
+        "size": Js.Nullable.from_opt(size),
+        "mode": Js.Nullable.from_opt(optionMap(Mode.to_string, mode)),
+        "min": Js.Nullable.from_opt(min),
+        "max": Js.Nullable.from_opt(max),
+        "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Chip = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Clickable(string)
+      | Deletable(string)
+      | Avatar(string)
+      | AvatarChildren(string)
+      | Label(string)
+      | DeleteIcon(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Clickable(_) => "clickable"
+      | Deletable(_) => "deletable"
+      | Avatar(_) => "avatar"
+      | AvatarChildren(_) => "avatarChildren"
+      | Label(_) => "label"
+      | DeleteIcon(_) => "deleteIcon";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | Clickable(className)
+               | Deletable(className)
+               | Avatar(className)
+               | AvatarChildren(className)
+               | Label(className)
+               | DeleteIcon(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Chip/Chip"] external reactClass : ReasonReact.reactClass = "default";
+  let make =
+      (
+        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
+        ~onRequestDelete: option((ReactEventRe.Synthetic.t => unit))=?,
+        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~label: option(ReasonReact.reactElement)=?,
+        ~deleteIcon: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
+        ~avatar: option(ReasonReact.reactElement)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "onRequestDelete": Js.Nullable.from_opt(onRequestDelete),
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onClick": Js.Nullable.from_opt(onClick),
+        "label": Js.Nullable.from_opt(label),
+        "deleteIcon": Js.Nullable.from_opt(deleteIcon),
+        "className": Js.Nullable.from_opt(className),
+        "avatar": Js.Nullable.from_opt(avatar),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Checkbox = {
+  module Classes = {
+    type classesType =
+      | Default(string)
+      | Checked(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Default(_) => "default"
+      | Checked(_) => "checked"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Default(className)
+               | Checked(className)
+               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Checkbox/Checkbox"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~value: option(string)=?,
+        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
+        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~name: option(string)=?,
+        ~inputRef: option('a)=?,
+        ~inputProps: option(Js.t({..}))=?,
+        ~indeterminateIcon: option(ReasonReact.reactElement)=?,
+        ~indeterminate: option(bool)=?,
+        ~icon: option(ReasonReact.reactElement)=?,
+        ~disableRipple: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~defaultChecked: option(bool)=?,
+        ~className: option(string)=?,
+        ~checkedIcon: option(ReasonReact.reactElement)=?,
+        ~checked: option([ | `Bool(bool) | `String(string)])=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": Js.Nullable.from_opt(value),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "onChange": Js.Nullable.from_opt(onChange),
+        "name": Js.Nullable.from_opt(name),
+        "inputRef": Js.Nullable.from_opt(inputRef),
+        "inputProps": Js.Nullable.from_opt(inputProps),
+        "indeterminateIcon": Js.Nullable.from_opt(indeterminateIcon),
+        "indeterminate": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, indeterminate)),
+        "icon": Js.Nullable.from_opt(icon),
+        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "defaultChecked": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, defaultChecked)),
+        "className": Js.Nullable.from_opt(className),
+        "checkedIcon": Js.Nullable.from_opt(checkedIcon),
+        "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -3396,9 +6841,9 @@ module Card = {
         ~raised: option(bool)=?,
         ~classes: option(Classes.t)=?,
         ~theme: option(Js.t({..}))=?,
-        ~component: Js.t({..}),
-        ~elevation: float,
-        ~square: bool,
+        ~component: option(Js.t({..}))=?,
+        ~elevation: option(float)=?,
+        ~square: option(bool)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
@@ -3408,656 +6853,47 @@ module Card = {
         "raised": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, raised)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
         "theme": Js.Nullable.from_opt(theme),
-        "component": component,
-        "elevation": elevation,
-        "square": Js.Boolean.to_js_boolean(square)
-      },
-      children
-    );
-};
-
-module ListItem = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Container(string)
-      | KeyboardFocused(string)
-      | Default(string)
-      | Dense(string)
-      | Disabled(string)
-      | Divider(string)
-      | Gutters(string)
-      | Button(string)
-      | SecondaryAction(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Container(_) => "container"
-      | KeyboardFocused(_) => "keyboardFocused"
-      | Default(_) => "default"
-      | Dense(_) => "dense"
-      | Disabled(_) => "disabled"
-      | Divider(_) => "divider"
-      | Gutters(_) => "gutters"
-      | Button(_) => "button"
-      | SecondaryAction(_) => "secondaryAction";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Container(className)
-               | KeyboardFocused(className)
-               | Default(className)
-               | Dense(className)
-               | Disabled(className)
-               | Divider(className)
-               | Gutters(className)
-               | Button(className)
-               | SecondaryAction(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/List/ListItem"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~divider: bool,
-        ~disableGutters: bool,
-        ~disabled: bool,
-        ~dense: bool,
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~button: bool,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "divider": Js.Boolean.to_js_boolean(divider),
-        "disableGutters": Js.Boolean.to_js_boolean(disableGutters),
-        "disabled": Js.Boolean.to_js_boolean(disabled),
-        "dense": Js.Boolean.to_js_boolean(dense),
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "button": Js.Boolean.to_js_boolean(button),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module MenuList = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Padding(string)
-      | Dense(string)
-      | Subheader(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Padding(_) => "padding"
-      | Dense(_) => "dense"
-      | Subheader(_) => "subheader";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Padding(className)
-               | Dense(className)
-               | Subheader(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Menu/MenuList"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~onKeyDown: option(((ReactEventRe.UI.t, string) => unit))=?,
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~className: option(string)=?,
-        ~classes: option(Classes.t)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~component: Js.t({..}),
-        ~dense: bool,
-        ~disablePadding: bool,
-        ~rootRef: option('a)=?,
-        ~subheader: option(ReasonReact.reactElement)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "theme": Js.Nullable.from_opt(theme),
-        "component": component,
-        "dense": Js.Boolean.to_js_boolean(dense),
-        "disablePadding": Js.Boolean.to_js_boolean(disablePadding),
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "subheader": Js.Nullable.from_opt(subheader)
-      },
-      children
-    );
-};
-
-module ExpansionPanelDetails = {
-  module Classes = {
-    type classesType =
-      | Root(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/ExpansionPanel/ExpansionPanelDetails"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module CardContent = {
-  module Classes = {
-    type classesType =
-      | Root(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Card/CardContent"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Icon = {
-  module Color = {
-    type t =
-      | Inherit
-      | Accent
-      | Action
-      | Contrast
-      | Disabled
-      | Error
-      | Primary;
-    let to_string =
-      fun
-      | Inherit => "inherit"
-      | Accent => "accent"
-      | Action => "action"
-      | Contrast => "contrast"
-      | Disabled => "disabled"
-      | Error => "error"
-      | Primary => "primary";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | ColorAccent(string)
-      | ColorAction(string)
-      | ColorContrast(string)
-      | ColorDisabled(string)
-      | ColorError(string)
-      | ColorPrimary(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | ColorAccent(_) => "colorAccent"
-      | ColorAction(_) => "colorAction"
-      | ColorContrast(_) => "colorContrast"
-      | ColorDisabled(_) => "colorDisabled"
-      | ColorError(_) => "colorError"
-      | ColorPrimary(_) => "colorPrimary";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | ColorAccent(className)
-               | ColorAction(className)
-               | ColorContrast(className)
-               | ColorDisabled(className)
-               | ColorError(className)
-               | ColorPrimary(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Icon/Icon"] external reactClass : ReasonReact.reactClass = "default";
-  let make =
-      (
-        ~color: Color.t,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "color": Color.to_string(color),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Checkbox = {
-  module Classes = {
-    type classesType =
-      | Default(string)
-      | Checked(string)
-      | Disabled(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Default(_) => "default"
-      | Checked(_) => "checked"
-      | Disabled(_) => "disabled";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Default(className)
-               | Checked(className)
-               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Checkbox/Checkbox"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~value: option(string)=?,
-        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
-        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
-        ~name: option(string)=?,
-        ~inputRef: option('a)=?,
-        ~inputProps: option(Js.t({..}))=?,
-        ~indeterminateIcon: ReasonReact.reactElement,
-        ~indeterminate: bool,
-        ~icon: option(ReasonReact.reactElement)=?,
-        ~disableRipple: option(bool)=?,
-        ~disabled: option(bool)=?,
-        ~defaultChecked: option(bool)=?,
-        ~className: option(string)=?,
-        ~checkedIcon: option(ReasonReact.reactElement)=?,
-        ~checked: option([ | `Bool(bool) | `String(string)])=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "value": Js.Nullable.from_opt(value),
-        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
-        "onChange": Js.Nullable.from_opt(onChange),
-        "name": Js.Nullable.from_opt(name),
-        "inputRef": Js.Nullable.from_opt(inputRef),
-        "inputProps": Js.Nullable.from_opt(inputProps),
-        "indeterminateIcon": indeterminateIcon,
-        "indeterminate": Js.Boolean.to_js_boolean(indeterminate),
-        "icon": Js.Nullable.from_opt(icon),
-        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "defaultChecked": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, defaultChecked)),
-        "className": Js.Nullable.from_opt(className),
-        "checkedIcon": Js.Nullable.from_opt(checkedIcon),
-        "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Dialog = {
-  module MaxWidth = {
-    type t =
-      | Xs
-      | Sm
-      | Md;
-    let to_string =
-      fun
-      | Xs => "xs"
-      | Sm => "sm"
-      | Md => "md";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Paper(string)
-      | PaperWidthXs(string)
-      | PaperWidthSm(string)
-      | PaperWidthMd(string)
-      | FullWidth(string)
-      | FullScreen(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Paper(_) => "paper"
-      | PaperWidthXs(_) => "paperWidthXs"
-      | PaperWidthSm(_) => "paperWidthSm"
-      | PaperWidthMd(_) => "paperWidthMd"
-      | FullWidth(_) => "fullWidth"
-      | FullScreen(_) => "fullScreen";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Paper(className)
-               | PaperWidthXs(className)
-               | PaperWidthSm(className)
-               | PaperWidthMd(className)
-               | FullWidth(className)
-               | FullScreen(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Dialog/Dialog"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~transition: Js.t({..}),
-        ~open_: bool,
-        ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
-        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEscapeKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onBackdropClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~fullWidth: bool,
-        ~maxWidth: MaxWidth.t,
-        ~transitionDuration: Js.t({..}),
-        ~ignoreEscapeKeyUp: bool,
-        ~ignoreBackdropClick: bool,
-        ~fullScreen: bool,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        ~bBackdropClassName: option(string)=?,
-        ~bBackdropComponent: Js.t({..}),
-        ~bBackdropInvisible: bool,
-        ~bBackdropTransitionDuration: Js.t({..}),
-        ~keepMounted: bool,
-        ~disableBackdrop: bool,
-        ~modalManager: Js.t({..}),
-        ~show: bool,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "transition": transition,
-        "open": Js.Boolean.to_js_boolean(open_),
-        "onRequestClose": Js.Nullable.from_opt(onRequestClose),
-        "onExited": Js.Nullable.from_opt(onExited),
-        "onExiting": Js.Nullable.from_opt(onExiting),
-        "onExit": Js.Nullable.from_opt(onExit),
-        "onEscapeKeyUp": Js.Nullable.from_opt(onEscapeKeyUp),
-        "onEntered": Js.Nullable.from_opt(onEntered),
-        "onEntering": Js.Nullable.from_opt(onEntering),
-        "onEnter": Js.Nullable.from_opt(onEnter),
-        "onBackdropClick": Js.Nullable.from_opt(onBackdropClick),
-        "fullWidth": Js.Boolean.to_js_boolean(fullWidth),
-        "maxWidth": MaxWidth.to_string(maxWidth),
-        "transitionDuration": transitionDuration,
-        "ignoreEscapeKeyUp": Js.Boolean.to_js_boolean(ignoreEscapeKeyUp),
-        "ignoreBackdropClick": Js.Boolean.to_js_boolean(ignoreBackdropClick),
-        "fullScreen": Js.Boolean.to_js_boolean(fullScreen),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "BackdropClassName": Js.Nullable.from_opt(bBackdropClassName),
-        "BackdropComponent": bBackdropComponent,
-        "BackdropInvisible": Js.Boolean.to_js_boolean(bBackdropInvisible),
-        "BackdropTransitionDuration": bBackdropTransitionDuration,
-        "keepMounted": Js.Boolean.to_js_boolean(keepMounted),
-        "disableBackdrop": Js.Boolean.to_js_boolean(disableBackdrop),
-        "modalManager": modalManager,
-        "show": Js.Boolean.to_js_boolean(show)
-      },
-      children
-    );
-};
-
-module TableSortLabel = {
-  module Direction = {
-    type t =
-      | Asc
-      | Desc;
-    let to_string =
-      fun
-      | Asc => "asc"
-      | Desc => "desc";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Active(string)
-      | Icon(string)
-      | Desc(string)
-      | Asc(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Active(_) => "active"
-      | Icon(_) => "icon"
-      | Desc(_) => "desc"
-      | Asc(_) => "asc";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Active(className)
-               | Icon(className)
-               | Desc(className)
-               | Asc(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Table/TableSortLabel"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~direction: Direction.t,
-        ~className: option(string)=?,
-        ~active: bool,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        ~centerRipple: bool,
-        ~component: option(Js.t({..}))=?,
-        ~disabled: option(bool)=?,
-        ~disableRipple: bool,
-        ~focusRipple: bool,
-        ~keyboardFocusedClassName: option(string)=?,
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
-        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~role: option(string)=?,
-        ~rootRef: option('a)=?,
-        ~tabIndex: [ | `Float(float) | `String(string)],
-        ~type_: string,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "direction": Direction.to_string(direction),
-        "className": Js.Nullable.from_opt(className),
-        "active": Js.Boolean.to_js_boolean(active),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "centerRipple": Js.Boolean.to_js_boolean(centerRipple),
         "component": Js.Nullable.from_opt(component),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "disableRipple": Js.Boolean.to_js_boolean(disableRipple),
-        "focusRipple": Js.Boolean.to_js_boolean(focusRipple),
-        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "onClick": Js.Nullable.from_opt(onClick),
-        "onFocus": Js.Nullable.from_opt(onFocus),
-        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
-        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
-        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
-        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
-        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
-        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
-        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
-        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
-        "role": Js.Nullable.from_opt(role),
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "tabIndex": unwrapValue(tabIndex),
-        "type": type_
+        "elevation": Js.Nullable.from_opt(elevation),
+        "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square))
       },
       children
     );
 };
 
-module GridList = {
-  module CellHeight = {
-    type t =
-      | Auto;
-    let to_string =
-      fun
-      | Auto => "auto";
-  };
+module CardMedia = {
   module Classes = {
     type classesType =
-      | Root(string);
+      | Root(string)
+      | RootMedia(string);
     type t = list(classesType);
     let to_string =
       fun
-      | Root(_) => "root";
+      | Root(_) => "root"
+      | RootMedia(_) => "rootMedia";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
            ~f=
              (obj, classType) => {
                switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               | Root(className)
+               | RootMedia(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/GridList/GridList"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/Card/CardMedia"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
+        ~component: option(Js.t({..}))=?,
         ~style: option(Js.t({..}))=?,
-        ~spacing: float,
-        ~component: Js.t({..}),
-        ~cols: float,
+        ~src: option(string)=?,
+        ~image: option(string)=?,
         ~className: option(string)=?,
-        ~cellHeight: [ | `Enum(CellHeight.t) | `Float(float)],
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
         children
@@ -4065,188 +6901,10 @@ module GridList = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "component": Js.Nullable.from_opt(component),
         "style": Js.Nullable.from_opt(style),
-        "spacing": spacing,
-        "component": component,
-        "cols": cols,
-        "className": Js.Nullable.from_opt(className),
-        "cellHeight":
-          (
-            fun
-            | `Enum(e) => unwrapValue(`String(CellHeight.to_string(e)))
-            | x => unwrapValue(x)
-          )(
-            cellHeight
-          ),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Paper = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Rounded(string)
-      | Shadow0(string)
-      | Shadow1(string)
-      | Shadow2(string)
-      | Shadow3(string)
-      | Shadow4(string)
-      | Shadow5(string)
-      | Shadow6(string)
-      | Shadow7(string)
-      | Shadow8(string)
-      | Shadow9(string)
-      | Shadow10(string)
-      | Shadow11(string)
-      | Shadow12(string)
-      | Shadow13(string)
-      | Shadow14(string)
-      | Shadow15(string)
-      | Shadow16(string)
-      | Shadow17(string)
-      | Shadow18(string)
-      | Shadow19(string)
-      | Shadow20(string)
-      | Shadow21(string)
-      | Shadow22(string)
-      | Shadow23(string)
-      | Shadow24(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Rounded(_) => "rounded"
-      | Shadow0(_) => "shadow0"
-      | Shadow1(_) => "shadow1"
-      | Shadow2(_) => "shadow2"
-      | Shadow3(_) => "shadow3"
-      | Shadow4(_) => "shadow4"
-      | Shadow5(_) => "shadow5"
-      | Shadow6(_) => "shadow6"
-      | Shadow7(_) => "shadow7"
-      | Shadow8(_) => "shadow8"
-      | Shadow9(_) => "shadow9"
-      | Shadow10(_) => "shadow10"
-      | Shadow11(_) => "shadow11"
-      | Shadow12(_) => "shadow12"
-      | Shadow13(_) => "shadow13"
-      | Shadow14(_) => "shadow14"
-      | Shadow15(_) => "shadow15"
-      | Shadow16(_) => "shadow16"
-      | Shadow17(_) => "shadow17"
-      | Shadow18(_) => "shadow18"
-      | Shadow19(_) => "shadow19"
-      | Shadow20(_) => "shadow20"
-      | Shadow21(_) => "shadow21"
-      | Shadow22(_) => "shadow22"
-      | Shadow23(_) => "shadow23"
-      | Shadow24(_) => "shadow24";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Rounded(className)
-               | Shadow0(className)
-               | Shadow1(className)
-               | Shadow2(className)
-               | Shadow3(className)
-               | Shadow4(className)
-               | Shadow5(className)
-               | Shadow6(className)
-               | Shadow7(className)
-               | Shadow8(className)
-               | Shadow9(className)
-               | Shadow10(className)
-               | Shadow11(className)
-               | Shadow12(className)
-               | Shadow13(className)
-               | Shadow14(className)
-               | Shadow15(className)
-               | Shadow16(className)
-               | Shadow17(className)
-               | Shadow18(className)
-               | Shadow19(className)
-               | Shadow20(className)
-               | Shadow21(className)
-               | Shadow22(className)
-               | Shadow23(className)
-               | Shadow24(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Paper/Paper"] external reactClass : ReasonReact.reactClass = "default";
-  let make =
-      (
-        ~square: bool,
-        ~elevation: float,
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "square": Js.Boolean.to_js_boolean(square),
-        "elevation": elevation,
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module FormGroup = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Row(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Row(_) => "row";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Row(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Form/FormGroup"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~row: bool,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "row": Js.Boolean.to_js_boolean(row),
+        "src": Js.Nullable.from_opt(src),
+        "image": Js.Nullable.from_opt(image),
         "className": Js.Nullable.from_opt(className),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -4317,107 +6975,34 @@ module CardHeader = {
     );
 };
 
-module Toolbar = {
+module CardContent = {
   module Classes = {
     type classesType =
-      | Root(string)
-      | Gutters(string);
+      | Root(string);
     type t = list(classesType);
     let to_string =
       fun
-      | Root(_) => "root"
-      | Gutters(_) => "gutters";
+      | Root(_) => "root";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
            ~f=
              (obj, classType) => {
                switch classType {
-               | Root(className)
-               | Gutters(className) => Js.Dict.set(obj, to_string(classType), className)
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/Toolbar/Toolbar"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/Card/CardContent"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make =
-      (
-        ~disableGutters: option(bool)=?,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "disableGutters": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableGutters)),
         "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module ListItemText = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Inset(string)
-      | Dense(string)
-      | Text(string)
-      | TextDense(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Inset(_) => "inset"
-      | Dense(_) => "dense"
-      | Text(_) => "text"
-      | TextDense(_) => "textDense";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Inset(className)
-               | Dense(className)
-               | Text(className)
-               | TextDense(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/List/ListItemText"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~secondary: ReasonReact.reactElement,
-        ~primary: ReasonReact.reactElement,
-        ~inset: bool,
-        ~disableTypography: bool,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "secondary": secondary,
-        "primary": primary,
-        "inset": Js.Boolean.to_js_boolean(inset),
-        "disableTypography": Js.Boolean.to_js_boolean(disableTypography),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -4452,7 +7037,7 @@ module CardActions = {
     "default";
   let make =
       (
-        ~disableActionSpacing: bool,
+        ~disableActionSpacing: option(bool)=?,
         ~className: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
@@ -4461,7 +7046,8 @@ module CardActions = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "disableActionSpacing": Js.Boolean.to_js_boolean(disableActionSpacing),
+        "disableActionSpacing":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableActionSpacing)),
         "className": Js.Nullable.from_opt(className),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -4470,543 +7056,55 @@ module CardActions = {
     );
 };
 
-module Divider = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Default(string)
-      | Inset(string)
-      | Light(string)
-      | Absolute(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Default(_) => "default"
-      | Inset(_) => "inset"
-      | Light(_) => "light"
-      | Absolute(_) => "absolute";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Default(className)
-               | Inset(className)
-               | Light(className)
-               | Absolute(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Divider/Divider"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~light: bool,
-        ~inset: bool,
-        ~className: option(string)=?,
-        ~absolute: bool,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "light": Js.Boolean.to_js_boolean(light),
-        "inset": Js.Boolean.to_js_boolean(inset),
-        "className": Js.Nullable.from_opt(className),
-        "absolute": Js.Boolean.to_js_boolean(absolute),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Collapse = {
-  module Timeout = {
-    type t =
-      | Auto;
-    let to_string =
-      fun
-      | Auto => "auto";
-  };
-  module Classes = {
-    type classesType =
-      | Container(string)
-      | Entered(string)
-      | Wrapper(string)
-      | WrapperInner(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Container(_) => "container"
-      | Entered(_) => "entered"
-      | Wrapper(_) => "wrapper"
-      | WrapperInner(_) => "wrapperInner";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Container(className)
-               | Entered(className)
-               | Wrapper(className)
-               | WrapperInner(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/transitions/Collapse"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~unmountOnExit: option(bool)=?,
-        ~timeout: [ | `Enum(Timeout.t) | `Float(float) | `Object({. "enter": int, "exit": int})],
-        ~style: option(Js.t({..}))=?,
-        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~in_: bool,
-        ~containerProps: option(Js.t({..}))=?,
-        ~collapsedHeight: string,
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~appear: bool,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "unmountOnExit": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, unmountOnExit)),
-        "timeout":
-          (
-            fun
-            | `Enum(e) => unwrapValue(`String(Timeout.to_string(e)))
-            | x => unwrapValue(x)
-          )(
-            timeout
-          ),
-        "style": Js.Nullable.from_opt(style),
-        "onExiting": Js.Nullable.from_opt(onExiting),
-        "onExit": Js.Nullable.from_opt(onExit),
-        "onEntered": Js.Nullable.from_opt(onEntered),
-        "onEntering": Js.Nullable.from_opt(onEntering),
-        "onEnter": Js.Nullable.from_opt(onEnter),
-        "in": Js.Boolean.to_js_boolean(in_),
-        "containerProps": Js.Nullable.from_opt(containerProps),
-        "collapsedHeight": collapsedHeight,
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "appear": Js.Boolean.to_js_boolean(appear),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module ClickAwayListener = {
-  [@bs.module "material-ui/utils/ClickAwayListener"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make = (~onClickAway: ReactEventRe.Synthetic.t => unit, children) =>
-    ReasonReact.wrapJsForReason(~reactClass, ~props={"onClickAway": onClickAway}, children);
-};
-
-module Typography = {
-  module Type = {
-    type t =
-      | Display4
-      | Display3
-      | Display2
-      | Display1
-      | Headline
-      | Title
-      | Subheading
-      | Body2
-      | Body1
-      | Caption
-      | Button;
-    let to_string =
-      fun
-      | Display4 => "display4"
-      | Display3 => "display3"
-      | Display2 => "display2"
-      | Display1 => "display1"
-      | Headline => "headline"
-      | Title => "title"
-      | Subheading => "subheading"
-      | Body2 => "body2"
-      | Body1 => "body1"
-      | Caption => "caption"
-      | Button => "button";
-  };
+module Button = {
   module Color = {
     type t =
+      | Default
       | Inherit
       | Primary
-      | Secondary
       | Accent
-      | Error
-      | Default;
+      | Contrast;
     let to_string =
       fun
+      | Default => "default"
       | Inherit => "inherit"
       | Primary => "primary"
-      | Secondary => "secondary"
       | Accent => "accent"
-      | Error => "error"
-      | Default => "default";
+      | Contrast => "contrast";
   };
-  module Align = {
-    type t =
-      | Inherit
-      | Left
-      | Center
-      | Right
-      | Justify;
-    let to_string =
-      fun
-      | Inherit => "inherit"
-      | Left => "left"
-      | Center => "center"
-      | Right => "right"
-      | Justify => "justify";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Display4(string)
-      | Display3(string)
-      | Display2(string)
-      | Display1(string)
-      | Headline(string)
-      | Title(string)
-      | Subheading(string)
-      | Body2(string)
-      | Body1(string)
-      | Caption(string)
-      | Button(string)
-      | AlignLeft(string)
-      | AlignCenter(string)
-      | AlignRight(string)
-      | AlignJustify(string)
-      | NoWrap(string)
-      | GutterBottom(string)
-      | Paragraph(string)
-      | ColorInherit(string)
-      | ColorPrimary(string)
-      | ColorSecondary(string)
-      | ColorAccent(string)
-      | ColorError(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Display4(_) => "display4"
-      | Display3(_) => "display3"
-      | Display2(_) => "display2"
-      | Display1(_) => "display1"
-      | Headline(_) => "headline"
-      | Title(_) => "title"
-      | Subheading(_) => "subheading"
-      | Body2(_) => "body2"
-      | Body1(_) => "body1"
-      | Caption(_) => "caption"
-      | Button(_) => "button"
-      | AlignLeft(_) => "alignLeft"
-      | AlignCenter(_) => "alignCenter"
-      | AlignRight(_) => "alignRight"
-      | AlignJustify(_) => "alignJustify"
-      | NoWrap(_) => "noWrap"
-      | GutterBottom(_) => "gutterBottom"
-      | Paragraph(_) => "paragraph"
-      | ColorInherit(_) => "colorInherit"
-      | ColorPrimary(_) => "colorPrimary"
-      | ColorSecondary(_) => "colorSecondary"
-      | ColorAccent(_) => "colorAccent"
-      | ColorError(_) => "colorError";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Display4(className)
-               | Display3(className)
-               | Display2(className)
-               | Display1(className)
-               | Headline(className)
-               | Title(className)
-               | Subheading(className)
-               | Body2(className)
-               | Body1(className)
-               | Caption(className)
-               | Button(className)
-               | AlignLeft(className)
-               | AlignCenter(className)
-               | AlignRight(className)
-               | AlignJustify(className)
-               | NoWrap(className)
-               | GutterBottom(className)
-               | Paragraph(className)
-               | ColorInherit(className)
-               | ColorPrimary(className)
-               | ColorSecondary(className)
-               | ColorAccent(className)
-               | ColorError(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Typography/Typography"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~type_: Type.t,
-        ~paragraph: bool,
-        ~noWrap: bool,
-        ~headlineMapping: {. "unionProp": string},
-        ~gutterBottom: bool,
-        ~color: Color.t,
-        ~component: option(Js.t({..}))=?,
-        ~className: option(string)=?,
-        ~align: Align.t,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "type": Type.to_string(type_),
-        "paragraph": Js.Boolean.to_js_boolean(paragraph),
-        "noWrap": Js.Boolean.to_js_boolean(noWrap),
-        "headlineMapping": headlineMapping,
-        "gutterBottom": Js.Boolean.to_js_boolean(gutterBottom),
-        "color": Color.to_string(color),
-        "component": Js.Nullable.from_opt(component),
-        "className": Js.Nullable.from_opt(className),
-        "align": Align.to_string(align),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module LinearProgress = {
-  module Mode = {
-    type t =
-      | Determinate
-      | Indeterminate
-      | Buffer
-      | Query;
-    let to_string =
-      fun
-      | Determinate => "determinate"
-      | Indeterminate => "indeterminate"
-      | Buffer => "buffer"
-      | Query => "query";
-  };
-  module Color = {
-    type t =
-      | Primary
-      | Accent;
-    let to_string =
-      fun
-      | Primary => "primary"
-      | Accent => "accent";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | PrimaryColor(string)
-      | PrimaryColorBar(string)
-      | PrimaryDashed(string)
-      | AccentColor(string)
-      | AccentColorBar(string)
-      | AccentDashed(string)
-      | Bar(string)
-      | Dashed(string)
-      | BufferBar2(string)
-      | RootBuffer(string)
-      | RootQuery(string)
-      | IndeterminateBar1(string)
-      | IndeterminateBar2(string)
-      | DeterminateBar1(string)
-      | BufferBar1(string)
-      | BufferBar2Primary(string)
-      | BufferBar2Accent(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | PrimaryColor(_) => "primaryColor"
-      | PrimaryColorBar(_) => "primaryColorBar"
-      | PrimaryDashed(_) => "primaryDashed"
-      | AccentColor(_) => "accentColor"
-      | AccentColorBar(_) => "accentColorBar"
-      | AccentDashed(_) => "accentDashed"
-      | Bar(_) => "bar"
-      | Dashed(_) => "dashed"
-      | BufferBar2(_) => "bufferBar2"
-      | RootBuffer(_) => "rootBuffer"
-      | RootQuery(_) => "rootQuery"
-      | IndeterminateBar1(_) => "indeterminateBar1"
-      | IndeterminateBar2(_) => "indeterminateBar2"
-      | DeterminateBar1(_) => "determinateBar1"
-      | BufferBar1(_) => "bufferBar1"
-      | BufferBar2Primary(_) => "bufferBar2Primary"
-      | BufferBar2Accent(_) => "bufferBar2Accent";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | PrimaryColor(className)
-               | PrimaryColorBar(className)
-               | PrimaryDashed(className)
-               | AccentColor(className)
-               | AccentColorBar(className)
-               | AccentDashed(className)
-               | Bar(className)
-               | Dashed(className)
-               | BufferBar2(className)
-               | RootBuffer(className)
-               | RootQuery(className)
-               | IndeterminateBar1(className)
-               | IndeterminateBar2(className)
-               | DeterminateBar1(className)
-               | BufferBar1(className)
-               | BufferBar2Primary(className)
-               | BufferBar2Accent(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Progress/LinearProgress"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~valueBuffer: option(float)=?,
-        ~value: option(float)=?,
-        ~mode: Mode.t,
-        ~color: Color.t,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "valueBuffer": Js.Nullable.from_opt(valueBuffer),
-        "value": Js.Nullable.from_opt(value),
-        "mode": Mode.to_string(mode),
-        "color": Color.to_string(color),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module FormLabel = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Focused(string)
-      | Error(string)
-      | Disabled(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Focused(_) => "focused"
-      | Error(_) => "error"
-      | Disabled(_) => "disabled";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Focused(className)
-               | Error(className)
-               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Form/FormLabel"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~required: option(bool)=?,
-        ~focused: option(bool)=?,
-        ~error: option(bool)=?,
-        ~disabled: option(bool)=?,
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "required": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, required)),
-        "focused": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focused)),
-        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module FormHelperText = {
   module Classes = {
     type classesType =
       | Root(string)
       | Dense(string)
-      | Error(string)
-      | Disabled(string);
+      | Label(string)
+      | FlatPrimary(string)
+      | FlatAccent(string)
+      | FlatContrast(string)
+      | ColorInherit(string)
+      | Raised(string)
+      | KeyboardFocused(string)
+      | RaisedPrimary(string)
+      | RaisedAccent(string)
+      | RaisedContrast(string)
+      | Disabled(string)
+      | Fab(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
       | Dense(_) => "dense"
-      | Error(_) => "error"
-      | Disabled(_) => "disabled";
+      | Label(_) => "label"
+      | FlatPrimary(_) => "flatPrimary"
+      | FlatAccent(_) => "flatAccent"
+      | FlatContrast(_) => "flatContrast"
+      | ColorInherit(_) => "colorInherit"
+      | Raised(_) => "raised"
+      | KeyboardFocused(_) => "keyboardFocused"
+      | RaisedPrimary(_) => "raisedPrimary"
+      | RaisedAccent(_) => "raisedAccent"
+      | RaisedContrast(_) => "raisedContrast"
+      | Disabled(_) => "disabled"
+      | Fab(_) => "fab";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -5015,7 +7113,118 @@ module FormHelperText = {
                switch classType {
                | Root(className)
                | Dense(className)
-               | Error(className)
+               | Label(className)
+               | FlatPrimary(className)
+               | FlatAccent(className)
+               | FlatContrast(className)
+               | ColorInherit(className)
+               | Raised(className)
+               | KeyboardFocused(className)
+               | RaisedPrimary(className)
+               | RaisedAccent(className)
+               | RaisedContrast(className)
+               | Disabled(className)
+               | Fab(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Button/Button"] external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~type_: option(string)=?,
+        ~raised: option(bool)=?,
+        ~href: option(string)=?,
+        ~fab: option(bool)=?,
+        ~disableRipple: option(bool)=?,
+        ~disableFocusRipple: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~dense: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~color: option(Color.t)=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~centerRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~keyboardFocusedClassName: option(string)=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
+        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~rootRef: option('a)=?,
+        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "type": Js.Nullable.from_opt(type_),
+        "raised": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, raised)),
+        "href": Js.Nullable.from_opt(href),
+        "fab": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fab)),
+        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
+        "disableFocusRipple":
+          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableFocusRipple)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
+        "component": Js.Nullable.from_opt(component),
+        "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
+        "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
+        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "onClick": Js.Nullable.from_opt(onClick),
+        "onFocus": Js.Nullable.from_opt(onFocus),
+        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
+        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
+        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
+        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
+        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
+        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
+        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex))
+      },
+      children
+    );
+};
+
+module ButtonBase = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Disabled(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Disabled(_) => "disabled";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
                | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
@@ -5023,182 +7232,33 @@ module FormHelperText = {
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/Form/FormHelperText"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/ButtonBase/ButtonBase"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
-        ~margin: option(Js.t({..}))=?,
-        ~error: option(bool)=?,
-        ~disabled: option(bool)=?,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "margin": Js.Nullable.from_opt(margin),
-        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module TablePagination = {
-  module Padding = {
-    type t =
-      | Default
-      | Checkbox
-      | Dense
-      | None;
-    let to_string =
-      fun
-      | Default => "default"
-      | Checkbox => "checkbox"
-      | Dense => "dense"
-      | None => "none";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Toolbar(string)
-      | Spacer(string)
-      | Caption(string)
-      | Input(string)
-      | SelectRoot(string)
-      | Select(string)
-      | Actions(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Toolbar(_) => "toolbar"
-      | Spacer(_) => "spacer"
-      | Caption(_) => "caption"
-      | Input(_) => "input"
-      | SelectRoot(_) => "selectRoot"
-      | Select(_) => "select"
-      | Actions(_) => "actions";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Toolbar(className)
-               | Spacer(className)
-               | Caption(className)
-               | Input(className)
-               | SelectRoot(className)
-               | Select(className)
-               | Actions(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Table/TablePagination"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~rowsPerPageOptions: array(float),
-        ~rowsPerPage: float,
-        ~page: float,
-        ~onChangeRowsPerPage: ReactEventRe.Form.t => unit,
-        ~onChangePage: (_, int) => unit,
-        ~labelRowsPerPage: ReasonReact.reactElement,
-        ~labelDisplayedRows:
-           {. "from": int, "to": int, "count": int, "page": int} => ReasonReact.reactElement,
-        ~count: float,
-        ~colSpan: option(float)=?,
-        ~component: Js.t({..}),
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        ~className: option(string)=?,
-        ~numeric: bool,
-        ~padding: Padding.t,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "rowsPerPageOptions": rowsPerPageOptions,
-        "rowsPerPage": rowsPerPage,
-        "page": page,
-        "onChangeRowsPerPage": onChangeRowsPerPage,
-        "onChangePage": onChangePage,
-        "labelRowsPerPage": labelRowsPerPage,
-        "labelDisplayedRows": labelDisplayedRows,
-        "count": count,
-        "colSpan": Js.Nullable.from_opt(colSpan),
-        "component": component,
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "className": Js.Nullable.from_opt(className),
-        "numeric": Js.Boolean.to_js_boolean(numeric),
-        "padding": Padding.to_string(padding)
-      },
-      children
-    );
-};
-
-module Chip = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Clickable(string)
-      | Deletable(string)
-      | Avatar(string)
-      | AvatarChildren(string)
-      | Label(string)
-      | DeleteIcon(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Clickable(_) => "clickable"
-      | Deletable(_) => "deletable"
-      | Avatar(_) => "avatar"
-      | AvatarChildren(_) => "avatarChildren"
-      | Label(_) => "label"
-      | DeleteIcon(_) => "deleteIcon";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Clickable(className)
-               | Deletable(className)
-               | Avatar(className)
-               | AvatarChildren(className)
-               | Label(className)
-               | DeleteIcon(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Chip/Chip"] external reactClass : ReasonReact.reactClass = "default";
-  let make =
-      (
+        ~type_: option(string)=?,
         ~tabIndex: option([ | `Float(float) | `String(string)])=?,
-        ~onRequestDelete: option((ReactEventRe.Synthetic.t => unit))=?,
+        ~rootRef: option('a)=?,
+        ~role: option(string)=?,
+        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
         ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
+        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~label: option(ReasonReact.reactElement)=?,
-        ~deleteIcon: option(ReasonReact.reactElement)=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~keyboardFocusedClassName: option(string)=?,
+        ~focusRipple: option(bool)=?,
+        ~disableRipple: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
         ~className: option(string)=?,
-        ~avatar: option(ReasonReact.reactElement)=?,
+        ~centerRipple: option(bool)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
         children
@@ -5206,14 +7266,29 @@ module Chip = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "type": Js.Nullable.from_opt(type_),
         "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
-        "onRequestDelete": Js.Nullable.from_opt(onRequestDelete),
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "role": Js.Nullable.from_opt(role),
+        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
+        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
+        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
+        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
+        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
+        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
         "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
+        "onFocus": Js.Nullable.from_opt(onFocus),
         "onClick": Js.Nullable.from_opt(onClick),
-        "label": Js.Nullable.from_opt(label),
-        "deleteIcon": Js.Nullable.from_opt(deleteIcon),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
+        "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
+        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "component": Js.Nullable.from_opt(component),
         "className": Js.Nullable.from_opt(className),
-        "avatar": Js.Nullable.from_opt(avatar),
+        "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -5221,16 +7296,76 @@ module Chip = {
     );
 };
 
-module RadioGroup = {
+module BottomNavigation = {
+  module Classes = {
+    type classesType =
+      | Root(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/BottomNavigation/BottomNavigation"]
+  external reactClass : ReasonReact.reactClass =
+    "default";
+  let make =
+      (
+        ~value: 'a,
+        ~showLabels: option(bool)=?,
+        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~className: option(string)=?,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": value,
+        "showLabels": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, showLabels)),
+        "onChange": Js.Nullable.from_opt(onChange),
+        "className": Js.Nullable.from_opt(className),
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module BottomNavigationButton = {
   module Classes = {
     type classesType =
       | Root(string)
-      | Row(string);
+      | Selected(string)
+      | SelectedIconOnly(string)
+      | Wrapper(string)
+      | Label(string)
+      | SelectedLabel(string)
+      | HiddenLabel(string)
+      | Icon(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | Row(_) => "row";
+      | Selected(_) => "selected"
+      | SelectedIconOnly(_) => "selectedIconOnly"
+      | Wrapper(_) => "wrapper"
+      | Label(_) => "label"
+      | SelectedLabel(_) => "selectedLabel"
+      | HiddenLabel(_) => "hiddenLabel"
+      | Icon(_) => "icon";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -5238,78 +7373,121 @@ module RadioGroup = {
              (obj, classType) => {
                switch classType {
                | Root(className)
-               | Row(className) => Js.Dict.set(obj, to_string(classType), className)
+               | Selected(className)
+               | SelectedIconOnly(className)
+               | Wrapper(className)
+               | Label(className)
+               | SelectedLabel(className)
+               | HiddenLabel(className)
+               | Icon(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/Radio/RadioGroup"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/BottomNavigation/BottomNavigationButton"]
+  external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
-        ~value: option(string)=?,
-        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~value: option('a)=?,
+        ~showLabel: option(bool)=?,
+        ~selected: option(bool)=?,
+        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~name: option(string)=?,
-        ~classes: option(Classes.t)=?,
-        ~theme: option(Js.t({..}))=?,
+        ~label: option(ReasonReact.reactElement)=?,
+        ~icon: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~className: option(string)=?,
-        ~row: bool,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        ~centerRipple: option(bool)=?,
+        ~component: option(Js.t({..}))=?,
+        ~disabled: option(bool)=?,
+        ~disableRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~keyboardFocusedClassName: option(string)=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
+        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~rootRef: option('b)=?,
+        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
         "value": Js.Nullable.from_opt(value),
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "showLabel": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, showLabel)),
+        "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
+        "onClick": Js.Nullable.from_opt(onClick),
         "onChange": Js.Nullable.from_opt(onChange),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "name": Js.Nullable.from_opt(name),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "theme": Js.Nullable.from_opt(theme),
+        "label": Js.Nullable.from_opt(label),
+        "icon": Js.Nullable.from_opt(optionMap(unwrapValue, icon)),
         "className": Js.Nullable.from_opt(className),
-        "row": Js.Boolean.to_js_boolean(row)
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
+        "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
+        "component": Js.Nullable.from_opt(component),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
+        "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
+        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
+        "onBlur": Js.Nullable.from_opt(onBlur),
+        "onFocus": Js.Nullable.from_opt(onFocus),
+        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
+        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
+        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
+        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
+        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
+        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
+        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
+        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "rootRef": Js.Nullable.from_opt(rootRef),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_)
       },
       children
     );
 };
 
-module TableCell = {
-  module Padding = {
+module Badge = {
+  module Color = {
     type t =
       | Default
-      | Checkbox
-      | Dense
-      | None;
+      | Primary
+      | Accent;
     let to_string =
       fun
       | Default => "default"
-      | Checkbox => "checkbox"
-      | Dense => "dense"
-      | None => "none";
+      | Primary => "primary"
+      | Accent => "accent";
   };
   module Classes = {
     type classesType =
       | Root(string)
-      | Numeric(string)
-      | Head(string)
-      | PaddingDefault(string)
-      | PaddingDense(string)
-      | PaddingCheckbox(string)
-      | Footer(string);
+      | Badge(string)
+      | ColorPrimary(string)
+      | ColorAccent(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | Numeric(_) => "numeric"
-      | Head(_) => "head"
-      | PaddingDefault(_) => "paddingDefault"
-      | PaddingDense(_) => "paddingDense"
-      | PaddingCheckbox(_) => "paddingCheckbox"
-      | Footer(_) => "footer";
+      | Badge(_) => "badge"
+      | ColorPrimary(_) => "colorPrimary"
+      | ColorAccent(_) => "colorAccent";
     let to_obj = (listOfClasses) =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -5317,26 +7495,77 @@ module TableCell = {
              (obj, classType) => {
                switch classType {
                | Root(className)
-               | Numeric(className)
-               | Head(className)
-               | PaddingDefault(className)
-               | PaddingDense(className)
-               | PaddingCheckbox(className)
-               | Footer(className) => Js.Dict.set(obj, to_string(classType), className)
+               | Badge(className)
+               | ColorPrimary(className)
+               | ColorAccent(className) => Js.Dict.set(obj, to_string(classType), className)
                };
                obj
              },
            ~init=Js.Dict.empty()
          );
   };
-  [@bs.module "material-ui/Table/TableCell"] external reactClass : ReasonReact.reactClass =
+  [@bs.module "material-ui/Badge/Badge"] external reactClass : ReasonReact.reactClass = "default";
+  let make =
+      (
+        ~color: option(Color.t)=?,
+        ~className: option(string)=?,
+        ~badgeContent: ReasonReact.reactElement,
+        ~theme: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
+        "className": Js.Nullable.from_opt(className),
+        "badgeContent": badgeContent,
+        "theme": Js.Nullable.from_opt(theme),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
+      children
+    );
+};
+
+module Avatar = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | ColorDefault(string)
+      | Img(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | ColorDefault(_) => "colorDefault"
+      | Img(_) => "img";
+    let to_obj = (listOfClasses) =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch classType {
+               | Root(className)
+               | ColorDefault(className)
+               | Img(className) => Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj
+             },
+           ~init=Js.Dict.empty()
+         );
+  };
+  [@bs.module "material-ui/Avatar/Avatar"] external reactClass : ReasonReact.reactClass =
     "default";
   let make =
       (
-        ~padding: Padding.t,
-        ~numeric: bool,
+        ~srcSet: option(string)=?,
+        ~src: option(string)=?,
+        ~sizes: option(string)=?,
+        ~imgProps: option(Js.t({..}))=?,
         ~component: option(Js.t({..}))=?,
         ~className: option(string)=?,
+        ~childrenClassName: option(string)=?,
+        ~alt: option(string)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
         children
@@ -5344,278 +7573,14 @@ module TableCell = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "padding": Padding.to_string(padding),
-        "numeric": Js.Boolean.to_js_boolean(numeric),
+        "srcSet": Js.Nullable.from_opt(srcSet),
+        "src": Js.Nullable.from_opt(src),
+        "sizes": Js.Nullable.from_opt(sizes),
+        "imgProps": Js.Nullable.from_opt(imgProps),
         "component": Js.Nullable.from_opt(component),
         "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Input = {
-  module Margin = {
-    type t =
-      | Dense
-      | None;
-    let to_string =
-      fun
-      | Dense => "dense"
-      | None => "none";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | FormControl(string)
-      | Inkbar(string)
-      | Error(string)
-      | Disabled(string)
-      | Focused(string)
-      | Underline(string)
-      | Multiline(string)
-      | FullWidth(string)
-      | Input(string)
-      | InputDense(string)
-      | InputDisabled(string)
-      | InputSingleline(string)
-      | InputMultiline(string)
-      | InputSearch(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | FormControl(_) => "formControl"
-      | Inkbar(_) => "inkbar"
-      | Error(_) => "error"
-      | Disabled(_) => "disabled"
-      | Focused(_) => "focused"
-      | Underline(_) => "underline"
-      | Multiline(_) => "multiline"
-      | FullWidth(_) => "fullWidth"
-      | Input(_) => "input"
-      | InputDense(_) => "inputDense"
-      | InputDisabled(_) => "inputDisabled"
-      | InputSingleline(_) => "inputSingleline"
-      | InputMultiline(_) => "inputMultiline"
-      | InputSearch(_) => "inputSearch";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | FormControl(className)
-               | Inkbar(className)
-               | Error(className)
-               | Disabled(className)
-               | Focused(className)
-               | Underline(className)
-               | Multiline(className)
-               | FullWidth(className)
-               | Input(className)
-               | InputDense(className)
-               | InputDisabled(className)
-               | InputSingleline(className)
-               | InputMultiline(className)
-               | InputSearch(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Input/Input"] external reactClass : ReasonReact.reactClass = "default";
-  let make =
-      (
-        ~value: option([ | `String(string) | `Float(float) | `Object(Js.t({..}))])=?,
-        ~type_: option(string)=?,
-        ~startAdornment: option(ReasonReact.reactElement)=?,
-        ~rowsMax: option([ | `String(string) | `Float(float)])=?,
-        ~rows: option([ | `String(string) | `Float(float)])=?,
-        ~placeholder: option(string)=?,
-        ~onKeyUp: option((ReactEventRe.Keyboard.t => unit))=?,
-        ~onKeyDown: option((ReactEventRe.Keyboard.t => unit))=?,
-        ~onFocus: option((ReactEventRe.Focus.t => unit))=?,
-        ~onDirty: option(unit)=?,
-        ~onClean: option(unit)=?,
-        ~onChange: option((ReactEventRe.Form.t => unit))=?,
-        ~onBlur: option((ReactEventRe.Focus.t => unit))=?,
-        ~readOnly: option(bool)=?,
-        ~name: option(string)=?,
-        ~multiline: option(bool)=?,
-        ~margin: option(Margin.t)=?,
-        ~inputRef: option('a)=?,
-        ~inputProps: option(Js.t({..}))=?,
-        ~inputComponent: option([ | `String(string) | `Object(Js.t({..}))])=?,
-        ~id: option(string)=?,
-        ~fullWidth: option(bool)=?,
-        ~error: option(bool)=?,
-        ~endAdornment: option(ReasonReact.reactElement)=?,
-        ~disableUnderline: option(bool)=?,
-        ~disabled: option(bool)=?,
-        ~defaultValue: option([ | `String(string) | `Float(float)])=?,
-        ~className: option(string)=?,
-        ~autoFocus: option(bool)=?,
-        ~autoComplete: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
-        "type": Js.Nullable.from_opt(type_),
-        "startAdornment": Js.Nullable.from_opt(startAdornment),
-        "rowsMax": Js.Nullable.from_opt(optionMap(unwrapValue, rowsMax)),
-        "rows": Js.Nullable.from_opt(optionMap(unwrapValue, rows)),
-        "placeholder": Js.Nullable.from_opt(placeholder),
-        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
-        "onFocus": Js.Nullable.from_opt(onFocus),
-        "onDirty": Js.Nullable.from_opt(onDirty),
-        "onClean": Js.Nullable.from_opt(onClean),
-        "onChange": Js.Nullable.from_opt(onChange),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "readOnly": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, readOnly)),
-        "name": Js.Nullable.from_opt(name),
-        "multiline": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, multiline)),
-        "margin": Js.Nullable.from_opt(optionMap(Margin.to_string, margin)),
-        "inputRef": Js.Nullable.from_opt(inputRef),
-        "inputProps": Js.Nullable.from_opt(inputProps),
-        "inputComponent": Js.Nullable.from_opt(optionMap(unwrapValue, inputComponent)),
-        "id": Js.Nullable.from_opt(id),
-        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
-        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
-        "endAdornment": Js.Nullable.from_opt(endAdornment),
-        "disableUnderline":
-          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableUnderline)),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "defaultValue": Js.Nullable.from_opt(optionMap(unwrapValue, defaultValue)),
-        "className": Js.Nullable.from_opt(className),
-        "autoFocus": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, autoFocus)),
-        "autoComplete": Js.Nullable.from_opt(autoComplete),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Tooltip = {
-  module Placement = {
-    type t =
-      | Bottom_end
-      | Bottom_start
-      | Bottom
-      | Left_end
-      | Left_start
-      | Left
-      | Right_end
-      | Right_start
-      | Right
-      | Top_end
-      | Top_start
-      | Top;
-    let to_string =
-      fun
-      | Bottom_end => "bottom-end"
-      | Bottom_start => "bottom-start"
-      | Bottom => "bottom"
-      | Left_end => "left-end"
-      | Left_start => "left-start"
-      | Left => "left"
-      | Right_end => "right-end"
-      | Right_start => "right-start"
-      | Right => "right"
-      | Top_end => "top-end"
-      | Top_start => "top-start"
-      | Top => "top";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Popper(string)
-      | PopperClose(string)
-      | Tooltip(string)
-      | TooltipLeft(string)
-      | TooltipRight(string)
-      | TooltipTop(string)
-      | TooltipBottom(string)
-      | TooltipOpen(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Popper(_) => "popper"
-      | PopperClose(_) => "popperClose"
-      | Tooltip(_) => "tooltip"
-      | TooltipLeft(_) => "tooltipLeft"
-      | TooltipRight(_) => "tooltipRight"
-      | TooltipTop(_) => "tooltipTop"
-      | TooltipBottom(_) => "tooltipBottom"
-      | TooltipOpen(_) => "tooltipOpen";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Popper(className)
-               | PopperClose(className)
-               | Tooltip(className)
-               | TooltipLeft(className)
-               | TooltipRight(className)
-               | TooltipTop(className)
-               | TooltipBottom(className)
-               | TooltipOpen(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Tooltip/Tooltip"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~pPopperProps: option(Js.t({..}))=?,
-        ~placement: Placement.t,
-        ~leaveDelay: float,
-        ~enterDelay: float,
-        ~title: ReasonReact.reactElement,
-        ~open_: option(bool)=?,
-        ~onRequestOpen: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
-        ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
-        ~id: option(string)=?,
-        ~disableTriggerTouch: bool,
-        ~disableTriggerHover: bool,
-        ~disableTriggerFocus: bool,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "PopperProps": Js.Nullable.from_opt(pPopperProps),
-        "placement": Placement.to_string(placement),
-        "leaveDelay": leaveDelay,
-        "enterDelay": enterDelay,
-        "title": title,
-        "open": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
-        "onRequestOpen": Js.Nullable.from_opt(onRequestOpen),
-        "onRequestClose": Js.Nullable.from_opt(onRequestClose),
-        "id": Js.Nullable.from_opt(id),
-        "disableTriggerTouch": Js.Boolean.to_js_boolean(disableTriggerTouch),
-        "disableTriggerHover": Js.Boolean.to_js_boolean(disableTriggerHover),
-        "disableTriggerFocus": Js.Boolean.to_js_boolean(disableTriggerFocus),
-        "className": Js.Nullable.from_opt(className),
+        "childrenClassName": Js.Nullable.from_opt(childrenClassName),
+        "alt": Js.Nullable.from_opt(alt),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -5690,1952 +7655,27 @@ module AppBar = {
     "default";
   let make =
       (
-        ~position: Position.t,
-        ~color: Color.t,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        ~component: Js.t({..}),
-        ~elevation: float,
-        ~square: bool,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "position": Position.to_string(position),
-        "color": Color.to_string(color),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "component": component,
-        "elevation": elevation,
-        "square": Js.Boolean.to_js_boolean(square)
-      },
-      children
-    );
-};
-
-module MobileStepper = {
-  module Type = {
-    type t =
-      | Text
-      | Dots
-      | Progress;
-    let to_string =
-      fun
-      | Text => "text"
-      | Dots => "dots"
-      | Progress => "progress";
-  };
-  module Position = {
-    type t =
-      | Bottom
-      | Top
-      | Static;
-    let to_string =
-      fun
-      | Bottom => "bottom"
-      | Top => "top"
-      | Static => "static";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | PositionBottom(string)
-      | PositionTop(string)
-      | PositionStatic(string)
-      | Dots(string)
-      | Dot(string)
-      | DotActive(string)
-      | Progress(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | PositionBottom(_) => "positionBottom"
-      | PositionTop(_) => "positionTop"
-      | PositionStatic(_) => "positionStatic"
-      | Dots(_) => "dots"
-      | Dot(_) => "dot"
-      | DotActive(_) => "dotActive"
-      | Progress(_) => "progress";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | PositionBottom(className)
-               | PositionTop(className)
-               | PositionStatic(className)
-               | Dots(className)
-               | Dot(className)
-               | DotActive(className)
-               | Progress(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/MobileStepper/MobileStepper"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~type_: option(Type.t)=?,
-        ~steps: float,
         ~position: option(Position.t)=?,
-        ~nextButton: ReasonReact.reactElement,
+        ~color: option(Color.t)=?,
         ~className: option(string)=?,
-        ~backButton: ReasonReact.reactElement,
-        ~activeStep: option(float)=?,
         ~theme: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
-        ~component: Js.t({..}),
-        ~elevation: float,
-        ~square: bool,
+        ~component: option(Js.t({..}))=?,
+        ~elevation: option(float)=?,
+        ~square: option(bool)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "type": Js.Nullable.from_opt(optionMap(Type.to_string, type_)),
-        "steps": steps,
         "position": Js.Nullable.from_opt(optionMap(Position.to_string, position)),
-        "nextButton": nextButton,
+        "color": Js.Nullable.from_opt(optionMap(Color.to_string, color)),
         "className": Js.Nullable.from_opt(className),
-        "backButton": backButton,
-        "activeStep": Js.Nullable.from_opt(activeStep),
         "theme": Js.Nullable.from_opt(theme),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "component": component,
-        "elevation": elevation,
-        "square": Js.Boolean.to_js_boolean(square)
-      },
-      children
-    );
-};
-
-module InputLabel = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | FormControl(string)
-      | LabelDense(string)
-      | Shrink(string)
-      | Animated(string)
-      | Disabled(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | FormControl(_) => "formControl"
-      | LabelDense(_) => "labelDense"
-      | Shrink(_) => "shrink"
-      | Animated(_) => "animated"
-      | Disabled(_) => "disabled";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | FormControl(className)
-               | LabelDense(className)
-               | Shrink(className)
-               | Animated(className)
-               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Input/InputLabel"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~shrink: option(bool)=?,
-        ~required: option(bool)=?,
-        ~margin: option(Js.t({..}))=?,
-        ~focused: option(bool)=?,
-        ~fFormControlClasses: option(Js.t({..}))=?,
-        ~error: option(bool)=?,
-        ~disabled: bool,
-        ~disableAnimation: bool,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "shrink": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, shrink)),
-        "required": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, required)),
-        "margin": Js.Nullable.from_opt(margin),
-        "focused": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focused)),
-        "FormControlClasses": Js.Nullable.from_opt(fFormControlClasses),
-        "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
-        "disabled": Js.Boolean.to_js_boolean(disabled),
-        "disableAnimation": Js.Boolean.to_js_boolean(disableAnimation),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module FormControl = {
-  module Margin = {
-    type t =
-      | None
-      | Dense
-      | Normal;
-    let to_string =
-      fun
-      | None => "none"
-      | Dense => "dense"
-      | Normal => "normal";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | MarginNormal(string)
-      | MarginDense(string)
-      | FullWidth(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | MarginNormal(_) => "marginNormal"
-      | MarginDense(_) => "marginDense"
-      | FullWidth(_) => "fullWidth";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | MarginNormal(className)
-               | MarginDense(className)
-               | FullWidth(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Form/FormControl"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~required: bool,
-        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~margin: Margin.t,
-        ~fullWidth: bool,
-        ~error: bool,
-        ~disabled: bool,
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "required": Js.Boolean.to_js_boolean(required),
-        "onFocus": Js.Nullable.from_opt(onFocus),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "margin": Margin.to_string(margin),
-        "fullWidth": Js.Boolean.to_js_boolean(fullWidth),
-        "error": Js.Boolean.to_js_boolean(error),
-        "disabled": Js.Boolean.to_js_boolean(disabled),
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Step = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Horizontal(string)
-      | AlternativeLabel(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Horizontal(_) => "horizontal"
-      | AlternativeLabel(_) => "alternativeLabel";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Horizontal(className)
-               | AlternativeLabel(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Stepper/Step"] external reactClass : ReasonReact.reactClass = "default";
-  let make =
-      (
-        ~orientation: option(Js.t({..}))=?,
-        ~last: option(bool)=?,
-        ~index: option(float)=?,
-        ~connector: option(ReasonReact.reactElement)=?,
-        ~className: option(string)=?,
-        ~alternativeLabel: option(bool)=?,
-        ~optional: option(bool)=?,
-        ~disabled: option(bool)=?,
-        ~classes: option(Classes.t)=?,
-        ~completed: option(bool)=?,
-        ~active: option(bool)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "orientation": Js.Nullable.from_opt(orientation),
-        "last": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, last)),
-        "index": Js.Nullable.from_opt(index),
-        "connector": Js.Nullable.from_opt(connector),
-        "className": Js.Nullable.from_opt(className),
-        "alternativeLabel":
-          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
-        "optional": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, optional)),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "completed": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, completed)),
-        "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active))
-      },
-      children
-    );
-};
-
-module MenuItem = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Selected(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Selected(_) => "selected";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Selected(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Menu/MenuItem"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~selected: bool,
-        ~role: string,
-        ~component: option(Js.t({..}))=?,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        ~button: bool,
-        ~dense: bool,
-        ~disabled: bool,
-        ~disableGutters: bool,
-        ~divider: bool,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "selected": Js.Boolean.to_js_boolean(selected),
-        "role": role,
         "component": Js.Nullable.from_opt(component),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "button": Js.Boolean.to_js_boolean(button),
-        "dense": Js.Boolean.to_js_boolean(dense),
-        "disabled": Js.Boolean.to_js_boolean(disabled),
-        "disableGutters": Js.Boolean.to_js_boolean(disableGutters),
-        "divider": Js.Boolean.to_js_boolean(divider)
-      },
-      children
-    );
-};
-
-module StepContent = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Last(string)
-      | Transition(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Last(_) => "last"
-      | Transition(_) => "transition";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Last(className)
-               | Transition(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Stepper/StepContent"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~orientation: option(Js.t({..}))=?,
-        ~optional: option(bool)=?,
-        ~last: option(bool)=?,
-        ~completed: option(bool)=?,
-        ~className: option(string)=?,
-        ~alternativeLabel: option(bool)=?,
-        ~active: option(bool)=?,
-        ~transitionDuration: option(Js.t({..}))=?,
-        ~transition: option('a)=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "orientation": Js.Nullable.from_opt(orientation),
-        "optional": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, optional)),
-        "last": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, last)),
-        "completed": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, completed)),
-        "className": Js.Nullable.from_opt(className),
-        "alternativeLabel":
-          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
-        "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
-        "transitionDuration": Js.Nullable.from_opt(transitionDuration),
-        "transition": Js.Nullable.from_opt(transition),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module BottomNavigationButton = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Selected(string)
-      | SelectedIconOnly(string)
-      | Wrapper(string)
-      | Label(string)
-      | SelectedLabel(string)
-      | HiddenLabel(string)
-      | Icon(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Selected(_) => "selected"
-      | SelectedIconOnly(_) => "selectedIconOnly"
-      | Wrapper(_) => "wrapper"
-      | Label(_) => "label"
-      | SelectedLabel(_) => "selectedLabel"
-      | HiddenLabel(_) => "hiddenLabel"
-      | Icon(_) => "icon";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Selected(className)
-               | SelectedIconOnly(className)
-               | Wrapper(className)
-               | Label(className)
-               | SelectedLabel(className)
-               | HiddenLabel(className)
-               | Icon(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/BottomNavigation/BottomNavigationButton"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~value: option('a)=?,
-        ~showLabel: option(bool)=?,
-        ~selected: option(bool)=?,
-        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
-        ~label: option(ReasonReact.reactElement)=?,
-        ~icon: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        ~centerRipple: bool,
-        ~component: option(Js.t({..}))=?,
-        ~disabled: option(bool)=?,
-        ~disableRipple: bool,
-        ~focusRipple: bool,
-        ~keyboardFocusedClassName: option(string)=?,
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
-        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~role: option(string)=?,
-        ~rootRef: option('b)=?,
-        ~tabIndex: [ | `Float(float) | `String(string)],
-        ~type_: string,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "value": Js.Nullable.from_opt(value),
-        "showLabel": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, showLabel)),
-        "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
-        "onClick": Js.Nullable.from_opt(onClick),
-        "onChange": Js.Nullable.from_opt(onChange),
-        "label": Js.Nullable.from_opt(label),
-        "icon": Js.Nullable.from_opt(optionMap(unwrapValue, icon)),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "centerRipple": Js.Boolean.to_js_boolean(centerRipple),
-        "component": Js.Nullable.from_opt(component),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "disableRipple": Js.Boolean.to_js_boolean(disableRipple),
-        "focusRipple": Js.Boolean.to_js_boolean(focusRipple),
-        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "onFocus": Js.Nullable.from_opt(onFocus),
-        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
-        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
-        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
-        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
-        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
-        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
-        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
-        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
-        "role": Js.Nullable.from_opt(role),
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "tabIndex": unwrapValue(tabIndex),
-        "type": type_
-      },
-      children
-    );
-};
-
-module Modal = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Hidden(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Hidden(_) => "hidden";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Hidden(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Modal/Modal"] external reactClass : ReasonReact.reactClass = "default";
-  let make =
-      (
-        ~show: bool,
-        ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
-        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEscapeKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onBackdropClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~modalManager: Js.t({..}),
-        ~ignoreEscapeKeyUp: bool,
-        ~ignoreBackdropClick: bool,
-        ~disableBackdrop: bool,
-        ~keepMounted: bool,
-        ~className: option(string)=?,
-        ~bBackdropTransitionDuration: Js.t({..}),
-        ~bBackdropInvisible: bool,
-        ~bBackdropComponent: Js.t({..}),
-        ~bBackdropClassName: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "show": Js.Boolean.to_js_boolean(show),
-        "onRequestClose": Js.Nullable.from_opt(onRequestClose),
-        "onExited": Js.Nullable.from_opt(onExited),
-        "onExiting": Js.Nullable.from_opt(onExiting),
-        "onExit": Js.Nullable.from_opt(onExit),
-        "onEscapeKeyUp": Js.Nullable.from_opt(onEscapeKeyUp),
-        "onEntered": Js.Nullable.from_opt(onEntered),
-        "onEntering": Js.Nullable.from_opt(onEntering),
-        "onEnter": Js.Nullable.from_opt(onEnter),
-        "onBackdropClick": Js.Nullable.from_opt(onBackdropClick),
-        "modalManager": modalManager,
-        "ignoreEscapeKeyUp": Js.Boolean.to_js_boolean(ignoreEscapeKeyUp),
-        "ignoreBackdropClick": Js.Boolean.to_js_boolean(ignoreBackdropClick),
-        "disableBackdrop": Js.Boolean.to_js_boolean(disableBackdrop),
-        "keepMounted": Js.Boolean.to_js_boolean(keepMounted),
-        "className": Js.Nullable.from_opt(className),
-        "BackdropTransitionDuration": bBackdropTransitionDuration,
-        "BackdropInvisible": Js.Boolean.to_js_boolean(bBackdropInvisible),
-        "BackdropComponent": bBackdropComponent,
-        "BackdropClassName": Js.Nullable.from_opt(bBackdropClassName),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module GridListTile = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Tile(string)
-      | ImgFullHeight(string)
-      | ImgFullWidth(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Tile(_) => "tile"
-      | ImgFullHeight(_) => "imgFullHeight"
-      | ImgFullWidth(_) => "imgFullWidth";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Tile(className)
-               | ImgFullHeight(className)
-               | ImgFullWidth(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/GridList/GridListTile"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~rows: option(float)=?,
-        ~component: option(Js.t({..}))=?,
-        ~cols: option(float)=?,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "rows": Js.Nullable.from_opt(rows),
-        "component": Js.Nullable.from_opt(component),
-        "cols": Js.Nullable.from_opt(cols),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module ExpansionPanel = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Expanded(string)
-      | Disabled(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Expanded(_) => "expanded"
-      | Disabled(_) => "disabled";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Expanded(className)
-               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/ExpansionPanel/ExpansionPanel"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
-        ~expanded: option(bool)=?,
-        ~cCollapseProps: option(Js.t({..}))=?,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~disabled: bool,
-        ~defaultExpanded: option(bool)=?,
-        ~classes: option(Classes.t)=?,
-        ~component: Js.t({..}),
-        ~elevation: float,
-        ~square: bool,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "onChange": Js.Nullable.from_opt(onChange),
-        "expanded": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, expanded)),
-        "CollapseProps": Js.Nullable.from_opt(cCollapseProps),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "disabled": Js.Boolean.to_js_boolean(disabled),
-        "defaultExpanded":
-          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, defaultExpanded)),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "component": component,
-        "elevation": elevation,
-        "square": Js.Boolean.to_js_boolean(square)
-      },
-      children
-    );
-};
-
-module Hidden = {
-  module Implementation = {
-    type t =
-      | Js
-      | Css;
-    let to_string =
-      fun
-      | Js => "js"
-      | Css => "css";
-  };
-  [@bs.module "material-ui/Hidden/Hidden"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~initialWidth: option(float)=?,
-        ~implementation: option(Implementation.t)=?,
-        ~xlDown: option(bool)=?,
-        ~lgDown: option(bool)=?,
-        ~mdDown: option(bool)=?,
-        ~smDown: option(bool)=?,
-        ~xsDown: option(bool)=?,
-        ~xlUp: option(bool)=?,
-        ~lgUp: option(bool)=?,
-        ~mdUp: option(bool)=?,
-        ~smUp: option(bool)=?,
-        ~xsUp: option(bool)=?,
-        ~only: option([ | `Object(Js.t({..})) | `Object(Js.t({..}))])=?,
-        ~className: option(string)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "initialWidth": Js.Nullable.from_opt(initialWidth),
-        "implementation": Js.Nullable.from_opt(optionMap(Implementation.to_string, implementation)),
-        "xlDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, xlDown)),
-        "lgDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, lgDown)),
-        "mdDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, mdDown)),
-        "smDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, smDown)),
-        "xsDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, xsDown)),
-        "xlUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, xlUp)),
-        "lgUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, lgUp)),
-        "mdUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, mdUp)),
-        "smUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, smUp)),
-        "xsUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, xsUp)),
-        "only": Js.Nullable.from_opt(optionMap(unwrapValue, only)),
-        "className": Js.Nullable.from_opt(className)
-      },
-      children
-    );
-};
-
-module DialogActions = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Action(string)
-      | Button(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Action(_) => "action"
-      | Button(_) => "button";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Action(className)
-               | Button(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Dialog/DialogActions"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module ListItemSecondaryAction = {
-  module Classes = {
-    type classesType =
-      | Root(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/List/ListItemSecondaryAction"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
-  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "className": Js.Nullable.from_opt(className),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Tab = {
-  module TextColor = {
-    type t =
-      | Accent
-      | Primary
-      | Inherit;
-    let to_string =
-      fun
-      | Accent => "accent"
-      | Primary => "primary"
-      | Inherit => "inherit";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | RootLabelIcon(string)
-      | RootAccent(string)
-      | RootAccentSelected(string)
-      | RootAccentDisabled(string)
-      | RootPrimary(string)
-      | RootPrimarySelected(string)
-      | RootPrimaryDisabled(string)
-      | RootInherit(string)
-      | RootInheritSelected(string)
-      | RootInheritDisabled(string)
-      | FullWidth(string)
-      | Wrapper(string)
-      | LabelContainer(string)
-      | Label(string)
-      | LabelWrapped(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | RootLabelIcon(_) => "rootLabelIcon"
-      | RootAccent(_) => "rootAccent"
-      | RootAccentSelected(_) => "rootAccentSelected"
-      | RootAccentDisabled(_) => "rootAccentDisabled"
-      | RootPrimary(_) => "rootPrimary"
-      | RootPrimarySelected(_) => "rootPrimarySelected"
-      | RootPrimaryDisabled(_) => "rootPrimaryDisabled"
-      | RootInherit(_) => "rootInherit"
-      | RootInheritSelected(_) => "rootInheritSelected"
-      | RootInheritDisabled(_) => "rootInheritDisabled"
-      | FullWidth(_) => "fullWidth"
-      | Wrapper(_) => "wrapper"
-      | LabelContainer(_) => "labelContainer"
-      | Label(_) => "label"
-      | LabelWrapped(_) => "labelWrapped";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | RootLabelIcon(className)
-               | RootAccent(className)
-               | RootAccentSelected(className)
-               | RootAccentDisabled(className)
-               | RootPrimary(className)
-               | RootPrimarySelected(className)
-               | RootPrimaryDisabled(className)
-               | RootInherit(className)
-               | RootInheritSelected(className)
-               | RootInheritDisabled(className)
-               | FullWidth(className)
-               | Wrapper(className)
-               | LabelContainer(className)
-               | Label(className)
-               | LabelWrapped(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Tabs/Tab"] external reactClass : ReasonReact.reactClass = "default";
-  let make =
-      (
-        ~value: option('a)=?,
-        ~textColor: option([ | `Enum(TextColor.t) | `String(string)])=?,
-        ~style: option(Js.t({..}))=?,
-        ~selected: option(bool)=?,
-        ~onClick: option((ReactEventRe.Synthetic.t => unit))=?,
-        ~onChange: option(((ReactEventRe.Synthetic.t, _) => unit))=?,
-        ~label: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
-        ~indicator: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
-        ~icon: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
-        ~fullWidth: option(bool)=?,
-        ~disabled: bool,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        ~centerRipple: bool,
-        ~component: option(Js.t({..}))=?,
-        ~disableRipple: bool,
-        ~focusRipple: bool,
-        ~keyboardFocusedClassName: option(string)=?,
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
-        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~role: option(string)=?,
-        ~rootRef: option('b)=?,
-        ~tabIndex: [ | `Float(float) | `String(string)],
-        ~type_: string,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "value": Js.Nullable.from_opt(value),
-        "textColor":
-          Js.Nullable.from_opt(
-            optionMap(
-              fun
-              | `Enum(e) => unwrapValue(`String(TextColor.to_string(e)))
-              | x => unwrapValue(x),
-              textColor
-            )
-          ),
-        "style": Js.Nullable.from_opt(style),
-        "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
-        "onClick": Js.Nullable.from_opt(onClick),
-        "onChange": Js.Nullable.from_opt(onChange),
-        "label": Js.Nullable.from_opt(optionMap(unwrapValue, label)),
-        "indicator": Js.Nullable.from_opt(optionMap(unwrapValue, indicator)),
-        "icon": Js.Nullable.from_opt(optionMap(unwrapValue, icon)),
-        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
-        "disabled": Js.Boolean.to_js_boolean(disabled),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "centerRipple": Js.Boolean.to_js_boolean(centerRipple),
-        "component": Js.Nullable.from_opt(component),
-        "disableRipple": Js.Boolean.to_js_boolean(disableRipple),
-        "focusRipple": Js.Boolean.to_js_boolean(focusRipple),
-        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "onFocus": Js.Nullable.from_opt(onFocus),
-        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
-        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
-        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
-        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
-        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
-        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
-        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
-        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
-        "role": Js.Nullable.from_opt(role),
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "tabIndex": unwrapValue(tabIndex),
-        "type": type_
-      },
-      children
-    );
-};
-
-module ListItemIcon = {
-  module Classes = {
-    type classesType =
-      | Root(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/List/ListItemIcon"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module ExpansionPanelSummary = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Expanded(string)
-      | Focused(string)
-      | Disabled(string)
-      | Content(string)
-      | ContentExpanded(string)
-      | ExpandIcon(string)
-      | ExpandIconExpanded(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Expanded(_) => "expanded"
-      | Focused(_) => "focused"
-      | Disabled(_) => "disabled"
-      | Content(_) => "content"
-      | ContentExpanded(_) => "contentExpanded"
-      | ExpandIcon(_) => "expandIcon"
-      | ExpandIconExpanded(_) => "expandIconExpanded";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Expanded(className)
-               | Focused(className)
-               | Disabled(className)
-               | Content(className)
-               | ContentExpanded(className)
-               | ExpandIcon(className)
-               | ExpandIconExpanded(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/ExpansionPanel/ExpansionPanelSummary"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
-        ~expandIcon: option(ReasonReact.reactElement)=?,
-        ~expanded: option(bool)=?,
-        ~disabled: bool,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        ~centerRipple: bool,
-        ~component: option(Js.t({..}))=?,
-        ~disableRipple: bool,
-        ~focusRipple: bool,
-        ~keyboardFocusedClassName: option(string)=?,
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
-        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~role: option(string)=?,
-        ~rootRef: option('a)=?,
-        ~tabIndex: [ | `Float(float) | `String(string)],
-        ~type_: string,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "onClick": Js.Nullable.from_opt(onClick),
-        "onChange": Js.Nullable.from_opt(onChange),
-        "expandIcon": Js.Nullable.from_opt(expandIcon),
-        "expanded": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, expanded)),
-        "disabled": Js.Boolean.to_js_boolean(disabled),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "centerRipple": Js.Boolean.to_js_boolean(centerRipple),
-        "component": Js.Nullable.from_opt(component),
-        "disableRipple": Js.Boolean.to_js_boolean(disableRipple),
-        "focusRipple": Js.Boolean.to_js_boolean(focusRipple),
-        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "onFocus": Js.Nullable.from_opt(onFocus),
-        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
-        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
-        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
-        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
-        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
-        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
-        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
-        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
-        "role": Js.Nullable.from_opt(role),
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "tabIndex": unwrapValue(tabIndex),
-        "type": type_
-      },
-      children
-    );
-};
-
-module Slide = {
-  module Direction = {
-    type t =
-      | Left
-      | Right
-      | Up
-      | Down;
-    let to_string =
-      fun
-      | Left => "left"
-      | Right => "right"
-      | Up => "up"
-      | Down => "down";
-  };
-  [@bs.module "material-ui/transitions/Slide"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~timeout: Js.t({..}),
-        ~style: option(Js.t({..}))=?,
-        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~in_: bool,
-        ~direction: Direction.t,
-        ~theme: Js.t({..}),
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "timeout": timeout,
-        "style": Js.Nullable.from_opt(style),
-        "onExited": Js.Nullable.from_opt(onExited),
-        "onExiting": Js.Nullable.from_opt(onExiting),
-        "onExit": Js.Nullable.from_opt(onExit),
-        "onEntered": Js.Nullable.from_opt(onEntered),
-        "onEntering": Js.Nullable.from_opt(onEntering),
-        "onEnter": Js.Nullable.from_opt(onEnter),
-        "in": Js.Boolean.to_js_boolean(in_),
-        "direction": Direction.to_string(direction),
-        "theme": theme
-      },
-      children
-    );
-};
-
-module Drawer = {
-  module Type = {
-    type t =
-      | Permanent
-      | Persistent
-      | Temporary;
-    let to_string =
-      fun
-      | Permanent => "permanent"
-      | Persistent => "persistent"
-      | Temporary => "temporary";
-  };
-  module Anchor = {
-    type t =
-      | Left
-      | Top
-      | Right
-      | Bottom;
-    let to_string =
-      fun
-      | Left => "left"
-      | Top => "top"
-      | Right => "right"
-      | Bottom => "bottom";
-  };
-  module Classes = {
-    type classesType =
-      | Docked(string)
-      | Paper(string)
-      | PaperAnchorLeft(string)
-      | PaperAnchorRight(string)
-      | PaperAnchorTop(string)
-      | PaperAnchorBottom(string)
-      | PaperAnchorDockedLeft(string)
-      | PaperAnchorDockedTop(string)
-      | PaperAnchorDockedRight(string)
-      | PaperAnchorDockedBottom(string)
-      | Modal(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Docked(_) => "docked"
-      | Paper(_) => "paper"
-      | PaperAnchorLeft(_) => "paperAnchorLeft"
-      | PaperAnchorRight(_) => "paperAnchorRight"
-      | PaperAnchorTop(_) => "paperAnchorTop"
-      | PaperAnchorBottom(_) => "paperAnchorBottom"
-      | PaperAnchorDockedLeft(_) => "paperAnchorDockedLeft"
-      | PaperAnchorDockedTop(_) => "paperAnchorDockedTop"
-      | PaperAnchorDockedRight(_) => "paperAnchorDockedRight"
-      | PaperAnchorDockedBottom(_) => "paperAnchorDockedBottom"
-      | Modal(_) => "modal";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Docked(className)
-               | Paper(className)
-               | PaperAnchorLeft(className)
-               | PaperAnchorRight(className)
-               | PaperAnchorTop(className)
-               | PaperAnchorBottom(className)
-               | PaperAnchorDockedLeft(className)
-               | PaperAnchorDockedTop(className)
-               | PaperAnchorDockedRight(className)
-               | PaperAnchorDockedBottom(className)
-               | Modal(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Drawer/Drawer"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~type_: Type.t,
-        ~sSlideProps: option(Js.t({..}))=?,
-        ~open_: bool,
-        ~onRequestClose: option(ReasonReact.Callback.t(ReactEventRe.Synthetic.t))=?,
-        ~mModalProps: option(Js.t({..}))=?,
-        ~transitionDuration: Js.t({..}),
-        ~elevation: float,
-        ~className: option(string)=?,
-        ~anchor: Anchor.t,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        ~bBackdropClassName: option(string)=?,
-        ~bBackdropComponent: Js.t({..}),
-        ~bBackdropInvisible: bool,
-        ~bBackdropTransitionDuration: Js.t({..}),
-        ~keepMounted: bool,
-        ~disableBackdrop: bool,
-        ~ignoreBackdropClick: bool,
-        ~ignoreEscapeKeyUp: bool,
-        ~modalManager: Js.t({..}),
-        ~onBackdropClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEscapeKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~show: bool,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "type": Type.to_string(type_),
-        "SlideProps": Js.Nullable.from_opt(sSlideProps),
-        "open": Js.Boolean.to_js_boolean(open_),
-        "onRequestClose": Js.Nullable.from_opt(onRequestClose),
-        "ModalProps": Js.Nullable.from_opt(mModalProps),
-        "transitionDuration": transitionDuration,
-        "elevation": elevation,
-        "className": Js.Nullable.from_opt(className),
-        "anchor": Anchor.to_string(anchor),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "BackdropClassName": Js.Nullable.from_opt(bBackdropClassName),
-        "BackdropComponent": bBackdropComponent,
-        "BackdropInvisible": Js.Boolean.to_js_boolean(bBackdropInvisible),
-        "BackdropTransitionDuration": bBackdropTransitionDuration,
-        "keepMounted": Js.Boolean.to_js_boolean(keepMounted),
-        "disableBackdrop": Js.Boolean.to_js_boolean(disableBackdrop),
-        "ignoreBackdropClick": Js.Boolean.to_js_boolean(ignoreBackdropClick),
-        "ignoreEscapeKeyUp": Js.Boolean.to_js_boolean(ignoreEscapeKeyUp),
-        "modalManager": modalManager,
-        "onBackdropClick": Js.Nullable.from_opt(onBackdropClick),
-        "onEnter": Js.Nullable.from_opt(onEnter),
-        "onEntering": Js.Nullable.from_opt(onEntering),
-        "onEntered": Js.Nullable.from_opt(onEntered),
-        "onEscapeKeyUp": Js.Nullable.from_opt(onEscapeKeyUp),
-        "onExit": Js.Nullable.from_opt(onExit),
-        "onExiting": Js.Nullable.from_opt(onExiting),
-        "onExited": Js.Nullable.from_opt(onExited),
-        "show": Js.Boolean.to_js_boolean(show)
-      },
-      children
-    );
-};
-
-module StepButton = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | AlternativeLabel(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | AlternativeLabel(_) => "alternativeLabel";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | AlternativeLabel(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Stepper/StepButton"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~orientation: Js.t({..}),
-        ~optional: option(bool)=?,
-        ~last: option(bool)=?,
-        ~icon: option([ | `Element(ReasonReact.reactElement) | `String(string) | `Float(float)])=?,
-        ~disabled: option(bool)=?,
-        ~completed: option(bool)=?,
-        ~className: option(string)=?,
-        ~alternativeLabel: option(bool)=?,
-        ~active: option(bool)=?,
-        ~classes: option(Classes.t)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~centerRipple: bool,
-        ~component: option(Js.t({..}))=?,
-        ~disableRipple: bool,
-        ~focusRipple: bool,
-        ~keyboardFocusedClassName: option(string)=?,
-        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
-        ~onKeyboardFocus: option((ReactEventRe.Synthetic.t => unit))=?,
-        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
-        ~role: option(string)=?,
-        ~rootRef: option('a)=?,
-        ~tabIndex: [ | `Float(float) | `String(string)],
-        ~type_: string,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "orientation": orientation,
-        "optional": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, optional)),
-        "last": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, last)),
-        "icon": Js.Nullable.from_opt(optionMap(unwrapValue, icon)),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "completed": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, completed)),
-        "className": Js.Nullable.from_opt(className),
-        "alternativeLabel":
-          Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
-        "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "theme": Js.Nullable.from_opt(theme),
-        "centerRipple": Js.Boolean.to_js_boolean(centerRipple),
-        "component": Js.Nullable.from_opt(component),
-        "disableRipple": Js.Boolean.to_js_boolean(disableRipple),
-        "focusRipple": Js.Boolean.to_js_boolean(focusRipple),
-        "keyboardFocusedClassName": Js.Nullable.from_opt(keyboardFocusedClassName),
-        "onBlur": Js.Nullable.from_opt(onBlur),
-        "onClick": Js.Nullable.from_opt(onClick),
-        "onFocus": Js.Nullable.from_opt(onFocus),
-        "onKeyboardFocus": Js.Nullable.from_opt(onKeyboardFocus),
-        "onKeyDown": Js.Nullable.from_opt(onKeyDown),
-        "onKeyUp": Js.Nullable.from_opt(onKeyUp),
-        "onMouseDown": Js.Nullable.from_opt(onMouseDown),
-        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
-        "onMouseUp": Js.Nullable.from_opt(onMouseUp),
-        "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
-        "onTouchMove": Js.Nullable.from_opt(onTouchMove),
-        "onTouchStart": Js.Nullable.from_opt(onTouchStart),
-        "role": Js.Nullable.from_opt(role),
-        "rootRef": Js.Nullable.from_opt(rootRef),
-        "tabIndex": unwrapValue(tabIndex),
-        "type": type_
-      },
-      children
-    );
-};
-
-module Snackbar = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | AnchorTopCenter(string)
-      | AnchorBottomCenter(string)
-      | AnchorTopRight(string)
-      | AnchorBottomRight(string)
-      | AnchorTopLeft(string)
-      | AnchorBottomLeft(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | AnchorTopCenter(_) => "anchorTopCenter"
-      | AnchorBottomCenter(_) => "anchorBottomCenter"
-      | AnchorTopRight(_) => "anchorTopRight"
-      | AnchorBottomRight(_) => "anchorBottomRight"
-      | AnchorTopLeft(_) => "anchorTopLeft"
-      | AnchorBottomLeft(_) => "anchorBottomLeft";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | AnchorTopCenter(className)
-               | AnchorBottomCenter(className)
-               | AnchorTopRight(className)
-               | AnchorBottomRight(className)
-               | AnchorTopLeft(className)
-               | AnchorBottomLeft(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Snackbar/Snackbar"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~transitionDuration: Js.t({..}),
-        ~transition: option(Js.t({..}))=?,
-        ~sSnackbarContentProps: option(Js.t({..}))=?,
-        ~open_: bool,
-        ~onRequestClose: option(((ReactEventRe.Synthetic.t, string) => unit))=?,
-        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onMouseEnter: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onExited: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExiting: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onExit: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntered: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEntering: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~onEnter: option(ReasonReact.Callback.t(ReactEventRe.Transition.t))=?,
-        ~message: option(ReasonReact.reactElement)=?,
-        ~className: option(string)=?,
-        ~resumeHideDuration: option(float)=?,
-        ~autoHideDuration: option(float)=?,
-        ~anchorOrigin: {. "horizontal": _, "vertical": _},
-        ~action: option(ReasonReact.reactElement)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "transitionDuration": transitionDuration,
-        "transition": Js.Nullable.from_opt(transition),
-        "SnackbarContentProps": Js.Nullable.from_opt(sSnackbarContentProps),
-        "open": Js.Boolean.to_js_boolean(open_),
-        "onRequestClose": Js.Nullable.from_opt(onRequestClose),
-        "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
-        "onMouseEnter": Js.Nullable.from_opt(onMouseEnter),
-        "onExited": Js.Nullable.from_opt(onExited),
-        "onExiting": Js.Nullable.from_opt(onExiting),
-        "onExit": Js.Nullable.from_opt(onExit),
-        "onEntered": Js.Nullable.from_opt(onEntered),
-        "onEntering": Js.Nullable.from_opt(onEntering),
-        "onEnter": Js.Nullable.from_opt(onEnter),
-        "message": Js.Nullable.from_opt(message),
-        "className": Js.Nullable.from_opt(className),
-        "resumeHideDuration": Js.Nullable.from_opt(resumeHideDuration),
-        "autoHideDuration": Js.Nullable.from_opt(autoHideDuration),
-        "anchorOrigin": anchorOrigin,
-        "action": Js.Nullable.from_opt(action),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module CircularProgress = {
-  module Mode = {
-    type t =
-      | Determinate
-      | Indeterminate;
-    let to_string =
-      fun
-      | Determinate => "determinate"
-      | Indeterminate => "indeterminate";
-  };
-  module Color = {
-    type t =
-      | Primary
-      | Accent
-      | Inherit;
-    let to_string =
-      fun
-      | Primary => "primary"
-      | Accent => "accent"
-      | Inherit => "inherit";
-  };
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | PrimaryColor(string)
-      | AccentColor(string)
-      | SvgIndeterminate(string)
-      | SvgDeterminate(string)
-      | Circle(string)
-      | CircleIndeterminate(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | PrimaryColor(_) => "primaryColor"
-      | AccentColor(_) => "accentColor"
-      | SvgIndeterminate(_) => "svgIndeterminate"
-      | SvgDeterminate(_) => "svgDeterminate"
-      | Circle(_) => "circle"
-      | CircleIndeterminate(_) => "circleIndeterminate";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | PrimaryColor(className)
-               | AccentColor(className)
-               | SvgIndeterminate(className)
-               | SvgDeterminate(className)
-               | Circle(className)
-               | CircleIndeterminate(className) =>
-                 Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Progress/CircularProgress"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~value: float,
-        ~thickness: float,
-        ~style: option(Js.t({..}))=?,
-        ~size: float,
-        ~mode: Mode.t,
-        ~min: float,
-        ~max: float,
-        ~color: Color.t,
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "value": value,
-        "thickness": thickness,
-        "style": Js.Nullable.from_opt(style),
-        "size": size,
-        "mode": Mode.to_string(mode),
-        "min": min,
-        "max": max,
-        "color": Color.to_string(color),
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module Switch = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Bar(string)
-      | Icon(string)
-      | Default(string)
-      | Checked(string)
-      | Disabled(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Bar(_) => "bar"
-      | Icon(_) => "icon"
-      | Default(_) => "default"
-      | Checked(_) => "checked"
-      | Disabled(_) => "disabled";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Bar(className)
-               | Icon(className)
-               | Default(className)
-               | Checked(className)
-               | Disabled(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Switch/Switch"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~value: option(string)=?,
-        ~tabIndex: option([ | `Float(float) | `String(string)])=?,
-        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
-        ~name: option(string)=?,
-        ~inputRef: option('a)=?,
-        ~inputProps: option(Js.t({..}))=?,
-        ~icon: option(ReasonReact.reactElement)=?,
-        ~disableRipple: option(bool)=?,
-        ~disabled: option(bool)=?,
-        ~defaultChecked: option(bool)=?,
-        ~className: option(string)=?,
-        ~checkedIcon: option(ReasonReact.reactElement)=?,
-        ~checked: option([ | `Bool(bool) | `String(string)])=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "value": Js.Nullable.from_opt(value),
-        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
-        "onChange": Js.Nullable.from_opt(onChange),
-        "name": Js.Nullable.from_opt(name),
-        "inputRef": Js.Nullable.from_opt(inputRef),
-        "inputProps": Js.Nullable.from_opt(inputProps),
-        "icon": Js.Nullable.from_opt(icon),
-        "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
-        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
-        "defaultChecked": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, defaultChecked)),
-        "className": Js.Nullable.from_opt(className),
-        "checkedIcon": Js.Nullable.from_opt(checkedIcon),
-        "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module TableHead = {
-  module Classes = {
-    type classesType =
-      | Root(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Table/TableHead"] external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~component: Js.t({..}),
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "component": component,
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
-      },
-      children
-    );
-};
-
-module SnackbarContent = {
-  module Classes = {
-    type classesType =
-      | Root(string)
-      | Message(string)
-      | Action(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root"
-      | Message(_) => "message"
-      | Action(_) => "action";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className)
-               | Message(className)
-               | Action(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Snackbar/SnackbarContent"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~message: ReasonReact.reactElement,
-        ~className: option(string)=?,
-        ~action: option(ReasonReact.reactElement)=?,
-        ~classes: option(Classes.t)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~component: Js.t({..}),
-        ~elevation: float,
-        ~square: bool,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "message": message,
-        "className": Js.Nullable.from_opt(className),
-        "action": Js.Nullable.from_opt(action),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes)),
-        "theme": Js.Nullable.from_opt(theme),
-        "component": component,
-        "elevation": elevation,
-        "square": Js.Boolean.to_js_boolean(square)
-      },
-      children
-    );
-};
-
-module DialogContentText = {
-  module Classes = {
-    type classesType =
-      | Root(string);
-    type t = list(classesType);
-    let to_string =
-      fun
-      | Root(_) => "root";
-    let to_obj = (listOfClasses) =>
-      listOfClasses
-      |> StdLabels.List.fold_left(
-           ~f=
-             (obj, classType) => {
-               switch classType {
-               | Root(className) => Js.Dict.set(obj, to_string(classType), className)
-               };
-               obj
-             },
-           ~init=Js.Dict.empty()
-         );
-  };
-  [@bs.module "material-ui/Dialog/DialogContentText"]
-  external reactClass : ReasonReact.reactClass =
-    "default";
-  let make =
-      (
-        ~className: option(string)=?,
-        ~theme: option(Js.t({..}))=?,
-        ~classes: option(Classes.t)=?,
-        children
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "className": Js.Nullable.from_opt(className),
-        "theme": Js.Nullable.from_opt(theme),
-        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+        "elevation": Js.Nullable.from_opt(elevation),
+        "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square))
       },
       children
     );
