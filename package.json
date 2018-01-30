@@ -4,13 +4,13 @@
   "description": "Reason bindings for material-ui",
   "main": "src/MaterialUi.bs.js",
   "scripts": {
-    "build": "bsb -make-world"
+    "build": "npm link bs-platform; bsb -make-world"
   },
   "repository": "git@github.com:jsiebern/bs-material-ui.git",
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
-    "reason-react": "^0.3.0"
+    "reason-react": "^0.3.1"
   }
 }
