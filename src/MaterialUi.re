@@ -468,14 +468,14 @@ module Colors = {
 
 module AppBar = {
   [@bs.deriving jsConverter]
-  type color_i = [
+  type color_y = [
     [@bs.as "inherit"] | `Inherit
     [@bs.as "primary"] | `Primary
     [@bs.as "secondary"] | `Secondary
     [@bs.as "default"] | `Default
   ];
   [@bs.deriving jsConverter]
-  type position_a = [
+  type position_b = [
     [@bs.as "fixed"] | `Fixed
     [@bs.as "absolute"] | `Absolute
     [@bs.as "sticky"] | `Sticky
@@ -526,8 +526,9 @@ module AppBar = {
     "default";
   let make =
       (
-        ~color: option(color_i)=?,
-        ~position: option(position_a)=?,
+        ~className: option(string)=?,
+        ~color: option(color_y)=?,
+        ~position: option(position_b)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
         ~square: option(bool)=?,
@@ -537,8 +538,9 @@ module AppBar = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "color": Js.Nullable.from_opt(optionMap(color_iToJs, color)),
-        "position": Js.Nullable.from_opt(optionMap(position_aToJs, position)),
+        "className": Js.Nullable.from_opt(className),
+        "color": Js.Nullable.from_opt(optionMap(color_yToJs, color)),
+        "position": Js.Nullable.from_opt(optionMap(position_bToJs, position)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "elevation": Js.Nullable.from_opt(optionMap(unwrapValue, elevation)),
         "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square)),
@@ -581,6 +583,7 @@ module Avatar = {
       (
         ~alt: option(string)=?,
         ~childrenClassName: option(string)=?,
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~imgProps: option(Js.t({..}))=?,
         ~sizes: option(string)=?,
@@ -594,6 +597,7 @@ module Avatar = {
       ~props={
         "alt": Js.Nullable.from_opt(alt),
         "childrenClassName": Js.Nullable.from_opt(childrenClassName),
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "imgProps": Js.Nullable.from_opt(imgProps),
         "sizes": Js.Nullable.from_opt(sizes),
@@ -649,7 +653,7 @@ module Backdrop = {
       ~reactClass,
       ~props={
         "invisible": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, invisible)),
-        "open_": Js.Boolean.to_js_boolean(open_),
+        "open": Js.Boolean.to_js_boolean(open_),
         "transitionDuration":
           Js.Nullable.from_opt(
             optionMap(
@@ -667,7 +671,7 @@ module Backdrop = {
 
 module Badge = {
   [@bs.deriving jsConverter]
-  type color_s = [
+  type color_i = [
     [@bs.as "default"] | `Default
     [@bs.as "primary"] | `Primary
     [@bs.as "secondary"] | `Secondary
@@ -709,7 +713,8 @@ module Badge = {
   let make =
       (
         ~badgeContent: ReasonReact.reactElement,
-        ~color: option(color_s)=?,
+        ~className: option(string)=?,
+        ~color: option(color_i)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~classes: option(Classes.t)=?,
         children
@@ -718,7 +723,8 @@ module Badge = {
       ~reactClass,
       ~props={
         "badgeContent": badgeContent,
-        "color": Js.Nullable.from_opt(optionMap(color_sToJs, color)),
+        "className": Js.Nullable.from_opt(className),
+        "color": Js.Nullable.from_opt(optionMap(color_iToJs, color)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -770,12 +776,14 @@ module BottomNavigationAction = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~icon: option(ReasonReact.reactElement)=?,
         ~label: option(ReasonReact.reactElement)=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~selected: option(bool)=?,
         ~showLabel: option(bool)=?,
-        ~value: option('any_c)=?,
+        ~value: option('any_g)=?,
         ~buttonRef: option(ReasonReact.reactElement)=?,
         ~centerRipple: option(bool)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
@@ -794,16 +802,21 @@ module BottomNavigationAction = {
         ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "icon": Js.Nullable.from_opt(icon),
         "label": Js.Nullable.from_opt(label),
         "onChange": Js.Nullable.from_opt(onChange),
         "onClick": Js.Nullable.from_opt(onClick),
+        "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
         "showLabel": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, showLabel)),
         "value": Js.Nullable.from_opt(value),
         "buttonRef": Js.Nullable.from_opt(buttonRef),
@@ -824,6 +837,9 @@ module BottomNavigationAction = {
         "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
         "onTouchMove": Js.Nullable.from_opt(onTouchMove),
         "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -856,15 +872,17 @@ module BottomNavigation = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
         ~showLabels: option(bool)=?,
-        ~value: option('any_j)=?,
+        ~value: option('any_x)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "onChange": Js.Nullable.from_opt(onChange),
         "showLabels": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, showLabels)),
         "value": Js.Nullable.from_opt(value),
@@ -904,6 +922,7 @@ module ButtonBase = {
       (
         ~buttonRef: option(ReasonReact.reactElement)=?,
         ~centerRipple: option(bool)=?,
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~disabled: option(bool)=?,
         ~disableRipple: option(bool)=?,
@@ -921,6 +940,9 @@ module ButtonBase = {
         ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
@@ -929,6 +951,7 @@ module ButtonBase = {
       ~props={
         "buttonRef": Js.Nullable.from_opt(buttonRef),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
@@ -946,6 +969,9 @@ module ButtonBase = {
         "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
         "onTouchMove": Js.Nullable.from_opt(onTouchMove),
         "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -954,14 +980,14 @@ module ButtonBase = {
 
 module Button = {
   [@bs.deriving jsConverter]
-  type color_8 = [
+  type color_7 = [
     [@bs.as "default"] | `Default
     [@bs.as "inherit"] | `Inherit
     [@bs.as "primary"] | `Primary
     [@bs.as "secondary"] | `Secondary
   ];
   [@bs.deriving jsConverter]
-  type size_r = [ [@bs.as "small"] | `Small [@bs.as "medium"] | `Medium [@bs.as "large"] | `Large];
+  type size_8 = [ [@bs.as "small"] | `Small [@bs.as "medium"] | `Medium [@bs.as "large"] | `Large];
   module Classes = {
     type classesType =
       | Root(string)
@@ -1028,7 +1054,8 @@ module Button = {
     "default";
   let make =
       (
-        ~color: option(color_8)=?,
+        ~className: option(string)=?,
+        ~color: option(color_7)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~disabled: option(bool)=?,
         ~disableFocusRipple: option(bool)=?,
@@ -1038,7 +1065,8 @@ module Button = {
         ~href: option(string)=?,
         ~mini: option(bool)=?,
         ~raised: option(bool)=?,
-        ~size: option(size_r)=?,
+        ~size: option(size_8)=?,
+        ~type_: option(string)=?,
         ~buttonRef: option(ReasonReact.reactElement)=?,
         ~centerRipple: option(bool)=?,
         ~focusRipple: option(bool)=?,
@@ -1055,13 +1083,16 @@ module Button = {
         ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "color": Js.Nullable.from_opt(optionMap(color_8ToJs, color)),
+        "className": Js.Nullable.from_opt(className),
+        "color": Js.Nullable.from_opt(optionMap(color_7ToJs, color)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "disableFocusRipple":
@@ -1072,7 +1103,8 @@ module Button = {
         "href": Js.Nullable.from_opt(href),
         "mini": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, mini)),
         "raised": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, raised)),
-        "size": Js.Nullable.from_opt(optionMap(size_rToJs, size)),
+        "size": Js.Nullable.from_opt(optionMap(size_8ToJs, size)),
+        "type": Js.Nullable.from_opt(type_),
         "buttonRef": Js.Nullable.from_opt(buttonRef),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
         "focusRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focusRipple)),
@@ -1089,6 +1121,8 @@ module Button = {
         "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
         "onTouchMove": Js.Nullable.from_opt(onTouchMove),
         "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -1121,10 +1155,17 @@ module CardActions = {
   };
   [@bs.module "material-ui/Card/CardActions"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~disableActionSpacing: option(bool)=?, ~classes: option(Classes.t)=?, children) =>
+  let make =
+      (
+        ~className: option(string)=?,
+        ~disableActionSpacing: option(bool)=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "disableActionSpacing":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableActionSpacing)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -1158,6 +1199,7 @@ module CardContent = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~classes: option(Classes.t)=?,
         children
@@ -1165,6 +1207,7 @@ module CardContent = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -1214,6 +1257,7 @@ module CardHeader = {
       (
         ~action: option(ReasonReact.reactElement)=?,
         ~avatar: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~subheader: option(ReasonReact.reactElement)=?,
         ~title: option(ReasonReact.reactElement)=?,
@@ -1225,6 +1269,7 @@ module CardHeader = {
       ~props={
         "action": Js.Nullable.from_opt(action),
         "avatar": Js.Nullable.from_opt(avatar),
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "subheader": Js.Nullable.from_opt(subheader),
         "title": Js.Nullable.from_opt(title),
@@ -1262,18 +1307,22 @@ module CardMedia = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~image: option(string)=?,
         ~src: option(string)=?,
+        ~style: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "image": Js.Nullable.from_opt(image),
         "src": Js.Nullable.from_opt(src),
+        "style": Js.Nullable.from_opt(style),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -1284,6 +1333,7 @@ module Card = {
   [@bs.module "material-ui/Card/Card"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
+        ~className: option(string)=?,
         ~raised: option(bool)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
@@ -1293,6 +1343,7 @@ module Card = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "raised": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, raised)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "elevation": Js.Nullable.from_opt(optionMap(unwrapValue, elevation)),
@@ -1335,6 +1386,8 @@ module Checkbox = {
       (
         ~checked: option([ | `Bool(bool) | `String(string)])=?,
         ~checkedIcon: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
+        ~defaultChecked: option(bool)=?,
         ~disabled: option(bool)=?,
         ~disableRipple: option(bool)=?,
         ~icon: option(ReasonReact.reactElement)=?,
@@ -1345,6 +1398,7 @@ module Checkbox = {
         ~inputType: option(string)=?,
         ~name: option(string)=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
         ~value: option(string)=?,
         ~classes: option(Classes.t)=?,
         children
@@ -1354,6 +1408,8 @@ module Checkbox = {
       ~props={
         "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
         "checkedIcon": Js.Nullable.from_opt(checkedIcon),
+        "className": Js.Nullable.from_opt(className),
+        "defaultChecked": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, defaultChecked)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
         "icon": Js.Nullable.from_opt(icon),
@@ -1364,6 +1420,7 @@ module Checkbox = {
         "inputType": Js.Nullable.from_opt(inputType),
         "name": Js.Nullable.from_opt(name),
         "onChange": Js.Nullable.from_opt(onChange),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
         "value": Js.Nullable.from_opt(value),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -1414,12 +1471,14 @@ module Chip = {
   let make =
       (
         ~avatar: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~deleteIcon: option(ReasonReact.reactElement)=?,
         ~label: option(ReasonReact.reactElement)=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~onDelete: option((unit => unit))=?,
         ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
@@ -1427,12 +1486,14 @@ module Chip = {
       ~reactClass,
       ~props={
         "avatar": Js.Nullable.from_opt(avatar),
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "deleteIcon": Js.Nullable.from_opt(deleteIcon),
         "label": Js.Nullable.from_opt(label),
         "onClick": Js.Nullable.from_opt(onClick),
         "onDelete": Js.Nullable.from_opt(onDelete),
         "onKeyDown": Js.Nullable.from_opt(onKeyDown),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -1441,13 +1502,13 @@ module Chip = {
 
 module CircularProgress = {
   [@bs.deriving jsConverter]
-  type color_y = [
+  type color_h = [
     [@bs.as "primary"] | `Primary
     [@bs.as "secondary"] | `Secondary
     [@bs.as "inherit"] | `Inherit
   ];
   [@bs.deriving jsConverter]
-  type mode_q = [ [@bs.as "determinate"] | `Determinate [@bs.as "indeterminate"] | `Indeterminate];
+  type mode_5 = [ [@bs.as "determinate"] | `Determinate [@bs.as "indeterminate"] | `Indeterminate];
   module Classes = {
     type classesType =
       | Root(string)
@@ -1492,11 +1553,13 @@ module CircularProgress = {
     "default";
   let make =
       (
-        ~color: option(color_y)=?,
+        ~className: option(string)=?,
+        ~color: option(color_h)=?,
         ~max: option([ | `Int(int) | `Float(float)])=?,
         ~min: option([ | `Int(int) | `Float(float)])=?,
-        ~mode: option(mode_q)=?,
+        ~mode: option(mode_5)=?,
         ~size: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~style: option(Js.t({..}))=?,
         ~thickness: option([ | `Int(int) | `Float(float)])=?,
         ~value: option([ | `Int(int) | `Float(float)])=?,
         ~classes: option(Classes.t)=?,
@@ -1505,11 +1568,13 @@ module CircularProgress = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "color": Js.Nullable.from_opt(optionMap(color_yToJs, color)),
+        "className": Js.Nullable.from_opt(className),
+        "color": Js.Nullable.from_opt(optionMap(color_hToJs, color)),
         "max": Js.Nullable.from_opt(optionMap(unwrapValue, max)),
         "min": Js.Nullable.from_opt(optionMap(unwrapValue, min)),
-        "mode": Js.Nullable.from_opt(optionMap(mode_qToJs, mode)),
+        "mode": Js.Nullable.from_opt(optionMap(mode_5ToJs, mode)),
         "size": Js.Nullable.from_opt(optionMap(unwrapValue, size)),
+        "style": Js.Nullable.from_opt(style),
         "thickness": Js.Nullable.from_opt(optionMap(unwrapValue, thickness)),
         "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -1532,7 +1597,7 @@ module Collapse = {
     exit: int
   };
   [@bs.deriving jsConverter]
-  type timeout_a = [ [@bs.as "auto"] | `Auto];
+  type timeout_4 = [ [@bs.as "auto"] | `Auto];
   module Classes = {
     type classesType =
       | Container(string)
@@ -1566,6 +1631,8 @@ module Collapse = {
     "default";
   let make =
       (
+        ~appear: option(bool)=?,
+        ~className: option(string)=?,
         ~collapsedHeight: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~in_: option(bool)=?,
@@ -1574,26 +1641,32 @@ module Collapse = {
         ~onEntering: option((unit => unit))=?,
         ~onExit: option((unit => unit))=?,
         ~onExiting: option((unit => unit))=?,
-        ~timeout: option([ | `Int(int) | `Float(float) | `Object(timeoutShape) | `Enum(timeout_a)])=?,
+        ~style: option(Js.t({..}))=?,
+        ~theme: Js.t({..}),
+        ~timeout: option([ | `Int(int) | `Float(float) | `Object(timeoutShape) | `Enum(timeout_4)])=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "appear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, appear)),
+        "className": Js.Nullable.from_opt(className),
         "collapsedHeight": Js.Nullable.from_opt(collapsedHeight),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
-        "in_": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, in_)),
+        "in": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, in_)),
         "onEnter": Js.Nullable.from_opt(onEnter),
         "onEntered": Js.Nullable.from_opt(onEntered),
         "onEntering": Js.Nullable.from_opt(onEntering),
         "onExit": Js.Nullable.from_opt(onExit),
         "onExiting": Js.Nullable.from_opt(onExiting),
+        "style": Js.Nullable.from_opt(style),
+        "theme": theme,
         "timeout":
           Js.Nullable.from_opt(
             optionMap(
               fun
-              | `Enum(v) => unwrapValue(`String(timeout_aToJs(v)))
+              | `Enum(v) => unwrapValue(`String(timeout_4ToJs(v)))
               | `Object(v) => unwrapValue(`Element(timeoutShapeToJs(v)))
               | v => unwrapValue(v),
               timeout
@@ -1634,10 +1707,13 @@ module DialogActions = {
   };
   [@bs.module "material-ui/Dialog/DialogActions"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~classes: option(Classes.t)=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props={"classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))},
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
       children
     );
 };
@@ -1666,10 +1742,13 @@ module DialogContentText = {
   [@bs.module "material-ui/Dialog/DialogContentText"]
   external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~classes: option(Classes.t)=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props={"classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))},
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
       children
     );
 };
@@ -1697,10 +1776,13 @@ module DialogContent = {
   };
   [@bs.module "material-ui/Dialog/DialogContent"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~classes: option(Classes.t)=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props={"classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))},
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
       children
     );
 };
@@ -1728,10 +1810,17 @@ module DialogTitle = {
   };
   [@bs.module "material-ui/Dialog/DialogTitle"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~disableTypography: option(bool)=?, ~classes: option(Classes.t)=?, children) =>
+  let make =
+      (
+        ~className: option(string)=?,
+        ~disableTypography: option(bool)=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "disableTypography":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTypography)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -1742,11 +1831,11 @@ module DialogTitle = {
 
 module Dialog = {
   [@bs.deriving jsConverter]
-  type maxWidth_v = [
+  type maxWidth_q = [
     [@bs.as "xs"] | `Xs
     [@bs.as "sm"] | `Sm
     [@bs.as "md"] | `Md
-    [@bs.as "false"] | `False
+    [@bs.as "0"] | `False
   ];
   [@bs.deriving jsConverter]
   type transitionDurationShape = {
@@ -1795,11 +1884,12 @@ module Dialog = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~disableBackdropClick: option(bool)=?,
         ~disableEscapeKeyDown: option(bool)=?,
         ~fullScreen: option(bool)=?,
         ~fullWidth: option(bool)=?,
-        ~maxWidth: option(maxWidth_v)=?,
+        ~maxWidth: option(maxWidth_q)=?,
         ~onBackdropClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~onClose: option((unit => unit))=?,
         ~onEnter: option((unit => unit))=?,
@@ -1830,13 +1920,14 @@ module Dialog = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "disableBackdropClick":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableBackdropClick)),
         "disableEscapeKeyDown":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableEscapeKeyDown)),
         "fullScreen": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullScreen)),
         "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
-        "maxWidth": Js.Nullable.from_opt(optionMap(maxWidth_vToJs, maxWidth)),
+        "maxWidth": Js.Nullable.from_opt(optionMap(maxWidth_qToJs, maxWidth)),
         "onBackdropClick": Js.Nullable.from_opt(onBackdropClick),
         "onClose": Js.Nullable.from_opt(onClose),
         "onEnter": Js.Nullable.from_opt(onEnter),
@@ -1846,8 +1937,8 @@ module Dialog = {
         "onExit": Js.Nullable.from_opt(onExit),
         "onExited": Js.Nullable.from_opt(onExited),
         "onExiting": Js.Nullable.from_opt(onExiting),
-        "open_": Js.Boolean.to_js_boolean(open_),
-        "paperProps": Js.Nullable.from_opt(paperProps),
+        "open": Js.Boolean.to_js_boolean(open_),
+        "PaperProps": Js.Nullable.from_opt(paperProps),
         "transition": Js.Nullable.from_opt(optionMap(unwrapValue, transition)),
         "transitionDuration":
           Js.Nullable.from_opt(
@@ -1858,8 +1949,8 @@ module Dialog = {
               transitionDuration
             )
           ),
-        "backdropComponent": Js.Nullable.from_opt(optionMap(unwrapValue, backdropComponent)),
-        "backdropProps": Js.Nullable.from_opt(backdropProps),
+        "BackdropComponent": Js.Nullable.from_opt(optionMap(unwrapValue, backdropComponent)),
+        "BackdropProps": Js.Nullable.from_opt(backdropProps),
         "container": Js.Nullable.from_opt(optionMap(unwrapValue, container)),
         "disableAutoFocus":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableAutoFocus)),
@@ -1915,6 +2006,7 @@ module Divider = {
   let make =
       (
         ~absolute: option(bool)=?,
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~inset: option(bool)=?,
         ~light: option(bool)=?,
@@ -1925,6 +2017,7 @@ module Divider = {
       ~reactClass,
       ~props={
         "absolute": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, absolute)),
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "inset": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, inset)),
         "light": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, light)),
@@ -1936,7 +2029,7 @@ module Divider = {
 
 module Drawer = {
   [@bs.deriving jsConverter]
-  type anchor_u = [
+  type anchor_o = [
     [@bs.as "left"] | `Left
     [@bs.as "top"] | `Top
     [@bs.as "right"] | `Right
@@ -1948,7 +2041,7 @@ module Drawer = {
     exit: int
   };
   [@bs.deriving jsConverter]
-  type type__t = [
+  type type__p = [
     [@bs.as "permanent"] | `Permanent
     [@bs.as "persistent"] | `Persistent
     [@bs.as "temporary"] | `Temporary
@@ -2007,15 +2100,17 @@ module Drawer = {
     "default";
   let make =
       (
-        ~anchor: option(anchor_u)=?,
+        ~anchor: option(anchor_o)=?,
+        ~className: option(string)=?,
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
         ~modalProps: option(Js.t({..}))=?,
         ~onClose: option((unit => unit))=?,
         ~open_: option(bool)=?,
         ~slideProps: option(Js.t({..}))=?,
+        ~theme: Js.t({..}),
         ~transitionDuration:
            option([ | `Int(int) | `Float(float) | `Object(transitionDurationShape)])=?,
-        ~type_: option(type__t)=?,
+        ~type_: option(type__p)=?,
         ~backdropComponent: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~backdropProps: option(Js.t({..}))=?,
         ~container: option([ | `ObjectGeneric(Js.t({..})) | `Element(ReasonReact.reactElement)])=?,
@@ -2036,12 +2131,14 @@ module Drawer = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "anchor": Js.Nullable.from_opt(optionMap(anchor_uToJs, anchor)),
+        "anchor": Js.Nullable.from_opt(optionMap(anchor_oToJs, anchor)),
+        "className": Js.Nullable.from_opt(className),
         "elevation": Js.Nullable.from_opt(optionMap(unwrapValue, elevation)),
-        "modalProps": Js.Nullable.from_opt(modalProps),
+        "ModalProps": Js.Nullable.from_opt(modalProps),
         "onClose": Js.Nullable.from_opt(onClose),
-        "open_": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
-        "slideProps": Js.Nullable.from_opt(slideProps),
+        "open": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
+        "SlideProps": Js.Nullable.from_opt(slideProps),
+        "theme": theme,
         "transitionDuration":
           Js.Nullable.from_opt(
             optionMap(
@@ -2051,9 +2148,9 @@ module Drawer = {
               transitionDuration
             )
           ),
-        "type_": Js.Nullable.from_opt(optionMap(type__tToJs, type_)),
-        "backdropComponent": Js.Nullable.from_opt(optionMap(unwrapValue, backdropComponent)),
-        "backdropProps": Js.Nullable.from_opt(backdropProps),
+        "type": Js.Nullable.from_opt(optionMap(type__pToJs, type_)),
+        "BackdropComponent": Js.Nullable.from_opt(optionMap(unwrapValue, backdropComponent)),
+        "BackdropProps": Js.Nullable.from_opt(backdropProps),
         "container": Js.Nullable.from_opt(optionMap(unwrapValue, container)),
         "disableAutoFocus":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableAutoFocus)),
@@ -2104,10 +2201,13 @@ module ExpansionPanelActions = {
   [@bs.module "material-ui/ExpansionPanel/ExpansionPanelActions"]
   external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~classes: option(Classes.t)=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props={"classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))},
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
       children
     );
 };
@@ -2136,10 +2236,13 @@ module ExpansionPanelDetails = {
   [@bs.module "material-ui/ExpansionPanel/ExpansionPanelDetails"]
   external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~classes: option(Classes.t)=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props={"classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))},
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
       children
     );
 };
@@ -2191,6 +2294,7 @@ module ExpansionPanelSummary = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~disabled: option(bool)=?,
         ~expanded: option(bool)=?,
         ~expandIcon: option(ReasonReact.reactElement)=?,
@@ -2213,12 +2317,16 @@ module ExpansionPanelSummary = {
         ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "expanded": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, expanded)),
         "expandIcon": Js.Nullable.from_opt(expandIcon),
@@ -2241,6 +2349,9 @@ module ExpansionPanelSummary = {
         "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
         "onTouchMove": Js.Nullable.from_opt(onTouchMove),
         "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -2279,6 +2390,7 @@ module ExpansionPanel = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~collapseProps: option(Js.t({..}))=?,
         ~defaultExpanded: option(bool)=?,
         ~disabled: option(bool)=?,
@@ -2293,7 +2405,8 @@ module ExpansionPanel = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "collapseProps": Js.Nullable.from_opt(collapseProps),
+        "className": Js.Nullable.from_opt(className),
+        "CollapseProps": Js.Nullable.from_opt(collapseProps),
         "defaultExpanded":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, defaultExpanded)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
@@ -2318,20 +2431,26 @@ module Fade = {
     "default";
   let make =
       (
+        ~appear: option(bool)=?,
         ~in_: option(bool)=?,
         ~onEnter: option((unit => unit))=?,
         ~onEntering: option((unit => unit))=?,
         ~onExit: option((unit => unit))=?,
+        ~style: option(Js.t({..}))=?,
+        ~theme: Js.t({..}),
         ~timeout: option([ | `Int(int) | `Float(float) | `Object(timeoutShape)])=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "in_": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, in_)),
+        "appear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, appear)),
+        "in": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, in_)),
         "onEnter": Js.Nullable.from_opt(onEnter),
         "onEntering": Js.Nullable.from_opt(onEntering),
         "onExit": Js.Nullable.from_opt(onExit),
+        "style": Js.Nullable.from_opt(style),
+        "theme": theme,
         "timeout":
           Js.Nullable.from_opt(
             optionMap(
@@ -2378,6 +2497,7 @@ module FormControlLabel = {
   let make =
       (
         ~checked: option([ | `Bool(bool) | `String(string)])=?,
+        ~className: option(string)=?,
         ~control: option(ReasonReact.reactElement)=?,
         ~disabled: option(bool)=?,
         ~inputRef: option(ReasonReact.reactElement)=?,
@@ -2392,6 +2512,7 @@ module FormControlLabel = {
       ~reactClass,
       ~props={
         "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
+        "className": Js.Nullable.from_opt(className),
         "control": Js.Nullable.from_opt(control),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "inputRef": Js.Nullable.from_opt(inputRef),
@@ -2407,7 +2528,7 @@ module FormControlLabel = {
 
 module FormControl = {
   [@bs.deriving jsConverter]
-  type margin_q = [ [@bs.as "none"] | `None [@bs.as "dense"] | `Dense [@bs.as "normal"] | `Normal];
+  type margin_r = [ [@bs.as "none"] | `None [@bs.as "dense"] | `Dense [@bs.as "normal"] | `Normal];
   module Classes = {
     type classesType =
       | Root(string)
@@ -2441,11 +2562,12 @@ module FormControl = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~disabled: option(bool)=?,
         ~error: option(bool)=?,
         ~fullWidth: option(bool)=?,
-        ~margin: option(margin_q)=?,
+        ~margin: option(margin_r)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~required: option(bool)=?,
@@ -2455,11 +2577,12 @@ module FormControl = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
         "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
-        "margin": Js.Nullable.from_opt(optionMap(margin_qToJs, margin)),
+        "margin": Js.Nullable.from_opt(optionMap(margin_rToJs, margin)),
         "onBlur": Js.Nullable.from_opt(onBlur),
         "onFocus": Js.Nullable.from_opt(onFocus),
         "required": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, required)),
@@ -2495,10 +2618,12 @@ module FormGroup = {
   };
   [@bs.module "material-ui/Form/FormGroup"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~row: option(bool)=?, ~classes: option(Classes.t)=?, children) =>
+  let make =
+      (~className: option(string)=?, ~row: option(bool)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "row": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, row)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -2508,7 +2633,7 @@ module FormGroup = {
 
 module FormHelperText = {
   [@bs.deriving jsConverter]
-  type margin_2 = [ [@bs.as "dense"] | `Dense];
+  type margin_b = [ [@bs.as "dense"] | `Dense];
   module Classes = {
     type classesType =
       | Root(string)
@@ -2542,20 +2667,22 @@ module FormHelperText = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~disabled: option(bool)=?,
         ~error: option(bool)=?,
-        ~margin: option(margin_2)=?,
+        ~margin: option(margin_b)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
-        "margin": Js.Nullable.from_opt(optionMap(margin_2ToJs, margin)),
+        "margin": Js.Nullable.from_opt(optionMap(margin_bToJs, margin)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -2596,6 +2723,7 @@ module FormLabel = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~disabled: option(bool)=?,
         ~error: option(bool)=?,
@@ -2607,6 +2735,7 @@ module FormLabel = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
@@ -2620,7 +2749,7 @@ module FormLabel = {
 
 module GridListTileBar = {
   [@bs.deriving jsConverter]
-  type actionPosition_o = [ [@bs.as "left"] | `Left [@bs.as "right"] | `Right];
+  type actionPosition_0 = [ [@bs.as "left"] | `Left [@bs.as "right"] | `Right];
   [@bs.deriving jsConverter]
   type titlePosition_x = [ [@bs.as "top"] | `Top [@bs.as "bottom"] | `Bottom];
   module Classes = {
@@ -2679,7 +2808,8 @@ module GridListTileBar = {
   let make =
       (
         ~actionIcon: option(ReasonReact.reactElement)=?,
-        ~actionPosition: option(actionPosition_o)=?,
+        ~actionPosition: option(actionPosition_0)=?,
+        ~className: option(string)=?,
         ~subtitle: option(ReasonReact.reactElement)=?,
         ~title: option(ReasonReact.reactElement)=?,
         ~titlePosition: option(titlePosition_x)=?,
@@ -2690,7 +2820,8 @@ module GridListTileBar = {
       ~reactClass,
       ~props={
         "actionIcon": Js.Nullable.from_opt(actionIcon),
-        "actionPosition": Js.Nullable.from_opt(optionMap(actionPosition_oToJs, actionPosition)),
+        "actionPosition": Js.Nullable.from_opt(optionMap(actionPosition_0ToJs, actionPosition)),
+        "className": Js.Nullable.from_opt(className),
         "subtitle": Js.Nullable.from_opt(subtitle),
         "title": Js.Nullable.from_opt(title),
         "titlePosition": Js.Nullable.from_opt(optionMap(titlePosition_xToJs, titlePosition)),
@@ -2734,6 +2865,7 @@ module GridListTile = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~cols: option([ | `Int(int) | `Float(float)])=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~rows: option([ | `Int(int) | `Float(float)])=?,
@@ -2743,6 +2875,7 @@ module GridListTile = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "cols": Js.Nullable.from_opt(optionMap(unwrapValue, cols)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "rows": Js.Nullable.from_opt(optionMap(unwrapValue, rows)),
@@ -2754,7 +2887,7 @@ module GridListTile = {
 
 module GridList = {
   [@bs.deriving jsConverter]
-  type cellHeight_g = [ [@bs.as "auto"] | `Auto];
+  type cellHeight_z = [ [@bs.as "auto"] | `Auto];
   module Classes = {
     type classesType =
       | Root(string);
@@ -2779,10 +2912,12 @@ module GridList = {
     "default";
   let make =
       (
-        ~cellHeight: option([ | `Int(int) | `Float(float) | `Enum(cellHeight_g)])=?,
+        ~cellHeight: option([ | `Int(int) | `Float(float) | `Enum(cellHeight_z)])=?,
+        ~className: option(string)=?,
         ~cols: option([ | `Int(int) | `Float(float)])=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~spacing: option([ | `Int(int) | `Float(float)])=?,
+        ~style: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
@@ -2793,14 +2928,16 @@ module GridList = {
           Js.Nullable.from_opt(
             optionMap(
               fun
-              | `Enum(v) => unwrapValue(`String(cellHeight_gToJs(v)))
+              | `Enum(v) => unwrapValue(`String(cellHeight_zToJs(v)))
               | v => unwrapValue(v),
               cellHeight
             )
           ),
+        "className": Js.Nullable.from_opt(className),
         "cols": Js.Nullable.from_opt(optionMap(unwrapValue, cols)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "spacing": Js.Nullable.from_opt(optionMap(unwrapValue, spacing)),
+        "style": Js.Nullable.from_opt(style),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -2809,7 +2946,7 @@ module GridList = {
 
 module Grid = {
   [@bs.deriving jsConverter]
-  type alignContent_l = [
+  type alignContent_p = [
     [@bs.as "stretch"] | `Stretch
     [@bs.as "center"] | `Center
     [@bs.as "flex-start"] | `Flex_Start
@@ -2818,7 +2955,7 @@ module Grid = {
     [@bs.as "space-around"] | `Space_Around
   ];
   [@bs.deriving jsConverter]
-  type alignItems_k = [
+  type alignItems_2 = [
     [@bs.as "flex-start"] | `Flex_Start
     [@bs.as "center"] | `Center
     [@bs.as "flex-end"] | `Flex_End
@@ -2826,14 +2963,14 @@ module Grid = {
     [@bs.as "baseline"] | `Baseline
   ];
   [@bs.deriving jsConverter]
-  type direction_y = [
+  type direction_v = [
     [@bs.as "row"] | `Row
     [@bs.as "row-reverse"] | `Row_Reverse
     [@bs.as "column"] | `Column
     [@bs.as "column-reverse"] | `Column_Reverse
   ];
   [@bs.deriving jsConverter]
-  type justify_b = [
+  type justify_g = [
     [@bs.as "flex-start"] | `Flex_Start
     [@bs.as "center"] | `Center
     [@bs.as "flex-end"] | `Flex_End
@@ -2841,99 +2978,93 @@ module Grid = {
     [@bs.as "space-around"] | `Space_Around
   ];
   [@bs.deriving jsConverter]
-  type lg_4 = [
-    [@bs.as "true"] | `True
-    [@bs.as "1"] | `V1
-    [@bs.as "2"] | `V2
-    [@bs.as "3"] | `V3
-    [@bs.as "4"] | `V4
-    [@bs.as "5"] | `V5
-    [@bs.as "6"] | `V6
-    [@bs.as "7"] | `V7
-    [@bs.as "8"] | `V8
-    [@bs.as "9"] | `V9
-    [@bs.as "10"] | `V10
-    [@bs.as "11"] | `V11
-    [@bs.as "12"] | `V12
-  ];
+  type lg_d =
+    [@bs.as 1] | True
+    [@bs.as 1] | V1
+    [@bs.as 2] | V2
+    [@bs.as 3] | V3
+    [@bs.as 4] | V4
+    [@bs.as 5] | V5
+    [@bs.as 6] | V6
+    [@bs.as 7] | V7
+    [@bs.as 8] | V8
+    [@bs.as 9] | V9
+    [@bs.as 10] | V10
+    [@bs.as 11] | V11
+    [@bs.as 12] | V12;
   [@bs.deriving jsConverter]
-  type md_z = [
-    [@bs.as "true"] | `True
-    [@bs.as "1"] | `V1
-    [@bs.as "2"] | `V2
-    [@bs.as "3"] | `V3
-    [@bs.as "4"] | `V4
-    [@bs.as "5"] | `V5
-    [@bs.as "6"] | `V6
-    [@bs.as "7"] | `V7
-    [@bs.as "8"] | `V8
-    [@bs.as "9"] | `V9
-    [@bs.as "10"] | `V10
-    [@bs.as "11"] | `V11
-    [@bs.as "12"] | `V12
-  ];
+  type md_c =
+    [@bs.as 1] | True
+    [@bs.as 1] | V1
+    [@bs.as 2] | V2
+    [@bs.as 3] | V3
+    [@bs.as 4] | V4
+    [@bs.as 5] | V5
+    [@bs.as 6] | V6
+    [@bs.as 7] | V7
+    [@bs.as 8] | V8
+    [@bs.as 9] | V9
+    [@bs.as 10] | V10
+    [@bs.as 11] | V11
+    [@bs.as 12] | V12;
   [@bs.deriving jsConverter]
-  type sm_r = [
-    [@bs.as "true"] | `True
-    [@bs.as "1"] | `V1
-    [@bs.as "2"] | `V2
-    [@bs.as "3"] | `V3
-    [@bs.as "4"] | `V4
-    [@bs.as "5"] | `V5
-    [@bs.as "6"] | `V6
-    [@bs.as "7"] | `V7
-    [@bs.as "8"] | `V8
-    [@bs.as "9"] | `V9
-    [@bs.as "10"] | `V10
-    [@bs.as "11"] | `V11
-    [@bs.as "12"] | `V12
-  ];
+  type sm_m =
+    [@bs.as 1] | True
+    [@bs.as 1] | V1
+    [@bs.as 2] | V2
+    [@bs.as 3] | V3
+    [@bs.as 4] | V4
+    [@bs.as 5] | V5
+    [@bs.as 6] | V6
+    [@bs.as 7] | V7
+    [@bs.as 8] | V8
+    [@bs.as 9] | V9
+    [@bs.as 10] | V10
+    [@bs.as 11] | V11
+    [@bs.as 12] | V12;
   [@bs.deriving jsConverter]
-  type spacing_2 = [
-    [@bs.as "0"] | `V0
-    [@bs.as "8"] | `V8
-    [@bs.as "16"] | `V16
-    [@bs.as "24"] | `V24
-    [@bs.as "40"] | `V40
-  ];
+  type spacing_i =
+    [@bs.as 0] | V0
+    [@bs.as 8] | V8
+    [@bs.as 16] | V16
+    [@bs.as 24] | V24
+    [@bs.as 40] | V40;
   [@bs.deriving jsConverter]
-  type wrap_4 = [
+  type wrap_1 = [
     [@bs.as "nowrap"] | `Nowrap
     [@bs.as "wrap"] | `Wrap
     [@bs.as "wrap-reverse"] | `Wrap_Reverse
   ];
   [@bs.deriving jsConverter]
-  type xl_n = [
-    [@bs.as "true"] | `True
-    [@bs.as "1"] | `V1
-    [@bs.as "2"] | `V2
-    [@bs.as "3"] | `V3
-    [@bs.as "4"] | `V4
-    [@bs.as "5"] | `V5
-    [@bs.as "6"] | `V6
-    [@bs.as "7"] | `V7
-    [@bs.as "8"] | `V8
-    [@bs.as "9"] | `V9
-    [@bs.as "10"] | `V10
-    [@bs.as "11"] | `V11
-    [@bs.as "12"] | `V12
-  ];
+  type xl_d =
+    [@bs.as 1] | True
+    [@bs.as 1] | V1
+    [@bs.as 2] | V2
+    [@bs.as 3] | V3
+    [@bs.as 4] | V4
+    [@bs.as 5] | V5
+    [@bs.as 6] | V6
+    [@bs.as 7] | V7
+    [@bs.as 8] | V8
+    [@bs.as 9] | V9
+    [@bs.as 10] | V10
+    [@bs.as 11] | V11
+    [@bs.as 12] | V12;
   [@bs.deriving jsConverter]
-  type xs_z = [
-    [@bs.as "true"] | `True
-    [@bs.as "1"] | `V1
-    [@bs.as "2"] | `V2
-    [@bs.as "3"] | `V3
-    [@bs.as "4"] | `V4
-    [@bs.as "5"] | `V5
-    [@bs.as "6"] | `V6
-    [@bs.as "7"] | `V7
-    [@bs.as "8"] | `V8
-    [@bs.as "9"] | `V9
-    [@bs.as "10"] | `V10
-    [@bs.as "11"] | `V11
-    [@bs.as "12"] | `V12
-  ];
+  type xs_n =
+    [@bs.as 1] | True
+    [@bs.as 1] | V1
+    [@bs.as 2] | V2
+    [@bs.as 3] | V3
+    [@bs.as 4] | V4
+    [@bs.as 5] | V5
+    [@bs.as 6] | V6
+    [@bs.as 7] | V7
+    [@bs.as 8] | V8
+    [@bs.as 9] | V9
+    [@bs.as 10] | V10
+    [@bs.as 11] | V11
+    [@bs.as 12] | V12;
   module Classes = {
     type classesType =
       | TypeContainer(string)
@@ -3068,21 +3199,22 @@ module Grid = {
   [@bs.module "material-ui/Grid/Grid"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
-        ~alignContent: option(alignContent_l)=?,
-        ~alignItems: option(alignItems_k)=?,
+        ~alignContent: option(alignContent_p)=?,
+        ~alignItems: option(alignItems_2)=?,
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~container: option(bool)=?,
-        ~direction: option(direction_y)=?,
+        ~direction: option(direction_v)=?,
         ~hidden: option(Js.t({..}))=?,
         ~item: option(bool)=?,
-        ~justify: option(justify_b)=?,
-        ~lg: option(lg_4)=?,
-        ~md: option(md_z)=?,
-        ~sm: option(sm_r)=?,
-        ~spacing: option(spacing_2)=?,
-        ~wrap: option(wrap_4)=?,
-        ~xl: option(xl_n)=?,
-        ~xs: option(xs_z)=?,
+        ~justify: option(justify_g)=?,
+        ~lg: option(lg_d)=?,
+        ~md: option(md_c)=?,
+        ~sm: option(sm_m)=?,
+        ~spacing: option(spacing_i)=?,
+        ~wrap: option(wrap_1)=?,
+        ~xl: option(xl_d)=?,
+        ~xs: option(xs_n)=?,
         ~zeroMinWidth: option(bool)=?,
         ~classes: option(Classes.t)=?,
         children
@@ -3090,21 +3222,22 @@ module Grid = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "alignContent": Js.Nullable.from_opt(optionMap(alignContent_lToJs, alignContent)),
-        "alignItems": Js.Nullable.from_opt(optionMap(alignItems_kToJs, alignItems)),
+        "alignContent": Js.Nullable.from_opt(optionMap(alignContent_pToJs, alignContent)),
+        "alignItems": Js.Nullable.from_opt(optionMap(alignItems_2ToJs, alignItems)),
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "container": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, container)),
-        "direction": Js.Nullable.from_opt(optionMap(direction_yToJs, direction)),
+        "direction": Js.Nullable.from_opt(optionMap(direction_vToJs, direction)),
         "hidden": Js.Nullable.from_opt(hidden),
         "item": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, item)),
-        "justify": Js.Nullable.from_opt(optionMap(justify_bToJs, justify)),
-        "lg": Js.Nullable.from_opt(optionMap(lg_4ToJs, lg)),
-        "md": Js.Nullable.from_opt(optionMap(md_zToJs, md)),
-        "sm": Js.Nullable.from_opt(optionMap(sm_rToJs, sm)),
-        "spacing": Js.Nullable.from_opt(optionMap(spacing_2ToJs, spacing)),
-        "wrap": Js.Nullable.from_opt(optionMap(wrap_4ToJs, wrap)),
-        "xl": Js.Nullable.from_opt(optionMap(xl_nToJs, xl)),
-        "xs": Js.Nullable.from_opt(optionMap(xs_zToJs, xs)),
+        "justify": Js.Nullable.from_opt(optionMap(justify_gToJs, justify)),
+        "lg": Js.Nullable.from_opt(optionMap(lg_dToJs, lg)),
+        "md": Js.Nullable.from_opt(optionMap(md_cToJs, md)),
+        "sm": Js.Nullable.from_opt(optionMap(sm_mToJs, sm)),
+        "spacing": Js.Nullable.from_opt(optionMap(spacing_iToJs, spacing)),
+        "wrap": Js.Nullable.from_opt(optionMap(wrap_1ToJs, wrap)),
+        "xl": Js.Nullable.from_opt(optionMap(xl_dToJs, xl)),
+        "xs": Js.Nullable.from_opt(optionMap(xs_nToJs, xs)),
         "zeroMinWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, zeroMinWidth)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -3119,7 +3252,7 @@ module Grow = {
     exit: int
   };
   [@bs.deriving jsConverter]
-  type timeout_p = [ [@bs.as "auto"] | `Auto];
+  type timeout_3 = [ [@bs.as "auto"] | `Auto];
   [@bs.deriving jsConverter]
   type transitionClassesShape = {
     appear: string,
@@ -3133,6 +3266,7 @@ module Grow = {
     "default";
   let make =
       (
+        ~appear: option(bool)=?,
         ~in_: option(bool)=?,
         ~onEnter: option((unit => unit))=?,
         ~onEntered: option((unit => unit))=?,
@@ -3140,25 +3274,30 @@ module Grow = {
         ~onExit: option((unit => unit))=?,
         ~onExited: option((unit => unit))=?,
         ~onExiting: option((unit => unit))=?,
-        ~timeout: option([ | `Int(int) | `Float(float) | `Object(timeoutShape) | `Enum(timeout_p)])=?,
+        ~style: option(Js.t({..}))=?,
+        ~theme: Js.t({..}),
+        ~timeout: option([ | `Int(int) | `Float(float) | `Object(timeoutShape) | `Enum(timeout_3)])=?,
         ~transitionClasses: option(transitionClassesShape)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "in_": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, in_)),
+        "appear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, appear)),
+        "in": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, in_)),
         "onEnter": Js.Nullable.from_opt(onEnter),
         "onEntered": Js.Nullable.from_opt(onEntered),
         "onEntering": Js.Nullable.from_opt(onEntering),
         "onExit": Js.Nullable.from_opt(onExit),
         "onExited": Js.Nullable.from_opt(onExited),
         "onExiting": Js.Nullable.from_opt(onExiting),
+        "style": Js.Nullable.from_opt(style),
+        "theme": theme,
         "timeout":
           Js.Nullable.from_opt(
             optionMap(
               fun
-              | `Enum(v) => unwrapValue(`String(timeout_pToJs(v)))
+              | `Enum(v) => unwrapValue(`String(timeout_3ToJs(v)))
               | `Object(v) => unwrapValue(`Element(timeoutShapeToJs(v)))
               | v => unwrapValue(v),
               timeout
@@ -3173,9 +3312,9 @@ module Grow = {
 
 module Hidden = {
   [@bs.deriving jsConverter]
-  type implementation_l = [ [@bs.as "js"] | `Js [@bs.as "css"] | `Css];
+  type implementation_b = [ [@bs.as "js"] | `Js [@bs.as "css"] | `Css];
   [@bs.deriving jsConverter]
-  type initialWidth_g = [
+  type initialWidth_x = [
     [@bs.as "xs"] | `Xs
     [@bs.as "sm"] | `Sm
     [@bs.as "md"] | `Md
@@ -3183,7 +3322,7 @@ module Hidden = {
     [@bs.as "xl"] | `Xl
   ];
   [@bs.deriving jsConverter]
-  type only_l = [
+  type only_f = [
     [@bs.as "xs"] | `Xs
     [@bs.as "sm"] | `Sm
     [@bs.as "md"] | `Md
@@ -3191,7 +3330,7 @@ module Hidden = {
     [@bs.as "xl"] | `Xl
   ];
   [@bs.deriving jsConverter]
-  type only_h = [
+  type only_2 = [
     [@bs.as "xs"] | `Xs
     [@bs.as "sm"] | `Sm
     [@bs.as "md"] | `Md
@@ -3202,13 +3341,14 @@ module Hidden = {
     "default";
   let make =
       (
-        ~implementation: option(implementation_l)=?,
-        ~initialWidth: option(initialWidth_g)=?,
+        ~className: option(string)=?,
+        ~implementation: option(implementation_b)=?,
+        ~initialWidth: option(initialWidth_x)=?,
         ~lgDown: option(bool)=?,
         ~lgUp: option(bool)=?,
         ~mdDown: option(bool)=?,
         ~mdUp: option(bool)=?,
-        ~only: option([ | `Enum(only_l) | `EnumArray(array(only_h))])=?,
+        ~only: option([ | `Enum(only_f) | `EnumArray(array(only_2))])=?,
         ~smDown: option(bool)=?,
         ~smUp: option(bool)=?,
         ~xlDown: option(bool)=?,
@@ -3220,8 +3360,9 @@ module Hidden = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "implementation": Js.Nullable.from_opt(optionMap(implementation_lToJs, implementation)),
-        "initialWidth": Js.Nullable.from_opt(optionMap(initialWidth_gToJs, initialWidth)),
+        "className": Js.Nullable.from_opt(className),
+        "implementation": Js.Nullable.from_opt(optionMap(implementation_bToJs, implementation)),
+        "initialWidth": Js.Nullable.from_opt(optionMap(initialWidth_xToJs, initialWidth)),
         "lgDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, lgDown)),
         "lgUp": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, lgUp)),
         "mdDown": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, mdDown)),
@@ -3230,8 +3371,8 @@ module Hidden = {
           Js.Nullable.from_opt(
             optionMap(
               fun
-              | `Enum(v) => unwrapValue(`String(only_lToJs(v)))
-              | `EnumArray(v) => unwrapValue(`Element(Array.map(only_hToJs, v))),
+              | `Enum(v) => unwrapValue(`String(only_fToJs(v)))
+              | `EnumArray(v) => unwrapValue(`Element(Array.map(only_2ToJs, v))),
               only
             )
           ),
@@ -3248,7 +3389,7 @@ module Hidden = {
 
 module IconButton = {
   [@bs.deriving jsConverter]
-  type color_q = [
+  type color_j = [
     [@bs.as "default"] | `Default
     [@bs.as "inherit"] | `Inherit
     [@bs.as "primary"] | `Primary
@@ -3293,7 +3434,8 @@ module IconButton = {
     "default";
   let make =
       (
-        ~color: option(color_q)=?,
+        ~className: option(string)=?,
+        ~color: option(color_j)=?,
         ~disabled: option(bool)=?,
         ~disableRipple: option(bool)=?,
         ~buttonRef: option(ReasonReact.reactElement)=?,
@@ -3313,13 +3455,17 @@ module IconButton = {
         ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "color": Js.Nullable.from_opt(optionMap(color_qToJs, color)),
+        "className": Js.Nullable.from_opt(className),
+        "color": Js.Nullable.from_opt(optionMap(color_jToJs, color)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
         "buttonRef": Js.Nullable.from_opt(buttonRef),
@@ -3339,6 +3485,9 @@ module IconButton = {
         "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
         "onTouchMove": Js.Nullable.from_opt(onTouchMove),
         "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -3347,7 +3496,7 @@ module IconButton = {
 
 module Icon = {
   [@bs.deriving jsConverter]
-  type color_4 = [
+  type color_o = [
     [@bs.as "inherit"] | `Inherit
     [@bs.as "secondary"] | `Secondary
     [@bs.as "action"] | `Action
@@ -3396,7 +3545,8 @@ module Icon = {
   [@bs.module "material-ui/Icon/Icon"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
-        ~color: option(color_4)=?,
+        ~className: option(string)=?,
+        ~color: option(color_o)=?,
         ~fontSize: option(bool)=?,
         ~classes: option(Classes.t)=?,
         children
@@ -3404,7 +3554,8 @@ module Icon = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "color": Js.Nullable.from_opt(optionMap(color_4ToJs, color)),
+        "className": Js.Nullable.from_opt(className),
+        "color": Js.Nullable.from_opt(optionMap(color_oToJs, color)),
         "fontSize": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fontSize)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -3414,7 +3565,7 @@ module Icon = {
 
 module InputAdornment = {
   [@bs.deriving jsConverter]
-  type position_v = [ [@bs.as "start"] | `Start [@bs.as "end"] | `End];
+  type position_e = [ [@bs.as "start"] | `Start [@bs.as "end"] | `End];
   module Classes = {
     type classesType =
       | Root(string)
@@ -3445,19 +3596,21 @@ module InputAdornment = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~disableTypography: option(bool)=?,
-        ~position: option(position_v)=?,
+        ~position: option(position_e)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "disableTypography":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTypography)),
-        "position": Js.Nullable.from_opt(optionMap(position_vToJs, position)),
+        "position": Js.Nullable.from_opt(optionMap(position_eToJs, position)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -3466,7 +3619,7 @@ module InputAdornment = {
 
 module InputLabel = {
   [@bs.deriving jsConverter]
-  type margin_4 = [ [@bs.as "dense"] | `Dense];
+  type margin_t = [ [@bs.as "dense"] | `Dense];
   module Classes = {
     type classesType =
       | Root(string)
@@ -3506,12 +3659,13 @@ module InputLabel = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~disableAnimation: option(bool)=?,
         ~disabled: option(bool)=?,
         ~error: option(bool)=?,
         ~focused: option(bool)=?,
         ~formControlClasses: option(Js.t({..}))=?,
-        ~margin: option(margin_4)=?,
+        ~margin: option(margin_t)=?,
         ~required: option(bool)=?,
         ~shrink: option(bool)=?,
         ~classes: option(Classes.t)=?,
@@ -3520,13 +3674,14 @@ module InputLabel = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "disableAnimation":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableAnimation)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
         "focused": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, focused)),
-        "formControlClasses": Js.Nullable.from_opt(formControlClasses),
-        "margin": Js.Nullable.from_opt(optionMap(margin_4ToJs, margin)),
+        "FormControlClasses": Js.Nullable.from_opt(formControlClasses),
+        "margin": Js.Nullable.from_opt(optionMap(margin_tToJs, margin)),
         "required": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, required)),
         "shrink": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, shrink)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -3537,7 +3692,7 @@ module InputLabel = {
 
 module Input = {
   [@bs.deriving jsConverter]
-  type margin_z = [ [@bs.as "dense"] | `Dense [@bs.as "none"] | `None];
+  type margin_e = [ [@bs.as "dense"] | `Dense [@bs.as "none"] | `None];
   module Classes = {
     type classesType =
       | Root(string)
@@ -3616,7 +3771,7 @@ module Input = {
         ~inputComponent: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~inputProps: option(Js.t({..}))=?,
         ~inputRef: option(ReasonReact.reactElement)=?,
-        ~margin: option(margin_z)=?,
+        ~margin: option(margin_e)=?,
         ~multiline: option(bool)=?,
         ~name: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
@@ -3627,6 +3782,7 @@ module Input = {
         ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
         ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
         ~placeholder: option(string)=?,
+        ~readOnly: option(bool)=?,
         ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
         ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
         ~startAdornment: option(ReasonReact.reactElement)=?,
@@ -3662,7 +3818,7 @@ module Input = {
         "inputComponent": Js.Nullable.from_opt(optionMap(unwrapValue, inputComponent)),
         "inputProps": Js.Nullable.from_opt(inputProps),
         "inputRef": Js.Nullable.from_opt(inputRef),
-        "margin": Js.Nullable.from_opt(optionMap(margin_zToJs, margin)),
+        "margin": Js.Nullable.from_opt(optionMap(margin_eToJs, margin)),
         "multiline": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, multiline)),
         "name": Js.Nullable.from_opt(name),
         "onBlur": Js.Nullable.from_opt(onBlur),
@@ -3673,10 +3829,11 @@ module Input = {
         "onKeyDown": Js.Nullable.from_opt(onKeyDown),
         "onKeyUp": Js.Nullable.from_opt(onKeyUp),
         "placeholder": Js.Nullable.from_opt(placeholder),
+        "readOnly": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, readOnly)),
         "rows": Js.Nullable.from_opt(optionMap(unwrapValue, rows)),
         "rowsMax": Js.Nullable.from_opt(optionMap(unwrapValue, rowsMax)),
         "startAdornment": Js.Nullable.from_opt(startAdornment),
-        "type_": Js.Nullable.from_opt(type_),
+        "type": Js.Nullable.from_opt(type_),
         "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -3686,9 +3843,9 @@ module Input = {
 
 module LinearProgress = {
   [@bs.deriving jsConverter]
-  type color_e = [ [@bs.as "primary"] | `Primary [@bs.as "secondary"] | `Secondary];
+  type color_f = [ [@bs.as "primary"] | `Primary [@bs.as "secondary"] | `Secondary];
   [@bs.deriving jsConverter]
-  type mode_x = [
+  type mode_9 = [
     [@bs.as "determinate"] | `Determinate
     [@bs.as "indeterminate"] | `Indeterminate
     [@bs.as "buffer"] | `Buffer
@@ -3763,8 +3920,9 @@ module LinearProgress = {
     "default";
   let make =
       (
-        ~color: option(color_e)=?,
-        ~mode: option(mode_x)=?,
+        ~className: option(string)=?,
+        ~color: option(color_f)=?,
+        ~mode: option(mode_9)=?,
         ~value: option([ | `Int(int) | `Float(float)])=?,
         ~valueBuffer: option([ | `Int(int) | `Float(float)])=?,
         ~classes: option(Classes.t)=?,
@@ -3773,8 +3931,9 @@ module LinearProgress = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "color": Js.Nullable.from_opt(optionMap(color_eToJs, color)),
-        "mode": Js.Nullable.from_opt(optionMap(mode_xToJs, mode)),
+        "className": Js.Nullable.from_opt(className),
+        "color": Js.Nullable.from_opt(optionMap(color_fToJs, color)),
+        "mode": Js.Nullable.from_opt(optionMap(mode_9ToJs, mode)),
         "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
         "valueBuffer": Js.Nullable.from_opt(optionMap(unwrapValue, valueBuffer)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -3809,10 +3968,13 @@ module ListItemAvatar = {
   };
   [@bs.module "material-ui/List/ListItemAvatar"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~classes: option(Classes.t)=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props={"classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))},
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
       children
     );
 };
@@ -3840,10 +4002,13 @@ module ListItemIcon = {
   };
   [@bs.module "material-ui/List/ListItemIcon"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~classes: option(Classes.t)=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props={"classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))},
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
       children
     );
 };
@@ -3872,10 +4037,13 @@ module ListItemSecondaryAction = {
   [@bs.module "material-ui/List/ListItemSecondaryAction"]
   external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~classes: option(Classes.t)=?, children) =>
+  let make = (~className: option(string)=?, ~classes: option(Classes.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props={"classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))},
+      ~props={
+        "className": Js.Nullable.from_opt(className),
+        "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
+      },
       children
     );
 };
@@ -3920,6 +4088,7 @@ module ListItemText = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~disableTypography: option(bool)=?,
         ~inset: option(bool)=?,
         ~primary: option(ReasonReact.reactElement)=?,
@@ -3930,6 +4099,7 @@ module ListItemText = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "disableTypography":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTypography)),
         "inset": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, inset)),
@@ -3994,10 +4164,12 @@ module ListItem = {
   let make =
       (
         ~button: option(bool)=?,
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~containerComponent: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~containerProps: option(Js.t({..}))=?,
         ~dense: option(bool)=?,
+        ~disabled: option(bool)=?,
         ~disableGutters: option(bool)=?,
         ~divider: option(bool)=?,
         ~classes: option(Classes.t)=?,
@@ -4007,10 +4179,12 @@ module ListItem = {
       ~reactClass,
       ~props={
         "button": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, button)),
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
-        "containerComponent": Js.Nullable.from_opt(optionMap(unwrapValue, containerComponent)),
-        "containerProps": Js.Nullable.from_opt(containerProps),
+        "ContainerComponent": Js.Nullable.from_opt(optionMap(unwrapValue, containerComponent)),
+        "ContainerProps": Js.Nullable.from_opt(containerProps),
         "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "disableGutters": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableGutters)),
         "divider": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, divider)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -4021,7 +4195,7 @@ module ListItem = {
 
 module ListSubheader = {
   [@bs.deriving jsConverter]
-  type color_x = [
+  type color_7 = [
     [@bs.as "default"] | `Default
     [@bs.as "primary"] | `Primary
     [@bs.as "inherit"] | `Inherit
@@ -4062,7 +4236,8 @@ module ListSubheader = {
     "default";
   let make =
       (
-        ~color: option(color_x)=?,
+        ~className: option(string)=?,
+        ~color: option(color_7)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~disableSticky: option(bool)=?,
         ~inset: option(bool)=?,
@@ -4072,7 +4247,8 @@ module ListSubheader = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "color": Js.Nullable.from_opt(optionMap(color_xToJs, color)),
+        "className": Js.Nullable.from_opt(className),
+        "color": Js.Nullable.from_opt(optionMap(color_7ToJs, color)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "disableSticky": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableSticky)),
         "inset": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, inset)),
@@ -4115,6 +4291,7 @@ module List = {
   [@bs.module "material-ui/List/List"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~dense: option(bool)=?,
         ~disablePadding: option(bool)=?,
@@ -4125,6 +4302,7 @@ module List = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
         "disablePadding": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disablePadding)),
@@ -4163,12 +4341,15 @@ module MenuItem = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
+        ~role: option(string)=?,
         ~selected: option(bool)=?,
         ~button: option(bool)=?,
         ~containerComponent: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~containerProps: option(Js.t({..}))=?,
         ~dense: option(bool)=?,
+        ~disabled: option(bool)=?,
         ~disableGutters: option(bool)=?,
         ~divider: option(bool)=?,
         ~classes: option(Classes.t)=?,
@@ -4177,12 +4358,15 @@ module MenuItem = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
+        "role": Js.Nullable.from_opt(role),
         "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
         "button": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, button)),
-        "containerComponent": Js.Nullable.from_opt(optionMap(unwrapValue, containerComponent)),
-        "containerProps": Js.Nullable.from_opt(containerProps),
+        "ContainerComponent": Js.Nullable.from_opt(optionMap(unwrapValue, containerComponent)),
+        "ContainerProps": Js.Nullable.from_opt(containerProps),
         "dense": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, dense)),
+        "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "disableGutters": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableGutters)),
         "divider": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, divider)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
@@ -4196,6 +4380,7 @@ module MenuList = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
@@ -4207,6 +4392,7 @@ module MenuList = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "onBlur": Js.Nullable.from_opt(onBlur),
         "onKeyDown": Js.Nullable.from_opt(onKeyDown),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
@@ -4225,7 +4411,7 @@ module Menu = {
     exit: int
   };
   [@bs.deriving jsConverter]
-  type transitionDuration_t = [ [@bs.as "auto"] | `Auto];
+  type transitionDuration_u = [ [@bs.as "auto"] | `Auto];
   [@bs.deriving jsConverter]
   type anchorOriginShape = {
     horizontal: int,
@@ -4237,7 +4423,7 @@ module Menu = {
     left: int
   };
   [@bs.deriving jsConverter]
-  type anchorReference_d = [
+  type anchorReference_g = [
     [@bs.as "anchorEl"] | `AnchorEl
     [@bs.as "anchorPosition"] | `AnchorPosition
   ];
@@ -4279,25 +4465,27 @@ module Menu = {
         ~onExited: option((unit => unit))=?,
         ~onExiting: option((unit => unit))=?,
         ~open_: bool,
+        ~paperProps: option(Js.t({..}))=?,
         ~popoverClasses: option(Js.t({..}))=?,
+        ~theme: Js.t({..}),
         ~transitionDuration:
            option(
              [
                | `Int(int)
                | `Float(float)
                | `Object(transitionDurationShape)
-               | `Enum(transitionDuration_t)
+               | `Enum(transitionDuration_u)
              ]
            )=?,
         ~action: option(ReasonReact.reactElement)=?,
         ~anchorOrigin: option(anchorOriginShape)=?,
         ~anchorPosition: option(anchorPositionShape)=?,
-        ~anchorReference: option(anchorReference_d)=?,
+        ~anchorReference: option(anchorReference_g)=?,
         ~container: option([ | `ObjectGeneric(Js.t({..})) | `Element(ReasonReact.reactElement)])=?,
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
         ~getContentAnchorEl: option(ReasonReact.reactElement)=?,
         ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
-        ~paperProps: option(Js.t({..}))=?,
+        ~role: option(string)=?,
         ~transformOrigin: option(transformOriginShape)=?,
         ~transition: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~classes: option(Classes.t)=?,
@@ -4307,7 +4495,7 @@ module Menu = {
       ~reactClass,
       ~props={
         "anchorEl": Js.Nullable.from_opt(anchorEl),
-        "menuListProps": Js.Nullable.from_opt(menuListProps),
+        "MenuListProps": Js.Nullable.from_opt(menuListProps),
         "onClose": Js.Nullable.from_opt(onClose),
         "onEnter": Js.Nullable.from_opt(onEnter),
         "onEntered": Js.Nullable.from_opt(onEntered),
@@ -4315,13 +4503,15 @@ module Menu = {
         "onExit": Js.Nullable.from_opt(onExit),
         "onExited": Js.Nullable.from_opt(onExited),
         "onExiting": Js.Nullable.from_opt(onExiting),
-        "open_": Js.Boolean.to_js_boolean(open_),
-        "popoverClasses": Js.Nullable.from_opt(popoverClasses),
+        "open": Js.Boolean.to_js_boolean(open_),
+        "PaperProps": Js.Nullable.from_opt(paperProps),
+        "PopoverClasses": Js.Nullable.from_opt(popoverClasses),
+        "theme": theme,
         "transitionDuration":
           Js.Nullable.from_opt(
             optionMap(
               fun
-              | `Enum(v) => unwrapValue(`String(transitionDuration_tToJs(v)))
+              | `Enum(v) => unwrapValue(`String(transitionDuration_uToJs(v)))
               | `Object(v) => unwrapValue(`Element(transitionDurationShapeToJs(v)))
               | v => unwrapValue(v),
               transitionDuration
@@ -4330,12 +4520,12 @@ module Menu = {
         "action": Js.Nullable.from_opt(action),
         "anchorOrigin": Js.Nullable.from_opt(optionMap(anchorOriginShapeToJs, anchorOrigin)),
         "anchorPosition": Js.Nullable.from_opt(optionMap(anchorPositionShapeToJs, anchorPosition)),
-        "anchorReference": Js.Nullable.from_opt(optionMap(anchorReference_dToJs, anchorReference)),
+        "anchorReference": Js.Nullable.from_opt(optionMap(anchorReference_gToJs, anchorReference)),
         "container": Js.Nullable.from_opt(optionMap(unwrapValue, container)),
         "elevation": Js.Nullable.from_opt(optionMap(unwrapValue, elevation)),
         "getContentAnchorEl": Js.Nullable.from_opt(getContentAnchorEl),
         "marginThreshold": Js.Nullable.from_opt(optionMap(unwrapValue, marginThreshold)),
-        "paperProps": Js.Nullable.from_opt(paperProps),
+        "role": Js.Nullable.from_opt(role),
         "transformOrigin":
           Js.Nullable.from_opt(optionMap(transformOriginShapeToJs, transformOrigin)),
         "transition": Js.Nullable.from_opt(optionMap(unwrapValue, transition)),
@@ -4347,13 +4537,13 @@ module Menu = {
 
 module MobileStepper = {
   [@bs.deriving jsConverter]
-  type position_3 = [
+  type position_w = [
     [@bs.as "bottom"] | `Bottom
     [@bs.as "top"] | `Top
     [@bs.as "static"] | `Static
   ];
   [@bs.deriving jsConverter]
-  type type__3 = [
+  type type__0 = [
     [@bs.as "text"] | `Text
     [@bs.as "dots"] | `Dots
     [@bs.as "progress"] | `Progress
@@ -4406,10 +4596,11 @@ module MobileStepper = {
       (
         ~activeStep: option([ | `Int(int) | `Float(float)])=?,
         ~backButton: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
         ~nextButton: option(ReasonReact.reactElement)=?,
-        ~position: option(position_3)=?,
+        ~position: option(position_w)=?,
         ~steps: [ | `Int(int) | `Float(float)],
-        ~type_: option(type__3)=?,
+        ~type_: option(type__0)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
         ~square: option(bool)=?,
@@ -4421,10 +4612,11 @@ module MobileStepper = {
       ~props={
         "activeStep": Js.Nullable.from_opt(optionMap(unwrapValue, activeStep)),
         "backButton": Js.Nullable.from_opt(backButton),
+        "className": Js.Nullable.from_opt(className),
         "nextButton": Js.Nullable.from_opt(nextButton),
-        "position": Js.Nullable.from_opt(optionMap(position_3ToJs, position)),
+        "position": Js.Nullable.from_opt(optionMap(position_wToJs, position)),
         "steps": unwrapValue(steps),
-        "type_": Js.Nullable.from_opt(optionMap(type__3ToJs, type_)),
+        "type": Js.Nullable.from_opt(optionMap(type__0ToJs, type_)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "elevation": Js.Nullable.from_opt(optionMap(unwrapValue, elevation)),
         "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square)),
@@ -4463,6 +4655,7 @@ module Modal = {
       (
         ~backdropComponent: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~backdropProps: option(Js.t({..}))=?,
+        ~className: option(string)=?,
         ~container: option([ | `ObjectGeneric(Js.t({..})) | `Element(ReasonReact.reactElement)])=?,
         ~disableAutoFocus: option(bool)=?,
         ~disableBackdropClick: option(bool)=?,
@@ -4483,8 +4676,9 @@ module Modal = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "backdropComponent": Js.Nullable.from_opt(optionMap(unwrapValue, backdropComponent)),
-        "backdropProps": Js.Nullable.from_opt(backdropProps),
+        "BackdropComponent": Js.Nullable.from_opt(optionMap(unwrapValue, backdropComponent)),
+        "BackdropProps": Js.Nullable.from_opt(backdropProps),
+        "className": Js.Nullable.from_opt(className),
         "container": Js.Nullable.from_opt(optionMap(unwrapValue, container)),
         "disableAutoFocus":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableAutoFocus)),
@@ -4503,7 +4697,7 @@ module Modal = {
         "onClose": Js.Nullable.from_opt(onClose),
         "onEscapeKeyDown": Js.Nullable.from_opt(onEscapeKeyDown),
         "onRendered": Js.Nullable.from_opt(onRendered),
-        "open_": Js.Boolean.to_js_boolean(open_),
+        "open": Js.Boolean.to_js_boolean(open_),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -4634,6 +4828,7 @@ module Paper = {
   [@bs.module "material-ui/Paper/Paper"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
         ~square: option(bool)=?,
@@ -4643,6 +4838,7 @@ module Paper = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "elevation": Js.Nullable.from_opt(optionMap(unwrapValue, elevation)),
         "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square)),
@@ -4664,7 +4860,7 @@ module Popover = {
     left: int
   };
   [@bs.deriving jsConverter]
-  type anchorReference_d = [
+  type anchorReference_g = [
     [@bs.as "anchorEl"] | `AnchorEl
     [@bs.as "anchorPosition"] | `AnchorPosition
   ];
@@ -4679,7 +4875,7 @@ module Popover = {
     exit: int
   };
   [@bs.deriving jsConverter]
-  type transitionDuration_r = [ [@bs.as "auto"] | `Auto];
+  type transitionDuration_g = [ [@bs.as "auto"] | `Auto];
   module Classes = {
     type classesType =
       | Paper(string);
@@ -4708,7 +4904,7 @@ module Popover = {
         ~anchorEl: option(Js.t({..}))=?,
         ~anchorOrigin: option(anchorOriginShape)=?,
         ~anchorPosition: option(anchorPositionShape)=?,
-        ~anchorReference: option(anchorReference_d)=?,
+        ~anchorReference: option(anchorReference_g)=?,
         ~container: option([ | `ObjectGeneric(Js.t({..})) | `Element(ReasonReact.reactElement)])=?,
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
         ~getContentAnchorEl: option(ReasonReact.reactElement)=?,
@@ -4722,6 +4918,7 @@ module Popover = {
         ~onExiting: option((unit => unit))=?,
         ~open_: bool,
         ~paperProps: option(Js.t({..}))=?,
+        ~role: option(string)=?,
         ~transformOrigin: option(transformOriginShape)=?,
         ~transition: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~transitionDuration:
@@ -4730,11 +4927,12 @@ module Popover = {
                | `Int(int)
                | `Float(float)
                | `Object(transitionDurationShape)
-               | `Enum(transitionDuration_r)
+               | `Enum(transitionDuration_g)
              ]
            )=?,
         ~backdropComponent: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~backdropProps: option(Js.t({..}))=?,
+        ~className: option(string)=?,
         ~disableAutoFocus: option(bool)=?,
         ~disableBackdropClick: option(bool)=?,
         ~disableEnforceFocus: option(bool)=?,
@@ -4756,7 +4954,7 @@ module Popover = {
         "anchorEl": Js.Nullable.from_opt(anchorEl),
         "anchorOrigin": Js.Nullable.from_opt(optionMap(anchorOriginShapeToJs, anchorOrigin)),
         "anchorPosition": Js.Nullable.from_opt(optionMap(anchorPositionShapeToJs, anchorPosition)),
-        "anchorReference": Js.Nullable.from_opt(optionMap(anchorReference_dToJs, anchorReference)),
+        "anchorReference": Js.Nullable.from_opt(optionMap(anchorReference_gToJs, anchorReference)),
         "container": Js.Nullable.from_opt(optionMap(unwrapValue, container)),
         "elevation": Js.Nullable.from_opt(optionMap(unwrapValue, elevation)),
         "getContentAnchorEl": Js.Nullable.from_opt(getContentAnchorEl),
@@ -4768,8 +4966,9 @@ module Popover = {
         "onExit": Js.Nullable.from_opt(onExit),
         "onExited": Js.Nullable.from_opt(onExited),
         "onExiting": Js.Nullable.from_opt(onExiting),
-        "open_": Js.Boolean.to_js_boolean(open_),
-        "paperProps": Js.Nullable.from_opt(paperProps),
+        "open": Js.Boolean.to_js_boolean(open_),
+        "PaperProps": Js.Nullable.from_opt(paperProps),
+        "role": Js.Nullable.from_opt(role),
         "transformOrigin":
           Js.Nullable.from_opt(optionMap(transformOriginShapeToJs, transformOrigin)),
         "transition": Js.Nullable.from_opt(optionMap(unwrapValue, transition)),
@@ -4777,14 +4976,15 @@ module Popover = {
           Js.Nullable.from_opt(
             optionMap(
               fun
-              | `Enum(v) => unwrapValue(`String(transitionDuration_rToJs(v)))
+              | `Enum(v) => unwrapValue(`String(transitionDuration_gToJs(v)))
               | `Object(v) => unwrapValue(`Element(transitionDurationShapeToJs(v)))
               | v => unwrapValue(v),
               transitionDuration
             )
           ),
-        "backdropComponent": Js.Nullable.from_opt(optionMap(unwrapValue, backdropComponent)),
-        "backdropProps": Js.Nullable.from_opt(backdropProps),
+        "BackdropComponent": Js.Nullable.from_opt(optionMap(unwrapValue, backdropComponent)),
+        "BackdropProps": Js.Nullable.from_opt(backdropProps),
+        "className": Js.Nullable.from_opt(className),
         "disableAutoFocus":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableAutoFocus)),
         "disableBackdropClick":
@@ -4836,6 +5036,7 @@ module RadioGroup = {
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
         ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
         ~value: option(string)=?,
+        ~className: option(string)=?,
         ~row: option(bool)=?,
         children
       ) =>
@@ -4847,6 +5048,7 @@ module RadioGroup = {
         "onChange": Js.Nullable.from_opt(onChange),
         "onKeyDown": Js.Nullable.from_opt(onKeyDown),
         "value": Js.Nullable.from_opt(value),
+        "className": Js.Nullable.from_opt(className),
         "row": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, row))
       },
       children
@@ -4885,6 +5087,8 @@ module Radio = {
       (
         ~checked: option([ | `Bool(bool) | `String(string)])=?,
         ~checkedIcon: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
+        ~defaultChecked: option(bool)=?,
         ~disabled: option(bool)=?,
         ~disableRipple: option(bool)=?,
         ~icon: option(ReasonReact.reactElement)=?,
@@ -4893,6 +5097,7 @@ module Radio = {
         ~inputType: option(string)=?,
         ~name: option(string)=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
         ~value: option(string)=?,
         ~classes: option(Classes.t)=?,
         children
@@ -4902,6 +5107,8 @@ module Radio = {
       ~props={
         "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
         "checkedIcon": Js.Nullable.from_opt(checkedIcon),
+        "className": Js.Nullable.from_opt(className),
+        "defaultChecked": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, defaultChecked)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
         "icon": Js.Nullable.from_opt(icon),
@@ -4910,6 +5117,7 @@ module Radio = {
         "inputType": Js.Nullable.from_opt(inputType),
         "name": Js.Nullable.from_opt(name),
         "onChange": Js.Nullable.from_opt(onChange),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
         "value": Js.Nullable.from_opt(value),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -4926,7 +5134,7 @@ module Reboot = {
 
 module Select = {
   [@bs.deriving jsConverter]
-  type margin_z = [ [@bs.as "dense"] | `Dense [@bs.as "none"] | `None];
+  type margin_e = [ [@bs.as "dense"] | `Dense [@bs.as "none"] | `None];
   module Classes = {
     type classesType =
       | Root(string)
@@ -4998,7 +5206,7 @@ module Select = {
         ~id: option(string)=?,
         ~inputComponent: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~inputRef: option(ReasonReact.reactElement)=?,
-        ~margin: option(margin_z)=?,
+        ~margin: option(margin_e)=?,
         ~multiline: option(bool)=?,
         ~name: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
@@ -5008,6 +5216,7 @@ module Select = {
         ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
         ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
         ~placeholder: option(string)=?,
+        ~readOnly: option(bool)=?,
         ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
         ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
         ~startAdornment: option(ReasonReact.reactElement)=?,
@@ -5022,13 +5231,13 @@ module Select = {
         "displayEmpty": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, displayEmpty)),
         "input": Js.Nullable.from_opt(input),
         "inputProps": Js.Nullable.from_opt(inputProps),
-        "menuProps": Js.Nullable.from_opt(menuProps),
+        "MenuProps": Js.Nullable.from_opt(menuProps),
         "multiple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, multiple)),
         "native": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, native)),
         "onChange": Js.Nullable.from_opt(onChange),
         "onClose": Js.Nullable.from_opt(onClose),
         "onOpen": Js.Nullable.from_opt(onOpen),
-        "open_": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
+        "open": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
         "renderValue": Js.Nullable.from_opt(renderValue),
         "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
         "autoComplete": Js.Nullable.from_opt(autoComplete),
@@ -5044,7 +5253,7 @@ module Select = {
         "id": Js.Nullable.from_opt(id),
         "inputComponent": Js.Nullable.from_opt(optionMap(unwrapValue, inputComponent)),
         "inputRef": Js.Nullable.from_opt(inputRef),
-        "margin": Js.Nullable.from_opt(optionMap(margin_zToJs, margin)),
+        "margin": Js.Nullable.from_opt(optionMap(margin_eToJs, margin)),
         "multiline": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, multiline)),
         "name": Js.Nullable.from_opt(name),
         "onBlur": Js.Nullable.from_opt(onBlur),
@@ -5054,10 +5263,11 @@ module Select = {
         "onKeyDown": Js.Nullable.from_opt(onKeyDown),
         "onKeyUp": Js.Nullable.from_opt(onKeyUp),
         "placeholder": Js.Nullable.from_opt(placeholder),
+        "readOnly": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, readOnly)),
         "rows": Js.Nullable.from_opt(optionMap(unwrapValue, rows)),
         "rowsMax": Js.Nullable.from_opt(optionMap(unwrapValue, rowsMax)),
         "startAdornment": Js.Nullable.from_opt(startAdornment),
-        "type_": Js.Nullable.from_opt(type_),
+        "type": Js.Nullable.from_opt(type_),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -5089,6 +5299,8 @@ module Slide = {
         ~onExit: option((unit => unit))=?,
         ~onExited: option((unit => unit))=?,
         ~onExiting: option((unit => unit))=?,
+        ~style: option(Js.t({..}))=?,
+        ~theme: Js.t({..}),
         ~timeout: option([ | `Int(int) | `Float(float) | `Object(timeoutShape)])=?,
         children
       ) =>
@@ -5096,13 +5308,15 @@ module Slide = {
       ~reactClass,
       ~props={
         "direction": Js.Nullable.from_opt(optionMap(direction_9ToJs, direction)),
-        "in_": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, in_)),
+        "in": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, in_)),
         "onEnter": Js.Nullable.from_opt(onEnter),
         "onEntered": Js.Nullable.from_opt(onEntered),
         "onEntering": Js.Nullable.from_opt(onEntering),
         "onExit": Js.Nullable.from_opt(onExit),
         "onExited": Js.Nullable.from_opt(onExited),
         "onExiting": Js.Nullable.from_opt(onExiting),
+        "style": Js.Nullable.from_opt(style),
+        "theme": theme,
         "timeout":
           Js.Nullable.from_opt(
             optionMap(
@@ -5150,6 +5364,7 @@ module SnackbarContent = {
   let make =
       (
         ~action: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
         ~message: option(ReasonReact.reactElement)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
@@ -5161,6 +5376,7 @@ module SnackbarContent = {
       ~reactClass,
       ~props={
         "action": Js.Nullable.from_opt(action),
+        "className": Js.Nullable.from_opt(className),
         "message": Js.Nullable.from_opt(message),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "elevation": Js.Nullable.from_opt(optionMap(unwrapValue, elevation)),
@@ -5227,7 +5443,8 @@ module Snackbar = {
         ~action: option(ReasonReact.reactElement)=?,
         ~anchorOrigin: option(anchorOriginShape)=?,
         ~autoHideDuration: option([ | `Int(int) | `Float(float)])=?,
-        ~key: option('any_1)=?,
+        ~className: option(string)=?,
+        ~key: option('any_y)=?,
         ~message: option(ReasonReact.reactElement)=?,
         ~onClose: option((unit => unit))=?,
         ~onEnter: option((unit => unit))=?,
@@ -5253,6 +5470,7 @@ module Snackbar = {
         "action": Js.Nullable.from_opt(action),
         "anchorOrigin": Js.Nullable.from_opt(optionMap(anchorOriginShapeToJs, anchorOrigin)),
         "autoHideDuration": Js.Nullable.from_opt(optionMap(unwrapValue, autoHideDuration)),
+        "className": Js.Nullable.from_opt(className),
         "key": Js.Nullable.from_opt(key),
         "message": Js.Nullable.from_opt(message),
         "onClose": Js.Nullable.from_opt(onClose),
@@ -5264,9 +5482,9 @@ module Snackbar = {
         "onExiting": Js.Nullable.from_opt(onExiting),
         "onMouseEnter": Js.Nullable.from_opt(onMouseEnter),
         "onMouseLeave": Js.Nullable.from_opt(onMouseLeave),
-        "open_": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
+        "open": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
         "resumeHideDuration": Js.Nullable.from_opt(optionMap(unwrapValue, resumeHideDuration)),
-        "snackbarContentProps": Js.Nullable.from_opt(snackbarContentProps),
+        "SnackbarContentProps": Js.Nullable.from_opt(snackbarContentProps),
         "transition": Js.Nullable.from_opt(optionMap(unwrapValue, transition)),
         "transitionDuration":
           Js.Nullable.from_opt(
@@ -5284,6 +5502,8 @@ module Snackbar = {
 };
 
 module StepButton = {
+  [@bs.deriving jsConverter]
+  type orientation_c = [ [@bs.as "horizontal"] | `Horizontal [@bs.as "vertical"] | `Vertical];
   module Classes = {
     type classesType =
       | Root(string)
@@ -5313,10 +5533,13 @@ module StepButton = {
       (
         ~active: option(bool)=?,
         ~alternativeLabel: option(bool)=?,
+        ~className: option(string)=?,
         ~completed: option(bool)=?,
         ~disabled: option(bool)=?,
         ~icon: option(ReasonReact.reactElement)=?,
+        ~last: option(bool)=?,
         ~optional: option(ReasonReact.reactElement)=?,
+        ~orientation: option(orientation_c)=?,
         ~buttonRef: option(ReasonReact.reactElement)=?,
         ~centerRipple: option(bool)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
@@ -5335,6 +5558,9 @@ module StepButton = {
         ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
@@ -5344,10 +5570,13 @@ module StepButton = {
         "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
         "alternativeLabel":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
+        "className": Js.Nullable.from_opt(className),
         "completed": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, completed)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "icon": Js.Nullable.from_opt(icon),
+        "last": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, last)),
         "optional": Js.Nullable.from_opt(optional),
+        "orientation": Js.Nullable.from_opt(optionMap(orientation_cToJs, orientation)),
         "buttonRef": Js.Nullable.from_opt(buttonRef),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
@@ -5366,6 +5595,9 @@ module StepButton = {
         "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
         "onTouchMove": Js.Nullable.from_opt(onTouchMove),
         "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -5374,12 +5606,14 @@ module StepButton = {
 
 module StepContent = {
   [@bs.deriving jsConverter]
+  type orientation_a = [ [@bs.as "horizontal"] | `Horizontal [@bs.as "vertical"] | `Vertical];
+  [@bs.deriving jsConverter]
   type transitionDurationShape = {
     enter: int,
     exit: int
   };
   [@bs.deriving jsConverter]
-  type transitionDuration_o = [ [@bs.as "auto"] | `Auto];
+  type transitionDuration_k = [ [@bs.as "auto"] | `Auto];
   module Classes = {
     type classesType =
       | Root(string)
@@ -5412,7 +5646,11 @@ module StepContent = {
       (
         ~active: option(bool)=?,
         ~alternativeLabel: option(bool)=?,
+        ~className: option(string)=?,
+        ~completed: option(bool)=?,
+        ~last: option(bool)=?,
         ~optional: option(bool)=?,
+        ~orientation: option(orientation_a)=?,
         ~transition: option(ReasonReact.reactElement)=?,
         ~transitionDuration:
            option(
@@ -5420,7 +5658,7 @@ module StepContent = {
                | `Int(int)
                | `Float(float)
                | `Object(transitionDurationShape)
-               | `Enum(transitionDuration_o)
+               | `Enum(transitionDuration_k)
              ]
            )=?,
         ~classes: option(Classes.t)=?,
@@ -5432,13 +5670,17 @@ module StepContent = {
         "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
         "alternativeLabel":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
+        "className": Js.Nullable.from_opt(className),
+        "completed": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, completed)),
+        "last": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, last)),
         "optional": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, optional)),
+        "orientation": Js.Nullable.from_opt(optionMap(orientation_aToJs, orientation)),
         "transition": Js.Nullable.from_opt(transition),
         "transitionDuration":
           Js.Nullable.from_opt(
             optionMap(
               fun
-              | `Enum(v) => unwrapValue(`String(transitionDuration_oToJs(v)))
+              | `Enum(v) => unwrapValue(`String(transitionDuration_kToJs(v)))
               | `Object(v) => unwrapValue(`Element(transitionDurationShapeToJs(v)))
               | v => unwrapValue(v),
               transitionDuration
@@ -5451,6 +5693,8 @@ module StepContent = {
 };
 
 module StepLabel = {
+  [@bs.deriving jsConverter]
+  type orientation_9 = [ [@bs.as "horizontal"] | `Horizontal [@bs.as "vertical"] | `Vertical];
   module Classes = {
     type classesType =
       | Root(string)
@@ -5504,10 +5748,13 @@ module StepLabel = {
       (
         ~active: option(bool)=?,
         ~alternativeLabel: option(bool)=?,
+        ~className: option(string)=?,
         ~completed: option(bool)=?,
         ~disabled: option(bool)=?,
         ~icon: option(ReasonReact.reactElement)=?,
+        ~last: option(bool)=?,
         ~optional: option(ReasonReact.reactElement)=?,
+        ~orientation: option(orientation_9)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
@@ -5517,10 +5764,13 @@ module StepLabel = {
         "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
         "alternativeLabel":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
+        "className": Js.Nullable.from_opt(className),
         "completed": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, completed)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "icon": Js.Nullable.from_opt(icon),
+        "last": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, last)),
         "optional": Js.Nullable.from_opt(optional),
+        "orientation": Js.Nullable.from_opt(optionMap(orientation_9ToJs, orientation)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -5528,6 +5778,8 @@ module StepLabel = {
 };
 
 module Step = {
+  [@bs.deriving jsConverter]
+  type orientation_y = [ [@bs.as "horizontal"] | `Horizontal [@bs.as "vertical"] | `Vertical];
   module Classes = {
     type classesType =
       | Root(string)
@@ -5559,10 +5811,13 @@ module Step = {
       (
         ~active: option(bool)=?,
         ~alternativeLabel: option(bool)=?,
+        ~className: option(string)=?,
         ~completed: option(bool)=?,
         ~connector: option(ReasonReact.reactElement)=?,
         ~disabled: option(bool)=?,
         ~index: option([ | `Int(int) | `Float(float)])=?,
+        ~last: option(bool)=?,
+        ~orientation: option(orientation_y)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
@@ -5572,10 +5827,13 @@ module Step = {
         "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
         "alternativeLabel":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
+        "className": Js.Nullable.from_opt(className),
         "completed": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, completed)),
         "connector": Js.Nullable.from_opt(connector),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "index": Js.Nullable.from_opt(optionMap(unwrapValue, index)),
+        "last": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, last)),
+        "orientation": Js.Nullable.from_opt(optionMap(orientation_yToJs, orientation)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -5584,7 +5842,7 @@ module Step = {
 
 module Stepper = {
   [@bs.deriving jsConverter]
-  type orientation_e = [ [@bs.as "horizontal"] | `Horizontal [@bs.as "vertical"] | `Vertical];
+  type orientation_y = [ [@bs.as "horizontal"] | `Horizontal [@bs.as "vertical"] | `Vertical];
   module Classes = {
     type classesType =
       | Root(string)
@@ -5617,9 +5875,10 @@ module Stepper = {
       (
         ~activeStep: option([ | `Int(int) | `Float(float)])=?,
         ~alternativeLabel: option(bool)=?,
+        ~className: option(string)=?,
         ~connector: option(ReasonReact.reactElement)=?,
         ~nonLinear: option(bool)=?,
-        ~orientation: option(orientation_e)=?,
+        ~orientation: option(orientation_y)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
         ~square: option(bool)=?,
@@ -5632,9 +5891,10 @@ module Stepper = {
         "activeStep": Js.Nullable.from_opt(optionMap(unwrapValue, activeStep)),
         "alternativeLabel":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, alternativeLabel)),
+        "className": Js.Nullable.from_opt(className),
         "connector": Js.Nullable.from_opt(connector),
         "nonLinear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, nonLinear)),
-        "orientation": Js.Nullable.from_opt(optionMap(orientation_eToJs, orientation)),
+        "orientation": Js.Nullable.from_opt(optionMap(orientation_yToJs, orientation)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "elevation": Js.Nullable.from_opt(optionMap(unwrapValue, elevation)),
         "square": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, square)),
@@ -5646,7 +5906,7 @@ module Stepper = {
 
 module SvgIcon = {
   [@bs.deriving jsConverter]
-  type color_j = [
+  type color_r = [
     [@bs.as "action"] | `Action
     [@bs.as "disabled"] | `Disabled
     [@bs.as "error"] | `Error
@@ -5696,7 +5956,8 @@ module SvgIcon = {
     "default";
   let make =
       (
-        ~color: option(color_j)=?,
+        ~className: option(string)=?,
+        ~color: option(color_r)=?,
         ~fontSize: option(bool)=?,
         ~nativeColor: option(string)=?,
         ~titleAccess: option(string)=?,
@@ -5707,7 +5968,8 @@ module SvgIcon = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "color": Js.Nullable.from_opt(optionMap(color_jToJs, color)),
+        "className": Js.Nullable.from_opt(className),
+        "color": Js.Nullable.from_opt(optionMap(color_rToJs, color)),
         "fontSize": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fontSize)),
         "nativeColor": Js.Nullable.from_opt(nativeColor),
         "titleAccess": Js.Nullable.from_opt(titleAccess),
@@ -5760,6 +6022,8 @@ module Switch = {
       (
         ~checked: option([ | `Bool(bool) | `String(string)])=?,
         ~checkedIcon: option(ReasonReact.reactElement)=?,
+        ~className: option(string)=?,
+        ~defaultChecked: option(bool)=?,
         ~disabled: option(bool)=?,
         ~disableRipple: option(bool)=?,
         ~icon: option(ReasonReact.reactElement)=?,
@@ -5768,6 +6032,7 @@ module Switch = {
         ~inputType: option(string)=?,
         ~name: option(string)=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
         ~value: option(string)=?,
         ~classes: option(Classes.t)=?,
         children
@@ -5777,6 +6042,8 @@ module Switch = {
       ~props={
         "checked": Js.Nullable.from_opt(optionMap(unwrapValue, checked)),
         "checkedIcon": Js.Nullable.from_opt(checkedIcon),
+        "className": Js.Nullable.from_opt(className),
+        "defaultChecked": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, defaultChecked)),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "disableRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableRipple)),
         "icon": Js.Nullable.from_opt(icon),
@@ -5785,6 +6052,7 @@ module Switch = {
         "inputType": Js.Nullable.from_opt(inputType),
         "name": Js.Nullable.from_opt(name),
         "onChange": Js.Nullable.from_opt(onChange),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
         "value": Js.Nullable.from_opt(value),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -5793,6 +6061,12 @@ module Switch = {
 };
 
 module Tab = {
+  [@bs.deriving jsConverter]
+  type textColor_i = [
+    [@bs.as "secondary"] | `Secondary
+    [@bs.as "primary"] | `Primary
+    [@bs.as "inherit"] | `Inherit
+  ];
   module Classes = {
     type classesType =
       | Root(string)
@@ -5861,13 +6135,18 @@ module Tab = {
   [@bs.module "material-ui/Tabs/Tab"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
+        ~className: option(string)=?,
         ~disabled: option(bool)=?,
+        ~fullWidth: option(bool)=?,
         ~icon: option(ReasonReact.reactElement)=?,
         ~indicator: option(ReasonReact.reactElement)=?,
         ~label: option(ReasonReact.reactElement)=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~value: option('any_n)=?,
+        ~selected: option(bool)=?,
+        ~style: option(Js.t({..}))=?,
+        ~textColor: option([ | `String(string) | `Enum(textColor_i)])=?,
+        ~value: option('any_v)=?,
         ~buttonRef: option(ReasonReact.reactElement)=?,
         ~centerRipple: option(bool)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
@@ -5885,18 +6164,34 @@ module Tab = {
         ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
+        "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
         "icon": Js.Nullable.from_opt(icon),
         "indicator": Js.Nullable.from_opt(indicator),
         "label": Js.Nullable.from_opt(label),
         "onChange": Js.Nullable.from_opt(onChange),
         "onClick": Js.Nullable.from_opt(onClick),
+        "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
+        "style": Js.Nullable.from_opt(style),
+        "textColor":
+          Js.Nullable.from_opt(
+            optionMap(
+              fun
+              | `Enum(v) => unwrapValue(`String(textColor_iToJs(v)))
+              | v => unwrapValue(v),
+              textColor
+            )
+          ),
         "value": Js.Nullable.from_opt(value),
         "buttonRef": Js.Nullable.from_opt(buttonRef),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
@@ -5915,6 +6210,9 @@ module Tab = {
         "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
         "onTouchMove": Js.Nullable.from_opt(onTouchMove),
         "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -5935,20 +6233,16 @@ module TableBody = {
 
 module TableCell = {
   [@bs.deriving jsConverter]
-  type padding_p = [
+  type padding_5 = [
     [@bs.as "default"] | `Default
     [@bs.as "checkbox"] | `Checkbox
     [@bs.as "dense"] | `Dense
     [@bs.as "none"] | `None
   ];
   [@bs.deriving jsConverter]
-  type sortDirection_x = [
-    [@bs.as "asc"] | `Asc
-    [@bs.as "desc"] | `Desc
-    [@bs.as "false"] | `False
-  ];
+  type sortDirection_x = [ [@bs.as "asc"] | `Asc [@bs.as "desc"] | `Desc [@bs.as "0"] | `False];
   [@bs.deriving jsConverter]
-  type type__n = [ [@bs.as "head"] | `Head [@bs.as "body"] | `Body [@bs.as "footer"] | `Footer];
+  type type__t = [ [@bs.as "head"] | `Head [@bs.as "body"] | `Body [@bs.as "footer"] | `Footer];
   module Classes = {
     type classesType =
       | Root(string)
@@ -5994,22 +6288,24 @@ module TableCell = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~numeric: option(bool)=?,
-        ~padding: option(padding_p)=?,
+        ~padding: option(padding_5)=?,
         ~sortDirection: option(sortDirection_x)=?,
-        ~type_: option(type__n)=?,
+        ~type_: option(type__t)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "numeric": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, numeric)),
-        "padding": Js.Nullable.from_opt(optionMap(padding_pToJs, padding)),
+        "padding": Js.Nullable.from_opt(optionMap(padding_5ToJs, padding)),
         "sortDirection": Js.Nullable.from_opt(optionMap(sortDirection_xToJs, sortDirection)),
-        "type_": Js.Nullable.from_opt(optionMap(type__nToJs, type_)),
+        "type": Js.Nullable.from_opt(optionMap(type__tToJs, type_)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -6042,20 +6338,16 @@ module TableHead = {
 
 module TablePagination = {
   [@bs.deriving jsConverter]
-  type padding_p = [
+  type padding_5 = [
     [@bs.as "default"] | `Default
     [@bs.as "checkbox"] | `Checkbox
     [@bs.as "dense"] | `Dense
     [@bs.as "none"] | `None
   ];
   [@bs.deriving jsConverter]
-  type sortDirection_x = [
-    [@bs.as "asc"] | `Asc
-    [@bs.as "desc"] | `Desc
-    [@bs.as "false"] | `False
-  ];
+  type sortDirection_x = [ [@bs.as "asc"] | `Asc [@bs.as "desc"] | `Desc [@bs.as "0"] | `False];
   [@bs.deriving jsConverter]
-  type type__n = [ [@bs.as "head"] | `Head [@bs.as "body"] | `Body [@bs.as "footer"] | `Footer];
+  type type__t = [ [@bs.as "head"] | `Head [@bs.as "body"] | `Body [@bs.as "footer"] | `Footer];
   module Classes = {
     type classesType =
       | Root(string)
@@ -6106,6 +6398,7 @@ module TablePagination = {
       (
         ~actions: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~backIconButtonProps: option(Js.t({..}))=?,
+        ~colSpan: option([ | `Int(int) | `Float(float)])=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~count: [ | `Int(int) | `Float(float)],
         ~labelDisplayedRows: option(ReasonReact.reactElement)=?,
@@ -6115,19 +6408,21 @@ module TablePagination = {
         ~onChangeRowsPerPage: option((unit => unit))=?,
         ~page: [ | `Int(int) | `Float(float)],
         ~rowsPerPage: [ | `Int(int) | `Float(float)],
-        ~rowsPerPageOptions: option([ | `ArrayGeneric(array('any_1))])=?,
+        ~rowsPerPageOptions: option([ | `ArrayGeneric(array('any_w))])=?,
+        ~className: option(string)=?,
         ~numeric: option(bool)=?,
-        ~padding: option(padding_p)=?,
+        ~padding: option(padding_5)=?,
         ~sortDirection: option(sortDirection_x)=?,
-        ~type_: option(type__n)=?,
+        ~type_: option(type__t)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "actions": Js.Nullable.from_opt(optionMap(unwrapValue, actions)),
+        "Actions": Js.Nullable.from_opt(optionMap(unwrapValue, actions)),
         "backIconButtonProps": Js.Nullable.from_opt(backIconButtonProps),
+        "colSpan": Js.Nullable.from_opt(optionMap(unwrapValue, colSpan)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "count": unwrapValue(count),
         "labelDisplayedRows": Js.Nullable.from_opt(labelDisplayedRows),
@@ -6138,10 +6433,11 @@ module TablePagination = {
         "page": unwrapValue(page),
         "rowsPerPage": unwrapValue(rowsPerPage),
         "rowsPerPageOptions": Js.Nullable.from_opt(rowsPerPageOptions),
+        "className": Js.Nullable.from_opt(className),
         "numeric": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, numeric)),
-        "padding": Js.Nullable.from_opt(optionMap(padding_pToJs, padding)),
+        "padding": Js.Nullable.from_opt(optionMap(padding_5ToJs, padding)),
         "sortDirection": Js.Nullable.from_opt(optionMap(sortDirection_xToJs, sortDirection)),
-        "type_": Js.Nullable.from_opt(optionMap(type__nToJs, type_)),
+        "type": Js.Nullable.from_opt(optionMap(type__tToJs, type_)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -6185,6 +6481,7 @@ module TableRow = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~hover: option(bool)=?,
         ~selected: option(bool)=?,
@@ -6194,6 +6491,7 @@ module TableRow = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "hover": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, hover)),
         "selected": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, selected)),
@@ -6205,7 +6503,7 @@ module TableRow = {
 
 module TableSortLabel = {
   [@bs.deriving jsConverter]
-  type direction_8 = [ [@bs.as "asc"] | `Asc [@bs.as "desc"] | `Desc];
+  type direction_k = [ [@bs.as "asc"] | `Asc [@bs.as "desc"] | `Desc];
   module Classes = {
     type classesType =
       | Root(string)
@@ -6243,7 +6541,8 @@ module TableSortLabel = {
   let make =
       (
         ~active: option(bool)=?,
-        ~direction: option(direction_8)=?,
+        ~className: option(string)=?,
+        ~direction: option(direction_k)=?,
         ~buttonRef: option(ReasonReact.reactElement)=?,
         ~centerRipple: option(bool)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
@@ -6263,6 +6562,9 @@ module TableSortLabel = {
         ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
         ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~type_: option(string)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
@@ -6270,7 +6572,8 @@ module TableSortLabel = {
       ~reactClass,
       ~props={
         "active": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, active)),
-        "direction": Js.Nullable.from_opt(optionMap(direction_8ToJs, direction)),
+        "className": Js.Nullable.from_opt(className),
+        "direction": Js.Nullable.from_opt(optionMap(direction_kToJs, direction)),
         "buttonRef": Js.Nullable.from_opt(buttonRef),
         "centerRipple": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centerRipple)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
@@ -6290,6 +6593,9 @@ module TableSortLabel = {
         "onTouchEnd": Js.Nullable.from_opt(onTouchEnd),
         "onTouchMove": Js.Nullable.from_opt(onTouchMove),
         "onTouchStart": Js.Nullable.from_opt(onTouchStart),
+        "role": Js.Nullable.from_opt(role),
+        "tabIndex": Js.Nullable.from_opt(optionMap(unwrapValue, tabIndex)),
+        "type": Js.Nullable.from_opt(type_),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -6320,6 +6626,7 @@ module Table = {
   [@bs.module "material-ui/Table/Table"] external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
+        ~className: option(string)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~classes: option(Classes.t)=?,
         children
@@ -6327,6 +6634,7 @@ module Table = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -6336,11 +6644,11 @@ module Table = {
 
 module Tabs = {
   [@bs.deriving jsConverter]
-  type indicatorColor_t = [ [@bs.as "secondary"] | `Secondary [@bs.as "primary"] | `Primary];
+  type indicatorColor_m = [ [@bs.as "secondary"] | `Secondary [@bs.as "primary"] | `Primary];
   [@bs.deriving jsConverter]
-  type scrollButtons_3 = [ [@bs.as "auto"] | `Auto [@bs.as "on"] | `On [@bs.as "off"] | `Off];
+  type scrollButtons_4 = [ [@bs.as "auto"] | `Auto [@bs.as "on"] | `On [@bs.as "off"] | `Off];
   [@bs.deriving jsConverter]
-  type textColor_h = [
+  type textColor_2 = [
     [@bs.as "secondary"] | `Secondary
     [@bs.as "primary"] | `Primary
     [@bs.as "inherit"] | `Inherit
@@ -6389,15 +6697,17 @@ module Tabs = {
         ~action: option(ReasonReact.reactElement)=?,
         ~buttonClassName: option(string)=?,
         ~centered: option(bool)=?,
+        ~className: option(string)=?,
         ~fullWidth: option(bool)=?,
         ~indicatorClassName: option(string)=?,
-        ~indicatorColor: option([ | `String(string) | `Enum(indicatorColor_t)])=?,
+        ~indicatorColor: option([ | `String(string) | `Enum(indicatorColor_m)])=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
         ~scrollable: option(bool)=?,
-        ~scrollButtons: option(scrollButtons_3)=?,
+        ~scrollButtons: option(scrollButtons_4)=?,
         ~tabScrollButton: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
-        ~textColor: option(textColor_h)=?,
-        ~value: option('any_v)=?,
+        ~textColor: option(textColor_2)=?,
+        ~theme: Js.t({..}),
+        ~value: option('any_b)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
@@ -6407,22 +6717,24 @@ module Tabs = {
         "action": Js.Nullable.from_opt(action),
         "buttonClassName": Js.Nullable.from_opt(buttonClassName),
         "centered": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, centered)),
+        "className": Js.Nullable.from_opt(className),
         "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
         "indicatorClassName": Js.Nullable.from_opt(indicatorClassName),
         "indicatorColor":
           Js.Nullable.from_opt(
             optionMap(
               fun
-              | `Enum(v) => unwrapValue(`String(indicatorColor_tToJs(v)))
+              | `Enum(v) => unwrapValue(`String(indicatorColor_mToJs(v)))
               | v => unwrapValue(v),
               indicatorColor
             )
           ),
         "onChange": Js.Nullable.from_opt(onChange),
         "scrollable": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, scrollable)),
-        "scrollButtons": Js.Nullable.from_opt(optionMap(scrollButtons_3ToJs, scrollButtons)),
-        "tabScrollButton": Js.Nullable.from_opt(optionMap(unwrapValue, tabScrollButton)),
-        "textColor": Js.Nullable.from_opt(optionMap(textColor_hToJs, textColor)),
+        "scrollButtons": Js.Nullable.from_opt(optionMap(scrollButtons_4ToJs, scrollButtons)),
+        "TabScrollButton": Js.Nullable.from_opt(optionMap(unwrapValue, tabScrollButton)),
+        "textColor": Js.Nullable.from_opt(optionMap(textColor_2ToJs, textColor)),
+        "theme": theme,
         "value": Js.Nullable.from_opt(value),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -6439,6 +6751,7 @@ module TextField = {
       (
         ~autoComplete: option(string)=?,
         ~autoFocus: option(bool)=?,
+        ~className: option(string)=?,
         ~defaultValue: option(string)=?,
         ~disabled: option(bool)=?,
         ~error: option(bool)=?,
@@ -6485,16 +6798,17 @@ module TextField = {
       ~props={
         "autoComplete": Js.Nullable.from_opt(autoComplete),
         "autoFocus": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, autoFocus)),
+        "className": Js.Nullable.from_opt(className),
         "defaultValue": Js.Nullable.from_opt(defaultValue),
         "disabled": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disabled)),
         "error": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, error)),
-        "formHelperTextProps": Js.Nullable.from_opt(formHelperTextProps),
+        "FormHelperTextProps": Js.Nullable.from_opt(formHelperTextProps),
         "fullWidth": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, fullWidth)),
         "helperText": Js.Nullable.from_opt(helperText),
         "helperTextClassName": Js.Nullable.from_opt(helperTextClassName),
         "id": Js.Nullable.from_opt(id),
-        "inputLabelProps": Js.Nullable.from_opt(inputLabelProps),
-        "inputProps2": Js.Nullable.from_opt(inputProps2),
+        "InputLabelProps": Js.Nullable.from_opt(inputLabelProps),
+        "InputProps2": Js.Nullable.from_opt(inputProps2),
         "inputProps": Js.Nullable.from_opt(inputProps),
         "inputRef": Js.Nullable.from_opt(inputRef),
         "label": Js.Nullable.from_opt(label),
@@ -6508,8 +6822,8 @@ module TextField = {
         "rows": Js.Nullable.from_opt(optionMap(unwrapValue, rows)),
         "rowsMax": Js.Nullable.from_opt(optionMap(unwrapValue, rowsMax)),
         "select": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, select)),
-        "selectProps": Js.Nullable.from_opt(selectProps),
-        "type_": Js.Nullable.from_opt(type_),
+        "SelectProps": Js.Nullable.from_opt(selectProps),
+        "type": Js.Nullable.from_opt(type_),
         "value": Js.Nullable.from_opt(optionMap(unwrapValue, value)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "onBlur": Js.Nullable.from_opt(onBlur),
@@ -6545,10 +6859,17 @@ module Toolbar = {
   };
   [@bs.module "material-ui/Toolbar/Toolbar"] external reactClass : ReasonReact.reactClass =
     "default";
-  let make = (~disableGutters: option(bool)=?, ~classes: option(Classes.t)=?, children) =>
+  let make =
+      (
+        ~className: option(string)=?,
+        ~disableGutters: option(bool)=?,
+        ~classes: option(Classes.t)=?,
+        children
+      ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "disableGutters": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableGutters)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -6558,7 +6879,7 @@ module Toolbar = {
 
 module Tooltip = {
   [@bs.deriving jsConverter]
-  type placement_8 = [
+  type placement_k = [
     [@bs.as "bottom-end"] | `Bottom_End
     [@bs.as "bottom-start"] | `Bottom_Start
     [@bs.as "bottom"] | `Bottom
@@ -6620,6 +6941,7 @@ module Tooltip = {
     "default";
   let make =
       (
+        ~className: option(string)=?,
         ~disableTriggerFocus: option(bool)=?,
         ~disableTriggerHover: option(bool)=?,
         ~disableTriggerTouch: option(bool)=?,
@@ -6629,8 +6951,9 @@ module Tooltip = {
         ~onClose: option((unit => unit))=?,
         ~onOpen: option((unit => unit))=?,
         ~open_: option(bool)=?,
-        ~placement: option(placement_8)=?,
+        ~placement: option(placement_k)=?,
         ~popperProps: option(Js.t({..}))=?,
+        ~theme: Js.t({..}),
         ~title: ReasonReact.reactElement,
         ~classes: option(Classes.t)=?,
         children
@@ -6638,6 +6961,7 @@ module Tooltip = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "className": Js.Nullable.from_opt(className),
         "disableTriggerFocus":
           Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, disableTriggerFocus)),
         "disableTriggerHover":
@@ -6649,9 +6973,10 @@ module Tooltip = {
         "leaveDelay": Js.Nullable.from_opt(optionMap(unwrapValue, leaveDelay)),
         "onClose": Js.Nullable.from_opt(onClose),
         "onOpen": Js.Nullable.from_opt(onOpen),
-        "open_": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
-        "placement": Js.Nullable.from_opt(optionMap(placement_8ToJs, placement)),
-        "popperProps": Js.Nullable.from_opt(popperProps),
+        "open": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, open_)),
+        "placement": Js.Nullable.from_opt(optionMap(placement_kToJs, placement)),
+        "PopperProps": Js.Nullable.from_opt(popperProps),
+        "theme": theme,
         "title": title,
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
@@ -6661,7 +6986,7 @@ module Tooltip = {
 
 module Typography = {
   [@bs.deriving jsConverter]
-  type align_b = [
+  type align_f = [
     [@bs.as "inherit"] | `Inherit
     [@bs.as "left"] | `Left
     [@bs.as "center"] | `Center
@@ -6669,7 +6994,7 @@ module Typography = {
     [@bs.as "justify"] | `Justify
   ];
   [@bs.deriving jsConverter]
-  type color_3 = [
+  type color_v = [
     [@bs.as "inherit"] | `Inherit
     [@bs.as "primary"] | `Primary
     [@bs.as "textSecondary"] | `TextSecondary
@@ -6678,7 +7003,7 @@ module Typography = {
     [@bs.as "default"] | `Default
   ];
   [@bs.deriving jsConverter]
-  type type__r = [
+  type type__9 = [
     [@bs.as "display4"] | `Display4
     [@bs.as "display3"] | `Display3
     [@bs.as "display2"] | `Display2
@@ -6784,28 +7109,30 @@ module Typography = {
     "default";
   let make =
       (
-        ~align: option(align_b)=?,
-        ~color: option(color_3)=?,
+        ~align: option(align_f)=?,
+        ~className: option(string)=?,
+        ~color: option(color_v)=?,
         ~component: option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~gutterBottom: option(bool)=?,
         ~headlineMapping: option(Js.t({..}))=?,
         ~noWrap: option(bool)=?,
         ~paragraph: option(bool)=?,
-        ~type_: option(type__r)=?,
+        ~type_: option(type__9)=?,
         ~classes: option(Classes.t)=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "align": Js.Nullable.from_opt(optionMap(align_bToJs, align)),
-        "color": Js.Nullable.from_opt(optionMap(color_3ToJs, color)),
+        "align": Js.Nullable.from_opt(optionMap(align_fToJs, align)),
+        "className": Js.Nullable.from_opt(className),
+        "color": Js.Nullable.from_opt(optionMap(color_vToJs, color)),
         "component": Js.Nullable.from_opt(optionMap(unwrapValue, component)),
         "gutterBottom": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, gutterBottom)),
         "headlineMapping": Js.Nullable.from_opt(headlineMapping),
         "noWrap": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, noWrap)),
         "paragraph": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, paragraph)),
-        "type_": Js.Nullable.from_opt(optionMap(type__rToJs, type_)),
+        "type": Js.Nullable.from_opt(optionMap(type__9ToJs, type_)),
         "classes": Js.Nullable.from_opt(optionMap(Classes.to_obj, classes))
       },
       children
@@ -6822,22 +7149,28 @@ module Zoom = {
     "default";
   let make =
       (
+        ~appear: option(bool)=?,
         ~enterDelay: option([ | `Int(int) | `Float(float)])=?,
         ~in_: option(bool)=?,
         ~onEnter: option((unit => unit))=?,
         ~onEntering: option((unit => unit))=?,
         ~onExit: option((unit => unit))=?,
+        ~style: option(Js.t({..}))=?,
+        ~theme: Js.t({..}),
         ~timeout: option([ | `Int(int) | `Float(float) | `Object(timeoutShape)])=?,
         children
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
+        "appear": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, appear)),
         "enterDelay": Js.Nullable.from_opt(optionMap(unwrapValue, enterDelay)),
-        "in_": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, in_)),
+        "in": Js.Nullable.from_opt(optionMap(Js.Boolean.to_js_boolean, in_)),
         "onEnter": Js.Nullable.from_opt(onEnter),
         "onEntering": Js.Nullable.from_opt(onEntering),
         "onExit": Js.Nullable.from_opt(onExit),
+        "style": Js.Nullable.from_opt(style),
+        "theme": theme,
         "timeout":
           Js.Nullable.from_opt(
             optionMap(

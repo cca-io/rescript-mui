@@ -1193,11 +1193,11 @@ var jsMapperConstantArray = /* array */[
   ]
 ];
 
-function color_iToJs(param) {
+function color_yToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray);
 }
 
-function color_iFromJs(param) {
+function color_yFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray, param);
 }
 
@@ -1220,11 +1220,11 @@ var jsMapperConstantArray$1 = /* array */[
   ]
 ];
 
-function position_aToJs(param) {
+function position_bToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$1);
 }
 
-function position_aFromJs(param) {
+function position_bFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$1, param);
 }
 
@@ -1262,10 +1262,11 @@ var Classes = /* module */[
   /* to_obj */to_obj
 ];
 
-function make$1(color, position, component, elevation, square, classes, children) {
+function make$1(className, color, position, component, elevation, square, classes, children) {
   return ReasonReact.wrapJsForReason(AppBar.default, {
-              color: Js_null_undefined.from_opt(optionMap(color_iToJs, color)),
-              position: Js_null_undefined.from_opt(optionMap(position_aToJs, position)),
+              className: Js_null_undefined.from_opt(className),
+              color: Js_null_undefined.from_opt(optionMap(color_yToJs, color)),
+              position: Js_null_undefined.from_opt(optionMap(position_bToJs, position)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
               square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
@@ -1274,10 +1275,10 @@ function make$1(color, position, component, elevation, square, classes, children
 }
 
 var AppBar$1 = /* module */[
-  /* color_iToJs */color_iToJs,
-  /* color_iFromJs */color_iFromJs,
-  /* position_aToJs */position_aToJs,
-  /* position_aFromJs */position_aFromJs,
+  /* color_yToJs */color_yToJs,
+  /* color_yFromJs */color_yFromJs,
+  /* position_bToJs */position_bToJs,
+  /* position_bFromJs */position_bFromJs,
   /* Classes */Classes,
   /* make */make$1
 ];
@@ -1306,10 +1307,11 @@ var Classes$1 = /* module */[
   /* to_obj */to_obj$1
 ];
 
-function make$2(alt, childrenClassName, component, imgProps, sizes, src, srcSet, classes, children) {
+function make$2(alt, childrenClassName, className, component, imgProps, sizes, src, srcSet, classes, children) {
   return ReasonReact.wrapJsForReason(Avatar.default, {
               alt: Js_null_undefined.from_opt(alt),
               childrenClassName: Js_null_undefined.from_opt(childrenClassName),
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               imgProps: Js_null_undefined.from_opt(imgProps),
               sizes: Js_null_undefined.from_opt(sizes),
@@ -1361,7 +1363,7 @@ var Classes$2 = /* module */[
 function make$3(invisible, open_, transitionDuration, classes, children) {
   return ReasonReact.wrapJsForReason(Backdrop.default, {
               invisible: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, invisible)),
-              open_: Js_boolean.to_js_boolean(open_),
+              open: Js_boolean.to_js_boolean(open_),
               transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number" || v[0] !== -908856609) {
                             return unwrapValue(v);
@@ -1402,11 +1404,11 @@ var jsMapperConstantArray$2 = /* array */[
   ]
 ];
 
-function color_sToJs(param) {
+function color_iToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$2);
 }
 
-function color_sFromJs(param) {
+function color_iFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$2, param);
 }
 
@@ -1438,18 +1440,19 @@ var Classes$3 = /* module */[
   /* to_obj */to_obj$3
 ];
 
-function make$4(badgeContent, color, component, classes, children) {
+function make$4(badgeContent, className, color, component, classes, children) {
   return ReasonReact.wrapJsForReason(Badge.default, {
               badgeContent: badgeContent,
-              color: Js_null_undefined.from_opt(optionMap(color_sToJs, color)),
+              className: Js_null_undefined.from_opt(className),
+              color: Js_null_undefined.from_opt(optionMap(color_iToJs, color)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$3, classes))
             }, children);
 }
 
 var Badge$1 = /* module */[
-  /* color_sToJs */color_sToJs,
-  /* color_sFromJs */color_sFromJs,
+  /* color_iToJs */color_iToJs,
+  /* color_iFromJs */color_iFromJs,
   /* Classes */Classes$3,
   /* make */make$4
 ];
@@ -1486,12 +1489,14 @@ var Classes$4 = /* module */[
   /* to_obj */to_obj$4
 ];
 
-function make$5(icon, label, onChange, onClick, showLabel, value, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, classes, children) {
+function make$5(className, icon, label, onChange, onClick, selected, showLabel, value, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
   return ReasonReact.wrapJsForReason(BottomNavigationAction.default, {
+              className: Js_null_undefined.from_opt(className),
               icon: Js_null_undefined.from_opt(icon),
               label: Js_null_undefined.from_opt(label),
               onChange: Js_null_undefined.from_opt(onChange),
               onClick: Js_null_undefined.from_opt(onClick),
+              selected: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, selected)),
               showLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, showLabel)),
               value: Js_null_undefined.from_opt(value),
               buttonRef: Js_null_undefined.from_opt(buttonRef),
@@ -1512,6 +1517,9 @@ function make$5(icon, label, onChange, onClick, showLabel, value, buttonRef, cen
               onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
               onTouchMove: Js_null_undefined.from_opt(onTouchMove),
               onTouchStart: Js_null_undefined.from_opt(onTouchStart),
+              role: Js_null_undefined.from_opt(role),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
+              type: Js_null_undefined.from_opt(type_),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$4, classes))
             }, children);
 }
@@ -1537,8 +1545,9 @@ var Classes$5 = /* module */[
   /* to_obj */to_obj$5
 ];
 
-function make$6(onChange, showLabels, value, classes, children) {
+function make$6(className, onChange, showLabels, value, classes, children) {
   return ReasonReact.wrapJsForReason(BottomNavigation.default, {
+              className: Js_null_undefined.from_opt(className),
               onChange: Js_null_undefined.from_opt(onChange),
               showLabels: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, showLabels)),
               value: Js_null_undefined.from_opt(value),
@@ -1571,10 +1580,11 @@ var Classes$6 = /* module */[
   /* to_obj */to_obj$6
 ];
 
-function make$7(buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, classes, children) {
+function make$7(buttonRef, centerRipple, className, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
   return ReasonReact.wrapJsForReason(ButtonBase.default, {
               buttonRef: Js_null_undefined.from_opt(buttonRef),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
@@ -1592,6 +1602,9 @@ function make$7(buttonRef, centerRipple, component, disabled, disableRipple, foc
               onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
               onTouchMove: Js_null_undefined.from_opt(onTouchMove),
               onTouchStart: Js_null_undefined.from_opt(onTouchStart),
+              role: Js_null_undefined.from_opt(role),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
+              type: Js_null_undefined.from_opt(type_),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$6, classes))
             }, children);
 }
@@ -1620,11 +1633,11 @@ var jsMapperConstantArray$3 = /* array */[
   ]
 ];
 
-function color_8ToJs(param) {
+function color_7ToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$3);
 }
 
-function color_8FromJs(param) {
+function color_7FromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$3, param);
 }
 
@@ -1643,11 +1656,11 @@ var jsMapperConstantArray$4 = /* array */[
   ]
 ];
 
-function size_rToJs(param) {
+function size_8ToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$4);
 }
 
-function size_rFromJs(param) {
+function size_8FromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$4, param);
 }
 
@@ -1699,9 +1712,10 @@ var Classes$7 = /* module */[
   /* to_obj */to_obj$7
 ];
 
-function make$8(color, component, disabled, disableFocusRipple, disableRipple, fab, fullWidth, href, mini, raised, size, buttonRef, centerRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, classes, children) {
+function make$8(className, color, component, disabled, disableFocusRipple, disableRipple, fab, fullWidth, href, mini, raised, size, type_, buttonRef, centerRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, classes, children) {
   return ReasonReact.wrapJsForReason(Button.default, {
-              color: Js_null_undefined.from_opt(optionMap(color_8ToJs, color)),
+              className: Js_null_undefined.from_opt(className),
+              color: Js_null_undefined.from_opt(optionMap(color_7ToJs, color)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               disableFocusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableFocusRipple)),
@@ -1711,7 +1725,8 @@ function make$8(color, component, disabled, disableFocusRipple, disableRipple, f
               href: Js_null_undefined.from_opt(href),
               mini: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, mini)),
               raised: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, raised)),
-              size: Js_null_undefined.from_opt(optionMap(size_rToJs, size)),
+              size: Js_null_undefined.from_opt(optionMap(size_8ToJs, size)),
+              type: Js_null_undefined.from_opt(type_),
               buttonRef: Js_null_undefined.from_opt(buttonRef),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
               focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
@@ -1728,15 +1743,17 @@ function make$8(color, component, disabled, disableFocusRipple, disableRipple, f
               onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
               onTouchMove: Js_null_undefined.from_opt(onTouchMove),
               onTouchStart: Js_null_undefined.from_opt(onTouchStart),
+              role: Js_null_undefined.from_opt(role),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$7, classes))
             }, children);
 }
 
 var Button$1 = /* module */[
-  /* color_8ToJs */color_8ToJs,
-  /* color_8FromJs */color_8FromJs,
-  /* size_rToJs */size_rToJs,
-  /* size_rFromJs */size_rFromJs,
+  /* color_7ToJs */color_7ToJs,
+  /* color_7FromJs */color_7FromJs,
+  /* size_8ToJs */size_8ToJs,
+  /* size_8FromJs */size_8FromJs,
   /* Classes */Classes$7,
   /* make */make$8
 ];
@@ -1761,8 +1778,9 @@ var Classes$8 = /* module */[
   /* to_obj */to_obj$8
 ];
 
-function make$9(disableActionSpacing, classes, children) {
+function make$9(className, disableActionSpacing, classes, children) {
   return ReasonReact.wrapJsForReason(CardActions.default, {
+              className: Js_null_undefined.from_opt(className),
               disableActionSpacing: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableActionSpacing)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$8, classes))
             }, children);
@@ -1789,8 +1807,9 @@ var Classes$9 = /* module */[
   /* to_obj */to_obj$9
 ];
 
-function make$10(component, classes, children) {
+function make$10(className, component, classes, children) {
   return ReasonReact.wrapJsForReason(CardContent.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$9, classes))
             }, children);
@@ -1831,10 +1850,11 @@ var Classes$10 = /* module */[
   /* to_obj */to_obj$10
 ];
 
-function make$11(action, avatar, component, subheader, title, classes, children) {
+function make$11(action, avatar, className, component, subheader, title, classes, children) {
   return ReasonReact.wrapJsForReason(CardHeader.default, {
               action: Js_null_undefined.from_opt(action),
               avatar: Js_null_undefined.from_opt(avatar),
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               subheader: Js_null_undefined.from_opt(subheader),
               title: Js_null_undefined.from_opt(title),
@@ -1867,11 +1887,13 @@ var Classes$11 = /* module */[
   /* to_obj */to_obj$11
 ];
 
-function make$12(component, image, src, classes, children) {
+function make$12(className, component, image, src, style, classes, children) {
   return ReasonReact.wrapJsForReason(CardMedia.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               image: Js_null_undefined.from_opt(image),
               src: Js_null_undefined.from_opt(src),
+              style: Js_null_undefined.from_opt(style),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$11, classes))
             }, children);
 }
@@ -1881,8 +1903,9 @@ var CardMedia$1 = /* module */[
   /* make */make$12
 ];
 
-function make$13(raised, component, elevation, square, children) {
+function make$13(className, raised, component, elevation, square, children) {
   return ReasonReact.wrapJsForReason(Card.default, {
+              className: Js_null_undefined.from_opt(className),
               raised: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, raised)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
@@ -1916,10 +1939,12 @@ var Classes$12 = /* module */[
   /* to_obj */to_obj$12
 ];
 
-function make$14(checked, checkedIcon, disabled, disableRipple, icon, indeterminate, indeterminateIcon, inputProps, inputRef, inputType, name, onChange, value, classes, children) {
+function make$14(checked, checkedIcon, className, defaultChecked, disabled, disableRipple, icon, indeterminate, indeterminateIcon, inputProps, inputRef, inputType, name, onChange, tabIndex, value, classes, children) {
   return ReasonReact.wrapJsForReason(Checkbox.default, {
               checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
               checkedIcon: Js_null_undefined.from_opt(checkedIcon),
+              className: Js_null_undefined.from_opt(className),
+              defaultChecked: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, defaultChecked)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
               icon: Js_null_undefined.from_opt(icon),
@@ -1930,6 +1955,7 @@ function make$14(checked, checkedIcon, disabled, disableRipple, icon, indetermin
               inputType: Js_null_undefined.from_opt(inputType),
               name: Js_null_undefined.from_opt(name),
               onChange: Js_null_undefined.from_opt(onChange),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
               value: Js_null_undefined.from_opt(value),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$12, classes))
             }, children);
@@ -1972,15 +1998,17 @@ var Classes$13 = /* module */[
   /* to_obj */to_obj$13
 ];
 
-function make$15(avatar, component, deleteIcon, label, onClick, onDelete, onKeyDown, classes, children) {
+function make$15(avatar, className, component, deleteIcon, label, onClick, onDelete, onKeyDown, tabIndex, classes, children) {
   return ReasonReact.wrapJsForReason(Chip.default, {
               avatar: Js_null_undefined.from_opt(avatar),
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               deleteIcon: Js_null_undefined.from_opt(deleteIcon),
               label: Js_null_undefined.from_opt(label),
               onClick: Js_null_undefined.from_opt(onClick),
               onDelete: Js_null_undefined.from_opt(onDelete),
               onKeyDown: Js_null_undefined.from_opt(onKeyDown),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$13, classes))
             }, children);
 }
@@ -2005,11 +2033,11 @@ var jsMapperConstantArray$5 = /* array */[
   ]
 ];
 
-function color_yToJs(param) {
+function color_hToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$5);
 }
 
-function color_yFromJs(param) {
+function color_hFromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$5, param);
 }
 
@@ -2024,11 +2052,11 @@ var jsMapperConstantArray$6 = /* array */[
   ]
 ];
 
-function mode_qToJs(param) {
+function mode_5ToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$6);
 }
 
-function mode_qFromJs(param) {
+function mode_5FromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$6, param);
 }
 
@@ -2064,13 +2092,15 @@ var Classes$14 = /* module */[
   /* to_obj */to_obj$14
 ];
 
-function make$16(color, max, min, mode, size, thickness, value, classes, children) {
+function make$16(className, color, max, min, mode, size, style, thickness, value, classes, children) {
   return ReasonReact.wrapJsForReason(CircularProgress.default, {
-              color: Js_null_undefined.from_opt(optionMap(color_yToJs, color)),
+              className: Js_null_undefined.from_opt(className),
+              color: Js_null_undefined.from_opt(optionMap(color_hToJs, color)),
               max: Js_null_undefined.from_opt(optionMap(unwrapValue, max)),
               min: Js_null_undefined.from_opt(optionMap(unwrapValue, min)),
-              mode: Js_null_undefined.from_opt(optionMap(mode_qToJs, mode)),
+              mode: Js_null_undefined.from_opt(optionMap(mode_5ToJs, mode)),
               size: Js_null_undefined.from_opt(optionMap(unwrapValue, size)),
+              style: Js_null_undefined.from_opt(style),
               thickness: Js_null_undefined.from_opt(optionMap(unwrapValue, thickness)),
               value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$14, classes))
@@ -2078,10 +2108,10 @@ function make$16(color, max, min, mode, size, thickness, value, classes, childre
 }
 
 var CircularProgress$1 = /* module */[
-  /* color_yToJs */color_yToJs,
-  /* color_yFromJs */color_yFromJs,
-  /* mode_qToJs */mode_qToJs,
-  /* mode_qFromJs */mode_qFromJs,
+  /* color_hToJs */color_hToJs,
+  /* color_hFromJs */color_hFromJs,
+  /* mode_5ToJs */mode_5ToJs,
+  /* mode_5FromJs */mode_5FromJs,
   /* Classes */Classes$14,
   /* make */make$16
 ];
@@ -2113,11 +2143,11 @@ var jsMapperConstantArray$7 = /* array */[/* tuple */[
     "auto"
   ]];
 
-function timeout_aToJs(param) {
+function timeout_4ToJs(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$7);
 }
 
-function timeout_aFromJs(param) {
+function timeout_4FromJs(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$7, param);
 }
 
@@ -2147,16 +2177,20 @@ var Classes$15 = /* module */[
   /* to_obj */to_obj$15
 ];
 
-function make$18(collapsedHeight, component, in_, onEnter, onEntered, onEntering, onExit, onExiting, timeout, classes, children) {
+function make$18(appear, className, collapsedHeight, component, in_, onEnter, onEntered, onEntering, onExit, onExiting, style, theme, timeout, classes, children) {
   return ReasonReact.wrapJsForReason(Collapse.default, {
+              appear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, appear)),
+              className: Js_null_undefined.from_opt(className),
               collapsedHeight: Js_null_undefined.from_opt(collapsedHeight),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              in_: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
+              in: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
               onEnter: Js_null_undefined.from_opt(onEnter),
               onEntered: Js_null_undefined.from_opt(onEntered),
               onEntering: Js_null_undefined.from_opt(onEntering),
               onExit: Js_null_undefined.from_opt(onExit),
               onExiting: Js_null_undefined.from_opt(onExiting),
+              style: Js_null_undefined.from_opt(style),
+              theme: theme,
               timeout: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number") {
                             return unwrapValue(v);
@@ -2186,8 +2220,8 @@ function make$18(collapsedHeight, component, in_, onEnter, onEntered, onEntering
 var Collapse$1 = /* module */[
   /* timeoutShapeToJs */timeoutShapeToJs,
   /* timeoutShapeFromJs */timeoutShapeFromJs,
-  /* timeout_aToJs */timeout_aToJs,
-  /* timeout_aFromJs */timeout_aFromJs,
+  /* timeout_4ToJs */timeout_4ToJs,
+  /* timeout_4FromJs */timeout_4FromJs,
   /* Classes */Classes$15,
   /* make */make$18
 ];
@@ -2216,8 +2250,9 @@ var Classes$16 = /* module */[
   /* to_obj */to_obj$16
 ];
 
-function make$19(classes, children) {
+function make$19(className, classes, children) {
   return ReasonReact.wrapJsForReason(DialogActions.default, {
+              className: Js_null_undefined.from_opt(className),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$16, classes))
             }, children);
 }
@@ -2243,8 +2278,9 @@ var Classes$17 = /* module */[
   /* to_obj */to_obj$17
 ];
 
-function make$20(classes, children) {
+function make$20(className, classes, children) {
   return ReasonReact.wrapJsForReason(DialogContentText.default, {
+              className: Js_null_undefined.from_opt(className),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$17, classes))
             }, children);
 }
@@ -2270,8 +2306,9 @@ var Classes$18 = /* module */[
   /* to_obj */to_obj$18
 ];
 
-function make$21(classes, children) {
+function make$21(className, classes, children) {
   return ReasonReact.wrapJsForReason(DialogContent.default, {
+              className: Js_null_undefined.from_opt(className),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$18, classes))
             }, children);
 }
@@ -2297,8 +2334,9 @@ var Classes$19 = /* module */[
   /* to_obj */to_obj$19
 ];
 
-function make$22(disableTypography, classes, children) {
+function make$22(className, disableTypography, classes, children) {
   return ReasonReact.wrapJsForReason(DialogTitle.default, {
+              className: Js_null_undefined.from_opt(className),
               disableTypography: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTypography)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$19, classes))
             }, children);
@@ -2324,15 +2362,15 @@ var jsMapperConstantArray$8 = /* array */[
   ],
   /* tuple */[
     243049859,
-    "false"
+    "0"
   ]
 ];
 
-function maxWidth_vToJs(param) {
+function maxWidth_qToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$8);
 }
 
-function maxWidth_vFromJs(param) {
+function maxWidth_qFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$8, param);
 }
 
@@ -2382,13 +2420,14 @@ var Classes$20 = /* module */[
   /* to_obj */to_obj$20
 ];
 
-function make$23(disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWidth, maxWidth, onBackdropClick, onClose, onEnter, onEntered, onEntering, onEscapeKeyDown, onExit, onExited, onExiting, open_, paperProps, transition, transitionDuration, backdropComponent, backdropProps, container, disableAutoFocus, disableEnforceFocus, disableRestoreFocus, hideBackdrop, keepMounted, manager, onRendered, classes, children) {
+function make$23(className, disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWidth, maxWidth, onBackdropClick, onClose, onEnter, onEntered, onEntering, onEscapeKeyDown, onExit, onExited, onExiting, open_, paperProps, transition, transitionDuration, backdropComponent, backdropProps, container, disableAutoFocus, disableEnforceFocus, disableRestoreFocus, hideBackdrop, keepMounted, manager, onRendered, classes, children) {
   return ReasonReact.wrapJsForReason(Dialog.default, {
+              className: Js_null_undefined.from_opt(className),
               disableBackdropClick: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableBackdropClick)),
               disableEscapeKeyDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEscapeKeyDown)),
               fullScreen: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullScreen)),
               fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              maxWidth: Js_null_undefined.from_opt(optionMap(maxWidth_vToJs, maxWidth)),
+              maxWidth: Js_null_undefined.from_opt(optionMap(maxWidth_qToJs, maxWidth)),
               onBackdropClick: Js_null_undefined.from_opt(onBackdropClick),
               onClose: Js_null_undefined.from_opt(onClose),
               onEnter: Js_null_undefined.from_opt(onEnter),
@@ -2398,8 +2437,8 @@ function make$23(disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWid
               onExit: Js_null_undefined.from_opt(onExit),
               onExited: Js_null_undefined.from_opt(onExited),
               onExiting: Js_null_undefined.from_opt(onExiting),
-              open_: Js_boolean.to_js_boolean(open_),
-              paperProps: Js_null_undefined.from_opt(paperProps),
+              open: Js_boolean.to_js_boolean(open_),
+              PaperProps: Js_null_undefined.from_opt(paperProps),
               transition: Js_null_undefined.from_opt(optionMap(unwrapValue, transition)),
               transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number" || v[0] !== -908856609) {
@@ -2411,8 +2450,8 @@ function make$23(disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWid
                                       ]);
                           }
                         }), transitionDuration)),
-              backdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
-              backdropProps: Js_null_undefined.from_opt(backdropProps),
+              BackdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
+              BackdropProps: Js_null_undefined.from_opt(backdropProps),
               container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
               disableAutoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAutoFocus)),
               disableEnforceFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEnforceFocus)),
@@ -2426,8 +2465,8 @@ function make$23(disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWid
 }
 
 var Dialog$1 = /* module */[
-  /* maxWidth_vToJs */maxWidth_vToJs,
-  /* maxWidth_vFromJs */maxWidth_vFromJs,
+  /* maxWidth_qToJs */maxWidth_qToJs,
+  /* maxWidth_qFromJs */maxWidth_qFromJs,
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$1,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$1,
   /* Classes */Classes$20,
@@ -2462,9 +2501,10 @@ var Classes$21 = /* module */[
   /* to_obj */to_obj$21
 ];
 
-function make$24(absolute, component, inset, light, classes, children) {
+function make$24(absolute, className, component, inset, light, classes, children) {
   return ReasonReact.wrapJsForReason(Divider.default, {
               absolute: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, absolute)),
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               inset: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, inset)),
               light: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, light)),
@@ -2496,11 +2536,11 @@ var jsMapperConstantArray$9 = /* array */[
   ]
 ];
 
-function anchor_uToJs(param) {
+function anchor_oToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$9);
 }
 
-function anchor_uFromJs(param) {
+function anchor_oFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$9, param);
 }
 
@@ -2533,11 +2573,11 @@ var jsMapperConstantArray$10 = /* array */[
   ]
 ];
 
-function type__tToJs(param) {
+function type__pToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$10);
 }
 
-function type__tFromJs(param) {
+function type__pFromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$10, param);
 }
 
@@ -2581,14 +2621,16 @@ var Classes$22 = /* module */[
   /* to_obj */to_obj$22
 ];
 
-function make$25(anchor, elevation, modalProps, onClose, open_, slideProps, transitionDuration, type_, backdropComponent, backdropProps, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
+function make$25(anchor, className, elevation, modalProps, onClose, open_, slideProps, theme, transitionDuration, type_, backdropComponent, backdropProps, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
   return ReasonReact.wrapJsForReason(Drawer.default, {
-              anchor: Js_null_undefined.from_opt(optionMap(anchor_uToJs, anchor)),
+              anchor: Js_null_undefined.from_opt(optionMap(anchor_oToJs, anchor)),
+              className: Js_null_undefined.from_opt(className),
               elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              modalProps: Js_null_undefined.from_opt(modalProps),
+              ModalProps: Js_null_undefined.from_opt(modalProps),
               onClose: Js_null_undefined.from_opt(onClose),
-              open_: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
-              slideProps: Js_null_undefined.from_opt(slideProps),
+              open: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
+              SlideProps: Js_null_undefined.from_opt(slideProps),
+              theme: theme,
               transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number" || v[0] !== -908856609) {
                             return unwrapValue(v);
@@ -2599,9 +2641,9 @@ function make$25(anchor, elevation, modalProps, onClose, open_, slideProps, tran
                                       ]);
                           }
                         }), transitionDuration)),
-              type_: Js_null_undefined.from_opt(optionMap(type__tToJs, type_)),
-              backdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
-              backdropProps: Js_null_undefined.from_opt(backdropProps),
+              type: Js_null_undefined.from_opt(optionMap(type__pToJs, type_)),
+              BackdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
+              BackdropProps: Js_null_undefined.from_opt(backdropProps),
               container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
               disableAutoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAutoFocus)),
               disableBackdropClick: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableBackdropClick)),
@@ -2619,12 +2661,12 @@ function make$25(anchor, elevation, modalProps, onClose, open_, slideProps, tran
 }
 
 var Drawer$1 = /* module */[
-  /* anchor_uToJs */anchor_uToJs,
-  /* anchor_uFromJs */anchor_uFromJs,
+  /* anchor_oToJs */anchor_oToJs,
+  /* anchor_oFromJs */anchor_oFromJs,
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$2,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$2,
-  /* type__tToJs */type__tToJs,
-  /* type__tFromJs */type__tFromJs,
+  /* type__pToJs */type__pToJs,
+  /* type__pFromJs */type__pFromJs,
   /* Classes */Classes$22,
   /* make */make$25
 ];
@@ -2649,8 +2691,9 @@ var Classes$23 = /* module */[
   /* to_obj */to_obj$23
 ];
 
-function make$26(classes, children) {
+function make$26(className, classes, children) {
   return ReasonReact.wrapJsForReason(ExpansionPanelActions.default, {
+              className: Js_null_undefined.from_opt(className),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$23, classes))
             }, children);
 }
@@ -2676,8 +2719,9 @@ var Classes$24 = /* module */[
   /* to_obj */to_obj$24
 ];
 
-function make$27(classes, children) {
+function make$27(className, classes, children) {
   return ReasonReact.wrapJsForReason(ExpansionPanelDetails.default, {
+              className: Js_null_undefined.from_opt(className),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$24, classes))
             }, children);
 }
@@ -2721,8 +2765,9 @@ var Classes$25 = /* module */[
   /* to_obj */to_obj$25
 ];
 
-function make$28(disabled, expanded, expandIcon, onChange, onClick, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, classes, children) {
+function make$28(className, disabled, expanded, expandIcon, onChange, onClick, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
   return ReasonReact.wrapJsForReason(ExpansionPanelSummary.default, {
+              className: Js_null_undefined.from_opt(className),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               expanded: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, expanded)),
               expandIcon: Js_null_undefined.from_opt(expandIcon),
@@ -2745,6 +2790,9 @@ function make$28(disabled, expanded, expandIcon, onChange, onClick, buttonRef, c
               onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
               onTouchMove: Js_null_undefined.from_opt(onTouchMove),
               onTouchStart: Js_null_undefined.from_opt(onTouchStart),
+              role: Js_null_undefined.from_opt(role),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
+              type: Js_null_undefined.from_opt(type_),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$25, classes))
             }, children);
 }
@@ -2778,9 +2826,10 @@ var Classes$26 = /* module */[
   /* to_obj */to_obj$26
 ];
 
-function make$29(collapseProps, defaultExpanded, disabled, expanded, onChange, component, elevation, square, classes, children) {
+function make$29(className, collapseProps, defaultExpanded, disabled, expanded, onChange, component, elevation, square, classes, children) {
   return ReasonReact.wrapJsForReason(ExpansionPanel.default, {
-              collapseProps: Js_null_undefined.from_opt(collapseProps),
+              className: Js_null_undefined.from_opt(className),
+              CollapseProps: Js_null_undefined.from_opt(collapseProps),
               defaultExpanded: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, defaultExpanded)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               expanded: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, expanded)),
@@ -2811,12 +2860,15 @@ function timeoutShapeFromJs$1(param) {
         ];
 }
 
-function make$30(in_, onEnter, onEntering, onExit, timeout, children) {
+function make$30(appear, in_, onEnter, onEntering, onExit, style, theme, timeout, children) {
   return ReasonReact.wrapJsForReason(Fade.default, {
-              in_: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
+              appear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, appear)),
+              in: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
               onEnter: Js_null_undefined.from_opt(onEnter),
               onEntering: Js_null_undefined.from_opt(onEntering),
               onExit: Js_null_undefined.from_opt(onExit),
+              style: Js_null_undefined.from_opt(style),
+              theme: theme,
               timeout: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number" || v[0] !== -908856609) {
                             return unwrapValue(v);
@@ -2860,9 +2912,10 @@ var Classes$27 = /* module */[
   /* to_obj */to_obj$27
 ];
 
-function make$31(checked, control, disabled, inputRef, label, name, onChange, value, classes, children) {
+function make$31(checked, className, control, disabled, inputRef, label, name, onChange, value, classes, children) {
   return ReasonReact.wrapJsForReason(FormControlLabel.default, {
               checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
+              className: Js_null_undefined.from_opt(className),
               control: Js_null_undefined.from_opt(control),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               inputRef: Js_null_undefined.from_opt(inputRef),
@@ -2894,11 +2947,11 @@ var jsMapperConstantArray$11 = /* array */[
   ]
 ];
 
-function margin_qToJs(param) {
+function margin_rToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$11);
 }
 
-function margin_qFromJs(param) {
+function margin_rFromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$11, param);
 }
 
@@ -2928,13 +2981,14 @@ var Classes$28 = /* module */[
   /* to_obj */to_obj$28
 ];
 
-function make$32(component, disabled, error, fullWidth, margin, onBlur, onFocus, required, classes, children) {
+function make$32(className, component, disabled, error, fullWidth, margin, onBlur, onFocus, required, classes, children) {
   return ReasonReact.wrapJsForReason(FormControl.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
               fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              margin: Js_null_undefined.from_opt(optionMap(margin_qToJs, margin)),
+              margin: Js_null_undefined.from_opt(optionMap(margin_rToJs, margin)),
               onBlur: Js_null_undefined.from_opt(onBlur),
               onFocus: Js_null_undefined.from_opt(onFocus),
               required: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, required)),
@@ -2943,8 +2997,8 @@ function make$32(component, disabled, error, fullWidth, margin, onBlur, onFocus,
 }
 
 var FormControl$1 = /* module */[
-  /* margin_qToJs */margin_qToJs,
-  /* margin_qFromJs */margin_qFromJs,
+  /* margin_rToJs */margin_rToJs,
+  /* margin_rFromJs */margin_rFromJs,
   /* Classes */Classes$28,
   /* make */make$32
 ];
@@ -2969,8 +3023,9 @@ var Classes$29 = /* module */[
   /* to_obj */to_obj$29
 ];
 
-function make$33(row, classes, children) {
+function make$33(className, row, classes, children) {
   return ReasonReact.wrapJsForReason(FormGroup.default, {
+              className: Js_null_undefined.from_opt(className),
               row: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, row)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$29, classes))
             }, children);
@@ -2986,11 +3041,11 @@ var jsMapperConstantArray$12 = /* array */[/* tuple */[
     "dense"
   ]];
 
-function margin_2ToJs(param) {
+function margin_bToJs(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$12);
 }
 
-function margin_2FromJs(param) {
+function margin_bFromJs(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$12, param);
 }
 
@@ -3020,19 +3075,20 @@ var Classes$30 = /* module */[
   /* to_obj */to_obj$30
 ];
 
-function make$34(component, disabled, error, margin, classes, children) {
+function make$34(className, component, disabled, error, margin, classes, children) {
   return ReasonReact.wrapJsForReason(FormHelperText.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
-              margin: Js_null_undefined.from_opt(optionMap(margin_2ToJs, margin)),
+              margin: Js_null_undefined.from_opt(optionMap(margin_bToJs, margin)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$30, classes))
             }, children);
 }
 
 var FormHelperText$1 = /* module */[
-  /* margin_2ToJs */margin_2ToJs,
-  /* margin_2FromJs */margin_2FromJs,
+  /* margin_bToJs */margin_bToJs,
+  /* margin_bFromJs */margin_bFromJs,
   /* Classes */Classes$30,
   /* make */make$34
 ];
@@ -3063,8 +3119,9 @@ var Classes$31 = /* module */[
   /* to_obj */to_obj$31
 ];
 
-function make$35(component, disabled, error, focused, required, classes, children) {
+function make$35(className, component, disabled, error, focused, required, classes, children) {
   return ReasonReact.wrapJsForReason(FormLabel.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
@@ -3090,11 +3147,11 @@ var jsMapperConstantArray$13 = /* array */[
   ]
 ];
 
-function actionPosition_oToJs(param) {
+function actionPosition_0ToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$13);
 }
 
-function actionPosition_oFromJs(param) {
+function actionPosition_0FromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$13, param);
 }
 
@@ -3157,10 +3214,11 @@ var Classes$32 = /* module */[
   /* to_obj */to_obj$32
 ];
 
-function make$36(actionIcon, actionPosition, subtitle, title, titlePosition, classes, children) {
+function make$36(actionIcon, actionPosition, className, subtitle, title, titlePosition, classes, children) {
   return ReasonReact.wrapJsForReason(GridListTileBar.default, {
               actionIcon: Js_null_undefined.from_opt(actionIcon),
-              actionPosition: Js_null_undefined.from_opt(optionMap(actionPosition_oToJs, actionPosition)),
+              actionPosition: Js_null_undefined.from_opt(optionMap(actionPosition_0ToJs, actionPosition)),
+              className: Js_null_undefined.from_opt(className),
               subtitle: Js_null_undefined.from_opt(subtitle),
               title: Js_null_undefined.from_opt(title),
               titlePosition: Js_null_undefined.from_opt(optionMap(titlePosition_xToJs, titlePosition)),
@@ -3169,8 +3227,8 @@ function make$36(actionIcon, actionPosition, subtitle, title, titlePosition, cla
 }
 
 var GridListTileBar$1 = /* module */[
-  /* actionPosition_oToJs */actionPosition_oToJs,
-  /* actionPosition_oFromJs */actionPosition_oFromJs,
+  /* actionPosition_0ToJs */actionPosition_0ToJs,
+  /* actionPosition_0FromJs */actionPosition_0FromJs,
   /* titlePosition_xToJs */titlePosition_xToJs,
   /* titlePosition_xFromJs */titlePosition_xFromJs,
   /* Classes */Classes$32,
@@ -3203,8 +3261,9 @@ var Classes$33 = /* module */[
   /* to_obj */to_obj$33
 ];
 
-function make$37(cols, component, rows, classes, children) {
+function make$37(className, cols, component, rows, classes, children) {
   return ReasonReact.wrapJsForReason(GridListTile.default, {
+              className: Js_null_undefined.from_opt(className),
               cols: Js_null_undefined.from_opt(optionMap(unwrapValue, cols)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               rows: Js_null_undefined.from_opt(optionMap(unwrapValue, rows)),
@@ -3222,11 +3281,11 @@ var jsMapperConstantArray$15 = /* array */[/* tuple */[
     "auto"
   ]];
 
-function cellHeight_gToJs(param) {
+function cellHeight_zToJs(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$15);
 }
 
-function cellHeight_gFromJs(param) {
+function cellHeight_zFromJs(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$15, param);
 }
 
@@ -3246,7 +3305,7 @@ var Classes$34 = /* module */[
   /* to_obj */to_obj$34
 ];
 
-function make$38(cellHeight, cols, component, spacing, classes, children) {
+function make$38(cellHeight, className, cols, component, spacing, style, classes, children) {
   return ReasonReact.wrapJsForReason(GridList.default, {
               cellHeight: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number" || v[0] !== 770676513) {
@@ -3258,16 +3317,18 @@ function make$38(cellHeight, cols, component, spacing, classes, children) {
                                       ]);
                           }
                         }), cellHeight)),
+              className: Js_null_undefined.from_opt(className),
               cols: Js_null_undefined.from_opt(optionMap(unwrapValue, cols)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               spacing: Js_null_undefined.from_opt(optionMap(unwrapValue, spacing)),
+              style: Js_null_undefined.from_opt(style),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$34, classes))
             }, children);
 }
 
 var GridList$1 = /* module */[
-  /* cellHeight_gToJs */cellHeight_gToJs,
-  /* cellHeight_gFromJs */cellHeight_gFromJs,
+  /* cellHeight_zToJs */cellHeight_zToJs,
+  /* cellHeight_zFromJs */cellHeight_zFromJs,
   /* Classes */Classes$34,
   /* make */make$38
 ];
@@ -3299,11 +3360,11 @@ var jsMapperConstantArray$16 = /* array */[
   ]
 ];
 
-function alignContent_lToJs(param) {
+function alignContent_pToJs(param) {
   return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$16);
 }
 
-function alignContent_lFromJs(param) {
+function alignContent_pFromJs(param) {
   return Js_mapperRt.revSearch(6, jsMapperConstantArray$16, param);
 }
 
@@ -3330,11 +3391,11 @@ var jsMapperConstantArray$17 = /* array */[
   ]
 ];
 
-function alignItems_kToJs(param) {
+function alignItems_2ToJs(param) {
   return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$17);
 }
 
-function alignItems_kFromJs(param) {
+function alignItems_2FromJs(param) {
   return Js_mapperRt.revSearch(5, jsMapperConstantArray$17, param);
 }
 
@@ -3357,11 +3418,11 @@ var jsMapperConstantArray$18 = /* array */[
   ]
 ];
 
-function direction_yToJs(param) {
+function direction_vToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$18);
 }
 
-function direction_yFromJs(param) {
+function direction_vFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$18, param);
 }
 
@@ -3388,232 +3449,100 @@ var jsMapperConstantArray$19 = /* array */[
   ]
 ];
 
-function justify_bToJs(param) {
+function justify_gToJs(param) {
   return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$19);
 }
 
-function justify_bFromJs(param) {
+function justify_gFromJs(param) {
   return Js_mapperRt.revSearch(5, jsMapperConstantArray$19, param);
 }
 
 var jsMapperConstantArray$20 = /* array */[
-  /* tuple */[
-    19227,
-    "1"
-  ],
-  /* tuple */[
-    19228,
-    "2"
-  ],
-  /* tuple */[
-    19229,
-    "3"
-  ],
-  /* tuple */[
-    19230,
-    "4"
-  ],
-  /* tuple */[
-    19231,
-    "5"
-  ],
-  /* tuple */[
-    19232,
-    "6"
-  ],
-  /* tuple */[
-    19233,
-    "7"
-  ],
-  /* tuple */[
-    19234,
-    "8"
-  ],
-  /* tuple */[
-    19235,
-    "9"
-  ],
-  /* tuple */[
-    4287669,
-    "10"
-  ],
-  /* tuple */[
-    4287670,
-    "11"
-  ],
-  /* tuple */[
-    4287671,
-    "12"
-  ],
-  /* tuple */[
-    937218926,
-    "true"
-  ]
+  1,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12
 ];
 
-function lg_4ToJs(param) {
-  return Js_mapperRt.binSearch(13, param, jsMapperConstantArray$20);
+function lg_dToJs(param) {
+  return Js_mapperRt.toInt(param, jsMapperConstantArray$20);
 }
 
-function lg_4FromJs(param) {
-  return Js_mapperRt.revSearch(13, jsMapperConstantArray$20, param);
+function lg_dFromJs(param) {
+  return Js_mapperRt.fromInt(13, jsMapperConstantArray$20, param);
 }
 
 var jsMapperConstantArray$21 = /* array */[
-  /* tuple */[
-    19227,
-    "1"
-  ],
-  /* tuple */[
-    19228,
-    "2"
-  ],
-  /* tuple */[
-    19229,
-    "3"
-  ],
-  /* tuple */[
-    19230,
-    "4"
-  ],
-  /* tuple */[
-    19231,
-    "5"
-  ],
-  /* tuple */[
-    19232,
-    "6"
-  ],
-  /* tuple */[
-    19233,
-    "7"
-  ],
-  /* tuple */[
-    19234,
-    "8"
-  ],
-  /* tuple */[
-    19235,
-    "9"
-  ],
-  /* tuple */[
-    4287669,
-    "10"
-  ],
-  /* tuple */[
-    4287670,
-    "11"
-  ],
-  /* tuple */[
-    4287671,
-    "12"
-  ],
-  /* tuple */[
-    937218926,
-    "true"
-  ]
+  1,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12
 ];
 
-function md_zToJs(param) {
-  return Js_mapperRt.binSearch(13, param, jsMapperConstantArray$21);
+function md_cToJs(param) {
+  return Js_mapperRt.toInt(param, jsMapperConstantArray$21);
 }
 
-function md_zFromJs(param) {
-  return Js_mapperRt.revSearch(13, jsMapperConstantArray$21, param);
+function md_cFromJs(param) {
+  return Js_mapperRt.fromInt(13, jsMapperConstantArray$21, param);
 }
 
 var jsMapperConstantArray$22 = /* array */[
-  /* tuple */[
-    19227,
-    "1"
-  ],
-  /* tuple */[
-    19228,
-    "2"
-  ],
-  /* tuple */[
-    19229,
-    "3"
-  ],
-  /* tuple */[
-    19230,
-    "4"
-  ],
-  /* tuple */[
-    19231,
-    "5"
-  ],
-  /* tuple */[
-    19232,
-    "6"
-  ],
-  /* tuple */[
-    19233,
-    "7"
-  ],
-  /* tuple */[
-    19234,
-    "8"
-  ],
-  /* tuple */[
-    19235,
-    "9"
-  ],
-  /* tuple */[
-    4287669,
-    "10"
-  ],
-  /* tuple */[
-    4287670,
-    "11"
-  ],
-  /* tuple */[
-    4287671,
-    "12"
-  ],
-  /* tuple */[
-    937218926,
-    "true"
-  ]
+  1,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12
 ];
 
-function sm_rToJs(param) {
-  return Js_mapperRt.binSearch(13, param, jsMapperConstantArray$22);
+function sm_mToJs(param) {
+  return Js_mapperRt.toInt(param, jsMapperConstantArray$22);
 }
 
-function sm_rFromJs(param) {
-  return Js_mapperRt.revSearch(13, jsMapperConstantArray$22, param);
+function sm_mFromJs(param) {
+  return Js_mapperRt.fromInt(13, jsMapperConstantArray$22, param);
 }
 
 var jsMapperConstantArray$23 = /* array */[
-  /* tuple */[
-    19226,
-    "0"
-  ],
-  /* tuple */[
-    19234,
-    "8"
-  ],
-  /* tuple */[
-    4287675,
-    "16"
-  ],
-  /* tuple */[
-    4287896,
-    "24"
-  ],
-  /* tuple */[
-    4288338,
-    "40"
-  ]
+  0,
+  8,
+  16,
+  24,
+  40
 ];
 
-function spacing_2ToJs(param) {
-  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$23);
+function spacing_iToJs(param) {
+  return Js_mapperRt.toInt(param, jsMapperConstantArray$23);
 }
 
-function spacing_2FromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$23, param);
+function spacing_iFromJs(param) {
+  return Js_mapperRt.fromInt(5, jsMapperConstantArray$23, param);
 }
 
 var jsMapperConstantArray$24 = /* array */[
@@ -3631,138 +3560,60 @@ var jsMapperConstantArray$24 = /* array */[
   ]
 ];
 
-function wrap_4ToJs(param) {
+function wrap_1ToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$24);
 }
 
-function wrap_4FromJs(param) {
+function wrap_1FromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$24, param);
 }
 
 var jsMapperConstantArray$25 = /* array */[
-  /* tuple */[
-    19227,
-    "1"
-  ],
-  /* tuple */[
-    19228,
-    "2"
-  ],
-  /* tuple */[
-    19229,
-    "3"
-  ],
-  /* tuple */[
-    19230,
-    "4"
-  ],
-  /* tuple */[
-    19231,
-    "5"
-  ],
-  /* tuple */[
-    19232,
-    "6"
-  ],
-  /* tuple */[
-    19233,
-    "7"
-  ],
-  /* tuple */[
-    19234,
-    "8"
-  ],
-  /* tuple */[
-    19235,
-    "9"
-  ],
-  /* tuple */[
-    4287669,
-    "10"
-  ],
-  /* tuple */[
-    4287670,
-    "11"
-  ],
-  /* tuple */[
-    4287671,
-    "12"
-  ],
-  /* tuple */[
-    937218926,
-    "true"
-  ]
+  1,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12
 ];
 
-function xl_nToJs(param) {
-  return Js_mapperRt.binSearch(13, param, jsMapperConstantArray$25);
+function xl_dToJs(param) {
+  return Js_mapperRt.toInt(param, jsMapperConstantArray$25);
 }
 
-function xl_nFromJs(param) {
-  return Js_mapperRt.revSearch(13, jsMapperConstantArray$25, param);
+function xl_dFromJs(param) {
+  return Js_mapperRt.fromInt(13, jsMapperConstantArray$25, param);
 }
 
 var jsMapperConstantArray$26 = /* array */[
-  /* tuple */[
-    19227,
-    "1"
-  ],
-  /* tuple */[
-    19228,
-    "2"
-  ],
-  /* tuple */[
-    19229,
-    "3"
-  ],
-  /* tuple */[
-    19230,
-    "4"
-  ],
-  /* tuple */[
-    19231,
-    "5"
-  ],
-  /* tuple */[
-    19232,
-    "6"
-  ],
-  /* tuple */[
-    19233,
-    "7"
-  ],
-  /* tuple */[
-    19234,
-    "8"
-  ],
-  /* tuple */[
-    19235,
-    "9"
-  ],
-  /* tuple */[
-    4287669,
-    "10"
-  ],
-  /* tuple */[
-    4287670,
-    "11"
-  ],
-  /* tuple */[
-    4287671,
-    "12"
-  ],
-  /* tuple */[
-    937218926,
-    "true"
-  ]
+  1,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12
 ];
 
-function xs_zToJs(param) {
-  return Js_mapperRt.binSearch(13, param, jsMapperConstantArray$26);
+function xs_nToJs(param) {
+  return Js_mapperRt.toInt(param, jsMapperConstantArray$26);
 }
 
-function xs_zFromJs(param) {
-  return Js_mapperRt.revSearch(13, jsMapperConstantArray$26, param);
+function xs_nFromJs(param) {
+  return Js_mapperRt.fromInt(13, jsMapperConstantArray$26, param);
 }
 
 function to_string$35(param) {
@@ -3859,51 +3710,52 @@ var Classes$35 = /* module */[
   /* to_obj */to_obj$35
 ];
 
-function make$39(alignContent, alignItems, component, container, direction, hidden, item, justify, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth, classes, children) {
+function make$39(alignContent, alignItems, className, component, container, direction, hidden, item, justify, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth, classes, children) {
   return ReasonReact.wrapJsForReason(Grid.default, {
-              alignContent: Js_null_undefined.from_opt(optionMap(alignContent_lToJs, alignContent)),
-              alignItems: Js_null_undefined.from_opt(optionMap(alignItems_kToJs, alignItems)),
+              alignContent: Js_null_undefined.from_opt(optionMap(alignContent_pToJs, alignContent)),
+              alignItems: Js_null_undefined.from_opt(optionMap(alignItems_2ToJs, alignItems)),
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               container: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, container)),
-              direction: Js_null_undefined.from_opt(optionMap(direction_yToJs, direction)),
+              direction: Js_null_undefined.from_opt(optionMap(direction_vToJs, direction)),
               hidden: Js_null_undefined.from_opt(hidden),
               item: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, item)),
-              justify: Js_null_undefined.from_opt(optionMap(justify_bToJs, justify)),
-              lg: Js_null_undefined.from_opt(optionMap(lg_4ToJs, lg)),
-              md: Js_null_undefined.from_opt(optionMap(md_zToJs, md)),
-              sm: Js_null_undefined.from_opt(optionMap(sm_rToJs, sm)),
-              spacing: Js_null_undefined.from_opt(optionMap(spacing_2ToJs, spacing)),
-              wrap: Js_null_undefined.from_opt(optionMap(wrap_4ToJs, wrap)),
-              xl: Js_null_undefined.from_opt(optionMap(xl_nToJs, xl)),
-              xs: Js_null_undefined.from_opt(optionMap(xs_zToJs, xs)),
+              justify: Js_null_undefined.from_opt(optionMap(justify_gToJs, justify)),
+              lg: Js_null_undefined.from_opt(optionMap(lg_dToJs, lg)),
+              md: Js_null_undefined.from_opt(optionMap(md_cToJs, md)),
+              sm: Js_null_undefined.from_opt(optionMap(sm_mToJs, sm)),
+              spacing: Js_null_undefined.from_opt(optionMap(spacing_iToJs, spacing)),
+              wrap: Js_null_undefined.from_opt(optionMap(wrap_1ToJs, wrap)),
+              xl: Js_null_undefined.from_opt(optionMap(xl_dToJs, xl)),
+              xs: Js_null_undefined.from_opt(optionMap(xs_nToJs, xs)),
               zeroMinWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, zeroMinWidth)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$35, classes))
             }, children);
 }
 
 var Grid$1 = /* module */[
-  /* alignContent_lToJs */alignContent_lToJs,
-  /* alignContent_lFromJs */alignContent_lFromJs,
-  /* alignItems_kToJs */alignItems_kToJs,
-  /* alignItems_kFromJs */alignItems_kFromJs,
-  /* direction_yToJs */direction_yToJs,
-  /* direction_yFromJs */direction_yFromJs,
-  /* justify_bToJs */justify_bToJs,
-  /* justify_bFromJs */justify_bFromJs,
-  /* lg_4ToJs */lg_4ToJs,
-  /* lg_4FromJs */lg_4FromJs,
-  /* md_zToJs */md_zToJs,
-  /* md_zFromJs */md_zFromJs,
-  /* sm_rToJs */sm_rToJs,
-  /* sm_rFromJs */sm_rFromJs,
-  /* spacing_2ToJs */spacing_2ToJs,
-  /* spacing_2FromJs */spacing_2FromJs,
-  /* wrap_4ToJs */wrap_4ToJs,
-  /* wrap_4FromJs */wrap_4FromJs,
-  /* xl_nToJs */xl_nToJs,
-  /* xl_nFromJs */xl_nFromJs,
-  /* xs_zToJs */xs_zToJs,
-  /* xs_zFromJs */xs_zFromJs,
+  /* alignContent_pToJs */alignContent_pToJs,
+  /* alignContent_pFromJs */alignContent_pFromJs,
+  /* alignItems_2ToJs */alignItems_2ToJs,
+  /* alignItems_2FromJs */alignItems_2FromJs,
+  /* direction_vToJs */direction_vToJs,
+  /* direction_vFromJs */direction_vFromJs,
+  /* justify_gToJs */justify_gToJs,
+  /* justify_gFromJs */justify_gFromJs,
+  /* lg_dToJs */lg_dToJs,
+  /* lg_dFromJs */lg_dFromJs,
+  /* md_cToJs */md_cToJs,
+  /* md_cFromJs */md_cFromJs,
+  /* sm_mToJs */sm_mToJs,
+  /* sm_mFromJs */sm_mFromJs,
+  /* spacing_iToJs */spacing_iToJs,
+  /* spacing_iFromJs */spacing_iFromJs,
+  /* wrap_1ToJs */wrap_1ToJs,
+  /* wrap_1FromJs */wrap_1FromJs,
+  /* xl_dToJs */xl_dToJs,
+  /* xl_dFromJs */xl_dFromJs,
+  /* xs_nToJs */xs_nToJs,
+  /* xs_nFromJs */xs_nFromJs,
   /* Classes */Classes$35,
   /* make */make$39
 ];
@@ -3927,11 +3779,11 @@ var jsMapperConstantArray$27 = /* array */[/* tuple */[
     "auto"
   ]];
 
-function timeout_pToJs(param) {
+function timeout_3ToJs(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$27);
 }
 
-function timeout_pFromJs(param) {
+function timeout_3FromJs(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$27, param);
 }
 
@@ -3957,15 +3809,18 @@ function transitionClassesShapeFromJs(param) {
         ];
 }
 
-function make$40(in_, onEnter, onEntered, onEntering, onExit, onExited, onExiting, timeout, transitionClasses, children) {
+function make$40(appear, in_, onEnter, onEntered, onEntering, onExit, onExited, onExiting, style, theme, timeout, transitionClasses, children) {
   return ReasonReact.wrapJsForReason(Grow.default, {
-              in_: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
+              appear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, appear)),
+              in: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
               onEnter: Js_null_undefined.from_opt(onEnter),
               onEntered: Js_null_undefined.from_opt(onEntered),
               onEntering: Js_null_undefined.from_opt(onEntering),
               onExit: Js_null_undefined.from_opt(onExit),
               onExited: Js_null_undefined.from_opt(onExited),
               onExiting: Js_null_undefined.from_opt(onExiting),
+              style: Js_null_undefined.from_opt(style),
+              theme: theme,
               timeout: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number") {
                             return unwrapValue(v);
@@ -3995,8 +3850,8 @@ function make$40(in_, onEnter, onEntered, onEntering, onExit, onExited, onExitin
 var Grow$1 = /* module */[
   /* timeoutShapeToJs */timeoutShapeToJs$2,
   /* timeoutShapeFromJs */timeoutShapeFromJs$2,
-  /* timeout_pToJs */timeout_pToJs,
-  /* timeout_pFromJs */timeout_pFromJs,
+  /* timeout_3ToJs */timeout_3ToJs,
+  /* timeout_3FromJs */timeout_3FromJs,
   /* transitionClassesShapeToJs */transitionClassesShapeToJs,
   /* transitionClassesShapeFromJs */transitionClassesShapeFromJs,
   /* make */make$40
@@ -4013,11 +3868,11 @@ var jsMapperConstantArray$28 = /* array */[
   ]
 ];
 
-function implementation_lToJs(param) {
+function implementation_bToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$28);
 }
 
-function implementation_lFromJs(param) {
+function implementation_bFromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$28, param);
 }
 
@@ -4044,11 +3899,11 @@ var jsMapperConstantArray$29 = /* array */[
   ]
 ];
 
-function initialWidth_gToJs(param) {
+function initialWidth_xToJs(param) {
   return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$29);
 }
 
-function initialWidth_gFromJs(param) {
+function initialWidth_xFromJs(param) {
   return Js_mapperRt.revSearch(5, jsMapperConstantArray$29, param);
 }
 
@@ -4075,11 +3930,11 @@ var jsMapperConstantArray$30 = /* array */[
   ]
 ];
 
-function only_lToJs(param) {
+function only_fToJs(param) {
   return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$30);
 }
 
-function only_lFromJs(param) {
+function only_fFromJs(param) {
   return Js_mapperRt.revSearch(5, jsMapperConstantArray$30, param);
 }
 
@@ -4106,18 +3961,19 @@ var jsMapperConstantArray$31 = /* array */[
   ]
 ];
 
-function only_hToJs(param) {
+function only_2ToJs(param) {
   return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$31);
 }
 
-function only_hFromJs(param) {
+function only_2FromJs(param) {
   return Js_mapperRt.revSearch(5, jsMapperConstantArray$31, param);
 }
 
-function make$41(implementation, initialWidth, lgDown, lgUp, mdDown, mdUp, only, smDown, smUp, xlDown, xlUp, xsDown, xsUp, children) {
+function make$41(className, implementation, initialWidth, lgDown, lgUp, mdDown, mdUp, only, smDown, smUp, xlDown, xlUp, xsDown, xsUp, children) {
   return ReasonReact.wrapJsForReason(Hidden.default, {
-              implementation: Js_null_undefined.from_opt(optionMap(implementation_lToJs, implementation)),
-              initialWidth: Js_null_undefined.from_opt(optionMap(initialWidth_gToJs, initialWidth)),
+              className: Js_null_undefined.from_opt(className),
+              implementation: Js_null_undefined.from_opt(optionMap(implementation_bToJs, implementation)),
+              initialWidth: Js_null_undefined.from_opt(optionMap(initialWidth_xToJs, initialWidth)),
               lgDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, lgDown)),
               lgUp: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, lgUp)),
               mdDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, mdDown)),
@@ -4126,7 +3982,7 @@ function make$41(implementation, initialWidth, lgDown, lgUp, mdDown, mdUp, only,
                           if (param[0] >= 1034997432) {
                             return unwrapValue(/* `Element */[
                                         -744106340,
-                                        $$Array.map(only_hToJs, param[1])
+                                        $$Array.map(only_2ToJs, param[1])
                                       ]);
                           } else {
                             return unwrapValue(/* `String */[
@@ -4145,14 +4001,14 @@ function make$41(implementation, initialWidth, lgDown, lgUp, mdDown, mdUp, only,
 }
 
 var Hidden$1 = /* module */[
-  /* implementation_lToJs */implementation_lToJs,
-  /* implementation_lFromJs */implementation_lFromJs,
-  /* initialWidth_gToJs */initialWidth_gToJs,
-  /* initialWidth_gFromJs */initialWidth_gFromJs,
-  /* only_lToJs */only_lToJs,
-  /* only_lFromJs */only_lFromJs,
-  /* only_hToJs */only_hToJs,
-  /* only_hFromJs */only_hFromJs,
+  /* implementation_bToJs */implementation_bToJs,
+  /* implementation_bFromJs */implementation_bFromJs,
+  /* initialWidth_xToJs */initialWidth_xToJs,
+  /* initialWidth_xFromJs */initialWidth_xFromJs,
+  /* only_fToJs */only_fToJs,
+  /* only_fFromJs */only_fFromJs,
+  /* only_2ToJs */only_2ToJs,
+  /* only_2FromJs */only_2FromJs,
   /* make */make$41
 ];
 
@@ -4175,11 +4031,11 @@ var jsMapperConstantArray$32 = /* array */[
   ]
 ];
 
-function color_qToJs(param) {
+function color_jToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$32);
 }
 
-function color_qFromJs(param) {
+function color_jFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$32, param);
 }
 
@@ -4213,9 +4069,10 @@ var Classes$36 = /* module */[
   /* to_obj */to_obj$36
 ];
 
-function make$42(color, disabled, disableRipple, buttonRef, centerRipple, component, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, classes, children) {
+function make$42(className, color, disabled, disableRipple, buttonRef, centerRipple, component, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
   return ReasonReact.wrapJsForReason(IconButton.default, {
-              color: Js_null_undefined.from_opt(optionMap(color_qToJs, color)),
+              className: Js_null_undefined.from_opt(className),
+              color: Js_null_undefined.from_opt(optionMap(color_jToJs, color)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
               buttonRef: Js_null_undefined.from_opt(buttonRef),
@@ -4235,13 +4092,16 @@ function make$42(color, disabled, disableRipple, buttonRef, centerRipple, compon
               onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
               onTouchMove: Js_null_undefined.from_opt(onTouchMove),
               onTouchStart: Js_null_undefined.from_opt(onTouchStart),
+              role: Js_null_undefined.from_opt(role),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
+              type: Js_null_undefined.from_opt(type_),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$36, classes))
             }, children);
 }
 
 var IconButton$1 = /* module */[
-  /* color_qToJs */color_qToJs,
-  /* color_qFromJs */color_qFromJs,
+  /* color_jToJs */color_jToJs,
+  /* color_jFromJs */color_jFromJs,
   /* Classes */Classes$36,
   /* make */make$42
 ];
@@ -4273,11 +4133,11 @@ var jsMapperConstantArray$33 = /* array */[
   ]
 ];
 
-function color_4ToJs(param) {
+function color_oToJs(param) {
   return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$33);
 }
 
-function color_4FromJs(param) {
+function color_oFromJs(param) {
   return Js_mapperRt.revSearch(6, jsMapperConstantArray$33, param);
 }
 
@@ -4313,17 +4173,18 @@ var Classes$37 = /* module */[
   /* to_obj */to_obj$37
 ];
 
-function make$43(color, fontSize, classes, children) {
+function make$43(className, color, fontSize, classes, children) {
   return ReasonReact.wrapJsForReason(Icon.default, {
-              color: Js_null_undefined.from_opt(optionMap(color_4ToJs, color)),
+              className: Js_null_undefined.from_opt(className),
+              color: Js_null_undefined.from_opt(optionMap(color_oToJs, color)),
               fontSize: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fontSize)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$37, classes))
             }, children);
 }
 
 var Icon$1 = /* module */[
-  /* color_4ToJs */color_4ToJs,
-  /* color_4FromJs */color_4FromJs,
+  /* color_oToJs */color_oToJs,
+  /* color_oFromJs */color_oFromJs,
   /* Classes */Classes$37,
   /* make */make$43
 ];
@@ -4339,11 +4200,11 @@ var jsMapperConstantArray$34 = /* array */[
   ]
 ];
 
-function position_vToJs(param) {
+function position_eToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$34);
 }
 
-function position_vFromJs(param) {
+function position_eFromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$34, param);
 }
 
@@ -4371,18 +4232,19 @@ var Classes$38 = /* module */[
   /* to_obj */to_obj$38
 ];
 
-function make$44(component, disableTypography, position, classes, children) {
+function make$44(className, component, disableTypography, position, classes, children) {
   return ReasonReact.wrapJsForReason(InputAdornment.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               disableTypography: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTypography)),
-              position: Js_null_undefined.from_opt(optionMap(position_vToJs, position)),
+              position: Js_null_undefined.from_opt(optionMap(position_eToJs, position)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$38, classes))
             }, children);
 }
 
 var InputAdornment$1 = /* module */[
-  /* position_vToJs */position_vToJs,
-  /* position_vFromJs */position_vFromJs,
+  /* position_eToJs */position_eToJs,
+  /* position_eFromJs */position_eFromJs,
   /* Classes */Classes$38,
   /* make */make$44
 ];
@@ -4392,11 +4254,11 @@ var jsMapperConstantArray$35 = /* array */[/* tuple */[
     "dense"
   ]];
 
-function margin_4ToJs(param) {
+function margin_tToJs(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$35);
 }
 
-function margin_4FromJs(param) {
+function margin_tFromJs(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$35, param);
 }
 
@@ -4430,14 +4292,15 @@ var Classes$39 = /* module */[
   /* to_obj */to_obj$39
 ];
 
-function make$45(disableAnimation, disabled, error, focused, formControlClasses, margin, required, shrink, classes, children) {
+function make$45(className, disableAnimation, disabled, error, focused, formControlClasses, margin, required, shrink, classes, children) {
   return ReasonReact.wrapJsForReason(InputLabel.default, {
+              className: Js_null_undefined.from_opt(className),
               disableAnimation: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAnimation)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
               focused: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focused)),
-              formControlClasses: Js_null_undefined.from_opt(formControlClasses),
-              margin: Js_null_undefined.from_opt(optionMap(margin_4ToJs, margin)),
+              FormControlClasses: Js_null_undefined.from_opt(formControlClasses),
+              margin: Js_null_undefined.from_opt(optionMap(margin_tToJs, margin)),
               required: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, required)),
               shrink: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, shrink)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$39, classes))
@@ -4445,8 +4308,8 @@ function make$45(disableAnimation, disabled, error, focused, formControlClasses,
 }
 
 var InputLabel$1 = /* module */[
-  /* margin_4ToJs */margin_4ToJs,
-  /* margin_4FromJs */margin_4FromJs,
+  /* margin_tToJs */margin_tToJs,
+  /* margin_tFromJs */margin_tFromJs,
   /* Classes */Classes$39,
   /* make */make$45
 ];
@@ -4462,11 +4325,11 @@ var jsMapperConstantArray$36 = /* array */[
   ]
 ];
 
-function margin_zToJs(param) {
+function margin_eToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$36);
 }
 
-function margin_zFromJs(param) {
+function margin_eFromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$36, param);
 }
 
@@ -4518,7 +4381,7 @@ var Classes$40 = /* module */[
   /* to_obj */to_obj$40
 ];
 
-function make$46(autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputProps, inputRef, margin, multiline, name, onBlur, onChange, onClean, onDirty, onFocus, onKeyDown, onKeyUp, placeholder, rows, rowsMax, startAdornment, type_, value, classes, children) {
+function make$46(autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputProps, inputRef, margin, multiline, name, onBlur, onChange, onClean, onDirty, onFocus, onKeyDown, onKeyUp, placeholder, readOnly, rows, rowsMax, startAdornment, type_, value, classes, children) {
   return ReasonReact.wrapJsForReason(Input.default, {
               autoComplete: Js_null_undefined.from_opt(autoComplete),
               autoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, autoFocus)),
@@ -4533,7 +4396,7 @@ function make$46(autoComplete, autoFocus, className, defaultValue, disabled, dis
               inputComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, inputComponent)),
               inputProps: Js_null_undefined.from_opt(inputProps),
               inputRef: Js_null_undefined.from_opt(inputRef),
-              margin: Js_null_undefined.from_opt(optionMap(margin_zToJs, margin)),
+              margin: Js_null_undefined.from_opt(optionMap(margin_eToJs, margin)),
               multiline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, multiline)),
               name: Js_null_undefined.from_opt(name),
               onBlur: Js_null_undefined.from_opt(onBlur),
@@ -4544,18 +4407,19 @@ function make$46(autoComplete, autoFocus, className, defaultValue, disabled, dis
               onKeyDown: Js_null_undefined.from_opt(onKeyDown),
               onKeyUp: Js_null_undefined.from_opt(onKeyUp),
               placeholder: Js_null_undefined.from_opt(placeholder),
+              readOnly: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, readOnly)),
               rows: Js_null_undefined.from_opt(optionMap(unwrapValue, rows)),
               rowsMax: Js_null_undefined.from_opt(optionMap(unwrapValue, rowsMax)),
               startAdornment: Js_null_undefined.from_opt(startAdornment),
-              type_: Js_null_undefined.from_opt(type_),
+              type: Js_null_undefined.from_opt(type_),
               value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$40, classes))
             }, children);
 }
 
 var Input$1 = /* module */[
-  /* margin_zToJs */margin_zToJs,
-  /* margin_zFromJs */margin_zFromJs,
+  /* margin_eToJs */margin_eToJs,
+  /* margin_eFromJs */margin_eFromJs,
   /* Classes */Classes$40,
   /* make */make$46
 ];
@@ -4571,11 +4435,11 @@ var jsMapperConstantArray$37 = /* array */[
   ]
 ];
 
-function color_eToJs(param) {
+function color_fToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$37);
 }
 
-function color_eFromJs(param) {
+function color_fFromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$37, param);
 }
 
@@ -4598,11 +4462,11 @@ var jsMapperConstantArray$38 = /* array */[
   ]
 ];
 
-function mode_xToJs(param) {
+function mode_9ToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$38);
 }
 
-function mode_xFromJs(param) {
+function mode_9FromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$38, param);
 }
 
@@ -4656,10 +4520,11 @@ var Classes$41 = /* module */[
   /* to_obj */to_obj$41
 ];
 
-function make$47(color, mode, value, valueBuffer, classes, children) {
+function make$47(className, color, mode, value, valueBuffer, classes, children) {
   return ReasonReact.wrapJsForReason(LinearProgress.default, {
-              color: Js_null_undefined.from_opt(optionMap(color_eToJs, color)),
-              mode: Js_null_undefined.from_opt(optionMap(mode_xToJs, mode)),
+              className: Js_null_undefined.from_opt(className),
+              color: Js_null_undefined.from_opt(optionMap(color_fToJs, color)),
+              mode: Js_null_undefined.from_opt(optionMap(mode_9ToJs, mode)),
               value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
               valueBuffer: Js_null_undefined.from_opt(optionMap(unwrapValue, valueBuffer)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$41, classes))
@@ -4667,10 +4532,10 @@ function make$47(color, mode, value, valueBuffer, classes, children) {
 }
 
 var LinearProgress$1 = /* module */[
-  /* color_eToJs */color_eToJs,
-  /* color_eFromJs */color_eFromJs,
-  /* mode_xToJs */mode_xToJs,
-  /* mode_xFromJs */mode_xFromJs,
+  /* color_fToJs */color_fToJs,
+  /* color_fFromJs */color_fFromJs,
+  /* mode_9ToJs */mode_9ToJs,
+  /* mode_9FromJs */mode_9FromJs,
   /* Classes */Classes$41,
   /* make */make$47
 ];
@@ -4695,8 +4560,9 @@ var Classes$42 = /* module */[
   /* to_obj */to_obj$42
 ];
 
-function make$48(classes, children) {
+function make$48(className, classes, children) {
   return ReasonReact.wrapJsForReason(ListItemAvatar.default, {
+              className: Js_null_undefined.from_opt(className),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$42, classes))
             }, children);
 }
@@ -4722,8 +4588,9 @@ var Classes$43 = /* module */[
   /* to_obj */to_obj$43
 ];
 
-function make$49(classes, children) {
+function make$49(className, classes, children) {
   return ReasonReact.wrapJsForReason(ListItemIcon.default, {
+              className: Js_null_undefined.from_opt(className),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$43, classes))
             }, children);
 }
@@ -4749,8 +4616,9 @@ var Classes$44 = /* module */[
   /* to_obj */to_obj$44
 ];
 
-function make$50(classes, children) {
+function make$50(className, classes, children) {
   return ReasonReact.wrapJsForReason(ListItemSecondaryAction.default, {
+              className: Js_null_undefined.from_opt(className),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$44, classes))
             }, children);
 }
@@ -4790,8 +4658,9 @@ var Classes$45 = /* module */[
   /* to_obj */to_obj$45
 ];
 
-function make$51(disableTypography, inset, primary, secondary, classes, children) {
+function make$51(className, disableTypography, inset, primary, secondary, classes, children) {
   return ReasonReact.wrapJsForReason(ListItemText.default, {
+              className: Js_null_undefined.from_opt(className),
               disableTypography: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTypography)),
               inset: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, inset)),
               primary: Js_null_undefined.from_opt(primary),
@@ -4843,13 +4712,15 @@ var Classes$46 = /* module */[
   /* to_obj */to_obj$46
 ];
 
-function make$52(button, component, containerComponent, containerProps, dense, disableGutters, divider, classes, children) {
+function make$52(button, className, component, containerComponent, containerProps, dense, disabled, disableGutters, divider, classes, children) {
   return ReasonReact.wrapJsForReason(ListItem.default, {
               button: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, button)),
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              containerComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, containerComponent)),
-              containerProps: Js_null_undefined.from_opt(containerProps),
+              ContainerComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, containerComponent)),
+              ContainerProps: Js_null_undefined.from_opt(containerProps),
               dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
+              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               disableGutters: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableGutters)),
               divider: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, divider)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$46, classes))
@@ -4876,11 +4747,11 @@ var jsMapperConstantArray$39 = /* array */[
   ]
 ];
 
-function color_xToJs(param) {
+function color_7ToJs$1(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$39);
 }
 
-function color_xFromJs(param) {
+function color_7FromJs$1(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$39, param);
 }
 
@@ -4912,9 +4783,10 @@ var Classes$47 = /* module */[
   /* to_obj */to_obj$47
 ];
 
-function make$53(color, component, disableSticky, inset, classes, children) {
+function make$53(className, color, component, disableSticky, inset, classes, children) {
   return ReasonReact.wrapJsForReason(ListSubheader.default, {
-              color: Js_null_undefined.from_opt(optionMap(color_xToJs, color)),
+              className: Js_null_undefined.from_opt(className),
+              color: Js_null_undefined.from_opt(optionMap(color_7ToJs$1, color)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               disableSticky: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableSticky)),
               inset: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, inset)),
@@ -4923,8 +4795,8 @@ function make$53(color, component, disableSticky, inset, classes, children) {
 }
 
 var ListSubheader$1 = /* module */[
-  /* color_xToJs */color_xToJs,
-  /* color_xFromJs */color_xFromJs,
+  /* color_7ToJs */color_7ToJs$1,
+  /* color_7FromJs */color_7FromJs$1,
   /* Classes */Classes$47,
   /* make */make$53
 ];
@@ -4955,8 +4827,9 @@ var Classes$48 = /* module */[
   /* to_obj */to_obj$48
 ];
 
-function make$54(component, dense, disablePadding, subheader, classes, children) {
+function make$54(className, component, dense, disablePadding, subheader, classes, children) {
   return ReasonReact.wrapJsForReason(List.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
               disablePadding: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disablePadding)),
@@ -4990,14 +4863,17 @@ var Classes$49 = /* module */[
   /* to_obj */to_obj$49
 ];
 
-function make$55(component, selected, button, containerComponent, containerProps, dense, disableGutters, divider, classes, children) {
+function make$55(className, component, role, selected, button, containerComponent, containerProps, dense, disabled, disableGutters, divider, classes, children) {
   return ReasonReact.wrapJsForReason(MenuItem.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
+              role: Js_null_undefined.from_opt(role),
               selected: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, selected)),
               button: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, button)),
-              containerComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, containerComponent)),
-              containerProps: Js_null_undefined.from_opt(containerProps),
+              ContainerComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, containerComponent)),
+              ContainerProps: Js_null_undefined.from_opt(containerProps),
               dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
+              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               disableGutters: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableGutters)),
               divider: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, divider)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$49, classes))
@@ -5009,8 +4885,9 @@ var MenuItem$1 = /* module */[
   /* make */make$55
 ];
 
-function make$56(onBlur, onKeyDown, component, dense, disablePadding, subheader, children) {
+function make$56(className, onBlur, onKeyDown, component, dense, disablePadding, subheader, children) {
   return ReasonReact.wrapJsForReason(MenuList.default, {
+              className: Js_null_undefined.from_opt(className),
               onBlur: Js_null_undefined.from_opt(onBlur),
               onKeyDown: Js_null_undefined.from_opt(onKeyDown),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
@@ -5041,11 +4918,11 @@ var jsMapperConstantArray$40 = /* array */[/* tuple */[
     "auto"
   ]];
 
-function transitionDuration_tToJs(param) {
+function transitionDuration_uToJs(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$40);
 }
 
-function transitionDuration_tFromJs(param) {
+function transitionDuration_uFromJs(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$40, param);
 }
 
@@ -5088,11 +4965,11 @@ var jsMapperConstantArray$41 = /* array */[
   ]
 ];
 
-function anchorReference_dToJs(param) {
+function anchorReference_gToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$41);
 }
 
-function anchorReference_dFromJs(param) {
+function anchorReference_gFromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$41, param);
 }
 
@@ -5126,10 +5003,10 @@ var Classes$50 = /* module */[
   /* to_obj */to_obj$50
 ];
 
-function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, open_, popoverClasses, transitionDuration, action, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, paperProps, transformOrigin, transition, classes, children) {
+function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, open_, paperProps, popoverClasses, theme, transitionDuration, action, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, role, transformOrigin, transition, classes, children) {
   return ReasonReact.wrapJsForReason(Menu.default, {
               anchorEl: Js_null_undefined.from_opt(anchorEl),
-              menuListProps: Js_null_undefined.from_opt(menuListProps),
+              MenuListProps: Js_null_undefined.from_opt(menuListProps),
               onClose: Js_null_undefined.from_opt(onClose),
               onEnter: Js_null_undefined.from_opt(onEnter),
               onEntered: Js_null_undefined.from_opt(onEntered),
@@ -5137,8 +5014,10 @@ function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEnterin
               onExit: Js_null_undefined.from_opt(onExit),
               onExited: Js_null_undefined.from_opt(onExited),
               onExiting: Js_null_undefined.from_opt(onExiting),
-              open_: Js_boolean.to_js_boolean(open_),
-              popoverClasses: Js_null_undefined.from_opt(popoverClasses),
+              open: Js_boolean.to_js_boolean(open_),
+              PaperProps: Js_null_undefined.from_opt(paperProps),
+              PopoverClasses: Js_null_undefined.from_opt(popoverClasses),
+              theme: theme,
               transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number") {
                             return unwrapValue(v);
@@ -5164,12 +5043,12 @@ function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEnterin
               action: Js_null_undefined.from_opt(action),
               anchorOrigin: Js_null_undefined.from_opt(optionMap(anchorOriginShapeToJs, anchorOrigin)),
               anchorPosition: Js_null_undefined.from_opt(optionMap(anchorPositionShapeToJs, anchorPosition)),
-              anchorReference: Js_null_undefined.from_opt(optionMap(anchorReference_dToJs, anchorReference)),
+              anchorReference: Js_null_undefined.from_opt(optionMap(anchorReference_gToJs, anchorReference)),
               container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
               elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
               getContentAnchorEl: Js_null_undefined.from_opt(getContentAnchorEl),
               marginThreshold: Js_null_undefined.from_opt(optionMap(unwrapValue, marginThreshold)),
-              paperProps: Js_null_undefined.from_opt(paperProps),
+              role: Js_null_undefined.from_opt(role),
               transformOrigin: Js_null_undefined.from_opt(optionMap(transformOriginShapeToJs, transformOrigin)),
               transition: Js_null_undefined.from_opt(optionMap(unwrapValue, transition)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$50, classes))
@@ -5179,14 +5058,14 @@ function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEnterin
 var Menu$1 = /* module */[
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$3,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$3,
-  /* transitionDuration_tToJs */transitionDuration_tToJs,
-  /* transitionDuration_tFromJs */transitionDuration_tFromJs,
+  /* transitionDuration_uToJs */transitionDuration_uToJs,
+  /* transitionDuration_uFromJs */transitionDuration_uFromJs,
   /* anchorOriginShapeToJs */anchorOriginShapeToJs,
   /* anchorOriginShapeFromJs */anchorOriginShapeFromJs,
   /* anchorPositionShapeToJs */anchorPositionShapeToJs,
   /* anchorPositionShapeFromJs */anchorPositionShapeFromJs,
-  /* anchorReference_dToJs */anchorReference_dToJs,
-  /* anchorReference_dFromJs */anchorReference_dFromJs,
+  /* anchorReference_gToJs */anchorReference_gToJs,
+  /* anchorReference_gFromJs */anchorReference_gFromJs,
   /* transformOriginShapeToJs */transformOriginShapeToJs,
   /* transformOriginShapeFromJs */transformOriginShapeFromJs,
   /* Classes */Classes$50,
@@ -5208,11 +5087,11 @@ var jsMapperConstantArray$42 = /* array */[
   ]
 ];
 
-function position_3ToJs(param) {
+function position_wToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$42);
 }
 
-function position_3FromJs(param) {
+function position_wFromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$42, param);
 }
 
@@ -5231,11 +5110,11 @@ var jsMapperConstantArray$43 = /* array */[
   ]
 ];
 
-function type__3ToJs(param) {
+function type__0ToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$43);
 }
 
-function type__3FromJs(param) {
+function type__0FromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$43, param);
 }
 
@@ -5273,14 +5152,15 @@ var Classes$51 = /* module */[
   /* to_obj */to_obj$51
 ];
 
-function make$58(activeStep, backButton, nextButton, position, steps, type_, component, elevation, square, classes, children) {
+function make$58(activeStep, backButton, className, nextButton, position, steps, type_, component, elevation, square, classes, children) {
   return ReasonReact.wrapJsForReason(MobileStepper.default, {
               activeStep: Js_null_undefined.from_opt(optionMap(unwrapValue, activeStep)),
               backButton: Js_null_undefined.from_opt(backButton),
+              className: Js_null_undefined.from_opt(className),
               nextButton: Js_null_undefined.from_opt(nextButton),
-              position: Js_null_undefined.from_opt(optionMap(position_3ToJs, position)),
+              position: Js_null_undefined.from_opt(optionMap(position_wToJs, position)),
               steps: unwrapValue(steps),
-              type_: Js_null_undefined.from_opt(optionMap(type__3ToJs, type_)),
+              type: Js_null_undefined.from_opt(optionMap(type__0ToJs, type_)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
               square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
@@ -5289,10 +5169,10 @@ function make$58(activeStep, backButton, nextButton, position, steps, type_, com
 }
 
 var MobileStepper$1 = /* module */[
-  /* position_3ToJs */position_3ToJs,
-  /* position_3FromJs */position_3FromJs,
-  /* type__3ToJs */type__3ToJs,
-  /* type__3FromJs */type__3FromJs,
+  /* position_wToJs */position_wToJs,
+  /* position_wFromJs */position_wFromJs,
+  /* type__0ToJs */type__0ToJs,
+  /* type__0FromJs */type__0FromJs,
   /* Classes */Classes$51,
   /* make */make$58
 ];
@@ -5317,10 +5197,11 @@ var Classes$52 = /* module */[
   /* to_obj */to_obj$52
 ];
 
-function make$59(backdropComponent, backdropProps, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onClose, onEscapeKeyDown, onRendered, open_, classes, children) {
+function make$59(backdropComponent, backdropProps, className, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onClose, onEscapeKeyDown, onRendered, open_, classes, children) {
   return ReasonReact.wrapJsForReason(Modal.default, {
-              backdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
-              backdropProps: Js_null_undefined.from_opt(backdropProps),
+              BackdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
+              BackdropProps: Js_null_undefined.from_opt(backdropProps),
+              className: Js_null_undefined.from_opt(className),
               container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
               disableAutoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAutoFocus)),
               disableBackdropClick: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableBackdropClick)),
@@ -5334,7 +5215,7 @@ function make$59(backdropComponent, backdropProps, container, disableAutoFocus, 
               onClose: Js_null_undefined.from_opt(onClose),
               onEscapeKeyDown: Js_null_undefined.from_opt(onEscapeKeyDown),
               onRendered: Js_null_undefined.from_opt(onRendered),
-              open_: Js_boolean.to_js_boolean(open_),
+              open: Js_boolean.to_js_boolean(open_),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$52, classes))
             }, children);
 }
@@ -5426,8 +5307,9 @@ var Classes$53 = /* module */[
   /* to_obj */to_obj$53
 ];
 
-function make$61(component, elevation, square, classes, children) {
+function make$61(className, component, elevation, square, classes, children) {
   return ReasonReact.wrapJsForReason(Paper.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
               square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
@@ -5479,11 +5361,11 @@ var jsMapperConstantArray$44 = /* array */[
   ]
 ];
 
-function anchorReference_dToJs$1(param) {
+function anchorReference_gToJs$1(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$44);
 }
 
-function anchorReference_dFromJs$1(param) {
+function anchorReference_gFromJs$1(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$44, param);
 }
 
@@ -5520,11 +5402,11 @@ var jsMapperConstantArray$45 = /* array */[/* tuple */[
     "auto"
   ]];
 
-function transitionDuration_rToJs(param) {
+function transitionDuration_gToJs(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$45);
 }
 
-function transitionDuration_rFromJs(param) {
+function transitionDuration_gFromJs(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$45, param);
 }
 
@@ -5544,13 +5426,13 @@ var Classes$54 = /* module */[
   /* to_obj */to_obj$54
 ];
 
-function make$62(action, anchorEl, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, open_, paperProps, transformOrigin, transition, transitionDuration, backdropComponent, backdropProps, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
+function make$62(action, anchorEl, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, open_, paperProps, role, transformOrigin, transition, transitionDuration, backdropComponent, backdropProps, className, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
   return ReasonReact.wrapJsForReason(Popover.default, {
               action: Js_null_undefined.from_opt(action),
               anchorEl: Js_null_undefined.from_opt(anchorEl),
               anchorOrigin: Js_null_undefined.from_opt(optionMap(anchorOriginShapeToJs$1, anchorOrigin)),
               anchorPosition: Js_null_undefined.from_opt(optionMap(anchorPositionShapeToJs$1, anchorPosition)),
-              anchorReference: Js_null_undefined.from_opt(optionMap(anchorReference_dToJs$1, anchorReference)),
+              anchorReference: Js_null_undefined.from_opt(optionMap(anchorReference_gToJs$1, anchorReference)),
               container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
               elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
               getContentAnchorEl: Js_null_undefined.from_opt(getContentAnchorEl),
@@ -5562,8 +5444,9 @@ function make$62(action, anchorEl, anchorOrigin, anchorPosition, anchorReference
               onExit: Js_null_undefined.from_opt(onExit),
               onExited: Js_null_undefined.from_opt(onExited),
               onExiting: Js_null_undefined.from_opt(onExiting),
-              open_: Js_boolean.to_js_boolean(open_),
-              paperProps: Js_null_undefined.from_opt(paperProps),
+              open: Js_boolean.to_js_boolean(open_),
+              PaperProps: Js_null_undefined.from_opt(paperProps),
+              role: Js_null_undefined.from_opt(role),
               transformOrigin: Js_null_undefined.from_opt(optionMap(transformOriginShapeToJs$1, transformOrigin)),
               transition: Js_null_undefined.from_opt(optionMap(unwrapValue, transition)),
               transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
@@ -5588,8 +5471,9 @@ function make$62(action, anchorEl, anchorOrigin, anchorPosition, anchorReference
                             }
                           }
                         }), transitionDuration)),
-              backdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
-              backdropProps: Js_null_undefined.from_opt(backdropProps),
+              BackdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
+              BackdropProps: Js_null_undefined.from_opt(backdropProps),
+              className: Js_null_undefined.from_opt(className),
               disableAutoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAutoFocus)),
               disableBackdropClick: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableBackdropClick)),
               disableEnforceFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEnforceFocus)),
@@ -5610,14 +5494,14 @@ var Popover$1 = /* module */[
   /* anchorOriginShapeFromJs */anchorOriginShapeFromJs$1,
   /* anchorPositionShapeToJs */anchorPositionShapeToJs$1,
   /* anchorPositionShapeFromJs */anchorPositionShapeFromJs$1,
-  /* anchorReference_dToJs */anchorReference_dToJs$1,
-  /* anchorReference_dFromJs */anchorReference_dFromJs$1,
+  /* anchorReference_gToJs */anchorReference_gToJs$1,
+  /* anchorReference_gFromJs */anchorReference_gFromJs$1,
   /* transformOriginShapeToJs */transformOriginShapeToJs$1,
   /* transformOriginShapeFromJs */transformOriginShapeFromJs$1,
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$4,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$4,
-  /* transitionDuration_rToJs */transitionDuration_rToJs,
-  /* transitionDuration_rFromJs */transitionDuration_rFromJs,
+  /* transitionDuration_gToJs */transitionDuration_gToJs,
+  /* transitionDuration_gFromJs */transitionDuration_gFromJs,
   /* Classes */Classes$54,
   /* make */make$62
 ];
@@ -5631,13 +5515,14 @@ function make$63(container, onRendered, children) {
 
 var Portal$1 = /* module */[/* make */make$63];
 
-function make$64(name, onBlur, onChange, onKeyDown, value, row, children) {
+function make$64(name, onBlur, onChange, onKeyDown, value, className, row, children) {
   return ReasonReact.wrapJsForReason(RadioGroup.default, {
               name: Js_null_undefined.from_opt(name),
               onBlur: Js_null_undefined.from_opt(onBlur),
               onChange: Js_null_undefined.from_opt(onChange),
               onKeyDown: Js_null_undefined.from_opt(onKeyDown),
               value: Js_null_undefined.from_opt(value),
+              className: Js_null_undefined.from_opt(className),
               row: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, row))
             }, children);
 }
@@ -5668,10 +5553,12 @@ var Classes$55 = /* module */[
   /* to_obj */to_obj$55
 ];
 
-function make$65(checked, checkedIcon, disabled, disableRipple, icon, inputProps, inputRef, inputType, name, onChange, value, classes, children) {
+function make$65(checked, checkedIcon, className, defaultChecked, disabled, disableRipple, icon, inputProps, inputRef, inputType, name, onChange, tabIndex, value, classes, children) {
   return ReasonReact.wrapJsForReason(Radio.default, {
               checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
               checkedIcon: Js_null_undefined.from_opt(checkedIcon),
+              className: Js_null_undefined.from_opt(className),
+              defaultChecked: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, defaultChecked)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
               icon: Js_null_undefined.from_opt(icon),
@@ -5680,6 +5567,7 @@ function make$65(checked, checkedIcon, disabled, disableRipple, icon, inputProps
               inputType: Js_null_undefined.from_opt(inputType),
               name: Js_null_undefined.from_opt(name),
               onChange: Js_null_undefined.from_opt(onChange),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
               value: Js_null_undefined.from_opt(value),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$55, classes))
             }, children);
@@ -5707,11 +5595,11 @@ var jsMapperConstantArray$46 = /* array */[
   ]
 ];
 
-function margin_zToJs$1(param) {
+function margin_eToJs$1(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$46);
 }
 
-function margin_zFromJs$1(param) {
+function margin_eFromJs$1(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$46, param);
 }
 
@@ -5743,19 +5631,19 @@ var Classes$56 = /* module */[
   /* to_obj */to_obj$56
 ];
 
-function make$67(autoWidth, displayEmpty, input, inputProps, menuProps, multiple, $$native, onChange, onClose, onOpen, open_, renderValue, value, autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputRef, margin, multiline, name, onBlur, onClean, onDirty, onFocus, onKeyDown, onKeyUp, placeholder, rows, rowsMax, startAdornment, type_, classes, children) {
+function make$67(autoWidth, displayEmpty, input, inputProps, menuProps, multiple, $$native, onChange, onClose, onOpen, open_, renderValue, value, autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputRef, margin, multiline, name, onBlur, onClean, onDirty, onFocus, onKeyDown, onKeyUp, placeholder, readOnly, rows, rowsMax, startAdornment, type_, classes, children) {
   return ReasonReact.wrapJsForReason(Select.default, {
               autoWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, autoWidth)),
               displayEmpty: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, displayEmpty)),
               input: Js_null_undefined.from_opt(input),
               inputProps: Js_null_undefined.from_opt(inputProps),
-              menuProps: Js_null_undefined.from_opt(menuProps),
+              MenuProps: Js_null_undefined.from_opt(menuProps),
               multiple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, multiple)),
               native: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, $$native)),
               onChange: Js_null_undefined.from_opt(onChange),
               onClose: Js_null_undefined.from_opt(onClose),
               onOpen: Js_null_undefined.from_opt(onOpen),
-              open_: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
+              open: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
               renderValue: Js_null_undefined.from_opt(renderValue),
               value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
               autoComplete: Js_null_undefined.from_opt(autoComplete),
@@ -5770,7 +5658,7 @@ function make$67(autoWidth, displayEmpty, input, inputProps, menuProps, multiple
               id: Js_null_undefined.from_opt(id),
               inputComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, inputComponent)),
               inputRef: Js_null_undefined.from_opt(inputRef),
-              margin: Js_null_undefined.from_opt(optionMap(margin_zToJs$1, margin)),
+              margin: Js_null_undefined.from_opt(optionMap(margin_eToJs$1, margin)),
               multiline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, multiline)),
               name: Js_null_undefined.from_opt(name),
               onBlur: Js_null_undefined.from_opt(onBlur),
@@ -5780,17 +5668,18 @@ function make$67(autoWidth, displayEmpty, input, inputProps, menuProps, multiple
               onKeyDown: Js_null_undefined.from_opt(onKeyDown),
               onKeyUp: Js_null_undefined.from_opt(onKeyUp),
               placeholder: Js_null_undefined.from_opt(placeholder),
+              readOnly: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, readOnly)),
               rows: Js_null_undefined.from_opt(optionMap(unwrapValue, rows)),
               rowsMax: Js_null_undefined.from_opt(optionMap(unwrapValue, rowsMax)),
               startAdornment: Js_null_undefined.from_opt(startAdornment),
-              type_: Js_null_undefined.from_opt(type_),
+              type: Js_null_undefined.from_opt(type_),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$56, classes))
             }, children);
 }
 
 var Select$1 = /* module */[
-  /* margin_zToJs */margin_zToJs$1,
-  /* margin_zFromJs */margin_zFromJs$1,
+  /* margin_eToJs */margin_eToJs$1,
+  /* margin_eFromJs */margin_eFromJs$1,
   /* Classes */Classes$56,
   /* make */make$67
 ];
@@ -5836,16 +5725,18 @@ function timeoutShapeFromJs$3(param) {
         ];
 }
 
-function make$68(direction, in_, onEnter, onEntered, onEntering, onExit, onExited, onExiting, timeout, children) {
+function make$68(direction, in_, onEnter, onEntered, onEntering, onExit, onExited, onExiting, style, theme, timeout, children) {
   return ReasonReact.wrapJsForReason(Slide.default, {
               direction: Js_null_undefined.from_opt(optionMap(direction_9ToJs, direction)),
-              in_: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
+              in: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
               onEnter: Js_null_undefined.from_opt(onEnter),
               onEntered: Js_null_undefined.from_opt(onEntered),
               onEntering: Js_null_undefined.from_opt(onEntering),
               onExit: Js_null_undefined.from_opt(onExit),
               onExited: Js_null_undefined.from_opt(onExited),
               onExiting: Js_null_undefined.from_opt(onExiting),
+              style: Js_null_undefined.from_opt(style),
+              theme: theme,
               timeout: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number" || v[0] !== -908856609) {
                             return unwrapValue(v);
@@ -5891,9 +5782,10 @@ var Classes$57 = /* module */[
   /* to_obj */to_obj$57
 ];
 
-function make$69(action, message, component, elevation, square, classes, children) {
+function make$69(action, className, message, component, elevation, square, classes, children) {
   return ReasonReact.wrapJsForReason(SnackbarContent.default, {
               action: Js_null_undefined.from_opt(action),
+              className: Js_null_undefined.from_opt(className),
               message: Js_null_undefined.from_opt(message),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
@@ -5967,11 +5859,12 @@ var Classes$58 = /* module */[
   /* to_obj */to_obj$58
 ];
 
-function make$70(action, anchorOrigin, autoHideDuration, key, message, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, onMouseEnter, onMouseLeave, open_, resumeHideDuration, snackbarContentProps, transition, transitionDuration, classes, children) {
+function make$70(action, anchorOrigin, autoHideDuration, className, key, message, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, onMouseEnter, onMouseLeave, open_, resumeHideDuration, snackbarContentProps, transition, transitionDuration, classes, children) {
   return ReasonReact.wrapJsForReason(Snackbar.default, {
               action: Js_null_undefined.from_opt(action),
               anchorOrigin: Js_null_undefined.from_opt(optionMap(anchorOriginShapeToJs$2, anchorOrigin)),
               autoHideDuration: Js_null_undefined.from_opt(optionMap(unwrapValue, autoHideDuration)),
+              className: Js_null_undefined.from_opt(className),
               key: Js_null_undefined.from_opt(key),
               message: Js_null_undefined.from_opt(message),
               onClose: Js_null_undefined.from_opt(onClose),
@@ -5983,9 +5876,9 @@ function make$70(action, anchorOrigin, autoHideDuration, key, message, onClose, 
               onExiting: Js_null_undefined.from_opt(onExiting),
               onMouseEnter: Js_null_undefined.from_opt(onMouseEnter),
               onMouseLeave: Js_null_undefined.from_opt(onMouseLeave),
-              open_: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
+              open: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
               resumeHideDuration: Js_null_undefined.from_opt(optionMap(unwrapValue, resumeHideDuration)),
-              snackbarContentProps: Js_null_undefined.from_opt(snackbarContentProps),
+              SnackbarContentProps: Js_null_undefined.from_opt(snackbarContentProps),
               transition: Js_null_undefined.from_opt(optionMap(unwrapValue, transition)),
               transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number" || v[0] !== -908856609) {
@@ -6010,6 +5903,25 @@ var Snackbar$1 = /* module */[
   /* make */make$70
 ];
 
+var jsMapperConstantArray$48 = /* array */[
+  /* tuple */[
+    -1010337642,
+    "vertical"
+  ],
+  /* tuple */[
+    208994564,
+    "horizontal"
+  ]
+];
+
+function orientation_cToJs(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$48);
+}
+
+function orientation_cFromJs(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$48, param);
+}
+
 function to_string$59(param) {
   if (param.tag) {
     return "alternativeLabel";
@@ -6030,14 +5942,17 @@ var Classes$59 = /* module */[
   /* to_obj */to_obj$59
 ];
 
-function make$71(active, alternativeLabel, completed, disabled, icon, optional, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, classes, children) {
+function make$71(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
   return ReasonReact.wrapJsForReason(StepButton.default, {
               active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
               alternativeLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, alternativeLabel)),
+              className: Js_null_undefined.from_opt(className),
               completed: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, completed)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               icon: Js_null_undefined.from_opt(icon),
+              last: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, last)),
               optional: Js_null_undefined.from_opt(optional),
+              orientation: Js_null_undefined.from_opt(optionMap(orientation_cToJs, orientation)),
               buttonRef: Js_null_undefined.from_opt(buttonRef),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
@@ -6056,14 +5971,38 @@ function make$71(active, alternativeLabel, completed, disabled, icon, optional, 
               onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
               onTouchMove: Js_null_undefined.from_opt(onTouchMove),
               onTouchStart: Js_null_undefined.from_opt(onTouchStart),
+              role: Js_null_undefined.from_opt(role),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
+              type: Js_null_undefined.from_opt(type_),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$59, classes))
             }, children);
 }
 
 var StepButton$1 = /* module */[
+  /* orientation_cToJs */orientation_cToJs,
+  /* orientation_cFromJs */orientation_cFromJs,
   /* Classes */Classes$59,
   /* make */make$71
 ];
+
+var jsMapperConstantArray$49 = /* array */[
+  /* tuple */[
+    -1010337642,
+    "vertical"
+  ],
+  /* tuple */[
+    208994564,
+    "horizontal"
+  ]
+];
+
+function orientation_aToJs(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$49);
+}
+
+function orientation_aFromJs(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$49, param);
+}
 
 function transitionDurationShapeToJs$6(param) {
   return {
@@ -6079,17 +6018,17 @@ function transitionDurationShapeFromJs$6(param) {
         ];
 }
 
-var jsMapperConstantArray$48 = /* array */[/* tuple */[
+var jsMapperConstantArray$50 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
-function transitionDuration_oToJs(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$48);
+function transitionDuration_kToJs(param) {
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$50);
 }
 
-function transitionDuration_oFromJs(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$48, param);
+function transitionDuration_kFromJs(param) {
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$50, param);
 }
 
 function to_string$60(param) {
@@ -6116,11 +6055,15 @@ var Classes$60 = /* module */[
   /* to_obj */to_obj$60
 ];
 
-function make$72(active, alternativeLabel, optional, transition, transitionDuration, classes, children) {
+function make$72(active, alternativeLabel, className, completed, last, optional, orientation, transition, transitionDuration, classes, children) {
   return ReasonReact.wrapJsForReason(StepContent.default, {
               active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
               alternativeLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, alternativeLabel)),
+              className: Js_null_undefined.from_opt(className),
+              completed: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, completed)),
+              last: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, last)),
               optional: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, optional)),
+              orientation: Js_null_undefined.from_opt(optionMap(orientation_aToJs, orientation)),
               transition: Js_null_undefined.from_opt(transition),
               transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number") {
@@ -6133,7 +6076,7 @@ function make$72(active, alternativeLabel, optional, transition, transitionDurat
                               } else {
                                 return unwrapValue(/* `String */[
                                             -976970511,
-                                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$48)
+                                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$50)
                                           ]);
                               }
                             } else {
@@ -6149,13 +6092,34 @@ function make$72(active, alternativeLabel, optional, transition, transitionDurat
 }
 
 var StepContent$1 = /* module */[
+  /* orientation_aToJs */orientation_aToJs,
+  /* orientation_aFromJs */orientation_aFromJs,
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$6,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$6,
-  /* transitionDuration_oToJs */transitionDuration_oToJs,
-  /* transitionDuration_oFromJs */transitionDuration_oFromJs,
+  /* transitionDuration_kToJs */transitionDuration_kToJs,
+  /* transitionDuration_kFromJs */transitionDuration_kFromJs,
   /* Classes */Classes$60,
   /* make */make$72
 ];
+
+var jsMapperConstantArray$51 = /* array */[
+  /* tuple */[
+    -1010337642,
+    "vertical"
+  ],
+  /* tuple */[
+    208994564,
+    "horizontal"
+  ]
+];
+
+function orientation_9ToJs(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$51);
+}
+
+function orientation_9FromJs(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$51, param);
+}
 
 function to_string$61(param) {
   switch (param.tag | 0) {
@@ -6195,22 +6159,46 @@ var Classes$61 = /* module */[
   /* to_obj */to_obj$61
 ];
 
-function make$73(active, alternativeLabel, completed, disabled, icon, optional, classes, children) {
+function make$73(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, classes, children) {
   return ReasonReact.wrapJsForReason(StepLabel.default, {
               active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
               alternativeLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, alternativeLabel)),
+              className: Js_null_undefined.from_opt(className),
               completed: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, completed)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               icon: Js_null_undefined.from_opt(icon),
+              last: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, last)),
               optional: Js_null_undefined.from_opt(optional),
+              orientation: Js_null_undefined.from_opt(optionMap(orientation_9ToJs, orientation)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$61, classes))
             }, children);
 }
 
 var StepLabel$1 = /* module */[
+  /* orientation_9ToJs */orientation_9ToJs,
+  /* orientation_9FromJs */orientation_9FromJs,
   /* Classes */Classes$61,
   /* make */make$73
 ];
+
+var jsMapperConstantArray$52 = /* array */[
+  /* tuple */[
+    -1010337642,
+    "vertical"
+  ],
+  /* tuple */[
+    208994564,
+    "horizontal"
+  ]
+];
+
+function orientation_yToJs(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$52);
+}
+
+function orientation_yFromJs(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$52, param);
+}
 
 function to_string$62(param) {
   switch (param.tag | 0) {
@@ -6236,24 +6224,29 @@ var Classes$62 = /* module */[
   /* to_obj */to_obj$62
 ];
 
-function make$74(active, alternativeLabel, completed, connector, disabled, index, classes, children) {
+function make$74(active, alternativeLabel, className, completed, connector, disabled, index, last, orientation, classes, children) {
   return ReasonReact.wrapJsForReason(Step.default, {
               active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
               alternativeLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, alternativeLabel)),
+              className: Js_null_undefined.from_opt(className),
               completed: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, completed)),
               connector: Js_null_undefined.from_opt(connector),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               index: Js_null_undefined.from_opt(optionMap(unwrapValue, index)),
+              last: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, last)),
+              orientation: Js_null_undefined.from_opt(optionMap(orientation_yToJs, orientation)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$62, classes))
             }, children);
 }
 
 var Step$1 = /* module */[
+  /* orientation_yToJs */orientation_yToJs,
+  /* orientation_yFromJs */orientation_yFromJs,
   /* Classes */Classes$62,
   /* make */make$74
 ];
 
-var jsMapperConstantArray$49 = /* array */[
+var jsMapperConstantArray$53 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -6264,12 +6257,12 @@ var jsMapperConstantArray$49 = /* array */[
   ]
 ];
 
-function orientation_eToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$49);
+function orientation_yToJs$1(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$53);
 }
 
-function orientation_eFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$49, param);
+function orientation_yFromJs$1(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$53, param);
 }
 
 function to_string$63(param) {
@@ -6296,13 +6289,14 @@ var Classes$63 = /* module */[
   /* to_obj */to_obj$63
 ];
 
-function make$75(activeStep, alternativeLabel, connector, nonLinear, orientation, component, elevation, square, classes, children) {
+function make$75(activeStep, alternativeLabel, className, connector, nonLinear, orientation, component, elevation, square, classes, children) {
   return ReasonReact.wrapJsForReason(Stepper.default, {
               activeStep: Js_null_undefined.from_opt(optionMap(unwrapValue, activeStep)),
               alternativeLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, alternativeLabel)),
+              className: Js_null_undefined.from_opt(className),
               connector: Js_null_undefined.from_opt(connector),
               nonLinear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, nonLinear)),
-              orientation: Js_null_undefined.from_opt(optionMap(orientation_eToJs, orientation)),
+              orientation: Js_null_undefined.from_opt(optionMap(orientation_yToJs$1, orientation)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
               square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
@@ -6311,13 +6305,13 @@ function make$75(activeStep, alternativeLabel, connector, nonLinear, orientation
 }
 
 var Stepper$1 = /* module */[
-  /* orientation_eToJs */orientation_eToJs,
-  /* orientation_eFromJs */orientation_eFromJs,
+  /* orientation_yToJs */orientation_yToJs$1,
+  /* orientation_yFromJs */orientation_yFromJs$1,
   /* Classes */Classes$63,
   /* make */make$75
 ];
 
-var jsMapperConstantArray$50 = /* array */[
+var jsMapperConstantArray$54 = /* array */[
   /* tuple */[
     -891637802,
     "action"
@@ -6344,12 +6338,12 @@ var jsMapperConstantArray$50 = /* array */[
   ]
 ];
 
-function color_jToJs(param) {
-  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$50);
+function color_rToJs(param) {
+  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$54);
 }
 
-function color_jFromJs(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$50, param);
+function color_rFromJs(param) {
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$54, param);
 }
 
 function to_string$64(param) {
@@ -6384,9 +6378,10 @@ var Classes$64 = /* module */[
   /* to_obj */to_obj$64
 ];
 
-function make$76(color, fontSize, nativeColor, titleAccess, viewBox, classes, children) {
+function make$76(className, color, fontSize, nativeColor, titleAccess, viewBox, classes, children) {
   return ReasonReact.wrapJsForReason(SvgIcon.default, {
-              color: Js_null_undefined.from_opt(optionMap(color_jToJs, color)),
+              className: Js_null_undefined.from_opt(className),
+              color: Js_null_undefined.from_opt(optionMap(color_rToJs, color)),
               fontSize: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fontSize)),
               nativeColor: Js_null_undefined.from_opt(nativeColor),
               titleAccess: Js_null_undefined.from_opt(titleAccess),
@@ -6396,8 +6391,8 @@ function make$76(color, fontSize, nativeColor, titleAccess, viewBox, classes, ch
 }
 
 var SvgIcon$1 = /* module */[
-  /* color_jToJs */color_jToJs,
-  /* color_jFromJs */color_jFromJs,
+  /* color_rToJs */color_rToJs,
+  /* color_rFromJs */color_rFromJs,
   /* Classes */Classes$64,
   /* make */make$76
 ];
@@ -6432,10 +6427,12 @@ var Classes$65 = /* module */[
   /* to_obj */to_obj$65
 ];
 
-function make$77(checked, checkedIcon, disabled, disableRipple, icon, inputProps, inputRef, inputType, name, onChange, value, classes, children) {
+function make$77(checked, checkedIcon, className, defaultChecked, disabled, disableRipple, icon, inputProps, inputRef, inputType, name, onChange, tabIndex, value, classes, children) {
   return ReasonReact.wrapJsForReason(Switch.default, {
               checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
               checkedIcon: Js_null_undefined.from_opt(checkedIcon),
+              className: Js_null_undefined.from_opt(className),
+              defaultChecked: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, defaultChecked)),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
               icon: Js_null_undefined.from_opt(icon),
@@ -6444,6 +6441,7 @@ function make$77(checked, checkedIcon, disabled, disableRipple, icon, inputProps
               inputType: Js_null_undefined.from_opt(inputType),
               name: Js_null_undefined.from_opt(name),
               onChange: Js_null_undefined.from_opt(onChange),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
               value: Js_null_undefined.from_opt(value),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$65, classes))
             }, children);
@@ -6453,6 +6451,29 @@ var Switch$1 = /* module */[
   /* Classes */Classes$65,
   /* make */make$77
 ];
+
+var jsMapperConstantArray$55 = /* array */[
+  /* tuple */[
+    -791844958,
+    "primary"
+  ],
+  /* tuple */[
+    -72987685,
+    "inherit"
+  ],
+  /* tuple */[
+    67972948,
+    "secondary"
+  ]
+];
+
+function textColor_iToJs(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$55);
+}
+
+function textColor_iFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$55, param);
+}
 
 function to_string$66(param) {
   switch (param.tag | 0) {
@@ -6504,14 +6525,28 @@ var Classes$66 = /* module */[
   /* to_obj */to_obj$66
 ];
 
-function make$78(disabled, icon, indicator, label, onChange, onClick, value, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, classes, children) {
+function make$78(className, disabled, fullWidth, icon, indicator, label, onChange, onClick, selected, style, textColor, value, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
   return ReasonReact.wrapJsForReason(Tab.default, {
+              className: Js_null_undefined.from_opt(className),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
+              fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
               icon: Js_null_undefined.from_opt(icon),
               indicator: Js_null_undefined.from_opt(indicator),
               label: Js_null_undefined.from_opt(label),
               onChange: Js_null_undefined.from_opt(onChange),
               onClick: Js_null_undefined.from_opt(onClick),
+              selected: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, selected)),
+              style: Js_null_undefined.from_opt(style),
+              textColor: Js_null_undefined.from_opt(optionMap((function (v) {
+                          if (typeof v === "number" || v[0] !== 770676513) {
+                            return unwrapValue(v);
+                          } else {
+                            return unwrapValue(/* `String */[
+                                        -976970511,
+                                        Js_mapperRt.binSearch(3, v[1], jsMapperConstantArray$55)
+                                      ]);
+                          }
+                        }), textColor)),
               value: Js_null_undefined.from_opt(value),
               buttonRef: Js_null_undefined.from_opt(buttonRef),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
@@ -6530,11 +6565,16 @@ function make$78(disabled, icon, indicator, label, onChange, onClick, value, but
               onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
               onTouchMove: Js_null_undefined.from_opt(onTouchMove),
               onTouchStart: Js_null_undefined.from_opt(onTouchStart),
+              role: Js_null_undefined.from_opt(role),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
+              type: Js_null_undefined.from_opt(type_),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$66, classes))
             }, children);
 }
 
 var Tab$1 = /* module */[
+  /* textColor_iToJs */textColor_iToJs,
+  /* textColor_iFromJs */textColor_iFromJs,
   /* Classes */Classes$66,
   /* make */make$78
 ];
@@ -6547,7 +6587,7 @@ function make$79(component, children) {
 
 var TableBody$1 = /* module */[/* make */make$79];
 
-var jsMapperConstantArray$51 = /* array */[
+var jsMapperConstantArray$56 = /* array */[
   /* tuple */[
     -384499551,
     "default"
@@ -6566,22 +6606,22 @@ var jsMapperConstantArray$51 = /* array */[
   ]
 ];
 
-function padding_pToJs(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$51);
+function padding_5ToJs(param) {
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$56);
 }
 
-function padding_pFromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$51, param);
+function padding_5FromJs(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$56, param);
 }
 
-var jsMapperConstantArray$52 = /* array */[
+var jsMapperConstantArray$57 = /* array */[
   /* tuple */[
     3258129,
     "asc"
   ],
   /* tuple */[
     243049859,
-    "false"
+    "0"
   ],
   /* tuple */[
     759138929,
@@ -6590,14 +6630,14 @@ var jsMapperConstantArray$52 = /* array */[
 ];
 
 function sortDirection_xToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$52);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$57);
 }
 
 function sortDirection_xFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$52, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$57, param);
 }
 
-var jsMapperConstantArray$53 = /* array */[
+var jsMapperConstantArray$58 = /* array */[
   /* tuple */[
     737453762,
     "body"
@@ -6612,12 +6652,12 @@ var jsMapperConstantArray$53 = /* array */[
   ]
 ];
 
-function type__nToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$53);
+function type__tToJs(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$58);
 }
 
-function type__nFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$53, param);
+function type__tFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$58, param);
 }
 
 function to_string$67(param) {
@@ -6654,24 +6694,25 @@ var Classes$67 = /* module */[
   /* to_obj */to_obj$67
 ];
 
-function make$80(component, numeric, padding, sortDirection, type_, classes, children) {
+function make$80(className, component, numeric, padding, sortDirection, type_, classes, children) {
   return ReasonReact.wrapJsForReason(TableCell.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               numeric: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, numeric)),
-              padding: Js_null_undefined.from_opt(optionMap(padding_pToJs, padding)),
+              padding: Js_null_undefined.from_opt(optionMap(padding_5ToJs, padding)),
               sortDirection: Js_null_undefined.from_opt(optionMap(sortDirection_xToJs, sortDirection)),
-              type_: Js_null_undefined.from_opt(optionMap(type__nToJs, type_)),
+              type: Js_null_undefined.from_opt(optionMap(type__tToJs, type_)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$67, classes))
             }, children);
 }
 
 var TableCell$1 = /* module */[
-  /* padding_pToJs */padding_pToJs,
-  /* padding_pFromJs */padding_pFromJs,
+  /* padding_5ToJs */padding_5ToJs,
+  /* padding_5FromJs */padding_5FromJs,
   /* sortDirection_xToJs */sortDirection_xToJs,
   /* sortDirection_xFromJs */sortDirection_xFromJs,
-  /* type__nToJs */type__nToJs,
-  /* type__nFromJs */type__nFromJs,
+  /* type__tToJs */type__tToJs,
+  /* type__tFromJs */type__tFromJs,
   /* Classes */Classes$67,
   /* make */make$80
 ];
@@ -6692,7 +6733,7 @@ function make$82(component, children) {
 
 var TableHead$1 = /* module */[/* make */make$82];
 
-var jsMapperConstantArray$54 = /* array */[
+var jsMapperConstantArray$59 = /* array */[
   /* tuple */[
     -384499551,
     "default"
@@ -6711,22 +6752,22 @@ var jsMapperConstantArray$54 = /* array */[
   ]
 ];
 
-function padding_pToJs$1(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$54);
+function padding_5ToJs$1(param) {
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$59);
 }
 
-function padding_pFromJs$1(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$54, param);
+function padding_5FromJs$1(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$59, param);
 }
 
-var jsMapperConstantArray$55 = /* array */[
+var jsMapperConstantArray$60 = /* array */[
   /* tuple */[
     3258129,
     "asc"
   ],
   /* tuple */[
     243049859,
-    "false"
+    "0"
   ],
   /* tuple */[
     759138929,
@@ -6735,14 +6776,14 @@ var jsMapperConstantArray$55 = /* array */[
 ];
 
 function sortDirection_xToJs$1(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$55);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$60);
 }
 
 function sortDirection_xFromJs$1(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$55, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$60, param);
 }
 
-var jsMapperConstantArray$56 = /* array */[
+var jsMapperConstantArray$61 = /* array */[
   /* tuple */[
     737453762,
     "body"
@@ -6757,12 +6798,12 @@ var jsMapperConstantArray$56 = /* array */[
   ]
 ];
 
-function type__nToJs$1(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$56);
+function type__tToJs$1(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$61);
 }
 
-function type__nFromJs$1(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$56, param);
+function type__tFromJs$1(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$61, param);
 }
 
 function to_string$68(param) {
@@ -6801,10 +6842,11 @@ var Classes$68 = /* module */[
   /* to_obj */to_obj$68
 ];
 
-function make$83(actions, backIconButtonProps, component, count, labelDisplayedRows, labelRowsPerPage, nextIconButtonProps, onChangePage, onChangeRowsPerPage, page, rowsPerPage, rowsPerPageOptions, numeric, padding, sortDirection, type_, classes, children) {
+function make$83(actions, backIconButtonProps, colSpan, component, count, labelDisplayedRows, labelRowsPerPage, nextIconButtonProps, onChangePage, onChangeRowsPerPage, page, rowsPerPage, rowsPerPageOptions, className, numeric, padding, sortDirection, type_, classes, children) {
   return ReasonReact.wrapJsForReason(TablePagination.default, {
-              actions: Js_null_undefined.from_opt(optionMap(unwrapValue, actions)),
+              Actions: Js_null_undefined.from_opt(optionMap(unwrapValue, actions)),
               backIconButtonProps: Js_null_undefined.from_opt(backIconButtonProps),
+              colSpan: Js_null_undefined.from_opt(optionMap(unwrapValue, colSpan)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               count: unwrapValue(count),
               labelDisplayedRows: Js_null_undefined.from_opt(labelDisplayedRows),
@@ -6815,21 +6857,22 @@ function make$83(actions, backIconButtonProps, component, count, labelDisplayedR
               page: unwrapValue(page),
               rowsPerPage: unwrapValue(rowsPerPage),
               rowsPerPageOptions: Js_null_undefined.from_opt(rowsPerPageOptions),
+              className: Js_null_undefined.from_opt(className),
               numeric: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, numeric)),
-              padding: Js_null_undefined.from_opt(optionMap(padding_pToJs$1, padding)),
+              padding: Js_null_undefined.from_opt(optionMap(padding_5ToJs$1, padding)),
               sortDirection: Js_null_undefined.from_opt(optionMap(sortDirection_xToJs$1, sortDirection)),
-              type_: Js_null_undefined.from_opt(optionMap(type__nToJs$1, type_)),
+              type: Js_null_undefined.from_opt(optionMap(type__tToJs$1, type_)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$68, classes))
             }, children);
 }
 
 var TablePagination$1 = /* module */[
-  /* padding_pToJs */padding_pToJs$1,
-  /* padding_pFromJs */padding_pFromJs$1,
+  /* padding_5ToJs */padding_5ToJs$1,
+  /* padding_5FromJs */padding_5FromJs$1,
   /* sortDirection_xToJs */sortDirection_xToJs$1,
   /* sortDirection_xFromJs */sortDirection_xFromJs$1,
-  /* type__nToJs */type__nToJs$1,
-  /* type__nFromJs */type__nFromJs$1,
+  /* type__tToJs */type__tToJs$1,
+  /* type__tFromJs */type__tFromJs$1,
   /* Classes */Classes$68,
   /* make */make$83
 ];
@@ -6862,8 +6905,9 @@ var Classes$69 = /* module */[
   /* to_obj */to_obj$69
 ];
 
-function make$84(component, hover, selected, classes, children) {
+function make$84(className, component, hover, selected, classes, children) {
   return ReasonReact.wrapJsForReason(TableRow.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               hover: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, hover)),
               selected: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, selected)),
@@ -6876,7 +6920,7 @@ var TableRow$1 = /* module */[
   /* make */make$84
 ];
 
-var jsMapperConstantArray$57 = /* array */[
+var jsMapperConstantArray$62 = /* array */[
   /* tuple */[
     3258129,
     "asc"
@@ -6887,12 +6931,12 @@ var jsMapperConstantArray$57 = /* array */[
   ]
 ];
 
-function direction_8ToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$57);
+function direction_kToJs(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$62);
 }
 
-function direction_8FromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$57, param);
+function direction_kFromJs(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$62, param);
 }
 
 function to_string$70(param) {
@@ -6923,10 +6967,11 @@ var Classes$70 = /* module */[
   /* to_obj */to_obj$70
 ];
 
-function make$85(active, direction, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, classes, children) {
+function make$85(active, className, direction, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
   return ReasonReact.wrapJsForReason(TableSortLabel.default, {
               active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
-              direction: Js_null_undefined.from_opt(optionMap(direction_8ToJs, direction)),
+              className: Js_null_undefined.from_opt(className),
+              direction: Js_null_undefined.from_opt(optionMap(direction_kToJs, direction)),
               buttonRef: Js_null_undefined.from_opt(buttonRef),
               centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
@@ -6946,13 +6991,16 @@ function make$85(active, direction, buttonRef, centerRipple, component, disabled
               onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
               onTouchMove: Js_null_undefined.from_opt(onTouchMove),
               onTouchStart: Js_null_undefined.from_opt(onTouchStart),
+              role: Js_null_undefined.from_opt(role),
+              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
+              type: Js_null_undefined.from_opt(type_),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$70, classes))
             }, children);
 }
 
 var TableSortLabel$1 = /* module */[
-  /* direction_8ToJs */direction_8ToJs,
-  /* direction_8FromJs */direction_8FromJs,
+  /* direction_kToJs */direction_kToJs,
+  /* direction_kFromJs */direction_kFromJs,
   /* Classes */Classes$70,
   /* make */make$85
 ];
@@ -6973,8 +7021,9 @@ var Classes$71 = /* module */[
   /* to_obj */to_obj$71
 ];
 
-function make$86(component, classes, children) {
+function make$86(className, component, classes, children) {
   return ReasonReact.wrapJsForReason(Table.default, {
+              className: Js_null_undefined.from_opt(className),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$71, classes))
             }, children);
@@ -6985,7 +7034,7 @@ var Table$1 = /* module */[
   /* make */make$86
 ];
 
-var jsMapperConstantArray$58 = /* array */[
+var jsMapperConstantArray$63 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -6996,15 +7045,15 @@ var jsMapperConstantArray$58 = /* array */[
   ]
 ];
 
-function indicatorColor_tToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$58);
+function indicatorColor_mToJs(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$63);
 }
 
-function indicatorColor_tFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$58, param);
+function indicatorColor_mFromJs(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$63, param);
 }
 
-var jsMapperConstantArray$59 = /* array */[
+var jsMapperConstantArray$64 = /* array */[
   /* tuple */[
     17727,
     "on"
@@ -7019,15 +7068,15 @@ var jsMapperConstantArray$59 = /* array */[
   ]
 ];
 
-function scrollButtons_3ToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$59);
+function scrollButtons_4ToJs(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$64);
 }
 
-function scrollButtons_3FromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$59, param);
+function scrollButtons_4FromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$64, param);
 }
 
-var jsMapperConstantArray$60 = /* array */[
+var jsMapperConstantArray$65 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -7042,12 +7091,12 @@ var jsMapperConstantArray$60 = /* array */[
   ]
 ];
 
-function textColor_hToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$60);
+function textColor_2ToJs(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$65);
 }
 
-function textColor_hFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$60, param);
+function textColor_2FromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$65, param);
 }
 
 function to_string$72(param) {
@@ -7082,11 +7131,12 @@ var Classes$72 = /* module */[
   /* to_obj */to_obj$72
 ];
 
-function make$87(action, buttonClassName, centered, fullWidth, indicatorClassName, indicatorColor, onChange, scrollable, scrollButtons, tabScrollButton, textColor, value, classes, children) {
+function make$87(action, buttonClassName, centered, className, fullWidth, indicatorClassName, indicatorColor, onChange, scrollable, scrollButtons, tabScrollButton, textColor, theme, value, classes, children) {
   return ReasonReact.wrapJsForReason(Tabs.default, {
               action: Js_null_undefined.from_opt(action),
               buttonClassName: Js_null_undefined.from_opt(buttonClassName),
               centered: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centered)),
+              className: Js_null_undefined.from_opt(className),
               fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
               indicatorClassName: Js_null_undefined.from_opt(indicatorClassName),
               indicatorColor: Js_null_undefined.from_opt(optionMap((function (v) {
@@ -7095,32 +7145,33 @@ function make$87(action, buttonClassName, centered, fullWidth, indicatorClassNam
                           } else {
                             return unwrapValue(/* `String */[
                                         -976970511,
-                                        Js_mapperRt.binSearch(2, v[1], jsMapperConstantArray$58)
+                                        Js_mapperRt.binSearch(2, v[1], jsMapperConstantArray$63)
                                       ]);
                           }
                         }), indicatorColor)),
               onChange: Js_null_undefined.from_opt(onChange),
               scrollable: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, scrollable)),
-              scrollButtons: Js_null_undefined.from_opt(optionMap(scrollButtons_3ToJs, scrollButtons)),
-              tabScrollButton: Js_null_undefined.from_opt(optionMap(unwrapValue, tabScrollButton)),
-              textColor: Js_null_undefined.from_opt(optionMap(textColor_hToJs, textColor)),
+              scrollButtons: Js_null_undefined.from_opt(optionMap(scrollButtons_4ToJs, scrollButtons)),
+              TabScrollButton: Js_null_undefined.from_opt(optionMap(unwrapValue, tabScrollButton)),
+              textColor: Js_null_undefined.from_opt(optionMap(textColor_2ToJs, textColor)),
+              theme: theme,
               value: Js_null_undefined.from_opt(value),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$72, classes))
             }, children);
 }
 
 var Tabs$1 = /* module */[
-  /* indicatorColor_tToJs */indicatorColor_tToJs,
-  /* indicatorColor_tFromJs */indicatorColor_tFromJs,
-  /* scrollButtons_3ToJs */scrollButtons_3ToJs,
-  /* scrollButtons_3FromJs */scrollButtons_3FromJs,
-  /* textColor_hToJs */textColor_hToJs,
-  /* textColor_hFromJs */textColor_hFromJs,
+  /* indicatorColor_mToJs */indicatorColor_mToJs,
+  /* indicatorColor_mFromJs */indicatorColor_mFromJs,
+  /* scrollButtons_4ToJs */scrollButtons_4ToJs,
+  /* scrollButtons_4FromJs */scrollButtons_4FromJs,
+  /* textColor_2ToJs */textColor_2ToJs,
+  /* textColor_2FromJs */textColor_2FromJs,
   /* Classes */Classes$72,
   /* make */make$87
 ];
 
-var jsMapperConstantArray$61 = /* array */[
+var jsMapperConstantArray$66 = /* array */[
   /* tuple */[
     -453122489,
     "normal"
@@ -7136,27 +7187,28 @@ var jsMapperConstantArray$61 = /* array */[
 ];
 
 function margin_aToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$61);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$66);
 }
 
 function margin_aFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$61, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$66, param);
 }
 
-function make$88(autoComplete, autoFocus, defaultValue, disabled, error, formHelperTextProps, fullWidth, helperText, helperTextClassName, id, inputLabelProps, inputProps2, inputProps, inputRef, label, labelClassName, margin, multiline, name, onChange, placeholder, required, rows, rowsMax, select, selectProps, type_, value, component, onBlur, onFocus, children) {
+function make$88(autoComplete, autoFocus, className, defaultValue, disabled, error, formHelperTextProps, fullWidth, helperText, helperTextClassName, id, inputLabelProps, inputProps2, inputProps, inputRef, label, labelClassName, margin, multiline, name, onChange, placeholder, required, rows, rowsMax, select, selectProps, type_, value, component, onBlur, onFocus, children) {
   return ReasonReact.wrapJsForReason(TextField.default, {
               autoComplete: Js_null_undefined.from_opt(autoComplete),
               autoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, autoFocus)),
+              className: Js_null_undefined.from_opt(className),
               defaultValue: Js_null_undefined.from_opt(defaultValue),
               disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
               error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
-              formHelperTextProps: Js_null_undefined.from_opt(formHelperTextProps),
+              FormHelperTextProps: Js_null_undefined.from_opt(formHelperTextProps),
               fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
               helperText: Js_null_undefined.from_opt(helperText),
               helperTextClassName: Js_null_undefined.from_opt(helperTextClassName),
               id: Js_null_undefined.from_opt(id),
-              inputLabelProps: Js_null_undefined.from_opt(inputLabelProps),
-              inputProps2: Js_null_undefined.from_opt(inputProps2),
+              InputLabelProps: Js_null_undefined.from_opt(inputLabelProps),
+              InputProps2: Js_null_undefined.from_opt(inputProps2),
               inputProps: Js_null_undefined.from_opt(inputProps),
               inputRef: Js_null_undefined.from_opt(inputRef),
               label: Js_null_undefined.from_opt(label),
@@ -7170,8 +7222,8 @@ function make$88(autoComplete, autoFocus, defaultValue, disabled, error, formHel
               rows: Js_null_undefined.from_opt(optionMap(unwrapValue, rows)),
               rowsMax: Js_null_undefined.from_opt(optionMap(unwrapValue, rowsMax)),
               select: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, select)),
-              selectProps: Js_null_undefined.from_opt(selectProps),
-              type_: Js_null_undefined.from_opt(type_),
+              SelectProps: Js_null_undefined.from_opt(selectProps),
+              type: Js_null_undefined.from_opt(type_),
               value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               onBlur: Js_null_undefined.from_opt(onBlur),
@@ -7205,8 +7257,9 @@ var Classes$73 = /* module */[
   /* to_obj */to_obj$73
 ];
 
-function make$89(disableGutters, classes, children) {
+function make$89(className, disableGutters, classes, children) {
   return ReasonReact.wrapJsForReason(Toolbar.default, {
+              className: Js_null_undefined.from_opt(className),
               disableGutters: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableGutters)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$73, classes))
             }, children);
@@ -7217,7 +7270,7 @@ var Toolbar$1 = /* module */[
   /* make */make$89
 ];
 
-var jsMapperConstantArray$62 = /* array */[
+var jsMapperConstantArray$67 = /* array */[
   /* tuple */[
     -1031209551,
     "top-end"
@@ -7268,12 +7321,12 @@ var jsMapperConstantArray$62 = /* array */[
   ]
 ];
 
-function placement_8ToJs(param) {
-  return Js_mapperRt.binSearch(12, param, jsMapperConstantArray$62);
+function placement_kToJs(param) {
+  return Js_mapperRt.binSearch(12, param, jsMapperConstantArray$67);
 }
 
-function placement_8FromJs(param) {
-  return Js_mapperRt.revSearch(12, jsMapperConstantArray$62, param);
+function placement_kFromJs(param) {
+  return Js_mapperRt.revSearch(12, jsMapperConstantArray$67, param);
 }
 
 function to_string$74(param) {
@@ -7312,8 +7365,9 @@ var Classes$74 = /* module */[
   /* to_obj */to_obj$74
 ];
 
-function make$90(disableTriggerFocus, disableTriggerHover, disableTriggerTouch, enterDelay, id, leaveDelay, onClose, onOpen, open_, placement, popperProps, title, classes, children) {
+function make$90(className, disableTriggerFocus, disableTriggerHover, disableTriggerTouch, enterDelay, id, leaveDelay, onClose, onOpen, open_, placement, popperProps, theme, title, classes, children) {
   return ReasonReact.wrapJsForReason(Tooltip.default, {
+              className: Js_null_undefined.from_opt(className),
               disableTriggerFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTriggerFocus)),
               disableTriggerHover: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTriggerHover)),
               disableTriggerTouch: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTriggerTouch)),
@@ -7322,22 +7376,23 @@ function make$90(disableTriggerFocus, disableTriggerHover, disableTriggerTouch, 
               leaveDelay: Js_null_undefined.from_opt(optionMap(unwrapValue, leaveDelay)),
               onClose: Js_null_undefined.from_opt(onClose),
               onOpen: Js_null_undefined.from_opt(onOpen),
-              open_: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
-              placement: Js_null_undefined.from_opt(optionMap(placement_8ToJs, placement)),
-              popperProps: Js_null_undefined.from_opt(popperProps),
+              open: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
+              placement: Js_null_undefined.from_opt(optionMap(placement_kToJs, placement)),
+              PopperProps: Js_null_undefined.from_opt(popperProps),
+              theme: theme,
               title: title,
               classes: Js_null_undefined.from_opt(optionMap(to_obj$74, classes))
             }, children);
 }
 
 var Tooltip$1 = /* module */[
-  /* placement_8ToJs */placement_8ToJs,
-  /* placement_8FromJs */placement_8FromJs,
+  /* placement_kToJs */placement_kToJs,
+  /* placement_kFromJs */placement_kFromJs,
   /* Classes */Classes$74,
   /* make */make$90
 ];
 
-var jsMapperConstantArray$63 = /* array */[
+var jsMapperConstantArray$68 = /* array */[
   /* tuple */[
     -788068560,
     "justify"
@@ -7360,15 +7415,15 @@ var jsMapperConstantArray$63 = /* array */[
   ]
 ];
 
-function align_bToJs(param) {
-  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$63);
+function align_fToJs(param) {
+  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$68);
 }
 
-function align_bFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$63, param);
+function align_fFromJs(param) {
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$68, param);
 }
 
-var jsMapperConstantArray$64 = /* array */[
+var jsMapperConstantArray$69 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -7395,15 +7450,15 @@ var jsMapperConstantArray$64 = /* array */[
   ]
 ];
 
-function color_3ToJs(param) {
-  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$64);
+function color_vToJs(param) {
+  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$69);
 }
 
-function color_3FromJs(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$64, param);
+function color_vFromJs(param) {
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$69, param);
 }
 
-var jsMapperConstantArray$65 = /* array */[
+var jsMapperConstantArray$70 = /* array */[
   /* tuple */[
     -904051921,
     "body1"
@@ -7450,12 +7505,12 @@ var jsMapperConstantArray$65 = /* array */[
   ]
 ];
 
-function type__rToJs(param) {
-  return Js_mapperRt.binSearch(11, param, jsMapperConstantArray$65);
+function type__9ToJs(param) {
+  return Js_mapperRt.binSearch(11, param, jsMapperConstantArray$70);
 }
 
-function type__rFromJs(param) {
-  return Js_mapperRt.revSearch(11, jsMapperConstantArray$65, param);
+function type__9FromJs(param) {
+  return Js_mapperRt.revSearch(11, jsMapperConstantArray$70, param);
 }
 
 function to_string$75(param) {
@@ -7524,27 +7579,28 @@ var Classes$75 = /* module */[
   /* to_obj */to_obj$75
 ];
 
-function make$91(align, color, component, gutterBottom, headlineMapping, noWrap, paragraph, type_, classes, children) {
+function make$91(align, className, color, component, gutterBottom, headlineMapping, noWrap, paragraph, type_, classes, children) {
   return ReasonReact.wrapJsForReason(Typography.default, {
-              align: Js_null_undefined.from_opt(optionMap(align_bToJs, align)),
-              color: Js_null_undefined.from_opt(optionMap(color_3ToJs, color)),
+              align: Js_null_undefined.from_opt(optionMap(align_fToJs, align)),
+              className: Js_null_undefined.from_opt(className),
+              color: Js_null_undefined.from_opt(optionMap(color_vToJs, color)),
               component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
               gutterBottom: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, gutterBottom)),
               headlineMapping: Js_null_undefined.from_opt(headlineMapping),
               noWrap: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, noWrap)),
               paragraph: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, paragraph)),
-              type_: Js_null_undefined.from_opt(optionMap(type__rToJs, type_)),
+              type: Js_null_undefined.from_opt(optionMap(type__9ToJs, type_)),
               classes: Js_null_undefined.from_opt(optionMap(to_obj$75, classes))
             }, children);
 }
 
 var Typography$1 = /* module */[
-  /* align_bToJs */align_bToJs,
-  /* align_bFromJs */align_bFromJs,
-  /* color_3ToJs */color_3ToJs,
-  /* color_3FromJs */color_3FromJs,
-  /* type__rToJs */type__rToJs,
-  /* type__rFromJs */type__rFromJs,
+  /* align_fToJs */align_fToJs,
+  /* align_fFromJs */align_fFromJs,
+  /* color_vToJs */color_vToJs,
+  /* color_vFromJs */color_vFromJs,
+  /* type__9ToJs */type__9ToJs,
+  /* type__9FromJs */type__9FromJs,
   /* Classes */Classes$75,
   /* make */make$91
 ];
@@ -7563,13 +7619,16 @@ function timeoutShapeFromJs$4(param) {
         ];
 }
 
-function make$92(enterDelay, in_, onEnter, onEntering, onExit, timeout, children) {
+function make$92(appear, enterDelay, in_, onEnter, onEntering, onExit, style, theme, timeout, children) {
   return ReasonReact.wrapJsForReason(Zoom.default, {
+              appear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, appear)),
               enterDelay: Js_null_undefined.from_opt(optionMap(unwrapValue, enterDelay)),
-              in_: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
+              in: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
               onEnter: Js_null_undefined.from_opt(onEnter),
               onEntering: Js_null_undefined.from_opt(onEntering),
               onExit: Js_null_undefined.from_opt(onExit),
+              style: Js_null_undefined.from_opt(style),
+              theme: theme,
               timeout: Js_null_undefined.from_opt(optionMap((function (v) {
                           if (typeof v === "number" || v[0] !== -908856609) {
                             return unwrapValue(v);
