@@ -3,11 +3,11 @@
 
 var $$Array                 = require("bs-platform/lib/js/array.js");
 var Curry                   = require("bs-platform/lib/js/curry.js");
+var Js_option               = require("bs-platform/lib/js/js_option.js");
 var Js_boolean              = require("bs-platform/lib/js/js_boolean.js");
 var ListLabels              = require("bs-platform/lib/js/listLabels.js");
 var Js_mapperRt             = require("bs-platform/lib/js/js_mapperRt.js");
 var ReasonReact             = require("reason-react/src/ReasonReact.js");
-var Js_null_undefined       = require("bs-platform/lib/js/js_null_undefined.js");
 var Styles                  = require("material-ui/styles");
 var Tab                     = require("material-ui/Tabs/Tab");
 var Card                    = require("material-ui/Card/Card");
@@ -167,14 +167,6 @@ function unwrapValue(param) {
   }
 }
 
-function optionMap(fn, option) {
-  if (option) {
-    return /* Some */[Curry._1(fn, option[0])];
-  } else {
-    return /* None */0;
-  }
-}
-
 function toString(direction) {
   if (direction !== 0) {
     return "rtl";
@@ -204,16 +196,84 @@ var Direction = /* module */[
 
 var Spacing = /* module */[];
 
-var Easing = /* module */[];
+function tToJs(param) {
+  return {
+          easeInOut: param[/* easeInOut */0],
+          easeOut: param[/* easeOut */1],
+          easeIn: param[/* easeIn */2],
+          sharp: param[/* sharp */3]
+        };
+}
 
-var Duration = /* module */[];
+function tFromJs(param) {
+  return /* record */[
+          /* easeInOut */param.easeInOut,
+          /* easeOut */param.easeOut,
+          /* easeIn */param.easeIn,
+          /* sharp */param.sharp
+        ];
+}
+
+var Easing = /* module */[
+  /* tToJs */tToJs,
+  /* tFromJs */tFromJs
+];
+
+function tToJs$1(param) {
+  return {
+          shortest: param[/* shortest */0],
+          shorter: param[/* shorter */1],
+          short: param[/* short */2],
+          standard: param[/* standard */3],
+          complex: param[/* complex */4],
+          enteringScreen: param[/* enteringScreen */5],
+          leavingScreen: param[/* leavingScreen */6]
+        };
+}
+
+function tFromJs$1(param) {
+  return /* record */[
+          /* shortest */param.shortest,
+          /* shorter */param.shorter,
+          /* short */param.short,
+          /* standard */param.standard,
+          /* complex */param.complex,
+          /* enteringScreen */param.enteringScreen,
+          /* leavingScreen */param.leavingScreen
+        ];
+}
+
+var Duration = /* module */[
+  /* tToJs */tToJs$1,
+  /* tFromJs */tFromJs$1
+];
+
+function tToJs$2(param) {
+  return {
+          easing: param[/* easing */0],
+          duration: param[/* duration */1],
+          getAutoHeightDuration: param[/* getAutoHeightDuration */2],
+          create: param[/* create */3]
+        };
+}
+
+function tFromJs$2(param) {
+  return /* record */[
+          /* easing */param.easing,
+          /* duration */param.duration,
+          /* getAutoHeightDuration */param.getAutoHeightDuration,
+          /* create */param.create
+        ];
+}
 
 var Transitions = /* module */[
   /* Easing */Easing,
-  /* Duration */Duration
+  /* Duration */Duration,
+  /* tToJs */tToJs$2,
+  /* tFromJs */tFromJs$2
 ];
 
-function tToJs(param) {
+function tToJs$3(param) {
   return {
           direction: param[/* direction */0],
           palette: param[/* palette */1],
@@ -227,17 +287,22 @@ function tToJs(param) {
         };
 }
 
-function tFromJs(param) {
+function tFromJs$3(theme) {
   return /* record */[
-          /* direction */param.direction,
-          /* palette */param.palette,
-          /* typography */param.typography,
-          /* mixins */param.mixins,
-          /* breakpoints */param.breakpoints,
-          /* shadows */param.shadows,
-          /* transitions */param.transitions,
-          /* spacing */param.spacing,
-          /* zIndex */param.zIndex
+          /* direction */fromString(theme.direction),
+          /* palette : () */0,
+          /* typography : () */0,
+          /* mixins : () */0,
+          /* breakpoints : () */0,
+          /* shadows */theme.shadows.reduce((function (lst, entry) {
+                  return /* :: */[
+                          entry,
+                          lst
+                        ];
+                }), /* [] */0),
+          /* transitions */tFromJs$2(theme.transitions),
+          /* spacing : record */[/* unit */theme.spacing.unit],
+          /* zIndex */theme.zIndex
         ];
 }
 
@@ -245,29 +310,36 @@ var MuiTheme = /* module */[
   /* Direction */Direction,
   /* Spacing */Spacing,
   /* Transitions */Transitions,
-  /* tToJs */tToJs,
-  /* tFromJs */tFromJs
+  /* tToJs */tToJs$3,
+  /* tFromJs */tFromJs$3
 ];
 
 var component = ReasonReact.statelessComponent("WithStyles");
 
-function creteStylesWrapper(styles) {
+function createStylesWrapper(styles) {
   return Styles.withStyles(styles);
 }
 
-function make(styles, stylesWithTheme, render, children) {
-  var tmp;
-  if (styles) {
-    tmp = styles[0];
-  } else if (stylesWithTheme) {
-    var stylesWithTheme$1 = stylesWithTheme[0];
-    tmp = (function (theme) {
-        return Curry._1(stylesWithTheme$1, tFromJs(theme));
-      });
+function make(classes, classesWithTheme, render, children) {
+  var generateDict = function (lst) {
+    var classDict = { };
+    ListLabels.iter((function (style) {
+            classDict[style[/* name */0]] = style[/* styles */1];
+            return /* () */0;
+          }), lst);
+    return classDict;
+  };
+  var wrapper;
+  if (classes) {
+    wrapper = Styles.withStyles(generateDict(classes[0]));
+  } else if (classesWithTheme) {
+    var classesWithTheme$1 = classesWithTheme[0];
+    wrapper = Styles.withStyles((function (theme) {
+            return generateDict(Curry._1(classesWithTheme$1, tFromJs$3(theme)));
+          }));
   } else {
-    tmp = { };
+    wrapper = Styles.withStyles(generateDict(/* [] */0));
   }
-  var wrapper = Styles.withStyles(tmp);
   return ReasonReact.wrapJsForReason(wrapper(ReasonReact.wrapReasonForJs(component, (function (jsProps) {
                         var render = jsProps.render;
                         var classes = jsProps.classes;
@@ -283,7 +355,7 @@ function make(styles, stylesWithTheme, render, children) {
 
 var WithStyles = /* module */[
   /* component */component,
-  /* creteStylesWrapper */creteStylesWrapper,
+  /* createStylesWrapper */createStylesWrapper,
   /* make */make
 ];
 
@@ -1193,11 +1265,11 @@ var jsMapperConstantArray = /* array */[
   ]
 ];
 
-function color_yToJs(param) {
+function colorToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray);
 }
 
-function color_yFromJs(param) {
+function colorFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray, param);
 }
 
@@ -1220,11 +1292,11 @@ var jsMapperConstantArray$1 = /* array */[
   ]
 ];
 
-function position_bToJs(param) {
+function positionToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$1);
 }
 
-function position_bFromJs(param) {
+function positionFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$1, param);
 }
 
@@ -1263,22 +1335,46 @@ var Classes = /* module */[
 ];
 
 function make$1(className, color, position, component, elevation, square, classes, children) {
-  return ReasonReact.wrapJsForReason(AppBar.default, {
-              className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(color_yToJs, color)),
-              position: Js_null_undefined.from_opt(optionMap(position_bToJs, position)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray);
+        }), color);
+  if (tmp$1) {
+    tmp.color = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$1);
+        }), position);
+  if (tmp$2) {
+    tmp.position = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, component);
+  if (tmp$3) {
+    tmp.component = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, elevation);
+  if (tmp$4) {
+    tmp.elevation = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, square);
+  if (tmp$5) {
+    tmp.square = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(to_obj, classes);
+  if (tmp$6) {
+    tmp.classes = tmp$6[0];
+  }
+  return ReasonReact.wrapJsForReason(AppBar.default, tmp, children);
 }
 
 var AppBar$1 = /* module */[
-  /* color_yToJs */color_yToJs,
-  /* color_yFromJs */color_yFromJs,
-  /* position_bToJs */position_bToJs,
-  /* position_bFromJs */position_bFromJs,
+  /* colorToJs */colorToJs,
+  /* colorFromJs */colorFromJs,
+  /* positionToJs */positionToJs,
+  /* positionFromJs */positionFromJs,
   /* Classes */Classes,
   /* make */make$1
 ];
@@ -1308,17 +1404,37 @@ var Classes$1 = /* module */[
 ];
 
 function make$2(alt, childrenClassName, className, component, imgProps, sizes, src, srcSet, classes, children) {
-  return ReasonReact.wrapJsForReason(Avatar.default, {
-              alt: Js_null_undefined.from_opt(alt),
-              childrenClassName: Js_null_undefined.from_opt(childrenClassName),
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              imgProps: Js_null_undefined.from_opt(imgProps),
-              sizes: Js_null_undefined.from_opt(sizes),
-              src: Js_null_undefined.from_opt(src),
-              srcSet: Js_null_undefined.from_opt(srcSet),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$1, classes))
-            }, children);
+  var tmp = { };
+  if (alt) {
+    tmp.alt = alt[0];
+  }
+  if (childrenClassName) {
+    tmp.childrenClassName = childrenClassName[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  if (imgProps) {
+    tmp.imgProps = imgProps[0];
+  }
+  if (sizes) {
+    tmp.sizes = sizes[0];
+  }
+  if (src) {
+    tmp.src = src[0];
+  }
+  if (srcSet) {
+    tmp.srcSet = srcSet[0];
+  }
+  var tmp$2 = Js_option.map(to_obj$1, classes);
+  if (tmp$2) {
+    tmp.classes = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(Avatar.default, tmp, children);
 }
 
 var Avatar$1 = /* module */[
@@ -1360,22 +1476,32 @@ var Classes$2 = /* module */[
   /* to_obj */to_obj$2
 ];
 
-function make$3(invisible, open_, transitionDuration, classes, children) {
-  return ReasonReact.wrapJsForReason(Backdrop.default, {
-              invisible: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, invisible)),
-              open: Js_boolean.to_js_boolean(open_),
-              transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number" || v[0] !== -908856609) {
-                            return unwrapValue(v);
-                          } else {
-                            return unwrapValue(/* `Element */[
-                                        -744106340,
-                                        transitionDurationShapeToJs(v[1])
-                                      ]);
-                          }
-                        }), transitionDuration)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$2, classes))
-            }, children);
+function make$3(invisible, _open, transitionDuration, classes, children) {
+  var tmp = {
+    open: Js_boolean.to_js_boolean(_open)
+  };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, invisible);
+  if (tmp$1) {
+    tmp.invisible = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== -908856609) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `Element */[
+                        -744106340,
+                        transitionDurationShapeToJs(v[1])
+                      ]);
+          }
+        }), transitionDuration);
+  if (tmp$2) {
+    tmp.transitionDuration = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$2, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(Backdrop.default, tmp, children);
 }
 
 var Backdrop$1 = /* module */[
@@ -1404,11 +1530,11 @@ var jsMapperConstantArray$2 = /* array */[
   ]
 ];
 
-function color_iToJs(param) {
+function colorToJs$1(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$2);
 }
 
-function color_iFromJs(param) {
+function colorFromJs$1(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$2, param);
 }
 
@@ -1441,18 +1567,32 @@ var Classes$3 = /* module */[
 ];
 
 function make$4(badgeContent, className, color, component, classes, children) {
-  return ReasonReact.wrapJsForReason(Badge.default, {
-              badgeContent: badgeContent,
-              className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(color_iToJs, color)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$3, classes))
-            }, children);
+  var tmp = {
+    badgeContent: badgeContent
+  };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$2);
+        }), color);
+  if (tmp$1) {
+    tmp.color = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
+  if (tmp$2) {
+    tmp.component = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$3, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(Badge.default, tmp, children);
 }
 
 var Badge$1 = /* module */[
-  /* color_iToJs */color_iToJs,
-  /* color_iFromJs */color_iFromJs,
+  /* colorToJs */colorToJs$1,
+  /* colorFromJs */colorFromJs$1,
   /* Classes */Classes$3,
   /* make */make$4
 ];
@@ -1489,39 +1629,108 @@ var Classes$4 = /* module */[
   /* to_obj */to_obj$4
 ];
 
-function make$5(className, icon, label, onChange, onClick, selected, showLabel, value, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(BottomNavigationAction.default, {
-              className: Js_null_undefined.from_opt(className),
-              icon: Js_null_undefined.from_opt(icon),
-              label: Js_null_undefined.from_opt(label),
-              onChange: Js_null_undefined.from_opt(onChange),
-              onClick: Js_null_undefined.from_opt(onClick),
-              selected: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, selected)),
-              showLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, showLabel)),
-              value: Js_null_undefined.from_opt(value),
-              buttonRef: Js_null_undefined.from_opt(buttonRef),
-              centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
-              keyboardFocusedClassName: Js_null_undefined.from_opt(keyboardFocusedClassName),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              onKeyboardFocus: Js_null_undefined.from_opt(onKeyboardFocus),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              onKeyUp: Js_null_undefined.from_opt(onKeyUp),
-              onMouseDown: Js_null_undefined.from_opt(onMouseDown),
-              onMouseLeave: Js_null_undefined.from_opt(onMouseLeave),
-              onMouseUp: Js_null_undefined.from_opt(onMouseUp),
-              onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
-              onTouchMove: Js_null_undefined.from_opt(onTouchMove),
-              onTouchStart: Js_null_undefined.from_opt(onTouchStart),
-              role: Js_null_undefined.from_opt(role),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              type: Js_null_undefined.from_opt(type_),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$4, classes))
-            }, children);
+function make$5(className, icon, label, onChange, onClick, selected, showLabel, value, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (icon) {
+    tmp.icon = icon[0];
+  }
+  if (label) {
+    tmp.label = label[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, selected);
+  if (tmp$1) {
+    tmp.selected = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, showLabel);
+  if (tmp$2) {
+    tmp.showLabel = tmp$2[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, centerRipple);
+  if (tmp$3) {
+    tmp.centerRipple = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, component);
+  if (tmp$4) {
+    tmp.component = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$5) {
+    tmp.disabled = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$6) {
+    tmp.disableRipple = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, focusRipple);
+  if (tmp$7) {
+    tmp.focusRipple = tmp$7[0];
+  }
+  if (keyboardFocusedClassName) {
+    tmp.keyboardFocusedClassName = keyboardFocusedClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$8 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$8) {
+    tmp.tabIndex = tmp$8[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$9 = Js_option.map(to_obj$4, classes);
+  if (tmp$9) {
+    tmp.classes = tmp$9[0];
+  }
+  return ReasonReact.wrapJsForReason(BottomNavigationAction.default, tmp, children);
 }
 
 var BottomNavigationAction$1 = /* module */[
@@ -1546,13 +1755,25 @@ var Classes$5 = /* module */[
 ];
 
 function make$6(className, onChange, showLabels, value, classes, children) {
-  return ReasonReact.wrapJsForReason(BottomNavigation.default, {
-              className: Js_null_undefined.from_opt(className),
-              onChange: Js_null_undefined.from_opt(onChange),
-              showLabels: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, showLabels)),
-              value: Js_null_undefined.from_opt(value),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$5, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, showLabels);
+  if (tmp$1) {
+    tmp.showLabels = tmp$1[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  var tmp$2 = Js_option.map(to_obj$5, classes);
+  if (tmp$2) {
+    tmp.classes = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(BottomNavigation.default, tmp, children);
 }
 
 var BottomNavigation$1 = /* module */[
@@ -1580,33 +1801,88 @@ var Classes$6 = /* module */[
   /* to_obj */to_obj$6
 ];
 
-function make$7(buttonRef, centerRipple, className, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(ButtonBase.default, {
-              buttonRef: Js_null_undefined.from_opt(buttonRef),
-              centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
-              keyboardFocusedClassName: Js_null_undefined.from_opt(keyboardFocusedClassName),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onClick: Js_null_undefined.from_opt(onClick),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              onKeyboardFocus: Js_null_undefined.from_opt(onKeyboardFocus),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              onKeyUp: Js_null_undefined.from_opt(onKeyUp),
-              onMouseDown: Js_null_undefined.from_opt(onMouseDown),
-              onMouseLeave: Js_null_undefined.from_opt(onMouseLeave),
-              onMouseUp: Js_null_undefined.from_opt(onMouseUp),
-              onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
-              onTouchMove: Js_null_undefined.from_opt(onTouchMove),
-              onTouchStart: Js_null_undefined.from_opt(onTouchStart),
-              role: Js_null_undefined.from_opt(role),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              type: Js_null_undefined.from_opt(type_),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$6, classes))
-            }, children);
+function make$7(buttonRef, centerRipple, className, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
+  var tmp = { };
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, centerRipple);
+  if (tmp$1) {
+    tmp.centerRipple = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
+  if (tmp$2) {
+    tmp.component = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$3) {
+    tmp.disabled = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$4) {
+    tmp.disableRipple = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, focusRipple);
+  if (tmp$5) {
+    tmp.focusRipple = tmp$5[0];
+  }
+  if (keyboardFocusedClassName) {
+    tmp.keyboardFocusedClassName = keyboardFocusedClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$6) {
+    tmp.tabIndex = tmp$6[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$7 = Js_option.map(to_obj$6, classes);
+  if (tmp$7) {
+    tmp.classes = tmp$7[0];
+  }
+  return ReasonReact.wrapJsForReason(ButtonBase.default, tmp, children);
 }
 
 var ButtonBase$1 = /* module */[
@@ -1633,11 +1909,11 @@ var jsMapperConstantArray$3 = /* array */[
   ]
 ];
 
-function color_7ToJs(param) {
+function colorToJs$2(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$3);
 }
 
-function color_7FromJs(param) {
+function colorFromJs$2(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$3, param);
 }
 
@@ -1656,11 +1932,11 @@ var jsMapperConstantArray$4 = /* array */[
   ]
 ];
 
-function size_8ToJs(param) {
+function sizeToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$4);
 }
 
-function size_8FromJs(param) {
+function sizeFromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$4, param);
 }
 
@@ -1712,48 +1988,130 @@ var Classes$7 = /* module */[
   /* to_obj */to_obj$7
 ];
 
-function make$8(className, color, component, disabled, disableFocusRipple, disableRipple, fab, fullWidth, href, mini, raised, size, type_, buttonRef, centerRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, classes, children) {
-  return ReasonReact.wrapJsForReason(Button.default, {
-              className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(color_7ToJs, color)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableFocusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableFocusRipple)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              fab: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fab)),
-              fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              href: Js_null_undefined.from_opt(href),
-              mini: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, mini)),
-              raised: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, raised)),
-              size: Js_null_undefined.from_opt(optionMap(size_8ToJs, size)),
-              type: Js_null_undefined.from_opt(type_),
-              buttonRef: Js_null_undefined.from_opt(buttonRef),
-              centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
-              focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
-              keyboardFocusedClassName: Js_null_undefined.from_opt(keyboardFocusedClassName),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onClick: Js_null_undefined.from_opt(onClick),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              onKeyboardFocus: Js_null_undefined.from_opt(onKeyboardFocus),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              onKeyUp: Js_null_undefined.from_opt(onKeyUp),
-              onMouseDown: Js_null_undefined.from_opt(onMouseDown),
-              onMouseLeave: Js_null_undefined.from_opt(onMouseLeave),
-              onMouseUp: Js_null_undefined.from_opt(onMouseUp),
-              onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
-              onTouchMove: Js_null_undefined.from_opt(onTouchMove),
-              onTouchStart: Js_null_undefined.from_opt(onTouchStart),
-              role: Js_null_undefined.from_opt(role),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$7, classes))
-            }, children);
+function make$8(className, color, component, disabled, disableFocusRipple, disableRipple, fab, fullWidth, href, mini, raised, size, _type, buttonRef, centerRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, classes, children) {
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$3);
+        }), color);
+  if (tmp$1) {
+    tmp.color = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
+  if (tmp$2) {
+    tmp.component = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$3) {
+    tmp.disabled = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, disableFocusRipple);
+  if (tmp$4) {
+    tmp.disableFocusRipple = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$5) {
+    tmp.disableRipple = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, fab);
+  if (tmp$6) {
+    tmp.fab = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
+  if (tmp$7) {
+    tmp.fullWidth = tmp$7[0];
+  }
+  if (href) {
+    tmp.href = href[0];
+  }
+  var tmp$8 = Js_option.map(Js_boolean.to_js_boolean, mini);
+  if (tmp$8) {
+    tmp.mini = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(Js_boolean.to_js_boolean, raised);
+  if (tmp$9) {
+    tmp.raised = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$4);
+        }), size);
+  if (tmp$10) {
+    tmp.size = tmp$10[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  var tmp$11 = Js_option.map(Js_boolean.to_js_boolean, centerRipple);
+  if (tmp$11) {
+    tmp.centerRipple = tmp$11[0];
+  }
+  var tmp$12 = Js_option.map(Js_boolean.to_js_boolean, focusRipple);
+  if (tmp$12) {
+    tmp.focusRipple = tmp$12[0];
+  }
+  if (keyboardFocusedClassName) {
+    tmp.keyboardFocusedClassName = keyboardFocusedClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$13 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$13) {
+    tmp.tabIndex = tmp$13[0];
+  }
+  var tmp$14 = Js_option.map(to_obj$7, classes);
+  if (tmp$14) {
+    tmp.classes = tmp$14[0];
+  }
+  return ReasonReact.wrapJsForReason(Button.default, tmp, children);
 }
 
 var Button$1 = /* module */[
-  /* color_7ToJs */color_7ToJs,
-  /* color_7FromJs */color_7FromJs,
-  /* size_8ToJs */size_8ToJs,
-  /* size_8FromJs */size_8FromJs,
+  /* colorToJs */colorToJs$2,
+  /* colorFromJs */colorFromJs$2,
+  /* sizeToJs */sizeToJs,
+  /* sizeFromJs */sizeFromJs,
   /* Classes */Classes$7,
   /* make */make$8
 ];
@@ -1779,11 +2137,19 @@ var Classes$8 = /* module */[
 ];
 
 function make$9(className, disableActionSpacing, classes, children) {
-  return ReasonReact.wrapJsForReason(CardActions.default, {
-              className: Js_null_undefined.from_opt(className),
-              disableActionSpacing: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableActionSpacing)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$8, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, disableActionSpacing);
+  if (tmp$1) {
+    tmp.disableActionSpacing = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(to_obj$8, classes);
+  if (tmp$2) {
+    tmp.classes = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(CardActions.default, tmp, children);
 }
 
 var CardActions$1 = /* module */[
@@ -1808,11 +2174,19 @@ var Classes$9 = /* module */[
 ];
 
 function make$10(className, component, classes, children) {
-  return ReasonReact.wrapJsForReason(CardContent.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$9, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(to_obj$9, classes);
+  if (tmp$2) {
+    tmp.classes = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(CardContent.default, tmp, children);
 }
 
 var CardContent$1 = /* module */[
@@ -1851,15 +2225,31 @@ var Classes$10 = /* module */[
 ];
 
 function make$11(action, avatar, className, component, subheader, title, classes, children) {
-  return ReasonReact.wrapJsForReason(CardHeader.default, {
-              action: Js_null_undefined.from_opt(action),
-              avatar: Js_null_undefined.from_opt(avatar),
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              subheader: Js_null_undefined.from_opt(subheader),
-              title: Js_null_undefined.from_opt(title),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$10, classes))
-            }, children);
+  var tmp = { };
+  if (action) {
+    tmp.action = action[0];
+  }
+  if (avatar) {
+    tmp.avatar = avatar[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  if (subheader) {
+    tmp.subheader = subheader[0];
+  }
+  if (title) {
+    tmp.title = title[0];
+  }
+  var tmp$2 = Js_option.map(to_obj$10, classes);
+  if (tmp$2) {
+    tmp.classes = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(CardHeader.default, tmp, children);
 }
 
 var CardHeader$1 = /* module */[
@@ -1888,14 +2278,28 @@ var Classes$11 = /* module */[
 ];
 
 function make$12(className, component, image, src, style, classes, children) {
-  return ReasonReact.wrapJsForReason(CardMedia.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              image: Js_null_undefined.from_opt(image),
-              src: Js_null_undefined.from_opt(src),
-              style: Js_null_undefined.from_opt(style),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$11, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  if (image) {
+    tmp.image = image[0];
+  }
+  if (src) {
+    tmp.src = src[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  var tmp$2 = Js_option.map(to_obj$11, classes);
+  if (tmp$2) {
+    tmp.classes = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(CardMedia.default, tmp, children);
 }
 
 var CardMedia$1 = /* module */[
@@ -1904,13 +2308,27 @@ var CardMedia$1 = /* module */[
 ];
 
 function make$13(className, raised, component, elevation, square, children) {
-  return ReasonReact.wrapJsForReason(Card.default, {
-              className: Js_null_undefined.from_opt(className),
-              raised: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, raised)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, raised);
+  if (tmp$1) {
+    tmp.raised = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
+  if (tmp$2) {
+    tmp.component = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, elevation);
+  if (tmp$3) {
+    tmp.elevation = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, square);
+  if (tmp$4) {
+    tmp.square = tmp$4[0];
+  }
+  return ReasonReact.wrapJsForReason(Card.default, tmp, children);
 }
 
 var Card$1 = /* module */[/* make */make$13];
@@ -1940,25 +2358,66 @@ var Classes$12 = /* module */[
 ];
 
 function make$14(checked, checkedIcon, className, defaultChecked, disabled, disableRipple, icon, indeterminate, indeterminateIcon, inputProps, inputRef, inputType, name, onChange, tabIndex, value, classes, children) {
-  return ReasonReact.wrapJsForReason(Checkbox.default, {
-              checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
-              checkedIcon: Js_null_undefined.from_opt(checkedIcon),
-              className: Js_null_undefined.from_opt(className),
-              defaultChecked: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, defaultChecked)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              icon: Js_null_undefined.from_opt(icon),
-              indeterminate: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, indeterminate)),
-              indeterminateIcon: Js_null_undefined.from_opt(indeterminateIcon),
-              inputProps: Js_null_undefined.from_opt(inputProps),
-              inputRef: Js_null_undefined.from_opt(inputRef),
-              inputType: Js_null_undefined.from_opt(inputType),
-              name: Js_null_undefined.from_opt(name),
-              onChange: Js_null_undefined.from_opt(onChange),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              value: Js_null_undefined.from_opt(value),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$12, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, checked);
+  if (tmp$1) {
+    tmp.checked = tmp$1[0];
+  }
+  if (checkedIcon) {
+    tmp.checkedIcon = checkedIcon[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, defaultChecked);
+  if (tmp$2) {
+    tmp.defaultChecked = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$3) {
+    tmp.disabled = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$4) {
+    tmp.disableRipple = tmp$4[0];
+  }
+  if (icon) {
+    tmp.icon = icon[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, indeterminate);
+  if (tmp$5) {
+    tmp.indeterminate = tmp$5[0];
+  }
+  if (indeterminateIcon) {
+    tmp.indeterminateIcon = indeterminateIcon[0];
+  }
+  if (inputProps) {
+    tmp.inputProps = inputProps[0];
+  }
+  if (inputRef) {
+    tmp.inputRef = inputRef[0];
+  }
+  if (inputType) {
+    tmp.inputType = inputType[0];
+  }
+  if (name) {
+    tmp.name = name[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$6) {
+    tmp.tabIndex = tmp$6[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  var tmp$7 = Js_option.map(to_obj$12, classes);
+  if (tmp$7) {
+    tmp.classes = tmp$7[0];
+  }
+  return ReasonReact.wrapJsForReason(Checkbox.default, tmp, children);
 }
 
 var Checkbox$1 = /* module */[
@@ -1999,18 +2458,41 @@ var Classes$13 = /* module */[
 ];
 
 function make$15(avatar, className, component, deleteIcon, label, onClick, onDelete, onKeyDown, tabIndex, classes, children) {
-  return ReasonReact.wrapJsForReason(Chip.default, {
-              avatar: Js_null_undefined.from_opt(avatar),
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              deleteIcon: Js_null_undefined.from_opt(deleteIcon),
-              label: Js_null_undefined.from_opt(label),
-              onClick: Js_null_undefined.from_opt(onClick),
-              onDelete: Js_null_undefined.from_opt(onDelete),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$13, classes))
-            }, children);
+  var tmp = { };
+  if (avatar) {
+    tmp.avatar = avatar[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  if (deleteIcon) {
+    tmp.deleteIcon = deleteIcon[0];
+  }
+  if (label) {
+    tmp.label = label[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onDelete) {
+    tmp.onDelete = onDelete[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$2) {
+    tmp.tabIndex = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$13, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(Chip.default, tmp, children);
 }
 
 var Chip$1 = /* module */[
@@ -2033,11 +2515,11 @@ var jsMapperConstantArray$5 = /* array */[
   ]
 ];
 
-function color_hToJs(param) {
+function colorToJs$3(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$5);
 }
 
-function color_hFromJs(param) {
+function colorFromJs$3(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$5, param);
 }
 
@@ -2052,11 +2534,11 @@ var jsMapperConstantArray$6 = /* array */[
   ]
 ];
 
-function mode_5ToJs(param) {
+function modeToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$6);
 }
 
-function mode_5FromJs(param) {
+function modeFromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$6, param);
 }
 
@@ -2093,25 +2575,57 @@ var Classes$14 = /* module */[
 ];
 
 function make$16(className, color, max, min, mode, size, style, thickness, value, classes, children) {
-  return ReasonReact.wrapJsForReason(CircularProgress.default, {
-              className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(color_hToJs, color)),
-              max: Js_null_undefined.from_opt(optionMap(unwrapValue, max)),
-              min: Js_null_undefined.from_opt(optionMap(unwrapValue, min)),
-              mode: Js_null_undefined.from_opt(optionMap(mode_5ToJs, mode)),
-              size: Js_null_undefined.from_opt(optionMap(unwrapValue, size)),
-              style: Js_null_undefined.from_opt(style),
-              thickness: Js_null_undefined.from_opt(optionMap(unwrapValue, thickness)),
-              value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$14, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$5);
+        }), color);
+  if (tmp$1) {
+    tmp.color = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, max);
+  if (tmp$2) {
+    tmp.max = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, min);
+  if (tmp$3) {
+    tmp.min = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$6);
+        }), mode);
+  if (tmp$4) {
+    tmp.mode = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, size);
+  if (tmp$5) {
+    tmp.size = tmp$5[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, thickness);
+  if (tmp$6) {
+    tmp.thickness = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(unwrapValue, value);
+  if (tmp$7) {
+    tmp.value = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$14, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(CircularProgress.default, tmp, children);
 }
 
 var CircularProgress$1 = /* module */[
-  /* color_hToJs */color_hToJs,
-  /* color_hFromJs */color_hFromJs,
-  /* mode_5ToJs */mode_5ToJs,
-  /* mode_5FromJs */mode_5FromJs,
+  /* colorToJs */colorToJs$3,
+  /* colorFromJs */colorFromJs$3,
+  /* modeToJs */modeToJs,
+  /* modeFromJs */modeFromJs,
   /* Classes */Classes$14,
   /* make */make$16
 ];
@@ -2143,11 +2657,11 @@ var jsMapperConstantArray$7 = /* array */[/* tuple */[
     "auto"
   ]];
 
-function timeout_4ToJs(param) {
+function timeoutToJs(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$7);
 }
 
-function timeout_4FromJs(param) {
+function timeoutFromJs(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$7, param);
 }
 
@@ -2177,51 +2691,83 @@ var Classes$15 = /* module */[
   /* to_obj */to_obj$15
 ];
 
-function make$18(appear, className, collapsedHeight, component, in_, onEnter, onEntered, onEntering, onExit, onExiting, style, theme, timeout, classes, children) {
-  return ReasonReact.wrapJsForReason(Collapse.default, {
-              appear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, appear)),
-              className: Js_null_undefined.from_opt(className),
-              collapsedHeight: Js_null_undefined.from_opt(collapsedHeight),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              in: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
-              onEnter: Js_null_undefined.from_opt(onEnter),
-              onEntered: Js_null_undefined.from_opt(onEntered),
-              onEntering: Js_null_undefined.from_opt(onEntering),
-              onExit: Js_null_undefined.from_opt(onExit),
-              onExiting: Js_null_undefined.from_opt(onExiting),
-              style: Js_null_undefined.from_opt(style),
-              theme: theme,
-              timeout: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number") {
-                            return unwrapValue(v);
-                          } else {
-                            var variant = v[0];
-                            if (variant !== -908856609) {
-                              if (variant !== 770676513) {
-                                return unwrapValue(v);
-                              } else {
-                                return unwrapValue(/* `String */[
-                                            -976970511,
-                                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$7)
-                                          ]);
-                              }
-                            } else {
-                              return unwrapValue(/* `Element */[
-                                          -744106340,
-                                          timeoutShapeToJs(v[1])
-                                        ]);
-                            }
-                          }
-                        }), timeout)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$15, classes))
-            }, children);
+function make$18(appear, className, collapsedHeight, component, _in, onEnter, onEntered, onEntering, onExit, onExiting, style, theme, timeout, classes, children) {
+  var tmp = {
+    theme: theme
+  };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, appear);
+  if (tmp$1) {
+    tmp.appear = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (collapsedHeight) {
+    tmp.collapsedHeight = collapsedHeight[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
+  if (tmp$2) {
+    tmp.component = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, _in);
+  if (tmp$3) {
+    tmp.in = tmp$3[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntered) {
+    tmp.onEntered = onEntered[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (onExiting) {
+    tmp.onExiting = onExiting[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          if (typeof v === "number") {
+            return unwrapValue(v);
+          } else {
+            var variant = v[0];
+            if (variant !== -908856609) {
+              if (variant !== 770676513) {
+                return unwrapValue(v);
+              } else {
+                return unwrapValue(/* `String */[
+                            -976970511,
+                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$7)
+                          ]);
+              }
+            } else {
+              return unwrapValue(/* `Element */[
+                          -744106340,
+                          timeoutShapeToJs(v[1])
+                        ]);
+            }
+          }
+        }), timeout);
+  if (tmp$4) {
+    tmp.timeout = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(to_obj$15, classes);
+  if (tmp$5) {
+    tmp.classes = tmp$5[0];
+  }
+  return ReasonReact.wrapJsForReason(Collapse.default, tmp, children);
 }
 
 var Collapse$1 = /* module */[
   /* timeoutShapeToJs */timeoutShapeToJs,
   /* timeoutShapeFromJs */timeoutShapeFromJs,
-  /* timeout_4ToJs */timeout_4ToJs,
-  /* timeout_4FromJs */timeout_4FromJs,
+  /* timeoutToJs */timeoutToJs,
+  /* timeoutFromJs */timeoutFromJs,
   /* Classes */Classes$15,
   /* make */make$18
 ];
@@ -2251,10 +2797,15 @@ var Classes$16 = /* module */[
 ];
 
 function make$19(className, classes, children) {
-  return ReasonReact.wrapJsForReason(DialogActions.default, {
-              className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$16, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(to_obj$16, classes);
+  if (tmp$1) {
+    tmp.classes = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(DialogActions.default, tmp, children);
 }
 
 var DialogActions$1 = /* module */[
@@ -2279,10 +2830,15 @@ var Classes$17 = /* module */[
 ];
 
 function make$20(className, classes, children) {
-  return ReasonReact.wrapJsForReason(DialogContentText.default, {
-              className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$17, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(to_obj$17, classes);
+  if (tmp$1) {
+    tmp.classes = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(DialogContentText.default, tmp, children);
 }
 
 var DialogContentText$1 = /* module */[
@@ -2307,10 +2863,15 @@ var Classes$18 = /* module */[
 ];
 
 function make$21(className, classes, children) {
-  return ReasonReact.wrapJsForReason(DialogContent.default, {
-              className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$18, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(to_obj$18, classes);
+  if (tmp$1) {
+    tmp.classes = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(DialogContent.default, tmp, children);
 }
 
 var DialogContent$1 = /* module */[
@@ -2335,11 +2896,19 @@ var Classes$19 = /* module */[
 ];
 
 function make$22(className, disableTypography, classes, children) {
-  return ReasonReact.wrapJsForReason(DialogTitle.default, {
-              className: Js_null_undefined.from_opt(className),
-              disableTypography: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTypography)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$19, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, disableTypography);
+  if (tmp$1) {
+    tmp.disableTypography = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(to_obj$19, classes);
+  if (tmp$2) {
+    tmp.classes = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(DialogTitle.default, tmp, children);
 }
 
 var DialogTitle$1 = /* module */[
@@ -2366,11 +2935,11 @@ var jsMapperConstantArray$8 = /* array */[
   ]
 ];
 
-function maxWidth_qToJs(param) {
+function maxWidthToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$8);
 }
 
-function maxWidth_qFromJs(param) {
+function maxWidthFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$8, param);
 }
 
@@ -2420,53 +2989,129 @@ var Classes$20 = /* module */[
   /* to_obj */to_obj$20
 ];
 
-function make$23(className, disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWidth, maxWidth, onBackdropClick, onClose, onEnter, onEntered, onEntering, onEscapeKeyDown, onExit, onExited, onExiting, open_, paperProps, transition, transitionDuration, backdropComponent, backdropProps, container, disableAutoFocus, disableEnforceFocus, disableRestoreFocus, hideBackdrop, keepMounted, manager, onRendered, classes, children) {
-  return ReasonReact.wrapJsForReason(Dialog.default, {
-              className: Js_null_undefined.from_opt(className),
-              disableBackdropClick: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableBackdropClick)),
-              disableEscapeKeyDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEscapeKeyDown)),
-              fullScreen: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullScreen)),
-              fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              maxWidth: Js_null_undefined.from_opt(optionMap(maxWidth_qToJs, maxWidth)),
-              onBackdropClick: Js_null_undefined.from_opt(onBackdropClick),
-              onClose: Js_null_undefined.from_opt(onClose),
-              onEnter: Js_null_undefined.from_opt(onEnter),
-              onEntered: Js_null_undefined.from_opt(onEntered),
-              onEntering: Js_null_undefined.from_opt(onEntering),
-              onEscapeKeyDown: Js_null_undefined.from_opt(onEscapeKeyDown),
-              onExit: Js_null_undefined.from_opt(onExit),
-              onExited: Js_null_undefined.from_opt(onExited),
-              onExiting: Js_null_undefined.from_opt(onExiting),
-              open: Js_boolean.to_js_boolean(open_),
-              PaperProps: Js_null_undefined.from_opt(paperProps),
-              transition: Js_null_undefined.from_opt(optionMap(unwrapValue, transition)),
-              transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number" || v[0] !== -908856609) {
-                            return unwrapValue(v);
-                          } else {
-                            return unwrapValue(/* `Element */[
-                                        -744106340,
-                                        transitionDurationShapeToJs$1(v[1])
-                                      ]);
-                          }
-                        }), transitionDuration)),
-              BackdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
-              BackdropProps: Js_null_undefined.from_opt(backdropProps),
-              container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
-              disableAutoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAutoFocus)),
-              disableEnforceFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEnforceFocus)),
-              disableRestoreFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRestoreFocus)),
-              hideBackdrop: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, hideBackdrop)),
-              keepMounted: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, keepMounted)),
-              manager: Js_null_undefined.from_opt(manager),
-              onRendered: Js_null_undefined.from_opt(onRendered),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$20, classes))
-            }, children);
+function make$23(className, disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWidth, maxWidth, onBackdropClick, onClose, onEnter, onEntered, onEntering, onEscapeKeyDown, onExit, onExited, onExiting, _open, paperProps, transition, transitionDuration, backdropComponent, backdropProps, container, disableAutoFocus, disableEnforceFocus, disableRestoreFocus, hideBackdrop, keepMounted, manager, onRendered, classes, children) {
+  var tmp = {
+    open: Js_boolean.to_js_boolean(_open)
+  };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, disableBackdropClick);
+  if (tmp$1) {
+    tmp.disableBackdropClick = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disableEscapeKeyDown);
+  if (tmp$2) {
+    tmp.disableEscapeKeyDown = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, fullScreen);
+  if (tmp$3) {
+    tmp.fullScreen = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
+  if (tmp$4) {
+    tmp.fullWidth = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$8);
+        }), maxWidth);
+  if (tmp$5) {
+    tmp.maxWidth = tmp$5[0];
+  }
+  if (onBackdropClick) {
+    tmp.onBackdropClick = onBackdropClick[0];
+  }
+  if (onClose) {
+    tmp.onClose = onClose[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntered) {
+    tmp.onEntered = onEntered[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onEscapeKeyDown) {
+    tmp.onEscapeKeyDown = onEscapeKeyDown[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (onExited) {
+    tmp.onExited = onExited[0];
+  }
+  if (onExiting) {
+    tmp.onExiting = onExiting[0];
+  }
+  if (paperProps) {
+    tmp.paperProps = paperProps[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, transition);
+  if (tmp$6) {
+    tmp.transition = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== -908856609) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `Element */[
+                        -744106340,
+                        transitionDurationShapeToJs$1(v[1])
+                      ]);
+          }
+        }), transitionDuration);
+  if (tmp$7) {
+    tmp.transitionDuration = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(unwrapValue, backdropComponent);
+  if (tmp$8) {
+    tmp.backdropComponent = tmp$8[0];
+  }
+  if (backdropProps) {
+    tmp.backdropProps = backdropProps[0];
+  }
+  var tmp$9 = Js_option.map(unwrapValue, container);
+  if (tmp$9) {
+    tmp.container = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map(Js_boolean.to_js_boolean, disableAutoFocus);
+  if (tmp$10) {
+    tmp.disableAutoFocus = tmp$10[0];
+  }
+  var tmp$11 = Js_option.map(Js_boolean.to_js_boolean, disableEnforceFocus);
+  if (tmp$11) {
+    tmp.disableEnforceFocus = tmp$11[0];
+  }
+  var tmp$12 = Js_option.map(Js_boolean.to_js_boolean, disableRestoreFocus);
+  if (tmp$12) {
+    tmp.disableRestoreFocus = tmp$12[0];
+  }
+  var tmp$13 = Js_option.map(Js_boolean.to_js_boolean, hideBackdrop);
+  if (tmp$13) {
+    tmp.hideBackdrop = tmp$13[0];
+  }
+  var tmp$14 = Js_option.map(Js_boolean.to_js_boolean, keepMounted);
+  if (tmp$14) {
+    tmp.keepMounted = tmp$14[0];
+  }
+  if (manager) {
+    tmp.manager = manager[0];
+  }
+  if (onRendered) {
+    tmp.onRendered = onRendered[0];
+  }
+  var tmp$15 = Js_option.map(to_obj$20, classes);
+  if (tmp$15) {
+    tmp.classes = tmp$15[0];
+  }
+  return ReasonReact.wrapJsForReason(Dialog.default, tmp, children);
 }
 
 var Dialog$1 = /* module */[
-  /* maxWidth_qToJs */maxWidth_qToJs,
-  /* maxWidth_qFromJs */maxWidth_qFromJs,
+  /* maxWidthToJs */maxWidthToJs,
+  /* maxWidthFromJs */maxWidthFromJs,
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$1,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$1,
   /* Classes */Classes$20,
@@ -2502,14 +3147,31 @@ var Classes$21 = /* module */[
 ];
 
 function make$24(absolute, className, component, inset, light, classes, children) {
-  return ReasonReact.wrapJsForReason(Divider.default, {
-              absolute: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, absolute)),
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              inset: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, inset)),
-              light: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, light)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$21, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, absolute);
+  if (tmp$1) {
+    tmp.absolute = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
+  if (tmp$2) {
+    tmp.component = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, inset);
+  if (tmp$3) {
+    tmp.inset = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, light);
+  if (tmp$4) {
+    tmp.light = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(to_obj$21, classes);
+  if (tmp$5) {
+    tmp.classes = tmp$5[0];
+  }
+  return ReasonReact.wrapJsForReason(Divider.default, tmp, children);
 }
 
 var Divider$1 = /* module */[
@@ -2536,11 +3198,11 @@ var jsMapperConstantArray$9 = /* array */[
   ]
 ];
 
-function anchor_oToJs(param) {
+function anchorToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$9);
 }
 
-function anchor_oFromJs(param) {
+function anchorFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$9, param);
 }
 
@@ -2573,11 +3235,11 @@ var jsMapperConstantArray$10 = /* array */[
   ]
 ];
 
-function type__pToJs(param) {
+function _typeToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$10);
 }
 
-function type__pFromJs(param) {
+function _typeFromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$10, param);
 }
 
@@ -2621,52 +3283,120 @@ var Classes$22 = /* module */[
   /* to_obj */to_obj$22
 ];
 
-function make$25(anchor, className, elevation, modalProps, onClose, open_, slideProps, theme, transitionDuration, type_, backdropComponent, backdropProps, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
-  return ReasonReact.wrapJsForReason(Drawer.default, {
-              anchor: Js_null_undefined.from_opt(optionMap(anchor_oToJs, anchor)),
-              className: Js_null_undefined.from_opt(className),
-              elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              ModalProps: Js_null_undefined.from_opt(modalProps),
-              onClose: Js_null_undefined.from_opt(onClose),
-              open: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
-              SlideProps: Js_null_undefined.from_opt(slideProps),
-              theme: theme,
-              transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number" || v[0] !== -908856609) {
-                            return unwrapValue(v);
-                          } else {
-                            return unwrapValue(/* `Element */[
-                                        -744106340,
-                                        transitionDurationShapeToJs$2(v[1])
-                                      ]);
-                          }
-                        }), transitionDuration)),
-              type: Js_null_undefined.from_opt(optionMap(type__pToJs, type_)),
-              BackdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
-              BackdropProps: Js_null_undefined.from_opt(backdropProps),
-              container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
-              disableAutoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAutoFocus)),
-              disableBackdropClick: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableBackdropClick)),
-              disableEnforceFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEnforceFocus)),
-              disableEscapeKeyDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEscapeKeyDown)),
-              disableRestoreFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRestoreFocus)),
-              hideBackdrop: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, hideBackdrop)),
-              keepMounted: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, keepMounted)),
-              manager: Js_null_undefined.from_opt(manager),
-              onBackdropClick: Js_null_undefined.from_opt(onBackdropClick),
-              onEscapeKeyDown: Js_null_undefined.from_opt(onEscapeKeyDown),
-              onRendered: Js_null_undefined.from_opt(onRendered),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$22, classes))
-            }, children);
+function make$25(anchor, className, elevation, modalProps, onClose, _open, slideProps, theme, transitionDuration, _type, backdropComponent, backdropProps, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
+  var tmp = {
+    theme: theme
+  };
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$9);
+        }), anchor);
+  if (tmp$1) {
+    tmp.anchor = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, elevation);
+  if (tmp$2) {
+    tmp.elevation = tmp$2[0];
+  }
+  if (modalProps) {
+    tmp.modalProps = modalProps[0];
+  }
+  if (onClose) {
+    tmp.onClose = onClose[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, _open);
+  if (tmp$3) {
+    tmp.open = tmp$3[0];
+  }
+  if (slideProps) {
+    tmp.slideProps = slideProps[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== -908856609) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `Element */[
+                        -744106340,
+                        transitionDurationShapeToJs$2(v[1])
+                      ]);
+          }
+        }), transitionDuration);
+  if (tmp$4) {
+    tmp.transitionDuration = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$10);
+        }), _type);
+  if (tmp$5) {
+    tmp.type = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, backdropComponent);
+  if (tmp$6) {
+    tmp.backdropComponent = tmp$6[0];
+  }
+  if (backdropProps) {
+    tmp.backdropProps = backdropProps[0];
+  }
+  var tmp$7 = Js_option.map(unwrapValue, container);
+  if (tmp$7) {
+    tmp.container = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(Js_boolean.to_js_boolean, disableAutoFocus);
+  if (tmp$8) {
+    tmp.disableAutoFocus = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(Js_boolean.to_js_boolean, disableBackdropClick);
+  if (tmp$9) {
+    tmp.disableBackdropClick = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map(Js_boolean.to_js_boolean, disableEnforceFocus);
+  if (tmp$10) {
+    tmp.disableEnforceFocus = tmp$10[0];
+  }
+  var tmp$11 = Js_option.map(Js_boolean.to_js_boolean, disableEscapeKeyDown);
+  if (tmp$11) {
+    tmp.disableEscapeKeyDown = tmp$11[0];
+  }
+  var tmp$12 = Js_option.map(Js_boolean.to_js_boolean, disableRestoreFocus);
+  if (tmp$12) {
+    tmp.disableRestoreFocus = tmp$12[0];
+  }
+  var tmp$13 = Js_option.map(Js_boolean.to_js_boolean, hideBackdrop);
+  if (tmp$13) {
+    tmp.hideBackdrop = tmp$13[0];
+  }
+  var tmp$14 = Js_option.map(Js_boolean.to_js_boolean, keepMounted);
+  if (tmp$14) {
+    tmp.keepMounted = tmp$14[0];
+  }
+  if (manager) {
+    tmp.manager = manager[0];
+  }
+  if (onBackdropClick) {
+    tmp.onBackdropClick = onBackdropClick[0];
+  }
+  if (onEscapeKeyDown) {
+    tmp.onEscapeKeyDown = onEscapeKeyDown[0];
+  }
+  if (onRendered) {
+    tmp.onRendered = onRendered[0];
+  }
+  var tmp$15 = Js_option.map(to_obj$22, classes);
+  if (tmp$15) {
+    tmp.classes = tmp$15[0];
+  }
+  return ReasonReact.wrapJsForReason(Drawer.default, tmp, children);
 }
 
 var Drawer$1 = /* module */[
-  /* anchor_oToJs */anchor_oToJs,
-  /* anchor_oFromJs */anchor_oFromJs,
+  /* anchorToJs */anchorToJs,
+  /* anchorFromJs */anchorFromJs,
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$2,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$2,
-  /* type__pToJs */type__pToJs,
-  /* type__pFromJs */type__pFromJs,
+  /* _typeToJs */_typeToJs,
+  /* _typeFromJs */_typeFromJs,
   /* Classes */Classes$22,
   /* make */make$25
 ];
@@ -2692,10 +3422,15 @@ var Classes$23 = /* module */[
 ];
 
 function make$26(className, classes, children) {
-  return ReasonReact.wrapJsForReason(ExpansionPanelActions.default, {
-              className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$23, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(to_obj$23, classes);
+  if (tmp$1) {
+    tmp.classes = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(ExpansionPanelActions.default, tmp, children);
 }
 
 var ExpansionPanelActions$1 = /* module */[
@@ -2720,10 +3455,15 @@ var Classes$24 = /* module */[
 ];
 
 function make$27(className, classes, children) {
-  return ReasonReact.wrapJsForReason(ExpansionPanelDetails.default, {
-              className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$24, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(to_obj$24, classes);
+  if (tmp$1) {
+    tmp.classes = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(ExpansionPanelDetails.default, tmp, children);
 }
 
 var ExpansionPanelDetails$1 = /* module */[
@@ -2765,36 +3505,98 @@ var Classes$25 = /* module */[
   /* to_obj */to_obj$25
 ];
 
-function make$28(className, disabled, expanded, expandIcon, onChange, onClick, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(ExpansionPanelSummary.default, {
-              className: Js_null_undefined.from_opt(className),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              expanded: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, expanded)),
-              expandIcon: Js_null_undefined.from_opt(expandIcon),
-              onChange: Js_null_undefined.from_opt(onChange),
-              onClick: Js_null_undefined.from_opt(onClick),
-              buttonRef: Js_null_undefined.from_opt(buttonRef),
-              centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
-              keyboardFocusedClassName: Js_null_undefined.from_opt(keyboardFocusedClassName),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              onKeyboardFocus: Js_null_undefined.from_opt(onKeyboardFocus),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              onKeyUp: Js_null_undefined.from_opt(onKeyUp),
-              onMouseDown: Js_null_undefined.from_opt(onMouseDown),
-              onMouseLeave: Js_null_undefined.from_opt(onMouseLeave),
-              onMouseUp: Js_null_undefined.from_opt(onMouseUp),
-              onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
-              onTouchMove: Js_null_undefined.from_opt(onTouchMove),
-              onTouchStart: Js_null_undefined.from_opt(onTouchStart),
-              role: Js_null_undefined.from_opt(role),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              type: Js_null_undefined.from_opt(type_),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$25, classes))
-            }, children);
+function make$28(className, disabled, expanded, expandIcon, onChange, onClick, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$1) {
+    tmp.disabled = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, expanded);
+  if (tmp$2) {
+    tmp.expanded = tmp$2[0];
+  }
+  if (expandIcon) {
+    tmp.expandIcon = expandIcon[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, centerRipple);
+  if (tmp$3) {
+    tmp.centerRipple = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, component);
+  if (tmp$4) {
+    tmp.component = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$5) {
+    tmp.disableRipple = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, focusRipple);
+  if (tmp$6) {
+    tmp.focusRipple = tmp$6[0];
+  }
+  if (keyboardFocusedClassName) {
+    tmp.keyboardFocusedClassName = keyboardFocusedClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$7 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$7) {
+    tmp.tabIndex = tmp$7[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$25, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(ExpansionPanelSummary.default, tmp, children);
 }
 
 var ExpansionPanelSummary$1 = /* module */[
@@ -2827,18 +3629,45 @@ var Classes$26 = /* module */[
 ];
 
 function make$29(className, collapseProps, defaultExpanded, disabled, expanded, onChange, component, elevation, square, classes, children) {
-  return ReasonReact.wrapJsForReason(ExpansionPanel.default, {
-              className: Js_null_undefined.from_opt(className),
-              CollapseProps: Js_null_undefined.from_opt(collapseProps),
-              defaultExpanded: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, defaultExpanded)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              expanded: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, expanded)),
-              onChange: Js_null_undefined.from_opt(onChange),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$26, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (collapseProps) {
+    tmp.collapseProps = collapseProps[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, defaultExpanded);
+  if (tmp$1) {
+    tmp.defaultExpanded = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$2) {
+    tmp.disabled = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, expanded);
+  if (tmp$3) {
+    tmp.expanded = tmp$3[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, component);
+  if (tmp$4) {
+    tmp.component = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, elevation);
+  if (tmp$5) {
+    tmp.elevation = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, square);
+  if (tmp$6) {
+    tmp.square = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(to_obj$26, classes);
+  if (tmp$7) {
+    tmp.classes = tmp$7[0];
+  }
+  return ReasonReact.wrapJsForReason(ExpansionPanel.default, tmp, children);
 }
 
 var ExpansionPanel$1 = /* module */[
@@ -2860,26 +3689,44 @@ function timeoutShapeFromJs$1(param) {
         ];
 }
 
-function make$30(appear, in_, onEnter, onEntering, onExit, style, theme, timeout, children) {
-  return ReasonReact.wrapJsForReason(Fade.default, {
-              appear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, appear)),
-              in: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
-              onEnter: Js_null_undefined.from_opt(onEnter),
-              onEntering: Js_null_undefined.from_opt(onEntering),
-              onExit: Js_null_undefined.from_opt(onExit),
-              style: Js_null_undefined.from_opt(style),
-              theme: theme,
-              timeout: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number" || v[0] !== -908856609) {
-                            return unwrapValue(v);
-                          } else {
-                            return unwrapValue(/* `Element */[
-                                        -744106340,
-                                        timeoutShapeToJs$1(v[1])
-                                      ]);
-                          }
-                        }), timeout))
-            }, children);
+function make$30(appear, _in, onEnter, onEntering, onExit, style, theme, timeout, children) {
+  var tmp = {
+    theme: theme
+  };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, appear);
+  if (tmp$1) {
+    tmp.appear = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, _in);
+  if (tmp$2) {
+    tmp.in = tmp$2[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  var tmp$3 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== -908856609) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `Element */[
+                        -744106340,
+                        timeoutShapeToJs$1(v[1])
+                      ]);
+          }
+        }), timeout);
+  if (tmp$3) {
+    tmp.timeout = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(Fade.default, tmp, children);
 }
 
 var Fade$1 = /* module */[
@@ -2913,18 +3760,41 @@ var Classes$27 = /* module */[
 ];
 
 function make$31(checked, className, control, disabled, inputRef, label, name, onChange, value, classes, children) {
-  return ReasonReact.wrapJsForReason(FormControlLabel.default, {
-              checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
-              className: Js_null_undefined.from_opt(className),
-              control: Js_null_undefined.from_opt(control),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              inputRef: Js_null_undefined.from_opt(inputRef),
-              label: Js_null_undefined.from_opt(label),
-              name: Js_null_undefined.from_opt(name),
-              onChange: Js_null_undefined.from_opt(onChange),
-              value: Js_null_undefined.from_opt(value),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$27, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, checked);
+  if (tmp$1) {
+    tmp.checked = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (control) {
+    tmp.control = control[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$2) {
+    tmp.disabled = tmp$2[0];
+  }
+  if (inputRef) {
+    tmp.inputRef = inputRef[0];
+  }
+  if (label) {
+    tmp.label = label[0];
+  }
+  if (name) {
+    tmp.name = name[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$27, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(FormControlLabel.default, tmp, children);
 }
 
 var FormControlLabel$1 = /* module */[
@@ -2947,11 +3817,11 @@ var jsMapperConstantArray$11 = /* array */[
   ]
 ];
 
-function margin_rToJs(param) {
+function marginToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$11);
 }
 
-function margin_rFromJs(param) {
+function marginFromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$11, param);
 }
 
@@ -2982,23 +3852,52 @@ var Classes$28 = /* module */[
 ];
 
 function make$32(className, component, disabled, error, fullWidth, margin, onBlur, onFocus, required, classes, children) {
-  return ReasonReact.wrapJsForReason(FormControl.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
-              fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              margin: Js_null_undefined.from_opt(optionMap(margin_rToJs, margin)),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              required: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, required)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$28, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$2) {
+    tmp.disabled = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, error);
+  if (tmp$3) {
+    tmp.error = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
+  if (tmp$4) {
+    tmp.fullWidth = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$11);
+        }), margin);
+  if (tmp$5) {
+    tmp.margin = tmp$5[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, required);
+  if (tmp$6) {
+    tmp.required = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(to_obj$28, classes);
+  if (tmp$7) {
+    tmp.classes = tmp$7[0];
+  }
+  return ReasonReact.wrapJsForReason(FormControl.default, tmp, children);
 }
 
 var FormControl$1 = /* module */[
-  /* margin_rToJs */margin_rToJs,
-  /* margin_rFromJs */margin_rFromJs,
+  /* marginToJs */marginToJs,
+  /* marginFromJs */marginFromJs,
   /* Classes */Classes$28,
   /* make */make$32
 ];
@@ -3024,11 +3923,19 @@ var Classes$29 = /* module */[
 ];
 
 function make$33(className, row, classes, children) {
-  return ReasonReact.wrapJsForReason(FormGroup.default, {
-              className: Js_null_undefined.from_opt(className),
-              row: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, row)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$29, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, row);
+  if (tmp$1) {
+    tmp.row = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(to_obj$29, classes);
+  if (tmp$2) {
+    tmp.classes = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(FormGroup.default, tmp, children);
 }
 
 var FormGroup$1 = /* module */[
@@ -3041,11 +3948,11 @@ var jsMapperConstantArray$12 = /* array */[/* tuple */[
     "dense"
   ]];
 
-function margin_bToJs(param) {
+function marginToJs$1(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$12);
 }
 
-function margin_bFromJs(param) {
+function marginFromJs$1(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$12, param);
 }
 
@@ -3076,19 +3983,38 @@ var Classes$30 = /* module */[
 ];
 
 function make$34(className, component, disabled, error, margin, classes, children) {
-  return ReasonReact.wrapJsForReason(FormHelperText.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
-              margin: Js_null_undefined.from_opt(optionMap(margin_bToJs, margin)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$30, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$2) {
+    tmp.disabled = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, error);
+  if (tmp$3) {
+    tmp.error = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(1, v, jsMapperConstantArray$12);
+        }), margin);
+  if (tmp$4) {
+    tmp.margin = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(to_obj$30, classes);
+  if (tmp$5) {
+    tmp.classes = tmp$5[0];
+  }
+  return ReasonReact.wrapJsForReason(FormHelperText.default, tmp, children);
 }
 
 var FormHelperText$1 = /* module */[
-  /* margin_bToJs */margin_bToJs,
-  /* margin_bFromJs */margin_bFromJs,
+  /* marginToJs */marginToJs$1,
+  /* marginFromJs */marginFromJs$1,
   /* Classes */Classes$30,
   /* make */make$34
 ];
@@ -3120,15 +4046,35 @@ var Classes$31 = /* module */[
 ];
 
 function make$35(className, component, disabled, error, focused, required, classes, children) {
-  return ReasonReact.wrapJsForReason(FormLabel.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
-              focused: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focused)),
-              required: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, required)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$31, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$2) {
+    tmp.disabled = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, error);
+  if (tmp$3) {
+    tmp.error = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, focused);
+  if (tmp$4) {
+    tmp.focused = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, required);
+  if (tmp$5) {
+    tmp.required = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(to_obj$31, classes);
+  if (tmp$6) {
+    tmp.classes = tmp$6[0];
+  }
+  return ReasonReact.wrapJsForReason(FormLabel.default, tmp, children);
 }
 
 var FormLabel$1 = /* module */[
@@ -3147,11 +4093,11 @@ var jsMapperConstantArray$13 = /* array */[
   ]
 ];
 
-function actionPosition_0ToJs(param) {
+function actionPositionToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$13);
 }
 
-function actionPosition_0FromJs(param) {
+function actionPositionFromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$13, param);
 }
 
@@ -3166,11 +4112,11 @@ var jsMapperConstantArray$14 = /* array */[
   ]
 ];
 
-function titlePosition_xToJs(param) {
+function titlePositionToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$14);
 }
 
-function titlePosition_xFromJs(param) {
+function titlePositionFromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$14, param);
 }
 
@@ -3215,22 +4161,43 @@ var Classes$32 = /* module */[
 ];
 
 function make$36(actionIcon, actionPosition, className, subtitle, title, titlePosition, classes, children) {
-  return ReasonReact.wrapJsForReason(GridListTileBar.default, {
-              actionIcon: Js_null_undefined.from_opt(actionIcon),
-              actionPosition: Js_null_undefined.from_opt(optionMap(actionPosition_0ToJs, actionPosition)),
-              className: Js_null_undefined.from_opt(className),
-              subtitle: Js_null_undefined.from_opt(subtitle),
-              title: Js_null_undefined.from_opt(title),
-              titlePosition: Js_null_undefined.from_opt(optionMap(titlePosition_xToJs, titlePosition)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$32, classes))
-            }, children);
+  var tmp = { };
+  if (actionIcon) {
+    tmp.actionIcon = actionIcon[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$13);
+        }), actionPosition);
+  if (tmp$1) {
+    tmp.actionPosition = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (subtitle) {
+    tmp.subtitle = subtitle[0];
+  }
+  if (title) {
+    tmp.title = title[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$14);
+        }), titlePosition);
+  if (tmp$2) {
+    tmp.titlePosition = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$32, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(GridListTileBar.default, tmp, children);
 }
 
 var GridListTileBar$1 = /* module */[
-  /* actionPosition_0ToJs */actionPosition_0ToJs,
-  /* actionPosition_0FromJs */actionPosition_0FromJs,
-  /* titlePosition_xToJs */titlePosition_xToJs,
-  /* titlePosition_xFromJs */titlePosition_xFromJs,
+  /* actionPositionToJs */actionPositionToJs,
+  /* actionPositionFromJs */actionPositionFromJs,
+  /* titlePositionToJs */titlePositionToJs,
+  /* titlePositionFromJs */titlePositionFromJs,
   /* Classes */Classes$32,
   /* make */make$36
 ];
@@ -3262,13 +4229,27 @@ var Classes$33 = /* module */[
 ];
 
 function make$37(className, cols, component, rows, classes, children) {
-  return ReasonReact.wrapJsForReason(GridListTile.default, {
-              className: Js_null_undefined.from_opt(className),
-              cols: Js_null_undefined.from_opt(optionMap(unwrapValue, cols)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              rows: Js_null_undefined.from_opt(optionMap(unwrapValue, rows)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$33, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, cols);
+  if (tmp$1) {
+    tmp.cols = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
+  if (tmp$2) {
+    tmp.component = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, rows);
+  if (tmp$3) {
+    tmp.rows = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$33, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
+  }
+  return ReasonReact.wrapJsForReason(GridListTile.default, tmp, children);
 }
 
 var GridListTile$1 = /* module */[
@@ -3281,11 +4262,11 @@ var jsMapperConstantArray$15 = /* array */[/* tuple */[
     "auto"
   ]];
 
-function cellHeight_zToJs(param) {
+function cellHeightToJs(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$15);
 }
 
-function cellHeight_zFromJs(param) {
+function cellHeightFromJs(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$15, param);
 }
 
@@ -3306,29 +4287,48 @@ var Classes$34 = /* module */[
 ];
 
 function make$38(cellHeight, className, cols, component, spacing, style, classes, children) {
-  return ReasonReact.wrapJsForReason(GridList.default, {
-              cellHeight: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number" || v[0] !== 770676513) {
-                            return unwrapValue(v);
-                          } else {
-                            return unwrapValue(/* `String */[
-                                        -976970511,
-                                        Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$15)
-                                      ]);
-                          }
-                        }), cellHeight)),
-              className: Js_null_undefined.from_opt(className),
-              cols: Js_null_undefined.from_opt(optionMap(unwrapValue, cols)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              spacing: Js_null_undefined.from_opt(optionMap(unwrapValue, spacing)),
-              style: Js_null_undefined.from_opt(style),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$34, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== 770676513) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `String */[
+                        -976970511,
+                        Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$15)
+                      ]);
+          }
+        }), cellHeight);
+  if (tmp$1) {
+    tmp.cellHeight = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, cols);
+  if (tmp$2) {
+    tmp.cols = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, component);
+  if (tmp$3) {
+    tmp.component = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, spacing);
+  if (tmp$4) {
+    tmp.spacing = tmp$4[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  var tmp$5 = Js_option.map(to_obj$34, classes);
+  if (tmp$5) {
+    tmp.classes = tmp$5[0];
+  }
+  return ReasonReact.wrapJsForReason(GridList.default, tmp, children);
 }
 
 var GridList$1 = /* module */[
-  /* cellHeight_zToJs */cellHeight_zToJs,
-  /* cellHeight_zFromJs */cellHeight_zFromJs,
+  /* cellHeightToJs */cellHeightToJs,
+  /* cellHeightFromJs */cellHeightFromJs,
   /* Classes */Classes$34,
   /* make */make$38
 ];
@@ -3360,11 +4360,11 @@ var jsMapperConstantArray$16 = /* array */[
   ]
 ];
 
-function alignContent_pToJs(param) {
+function alignContentToJs(param) {
   return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$16);
 }
 
-function alignContent_pFromJs(param) {
+function alignContentFromJs(param) {
   return Js_mapperRt.revSearch(6, jsMapperConstantArray$16, param);
 }
 
@@ -3391,11 +4391,11 @@ var jsMapperConstantArray$17 = /* array */[
   ]
 ];
 
-function alignItems_2ToJs(param) {
+function alignItemsToJs(param) {
   return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$17);
 }
 
-function alignItems_2FromJs(param) {
+function alignItemsFromJs(param) {
   return Js_mapperRt.revSearch(5, jsMapperConstantArray$17, param);
 }
 
@@ -3418,11 +4418,11 @@ var jsMapperConstantArray$18 = /* array */[
   ]
 ];
 
-function direction_vToJs(param) {
+function directionToJs(param) {
   return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$18);
 }
 
-function direction_vFromJs(param) {
+function directionFromJs(param) {
   return Js_mapperRt.revSearch(4, jsMapperConstantArray$18, param);
 }
 
@@ -3449,11 +4449,11 @@ var jsMapperConstantArray$19 = /* array */[
   ]
 ];
 
-function justify_gToJs(param) {
+function justifyToJs(param) {
   return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$19);
 }
 
-function justify_gFromJs(param) {
+function justifyFromJs(param) {
   return Js_mapperRt.revSearch(5, jsMapperConstantArray$19, param);
 }
 
@@ -3473,11 +4473,11 @@ var jsMapperConstantArray$20 = /* array */[
   12
 ];
 
-function lg_dToJs(param) {
+function lgToJs(param) {
   return Js_mapperRt.toInt(param, jsMapperConstantArray$20);
 }
 
-function lg_dFromJs(param) {
+function lgFromJs(param) {
   return Js_mapperRt.fromInt(13, jsMapperConstantArray$20, param);
 }
 
@@ -3497,11 +4497,11 @@ var jsMapperConstantArray$21 = /* array */[
   12
 ];
 
-function md_cToJs(param) {
+function mdToJs(param) {
   return Js_mapperRt.toInt(param, jsMapperConstantArray$21);
 }
 
-function md_cFromJs(param) {
+function mdFromJs(param) {
   return Js_mapperRt.fromInt(13, jsMapperConstantArray$21, param);
 }
 
@@ -3521,11 +4521,11 @@ var jsMapperConstantArray$22 = /* array */[
   12
 ];
 
-function sm_mToJs(param) {
+function smToJs(param) {
   return Js_mapperRt.toInt(param, jsMapperConstantArray$22);
 }
 
-function sm_mFromJs(param) {
+function smFromJs(param) {
   return Js_mapperRt.fromInt(13, jsMapperConstantArray$22, param);
 }
 
@@ -3537,11 +4537,11 @@ var jsMapperConstantArray$23 = /* array */[
   40
 ];
 
-function spacing_iToJs(param) {
+function spacingToJs(param) {
   return Js_mapperRt.toInt(param, jsMapperConstantArray$23);
 }
 
-function spacing_iFromJs(param) {
+function spacingFromJs(param) {
   return Js_mapperRt.fromInt(5, jsMapperConstantArray$23, param);
 }
 
@@ -3560,11 +4560,11 @@ var jsMapperConstantArray$24 = /* array */[
   ]
 ];
 
-function wrap_1ToJs(param) {
+function wrapToJs(param) {
   return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$24);
 }
 
-function wrap_1FromJs(param) {
+function wrapFromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$24, param);
 }
 
@@ -3584,11 +4584,11 @@ var jsMapperConstantArray$25 = /* array */[
   12
 ];
 
-function xl_dToJs(param) {
+function xlToJs(param) {
   return Js_mapperRt.toInt(param, jsMapperConstantArray$25);
 }
 
-function xl_dFromJs(param) {
+function xlFromJs(param) {
   return Js_mapperRt.fromInt(13, jsMapperConstantArray$25, param);
 }
 
@@ -3608,11 +4608,11 @@ var jsMapperConstantArray$26 = /* array */[
   12
 ];
 
-function xs_nToJs(param) {
+function xsToJs(param) {
   return Js_mapperRt.toInt(param, jsMapperConstantArray$26);
 }
 
-function xs_nFromJs(param) {
+function xsFromJs(param) {
   return Js_mapperRt.fromInt(13, jsMapperConstantArray$26, param);
 }
 
@@ -3711,51 +4711,125 @@ var Classes$35 = /* module */[
 ];
 
 function make$39(alignContent, alignItems, className, component, container, direction, hidden, item, justify, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth, classes, children) {
-  return ReasonReact.wrapJsForReason(Grid.default, {
-              alignContent: Js_null_undefined.from_opt(optionMap(alignContent_pToJs, alignContent)),
-              alignItems: Js_null_undefined.from_opt(optionMap(alignItems_2ToJs, alignItems)),
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              container: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, container)),
-              direction: Js_null_undefined.from_opt(optionMap(direction_vToJs, direction)),
-              hidden: Js_null_undefined.from_opt(hidden),
-              item: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, item)),
-              justify: Js_null_undefined.from_opt(optionMap(justify_gToJs, justify)),
-              lg: Js_null_undefined.from_opt(optionMap(lg_dToJs, lg)),
-              md: Js_null_undefined.from_opt(optionMap(md_cToJs, md)),
-              sm: Js_null_undefined.from_opt(optionMap(sm_mToJs, sm)),
-              spacing: Js_null_undefined.from_opt(optionMap(spacing_iToJs, spacing)),
-              wrap: Js_null_undefined.from_opt(optionMap(wrap_1ToJs, wrap)),
-              xl: Js_null_undefined.from_opt(optionMap(xl_dToJs, xl)),
-              xs: Js_null_undefined.from_opt(optionMap(xs_nToJs, xs)),
-              zeroMinWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, zeroMinWidth)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$35, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$16);
+        }), alignContent);
+  if (tmp$1) {
+    tmp.alignContent = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$17);
+        }), alignItems);
+  if (tmp$2) {
+    tmp.alignItems = tmp$2[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, component);
+  if (tmp$3) {
+    tmp.component = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, container);
+  if (tmp$4) {
+    tmp.container = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$18);
+        }), direction);
+  if (tmp$5) {
+    tmp.direction = tmp$5[0];
+  }
+  if (hidden) {
+    tmp.hidden = hidden[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, item);
+  if (tmp$6) {
+    tmp.item = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$19);
+        }), justify);
+  if (tmp$7) {
+    tmp.justify = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map((function (v) {
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$20);
+        }), lg);
+  if (tmp$8) {
+    tmp.lg = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map((function (v) {
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$21);
+        }), md);
+  if (tmp$9) {
+    tmp.md = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map((function (v) {
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$22);
+        }), sm);
+  if (tmp$10) {
+    tmp.sm = tmp$10[0];
+  }
+  var tmp$11 = Js_option.map((function (v) {
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$23);
+        }), spacing);
+  if (tmp$11) {
+    tmp.spacing = tmp$11[0];
+  }
+  var tmp$12 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$24);
+        }), wrap);
+  if (tmp$12) {
+    tmp.wrap = tmp$12[0];
+  }
+  var tmp$13 = Js_option.map((function (v) {
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$25);
+        }), xl);
+  if (tmp$13) {
+    tmp.xl = tmp$13[0];
+  }
+  var tmp$14 = Js_option.map((function (v) {
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$26);
+        }), xs);
+  if (tmp$14) {
+    tmp.xs = tmp$14[0];
+  }
+  var tmp$15 = Js_option.map(Js_boolean.to_js_boolean, zeroMinWidth);
+  if (tmp$15) {
+    tmp.zeroMinWidth = tmp$15[0];
+  }
+  var tmp$16 = Js_option.map(to_obj$35, classes);
+  if (tmp$16) {
+    tmp.classes = tmp$16[0];
+  }
+  return ReasonReact.wrapJsForReason(Grid.default, tmp, children);
 }
 
 var Grid$1 = /* module */[
-  /* alignContent_pToJs */alignContent_pToJs,
-  /* alignContent_pFromJs */alignContent_pFromJs,
-  /* alignItems_2ToJs */alignItems_2ToJs,
-  /* alignItems_2FromJs */alignItems_2FromJs,
-  /* direction_vToJs */direction_vToJs,
-  /* direction_vFromJs */direction_vFromJs,
-  /* justify_gToJs */justify_gToJs,
-  /* justify_gFromJs */justify_gFromJs,
-  /* lg_dToJs */lg_dToJs,
-  /* lg_dFromJs */lg_dFromJs,
-  /* md_cToJs */md_cToJs,
-  /* md_cFromJs */md_cFromJs,
-  /* sm_mToJs */sm_mToJs,
-  /* sm_mFromJs */sm_mFromJs,
-  /* spacing_iToJs */spacing_iToJs,
-  /* spacing_iFromJs */spacing_iFromJs,
-  /* wrap_1ToJs */wrap_1ToJs,
-  /* wrap_1FromJs */wrap_1FromJs,
-  /* xl_dToJs */xl_dToJs,
-  /* xl_dFromJs */xl_dFromJs,
-  /* xs_nToJs */xs_nToJs,
-  /* xs_nFromJs */xs_nFromJs,
+  /* alignContentToJs */alignContentToJs,
+  /* alignContentFromJs */alignContentFromJs,
+  /* alignItemsToJs */alignItemsToJs,
+  /* alignItemsFromJs */alignItemsFromJs,
+  /* directionToJs */directionToJs,
+  /* directionFromJs */directionFromJs,
+  /* justifyToJs */justifyToJs,
+  /* justifyFromJs */justifyFromJs,
+  /* lgToJs */lgToJs,
+  /* lgFromJs */lgFromJs,
+  /* mdToJs */mdToJs,
+  /* mdFromJs */mdFromJs,
+  /* smToJs */smToJs,
+  /* smFromJs */smFromJs,
+  /* spacingToJs */spacingToJs,
+  /* spacingFromJs */spacingFromJs,
+  /* wrapToJs */wrapToJs,
+  /* wrapFromJs */wrapFromJs,
+  /* xlToJs */xlToJs,
+  /* xlFromJs */xlFromJs,
+  /* xsToJs */xsToJs,
+  /* xsFromJs */xsFromJs,
   /* Classes */Classes$35,
   /* make */make$39
 ];
@@ -3779,11 +4853,11 @@ var jsMapperConstantArray$27 = /* array */[/* tuple */[
     "auto"
   ]];
 
-function timeout_3ToJs(param) {
+function timeoutToJs$1(param) {
   return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$27);
 }
 
-function timeout_3FromJs(param) {
+function timeoutFromJs$1(param) {
   return Js_mapperRt.revSearch(1, jsMapperConstantArray$27, param);
 }
 
@@ -3809,49 +4883,76 @@ function transitionClassesShapeFromJs(param) {
         ];
 }
 
-function make$40(appear, in_, onEnter, onEntered, onEntering, onExit, onExited, onExiting, style, theme, timeout, transitionClasses, children) {
-  return ReasonReact.wrapJsForReason(Grow.default, {
-              appear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, appear)),
-              in: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
-              onEnter: Js_null_undefined.from_opt(onEnter),
-              onEntered: Js_null_undefined.from_opt(onEntered),
-              onEntering: Js_null_undefined.from_opt(onEntering),
-              onExit: Js_null_undefined.from_opt(onExit),
-              onExited: Js_null_undefined.from_opt(onExited),
-              onExiting: Js_null_undefined.from_opt(onExiting),
-              style: Js_null_undefined.from_opt(style),
-              theme: theme,
-              timeout: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number") {
-                            return unwrapValue(v);
-                          } else {
-                            var variant = v[0];
-                            if (variant !== -908856609) {
-                              if (variant !== 770676513) {
-                                return unwrapValue(v);
-                              } else {
-                                return unwrapValue(/* `String */[
-                                            -976970511,
-                                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$27)
-                                          ]);
-                              }
-                            } else {
-                              return unwrapValue(/* `Element */[
-                                          -744106340,
-                                          timeoutShapeToJs$2(v[1])
-                                        ]);
-                            }
-                          }
-                        }), timeout)),
-              transitionClasses: Js_null_undefined.from_opt(optionMap(transitionClassesShapeToJs, transitionClasses))
-            }, children);
+function make$40(appear, _in, onEnter, onEntered, onEntering, onExit, onExited, onExiting, style, theme, timeout, transitionClasses, children) {
+  var tmp = {
+    theme: theme
+  };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, appear);
+  if (tmp$1) {
+    tmp.appear = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, _in);
+  if (tmp$2) {
+    tmp.in = tmp$2[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntered) {
+    tmp.onEntered = onEntered[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (onExited) {
+    tmp.onExited = onExited[0];
+  }
+  if (onExiting) {
+    tmp.onExiting = onExiting[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  var tmp$3 = Js_option.map((function (v) {
+          if (typeof v === "number") {
+            return unwrapValue(v);
+          } else {
+            var variant = v[0];
+            if (variant !== -908856609) {
+              if (variant !== 770676513) {
+                return unwrapValue(v);
+              } else {
+                return unwrapValue(/* `String */[
+                            -976970511,
+                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$27)
+                          ]);
+              }
+            } else {
+              return unwrapValue(/* `Element */[
+                          -744106340,
+                          timeoutShapeToJs$2(v[1])
+                        ]);
+            }
+          }
+        }), timeout);
+  if (tmp$3) {
+    tmp.timeout = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(transitionClassesShapeToJs, transitionClasses);
+  if (tmp$4) {
+    tmp.transitionClasses = tmp$4[0];
+  }
+  return ReasonReact.wrapJsForReason(Grow.default, tmp, children);
 }
 
 var Grow$1 = /* module */[
   /* timeoutShapeToJs */timeoutShapeToJs$2,
   /* timeoutShapeFromJs */timeoutShapeFromJs$2,
-  /* timeout_3ToJs */timeout_3ToJs,
-  /* timeout_3FromJs */timeout_3FromJs,
+  /* timeoutToJs */timeoutToJs$1,
+  /* timeoutFromJs */timeoutFromJs$1,
   /* transitionClassesShapeToJs */transitionClassesShapeToJs,
   /* transitionClassesShapeFromJs */transitionClassesShapeFromJs,
   /* make */make$40
@@ -3868,11 +4969,11 @@ var jsMapperConstantArray$28 = /* array */[
   ]
 ];
 
-function implementation_bToJs(param) {
+function implementationToJs(param) {
   return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$28);
 }
 
-function implementation_bFromJs(param) {
+function implementationFromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$28, param);
 }
 
@@ -3899,11 +5000,11 @@ var jsMapperConstantArray$29 = /* array */[
   ]
 ];
 
-function initialWidth_xToJs(param) {
+function initialWidthToJs(param) {
   return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$29);
 }
 
-function initialWidth_xFromJs(param) {
+function initialWidthFromJs(param) {
   return Js_mapperRt.revSearch(5, jsMapperConstantArray$29, param);
 }
 
@@ -3930,89 +5031,101 @@ var jsMapperConstantArray$30 = /* array */[
   ]
 ];
 
-function only_fToJs(param) {
+function onlyToJs(param) {
   return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$30);
 }
 
-function only_fFromJs(param) {
+function onlyFromJs(param) {
   return Js_mapperRt.revSearch(5, jsMapperConstantArray$30, param);
 }
 
-var jsMapperConstantArray$31 = /* array */[
-  /* tuple */[
-    17051,
-    "lg"
-  ],
-  /* tuple */[
-    17271,
-    "md"
-  ],
-  /* tuple */[
-    18618,
-    "sm"
-  ],
-  /* tuple */[
-    19732,
-    "xl"
-  ],
-  /* tuple */[
-    19739,
-    "xs"
-  ]
-];
-
-function only_2ToJs(param) {
-  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$31);
-}
-
-function only_2FromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$31, param);
-}
-
 function make$41(className, implementation, initialWidth, lgDown, lgUp, mdDown, mdUp, only, smDown, smUp, xlDown, xlUp, xsDown, xsUp, children) {
-  return ReasonReact.wrapJsForReason(Hidden.default, {
-              className: Js_null_undefined.from_opt(className),
-              implementation: Js_null_undefined.from_opt(optionMap(implementation_bToJs, implementation)),
-              initialWidth: Js_null_undefined.from_opt(optionMap(initialWidth_xToJs, initialWidth)),
-              lgDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, lgDown)),
-              lgUp: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, lgUp)),
-              mdDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, mdDown)),
-              mdUp: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, mdUp)),
-              only: Js_null_undefined.from_opt(optionMap((function (param) {
-                          if (param[0] >= 1034997432) {
-                            return unwrapValue(/* `Element */[
-                                        -744106340,
-                                        $$Array.map(only_2ToJs, param[1])
-                                      ]);
-                          } else {
-                            return unwrapValue(/* `String */[
-                                        -976970511,
-                                        Js_mapperRt.binSearch(5, param[1], jsMapperConstantArray$30)
-                                      ]);
-                          }
-                        }), only)),
-              smDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, smDown)),
-              smUp: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, smUp)),
-              xlDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, xlDown)),
-              xlUp: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, xlUp)),
-              xsDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, xsDown)),
-              xsUp: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, xsUp))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$28);
+        }), implementation);
+  if (tmp$1) {
+    tmp.implementation = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$29);
+        }), initialWidth);
+  if (tmp$2) {
+    tmp.initialWidth = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, lgDown);
+  if (tmp$3) {
+    tmp.lgDown = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, lgUp);
+  if (tmp$4) {
+    tmp.lgUp = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, mdDown);
+  if (tmp$5) {
+    tmp.mdDown = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, mdUp);
+  if (tmp$6) {
+    tmp.mdUp = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          if (v[0] >= 1034997432) {
+            return unwrapValue(/* `Element */[
+                        -744106340,
+                        $$Array.map(onlyToJs, v[1])
+                      ]);
+          } else {
+            return unwrapValue(/* `String */[
+                        -976970511,
+                        Js_mapperRt.binSearch(5, v[1], jsMapperConstantArray$30)
+                      ]);
+          }
+        }), only);
+  if (tmp$7) {
+    tmp.only = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(Js_boolean.to_js_boolean, smDown);
+  if (tmp$8) {
+    tmp.smDown = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(Js_boolean.to_js_boolean, smUp);
+  if (tmp$9) {
+    tmp.smUp = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map(Js_boolean.to_js_boolean, xlDown);
+  if (tmp$10) {
+    tmp.xlDown = tmp$10[0];
+  }
+  var tmp$11 = Js_option.map(Js_boolean.to_js_boolean, xlUp);
+  if (tmp$11) {
+    tmp.xlUp = tmp$11[0];
+  }
+  var tmp$12 = Js_option.map(Js_boolean.to_js_boolean, xsDown);
+  if (tmp$12) {
+    tmp.xsDown = tmp$12[0];
+  }
+  var tmp$13 = Js_option.map(Js_boolean.to_js_boolean, xsUp);
+  if (tmp$13) {
+    tmp.xsUp = tmp$13[0];
+  }
+  return ReasonReact.wrapJsForReason(Hidden.default, tmp, children);
 }
 
 var Hidden$1 = /* module */[
-  /* implementation_bToJs */implementation_bToJs,
-  /* implementation_bFromJs */implementation_bFromJs,
-  /* initialWidth_xToJs */initialWidth_xToJs,
-  /* initialWidth_xFromJs */initialWidth_xFromJs,
-  /* only_fToJs */only_fToJs,
-  /* only_fFromJs */only_fFromJs,
-  /* only_2ToJs */only_2ToJs,
-  /* only_2FromJs */only_2FromJs,
+  /* implementationToJs */implementationToJs,
+  /* implementationFromJs */implementationFromJs,
+  /* initialWidthToJs */initialWidthToJs,
+  /* initialWidthFromJs */initialWidthFromJs,
+  /* onlyToJs */onlyToJs,
+  /* onlyFromJs */onlyFromJs,
   /* make */make$41
 ];
 
-var jsMapperConstantArray$32 = /* array */[
+var jsMapperConstantArray$31 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -4031,12 +5144,12 @@ var jsMapperConstantArray$32 = /* array */[
   ]
 ];
 
-function color_jToJs(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$32);
+function colorToJs$4(param) {
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$31);
 }
 
-function color_jFromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$32, param);
+function colorFromJs$4(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$31, param);
 }
 
 function to_string$36(param) {
@@ -4069,44 +5182,104 @@ var Classes$36 = /* module */[
   /* to_obj */to_obj$36
 ];
 
-function make$42(className, color, disabled, disableRipple, buttonRef, centerRipple, component, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(IconButton.default, {
-              className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(color_jToJs, color)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              buttonRef: Js_null_undefined.from_opt(buttonRef),
-              centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
-              keyboardFocusedClassName: Js_null_undefined.from_opt(keyboardFocusedClassName),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onClick: Js_null_undefined.from_opt(onClick),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              onKeyboardFocus: Js_null_undefined.from_opt(onKeyboardFocus),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              onKeyUp: Js_null_undefined.from_opt(onKeyUp),
-              onMouseDown: Js_null_undefined.from_opt(onMouseDown),
-              onMouseLeave: Js_null_undefined.from_opt(onMouseLeave),
-              onMouseUp: Js_null_undefined.from_opt(onMouseUp),
-              onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
-              onTouchMove: Js_null_undefined.from_opt(onTouchMove),
-              onTouchStart: Js_null_undefined.from_opt(onTouchStart),
-              role: Js_null_undefined.from_opt(role),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              type: Js_null_undefined.from_opt(type_),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$36, classes))
-            }, children);
+function make$42(className, color, disabled, disableRipple, buttonRef, centerRipple, component, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$31);
+        }), color);
+  if (tmp$1) {
+    tmp.color = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$2) {
+    tmp.disabled = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$3) {
+    tmp.disableRipple = tmp$3[0];
+  }
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, centerRipple);
+  if (tmp$4) {
+    tmp.centerRipple = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, component);
+  if (tmp$5) {
+    tmp.component = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, focusRipple);
+  if (tmp$6) {
+    tmp.focusRipple = tmp$6[0];
+  }
+  if (keyboardFocusedClassName) {
+    tmp.keyboardFocusedClassName = keyboardFocusedClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$7 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$7) {
+    tmp.tabIndex = tmp$7[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$36, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(IconButton.default, tmp, children);
 }
 
 var IconButton$1 = /* module */[
-  /* color_jToJs */color_jToJs,
-  /* color_jFromJs */color_jFromJs,
+  /* colorToJs */colorToJs$4,
+  /* colorFromJs */colorFromJs$4,
   /* Classes */Classes$36,
   /* make */make$42
 ];
 
-var jsMapperConstantArray$33 = /* array */[
+var jsMapperConstantArray$32 = /* array */[
   /* tuple */[
     -891637802,
     "action"
@@ -4133,12 +5306,12 @@ var jsMapperConstantArray$33 = /* array */[
   ]
 ];
 
-function color_oToJs(param) {
-  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$33);
+function colorToJs$5(param) {
+  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$32);
 }
 
-function color_oFromJs(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$33, param);
+function colorFromJs$5(param) {
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$32, param);
 }
 
 function to_string$37(param) {
@@ -4174,22 +5347,35 @@ var Classes$37 = /* module */[
 ];
 
 function make$43(className, color, fontSize, classes, children) {
-  return ReasonReact.wrapJsForReason(Icon.default, {
-              className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(color_oToJs, color)),
-              fontSize: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fontSize)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$37, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$32);
+        }), color);
+  if (tmp$1) {
+    tmp.color = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, fontSize);
+  if (tmp$2) {
+    tmp.fontSize = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$37, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(Icon.default, tmp, children);
 }
 
 var Icon$1 = /* module */[
-  /* color_oToJs */color_oToJs,
-  /* color_oFromJs */color_oFromJs,
+  /* colorToJs */colorToJs$5,
+  /* colorFromJs */colorFromJs$5,
   /* Classes */Classes$37,
   /* make */make$43
 ];
 
-var jsMapperConstantArray$34 = /* array */[
+var jsMapperConstantArray$33 = /* array */[
   /* tuple */[
     3455931,
     "end"
@@ -4200,12 +5386,12 @@ var jsMapperConstantArray$34 = /* array */[
   ]
 ];
 
-function position_eToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$34);
+function positionToJs$1(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$33);
 }
 
-function position_eFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$34, param);
+function positionFromJs$1(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$33, param);
 }
 
 function to_string$38(param) {
@@ -4233,33 +5419,49 @@ var Classes$38 = /* module */[
 ];
 
 function make$44(className, component, disableTypography, position, classes, children) {
-  return ReasonReact.wrapJsForReason(InputAdornment.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disableTypography: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTypography)),
-              position: Js_null_undefined.from_opt(optionMap(position_eToJs, position)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$38, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disableTypography);
+  if (tmp$2) {
+    tmp.disableTypography = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$33);
+        }), position);
+  if (tmp$3) {
+    tmp.position = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$38, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
+  }
+  return ReasonReact.wrapJsForReason(InputAdornment.default, tmp, children);
 }
 
 var InputAdornment$1 = /* module */[
-  /* position_eToJs */position_eToJs,
-  /* position_eFromJs */position_eFromJs,
+  /* positionToJs */positionToJs$1,
+  /* positionFromJs */positionFromJs$1,
   /* Classes */Classes$38,
   /* make */make$44
 ];
 
-var jsMapperConstantArray$35 = /* array */[/* tuple */[
+var jsMapperConstantArray$34 = /* array */[/* tuple */[
     -363472001,
     "dense"
   ]];
 
-function margin_tToJs(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$35);
+function marginToJs$2(param) {
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$34);
 }
 
-function margin_tFromJs(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$35, param);
+function marginFromJs$2(param) {
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$34, param);
 }
 
 function to_string$39(param) {
@@ -4293,28 +5495,58 @@ var Classes$39 = /* module */[
 ];
 
 function make$45(className, disableAnimation, disabled, error, focused, formControlClasses, margin, required, shrink, classes, children) {
-  return ReasonReact.wrapJsForReason(InputLabel.default, {
-              className: Js_null_undefined.from_opt(className),
-              disableAnimation: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAnimation)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
-              focused: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focused)),
-              FormControlClasses: Js_null_undefined.from_opt(formControlClasses),
-              margin: Js_null_undefined.from_opt(optionMap(margin_tToJs, margin)),
-              required: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, required)),
-              shrink: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, shrink)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$39, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, disableAnimation);
+  if (tmp$1) {
+    tmp.disableAnimation = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$2) {
+    tmp.disabled = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, error);
+  if (tmp$3) {
+    tmp.error = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, focused);
+  if (tmp$4) {
+    tmp.focused = tmp$4[0];
+  }
+  if (formControlClasses) {
+    tmp.formControlClasses = formControlClasses[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(1, v, jsMapperConstantArray$34);
+        }), margin);
+  if (tmp$5) {
+    tmp.margin = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, required);
+  if (tmp$6) {
+    tmp.required = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, shrink);
+  if (tmp$7) {
+    tmp.shrink = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$39, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(InputLabel.default, tmp, children);
 }
 
 var InputLabel$1 = /* module */[
-  /* margin_tToJs */margin_tToJs,
-  /* margin_tFromJs */margin_tFromJs,
+  /* marginToJs */marginToJs$2,
+  /* marginFromJs */marginFromJs$2,
   /* Classes */Classes$39,
   /* make */make$45
 ];
 
-var jsMapperConstantArray$36 = /* array */[
+var jsMapperConstantArray$35 = /* array */[
   /* tuple */[
     -363472001,
     "dense"
@@ -4325,12 +5557,12 @@ var jsMapperConstantArray$36 = /* array */[
   ]
 ];
 
-function margin_eToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$36);
+function marginToJs$3(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$35);
 }
 
-function margin_eFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$36, param);
+function marginFromJs$3(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$35, param);
 }
 
 function to_string$40(param) {
@@ -4381,50 +5613,128 @@ var Classes$40 = /* module */[
   /* to_obj */to_obj$40
 ];
 
-function make$46(autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputProps, inputRef, margin, multiline, name, onBlur, onChange, onClean, onDirty, onFocus, onKeyDown, onKeyUp, placeholder, readOnly, rows, rowsMax, startAdornment, type_, value, classes, children) {
-  return ReasonReact.wrapJsForReason(Input.default, {
-              autoComplete: Js_null_undefined.from_opt(autoComplete),
-              autoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, autoFocus)),
-              className: Js_null_undefined.from_opt(className),
-              defaultValue: Js_null_undefined.from_opt(optionMap(unwrapValue, defaultValue)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableUnderline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableUnderline)),
-              endAdornment: Js_null_undefined.from_opt(endAdornment),
-              error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
-              fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              id: Js_null_undefined.from_opt(id),
-              inputComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, inputComponent)),
-              inputProps: Js_null_undefined.from_opt(inputProps),
-              inputRef: Js_null_undefined.from_opt(inputRef),
-              margin: Js_null_undefined.from_opt(optionMap(margin_eToJs, margin)),
-              multiline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, multiline)),
-              name: Js_null_undefined.from_opt(name),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onChange: Js_null_undefined.from_opt(onChange),
-              onClean: Js_null_undefined.from_opt(onClean),
-              onDirty: Js_null_undefined.from_opt(onDirty),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              onKeyUp: Js_null_undefined.from_opt(onKeyUp),
-              placeholder: Js_null_undefined.from_opt(placeholder),
-              readOnly: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, readOnly)),
-              rows: Js_null_undefined.from_opt(optionMap(unwrapValue, rows)),
-              rowsMax: Js_null_undefined.from_opt(optionMap(unwrapValue, rowsMax)),
-              startAdornment: Js_null_undefined.from_opt(startAdornment),
-              type: Js_null_undefined.from_opt(type_),
-              value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$40, classes))
-            }, children);
+function make$46(autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputProps, inputRef, margin, multiline, name, onBlur, onChange, onClean, onDirty, onFocus, onKeyDown, onKeyUp, placeholder, readOnly, rows, rowsMax, startAdornment, _type, value, classes, children) {
+  var tmp = { };
+  if (autoComplete) {
+    tmp.autoComplete = autoComplete[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, autoFocus);
+  if (tmp$1) {
+    tmp.autoFocus = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, defaultValue);
+  if (tmp$2) {
+    tmp.defaultValue = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$3) {
+    tmp.disabled = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, disableUnderline);
+  if (tmp$4) {
+    tmp.disableUnderline = tmp$4[0];
+  }
+  if (endAdornment) {
+    tmp.endAdornment = endAdornment[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, error);
+  if (tmp$5) {
+    tmp.error = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
+  if (tmp$6) {
+    tmp.fullWidth = tmp$6[0];
+  }
+  if (id) {
+    tmp.id = id[0];
+  }
+  var tmp$7 = Js_option.map(unwrapValue, inputComponent);
+  if (tmp$7) {
+    tmp.inputComponent = tmp$7[0];
+  }
+  if (inputProps) {
+    tmp.inputProps = inputProps[0];
+  }
+  if (inputRef) {
+    tmp.inputRef = inputRef[0];
+  }
+  var tmp$8 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$35);
+        }), margin);
+  if (tmp$8) {
+    tmp.margin = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(Js_boolean.to_js_boolean, multiline);
+  if (tmp$9) {
+    tmp.multiline = tmp$9[0];
+  }
+  if (name) {
+    tmp.name = name[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (onClean) {
+    tmp.onClean = onClean[0];
+  }
+  if (onDirty) {
+    tmp.onDirty = onDirty[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (placeholder) {
+    tmp.placeholder = placeholder[0];
+  }
+  var tmp$10 = Js_option.map(Js_boolean.to_js_boolean, readOnly);
+  if (tmp$10) {
+    tmp.readOnly = tmp$10[0];
+  }
+  var tmp$11 = Js_option.map(unwrapValue, rows);
+  if (tmp$11) {
+    tmp.rows = tmp$11[0];
+  }
+  var tmp$12 = Js_option.map(unwrapValue, rowsMax);
+  if (tmp$12) {
+    tmp.rowsMax = tmp$12[0];
+  }
+  if (startAdornment) {
+    tmp.startAdornment = startAdornment[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$13 = Js_option.map(unwrapValue, value);
+  if (tmp$13) {
+    tmp.value = tmp$13[0];
+  }
+  var tmp$14 = Js_option.map(to_obj$40, classes);
+  if (tmp$14) {
+    tmp.classes = tmp$14[0];
+  }
+  return ReasonReact.wrapJsForReason(Input.default, tmp, children);
 }
 
 var Input$1 = /* module */[
-  /* margin_eToJs */margin_eToJs,
-  /* margin_eFromJs */margin_eFromJs,
+  /* marginToJs */marginToJs$3,
+  /* marginFromJs */marginFromJs$3,
   /* Classes */Classes$40,
   /* make */make$46
 ];
 
-var jsMapperConstantArray$37 = /* array */[
+var jsMapperConstantArray$36 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -4435,15 +5745,15 @@ var jsMapperConstantArray$37 = /* array */[
   ]
 ];
 
-function color_fToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$37);
+function colorToJs$6(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$36);
 }
 
-function color_fFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$37, param);
+function colorFromJs$6(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$36, param);
 }
 
-var jsMapperConstantArray$38 = /* array */[
+var jsMapperConstantArray$37 = /* array */[
   /* tuple */[
     -700823845,
     "indeterminate"
@@ -4462,12 +5772,12 @@ var jsMapperConstantArray$38 = /* array */[
   ]
 ];
 
-function mode_9ToJs(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$38);
+function modeToJs$1(param) {
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$37);
 }
 
-function mode_9FromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$38, param);
+function modeFromJs$1(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$37, param);
 }
 
 function to_string$41(param) {
@@ -4521,21 +5831,42 @@ var Classes$41 = /* module */[
 ];
 
 function make$47(className, color, mode, value, valueBuffer, classes, children) {
-  return ReasonReact.wrapJsForReason(LinearProgress.default, {
-              className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(color_fToJs, color)),
-              mode: Js_null_undefined.from_opt(optionMap(mode_9ToJs, mode)),
-              value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
-              valueBuffer: Js_null_undefined.from_opt(optionMap(unwrapValue, valueBuffer)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$41, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$36);
+        }), color);
+  if (tmp$1) {
+    tmp.color = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$37);
+        }), mode);
+  if (tmp$2) {
+    tmp.mode = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, value);
+  if (tmp$3) {
+    tmp.value = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, valueBuffer);
+  if (tmp$4) {
+    tmp.valueBuffer = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(to_obj$41, classes);
+  if (tmp$5) {
+    tmp.classes = tmp$5[0];
+  }
+  return ReasonReact.wrapJsForReason(LinearProgress.default, tmp, children);
 }
 
 var LinearProgress$1 = /* module */[
-  /* color_fToJs */color_fToJs,
-  /* color_fFromJs */color_fFromJs,
-  /* mode_9ToJs */mode_9ToJs,
-  /* mode_9FromJs */mode_9FromJs,
+  /* colorToJs */colorToJs$6,
+  /* colorFromJs */colorFromJs$6,
+  /* modeToJs */modeToJs$1,
+  /* modeFromJs */modeFromJs$1,
   /* Classes */Classes$41,
   /* make */make$47
 ];
@@ -4561,10 +5892,15 @@ var Classes$42 = /* module */[
 ];
 
 function make$48(className, classes, children) {
-  return ReasonReact.wrapJsForReason(ListItemAvatar.default, {
-              className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$42, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(to_obj$42, classes);
+  if (tmp$1) {
+    tmp.classes = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(ListItemAvatar.default, tmp, children);
 }
 
 var ListItemAvatar$1 = /* module */[
@@ -4589,10 +5925,15 @@ var Classes$43 = /* module */[
 ];
 
 function make$49(className, classes, children) {
-  return ReasonReact.wrapJsForReason(ListItemIcon.default, {
-              className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$43, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(to_obj$43, classes);
+  if (tmp$1) {
+    tmp.classes = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(ListItemIcon.default, tmp, children);
 }
 
 var ListItemIcon$1 = /* module */[
@@ -4617,10 +5958,15 @@ var Classes$44 = /* module */[
 ];
 
 function make$50(className, classes, children) {
-  return ReasonReact.wrapJsForReason(ListItemSecondaryAction.default, {
-              className: Js_null_undefined.from_opt(className),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$44, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(to_obj$44, classes);
+  if (tmp$1) {
+    tmp.classes = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(ListItemSecondaryAction.default, tmp, children);
 }
 
 var ListItemSecondaryAction$1 = /* module */[
@@ -4659,14 +6005,29 @@ var Classes$45 = /* module */[
 ];
 
 function make$51(className, disableTypography, inset, primary, secondary, classes, children) {
-  return ReasonReact.wrapJsForReason(ListItemText.default, {
-              className: Js_null_undefined.from_opt(className),
-              disableTypography: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTypography)),
-              inset: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, inset)),
-              primary: Js_null_undefined.from_opt(primary),
-              secondary: Js_null_undefined.from_opt(secondary),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$45, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, disableTypography);
+  if (tmp$1) {
+    tmp.disableTypography = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, inset);
+  if (tmp$2) {
+    tmp.inset = tmp$2[0];
+  }
+  if (primary) {
+    tmp.primary = primary[0];
+  }
+  if (secondary) {
+    tmp.secondary = secondary[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$45, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(ListItemText.default, tmp, children);
 }
 
 var ListItemText$1 = /* module */[
@@ -4713,18 +6074,46 @@ var Classes$46 = /* module */[
 ];
 
 function make$52(button, className, component, containerComponent, containerProps, dense, disabled, disableGutters, divider, classes, children) {
-  return ReasonReact.wrapJsForReason(ListItem.default, {
-              button: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, button)),
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              ContainerComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, containerComponent)),
-              ContainerProps: Js_null_undefined.from_opt(containerProps),
-              dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableGutters: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableGutters)),
-              divider: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, divider)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$46, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, button);
+  if (tmp$1) {
+    tmp.button = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
+  if (tmp$2) {
+    tmp.component = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, containerComponent);
+  if (tmp$3) {
+    tmp.containerComponent = tmp$3[0];
+  }
+  if (containerProps) {
+    tmp.containerProps = containerProps[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, dense);
+  if (tmp$4) {
+    tmp.dense = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$5) {
+    tmp.disabled = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, disableGutters);
+  if (tmp$6) {
+    tmp.disableGutters = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, divider);
+  if (tmp$7) {
+    tmp.divider = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$46, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(ListItem.default, tmp, children);
 }
 
 var ListItem$1 = /* module */[
@@ -4732,7 +6121,7 @@ var ListItem$1 = /* module */[
   /* make */make$52
 ];
 
-var jsMapperConstantArray$39 = /* array */[
+var jsMapperConstantArray$38 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -4747,12 +6136,12 @@ var jsMapperConstantArray$39 = /* array */[
   ]
 ];
 
-function color_7ToJs$1(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$39);
+function colorToJs$7(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$38);
 }
 
-function color_7FromJs$1(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$39, param);
+function colorFromJs$7(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$38, param);
 }
 
 function to_string$47(param) {
@@ -4784,19 +6173,38 @@ var Classes$47 = /* module */[
 ];
 
 function make$53(className, color, component, disableSticky, inset, classes, children) {
-  return ReasonReact.wrapJsForReason(ListSubheader.default, {
-              className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(color_7ToJs$1, color)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disableSticky: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableSticky)),
-              inset: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, inset)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$47, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$38);
+        }), color);
+  if (tmp$1) {
+    tmp.color = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
+  if (tmp$2) {
+    tmp.component = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disableSticky);
+  if (tmp$3) {
+    tmp.disableSticky = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, inset);
+  if (tmp$4) {
+    tmp.inset = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(to_obj$47, classes);
+  if (tmp$5) {
+    tmp.classes = tmp$5[0];
+  }
+  return ReasonReact.wrapJsForReason(ListSubheader.default, tmp, children);
 }
 
 var ListSubheader$1 = /* module */[
-  /* color_7ToJs */color_7ToJs$1,
-  /* color_7FromJs */color_7FromJs$1,
+  /* colorToJs */colorToJs$7,
+  /* colorFromJs */colorFromJs$7,
   /* Classes */Classes$47,
   /* make */make$53
 ];
@@ -4828,14 +6236,30 @@ var Classes$48 = /* module */[
 ];
 
 function make$54(className, component, dense, disablePadding, subheader, classes, children) {
-  return ReasonReact.wrapJsForReason(List.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
-              disablePadding: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disablePadding)),
-              subheader: Js_null_undefined.from_opt(subheader),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$48, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, dense);
+  if (tmp$2) {
+    tmp.dense = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disablePadding);
+  if (tmp$3) {
+    tmp.disablePadding = tmp$3[0];
+  }
+  if (subheader) {
+    tmp.subheader = subheader[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$48, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
+  }
+  return ReasonReact.wrapJsForReason(List.default, tmp, children);
 }
 
 var List$1 = /* module */[
@@ -4864,20 +6288,53 @@ var Classes$49 = /* module */[
 ];
 
 function make$55(className, component, role, selected, button, containerComponent, containerProps, dense, disabled, disableGutters, divider, classes, children) {
-  return ReasonReact.wrapJsForReason(MenuItem.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              role: Js_null_undefined.from_opt(role),
-              selected: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, selected)),
-              button: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, button)),
-              ContainerComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, containerComponent)),
-              ContainerProps: Js_null_undefined.from_opt(containerProps),
-              dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableGutters: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableGutters)),
-              divider: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, divider)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$49, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, selected);
+  if (tmp$2) {
+    tmp.selected = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, button);
+  if (tmp$3) {
+    tmp.button = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, containerComponent);
+  if (tmp$4) {
+    tmp.containerComponent = tmp$4[0];
+  }
+  if (containerProps) {
+    tmp.containerProps = containerProps[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, dense);
+  if (tmp$5) {
+    tmp.dense = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$6) {
+    tmp.disabled = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, disableGutters);
+  if (tmp$7) {
+    tmp.disableGutters = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(Js_boolean.to_js_boolean, divider);
+  if (tmp$8) {
+    tmp.divider = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(to_obj$49, classes);
+  if (tmp$9) {
+    tmp.classes = tmp$9[0];
+  }
+  return ReasonReact.wrapJsForReason(MenuItem.default, tmp, children);
 }
 
 var MenuItem$1 = /* module */[
@@ -4886,15 +6343,32 @@ var MenuItem$1 = /* module */[
 ];
 
 function make$56(className, onBlur, onKeyDown, component, dense, disablePadding, subheader, children) {
-  return ReasonReact.wrapJsForReason(MenuList.default, {
-              className: Js_null_undefined.from_opt(className),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              dense: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, dense)),
-              disablePadding: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disablePadding)),
-              subheader: Js_null_undefined.from_opt(subheader)
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, dense);
+  if (tmp$2) {
+    tmp.dense = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disablePadding);
+  if (tmp$3) {
+    tmp.disablePadding = tmp$3[0];
+  }
+  if (subheader) {
+    tmp.subheader = subheader[0];
+  }
+  return ReasonReact.wrapJsForReason(MenuList.default, tmp, children);
 }
 
 var MenuList$1 = /* module */[/* make */make$56];
@@ -4913,17 +6387,17 @@ function transitionDurationShapeFromJs$3(param) {
         ];
 }
 
-var jsMapperConstantArray$40 = /* array */[/* tuple */[
+var jsMapperConstantArray$39 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
-function transitionDuration_uToJs(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$40);
+function transitionDurationToJs(param) {
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$39);
 }
 
-function transitionDuration_uFromJs(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$40, param);
+function transitionDurationFromJs(param) {
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$39, param);
 }
 
 function anchorOriginShapeToJs(param) {
@@ -4954,7 +6428,7 @@ function anchorPositionShapeFromJs(param) {
         ];
 }
 
-var jsMapperConstantArray$41 = /* array */[
+var jsMapperConstantArray$40 = /* array */[
   /* tuple */[
     580003934,
     "anchorPosition"
@@ -4965,12 +6439,12 @@ var jsMapperConstantArray$41 = /* array */[
   ]
 ];
 
-function anchorReference_gToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$41);
+function anchorReferenceToJs(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$40);
 }
 
-function anchorReference_gFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$41, param);
+function anchorReferenceFromJs(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$40, param);
 }
 
 function transformOriginShapeToJs(param) {
@@ -5003,76 +6477,138 @@ var Classes$50 = /* module */[
   /* to_obj */to_obj$50
 ];
 
-function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, open_, paperProps, popoverClasses, theme, transitionDuration, action, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, role, transformOrigin, transition, classes, children) {
-  return ReasonReact.wrapJsForReason(Menu.default, {
-              anchorEl: Js_null_undefined.from_opt(anchorEl),
-              MenuListProps: Js_null_undefined.from_opt(menuListProps),
-              onClose: Js_null_undefined.from_opt(onClose),
-              onEnter: Js_null_undefined.from_opt(onEnter),
-              onEntered: Js_null_undefined.from_opt(onEntered),
-              onEntering: Js_null_undefined.from_opt(onEntering),
-              onExit: Js_null_undefined.from_opt(onExit),
-              onExited: Js_null_undefined.from_opt(onExited),
-              onExiting: Js_null_undefined.from_opt(onExiting),
-              open: Js_boolean.to_js_boolean(open_),
-              PaperProps: Js_null_undefined.from_opt(paperProps),
-              PopoverClasses: Js_null_undefined.from_opt(popoverClasses),
-              theme: theme,
-              transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number") {
-                            return unwrapValue(v);
-                          } else {
-                            var variant = v[0];
-                            if (variant !== -908856609) {
-                              if (variant !== 770676513) {
-                                return unwrapValue(v);
-                              } else {
-                                return unwrapValue(/* `String */[
-                                            -976970511,
-                                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$40)
-                                          ]);
-                              }
-                            } else {
-                              return unwrapValue(/* `Element */[
-                                          -744106340,
-                                          transitionDurationShapeToJs$3(v[1])
-                                        ]);
-                            }
-                          }
-                        }), transitionDuration)),
-              action: Js_null_undefined.from_opt(action),
-              anchorOrigin: Js_null_undefined.from_opt(optionMap(anchorOriginShapeToJs, anchorOrigin)),
-              anchorPosition: Js_null_undefined.from_opt(optionMap(anchorPositionShapeToJs, anchorPosition)),
-              anchorReference: Js_null_undefined.from_opt(optionMap(anchorReference_gToJs, anchorReference)),
-              container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
-              elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              getContentAnchorEl: Js_null_undefined.from_opt(getContentAnchorEl),
-              marginThreshold: Js_null_undefined.from_opt(optionMap(unwrapValue, marginThreshold)),
-              role: Js_null_undefined.from_opt(role),
-              transformOrigin: Js_null_undefined.from_opt(optionMap(transformOriginShapeToJs, transformOrigin)),
-              transition: Js_null_undefined.from_opt(optionMap(unwrapValue, transition)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$50, classes))
-            }, children);
+function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, _open, paperProps, popoverClasses, theme, transitionDuration, action, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, role, transformOrigin, transition, classes, children) {
+  var tmp = {
+    open: Js_boolean.to_js_boolean(_open),
+    theme: theme
+  };
+  if (anchorEl) {
+    tmp.anchorEl = anchorEl[0];
+  }
+  if (menuListProps) {
+    tmp.menuListProps = menuListProps[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, onClose);
+  if (tmp$1) {
+    tmp.onClose = tmp$1[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntered) {
+    tmp.onEntered = onEntered[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (onExited) {
+    tmp.onExited = onExited[0];
+  }
+  if (onExiting) {
+    tmp.onExiting = onExiting[0];
+  }
+  if (paperProps) {
+    tmp.paperProps = paperProps[0];
+  }
+  if (popoverClasses) {
+    tmp.popoverClasses = popoverClasses[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          if (typeof v === "number") {
+            return unwrapValue(v);
+          } else {
+            var variant = v[0];
+            if (variant !== -908856609) {
+              if (variant !== 770676513) {
+                return unwrapValue(v);
+              } else {
+                return unwrapValue(/* `String */[
+                            -976970511,
+                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$39)
+                          ]);
+              }
+            } else {
+              return unwrapValue(/* `Element */[
+                          -744106340,
+                          transitionDurationShapeToJs$3(v[1])
+                        ]);
+            }
+          }
+        }), transitionDuration);
+  if (tmp$2) {
+    tmp.transitionDuration = tmp$2[0];
+  }
+  if (action) {
+    tmp.action = action[0];
+  }
+  var tmp$3 = Js_option.map(anchorOriginShapeToJs, anchorOrigin);
+  if (tmp$3) {
+    tmp.anchorOrigin = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(anchorPositionShapeToJs, anchorPosition);
+  if (tmp$4) {
+    tmp.anchorPosition = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$40);
+        }), anchorReference);
+  if (tmp$5) {
+    tmp.anchorReference = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, container);
+  if (tmp$6) {
+    tmp.container = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(unwrapValue, elevation);
+  if (tmp$7) {
+    tmp.elevation = tmp$7[0];
+  }
+  if (getContentAnchorEl) {
+    tmp.getContentAnchorEl = getContentAnchorEl[0];
+  }
+  var tmp$8 = Js_option.map(unwrapValue, marginThreshold);
+  if (tmp$8) {
+    tmp.marginThreshold = tmp$8[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$9 = Js_option.map(transformOriginShapeToJs, transformOrigin);
+  if (tmp$9) {
+    tmp.transformOrigin = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map(unwrapValue, transition);
+  if (tmp$10) {
+    tmp.transition = tmp$10[0];
+  }
+  var tmp$11 = Js_option.map(to_obj$50, classes);
+  if (tmp$11) {
+    tmp.classes = tmp$11[0];
+  }
+  return ReasonReact.wrapJsForReason(Menu.default, tmp, children);
 }
 
 var Menu$1 = /* module */[
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$3,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$3,
-  /* transitionDuration_uToJs */transitionDuration_uToJs,
-  /* transitionDuration_uFromJs */transitionDuration_uFromJs,
+  /* transitionDurationToJs */transitionDurationToJs,
+  /* transitionDurationFromJs */transitionDurationFromJs,
   /* anchorOriginShapeToJs */anchorOriginShapeToJs,
   /* anchorOriginShapeFromJs */anchorOriginShapeFromJs,
   /* anchorPositionShapeToJs */anchorPositionShapeToJs,
   /* anchorPositionShapeFromJs */anchorPositionShapeFromJs,
-  /* anchorReference_gToJs */anchorReference_gToJs,
-  /* anchorReference_gFromJs */anchorReference_gFromJs,
+  /* anchorReferenceToJs */anchorReferenceToJs,
+  /* anchorReferenceFromJs */anchorReferenceFromJs,
   /* transformOriginShapeToJs */transformOriginShapeToJs,
   /* transformOriginShapeFromJs */transformOriginShapeFromJs,
   /* Classes */Classes$50,
   /* make */make$57
 ];
 
-var jsMapperConstantArray$42 = /* array */[
+var jsMapperConstantArray$41 = /* array */[
   /* tuple */[
     4202101,
     "top"
@@ -5087,15 +6623,15 @@ var jsMapperConstantArray$42 = /* array */[
   ]
 ];
 
-function position_wToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$42);
+function positionToJs$2(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$41);
 }
 
-function position_wFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$42, param);
+function positionFromJs$2(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$41, param);
 }
 
-var jsMapperConstantArray$43 = /* array */[
+var jsMapperConstantArray$42 = /* array */[
   /* tuple */[
     -539184179,
     "progress"
@@ -5110,12 +6646,12 @@ var jsMapperConstantArray$43 = /* array */[
   ]
 ];
 
-function type__0ToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$43);
+function _typeToJs$1(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$42);
 }
 
-function type__0FromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$43, param);
+function _typeFromJs$1(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$42, param);
 }
 
 function to_string$51(param) {
@@ -5152,27 +6688,59 @@ var Classes$51 = /* module */[
   /* to_obj */to_obj$51
 ];
 
-function make$58(activeStep, backButton, className, nextButton, position, steps, type_, component, elevation, square, classes, children) {
-  return ReasonReact.wrapJsForReason(MobileStepper.default, {
-              activeStep: Js_null_undefined.from_opt(optionMap(unwrapValue, activeStep)),
-              backButton: Js_null_undefined.from_opt(backButton),
-              className: Js_null_undefined.from_opt(className),
-              nextButton: Js_null_undefined.from_opt(nextButton),
-              position: Js_null_undefined.from_opt(optionMap(position_wToJs, position)),
-              steps: unwrapValue(steps),
-              type: Js_null_undefined.from_opt(optionMap(type__0ToJs, type_)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$51, classes))
-            }, children);
+function make$58(activeStep, backButton, className, nextButton, position, steps, _type, component, elevation, square, classes, children) {
+  var tmp = {
+    steps: unwrapValue(steps)
+  };
+  var tmp$1 = Js_option.map(unwrapValue, activeStep);
+  if (tmp$1) {
+    tmp.activeStep = tmp$1[0];
+  }
+  if (backButton) {
+    tmp.backButton = backButton[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (nextButton) {
+    tmp.nextButton = nextButton[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$41);
+        }), position);
+  if (tmp$2) {
+    tmp.position = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$42);
+        }), _type);
+  if (tmp$3) {
+    tmp.type = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, component);
+  if (tmp$4) {
+    tmp.component = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, elevation);
+  if (tmp$5) {
+    tmp.elevation = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, square);
+  if (tmp$6) {
+    tmp.square = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(to_obj$51, classes);
+  if (tmp$7) {
+    tmp.classes = tmp$7[0];
+  }
+  return ReasonReact.wrapJsForReason(MobileStepper.default, tmp, children);
 }
 
 var MobileStepper$1 = /* module */[
-  /* position_wToJs */position_wToJs,
-  /* position_wFromJs */position_wFromJs,
-  /* type__0ToJs */type__0ToJs,
-  /* type__0FromJs */type__0FromJs,
+  /* positionToJs */positionToJs$2,
+  /* positionFromJs */positionFromJs$2,
+  /* _typeToJs */_typeToJs$1,
+  /* _typeFromJs */_typeFromJs$1,
   /* Classes */Classes$51,
   /* make */make$58
 ];
@@ -5197,27 +6765,72 @@ var Classes$52 = /* module */[
   /* to_obj */to_obj$52
 ];
 
-function make$59(backdropComponent, backdropProps, className, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onClose, onEscapeKeyDown, onRendered, open_, classes, children) {
-  return ReasonReact.wrapJsForReason(Modal.default, {
-              BackdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
-              BackdropProps: Js_null_undefined.from_opt(backdropProps),
-              className: Js_null_undefined.from_opt(className),
-              container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
-              disableAutoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAutoFocus)),
-              disableBackdropClick: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableBackdropClick)),
-              disableEnforceFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEnforceFocus)),
-              disableEscapeKeyDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEscapeKeyDown)),
-              disableRestoreFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRestoreFocus)),
-              hideBackdrop: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, hideBackdrop)),
-              keepMounted: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, keepMounted)),
-              manager: Js_null_undefined.from_opt(manager),
-              onBackdropClick: Js_null_undefined.from_opt(onBackdropClick),
-              onClose: Js_null_undefined.from_opt(onClose),
-              onEscapeKeyDown: Js_null_undefined.from_opt(onEscapeKeyDown),
-              onRendered: Js_null_undefined.from_opt(onRendered),
-              open: Js_boolean.to_js_boolean(open_),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$52, classes))
-            }, children);
+function make$59(backdropComponent, backdropProps, className, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onClose, onEscapeKeyDown, onRendered, _open, classes, children) {
+  var tmp = {
+    open: Js_boolean.to_js_boolean(_open)
+  };
+  var tmp$1 = Js_option.map(unwrapValue, backdropComponent);
+  if (tmp$1) {
+    tmp.backdropComponent = tmp$1[0];
+  }
+  if (backdropProps) {
+    tmp.backdropProps = backdropProps[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, container);
+  if (tmp$2) {
+    tmp.container = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disableAutoFocus);
+  if (tmp$3) {
+    tmp.disableAutoFocus = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, disableBackdropClick);
+  if (tmp$4) {
+    tmp.disableBackdropClick = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, disableEnforceFocus);
+  if (tmp$5) {
+    tmp.disableEnforceFocus = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, disableEscapeKeyDown);
+  if (tmp$6) {
+    tmp.disableEscapeKeyDown = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, disableRestoreFocus);
+  if (tmp$7) {
+    tmp.disableRestoreFocus = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(Js_boolean.to_js_boolean, hideBackdrop);
+  if (tmp$8) {
+    tmp.hideBackdrop = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(Js_boolean.to_js_boolean, keepMounted);
+  if (tmp$9) {
+    tmp.keepMounted = tmp$9[0];
+  }
+  if (manager) {
+    tmp.manager = manager[0];
+  }
+  if (onBackdropClick) {
+    tmp.onBackdropClick = onBackdropClick[0];
+  }
+  if (onClose) {
+    tmp.onClose = onClose[0];
+  }
+  if (onEscapeKeyDown) {
+    tmp.onEscapeKeyDown = onEscapeKeyDown[0];
+  }
+  if (onRendered) {
+    tmp.onRendered = onRendered[0];
+  }
+  var tmp$10 = Js_option.map(to_obj$52, classes);
+  if (tmp$10) {
+    tmp.classes = tmp$10[0];
+  }
+  return ReasonReact.wrapJsForReason(Modal.default, tmp, children);
 }
 
 var Modal$1 = /* module */[
@@ -5226,11 +6839,17 @@ var Modal$1 = /* module */[
 ];
 
 function make$60(disableStylesGeneration, sheetsManager, theme, children) {
-  return ReasonReact.wrapJsForReason(MuiThemeProvider.default, {
-              disableStylesGeneration: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableStylesGeneration)),
-              sheetsManager: Js_null_undefined.from_opt(sheetsManager),
-              theme: unwrapValue(theme)
-            }, children);
+  var tmp = {
+    theme: unwrapValue(theme)
+  };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, disableStylesGeneration);
+  if (tmp$1) {
+    tmp.disableStylesGeneration = tmp$1[0];
+  }
+  if (sheetsManager) {
+    tmp.sheetsManager = sheetsManager[0];
+  }
+  return ReasonReact.wrapJsForReason(MuiThemeProvider.default, tmp, children);
 }
 
 var MuiThemeProvider$1 = /* module */[/* make */make$60];
@@ -5308,13 +6927,27 @@ var Classes$53 = /* module */[
 ];
 
 function make$61(className, component, elevation, square, classes, children) {
-  return ReasonReact.wrapJsForReason(Paper.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$53, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, elevation);
+  if (tmp$2) {
+    tmp.elevation = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, square);
+  if (tmp$3) {
+    tmp.square = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$53, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
+  }
+  return ReasonReact.wrapJsForReason(Paper.default, tmp, children);
 }
 
 var Paper$1 = /* module */[
@@ -5350,7 +6983,7 @@ function anchorPositionShapeFromJs$1(param) {
         ];
 }
 
-var jsMapperConstantArray$44 = /* array */[
+var jsMapperConstantArray$43 = /* array */[
   /* tuple */[
     580003934,
     "anchorPosition"
@@ -5361,12 +6994,12 @@ var jsMapperConstantArray$44 = /* array */[
   ]
 ];
 
-function anchorReference_gToJs$1(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$44);
+function anchorReferenceToJs$1(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$43);
 }
 
-function anchorReference_gFromJs$1(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$44, param);
+function anchorReferenceFromJs$1(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$43, param);
 }
 
 function transformOriginShapeToJs$1(param) {
@@ -5397,17 +7030,17 @@ function transitionDurationShapeFromJs$4(param) {
         ];
 }
 
-var jsMapperConstantArray$45 = /* array */[/* tuple */[
+var jsMapperConstantArray$44 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
-function transitionDuration_gToJs(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$45);
+function transitionDurationToJs$1(param) {
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$44);
 }
 
-function transitionDuration_gFromJs(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$45, param);
+function transitionDurationFromJs$1(param) {
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$44, param);
 }
 
 function to_string$54() {
@@ -5426,67 +7059,160 @@ var Classes$54 = /* module */[
   /* to_obj */to_obj$54
 ];
 
-function make$62(action, anchorEl, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, open_, paperProps, role, transformOrigin, transition, transitionDuration, backdropComponent, backdropProps, className, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
-  return ReasonReact.wrapJsForReason(Popover.default, {
-              action: Js_null_undefined.from_opt(action),
-              anchorEl: Js_null_undefined.from_opt(anchorEl),
-              anchorOrigin: Js_null_undefined.from_opt(optionMap(anchorOriginShapeToJs$1, anchorOrigin)),
-              anchorPosition: Js_null_undefined.from_opt(optionMap(anchorPositionShapeToJs$1, anchorPosition)),
-              anchorReference: Js_null_undefined.from_opt(optionMap(anchorReference_gToJs$1, anchorReference)),
-              container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
-              elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              getContentAnchorEl: Js_null_undefined.from_opt(getContentAnchorEl),
-              marginThreshold: Js_null_undefined.from_opt(optionMap(unwrapValue, marginThreshold)),
-              onClose: Js_null_undefined.from_opt(onClose),
-              onEnter: Js_null_undefined.from_opt(onEnter),
-              onEntered: Js_null_undefined.from_opt(onEntered),
-              onEntering: Js_null_undefined.from_opt(onEntering),
-              onExit: Js_null_undefined.from_opt(onExit),
-              onExited: Js_null_undefined.from_opt(onExited),
-              onExiting: Js_null_undefined.from_opt(onExiting),
-              open: Js_boolean.to_js_boolean(open_),
-              PaperProps: Js_null_undefined.from_opt(paperProps),
-              role: Js_null_undefined.from_opt(role),
-              transformOrigin: Js_null_undefined.from_opt(optionMap(transformOriginShapeToJs$1, transformOrigin)),
-              transition: Js_null_undefined.from_opt(optionMap(unwrapValue, transition)),
-              transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number") {
-                            return unwrapValue(v);
-                          } else {
-                            var variant = v[0];
-                            if (variant !== -908856609) {
-                              if (variant !== 770676513) {
-                                return unwrapValue(v);
-                              } else {
-                                return unwrapValue(/* `String */[
-                                            -976970511,
-                                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$45)
-                                          ]);
-                              }
-                            } else {
-                              return unwrapValue(/* `Element */[
-                                          -744106340,
-                                          transitionDurationShapeToJs$4(v[1])
-                                        ]);
-                            }
-                          }
-                        }), transitionDuration)),
-              BackdropComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, backdropComponent)),
-              BackdropProps: Js_null_undefined.from_opt(backdropProps),
-              className: Js_null_undefined.from_opt(className),
-              disableAutoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableAutoFocus)),
-              disableBackdropClick: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableBackdropClick)),
-              disableEnforceFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEnforceFocus)),
-              disableEscapeKeyDown: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableEscapeKeyDown)),
-              disableRestoreFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRestoreFocus)),
-              hideBackdrop: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, hideBackdrop)),
-              keepMounted: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, keepMounted)),
-              manager: Js_null_undefined.from_opt(manager),
-              onBackdropClick: Js_null_undefined.from_opt(onBackdropClick),
-              onEscapeKeyDown: Js_null_undefined.from_opt(onEscapeKeyDown),
-              onRendered: Js_null_undefined.from_opt(onRendered),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$54, classes))
-            }, children);
+function make$62(action, anchorEl, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, _open, paperProps, role, transformOrigin, transition, transitionDuration, backdropComponent, backdropProps, className, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
+  var tmp = {
+    open: Js_boolean.to_js_boolean(_open)
+  };
+  if (action) {
+    tmp.action = action[0];
+  }
+  if (anchorEl) {
+    tmp.anchorEl = anchorEl[0];
+  }
+  var tmp$1 = Js_option.map(anchorOriginShapeToJs$1, anchorOrigin);
+  if (tmp$1) {
+    tmp.anchorOrigin = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(anchorPositionShapeToJs$1, anchorPosition);
+  if (tmp$2) {
+    tmp.anchorPosition = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$43);
+        }), anchorReference);
+  if (tmp$3) {
+    tmp.anchorReference = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, container);
+  if (tmp$4) {
+    tmp.container = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, elevation);
+  if (tmp$5) {
+    tmp.elevation = tmp$5[0];
+  }
+  if (getContentAnchorEl) {
+    tmp.getContentAnchorEl = getContentAnchorEl[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, marginThreshold);
+  if (tmp$6) {
+    tmp.marginThreshold = tmp$6[0];
+  }
+  if (onClose) {
+    tmp.onClose = onClose[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntered) {
+    tmp.onEntered = onEntered[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (onExited) {
+    tmp.onExited = onExited[0];
+  }
+  if (onExiting) {
+    tmp.onExiting = onExiting[0];
+  }
+  if (paperProps) {
+    tmp.paperProps = paperProps[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$7 = Js_option.map(transformOriginShapeToJs$1, transformOrigin);
+  if (tmp$7) {
+    tmp.transformOrigin = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(unwrapValue, transition);
+  if (tmp$8) {
+    tmp.transition = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map((function (v) {
+          if (typeof v === "number") {
+            return unwrapValue(v);
+          } else {
+            var variant = v[0];
+            if (variant !== -908856609) {
+              if (variant !== 770676513) {
+                return unwrapValue(v);
+              } else {
+                return unwrapValue(/* `String */[
+                            -976970511,
+                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$44)
+                          ]);
+              }
+            } else {
+              return unwrapValue(/* `Element */[
+                          -744106340,
+                          transitionDurationShapeToJs$4(v[1])
+                        ]);
+            }
+          }
+        }), transitionDuration);
+  if (tmp$9) {
+    tmp.transitionDuration = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map(unwrapValue, backdropComponent);
+  if (tmp$10) {
+    tmp.backdropComponent = tmp$10[0];
+  }
+  if (backdropProps) {
+    tmp.backdropProps = backdropProps[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$11 = Js_option.map(Js_boolean.to_js_boolean, disableAutoFocus);
+  if (tmp$11) {
+    tmp.disableAutoFocus = tmp$11[0];
+  }
+  var tmp$12 = Js_option.map(Js_boolean.to_js_boolean, disableBackdropClick);
+  if (tmp$12) {
+    tmp.disableBackdropClick = tmp$12[0];
+  }
+  var tmp$13 = Js_option.map(Js_boolean.to_js_boolean, disableEnforceFocus);
+  if (tmp$13) {
+    tmp.disableEnforceFocus = tmp$13[0];
+  }
+  var tmp$14 = Js_option.map(Js_boolean.to_js_boolean, disableEscapeKeyDown);
+  if (tmp$14) {
+    tmp.disableEscapeKeyDown = tmp$14[0];
+  }
+  var tmp$15 = Js_option.map(Js_boolean.to_js_boolean, disableRestoreFocus);
+  if (tmp$15) {
+    tmp.disableRestoreFocus = tmp$15[0];
+  }
+  var tmp$16 = Js_option.map(Js_boolean.to_js_boolean, hideBackdrop);
+  if (tmp$16) {
+    tmp.hideBackdrop = tmp$16[0];
+  }
+  var tmp$17 = Js_option.map(Js_boolean.to_js_boolean, keepMounted);
+  if (tmp$17) {
+    tmp.keepMounted = tmp$17[0];
+  }
+  if (manager) {
+    tmp.manager = manager[0];
+  }
+  if (onBackdropClick) {
+    tmp.onBackdropClick = onBackdropClick[0];
+  }
+  if (onEscapeKeyDown) {
+    tmp.onEscapeKeyDown = onEscapeKeyDown[0];
+  }
+  if (onRendered) {
+    tmp.onRendered = onRendered[0];
+  }
+  var tmp$18 = Js_option.map(to_obj$54, classes);
+  if (tmp$18) {
+    tmp.classes = tmp$18[0];
+  }
+  return ReasonReact.wrapJsForReason(Popover.default, tmp, children);
 }
 
 var Popover$1 = /* module */[
@@ -5494,37 +7220,57 @@ var Popover$1 = /* module */[
   /* anchorOriginShapeFromJs */anchorOriginShapeFromJs$1,
   /* anchorPositionShapeToJs */anchorPositionShapeToJs$1,
   /* anchorPositionShapeFromJs */anchorPositionShapeFromJs$1,
-  /* anchorReference_gToJs */anchorReference_gToJs$1,
-  /* anchorReference_gFromJs */anchorReference_gFromJs$1,
+  /* anchorReferenceToJs */anchorReferenceToJs$1,
+  /* anchorReferenceFromJs */anchorReferenceFromJs$1,
   /* transformOriginShapeToJs */transformOriginShapeToJs$1,
   /* transformOriginShapeFromJs */transformOriginShapeFromJs$1,
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$4,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$4,
-  /* transitionDuration_gToJs */transitionDuration_gToJs,
-  /* transitionDuration_gFromJs */transitionDuration_gFromJs,
+  /* transitionDurationToJs */transitionDurationToJs$1,
+  /* transitionDurationFromJs */transitionDurationFromJs$1,
   /* Classes */Classes$54,
   /* make */make$62
 ];
 
 function make$63(container, onRendered, children) {
-  return ReasonReact.wrapJsForReason(Portal.default, {
-              container: Js_null_undefined.from_opt(optionMap(unwrapValue, container)),
-              onRendered: Js_null_undefined.from_opt(onRendered)
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, container);
+  if (tmp$1) {
+    tmp.container = tmp$1[0];
+  }
+  if (onRendered) {
+    tmp.onRendered = onRendered[0];
+  }
+  return ReasonReact.wrapJsForReason(Portal.default, tmp, children);
 }
 
 var Portal$1 = /* module */[/* make */make$63];
 
 function make$64(name, onBlur, onChange, onKeyDown, value, className, row, children) {
-  return ReasonReact.wrapJsForReason(RadioGroup.default, {
-              name: Js_null_undefined.from_opt(name),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onChange: Js_null_undefined.from_opt(onChange),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              value: Js_null_undefined.from_opt(value),
-              className: Js_null_undefined.from_opt(className),
-              row: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, row))
-            }, children);
+  var tmp = { };
+  if (name) {
+    tmp.name = name[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, row);
+  if (tmp$1) {
+    tmp.row = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(RadioGroup.default, tmp, children);
 }
 
 var RadioGroup$1 = /* module */[/* make */make$64];
@@ -5554,23 +7300,59 @@ var Classes$55 = /* module */[
 ];
 
 function make$65(checked, checkedIcon, className, defaultChecked, disabled, disableRipple, icon, inputProps, inputRef, inputType, name, onChange, tabIndex, value, classes, children) {
-  return ReasonReact.wrapJsForReason(Radio.default, {
-              checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
-              checkedIcon: Js_null_undefined.from_opt(checkedIcon),
-              className: Js_null_undefined.from_opt(className),
-              defaultChecked: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, defaultChecked)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              icon: Js_null_undefined.from_opt(icon),
-              inputProps: Js_null_undefined.from_opt(inputProps),
-              inputRef: Js_null_undefined.from_opt(inputRef),
-              inputType: Js_null_undefined.from_opt(inputType),
-              name: Js_null_undefined.from_opt(name),
-              onChange: Js_null_undefined.from_opt(onChange),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              value: Js_null_undefined.from_opt(value),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$55, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, checked);
+  if (tmp$1) {
+    tmp.checked = tmp$1[0];
+  }
+  if (checkedIcon) {
+    tmp.checkedIcon = checkedIcon[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, defaultChecked);
+  if (tmp$2) {
+    tmp.defaultChecked = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$3) {
+    tmp.disabled = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$4) {
+    tmp.disableRipple = tmp$4[0];
+  }
+  if (icon) {
+    tmp.icon = icon[0];
+  }
+  if (inputProps) {
+    tmp.inputProps = inputProps[0];
+  }
+  if (inputRef) {
+    tmp.inputRef = inputRef[0];
+  }
+  if (inputType) {
+    tmp.inputType = inputType[0];
+  }
+  if (name) {
+    tmp.name = name[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$5) {
+    tmp.tabIndex = tmp$5[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  var tmp$6 = Js_option.map(to_obj$55, classes);
+  if (tmp$6) {
+    tmp.classes = tmp$6[0];
+  }
+  return ReasonReact.wrapJsForReason(Radio.default, tmp, children);
 }
 
 var Radio$1 = /* module */[
@@ -5584,7 +7366,7 @@ function make$66(children) {
 
 var Reboot$1 = /* module */[/* make */make$66];
 
-var jsMapperConstantArray$46 = /* array */[
+var jsMapperConstantArray$45 = /* array */[
   /* tuple */[
     -363472001,
     "dense"
@@ -5595,12 +7377,12 @@ var jsMapperConstantArray$46 = /* array */[
   ]
 ];
 
-function margin_eToJs$1(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$46);
+function marginToJs$4(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$45);
 }
 
-function margin_eFromJs$1(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$46, param);
+function marginFromJs$4(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$45, param);
 }
 
 function to_string$56(param) {
@@ -5631,60 +7413,163 @@ var Classes$56 = /* module */[
   /* to_obj */to_obj$56
 ];
 
-function make$67(autoWidth, displayEmpty, input, inputProps, menuProps, multiple, $$native, onChange, onClose, onOpen, open_, renderValue, value, autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputRef, margin, multiline, name, onBlur, onClean, onDirty, onFocus, onKeyDown, onKeyUp, placeholder, readOnly, rows, rowsMax, startAdornment, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(Select.default, {
-              autoWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, autoWidth)),
-              displayEmpty: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, displayEmpty)),
-              input: Js_null_undefined.from_opt(input),
-              inputProps: Js_null_undefined.from_opt(inputProps),
-              MenuProps: Js_null_undefined.from_opt(menuProps),
-              multiple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, multiple)),
-              native: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, $$native)),
-              onChange: Js_null_undefined.from_opt(onChange),
-              onClose: Js_null_undefined.from_opt(onClose),
-              onOpen: Js_null_undefined.from_opt(onOpen),
-              open: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
-              renderValue: Js_null_undefined.from_opt(renderValue),
-              value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
-              autoComplete: Js_null_undefined.from_opt(autoComplete),
-              autoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, autoFocus)),
-              className: Js_null_undefined.from_opt(className),
-              defaultValue: Js_null_undefined.from_opt(optionMap(unwrapValue, defaultValue)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableUnderline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableUnderline)),
-              endAdornment: Js_null_undefined.from_opt(endAdornment),
-              error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
-              fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              id: Js_null_undefined.from_opt(id),
-              inputComponent: Js_null_undefined.from_opt(optionMap(unwrapValue, inputComponent)),
-              inputRef: Js_null_undefined.from_opt(inputRef),
-              margin: Js_null_undefined.from_opt(optionMap(margin_eToJs$1, margin)),
-              multiline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, multiline)),
-              name: Js_null_undefined.from_opt(name),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onClean: Js_null_undefined.from_opt(onClean),
-              onDirty: Js_null_undefined.from_opt(onDirty),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              onKeyUp: Js_null_undefined.from_opt(onKeyUp),
-              placeholder: Js_null_undefined.from_opt(placeholder),
-              readOnly: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, readOnly)),
-              rows: Js_null_undefined.from_opt(optionMap(unwrapValue, rows)),
-              rowsMax: Js_null_undefined.from_opt(optionMap(unwrapValue, rowsMax)),
-              startAdornment: Js_null_undefined.from_opt(startAdornment),
-              type: Js_null_undefined.from_opt(type_),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$56, classes))
-            }, children);
+function make$67(autoWidth, displayEmpty, input, inputProps, menuProps, multiple, $$native, onChange, onClose, onOpen, _open, renderValue, value, autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputRef, margin, multiline, name, onBlur, onClean, onDirty, onFocus, onKeyDown, onKeyUp, placeholder, readOnly, rows, rowsMax, startAdornment, _type, classes, children) {
+  var tmp = { };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, autoWidth);
+  if (tmp$1) {
+    tmp.autoWidth = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, displayEmpty);
+  if (tmp$2) {
+    tmp.displayEmpty = tmp$2[0];
+  }
+  if (input) {
+    tmp.input = input[0];
+  }
+  if (inputProps) {
+    tmp.inputProps = inputProps[0];
+  }
+  if (menuProps) {
+    tmp.menuProps = menuProps[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, multiple);
+  if (tmp$3) {
+    tmp.multiple = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, $$native);
+  if (tmp$4) {
+    tmp.native = tmp$4[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (onClose) {
+    tmp.onClose = onClose[0];
+  }
+  if (onOpen) {
+    tmp.onOpen = onOpen[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, _open);
+  if (tmp$5) {
+    tmp.open = tmp$5[0];
+  }
+  if (renderValue) {
+    tmp.renderValue = renderValue[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, value);
+  if (tmp$6) {
+    tmp.value = tmp$6[0];
+  }
+  if (autoComplete) {
+    tmp.autoComplete = autoComplete[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, autoFocus);
+  if (tmp$7) {
+    tmp.autoFocus = tmp$7[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$8 = Js_option.map(unwrapValue, defaultValue);
+  if (tmp$8) {
+    tmp.defaultValue = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$9) {
+    tmp.disabled = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map(Js_boolean.to_js_boolean, disableUnderline);
+  if (tmp$10) {
+    tmp.disableUnderline = tmp$10[0];
+  }
+  if (endAdornment) {
+    tmp.endAdornment = endAdornment[0];
+  }
+  var tmp$11 = Js_option.map(Js_boolean.to_js_boolean, error);
+  if (tmp$11) {
+    tmp.error = tmp$11[0];
+  }
+  var tmp$12 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
+  if (tmp$12) {
+    tmp.fullWidth = tmp$12[0];
+  }
+  if (id) {
+    tmp.id = id[0];
+  }
+  var tmp$13 = Js_option.map(unwrapValue, inputComponent);
+  if (tmp$13) {
+    tmp.inputComponent = tmp$13[0];
+  }
+  if (inputRef) {
+    tmp.inputRef = inputRef[0];
+  }
+  var tmp$14 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$45);
+        }), margin);
+  if (tmp$14) {
+    tmp.margin = tmp$14[0];
+  }
+  var tmp$15 = Js_option.map(Js_boolean.to_js_boolean, multiline);
+  if (tmp$15) {
+    tmp.multiline = tmp$15[0];
+  }
+  if (name) {
+    tmp.name = name[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClean) {
+    tmp.onClean = onClean[0];
+  }
+  if (onDirty) {
+    tmp.onDirty = onDirty[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (placeholder) {
+    tmp.placeholder = placeholder[0];
+  }
+  var tmp$16 = Js_option.map(Js_boolean.to_js_boolean, readOnly);
+  if (tmp$16) {
+    tmp.readOnly = tmp$16[0];
+  }
+  var tmp$17 = Js_option.map(unwrapValue, rows);
+  if (tmp$17) {
+    tmp.rows = tmp$17[0];
+  }
+  var tmp$18 = Js_option.map(unwrapValue, rowsMax);
+  if (tmp$18) {
+    tmp.rowsMax = tmp$18[0];
+  }
+  if (startAdornment) {
+    tmp.startAdornment = startAdornment[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$19 = Js_option.map(to_obj$56, classes);
+  if (tmp$19) {
+    tmp.classes = tmp$19[0];
+  }
+  return ReasonReact.wrapJsForReason(Select.default, tmp, children);
 }
 
 var Select$1 = /* module */[
-  /* margin_eToJs */margin_eToJs$1,
-  /* margin_eFromJs */margin_eFromJs$1,
+  /* marginToJs */marginToJs$4,
+  /* marginFromJs */marginFromJs$4,
   /* Classes */Classes$56,
   /* make */make$67
 ];
 
-var jsMapperConstantArray$47 = /* array */[
+var jsMapperConstantArray$46 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -5703,12 +7588,12 @@ var jsMapperConstantArray$47 = /* array */[
   ]
 ];
 
-function direction_9ToJs(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$47);
+function directionToJs$1(param) {
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$46);
 }
 
-function direction_9FromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$47, param);
+function directionFromJs$1(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$46, param);
 }
 
 function timeoutShapeToJs$3(param) {
@@ -5725,34 +7610,60 @@ function timeoutShapeFromJs$3(param) {
         ];
 }
 
-function make$68(direction, in_, onEnter, onEntered, onEntering, onExit, onExited, onExiting, style, theme, timeout, children) {
-  return ReasonReact.wrapJsForReason(Slide.default, {
-              direction: Js_null_undefined.from_opt(optionMap(direction_9ToJs, direction)),
-              in: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
-              onEnter: Js_null_undefined.from_opt(onEnter),
-              onEntered: Js_null_undefined.from_opt(onEntered),
-              onEntering: Js_null_undefined.from_opt(onEntering),
-              onExit: Js_null_undefined.from_opt(onExit),
-              onExited: Js_null_undefined.from_opt(onExited),
-              onExiting: Js_null_undefined.from_opt(onExiting),
-              style: Js_null_undefined.from_opt(style),
-              theme: theme,
-              timeout: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number" || v[0] !== -908856609) {
-                            return unwrapValue(v);
-                          } else {
-                            return unwrapValue(/* `Element */[
-                                        -744106340,
-                                        timeoutShapeToJs$3(v[1])
-                                      ]);
-                          }
-                        }), timeout))
-            }, children);
+function make$68(direction, _in, onEnter, onEntered, onEntering, onExit, onExited, onExiting, style, theme, timeout, children) {
+  var tmp = {
+    theme: theme
+  };
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$46);
+        }), direction);
+  if (tmp$1) {
+    tmp.direction = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, _in);
+  if (tmp$2) {
+    tmp.in = tmp$2[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntered) {
+    tmp.onEntered = onEntered[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (onExited) {
+    tmp.onExited = onExited[0];
+  }
+  if (onExiting) {
+    tmp.onExiting = onExiting[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  var tmp$3 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== -908856609) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `Element */[
+                        -744106340,
+                        timeoutShapeToJs$3(v[1])
+                      ]);
+          }
+        }), timeout);
+  if (tmp$3) {
+    tmp.timeout = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(Slide.default, tmp, children);
 }
 
 var Slide$1 = /* module */[
-  /* direction_9ToJs */direction_9ToJs,
-  /* direction_9FromJs */direction_9FromJs,
+  /* directionToJs */directionToJs$1,
+  /* directionFromJs */directionFromJs$1,
   /* timeoutShapeToJs */timeoutShapeToJs$3,
   /* timeoutShapeFromJs */timeoutShapeFromJs$3,
   /* make */make$68
@@ -5783,15 +7694,33 @@ var Classes$57 = /* module */[
 ];
 
 function make$69(action, className, message, component, elevation, square, classes, children) {
-  return ReasonReact.wrapJsForReason(SnackbarContent.default, {
-              action: Js_null_undefined.from_opt(action),
-              className: Js_null_undefined.from_opt(className),
-              message: Js_null_undefined.from_opt(message),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$57, classes))
-            }, children);
+  var tmp = { };
+  if (action) {
+    tmp.action = action[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (message) {
+    tmp.message = message[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, elevation);
+  if (tmp$2) {
+    tmp.elevation = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, square);
+  if (tmp$3) {
+    tmp.square = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$57, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
+  }
+  return ReasonReact.wrapJsForReason(SnackbarContent.default, tmp, children);
 }
 
 var SnackbarContent$1 = /* module */[
@@ -5859,39 +7788,88 @@ var Classes$58 = /* module */[
   /* to_obj */to_obj$58
 ];
 
-function make$70(action, anchorOrigin, autoHideDuration, className, key, message, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, onMouseEnter, onMouseLeave, open_, resumeHideDuration, snackbarContentProps, transition, transitionDuration, classes, children) {
-  return ReasonReact.wrapJsForReason(Snackbar.default, {
-              action: Js_null_undefined.from_opt(action),
-              anchorOrigin: Js_null_undefined.from_opt(optionMap(anchorOriginShapeToJs$2, anchorOrigin)),
-              autoHideDuration: Js_null_undefined.from_opt(optionMap(unwrapValue, autoHideDuration)),
-              className: Js_null_undefined.from_opt(className),
-              key: Js_null_undefined.from_opt(key),
-              message: Js_null_undefined.from_opt(message),
-              onClose: Js_null_undefined.from_opt(onClose),
-              onEnter: Js_null_undefined.from_opt(onEnter),
-              onEntered: Js_null_undefined.from_opt(onEntered),
-              onEntering: Js_null_undefined.from_opt(onEntering),
-              onExit: Js_null_undefined.from_opt(onExit),
-              onExited: Js_null_undefined.from_opt(onExited),
-              onExiting: Js_null_undefined.from_opt(onExiting),
-              onMouseEnter: Js_null_undefined.from_opt(onMouseEnter),
-              onMouseLeave: Js_null_undefined.from_opt(onMouseLeave),
-              open: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
-              resumeHideDuration: Js_null_undefined.from_opt(optionMap(unwrapValue, resumeHideDuration)),
-              SnackbarContentProps: Js_null_undefined.from_opt(snackbarContentProps),
-              transition: Js_null_undefined.from_opt(optionMap(unwrapValue, transition)),
-              transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number" || v[0] !== -908856609) {
-                            return unwrapValue(v);
-                          } else {
-                            return unwrapValue(/* `Element */[
-                                        -744106340,
-                                        transitionDurationShapeToJs$5(v[1])
-                                      ]);
-                          }
-                        }), transitionDuration)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$58, classes))
-            }, children);
+function make$70(action, anchorOrigin, autoHideDuration, className, key, message, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, onMouseEnter, onMouseLeave, _open, resumeHideDuration, snackbarContentProps, transition, transitionDuration, classes, children) {
+  var tmp = { };
+  if (action) {
+    tmp.action = action[0];
+  }
+  var tmp$1 = Js_option.map(anchorOriginShapeToJs$2, anchorOrigin);
+  if (tmp$1) {
+    tmp.anchorOrigin = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, autoHideDuration);
+  if (tmp$2) {
+    tmp.autoHideDuration = tmp$2[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (key) {
+    tmp.key = key[0];
+  }
+  if (message) {
+    tmp.message = message[0];
+  }
+  if (onClose) {
+    tmp.onClose = onClose[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntered) {
+    tmp.onEntered = onEntered[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (onExited) {
+    tmp.onExited = onExited[0];
+  }
+  if (onExiting) {
+    tmp.onExiting = onExiting[0];
+  }
+  if (onMouseEnter) {
+    tmp.onMouseEnter = onMouseEnter[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, _open);
+  if (tmp$3) {
+    tmp.open = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, resumeHideDuration);
+  if (tmp$4) {
+    tmp.resumeHideDuration = tmp$4[0];
+  }
+  if (snackbarContentProps) {
+    tmp.snackbarContentProps = snackbarContentProps[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, transition);
+  if (tmp$5) {
+    tmp.transition = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== -908856609) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `Element */[
+                        -744106340,
+                        transitionDurationShapeToJs$5(v[1])
+                      ]);
+          }
+        }), transitionDuration);
+  if (tmp$6) {
+    tmp.transitionDuration = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(to_obj$58, classes);
+  if (tmp$7) {
+    tmp.classes = tmp$7[0];
+  }
+  return ReasonReact.wrapJsForReason(Snackbar.default, tmp, children);
 }
 
 var Snackbar$1 = /* module */[
@@ -5903,7 +7881,7 @@ var Snackbar$1 = /* module */[
   /* make */make$70
 ];
 
-var jsMapperConstantArray$48 = /* array */[
+var jsMapperConstantArray$47 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -5914,12 +7892,12 @@ var jsMapperConstantArray$48 = /* array */[
   ]
 ];
 
-function orientation_cToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$48);
+function orientationToJs(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$47);
 }
 
-function orientation_cFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$48, param);
+function orientationFromJs(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$47, param);
 }
 
 function to_string$59(param) {
@@ -5942,50 +7920,126 @@ var Classes$59 = /* module */[
   /* to_obj */to_obj$59
 ];
 
-function make$71(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(StepButton.default, {
-              active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
-              alternativeLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, alternativeLabel)),
-              className: Js_null_undefined.from_opt(className),
-              completed: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, completed)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              icon: Js_null_undefined.from_opt(icon),
-              last: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, last)),
-              optional: Js_null_undefined.from_opt(optional),
-              orientation: Js_null_undefined.from_opt(optionMap(orientation_cToJs, orientation)),
-              buttonRef: Js_null_undefined.from_opt(buttonRef),
-              centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
-              keyboardFocusedClassName: Js_null_undefined.from_opt(keyboardFocusedClassName),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onClick: Js_null_undefined.from_opt(onClick),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              onKeyboardFocus: Js_null_undefined.from_opt(onKeyboardFocus),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              onKeyUp: Js_null_undefined.from_opt(onKeyUp),
-              onMouseDown: Js_null_undefined.from_opt(onMouseDown),
-              onMouseLeave: Js_null_undefined.from_opt(onMouseLeave),
-              onMouseUp: Js_null_undefined.from_opt(onMouseUp),
-              onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
-              onTouchMove: Js_null_undefined.from_opt(onTouchMove),
-              onTouchStart: Js_null_undefined.from_opt(onTouchStart),
-              role: Js_null_undefined.from_opt(role),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              type: Js_null_undefined.from_opt(type_),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$59, classes))
-            }, children);
+function make$71(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
+  var tmp = { };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
+  if (tmp$1) {
+    tmp.active = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, alternativeLabel);
+  if (tmp$2) {
+    tmp.alternativeLabel = tmp$2[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, completed);
+  if (tmp$3) {
+    tmp.completed = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$4) {
+    tmp.disabled = tmp$4[0];
+  }
+  if (icon) {
+    tmp.icon = icon[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, last);
+  if (tmp$5) {
+    tmp.last = tmp$5[0];
+  }
+  if (optional) {
+    tmp.optional = optional[0];
+  }
+  var tmp$6 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$47);
+        }), orientation);
+  if (tmp$6) {
+    tmp.orientation = tmp$6[0];
+  }
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, centerRipple);
+  if (tmp$7) {
+    tmp.centerRipple = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(unwrapValue, component);
+  if (tmp$8) {
+    tmp.component = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$9) {
+    tmp.disableRipple = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map(Js_boolean.to_js_boolean, focusRipple);
+  if (tmp$10) {
+    tmp.focusRipple = tmp$10[0];
+  }
+  if (keyboardFocusedClassName) {
+    tmp.keyboardFocusedClassName = keyboardFocusedClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$11 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$11) {
+    tmp.tabIndex = tmp$11[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$12 = Js_option.map(to_obj$59, classes);
+  if (tmp$12) {
+    tmp.classes = tmp$12[0];
+  }
+  return ReasonReact.wrapJsForReason(StepButton.default, tmp, children);
 }
 
 var StepButton$1 = /* module */[
-  /* orientation_cToJs */orientation_cToJs,
-  /* orientation_cFromJs */orientation_cFromJs,
+  /* orientationToJs */orientationToJs,
+  /* orientationFromJs */orientationFromJs,
   /* Classes */Classes$59,
   /* make */make$71
 ];
 
-var jsMapperConstantArray$49 = /* array */[
+var jsMapperConstantArray$48 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -5996,12 +8050,12 @@ var jsMapperConstantArray$49 = /* array */[
   ]
 ];
 
-function orientation_aToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$49);
+function orientationToJs$1(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$48);
 }
 
-function orientation_aFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$49, param);
+function orientationFromJs$1(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$48, param);
 }
 
 function transitionDurationShapeToJs$6(param) {
@@ -6018,17 +8072,17 @@ function transitionDurationShapeFromJs$6(param) {
         ];
 }
 
-var jsMapperConstantArray$50 = /* array */[/* tuple */[
+var jsMapperConstantArray$49 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
-function transitionDuration_kToJs(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$50);
+function transitionDurationToJs$2(param) {
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$49);
 }
 
-function transitionDuration_kFromJs(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$50, param);
+function transitionDurationFromJs$2(param) {
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$49, param);
 }
 
 function to_string$60(param) {
@@ -6056,53 +8110,83 @@ var Classes$60 = /* module */[
 ];
 
 function make$72(active, alternativeLabel, className, completed, last, optional, orientation, transition, transitionDuration, classes, children) {
-  return ReasonReact.wrapJsForReason(StepContent.default, {
-              active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
-              alternativeLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, alternativeLabel)),
-              className: Js_null_undefined.from_opt(className),
-              completed: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, completed)),
-              last: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, last)),
-              optional: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, optional)),
-              orientation: Js_null_undefined.from_opt(optionMap(orientation_aToJs, orientation)),
-              transition: Js_null_undefined.from_opt(transition),
-              transitionDuration: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number") {
-                            return unwrapValue(v);
-                          } else {
-                            var variant = v[0];
-                            if (variant !== -908856609) {
-                              if (variant !== 770676513) {
-                                return unwrapValue(v);
-                              } else {
-                                return unwrapValue(/* `String */[
-                                            -976970511,
-                                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$50)
-                                          ]);
-                              }
-                            } else {
-                              return unwrapValue(/* `Element */[
-                                          -744106340,
-                                          transitionDurationShapeToJs$6(v[1])
-                                        ]);
-                            }
-                          }
-                        }), transitionDuration)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$60, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
+  if (tmp$1) {
+    tmp.active = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, alternativeLabel);
+  if (tmp$2) {
+    tmp.alternativeLabel = tmp$2[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, completed);
+  if (tmp$3) {
+    tmp.completed = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, last);
+  if (tmp$4) {
+    tmp.last = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, optional);
+  if (tmp$5) {
+    tmp.optional = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$48);
+        }), orientation);
+  if (tmp$6) {
+    tmp.orientation = tmp$6[0];
+  }
+  if (transition) {
+    tmp.transition = transition[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          if (typeof v === "number") {
+            return unwrapValue(v);
+          } else {
+            var variant = v[0];
+            if (variant !== -908856609) {
+              if (variant !== 770676513) {
+                return unwrapValue(v);
+              } else {
+                return unwrapValue(/* `String */[
+                            -976970511,
+                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$49)
+                          ]);
+              }
+            } else {
+              return unwrapValue(/* `Element */[
+                          -744106340,
+                          transitionDurationShapeToJs$6(v[1])
+                        ]);
+            }
+          }
+        }), transitionDuration);
+  if (tmp$7) {
+    tmp.transitionDuration = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$60, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(StepContent.default, tmp, children);
 }
 
 var StepContent$1 = /* module */[
-  /* orientation_aToJs */orientation_aToJs,
-  /* orientation_aFromJs */orientation_aFromJs,
+  /* orientationToJs */orientationToJs$1,
+  /* orientationFromJs */orientationFromJs$1,
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$6,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$6,
-  /* transitionDuration_kToJs */transitionDuration_kToJs,
-  /* transitionDuration_kFromJs */transitionDuration_kFromJs,
+  /* transitionDurationToJs */transitionDurationToJs$2,
+  /* transitionDurationFromJs */transitionDurationFromJs$2,
   /* Classes */Classes$60,
   /* make */make$72
 ];
 
-var jsMapperConstantArray$51 = /* array */[
+var jsMapperConstantArray$50 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -6113,12 +8197,12 @@ var jsMapperConstantArray$51 = /* array */[
   ]
 ];
 
-function orientation_9ToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$51);
+function orientationToJs$2(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$50);
 }
 
-function orientation_9FromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$51, param);
+function orientationFromJs$2(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$50, param);
 }
 
 function to_string$61(param) {
@@ -6160,28 +8244,57 @@ var Classes$61 = /* module */[
 ];
 
 function make$73(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, classes, children) {
-  return ReasonReact.wrapJsForReason(StepLabel.default, {
-              active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
-              alternativeLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, alternativeLabel)),
-              className: Js_null_undefined.from_opt(className),
-              completed: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, completed)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              icon: Js_null_undefined.from_opt(icon),
-              last: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, last)),
-              optional: Js_null_undefined.from_opt(optional),
-              orientation: Js_null_undefined.from_opt(optionMap(orientation_9ToJs, orientation)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$61, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
+  if (tmp$1) {
+    tmp.active = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, alternativeLabel);
+  if (tmp$2) {
+    tmp.alternativeLabel = tmp$2[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, completed);
+  if (tmp$3) {
+    tmp.completed = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$4) {
+    tmp.disabled = tmp$4[0];
+  }
+  if (icon) {
+    tmp.icon = icon[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, last);
+  if (tmp$5) {
+    tmp.last = tmp$5[0];
+  }
+  if (optional) {
+    tmp.optional = optional[0];
+  }
+  var tmp$6 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$50);
+        }), orientation);
+  if (tmp$6) {
+    tmp.orientation = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(to_obj$61, classes);
+  if (tmp$7) {
+    tmp.classes = tmp$7[0];
+  }
+  return ReasonReact.wrapJsForReason(StepLabel.default, tmp, children);
 }
 
 var StepLabel$1 = /* module */[
-  /* orientation_9ToJs */orientation_9ToJs,
-  /* orientation_9FromJs */orientation_9FromJs,
+  /* orientationToJs */orientationToJs$2,
+  /* orientationFromJs */orientationFromJs$2,
   /* Classes */Classes$61,
   /* make */make$73
 ];
 
-var jsMapperConstantArray$52 = /* array */[
+var jsMapperConstantArray$51 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -6192,12 +8305,12 @@ var jsMapperConstantArray$52 = /* array */[
   ]
 ];
 
-function orientation_yToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$52);
+function orientationToJs$3(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$51);
 }
 
-function orientation_yFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$52, param);
+function orientationFromJs$3(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$51, param);
 }
 
 function to_string$62(param) {
@@ -6225,28 +8338,58 @@ var Classes$62 = /* module */[
 ];
 
 function make$74(active, alternativeLabel, className, completed, connector, disabled, index, last, orientation, classes, children) {
-  return ReasonReact.wrapJsForReason(Step.default, {
-              active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
-              alternativeLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, alternativeLabel)),
-              className: Js_null_undefined.from_opt(className),
-              completed: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, completed)),
-              connector: Js_null_undefined.from_opt(connector),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              index: Js_null_undefined.from_opt(optionMap(unwrapValue, index)),
-              last: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, last)),
-              orientation: Js_null_undefined.from_opt(optionMap(orientation_yToJs, orientation)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$62, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
+  if (tmp$1) {
+    tmp.active = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, alternativeLabel);
+  if (tmp$2) {
+    tmp.alternativeLabel = tmp$2[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, completed);
+  if (tmp$3) {
+    tmp.completed = tmp$3[0];
+  }
+  if (connector) {
+    tmp.connector = connector[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$4) {
+    tmp.disabled = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, index);
+  if (tmp$5) {
+    tmp.index = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, last);
+  if (tmp$6) {
+    tmp.last = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$51);
+        }), orientation);
+  if (tmp$7) {
+    tmp.orientation = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$62, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(Step.default, tmp, children);
 }
 
 var Step$1 = /* module */[
-  /* orientation_yToJs */orientation_yToJs,
-  /* orientation_yFromJs */orientation_yFromJs,
+  /* orientationToJs */orientationToJs$3,
+  /* orientationFromJs */orientationFromJs$3,
   /* Classes */Classes$62,
   /* make */make$74
 ];
 
-var jsMapperConstantArray$53 = /* array */[
+var jsMapperConstantArray$52 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -6257,12 +8400,12 @@ var jsMapperConstantArray$53 = /* array */[
   ]
 ];
 
-function orientation_yToJs$1(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$53);
+function orientationToJs$4(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$52);
 }
 
-function orientation_yFromJs$1(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$53, param);
+function orientationFromJs$4(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$52, param);
 }
 
 function to_string$63(param) {
@@ -6290,28 +8433,58 @@ var Classes$63 = /* module */[
 ];
 
 function make$75(activeStep, alternativeLabel, className, connector, nonLinear, orientation, component, elevation, square, classes, children) {
-  return ReasonReact.wrapJsForReason(Stepper.default, {
-              activeStep: Js_null_undefined.from_opt(optionMap(unwrapValue, activeStep)),
-              alternativeLabel: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, alternativeLabel)),
-              className: Js_null_undefined.from_opt(className),
-              connector: Js_null_undefined.from_opt(connector),
-              nonLinear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, nonLinear)),
-              orientation: Js_null_undefined.from_opt(optionMap(orientation_yToJs$1, orientation)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              elevation: Js_null_undefined.from_opt(optionMap(unwrapValue, elevation)),
-              square: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, square)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$63, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, activeStep);
+  if (tmp$1) {
+    tmp.activeStep = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, alternativeLabel);
+  if (tmp$2) {
+    tmp.alternativeLabel = tmp$2[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (connector) {
+    tmp.connector = connector[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, nonLinear);
+  if (tmp$3) {
+    tmp.nonLinear = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$52);
+        }), orientation);
+  if (tmp$4) {
+    tmp.orientation = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, component);
+  if (tmp$5) {
+    tmp.component = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, elevation);
+  if (tmp$6) {
+    tmp.elevation = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, square);
+  if (tmp$7) {
+    tmp.square = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$63, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(Stepper.default, tmp, children);
 }
 
 var Stepper$1 = /* module */[
-  /* orientation_yToJs */orientation_yToJs$1,
-  /* orientation_yFromJs */orientation_yFromJs$1,
+  /* orientationToJs */orientationToJs$4,
+  /* orientationFromJs */orientationFromJs$4,
   /* Classes */Classes$63,
   /* make */make$75
 ];
 
-var jsMapperConstantArray$54 = /* array */[
+var jsMapperConstantArray$53 = /* array */[
   /* tuple */[
     -891637802,
     "action"
@@ -6338,12 +8511,12 @@ var jsMapperConstantArray$54 = /* array */[
   ]
 ];
 
-function color_rToJs(param) {
-  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$54);
+function colorToJs$8(param) {
+  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$53);
 }
 
-function color_rFromJs(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$54, param);
+function colorFromJs$8(param) {
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$53, param);
 }
 
 function to_string$64(param) {
@@ -6379,20 +8552,39 @@ var Classes$64 = /* module */[
 ];
 
 function make$76(className, color, fontSize, nativeColor, titleAccess, viewBox, classes, children) {
-  return ReasonReact.wrapJsForReason(SvgIcon.default, {
-              className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(color_rToJs, color)),
-              fontSize: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fontSize)),
-              nativeColor: Js_null_undefined.from_opt(nativeColor),
-              titleAccess: Js_null_undefined.from_opt(titleAccess),
-              viewBox: Js_null_undefined.from_opt(viewBox),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$64, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$53);
+        }), color);
+  if (tmp$1) {
+    tmp.color = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, fontSize);
+  if (tmp$2) {
+    tmp.fontSize = tmp$2[0];
+  }
+  if (nativeColor) {
+    tmp.nativeColor = nativeColor[0];
+  }
+  if (titleAccess) {
+    tmp.titleAccess = titleAccess[0];
+  }
+  if (viewBox) {
+    tmp.viewBox = viewBox[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$64, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(SvgIcon.default, tmp, children);
 }
 
 var SvgIcon$1 = /* module */[
-  /* color_rToJs */color_rToJs,
-  /* color_rFromJs */color_rFromJs,
+  /* colorToJs */colorToJs$8,
+  /* colorFromJs */colorFromJs$8,
   /* Classes */Classes$64,
   /* make */make$76
 ];
@@ -6428,23 +8620,59 @@ var Classes$65 = /* module */[
 ];
 
 function make$77(checked, checkedIcon, className, defaultChecked, disabled, disableRipple, icon, inputProps, inputRef, inputType, name, onChange, tabIndex, value, classes, children) {
-  return ReasonReact.wrapJsForReason(Switch.default, {
-              checked: Js_null_undefined.from_opt(optionMap(unwrapValue, checked)),
-              checkedIcon: Js_null_undefined.from_opt(checkedIcon),
-              className: Js_null_undefined.from_opt(className),
-              defaultChecked: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, defaultChecked)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              icon: Js_null_undefined.from_opt(icon),
-              inputProps: Js_null_undefined.from_opt(inputProps),
-              inputRef: Js_null_undefined.from_opt(inputRef),
-              inputType: Js_null_undefined.from_opt(inputType),
-              name: Js_null_undefined.from_opt(name),
-              onChange: Js_null_undefined.from_opt(onChange),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              value: Js_null_undefined.from_opt(value),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$65, classes))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, checked);
+  if (tmp$1) {
+    tmp.checked = tmp$1[0];
+  }
+  if (checkedIcon) {
+    tmp.checkedIcon = checkedIcon[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, defaultChecked);
+  if (tmp$2) {
+    tmp.defaultChecked = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$3) {
+    tmp.disabled = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$4) {
+    tmp.disableRipple = tmp$4[0];
+  }
+  if (icon) {
+    tmp.icon = icon[0];
+  }
+  if (inputProps) {
+    tmp.inputProps = inputProps[0];
+  }
+  if (inputRef) {
+    tmp.inputRef = inputRef[0];
+  }
+  if (inputType) {
+    tmp.inputType = inputType[0];
+  }
+  if (name) {
+    tmp.name = name[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$5) {
+    tmp.tabIndex = tmp$5[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  var tmp$6 = Js_option.map(to_obj$65, classes);
+  if (tmp$6) {
+    tmp.classes = tmp$6[0];
+  }
+  return ReasonReact.wrapJsForReason(Switch.default, tmp, children);
 }
 
 var Switch$1 = /* module */[
@@ -6452,7 +8680,7 @@ var Switch$1 = /* module */[
   /* make */make$77
 ];
 
-var jsMapperConstantArray$55 = /* array */[
+var jsMapperConstantArray$54 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -6467,12 +8695,12 @@ var jsMapperConstantArray$55 = /* array */[
   ]
 ];
 
-function textColor_iToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$55);
+function textColorToJs(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$54);
 }
 
-function textColor_iFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$55, param);
+function textColorFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$54, param);
 }
 
 function to_string$66(param) {
@@ -6525,69 +8753,148 @@ var Classes$66 = /* module */[
   /* to_obj */to_obj$66
 ];
 
-function make$78(className, disabled, fullWidth, icon, indicator, label, onChange, onClick, selected, style, textColor, value, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(Tab.default, {
-              className: Js_null_undefined.from_opt(className),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              icon: Js_null_undefined.from_opt(icon),
-              indicator: Js_null_undefined.from_opt(indicator),
-              label: Js_null_undefined.from_opt(label),
-              onChange: Js_null_undefined.from_opt(onChange),
-              onClick: Js_null_undefined.from_opt(onClick),
-              selected: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, selected)),
-              style: Js_null_undefined.from_opt(style),
-              textColor: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number" || v[0] !== 770676513) {
-                            return unwrapValue(v);
-                          } else {
-                            return unwrapValue(/* `String */[
-                                        -976970511,
-                                        Js_mapperRt.binSearch(3, v[1], jsMapperConstantArray$55)
-                                      ]);
-                          }
-                        }), textColor)),
-              value: Js_null_undefined.from_opt(value),
-              buttonRef: Js_null_undefined.from_opt(buttonRef),
-              centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
-              keyboardFocusedClassName: Js_null_undefined.from_opt(keyboardFocusedClassName),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              onKeyboardFocus: Js_null_undefined.from_opt(onKeyboardFocus),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              onKeyUp: Js_null_undefined.from_opt(onKeyUp),
-              onMouseDown: Js_null_undefined.from_opt(onMouseDown),
-              onMouseLeave: Js_null_undefined.from_opt(onMouseLeave),
-              onMouseUp: Js_null_undefined.from_opt(onMouseUp),
-              onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
-              onTouchMove: Js_null_undefined.from_opt(onTouchMove),
-              onTouchStart: Js_null_undefined.from_opt(onTouchStart),
-              role: Js_null_undefined.from_opt(role),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              type: Js_null_undefined.from_opt(type_),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$66, classes))
-            }, children);
+function make$78(className, disabled, fullWidth, icon, indicator, label, onChange, onClick, selected, style, textColor, value, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$1) {
+    tmp.disabled = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
+  if (tmp$2) {
+    tmp.fullWidth = tmp$2[0];
+  }
+  if (icon) {
+    tmp.icon = icon[0];
+  }
+  if (indicator) {
+    tmp.indicator = indicator[0];
+  }
+  if (label) {
+    tmp.label = label[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, selected);
+  if (tmp$3) {
+    tmp.selected = tmp$3[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== 770676513) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `String */[
+                        -976970511,
+                        Js_mapperRt.binSearch(3, v[1], jsMapperConstantArray$54)
+                      ]);
+          }
+        }), textColor);
+  if (tmp$4) {
+    tmp.textColor = tmp$4[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, centerRipple);
+  if (tmp$5) {
+    tmp.centerRipple = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, component);
+  if (tmp$6) {
+    tmp.component = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$7) {
+    tmp.disableRipple = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(Js_boolean.to_js_boolean, focusRipple);
+  if (tmp$8) {
+    tmp.focusRipple = tmp$8[0];
+  }
+  if (keyboardFocusedClassName) {
+    tmp.keyboardFocusedClassName = keyboardFocusedClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$9 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$9) {
+    tmp.tabIndex = tmp$9[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$10 = Js_option.map(to_obj$66, classes);
+  if (tmp$10) {
+    tmp.classes = tmp$10[0];
+  }
+  return ReasonReact.wrapJsForReason(Tab.default, tmp, children);
 }
 
 var Tab$1 = /* module */[
-  /* textColor_iToJs */textColor_iToJs,
-  /* textColor_iFromJs */textColor_iFromJs,
+  /* textColorToJs */textColorToJs,
+  /* textColorFromJs */textColorFromJs,
   /* Classes */Classes$66,
   /* make */make$78
 ];
 
 function make$79(component, children) {
-  return ReasonReact.wrapJsForReason(TableBody.default, {
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(TableBody.default, tmp, children);
 }
 
 var TableBody$1 = /* module */[/* make */make$79];
 
-var jsMapperConstantArray$56 = /* array */[
+var jsMapperConstantArray$55 = /* array */[
   /* tuple */[
     -384499551,
     "default"
@@ -6606,15 +8913,15 @@ var jsMapperConstantArray$56 = /* array */[
   ]
 ];
 
-function padding_5ToJs(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$56);
+function paddingToJs(param) {
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$55);
 }
 
-function padding_5FromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$56, param);
+function paddingFromJs(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$55, param);
 }
 
-var jsMapperConstantArray$57 = /* array */[
+var jsMapperConstantArray$56 = /* array */[
   /* tuple */[
     3258129,
     "asc"
@@ -6629,15 +8936,15 @@ var jsMapperConstantArray$57 = /* array */[
   ]
 ];
 
-function sortDirection_xToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$57);
+function sortDirectionToJs(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$56);
 }
 
-function sortDirection_xFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$57, param);
+function sortDirectionFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$56, param);
 }
 
-var jsMapperConstantArray$58 = /* array */[
+var jsMapperConstantArray$57 = /* array */[
   /* tuple */[
     737453762,
     "body"
@@ -6652,12 +8959,12 @@ var jsMapperConstantArray$58 = /* array */[
   ]
 ];
 
-function type__tToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$58);
+function _typeToJs$2(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$57);
 }
 
-function type__tFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$58, param);
+function _typeFromJs$2(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$57, param);
 }
 
 function to_string$67(param) {
@@ -6694,46 +9001,78 @@ var Classes$67 = /* module */[
   /* to_obj */to_obj$67
 ];
 
-function make$80(className, component, numeric, padding, sortDirection, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(TableCell.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              numeric: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, numeric)),
-              padding: Js_null_undefined.from_opt(optionMap(padding_5ToJs, padding)),
-              sortDirection: Js_null_undefined.from_opt(optionMap(sortDirection_xToJs, sortDirection)),
-              type: Js_null_undefined.from_opt(optionMap(type__tToJs, type_)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$67, classes))
-            }, children);
+function make$80(className, component, numeric, padding, sortDirection, _type, classes, children) {
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, numeric);
+  if (tmp$2) {
+    tmp.numeric = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$55);
+        }), padding);
+  if (tmp$3) {
+    tmp.padding = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$56);
+        }), sortDirection);
+  if (tmp$4) {
+    tmp.sortDirection = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$57);
+        }), _type);
+  if (tmp$5) {
+    tmp.type = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(to_obj$67, classes);
+  if (tmp$6) {
+    tmp.classes = tmp$6[0];
+  }
+  return ReasonReact.wrapJsForReason(TableCell.default, tmp, children);
 }
 
 var TableCell$1 = /* module */[
-  /* padding_5ToJs */padding_5ToJs,
-  /* padding_5FromJs */padding_5FromJs,
-  /* sortDirection_xToJs */sortDirection_xToJs,
-  /* sortDirection_xFromJs */sortDirection_xFromJs,
-  /* type__tToJs */type__tToJs,
-  /* type__tFromJs */type__tFromJs,
+  /* paddingToJs */paddingToJs,
+  /* paddingFromJs */paddingFromJs,
+  /* sortDirectionToJs */sortDirectionToJs,
+  /* sortDirectionFromJs */sortDirectionFromJs,
+  /* _typeToJs */_typeToJs$2,
+  /* _typeFromJs */_typeFromJs$2,
   /* Classes */Classes$67,
   /* make */make$80
 ];
 
 function make$81(component, children) {
-  return ReasonReact.wrapJsForReason(TableFooter.default, {
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(TableFooter.default, tmp, children);
 }
 
 var TableFooter$1 = /* module */[/* make */make$81];
 
 function make$82(component, children) {
-  return ReasonReact.wrapJsForReason(TableHead.default, {
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component))
-            }, children);
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  return ReasonReact.wrapJsForReason(TableHead.default, tmp, children);
 }
 
 var TableHead$1 = /* module */[/* make */make$82];
 
-var jsMapperConstantArray$59 = /* array */[
+var jsMapperConstantArray$58 = /* array */[
   /* tuple */[
     -384499551,
     "default"
@@ -6752,15 +9091,15 @@ var jsMapperConstantArray$59 = /* array */[
   ]
 ];
 
-function padding_5ToJs$1(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$59);
+function paddingToJs$1(param) {
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$58);
 }
 
-function padding_5FromJs$1(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$59, param);
+function paddingFromJs$1(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$58, param);
 }
 
-var jsMapperConstantArray$60 = /* array */[
+var jsMapperConstantArray$59 = /* array */[
   /* tuple */[
     3258129,
     "asc"
@@ -6775,15 +9114,15 @@ var jsMapperConstantArray$60 = /* array */[
   ]
 ];
 
-function sortDirection_xToJs$1(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$60);
+function sortDirectionToJs$1(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$59);
 }
 
-function sortDirection_xFromJs$1(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$60, param);
+function sortDirectionFromJs$1(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$59, param);
 }
 
-var jsMapperConstantArray$61 = /* array */[
+var jsMapperConstantArray$60 = /* array */[
   /* tuple */[
     737453762,
     "body"
@@ -6798,12 +9137,12 @@ var jsMapperConstantArray$61 = /* array */[
   ]
 ];
 
-function type__tToJs$1(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$61);
+function _typeToJs$3(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$60);
 }
 
-function type__tFromJs$1(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$61, param);
+function _typeFromJs$3(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$60, param);
 }
 
 function to_string$68(param) {
@@ -6842,37 +9181,82 @@ var Classes$68 = /* module */[
   /* to_obj */to_obj$68
 ];
 
-function make$83(actions, backIconButtonProps, colSpan, component, count, labelDisplayedRows, labelRowsPerPage, nextIconButtonProps, onChangePage, onChangeRowsPerPage, page, rowsPerPage, rowsPerPageOptions, className, numeric, padding, sortDirection, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(TablePagination.default, {
-              Actions: Js_null_undefined.from_opt(optionMap(unwrapValue, actions)),
-              backIconButtonProps: Js_null_undefined.from_opt(backIconButtonProps),
-              colSpan: Js_null_undefined.from_opt(optionMap(unwrapValue, colSpan)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              count: unwrapValue(count),
-              labelDisplayedRows: Js_null_undefined.from_opt(labelDisplayedRows),
-              labelRowsPerPage: Js_null_undefined.from_opt(labelRowsPerPage),
-              nextIconButtonProps: Js_null_undefined.from_opt(nextIconButtonProps),
-              onChangePage: onChangePage,
-              onChangeRowsPerPage: Js_null_undefined.from_opt(onChangeRowsPerPage),
-              page: unwrapValue(page),
-              rowsPerPage: unwrapValue(rowsPerPage),
-              rowsPerPageOptions: Js_null_undefined.from_opt(rowsPerPageOptions),
-              className: Js_null_undefined.from_opt(className),
-              numeric: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, numeric)),
-              padding: Js_null_undefined.from_opt(optionMap(padding_5ToJs$1, padding)),
-              sortDirection: Js_null_undefined.from_opt(optionMap(sortDirection_xToJs$1, sortDirection)),
-              type: Js_null_undefined.from_opt(optionMap(type__tToJs$1, type_)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$68, classes))
-            }, children);
+function make$83(actions, backIconButtonProps, colSpan, component, count, labelDisplayedRows, labelRowsPerPage, nextIconButtonProps, onChangePage, onChangeRowsPerPage, page, rowsPerPage, rowsPerPageOptions, className, numeric, padding, sortDirection, _type, classes, children) {
+  var tmp = {
+    count: unwrapValue(count),
+    onChangePage: onChangePage,
+    page: unwrapValue(page),
+    rowsPerPage: unwrapValue(rowsPerPage)
+  };
+  var tmp$1 = Js_option.map(unwrapValue, actions);
+  if (tmp$1) {
+    tmp.actions = tmp$1[0];
+  }
+  if (backIconButtonProps) {
+    tmp.backIconButtonProps = backIconButtonProps[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, colSpan);
+  if (tmp$2) {
+    tmp.colSpan = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, component);
+  if (tmp$3) {
+    tmp.component = tmp$3[0];
+  }
+  if (labelDisplayedRows) {
+    tmp.labelDisplayedRows = labelDisplayedRows[0];
+  }
+  if (labelRowsPerPage) {
+    tmp.labelRowsPerPage = labelRowsPerPage[0];
+  }
+  if (nextIconButtonProps) {
+    tmp.nextIconButtonProps = nextIconButtonProps[0];
+  }
+  if (onChangeRowsPerPage) {
+    tmp.onChangeRowsPerPage = onChangeRowsPerPage[0];
+  }
+  if (rowsPerPageOptions) {
+    tmp.rowsPerPageOptions = rowsPerPageOptions[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, numeric);
+  if (tmp$4) {
+    tmp.numeric = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$58);
+        }), padding);
+  if (tmp$5) {
+    tmp.padding = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$59);
+        }), sortDirection);
+  if (tmp$6) {
+    tmp.sortDirection = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$60);
+        }), _type);
+  if (tmp$7) {
+    tmp.type = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$68, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(TablePagination.default, tmp, children);
 }
 
 var TablePagination$1 = /* module */[
-  /* padding_5ToJs */padding_5ToJs$1,
-  /* padding_5FromJs */padding_5FromJs$1,
-  /* sortDirection_xToJs */sortDirection_xToJs$1,
-  /* sortDirection_xFromJs */sortDirection_xFromJs$1,
-  /* type__tToJs */type__tToJs$1,
-  /* type__tFromJs */type__tFromJs$1,
+  /* paddingToJs */paddingToJs$1,
+  /* paddingFromJs */paddingFromJs$1,
+  /* sortDirectionToJs */sortDirectionToJs$1,
+  /* sortDirectionFromJs */sortDirectionFromJs$1,
+  /* _typeToJs */_typeToJs$3,
+  /* _typeFromJs */_typeFromJs$3,
   /* Classes */Classes$68,
   /* make */make$83
 ];
@@ -6906,13 +9290,27 @@ var Classes$69 = /* module */[
 ];
 
 function make$84(className, component, hover, selected, classes, children) {
-  return ReasonReact.wrapJsForReason(TableRow.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              hover: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, hover)),
-              selected: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, selected)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$69, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, hover);
+  if (tmp$2) {
+    tmp.hover = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, selected);
+  if (tmp$3) {
+    tmp.selected = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$69, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
+  }
+  return ReasonReact.wrapJsForReason(TableRow.default, tmp, children);
 }
 
 var TableRow$1 = /* module */[
@@ -6920,7 +9318,7 @@ var TableRow$1 = /* module */[
   /* make */make$84
 ];
 
-var jsMapperConstantArray$62 = /* array */[
+var jsMapperConstantArray$61 = /* array */[
   /* tuple */[
     3258129,
     "asc"
@@ -6931,12 +9329,12 @@ var jsMapperConstantArray$62 = /* array */[
   ]
 ];
 
-function direction_kToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$62);
+function directionToJs$2(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$61);
 }
 
-function direction_kFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$62, param);
+function directionFromJs$2(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$61, param);
 }
 
 function to_string$70(param) {
@@ -6967,40 +9365,103 @@ var Classes$70 = /* module */[
   /* to_obj */to_obj$70
 ];
 
-function make$85(active, className, direction, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(TableSortLabel.default, {
-              active: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, active)),
-              className: Js_null_undefined.from_opt(className),
-              direction: Js_null_undefined.from_opt(optionMap(direction_kToJs, direction)),
-              buttonRef: Js_null_undefined.from_opt(buttonRef),
-              centerRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centerRipple)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              disableRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableRipple)),
-              focusRipple: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, focusRipple)),
-              keyboardFocusedClassName: Js_null_undefined.from_opt(keyboardFocusedClassName),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onClick: Js_null_undefined.from_opt(onClick),
-              onFocus: Js_null_undefined.from_opt(onFocus),
-              onKeyboardFocus: Js_null_undefined.from_opt(onKeyboardFocus),
-              onKeyDown: Js_null_undefined.from_opt(onKeyDown),
-              onKeyUp: Js_null_undefined.from_opt(onKeyUp),
-              onMouseDown: Js_null_undefined.from_opt(onMouseDown),
-              onMouseLeave: Js_null_undefined.from_opt(onMouseLeave),
-              onMouseUp: Js_null_undefined.from_opt(onMouseUp),
-              onTouchEnd: Js_null_undefined.from_opt(onTouchEnd),
-              onTouchMove: Js_null_undefined.from_opt(onTouchMove),
-              onTouchStart: Js_null_undefined.from_opt(onTouchStart),
-              role: Js_null_undefined.from_opt(role),
-              tabIndex: Js_null_undefined.from_opt(optionMap(unwrapValue, tabIndex)),
-              type: Js_null_undefined.from_opt(type_),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$70, classes))
-            }, children);
+function make$85(active, className, direction, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
+  var tmp = { };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
+  if (tmp$1) {
+    tmp.active = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$61);
+        }), direction);
+  if (tmp$2) {
+    tmp.direction = tmp$2[0];
+  }
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, centerRipple);
+  if (tmp$3) {
+    tmp.centerRipple = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, component);
+  if (tmp$4) {
+    tmp.component = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$5) {
+    tmp.disabled = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, disableRipple);
+  if (tmp$6) {
+    tmp.disableRipple = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, focusRipple);
+  if (tmp$7) {
+    tmp.focusRipple = tmp$7[0];
+  }
+  if (keyboardFocusedClassName) {
+    tmp.keyboardFocusedClassName = keyboardFocusedClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$8 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$8) {
+    tmp.tabIndex = tmp$8[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$9 = Js_option.map(to_obj$70, classes);
+  if (tmp$9) {
+    tmp.classes = tmp$9[0];
+  }
+  return ReasonReact.wrapJsForReason(TableSortLabel.default, tmp, children);
 }
 
 var TableSortLabel$1 = /* module */[
-  /* direction_kToJs */direction_kToJs,
-  /* direction_kFromJs */direction_kFromJs,
+  /* directionToJs */directionToJs$2,
+  /* directionFromJs */directionFromJs$2,
   /* Classes */Classes$70,
   /* make */make$85
 ];
@@ -7022,11 +9483,19 @@ var Classes$71 = /* module */[
 ];
 
 function make$86(className, component, classes, children) {
-  return ReasonReact.wrapJsForReason(Table.default, {
-              className: Js_null_undefined.from_opt(className),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$71, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(to_obj$71, classes);
+  if (tmp$2) {
+    tmp.classes = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(Table.default, tmp, children);
 }
 
 var Table$1 = /* module */[
@@ -7034,7 +9503,7 @@ var Table$1 = /* module */[
   /* make */make$86
 ];
 
-var jsMapperConstantArray$63 = /* array */[
+var jsMapperConstantArray$62 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -7045,15 +9514,15 @@ var jsMapperConstantArray$63 = /* array */[
   ]
 ];
 
-function indicatorColor_mToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$63);
+function indicatorColorToJs(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$62);
 }
 
-function indicatorColor_mFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$63, param);
+function indicatorColorFromJs(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$62, param);
 }
 
-var jsMapperConstantArray$64 = /* array */[
+var jsMapperConstantArray$63 = /* array */[
   /* tuple */[
     17727,
     "on"
@@ -7068,15 +9537,15 @@ var jsMapperConstantArray$64 = /* array */[
   ]
 ];
 
-function scrollButtons_4ToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$64);
+function scrollButtonsToJs(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$63);
 }
 
-function scrollButtons_4FromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$64, param);
+function scrollButtonsFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$63, param);
 }
 
-var jsMapperConstantArray$65 = /* array */[
+var jsMapperConstantArray$64 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -7091,12 +9560,12 @@ var jsMapperConstantArray$65 = /* array */[
   ]
 ];
 
-function textColor_2ToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$65);
+function textColorToJs$1(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$64);
 }
 
-function textColor_2FromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$65, param);
+function textColorFromJs$1(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$64, param);
 }
 
 function to_string$72(param) {
@@ -7132,46 +9601,87 @@ var Classes$72 = /* module */[
 ];
 
 function make$87(action, buttonClassName, centered, className, fullWidth, indicatorClassName, indicatorColor, onChange, scrollable, scrollButtons, tabScrollButton, textColor, theme, value, classes, children) {
-  return ReasonReact.wrapJsForReason(Tabs.default, {
-              action: Js_null_undefined.from_opt(action),
-              buttonClassName: Js_null_undefined.from_opt(buttonClassName),
-              centered: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, centered)),
-              className: Js_null_undefined.from_opt(className),
-              fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              indicatorClassName: Js_null_undefined.from_opt(indicatorClassName),
-              indicatorColor: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number" || v[0] !== 770676513) {
-                            return unwrapValue(v);
-                          } else {
-                            return unwrapValue(/* `String */[
-                                        -976970511,
-                                        Js_mapperRt.binSearch(2, v[1], jsMapperConstantArray$63)
-                                      ]);
-                          }
-                        }), indicatorColor)),
-              onChange: Js_null_undefined.from_opt(onChange),
-              scrollable: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, scrollable)),
-              scrollButtons: Js_null_undefined.from_opt(optionMap(scrollButtons_4ToJs, scrollButtons)),
-              TabScrollButton: Js_null_undefined.from_opt(optionMap(unwrapValue, tabScrollButton)),
-              textColor: Js_null_undefined.from_opt(optionMap(textColor_2ToJs, textColor)),
-              theme: theme,
-              value: Js_null_undefined.from_opt(value),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$72, classes))
-            }, children);
+  var tmp = {
+    theme: theme
+  };
+  if (action) {
+    tmp.action = action[0];
+  }
+  if (buttonClassName) {
+    tmp.buttonClassName = buttonClassName[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, centered);
+  if (tmp$1) {
+    tmp.centered = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
+  if (tmp$2) {
+    tmp.fullWidth = tmp$2[0];
+  }
+  if (indicatorClassName) {
+    tmp.indicatorClassName = indicatorClassName[0];
+  }
+  var tmp$3 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== 770676513) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `String */[
+                        -976970511,
+                        Js_mapperRt.binSearch(2, v[1], jsMapperConstantArray$62)
+                      ]);
+          }
+        }), indicatorColor);
+  if (tmp$3) {
+    tmp.indicatorColor = tmp$3[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, scrollable);
+  if (tmp$4) {
+    tmp.scrollable = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$63);
+        }), scrollButtons);
+  if (tmp$5) {
+    tmp.scrollButtons = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, tabScrollButton);
+  if (tmp$6) {
+    tmp.tabScrollButton = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$64);
+        }), textColor);
+  if (tmp$7) {
+    tmp.textColor = tmp$7[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$72, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(Tabs.default, tmp, children);
 }
 
 var Tabs$1 = /* module */[
-  /* indicatorColor_mToJs */indicatorColor_mToJs,
-  /* indicatorColor_mFromJs */indicatorColor_mFromJs,
-  /* scrollButtons_4ToJs */scrollButtons_4ToJs,
-  /* scrollButtons_4FromJs */scrollButtons_4FromJs,
-  /* textColor_2ToJs */textColor_2ToJs,
-  /* textColor_2FromJs */textColor_2FromJs,
+  /* indicatorColorToJs */indicatorColorToJs,
+  /* indicatorColorFromJs */indicatorColorFromJs,
+  /* scrollButtonsToJs */scrollButtonsToJs,
+  /* scrollButtonsFromJs */scrollButtonsFromJs,
+  /* textColorToJs */textColorToJs$1,
+  /* textColorFromJs */textColorFromJs$1,
   /* Classes */Classes$72,
   /* make */make$87
 ];
 
-var jsMapperConstantArray$66 = /* array */[
+var jsMapperConstantArray$65 = /* array */[
   /* tuple */[
     -453122489,
     "normal"
@@ -7186,54 +9696,132 @@ var jsMapperConstantArray$66 = /* array */[
   ]
 ];
 
-function margin_aToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$66);
+function marginToJs$5(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$65);
 }
 
-function margin_aFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$66, param);
+function marginFromJs$5(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$65, param);
 }
 
-function make$88(autoComplete, autoFocus, className, defaultValue, disabled, error, formHelperTextProps, fullWidth, helperText, helperTextClassName, id, inputLabelProps, inputProps2, inputProps, inputRef, label, labelClassName, margin, multiline, name, onChange, placeholder, required, rows, rowsMax, select, selectProps, type_, value, component, onBlur, onFocus, children) {
-  return ReasonReact.wrapJsForReason(TextField.default, {
-              autoComplete: Js_null_undefined.from_opt(autoComplete),
-              autoFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, autoFocus)),
-              className: Js_null_undefined.from_opt(className),
-              defaultValue: Js_null_undefined.from_opt(defaultValue),
-              disabled: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disabled)),
-              error: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, error)),
-              FormHelperTextProps: Js_null_undefined.from_opt(formHelperTextProps),
-              fullWidth: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, fullWidth)),
-              helperText: Js_null_undefined.from_opt(helperText),
-              helperTextClassName: Js_null_undefined.from_opt(helperTextClassName),
-              id: Js_null_undefined.from_opt(id),
-              InputLabelProps: Js_null_undefined.from_opt(inputLabelProps),
-              InputProps2: Js_null_undefined.from_opt(inputProps2),
-              inputProps: Js_null_undefined.from_opt(inputProps),
-              inputRef: Js_null_undefined.from_opt(inputRef),
-              label: Js_null_undefined.from_opt(label),
-              labelClassName: Js_null_undefined.from_opt(labelClassName),
-              margin: Js_null_undefined.from_opt(optionMap(margin_aToJs, margin)),
-              multiline: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, multiline)),
-              name: Js_null_undefined.from_opt(name),
-              onChange: Js_null_undefined.from_opt(onChange),
-              placeholder: Js_null_undefined.from_opt(placeholder),
-              required: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, required)),
-              rows: Js_null_undefined.from_opt(optionMap(unwrapValue, rows)),
-              rowsMax: Js_null_undefined.from_opt(optionMap(unwrapValue, rowsMax)),
-              select: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, select)),
-              SelectProps: Js_null_undefined.from_opt(selectProps),
-              type: Js_null_undefined.from_opt(type_),
-              value: Js_null_undefined.from_opt(optionMap(unwrapValue, value)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              onBlur: Js_null_undefined.from_opt(onBlur),
-              onFocus: Js_null_undefined.from_opt(onFocus)
-            }, children);
+function make$88(autoComplete, autoFocus, className, defaultValue, disabled, error, formHelperTextProps, fullWidth, helperText, helperTextClassName, id, inputLabelProps, inputProps2, inputProps, inputRef, label, labelClassName, margin, multiline, name, onChange, placeholder, required, rows, rowsMax, select, selectProps, _type, value, component, onBlur, onFocus, children) {
+  var tmp = { };
+  if (autoComplete) {
+    tmp.autoComplete = autoComplete[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, autoFocus);
+  if (tmp$1) {
+    tmp.autoFocus = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (defaultValue) {
+    tmp.defaultValue = defaultValue[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disabled);
+  if (tmp$2) {
+    tmp.disabled = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, error);
+  if (tmp$3) {
+    tmp.error = tmp$3[0];
+  }
+  if (formHelperTextProps) {
+    tmp.formHelperTextProps = formHelperTextProps[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
+  if (tmp$4) {
+    tmp.fullWidth = tmp$4[0];
+  }
+  if (helperText) {
+    tmp.helperText = helperText[0];
+  }
+  if (helperTextClassName) {
+    tmp.helperTextClassName = helperTextClassName[0];
+  }
+  if (id) {
+    tmp.id = id[0];
+  }
+  if (inputLabelProps) {
+    tmp.inputLabelProps = inputLabelProps[0];
+  }
+  if (inputProps2) {
+    tmp.inputProps2 = inputProps2[0];
+  }
+  if (inputProps) {
+    tmp.inputProps = inputProps[0];
+  }
+  if (inputRef) {
+    tmp.inputRef = inputRef[0];
+  }
+  if (label) {
+    tmp.label = label[0];
+  }
+  if (labelClassName) {
+    tmp.labelClassName = labelClassName[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$65);
+        }), margin);
+  if (tmp$5) {
+    tmp.margin = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, multiline);
+  if (tmp$6) {
+    tmp.multiline = tmp$6[0];
+  }
+  if (name) {
+    tmp.name = name[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (placeholder) {
+    tmp.placeholder = placeholder[0];
+  }
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, required);
+  if (tmp$7) {
+    tmp.required = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(unwrapValue, rows);
+  if (tmp$8) {
+    tmp.rows = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(unwrapValue, rowsMax);
+  if (tmp$9) {
+    tmp.rowsMax = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map(Js_boolean.to_js_boolean, select);
+  if (tmp$10) {
+    tmp.select = tmp$10[0];
+  }
+  if (selectProps) {
+    tmp.selectProps = selectProps[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$11 = Js_option.map(unwrapValue, value);
+  if (tmp$11) {
+    tmp.value = tmp$11[0];
+  }
+  var tmp$12 = Js_option.map(unwrapValue, component);
+  if (tmp$12) {
+    tmp.component = tmp$12[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  return ReasonReact.wrapJsForReason(TextField.default, tmp, children);
 }
 
 var TextField$1 = /* module */[
-  /* margin_aToJs */margin_aToJs,
-  /* margin_aFromJs */margin_aFromJs,
+  /* marginToJs */marginToJs$5,
+  /* marginFromJs */marginFromJs$5,
   /* make */make$88
 ];
 
@@ -7258,11 +9846,19 @@ var Classes$73 = /* module */[
 ];
 
 function make$89(className, disableGutters, classes, children) {
-  return ReasonReact.wrapJsForReason(Toolbar.default, {
-              className: Js_null_undefined.from_opt(className),
-              disableGutters: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableGutters)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$73, classes))
-            }, children);
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, disableGutters);
+  if (tmp$1) {
+    tmp.disableGutters = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(to_obj$73, classes);
+  if (tmp$2) {
+    tmp.classes = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(Toolbar.default, tmp, children);
 }
 
 var Toolbar$1 = /* module */[
@@ -7270,7 +9866,7 @@ var Toolbar$1 = /* module */[
   /* make */make$89
 ];
 
-var jsMapperConstantArray$67 = /* array */[
+var jsMapperConstantArray$66 = /* array */[
   /* tuple */[
     -1031209551,
     "top-end"
@@ -7321,12 +9917,12 @@ var jsMapperConstantArray$67 = /* array */[
   ]
 ];
 
-function placement_kToJs(param) {
-  return Js_mapperRt.binSearch(12, param, jsMapperConstantArray$67);
+function placementToJs(param) {
+  return Js_mapperRt.binSearch(12, param, jsMapperConstantArray$66);
 }
 
-function placement_kFromJs(param) {
-  return Js_mapperRt.revSearch(12, jsMapperConstantArray$67, param);
+function placementFromJs(param) {
+  return Js_mapperRt.revSearch(12, jsMapperConstantArray$66, param);
 }
 
 function to_string$74(param) {
@@ -7365,34 +9961,71 @@ var Classes$74 = /* module */[
   /* to_obj */to_obj$74
 ];
 
-function make$90(className, disableTriggerFocus, disableTriggerHover, disableTriggerTouch, enterDelay, id, leaveDelay, onClose, onOpen, open_, placement, popperProps, theme, title, classes, children) {
-  return ReasonReact.wrapJsForReason(Tooltip.default, {
-              className: Js_null_undefined.from_opt(className),
-              disableTriggerFocus: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTriggerFocus)),
-              disableTriggerHover: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTriggerHover)),
-              disableTriggerTouch: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, disableTriggerTouch)),
-              enterDelay: Js_null_undefined.from_opt(optionMap(unwrapValue, enterDelay)),
-              id: Js_null_undefined.from_opt(id),
-              leaveDelay: Js_null_undefined.from_opt(optionMap(unwrapValue, leaveDelay)),
-              onClose: Js_null_undefined.from_opt(onClose),
-              onOpen: Js_null_undefined.from_opt(onOpen),
-              open: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, open_)),
-              placement: Js_null_undefined.from_opt(optionMap(placement_kToJs, placement)),
-              PopperProps: Js_null_undefined.from_opt(popperProps),
-              theme: theme,
-              title: title,
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$74, classes))
-            }, children);
+function make$90(className, disableTriggerFocus, disableTriggerHover, disableTriggerTouch, enterDelay, id, leaveDelay, onClose, onOpen, _open, placement, popperProps, theme, title, classes, children) {
+  var tmp = {
+    theme: theme,
+    title: title
+  };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, disableTriggerFocus);
+  if (tmp$1) {
+    tmp.disableTriggerFocus = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, disableTriggerHover);
+  if (tmp$2) {
+    tmp.disableTriggerHover = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, disableTriggerTouch);
+  if (tmp$3) {
+    tmp.disableTriggerTouch = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, enterDelay);
+  if (tmp$4) {
+    tmp.enterDelay = tmp$4[0];
+  }
+  if (id) {
+    tmp.id = id[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, leaveDelay);
+  if (tmp$5) {
+    tmp.leaveDelay = tmp$5[0];
+  }
+  if (onClose) {
+    tmp.onClose = onClose[0];
+  }
+  if (onOpen) {
+    tmp.onOpen = onOpen[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, _open);
+  if (tmp$6) {
+    tmp.open = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(12, v, jsMapperConstantArray$66);
+        }), placement);
+  if (tmp$7) {
+    tmp.placement = tmp$7[0];
+  }
+  if (popperProps) {
+    tmp.popperProps = popperProps[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$74, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(Tooltip.default, tmp, children);
 }
 
 var Tooltip$1 = /* module */[
-  /* placement_kToJs */placement_kToJs,
-  /* placement_kFromJs */placement_kFromJs,
+  /* placementToJs */placementToJs,
+  /* placementFromJs */placementFromJs,
   /* Classes */Classes$74,
   /* make */make$90
 ];
 
-var jsMapperConstantArray$68 = /* array */[
+var jsMapperConstantArray$67 = /* array */[
   /* tuple */[
     -788068560,
     "justify"
@@ -7415,15 +10048,15 @@ var jsMapperConstantArray$68 = /* array */[
   ]
 ];
 
-function align_fToJs(param) {
-  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$68);
+function alignToJs(param) {
+  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$67);
 }
 
-function align_fFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$68, param);
+function alignFromJs(param) {
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$67, param);
 }
 
-var jsMapperConstantArray$69 = /* array */[
+var jsMapperConstantArray$68 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -7450,15 +10083,15 @@ var jsMapperConstantArray$69 = /* array */[
   ]
 ];
 
-function color_vToJs(param) {
-  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$69);
+function colorToJs$9(param) {
+  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$68);
 }
 
-function color_vFromJs(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$69, param);
+function colorFromJs$9(param) {
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$68, param);
 }
 
-var jsMapperConstantArray$70 = /* array */[
+var jsMapperConstantArray$69 = /* array */[
   /* tuple */[
     -904051921,
     "body1"
@@ -7505,12 +10138,12 @@ var jsMapperConstantArray$70 = /* array */[
   ]
 ];
 
-function type__9ToJs(param) {
-  return Js_mapperRt.binSearch(11, param, jsMapperConstantArray$70);
+function _typeToJs$4(param) {
+  return Js_mapperRt.binSearch(11, param, jsMapperConstantArray$69);
 }
 
-function type__9FromJs(param) {
-  return Js_mapperRt.revSearch(11, jsMapperConstantArray$70, param);
+function _typeFromJs$4(param) {
+  return Js_mapperRt.revSearch(11, jsMapperConstantArray$69, param);
 }
 
 function to_string$75(param) {
@@ -7579,28 +10212,62 @@ var Classes$75 = /* module */[
   /* to_obj */to_obj$75
 ];
 
-function make$91(align, className, color, component, gutterBottom, headlineMapping, noWrap, paragraph, type_, classes, children) {
-  return ReasonReact.wrapJsForReason(Typography.default, {
-              align: Js_null_undefined.from_opt(optionMap(align_fToJs, align)),
-              className: Js_null_undefined.from_opt(className),
-              color: Js_null_undefined.from_opt(optionMap(color_vToJs, color)),
-              component: Js_null_undefined.from_opt(optionMap(unwrapValue, component)),
-              gutterBottom: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, gutterBottom)),
-              headlineMapping: Js_null_undefined.from_opt(headlineMapping),
-              noWrap: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, noWrap)),
-              paragraph: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, paragraph)),
-              type: Js_null_undefined.from_opt(optionMap(type__9ToJs, type_)),
-              classes: Js_null_undefined.from_opt(optionMap(to_obj$75, classes))
-            }, children);
+function make$91(align, className, color, component, gutterBottom, headlineMapping, noWrap, paragraph, _type, classes, children) {
+  var tmp = { };
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$67);
+        }), align);
+  if (tmp$1) {
+    tmp.align = tmp$1[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$68);
+        }), color);
+  if (tmp$2) {
+    tmp.color = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, component);
+  if (tmp$3) {
+    tmp.component = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, gutterBottom);
+  if (tmp$4) {
+    tmp.gutterBottom = tmp$4[0];
+  }
+  if (headlineMapping) {
+    tmp.headlineMapping = headlineMapping[0];
+  }
+  var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, noWrap);
+  if (tmp$5) {
+    tmp.noWrap = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, paragraph);
+  if (tmp$6) {
+    tmp.paragraph = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(11, v, jsMapperConstantArray$69);
+        }), _type);
+  if (tmp$7) {
+    tmp.type = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$75, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
+  }
+  return ReasonReact.wrapJsForReason(Typography.default, tmp, children);
 }
 
 var Typography$1 = /* module */[
-  /* align_fToJs */align_fToJs,
-  /* align_fFromJs */align_fFromJs,
-  /* color_vToJs */color_vToJs,
-  /* color_vFromJs */color_vFromJs,
-  /* type__9ToJs */type__9ToJs,
-  /* type__9FromJs */type__9FromJs,
+  /* alignToJs */alignToJs,
+  /* alignFromJs */alignFromJs,
+  /* colorToJs */colorToJs$9,
+  /* colorFromJs */colorFromJs$9,
+  /* _typeToJs */_typeToJs$4,
+  /* _typeFromJs */_typeFromJs$4,
   /* Classes */Classes$75,
   /* make */make$91
 ];
@@ -7619,27 +10286,48 @@ function timeoutShapeFromJs$4(param) {
         ];
 }
 
-function make$92(appear, enterDelay, in_, onEnter, onEntering, onExit, style, theme, timeout, children) {
-  return ReasonReact.wrapJsForReason(Zoom.default, {
-              appear: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, appear)),
-              enterDelay: Js_null_undefined.from_opt(optionMap(unwrapValue, enterDelay)),
-              in: Js_null_undefined.from_opt(optionMap(Js_boolean.to_js_boolean, in_)),
-              onEnter: Js_null_undefined.from_opt(onEnter),
-              onEntering: Js_null_undefined.from_opt(onEntering),
-              onExit: Js_null_undefined.from_opt(onExit),
-              style: Js_null_undefined.from_opt(style),
-              theme: theme,
-              timeout: Js_null_undefined.from_opt(optionMap((function (v) {
-                          if (typeof v === "number" || v[0] !== -908856609) {
-                            return unwrapValue(v);
-                          } else {
-                            return unwrapValue(/* `Element */[
-                                        -744106340,
-                                        timeoutShapeToJs$4(v[1])
-                                      ]);
-                          }
-                        }), timeout))
-            }, children);
+function make$92(appear, enterDelay, _in, onEnter, onEntering, onExit, style, theme, timeout, children) {
+  var tmp = {
+    theme: theme
+  };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, appear);
+  if (tmp$1) {
+    tmp.appear = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, enterDelay);
+  if (tmp$2) {
+    tmp.enterDelay = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, _in);
+  if (tmp$3) {
+    tmp.in = tmp$3[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== -908856609) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `Element */[
+                        -744106340,
+                        timeoutShapeToJs$4(v[1])
+                      ]);
+          }
+        }), timeout);
+  if (tmp$4) {
+    tmp.timeout = tmp$4[0];
+  }
+  return ReasonReact.wrapJsForReason(Zoom.default, tmp, children);
 }
 
 var Zoom$1 = /* module */[
@@ -7649,7 +10337,6 @@ var Zoom$1 = /* module */[
 ];
 
 exports.unwrapValue             = unwrapValue;
-exports.optionMap               = optionMap;
 exports.MuiTheme                = MuiTheme;
 exports.WithStyles              = WithStyles;
 exports.Colors                  = Colors;
