@@ -74,6 +74,7 @@ var CardContent             = require("material-ui/Card/CardContent");
 var FormControl             = require("material-ui/Form/FormControl");
 var InputLabel              = require("material-ui/Input/InputLabel");
 var RadioGroup              = require("material-ui/Radio/RadioGroup");
+var StepIcon                = require("material-ui/Stepper/StepIcon");
 var LightBlue               = require("material-ui/colors/lightBlue");
 var Fade                    = require("material-ui/transitions/Fade");
 var Grow                    = require("material-ui/transitions/Grow");
@@ -313,6 +314,34 @@ var MuiTheme = /* module */[
   /* tToJs */tToJs$3,
   /* tFromJs */tFromJs$3
 ];
+
+function WithStylesSafe(S) {
+  var component = ReasonReact.statelessComponent("WithStyles");
+  var makeStateLessComponent = function (render, _) {
+    var newrecord = component.slice();
+    newrecord[/* render */9] = (function () {
+        return render;
+      });
+    return newrecord;
+  };
+  var createStylesWrapper = function (styles) {
+    return Styles.withStyles(styles);
+  };
+  var make = function (render, children) {
+    var wrapper = Styles.withStyles(Curry._1(S[/* classRecordToJs */0], S[/* classes */2]));
+    return ReasonReact.wrapJsForReason(wrapper(ReasonReact.wrapReasonForJs(component, (function (jsProps) {
+                          return makeStateLessComponent(jsProps.render(Curry._1(S[/* classRecordStringsFromJs */1], jsProps.classes)), /* array */[]);
+                        }))), {
+                render: render
+              }, children);
+  };
+  return /* module */[
+          /* component */component,
+          /* makeStateLessComponent */makeStateLessComponent,
+          /* createStylesWrapper */createStylesWrapper,
+          /* make */make
+        ];
+}
 
 var component = ReasonReact.statelessComponent("WithStyles");
 
@@ -1940,6 +1969,29 @@ function sizeFromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$4, param);
 }
 
+var jsMapperConstantArray$5 = /* array */[
+  /* tuple */[
+    -387916264,
+    "raised"
+  ],
+  /* tuple */[
+    3502759,
+    "fab"
+  ],
+  /* tuple */[
+    781662169,
+    "flat"
+  ]
+];
+
+function variantToJs(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$5);
+}
+
+function variantFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$5, param);
+}
+
 function to_string$7(param) {
   switch (param.tag | 0) {
     case 0 : 
@@ -1988,7 +2040,7 @@ var Classes$7 = /* module */[
   /* to_obj */to_obj$7
 ];
 
-function make$8(className, color, component, disabled, disableFocusRipple, disableRipple, fab, fullWidth, href, mini, raised, size, _type, buttonRef, centerRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, classes, children) {
+function make$8(className, color, component, disabled, disableFocusRipple, disableRipple, fullWidth, href, mini, size, _type, variant, buttonRef, centerRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -2015,44 +2067,42 @@ function make$8(className, color, component, disabled, disableFocusRipple, disab
   if (tmp$5) {
     tmp.disableRipple = tmp$5[0];
   }
-  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, fab);
+  var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
   if (tmp$6) {
-    tmp.fab = tmp$6[0];
-  }
-  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
-  if (tmp$7) {
-    tmp.fullWidth = tmp$7[0];
+    tmp.fullWidth = tmp$6[0];
   }
   if (href) {
     tmp.href = href[0];
   }
-  var tmp$8 = Js_option.map(Js_boolean.to_js_boolean, mini);
-  if (tmp$8) {
-    tmp.mini = tmp$8[0];
+  var tmp$7 = Js_option.map(Js_boolean.to_js_boolean, mini);
+  if (tmp$7) {
+    tmp.mini = tmp$7[0];
   }
-  var tmp$9 = Js_option.map(Js_boolean.to_js_boolean, raised);
-  if (tmp$9) {
-    tmp.raised = tmp$9[0];
-  }
-  var tmp$10 = Js_option.map((function (v) {
+  var tmp$8 = Js_option.map((function (v) {
           return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$4);
         }), size);
-  if (tmp$10) {
-    tmp.size = tmp$10[0];
+  if (tmp$8) {
+    tmp.size = tmp$8[0];
   }
   if (_type) {
     tmp.type = _type[0];
   }
+  var tmp$9 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$5);
+        }), variant);
+  if (tmp$9) {
+    tmp.variant = tmp$9[0];
+  }
   if (buttonRef) {
     tmp.buttonRef = buttonRef[0];
   }
-  var tmp$11 = Js_option.map(Js_boolean.to_js_boolean, centerRipple);
-  if (tmp$11) {
-    tmp.centerRipple = tmp$11[0];
+  var tmp$10 = Js_option.map(Js_boolean.to_js_boolean, centerRipple);
+  if (tmp$10) {
+    tmp.centerRipple = tmp$10[0];
   }
-  var tmp$12 = Js_option.map(Js_boolean.to_js_boolean, focusRipple);
-  if (tmp$12) {
-    tmp.focusRipple = tmp$12[0];
+  var tmp$11 = Js_option.map(Js_boolean.to_js_boolean, focusRipple);
+  if (tmp$11) {
+    tmp.focusRipple = tmp$11[0];
   }
   if (keyboardFocusedClassName) {
     tmp.keyboardFocusedClassName = keyboardFocusedClassName[0];
@@ -2096,13 +2146,13 @@ function make$8(className, color, component, disabled, disableFocusRipple, disab
   if (role) {
     tmp.role = role[0];
   }
-  var tmp$13 = Js_option.map(unwrapValue, tabIndex);
-  if (tmp$13) {
-    tmp.tabIndex = tmp$13[0];
+  var tmp$12 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$12) {
+    tmp.tabIndex = tmp$12[0];
   }
-  var tmp$14 = Js_option.map(to_obj$7, classes);
-  if (tmp$14) {
-    tmp.classes = tmp$14[0];
+  var tmp$13 = Js_option.map(to_obj$7, classes);
+  if (tmp$13) {
+    tmp.classes = tmp$13[0];
   }
   return ReasonReact.wrapJsForReason(Button.default, tmp, children);
 }
@@ -2112,6 +2162,8 @@ var Button$1 = /* module */[
   /* colorFromJs */colorFromJs$2,
   /* sizeToJs */sizeToJs,
   /* sizeFromJs */sizeFromJs,
+  /* variantToJs */variantToJs,
+  /* variantFromJs */variantFromJs,
   /* Classes */Classes$7,
   /* make */make$8
 ];
@@ -2500,7 +2552,7 @@ var Chip$1 = /* module */[
   /* make */make$15
 ];
 
-var jsMapperConstantArray$5 = /* array */[
+var jsMapperConstantArray$6 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -2516,14 +2568,14 @@ var jsMapperConstantArray$5 = /* array */[
 ];
 
 function colorToJs$3(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$5);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$6);
 }
 
 function colorFromJs$3(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$5, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$6, param);
 }
 
-var jsMapperConstantArray$6 = /* array */[
+var jsMapperConstantArray$7 = /* array */[
   /* tuple */[
     -700823845,
     "indeterminate"
@@ -2534,12 +2586,12 @@ var jsMapperConstantArray$6 = /* array */[
   ]
 ];
 
-function modeToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$6);
+function variantToJs$1(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$7);
 }
 
-function modeFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$6, param);
+function variantFromJs$1(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$7, param);
 }
 
 function to_string$14(param) {
@@ -2574,13 +2626,13 @@ var Classes$14 = /* module */[
   /* to_obj */to_obj$14
 ];
 
-function make$16(className, color, max, min, mode, size, style, thickness, value, classes, children) {
+function make$16(className, color, max, min, size, style, thickness, value, variant, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$5);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$6);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
@@ -2593,26 +2645,26 @@ function make$16(className, color, max, min, mode, size, style, thickness, value
   if (tmp$3) {
     tmp.min = tmp$3[0];
   }
-  var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$6);
-        }), mode);
+  var tmp$4 = Js_option.map(unwrapValue, size);
   if (tmp$4) {
-    tmp.mode = tmp$4[0];
-  }
-  var tmp$5 = Js_option.map(unwrapValue, size);
-  if (tmp$5) {
-    tmp.size = tmp$5[0];
+    tmp.size = tmp$4[0];
   }
   if (style) {
     tmp.style = style[0];
   }
-  var tmp$6 = Js_option.map(unwrapValue, thickness);
-  if (tmp$6) {
-    tmp.thickness = tmp$6[0];
+  var tmp$5 = Js_option.map(unwrapValue, thickness);
+  if (tmp$5) {
+    tmp.thickness = tmp$5[0];
   }
-  var tmp$7 = Js_option.map(unwrapValue, value);
+  var tmp$6 = Js_option.map(unwrapValue, value);
+  if (tmp$6) {
+    tmp.value = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$7);
+        }), variant);
   if (tmp$7) {
-    tmp.value = tmp$7[0];
+    tmp.variant = tmp$7[0];
   }
   var tmp$8 = Js_option.map(to_obj$14, classes);
   if (tmp$8) {
@@ -2624,8 +2676,8 @@ function make$16(className, color, max, min, mode, size, style, thickness, value
 var CircularProgress$1 = /* module */[
   /* colorToJs */colorToJs$3,
   /* colorFromJs */colorFromJs$3,
-  /* modeToJs */modeToJs,
-  /* modeFromJs */modeFromJs,
+  /* variantToJs */variantToJs$1,
+  /* variantFromJs */variantFromJs$1,
   /* Classes */Classes$14,
   /* make */make$16
 ];
@@ -2652,17 +2704,17 @@ function timeoutShapeFromJs(param) {
         ];
 }
 
-var jsMapperConstantArray$7 = /* array */[/* tuple */[
+var jsMapperConstantArray$8 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
 function timeoutToJs(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$7);
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$8);
 }
 
 function timeoutFromJs(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$7, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$8, param);
 }
 
 function to_string$15(param) {
@@ -2691,27 +2743,23 @@ var Classes$15 = /* module */[
   /* to_obj */to_obj$15
 ];
 
-function make$18(appear, className, collapsedHeight, component, _in, onEnter, onEntered, onEntering, onExit, onExiting, style, theme, timeout, classes, children) {
+function make$18(className, collapsedHeight, component, _in, onEnter, onEntered, onEntering, onExit, onExiting, style, theme, timeout, classes, children) {
   var tmp = {
     theme: theme
   };
-  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, appear);
-  if (tmp$1) {
-    tmp.appear = tmp$1[0];
-  }
   if (className) {
     tmp.className = className[0];
   }
   if (collapsedHeight) {
     tmp.collapsedHeight = collapsedHeight[0];
   }
-  var tmp$2 = Js_option.map(unwrapValue, component);
-  if (tmp$2) {
-    tmp.component = tmp$2[0];
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
   }
-  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, _in);
-  if (tmp$3) {
-    tmp.in = tmp$3[0];
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, _in);
+  if (tmp$2) {
+    tmp.in = tmp$2[0];
   }
   if (onEnter) {
     tmp.onEnter = onEnter[0];
@@ -2731,7 +2779,7 @@ function make$18(appear, className, collapsedHeight, component, _in, onEnter, on
   if (style) {
     tmp.style = style[0];
   }
-  var tmp$4 = Js_option.map((function (v) {
+  var tmp$3 = Js_option.map((function (v) {
           if (typeof v === "number") {
             return unwrapValue(v);
           } else {
@@ -2742,7 +2790,7 @@ function make$18(appear, className, collapsedHeight, component, _in, onEnter, on
               } else {
                 return unwrapValue(/* `String */[
                             -976970511,
-                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$7)
+                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$8)
                           ]);
               }
             } else {
@@ -2753,12 +2801,12 @@ function make$18(appear, className, collapsedHeight, component, _in, onEnter, on
             }
           }
         }), timeout);
-  if (tmp$4) {
-    tmp.timeout = tmp$4[0];
+  if (tmp$3) {
+    tmp.timeout = tmp$3[0];
   }
-  var tmp$5 = Js_option.map(to_obj$15, classes);
-  if (tmp$5) {
-    tmp.classes = tmp$5[0];
+  var tmp$4 = Js_option.map(to_obj$15, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
   }
   return ReasonReact.wrapJsForReason(Collapse.default, tmp, children);
 }
@@ -2916,7 +2964,7 @@ var DialogTitle$1 = /* module */[
   /* make */make$22
 ];
 
-var jsMapperConstantArray$8 = /* array */[
+var jsMapperConstantArray$9 = /* array */[
   /* tuple */[
     17271,
     "md"
@@ -2936,11 +2984,11 @@ var jsMapperConstantArray$8 = /* array */[
 ];
 
 function maxWidthToJs(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$8);
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$9);
 }
 
 function maxWidthFromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$8, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$9, param);
 }
 
 function transitionDurationShapeToJs$1(param) {
@@ -3013,7 +3061,7 @@ function make$23(className, disableBackdropClick, disableEscapeKeyDown, fullScre
     tmp.fullWidth = tmp$4[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$8);
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$9);
         }), maxWidth);
   if (tmp$5) {
     tmp.maxWidth = tmp$5[0];
@@ -3179,7 +3227,7 @@ var Divider$1 = /* module */[
   /* make */make$24
 ];
 
-var jsMapperConstantArray$9 = /* array */[
+var jsMapperConstantArray$10 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -3199,11 +3247,11 @@ var jsMapperConstantArray$9 = /* array */[
 ];
 
 function anchorToJs(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$9);
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$10);
 }
 
 function anchorFromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$9, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$10, param);
 }
 
 function transitionDurationShapeToJs$2(param) {
@@ -3220,7 +3268,7 @@ function transitionDurationShapeFromJs$2(param) {
         ];
 }
 
-var jsMapperConstantArray$10 = /* array */[
+var jsMapperConstantArray$11 = /* array */[
   /* tuple */[
     -156865929,
     "persistent"
@@ -3235,12 +3283,12 @@ var jsMapperConstantArray$10 = /* array */[
   ]
 ];
 
-function _typeToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$10);
+function variantToJs$2(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$11);
 }
 
-function _typeFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$10, param);
+function variantFromJs$2(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$11, param);
 }
 
 function to_string$22(param) {
@@ -3283,12 +3331,12 @@ var Classes$22 = /* module */[
   /* to_obj */to_obj$22
 ];
 
-function make$25(anchor, className, elevation, modalProps, onClose, _open, slideProps, theme, transitionDuration, _type, backdropComponent, backdropProps, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
+function make$25(anchor, className, elevation, modalProps, onClose, _open, paperProps, slideProps, theme, transitionDuration, variant, backdropComponent, backdropProps, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
   var tmp = {
     theme: theme
   };
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$9);
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$10);
         }), anchor);
   if (tmp$1) {
     tmp.anchor = tmp$1[0];
@@ -3310,6 +3358,9 @@ function make$25(anchor, className, elevation, modalProps, onClose, _open, slide
   if (tmp$3) {
     tmp.open = tmp$3[0];
   }
+  if (paperProps) {
+    tmp.paperProps = paperProps[0];
+  }
   if (slideProps) {
     tmp.slideProps = slideProps[0];
   }
@@ -3327,10 +3378,10 @@ function make$25(anchor, className, elevation, modalProps, onClose, _open, slide
     tmp.transitionDuration = tmp$4[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$10);
-        }), _type);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$11);
+        }), variant);
   if (tmp$5) {
-    tmp.type = tmp$5[0];
+    tmp.variant = tmp$5[0];
   }
   var tmp$6 = Js_option.map(unwrapValue, backdropComponent);
   if (tmp$6) {
@@ -3395,8 +3446,8 @@ var Drawer$1 = /* module */[
   /* anchorFromJs */anchorFromJs,
   /* transitionDurationShapeToJs */transitionDurationShapeToJs$2,
   /* transitionDurationShapeFromJs */transitionDurationShapeFromJs$2,
-  /* _typeToJs */_typeToJs,
-  /* _typeFromJs */_typeFromJs,
+  /* variantToJs */variantToJs$2,
+  /* variantFromJs */variantFromJs$2,
   /* Classes */Classes$22,
   /* make */make$25
 ];
@@ -3689,17 +3740,13 @@ function timeoutShapeFromJs$1(param) {
         ];
 }
 
-function make$30(appear, _in, onEnter, onEntering, onExit, style, theme, timeout, children) {
+function make$30(_in, onEnter, onEntering, onExit, style, theme, timeout, children) {
   var tmp = {
     theme: theme
   };
-  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, appear);
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, _in);
   if (tmp$1) {
-    tmp.appear = tmp$1[0];
-  }
-  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, _in);
-  if (tmp$2) {
-    tmp.in = tmp$2[0];
+    tmp.in = tmp$1[0];
   }
   if (onEnter) {
     tmp.onEnter = onEnter[0];
@@ -3713,7 +3760,7 @@ function make$30(appear, _in, onEnter, onEntering, onExit, style, theme, timeout
   if (style) {
     tmp.style = style[0];
   }
-  var tmp$3 = Js_option.map((function (v) {
+  var tmp$2 = Js_option.map((function (v) {
           if (typeof v === "number" || v[0] !== -908856609) {
             return unwrapValue(v);
           } else {
@@ -3723,8 +3770,8 @@ function make$30(appear, _in, onEnter, onEntering, onExit, style, theme, timeout
                       ]);
           }
         }), timeout);
-  if (tmp$3) {
-    tmp.timeout = tmp$3[0];
+  if (tmp$2) {
+    tmp.timeout = tmp$2[0];
   }
   return ReasonReact.wrapJsForReason(Fade.default, tmp, children);
 }
@@ -3802,7 +3849,7 @@ var FormControlLabel$1 = /* module */[
   /* make */make$31
 ];
 
-var jsMapperConstantArray$11 = /* array */[
+var jsMapperConstantArray$12 = /* array */[
   /* tuple */[
     -453122489,
     "normal"
@@ -3818,11 +3865,11 @@ var jsMapperConstantArray$11 = /* array */[
 ];
 
 function marginToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$11);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$12);
 }
 
 function marginFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$11, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$12, param);
 }
 
 function to_string$28(param) {
@@ -3873,7 +3920,7 @@ function make$32(className, component, disabled, error, fullWidth, margin, onBlu
     tmp.fullWidth = tmp$4[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$11);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$12);
         }), margin);
   if (tmp$5) {
     tmp.margin = tmp$5[0];
@@ -3943,17 +3990,17 @@ var FormGroup$1 = /* module */[
   /* make */make$33
 ];
 
-var jsMapperConstantArray$12 = /* array */[/* tuple */[
+var jsMapperConstantArray$13 = /* array */[/* tuple */[
     -363472001,
     "dense"
   ]];
 
 function marginToJs$1(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$12);
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$13);
 }
 
 function marginFromJs$1(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$12, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$13, param);
 }
 
 function to_string$30(param) {
@@ -4000,7 +4047,7 @@ function make$34(className, component, disabled, error, margin, classes, childre
     tmp.error = tmp$3[0];
   }
   var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(1, v, jsMapperConstantArray$12);
+          return Js_mapperRt.binSearch(1, v, jsMapperConstantArray$13);
         }), margin);
   if (tmp$4) {
     tmp.margin = tmp$4[0];
@@ -4082,7 +4129,7 @@ var FormLabel$1 = /* module */[
   /* make */make$35
 ];
 
-var jsMapperConstantArray$13 = /* array */[
+var jsMapperConstantArray$14 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -4094,14 +4141,14 @@ var jsMapperConstantArray$13 = /* array */[
 ];
 
 function actionPositionToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$13);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$14);
 }
 
 function actionPositionFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$13, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$14, param);
 }
 
-var jsMapperConstantArray$14 = /* array */[
+var jsMapperConstantArray$15 = /* array */[
   /* tuple */[
     4202101,
     "top"
@@ -4113,11 +4160,11 @@ var jsMapperConstantArray$14 = /* array */[
 ];
 
 function titlePositionToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$14);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$15);
 }
 
 function titlePositionFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$14, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$15, param);
 }
 
 function to_string$32(param) {
@@ -4166,7 +4213,7 @@ function make$36(actionIcon, actionPosition, className, subtitle, title, titlePo
     tmp.actionIcon = actionIcon[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$13);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$14);
         }), actionPosition);
   if (tmp$1) {
     tmp.actionPosition = tmp$1[0];
@@ -4181,7 +4228,7 @@ function make$36(actionIcon, actionPosition, className, subtitle, title, titlePo
     tmp.title = title[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$14);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$15);
         }), titlePosition);
   if (tmp$2) {
     tmp.titlePosition = tmp$2[0];
@@ -4257,17 +4304,17 @@ var GridListTile$1 = /* module */[
   /* make */make$37
 ];
 
-var jsMapperConstantArray$15 = /* array */[/* tuple */[
+var jsMapperConstantArray$16 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
 function cellHeightToJs(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$15);
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$16);
 }
 
 function cellHeightFromJs(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$15, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$16, param);
 }
 
 function to_string$34() {
@@ -4294,7 +4341,7 @@ function make$38(cellHeight, className, cols, component, spacing, style, classes
           } else {
             return unwrapValue(/* `String */[
                         -976970511,
-                        Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$15)
+                        Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$16)
                       ]);
           }
         }), cellHeight);
@@ -4333,7 +4380,7 @@ var GridList$1 = /* module */[
   /* make */make$38
 ];
 
-var jsMapperConstantArray$16 = /* array */[
+var jsMapperConstantArray$17 = /* array */[
   /* tuple */[
     -1012636187,
     "stretch"
@@ -4361,14 +4408,14 @@ var jsMapperConstantArray$16 = /* array */[
 ];
 
 function alignContentToJs(param) {
-  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$16);
+  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$17);
 }
 
 function alignContentFromJs(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$16, param);
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$17, param);
 }
 
-var jsMapperConstantArray$17 = /* array */[
+var jsMapperConstantArray$18 = /* array */[
   /* tuple */[
     -1012636187,
     "stretch"
@@ -4392,14 +4439,14 @@ var jsMapperConstantArray$17 = /* array */[
 ];
 
 function alignItemsToJs(param) {
-  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$17);
+  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$18);
 }
 
 function alignItemsFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$17, param);
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$18, param);
 }
 
-var jsMapperConstantArray$18 = /* array */[
+var jsMapperConstantArray$19 = /* array */[
   /* tuple */[
     -674898307,
     "row-reverse"
@@ -4419,14 +4466,14 @@ var jsMapperConstantArray$18 = /* array */[
 ];
 
 function directionToJs(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$18);
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$19);
 }
 
 function directionFromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$18, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$19, param);
 }
 
-var jsMapperConstantArray$19 = /* array */[
+var jsMapperConstantArray$20 = /* array */[
   /* tuple */[
     -403022699,
     "flex-end"
@@ -4450,35 +4497,11 @@ var jsMapperConstantArray$19 = /* array */[
 ];
 
 function justifyToJs(param) {
-  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$19);
+  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$20);
 }
 
 function justifyFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$19, param);
-}
-
-var jsMapperConstantArray$20 = /* array */[
-  1,
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12
-];
-
-function lgToJs(param) {
-  return Js_mapperRt.toInt(param, jsMapperConstantArray$20);
-}
-
-function lgFromJs(param) {
-  return Js_mapperRt.fromInt(13, jsMapperConstantArray$20, param);
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$20, param);
 }
 
 var jsMapperConstantArray$21 = /* array */[
@@ -4497,11 +4520,11 @@ var jsMapperConstantArray$21 = /* array */[
   12
 ];
 
-function mdToJs(param) {
+function lgToJs(param) {
   return Js_mapperRt.toInt(param, jsMapperConstantArray$21);
 }
 
-function mdFromJs(param) {
+function lgFromJs(param) {
   return Js_mapperRt.fromInt(13, jsMapperConstantArray$21, param);
 }
 
@@ -4521,54 +4544,15 @@ var jsMapperConstantArray$22 = /* array */[
   12
 ];
 
-function smToJs(param) {
+function mdToJs(param) {
   return Js_mapperRt.toInt(param, jsMapperConstantArray$22);
 }
 
-function smFromJs(param) {
+function mdFromJs(param) {
   return Js_mapperRt.fromInt(13, jsMapperConstantArray$22, param);
 }
 
 var jsMapperConstantArray$23 = /* array */[
-  0,
-  8,
-  16,
-  24,
-  40
-];
-
-function spacingToJs(param) {
-  return Js_mapperRt.toInt(param, jsMapperConstantArray$23);
-}
-
-function spacingFromJs(param) {
-  return Js_mapperRt.fromInt(5, jsMapperConstantArray$23, param);
-}
-
-var jsMapperConstantArray$24 = /* array */[
-  /* tuple */[
-    -397426005,
-    "nowrap"
-  ],
-  /* tuple */[
-    49617517,
-    "wrap-reverse"
-  ],
-  /* tuple */[
-    970483178,
-    "wrap"
-  ]
-];
-
-function wrapToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$24);
-}
-
-function wrapFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$24, param);
-}
-
-var jsMapperConstantArray$25 = /* array */[
   1,
   1,
   2,
@@ -4584,12 +4568,51 @@ var jsMapperConstantArray$25 = /* array */[
   12
 ];
 
-function xlToJs(param) {
-  return Js_mapperRt.toInt(param, jsMapperConstantArray$25);
+function smToJs(param) {
+  return Js_mapperRt.toInt(param, jsMapperConstantArray$23);
 }
 
-function xlFromJs(param) {
-  return Js_mapperRt.fromInt(13, jsMapperConstantArray$25, param);
+function smFromJs(param) {
+  return Js_mapperRt.fromInt(13, jsMapperConstantArray$23, param);
+}
+
+var jsMapperConstantArray$24 = /* array */[
+  0,
+  8,
+  16,
+  24,
+  40
+];
+
+function spacingToJs(param) {
+  return Js_mapperRt.toInt(param, jsMapperConstantArray$24);
+}
+
+function spacingFromJs(param) {
+  return Js_mapperRt.fromInt(5, jsMapperConstantArray$24, param);
+}
+
+var jsMapperConstantArray$25 = /* array */[
+  /* tuple */[
+    -397426005,
+    "nowrap"
+  ],
+  /* tuple */[
+    49617517,
+    "wrap-reverse"
+  ],
+  /* tuple */[
+    970483178,
+    "wrap"
+  ]
+];
+
+function wrapToJs(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$25);
+}
+
+function wrapFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$25, param);
 }
 
 var jsMapperConstantArray$26 = /* array */[
@@ -4608,12 +4631,36 @@ var jsMapperConstantArray$26 = /* array */[
   12
 ];
 
-function xsToJs(param) {
+function xlToJs(param) {
   return Js_mapperRt.toInt(param, jsMapperConstantArray$26);
 }
 
-function xsFromJs(param) {
+function xlFromJs(param) {
   return Js_mapperRt.fromInt(13, jsMapperConstantArray$26, param);
+}
+
+var jsMapperConstantArray$27 = /* array */[
+  1,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12
+];
+
+function xsToJs(param) {
+  return Js_mapperRt.toInt(param, jsMapperConstantArray$27);
+}
+
+function xsFromJs(param) {
+  return Js_mapperRt.fromInt(13, jsMapperConstantArray$27, param);
 }
 
 function to_string$35(param) {
@@ -4713,13 +4760,13 @@ var Classes$35 = /* module */[
 function make$39(alignContent, alignItems, className, component, container, direction, hidden, item, justify, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$16);
+          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$17);
         }), alignContent);
   if (tmp$1) {
     tmp.alignContent = tmp$1[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$17);
+          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$18);
         }), alignItems);
   if (tmp$2) {
     tmp.alignItems = tmp$2[0];
@@ -4736,7 +4783,7 @@ function make$39(alignContent, alignItems, className, component, container, dire
     tmp.container = tmp$4[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$18);
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$19);
         }), direction);
   if (tmp$5) {
     tmp.direction = tmp$5[0];
@@ -4749,49 +4796,49 @@ function make$39(alignContent, alignItems, className, component, container, dire
     tmp.item = tmp$6[0];
   }
   var tmp$7 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$19);
+          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$20);
         }), justify);
   if (tmp$7) {
     tmp.justify = tmp$7[0];
   }
   var tmp$8 = Js_option.map((function (v) {
-          return Js_mapperRt.toInt(v, jsMapperConstantArray$20);
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$21);
         }), lg);
   if (tmp$8) {
     tmp.lg = tmp$8[0];
   }
   var tmp$9 = Js_option.map((function (v) {
-          return Js_mapperRt.toInt(v, jsMapperConstantArray$21);
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$22);
         }), md);
   if (tmp$9) {
     tmp.md = tmp$9[0];
   }
   var tmp$10 = Js_option.map((function (v) {
-          return Js_mapperRt.toInt(v, jsMapperConstantArray$22);
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$23);
         }), sm);
   if (tmp$10) {
     tmp.sm = tmp$10[0];
   }
   var tmp$11 = Js_option.map((function (v) {
-          return Js_mapperRt.toInt(v, jsMapperConstantArray$23);
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$24);
         }), spacing);
   if (tmp$11) {
     tmp.spacing = tmp$11[0];
   }
   var tmp$12 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$24);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$25);
         }), wrap);
   if (tmp$12) {
     tmp.wrap = tmp$12[0];
   }
   var tmp$13 = Js_option.map((function (v) {
-          return Js_mapperRt.toInt(v, jsMapperConstantArray$25);
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$26);
         }), xl);
   if (tmp$13) {
     tmp.xl = tmp$13[0];
   }
   var tmp$14 = Js_option.map((function (v) {
-          return Js_mapperRt.toInt(v, jsMapperConstantArray$26);
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$27);
         }), xs);
   if (tmp$14) {
     tmp.xs = tmp$14[0];
@@ -4848,52 +4895,26 @@ function timeoutShapeFromJs$2(param) {
         ];
 }
 
-var jsMapperConstantArray$27 = /* array */[/* tuple */[
+var jsMapperConstantArray$28 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
 function timeoutToJs$1(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$27);
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$28);
 }
 
 function timeoutFromJs$1(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$27, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$28, param);
 }
 
-function transitionClassesShapeToJs(param) {
-  return {
-          appear: param[/* appear */0],
-          appearActive: param[/* appearActive */1],
-          enter: param[/* enter */2],
-          enterActive: param[/* enterActive */3],
-          exit: param[/* exit */4],
-          exitActive: param[/* exitActive */5]
-        };
-}
-
-function transitionClassesShapeFromJs(param) {
-  return /* record */[
-          /* appear */param.appear,
-          /* appearActive */param.appearActive,
-          /* enter */param.enter,
-          /* enterActive */param.enterActive,
-          /* exit */param.exit,
-          /* exitActive */param.exitActive
-        ];
-}
-
-function make$40(appear, _in, onEnter, onEntered, onEntering, onExit, onExited, onExiting, style, theme, timeout, transitionClasses, children) {
+function make$40(_in, onEnter, onEntered, onEntering, onExit, style, theme, timeout, children) {
   var tmp = {
     theme: theme
   };
-  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, appear);
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, _in);
   if (tmp$1) {
-    tmp.appear = tmp$1[0];
-  }
-  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, _in);
-  if (tmp$2) {
-    tmp.in = tmp$2[0];
+    tmp.in = tmp$1[0];
   }
   if (onEnter) {
     tmp.onEnter = onEnter[0];
@@ -4907,16 +4928,10 @@ function make$40(appear, _in, onEnter, onEntered, onEntering, onExit, onExited, 
   if (onExit) {
     tmp.onExit = onExit[0];
   }
-  if (onExited) {
-    tmp.onExited = onExited[0];
-  }
-  if (onExiting) {
-    tmp.onExiting = onExiting[0];
-  }
   if (style) {
     tmp.style = style[0];
   }
-  var tmp$3 = Js_option.map((function (v) {
+  var tmp$2 = Js_option.map((function (v) {
           if (typeof v === "number") {
             return unwrapValue(v);
           } else {
@@ -4927,7 +4942,7 @@ function make$40(appear, _in, onEnter, onEntered, onEntering, onExit, onExited, 
               } else {
                 return unwrapValue(/* `String */[
                             -976970511,
-                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$27)
+                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$28)
                           ]);
               }
             } else {
@@ -4938,12 +4953,8 @@ function make$40(appear, _in, onEnter, onEntered, onEntering, onExit, onExited, 
             }
           }
         }), timeout);
-  if (tmp$3) {
-    tmp.timeout = tmp$3[0];
-  }
-  var tmp$4 = Js_option.map(transitionClassesShapeToJs, transitionClasses);
-  if (tmp$4) {
-    tmp.transitionClasses = tmp$4[0];
+  if (tmp$2) {
+    tmp.timeout = tmp$2[0];
   }
   return ReasonReact.wrapJsForReason(Grow.default, tmp, children);
 }
@@ -4953,12 +4964,10 @@ var Grow$1 = /* module */[
   /* timeoutShapeFromJs */timeoutShapeFromJs$2,
   /* timeoutToJs */timeoutToJs$1,
   /* timeoutFromJs */timeoutFromJs$1,
-  /* transitionClassesShapeToJs */transitionClassesShapeToJs,
-  /* transitionClassesShapeFromJs */transitionClassesShapeFromJs,
   /* make */make$40
 ];
 
-var jsMapperConstantArray$28 = /* array */[
+var jsMapperConstantArray$29 = /* array */[
   /* tuple */[
     16617,
     "js"
@@ -4970,42 +4979,11 @@ var jsMapperConstantArray$28 = /* array */[
 ];
 
 function implementationToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$28);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$29);
 }
 
 function implementationFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$28, param);
-}
-
-var jsMapperConstantArray$29 = /* array */[
-  /* tuple */[
-    17051,
-    "lg"
-  ],
-  /* tuple */[
-    17271,
-    "md"
-  ],
-  /* tuple */[
-    18618,
-    "sm"
-  ],
-  /* tuple */[
-    19732,
-    "xl"
-  ],
-  /* tuple */[
-    19739,
-    "xs"
-  ]
-];
-
-function initialWidthToJs(param) {
-  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$29);
-}
-
-function initialWidthFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$29, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$29, param);
 }
 
 var jsMapperConstantArray$30 = /* array */[
@@ -5031,12 +5009,43 @@ var jsMapperConstantArray$30 = /* array */[
   ]
 ];
 
-function onlyToJs(param) {
+function initialWidthToJs(param) {
   return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$30);
 }
 
-function onlyFromJs(param) {
+function initialWidthFromJs(param) {
   return Js_mapperRt.revSearch(5, jsMapperConstantArray$30, param);
+}
+
+var jsMapperConstantArray$31 = /* array */[
+  /* tuple */[
+    17051,
+    "lg"
+  ],
+  /* tuple */[
+    17271,
+    "md"
+  ],
+  /* tuple */[
+    18618,
+    "sm"
+  ],
+  /* tuple */[
+    19732,
+    "xl"
+  ],
+  /* tuple */[
+    19739,
+    "xs"
+  ]
+];
+
+function onlyToJs(param) {
+  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$31);
+}
+
+function onlyFromJs(param) {
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$31, param);
 }
 
 function make$41(className, implementation, initialWidth, lgDown, lgUp, mdDown, mdUp, only, smDown, smUp, xlDown, xlUp, xsDown, xsUp, children) {
@@ -5045,13 +5054,13 @@ function make$41(className, implementation, initialWidth, lgDown, lgUp, mdDown, 
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$28);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$29);
         }), implementation);
   if (tmp$1) {
     tmp.implementation = tmp$1[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$29);
+          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$30);
         }), initialWidth);
   if (tmp$2) {
     tmp.initialWidth = tmp$2[0];
@@ -5081,7 +5090,7 @@ function make$41(className, implementation, initialWidth, lgDown, lgUp, mdDown, 
           } else {
             return unwrapValue(/* `String */[
                         -976970511,
-                        Js_mapperRt.binSearch(5, v[1], jsMapperConstantArray$30)
+                        Js_mapperRt.binSearch(5, v[1], jsMapperConstantArray$31)
                       ]);
           }
         }), only);
@@ -5125,7 +5134,7 @@ var Hidden$1 = /* module */[
   /* make */make$41
 ];
 
-var jsMapperConstantArray$31 = /* array */[
+var jsMapperConstantArray$32 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -5145,11 +5154,11 @@ var jsMapperConstantArray$31 = /* array */[
 ];
 
 function colorToJs$4(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$31);
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$32);
 }
 
 function colorFromJs$4(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$31, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$32, param);
 }
 
 function to_string$36(param) {
@@ -5188,7 +5197,7 @@ function make$42(className, color, disabled, disableRipple, buttonRef, centerRip
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$31);
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$32);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
@@ -5279,7 +5288,7 @@ var IconButton$1 = /* module */[
   /* make */make$42
 ];
 
-var jsMapperConstantArray$32 = /* array */[
+var jsMapperConstantArray$33 = /* array */[
   /* tuple */[
     -891637802,
     "action"
@@ -5307,11 +5316,11 @@ var jsMapperConstantArray$32 = /* array */[
 ];
 
 function colorToJs$5(param) {
-  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$32);
+  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$33);
 }
 
 function colorFromJs$5(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$32, param);
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$33, param);
 }
 
 function to_string$37(param) {
@@ -5352,7 +5361,7 @@ function make$43(className, color, fontSize, classes, children) {
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$32);
+          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$33);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
@@ -5375,7 +5384,7 @@ var Icon$1 = /* module */[
   /* make */make$43
 ];
 
-var jsMapperConstantArray$33 = /* array */[
+var jsMapperConstantArray$34 = /* array */[
   /* tuple */[
     3455931,
     "end"
@@ -5387,11 +5396,11 @@ var jsMapperConstantArray$33 = /* array */[
 ];
 
 function positionToJs$1(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$33);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$34);
 }
 
 function positionFromJs$1(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$33, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$34, param);
 }
 
 function to_string$38(param) {
@@ -5432,7 +5441,7 @@ function make$44(className, component, disableTypography, position, classes, chi
     tmp.disableTypography = tmp$2[0];
   }
   var tmp$3 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$33);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$34);
         }), position);
   if (tmp$3) {
     tmp.position = tmp$3[0];
@@ -5451,17 +5460,17 @@ var InputAdornment$1 = /* module */[
   /* make */make$44
 ];
 
-var jsMapperConstantArray$34 = /* array */[/* tuple */[
+var jsMapperConstantArray$35 = /* array */[/* tuple */[
     -363472001,
     "dense"
   ]];
 
 function marginToJs$2(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$34);
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$35);
 }
 
 function marginFromJs$2(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$34, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$35, param);
 }
 
 function to_string$39(param) {
@@ -5519,7 +5528,7 @@ function make$45(className, disableAnimation, disabled, error, focused, formCont
     tmp.formControlClasses = formControlClasses[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(1, v, jsMapperConstantArray$34);
+          return Js_mapperRt.binSearch(1, v, jsMapperConstantArray$35);
         }), margin);
   if (tmp$5) {
     tmp.margin = tmp$5[0];
@@ -5546,7 +5555,7 @@ var InputLabel$1 = /* module */[
   /* make */make$45
 ];
 
-var jsMapperConstantArray$35 = /* array */[
+var jsMapperConstantArray$36 = /* array */[
   /* tuple */[
     -363472001,
     "dense"
@@ -5558,11 +5567,11 @@ var jsMapperConstantArray$35 = /* array */[
 ];
 
 function marginToJs$3(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$35);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$36);
 }
 
 function marginFromJs$3(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$35, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$36, param);
 }
 
 function to_string$40(param) {
@@ -5662,7 +5671,7 @@ function make$46(autoComplete, autoFocus, className, defaultValue, disabled, dis
     tmp.inputRef = inputRef[0];
   }
   var tmp$8 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$35);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$36);
         }), margin);
   if (tmp$8) {
     tmp.margin = tmp$8[0];
@@ -5734,7 +5743,7 @@ var Input$1 = /* module */[
   /* make */make$46
 ];
 
-var jsMapperConstantArray$36 = /* array */[
+var jsMapperConstantArray$37 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -5746,14 +5755,14 @@ var jsMapperConstantArray$36 = /* array */[
 ];
 
 function colorToJs$6(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$36);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$37);
 }
 
 function colorFromJs$6(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$36, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$37, param);
 }
 
-var jsMapperConstantArray$37 = /* array */[
+var jsMapperConstantArray$38 = /* array */[
   /* tuple */[
     -700823845,
     "indeterminate"
@@ -5772,12 +5781,12 @@ var jsMapperConstantArray$37 = /* array */[
   ]
 ];
 
-function modeToJs$1(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$37);
+function variantToJs$3(param) {
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$38);
 }
 
-function modeFromJs$1(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$37, param);
+function variantFromJs$3(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$38, param);
 }
 
 function to_string$41(param) {
@@ -5830,30 +5839,30 @@ var Classes$41 = /* module */[
   /* to_obj */to_obj$41
 ];
 
-function make$47(className, color, mode, value, valueBuffer, classes, children) {
+function make$47(className, color, value, valueBuffer, variant, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$36);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$37);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
   }
-  var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$37);
-        }), mode);
+  var tmp$2 = Js_option.map(unwrapValue, value);
   if (tmp$2) {
-    tmp.mode = tmp$2[0];
+    tmp.value = tmp$2[0];
   }
-  var tmp$3 = Js_option.map(unwrapValue, value);
+  var tmp$3 = Js_option.map(unwrapValue, valueBuffer);
   if (tmp$3) {
-    tmp.value = tmp$3[0];
+    tmp.valueBuffer = tmp$3[0];
   }
-  var tmp$4 = Js_option.map(unwrapValue, valueBuffer);
+  var tmp$4 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$38);
+        }), variant);
   if (tmp$4) {
-    tmp.valueBuffer = tmp$4[0];
+    tmp.variant = tmp$4[0];
   }
   var tmp$5 = Js_option.map(to_obj$41, classes);
   if (tmp$5) {
@@ -5865,8 +5874,8 @@ function make$47(className, color, mode, value, valueBuffer, classes, children) 
 var LinearProgress$1 = /* module */[
   /* colorToJs */colorToJs$6,
   /* colorFromJs */colorFromJs$6,
-  /* modeToJs */modeToJs$1,
-  /* modeFromJs */modeFromJs$1,
+  /* variantToJs */variantToJs$3,
+  /* variantFromJs */variantFromJs$3,
   /* Classes */Classes$41,
   /* make */make$47
 ];
@@ -6121,7 +6130,7 @@ var ListItem$1 = /* module */[
   /* make */make$52
 ];
 
-var jsMapperConstantArray$38 = /* array */[
+var jsMapperConstantArray$39 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -6137,11 +6146,11 @@ var jsMapperConstantArray$38 = /* array */[
 ];
 
 function colorToJs$7(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$38);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$39);
 }
 
 function colorFromJs$7(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$38, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$39, param);
 }
 
 function to_string$47(param) {
@@ -6178,7 +6187,7 @@ function make$53(className, color, component, disableSticky, inset, classes, chi
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$38);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$39);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
@@ -6387,17 +6396,17 @@ function transitionDurationShapeFromJs$3(param) {
         ];
 }
 
-var jsMapperConstantArray$39 = /* array */[/* tuple */[
+var jsMapperConstantArray$40 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
 function transitionDurationToJs(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$39);
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$40);
 }
 
 function transitionDurationFromJs(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$39, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$40, param);
 }
 
 function anchorOriginShapeToJs(param) {
@@ -6428,7 +6437,7 @@ function anchorPositionShapeFromJs(param) {
         ];
 }
 
-var jsMapperConstantArray$40 = /* array */[
+var jsMapperConstantArray$41 = /* array */[
   /* tuple */[
     580003934,
     "anchorPosition"
@@ -6440,11 +6449,11 @@ var jsMapperConstantArray$40 = /* array */[
 ];
 
 function anchorReferenceToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$40);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$41);
 }
 
 function anchorReferenceFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$40, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$41, param);
 }
 
 function transformOriginShapeToJs(param) {
@@ -6488,9 +6497,8 @@ function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEnterin
   if (menuListProps) {
     tmp.menuListProps = menuListProps[0];
   }
-  var tmp$1 = Js_option.map(unwrapValue, onClose);
-  if (tmp$1) {
-    tmp.onClose = tmp$1[0];
+  if (onClose) {
+    tmp.onClose = onClose[0];
   }
   if (onEnter) {
     tmp.onEnter = onEnter[0];
@@ -6516,7 +6524,7 @@ function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEnterin
   if (popoverClasses) {
     tmp.popoverClasses = popoverClasses[0];
   }
-  var tmp$2 = Js_option.map((function (v) {
+  var tmp$1 = Js_option.map((function (v) {
           if (typeof v === "number") {
             return unwrapValue(v);
           } else {
@@ -6527,7 +6535,7 @@ function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEnterin
               } else {
                 return unwrapValue(/* `String */[
                             -976970511,
-                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$39)
+                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$40)
                           ]);
               }
             } else {
@@ -6538,55 +6546,55 @@ function make$57(anchorEl, menuListProps, onClose, onEnter, onEntered, onEnterin
             }
           }
         }), transitionDuration);
-  if (tmp$2) {
-    tmp.transitionDuration = tmp$2[0];
+  if (tmp$1) {
+    tmp.transitionDuration = tmp$1[0];
   }
   if (action) {
     tmp.action = action[0];
   }
-  var tmp$3 = Js_option.map(anchorOriginShapeToJs, anchorOrigin);
+  var tmp$2 = Js_option.map(anchorOriginShapeToJs, anchorOrigin);
+  if (tmp$2) {
+    tmp.anchorOrigin = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(anchorPositionShapeToJs, anchorPosition);
   if (tmp$3) {
-    tmp.anchorOrigin = tmp$3[0];
+    tmp.anchorPosition = tmp$3[0];
   }
-  var tmp$4 = Js_option.map(anchorPositionShapeToJs, anchorPosition);
-  if (tmp$4) {
-    tmp.anchorPosition = tmp$4[0];
-  }
-  var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$40);
+  var tmp$4 = Js_option.map((function (v) {
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$41);
         }), anchorReference);
+  if (tmp$4) {
+    tmp.anchorReference = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, container);
   if (tmp$5) {
-    tmp.anchorReference = tmp$5[0];
+    tmp.container = tmp$5[0];
   }
-  var tmp$6 = Js_option.map(unwrapValue, container);
+  var tmp$6 = Js_option.map(unwrapValue, elevation);
   if (tmp$6) {
-    tmp.container = tmp$6[0];
-  }
-  var tmp$7 = Js_option.map(unwrapValue, elevation);
-  if (tmp$7) {
-    tmp.elevation = tmp$7[0];
+    tmp.elevation = tmp$6[0];
   }
   if (getContentAnchorEl) {
     tmp.getContentAnchorEl = getContentAnchorEl[0];
   }
-  var tmp$8 = Js_option.map(unwrapValue, marginThreshold);
-  if (tmp$8) {
-    tmp.marginThreshold = tmp$8[0];
+  var tmp$7 = Js_option.map(unwrapValue, marginThreshold);
+  if (tmp$7) {
+    tmp.marginThreshold = tmp$7[0];
   }
   if (role) {
     tmp.role = role[0];
   }
-  var tmp$9 = Js_option.map(transformOriginShapeToJs, transformOrigin);
+  var tmp$8 = Js_option.map(transformOriginShapeToJs, transformOrigin);
+  if (tmp$8) {
+    tmp.transformOrigin = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(unwrapValue, transition);
   if (tmp$9) {
-    tmp.transformOrigin = tmp$9[0];
+    tmp.transition = tmp$9[0];
   }
-  var tmp$10 = Js_option.map(unwrapValue, transition);
+  var tmp$10 = Js_option.map(to_obj$50, classes);
   if (tmp$10) {
-    tmp.transition = tmp$10[0];
-  }
-  var tmp$11 = Js_option.map(to_obj$50, classes);
-  if (tmp$11) {
-    tmp.classes = tmp$11[0];
+    tmp.classes = tmp$10[0];
   }
   return ReasonReact.wrapJsForReason(Menu.default, tmp, children);
 }
@@ -6608,7 +6616,7 @@ var Menu$1 = /* module */[
   /* make */make$57
 ];
 
-var jsMapperConstantArray$41 = /* array */[
+var jsMapperConstantArray$42 = /* array */[
   /* tuple */[
     4202101,
     "top"
@@ -6624,14 +6632,14 @@ var jsMapperConstantArray$41 = /* array */[
 ];
 
 function positionToJs$2(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$41);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$42);
 }
 
 function positionFromJs$2(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$41, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$42, param);
 }
 
-var jsMapperConstantArray$42 = /* array */[
+var jsMapperConstantArray$43 = /* array */[
   /* tuple */[
     -539184179,
     "progress"
@@ -6646,12 +6654,12 @@ var jsMapperConstantArray$42 = /* array */[
   ]
 ];
 
-function _typeToJs$1(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$42);
+function variantToJs$4(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$43);
 }
 
-function _typeFromJs$1(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$42, param);
+function variantFromJs$4(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$43, param);
 }
 
 function to_string$51(param) {
@@ -6688,7 +6696,7 @@ var Classes$51 = /* module */[
   /* to_obj */to_obj$51
 ];
 
-function make$58(activeStep, backButton, className, nextButton, position, steps, _type, component, elevation, square, classes, children) {
+function make$58(activeStep, backButton, className, nextButton, position, steps, variant, component, elevation, square, classes, children) {
   var tmp = {
     steps: unwrapValue(steps)
   };
@@ -6706,16 +6714,16 @@ function make$58(activeStep, backButton, className, nextButton, position, steps,
     tmp.nextButton = nextButton[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$41);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$42);
         }), position);
   if (tmp$2) {
     tmp.position = tmp$2[0];
   }
   var tmp$3 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$42);
-        }), _type);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$43);
+        }), variant);
   if (tmp$3) {
-    tmp.type = tmp$3[0];
+    tmp.variant = tmp$3[0];
   }
   var tmp$4 = Js_option.map(unwrapValue, component);
   if (tmp$4) {
@@ -6739,8 +6747,8 @@ function make$58(activeStep, backButton, className, nextButton, position, steps,
 var MobileStepper$1 = /* module */[
   /* positionToJs */positionToJs$2,
   /* positionFromJs */positionFromJs$2,
-  /* _typeToJs */_typeToJs$1,
-  /* _typeFromJs */_typeFromJs$1,
+  /* variantToJs */variantToJs$4,
+  /* variantFromJs */variantFromJs$4,
   /* Classes */Classes$51,
   /* make */make$58
 ];
@@ -6983,7 +6991,7 @@ function anchorPositionShapeFromJs$1(param) {
         ];
 }
 
-var jsMapperConstantArray$43 = /* array */[
+var jsMapperConstantArray$44 = /* array */[
   /* tuple */[
     580003934,
     "anchorPosition"
@@ -6995,11 +7003,11 @@ var jsMapperConstantArray$43 = /* array */[
 ];
 
 function anchorReferenceToJs$1(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$43);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$44);
 }
 
 function anchorReferenceFromJs$1(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$43, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$44, param);
 }
 
 function transformOriginShapeToJs$1(param) {
@@ -7030,17 +7038,17 @@ function transitionDurationShapeFromJs$4(param) {
         ];
 }
 
-var jsMapperConstantArray$44 = /* array */[/* tuple */[
+var jsMapperConstantArray$45 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
 function transitionDurationToJs$1(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$44);
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$45);
 }
 
 function transitionDurationFromJs$1(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$44, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$45, param);
 }
 
 function to_string$54() {
@@ -7078,7 +7086,7 @@ function make$62(action, anchorEl, anchorOrigin, anchorPosition, anchorReference
     tmp.anchorPosition = tmp$2[0];
   }
   var tmp$3 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$43);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$44);
         }), anchorReference);
   if (tmp$3) {
     tmp.anchorReference = tmp$3[0];
@@ -7144,7 +7152,7 @@ function make$62(action, anchorEl, anchorOrigin, anchorPosition, anchorReference
               } else {
                 return unwrapValue(/* `String */[
                             -976970511,
-                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$44)
+                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$45)
                           ]);
               }
             } else {
@@ -7366,7 +7374,7 @@ function make$66(children) {
 
 var Reboot$1 = /* module */[/* make */make$66];
 
-var jsMapperConstantArray$45 = /* array */[
+var jsMapperConstantArray$46 = /* array */[
   /* tuple */[
     -363472001,
     "dense"
@@ -7378,11 +7386,11 @@ var jsMapperConstantArray$45 = /* array */[
 ];
 
 function marginToJs$4(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$45);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$46);
 }
 
 function marginFromJs$4(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$45, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$46, param);
 }
 
 function to_string$56(param) {
@@ -7504,7 +7512,7 @@ function make$67(autoWidth, displayEmpty, input, inputProps, menuProps, multiple
     tmp.inputRef = inputRef[0];
   }
   var tmp$14 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$45);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$46);
         }), margin);
   if (tmp$14) {
     tmp.margin = tmp$14[0];
@@ -7569,7 +7577,7 @@ var Select$1 = /* module */[
   /* make */make$67
 ];
 
-var jsMapperConstantArray$46 = /* array */[
+var jsMapperConstantArray$47 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -7589,11 +7597,11 @@ var jsMapperConstantArray$46 = /* array */[
 ];
 
 function directionToJs$1(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$46);
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$47);
 }
 
 function directionFromJs$1(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$46, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$47, param);
 }
 
 function timeoutShapeToJs$3(param) {
@@ -7615,7 +7623,7 @@ function make$68(direction, _in, onEnter, onEntered, onEntering, onExit, onExite
     theme: theme
   };
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$46);
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$47);
         }), direction);
   if (tmp$1) {
     tmp.direction = tmp$1[0];
@@ -7881,7 +7889,7 @@ var Snackbar$1 = /* module */[
   /* make */make$70
 ];
 
-var jsMapperConstantArray$47 = /* array */[
+var jsMapperConstantArray$48 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -7893,11 +7901,11 @@ var jsMapperConstantArray$47 = /* array */[
 ];
 
 function orientationToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$47);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$48);
 }
 
 function orientationFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$47, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$48, param);
 }
 
 function to_string$59(param) {
@@ -7952,7 +7960,7 @@ function make$71(active, alternativeLabel, className, completed, disabled, icon,
     tmp.optional = optional[0];
   }
   var tmp$6 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$47);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$48);
         }), orientation);
   if (tmp$6) {
     tmp.orientation = tmp$6[0];
@@ -8039,7 +8047,7 @@ var StepButton$1 = /* module */[
   /* make */make$71
 ];
 
-var jsMapperConstantArray$48 = /* array */[
+var jsMapperConstantArray$49 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -8051,11 +8059,11 @@ var jsMapperConstantArray$48 = /* array */[
 ];
 
 function orientationToJs$1(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$48);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$49);
 }
 
 function orientationFromJs$1(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$48, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$49, param);
 }
 
 function transitionDurationShapeToJs$6(param) {
@@ -8072,17 +8080,17 @@ function transitionDurationShapeFromJs$6(param) {
         ];
 }
 
-var jsMapperConstantArray$49 = /* array */[/* tuple */[
+var jsMapperConstantArray$50 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
 function transitionDurationToJs$2(param) {
-  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$49);
+  return Js_mapperRt.binSearch(1, param, jsMapperConstantArray$50);
 }
 
 function transitionDurationFromJs$2(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$49, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$50, param);
 }
 
 function to_string$60(param) {
@@ -8135,7 +8143,7 @@ function make$72(active, alternativeLabel, className, completed, last, optional,
     tmp.optional = tmp$5[0];
   }
   var tmp$6 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$48);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$49);
         }), orientation);
   if (tmp$6) {
     tmp.orientation = tmp$6[0];
@@ -8154,7 +8162,7 @@ function make$72(active, alternativeLabel, className, completed, last, optional,
               } else {
                 return unwrapValue(/* `String */[
                             -976970511,
-                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$49)
+                            Js_mapperRt.binSearch(1, v[1], jsMapperConstantArray$50)
                           ]);
               }
             } else {
@@ -8186,7 +8194,51 @@ var StepContent$1 = /* module */[
   /* make */make$72
 ];
 
-var jsMapperConstantArray$50 = /* array */[
+function to_string$61(param) {
+  if (param.tag) {
+    return "completed";
+  } else {
+    return "root";
+  }
+}
+
+function to_obj$61(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$61(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$61 = /* module */[
+  /* to_string */to_string$61,
+  /* to_obj */to_obj$61
+];
+
+function make$73(active, completed, icon, classes, children) {
+  var tmp = {
+    icon: icon
+  };
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
+  if (tmp$1) {
+    tmp.active = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, completed);
+  if (tmp$2) {
+    tmp.completed = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$61, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(StepIcon.default, tmp, children);
+}
+
+var StepIcon$1 = /* module */[
+  /* Classes */Classes$61,
+  /* make */make$73
+];
+
+var jsMapperConstantArray$51 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -8198,14 +8250,14 @@ var jsMapperConstantArray$50 = /* array */[
 ];
 
 function orientationToJs$2(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$50);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$51);
 }
 
 function orientationFromJs$2(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$50, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$51, param);
 }
 
-function to_string$61(param) {
+function to_string$62(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -8231,19 +8283,19 @@ function to_string$61(param) {
   }
 }
 
-function to_obj$61(listOfClasses) {
+function to_obj$62(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$61(classType)] = classType[0];
+                obj[to_string$62(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$61 = /* module */[
-  /* to_string */to_string$61,
-  /* to_obj */to_obj$61
+var Classes$62 = /* module */[
+  /* to_string */to_string$62,
+  /* to_obj */to_obj$62
 ];
 
-function make$73(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, classes, children) {
+function make$74(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
   if (tmp$1) {
@@ -8275,12 +8327,12 @@ function make$73(active, alternativeLabel, className, completed, disabled, icon,
     tmp.optional = optional[0];
   }
   var tmp$6 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$50);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$51);
         }), orientation);
   if (tmp$6) {
     tmp.orientation = tmp$6[0];
   }
-  var tmp$7 = Js_option.map(to_obj$61, classes);
+  var tmp$7 = Js_option.map(to_obj$62, classes);
   if (tmp$7) {
     tmp.classes = tmp$7[0];
   }
@@ -8290,11 +8342,11 @@ function make$73(active, alternativeLabel, className, completed, disabled, icon,
 var StepLabel$1 = /* module */[
   /* orientationToJs */orientationToJs$2,
   /* orientationFromJs */orientationFromJs$2,
-  /* Classes */Classes$61,
-  /* make */make$73
+  /* Classes */Classes$62,
+  /* make */make$74
 ];
 
-var jsMapperConstantArray$51 = /* array */[
+var jsMapperConstantArray$52 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -8306,14 +8358,14 @@ var jsMapperConstantArray$51 = /* array */[
 ];
 
 function orientationToJs$3(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$51);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$52);
 }
 
 function orientationFromJs$3(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$51, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$52, param);
 }
 
-function to_string$62(param) {
+function to_string$63(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -8325,19 +8377,19 @@ function to_string$62(param) {
   }
 }
 
-function to_obj$62(listOfClasses) {
+function to_obj$63(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$62(classType)] = classType[0];
+                obj[to_string$63(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$62 = /* module */[
-  /* to_string */to_string$62,
-  /* to_obj */to_obj$62
+var Classes$63 = /* module */[
+  /* to_string */to_string$63,
+  /* to_obj */to_obj$63
 ];
 
-function make$74(active, alternativeLabel, className, completed, connector, disabled, index, last, orientation, classes, children) {
+function make$75(active, alternativeLabel, className, completed, connector, disabled, index, last, orientation, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
   if (tmp$1) {
@@ -8370,12 +8422,12 @@ function make$74(active, alternativeLabel, className, completed, connector, disa
     tmp.last = tmp$6[0];
   }
   var tmp$7 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$51);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$52);
         }), orientation);
   if (tmp$7) {
     tmp.orientation = tmp$7[0];
   }
-  var tmp$8 = Js_option.map(to_obj$62, classes);
+  var tmp$8 = Js_option.map(to_obj$63, classes);
   if (tmp$8) {
     tmp.classes = tmp$8[0];
   }
@@ -8385,11 +8437,11 @@ function make$74(active, alternativeLabel, className, completed, connector, disa
 var Step$1 = /* module */[
   /* orientationToJs */orientationToJs$3,
   /* orientationFromJs */orientationFromJs$3,
-  /* Classes */Classes$62,
-  /* make */make$74
+  /* Classes */Classes$63,
+  /* make */make$75
 ];
 
-var jsMapperConstantArray$52 = /* array */[
+var jsMapperConstantArray$53 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -8401,14 +8453,14 @@ var jsMapperConstantArray$52 = /* array */[
 ];
 
 function orientationToJs$4(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$52);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$53);
 }
 
 function orientationFromJs$4(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$52, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$53, param);
 }
 
-function to_string$63(param) {
+function to_string$64(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -8420,19 +8472,19 @@ function to_string$63(param) {
   }
 }
 
-function to_obj$63(listOfClasses) {
+function to_obj$64(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$63(classType)] = classType[0];
+                obj[to_string$64(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$63 = /* module */[
-  /* to_string */to_string$63,
-  /* to_obj */to_obj$63
+var Classes$64 = /* module */[
+  /* to_string */to_string$64,
+  /* to_obj */to_obj$64
 ];
 
-function make$75(activeStep, alternativeLabel, className, connector, nonLinear, orientation, component, elevation, square, classes, children) {
+function make$76(activeStep, alternativeLabel, className, connector, nonLinear, orientation, component, elevation, square, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(unwrapValue, activeStep);
   if (tmp$1) {
@@ -8453,7 +8505,7 @@ function make$75(activeStep, alternativeLabel, className, connector, nonLinear, 
     tmp.nonLinear = tmp$3[0];
   }
   var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$52);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$53);
         }), orientation);
   if (tmp$4) {
     tmp.orientation = tmp$4[0];
@@ -8470,7 +8522,7 @@ function make$75(activeStep, alternativeLabel, className, connector, nonLinear, 
   if (tmp$7) {
     tmp.square = tmp$7[0];
   }
-  var tmp$8 = Js_option.map(to_obj$63, classes);
+  var tmp$8 = Js_option.map(to_obj$64, classes);
   if (tmp$8) {
     tmp.classes = tmp$8[0];
   }
@@ -8480,11 +8532,11 @@ function make$75(activeStep, alternativeLabel, className, connector, nonLinear, 
 var Stepper$1 = /* module */[
   /* orientationToJs */orientationToJs$4,
   /* orientationFromJs */orientationFromJs$4,
-  /* Classes */Classes$63,
-  /* make */make$75
+  /* Classes */Classes$64,
+  /* make */make$76
 ];
 
-var jsMapperConstantArray$53 = /* array */[
+var jsMapperConstantArray$54 = /* array */[
   /* tuple */[
     -891637802,
     "action"
@@ -8512,14 +8564,14 @@ var jsMapperConstantArray$53 = /* array */[
 ];
 
 function colorToJs$8(param) {
-  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$53);
+  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$54);
 }
 
 function colorFromJs$8(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$53, param);
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$54, param);
 }
 
-function to_string$64(param) {
+function to_string$65(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -8539,25 +8591,25 @@ function to_string$64(param) {
   }
 }
 
-function to_obj$64(listOfClasses) {
+function to_obj$65(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$64(classType)] = classType[0];
+                obj[to_string$65(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$64 = /* module */[
-  /* to_string */to_string$64,
-  /* to_obj */to_obj$64
+var Classes$65 = /* module */[
+  /* to_string */to_string$65,
+  /* to_obj */to_obj$65
 ];
 
-function make$76(className, color, fontSize, nativeColor, titleAccess, viewBox, classes, children) {
+function make$77(className, color, fontSize, nativeColor, titleAccess, viewBox, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$53);
+          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$54);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
@@ -8575,7 +8627,7 @@ function make$76(className, color, fontSize, nativeColor, titleAccess, viewBox, 
   if (viewBox) {
     tmp.viewBox = viewBox[0];
   }
-  var tmp$3 = Js_option.map(to_obj$64, classes);
+  var tmp$3 = Js_option.map(to_obj$65, classes);
   if (tmp$3) {
     tmp.classes = tmp$3[0];
   }
@@ -8585,11 +8637,11 @@ function make$76(className, color, fontSize, nativeColor, titleAccess, viewBox, 
 var SvgIcon$1 = /* module */[
   /* colorToJs */colorToJs$8,
   /* colorFromJs */colorFromJs$8,
-  /* Classes */Classes$64,
-  /* make */make$76
+  /* Classes */Classes$65,
+  /* make */make$77
 ];
 
-function to_string$65(param) {
+function to_string$66(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -8598,28 +8650,30 @@ function to_string$65(param) {
     case 2 : 
         return "icon";
     case 3 : 
-        return "default";
+        return "iconChecked";
     case 4 : 
-        return "checked";
+        return "default";
     case 5 : 
+        return "checked";
+    case 6 : 
         return "disabled";
     
   }
 }
 
-function to_obj$65(listOfClasses) {
+function to_obj$66(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$65(classType)] = classType[0];
+                obj[to_string$66(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$65 = /* module */[
-  /* to_string */to_string$65,
-  /* to_obj */to_obj$65
+var Classes$66 = /* module */[
+  /* to_string */to_string$66,
+  /* to_obj */to_obj$66
 ];
 
-function make$77(checked, checkedIcon, className, defaultChecked, disabled, disableRipple, icon, inputProps, inputRef, inputType, name, onChange, tabIndex, value, classes, children) {
+function make$78(checked, checkedIcon, className, defaultChecked, disabled, disableRipple, icon, inputProps, inputRef, inputType, name, onChange, tabIndex, value, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(unwrapValue, checked);
   if (tmp$1) {
@@ -8668,7 +8722,7 @@ function make$77(checked, checkedIcon, className, defaultChecked, disabled, disa
   if (value) {
     tmp.value = value[0];
   }
-  var tmp$6 = Js_option.map(to_obj$65, classes);
+  var tmp$6 = Js_option.map(to_obj$66, classes);
   if (tmp$6) {
     tmp.classes = tmp$6[0];
   }
@@ -8676,11 +8730,11 @@ function make$77(checked, checkedIcon, className, defaultChecked, disabled, disa
 }
 
 var Switch$1 = /* module */[
-  /* Classes */Classes$65,
-  /* make */make$77
+  /* Classes */Classes$66,
+  /* make */make$78
 ];
 
-var jsMapperConstantArray$54 = /* array */[
+var jsMapperConstantArray$55 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -8696,14 +8750,14 @@ var jsMapperConstantArray$54 = /* array */[
 ];
 
 function textColorToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$54);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$55);
 }
 
 function textColorFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$54, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$55, param);
 }
 
-function to_string$66(param) {
+function to_string$67(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -8741,19 +8795,19 @@ function to_string$66(param) {
   }
 }
 
-function to_obj$66(listOfClasses) {
+function to_obj$67(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$66(classType)] = classType[0];
+                obj[to_string$67(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$66 = /* module */[
-  /* to_string */to_string$66,
-  /* to_obj */to_obj$66
+var Classes$67 = /* module */[
+  /* to_string */to_string$67,
+  /* to_obj */to_obj$67
 ];
 
-function make$78(className, disabled, fullWidth, icon, indicator, label, onChange, onClick, selected, style, textColor, value, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
+function make$79(className, disabled, fullWidth, icon, indicator, label, onChange, onClick, selected, style, textColor, value, buttonRef, centerRipple, component, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -8794,7 +8848,7 @@ function make$78(className, disabled, fullWidth, icon, indicator, label, onChang
           } else {
             return unwrapValue(/* `String */[
                         -976970511,
-                        Js_mapperRt.binSearch(3, v[1], jsMapperConstantArray$54)
+                        Js_mapperRt.binSearch(3, v[1], jsMapperConstantArray$55)
                       ]);
           }
         }), textColor);
@@ -8869,7 +8923,7 @@ function make$78(className, disabled, fullWidth, icon, indicator, label, onChang
   if (_type) {
     tmp.type = _type[0];
   }
-  var tmp$10 = Js_option.map(to_obj$66, classes);
+  var tmp$10 = Js_option.map(to_obj$67, classes);
   if (tmp$10) {
     tmp.classes = tmp$10[0];
   }
@@ -8879,11 +8933,11 @@ function make$78(className, disabled, fullWidth, icon, indicator, label, onChang
 var Tab$1 = /* module */[
   /* textColorToJs */textColorToJs,
   /* textColorFromJs */textColorFromJs,
-  /* Classes */Classes$66,
-  /* make */make$78
+  /* Classes */Classes$67,
+  /* make */make$79
 ];
 
-function make$79(component, children) {
+function make$80(component, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(unwrapValue, component);
   if (tmp$1) {
@@ -8892,9 +8946,9 @@ function make$79(component, children) {
   return ReasonReact.wrapJsForReason(TableBody.default, tmp, children);
 }
 
-var TableBody$1 = /* module */[/* make */make$79];
+var TableBody$1 = /* module */[/* make */make$80];
 
-var jsMapperConstantArray$55 = /* array */[
+var jsMapperConstantArray$56 = /* array */[
   /* tuple */[
     -384499551,
     "default"
@@ -8914,14 +8968,14 @@ var jsMapperConstantArray$55 = /* array */[
 ];
 
 function paddingToJs(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$55);
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$56);
 }
 
 function paddingFromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$55, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$56, param);
 }
 
-var jsMapperConstantArray$56 = /* array */[
+var jsMapperConstantArray$57 = /* array */[
   /* tuple */[
     3258129,
     "asc"
@@ -8937,14 +8991,14 @@ var jsMapperConstantArray$56 = /* array */[
 ];
 
 function sortDirectionToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$56);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$57);
 }
 
 function sortDirectionFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$56, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$57, param);
 }
 
-var jsMapperConstantArray$57 = /* array */[
+var jsMapperConstantArray$58 = /* array */[
   /* tuple */[
     737453762,
     "body"
@@ -8959,15 +9013,15 @@ var jsMapperConstantArray$57 = /* array */[
   ]
 ];
 
-function _typeToJs$2(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$57);
+function variantToJs$5(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$58);
 }
 
-function _typeFromJs$2(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$57, param);
+function variantFromJs$5(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$58, param);
 }
 
-function to_string$67(param) {
+function to_string$68(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -8989,19 +9043,19 @@ function to_string$67(param) {
   }
 }
 
-function to_obj$67(listOfClasses) {
+function to_obj$68(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$67(classType)] = classType[0];
+                obj[to_string$68(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$67 = /* module */[
-  /* to_string */to_string$67,
-  /* to_obj */to_obj$67
+var Classes$68 = /* module */[
+  /* to_string */to_string$68,
+  /* to_obj */to_obj$68
 ];
 
-function make$80(className, component, numeric, padding, sortDirection, _type, classes, children) {
+function make$81(className, component, numeric, padding, sortDirection, variant, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -9015,24 +9069,24 @@ function make$80(className, component, numeric, padding, sortDirection, _type, c
     tmp.numeric = tmp$2[0];
   }
   var tmp$3 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$55);
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$56);
         }), padding);
   if (tmp$3) {
     tmp.padding = tmp$3[0];
   }
   var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$56);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$57);
         }), sortDirection);
   if (tmp$4) {
     tmp.sortDirection = tmp$4[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$57);
-        }), _type);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$58);
+        }), variant);
   if (tmp$5) {
-    tmp.type = tmp$5[0];
+    tmp.variant = tmp$5[0];
   }
-  var tmp$6 = Js_option.map(to_obj$67, classes);
+  var tmp$6 = Js_option.map(to_obj$68, classes);
   if (tmp$6) {
     tmp.classes = tmp$6[0];
   }
@@ -9044,13 +9098,13 @@ var TableCell$1 = /* module */[
   /* paddingFromJs */paddingFromJs,
   /* sortDirectionToJs */sortDirectionToJs,
   /* sortDirectionFromJs */sortDirectionFromJs,
-  /* _typeToJs */_typeToJs$2,
-  /* _typeFromJs */_typeFromJs$2,
-  /* Classes */Classes$67,
-  /* make */make$80
+  /* variantToJs */variantToJs$5,
+  /* variantFromJs */variantFromJs$5,
+  /* Classes */Classes$68,
+  /* make */make$81
 ];
 
-function make$81(component, children) {
+function make$82(component, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(unwrapValue, component);
   if (tmp$1) {
@@ -9059,9 +9113,9 @@ function make$81(component, children) {
   return ReasonReact.wrapJsForReason(TableFooter.default, tmp, children);
 }
 
-var TableFooter$1 = /* module */[/* make */make$81];
+var TableFooter$1 = /* module */[/* make */make$82];
 
-function make$82(component, children) {
+function make$83(component, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(unwrapValue, component);
   if (tmp$1) {
@@ -9070,9 +9124,9 @@ function make$82(component, children) {
   return ReasonReact.wrapJsForReason(TableHead.default, tmp, children);
 }
 
-var TableHead$1 = /* module */[/* make */make$82];
+var TableHead$1 = /* module */[/* make */make$83];
 
-var jsMapperConstantArray$58 = /* array */[
+var jsMapperConstantArray$59 = /* array */[
   /* tuple */[
     -384499551,
     "default"
@@ -9092,14 +9146,14 @@ var jsMapperConstantArray$58 = /* array */[
 ];
 
 function paddingToJs$1(param) {
-  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$58);
+  return Js_mapperRt.binSearch(4, param, jsMapperConstantArray$59);
 }
 
 function paddingFromJs$1(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$58, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$59, param);
 }
 
-var jsMapperConstantArray$59 = /* array */[
+var jsMapperConstantArray$60 = /* array */[
   /* tuple */[
     3258129,
     "asc"
@@ -9115,14 +9169,14 @@ var jsMapperConstantArray$59 = /* array */[
 ];
 
 function sortDirectionToJs$1(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$59);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$60);
 }
 
 function sortDirectionFromJs$1(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$59, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$60, param);
 }
 
-var jsMapperConstantArray$60 = /* array */[
+var jsMapperConstantArray$61 = /* array */[
   /* tuple */[
     737453762,
     "body"
@@ -9137,15 +9191,15 @@ var jsMapperConstantArray$60 = /* array */[
   ]
 ];
 
-function _typeToJs$3(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$60);
+function variantToJs$6(param) {
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$61);
 }
 
-function _typeFromJs$3(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$60, param);
+function variantFromJs$6(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$61, param);
 }
 
-function to_string$68(param) {
+function to_string$69(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -9169,19 +9223,19 @@ function to_string$68(param) {
   }
 }
 
-function to_obj$68(listOfClasses) {
+function to_obj$69(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$68(classType)] = classType[0];
+                obj[to_string$69(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$68 = /* module */[
-  /* to_string */to_string$68,
-  /* to_obj */to_obj$68
+var Classes$69 = /* module */[
+  /* to_string */to_string$69,
+  /* to_obj */to_obj$69
 ];
 
-function make$83(actions, backIconButtonProps, colSpan, component, count, labelDisplayedRows, labelRowsPerPage, nextIconButtonProps, onChangePage, onChangeRowsPerPage, page, rowsPerPage, rowsPerPageOptions, className, numeric, padding, sortDirection, _type, classes, children) {
+function make$84(actions, backIconButtonProps, colSpan, component, count, labelDisplayedRows, labelRowsPerPage, nextIconButtonProps, onChangePage, onChangeRowsPerPage, page, rowsPerPage, rowsPerPageOptions, className, numeric, padding, sortDirection, variant, classes, children) {
   var tmp = {
     count: unwrapValue(count),
     onChangePage: onChangePage,
@@ -9226,24 +9280,24 @@ function make$83(actions, backIconButtonProps, colSpan, component, count, labelD
     tmp.numeric = tmp$4[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$58);
+          return Js_mapperRt.binSearch(4, v, jsMapperConstantArray$59);
         }), padding);
   if (tmp$5) {
     tmp.padding = tmp$5[0];
   }
   var tmp$6 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$59);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$60);
         }), sortDirection);
   if (tmp$6) {
     tmp.sortDirection = tmp$6[0];
   }
   var tmp$7 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$60);
-        }), _type);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$61);
+        }), variant);
   if (tmp$7) {
-    tmp.type = tmp$7[0];
+    tmp.variant = tmp$7[0];
   }
-  var tmp$8 = Js_option.map(to_obj$68, classes);
+  var tmp$8 = Js_option.map(to_obj$69, classes);
   if (tmp$8) {
     tmp.classes = tmp$8[0];
   }
@@ -9255,13 +9309,13 @@ var TablePagination$1 = /* module */[
   /* paddingFromJs */paddingFromJs$1,
   /* sortDirectionToJs */sortDirectionToJs$1,
   /* sortDirectionFromJs */sortDirectionFromJs$1,
-  /* _typeToJs */_typeToJs$3,
-  /* _typeFromJs */_typeFromJs$3,
-  /* Classes */Classes$68,
-  /* make */make$83
+  /* variantToJs */variantToJs$6,
+  /* variantFromJs */variantFromJs$6,
+  /* Classes */Classes$69,
+  /* make */make$84
 ];
 
-function to_string$69(param) {
+function to_string$70(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -9273,82 +9327,6 @@ function to_string$69(param) {
         return "selected";
     case 4 : 
         return "hover";
-    
-  }
-}
-
-function to_obj$69(listOfClasses) {
-  return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$69(classType)] = classType[0];
-                return obj;
-              }), { }, listOfClasses);
-}
-
-var Classes$69 = /* module */[
-  /* to_string */to_string$69,
-  /* to_obj */to_obj$69
-];
-
-function make$84(className, component, hover, selected, classes, children) {
-  var tmp = { };
-  if (className) {
-    tmp.className = className[0];
-  }
-  var tmp$1 = Js_option.map(unwrapValue, component);
-  if (tmp$1) {
-    tmp.component = tmp$1[0];
-  }
-  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, hover);
-  if (tmp$2) {
-    tmp.hover = tmp$2[0];
-  }
-  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, selected);
-  if (tmp$3) {
-    tmp.selected = tmp$3[0];
-  }
-  var tmp$4 = Js_option.map(to_obj$69, classes);
-  if (tmp$4) {
-    tmp.classes = tmp$4[0];
-  }
-  return ReasonReact.wrapJsForReason(TableRow.default, tmp, children);
-}
-
-var TableRow$1 = /* module */[
-  /* Classes */Classes$69,
-  /* make */make$84
-];
-
-var jsMapperConstantArray$61 = /* array */[
-  /* tuple */[
-    3258129,
-    "asc"
-  ],
-  /* tuple */[
-    759138929,
-    "desc"
-  ]
-];
-
-function directionToJs$2(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$61);
-}
-
-function directionFromJs$2(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$61, param);
-}
-
-function to_string$70(param) {
-  switch (param.tag | 0) {
-    case 0 : 
-        return "root";
-    case 1 : 
-        return "active";
-    case 2 : 
-        return "icon";
-    case 3 : 
-        return "desc";
-    case 4 : 
-        return "asc";
     
   }
 }
@@ -9365,7 +9343,83 @@ var Classes$70 = /* module */[
   /* to_obj */to_obj$70
 ];
 
-function make$85(active, className, direction, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
+function make$85(className, component, hover, selected, classes, children) {
+  var tmp = { };
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, hover);
+  if (tmp$2) {
+    tmp.hover = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, selected);
+  if (tmp$3) {
+    tmp.selected = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$70, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
+  }
+  return ReasonReact.wrapJsForReason(TableRow.default, tmp, children);
+}
+
+var TableRow$1 = /* module */[
+  /* Classes */Classes$70,
+  /* make */make$85
+];
+
+var jsMapperConstantArray$62 = /* array */[
+  /* tuple */[
+    3258129,
+    "asc"
+  ],
+  /* tuple */[
+    759138929,
+    "desc"
+  ]
+];
+
+function directionToJs$2(param) {
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$62);
+}
+
+function directionFromJs$2(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$62, param);
+}
+
+function to_string$71(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "active";
+    case 2 : 
+        return "icon";
+    case 3 : 
+        return "desc";
+    case 4 : 
+        return "asc";
+    
+  }
+}
+
+function to_obj$71(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$71(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$71 = /* module */[
+  /* to_string */to_string$71,
+  /* to_obj */to_obj$71
+];
+
+function make$86(active, className, direction, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, keyboardFocusedClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _type, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
   if (tmp$1) {
@@ -9375,7 +9429,7 @@ function make$85(active, className, direction, buttonRef, centerRipple, componen
     tmp.className = className[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$61);
+          return Js_mapperRt.binSearch(2, v, jsMapperConstantArray$62);
         }), direction);
   if (tmp$2) {
     tmp.direction = tmp$2[0];
@@ -9452,7 +9506,7 @@ function make$85(active, className, direction, buttonRef, centerRipple, componen
   if (_type) {
     tmp.type = _type[0];
   }
-  var tmp$9 = Js_option.map(to_obj$70, classes);
+  var tmp$9 = Js_option.map(to_obj$71, classes);
   if (tmp$9) {
     tmp.classes = tmp$9[0];
   }
@@ -9462,27 +9516,27 @@ function make$85(active, className, direction, buttonRef, centerRipple, componen
 var TableSortLabel$1 = /* module */[
   /* directionToJs */directionToJs$2,
   /* directionFromJs */directionFromJs$2,
-  /* Classes */Classes$70,
-  /* make */make$85
+  /* Classes */Classes$71,
+  /* make */make$86
 ];
 
-function to_string$71() {
+function to_string$72() {
   return "root";
 }
 
-function to_obj$71(listOfClasses) {
+function to_obj$72(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
                 obj["root"] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$71 = /* module */[
-  /* to_string */to_string$71,
-  /* to_obj */to_obj$71
+var Classes$72 = /* module */[
+  /* to_string */to_string$72,
+  /* to_obj */to_obj$72
 ];
 
-function make$86(className, component, classes, children) {
+function make$87(className, component, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -9491,7 +9545,7 @@ function make$86(className, component, classes, children) {
   if (tmp$1) {
     tmp.component = tmp$1[0];
   }
-  var tmp$2 = Js_option.map(to_obj$71, classes);
+  var tmp$2 = Js_option.map(to_obj$72, classes);
   if (tmp$2) {
     tmp.classes = tmp$2[0];
   }
@@ -9499,11 +9553,11 @@ function make$86(className, component, classes, children) {
 }
 
 var Table$1 = /* module */[
-  /* Classes */Classes$71,
-  /* make */make$86
+  /* Classes */Classes$72,
+  /* make */make$87
 ];
 
-var jsMapperConstantArray$62 = /* array */[
+var jsMapperConstantArray$63 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -9515,14 +9569,14 @@ var jsMapperConstantArray$62 = /* array */[
 ];
 
 function indicatorColorToJs(param) {
-  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$62);
+  return Js_mapperRt.binSearch(2, param, jsMapperConstantArray$63);
 }
 
 function indicatorColorFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$62, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$63, param);
 }
 
-var jsMapperConstantArray$63 = /* array */[
+var jsMapperConstantArray$64 = /* array */[
   /* tuple */[
     17727,
     "on"
@@ -9538,14 +9592,14 @@ var jsMapperConstantArray$63 = /* array */[
 ];
 
 function scrollButtonsToJs(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$63);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$64);
 }
 
 function scrollButtonsFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$63, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$64, param);
 }
 
-var jsMapperConstantArray$64 = /* array */[
+var jsMapperConstantArray$65 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -9561,14 +9615,14 @@ var jsMapperConstantArray$64 = /* array */[
 ];
 
 function textColorToJs$1(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$64);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$65);
 }
 
 function textColorFromJs$1(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$64, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$65, param);
 }
 
-function to_string$72(param) {
+function to_string$73(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -9588,19 +9642,19 @@ function to_string$72(param) {
   }
 }
 
-function to_obj$72(listOfClasses) {
+function to_obj$73(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$72(classType)] = classType[0];
+                obj[to_string$73(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$72 = /* module */[
-  /* to_string */to_string$72,
-  /* to_obj */to_obj$72
+var Classes$73 = /* module */[
+  /* to_string */to_string$73,
+  /* to_obj */to_obj$73
 ];
 
-function make$87(action, buttonClassName, centered, className, fullWidth, indicatorClassName, indicatorColor, onChange, scrollable, scrollButtons, tabScrollButton, textColor, theme, value, classes, children) {
+function make$88(action, buttonClassName, centered, className, fullWidth, indicatorClassName, indicatorColor, onChange, scrollable, scrollButtons, tabScrollButton, textColor, theme, value, classes, children) {
   var tmp = {
     theme: theme
   };
@@ -9630,7 +9684,7 @@ function make$87(action, buttonClassName, centered, className, fullWidth, indica
           } else {
             return unwrapValue(/* `String */[
                         -976970511,
-                        Js_mapperRt.binSearch(2, v[1], jsMapperConstantArray$62)
+                        Js_mapperRt.binSearch(2, v[1], jsMapperConstantArray$63)
                       ]);
           }
         }), indicatorColor);
@@ -9645,7 +9699,7 @@ function make$87(action, buttonClassName, centered, className, fullWidth, indica
     tmp.scrollable = tmp$4[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$63);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$64);
         }), scrollButtons);
   if (tmp$5) {
     tmp.scrollButtons = tmp$5[0];
@@ -9655,7 +9709,7 @@ function make$87(action, buttonClassName, centered, className, fullWidth, indica
     tmp.tabScrollButton = tmp$6[0];
   }
   var tmp$7 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$64);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$65);
         }), textColor);
   if (tmp$7) {
     tmp.textColor = tmp$7[0];
@@ -9663,7 +9717,7 @@ function make$87(action, buttonClassName, centered, className, fullWidth, indica
   if (value) {
     tmp.value = value[0];
   }
-  var tmp$8 = Js_option.map(to_obj$72, classes);
+  var tmp$8 = Js_option.map(to_obj$73, classes);
   if (tmp$8) {
     tmp.classes = tmp$8[0];
   }
@@ -9677,11 +9731,11 @@ var Tabs$1 = /* module */[
   /* scrollButtonsFromJs */scrollButtonsFromJs,
   /* textColorToJs */textColorToJs$1,
   /* textColorFromJs */textColorFromJs$1,
-  /* Classes */Classes$72,
-  /* make */make$87
+  /* Classes */Classes$73,
+  /* make */make$88
 ];
 
-var jsMapperConstantArray$65 = /* array */[
+var jsMapperConstantArray$66 = /* array */[
   /* tuple */[
     -453122489,
     "normal"
@@ -9697,14 +9751,14 @@ var jsMapperConstantArray$65 = /* array */[
 ];
 
 function marginToJs$5(param) {
-  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$65);
+  return Js_mapperRt.binSearch(3, param, jsMapperConstantArray$66);
 }
 
 function marginFromJs$5(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$65, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$66, param);
 }
 
-function make$88(autoComplete, autoFocus, className, defaultValue, disabled, error, formHelperTextProps, fullWidth, helperText, helperTextClassName, id, inputLabelProps, inputProps2, inputProps, inputRef, label, labelClassName, margin, multiline, name, onChange, placeholder, required, rows, rowsMax, select, selectProps, _type, value, component, onBlur, onFocus, children) {
+function make$89(autoComplete, autoFocus, className, defaultValue, disabled, error, formHelperTextProps, fullWidth, helperText, helperTextClassName, id, inputLabelProps, inputProps2, inputProps, inputRef, label, labelClassName, margin, multiline, name, onChange, placeholder, required, rows, rowsMax, select, selectProps, _type, value, component, onBlur, onFocus, children) {
   var tmp = { };
   if (autoComplete) {
     tmp.autoComplete = autoComplete[0];
@@ -9762,7 +9816,7 @@ function make$88(autoComplete, autoFocus, className, defaultValue, disabled, err
     tmp.labelClassName = labelClassName[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$65);
+          return Js_mapperRt.binSearch(3, v, jsMapperConstantArray$66);
         }), margin);
   if (tmp$5) {
     tmp.margin = tmp$5[0];
@@ -9822,10 +9876,10 @@ function make$88(autoComplete, autoFocus, className, defaultValue, disabled, err
 var TextField$1 = /* module */[
   /* marginToJs */marginToJs$5,
   /* marginFromJs */marginFromJs$5,
-  /* make */make$88
+  /* make */make$89
 ];
 
-function to_string$73(param) {
+function to_string$74(param) {
   if (param.tag) {
     return "gutters";
   } else {
@@ -9833,19 +9887,19 @@ function to_string$73(param) {
   }
 }
 
-function to_obj$73(listOfClasses) {
+function to_obj$74(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$73(classType)] = classType[0];
+                obj[to_string$74(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$73 = /* module */[
-  /* to_string */to_string$73,
-  /* to_obj */to_obj$73
+var Classes$74 = /* module */[
+  /* to_string */to_string$74,
+  /* to_obj */to_obj$74
 ];
 
-function make$89(className, disableGutters, classes, children) {
+function make$90(className, disableGutters, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -9854,7 +9908,7 @@ function make$89(className, disableGutters, classes, children) {
   if (tmp$1) {
     tmp.disableGutters = tmp$1[0];
   }
-  var tmp$2 = Js_option.map(to_obj$73, classes);
+  var tmp$2 = Js_option.map(to_obj$74, classes);
   if (tmp$2) {
     tmp.classes = tmp$2[0];
   }
@@ -9862,11 +9916,11 @@ function make$89(className, disableGutters, classes, children) {
 }
 
 var Toolbar$1 = /* module */[
-  /* Classes */Classes$73,
-  /* make */make$89
+  /* Classes */Classes$74,
+  /* make */make$90
 ];
 
-var jsMapperConstantArray$66 = /* array */[
+var jsMapperConstantArray$67 = /* array */[
   /* tuple */[
     -1031209551,
     "top-end"
@@ -9918,14 +9972,14 @@ var jsMapperConstantArray$66 = /* array */[
 ];
 
 function placementToJs(param) {
-  return Js_mapperRt.binSearch(12, param, jsMapperConstantArray$66);
+  return Js_mapperRt.binSearch(12, param, jsMapperConstantArray$67);
 }
 
 function placementFromJs(param) {
-  return Js_mapperRt.revSearch(12, jsMapperConstantArray$66, param);
+  return Js_mapperRt.revSearch(12, jsMapperConstantArray$67, param);
 }
 
-function to_string$74(param) {
+function to_string$75(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -9949,19 +10003,19 @@ function to_string$74(param) {
   }
 }
 
-function to_obj$74(listOfClasses) {
+function to_obj$75(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$74(classType)] = classType[0];
+                obj[to_string$75(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$74 = /* module */[
-  /* to_string */to_string$74,
-  /* to_obj */to_obj$74
+var Classes$75 = /* module */[
+  /* to_string */to_string$75,
+  /* to_obj */to_obj$75
 ];
 
-function make$90(className, disableTriggerFocus, disableTriggerHover, disableTriggerTouch, enterDelay, id, leaveDelay, onClose, onOpen, _open, placement, popperProps, theme, title, classes, children) {
+function make$91(className, disableTriggerFocus, disableTriggerHover, disableTriggerTouch, enterDelay, id, leaveDelay, onClose, onOpen, _open, placement, popperProps, theme, title, classes, children) {
   var tmp = {
     theme: theme,
     title: title
@@ -10003,7 +10057,7 @@ function make$90(className, disableTriggerFocus, disableTriggerHover, disableTri
     tmp.open = tmp$6[0];
   }
   var tmp$7 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(12, v, jsMapperConstantArray$66);
+          return Js_mapperRt.binSearch(12, v, jsMapperConstantArray$67);
         }), placement);
   if (tmp$7) {
     tmp.placement = tmp$7[0];
@@ -10011,7 +10065,7 @@ function make$90(className, disableTriggerFocus, disableTriggerHover, disableTri
   if (popperProps) {
     tmp.popperProps = popperProps[0];
   }
-  var tmp$8 = Js_option.map(to_obj$74, classes);
+  var tmp$8 = Js_option.map(to_obj$75, classes);
   if (tmp$8) {
     tmp.classes = tmp$8[0];
   }
@@ -10021,11 +10075,11 @@ function make$90(className, disableTriggerFocus, disableTriggerHover, disableTri
 var Tooltip$1 = /* module */[
   /* placementToJs */placementToJs,
   /* placementFromJs */placementFromJs,
-  /* Classes */Classes$74,
-  /* make */make$90
+  /* Classes */Classes$75,
+  /* make */make$91
 ];
 
-var jsMapperConstantArray$67 = /* array */[
+var jsMapperConstantArray$68 = /* array */[
   /* tuple */[
     -788068560,
     "justify"
@@ -10049,14 +10103,14 @@ var jsMapperConstantArray$67 = /* array */[
 ];
 
 function alignToJs(param) {
-  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$67);
+  return Js_mapperRt.binSearch(5, param, jsMapperConstantArray$68);
 }
 
 function alignFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$67, param);
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$68, param);
 }
 
-var jsMapperConstantArray$68 = /* array */[
+var jsMapperConstantArray$69 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -10084,14 +10138,14 @@ var jsMapperConstantArray$68 = /* array */[
 ];
 
 function colorToJs$9(param) {
-  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$68);
+  return Js_mapperRt.binSearch(6, param, jsMapperConstantArray$69);
 }
 
 function colorFromJs$9(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$68, param);
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$69, param);
 }
 
-var jsMapperConstantArray$69 = /* array */[
+var jsMapperConstantArray$70 = /* array */[
   /* tuple */[
     -904051921,
     "body1"
@@ -10138,15 +10192,15 @@ var jsMapperConstantArray$69 = /* array */[
   ]
 ];
 
-function _typeToJs$4(param) {
-  return Js_mapperRt.binSearch(11, param, jsMapperConstantArray$69);
+function variantToJs$7(param) {
+  return Js_mapperRt.binSearch(11, param, jsMapperConstantArray$70);
 }
 
-function _typeFromJs$4(param) {
-  return Js_mapperRt.revSearch(11, jsMapperConstantArray$69, param);
+function variantFromJs$7(param) {
+  return Js_mapperRt.revSearch(11, jsMapperConstantArray$70, param);
 }
 
-function to_string$75(param) {
+function to_string$76(param) {
   switch (param.tag | 0) {
     case 0 : 
         return "root";
@@ -10200,22 +10254,22 @@ function to_string$75(param) {
   }
 }
 
-function to_obj$75(listOfClasses) {
+function to_obj$76(listOfClasses) {
   return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$75(classType)] = classType[0];
+                obj[to_string$76(classType)] = classType[0];
                 return obj;
               }), { }, listOfClasses);
 }
 
-var Classes$75 = /* module */[
-  /* to_string */to_string$75,
-  /* to_obj */to_obj$75
+var Classes$76 = /* module */[
+  /* to_string */to_string$76,
+  /* to_obj */to_obj$76
 ];
 
-function make$91(align, className, color, component, gutterBottom, headlineMapping, noWrap, paragraph, _type, classes, children) {
+function make$92(align, className, color, component, gutterBottom, headlineMapping, noWrap, paragraph, variant, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$67);
+          return Js_mapperRt.binSearch(5, v, jsMapperConstantArray$68);
         }), align);
   if (tmp$1) {
     tmp.align = tmp$1[0];
@@ -10224,7 +10278,7 @@ function make$91(align, className, color, component, gutterBottom, headlineMappi
     tmp.className = className[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$68);
+          return Js_mapperRt.binSearch(6, v, jsMapperConstantArray$69);
         }), color);
   if (tmp$2) {
     tmp.color = tmp$2[0];
@@ -10249,12 +10303,12 @@ function make$91(align, className, color, component, gutterBottom, headlineMappi
     tmp.paragraph = tmp$6[0];
   }
   var tmp$7 = Js_option.map((function (v) {
-          return Js_mapperRt.binSearch(11, v, jsMapperConstantArray$69);
-        }), _type);
+          return Js_mapperRt.binSearch(11, v, jsMapperConstantArray$70);
+        }), variant);
   if (tmp$7) {
-    tmp.type = tmp$7[0];
+    tmp.variant = tmp$7[0];
   }
-  var tmp$8 = Js_option.map(to_obj$75, classes);
+  var tmp$8 = Js_option.map(to_obj$76, classes);
   if (tmp$8) {
     tmp.classes = tmp$8[0];
   }
@@ -10266,10 +10320,10 @@ var Typography$1 = /* module */[
   /* alignFromJs */alignFromJs,
   /* colorToJs */colorToJs$9,
   /* colorFromJs */colorFromJs$9,
-  /* _typeToJs */_typeToJs$4,
-  /* _typeFromJs */_typeFromJs$4,
-  /* Classes */Classes$75,
-  /* make */make$91
+  /* variantToJs */variantToJs$7,
+  /* variantFromJs */variantFromJs$7,
+  /* Classes */Classes$76,
+  /* make */make$92
 ];
 
 function timeoutShapeToJs$4(param) {
@@ -10286,27 +10340,16 @@ function timeoutShapeFromJs$4(param) {
         ];
 }
 
-function make$92(appear, enterDelay, _in, onEnter, onEntering, onExit, style, theme, timeout, children) {
+function make$93(_in, onEnter, onExit, style, theme, timeout, children) {
   var tmp = {
     theme: theme
   };
-  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, appear);
+  var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, _in);
   if (tmp$1) {
-    tmp.appear = tmp$1[0];
-  }
-  var tmp$2 = Js_option.map(unwrapValue, enterDelay);
-  if (tmp$2) {
-    tmp.enterDelay = tmp$2[0];
-  }
-  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, _in);
-  if (tmp$3) {
-    tmp.in = tmp$3[0];
+    tmp.in = tmp$1[0];
   }
   if (onEnter) {
     tmp.onEnter = onEnter[0];
-  }
-  if (onEntering) {
-    tmp.onEntering = onEntering[0];
   }
   if (onExit) {
     tmp.onExit = onExit[0];
@@ -10314,7 +10357,7 @@ function make$92(appear, enterDelay, _in, onEnter, onEntering, onExit, style, th
   if (style) {
     tmp.style = style[0];
   }
-  var tmp$4 = Js_option.map((function (v) {
+  var tmp$2 = Js_option.map((function (v) {
           if (typeof v === "number" || v[0] !== -908856609) {
             return unwrapValue(v);
           } else {
@@ -10324,8 +10367,8 @@ function make$92(appear, enterDelay, _in, onEnter, onEntering, onExit, style, th
                       ]);
           }
         }), timeout);
-  if (tmp$4) {
-    tmp.timeout = tmp$4[0];
+  if (tmp$2) {
+    tmp.timeout = tmp$2[0];
   }
   return ReasonReact.wrapJsForReason(Zoom.default, tmp, children);
 }
@@ -10333,11 +10376,12 @@ function make$92(appear, enterDelay, _in, onEnter, onEntering, onExit, style, th
 var Zoom$1 = /* module */[
   /* timeoutShapeToJs */timeoutShapeToJs$4,
   /* timeoutShapeFromJs */timeoutShapeFromJs$4,
-  /* make */make$92
+  /* make */make$93
 ];
 
 exports.unwrapValue             = unwrapValue;
 exports.MuiTheme                = MuiTheme;
+exports.WithStylesSafe          = WithStylesSafe;
 exports.WithStyles              = WithStyles;
 exports.Colors                  = Colors;
 exports.AppBar                  = AppBar$1;
@@ -10412,6 +10456,7 @@ exports.SnackbarContent         = SnackbarContent$1;
 exports.Snackbar                = Snackbar$1;
 exports.StepButton              = StepButton$1;
 exports.StepContent             = StepContent$1;
+exports.StepIcon                = StepIcon$1;
 exports.StepLabel               = StepLabel$1;
 exports.Step                    = Step$1;
 exports.Stepper                 = Stepper$1;
