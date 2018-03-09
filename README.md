@@ -15,7 +15,7 @@ to add the library to your project dependencies. And add `@jsiebern/bs-material-
 
 ## Installation of the `withStyles` code extension (ppx)
 
-Add the entry `@jsiebern/bs-material-ui/ppx_withStyles` to the `ppx-flags` node of your `bsconfig.json`.
+Add the entry `./node_modules/@jsiebern/bs-material-ui/ppx_withStyles` to the `ppx-flags` node of your `bsconfig.json`.
 
 ## Example
 
