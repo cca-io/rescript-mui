@@ -1,6 +1,6 @@
 {
   "name": "@jsiebern/bs-material-ui",
-  "version": "0.1.322",
+  "version": "0.1.323",
   "description": "Reason bindings for material-ui",
   "main": "src/MaterialUi.re",
   "scripts": {
