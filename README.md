@@ -9,13 +9,13 @@ This library provides Reason bindings for
 
 Run:
 
-    yarn add jsiebern/bs-material-ui
+    yarn add @jsiebern/bs-material-ui
 
-to add the library to your project dependencies. And add `bs-material-ui` to the `bs-dependencies` node of your `bsconfig.json`.
+to add the library to your project dependencies. And add `@jsiebern/bs-material-ui` to the `bs-dependencies` node of your `bsconfig.json`.
 
 ## Installation of the `withStyles` code extension (ppx)
 
-Add the entry `bs-material-ui/ppx_withStyles` to the `ppx-flags` node of your `bsconfig.json`.
+Add the entry `@jsiebern/bs-material-ui/ppx_withStyles` to the `ppx-flags` node of your `bsconfig.json`.
 
 ## Example
 
