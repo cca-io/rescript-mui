@@ -1,6 +1,6 @@
 {
   "name": "@jsiebern/bs-material-ui",
-  "version": "0.1.323",
+  "version": "0.1.324",
   "description": "Reason bindings for material-ui",
   "main": "src/MaterialUi.re",
   "scripts": {
@@ -11,6 +11,7 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
+    "object-hash": "^1.2.0",
     "reason-react": "^0.3.1"
   }
 }
