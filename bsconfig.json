@@ -1,5 +1,6 @@
 {
     "name": "@jsiebern/bs-material-ui",
+    "namespace": false,
     "sources": "src",
     "package-specs": {
         "module": "commonjs",
