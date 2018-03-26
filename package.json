@@ -1,6 +1,6 @@
 {
   "name": "@jsiebern/bs-material-ui",
-  "version": "0.1.326",
+  "version": "0.1.4-alpha",
   "description": "This library provides Reason bindings for material-ui.",
   "keywords": [
     "bucklescript",
