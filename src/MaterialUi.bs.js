@@ -4096,6 +4096,8 @@ function to_string$27(param) {
         return "disabled";
     case 2 : 
         return "label";
+    case 3 : 
+        return "labelDisabled";
     
   }
 }
@@ -6379,7 +6381,7 @@ var Classes$46 = /* module */[
   /* to_obj */to_obj$46
 ];
 
-function make$54(button, className, component, containerComponent, containerProps, dense, disabled, disableGutters, divider, classes, children) {
+function make$54(button, className, component, containerComponent, containerProps, dense, disabled, disableGutters, divider, value, onFocus, onClick, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, button);
   if (tmp$1) {
@@ -6415,9 +6417,19 @@ function make$54(button, className, component, containerComponent, containerProp
   if (tmp$7) {
     tmp.divider = tmp$7[0];
   }
-  var tmp$8 = Js_option.map(to_obj$46, classes);
+  var tmp$8 = Js_option.map(unwrapValue, value);
   if (tmp$8) {
-    tmp.classes = tmp$8[0];
+    tmp.value = tmp$8[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  var tmp$9 = Js_option.map(to_obj$46, classes);
+  if (tmp$9) {
+    tmp.classes = tmp$9[0];
   }
   return ReasonReact.wrapJsForReason(ListItem.default, tmp, children);
 }
