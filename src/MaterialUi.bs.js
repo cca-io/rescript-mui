@@ -1749,7 +1749,7 @@ var Classes$4 = /* module */[
   /* to_obj */to_obj$4
 ];
 
-function make$6(className, icon, label, onChange, onClick, selected, showLabel, value, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, touchRippleProps, _type, classes, children) {
+function make$6(className, icon, label, onChange, onClick, selected, showLabel, value, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -1840,8 +1840,8 @@ function make$6(className, icon, label, onChange, onClick, selected, showLabel, 
   if (tmp$8) {
     tmp.tabIndex = tmp$8[0];
   }
-  if (touchRippleProps) {
-    tmp.touchRippleProps = touchRippleProps[0];
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
   }
   if (_type) {
     tmp.type = _type[0];
@@ -1925,7 +1925,7 @@ var Classes$6 = /* module */[
   /* to_obj */to_obj$6
 ];
 
-function make$8(buttonRef, centerRipple, className, component, disabled, disableRipple, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, touchRippleProps, _type, classes, children) {
+function make$8(buttonRef, centerRipple, className, component, disabled, disableRipple, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, children) {
   var tmp = { };
   if (buttonRef) {
     tmp.buttonRef = buttonRef[0];
@@ -1996,8 +1996,8 @@ function make$8(buttonRef, centerRipple, className, component, disabled, disable
   if (tmp$6) {
     tmp.tabIndex = tmp$6[0];
   }
-  if (touchRippleProps) {
-    tmp.touchRippleProps = touchRippleProps[0];
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
   }
   if (_type) {
     tmp.type = _type[0];
@@ -2135,7 +2135,7 @@ var Classes$7 = /* module */[
   /* to_obj */to_obj$7
 ];
 
-function make$9(className, color, component, disabled, disableFocusRipple, disableRipple, fullWidth, href, mini, size, _type, variant, buttonRef, centerRipple, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, touchRippleProps, classes, children) {
+function make$9(className, color, component, disabled, disableFocusRipple, disableRipple, fullWidth, href, mini, size, _type, variant, buttonRef, centerRipple, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -2242,8 +2242,8 @@ function make$9(className, color, component, disabled, disableFocusRipple, disab
   if (tmp$12) {
     tmp.tabIndex = tmp$12[0];
   }
-  if (touchRippleProps) {
-    tmp.touchRippleProps = touchRippleProps[0];
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
   }
   var tmp$13 = Js_option.map(to_obj$7, classes);
   if (tmp$13) {
@@ -3399,7 +3399,7 @@ var Classes$20 = /* module */[
   /* to_obj */to_obj$20
 ];
 
-function make$25(className, disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWidth, maxWidth, onBackdropClick, onClose, onEnter, onEntered, onEntering, onEscapeKeyDown, onExit, onExited, onExiting, _open, paperProps, transition, transitionDuration, backdropComponent, backdropProps, container, disableAutoFocus, disableEnforceFocus, disableRestoreFocus, hideBackdrop, keepMounted, manager, onRendered, classes, children) {
+function make$25(className, disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWidth, maxWidth, onBackdropClick, onClose, onEnter, onEntered, onEntering, onEscapeKeyDown, onExit, onExited, onExiting, _open, _PaperProps, transition, transitionDuration, _BackdropComponent, _BackdropProps, container, disableAutoFocus, disableEnforceFocus, disableRestoreFocus, hideBackdrop, keepMounted, manager, onRendered, classes, children) {
   var tmp = {
     open: Js_boolean.to_js_boolean(_open)
   };
@@ -3455,8 +3455,8 @@ function make$25(className, disableBackdropClick, disableEscapeKeyDown, fullScre
   if (onExiting) {
     tmp.onExiting = onExiting[0];
   }
-  if (paperProps) {
-    tmp.paperProps = paperProps[0];
+  if (_PaperProps) {
+    tmp.PaperProps = _PaperProps[0];
   }
   var tmp$6 = Js_option.map(unwrapValue, transition);
   if (tmp$6) {
@@ -3475,12 +3475,12 @@ function make$25(className, disableBackdropClick, disableEscapeKeyDown, fullScre
   if (tmp$7) {
     tmp.transitionDuration = tmp$7[0];
   }
-  var tmp$8 = Js_option.map(unwrapValue, backdropComponent);
+  var tmp$8 = Js_option.map(unwrapValue, _BackdropComponent);
   if (tmp$8) {
-    tmp.backdropComponent = tmp$8[0];
+    tmp.BackdropComponent = tmp$8[0];
   }
-  if (backdropProps) {
-    tmp.backdropProps = backdropProps[0];
+  if (_BackdropProps) {
+    tmp.BackdropProps = _BackdropProps[0];
   }
   var tmp$9 = Js_option.map(unwrapValue, container);
   if (tmp$9) {
@@ -3691,7 +3691,7 @@ var Classes$22 = /* module */[
   /* to_obj */to_obj$22
 ];
 
-function make$27(anchor, className, elevation, modalProps, onClose, _open, paperProps, slideProps, theme, transitionDuration, variant, classes, children) {
+function make$27(anchor, className, elevation, _ModalProps, onClose, _open, _PaperProps, _SlideProps, theme, transitionDuration, variant, classes, children) {
   var tmp = {
     theme: theme
   };
@@ -3708,8 +3708,8 @@ function make$27(anchor, className, elevation, modalProps, onClose, _open, paper
   if (tmp$2) {
     tmp.elevation = tmp$2[0];
   }
-  if (modalProps) {
-    tmp.modalProps = modalProps[0];
+  if (_ModalProps) {
+    tmp.ModalProps = _ModalProps[0];
   }
   if (onClose) {
     tmp.onClose = onClose[0];
@@ -3718,11 +3718,11 @@ function make$27(anchor, className, elevation, modalProps, onClose, _open, paper
   if (tmp$3) {
     tmp.open = tmp$3[0];
   }
-  if (paperProps) {
-    tmp.paperProps = paperProps[0];
+  if (_PaperProps) {
+    tmp.PaperProps = _PaperProps[0];
   }
-  if (slideProps) {
-    tmp.slideProps = slideProps[0];
+  if (_SlideProps) {
+    tmp.SlideProps = _SlideProps[0];
   }
   var tmp$4 = Js_option.map((function (v) {
           if (typeof v === "number" || v[0] !== -908856609) {
@@ -3865,7 +3865,7 @@ var Classes$25 = /* module */[
   /* to_obj */to_obj$25
 ];
 
-function make$30(className, disabled, expanded, expandIcon, onChange, onClick, buttonRef, centerRipple, component, disableRipple, focusRipple, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, touchRippleProps, _type, classes, children) {
+function make$30(className, disabled, expanded, expandIcon, onChange, onClick, buttonRef, centerRipple, component, disableRipple, focusRipple, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -3946,8 +3946,8 @@ function make$30(className, disabled, expanded, expandIcon, onChange, onClick, b
   if (tmp$7) {
     tmp.tabIndex = tmp$7[0];
   }
-  if (touchRippleProps) {
-    tmp.touchRippleProps = touchRippleProps[0];
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
   }
   if (_type) {
     tmp.type = _type[0];
@@ -3988,13 +3988,13 @@ var Classes$26 = /* module */[
   /* to_obj */to_obj$26
 ];
 
-function make$31(className, collapseProps, defaultExpanded, disabled, expanded, onChange, component, elevation, square, classes, children) {
+function make$31(className, _CollapseProps, defaultExpanded, disabled, expanded, onChange, component, elevation, square, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
   }
-  if (collapseProps) {
-    tmp.collapseProps = collapseProps[0];
+  if (_CollapseProps) {
+    tmp.CollapseProps = _CollapseProps[0];
   }
   var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, defaultExpanded);
   if (tmp$1) {
@@ -5497,7 +5497,7 @@ var Classes$36 = /* module */[
   /* to_obj */to_obj$36
 ];
 
-function make$44(className, color, disabled, disableRipple, buttonRef, centerRipple, component, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, touchRippleProps, _type, classes, children) {
+function make$44(className, color, disabled, disableRipple, buttonRef, centerRipple, component, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -5574,8 +5574,8 @@ function make$44(className, color, disabled, disableRipple, buttonRef, centerRip
   if (tmp$7) {
     tmp.tabIndex = tmp$7[0];
   }
-  if (touchRippleProps) {
-    tmp.touchRippleProps = touchRippleProps[0];
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
   }
   if (_type) {
     tmp.type = _type[0];
@@ -5801,7 +5801,7 @@ var Classes$39 = /* module */[
   /* to_obj */to_obj$39
 ];
 
-function make$47(className, disableAnimation, disabled, error, focused, formLabelClasses, margin, required, shrink, component, classes, children) {
+function make$47(className, disableAnimation, disabled, error, focused, _FormLabelClasses, margin, required, shrink, component, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -5822,8 +5822,8 @@ function make$47(className, disableAnimation, disabled, error, focused, formLabe
   if (tmp$4) {
     tmp.focused = tmp$4[0];
   }
-  if (formLabelClasses) {
-    tmp.formLabelClasses = formLabelClasses[0];
+  if (_FormLabelClasses) {
+    tmp.FormLabelClasses = _FormLabelClasses[0];
   }
   var tmp$5 = Js_option.map((function (v) {
           return Js_mapperRt.binarySearch(1, v, jsMapperConstantArray$41);
@@ -6381,7 +6381,7 @@ var Classes$46 = /* module */[
   /* to_obj */to_obj$46
 ];
 
-function make$54(button, className, component, containerComponent, containerProps, dense, disabled, disableGutters, divider, value, onFocus, onClick, classes, children) {
+function make$54(button, className, component, _ContainerComponent, _ContainerProps, dense, disabled, disableGutters, divider, value, onFocus, onClick, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, button);
   if (tmp$1) {
@@ -6394,12 +6394,12 @@ function make$54(button, className, component, containerComponent, containerProp
   if (tmp$2) {
     tmp.component = tmp$2[0];
   }
-  var tmp$3 = Js_option.map(unwrapValue, containerComponent);
+  var tmp$3 = Js_option.map(unwrapValue, _ContainerComponent);
   if (tmp$3) {
-    tmp.containerComponent = tmp$3[0];
+    tmp.ContainerComponent = tmp$3[0];
   }
-  if (containerProps) {
-    tmp.containerProps = containerProps[0];
+  if (_ContainerProps) {
+    tmp.ContainerProps = _ContainerProps[0];
   }
   var tmp$4 = Js_option.map(Js_boolean.to_js_boolean, dense);
   if (tmp$4) {
@@ -6605,7 +6605,7 @@ var Classes$49 = /* module */[
   /* to_obj */to_obj$49
 ];
 
-function make$57(className, component, role, selected, value, onFocus, onClick, button, containerComponent, containerProps, dense, disabled, disableGutters, divider, classes, children) {
+function make$57(className, component, role, selected, value, onFocus, onClick, button, _ContainerComponent, _ContainerProps, dense, disabled, disableGutters, divider, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -6635,12 +6635,12 @@ function make$57(className, component, role, selected, value, onFocus, onClick, 
   if (tmp$4) {
     tmp.button = tmp$4[0];
   }
-  var tmp$5 = Js_option.map(unwrapValue, containerComponent);
+  var tmp$5 = Js_option.map(unwrapValue, _ContainerComponent);
   if (tmp$5) {
-    tmp.containerComponent = tmp$5[0];
+    tmp.ContainerComponent = tmp$5[0];
   }
-  if (containerProps) {
-    tmp.containerProps = containerProps[0];
+  if (_ContainerProps) {
+    tmp.ContainerProps = _ContainerProps[0];
   }
   var tmp$6 = Js_option.map(Js_boolean.to_js_boolean, dense);
   if (tmp$6) {
@@ -6805,7 +6805,7 @@ var Classes$50 = /* module */[
   /* to_obj */to_obj$50
 ];
 
-function make$59(anchorEl, menuListProps, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, _open, paperProps, popoverClasses, theme, transitionDuration, action, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, role, transformOrigin, transition, classes, children) {
+function make$59(anchorEl, _MenuListProps, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, _open, _PaperProps, _PopoverClasses, theme, transitionDuration, action, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, role, transformOrigin, transition, classes, children) {
   var tmp = {
     open: Js_boolean.to_js_boolean(_open),
     theme: theme
@@ -6813,8 +6813,8 @@ function make$59(anchorEl, menuListProps, onClose, onEnter, onEntered, onEnterin
   if (anchorEl) {
     tmp.anchorEl = anchorEl[0];
   }
-  if (menuListProps) {
-    tmp.menuListProps = menuListProps[0];
+  if (_MenuListProps) {
+    tmp.MenuListProps = _MenuListProps[0];
   }
   if (onClose) {
     tmp.onClose = onClose[0];
@@ -6837,11 +6837,11 @@ function make$59(anchorEl, menuListProps, onClose, onEnter, onEntered, onEnterin
   if (onExiting) {
     tmp.onExiting = onExiting[0];
   }
-  if (paperProps) {
-    tmp.paperProps = paperProps[0];
+  if (_PaperProps) {
+    tmp.PaperProps = _PaperProps[0];
   }
-  if (popoverClasses) {
-    tmp.popoverClasses = popoverClasses[0];
+  if (_PopoverClasses) {
+    tmp.PopoverClasses = _PopoverClasses[0];
   }
   var tmp$1 = Js_option.map((function (v) {
           if (typeof v === "number") {
@@ -7092,16 +7092,16 @@ var Classes$52 = /* module */[
   /* to_obj */to_obj$52
 ];
 
-function make$61(backdropComponent, backdropProps, className, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onClose, onEscapeKeyDown, onRendered, _open, classes, children) {
+function make$61(_BackdropComponent, _BackdropProps, className, container, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onClose, onEscapeKeyDown, onRendered, _open, classes, children) {
   var tmp = {
     open: Js_boolean.to_js_boolean(_open)
   };
-  var tmp$1 = Js_option.map(unwrapValue, backdropComponent);
+  var tmp$1 = Js_option.map(unwrapValue, _BackdropComponent);
   if (tmp$1) {
-    tmp.backdropComponent = tmp$1[0];
+    tmp.BackdropComponent = tmp$1[0];
   }
-  if (backdropProps) {
-    tmp.backdropProps = backdropProps[0];
+  if (_BackdropProps) {
+    tmp.BackdropProps = _BackdropProps[0];
   }
   if (className) {
     tmp.className = className[0];
@@ -7386,7 +7386,7 @@ var Classes$54 = /* module */[
   /* to_obj */to_obj$54
 ];
 
-function make$64(action, anchorEl, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, _open, paperProps, role, transformOrigin, transition, transitionDuration, backdropComponent, backdropProps, className, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
+function make$64(action, anchorEl, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, _open, _PaperProps, role, transformOrigin, transition, transitionDuration, _BackdropComponent, _BackdropProps, className, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, children) {
   var tmp = {
     open: Js_boolean.to_js_boolean(_open)
   };
@@ -7447,8 +7447,8 @@ function make$64(action, anchorEl, anchorOrigin, anchorPosition, anchorReference
   if (onExiting) {
     tmp.onExiting = onExiting[0];
   }
-  if (paperProps) {
-    tmp.paperProps = paperProps[0];
+  if (_PaperProps) {
+    tmp.PaperProps = _PaperProps[0];
   }
   if (role) {
     tmp.role = role[0];
@@ -7486,12 +7486,12 @@ function make$64(action, anchorEl, anchorOrigin, anchorPosition, anchorReference
   if (tmp$10) {
     tmp.transitionDuration = tmp$10[0];
   }
-  var tmp$11 = Js_option.map(unwrapValue, backdropComponent);
+  var tmp$11 = Js_option.map(unwrapValue, _BackdropComponent);
   if (tmp$11) {
-    tmp.backdropComponent = tmp$11[0];
+    tmp.BackdropComponent = tmp$11[0];
   }
-  if (backdropProps) {
-    tmp.backdropProps = backdropProps[0];
+  if (_BackdropProps) {
+    tmp.BackdropProps = _BackdropProps[0];
   }
   if (className) {
     tmp.className = className[0];
@@ -7759,7 +7759,7 @@ var Classes$56 = /* module */[
   /* to_obj */to_obj$56
 ];
 
-function make$68(autoWidth, displayEmpty, input, inputProps, menuProps, multiple, $$native, onChange, onClose, onOpen, _open, renderValue, selectDisplayProps, value, autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputRef, margin, multiline, name, onBlur, onEmpty, onFilled, onFocus, onKeyDown, onKeyUp, placeholder, readOnly, rows, rowsMax, startAdornment, _type, classes, children) {
+function make$68(autoWidth, displayEmpty, input, inputProps, _MenuProps, multiple, $$native, onChange, onClose, onOpen, _open, renderValue, _SelectDisplayProps, value, autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputRef, margin, multiline, name, onBlur, onEmpty, onFilled, onFocus, onKeyDown, onKeyUp, placeholder, readOnly, rows, rowsMax, startAdornment, _type, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, autoWidth);
   if (tmp$1) {
@@ -7775,8 +7775,8 @@ function make$68(autoWidth, displayEmpty, input, inputProps, menuProps, multiple
   if (inputProps) {
     tmp.inputProps = inputProps[0];
   }
-  if (menuProps) {
-    tmp.menuProps = menuProps[0];
+  if (_MenuProps) {
+    tmp.MenuProps = _MenuProps[0];
   }
   var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, multiple);
   if (tmp$3) {
@@ -7802,8 +7802,8 @@ function make$68(autoWidth, displayEmpty, input, inputProps, menuProps, multiple
   if (renderValue) {
     tmp.renderValue = renderValue[0];
   }
-  if (selectDisplayProps) {
-    tmp.selectDisplayProps = selectDisplayProps[0];
+  if (_SelectDisplayProps) {
+    tmp.SelectDisplayProps = _SelectDisplayProps[0];
   }
   var tmp$6 = Js_option.map(unwrapValue, value);
   if (tmp$6) {
@@ -8130,7 +8130,7 @@ var Classes$58 = /* module */[
   /* to_obj */to_obj$58
 ];
 
-function make$71(action, anchorOrigin, autoHideDuration, className, disableWindowBlurListener, key, message, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, onMouseEnter, onMouseLeave, _open, resumeHideDuration, snackbarContentProps, transition, transitionDuration, classes, children) {
+function make$71(action, anchorOrigin, autoHideDuration, className, disableWindowBlurListener, key, message, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, onMouseEnter, onMouseLeave, _open, resumeHideDuration, _SnackbarContentProps, transition, transitionDuration, classes, children) {
   var tmp = { };
   if (action) {
     tmp.action = action[0];
@@ -8191,8 +8191,8 @@ function make$71(action, anchorOrigin, autoHideDuration, className, disableWindo
   if (tmp$5) {
     tmp.resumeHideDuration = tmp$5[0];
   }
-  if (snackbarContentProps) {
-    tmp.snackbarContentProps = snackbarContentProps[0];
+  if (_SnackbarContentProps) {
+    tmp.SnackbarContentProps = _SnackbarContentProps[0];
   }
   var tmp$6 = Js_option.map(unwrapValue, transition);
   if (tmp$6) {
@@ -8270,7 +8270,7 @@ var Classes$59 = /* module */[
   /* to_obj */to_obj$59
 ];
 
-function make$72(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, buttonRef, centerRipple, component, disableRipple, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, touchRippleProps, _type, classes, children) {
+function make$72(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, buttonRef, centerRipple, component, disableRipple, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
   if (tmp$1) {
@@ -8369,8 +8369,8 @@ function make$72(active, alternativeLabel, className, completed, disabled, icon,
   if (tmp$11) {
     tmp.tabIndex = tmp$11[0];
   }
-  if (touchRippleProps) {
-    tmp.touchRippleProps = touchRippleProps[0];
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
   }
   if (_type) {
     tmp.type = _type[0];
@@ -9067,7 +9067,7 @@ function variantFromJs$6(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$63, param);
 }
 
-function make$79(anchor, disableBackdropTransition, disableDiscovery, modalProps, onClose, onOpen, _open, paperProps, swipeAreaWidth, theme, transitionDuration, variant, className, elevation, slideProps, children) {
+function make$79(anchor, disableBackdropTransition, disableDiscovery, _ModalProps, onClose, onOpen, _open, _PaperProps, swipeAreaWidth, theme, transitionDuration, variant, className, elevation, _SlideProps, children) {
   var tmp = {
     onClose: onClose,
     onOpen: onOpen,
@@ -9088,11 +9088,11 @@ function make$79(anchor, disableBackdropTransition, disableDiscovery, modalProps
   if (tmp$3) {
     tmp.disableDiscovery = tmp$3[0];
   }
-  if (modalProps) {
-    tmp.modalProps = modalProps[0];
+  if (_ModalProps) {
+    tmp.ModalProps = _ModalProps[0];
   }
-  if (paperProps) {
-    tmp.paperProps = paperProps[0];
+  if (_PaperProps) {
+    tmp.PaperProps = _PaperProps[0];
   }
   var tmp$4 = Js_option.map(unwrapValue, swipeAreaWidth);
   if (tmp$4) {
@@ -9124,8 +9124,8 @@ function make$79(anchor, disableBackdropTransition, disableDiscovery, modalProps
   if (tmp$7) {
     tmp.elevation = tmp$7[0];
   }
-  if (slideProps) {
-    tmp.slideProps = slideProps[0];
+  if (_SlideProps) {
+    tmp.SlideProps = _SlideProps[0];
   }
   return ReasonReact.wrapJsForReason(SwipeableDrawer.default, tmp, children);
 }
@@ -9337,7 +9337,7 @@ var Classes$67 = /* module */[
   /* to_obj */to_obj$67
 ];
 
-function make$81(className, disabled, fullWidth, icon, indicator, label, onChange, onClick, selected, style, textColor, value, buttonRef, centerRipple, component, disableRipple, focusRipple, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, touchRippleProps, _type, classes, children) {
+function make$81(className, disabled, fullWidth, icon, indicator, label, onChange, onClick, selected, style, textColor, value, buttonRef, centerRipple, component, disableRipple, focusRipple, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -9447,8 +9447,8 @@ function make$81(className, disabled, fullWidth, icon, indicator, label, onChang
   if (tmp$9) {
     tmp.tabIndex = tmp$9[0];
   }
-  if (touchRippleProps) {
-    tmp.touchRippleProps = touchRippleProps[0];
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
   }
   if (_type) {
     tmp.type = _type[0];
@@ -9774,16 +9774,16 @@ var Classes$69 = /* module */[
   /* to_obj */to_obj$69
 ];
 
-function make$86(actions, backIconButtonProps, colSpan, component, count, labelDisplayedRows, labelRowsPerPage, nextIconButtonProps, onChangePage, onChangeRowsPerPage, page, rowsPerPage, rowsPerPageOptions, selectProps, className, numeric, padding, scope, sortDirection, variant, classes, children) {
+function make$86(_Actions, backIconButtonProps, colSpan, component, count, labelDisplayedRows, labelRowsPerPage, nextIconButtonProps, onChangePage, onChangeRowsPerPage, page, rowsPerPage, rowsPerPageOptions, _SelectProps, className, numeric, padding, scope, sortDirection, variant, classes, children) {
   var tmp = {
     count: unwrapValue(count),
     onChangePage: onChangePage,
     page: unwrapValue(page),
     rowsPerPage: unwrapValue(rowsPerPage)
   };
-  var tmp$1 = Js_option.map(unwrapValue, actions);
+  var tmp$1 = Js_option.map(unwrapValue, _Actions);
   if (tmp$1) {
-    tmp.actions = tmp$1[0];
+    tmp.Actions = tmp$1[0];
   }
   if (backIconButtonProps) {
     tmp.backIconButtonProps = backIconButtonProps[0];
@@ -9811,8 +9811,8 @@ function make$86(actions, backIconButtonProps, colSpan, component, count, labelD
   if (rowsPerPageOptions) {
     tmp.rowsPerPageOptions = rowsPerPageOptions[0];
   }
-  if (selectProps) {
-    tmp.selectProps = selectProps[0];
+  if (_SelectProps) {
+    tmp.SelectProps = _SelectProps[0];
   }
   if (className) {
     tmp.className = className[0];
@@ -9964,7 +9964,7 @@ var Classes$71 = /* module */[
   /* to_obj */to_obj$71
 ];
 
-function make$88(active, className, direction, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, touchRippleProps, _type, classes, children) {
+function make$88(active, className, direction, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(Js_boolean.to_js_boolean, active);
   if (tmp$1) {
@@ -10045,8 +10045,8 @@ function make$88(active, className, direction, buttonRef, centerRipple, componen
   if (tmp$8) {
     tmp.tabIndex = tmp$8[0];
   }
-  if (touchRippleProps) {
-    tmp.touchRippleProps = touchRippleProps[0];
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
   }
   if (_type) {
     tmp.type = _type[0];
@@ -10203,7 +10203,7 @@ var Classes$73 = /* module */[
   /* to_obj */to_obj$73
 ];
 
-function make$90(action, centered, className, fullWidth, indicatorColor, onChange, scrollable, scrollButtons, tabScrollButton, textColor, theme, value, classes, children) {
+function make$90(action, centered, className, fullWidth, indicatorColor, onChange, scrollable, scrollButtons, _TabScrollButton, textColor, theme, value, classes, children) {
   var tmp = {
     theme: theme
   };
@@ -10247,9 +10247,9 @@ function make$90(action, centered, className, fullWidth, indicatorColor, onChang
   if (tmp$5) {
     tmp.scrollButtons = tmp$5[0];
   }
-  var tmp$6 = Js_option.map(unwrapValue, tabScrollButton);
+  var tmp$6 = Js_option.map(unwrapValue, _TabScrollButton);
   if (tmp$6) {
-    tmp.tabScrollButton = tmp$6[0];
+    tmp.TabScrollButton = tmp$6[0];
   }
   var tmp$7 = Js_option.map((function (v) {
           return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$75);
@@ -10301,7 +10301,7 @@ function marginFromJs$5(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$76, param);
 }
 
-function make$91(autoComplete, autoFocus, className, defaultValue, disabled, error, formHelperTextProps, fullWidth, helperText, id, inputLabelProps, inputProps2, inputProps, inputRef, label, margin, multiline, name, onBlur, onChange, onFocus, placeholder, required, rows, rowsMax, select, selectProps, _type, value, component, children) {
+function make$91(autoComplete, autoFocus, className, defaultValue, disabled, error, _FormHelperTextProps, fullWidth, helperText, id, _InputLabelProps, _InputProps, inputProps, inputRef, label, margin, multiline, name, onBlur, onChange, onFocus, placeholder, required, rows, rowsMax, select, _SelectProps, _type, value, component, children) {
   var tmp = { };
   if (autoComplete) {
     tmp.autoComplete = autoComplete[0];
@@ -10325,8 +10325,8 @@ function make$91(autoComplete, autoFocus, className, defaultValue, disabled, err
   if (tmp$4) {
     tmp.error = tmp$4[0];
   }
-  if (formHelperTextProps) {
-    tmp.formHelperTextProps = formHelperTextProps[0];
+  if (_FormHelperTextProps) {
+    tmp.FormHelperTextProps = _FormHelperTextProps[0];
   }
   var tmp$5 = Js_option.map(Js_boolean.to_js_boolean, fullWidth);
   if (tmp$5) {
@@ -10338,11 +10338,11 @@ function make$91(autoComplete, autoFocus, className, defaultValue, disabled, err
   if (id) {
     tmp.id = id[0];
   }
-  if (inputLabelProps) {
-    tmp.inputLabelProps = inputLabelProps[0];
+  if (_InputLabelProps) {
+    tmp.InputLabelProps = _InputLabelProps[0];
   }
-  if (inputProps2) {
-    tmp.inputProps2 = inputProps2[0];
+  if (_InputProps) {
+    tmp.InputProps = _InputProps[0];
   }
   if (inputProps) {
     tmp.inputProps = inputProps[0];
@@ -10394,8 +10394,8 @@ function make$91(autoComplete, autoFocus, className, defaultValue, disabled, err
   if (tmp$11) {
     tmp.select = tmp$11[0];
   }
-  if (selectProps) {
-    tmp.selectProps = selectProps[0];
+  if (_SelectProps) {
+    tmp.SelectProps = _SelectProps[0];
   }
   if (_type) {
     tmp.type = _type[0];
@@ -10553,7 +10553,7 @@ var Classes$75 = /* module */[
   /* to_obj */to_obj$75
 ];
 
-function make$93(className, disableFocusListener, disableHoverListener, disableTouchListener, enterDelay, enterTouchDelay, id, leaveDelay, leaveTouchDelay, onClose, onOpen, _open, placement, popperProps, theme, title, classes, children) {
+function make$93(className, disableFocusListener, disableHoverListener, disableTouchListener, enterDelay, enterTouchDelay, id, leaveDelay, leaveTouchDelay, onClose, onOpen, _open, placement, _PopperProps, theme, title, classes, children) {
   var tmp = {
     theme: theme,
     title: title
@@ -10608,8 +10608,8 @@ function make$93(className, disableFocusListener, disableHoverListener, disableT
   if (tmp$9) {
     tmp.placement = tmp$9[0];
   }
-  if (popperProps) {
-    tmp.popperProps = popperProps[0];
+  if (_PopperProps) {
+    tmp.PopperProps = _PopperProps[0];
   }
   var tmp$10 = Js_option.map(to_obj$75, classes);
   if (tmp$10) {
