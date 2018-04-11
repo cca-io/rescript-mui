@@ -1,6 +1,6 @@
 {
   "name": "@jsiebern/bs-material-ui",
-  "version": "0.1.6",
+  "version": "0.1.61",
   "description": "This library provides Reason bindings for material-ui.",
   "keywords": [
     "bucklescript",
@@ -14,11 +14,13 @@
   "license": "MIT",
   "main": "src/MaterialUi.re",
   "scripts": {
-    "build": "npm link bs-platform; bsb -make-world"
+    "build": "bsb -make-world"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "bs-platform": "^2.2.3"
+  },
   "dependencies": {
-    "material-ui": "^1.0.0-beta.40",
+    "material-ui": "^1.0.0-beta.41",
     "object-hash": "^1.2.0",
     "reason-react": "^0.3.1"
   }
