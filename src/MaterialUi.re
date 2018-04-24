@@ -3,7 +3,7 @@ external toJsUnsafe : 'a => 'b = "%identity";
 let unwrapValue =
   fun
   | `String(s) => toJsUnsafe(s)
-  | `Bool(b) => toJsUnsafe(Js.Boolean.to_js_boolean(b))
+  | `Bool(b) => toJsUnsafe(b)
   | `Float(f) => toJsUnsafe(f)
   | `Int(i) => toJsUnsafe(i)
   | `Date(d) => toJsUnsafe(d)
@@ -686,9 +686,9 @@ module AppBar = {
       ~className: string=?,
       ~color: string=?,
       ~position: string=?,
-      ~component: 'union_t=?,
-      ~elevation: 'number_g=?,
-      ~square: Js.boolean=?,
+      ~component: 'union_3=?,
+      ~elevation: 'number_5=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -715,8 +715,7 @@ module AppBar = {
           ~position=?Js.Option.map((. v) => positionToJs(v), position),
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
-          ~square=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), square),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -760,7 +759,7 @@ module Avatar = {
       ~alt: string=?,
       ~childrenClassName: string=?,
       ~className: string=?,
-      ~component: 'union_t=?,
+      ~component: 'union_j=?,
       ~imgProps: Js.t({..})=?,
       ~sizes: string=?,
       ~src: string=?,
@@ -839,9 +838,9 @@ module Backdrop = {
   external makeProps :
     (
       ~className: string=?,
-      ~invisible: Js.boolean=?,
-      ~_open: Js.boolean,
-      ~transitionDuration: 'union_1=?,
+      ~invisible: bool=?,
+      ~_open: bool,
+      ~transitionDuration: 'union_b=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -868,9 +867,8 @@ module Backdrop = {
       ~props=
         makeProps(
           ~className?,
-          ~invisible=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), invisible),
-          ~_open=Js.Boolean.to_js_boolean(_open),
+          ~invisible?,
+          ~_open,
           ~transitionDuration=?
             Js.Option.map(
               (. v) =>
@@ -937,7 +935,7 @@ module Badge = {
       ~badgeContent: ReasonReact.reactElement,
       ~className: string=?,
       ~color: string=?,
-      ~component: 'union_t=?,
+      ~component: 'union_k=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -1012,15 +1010,16 @@ module BottomNavigationAction = {
       ~label: ReasonReact.reactElement=?,
       ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
-      ~selected: Js.boolean=?,
-      ~showLabel: Js.boolean=?,
-      ~value: 'any_p=?,
+      ~selected: bool=?,
+      ~showLabel: bool=?,
+      ~value: 'any_o=?,
       ~buttonRef: ReasonReact.reactElement=?,
-      ~centerRipple: Js.boolean=?,
-      ~component: 'union_b=?,
-      ~disabled: Js.boolean=?,
-      ~disableRipple: Js.boolean=?,
-      ~focusRipple: Js.boolean=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_r=?,
+      ~disabled: bool=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onKeyboardFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
@@ -1033,7 +1032,7 @@ module BottomNavigationAction = {
       ~onTouchMove: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~onTouchStart: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~role: string=?,
-      ~tabIndex: 'union_a=?,
+      ~tabIndex: 'union_j=?,
       ~_TouchRippleProps: Js.t({..})=?,
       ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -1050,7 +1049,7 @@ module BottomNavigationAction = {
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~selected: option(bool)=?,
         ~showLabel: option(bool)=?,
-        ~value: option('any_p)=?,
+        ~value: option('any_o)=?,
         ~buttonRef: option(ReasonReact.reactElement)=?,
         ~centerRipple: option(bool)=?,
         ~component:
@@ -1058,6 +1057,7 @@ module BottomNavigationAction = {
         ~disabled: option(bool)=?,
         ~disableRipple: option(bool)=?,
         ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onKeyboardFocus:
@@ -1086,30 +1086,16 @@ module BottomNavigationAction = {
           ~label?,
           ~onChange?,
           ~onClick?,
-          ~selected=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), selected),
-          ~showLabel=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), showLabel),
+          ~selected?,
+          ~showLabel?,
           ~value?,
           ~buttonRef?,
-          ~centerRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              centerRipple,
-            ),
+          ~centerRipple?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
-          ~focusRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              focusRipple,
-            ),
+          ~disabled?,
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
           ~onBlur?,
           ~onFocus?,
           ~onKeyboardFocus?,
@@ -1161,8 +1147,8 @@ module BottomNavigation = {
     (
       ~className: string=?,
       ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
-      ~showLabels: Js.boolean=?,
-      ~value: 'any_1=?,
+      ~showLabels: bool=?,
+      ~value: 'any_2=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -1173,7 +1159,7 @@ module BottomNavigation = {
         ~className: option(string)=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
         ~showLabels: option(bool)=?,
-        ~value: option('any_1)=?,
+        ~value: option('any_2)=?,
         ~classes: option(Classes.t)=?,
         children,
       ) =>
@@ -1183,8 +1169,7 @@ module BottomNavigation = {
         makeProps(
           ~className?,
           ~onChange?,
-          ~showLabels=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), showLabels),
+          ~showLabels?,
           ~value?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
@@ -1197,14 +1182,12 @@ module ButtonBase = {
   module Classes = {
     type classesType =
       | Root(string)
-      | Disabled(string)
-      | KeyboardFocused(string);
+      | Disabled(string);
     type t = list(classesType);
     let to_string =
       fun
       | Root(_) => "root"
-      | Disabled(_) => "disabled"
-      | KeyboardFocused(_) => "keyboardFocused";
+      | Disabled(_) => "disabled";
     let to_obj = listOfClasses =>
       listOfClasses
       |> StdLabels.List.fold_left(
@@ -1212,8 +1195,7 @@ module ButtonBase = {
              (obj, classType) => {
                switch (classType) {
                | Root(className)
-               | Disabled(className)
-               | KeyboardFocused(className) =>
+               | Disabled(className) =>
                  Js.Dict.set(obj, to_string(classType), className)
                };
                obj;
@@ -1227,12 +1209,13 @@ module ButtonBase = {
   external makeProps :
     (
       ~buttonRef: ReasonReact.reactElement=?,
-      ~centerRipple: Js.boolean=?,
+      ~centerRipple: bool=?,
       ~className: string=?,
-      ~component: 'union_b=?,
-      ~disabled: Js.boolean=?,
-      ~disableRipple: Js.boolean=?,
-      ~focusRipple: Js.boolean=?,
+      ~component: 'union_r=?,
+      ~disabled: bool=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
@@ -1246,7 +1229,7 @@ module ButtonBase = {
       ~onTouchMove: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~onTouchStart: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~role: string=?,
-      ~tabIndex: 'union_a=?,
+      ~tabIndex: 'union_j=?,
       ~_TouchRippleProps: Js.t({..})=?,
       ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -1264,6 +1247,7 @@ module ButtonBase = {
         ~disabled: option(bool)=?,
         ~disableRipple: option(bool)=?,
         ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
@@ -1289,25 +1273,13 @@ module ButtonBase = {
       ~props=
         makeProps(
           ~buttonRef?,
-          ~centerRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              centerRipple,
-            ),
+          ~centerRipple?,
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
-          ~focusRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              focusRipple,
-            ),
+          ~disabled?,
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
           ~onBlur?,
           ~onClick?,
           ~onFocus?,
@@ -1361,7 +1333,7 @@ module Button = {
       | Raised(string)
       | RaisedPrimary(string)
       | RaisedSecondary(string)
-      | KeyboardFocused(string)
+      | FocusVisible(string)
       | Disabled(string)
       | Fab(string)
       | Mini(string)
@@ -1379,7 +1351,7 @@ module Button = {
       | Raised(_) => "raised"
       | RaisedPrimary(_) => "raisedPrimary"
       | RaisedSecondary(_) => "raisedSecondary"
-      | KeyboardFocused(_) => "keyboardFocused"
+      | FocusVisible(_) => "focusVisible"
       | Disabled(_) => "disabled"
       | Fab(_) => "fab"
       | Mini(_) => "mini"
@@ -1400,7 +1372,7 @@ module Button = {
                | Raised(className)
                | RaisedPrimary(className)
                | RaisedSecondary(className)
-               | KeyboardFocused(className)
+               | FocusVisible(className)
                | Disabled(className)
                | Fab(className)
                | Mini(className)
@@ -1421,19 +1393,20 @@ module Button = {
     (
       ~className: string=?,
       ~color: string=?,
-      ~component: 'union_m=?,
-      ~disabled: Js.boolean=?,
-      ~disableFocusRipple: Js.boolean=?,
-      ~disableRipple: Js.boolean=?,
-      ~fullWidth: Js.boolean=?,
+      ~component: 'union_8=?,
+      ~disabled: bool=?,
+      ~disableFocusRipple: bool=?,
+      ~disableRipple: bool=?,
+      ~focusVisibleClassName: string=?,
+      ~fullWidth: bool=?,
       ~href: string=?,
-      ~mini: Js.boolean=?,
+      ~mini: bool=?,
       ~size: string=?,
       ~_type: string=?,
       ~variant: string=?,
       ~buttonRef: ReasonReact.reactElement=?,
-      ~centerRipple: Js.boolean=?,
-      ~focusRipple: Js.boolean=?,
+      ~centerRipple: bool=?,
+      ~focusRipple: bool=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
@@ -1447,7 +1420,7 @@ module Button = {
       ~onTouchMove: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~onTouchStart: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~role: string=?,
-      ~tabIndex: 'union_a=?,
+      ~tabIndex: 'union_j=?,
       ~_TouchRippleProps: Js.t({..})=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -1463,6 +1436,7 @@ module Button = {
         ~disabled: option(bool)=?,
         ~disableFocusRipple: option(bool)=?,
         ~disableRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
         ~fullWidth: option(bool)=?,
         ~href: option(string)=?,
         ~mini: option(bool)=?,
@@ -1498,36 +1472,19 @@ module Button = {
           ~className?,
           ~color=?Js.Option.map((. v) => colorToJs(v), color),
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableFocusRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableFocusRipple,
-            ),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
-          ~fullWidth=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), fullWidth),
+          ~disabled?,
+          ~disableFocusRipple?,
+          ~disableRipple?,
+          ~focusVisibleClassName?,
+          ~fullWidth?,
           ~href?,
-          ~mini=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), mini),
+          ~mini?,
           ~size=?Js.Option.map((. v) => sizeToJs(v), size),
           ~_type?,
           ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
           ~buttonRef?,
-          ~centerRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              centerRipple,
-            ),
-          ~focusRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              focusRipple,
-            ),
+          ~centerRipple?,
+          ~focusRipple?,
           ~onBlur?,
           ~onClick?,
           ~onFocus?,
@@ -1581,7 +1538,7 @@ module CardActions = {
   external makeProps :
     (
       ~className: string=?,
-      ~disableActionSpacing: Js.boolean=?,
+      ~disableActionSpacing: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -1599,11 +1556,7 @@ module CardActions = {
       ~props=
         makeProps(
           ~className?,
-          ~disableActionSpacing=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableActionSpacing,
-            ),
+          ~disableActionSpacing?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -1639,7 +1592,7 @@ module CardContent = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_q=?,
+      ~component: 'union_m=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -1711,7 +1664,7 @@ module CardHeader = {
       ~action: ReasonReact.reactElement=?,
       ~avatar: ReasonReact.reactElement=?,
       ~className: string=?,
-      ~component: 'union_9=?,
+      ~component: 'union_6=?,
       ~subheader: ReasonReact.reactElement=?,
       ~title: ReasonReact.reactElement=?,
       ~classes: Js.Dict.t(string)=?,
@@ -1843,10 +1796,10 @@ module Card = {
   external makeProps :
     (
       ~className: string=?,
-      ~raised: Js.boolean=?,
-      ~component: 'union_t=?,
-      ~elevation: 'number_g=?,
-      ~square: Js.boolean=?,
+      ~raised: bool=?,
+      ~component: 'union_3=?,
+      ~elevation: 'number_5=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -1868,12 +1821,10 @@ module Card = {
       ~props=
         makeProps(
           ~className?,
-          ~raised=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), raised),
+          ~raised?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
-          ~square=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), square),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -1926,14 +1877,14 @@ module Checkbox = {
   [@bs.obj]
   external makeProps :
     (
-      ~checked: 'union_9=?,
+      ~checked: 'union_o=?,
       ~checkedIcon: ReasonReact.reactElement=?,
       ~color: string=?,
-      ~disabled: Js.boolean=?,
-      ~disableRipple: Js.boolean=?,
+      ~disabled: bool=?,
+      ~disableRipple: bool=?,
       ~icon: ReasonReact.reactElement=?,
       ~id: string=?,
-      ~indeterminate: Js.boolean=?,
+      ~indeterminate: bool=?,
       ~indeterminateIcon: ReasonReact.reactElement=?,
       ~inputProps: Js.t({..})=?,
       ~inputRef: ReasonReact.reactElement=?,
@@ -1971,20 +1922,11 @@ module Checkbox = {
           ~checked=?Js.Option.map((. v) => unwrapValue(v), checked),
           ~checkedIcon?,
           ~color=?Js.Option.map((. v) => colorToJs(v), color),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
+          ~disabled?,
+          ~disableRipple?,
           ~icon?,
           ~id?,
-          ~indeterminate=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              indeterminate,
-            ),
+          ~indeterminate?,
           ~indeterminateIcon?,
           ~inputProps?,
           ~inputRef?,
@@ -2045,13 +1987,13 @@ module Chip = {
     (
       ~avatar: ReasonReact.reactElement=?,
       ~className: string=?,
-      ~component: 'union_p=?,
+      ~component: 'union_1=?,
       ~deleteIcon: ReasonReact.reactElement=?,
       ~label: ReasonReact.reactElement=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
-      ~onDelete: 'emptyCallback_w=?,
+      ~onDelete: 'emptyCallback_p=?,
       ~onKeyDown: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
-      ~tabIndex: 'union_0=?,
+      ~tabIndex: 'union_n=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -2066,7 +2008,7 @@ module Chip = {
         ~deleteIcon: option(ReasonReact.reactElement)=?,
         ~label: option(ReasonReact.reactElement)=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onDelete: option('emptyCallback_w)=?,
+        ~onDelete: option('emptyCallback_p)=?,
         ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
         ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
         ~classes: option(Classes.t)=?,
@@ -2151,12 +2093,12 @@ module CircularProgress = {
     (
       ~className: string=?,
       ~color: string=?,
-      ~max: 'number_y=?,
-      ~min: 'number_r=?,
-      ~size: 'union_c=?,
+      ~max: 'number_f=?,
+      ~min: 'number_o=?,
+      ~size: 'union_q=?,
       ~style: Js.t({..})=?,
-      ~thickness: 'number_t=?,
-      ~value: 'number_o=?,
+      ~thickness: 'number_a=?,
+      ~value: 'number_f=?,
       ~variant: string=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -2290,13 +2232,13 @@ module Collapse = {
     (
       ~className: string=?,
       ~collapsedHeight: string=?,
-      ~component: 'union_u=?,
-      ~_in: Js.boolean=?,
-      ~onEnter: 'emptyCallback_u=?,
-      ~onEntered: 'emptyCallback_g=?,
-      ~onEntering: 'emptyCallback_u=?,
-      ~onExit: 'emptyCallback_6=?,
-      ~onExiting: 'emptyCallback_k=?,
+      ~component: 'union_4=?,
+      ~_in: bool=?,
+      ~onEnter: 'emptyCallback_b=?,
+      ~onEntered: 'emptyCallback_z=?,
+      ~onEntering: 'emptyCallback_m=?,
+      ~onExit: 'emptyCallback_l=?,
+      ~onExiting: 'emptyCallback_6=?,
       ~style: Js.t({..})=?,
       ~theme: Js.t({..}),
       ~timeout: 'union_w=?,
@@ -2312,11 +2254,11 @@ module Collapse = {
         ~component:
            option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~_in: option(bool)=?,
-        ~onEnter: option('emptyCallback_u)=?,
-        ~onEntered: option('emptyCallback_g)=?,
-        ~onEntering: option('emptyCallback_u)=?,
-        ~onExit: option('emptyCallback_6)=?,
-        ~onExiting: option('emptyCallback_k)=?,
+        ~onEnter: option('emptyCallback_b)=?,
+        ~onEntered: option('emptyCallback_z)=?,
+        ~onEntering: option('emptyCallback_m)=?,
+        ~onExit: option('emptyCallback_l)=?,
+        ~onExiting: option('emptyCallback_6)=?,
         ~style: option(Js.t({..}))=?,
         ~theme: Js.t({..}),
         ~timeout:
@@ -2338,7 +2280,7 @@ module Collapse = {
           ~className?,
           ~collapsedHeight?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~_in=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), _in),
+          ~_in?,
           ~onEnter?,
           ~onEntered?,
           ~onEntering?,
@@ -2401,7 +2343,7 @@ module DialogActions = {
   external makeProps :
     (
       ~className: string=?,
-      ~disableActionSpacing: Js.boolean=?,
+      ~disableActionSpacing: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -2419,11 +2361,7 @@ module DialogActions = {
       ~props=
         makeProps(
           ~className?,
-          ~disableActionSpacing=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableActionSpacing,
-            ),
+          ~disableActionSpacing?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -2492,11 +2430,11 @@ module DialogContentText = {
       ~className: string=?,
       ~align: string=?,
       ~color: string=?,
-      ~component: 'union_v=?,
-      ~gutterBottom: Js.boolean=?,
+      ~component: 'union_z=?,
+      ~gutterBottom: bool=?,
       ~headlineMapping: Js.t({..})=?,
-      ~noWrap: Js.boolean=?,
-      ~paragraph: Js.boolean=?,
+      ~noWrap: bool=?,
+      ~paragraph: bool=?,
       ~variant: string=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -2526,16 +2464,10 @@ module DialogContentText = {
           ~align=?Js.Option.map((. v) => alignToJs(v), align),
           ~color=?Js.Option.map((. v) => colorToJs(v), color),
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~gutterBottom=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              gutterBottom,
-            ),
+          ~gutterBottom?,
           ~headlineMapping?,
-          ~noWrap=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), noWrap),
-          ~paragraph=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), paragraph),
+          ~noWrap?,
+          ~paragraph?,
           ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
@@ -2618,7 +2550,7 @@ module DialogTitle = {
   external makeProps :
     (
       ~className: string=?,
-      ~disableTypography: Js.boolean=?,
+      ~disableTypography: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -2636,11 +2568,7 @@ module DialogTitle = {
       ~props=
         makeProps(
           ~className?,
-          ~disableTypography=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableTypography,
-            ),
+          ~disableTypography?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -2705,35 +2633,35 @@ module Dialog = {
   [@bs.obj]
   external makeProps :
     (
+      ~_BackdropProps: Js.t({..})=?,
       ~className: string=?,
-      ~disableBackdropClick: Js.boolean=?,
-      ~disableEscapeKeyDown: Js.boolean=?,
-      ~fullScreen: Js.boolean=?,
-      ~fullWidth: Js.boolean=?,
+      ~disableBackdropClick: bool=?,
+      ~disableEscapeKeyDown: bool=?,
+      ~fullScreen: bool=?,
+      ~fullWidth: bool=?,
       ~maxWidth: string=?,
       ~onBackdropClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
-      ~onClose: 'emptyCallback_v=?,
-      ~onEnter: 'emptyCallback_e=?,
-      ~onEntered: 'emptyCallback_y=?,
-      ~onEntering: 'emptyCallback_f=?,
+      ~onClose: 'emptyCallback_7=?,
+      ~onEnter: 'emptyCallback_v=?,
+      ~onEntered: 'emptyCallback_u=?,
+      ~onEntering: 'emptyCallback_l=?,
       ~onEscapeKeyDown: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
-      ~onExit: 'emptyCallback_9=?,
-      ~onExited: 'emptyCallback_g=?,
-      ~onExiting: 'emptyCallback_2=?,
-      ~_open: Js.boolean,
+      ~onExit: 'emptyCallback_7=?,
+      ~onExited: 'emptyCallback_e=?,
+      ~onExiting: 'emptyCallback_p=?,
+      ~_open: bool,
       ~_PaperProps: Js.t({..})=?,
-      ~transition: 'union_f=?,
-      ~transitionDuration: 'union_x=?,
-      ~_BackdropComponent: 'union_f=?,
-      ~_BackdropProps: Js.t({..})=?,
-      ~container: 'union_x=?,
-      ~disableAutoFocus: Js.boolean=?,
-      ~disableEnforceFocus: Js.boolean=?,
-      ~disableRestoreFocus: Js.boolean=?,
-      ~hideBackdrop: Js.boolean=?,
-      ~keepMounted: Js.boolean=?,
+      ~transition: 'union_z=?,
+      ~transitionDuration: 'union_o=?,
+      ~_BackdropComponent: 'union_d=?,
+      ~container: 'union_c=?,
+      ~disableAutoFocus: bool=?,
+      ~disableEnforceFocus: bool=?,
+      ~disableRestoreFocus: bool=?,
+      ~hideBackdrop: bool=?,
+      ~keepMounted: bool=?,
       ~manager: Js.t({..})=?,
-      ~onRendered: 'emptyCallback_p=?,
+      ~onRendered: 'emptyCallback_5=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -2741,6 +2669,7 @@ module Dialog = {
     "";
   let make =
       (
+        ~_BackdropProps: option(Js.t({..}))=?,
         ~className: option(string)=?,
         ~disableBackdropClick: option(bool)=?,
         ~disableEscapeKeyDown: option(bool)=?,
@@ -2749,15 +2678,15 @@ module Dialog = {
         ~maxWidth: option(maxWidth)=?,
         ~onBackdropClick:
            option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onClose: option('emptyCallback_v)=?,
-        ~onEnter: option('emptyCallback_e)=?,
-        ~onEntered: option('emptyCallback_y)=?,
-        ~onEntering: option('emptyCallback_f)=?,
+        ~onClose: option('emptyCallback_7)=?,
+        ~onEnter: option('emptyCallback_v)=?,
+        ~onEntered: option('emptyCallback_u)=?,
+        ~onEntering: option('emptyCallback_l)=?,
         ~onEscapeKeyDown:
            option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onExit: option('emptyCallback_9)=?,
-        ~onExited: option('emptyCallback_g)=?,
-        ~onExiting: option('emptyCallback_2)=?,
+        ~onExit: option('emptyCallback_7)=?,
+        ~onExited: option('emptyCallback_e)=?,
+        ~onExiting: option('emptyCallback_p)=?,
         ~_open: bool,
         ~_PaperProps: option(Js.t({..}))=?,
         ~transition:
@@ -2772,7 +2701,6 @@ module Dialog = {
            )=?,
         ~_BackdropComponent:
            option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
-        ~_BackdropProps: option(Js.t({..}))=?,
         ~container:
            option(
              [
@@ -2786,7 +2714,7 @@ module Dialog = {
         ~hideBackdrop: option(bool)=?,
         ~keepMounted: option(bool)=?,
         ~manager: option(Js.t({..}))=?,
-        ~onRendered: option('emptyCallback_p)=?,
+        ~onRendered: option('emptyCallback_5)=?,
         ~classes: option(Classes.t)=?,
         children,
       ) =>
@@ -2794,21 +2722,12 @@ module Dialog = {
       ~reactClass,
       ~props=
         makeProps(
+          ~_BackdropProps?,
           ~className?,
-          ~disableBackdropClick=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableBackdropClick,
-            ),
-          ~disableEscapeKeyDown=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableEscapeKeyDown,
-            ),
-          ~fullScreen=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), fullScreen),
-          ~fullWidth=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), fullWidth),
+          ~disableBackdropClick?,
+          ~disableEscapeKeyDown?,
+          ~fullScreen?,
+          ~fullWidth?,
           ~maxWidth=?Js.Option.map((. v) => maxWidthToJs(v), maxWidth),
           ~onBackdropClick?,
           ~onClose?,
@@ -2819,7 +2738,7 @@ module Dialog = {
           ~onExit?,
           ~onExited?,
           ~onExiting?,
-          ~_open=Js.Boolean.to_js_boolean(_open),
+          ~_open,
           ~_PaperProps?,
           ~transition=?Js.Option.map((. v) => unwrapValue(v), transition),
           ~transitionDuration=?
@@ -2834,33 +2753,12 @@ module Dialog = {
             ),
           ~_BackdropComponent=?
             Js.Option.map((. v) => unwrapValue(v), _BackdropComponent),
-          ~_BackdropProps?,
           ~container=?Js.Option.map((. v) => unwrapValue(v), container),
-          ~disableAutoFocus=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableAutoFocus,
-            ),
-          ~disableEnforceFocus=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableEnforceFocus,
-            ),
-          ~disableRestoreFocus=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRestoreFocus,
-            ),
-          ~hideBackdrop=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              hideBackdrop,
-            ),
-          ~keepMounted=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              keepMounted,
-            ),
+          ~disableAutoFocus?,
+          ~disableEnforceFocus?,
+          ~disableRestoreFocus?,
+          ~hideBackdrop?,
+          ~keepMounted?,
           ~manager?,
           ~onRendered?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
@@ -2906,11 +2804,11 @@ module Divider = {
   [@bs.obj]
   external makeProps :
     (
-      ~absolute: Js.boolean=?,
+      ~absolute: bool=?,
       ~className: string=?,
-      ~component: 'union_1=?,
-      ~inset: Js.boolean=?,
-      ~light: Js.boolean=?,
+      ~component: 'union_a=?,
+      ~inset: bool=?,
+      ~light: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -2931,14 +2829,11 @@ module Divider = {
       ~reactClass,
       ~props=
         makeProps(
-          ~absolute=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), absolute),
+          ~absolute?,
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~inset=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), inset),
-          ~light=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), light),
+          ~inset?,
+          ~light?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -3023,14 +2918,14 @@ module Drawer = {
     (
       ~anchor: string=?,
       ~className: string=?,
-      ~elevation: 'number_7=?,
+      ~elevation: 'number_6=?,
       ~_ModalProps: Js.t({..})=?,
-      ~onClose: 'emptyCallback_h=?,
-      ~_open: Js.boolean=?,
+      ~onClose: 'emptyCallback_z=?,
+      ~_open: bool=?,
       ~_PaperProps: Js.t({..})=?,
       ~_SlideProps: Js.t({..})=?,
       ~theme: Js.t({..}),
-      ~transitionDuration: 'union_g=?,
+      ~transitionDuration: 'union_n=?,
       ~variant: string=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -3043,7 +2938,7 @@ module Drawer = {
         ~className: option(string)=?,
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
         ~_ModalProps: option(Js.t({..}))=?,
-        ~onClose: option('emptyCallback_h)=?,
+        ~onClose: option('emptyCallback_z)=?,
         ~_open: option(bool)=?,
         ~_PaperProps: option(Js.t({..}))=?,
         ~_SlideProps: option(Js.t({..}))=?,
@@ -3069,8 +2964,7 @@ module Drawer = {
           ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
           ~_ModalProps?,
           ~onClose?,
-          ~_open=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), _open),
+          ~_open?,
           ~_PaperProps?,
           ~_SlideProps?,
           ~theme,
@@ -3230,16 +3124,17 @@ module ExpansionPanelSummary = {
   external makeProps :
     (
       ~className: string=?,
-      ~disabled: Js.boolean=?,
-      ~expanded: Js.boolean=?,
+      ~disabled: bool=?,
+      ~expanded: bool=?,
       ~expandIcon: ReasonReact.reactElement=?,
       ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
       ~buttonRef: ReasonReact.reactElement=?,
-      ~centerRipple: Js.boolean=?,
-      ~component: 'union_b=?,
-      ~disableRipple: Js.boolean=?,
-      ~focusRipple: Js.boolean=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_r=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onKeyboardFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
@@ -3252,7 +3147,7 @@ module ExpansionPanelSummary = {
       ~onTouchMove: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~onTouchStart: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~role: string=?,
-      ~tabIndex: 'union_a=?,
+      ~tabIndex: 'union_j=?,
       ~_TouchRippleProps: Js.t({..})=?,
       ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -3274,6 +3169,7 @@ module ExpansionPanelSummary = {
            option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~disableRipple: option(bool)=?,
         ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onKeyboardFocus:
@@ -3298,30 +3194,17 @@ module ExpansionPanelSummary = {
       ~props=
         makeProps(
           ~className?,
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~expanded=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), expanded),
+          ~disabled?,
+          ~expanded?,
           ~expandIcon?,
           ~onChange?,
           ~onClick?,
           ~buttonRef?,
-          ~centerRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              centerRipple,
-            ),
+          ~centerRipple?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
-          ~focusRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              focusRipple,
-            ),
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
           ~onBlur?,
           ~onFocus?,
           ~onKeyboardFocus?,
@@ -3379,13 +3262,13 @@ module ExpansionPanel = {
     (
       ~className: string=?,
       ~_CollapseProps: Js.t({..})=?,
-      ~defaultExpanded: Js.boolean=?,
-      ~disabled: Js.boolean=?,
-      ~expanded: Js.boolean=?,
+      ~defaultExpanded: bool=?,
+      ~disabled: bool=?,
+      ~expanded: bool=?,
       ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
-      ~component: 'union_t=?,
-      ~elevation: 'number_g=?,
-      ~square: Js.boolean=?,
+      ~component: 'union_3=?,
+      ~elevation: 'number_5=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -3412,20 +3295,13 @@ module ExpansionPanel = {
         makeProps(
           ~className?,
           ~_CollapseProps?,
-          ~defaultExpanded=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              defaultExpanded,
-            ),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~expanded=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), expanded),
+          ~defaultExpanded?,
+          ~disabled?,
+          ~expanded?,
           ~onChange?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
-          ~square=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), square),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -3444,12 +3320,12 @@ module Fade = {
   [@bs.obj]
   external makeProps :
     (
-      ~_in: Js.boolean=?,
-      ~onEnter: 'emptyCallback_q=?,
-      ~onExit: 'emptyCallback_w=?,
+      ~_in: bool=?,
+      ~onEnter: 'emptyCallback_t=?,
+      ~onExit: 'emptyCallback_r=?,
       ~style: Js.t({..})=?,
       ~theme: Js.t({..}),
-      ~timeout: 'union_i=?,
+      ~timeout: 'union_2=?,
       unit
     ) =>
     _ =
@@ -3457,8 +3333,8 @@ module Fade = {
   let make =
       (
         ~_in: option(bool)=?,
-        ~onEnter: option('emptyCallback_q)=?,
-        ~onExit: option('emptyCallback_w)=?,
+        ~onEnter: option('emptyCallback_t)=?,
+        ~onExit: option('emptyCallback_r)=?,
         ~style: option(Js.t({..}))=?,
         ~theme: Js.t({..}),
         ~timeout:
@@ -3469,7 +3345,7 @@ module Fade = {
       ~reactClass,
       ~props=
         makeProps(
-          ~_in=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), _in),
+          ~_in?,
           ~onEnter?,
           ~onExit?,
           ~style?,
@@ -3522,10 +3398,10 @@ module FormControlLabel = {
   [@bs.obj]
   external makeProps :
     (
-      ~checked: 'union_s=?,
+      ~checked: 'union_g=?,
       ~className: string=?,
       ~control: ReasonReact.reactElement=?,
-      ~disabled: Js.boolean=?,
+      ~disabled: bool=?,
       ~inputRef: ReasonReact.reactElement=?,
       ~label: ReasonReact.reactElement=?,
       ~name: string=?,
@@ -3557,8 +3433,7 @@ module FormControlLabel = {
           ~checked=?Js.Option.map((. v) => unwrapValue(v), checked),
           ~className?,
           ~control?,
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
+          ~disabled?,
           ~inputRef?,
           ~label?,
           ~name?,
@@ -3614,14 +3489,14 @@ module FormControl = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_d=?,
-      ~disabled: Js.boolean=?,
-      ~error: Js.boolean=?,
-      ~fullWidth: Js.boolean=?,
+      ~component: 'union_r=?,
+      ~disabled: bool=?,
+      ~error: bool=?,
+      ~fullWidth: bool=?,
       ~margin: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
-      ~required: Js.boolean=?,
+      ~required: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -3648,17 +3523,13 @@ module FormControl = {
         makeProps(
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~error=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), error),
-          ~fullWidth=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), fullWidth),
+          ~disabled?,
+          ~error?,
+          ~fullWidth?,
           ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
           ~onBlur?,
           ~onFocus?,
-          ~required=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), required),
+          ~required?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -3697,7 +3568,7 @@ module FormGroup = {
   external makeProps :
     (
       ~className: string=?,
-      ~row: Js.boolean=?,
+      ~row: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -3715,7 +3586,7 @@ module FormGroup = {
       ~props=
         makeProps(
           ~className?,
-          ~row=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), row),
+          ~row?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -3762,9 +3633,9 @@ module FormHelperText = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_t=?,
-      ~disabled: Js.boolean=?,
-      ~error: Js.boolean=?,
+      ~component: 'union_y=?,
+      ~disabled: bool=?,
+      ~error: bool=?,
       ~margin: string=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -3788,10 +3659,8 @@ module FormHelperText = {
         makeProps(
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~error=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), error),
+          ~disabled?,
+          ~error?,
           ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
@@ -3840,11 +3709,11 @@ module FormLabel = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_z=?,
-      ~disabled: Js.boolean=?,
-      ~error: Js.boolean=?,
-      ~focused: Js.boolean=?,
-      ~required: Js.boolean=?,
+      ~component: 'union_i=?,
+      ~disabled: bool=?,
+      ~error: bool=?,
+      ~focused: bool=?,
+      ~required: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -3868,14 +3737,10 @@ module FormLabel = {
         makeProps(
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~error=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), error),
-          ~focused=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), focused),
-          ~required=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), required),
+          ~disabled?,
+          ~error?,
+          ~focused?,
+          ~required?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -4022,9 +3887,9 @@ module GridListTile = {
   external makeProps :
     (
       ~className: string=?,
-      ~cols: 'number_0=?,
-      ~component: 'union_8=?,
-      ~rows: 'number_4=?,
+      ~cols: 'number_z=?,
+      ~component: 'union_l=?,
+      ~rows: 'number_z=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -4084,11 +3949,11 @@ module GridList = {
   [@bs.obj]
   external makeProps :
     (
-      ~cellHeight: 'union_3=?,
+      ~cellHeight: 'union_j=?,
       ~className: string=?,
-      ~cols: 'number_t=?,
-      ~component: 'union_7=?,
-      ~spacing: 'number_g=?,
+      ~cols: 'number_g=?,
+      ~component: 'union_m=?,
+      ~spacing: 'number_a=?,
       ~style: Js.t({..})=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -4168,6 +4033,7 @@ module Grid = {
   ];
   [@bs.deriving jsConverter]
   type lg =
+    | [@bs.as 0] False
     | [@bs.as 1] True
     | [@bs.as 1] V1
     | [@bs.as 2] V2
@@ -4183,6 +4049,7 @@ module Grid = {
     | [@bs.as 12] V12;
   [@bs.deriving jsConverter]
   type md =
+    | [@bs.as 0] False
     | [@bs.as 1] True
     | [@bs.as 1] V1
     | [@bs.as 2] V2
@@ -4198,6 +4065,7 @@ module Grid = {
     | [@bs.as 12] V12;
   [@bs.deriving jsConverter]
   type sm =
+    | [@bs.as 0] False
     | [@bs.as 1] True
     | [@bs.as 1] V1
     | [@bs.as 2] V2
@@ -4226,6 +4094,7 @@ module Grid = {
   ];
   [@bs.deriving jsConverter]
   type xl =
+    | [@bs.as 0] False
     | [@bs.as 1] True
     | [@bs.as 1] V1
     | [@bs.as 2] V2
@@ -4241,6 +4110,7 @@ module Grid = {
     | [@bs.as 12] V12;
   [@bs.deriving jsConverter]
   type xs =
+    | [@bs.as 0] False
     | [@bs.as 1] True
     | [@bs.as 1] V1
     | [@bs.as 2] V2
@@ -4256,8 +4126,8 @@ module Grid = {
     | [@bs.as 12] V12;
   module Classes = {
     type classesType =
-      | TypeContainer(string)
-      | TypeItem(string)
+      | Container(string)
+      | Item(string)
       | ZeroMinWidth(string)
       | Direction_Xs_Column(string)
       | Direction_Xs_Column_Reverse(string)
@@ -4297,8 +4167,8 @@ module Grid = {
     type t = list(classesType);
     let to_string =
       fun
-      | TypeContainer(_) => "typeContainer"
-      | TypeItem(_) => "typeItem"
+      | Container(_) => "container"
+      | Item(_) => "item"
       | ZeroMinWidth(_) => "zeroMinWidth"
       | Direction_Xs_Column(_) => "direction-xs-column"
       | Direction_Xs_Column_Reverse(_) => "direction-xs-column-reverse"
@@ -4341,8 +4211,8 @@ module Grid = {
            ~f=
              (obj, classType) => {
                switch (classType) {
-               | TypeContainer(className)
-               | TypeItem(className)
+               | Container(className)
+               | Item(className)
                | ZeroMinWidth(className)
                | Direction_Xs_Column(className)
                | Direction_Xs_Column_Reverse(className)
@@ -4394,11 +4264,11 @@ module Grid = {
       ~alignContent: string=?,
       ~alignItems: string=?,
       ~className: string=?,
-      ~component: 'union_m=?,
-      ~container: Js.boolean=?,
+      ~component: 'union_d=?,
+      ~container: bool=?,
       ~direction: string=?,
       ~hidden: Js.t({..})=?,
-      ~item: Js.boolean=?,
+      ~item: bool=?,
       ~justify: string=?,
       ~lg: int=?,
       ~md: int=?,
@@ -4407,7 +4277,7 @@ module Grid = {
       ~wrap: string=?,
       ~xl: int=?,
       ~xs: int=?,
-      ~zeroMinWidth: Js.boolean=?,
+      ~zeroMinWidth: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -4446,11 +4316,10 @@ module Grid = {
             Js.Option.map((. v) => alignItemsToJs(v), alignItems),
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~container=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), container),
+          ~container?,
           ~direction=?Js.Option.map((. v) => directionToJs(v), direction),
           ~hidden?,
-          ~item=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), item),
+          ~item?,
           ~justify=?Js.Option.map((. v) => justifyToJs(v), justify),
           ~lg=?Js.Option.map((. v) => lgToJs(v), lg),
           ~md=?Js.Option.map((. v) => mdToJs(v), md),
@@ -4459,11 +4328,7 @@ module Grid = {
           ~wrap=?Js.Option.map((. v) => wrapToJs(v), wrap),
           ~xl=?Js.Option.map((. v) => xlToJs(v), xl),
           ~xs=?Js.Option.map((. v) => xsToJs(v), xs),
-          ~zeroMinWidth=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              zeroMinWidth,
-            ),
+          ~zeroMinWidth?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -4484,12 +4349,12 @@ module Grow = {
   [@bs.obj]
   external makeProps :
     (
-      ~_in: Js.boolean=?,
-      ~onEnter: 'emptyCallback_s=?,
-      ~onExit: 'emptyCallback_3=?,
+      ~_in: bool=?,
+      ~onEnter: 'emptyCallback_k=?,
+      ~onExit: 'emptyCallback_6=?,
       ~style: Js.t({..})=?,
       ~theme: Js.t({..}),
-      ~timeout: 'union_5=?,
+      ~timeout: 'union_2=?,
       unit
     ) =>
     _ =
@@ -4497,8 +4362,8 @@ module Grow = {
   let make =
       (
         ~_in: option(bool)=?,
-        ~onEnter: option('emptyCallback_s)=?,
-        ~onExit: option('emptyCallback_3)=?,
+        ~onEnter: option('emptyCallback_k)=?,
+        ~onExit: option('emptyCallback_6)=?,
         ~style: option(Js.t({..}))=?,
         ~theme: Js.t({..}),
         ~timeout:
@@ -4516,7 +4381,7 @@ module Grow = {
       ~reactClass,
       ~props=
         makeProps(
-          ~_in=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), _in),
+          ~_in?,
           ~onEnter?,
           ~onExit?,
           ~style?,
@@ -4564,17 +4429,17 @@ module Hidden = {
       ~className: string=?,
       ~implementation: string=?,
       ~initialWidth: string=?,
-      ~lgDown: Js.boolean=?,
-      ~lgUp: Js.boolean=?,
-      ~mdDown: Js.boolean=?,
-      ~mdUp: Js.boolean=?,
-      ~only: 'union_b=?,
-      ~smDown: Js.boolean=?,
-      ~smUp: Js.boolean=?,
-      ~xlDown: Js.boolean=?,
-      ~xlUp: Js.boolean=?,
-      ~xsDown: Js.boolean=?,
-      ~xsUp: Js.boolean=?,
+      ~lgDown: bool=?,
+      ~lgUp: bool=?,
+      ~mdDown: bool=?,
+      ~mdUp: bool=?,
+      ~only: 'union_7=?,
+      ~smDown: bool=?,
+      ~smUp: bool=?,
+      ~xlDown: bool=?,
+      ~xlUp: bool=?,
+      ~xsDown: bool=?,
+      ~xsUp: bool=?,
       unit
     ) =>
     _ =
@@ -4606,12 +4471,10 @@ module Hidden = {
             Js.Option.map((. v) => implementationToJs(v), implementation),
           ~initialWidth=?
             Js.Option.map((. v) => initialWidthToJs(v), initialWidth),
-          ~lgDown=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), lgDown),
-          ~lgUp=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), lgUp),
-          ~mdDown=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), mdDown),
-          ~mdUp=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), mdUp),
+          ~lgDown?,
+          ~lgUp?,
+          ~mdDown?,
+          ~mdUp?,
           ~only=?
             Js.Option.map(
               (. v) =>
@@ -4622,15 +4485,12 @@ module Hidden = {
                 },
               only,
             ),
-          ~smDown=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), smDown),
-          ~smUp=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), smUp),
-          ~xlDown=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), xlDown),
-          ~xlUp=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), xlUp),
-          ~xsDown=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), xsDown),
-          ~xsUp=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), xsUp),
+          ~smDown?,
+          ~smUp?,
+          ~xlDown?,
+          ~xlUp?,
+          ~xsDown?,
+          ~xsUp?,
           (),
         ),
       children,
@@ -4688,12 +4548,13 @@ module IconButton = {
     (
       ~className: string=?,
       ~color: string=?,
-      ~disabled: Js.boolean=?,
-      ~disableRipple: Js.boolean=?,
+      ~disabled: bool=?,
+      ~disableRipple: bool=?,
       ~buttonRef: ReasonReact.reactElement=?,
-      ~centerRipple: Js.boolean=?,
-      ~component: 'union_b=?,
-      ~focusRipple: Js.boolean=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_r=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
@@ -4707,7 +4568,7 @@ module IconButton = {
       ~onTouchMove: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~onTouchStart: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~role: string=?,
-      ~tabIndex: 'union_a=?,
+      ~tabIndex: 'union_j=?,
       ~_TouchRippleProps: Js.t({..})=?,
       ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -4726,6 +4587,7 @@ module IconButton = {
         ~component:
            option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
@@ -4752,25 +4614,13 @@ module IconButton = {
         makeProps(
           ~className?,
           ~color=?Js.Option.map((. v) => colorToJs(v), color),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
+          ~disabled?,
+          ~disableRipple?,
           ~buttonRef?,
-          ~centerRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              centerRipple,
-            ),
+          ~centerRipple?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~focusRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              focusRipple,
-            ),
+          ~focusRipple?,
+          ~focusVisibleClassName?,
           ~onBlur?,
           ~onClick?,
           ~onFocus?,
@@ -4908,8 +4758,8 @@ module InputAdornment = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_s=?,
-      ~disableTypography: Js.boolean=?,
+      ~component: 'union_4=?,
+      ~disableTypography: bool=?,
       ~position: string=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -4932,11 +4782,7 @@ module InputAdornment = {
         makeProps(
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disableTypography=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableTypography,
-            ),
+          ~disableTypography?,
           ~position=?Js.Option.map((. v) => positionToJs(v), position),
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
@@ -4987,15 +4833,15 @@ module InputLabel = {
   external makeProps :
     (
       ~className: string=?,
-      ~disableAnimation: Js.boolean=?,
-      ~disabled: Js.boolean=?,
-      ~error: Js.boolean=?,
-      ~focused: Js.boolean=?,
+      ~disableAnimation: bool=?,
+      ~disabled: bool=?,
+      ~error: bool=?,
+      ~focused: bool=?,
       ~_FormLabelClasses: Js.t({..})=?,
       ~margin: string=?,
-      ~required: Js.boolean=?,
-      ~shrink: Js.boolean=?,
-      ~component: 'union_z=?,
+      ~required: bool=?,
+      ~shrink: bool=?,
+      ~component: 'union_i=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -5022,23 +4868,14 @@ module InputLabel = {
       ~props=
         makeProps(
           ~className?,
-          ~disableAnimation=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableAnimation,
-            ),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~error=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), error),
-          ~focused=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), focused),
+          ~disableAnimation?,
+          ~disabled?,
+          ~error?,
+          ~focused?,
           ~_FormLabelClasses?,
           ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
-          ~required=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), required),
-          ~shrink=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), shrink),
+          ~required?,
+          ~shrink?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
@@ -5113,20 +4950,20 @@ module Input = {
   external makeProps :
     (
       ~autoComplete: string=?,
-      ~autoFocus: Js.boolean=?,
+      ~autoFocus: bool=?,
       ~className: string=?,
-      ~defaultValue: 'union_e=?,
-      ~disabled: Js.boolean=?,
-      ~disableUnderline: Js.boolean=?,
+      ~defaultValue: 'union_n=?,
+      ~disabled: bool=?,
+      ~disableUnderline: bool=?,
       ~endAdornment: ReasonReact.reactElement=?,
-      ~error: Js.boolean=?,
-      ~fullWidth: Js.boolean=?,
+      ~error: bool=?,
+      ~fullWidth: bool=?,
       ~id: string=?,
-      ~inputComponent: 'any_v=?,
+      ~inputComponent: 'any_m=?,
       ~inputProps: Js.t({..})=?,
       ~inputRef: ReasonReact.reactElement=?,
       ~margin: string=?,
-      ~multiline: Js.boolean=?,
+      ~multiline: bool=?,
       ~name: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
@@ -5136,12 +4973,12 @@ module Input = {
       ~onKeyDown: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
       ~onKeyUp: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
       ~placeholder: string=?,
-      ~readOnly: Js.boolean=?,
-      ~rows: 'union_b=?,
-      ~rowsMax: 'union_p=?,
+      ~readOnly: bool=?,
+      ~rows: 'union_y=?,
+      ~rowsMax: 'union_g=?,
       ~startAdornment: ReasonReact.reactElement=?,
       ~_type: string=?,
-      ~value: 'union_n=?,
+      ~value: 'union_w=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -5160,7 +4997,7 @@ module Input = {
         ~error: option(bool)=?,
         ~fullWidth: option(bool)=?,
         ~id: option(string)=?,
-        ~inputComponent: option('any_v)=?,
+        ~inputComponent: option('any_m)=?,
         ~inputProps: option(Js.t({..}))=?,
         ~inputRef: option(ReasonReact.reactElement)=?,
         ~margin: option(margin)=?,
@@ -5198,30 +5035,21 @@ module Input = {
       ~props=
         makeProps(
           ~autoComplete?,
-          ~autoFocus=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), autoFocus),
+          ~autoFocus?,
           ~className?,
           ~defaultValue=?
             Js.Option.map((. v) => unwrapValue(v), defaultValue),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableUnderline=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableUnderline,
-            ),
+          ~disabled?,
+          ~disableUnderline?,
           ~endAdornment?,
-          ~error=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), error),
-          ~fullWidth=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), fullWidth),
+          ~error?,
+          ~fullWidth?,
           ~id?,
           ~inputComponent?,
           ~inputProps?,
           ~inputRef?,
           ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
-          ~multiline=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), multiline),
+          ~multiline?,
           ~name?,
           ~onBlur?,
           ~onChange?,
@@ -5231,8 +5059,7 @@ module Input = {
           ~onKeyDown?,
           ~onKeyUp?,
           ~placeholder?,
-          ~readOnly=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), readOnly),
+          ~readOnly?,
           ~rows=?Js.Option.map((. v) => unwrapValue(v), rows),
           ~rowsMax=?Js.Option.map((. v) => unwrapValue(v), rowsMax),
           ~startAdornment?,
@@ -5332,7 +5159,7 @@ module LinearProgress = {
       ~className: string=?,
       ~color: string=?,
       ~value: 'number_n=?,
-      ~valueBuffer: 'number_v=?,
+      ~valueBuffer: 'number_w=?,
       ~variant: string=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -5549,8 +5376,8 @@ module ListItemText = {
   external makeProps :
     (
       ~className: string=?,
-      ~disableTypography: Js.boolean=?,
-      ~inset: Js.boolean=?,
+      ~disableTypography: bool=?,
+      ~inset: bool=?,
       ~primary: ReasonReact.reactElement=?,
       ~secondary: ReasonReact.reactElement=?,
       ~classes: Js.Dict.t(string)=?,
@@ -5573,13 +5400,8 @@ module ListItemText = {
       ~props=
         makeProps(
           ~className?,
-          ~disableTypography=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableTypography,
-            ),
-          ~inset=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), inset),
+          ~disableTypography?,
+          ~inset?,
           ~primary?,
           ~secondary?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
@@ -5594,7 +5416,7 @@ module ListItem = {
     type classesType =
       | Root(string)
       | Container(string)
-      | KeyboardFocused(string)
+      | FocusVisible(string)
       | Default(string)
       | Dense(string)
       | Disabled(string)
@@ -5607,7 +5429,7 @@ module ListItem = {
       fun
       | Root(_) => "root"
       | Container(_) => "container"
-      | KeyboardFocused(_) => "keyboardFocused"
+      | FocusVisible(_) => "focusVisible"
       | Default(_) => "default"
       | Dense(_) => "dense"
       | Disabled(_) => "disabled"
@@ -5623,7 +5445,7 @@ module ListItem = {
                switch (classType) {
                | Root(className)
                | Container(className)
-               | KeyboardFocused(className)
+               | FocusVisible(className)
                | Default(className)
                | Dense(className)
                | Disabled(className)
@@ -5643,16 +5465,16 @@ module ListItem = {
   [@bs.obj]
   external makeProps :
     (
-      ~button: Js.boolean=?,
+      ~button: bool=?,
       ~className: string=?,
-      ~component: 'union_h=?,
-      ~_ContainerComponent: 'union_r=?,
+      ~component: 'union_b=?,
+      ~_ContainerComponent: 'union_v=?,
       ~_ContainerProps: Js.t({..})=?,
-      ~dense: Js.boolean=?,
-      ~disabled: Js.boolean=?,
-      ~disableGutters: Js.boolean=?,
-      ~divider: Js.boolean=?,
-      ~value: 'union_y=?,
+      ~dense: bool=?,
+      ~disabled: bool=?,
+      ~disableGutters: bool=?,
+      ~divider: bool=?,
+      ~value: 'union_7=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
       ~classes: Js.Dict.t(string)=?,
@@ -5691,24 +5513,16 @@ module ListItem = {
       ~reactClass,
       ~props=
         makeProps(
-          ~button=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), button),
+          ~button?,
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~_ContainerComponent=?
             Js.Option.map((. v) => unwrapValue(v), _ContainerComponent),
           ~_ContainerProps?,
-          ~dense=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), dense),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableGutters=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableGutters,
-            ),
-          ~divider=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), divider),
+          ~dense?,
+          ~disabled?,
+          ~disableGutters?,
+          ~divider?,
           ~value=?Js.Option.map((. v) => unwrapValue(v), value),
           ~onFocus?,
           ~onClick?,
@@ -5766,9 +5580,9 @@ module ListSubheader = {
     (
       ~className: string=?,
       ~color: string=?,
-      ~component: 'union_f=?,
-      ~disableSticky: Js.boolean=?,
-      ~inset: Js.boolean=?,
+      ~component: 'union_m=?,
+      ~disableSticky: bool=?,
+      ~inset: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -5792,13 +5606,8 @@ module ListSubheader = {
           ~className?,
           ~color=?Js.Option.map((. v) => colorToJs(v), color),
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disableSticky=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableSticky,
-            ),
-          ~inset=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), inset),
+          ~disableSticky?,
+          ~inset?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -5843,9 +5652,9 @@ module List = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_d=?,
-      ~dense: Js.boolean=?,
-      ~disablePadding: Js.boolean=?,
+      ~component: 'union_9=?,
+      ~dense: bool=?,
+      ~disablePadding: bool=?,
       ~subheader: ReasonReact.reactElement=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -5869,13 +5678,8 @@ module List = {
         makeProps(
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~dense=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), dense),
-          ~disablePadding=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disablePadding,
-            ),
+          ~dense?,
+          ~disablePadding?,
           ~subheader?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
@@ -5917,17 +5721,17 @@ module MenuItem = {
       ~className: string=?,
       ~component: 'union_4=?,
       ~role: string=?,
-      ~selected: Js.boolean=?,
-      ~value: 'union_q=?,
+      ~selected: bool=?,
+      ~value: 'union_j=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
-      ~button: Js.boolean=?,
-      ~_ContainerComponent: 'union_r=?,
+      ~button: bool=?,
+      ~_ContainerComponent: 'union_v=?,
       ~_ContainerProps: Js.t({..})=?,
-      ~dense: Js.boolean=?,
-      ~disabled: Js.boolean=?,
-      ~disableGutters: Js.boolean=?,
-      ~divider: Js.boolean=?,
+      ~dense: bool=?,
+      ~disabled: bool=?,
+      ~disableGutters: bool=?,
+      ~divider: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -5969,27 +5773,18 @@ module MenuItem = {
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~role?,
-          ~selected=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), selected),
+          ~selected?,
           ~value=?Js.Option.map((. v) => unwrapValue(v), value),
           ~onFocus?,
           ~onClick?,
-          ~button=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), button),
+          ~button?,
           ~_ContainerComponent=?
             Js.Option.map((. v) => unwrapValue(v), _ContainerComponent),
           ~_ContainerProps?,
-          ~dense=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), dense),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableGutters=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableGutters,
-            ),
-          ~divider=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), divider),
+          ~dense?,
+          ~disabled?,
+          ~disableGutters?,
+          ~divider?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -6006,9 +5801,9 @@ module MenuList = {
       ~className: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onKeyDown: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
-      ~component: 'union_d=?,
-      ~dense: Js.boolean=?,
-      ~disablePadding: Js.boolean=?,
+      ~component: 'union_9=?,
+      ~dense: bool=?,
+      ~disablePadding: bool=?,
       ~subheader: ReasonReact.reactElement=?,
       unit
     ) =>
@@ -6034,13 +5829,8 @@ module MenuList = {
           ~onBlur?,
           ~onKeyDown?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~dense=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), dense),
-          ~disablePadding=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disablePadding,
-            ),
+          ~dense?,
+          ~disablePadding?,
           ~subheader?,
           (),
         ),
@@ -6070,6 +5860,7 @@ module Menu = {
   type anchorReference = [
     | [@bs.as "anchorEl"] `AnchorEl
     | [@bs.as "anchorPosition"] `AnchorPosition
+    | [@bs.as "none"] `None
   ];
   [@bs.deriving jsConverter]
   type transformOriginShape = {
@@ -6102,31 +5893,31 @@ module Menu = {
   [@bs.obj]
   external makeProps :
     (
-      ~anchorEl: 'any_b=?,
+      ~anchorEl: 'any_o=?,
       ~_MenuListProps: Js.t({..})=?,
-      ~onClose: 'emptyCallback_3=?,
-      ~onEnter: 'emptyCallback_7=?,
-      ~onEntered: 'emptyCallback_v=?,
+      ~onClose: 'emptyCallback_7=?,
+      ~onEnter: 'emptyCallback_s=?,
+      ~onEntered: 'emptyCallback_l=?,
       ~onEntering: 'emptyCallback_b=?,
-      ~onExit: 'emptyCallback_q=?,
-      ~onExited: 'emptyCallback_z=?,
-      ~onExiting: 'emptyCallback_y=?,
-      ~_open: Js.boolean,
+      ~onExit: 'emptyCallback_o=?,
+      ~onExited: 'emptyCallback_1=?,
+      ~onExiting: 'emptyCallback_q=?,
+      ~_open: bool,
       ~_PaperProps: Js.t({..})=?,
       ~_PopoverClasses: Js.t({..})=?,
       ~theme: Js.t({..}),
-      ~transitionDuration: 'union_j=?,
+      ~transitionDuration: 'union_i=?,
       ~action: ReasonReact.reactElement=?,
-      ~anchorOrigin: 'shape_d=?,
-      ~anchorPosition: 'shape_6=?,
+      ~anchorOrigin: 'shape_s=?,
+      ~anchorPosition: 'shape_8=?,
       ~anchorReference: string=?,
-      ~container: 'union_5=?,
-      ~elevation: 'number_6=?,
+      ~container: 'union_7=?,
+      ~elevation: 'number_b=?,
       ~getContentAnchorEl: ReasonReact.reactElement=?,
-      ~marginThreshold: 'number_0=?,
+      ~marginThreshold: 'number_k=?,
       ~role: string=?,
-      ~transformOrigin: 'shape_e=?,
-      ~transition: 'union_c=?,
+      ~transformOrigin: 'shape_q=?,
+      ~transition: 'union_4=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -6134,15 +5925,15 @@ module Menu = {
     "";
   let make =
       (
-        ~anchorEl: option('any_b)=?,
+        ~anchorEl: option('any_o)=?,
         ~_MenuListProps: option(Js.t({..}))=?,
-        ~onClose: option('emptyCallback_3)=?,
-        ~onEnter: option('emptyCallback_7)=?,
-        ~onEntered: option('emptyCallback_v)=?,
+        ~onClose: option('emptyCallback_7)=?,
+        ~onEnter: option('emptyCallback_s)=?,
+        ~onEntered: option('emptyCallback_l)=?,
         ~onEntering: option('emptyCallback_b)=?,
-        ~onExit: option('emptyCallback_q)=?,
-        ~onExited: option('emptyCallback_z)=?,
-        ~onExiting: option('emptyCallback_y)=?,
+        ~onExit: option('emptyCallback_o)=?,
+        ~onExited: option('emptyCallback_1)=?,
+        ~onExiting: option('emptyCallback_q)=?,
         ~_open: bool,
         ~_PaperProps: option(Js.t({..}))=?,
         ~_PopoverClasses: option(Js.t({..}))=?,
@@ -6190,7 +5981,7 @@ module Menu = {
           ~onExit?,
           ~onExited?,
           ~onExiting?,
-          ~_open=Js.Boolean.to_js_boolean(_open),
+          ~_open,
           ~_PaperProps?,
           ~_PopoverClasses?,
           ~theme,
@@ -6295,16 +6086,16 @@ module MobileStepper = {
   [@bs.obj]
   external makeProps :
     (
-      ~activeStep: 'number_a=?,
+      ~activeStep: 'number_y=?,
       ~backButton: ReasonReact.reactElement=?,
       ~className: string=?,
       ~nextButton: ReasonReact.reactElement=?,
       ~position: string=?,
-      ~steps: 'number_m,
+      ~steps: 'number_7,
       ~variant: string=?,
-      ~component: 'union_t=?,
-      ~elevation: 'number_g=?,
-      ~square: Js.boolean=?,
+      ~component: 'union_3=?,
+      ~elevation: 'number_5=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -6339,8 +6130,7 @@ module MobileStepper = {
           ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
-          ~square=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), square),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -6378,23 +6168,23 @@ module Modal = {
   [@bs.obj]
   external makeProps :
     (
-      ~_BackdropComponent: 'union_f=?,
+      ~_BackdropComponent: 'union_d=?,
       ~_BackdropProps: Js.t({..})=?,
       ~className: string=?,
-      ~container: 'union_x=?,
-      ~disableAutoFocus: Js.boolean=?,
-      ~disableBackdropClick: Js.boolean=?,
-      ~disableEnforceFocus: Js.boolean=?,
-      ~disableEscapeKeyDown: Js.boolean=?,
-      ~disableRestoreFocus: Js.boolean=?,
-      ~hideBackdrop: Js.boolean=?,
-      ~keepMounted: Js.boolean=?,
+      ~container: 'union_c=?,
+      ~disableAutoFocus: bool=?,
+      ~disableBackdropClick: bool=?,
+      ~disableEnforceFocus: bool=?,
+      ~disableEscapeKeyDown: bool=?,
+      ~disableRestoreFocus: bool=?,
+      ~hideBackdrop: bool=?,
+      ~keepMounted: bool=?,
       ~manager: Js.t({..})=?,
       ~onBackdropClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
-      ~onClose: 'emptyCallback_w=?,
+      ~onClose: 'emptyCallback_8=?,
       ~onEscapeKeyDown: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
-      ~onRendered: 'emptyCallback_p=?,
-      ~_open: Js.boolean,
+      ~onRendered: 'emptyCallback_5=?,
+      ~_open: bool,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -6423,10 +6213,10 @@ module Modal = {
         ~manager: option(Js.t({..}))=?,
         ~onBackdropClick:
            option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
-        ~onClose: option('emptyCallback_w)=?,
+        ~onClose: option('emptyCallback_8)=?,
         ~onEscapeKeyDown:
            option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onRendered: option('emptyCallback_p)=?,
+        ~onRendered: option('emptyCallback_5)=?,
         ~_open: bool,
         ~classes: option(Classes.t)=?,
         children,
@@ -6440,47 +6230,19 @@ module Modal = {
           ~_BackdropProps?,
           ~className?,
           ~container=?Js.Option.map((. v) => unwrapValue(v), container),
-          ~disableAutoFocus=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableAutoFocus,
-            ),
-          ~disableBackdropClick=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableBackdropClick,
-            ),
-          ~disableEnforceFocus=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableEnforceFocus,
-            ),
-          ~disableEscapeKeyDown=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableEscapeKeyDown,
-            ),
-          ~disableRestoreFocus=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRestoreFocus,
-            ),
-          ~hideBackdrop=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              hideBackdrop,
-            ),
-          ~keepMounted=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              keepMounted,
-            ),
+          ~disableAutoFocus?,
+          ~disableBackdropClick?,
+          ~disableEnforceFocus?,
+          ~disableEscapeKeyDown?,
+          ~disableRestoreFocus?,
+          ~hideBackdrop?,
+          ~keepMounted?,
           ~manager?,
           ~onBackdropClick?,
           ~onClose?,
           ~onEscapeKeyDown?,
           ~onRendered?,
-          ~_open=Js.Boolean.to_js_boolean(_open),
+          ~_open,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -6494,9 +6256,9 @@ module MuiThemeProvider = {
   [@bs.obj]
   external makeProps :
     (
-      ~disableStylesGeneration: Js.boolean=?,
+      ~disableStylesGeneration: bool=?,
       ~sheetsManager: Js.t({..})=?,
-      ~theme: 'union_e,
+      ~theme: 'union_3,
       unit
     ) =>
     _ =
@@ -6515,11 +6277,7 @@ module MuiThemeProvider = {
       ~reactClass,
       ~props=
         makeProps(
-          ~disableStylesGeneration=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableStylesGeneration,
-            ),
+          ~disableStylesGeneration?,
           ~sheetsManager?,
           ~theme=unwrapValue(theme),
           (),
@@ -6634,9 +6392,9 @@ module Paper = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_t=?,
-      ~elevation: 'number_g=?,
-      ~square: Js.boolean=?,
+      ~component: 'union_3=?,
+      ~elevation: 'number_5=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -6659,8 +6417,7 @@ module Paper = {
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
-          ~square=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), square),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -6683,6 +6440,7 @@ module Popover = {
   type anchorReference = [
     | [@bs.as "anchorEl"] `AnchorEl
     | [@bs.as "anchorPosition"] `AnchorPosition
+    | [@bs.as "none"] `None
   ];
   [@bs.deriving jsConverter]
   type transformOriginShape = {
@@ -6723,41 +6481,41 @@ module Popover = {
   external makeProps :
     (
       ~action: ReasonReact.reactElement=?,
-      ~anchorEl: 'union_0=?,
-      ~anchorOrigin: 'shape_d=?,
-      ~anchorPosition: 'shape_6=?,
+      ~anchorEl: 'union_r=?,
+      ~anchorOrigin: 'shape_s=?,
+      ~anchorPosition: 'shape_8=?,
       ~anchorReference: string=?,
-      ~container: 'union_5=?,
-      ~elevation: 'number_6=?,
+      ~container: 'union_7=?,
+      ~elevation: 'number_b=?,
       ~getContentAnchorEl: ReasonReact.reactElement=?,
-      ~marginThreshold: 'number_0=?,
-      ~onClose: 'emptyCallback_u=?,
-      ~onEnter: 'emptyCallback_b=?,
+      ~marginThreshold: 'number_k=?,
+      ~onClose: 'emptyCallback_t=?,
+      ~onEnter: 'emptyCallback_8=?,
       ~onEntered: 'emptyCallback_b=?,
-      ~onEntering: 'emptyCallback_5=?,
-      ~onExit: 'emptyCallback_e=?,
-      ~onExited: 'emptyCallback_r=?,
-      ~onExiting: 'emptyCallback_e=?,
-      ~_open: Js.boolean,
+      ~onEntering: 'emptyCallback_d=?,
+      ~onExit: 'emptyCallback_9=?,
+      ~onExited: 'emptyCallback_4=?,
+      ~onExiting: 'emptyCallback_a=?,
+      ~_open: bool,
       ~_PaperProps: Js.t({..})=?,
       ~role: string=?,
-      ~transformOrigin: 'shape_e=?,
-      ~transition: 'union_c=?,
-      ~transitionDuration: 'union_v=?,
-      ~_BackdropComponent: 'union_f=?,
+      ~transformOrigin: 'shape_q=?,
+      ~transition: 'union_4=?,
+      ~transitionDuration: 'union_r=?,
+      ~_BackdropComponent: 'union_d=?,
       ~_BackdropProps: Js.t({..})=?,
       ~className: string=?,
-      ~disableAutoFocus: Js.boolean=?,
-      ~disableBackdropClick: Js.boolean=?,
-      ~disableEnforceFocus: Js.boolean=?,
-      ~disableEscapeKeyDown: Js.boolean=?,
-      ~disableRestoreFocus: Js.boolean=?,
-      ~hideBackdrop: Js.boolean=?,
-      ~keepMounted: Js.boolean=?,
+      ~disableAutoFocus: bool=?,
+      ~disableBackdropClick: bool=?,
+      ~disableEnforceFocus: bool=?,
+      ~disableEscapeKeyDown: bool=?,
+      ~disableRestoreFocus: bool=?,
+      ~hideBackdrop: bool=?,
+      ~keepMounted: bool=?,
       ~manager: Js.t({..})=?,
       ~onBackdropClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
       ~onEscapeKeyDown: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
-      ~onRendered: 'emptyCallback_p=?,
+      ~onRendered: 'emptyCallback_5=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -6786,13 +6544,13 @@ module Popover = {
         ~elevation: option([ | `Int(int) | `Float(float)])=?,
         ~getContentAnchorEl: option(ReasonReact.reactElement)=?,
         ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
-        ~onClose: option('emptyCallback_u)=?,
-        ~onEnter: option('emptyCallback_b)=?,
+        ~onClose: option('emptyCallback_t)=?,
+        ~onEnter: option('emptyCallback_8)=?,
         ~onEntered: option('emptyCallback_b)=?,
-        ~onEntering: option('emptyCallback_5)=?,
-        ~onExit: option('emptyCallback_e)=?,
-        ~onExited: option('emptyCallback_r)=?,
-        ~onExiting: option('emptyCallback_e)=?,
+        ~onEntering: option('emptyCallback_d)=?,
+        ~onExit: option('emptyCallback_9)=?,
+        ~onExited: option('emptyCallback_4)=?,
+        ~onExiting: option('emptyCallback_a)=?,
         ~_open: bool,
         ~_PaperProps: option(Js.t({..}))=?,
         ~role: option(string)=?,
@@ -6824,7 +6582,7 @@ module Popover = {
            option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~onEscapeKeyDown:
            option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
-        ~onRendered: option('emptyCallback_p)=?,
+        ~onRendered: option('emptyCallback_5)=?,
         ~classes: option(Classes.t)=?,
         children,
       ) =>
@@ -6855,7 +6613,7 @@ module Popover = {
           ~onExit?,
           ~onExited?,
           ~onExiting?,
-          ~_open=Js.Boolean.to_js_boolean(_open),
+          ~_open,
           ~_PaperProps?,
           ~role?,
           ~transformOrigin=?
@@ -6880,41 +6638,13 @@ module Popover = {
             Js.Option.map((. v) => unwrapValue(v), _BackdropComponent),
           ~_BackdropProps?,
           ~className?,
-          ~disableAutoFocus=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableAutoFocus,
-            ),
-          ~disableBackdropClick=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableBackdropClick,
-            ),
-          ~disableEnforceFocus=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableEnforceFocus,
-            ),
-          ~disableEscapeKeyDown=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableEscapeKeyDown,
-            ),
-          ~disableRestoreFocus=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRestoreFocus,
-            ),
-          ~hideBackdrop=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              hideBackdrop,
-            ),
-          ~keepMounted=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              keepMounted,
-            ),
+          ~disableAutoFocus?,
+          ~disableBackdropClick?,
+          ~disableEnforceFocus?,
+          ~disableEscapeKeyDown?,
+          ~disableRestoreFocus?,
+          ~hideBackdrop?,
+          ~keepMounted?,
           ~manager?,
           ~onBackdropClick?,
           ~onEscapeKeyDown?,
@@ -6931,7 +6661,7 @@ module Portal = {
   external reactClass : ReasonReact.reactClass = "default";
   [@bs.obj]
   external makeProps :
-    (~container: 'union_v=?, ~onRendered: 'emptyCallback_5=?, unit) => _ =
+    (~container: 'union_s=?, ~onRendered: 'emptyCallback_7=?, unit) => _ =
     "";
   let make =
       (
@@ -6942,7 +6672,7 @@ module Portal = {
                | `Element(ReasonReact.reactElement)
              ],
            )=?,
-        ~onRendered: option('emptyCallback_5)=?,
+        ~onRendered: option('emptyCallback_7)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -6969,7 +6699,7 @@ module RadioGroup = {
       ~onKeyDown: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
       ~value: string=?,
       ~className: string=?,
-      ~row: Js.boolean=?,
+      ~row: bool=?,
       unit
     ) =>
     _ =
@@ -6995,7 +6725,7 @@ module RadioGroup = {
           ~onKeyDown?,
           ~value?,
           ~className?,
-          ~row=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), row),
+          ~row?,
           (),
         ),
       children,
@@ -7047,11 +6777,11 @@ module Radio = {
   [@bs.obj]
   external makeProps :
     (
-      ~checked: 'union_5=?,
+      ~checked: 'union_l=?,
       ~checkedIcon: ReasonReact.reactElement=?,
       ~color: string=?,
-      ~disabled: Js.boolean=?,
-      ~disableRipple: Js.boolean=?,
+      ~disabled: bool=?,
+      ~disableRipple: bool=?,
       ~icon: ReasonReact.reactElement=?,
       ~id: string=?,
       ~inputProps: Js.t({..})=?,
@@ -7088,13 +6818,8 @@ module Radio = {
           ~checked=?Js.Option.map((. v) => unwrapValue(v), checked),
           ~checkedIcon?,
           ~color=?Js.Option.map((. v) => colorToJs(v), color),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
+          ~disabled?,
+          ~disableRipple?,
           ~icon?,
           ~id?,
           ~inputProps?,
@@ -7150,34 +6875,34 @@ module Select = {
   [@bs.obj]
   external makeProps :
     (
-      ~autoWidth: Js.boolean=?,
-      ~displayEmpty: Js.boolean=?,
+      ~autoWidth: bool=?,
+      ~displayEmpty: bool=?,
       ~input: ReasonReact.reactElement=?,
       ~inputProps: Js.t({..})=?,
       ~_MenuProps: Js.t({..})=?,
-      ~multiple: Js.boolean=?,
-      ~native: Js.boolean=?,
+      ~multiple: bool=?,
+      ~native: bool=?,
       ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
-      ~onClose: 'emptyCallback_o=?,
-      ~onOpen: 'emptyCallback_z=?,
-      ~_open: Js.boolean=?,
+      ~onClose: 'emptyCallback_l=?,
+      ~onOpen: 'emptyCallback_8=?,
+      ~_open: bool=?,
       ~renderValue: ReasonReact.reactElement=?,
       ~_SelectDisplayProps: Js.t({..})=?,
-      ~value: 'union_o=?,
+      ~value: 'union_2=?,
       ~autoComplete: string=?,
-      ~autoFocus: Js.boolean=?,
+      ~autoFocus: bool=?,
       ~className: string=?,
-      ~defaultValue: 'union_e=?,
-      ~disabled: Js.boolean=?,
-      ~disableUnderline: Js.boolean=?,
+      ~defaultValue: 'union_n=?,
+      ~disabled: bool=?,
+      ~disableUnderline: bool=?,
       ~endAdornment: ReasonReact.reactElement=?,
-      ~error: Js.boolean=?,
-      ~fullWidth: Js.boolean=?,
+      ~error: bool=?,
+      ~fullWidth: bool=?,
       ~id: string=?,
-      ~inputComponent: 'any_v=?,
+      ~inputComponent: 'any_m=?,
       ~inputRef: ReasonReact.reactElement=?,
       ~margin: string=?,
-      ~multiline: Js.boolean=?,
+      ~multiline: bool=?,
       ~name: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onEmpty: ReasonReact.Callback.t(ReactEventRe.Synthetic.t)=?,
@@ -7186,9 +6911,9 @@ module Select = {
       ~onKeyDown: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
       ~onKeyUp: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
       ~placeholder: string=?,
-      ~readOnly: Js.boolean=?,
-      ~rows: 'union_b=?,
-      ~rowsMax: 'union_p=?,
+      ~readOnly: bool=?,
+      ~rows: 'union_y=?,
+      ~rowsMax: 'union_g=?,
       ~startAdornment: ReasonReact.reactElement=?,
       ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -7206,8 +6931,8 @@ module Select = {
         ~multiple: option(bool)=?,
         ~native: option(bool)=?,
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
-        ~onClose: option('emptyCallback_o)=?,
-        ~onOpen: option('emptyCallback_z)=?,
+        ~onClose: option('emptyCallback_l)=?,
+        ~onOpen: option('emptyCallback_8)=?,
         ~_open: option(bool)=?,
         ~renderValue: option(ReasonReact.reactElement)=?,
         ~_SelectDisplayProps: option(Js.t({..}))=?,
@@ -7233,7 +6958,7 @@ module Select = {
         ~error: option(bool)=?,
         ~fullWidth: option(bool)=?,
         ~id: option(string)=?,
-        ~inputComponent: option('any_v)=?,
+        ~inputComponent: option('any_m)=?,
         ~inputRef: option(ReasonReact.reactElement)=?,
         ~margin: option(margin)=?,
         ~multiline: option(bool)=?,
@@ -7257,52 +6982,35 @@ module Select = {
       ~reactClass,
       ~props=
         makeProps(
-          ~autoWidth=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), autoWidth),
-          ~displayEmpty=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              displayEmpty,
-            ),
+          ~autoWidth?,
+          ~displayEmpty?,
           ~input?,
           ~inputProps?,
           ~_MenuProps?,
-          ~multiple=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), multiple),
-          ~native=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), native),
+          ~multiple?,
+          ~native?,
           ~onChange?,
           ~onClose?,
           ~onOpen?,
-          ~_open=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), _open),
+          ~_open?,
           ~renderValue?,
           ~_SelectDisplayProps?,
           ~value=?Js.Option.map((. v) => unwrapValue(v), value),
           ~autoComplete?,
-          ~autoFocus=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), autoFocus),
+          ~autoFocus?,
           ~className?,
           ~defaultValue=?
             Js.Option.map((. v) => unwrapValue(v), defaultValue),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableUnderline=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableUnderline,
-            ),
+          ~disabled?,
+          ~disableUnderline?,
           ~endAdornment?,
-          ~error=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), error),
-          ~fullWidth=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), fullWidth),
+          ~error?,
+          ~fullWidth?,
           ~id?,
           ~inputComponent?,
           ~inputRef?,
           ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
-          ~multiline=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), multiline),
+          ~multiline?,
           ~name?,
           ~onBlur?,
           ~onEmpty?,
@@ -7311,8 +7019,7 @@ module Select = {
           ~onKeyDown?,
           ~onKeyUp?,
           ~placeholder?,
-          ~readOnly=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), readOnly),
+          ~readOnly?,
           ~rows=?Js.Option.map((. v) => unwrapValue(v), rows),
           ~rowsMax=?Js.Option.map((. v) => unwrapValue(v), rowsMax),
           ~startAdornment?,
@@ -7343,14 +7050,14 @@ module Slide = {
   external makeProps :
     (
       ~direction: string=?,
-      ~_in: Js.boolean=?,
-      ~onEnter: 'emptyCallback_e=?,
-      ~onEntering: 'emptyCallback_8=?,
-      ~onExit: 'emptyCallback_c=?,
-      ~onExited: 'emptyCallback_i=?,
+      ~_in: bool=?,
+      ~onEnter: 'emptyCallback_y=?,
+      ~onEntering: 'emptyCallback_k=?,
+      ~onExit: 'emptyCallback_m=?,
+      ~onExited: 'emptyCallback_c=?,
       ~style: Js.t({..})=?,
       ~theme: Js.t({..}),
-      ~timeout: 'union_c=?,
+      ~timeout: 'union_j=?,
       unit
     ) =>
     _ =
@@ -7359,10 +7066,10 @@ module Slide = {
       (
         ~direction: option(direction)=?,
         ~_in: option(bool)=?,
-        ~onEnter: option('emptyCallback_e)=?,
-        ~onEntering: option('emptyCallback_8)=?,
-        ~onExit: option('emptyCallback_c)=?,
-        ~onExited: option('emptyCallback_i)=?,
+        ~onEnter: option('emptyCallback_y)=?,
+        ~onEntering: option('emptyCallback_k)=?,
+        ~onExit: option('emptyCallback_m)=?,
+        ~onExited: option('emptyCallback_c)=?,
         ~style: option(Js.t({..}))=?,
         ~theme: Js.t({..}),
         ~timeout:
@@ -7374,7 +7081,7 @@ module Slide = {
       ~props=
         makeProps(
           ~direction=?Js.Option.map((. v) => directionToJs(v), direction),
-          ~_in=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), _in),
+          ~_in?,
           ~onEnter?,
           ~onEntering?,
           ~onExit?,
@@ -7432,9 +7139,9 @@ module SnackbarContent = {
       ~action: ReasonReact.reactElement=?,
       ~className: string=?,
       ~message: ReasonReact.reactElement=?,
-      ~component: 'union_t=?,
-      ~elevation: 'number_g=?,
-      ~square: Js.boolean=?,
+      ~component: 'union_3=?,
+      ~elevation: 'number_5=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -7461,8 +7168,7 @@ module SnackbarContent = {
           ~message?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
-          ~square=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), square),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -7526,26 +7232,26 @@ module Snackbar = {
   external makeProps :
     (
       ~action: ReasonReact.reactElement=?,
-      ~anchorOrigin: 'shape_t=?,
-      ~autoHideDuration: 'number_c=?,
+      ~anchorOrigin: 'shape_w=?,
+      ~autoHideDuration: 'number_d=?,
       ~className: string=?,
-      ~disableWindowBlurListener: Js.boolean=?,
-      ~key: 'any_2=?,
+      ~disableWindowBlurListener: bool=?,
+      ~key: 'any_a=?,
       ~message: ReasonReact.reactElement=?,
-      ~onClose: 'emptyCallback_g=?,
-      ~onEnter: 'emptyCallback_e=?,
-      ~onEntered: 'emptyCallback_f=?,
+      ~onClose: 'emptyCallback_l=?,
+      ~onEnter: 'emptyCallback_i=?,
+      ~onEntered: 'emptyCallback_4=?,
       ~onEntering: 'emptyCallback_2=?,
-      ~onExit: 'emptyCallback_a=?,
-      ~onExited: 'emptyCallback_r=?,
-      ~onExiting: 'emptyCallback_n=?,
+      ~onExit: 'emptyCallback_i=?,
+      ~onExited: 'emptyCallback_k=?,
+      ~onExiting: 'emptyCallback_q=?,
       ~onMouseEnter: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
       ~onMouseLeave: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
-      ~_open: Js.boolean=?,
-      ~resumeHideDuration: 'number_m=?,
+      ~_open: bool=?,
+      ~resumeHideDuration: 'number_p=?,
       ~_SnackbarContentProps: Js.t({..})=?,
-      ~transition: 'union_f=?,
-      ~transitionDuration: 'union_n=?,
+      ~transition: 'union_s=?,
+      ~transitionDuration: 'union_m=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -7558,15 +7264,15 @@ module Snackbar = {
         ~autoHideDuration: option([ | `Int(int) | `Float(float)])=?,
         ~className: option(string)=?,
         ~disableWindowBlurListener: option(bool)=?,
-        ~key: option('any_2)=?,
+        ~key: option('any_a)=?,
         ~message: option(ReasonReact.reactElement)=?,
-        ~onClose: option('emptyCallback_g)=?,
-        ~onEnter: option('emptyCallback_e)=?,
-        ~onEntered: option('emptyCallback_f)=?,
+        ~onClose: option('emptyCallback_l)=?,
+        ~onEnter: option('emptyCallback_i)=?,
+        ~onEntered: option('emptyCallback_4)=?,
         ~onEntering: option('emptyCallback_2)=?,
-        ~onExit: option('emptyCallback_a)=?,
-        ~onExited: option('emptyCallback_r)=?,
-        ~onExiting: option('emptyCallback_n)=?,
+        ~onExit: option('emptyCallback_i)=?,
+        ~onExited: option('emptyCallback_k)=?,
+        ~onExiting: option('emptyCallback_q)=?,
         ~onMouseEnter: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~_open: option(bool)=?,
@@ -7595,11 +7301,7 @@ module Snackbar = {
           ~autoHideDuration=?
             Js.Option.map((. v) => unwrapValue(v), autoHideDuration),
           ~className?,
-          ~disableWindowBlurListener=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableWindowBlurListener,
-            ),
+          ~disableWindowBlurListener?,
           ~key?,
           ~message?,
           ~onClose?,
@@ -7611,8 +7313,7 @@ module Snackbar = {
           ~onExiting?,
           ~onMouseEnter?,
           ~onMouseLeave?,
-          ~_open=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), _open),
+          ~_open?,
           ~resumeHideDuration=?
             Js.Option.map((. v) => unwrapValue(v), resumeHideDuration),
           ~_SnackbarContentProps?,
@@ -7672,20 +7373,21 @@ module StepButton = {
   [@bs.obj]
   external makeProps :
     (
-      ~active: Js.boolean=?,
-      ~alternativeLabel: Js.boolean=?,
+      ~active: bool=?,
+      ~alternativeLabel: bool=?,
       ~className: string=?,
-      ~completed: Js.boolean=?,
-      ~disabled: Js.boolean=?,
+      ~completed: bool=?,
+      ~disabled: bool=?,
       ~icon: ReasonReact.reactElement=?,
-      ~last: Js.boolean=?,
+      ~last: bool=?,
       ~optional: ReasonReact.reactElement=?,
       ~orientation: string=?,
       ~buttonRef: ReasonReact.reactElement=?,
-      ~centerRipple: Js.boolean=?,
-      ~component: 'union_b=?,
-      ~disableRipple: Js.boolean=?,
-      ~focusRipple: Js.boolean=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_r=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
@@ -7699,7 +7401,7 @@ module StepButton = {
       ~onTouchMove: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~onTouchStart: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~role: string=?,
-      ~tabIndex: 'union_a=?,
+      ~tabIndex: 'union_j=?,
       ~_TouchRippleProps: Js.t({..})=?,
       ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -7724,6 +7426,7 @@ module StepButton = {
            option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~disableRipple: option(bool)=?,
         ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
@@ -7748,40 +7451,22 @@ module StepButton = {
       ~reactClass,
       ~props=
         makeProps(
-          ~active=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), active),
-          ~alternativeLabel=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              alternativeLabel,
-            ),
+          ~active?,
+          ~alternativeLabel?,
           ~className?,
-          ~completed=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), completed),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
+          ~completed?,
+          ~disabled?,
           ~icon?,
-          ~last=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), last),
+          ~last?,
           ~optional?,
           ~orientation=?
             Js.Option.map((. v) => orientationToJs(v), orientation),
           ~buttonRef?,
-          ~centerRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              centerRipple,
-            ),
+          ~centerRipple?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
-          ~focusRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              focusRipple,
-            ),
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
           ~onBlur?,
           ~onClick?,
           ~onFocus?,
@@ -7850,15 +7535,15 @@ module StepContent = {
   [@bs.obj]
   external makeProps :
     (
-      ~active: Js.boolean=?,
-      ~alternativeLabel: Js.boolean=?,
+      ~active: bool=?,
+      ~alternativeLabel: bool=?,
       ~className: string=?,
-      ~completed: Js.boolean=?,
-      ~last: Js.boolean=?,
-      ~optional: Js.boolean=?,
+      ~completed: bool=?,
+      ~last: bool=?,
+      ~optional: bool=?,
       ~orientation: string=?,
       ~transition: ReasonReact.reactElement=?,
-      ~transitionDuration: 'union_3=?,
+      ~transitionDuration: 'union_9=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -7890,19 +7575,12 @@ module StepContent = {
       ~reactClass,
       ~props=
         makeProps(
-          ~active=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), active),
-          ~alternativeLabel=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              alternativeLabel,
-            ),
+          ~active?,
+          ~alternativeLabel?,
           ~className?,
-          ~completed=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), completed),
-          ~last=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), last),
-          ~optional=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), optional),
+          ~completed?,
+          ~last?,
+          ~optional?,
           ~orientation=?
             Js.Option.map((. v) => orientationToJs(v), orientation),
           ~transition?,
@@ -7961,9 +7639,9 @@ module StepIcon = {
   [@bs.obj]
   external makeProps :
     (
-      ~active: Js.boolean=?,
-      ~completed: Js.boolean=?,
-      ~error: Js.boolean=?,
+      ~active: bool=?,
+      ~completed: bool=?,
+      ~error: bool=?,
       ~icon: ReasonReact.reactElement,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -7983,12 +7661,9 @@ module StepIcon = {
       ~reactClass,
       ~props=
         makeProps(
-          ~active=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), active),
-          ~completed=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), completed),
-          ~error=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), error),
+          ~active?,
+          ~completed?,
+          ~error?,
           ~icon,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
@@ -8059,14 +7734,14 @@ module StepLabel = {
   [@bs.obj]
   external makeProps :
     (
-      ~active: Js.boolean=?,
-      ~alternativeLabel: Js.boolean=?,
+      ~active: bool=?,
+      ~alternativeLabel: bool=?,
       ~className: string=?,
-      ~completed: Js.boolean=?,
-      ~disabled: Js.boolean=?,
-      ~error: Js.boolean=?,
+      ~completed: bool=?,
+      ~disabled: bool=?,
+      ~error: bool=?,
       ~icon: ReasonReact.reactElement=?,
-      ~last: Js.boolean=?,
+      ~last: bool=?,
       ~optional: ReasonReact.reactElement=?,
       ~orientation: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -8093,22 +7768,14 @@ module StepLabel = {
       ~reactClass,
       ~props=
         makeProps(
-          ~active=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), active),
-          ~alternativeLabel=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              alternativeLabel,
-            ),
+          ~active?,
+          ~alternativeLabel?,
           ~className?,
-          ~completed=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), completed),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~error=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), error),
+          ~completed?,
+          ~disabled?,
+          ~error?,
           ~icon?,
-          ~last=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), last),
+          ~last?,
           ~optional?,
           ~orientation=?
             Js.Option.map((. v) => orientationToJs(v), orientation),
@@ -8160,14 +7827,14 @@ module Step = {
   [@bs.obj]
   external makeProps :
     (
-      ~active: Js.boolean=?,
-      ~alternativeLabel: Js.boolean=?,
+      ~active: bool=?,
+      ~alternativeLabel: bool=?,
       ~className: string=?,
-      ~completed: Js.boolean=?,
+      ~completed: bool=?,
       ~connector: ReasonReact.reactElement=?,
-      ~disabled: Js.boolean=?,
-      ~index: 'number_e=?,
-      ~last: Js.boolean=?,
+      ~disabled: bool=?,
+      ~index: 'number_4=?,
+      ~last: bool=?,
       ~orientation: string=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -8192,21 +7859,14 @@ module Step = {
       ~reactClass,
       ~props=
         makeProps(
-          ~active=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), active),
-          ~alternativeLabel=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              alternativeLabel,
-            ),
+          ~active?,
+          ~alternativeLabel?,
           ~className?,
-          ~completed=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), completed),
+          ~completed?,
           ~connector?,
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
+          ~disabled?,
           ~index=?Js.Option.map((. v) => unwrapValue(v), index),
-          ~last=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), last),
+          ~last?,
           ~orientation=?
             Js.Option.map((. v) => orientationToJs(v), orientation),
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
@@ -8257,15 +7917,15 @@ module Stepper = {
   [@bs.obj]
   external makeProps :
     (
-      ~activeStep: 'number_e=?,
-      ~alternativeLabel: Js.boolean=?,
+      ~activeStep: 'number_4=?,
+      ~alternativeLabel: bool=?,
       ~className: string=?,
       ~connector: ReasonReact.reactElement=?,
-      ~nonLinear: Js.boolean=?,
+      ~nonLinear: bool=?,
       ~orientation: string=?,
-      ~component: 'union_t=?,
-      ~elevation: 'number_g=?,
-      ~square: Js.boolean=?,
+      ~component: 'union_3=?,
+      ~elevation: 'number_5=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -8291,21 +7951,15 @@ module Stepper = {
       ~props=
         makeProps(
           ~activeStep=?Js.Option.map((. v) => unwrapValue(v), activeStep),
-          ~alternativeLabel=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              alternativeLabel,
-            ),
+          ~alternativeLabel?,
           ~className?,
           ~connector?,
-          ~nonLinear=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), nonLinear),
+          ~nonLinear?,
           ~orientation=?
             Js.Option.map((. v) => orientationToJs(v), orientation),
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
-          ~square=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), square),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -8425,20 +8079,20 @@ module SwipeableDrawer = {
   external makeProps :
     (
       ~anchor: string=?,
-      ~disableBackdropTransition: Js.boolean=?,
-      ~disableDiscovery: Js.boolean=?,
-      ~disableSwipeToOpen: Js.boolean=?,
+      ~disableBackdropTransition: bool=?,
+      ~disableDiscovery: bool=?,
+      ~disableSwipeToOpen: bool=?,
       ~_ModalProps: Js.t({..})=?,
-      ~onClose: 'emptyCallback_y,
-      ~onOpen: 'emptyCallback_p,
-      ~_open: Js.boolean,
+      ~onClose: 'emptyCallback_h,
+      ~onOpen: 'emptyCallback_g,
+      ~_open: bool,
       ~_PaperProps: Js.t({..})=?,
-      ~swipeAreaWidth: 'number_u=?,
+      ~swipeAreaWidth: 'number_1=?,
       ~theme: Js.t({..}),
-      ~transitionDuration: 'union_5=?,
+      ~transitionDuration: 'union_q=?,
       ~variant: string=?,
       ~className: string=?,
-      ~elevation: 'number_7=?,
+      ~elevation: 'number_6=?,
       ~_SlideProps: Js.t({..})=?,
       unit
     ) =>
@@ -8451,8 +8105,8 @@ module SwipeableDrawer = {
         ~disableDiscovery: option(bool)=?,
         ~disableSwipeToOpen: option(bool)=?,
         ~_ModalProps: option(Js.t({..}))=?,
-        ~onClose: 'emptyCallback_y,
-        ~onOpen: 'emptyCallback_p,
+        ~onClose: 'emptyCallback_h,
+        ~onOpen: 'emptyCallback_g,
         ~_open: bool,
         ~_PaperProps: option(Js.t({..}))=?,
         ~swipeAreaWidth: option([ | `Int(int) | `Float(float)])=?,
@@ -8476,25 +8130,13 @@ module SwipeableDrawer = {
       ~props=
         makeProps(
           ~anchor=?Js.Option.map((. v) => anchorToJs(v), anchor),
-          ~disableBackdropTransition=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableBackdropTransition,
-            ),
-          ~disableDiscovery=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableDiscovery,
-            ),
-          ~disableSwipeToOpen=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableSwipeToOpen,
-            ),
+          ~disableBackdropTransition?,
+          ~disableDiscovery?,
+          ~disableSwipeToOpen?,
           ~_ModalProps?,
           ~onClose,
           ~onOpen,
-          ~_open=Js.Boolean.to_js_boolean(_open),
+          ~_open,
           ~_PaperProps?,
           ~swipeAreaWidth=?
             Js.Option.map((. v) => unwrapValue(v), swipeAreaWidth),
@@ -8513,6 +8155,183 @@ module SwipeableDrawer = {
           ~className?,
           ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
           ~_SlideProps?,
+          (),
+        ),
+      children,
+    );
+};
+
+module SwitchBase = {
+  [@bs.deriving jsConverter]
+  type color = [
+    | [@bs.as "default"] `Default
+    | [@bs.as "inherit"] `Inherit
+    | [@bs.as "primary"] `Primary
+    | [@bs.as "secondary"] `Secondary
+  ];
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Checked(string)
+      | Disabled(string)
+      | Input(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Checked(_) => "checked"
+      | Disabled(_) => "disabled"
+      | Input(_) => "input";
+    let to_obj = listOfClasses =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch (classType) {
+               | Root(className)
+               | Checked(className)
+               | Disabled(className)
+               | Input(className) =>
+                 Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj;
+             },
+           ~init=Js.Dict.empty(),
+         );
+  };
+  [@bs.module "material-ui/internal/SwitchBase"]
+  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.obj]
+  external makeProps :
+    (
+      ~checked: 'union_n=?,
+      ~checkedIcon: ReasonReact.reactElement,
+      ~className: string=?,
+      ~defaultChecked: bool=?,
+      ~disabled: bool=?,
+      ~disableRipple: bool=?,
+      ~icon: ReasonReact.reactElement,
+      ~id: string=?,
+      ~indeterminate: bool=?,
+      ~indeterminateIcon: ReasonReact.reactElement=?,
+      ~inputProps: Js.t({..})=?,
+      ~inputRef: ReasonReact.reactElement=?,
+      ~name: string=?,
+      ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
+      ~tabIndex: 'union_2=?,
+      ~_type: string=?,
+      ~value: string=?,
+      ~color: string=?,
+      ~buttonRef: ReasonReact.reactElement=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_r=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
+      ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
+      ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
+      ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
+      ~onKeyboardFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
+      ~onKeyDown: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
+      ~onKeyUp: ReasonReact.Callback.t(ReactEventRe.Keyboard.t)=?,
+      ~onMouseDown: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
+      ~onMouseLeave: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
+      ~onMouseUp: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
+      ~onTouchEnd: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
+      ~onTouchMove: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
+      ~onTouchStart: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
+      ~role: string=?,
+      ~_TouchRippleProps: Js.t({..})=?,
+      ~classes: Js.Dict.t(string)=?,
+      unit
+    ) =>
+    _ =
+    "";
+  let make =
+      (
+        ~checked: option([ | `Bool(bool) | `String(string)])=?,
+        ~checkedIcon: ReasonReact.reactElement,
+        ~className: option(string)=?,
+        ~defaultChecked: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~disableRipple: option(bool)=?,
+        ~icon: ReasonReact.reactElement,
+        ~id: option(string)=?,
+        ~indeterminate: option(bool)=?,
+        ~indeterminateIcon: option(ReasonReact.reactElement)=?,
+        ~inputProps: option(Js.t({..}))=?,
+        ~inputRef: option(ReasonReact.reactElement)=?,
+        ~name: option(string)=?,
+        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~_type: option(string)=?,
+        ~value: option(string)=?,
+        ~color: option(color)=?,
+        ~buttonRef: option(ReasonReact.reactElement)=?,
+        ~centerRipple: option(bool)=?,
+        ~component:
+           option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
+        ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
+        ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onKeyboardFocus:
+           option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
+        ~onKeyDown: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onKeyUp: option(ReasonReact.Callback.t(ReactEventRe.Keyboard.t))=?,
+        ~onMouseDown: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseLeave: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onMouseUp: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
+        ~onTouchEnd: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchMove: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~onTouchStart: option(ReasonReact.Callback.t(ReactEventRe.Touch.t))=?,
+        ~role: option(string)=?,
+        ~_TouchRippleProps: option(Js.t({..}))=?,
+        ~classes: option(Classes.t)=?,
+        children,
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props=
+        makeProps(
+          ~checked=?Js.Option.map((. v) => unwrapValue(v), checked),
+          ~checkedIcon,
+          ~className?,
+          ~defaultChecked?,
+          ~disabled?,
+          ~disableRipple?,
+          ~icon,
+          ~id?,
+          ~indeterminate?,
+          ~indeterminateIcon?,
+          ~inputProps?,
+          ~inputRef?,
+          ~name?,
+          ~onChange?,
+          ~tabIndex=?Js.Option.map((. v) => unwrapValue(v), tabIndex),
+          ~_type?,
+          ~value?,
+          ~color=?Js.Option.map((. v) => colorToJs(v), color),
+          ~buttonRef?,
+          ~centerRipple?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~focusRipple?,
+          ~focusVisibleClassName?,
+          ~onBlur?,
+          ~onClick?,
+          ~onFocus?,
+          ~onKeyboardFocus?,
+          ~onKeyDown?,
+          ~onKeyUp?,
+          ~onMouseDown?,
+          ~onMouseLeave?,
+          ~onMouseUp?,
+          ~onTouchEnd?,
+          ~onTouchMove?,
+          ~onTouchStart?,
+          ~role?,
+          ~_TouchRippleProps?,
+          ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
       children,
@@ -8576,13 +8395,13 @@ module Switch = {
   [@bs.obj]
   external makeProps :
     (
-      ~checked: 'union_4=?,
+      ~checked: 'union_a=?,
       ~checkedIcon: ReasonReact.reactElement=?,
       ~className: string=?,
       ~color: string=?,
-      ~defaultChecked: Js.boolean=?,
-      ~disabled: Js.boolean=?,
-      ~disableRipple: Js.boolean=?,
+      ~defaultChecked: bool=?,
+      ~disabled: bool=?,
+      ~disableRipple: bool=?,
       ~icon: ReasonReact.reactElement=?,
       ~id: string=?,
       ~inputProps: Js.t({..})=?,
@@ -8622,18 +8441,9 @@ module Switch = {
           ~checkedIcon?,
           ~className?,
           ~color=?Js.Option.map((. v) => colorToJs(v), color),
-          ~defaultChecked=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              defaultChecked,
-            ),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
+          ~defaultChecked?,
+          ~disabled?,
+          ~disableRipple?,
           ~icon?,
           ~id?,
           ~inputProps?,
@@ -8715,22 +8525,22 @@ module Tab = {
   external makeProps :
     (
       ~className: string=?,
-      ~disabled: Js.boolean=?,
-      ~fullWidth: Js.boolean=?,
+      ~disabled: bool=?,
+      ~fullWidth: bool=?,
       ~icon: ReasonReact.reactElement=?,
       ~indicator: ReasonReact.reactElement=?,
       ~label: ReasonReact.reactElement=?,
       ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
-      ~selected: Js.boolean=?,
-      ~style: Js.t({..})=?,
-      ~textColor: 'union_y=?,
-      ~value: 'any_k=?,
+      ~selected: bool=?,
+      ~textColor: string=?,
+      ~value: 'any_8=?,
       ~buttonRef: ReasonReact.reactElement=?,
-      ~centerRipple: Js.boolean=?,
-      ~component: 'union_b=?,
-      ~disableRipple: Js.boolean=?,
-      ~focusRipple: Js.boolean=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_r=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onKeyboardFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
@@ -8743,7 +8553,7 @@ module Tab = {
       ~onTouchMove: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~onTouchStart: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~role: string=?,
-      ~tabIndex: 'union_a=?,
+      ~tabIndex: 'union_j=?,
       ~_TouchRippleProps: Js.t({..})=?,
       ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -8762,15 +8572,15 @@ module Tab = {
         ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~selected: option(bool)=?,
-        ~style: option(Js.t({..}))=?,
-        ~textColor: option([ | `String(string) | `Enum(textColor)])=?,
-        ~value: option('any_k)=?,
+        ~textColor: option(textColor)=?,
+        ~value: option('any_8)=?,
         ~buttonRef: option(ReasonReact.reactElement)=?,
         ~centerRipple: option(bool)=?,
         ~component:
            option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~disableRipple: option(bool)=?,
         ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onKeyboardFocus:
@@ -8795,45 +8605,22 @@ module Tab = {
       ~props=
         makeProps(
           ~className?,
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~fullWidth=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), fullWidth),
+          ~disabled?,
+          ~fullWidth?,
           ~icon?,
           ~indicator?,
           ~label?,
           ~onChange?,
           ~onClick?,
-          ~selected=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), selected),
-          ~style?,
-          ~textColor=?
-            Js.Option.map(
-              (. v) =>
-                switch (v) {
-                | `Enum(v) => unwrapValue(`String(textColorToJs(v)))
-                | v => unwrapValue(v)
-                },
-              textColor,
-            ),
+          ~selected?,
+          ~textColor=?Js.Option.map((. v) => textColorToJs(v), textColor),
           ~value?,
           ~buttonRef?,
-          ~centerRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              centerRipple,
-            ),
+          ~centerRipple?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
-          ~focusRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              focusRipple,
-            ),
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
           ~onBlur?,
           ~onFocus?,
           ~onKeyboardFocus?,
@@ -8861,7 +8648,7 @@ module TableBody = {
   external reactClass : ReasonReact.reactClass = "default";
   [@bs.obj]
   external makeProps :
-    (~className: string=?, ~component: 'union_z=?, unit) => _ =
+    (~className: string=?, ~component: 'union_v=?, unit) => _ =
     "";
   let make =
       (
@@ -8950,8 +8737,8 @@ module TableCell = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_z=?,
-      ~numeric: Js.boolean=?,
+      ~component: 'union_7=?,
+      ~numeric: bool=?,
       ~padding: string=?,
       ~scope: string=?,
       ~sortDirection: string=?,
@@ -8980,8 +8767,7 @@ module TableCell = {
         makeProps(
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~numeric=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), numeric),
+          ~numeric?,
           ~padding=?Js.Option.map((. v) => paddingToJs(v), padding),
           ~scope?,
           ~sortDirection=?
@@ -8997,7 +8783,7 @@ module TableCell = {
 module TableFooter = {
   [@bs.module "material-ui/Table/TableFooter"]
   external reactClass : ReasonReact.reactClass = "default";
-  [@bs.obj] external makeProps : (~component: 'union_m=?, unit) => _ = "";
+  [@bs.obj] external makeProps : (~component: 'union_w=?, unit) => _ = "";
   let make =
       (
         ~component:
@@ -9020,7 +8806,7 @@ module TableHead = {
   external reactClass : ReasonReact.reactClass = "default";
   [@bs.obj]
   external makeProps :
-    (~className: string=?, ~component: 'union_s=?, unit) => _ =
+    (~className: string=?, ~component: 'union_a=?, unit) => _ =
     "";
   let make =
       (
@@ -9111,22 +8897,22 @@ module TablePagination = {
   [@bs.obj]
   external makeProps :
     (
-      ~_Actions: 'union_0=?,
+      ~_Actions: 'union_7=?,
       ~backIconButtonProps: Js.t({..})=?,
-      ~colSpan: 'number_6=?,
-      ~component: 'union_f=?,
-      ~count: 'number_i,
+      ~colSpan: 'number_t=?,
+      ~component: 'union_x=?,
+      ~count: 'number_o,
       ~labelDisplayedRows: ReasonReact.reactElement=?,
       ~labelRowsPerPage: ReasonReact.reactElement=?,
       ~nextIconButtonProps: Js.t({..})=?,
       ~onChangePage: (ReactEventRe.Mouse.t, int) => unit,
       ~onChangeRowsPerPage: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
-      ~page: 'number_y,
-      ~rowsPerPage: 'number_e,
-      ~rowsPerPageOptions: 'arrayGeneric_2=?,
+      ~page: 'number_x,
+      ~rowsPerPage: 'number_j,
+      ~rowsPerPageOptions: 'arrayGeneric_g=?,
       ~_SelectProps: Js.t({..})=?,
       ~className: string=?,
-      ~numeric: Js.boolean=?,
+      ~numeric: bool=?,
       ~padding: string=?,
       ~scope: string=?,
       ~sortDirection: string=?,
@@ -9153,7 +8939,7 @@ module TablePagination = {
            option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
         ~page: [ | `Int(int) | `Float(float)],
         ~rowsPerPage: [ | `Int(int) | `Float(float)],
-        ~rowsPerPageOptions: option([ | `ArrayGeneric(array('any_f))])=?,
+        ~rowsPerPageOptions: option([ | `ArrayGeneric(array('any_r))])=?,
         ~_SelectProps: option(Js.t({..}))=?,
         ~className: option(string)=?,
         ~numeric: option(bool)=?,
@@ -9183,8 +8969,7 @@ module TablePagination = {
           ~rowsPerPageOptions?,
           ~_SelectProps?,
           ~className?,
-          ~numeric=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), numeric),
+          ~numeric?,
           ~padding=?Js.Option.map((. v) => paddingToJs(v), padding),
           ~scope?,
           ~sortDirection=?
@@ -9237,9 +9022,9 @@ module TableRow = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_m=?,
-      ~hover: Js.boolean=?,
-      ~selected: Js.boolean=?,
+      ~component: 'union_q=?,
+      ~hover: bool=?,
+      ~selected: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -9261,10 +9046,8 @@ module TableRow = {
         makeProps(
           ~className?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~hover=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), hover),
-          ~selected=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), selected),
+          ~hover?,
+          ~selected?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -9313,15 +9096,16 @@ module TableSortLabel = {
   [@bs.obj]
   external makeProps :
     (
-      ~active: Js.boolean=?,
+      ~active: bool=?,
       ~className: string=?,
       ~direction: string=?,
       ~buttonRef: ReasonReact.reactElement=?,
-      ~centerRipple: Js.boolean=?,
-      ~component: 'union_b=?,
-      ~disabled: Js.boolean=?,
-      ~disableRipple: Js.boolean=?,
-      ~focusRipple: Js.boolean=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_r=?,
+      ~disabled: bool=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onClick: ReasonReact.Callback.t(ReactEventRe.Mouse.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
@@ -9335,7 +9119,7 @@ module TableSortLabel = {
       ~onTouchMove: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~onTouchStart: ReasonReact.Callback.t(ReactEventRe.Touch.t)=?,
       ~role: string=?,
-      ~tabIndex: 'union_a=?,
+      ~tabIndex: 'union_j=?,
       ~_TouchRippleProps: Js.t({..})=?,
       ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -9355,6 +9139,7 @@ module TableSortLabel = {
         ~disabled: option(bool)=?,
         ~disableRipple: option(bool)=?,
         ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
         ~onBlur: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
         ~onClick: option(ReasonReact.Callback.t(ReactEventRe.Mouse.t))=?,
         ~onFocus: option(ReasonReact.Callback.t(ReactEventRe.Focus.t))=?,
@@ -9379,29 +9164,16 @@ module TableSortLabel = {
       ~reactClass,
       ~props=
         makeProps(
-          ~active=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), active),
+          ~active?,
           ~className?,
           ~direction=?Js.Option.map((. v) => directionToJs(v), direction),
           ~buttonRef?,
-          ~centerRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              centerRipple,
-            ),
+          ~centerRipple?,
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~disableRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableRipple,
-            ),
-          ~focusRipple=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              focusRipple,
-            ),
+          ~disabled?,
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
           ~onBlur?,
           ~onClick?,
           ~onFocus?,
@@ -9453,7 +9225,7 @@ module Table = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_e=?,
+      ~component: 'union_h=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -9549,17 +9321,17 @@ module Tabs = {
   external makeProps :
     (
       ~action: ReasonReact.reactElement=?,
-      ~centered: Js.boolean=?,
+      ~centered: bool=?,
       ~className: string=?,
-      ~fullWidth: Js.boolean=?,
-      ~indicatorColor: 'union_u=?,
-      ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
-      ~scrollable: Js.boolean=?,
+      ~fullWidth: bool=?,
+      ~indicatorColor: string=?,
+      ~onChange: (ReactEventRe.Mouse.t, int) => unit=?,
+      ~scrollable: bool=?,
       ~scrollButtons: string=?,
-      ~_TabScrollButton: 'union_5=?,
+      ~_TabScrollButton: 'union_h=?,
       ~textColor: string=?,
       ~theme: Js.t({..}),
-      ~value: 'any_n=?,
+      ~value: 'any_p=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -9571,16 +9343,15 @@ module Tabs = {
         ~centered: option(bool)=?,
         ~className: option(string)=?,
         ~fullWidth: option(bool)=?,
-        ~indicatorColor:
-           option([ | `String(string) | `Enum(indicatorColor)])=?,
-        ~onChange: option(ReasonReact.Callback.t(ReactEventRe.Form.t))=?,
+        ~indicatorColor: option(indicatorColor)=?,
+        ~onChange: option((ReactEventRe.Mouse.t, int) => unit)=?,
         ~scrollable: option(bool)=?,
         ~scrollButtons: option(scrollButtons)=?,
         ~_TabScrollButton:
            option([ | `String(string) | `Element(ReasonReact.reactElement)])=?,
         ~textColor: option(textColor)=?,
         ~theme: Js.t({..}),
-        ~value: option('any_n)=?,
+        ~value: option('any_p)=?,
         ~classes: option(Classes.t)=?,
         children,
       ) =>
@@ -9589,23 +9360,13 @@ module Tabs = {
       ~props=
         makeProps(
           ~action?,
-          ~centered=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), centered),
+          ~centered?,
           ~className?,
-          ~fullWidth=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), fullWidth),
+          ~fullWidth?,
           ~indicatorColor=?
-            Js.Option.map(
-              (. v) =>
-                switch (v) {
-                | `Enum(v) => unwrapValue(`String(indicatorColorToJs(v)))
-                | v => unwrapValue(v)
-                },
-              indicatorColor,
-            ),
+            Js.Option.map((. v) => indicatorColorToJs(v), indicatorColor),
           ~onChange?,
-          ~scrollable=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), scrollable),
+          ~scrollable?,
           ~scrollButtons=?
             Js.Option.map((. v) => scrollButtonsToJs(v), scrollButtons),
           ~_TabScrollButton=?
@@ -9633,13 +9394,13 @@ module TextField = {
   external makeProps :
     (
       ~autoComplete: string=?,
-      ~autoFocus: Js.boolean=?,
+      ~autoFocus: bool=?,
       ~className: string=?,
-      ~defaultValue: 'union_t=?,
-      ~disabled: Js.boolean=?,
-      ~error: Js.boolean=?,
+      ~defaultValue: 'union_b=?,
+      ~disabled: bool=?,
+      ~error: bool=?,
       ~_FormHelperTextProps: Js.t({..})=?,
-      ~fullWidth: Js.boolean=?,
+      ~fullWidth: bool=?,
       ~helperText: ReasonReact.reactElement=?,
       ~id: string=?,
       ~_InputLabelProps: Js.t({..})=?,
@@ -9648,20 +9409,20 @@ module TextField = {
       ~inputRef: ReasonReact.reactElement=?,
       ~label: ReasonReact.reactElement=?,
       ~margin: string=?,
-      ~multiline: Js.boolean=?,
+      ~multiline: bool=?,
       ~name: string=?,
       ~onBlur: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~onChange: ReasonReact.Callback.t(ReactEventRe.Form.t)=?,
       ~onFocus: ReasonReact.Callback.t(ReactEventRe.Focus.t)=?,
       ~placeholder: string=?,
-      ~required: Js.boolean=?,
-      ~rows: 'union_m=?,
-      ~rowsMax: 'union_q=?,
-      ~select: Js.boolean=?,
+      ~required: bool=?,
+      ~rows: 'union_9=?,
+      ~rowsMax: 'union_p=?,
+      ~select: bool=?,
       ~_SelectProps: Js.t({..})=?,
       ~_type: string=?,
-      ~value: 'union_z=?,
-      ~component: 'union_d=?,
+      ~value: 'union_4=?,
+      ~component: 'union_r=?,
       unit
     ) =>
     _ =
@@ -9717,18 +9478,14 @@ module TextField = {
       ~props=
         makeProps(
           ~autoComplete?,
-          ~autoFocus=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), autoFocus),
+          ~autoFocus?,
           ~className?,
           ~defaultValue=?
             Js.Option.map((. v) => unwrapValue(v), defaultValue),
-          ~disabled=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), disabled),
-          ~error=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), error),
+          ~disabled?,
+          ~error?,
           ~_FormHelperTextProps?,
-          ~fullWidth=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), fullWidth),
+          ~fullWidth?,
           ~helperText?,
           ~id?,
           ~_InputLabelProps?,
@@ -9737,19 +9494,16 @@ module TextField = {
           ~inputRef?,
           ~label?,
           ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
-          ~multiline=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), multiline),
+          ~multiline?,
           ~name?,
           ~onBlur?,
           ~onChange?,
           ~onFocus?,
           ~placeholder?,
-          ~required=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), required),
+          ~required?,
           ~rows=?Js.Option.map((. v) => unwrapValue(v), rows),
           ~rowsMax=?Js.Option.map((. v) => unwrapValue(v), rowsMax),
-          ~select=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), select),
+          ~select?,
           ~_SelectProps?,
           ~_type?,
           ~value=?Js.Option.map((. v) => unwrapValue(v), value),
@@ -9791,7 +9545,7 @@ module Toolbar = {
   external makeProps :
     (
       ~className: string=?,
-      ~disableGutters: Js.boolean=?,
+      ~disableGutters: bool=?,
       ~classes: Js.Dict.t(string)=?,
       unit
     ) =>
@@ -9809,11 +9563,7 @@ module Toolbar = {
       ~props=
         makeProps(
           ~className?,
-          ~disableGutters=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableGutters,
-            ),
+          ~disableGutters?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -9843,6 +9593,7 @@ module Tooltip = {
       | Popper(string)
       | Open(string)
       | Tooltip(string)
+      | Touch(string)
       | TooltipPlacementLeft(string)
       | TooltipPlacementRight(string)
       | TooltipPlacementTop(string)
@@ -9854,6 +9605,7 @@ module Tooltip = {
       | Popper(_) => "popper"
       | Open(_) => "open"
       | Tooltip(_) => "tooltip"
+      | Touch(_) => "touch"
       | TooltipPlacementLeft(_) => "tooltipPlacementLeft"
       | TooltipPlacementRight(_) => "tooltipPlacementRight"
       | TooltipPlacementTop(_) => "tooltipPlacementTop"
@@ -9868,6 +9620,7 @@ module Tooltip = {
                | Popper(className)
                | Open(className)
                | Tooltip(className)
+               | Touch(className)
                | TooltipPlacementLeft(className)
                | TooltipPlacementRight(className)
                | TooltipPlacementTop(className)
@@ -9885,17 +9638,17 @@ module Tooltip = {
   external makeProps :
     (
       ~className: string=?,
-      ~disableFocusListener: Js.boolean=?,
-      ~disableHoverListener: Js.boolean=?,
-      ~disableTouchListener: Js.boolean=?,
-      ~enterDelay: 'number_k=?,
-      ~enterTouchDelay: 'number_y=?,
+      ~disableFocusListener: bool=?,
+      ~disableHoverListener: bool=?,
+      ~disableTouchListener: bool=?,
+      ~enterDelay: 'number_2=?,
+      ~enterTouchDelay: 'number_w=?,
       ~id: string=?,
-      ~leaveDelay: 'number_s=?,
-      ~leaveTouchDelay: 'number_3=?,
-      ~onClose: 'emptyCallback_5=?,
-      ~onOpen: 'emptyCallback_n=?,
-      ~_open: Js.boolean=?,
+      ~leaveDelay: 'number_l=?,
+      ~leaveTouchDelay: 'number_m=?,
+      ~onClose: 'emptyCallback_x=?,
+      ~onOpen: 'emptyCallback_8=?,
+      ~_open: bool=?,
       ~placement: string=?,
       ~_PopperProps: Js.t({..})=?,
       ~theme: Js.t({..}),
@@ -9916,8 +9669,8 @@ module Tooltip = {
         ~id: option(string)=?,
         ~leaveDelay: option([ | `Int(int) | `Float(float)])=?,
         ~leaveTouchDelay: option([ | `Int(int) | `Float(float)])=?,
-        ~onClose: option('emptyCallback_5)=?,
-        ~onOpen: option('emptyCallback_n)=?,
+        ~onClose: option('emptyCallback_x)=?,
+        ~onOpen: option('emptyCallback_8)=?,
         ~_open: option(bool)=?,
         ~placement: option(placement)=?,
         ~_PopperProps: option(Js.t({..}))=?,
@@ -9931,21 +9684,9 @@ module Tooltip = {
       ~props=
         makeProps(
           ~className?,
-          ~disableFocusListener=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableFocusListener,
-            ),
-          ~disableHoverListener=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableHoverListener,
-            ),
-          ~disableTouchListener=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              disableTouchListener,
-            ),
+          ~disableFocusListener?,
+          ~disableHoverListener?,
+          ~disableTouchListener?,
           ~enterDelay=?Js.Option.map((. v) => unwrapValue(v), enterDelay),
           ~enterTouchDelay=?
             Js.Option.map((. v) => unwrapValue(v), enterTouchDelay),
@@ -9955,12 +9696,83 @@ module Tooltip = {
             Js.Option.map((. v) => unwrapValue(v), leaveTouchDelay),
           ~onClose?,
           ~onOpen?,
-          ~_open=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), _open),
+          ~_open?,
           ~placement=?Js.Option.map((. v) => placementToJs(v), placement),
           ~_PopperProps?,
           ~theme,
           ~title,
+          ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          (),
+        ),
+      children,
+    );
+};
+
+module TouchRipple = {
+  module Classes = {
+    type classesType =
+      | Root(string)
+      | Ripple(string)
+      | RippleVisible(string)
+      | RipplePulsate(string)
+      | Child(string)
+      | ChildLeaving(string)
+      | ChildPulsate(string);
+    type t = list(classesType);
+    let to_string =
+      fun
+      | Root(_) => "root"
+      | Ripple(_) => "ripple"
+      | RippleVisible(_) => "rippleVisible"
+      | RipplePulsate(_) => "ripplePulsate"
+      | Child(_) => "child"
+      | ChildLeaving(_) => "childLeaving"
+      | ChildPulsate(_) => "childPulsate";
+    let to_obj = listOfClasses =>
+      listOfClasses
+      |> StdLabels.List.fold_left(
+           ~f=
+             (obj, classType) => {
+               switch (classType) {
+               | Root(className)
+               | Ripple(className)
+               | RippleVisible(className)
+               | RipplePulsate(className)
+               | Child(className)
+               | ChildLeaving(className)
+               | ChildPulsate(className) =>
+                 Js.Dict.set(obj, to_string(classType), className)
+               };
+               obj;
+             },
+           ~init=Js.Dict.empty(),
+         );
+  };
+  [@bs.module "material-ui/ButtonBase/TouchRipple"]
+  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.obj]
+  external makeProps :
+    (
+      ~center: bool=?,
+      ~className: string=?,
+      ~classes: Js.Dict.t(string)=?,
+      unit
+    ) =>
+    _ =
+    "";
+  let make =
+      (
+        ~center: option(bool)=?,
+        ~className: option(string)=?,
+        ~classes: option(Classes.t)=?,
+        children,
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props=
+        makeProps(
+          ~center?,
+          ~className?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
         ),
@@ -10098,11 +9910,11 @@ module Typography = {
       ~align: string=?,
       ~className: string=?,
       ~color: string=?,
-      ~component: 'union_v=?,
-      ~gutterBottom: Js.boolean=?,
+      ~component: 'union_z=?,
+      ~gutterBottom: bool=?,
       ~headlineMapping: Js.t({..})=?,
-      ~noWrap: Js.boolean=?,
-      ~paragraph: Js.boolean=?,
+      ~noWrap: bool=?,
+      ~paragraph: bool=?,
       ~variant: string=?,
       ~classes: Js.Dict.t(string)=?,
       unit
@@ -10132,16 +9944,10 @@ module Typography = {
           ~className?,
           ~color=?Js.Option.map((. v) => colorToJs(v), color),
           ~component=?Js.Option.map((. v) => unwrapValue(v), component),
-          ~gutterBottom=?
-            Js.Option.map(
-              (. v) => Js.Boolean.to_js_boolean(v),
-              gutterBottom,
-            ),
+          ~gutterBottom?,
           ~headlineMapping?,
-          ~noWrap=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), noWrap),
-          ~paragraph=?
-            Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), paragraph),
+          ~noWrap?,
+          ~paragraph?,
           ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           (),
@@ -10161,12 +9967,12 @@ module Zoom = {
   [@bs.obj]
   external makeProps :
     (
-      ~_in: Js.boolean=?,
-      ~onEnter: 'emptyCallback_n=?,
-      ~onExit: 'emptyCallback_f=?,
+      ~_in: bool=?,
+      ~onEnter: 'emptyCallback_5=?,
+      ~onExit: 'emptyCallback_1=?,
       ~style: Js.t({..})=?,
       ~theme: Js.t({..}),
-      ~timeout: 'union_q=?,
+      ~timeout: 'union_7=?,
       unit
     ) =>
     _ =
@@ -10174,8 +9980,8 @@ module Zoom = {
   let make =
       (
         ~_in: option(bool)=?,
-        ~onEnter: option('emptyCallback_n)=?,
-        ~onExit: option('emptyCallback_f)=?,
+        ~onEnter: option('emptyCallback_5)=?,
+        ~onExit: option('emptyCallback_1)=?,
         ~style: option(Js.t({..}))=?,
         ~theme: Js.t({..}),
         ~timeout:
@@ -10186,7 +9992,7 @@ module Zoom = {
       ~reactClass,
       ~props=
         makeProps(
-          ~_in=?Js.Option.map((. v) => Js.Boolean.to_js_boolean(v), _in),
+          ~_in?,
           ~onEnter?,
           ~onExit?,
           ~style?,
