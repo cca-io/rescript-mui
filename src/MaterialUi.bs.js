@@ -358,7 +358,7 @@ function WithStylesSafe(S) {
             /* reactClassInternal */component[/* reactClassInternal */1],
             /* handedOffState */component[/* handedOffState */2],
             /* willReceiveProps */(function (param) {
-                var state = param[/* state */2];
+                var state = param[/* state */1];
                 var newHash = ObjectHash(S[/* classes */2]);
                 if (newHash === state[/* hash */0]) {
                   return state;
@@ -375,7 +375,7 @@ function WithStylesSafe(S) {
             /* willUpdate */component[/* willUpdate */7],
             /* shouldUpdate */component[/* shouldUpdate */8],
             /* render */(function (param) {
-                return ReasonReact.element(/* None */0, /* None */0, make(render, param[/* state */2][/* wrapper */1], /* array */[children]));
+                return ReasonReact.element(/* None */0, /* None */0, make(render, param[/* state */1][/* wrapper */1], /* array */[children]));
               }),
             /* initialState */(function () {
                 return /* record */[
@@ -474,7 +474,7 @@ function make$1(classes, classesWithTheme, render, children) {
           /* reactClassInternal */component[/* reactClassInternal */1],
           /* handedOffState */component[/* handedOffState */2],
           /* willReceiveProps */(function (param) {
-              var state = param[/* state */2];
+              var state = param[/* state */1];
               var newHash = ObjectHash(classes) + ObjectHash(classesWithTheme);
               if (newHash === state[/* hash */0]) {
                 return state;
@@ -491,7 +491,7 @@ function make$1(classes, classesWithTheme, render, children) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function (param) {
-              return ReasonReact.element(/* None */0, /* None */0, make(render, param[/* state */2][/* wrapper */1], /* array */[children]));
+              return ReasonReact.element(/* None */0, /* None */0, make(render, param[/* state */1][/* wrapper */1], /* array */[children]));
             }),
           /* initialState */(function () {
               return /* record */[
@@ -1937,10 +1937,14 @@ var BottomNavigation$1 = /* module */[
 ];
 
 function to_string$6(param) {
-  if (param.tag) {
-    return "disabled";
-  } else {
-    return "root";
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "disabled";
+    case 2 : 
+        return "focusVisible";
+    
   }
 }
 
