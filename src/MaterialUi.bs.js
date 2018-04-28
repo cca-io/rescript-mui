@@ -1495,7 +1495,7 @@ var Classes = /* module */[
   /* to_obj */to_obj
 ];
 
-function make$2(className, color, position, classes, style, children) {
+function make$2(className, color, position, component, elevation, square, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -1512,9 +1512,20 @@ function make$2(className, color, position, classes, style, children) {
   if (tmp$2) {
     tmp.position = tmp$2[0];
   }
-  var tmp$3 = Js_option.map(to_obj, classes);
+  var tmp$3 = Js_option.map(unwrapValue, component);
   if (tmp$3) {
-    tmp.classes = tmp$3[0];
+    tmp.component = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, elevation);
+  if (tmp$4) {
+    tmp.elevation = tmp$4[0];
+  }
+  if (square) {
+    tmp.square = square[0];
+  }
+  var tmp$5 = Js_option.map(to_obj, classes);
+  if (tmp$5) {
+    tmp.classes = tmp$5[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -1780,7 +1791,7 @@ var Classes$4 = /* module */[
   /* to_obj */to_obj$4
 ];
 
-function make$6(className, icon, label, onChange, onClick, selected, showLabel, value, classes, style, children) {
+function make$6(className, icon, label, onChange, onClick, selected, showLabel, value, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, focusVisibleClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -1806,9 +1817,77 @@ function make$6(className, icon, label, onChange, onClick, selected, showLabel, 
   if (value) {
     tmp.value = value[0];
   }
-  var tmp$1 = Js_option.map(to_obj$4, classes);
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  if (centerRipple) {
+    tmp.centerRipple = centerRipple[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
   if (tmp$1) {
-    tmp.classes = tmp$1[0];
+    tmp.component = tmp$1[0];
+  }
+  if (disabled) {
+    tmp.disabled = disabled[0];
+  }
+  if (disableRipple) {
+    tmp.disableRipple = disableRipple[0];
+  }
+  if (focusRipple) {
+    tmp.focusRipple = focusRipple[0];
+  }
+  if (focusVisibleClassName) {
+    tmp.focusVisibleClassName = focusVisibleClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$2) {
+    tmp.tabIndex = tmp$2[0];
+  }
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$4, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -2098,7 +2177,7 @@ var Classes$7 = /* module */[
   /* to_obj */to_obj$7
 ];
 
-function make$9(className, color, component, disabled, disableFocusRipple, disableRipple, focusVisibleClassName, fullWidth, href, mini, size, _type, variant, classes, style, children) {
+function make$9(className, color, component, disabled, disableFocusRipple, disableRipple, focusVisibleClassName, fullWidth, href, mini, size, _type, variant, buttonRef, centerRipple, focusRipple, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -2149,9 +2228,64 @@ function make$9(className, color, component, disabled, disableFocusRipple, disab
   if (tmp$4) {
     tmp.variant = tmp$4[0];
   }
-  var tmp$5 = Js_option.map(to_obj$7, classes);
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  if (centerRipple) {
+    tmp.centerRipple = centerRipple[0];
+  }
+  if (focusRipple) {
+    tmp.focusRipple = focusRipple[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, tabIndex);
   if (tmp$5) {
-    tmp.classes = tmp$5[0];
+    tmp.tabIndex = tmp$5[0];
+  }
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
+  }
+  var tmp$6 = Js_option.map(to_obj$7, classes);
+  if (tmp$6) {
+    tmp.classes = tmp$6[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -2385,7 +2519,7 @@ var Classes$12 = /* module */[
   /* to_obj */to_obj$12
 ];
 
-function make$14(className, raised, classes, style, children) {
+function make$14(className, raised, component, elevation, square, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -2393,9 +2527,20 @@ function make$14(className, raised, classes, style, children) {
   if (raised) {
     tmp.raised = raised[0];
   }
-  var tmp$1 = Js_option.map(to_obj$12, classes);
+  var tmp$1 = Js_option.map(unwrapValue, component);
   if (tmp$1) {
-    tmp.classes = tmp$1[0];
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, elevation);
+  if (tmp$2) {
+    tmp.elevation = tmp$2[0];
+  }
+  if (square) {
+    tmp.square = square[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$12, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -2984,6 +3129,127 @@ var DialogActions$1 = /* module */[
   /* make */make$21
 ];
 
+var jsMapperConstantArray$12 = /* array */[
+  /* tuple */[
+    -788068560,
+    "justify"
+  ],
+  /* tuple */[
+    -72987685,
+    "inherit"
+  ],
+  /* tuple */[
+    -57574468,
+    "right"
+  ],
+  /* tuple */[
+    847852583,
+    "left"
+  ],
+  /* tuple */[
+    980392437,
+    "center"
+  ]
+];
+
+function alignToJs(param) {
+  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$12);
+}
+
+function alignFromJs(param) {
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$12, param);
+}
+
+var jsMapperConstantArray$13 = /* array */[
+  /* tuple */[
+    -791844958,
+    "primary"
+  ],
+  /* tuple */[
+    -507693849,
+    "textSecondary"
+  ],
+  /* tuple */[
+    -384499551,
+    "default"
+  ],
+  /* tuple */[
+    -72987685,
+    "inherit"
+  ],
+  /* tuple */[
+    67972948,
+    "secondary"
+  ],
+  /* tuple */[
+    106380200,
+    "error"
+  ]
+];
+
+function colorToJs$5(param) {
+  return Js_mapperRt.binarySearch(6, param, jsMapperConstantArray$13);
+}
+
+function colorFromJs$5(param) {
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$13, param);
+}
+
+var jsMapperConstantArray$14 = /* array */[
+  /* tuple */[
+    -904051921,
+    "body1"
+  ],
+  /* tuple */[
+    -904051920,
+    "body2"
+  ],
+  /* tuple */[
+    -191243578,
+    "caption"
+  ],
+  /* tuple */[
+    -11760689,
+    "display1"
+  ],
+  /* tuple */[
+    -11760688,
+    "display2"
+  ],
+  /* tuple */[
+    -11760687,
+    "display3"
+  ],
+  /* tuple */[
+    -11760686,
+    "display4"
+  ],
+  /* tuple */[
+    148169314,
+    "subheading"
+  ],
+  /* tuple */[
+    242538002,
+    "button"
+  ],
+  /* tuple */[
+    579538228,
+    "headline"
+  ],
+  /* tuple */[
+    594052472,
+    "title"
+  ]
+];
+
+function variantToJs$2(param) {
+  return Js_mapperRt.binarySearch(11, param, jsMapperConstantArray$14);
+}
+
+function variantFromJs$2(param) {
+  return Js_mapperRt.revSearch(11, jsMapperConstantArray$14, param);
+}
+
 function to_string$18() {
   return "root";
 }
@@ -3000,14 +3266,48 @@ var Classes$18 = /* module */[
   /* to_obj */to_obj$18
 ];
 
-function make$22(className, classes, style, children) {
+function make$22(className, align, color, component, gutterBottom, headlineMapping, noWrap, paragraph, variant, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
   }
-  var tmp$1 = Js_option.map(to_obj$18, classes);
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(5, v, jsMapperConstantArray$12);
+        }), align);
   if (tmp$1) {
-    tmp.classes = tmp$1[0];
+    tmp.align = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(6, v, jsMapperConstantArray$13);
+        }), color);
+  if (tmp$2) {
+    tmp.color = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, component);
+  if (tmp$3) {
+    tmp.component = tmp$3[0];
+  }
+  if (gutterBottom) {
+    tmp.gutterBottom = gutterBottom[0];
+  }
+  if (headlineMapping) {
+    tmp.headlineMapping = headlineMapping[0];
+  }
+  if (noWrap) {
+    tmp.noWrap = noWrap[0];
+  }
+  if (paragraph) {
+    tmp.paragraph = paragraph[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(11, v, jsMapperConstantArray$14);
+        }), variant);
+  if (tmp$4) {
+    tmp.variant = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(to_obj$18, classes);
+  if (tmp$5) {
+    tmp.classes = tmp$5[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -3016,6 +3316,12 @@ function make$22(className, classes, style, children) {
 }
 
 var DialogContentText$1 = /* module */[
+  /* alignToJs */alignToJs,
+  /* alignFromJs */alignFromJs,
+  /* colorToJs */colorToJs$5,
+  /* colorFromJs */colorFromJs$5,
+  /* variantToJs */variantToJs$2,
+  /* variantFromJs */variantFromJs$2,
   /* Classes */Classes$18,
   /* make */make$22
 ];
@@ -3095,7 +3401,7 @@ var DialogTitle$1 = /* module */[
   /* make */make$24
 ];
 
-var jsMapperConstantArray$12 = /* array */[
+var jsMapperConstantArray$15 = /* array */[
   /* tuple */[
     17271,
     "md"
@@ -3115,11 +3421,11 @@ var jsMapperConstantArray$12 = /* array */[
 ];
 
 function maxWidthToJs(param) {
-  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$12);
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$15);
 }
 
 function maxWidthFromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$12, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$15, param);
 }
 
 function convertTransitionDuration_shape$1(madeObj) {
@@ -3161,7 +3467,7 @@ var Classes$21 = /* module */[
   /* to_obj */to_obj$21
 ];
 
-function make$25(_BackdropProps, className, disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWidth, maxWidth, onBackdropClick, onClose, onEnter, onEntered, onEntering, onEscapeKeyDown, onExit, onExited, onExiting, _open, _PaperProps, transition, transitionDuration, classes, style, children) {
+function make$25(_BackdropProps, className, disableBackdropClick, disableEscapeKeyDown, fullScreen, fullWidth, maxWidth, onBackdropClick, onClose, onEnter, onEntered, onEntering, onEscapeKeyDown, onExit, onExited, onExiting, _open, _PaperProps, transition, transitionDuration, _BackdropComponent, container, disableAutoFocus, disableEnforceFocus, disableRestoreFocus, hideBackdrop, keepMounted, manager, onRendered, classes, style, children) {
   var tmp = {
     open: _open
   };
@@ -3184,7 +3490,7 @@ function make$25(_BackdropProps, className, disableBackdropClick, disableEscapeK
     tmp.fullWidth = fullWidth[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$12);
+          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$15);
         }), maxWidth);
   if (tmp$1) {
     tmp.maxWidth = tmp$1[0];
@@ -3236,9 +3542,38 @@ function make$25(_BackdropProps, className, disableBackdropClick, disableEscapeK
   if (tmp$3) {
     tmp.transitionDuration = tmp$3[0];
   }
-  var tmp$4 = Js_option.map(to_obj$21, classes);
+  var tmp$4 = Js_option.map(unwrapValue, _BackdropComponent);
   if (tmp$4) {
-    tmp.classes = tmp$4[0];
+    tmp.BackdropComponent = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, container);
+  if (tmp$5) {
+    tmp.container = tmp$5[0];
+  }
+  if (disableAutoFocus) {
+    tmp.disableAutoFocus = disableAutoFocus[0];
+  }
+  if (disableEnforceFocus) {
+    tmp.disableEnforceFocus = disableEnforceFocus[0];
+  }
+  if (disableRestoreFocus) {
+    tmp.disableRestoreFocus = disableRestoreFocus[0];
+  }
+  if (hideBackdrop) {
+    tmp.hideBackdrop = hideBackdrop[0];
+  }
+  if (keepMounted) {
+    tmp.keepMounted = keepMounted[0];
+  }
+  if (manager) {
+    tmp.manager = manager[0];
+  }
+  if (onRendered) {
+    tmp.onRendered = onRendered[0];
+  }
+  var tmp$6 = Js_option.map(to_obj$21, classes);
+  if (tmp$6) {
+    tmp.classes = tmp$6[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -3313,7 +3648,7 @@ var Divider$1 = /* module */[
   /* make */make$26
 ];
 
-var jsMapperConstantArray$13 = /* array */[
+var jsMapperConstantArray$16 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -3333,11 +3668,11 @@ var jsMapperConstantArray$13 = /* array */[
 ];
 
 function anchorToJs(param) {
-  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$13);
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$16);
 }
 
 function anchorFromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$13, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$16, param);
 }
 
 function convertTransitionDuration_shape$2(madeObj) {
@@ -3347,7 +3682,7 @@ function convertTransitionDuration_shape$2(madeObj) {
   return returnObj;
 }
 
-var jsMapperConstantArray$14 = /* array */[
+var jsMapperConstantArray$17 = /* array */[
   /* tuple */[
     -156865929,
     "persistent"
@@ -3362,12 +3697,12 @@ var jsMapperConstantArray$14 = /* array */[
   ]
 ];
 
-function variantToJs$2(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$14);
+function variantToJs$3(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$17);
 }
 
-function variantFromJs$2(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$14, param);
+function variantFromJs$3(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$17, param);
 }
 
 function to_string$23(param) {
@@ -3413,7 +3748,7 @@ var Classes$23 = /* module */[
 function make$27(anchor, className, elevation, _ModalProps, onClose, _open, _PaperProps, _SlideProps, theme, transitionDuration, variant, classes, style, children) {
   var tmp = { };
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$13);
+          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$16);
         }), anchor);
   if (tmp$1) {
     tmp.anchor = tmp$1[0];
@@ -3457,7 +3792,7 @@ function make$27(anchor, className, elevation, _ModalProps, onClose, _open, _Pap
     tmp.transitionDuration = tmp$3[0];
   }
   var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$14);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$17);
         }), variant);
   if (tmp$4) {
     tmp.variant = tmp$4[0];
@@ -3476,8 +3811,8 @@ var Drawer$1 = /* module */[
   /* anchorToJs */anchorToJs,
   /* anchorFromJs */anchorFromJs,
   /* convertTransitionDuration_shape */convertTransitionDuration_shape$2,
-  /* variantToJs */variantToJs$2,
-  /* variantFromJs */variantFromJs$2,
+  /* variantToJs */variantToJs$3,
+  /* variantFromJs */variantFromJs$3,
   /* Classes */Classes$23,
   /* make */make$27
 ];
@@ -3588,7 +3923,7 @@ var Classes$26 = /* module */[
   /* to_obj */to_obj$26
 ];
 
-function make$30(className, disabled, expanded, expandIcon, onChange, onClick, classes, style, children) {
+function make$30(className, disabled, expanded, expandIcon, onChange, onClick, buttonRef, centerRipple, component, disableRipple, focusRipple, focusVisibleClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -3608,9 +3943,74 @@ function make$30(className, disabled, expanded, expandIcon, onChange, onClick, c
   if (onClick) {
     tmp.onClick = onClick[0];
   }
-  var tmp$1 = Js_option.map(to_obj$26, classes);
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  if (centerRipple) {
+    tmp.centerRipple = centerRipple[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
   if (tmp$1) {
-    tmp.classes = tmp$1[0];
+    tmp.component = tmp$1[0];
+  }
+  if (disableRipple) {
+    tmp.disableRipple = disableRipple[0];
+  }
+  if (focusRipple) {
+    tmp.focusRipple = focusRipple[0];
+  }
+  if (focusVisibleClassName) {
+    tmp.focusVisibleClassName = focusVisibleClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$2) {
+    tmp.tabIndex = tmp$2[0];
+  }
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$26, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -3647,7 +4047,7 @@ var Classes$27 = /* module */[
   /* to_obj */to_obj$27
 ];
 
-function make$31(className, _CollapseProps, defaultExpanded, disabled, expanded, onChange, classes, style, children) {
+function make$31(className, _CollapseProps, defaultExpanded, disabled, expanded, onChange, component, elevation, square, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -3667,9 +4067,20 @@ function make$31(className, _CollapseProps, defaultExpanded, disabled, expanded,
   if (onChange) {
     tmp.onChange = onChange[0];
   }
-  var tmp$1 = Js_option.map(to_obj$27, classes);
+  var tmp$1 = Js_option.map(unwrapValue, component);
   if (tmp$1) {
-    tmp.classes = tmp$1[0];
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, elevation);
+  if (tmp$2) {
+    tmp.elevation = tmp$2[0];
+  }
+  if (square) {
+    tmp.square = square[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$27, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -3793,7 +4204,7 @@ var FormControlLabel$1 = /* module */[
   /* make */make$33
 ];
 
-var jsMapperConstantArray$15 = /* array */[
+var jsMapperConstantArray$18 = /* array */[
   /* tuple */[
     -453122489,
     "normal"
@@ -3809,11 +4220,11 @@ var jsMapperConstantArray$15 = /* array */[
 ];
 
 function marginToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$15);
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$18);
 }
 
 function marginFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$15, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$18, param);
 }
 
 function to_string$29(param) {
@@ -3861,7 +4272,7 @@ function make$34(className, component, disabled, error, fullWidth, margin, onBlu
     tmp.fullWidth = fullWidth[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$15);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$18);
         }), margin);
   if (tmp$2) {
     tmp.margin = tmp$2[0];
@@ -3935,17 +4346,17 @@ var FormGroup$1 = /* module */[
   /* make */make$35
 ];
 
-var jsMapperConstantArray$16 = /* array */[/* tuple */[
+var jsMapperConstantArray$19 = /* array */[/* tuple */[
     -363472001,
     "dense"
   ]];
 
 function marginToJs$1(param) {
-  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$16);
+  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$19);
 }
 
 function marginFromJs$1(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$16, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$19, param);
 }
 
 function to_string$31(param) {
@@ -3990,7 +4401,7 @@ function make$36(className, component, disabled, error, margin, classes, style, 
     tmp.error = error[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(1, v, jsMapperConstantArray$16);
+          return Js_mapperRt.binarySearch(1, v, jsMapperConstantArray$19);
         }), margin);
   if (tmp$2) {
     tmp.margin = tmp$2[0];
@@ -4076,7 +4487,7 @@ var FormLabel$1 = /* module */[
   /* make */make$37
 ];
 
-var jsMapperConstantArray$17 = /* array */[
+var jsMapperConstantArray$20 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -4088,14 +4499,14 @@ var jsMapperConstantArray$17 = /* array */[
 ];
 
 function actionPositionToJs(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$17);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$20);
 }
 
 function actionPositionFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$17, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$20, param);
 }
 
-var jsMapperConstantArray$18 = /* array */[
+var jsMapperConstantArray$21 = /* array */[
   /* tuple */[
     4202101,
     "top"
@@ -4107,11 +4518,11 @@ var jsMapperConstantArray$18 = /* array */[
 ];
 
 function titlePositionToJs(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$18);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$21);
 }
 
 function titlePositionFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$18, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$21, param);
 }
 
 function to_string$33(param) {
@@ -4160,7 +4571,7 @@ function make$38(actionIcon, actionPosition, className, subtitle, title, titlePo
     tmp.actionIcon = actionIcon[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$17);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$20);
         }), actionPosition);
   if (tmp$1) {
     tmp.actionPosition = tmp$1[0];
@@ -4175,7 +4586,7 @@ function make$38(actionIcon, actionPosition, className, subtitle, title, titlePo
     tmp.title = title[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$18);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$21);
         }), titlePosition);
   if (tmp$2) {
     tmp.titlePosition = tmp$2[0];
@@ -4257,17 +4668,17 @@ var GridListTile$1 = /* module */[
   /* make */make$39
 ];
 
-var jsMapperConstantArray$19 = /* array */[/* tuple */[
+var jsMapperConstantArray$22 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
 function cellHeight_enumToJs(param) {
-  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$19);
+  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$22);
 }
 
 function cellHeight_enumFromJs(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$19, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$22, param);
 }
 
 function to_string$35() {
@@ -4294,7 +4705,7 @@ function make$40(cellHeight, className, cols, component, spacing, classes, style
           } else {
             return unwrapValue(/* `String */[
                         -976970511,
-                        Js_mapperRt.binarySearch(1, v[1], jsMapperConstantArray$19)
+                        Js_mapperRt.binarySearch(1, v[1], jsMapperConstantArray$22)
                       ]);
           }
         }), cellHeight);
@@ -4333,7 +4744,7 @@ var GridList$1 = /* module */[
   /* make */make$40
 ];
 
-var jsMapperConstantArray$20 = /* array */[
+var jsMapperConstantArray$23 = /* array */[
   /* tuple */[
     -1012636187,
     "stretch"
@@ -4361,14 +4772,14 @@ var jsMapperConstantArray$20 = /* array */[
 ];
 
 function alignContentToJs(param) {
-  return Js_mapperRt.binarySearch(6, param, jsMapperConstantArray$20);
+  return Js_mapperRt.binarySearch(6, param, jsMapperConstantArray$23);
 }
 
 function alignContentFromJs(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$20, param);
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$23, param);
 }
 
-var jsMapperConstantArray$21 = /* array */[
+var jsMapperConstantArray$24 = /* array */[
   /* tuple */[
     -1012636187,
     "stretch"
@@ -4392,14 +4803,14 @@ var jsMapperConstantArray$21 = /* array */[
 ];
 
 function alignItemsToJs(param) {
-  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$21);
+  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$24);
 }
 
 function alignItemsFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$21, param);
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$24, param);
 }
 
-var jsMapperConstantArray$22 = /* array */[
+var jsMapperConstantArray$25 = /* array */[
   /* tuple */[
     -674898307,
     "row-reverse"
@@ -4419,14 +4830,14 @@ var jsMapperConstantArray$22 = /* array */[
 ];
 
 function directionToJs(param) {
-  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$22);
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$25);
 }
 
 function directionFromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$22, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$25, param);
 }
 
-var jsMapperConstantArray$23 = /* array */[
+var jsMapperConstantArray$26 = /* array */[
   /* tuple */[
     -403022699,
     "flex-end"
@@ -4450,14 +4861,14 @@ var jsMapperConstantArray$23 = /* array */[
 ];
 
 function justifyToJs(param) {
-  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$23);
+  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$26);
 }
 
 function justifyFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$23, param);
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$26, param);
 }
 
-var jsMapperConstantArray$24 = /* array */[
+var jsMapperConstantArray$27 = /* array */[
   /* tuple */[
     19227,
     "1"
@@ -4517,14 +4928,14 @@ var jsMapperConstantArray$24 = /* array */[
 ];
 
 function lgToJs(param) {
-  return Js_mapperRt.binarySearch(14, param, jsMapperConstantArray$24);
+  return Js_mapperRt.binarySearch(14, param, jsMapperConstantArray$27);
 }
 
 function lgFromJs(param) {
-  return Js_mapperRt.revSearch(14, jsMapperConstantArray$24, param);
+  return Js_mapperRt.revSearch(14, jsMapperConstantArray$27, param);
 }
 
-var jsMapperConstantArray$25 = /* array */[
+var jsMapperConstantArray$28 = /* array */[
   /* tuple */[
     19227,
     "1"
@@ -4584,117 +4995,11 @@ var jsMapperConstantArray$25 = /* array */[
 ];
 
 function mdToJs(param) {
-  return Js_mapperRt.binarySearch(14, param, jsMapperConstantArray$25);
+  return Js_mapperRt.binarySearch(14, param, jsMapperConstantArray$28);
 }
 
 function mdFromJs(param) {
-  return Js_mapperRt.revSearch(14, jsMapperConstantArray$25, param);
-}
-
-var jsMapperConstantArray$26 = /* array */[
-  /* tuple */[
-    19227,
-    "1"
-  ],
-  /* tuple */[
-    19228,
-    "2"
-  ],
-  /* tuple */[
-    19229,
-    "3"
-  ],
-  /* tuple */[
-    19230,
-    "4"
-  ],
-  /* tuple */[
-    19231,
-    "5"
-  ],
-  /* tuple */[
-    19232,
-    "6"
-  ],
-  /* tuple */[
-    19233,
-    "7"
-  ],
-  /* tuple */[
-    19234,
-    "8"
-  ],
-  /* tuple */[
-    19235,
-    "9"
-  ],
-  /* tuple */[
-    4287669,
-    "10"
-  ],
-  /* tuple */[
-    4287670,
-    "11"
-  ],
-  /* tuple */[
-    4287671,
-    "12"
-  ],
-  /* tuple */[
-    243049859,
-    "false"
-  ],
-  /* tuple */[
-    937218926,
-    "true"
-  ]
-];
-
-function smToJs(param) {
-  return Js_mapperRt.binarySearch(14, param, jsMapperConstantArray$26);
-}
-
-function smFromJs(param) {
-  return Js_mapperRt.revSearch(14, jsMapperConstantArray$26, param);
-}
-
-var jsMapperConstantArray$27 = /* array */[
-  0,
-  8,
-  16,
-  24,
-  40
-];
-
-function spacingToJs(param) {
-  return Js_mapperRt.toInt(param, jsMapperConstantArray$27);
-}
-
-function spacingFromJs(param) {
-  return Js_mapperRt.fromInt(5, jsMapperConstantArray$27, param);
-}
-
-var jsMapperConstantArray$28 = /* array */[
-  /* tuple */[
-    -397426005,
-    "nowrap"
-  ],
-  /* tuple */[
-    49617517,
-    "wrap-reverse"
-  ],
-  /* tuple */[
-    970483178,
-    "wrap"
-  ]
-];
-
-function wrapToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$28);
-}
-
-function wrapFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$28, param);
+  return Js_mapperRt.revSearch(14, jsMapperConstantArray$28, param);
 }
 
 var jsMapperConstantArray$29 = /* array */[
@@ -4756,15 +5061,121 @@ var jsMapperConstantArray$29 = /* array */[
   ]
 ];
 
-function xlToJs(param) {
+function smToJs(param) {
   return Js_mapperRt.binarySearch(14, param, jsMapperConstantArray$29);
 }
 
-function xlFromJs(param) {
+function smFromJs(param) {
   return Js_mapperRt.revSearch(14, jsMapperConstantArray$29, param);
 }
 
 var jsMapperConstantArray$30 = /* array */[
+  0,
+  8,
+  16,
+  24,
+  40
+];
+
+function spacingToJs(param) {
+  return Js_mapperRt.toInt(param, jsMapperConstantArray$30);
+}
+
+function spacingFromJs(param) {
+  return Js_mapperRt.fromInt(5, jsMapperConstantArray$30, param);
+}
+
+var jsMapperConstantArray$31 = /* array */[
+  /* tuple */[
+    -397426005,
+    "nowrap"
+  ],
+  /* tuple */[
+    49617517,
+    "wrap-reverse"
+  ],
+  /* tuple */[
+    970483178,
+    "wrap"
+  ]
+];
+
+function wrapToJs(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$31);
+}
+
+function wrapFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$31, param);
+}
+
+var jsMapperConstantArray$32 = /* array */[
+  /* tuple */[
+    19227,
+    "1"
+  ],
+  /* tuple */[
+    19228,
+    "2"
+  ],
+  /* tuple */[
+    19229,
+    "3"
+  ],
+  /* tuple */[
+    19230,
+    "4"
+  ],
+  /* tuple */[
+    19231,
+    "5"
+  ],
+  /* tuple */[
+    19232,
+    "6"
+  ],
+  /* tuple */[
+    19233,
+    "7"
+  ],
+  /* tuple */[
+    19234,
+    "8"
+  ],
+  /* tuple */[
+    19235,
+    "9"
+  ],
+  /* tuple */[
+    4287669,
+    "10"
+  ],
+  /* tuple */[
+    4287670,
+    "11"
+  ],
+  /* tuple */[
+    4287671,
+    "12"
+  ],
+  /* tuple */[
+    243049859,
+    "false"
+  ],
+  /* tuple */[
+    937218926,
+    "true"
+  ]
+];
+
+function xlToJs(param) {
+  return Js_mapperRt.binarySearch(14, param, jsMapperConstantArray$32);
+}
+
+function xlFromJs(param) {
+  return Js_mapperRt.revSearch(14, jsMapperConstantArray$32, param);
+}
+
+var jsMapperConstantArray$33 = /* array */[
   /* tuple */[
     19227,
     "1"
@@ -4824,11 +5235,11 @@ var jsMapperConstantArray$30 = /* array */[
 ];
 
 function xsToJs(param) {
-  return Js_mapperRt.binarySearch(14, param, jsMapperConstantArray$30);
+  return Js_mapperRt.binarySearch(14, param, jsMapperConstantArray$33);
 }
 
 function xsFromJs(param) {
-  return Js_mapperRt.revSearch(14, jsMapperConstantArray$30, param);
+  return Js_mapperRt.revSearch(14, jsMapperConstantArray$33, param);
 }
 
 function to_string$36(param) {
@@ -4928,13 +5339,13 @@ var Classes$36 = /* module */[
 function make$41(alignContent, alignItems, className, component, container, direction, hidden, item, justify, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth, classes, style, children) {
   var tmp = { };
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(6, v, jsMapperConstantArray$20);
+          return Js_mapperRt.binarySearch(6, v, jsMapperConstantArray$23);
         }), alignContent);
   if (tmp$1) {
     tmp.alignContent = tmp$1[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(5, v, jsMapperConstantArray$21);
+          return Js_mapperRt.binarySearch(5, v, jsMapperConstantArray$24);
         }), alignItems);
   if (tmp$2) {
     tmp.alignItems = tmp$2[0];
@@ -4950,7 +5361,7 @@ function make$41(alignContent, alignItems, className, component, container, dire
     tmp.container = container[0];
   }
   var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$22);
+          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$25);
         }), direction);
   if (tmp$4) {
     tmp.direction = tmp$4[0];
@@ -4962,49 +5373,49 @@ function make$41(alignContent, alignItems, className, component, container, dire
     tmp.item = item[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(5, v, jsMapperConstantArray$23);
+          return Js_mapperRt.binarySearch(5, v, jsMapperConstantArray$26);
         }), justify);
   if (tmp$5) {
     tmp.justify = tmp$5[0];
   }
   var tmp$6 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(14, v, jsMapperConstantArray$24);
+          return Js_mapperRt.binarySearch(14, v, jsMapperConstantArray$27);
         }), lg);
   if (tmp$6) {
     tmp.lg = tmp$6[0];
   }
   var tmp$7 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(14, v, jsMapperConstantArray$25);
+          return Js_mapperRt.binarySearch(14, v, jsMapperConstantArray$28);
         }), md);
   if (tmp$7) {
     tmp.md = tmp$7[0];
   }
   var tmp$8 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(14, v, jsMapperConstantArray$26);
+          return Js_mapperRt.binarySearch(14, v, jsMapperConstantArray$29);
         }), sm);
   if (tmp$8) {
     tmp.sm = tmp$8[0];
   }
   var tmp$9 = Js_option.map((function (v) {
-          return Js_mapperRt.toInt(v, jsMapperConstantArray$27);
+          return Js_mapperRt.toInt(v, jsMapperConstantArray$30);
         }), spacing);
   if (tmp$9) {
     tmp.spacing = tmp$9[0];
   }
   var tmp$10 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$28);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$31);
         }), wrap);
   if (tmp$10) {
     tmp.wrap = tmp$10[0];
   }
   var tmp$11 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(14, v, jsMapperConstantArray$29);
+          return Js_mapperRt.binarySearch(14, v, jsMapperConstantArray$32);
         }), xl);
   if (tmp$11) {
     tmp.xl = tmp$11[0];
   }
   var tmp$12 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(14, v, jsMapperConstantArray$30);
+          return Js_mapperRt.binarySearch(14, v, jsMapperConstantArray$33);
         }), xs);
   if (tmp$12) {
     tmp.xs = tmp$12[0];
@@ -5056,17 +5467,17 @@ function convertTimeout_shape$2(madeObj) {
   return returnObj;
 }
 
-var jsMapperConstantArray$31 = /* array */[/* tuple */[
+var jsMapperConstantArray$34 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
 function timeout_enumToJs$1(param) {
-  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$31);
+  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$34);
 }
 
 function timeout_enumFromJs$1(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$31, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$34, param);
 }
 
 function make$42(_in, onEnter, onExit, theme, timeout, children) {
@@ -5094,7 +5505,7 @@ function make$42(_in, onEnter, onExit, theme, timeout, children) {
               } else {
                 return unwrapValue(/* `String */[
                             -976970511,
-                            Js_mapperRt.binarySearch(1, v[1], jsMapperConstantArray$31)
+                            Js_mapperRt.binarySearch(1, v[1], jsMapperConstantArray$34)
                           ]);
               }
             } else {
@@ -5118,7 +5529,7 @@ var Grow$1 = /* module */[
   /* make */make$42
 ];
 
-var jsMapperConstantArray$32 = /* array */[
+var jsMapperConstantArray$35 = /* array */[
   /* tuple */[
     16617,
     "js"
@@ -5130,14 +5541,14 @@ var jsMapperConstantArray$32 = /* array */[
 ];
 
 function implementationToJs(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$32);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$35);
 }
 
 function implementationFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$32, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$35, param);
 }
 
-var jsMapperConstantArray$33 = /* array */[
+var jsMapperConstantArray$36 = /* array */[
   /* tuple */[
     17051,
     "lg"
@@ -5161,14 +5572,14 @@ var jsMapperConstantArray$33 = /* array */[
 ];
 
 function initialWidthToJs(param) {
-  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$33);
+  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$36);
 }
 
 function initialWidthFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$33, param);
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$36, param);
 }
 
-var jsMapperConstantArray$34 = /* array */[
+var jsMapperConstantArray$37 = /* array */[
   /* tuple */[
     17051,
     "lg"
@@ -5192,14 +5603,14 @@ var jsMapperConstantArray$34 = /* array */[
 ];
 
 function only_enumToJs(param) {
-  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$34);
+  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$37);
 }
 
 function only_enumFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$34, param);
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$37, param);
 }
 
-var jsMapperConstantArray$35 = /* array */[
+var jsMapperConstantArray$38 = /* array */[
   /* tuple */[
     17051,
     "lg"
@@ -5223,11 +5634,11 @@ var jsMapperConstantArray$35 = /* array */[
 ];
 
 function only_arrayOfToJs(param) {
-  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$35);
+  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$38);
 }
 
 function only_arrayOfFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$35, param);
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$38, param);
 }
 
 function make$43(className, implementation, initialWidth, lgDown, lgUp, mdDown, mdUp, only, smDown, smUp, xlDown, xlUp, xsDown, xsUp, children) {
@@ -5236,13 +5647,13 @@ function make$43(className, implementation, initialWidth, lgDown, lgUp, mdDown, 
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$32);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$35);
         }), implementation);
   if (tmp$1) {
     tmp.implementation = tmp$1[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(5, v, jsMapperConstantArray$33);
+          return Js_mapperRt.binarySearch(5, v, jsMapperConstantArray$36);
         }), initialWidth);
   if (tmp$2) {
     tmp.initialWidth = tmp$2[0];
@@ -5265,7 +5676,7 @@ function make$43(className, implementation, initialWidth, lgDown, lgUp, mdDown, 
           } else {
             return unwrapValue(/* `String */[
                         -976970511,
-                        Js_mapperRt.binarySearch(5, v[1], jsMapperConstantArray$34)
+                        Js_mapperRt.binarySearch(5, v[1], jsMapperConstantArray$37)
                       ]);
           }
         }), only);
@@ -5305,7 +5716,7 @@ var Hidden$1 = /* module */[
   /* make */make$43
 ];
 
-var jsMapperConstantArray$36 = /* array */[
+var jsMapperConstantArray$39 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -5324,12 +5735,12 @@ var jsMapperConstantArray$36 = /* array */[
   ]
 ];
 
-function colorToJs$5(param) {
-  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$36);
+function colorToJs$6(param) {
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$39);
 }
 
-function colorFromJs$5(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$36, param);
+function colorFromJs$6(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$39, param);
 }
 
 function to_string$37(param) {
@@ -5362,13 +5773,13 @@ var Classes$37 = /* module */[
   /* to_obj */to_obj$37
 ];
 
-function make$44(className, color, disabled, disableRipple, classes, style, children) {
+function make$44(className, color, disabled, disableRipple, buttonRef, centerRipple, component, focusRipple, focusVisibleClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$36);
+          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$39);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
@@ -5379,9 +5790,74 @@ function make$44(className, color, disabled, disableRipple, classes, style, chil
   if (disableRipple) {
     tmp.disableRipple = disableRipple[0];
   }
-  var tmp$2 = Js_option.map(to_obj$37, classes);
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  if (centerRipple) {
+    tmp.centerRipple = centerRipple[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
   if (tmp$2) {
-    tmp.classes = tmp$2[0];
+    tmp.component = tmp$2[0];
+  }
+  if (focusRipple) {
+    tmp.focusRipple = focusRipple[0];
+  }
+  if (focusVisibleClassName) {
+    tmp.focusVisibleClassName = focusVisibleClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$3) {
+    tmp.tabIndex = tmp$3[0];
+  }
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$37, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -5390,13 +5866,13 @@ function make$44(className, color, disabled, disableRipple, classes, style, chil
 }
 
 var IconButton$1 = /* module */[
-  /* colorToJs */colorToJs$5,
-  /* colorFromJs */colorFromJs$5,
+  /* colorToJs */colorToJs$6,
+  /* colorFromJs */colorFromJs$6,
   /* Classes */Classes$37,
   /* make */make$44
 ];
 
-var jsMapperConstantArray$37 = /* array */[
+var jsMapperConstantArray$40 = /* array */[
   /* tuple */[
     -891637802,
     "action"
@@ -5423,12 +5899,12 @@ var jsMapperConstantArray$37 = /* array */[
   ]
 ];
 
-function colorToJs$6(param) {
-  return Js_mapperRt.binarySearch(6, param, jsMapperConstantArray$37);
+function colorToJs$7(param) {
+  return Js_mapperRt.binarySearch(6, param, jsMapperConstantArray$40);
 }
 
-function colorFromJs$6(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$37, param);
+function colorFromJs$7(param) {
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$40, param);
 }
 
 function to_string$38(param) {
@@ -5467,7 +5943,7 @@ function make$45(className, color, classes, style, children) {
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(6, v, jsMapperConstantArray$37);
+          return Js_mapperRt.binarySearch(6, v, jsMapperConstantArray$40);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
@@ -5483,13 +5959,13 @@ function make$45(className, color, classes, style, children) {
 }
 
 var Icon$1 = /* module */[
-  /* colorToJs */colorToJs$6,
-  /* colorFromJs */colorFromJs$6,
+  /* colorToJs */colorToJs$7,
+  /* colorFromJs */colorFromJs$7,
   /* Classes */Classes$38,
   /* make */make$45
 ];
 
-var jsMapperConstantArray$38 = /* array */[
+var jsMapperConstantArray$41 = /* array */[
   /* tuple */[
     3455931,
     "end"
@@ -5501,11 +5977,11 @@ var jsMapperConstantArray$38 = /* array */[
 ];
 
 function positionToJs$1(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$38);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$41);
 }
 
 function positionFromJs$1(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$38, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$41, param);
 }
 
 function to_string$39(param) {
@@ -5545,7 +6021,7 @@ function make$46(className, component, disableTypography, position, classes, sty
     tmp.disableTypography = disableTypography[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$38);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$41);
         }), position);
   if (tmp$2) {
     tmp.position = tmp$2[0];
@@ -5567,17 +6043,17 @@ var InputAdornment$1 = /* module */[
   /* make */make$46
 ];
 
-var jsMapperConstantArray$39 = /* array */[/* tuple */[
+var jsMapperConstantArray$42 = /* array */[/* tuple */[
     -363472001,
     "dense"
   ]];
 
 function marginToJs$2(param) {
-  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$39);
+  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$42);
 }
 
 function marginFromJs$2(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$39, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$42, param);
 }
 
 function to_string$40(param) {
@@ -5608,7 +6084,7 @@ var Classes$40 = /* module */[
   /* to_obj */to_obj$40
 ];
 
-function make$47(className, disableAnimation, disabled, error, focused, _FormLabelClasses, margin, required, shrink, classes, style, children) {
+function make$47(className, disableAnimation, disabled, error, focused, _FormLabelClasses, margin, required, shrink, component, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -5629,7 +6105,7 @@ function make$47(className, disableAnimation, disabled, error, focused, _FormLab
     tmp.FormLabelClasses = _FormLabelClasses[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(1, v, jsMapperConstantArray$39);
+          return Js_mapperRt.binarySearch(1, v, jsMapperConstantArray$42);
         }), margin);
   if (tmp$1) {
     tmp.margin = tmp$1[0];
@@ -5640,9 +6116,13 @@ function make$47(className, disableAnimation, disabled, error, focused, _FormLab
   if (shrink) {
     tmp.shrink = shrink[0];
   }
-  var tmp$2 = Js_option.map(to_obj$40, classes);
+  var tmp$2 = Js_option.map(unwrapValue, component);
   if (tmp$2) {
-    tmp.classes = tmp$2[0];
+    tmp.component = tmp$2[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$40, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -5657,7 +6137,7 @@ var InputLabel$1 = /* module */[
   /* make */make$47
 ];
 
-var jsMapperConstantArray$40 = /* array */[
+var jsMapperConstantArray$43 = /* array */[
   /* tuple */[
     -363472001,
     "dense"
@@ -5669,11 +6149,11 @@ var jsMapperConstantArray$40 = /* array */[
 ];
 
 function marginToJs$3(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$40);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$43);
 }
 
 function marginFromJs$3(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$40, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$43, param);
 }
 
 function to_string$41(param) {
@@ -5763,7 +6243,7 @@ function make$48(autoComplete, autoFocus, className, defaultValue, disabled, dis
     tmp.inputRef = inputRef[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$40);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$43);
         }), margin);
   if (tmp$2) {
     tmp.margin = tmp$2[0];
@@ -5836,7 +6316,7 @@ var Input$1 = /* module */[
   /* make */make$48
 ];
 
-var jsMapperConstantArray$41 = /* array */[
+var jsMapperConstantArray$44 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -5847,15 +6327,15 @@ var jsMapperConstantArray$41 = /* array */[
   ]
 ];
 
-function colorToJs$7(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$41);
+function colorToJs$8(param) {
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$44);
 }
 
-function colorFromJs$7(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$41, param);
+function colorFromJs$8(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$44, param);
 }
 
-var jsMapperConstantArray$42 = /* array */[
+var jsMapperConstantArray$45 = /* array */[
   /* tuple */[
     -700823845,
     "indeterminate"
@@ -5874,12 +6354,12 @@ var jsMapperConstantArray$42 = /* array */[
   ]
 ];
 
-function variantToJs$3(param) {
-  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$42);
+function variantToJs$4(param) {
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$45);
 }
 
-function variantFromJs$3(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$42, param);
+function variantFromJs$4(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$45, param);
 }
 
 function to_string$42(param) {
@@ -5938,7 +6418,7 @@ function make$49(className, color, value, valueBuffer, variant, classes, style, 
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$41);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$44);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
@@ -5952,7 +6432,7 @@ function make$49(className, color, value, valueBuffer, variant, classes, style, 
     tmp.valueBuffer = tmp$3[0];
   }
   var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$42);
+          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$45);
         }), variant);
   if (tmp$4) {
     tmp.variant = tmp$4[0];
@@ -5968,10 +6448,10 @@ function make$49(className, color, value, valueBuffer, variant, classes, style, 
 }
 
 var LinearProgress$1 = /* module */[
-  /* colorToJs */colorToJs$7,
-  /* colorFromJs */colorFromJs$7,
-  /* variantToJs */variantToJs$3,
-  /* variantFromJs */variantFromJs$3,
+  /* colorToJs */colorToJs$8,
+  /* colorFromJs */colorFromJs$8,
+  /* variantToJs */variantToJs$4,
+  /* variantFromJs */variantFromJs$4,
   /* Classes */Classes$42,
   /* make */make$49
 ];
@@ -6244,7 +6724,7 @@ var ListItem$1 = /* module */[
   /* make */make$54
 ];
 
-var jsMapperConstantArray$43 = /* array */[
+var jsMapperConstantArray$46 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -6259,12 +6739,12 @@ var jsMapperConstantArray$43 = /* array */[
   ]
 ];
 
-function colorToJs$8(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$43);
+function colorToJs$9(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$46);
 }
 
-function colorFromJs$8(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$43, param);
+function colorFromJs$9(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$46, param);
 }
 
 function to_string$48(param) {
@@ -6301,7 +6781,7 @@ function make$55(className, color, component, disableSticky, inset, classes, sty
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$43);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$46);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
@@ -6327,8 +6807,8 @@ function make$55(className, color, component, disableSticky, inset, classes, sty
 }
 
 var ListSubheader$1 = /* module */[
-  /* colorToJs */colorToJs$8,
-  /* colorFromJs */colorFromJs$8,
+  /* colorToJs */colorToJs$9,
+  /* colorFromJs */colorFromJs$9,
   /* Classes */Classes$48,
   /* make */make$55
 ];
@@ -6412,7 +6892,7 @@ var Classes$50 = /* module */[
   /* to_obj */to_obj$50
 ];
 
-function make$57(className, component, role, selected, value, onFocus, onClick, classes, style, children) {
+function make$57(className, component, role, selected, value, onFocus, onClick, button, _ContainerComponent, _ContainerProps, dense, disabled, disableGutters, divider, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -6437,9 +6917,31 @@ function make$57(className, component, role, selected, value, onFocus, onClick, 
   if (onClick) {
     tmp.onClick = onClick[0];
   }
-  var tmp$3 = Js_option.map(to_obj$50, classes);
+  if (button) {
+    tmp.button = button[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, _ContainerComponent);
   if (tmp$3) {
-    tmp.classes = tmp$3[0];
+    tmp.ContainerComponent = tmp$3[0];
+  }
+  if (_ContainerProps) {
+    tmp.ContainerProps = _ContainerProps[0];
+  }
+  if (dense) {
+    tmp.dense = dense[0];
+  }
+  if (disabled) {
+    tmp.disabled = disabled[0];
+  }
+  if (disableGutters) {
+    tmp.disableGutters = disableGutters[0];
+  }
+  if (divider) {
+    tmp.divider = divider[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$50, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -6452,7 +6954,7 @@ var MenuItem$1 = /* module */[
   /* make */make$57
 ];
 
-function make$58(className, onBlur, onKeyDown, children) {
+function make$58(className, onBlur, onKeyDown, component, dense, disablePadding, subheader, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -6462,6 +6964,19 @@ function make$58(className, onBlur, onKeyDown, children) {
   }
   if (onKeyDown) {
     tmp.onKeyDown = onKeyDown[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  if (dense) {
+    tmp.dense = dense[0];
+  }
+  if (disablePadding) {
+    tmp.disablePadding = disablePadding[0];
+  }
+  if (subheader) {
+    tmp.subheader = subheader[0];
   }
   return ReasonReact.wrapJsForReason(MenuList.default, tmp, children);
 }
@@ -6475,17 +6990,152 @@ function convertTransitionDuration_shape$3(madeObj) {
   return returnObj;
 }
 
-var jsMapperConstantArray$44 = /* array */[/* tuple */[
+var jsMapperConstantArray$47 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
 function transitionDuration_enumToJs(param) {
-  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$44);
+  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$47);
 }
 
 function transitionDuration_enumFromJs(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$44, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$47, param);
+}
+
+var jsMapperConstantArray$48 = /* array */[
+  /* tuple */[
+    -57574468,
+    "right"
+  ],
+  /* tuple */[
+    847852583,
+    "left"
+  ],
+  /* tuple */[
+    980392437,
+    "center"
+  ]
+];
+
+function horizontal_enumToJs(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$48);
+}
+
+function horizontal_enumFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$48, param);
+}
+
+var jsMapperConstantArray$49 = /* array */[
+  /* tuple */[
+    4202101,
+    "top"
+  ],
+  /* tuple */[
+    437082891,
+    "bottom"
+  ],
+  /* tuple */[
+    980392437,
+    "center"
+  ]
+];
+
+function vertical_enumToJs(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$49);
+}
+
+function vertical_enumFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$49, param);
+}
+
+function convertAnchorOrigin(madeObj) {
+  var returnObj = { };
+  if (madeObj) {
+    var madeObj$1 = madeObj[0];
+    returnObj["horizontal"] = Js_option.map((function (v) {
+            if (typeof v === "number" || v[0] !== 770676513) {
+              return unwrapValue(v);
+            } else {
+              return unwrapValue(/* `String */[
+                          -976970511,
+                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$48)
+                        ]);
+            }
+          }), madeObj$1["horizontal"]);
+    returnObj["vertical"] = Js_option.map((function (v) {
+            if (typeof v === "number" || v[0] !== 770676513) {
+              return unwrapValue(v);
+            } else {
+              return unwrapValue(/* `String */[
+                          -976970511,
+                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$49)
+                        ]);
+            }
+          }), madeObj$1["vertical"]);
+  }
+  return /* Some */[returnObj];
+}
+
+function convertAnchorPosition(madeObj) {
+  var returnObj = { };
+  if (madeObj) {
+    var madeObj$1 = madeObj[0];
+    returnObj["top"] = Js_option.map(unwrapValue, madeObj$1["top"]);
+    returnObj["left"] = Js_option.map(unwrapValue, madeObj$1["left"]);
+  }
+  return /* Some */[returnObj];
+}
+
+var jsMapperConstantArray$50 = /* array */[
+  /* tuple */[
+    580003934,
+    "anchorPosition"
+  ],
+  /* tuple */[
+    616462940,
+    "anchorEl"
+  ],
+  /* tuple */[
+    870530776,
+    "none"
+  ]
+];
+
+function anchorReferenceToJs(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$50);
+}
+
+function anchorReferenceFromJs(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$50, param);
+}
+
+function convertTransformOrigin(madeObj) {
+  var returnObj = { };
+  if (madeObj) {
+    var madeObj$1 = madeObj[0];
+    returnObj["horizontal"] = Js_option.map((function (v) {
+            if (typeof v === "number" || v[0] !== 770676513) {
+              return unwrapValue(v);
+            } else {
+              return unwrapValue(/* `String */[
+                          -976970511,
+                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$48)
+                        ]);
+            }
+          }), madeObj$1["horizontal"]);
+    returnObj["vertical"] = Js_option.map((function (v) {
+            if (typeof v === "number" || v[0] !== 770676513) {
+              return unwrapValue(v);
+            } else {
+              return unwrapValue(/* `String */[
+                          -976970511,
+                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$49)
+                        ]);
+            }
+          }), madeObj$1["vertical"]);
+  }
+  return /* Some */[returnObj];
 }
 
 function to_string$51() {
@@ -6504,7 +7154,7 @@ var Classes$51 = /* module */[
   /* to_obj */to_obj$51
 ];
 
-function make$59(anchorEl, _MenuListProps, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, _open, _PaperProps, _PopoverClasses, theme, transitionDuration, classes, style, children) {
+function make$59(anchorEl, _MenuListProps, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, _open, _PaperProps, _PopoverClasses, theme, transitionDuration, action, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, role, transformOrigin, transition, classes, style, children) {
   var tmp = {
     open: _open
   };
@@ -6555,7 +7205,7 @@ function make$59(anchorEl, _MenuListProps, onClose, onEnter, onEntered, onEnteri
               } else {
                 return unwrapValue(/* `String */[
                             -976970511,
-                            Js_mapperRt.binarySearch(1, v[1], jsMapperConstantArray$44)
+                            Js_mapperRt.binarySearch(1, v[1], jsMapperConstantArray$47)
                           ]);
               }
             } else {
@@ -6569,9 +7219,52 @@ function make$59(anchorEl, _MenuListProps, onClose, onEnter, onEntered, onEnteri
   if (tmp$1) {
     tmp.transitionDuration = tmp$1[0];
   }
-  var tmp$2 = Js_option.map(to_obj$51, classes);
+  if (action) {
+    tmp.action = action[0];
+  }
+  var tmp$2 = convertAnchorOrigin(anchorOrigin);
   if (tmp$2) {
-    tmp.classes = tmp$2[0];
+    tmp.anchorOrigin = tmp$2[0];
+  }
+  var tmp$3 = convertAnchorPosition(anchorPosition);
+  if (tmp$3) {
+    tmp.anchorPosition = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$50);
+        }), anchorReference);
+  if (tmp$4) {
+    tmp.anchorReference = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, container);
+  if (tmp$5) {
+    tmp.container = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, elevation);
+  if (tmp$6) {
+    tmp.elevation = tmp$6[0];
+  }
+  if (getContentAnchorEl) {
+    tmp.getContentAnchorEl = getContentAnchorEl[0];
+  }
+  var tmp$7 = Js_option.map(unwrapValue, marginThreshold);
+  if (tmp$7) {
+    tmp.marginThreshold = tmp$7[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$8 = convertTransformOrigin(transformOrigin);
+  if (tmp$8) {
+    tmp.transformOrigin = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(unwrapValue, transition);
+  if (tmp$9) {
+    tmp.transition = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map(to_obj$51, classes);
+  if (tmp$10) {
+    tmp.classes = tmp$10[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -6583,11 +7276,20 @@ var Menu$1 = /* module */[
   /* convertTransitionDuration_shape */convertTransitionDuration_shape$3,
   /* transitionDuration_enumToJs */transitionDuration_enumToJs,
   /* transitionDuration_enumFromJs */transitionDuration_enumFromJs,
+  /* horizontal_enumToJs */horizontal_enumToJs,
+  /* horizontal_enumFromJs */horizontal_enumFromJs,
+  /* vertical_enumToJs */vertical_enumToJs,
+  /* vertical_enumFromJs */vertical_enumFromJs,
+  /* convertAnchorOrigin */convertAnchorOrigin,
+  /* convertAnchorPosition */convertAnchorPosition,
+  /* anchorReferenceToJs */anchorReferenceToJs,
+  /* anchorReferenceFromJs */anchorReferenceFromJs,
+  /* convertTransformOrigin */convertTransformOrigin,
   /* Classes */Classes$51,
   /* make */make$59
 ];
 
-var jsMapperConstantArray$45 = /* array */[
+var jsMapperConstantArray$51 = /* array */[
   /* tuple */[
     4202101,
     "top"
@@ -6603,14 +7305,14 @@ var jsMapperConstantArray$45 = /* array */[
 ];
 
 function positionToJs$2(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$45);
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$51);
 }
 
 function positionFromJs$2(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$45, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$51, param);
 }
 
-var jsMapperConstantArray$46 = /* array */[
+var jsMapperConstantArray$52 = /* array */[
   /* tuple */[
     -539184179,
     "progress"
@@ -6625,12 +7327,12 @@ var jsMapperConstantArray$46 = /* array */[
   ]
 ];
 
-function variantToJs$4(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$46);
+function variantToJs$5(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$52);
 }
 
-function variantFromJs$4(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$46, param);
+function variantFromJs$5(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$52, param);
 }
 
 function to_string$52(param) {
@@ -6667,7 +7369,7 @@ var Classes$52 = /* module */[
   /* to_obj */to_obj$52
 ];
 
-function make$60(activeStep, backButton, className, nextButton, position, steps, variant, classes, style, children) {
+function make$60(activeStep, backButton, className, nextButton, position, steps, variant, component, elevation, square, classes, style, children) {
   var tmp = {
     steps: unwrapValue(steps)
   };
@@ -6685,20 +7387,31 @@ function make$60(activeStep, backButton, className, nextButton, position, steps,
     tmp.nextButton = nextButton[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$45);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$51);
         }), position);
   if (tmp$2) {
     tmp.position = tmp$2[0];
   }
   var tmp$3 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$46);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$52);
         }), variant);
   if (tmp$3) {
     tmp.variant = tmp$3[0];
   }
-  var tmp$4 = Js_option.map(to_obj$52, classes);
+  var tmp$4 = Js_option.map(unwrapValue, component);
   if (tmp$4) {
-    tmp.classes = tmp$4[0];
+    tmp.component = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, elevation);
+  if (tmp$5) {
+    tmp.elevation = tmp$5[0];
+  }
+  if (square) {
+    tmp.square = square[0];
+  }
+  var tmp$6 = Js_option.map(to_obj$52, classes);
+  if (tmp$6) {
+    tmp.classes = tmp$6[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -6709,8 +7422,8 @@ function make$60(activeStep, backButton, className, nextButton, position, steps,
 var MobileStepper$1 = /* module */[
   /* positionToJs */positionToJs$2,
   /* positionFromJs */positionFromJs$2,
-  /* variantToJs */variantToJs$4,
-  /* variantFromJs */variantFromJs$4,
+  /* variantToJs */variantToJs$5,
+  /* variantFromJs */variantFromJs$5,
   /* Classes */Classes$52,
   /* make */make$60
 ];
@@ -6922,671 +7635,6 @@ var Paper$1 = /* module */[
   /* make */make$63
 ];
 
-var jsMapperConstantArray$47 = /* array */[
-  /* tuple */[
-    -57574468,
-    "right"
-  ],
-  /* tuple */[
-    847852583,
-    "left"
-  ],
-  /* tuple */[
-    980392437,
-    "center"
-  ]
-];
-
-function horizontal_enumToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$47);
-}
-
-function horizontal_enumFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$47, param);
-}
-
-var jsMapperConstantArray$48 = /* array */[
-  /* tuple */[
-    4202101,
-    "top"
-  ],
-  /* tuple */[
-    437082891,
-    "bottom"
-  ],
-  /* tuple */[
-    980392437,
-    "center"
-  ]
-];
-
-function vertical_enumToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$48);
-}
-
-function vertical_enumFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$48, param);
-}
-
-function convertAnchorOrigin(madeObj) {
-  var returnObj = { };
-  if (madeObj) {
-    var madeObj$1 = madeObj[0];
-    returnObj["horizontal"] = Js_option.map((function (v) {
-            if (typeof v === "number" || v[0] !== 770676513) {
-              return unwrapValue(v);
-            } else {
-              return unwrapValue(/* `String */[
-                          -976970511,
-                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$47)
-                        ]);
-            }
-          }), madeObj$1["horizontal"]);
-    returnObj["vertical"] = Js_option.map((function (v) {
-            if (typeof v === "number" || v[0] !== 770676513) {
-              return unwrapValue(v);
-            } else {
-              return unwrapValue(/* `String */[
-                          -976970511,
-                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$48)
-                        ]);
-            }
-          }), madeObj$1["vertical"]);
-  }
-  return /* Some */[returnObj];
-}
-
-function convertAnchorPosition(madeObj) {
-  var returnObj = { };
-  if (madeObj) {
-    var madeObj$1 = madeObj[0];
-    returnObj["top"] = Js_option.map(unwrapValue, madeObj$1["top"]);
-    returnObj["left"] = Js_option.map(unwrapValue, madeObj$1["left"]);
-  }
-  return /* Some */[returnObj];
-}
-
-var jsMapperConstantArray$49 = /* array */[
-  /* tuple */[
-    580003934,
-    "anchorPosition"
-  ],
-  /* tuple */[
-    616462940,
-    "anchorEl"
-  ],
-  /* tuple */[
-    870530776,
-    "none"
-  ]
-];
-
-function anchorReferenceToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$49);
-}
-
-function anchorReferenceFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$49, param);
-}
-
-function convertTransformOrigin(madeObj) {
-  var returnObj = { };
-  if (madeObj) {
-    var madeObj$1 = madeObj[0];
-    returnObj["horizontal"] = Js_option.map((function (v) {
-            if (typeof v === "number" || v[0] !== 770676513) {
-              return unwrapValue(v);
-            } else {
-              return unwrapValue(/* `String */[
-                          -976970511,
-                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$47)
-                        ]);
-            }
-          }), madeObj$1["horizontal"]);
-    returnObj["vertical"] = Js_option.map((function (v) {
-            if (typeof v === "number" || v[0] !== 770676513) {
-              return unwrapValue(v);
-            } else {
-              return unwrapValue(/* `String */[
-                          -976970511,
-                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$48)
-                        ]);
-            }
-          }), madeObj$1["vertical"]);
-  }
-  return /* Some */[returnObj];
-}
-
-function convertTransitionDuration_shape$4(madeObj) {
-  var returnObj = { };
-  returnObj["enter"] = Js_option.map(unwrapValue, madeObj["enter"]);
-  returnObj["exit"] = Js_option.map(unwrapValue, madeObj["exit"]);
-  return returnObj;
-}
-
-var jsMapperConstantArray$50 = /* array */[/* tuple */[
-    726666127,
-    "auto"
-  ]];
-
-function transitionDuration_enumToJs$1(param) {
-  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$50);
-}
-
-function transitionDuration_enumFromJs$1(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$50, param);
-}
-
-function to_string$55() {
-  return "paper";
-}
-
-function to_obj$55(listOfClasses) {
-  return ListLabels.fold_left((function (obj, classType) {
-                obj["paper"] = classType[0];
-                return obj;
-              }), { }, listOfClasses);
-}
-
-var Classes$55 = /* module */[
-  /* to_string */to_string$55,
-  /* to_obj */to_obj$55
-];
-
-function make$64(action, anchorEl, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, _open, _PaperProps, role, transformOrigin, transition, transitionDuration, classes, style, children) {
-  var tmp = {
-    open: _open
-  };
-  if (action) {
-    tmp.action = action[0];
-  }
-  var tmp$1 = Js_option.map(unwrapValue, anchorEl);
-  if (tmp$1) {
-    tmp.anchorEl = tmp$1[0];
-  }
-  var tmp$2 = convertAnchorOrigin(anchorOrigin);
-  if (tmp$2) {
-    tmp.anchorOrigin = tmp$2[0];
-  }
-  var tmp$3 = convertAnchorPosition(anchorPosition);
-  if (tmp$3) {
-    tmp.anchorPosition = tmp$3[0];
-  }
-  var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$49);
-        }), anchorReference);
-  if (tmp$4) {
-    tmp.anchorReference = tmp$4[0];
-  }
-  var tmp$5 = Js_option.map(unwrapValue, container);
-  if (tmp$5) {
-    tmp.container = tmp$5[0];
-  }
-  var tmp$6 = Js_option.map(unwrapValue, elevation);
-  if (tmp$6) {
-    tmp.elevation = tmp$6[0];
-  }
-  if (getContentAnchorEl) {
-    tmp.getContentAnchorEl = getContentAnchorEl[0];
-  }
-  var tmp$7 = Js_option.map(unwrapValue, marginThreshold);
-  if (tmp$7) {
-    tmp.marginThreshold = tmp$7[0];
-  }
-  if (onClose) {
-    tmp.onClose = onClose[0];
-  }
-  if (onEnter) {
-    tmp.onEnter = onEnter[0];
-  }
-  if (onEntered) {
-    tmp.onEntered = onEntered[0];
-  }
-  if (onEntering) {
-    tmp.onEntering = onEntering[0];
-  }
-  if (onExit) {
-    tmp.onExit = onExit[0];
-  }
-  if (onExited) {
-    tmp.onExited = onExited[0];
-  }
-  if (onExiting) {
-    tmp.onExiting = onExiting[0];
-  }
-  if (_PaperProps) {
-    tmp.PaperProps = _PaperProps[0];
-  }
-  if (role) {
-    tmp.role = role[0];
-  }
-  var tmp$8 = convertTransformOrigin(transformOrigin);
-  if (tmp$8) {
-    tmp.transformOrigin = tmp$8[0];
-  }
-  var tmp$9 = Js_option.map(unwrapValue, transition);
-  if (tmp$9) {
-    tmp.transition = tmp$9[0];
-  }
-  var tmp$10 = Js_option.map((function (v) {
-          if (typeof v === "number") {
-            return unwrapValue(v);
-          } else {
-            var variant = v[0];
-            if (variant !== -908856609) {
-              if (variant !== 770676513) {
-                return unwrapValue(v);
-              } else {
-                return unwrapValue(/* `String */[
-                            -976970511,
-                            Js_mapperRt.binarySearch(1, v[1], jsMapperConstantArray$50)
-                          ]);
-              }
-            } else {
-              return unwrapValue(/* `Element */[
-                          -744106340,
-                          convertTransitionDuration_shape$4(v[1])
-                        ]);
-            }
-          }
-        }), transitionDuration);
-  if (tmp$10) {
-    tmp.transitionDuration = tmp$10[0];
-  }
-  var tmp$11 = Js_option.map(to_obj$55, classes);
-  if (tmp$11) {
-    tmp.classes = tmp$11[0];
-  }
-  if (style) {
-    tmp.style = style[0];
-  }
-  return ReasonReact.wrapJsForReason(Popover.default, tmp, children);
-}
-
-var Popover$1 = /* module */[
-  /* horizontal_enumToJs */horizontal_enumToJs,
-  /* horizontal_enumFromJs */horizontal_enumFromJs,
-  /* vertical_enumToJs */vertical_enumToJs,
-  /* vertical_enumFromJs */vertical_enumFromJs,
-  /* convertAnchorOrigin */convertAnchorOrigin,
-  /* convertAnchorPosition */convertAnchorPosition,
-  /* anchorReferenceToJs */anchorReferenceToJs,
-  /* anchorReferenceFromJs */anchorReferenceFromJs,
-  /* convertTransformOrigin */convertTransformOrigin,
-  /* convertTransitionDuration_shape */convertTransitionDuration_shape$4,
-  /* transitionDuration_enumToJs */transitionDuration_enumToJs$1,
-  /* transitionDuration_enumFromJs */transitionDuration_enumFromJs$1,
-  /* Classes */Classes$55,
-  /* make */make$64
-];
-
-function make$65(container, onRendered, children) {
-  var tmp = { };
-  var tmp$1 = Js_option.map(unwrapValue, container);
-  if (tmp$1) {
-    tmp.container = tmp$1[0];
-  }
-  if (onRendered) {
-    tmp.onRendered = onRendered[0];
-  }
-  return ReasonReact.wrapJsForReason(Portal.default, tmp, children);
-}
-
-var Portal$1 = /* module */[/* make */make$65];
-
-function make$66(name, onBlur, onChange, onKeyDown, value, children) {
-  var tmp = { };
-  if (name) {
-    tmp.name = name[0];
-  }
-  if (onBlur) {
-    tmp.onBlur = onBlur[0];
-  }
-  if (onChange) {
-    tmp.onChange = onChange[0];
-  }
-  if (onKeyDown) {
-    tmp.onKeyDown = onKeyDown[0];
-  }
-  if (value) {
-    tmp.value = value[0];
-  }
-  return ReasonReact.wrapJsForReason(RadioGroup.default, tmp, children);
-}
-
-var RadioGroup$1 = /* module */[/* make */make$66];
-
-var jsMapperConstantArray$51 = /* array */[
-  /* tuple */[
-    -791844958,
-    "primary"
-  ],
-  /* tuple */[
-    -384499551,
-    "default"
-  ],
-  /* tuple */[
-    67972948,
-    "secondary"
-  ]
-];
-
-function colorToJs$9(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$51);
-}
-
-function colorFromJs$9(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$51, param);
-}
-
-function to_string$56(param) {
-  switch (param.tag | 0) {
-    case 0 : 
-        return "root";
-    case 1 : 
-        return "checked";
-    case 2 : 
-        return "disabled";
-    case 3 : 
-        return "colorPrimary";
-    case 4 : 
-        return "colorSecondary";
-    
-  }
-}
-
-function to_obj$56(listOfClasses) {
-  return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$56(classType)] = classType[0];
-                return obj;
-              }), { }, listOfClasses);
-}
-
-var Classes$56 = /* module */[
-  /* to_string */to_string$56,
-  /* to_obj */to_obj$56
-];
-
-function make$67(checked, checkedIcon, color, disabled, disableRipple, icon, id, inputProps, inputRef, onChange, _type, value, classes, style, children) {
-  var tmp = { };
-  var tmp$1 = Js_option.map(unwrapValue, checked);
-  if (tmp$1) {
-    tmp.checked = tmp$1[0];
-  }
-  if (checkedIcon) {
-    tmp.checkedIcon = checkedIcon[0];
-  }
-  var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$51);
-        }), color);
-  if (tmp$2) {
-    tmp.color = tmp$2[0];
-  }
-  if (disabled) {
-    tmp.disabled = disabled[0];
-  }
-  if (disableRipple) {
-    tmp.disableRipple = disableRipple[0];
-  }
-  if (icon) {
-    tmp.icon = icon[0];
-  }
-  if (id) {
-    tmp.id = id[0];
-  }
-  if (inputProps) {
-    tmp.inputProps = inputProps[0];
-  }
-  if (inputRef) {
-    tmp.inputRef = inputRef[0];
-  }
-  if (onChange) {
-    tmp.onChange = onChange[0];
-  }
-  if (_type) {
-    tmp.type = _type[0];
-  }
-  if (value) {
-    tmp.value = value[0];
-  }
-  var tmp$3 = Js_option.map(to_obj$56, classes);
-  if (tmp$3) {
-    tmp.classes = tmp$3[0];
-  }
-  if (style) {
-    tmp.style = style[0];
-  }
-  return ReasonReact.wrapJsForReason(Radio.default, tmp, children);
-}
-
-var Radio$1 = /* module */[
-  /* colorToJs */colorToJs$9,
-  /* colorFromJs */colorFromJs$9,
-  /* Classes */Classes$56,
-  /* make */make$67
-];
-
-function to_string$57(param) {
-  switch (param.tag | 0) {
-    case 0 : 
-        return "root";
-    case 1 : 
-        return "select";
-    case 2 : 
-        return "selectMenu";
-    case 3 : 
-        return "disabled";
-    case 4 : 
-        return "icon";
-    
-  }
-}
-
-function to_obj$57(listOfClasses) {
-  return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$57(classType)] = classType[0];
-                return obj;
-              }), { }, listOfClasses);
-}
-
-var Classes$57 = /* module */[
-  /* to_string */to_string$57,
-  /* to_obj */to_obj$57
-];
-
-function make$68(autoWidth, displayEmpty, input, inputProps, _MenuProps, multiple, $$native, onChange, onClose, onOpen, _open, renderValue, _SelectDisplayProps, value, classes, style, children) {
-  var tmp = { };
-  if (autoWidth) {
-    tmp.autoWidth = autoWidth[0];
-  }
-  if (displayEmpty) {
-    tmp.displayEmpty = displayEmpty[0];
-  }
-  if (input) {
-    tmp.input = input[0];
-  }
-  if (inputProps) {
-    tmp.inputProps = inputProps[0];
-  }
-  if (_MenuProps) {
-    tmp.MenuProps = _MenuProps[0];
-  }
-  if (multiple) {
-    tmp.multiple = multiple[0];
-  }
-  if ($$native) {
-    tmp.native = $$native[0];
-  }
-  if (onChange) {
-    tmp.onChange = onChange[0];
-  }
-  if (onClose) {
-    tmp.onClose = onClose[0];
-  }
-  if (onOpen) {
-    tmp.onOpen = onOpen[0];
-  }
-  if (_open) {
-    tmp.open = _open[0];
-  }
-  if (renderValue) {
-    tmp.renderValue = renderValue[0];
-  }
-  if (_SelectDisplayProps) {
-    tmp.SelectDisplayProps = _SelectDisplayProps[0];
-  }
-  var tmp$1 = Js_option.map(unwrapValue, value);
-  if (tmp$1) {
-    tmp.value = tmp$1[0];
-  }
-  var tmp$2 = Js_option.map(to_obj$57, classes);
-  if (tmp$2) {
-    tmp.classes = tmp$2[0];
-  }
-  if (style) {
-    tmp.style = style[0];
-  }
-  return ReasonReact.wrapJsForReason(Select.default, tmp, children);
-}
-
-var Select$1 = /* module */[
-  /* Classes */Classes$57,
-  /* make */make$68
-];
-
-var jsMapperConstantArray$52 = /* array */[
-  /* tuple */[
-    -57574468,
-    "right"
-  ],
-  /* tuple */[
-    19067,
-    "up"
-  ],
-  /* tuple */[
-    759637122,
-    "down"
-  ],
-  /* tuple */[
-    847852583,
-    "left"
-  ]
-];
-
-function directionToJs$1(param) {
-  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$52);
-}
-
-function directionFromJs$1(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$52, param);
-}
-
-function convertTimeout_shape$3(madeObj) {
-  var returnObj = { };
-  returnObj["enter"] = Js_option.map(unwrapValue, madeObj["enter"]);
-  returnObj["exit"] = Js_option.map(unwrapValue, madeObj["exit"]);
-  return returnObj;
-}
-
-function make$69(direction, _in, onEnter, onEntering, onExit, onExited, theme, timeout, children) {
-  var tmp = { };
-  var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$52);
-        }), direction);
-  if (tmp$1) {
-    tmp.direction = tmp$1[0];
-  }
-  if (_in) {
-    tmp.in = _in[0];
-  }
-  if (onEnter) {
-    tmp.onEnter = onEnter[0];
-  }
-  if (onEntering) {
-    tmp.onEntering = onEntering[0];
-  }
-  if (onExit) {
-    tmp.onExit = onExit[0];
-  }
-  if (onExited) {
-    tmp.onExited = onExited[0];
-  }
-  if (theme) {
-    tmp.theme = theme[0];
-  }
-  var tmp$2 = Js_option.map((function (v) {
-          if (typeof v === "number" || v[0] !== -908856609) {
-            return unwrapValue(v);
-          } else {
-            return unwrapValue(/* `Element */[
-                        -744106340,
-                        convertTimeout_shape$3(v[1])
-                      ]);
-          }
-        }), timeout);
-  if (tmp$2) {
-    tmp.timeout = tmp$2[0];
-  }
-  return ReasonReact.wrapJsForReason(Slide.default, tmp, children);
-}
-
-var Slide$1 = /* module */[
-  /* directionToJs */directionToJs$1,
-  /* directionFromJs */directionFromJs$1,
-  /* convertTimeout_shape */convertTimeout_shape$3,
-  /* make */make$69
-];
-
-function to_string$58(param) {
-  switch (param.tag | 0) {
-    case 0 : 
-        return "root";
-    case 1 : 
-        return "message";
-    case 2 : 
-        return "action";
-    
-  }
-}
-
-function to_obj$58(listOfClasses) {
-  return ListLabels.fold_left((function (obj, classType) {
-                obj[to_string$58(classType)] = classType[0];
-                return obj;
-              }), { }, listOfClasses);
-}
-
-var Classes$58 = /* module */[
-  /* to_string */to_string$58,
-  /* to_obj */to_obj$58
-];
-
-function make$70(action, className, message, classes, style, children) {
-  var tmp = { };
-  if (action) {
-    tmp.action = action[0];
-  }
-  if (className) {
-    tmp.className = className[0];
-  }
-  if (message) {
-    tmp.message = message[0];
-  }
-  var tmp$1 = Js_option.map(to_obj$58, classes);
-  if (tmp$1) {
-    tmp.classes = tmp$1[0];
-  }
-  if (style) {
-    tmp.style = style[0];
-  }
-  return ReasonReact.wrapJsForReason(SnackbarContent.default, tmp, children);
-}
-
-var SnackbarContent$1 = /* module */[
-  /* Classes */Classes$58,
-  /* make */make$70
-];
-
 var jsMapperConstantArray$53 = /* array */[
   /* tuple */[
     -57574468,
@@ -7661,6 +7709,839 @@ function convertAnchorOrigin$1(madeObj) {
   return /* Some */[returnObj];
 }
 
+function convertAnchorPosition$1(madeObj) {
+  var returnObj = { };
+  if (madeObj) {
+    var madeObj$1 = madeObj[0];
+    returnObj["top"] = Js_option.map(unwrapValue, madeObj$1["top"]);
+    returnObj["left"] = Js_option.map(unwrapValue, madeObj$1["left"]);
+  }
+  return /* Some */[returnObj];
+}
+
+var jsMapperConstantArray$55 = /* array */[
+  /* tuple */[
+    580003934,
+    "anchorPosition"
+  ],
+  /* tuple */[
+    616462940,
+    "anchorEl"
+  ],
+  /* tuple */[
+    870530776,
+    "none"
+  ]
+];
+
+function anchorReferenceToJs$1(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$55);
+}
+
+function anchorReferenceFromJs$1(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$55, param);
+}
+
+function convertTransformOrigin$1(madeObj) {
+  var returnObj = { };
+  if (madeObj) {
+    var madeObj$1 = madeObj[0];
+    returnObj["horizontal"] = Js_option.map((function (v) {
+            if (typeof v === "number" || v[0] !== 770676513) {
+              return unwrapValue(v);
+            } else {
+              return unwrapValue(/* `String */[
+                          -976970511,
+                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$53)
+                        ]);
+            }
+          }), madeObj$1["horizontal"]);
+    returnObj["vertical"] = Js_option.map((function (v) {
+            if (typeof v === "number" || v[0] !== 770676513) {
+              return unwrapValue(v);
+            } else {
+              return unwrapValue(/* `String */[
+                          -976970511,
+                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$54)
+                        ]);
+            }
+          }), madeObj$1["vertical"]);
+  }
+  return /* Some */[returnObj];
+}
+
+function convertTransitionDuration_shape$4(madeObj) {
+  var returnObj = { };
+  returnObj["enter"] = Js_option.map(unwrapValue, madeObj["enter"]);
+  returnObj["exit"] = Js_option.map(unwrapValue, madeObj["exit"]);
+  return returnObj;
+}
+
+var jsMapperConstantArray$56 = /* array */[/* tuple */[
+    726666127,
+    "auto"
+  ]];
+
+function transitionDuration_enumToJs$1(param) {
+  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$56);
+}
+
+function transitionDuration_enumFromJs$1(param) {
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$56, param);
+}
+
+function to_string$55() {
+  return "paper";
+}
+
+function to_obj$55(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj["paper"] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$55 = /* module */[
+  /* to_string */to_string$55,
+  /* to_obj */to_obj$55
+];
+
+function make$64(action, anchorEl, anchorOrigin, anchorPosition, anchorReference, container, elevation, getContentAnchorEl, marginThreshold, onClose, onEnter, onEntered, onEntering, onExit, onExited, onExiting, _open, _PaperProps, role, transformOrigin, transition, transitionDuration, _BackdropComponent, _BackdropProps, className, disableAutoFocus, disableBackdropClick, disableEnforceFocus, disableEscapeKeyDown, disableRestoreFocus, hideBackdrop, keepMounted, manager, onBackdropClick, onEscapeKeyDown, onRendered, classes, style, children) {
+  var tmp = {
+    open: _open
+  };
+  if (action) {
+    tmp.action = action[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, anchorEl);
+  if (tmp$1) {
+    tmp.anchorEl = tmp$1[0];
+  }
+  var tmp$2 = convertAnchorOrigin$1(anchorOrigin);
+  if (tmp$2) {
+    tmp.anchorOrigin = tmp$2[0];
+  }
+  var tmp$3 = convertAnchorPosition$1(anchorPosition);
+  if (tmp$3) {
+    tmp.anchorPosition = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$55);
+        }), anchorReference);
+  if (tmp$4) {
+    tmp.anchorReference = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, container);
+  if (tmp$5) {
+    tmp.container = tmp$5[0];
+  }
+  var tmp$6 = Js_option.map(unwrapValue, elevation);
+  if (tmp$6) {
+    tmp.elevation = tmp$6[0];
+  }
+  if (getContentAnchorEl) {
+    tmp.getContentAnchorEl = getContentAnchorEl[0];
+  }
+  var tmp$7 = Js_option.map(unwrapValue, marginThreshold);
+  if (tmp$7) {
+    tmp.marginThreshold = tmp$7[0];
+  }
+  if (onClose) {
+    tmp.onClose = onClose[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntered) {
+    tmp.onEntered = onEntered[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (onExited) {
+    tmp.onExited = onExited[0];
+  }
+  if (onExiting) {
+    tmp.onExiting = onExiting[0];
+  }
+  if (_PaperProps) {
+    tmp.PaperProps = _PaperProps[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$8 = convertTransformOrigin$1(transformOrigin);
+  if (tmp$8) {
+    tmp.transformOrigin = tmp$8[0];
+  }
+  var tmp$9 = Js_option.map(unwrapValue, transition);
+  if (tmp$9) {
+    tmp.transition = tmp$9[0];
+  }
+  var tmp$10 = Js_option.map((function (v) {
+          if (typeof v === "number") {
+            return unwrapValue(v);
+          } else {
+            var variant = v[0];
+            if (variant !== -908856609) {
+              if (variant !== 770676513) {
+                return unwrapValue(v);
+              } else {
+                return unwrapValue(/* `String */[
+                            -976970511,
+                            Js_mapperRt.binarySearch(1, v[1], jsMapperConstantArray$56)
+                          ]);
+              }
+            } else {
+              return unwrapValue(/* `Element */[
+                          -744106340,
+                          convertTransitionDuration_shape$4(v[1])
+                        ]);
+            }
+          }
+        }), transitionDuration);
+  if (tmp$10) {
+    tmp.transitionDuration = tmp$10[0];
+  }
+  var tmp$11 = Js_option.map(unwrapValue, _BackdropComponent);
+  if (tmp$11) {
+    tmp.BackdropComponent = tmp$11[0];
+  }
+  if (_BackdropProps) {
+    tmp.BackdropProps = _BackdropProps[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (disableAutoFocus) {
+    tmp.disableAutoFocus = disableAutoFocus[0];
+  }
+  if (disableBackdropClick) {
+    tmp.disableBackdropClick = disableBackdropClick[0];
+  }
+  if (disableEnforceFocus) {
+    tmp.disableEnforceFocus = disableEnforceFocus[0];
+  }
+  if (disableEscapeKeyDown) {
+    tmp.disableEscapeKeyDown = disableEscapeKeyDown[0];
+  }
+  if (disableRestoreFocus) {
+    tmp.disableRestoreFocus = disableRestoreFocus[0];
+  }
+  if (hideBackdrop) {
+    tmp.hideBackdrop = hideBackdrop[0];
+  }
+  if (keepMounted) {
+    tmp.keepMounted = keepMounted[0];
+  }
+  if (manager) {
+    tmp.manager = manager[0];
+  }
+  if (onBackdropClick) {
+    tmp.onBackdropClick = onBackdropClick[0];
+  }
+  if (onEscapeKeyDown) {
+    tmp.onEscapeKeyDown = onEscapeKeyDown[0];
+  }
+  if (onRendered) {
+    tmp.onRendered = onRendered[0];
+  }
+  var tmp$12 = Js_option.map(to_obj$55, classes);
+  if (tmp$12) {
+    tmp.classes = tmp$12[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  return ReasonReact.wrapJsForReason(Popover.default, tmp, children);
+}
+
+var Popover$1 = /* module */[
+  /* horizontal_enumToJs */horizontal_enumToJs$1,
+  /* horizontal_enumFromJs */horizontal_enumFromJs$1,
+  /* vertical_enumToJs */vertical_enumToJs$1,
+  /* vertical_enumFromJs */vertical_enumFromJs$1,
+  /* convertAnchorOrigin */convertAnchorOrigin$1,
+  /* convertAnchorPosition */convertAnchorPosition$1,
+  /* anchorReferenceToJs */anchorReferenceToJs$1,
+  /* anchorReferenceFromJs */anchorReferenceFromJs$1,
+  /* convertTransformOrigin */convertTransformOrigin$1,
+  /* convertTransitionDuration_shape */convertTransitionDuration_shape$4,
+  /* transitionDuration_enumToJs */transitionDuration_enumToJs$1,
+  /* transitionDuration_enumFromJs */transitionDuration_enumFromJs$1,
+  /* Classes */Classes$55,
+  /* make */make$64
+];
+
+function make$65(container, onRendered, children) {
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, container);
+  if (tmp$1) {
+    tmp.container = tmp$1[0];
+  }
+  if (onRendered) {
+    tmp.onRendered = onRendered[0];
+  }
+  return ReasonReact.wrapJsForReason(Portal.default, tmp, children);
+}
+
+var Portal$1 = /* module */[/* make */make$65];
+
+function make$66(name, onBlur, onChange, onKeyDown, value, className, row, children) {
+  var tmp = { };
+  if (name) {
+    tmp.name = name[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (row) {
+    tmp.row = row[0];
+  }
+  return ReasonReact.wrapJsForReason(RadioGroup.default, tmp, children);
+}
+
+var RadioGroup$1 = /* module */[/* make */make$66];
+
+var jsMapperConstantArray$57 = /* array */[
+  /* tuple */[
+    -791844958,
+    "primary"
+  ],
+  /* tuple */[
+    -384499551,
+    "default"
+  ],
+  /* tuple */[
+    67972948,
+    "secondary"
+  ]
+];
+
+function colorToJs$10(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$57);
+}
+
+function colorFromJs$10(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$57, param);
+}
+
+function to_string$56(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "checked";
+    case 2 : 
+        return "disabled";
+    case 3 : 
+        return "colorPrimary";
+    case 4 : 
+        return "colorSecondary";
+    
+  }
+}
+
+function to_obj$56(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$56(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$56 = /* module */[
+  /* to_string */to_string$56,
+  /* to_obj */to_obj$56
+];
+
+function make$67(checked, checkedIcon, color, disabled, disableRipple, icon, id, inputProps, inputRef, onChange, _type, value, classes, style, children) {
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, checked);
+  if (tmp$1) {
+    tmp.checked = tmp$1[0];
+  }
+  if (checkedIcon) {
+    tmp.checkedIcon = checkedIcon[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$57);
+        }), color);
+  if (tmp$2) {
+    tmp.color = tmp$2[0];
+  }
+  if (disabled) {
+    tmp.disabled = disabled[0];
+  }
+  if (disableRipple) {
+    tmp.disableRipple = disableRipple[0];
+  }
+  if (icon) {
+    tmp.icon = icon[0];
+  }
+  if (id) {
+    tmp.id = id[0];
+  }
+  if (inputProps) {
+    tmp.inputProps = inputProps[0];
+  }
+  if (inputRef) {
+    tmp.inputRef = inputRef[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  if (value) {
+    tmp.value = value[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$56, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  return ReasonReact.wrapJsForReason(Radio.default, tmp, children);
+}
+
+var Radio$1 = /* module */[
+  /* colorToJs */colorToJs$10,
+  /* colorFromJs */colorFromJs$10,
+  /* Classes */Classes$56,
+  /* make */make$67
+];
+
+var jsMapperConstantArray$58 = /* array */[
+  /* tuple */[
+    -363472001,
+    "dense"
+  ],
+  /* tuple */[
+    870530776,
+    "none"
+  ]
+];
+
+function marginToJs$4(param) {
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$58);
+}
+
+function marginFromJs$4(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$58, param);
+}
+
+function to_string$57(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "select";
+    case 2 : 
+        return "selectMenu";
+    case 3 : 
+        return "disabled";
+    case 4 : 
+        return "icon";
+    
+  }
+}
+
+function to_obj$57(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$57(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$57 = /* module */[
+  /* to_string */to_string$57,
+  /* to_obj */to_obj$57
+];
+
+function make$68(autoWidth, displayEmpty, input, inputProps, _MenuProps, multiple, $$native, onChange, onClose, onOpen, _open, renderValue, _SelectDisplayProps, value, autoComplete, autoFocus, className, defaultValue, disabled, disableUnderline, endAdornment, error, fullWidth, id, inputComponent, inputRef, margin, multiline, name, onBlur, onEmpty, onFilled, onFocus, onKeyDown, onKeyUp, placeholder, readOnly, rows, rowsMax, startAdornment, _type, classes, style, children) {
+  var tmp = { };
+  if (autoWidth) {
+    tmp.autoWidth = autoWidth[0];
+  }
+  if (displayEmpty) {
+    tmp.displayEmpty = displayEmpty[0];
+  }
+  if (input) {
+    tmp.input = input[0];
+  }
+  if (inputProps) {
+    tmp.inputProps = inputProps[0];
+  }
+  if (_MenuProps) {
+    tmp.MenuProps = _MenuProps[0];
+  }
+  if (multiple) {
+    tmp.multiple = multiple[0];
+  }
+  if ($$native) {
+    tmp.native = $$native[0];
+  }
+  if (onChange) {
+    tmp.onChange = onChange[0];
+  }
+  if (onClose) {
+    tmp.onClose = onClose[0];
+  }
+  if (onOpen) {
+    tmp.onOpen = onOpen[0];
+  }
+  if (_open) {
+    tmp.open = _open[0];
+  }
+  if (renderValue) {
+    tmp.renderValue = renderValue[0];
+  }
+  if (_SelectDisplayProps) {
+    tmp.SelectDisplayProps = _SelectDisplayProps[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, value);
+  if (tmp$1) {
+    tmp.value = tmp$1[0];
+  }
+  if (autoComplete) {
+    tmp.autoComplete = autoComplete[0];
+  }
+  if (autoFocus) {
+    tmp.autoFocus = autoFocus[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, defaultValue);
+  if (tmp$2) {
+    tmp.defaultValue = tmp$2[0];
+  }
+  if (disabled) {
+    tmp.disabled = disabled[0];
+  }
+  if (disableUnderline) {
+    tmp.disableUnderline = disableUnderline[0];
+  }
+  if (endAdornment) {
+    tmp.endAdornment = endAdornment[0];
+  }
+  if (error) {
+    tmp.error = error[0];
+  }
+  if (fullWidth) {
+    tmp.fullWidth = fullWidth[0];
+  }
+  if (id) {
+    tmp.id = id[0];
+  }
+  if (inputComponent) {
+    tmp.inputComponent = inputComponent[0];
+  }
+  if (inputRef) {
+    tmp.inputRef = inputRef[0];
+  }
+  var tmp$3 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$58);
+        }), margin);
+  if (tmp$3) {
+    tmp.margin = tmp$3[0];
+  }
+  if (multiline) {
+    tmp.multiline = multiline[0];
+  }
+  if (name) {
+    tmp.name = name[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onEmpty) {
+    tmp.onEmpty = onEmpty[0];
+  }
+  if (onFilled) {
+    tmp.onFilled = onFilled[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (placeholder) {
+    tmp.placeholder = placeholder[0];
+  }
+  if (readOnly) {
+    tmp.readOnly = readOnly[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, rows);
+  if (tmp$4) {
+    tmp.rows = tmp$4[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, rowsMax);
+  if (tmp$5) {
+    tmp.rowsMax = tmp$5[0];
+  }
+  if (startAdornment) {
+    tmp.startAdornment = startAdornment[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$6 = Js_option.map(to_obj$57, classes);
+  if (tmp$6) {
+    tmp.classes = tmp$6[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  return ReasonReact.wrapJsForReason(Select.default, tmp, children);
+}
+
+var Select$1 = /* module */[
+  /* marginToJs */marginToJs$4,
+  /* marginFromJs */marginFromJs$4,
+  /* Classes */Classes$57,
+  /* make */make$68
+];
+
+var jsMapperConstantArray$59 = /* array */[
+  /* tuple */[
+    -57574468,
+    "right"
+  ],
+  /* tuple */[
+    19067,
+    "up"
+  ],
+  /* tuple */[
+    759637122,
+    "down"
+  ],
+  /* tuple */[
+    847852583,
+    "left"
+  ]
+];
+
+function directionToJs$1(param) {
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$59);
+}
+
+function directionFromJs$1(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$59, param);
+}
+
+function convertTimeout_shape$3(madeObj) {
+  var returnObj = { };
+  returnObj["enter"] = Js_option.map(unwrapValue, madeObj["enter"]);
+  returnObj["exit"] = Js_option.map(unwrapValue, madeObj["exit"]);
+  return returnObj;
+}
+
+function make$69(direction, _in, onEnter, onEntering, onExit, onExited, theme, timeout, children) {
+  var tmp = { };
+  var tmp$1 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$59);
+        }), direction);
+  if (tmp$1) {
+    tmp.direction = tmp$1[0];
+  }
+  if (_in) {
+    tmp.in = _in[0];
+  }
+  if (onEnter) {
+    tmp.onEnter = onEnter[0];
+  }
+  if (onEntering) {
+    tmp.onEntering = onEntering[0];
+  }
+  if (onExit) {
+    tmp.onExit = onExit[0];
+  }
+  if (onExited) {
+    tmp.onExited = onExited[0];
+  }
+  if (theme) {
+    tmp.theme = theme[0];
+  }
+  var tmp$2 = Js_option.map((function (v) {
+          if (typeof v === "number" || v[0] !== -908856609) {
+            return unwrapValue(v);
+          } else {
+            return unwrapValue(/* `Element */[
+                        -744106340,
+                        convertTimeout_shape$3(v[1])
+                      ]);
+          }
+        }), timeout);
+  if (tmp$2) {
+    tmp.timeout = tmp$2[0];
+  }
+  return ReasonReact.wrapJsForReason(Slide.default, tmp, children);
+}
+
+var Slide$1 = /* module */[
+  /* directionToJs */directionToJs$1,
+  /* directionFromJs */directionFromJs$1,
+  /* convertTimeout_shape */convertTimeout_shape$3,
+  /* make */make$69
+];
+
+function to_string$58(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return "root";
+    case 1 : 
+        return "message";
+    case 2 : 
+        return "action";
+    
+  }
+}
+
+function to_obj$58(listOfClasses) {
+  return ListLabels.fold_left((function (obj, classType) {
+                obj[to_string$58(classType)] = classType[0];
+                return obj;
+              }), { }, listOfClasses);
+}
+
+var Classes$58 = /* module */[
+  /* to_string */to_string$58,
+  /* to_obj */to_obj$58
+];
+
+function make$70(action, className, message, component, elevation, square, classes, style, children) {
+  var tmp = { };
+  if (action) {
+    tmp.action = action[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (message) {
+    tmp.message = message[0];
+  }
+  var tmp$1 = Js_option.map(unwrapValue, component);
+  if (tmp$1) {
+    tmp.component = tmp$1[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, elevation);
+  if (tmp$2) {
+    tmp.elevation = tmp$2[0];
+  }
+  if (square) {
+    tmp.square = square[0];
+  }
+  var tmp$3 = Js_option.map(to_obj$58, classes);
+  if (tmp$3) {
+    tmp.classes = tmp$3[0];
+  }
+  if (style) {
+    tmp.style = style[0];
+  }
+  return ReasonReact.wrapJsForReason(SnackbarContent.default, tmp, children);
+}
+
+var SnackbarContent$1 = /* module */[
+  /* Classes */Classes$58,
+  /* make */make$70
+];
+
+var jsMapperConstantArray$60 = /* array */[
+  /* tuple */[
+    -57574468,
+    "right"
+  ],
+  /* tuple */[
+    847852583,
+    "left"
+  ],
+  /* tuple */[
+    980392437,
+    "center"
+  ]
+];
+
+function horizontal_enumToJs$2(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$60);
+}
+
+function horizontal_enumFromJs$2(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$60, param);
+}
+
+var jsMapperConstantArray$61 = /* array */[
+  /* tuple */[
+    4202101,
+    "top"
+  ],
+  /* tuple */[
+    437082891,
+    "bottom"
+  ],
+  /* tuple */[
+    980392437,
+    "center"
+  ]
+];
+
+function vertical_enumToJs$2(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$61);
+}
+
+function vertical_enumFromJs$2(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$61, param);
+}
+
+function convertAnchorOrigin$2(madeObj) {
+  var returnObj = { };
+  if (madeObj) {
+    var madeObj$1 = madeObj[0];
+    returnObj["horizontal"] = Js_option.map((function (v) {
+            if (typeof v === "number" || v[0] !== 770676513) {
+              return unwrapValue(v);
+            } else {
+              return unwrapValue(/* `String */[
+                          -976970511,
+                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$60)
+                        ]);
+            }
+          }), madeObj$1["horizontal"]);
+    returnObj["vertical"] = Js_option.map((function (v) {
+            if (typeof v === "number" || v[0] !== 770676513) {
+              return unwrapValue(v);
+            } else {
+              return unwrapValue(/* `String */[
+                          -976970511,
+                          Js_mapperRt.binarySearch(3, v[1], jsMapperConstantArray$61)
+                        ]);
+            }
+          }), madeObj$1["vertical"]);
+  }
+  return /* Some */[returnObj];
+}
+
 function convertTransitionDuration_shape$5(madeObj) {
   var returnObj = { };
   returnObj["enter"] = Js_option.map(unwrapValue, madeObj["enter"]);
@@ -7705,7 +8586,7 @@ function make$71(action, anchorOrigin, autoHideDuration, className, disableWindo
   if (action) {
     tmp.action = action[0];
   }
-  var tmp$1 = convertAnchorOrigin$1(anchorOrigin);
+  var tmp$1 = convertAnchorOrigin$2(anchorOrigin);
   if (tmp$1) {
     tmp.anchorOrigin = tmp$1[0];
   }
@@ -7790,17 +8671,17 @@ function make$71(action, anchorOrigin, autoHideDuration, className, disableWindo
 }
 
 var Snackbar$1 = /* module */[
-  /* horizontal_enumToJs */horizontal_enumToJs$1,
-  /* horizontal_enumFromJs */horizontal_enumFromJs$1,
-  /* vertical_enumToJs */vertical_enumToJs$1,
-  /* vertical_enumFromJs */vertical_enumFromJs$1,
-  /* convertAnchorOrigin */convertAnchorOrigin$1,
+  /* horizontal_enumToJs */horizontal_enumToJs$2,
+  /* horizontal_enumFromJs */horizontal_enumFromJs$2,
+  /* vertical_enumToJs */vertical_enumToJs$2,
+  /* vertical_enumFromJs */vertical_enumFromJs$2,
+  /* convertAnchorOrigin */convertAnchorOrigin$2,
   /* convertTransitionDuration_shape */convertTransitionDuration_shape$5,
   /* Classes */Classes$59,
   /* make */make$71
 ];
 
-var jsMapperConstantArray$55 = /* array */[
+var jsMapperConstantArray$62 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -7812,11 +8693,11 @@ var jsMapperConstantArray$55 = /* array */[
 ];
 
 function orientationToJs(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$55);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$62);
 }
 
 function orientationFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$55, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$62, param);
 }
 
 function to_string$60(param) {
@@ -7843,7 +8724,7 @@ var Classes$60 = /* module */[
   /* to_obj */to_obj$60
 ];
 
-function make$72(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, classes, style, children) {
+function make$72(active, alternativeLabel, className, completed, disabled, icon, last, optional, orientation, buttonRef, centerRipple, component, disableRipple, focusRipple, focusVisibleClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, style, children) {
   var tmp = { };
   if (active) {
     tmp.active = active[0];
@@ -7870,14 +8751,82 @@ function make$72(active, alternativeLabel, className, completed, disabled, icon,
     tmp.optional = optional[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$55);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$62);
         }), orientation);
   if (tmp$1) {
     tmp.orientation = tmp$1[0];
   }
-  var tmp$2 = Js_option.map(to_obj$60, classes);
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  if (centerRipple) {
+    tmp.centerRipple = centerRipple[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
   if (tmp$2) {
-    tmp.classes = tmp$2[0];
+    tmp.component = tmp$2[0];
+  }
+  if (disableRipple) {
+    tmp.disableRipple = disableRipple[0];
+  }
+  if (focusRipple) {
+    tmp.focusRipple = focusRipple[0];
+  }
+  if (focusVisibleClassName) {
+    tmp.focusVisibleClassName = focusVisibleClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$3) {
+    tmp.tabIndex = tmp$3[0];
+  }
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$60, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -7892,7 +8841,7 @@ var StepButton$1 = /* module */[
   /* make */make$72
 ];
 
-var jsMapperConstantArray$56 = /* array */[
+var jsMapperConstantArray$63 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -7904,11 +8853,11 @@ var jsMapperConstantArray$56 = /* array */[
 ];
 
 function orientationToJs$1(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$56);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$63);
 }
 
 function orientationFromJs$1(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$56, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$63, param);
 }
 
 function convertTransitionDuration_shape$6(madeObj) {
@@ -7918,17 +8867,17 @@ function convertTransitionDuration_shape$6(madeObj) {
   return returnObj;
 }
 
-var jsMapperConstantArray$57 = /* array */[/* tuple */[
+var jsMapperConstantArray$64 = /* array */[/* tuple */[
     726666127,
     "auto"
   ]];
 
 function transitionDuration_enumToJs$2(param) {
-  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$57);
+  return Js_mapperRt.binarySearch(1, param, jsMapperConstantArray$64);
 }
 
 function transitionDuration_enumFromJs$2(param) {
-  return Js_mapperRt.revSearch(1, jsMapperConstantArray$57, param);
+  return Js_mapperRt.revSearch(1, jsMapperConstantArray$64, param);
 }
 
 function to_string$61(param) {
@@ -7976,7 +8925,7 @@ function make$73(active, alternativeLabel, className, completed, last, optional,
     tmp.optional = optional[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$56);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$63);
         }), orientation);
   if (tmp$1) {
     tmp.orientation = tmp$1[0];
@@ -7995,7 +8944,7 @@ function make$73(active, alternativeLabel, className, completed, last, optional,
               } else {
                 return unwrapValue(/* `String */[
                             -976970511,
-                            Js_mapperRt.binarySearch(1, v[1], jsMapperConstantArray$57)
+                            Js_mapperRt.binarySearch(1, v[1], jsMapperConstantArray$64)
                           ]);
               }
             } else {
@@ -8083,7 +9032,7 @@ var StepIcon$1 = /* module */[
   /* make */make$74
 ];
 
-var jsMapperConstantArray$58 = /* array */[
+var jsMapperConstantArray$65 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -8095,11 +9044,11 @@ var jsMapperConstantArray$58 = /* array */[
 ];
 
 function orientationToJs$2(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$58);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$65);
 }
 
 function orientationFromJs$2(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$58, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$65, param);
 }
 
 function to_string$63(param) {
@@ -8172,7 +9121,7 @@ function make$75(active, alternativeLabel, className, completed, disabled, error
     tmp.optional = optional[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$58);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$65);
         }), orientation);
   if (tmp$1) {
     tmp.orientation = tmp$1[0];
@@ -8194,7 +9143,7 @@ var StepLabel$1 = /* module */[
   /* make */make$75
 ];
 
-var jsMapperConstantArray$59 = /* array */[
+var jsMapperConstantArray$66 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -8206,11 +9155,11 @@ var jsMapperConstantArray$59 = /* array */[
 ];
 
 function orientationToJs$3(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$59);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$66);
 }
 
 function orientationFromJs$3(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$59, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$66, param);
 }
 
 function to_string$64(param) {
@@ -8267,7 +9216,7 @@ function make$76(active, alternativeLabel, className, completed, connector, disa
     tmp.last = last[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$59);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$66);
         }), orientation);
   if (tmp$2) {
     tmp.orientation = tmp$2[0];
@@ -8289,7 +9238,7 @@ var Step$1 = /* module */[
   /* make */make$76
 ];
 
-var jsMapperConstantArray$60 = /* array */[
+var jsMapperConstantArray$67 = /* array */[
   /* tuple */[
     -1010337642,
     "vertical"
@@ -8301,11 +9250,11 @@ var jsMapperConstantArray$60 = /* array */[
 ];
 
 function orientationToJs$4(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$60);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$67);
 }
 
 function orientationFromJs$4(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$60, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$67, param);
 }
 
 function to_string$65(param) {
@@ -8334,7 +9283,7 @@ var Classes$65 = /* module */[
   /* to_obj */to_obj$65
 ];
 
-function make$77(activeStep, alternativeLabel, className, connector, nonLinear, orientation, classes, style, children) {
+function make$77(activeStep, alternativeLabel, className, connector, nonLinear, orientation, component, elevation, square, classes, style, children) {
   var tmp = { };
   var tmp$1 = Js_option.map(unwrapValue, activeStep);
   if (tmp$1) {
@@ -8353,14 +9302,25 @@ function make$77(activeStep, alternativeLabel, className, connector, nonLinear, 
     tmp.nonLinear = nonLinear[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$60);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$67);
         }), orientation);
   if (tmp$2) {
     tmp.orientation = tmp$2[0];
   }
-  var tmp$3 = Js_option.map(to_obj$65, classes);
+  var tmp$3 = Js_option.map(unwrapValue, component);
   if (tmp$3) {
-    tmp.classes = tmp$3[0];
+    tmp.component = tmp$3[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, elevation);
+  if (tmp$4) {
+    tmp.elevation = tmp$4[0];
+  }
+  if (square) {
+    tmp.square = square[0];
+  }
+  var tmp$5 = Js_option.map(to_obj$65, classes);
+  if (tmp$5) {
+    tmp.classes = tmp$5[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -8375,7 +9335,7 @@ var Stepper$1 = /* module */[
   /* make */make$77
 ];
 
-var jsMapperConstantArray$61 = /* array */[
+var jsMapperConstantArray$68 = /* array */[
   /* tuple */[
     -891637802,
     "action"
@@ -8402,12 +9362,12 @@ var jsMapperConstantArray$61 = /* array */[
   ]
 ];
 
-function colorToJs$10(param) {
-  return Js_mapperRt.binarySearch(6, param, jsMapperConstantArray$61);
+function colorToJs$11(param) {
+  return Js_mapperRt.binarySearch(6, param, jsMapperConstantArray$68);
 }
 
-function colorFromJs$10(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$61, param);
+function colorFromJs$11(param) {
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$68, param);
 }
 
 function to_string$66(param) {
@@ -8446,7 +9406,7 @@ function make$78(className, color, nativeColor, titleAccess, viewBox, classes, s
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(6, v, jsMapperConstantArray$61);
+          return Js_mapperRt.binarySearch(6, v, jsMapperConstantArray$68);
         }), color);
   if (tmp$1) {
     tmp.color = tmp$1[0];
@@ -8471,13 +9431,13 @@ function make$78(className, color, nativeColor, titleAccess, viewBox, classes, s
 }
 
 var SvgIcon$1 = /* module */[
-  /* colorToJs */colorToJs$10,
-  /* colorFromJs */colorFromJs$10,
+  /* colorToJs */colorToJs$11,
+  /* colorFromJs */colorFromJs$11,
   /* Classes */Classes$66,
   /* make */make$78
 ];
 
-var jsMapperConstantArray$62 = /* array */[
+var jsMapperConstantArray$69 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -8497,11 +9457,11 @@ var jsMapperConstantArray$62 = /* array */[
 ];
 
 function anchorToJs$1(param) {
-  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$62);
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$69);
 }
 
 function anchorFromJs$1(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$62, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$69, param);
 }
 
 function convertTransitionDuration_shape$7(madeObj) {
@@ -8511,7 +9471,7 @@ function convertTransitionDuration_shape$7(madeObj) {
   return returnObj;
 }
 
-var jsMapperConstantArray$63 = /* array */[
+var jsMapperConstantArray$70 = /* array */[
   /* tuple */[
     -156865929,
     "persistent"
@@ -8526,22 +9486,22 @@ var jsMapperConstantArray$63 = /* array */[
   ]
 ];
 
-function variantToJs$5(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$63);
+function variantToJs$6(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$70);
 }
 
-function variantFromJs$5(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$63, param);
+function variantFromJs$6(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$70, param);
 }
 
-function make$79(anchor, disableBackdropTransition, disableDiscovery, disableSwipeToOpen, _ModalProps, onClose, onOpen, _open, _PaperProps, swipeAreaWidth, theme, transitionDuration, variant, children) {
+function make$79(anchor, disableBackdropTransition, disableDiscovery, disableSwipeToOpen, _ModalProps, onClose, onOpen, _open, _PaperProps, swipeAreaWidth, theme, transitionDuration, variant, className, elevation, _SlideProps, children) {
   var tmp = {
     onClose: onClose,
     onOpen: onOpen,
     open: _open
   };
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$62);
+          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$69);
         }), anchor);
   if (tmp$1) {
     tmp.anchor = tmp$1[0];
@@ -8582,10 +9542,20 @@ function make$79(anchor, disableBackdropTransition, disableDiscovery, disableSwi
     tmp.transitionDuration = tmp$3[0];
   }
   var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$63);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$70);
         }), variant);
   if (tmp$4) {
     tmp.variant = tmp$4[0];
+  }
+  if (className) {
+    tmp.className = className[0];
+  }
+  var tmp$5 = Js_option.map(unwrapValue, elevation);
+  if (tmp$5) {
+    tmp.elevation = tmp$5[0];
+  }
+  if (_SlideProps) {
+    tmp.SlideProps = _SlideProps[0];
   }
   return ReasonReact.wrapJsForReason(SwipeableDrawer.default, tmp, children);
 }
@@ -8594,10 +9564,37 @@ var SwipeableDrawer$1 = /* module */[
   /* anchorToJs */anchorToJs$1,
   /* anchorFromJs */anchorFromJs$1,
   /* convertTransitionDuration_shape */convertTransitionDuration_shape$7,
-  /* variantToJs */variantToJs$5,
-  /* variantFromJs */variantFromJs$5,
+  /* variantToJs */variantToJs$6,
+  /* variantFromJs */variantFromJs$6,
   /* make */make$79
 ];
+
+var jsMapperConstantArray$71 = /* array */[
+  /* tuple */[
+    -791844958,
+    "primary"
+  ],
+  /* tuple */[
+    -384499551,
+    "default"
+  ],
+  /* tuple */[
+    -72987685,
+    "inherit"
+  ],
+  /* tuple */[
+    67972948,
+    "secondary"
+  ]
+];
+
+function colorToJs$12(param) {
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$71);
+}
+
+function colorFromJs$12(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$71, param);
+}
 
 function to_string$67(param) {
   switch (param.tag | 0) {
@@ -8625,7 +9622,7 @@ var Classes$67 = /* module */[
   /* to_obj */to_obj$67
 ];
 
-function make$80(checked, checkedIcon, className, defaultChecked, disabled, disableRipple, icon, id, indeterminate, indeterminateIcon, inputProps, inputRef, name, onChange, tabIndex, _type, value, classes, style, children) {
+function make$80(checked, checkedIcon, className, defaultChecked, disabled, disableRipple, icon, id, indeterminate, indeterminateIcon, inputProps, inputRef, name, onChange, tabIndex, _type, value, color, buttonRef, centerRipple, component, focusRipple, focusVisibleClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, _TouchRippleProps, classes, style, children) {
   var tmp = {
     checkedIcon: checkedIcon,
     icon: icon
@@ -8677,9 +9674,73 @@ function make$80(checked, checkedIcon, className, defaultChecked, disabled, disa
   if (value) {
     tmp.value = value[0];
   }
-  var tmp$3 = Js_option.map(to_obj$67, classes);
+  var tmp$3 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$71);
+        }), color);
   if (tmp$3) {
-    tmp.classes = tmp$3[0];
+    tmp.color = tmp$3[0];
+  }
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  if (centerRipple) {
+    tmp.centerRipple = centerRipple[0];
+  }
+  var tmp$4 = Js_option.map(unwrapValue, component);
+  if (tmp$4) {
+    tmp.component = tmp$4[0];
+  }
+  if (focusRipple) {
+    tmp.focusRipple = focusRipple[0];
+  }
+  if (focusVisibleClassName) {
+    tmp.focusVisibleClassName = focusVisibleClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
+  }
+  var tmp$5 = Js_option.map(to_obj$67, classes);
+  if (tmp$5) {
+    tmp.classes = tmp$5[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -8688,11 +9749,13 @@ function make$80(checked, checkedIcon, className, defaultChecked, disabled, disa
 }
 
 var SwitchBase$1 = /* module */[
+  /* colorToJs */colorToJs$12,
+  /* colorFromJs */colorFromJs$12,
   /* Classes */Classes$67,
   /* make */make$80
 ];
 
-var jsMapperConstantArray$64 = /* array */[
+var jsMapperConstantArray$72 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -8707,12 +9770,12 @@ var jsMapperConstantArray$64 = /* array */[
   ]
 ];
 
-function colorToJs$11(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$64);
+function colorToJs$13(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$72);
 }
 
-function colorFromJs$11(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$64, param);
+function colorFromJs$13(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$72, param);
 }
 
 function to_string$68(param) {
@@ -8764,7 +9827,7 @@ function make$81(checked, checkedIcon, className, color, defaultChecked, disable
     tmp.className = className[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$64);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$72);
         }), color);
   if (tmp$2) {
     tmp.color = tmp$2[0];
@@ -8810,13 +9873,13 @@ function make$81(checked, checkedIcon, className, color, defaultChecked, disable
 }
 
 var Switch$1 = /* module */[
-  /* colorToJs */colorToJs$11,
-  /* colorFromJs */colorFromJs$11,
+  /* colorToJs */colorToJs$13,
+  /* colorFromJs */colorFromJs$13,
   /* Classes */Classes$68,
   /* make */make$81
 ];
 
-var jsMapperConstantArray$65 = /* array */[
+var jsMapperConstantArray$73 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -8832,11 +9895,11 @@ var jsMapperConstantArray$65 = /* array */[
 ];
 
 function textColorToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$65);
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$73);
 }
 
 function textColorFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$65, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$73, param);
 }
 
 function to_string$69(param) {
@@ -8881,7 +9944,7 @@ var Classes$69 = /* module */[
   /* to_obj */to_obj$69
 ];
 
-function make$82(className, disabled, fullWidth, icon, indicator, label, onChange, onClick, selected, textColor, value, classes, style, children) {
+function make$82(className, disabled, fullWidth, icon, indicator, label, onChange, onClick, selected, textColor, value, buttonRef, centerRipple, component, disableRipple, focusRipple, focusVisibleClassName, onBlur, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, style, children) {
   var tmp = { };
   if (className) {
     tmp.className = className[0];
@@ -8911,7 +9974,7 @@ function make$82(className, disabled, fullWidth, icon, indicator, label, onChang
     tmp.selected = selected[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$65);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$73);
         }), textColor);
   if (tmp$1) {
     tmp.textColor = tmp$1[0];
@@ -8919,9 +9982,74 @@ function make$82(className, disabled, fullWidth, icon, indicator, label, onChang
   if (value) {
     tmp.value = value[0];
   }
-  var tmp$2 = Js_option.map(to_obj$69, classes);
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  if (centerRipple) {
+    tmp.centerRipple = centerRipple[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
   if (tmp$2) {
-    tmp.classes = tmp$2[0];
+    tmp.component = tmp$2[0];
+  }
+  if (disableRipple) {
+    tmp.disableRipple = disableRipple[0];
+  }
+  if (focusRipple) {
+    tmp.focusRipple = focusRipple[0];
+  }
+  if (focusVisibleClassName) {
+    tmp.focusVisibleClassName = focusVisibleClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$3) {
+    tmp.tabIndex = tmp$3[0];
+  }
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$69, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -8950,7 +10078,7 @@ function make$83(className, component, children) {
 
 var TableBody$1 = /* module */[/* make */make$83];
 
-var jsMapperConstantArray$66 = /* array */[
+var jsMapperConstantArray$74 = /* array */[
   /* tuple */[
     -384499551,
     "default"
@@ -8970,14 +10098,14 @@ var jsMapperConstantArray$66 = /* array */[
 ];
 
 function paddingToJs(param) {
-  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$66);
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$74);
 }
 
 function paddingFromJs(param) {
-  return Js_mapperRt.revSearch(4, jsMapperConstantArray$66, param);
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$74, param);
 }
 
-var jsMapperConstantArray$67 = /* array */[
+var jsMapperConstantArray$75 = /* array */[
   /* tuple */[
     3258129,
     "asc"
@@ -8993,14 +10121,14 @@ var jsMapperConstantArray$67 = /* array */[
 ];
 
 function sortDirectionToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$67);
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$75);
 }
 
 function sortDirectionFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$67, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$75, param);
 }
 
-var jsMapperConstantArray$68 = /* array */[
+var jsMapperConstantArray$76 = /* array */[
   /* tuple */[
     737453762,
     "body"
@@ -9015,12 +10143,12 @@ var jsMapperConstantArray$68 = /* array */[
   ]
 ];
 
-function variantToJs$6(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$68);
+function variantToJs$7(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$76);
 }
 
-function variantFromJs$6(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$68, param);
+function variantFromJs$7(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$76, param);
 }
 
 function to_string$70(param) {
@@ -9070,7 +10198,7 @@ function make$84(className, component, numeric, padding, scope, sortDirection, v
     tmp.numeric = numeric[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$66);
+          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$74);
         }), padding);
   if (tmp$2) {
     tmp.padding = tmp$2[0];
@@ -9079,13 +10207,13 @@ function make$84(className, component, numeric, padding, scope, sortDirection, v
     tmp.scope = scope[0];
   }
   var tmp$3 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$67);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$75);
         }), sortDirection);
   if (tmp$3) {
     tmp.sortDirection = tmp$3[0];
   }
   var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$68);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$76);
         }), variant);
   if (tmp$4) {
     tmp.variant = tmp$4[0];
@@ -9108,8 +10236,8 @@ var TableCell$1 = /* module */[
   /* paddingFromJs */paddingFromJs,
   /* sortDirectionToJs */sortDirectionToJs,
   /* sortDirectionFromJs */sortDirectionFromJs,
-  /* variantToJs */variantToJs$6,
-  /* variantFromJs */variantFromJs$6,
+  /* variantToJs */variantToJs$7,
+  /* variantFromJs */variantFromJs$7,
   /* Classes */Classes$70,
   /* make */make$84
 ];
@@ -9138,6 +10266,79 @@ function make$86(className, component, children) {
 }
 
 var TableHead$1 = /* module */[/* make */make$86];
+
+var jsMapperConstantArray$77 = /* array */[
+  /* tuple */[
+    -384499551,
+    "default"
+  ],
+  /* tuple */[
+    -363472001,
+    "dense"
+  ],
+  /* tuple */[
+    111644259,
+    "checkbox"
+  ],
+  /* tuple */[
+    870530776,
+    "none"
+  ]
+];
+
+function paddingToJs$1(param) {
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$77);
+}
+
+function paddingFromJs$1(param) {
+  return Js_mapperRt.revSearch(4, jsMapperConstantArray$77, param);
+}
+
+var jsMapperConstantArray$78 = /* array */[
+  /* tuple */[
+    3258129,
+    "asc"
+  ],
+  /* tuple */[
+    243049859,
+    "false"
+  ],
+  /* tuple */[
+    759138929,
+    "desc"
+  ]
+];
+
+function sortDirectionToJs$1(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$78);
+}
+
+function sortDirectionFromJs$1(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$78, param);
+}
+
+var jsMapperConstantArray$79 = /* array */[
+  /* tuple */[
+    737453762,
+    "body"
+  ],
+  /* tuple */[
+    803493184,
+    "head"
+  ],
+  /* tuple */[
+    808235707,
+    "footer"
+  ]
+];
+
+function variantToJs$8(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$79);
+}
+
+function variantFromJs$8(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$79, param);
+}
 
 function to_string$71(param) {
   switch (param.tag | 0) {
@@ -9175,7 +10376,7 @@ var Classes$71 = /* module */[
   /* to_obj */to_obj$71
 ];
 
-function make$87(_Actions, backIconButtonProps, colSpan, component, count, labelDisplayedRows, labelRowsPerPage, nextIconButtonProps, onChangePage, onChangeRowsPerPage, page, rowsPerPage, rowsPerPageOptions, _SelectProps, classes, style, children) {
+function make$87(_Actions, backIconButtonProps, colSpan, component, count, labelDisplayedRows, labelRowsPerPage, nextIconButtonProps, onChangePage, onChangeRowsPerPage, page, rowsPerPage, rowsPerPageOptions, _SelectProps, className, numeric, padding, scope, sortDirection, variant, classes, style, children) {
   var tmp = {
     count: unwrapValue(count),
     onChangePage: onChangePage,
@@ -9220,9 +10421,36 @@ function make$87(_Actions, backIconButtonProps, colSpan, component, count, label
   if (_SelectProps) {
     tmp.SelectProps = _SelectProps[0];
   }
-  var tmp$5 = Js_option.map(to_obj$71, classes);
+  if (className) {
+    tmp.className = className[0];
+  }
+  if (numeric) {
+    tmp.numeric = numeric[0];
+  }
+  var tmp$5 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(4, v, jsMapperConstantArray$77);
+        }), padding);
   if (tmp$5) {
-    tmp.classes = tmp$5[0];
+    tmp.padding = tmp$5[0];
+  }
+  if (scope) {
+    tmp.scope = scope[0];
+  }
+  var tmp$6 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$78);
+        }), sortDirection);
+  if (tmp$6) {
+    tmp.sortDirection = tmp$6[0];
+  }
+  var tmp$7 = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$79);
+        }), variant);
+  if (tmp$7) {
+    tmp.variant = tmp$7[0];
+  }
+  var tmp$8 = Js_option.map(to_obj$71, classes);
+  if (tmp$8) {
+    tmp.classes = tmp$8[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -9231,6 +10459,12 @@ function make$87(_Actions, backIconButtonProps, colSpan, component, count, label
 }
 
 var TablePagination$1 = /* module */[
+  /* paddingToJs */paddingToJs$1,
+  /* paddingFromJs */paddingFromJs$1,
+  /* sortDirectionToJs */sortDirectionToJs$1,
+  /* sortDirectionFromJs */sortDirectionFromJs$1,
+  /* variantToJs */variantToJs$8,
+  /* variantFromJs */variantFromJs$8,
   /* Classes */Classes$71,
   /* make */make$87
 ];
@@ -9296,7 +10530,7 @@ var TableRow$1 = /* module */[
   /* make */make$88
 ];
 
-var jsMapperConstantArray$69 = /* array */[
+var jsMapperConstantArray$80 = /* array */[
   /* tuple */[
     3258129,
     "asc"
@@ -9308,11 +10542,11 @@ var jsMapperConstantArray$69 = /* array */[
 ];
 
 function directionToJs$2(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$69);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$80);
 }
 
 function directionFromJs$2(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$69, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$80, param);
 }
 
 function to_string$73(param) {
@@ -9343,7 +10577,7 @@ var Classes$73 = /* module */[
   /* to_obj */to_obj$73
 ];
 
-function make$89(active, className, direction, classes, style, children) {
+function make$89(active, className, direction, buttonRef, centerRipple, component, disabled, disableRipple, focusRipple, focusVisibleClassName, onBlur, onClick, onFocus, onKeyboardFocus, onKeyDown, onKeyUp, onMouseDown, onMouseLeave, onMouseUp, onTouchEnd, onTouchMove, onTouchStart, role, tabIndex, _TouchRippleProps, _type, classes, style, children) {
   var tmp = { };
   if (active) {
     tmp.active = active[0];
@@ -9352,14 +10586,85 @@ function make$89(active, className, direction, classes, style, children) {
     tmp.className = className[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$69);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$80);
         }), direction);
   if (tmp$1) {
     tmp.direction = tmp$1[0];
   }
-  var tmp$2 = Js_option.map(to_obj$73, classes);
+  if (buttonRef) {
+    tmp.buttonRef = buttonRef[0];
+  }
+  if (centerRipple) {
+    tmp.centerRipple = centerRipple[0];
+  }
+  var tmp$2 = Js_option.map(unwrapValue, component);
   if (tmp$2) {
-    tmp.classes = tmp$2[0];
+    tmp.component = tmp$2[0];
+  }
+  if (disabled) {
+    tmp.disabled = disabled[0];
+  }
+  if (disableRipple) {
+    tmp.disableRipple = disableRipple[0];
+  }
+  if (focusRipple) {
+    tmp.focusRipple = focusRipple[0];
+  }
+  if (focusVisibleClassName) {
+    tmp.focusVisibleClassName = focusVisibleClassName[0];
+  }
+  if (onBlur) {
+    tmp.onBlur = onBlur[0];
+  }
+  if (onClick) {
+    tmp.onClick = onClick[0];
+  }
+  if (onFocus) {
+    tmp.onFocus = onFocus[0];
+  }
+  if (onKeyboardFocus) {
+    tmp.onKeyboardFocus = onKeyboardFocus[0];
+  }
+  if (onKeyDown) {
+    tmp.onKeyDown = onKeyDown[0];
+  }
+  if (onKeyUp) {
+    tmp.onKeyUp = onKeyUp[0];
+  }
+  if (onMouseDown) {
+    tmp.onMouseDown = onMouseDown[0];
+  }
+  if (onMouseLeave) {
+    tmp.onMouseLeave = onMouseLeave[0];
+  }
+  if (onMouseUp) {
+    tmp.onMouseUp = onMouseUp[0];
+  }
+  if (onTouchEnd) {
+    tmp.onTouchEnd = onTouchEnd[0];
+  }
+  if (onTouchMove) {
+    tmp.onTouchMove = onTouchMove[0];
+  }
+  if (onTouchStart) {
+    tmp.onTouchStart = onTouchStart[0];
+  }
+  if (role) {
+    tmp.role = role[0];
+  }
+  var tmp$3 = Js_option.map(unwrapValue, tabIndex);
+  if (tmp$3) {
+    tmp.tabIndex = tmp$3[0];
+  }
+  if (_TouchRippleProps) {
+    tmp.TouchRippleProps = _TouchRippleProps[0];
+  }
+  if (_type) {
+    tmp.type = _type[0];
+  }
+  var tmp$4 = Js_option.map(to_obj$73, classes);
+  if (tmp$4) {
+    tmp.classes = tmp$4[0];
   }
   if (style) {
     tmp.style = style[0];
@@ -9414,7 +10719,7 @@ var Table$1 = /* module */[
   /* make */make$90
 ];
 
-var jsMapperConstantArray$70 = /* array */[
+var jsMapperConstantArray$81 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -9426,14 +10731,14 @@ var jsMapperConstantArray$70 = /* array */[
 ];
 
 function indicatorColorToJs(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$70);
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$81);
 }
 
 function indicatorColorFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$70, param);
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$81, param);
 }
 
-var jsMapperConstantArray$71 = /* array */[
+var jsMapperConstantArray$82 = /* array */[
   /* tuple */[
     17727,
     "on"
@@ -9449,14 +10754,14 @@ var jsMapperConstantArray$71 = /* array */[
 ];
 
 function scrollButtonsToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$71);
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$82);
 }
 
 function scrollButtonsFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$71, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$82, param);
 }
 
-var jsMapperConstantArray$72 = /* array */[
+var jsMapperConstantArray$83 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -9472,11 +10777,11 @@ var jsMapperConstantArray$72 = /* array */[
 ];
 
 function textColorToJs$1(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$72);
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$83);
 }
 
 function textColorFromJs$1(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$72, param);
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$83, param);
 }
 
 function to_string$75(param) {
@@ -9530,7 +10835,7 @@ function make$91(action, centered, className, fullWidth, indicatorColor, onChang
     tmp.fullWidth = fullWidth[0];
   }
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$70);
+          return Js_mapperRt.binarySearch(2, v, jsMapperConstantArray$81);
         }), indicatorColor);
   if (tmp$1) {
     tmp.indicatorColor = tmp$1[0];
@@ -9542,7 +10847,7 @@ function make$91(action, centered, className, fullWidth, indicatorColor, onChang
     tmp.scrollable = scrollable[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$71);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$82);
         }), scrollButtons);
   if (tmp$2) {
     tmp.scrollButtons = tmp$2[0];
@@ -9552,7 +10857,7 @@ function make$91(action, centered, className, fullWidth, indicatorColor, onChang
     tmp.TabScrollButton = tmp$3[0];
   }
   var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$72);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$83);
         }), textColor);
   if (tmp$4) {
     tmp.textColor = tmp$4[0];
@@ -9584,7 +10889,7 @@ var Tabs$1 = /* module */[
   /* make */make$91
 ];
 
-var jsMapperConstantArray$73 = /* array */[
+var jsMapperConstantArray$84 = /* array */[
   /* tuple */[
     -453122489,
     "normal"
@@ -9599,15 +10904,15 @@ var jsMapperConstantArray$73 = /* array */[
   ]
 ];
 
-function marginToJs$4(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$73);
+function marginToJs$5(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$84);
 }
 
-function marginFromJs$4(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$73, param);
+function marginFromJs$5(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$84, param);
 }
 
-function make$92(autoComplete, autoFocus, className, defaultValue, disabled, error, _FormHelperTextProps, fullWidth, helperText, id, _InputLabelProps, _InputProps, inputProps, inputRef, label, margin, multiline, name, onBlur, onChange, onFocus, placeholder, required, rows, rowsMax, select, _SelectProps, _type, value, children) {
+function make$92(autoComplete, autoFocus, className, defaultValue, disabled, error, _FormHelperTextProps, fullWidth, helperText, id, _InputLabelProps, _InputProps, inputProps, inputRef, label, margin, multiline, name, onBlur, onChange, onFocus, placeholder, required, rows, rowsMax, select, _SelectProps, _type, value, component, children) {
   var tmp = { };
   if (autoComplete) {
     tmp.autoComplete = autoComplete[0];
@@ -9656,7 +10961,7 @@ function make$92(autoComplete, autoFocus, className, defaultValue, disabled, err
     tmp.label = label[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$73);
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$84);
         }), margin);
   if (tmp$2) {
     tmp.margin = tmp$2[0];
@@ -9703,12 +11008,16 @@ function make$92(autoComplete, autoFocus, className, defaultValue, disabled, err
   if (tmp$5) {
     tmp.value = tmp$5[0];
   }
+  var tmp$6 = Js_option.map(unwrapValue, component);
+  if (tmp$6) {
+    tmp.component = tmp$6[0];
+  }
   return ReasonReact.wrapJsForReason(TextField.default, tmp, children);
 }
 
 var TextField$1 = /* module */[
-  /* marginToJs */marginToJs$4,
-  /* marginFromJs */marginFromJs$4,
+  /* marginToJs */marginToJs$5,
+  /* marginFromJs */marginFromJs$5,
   /* make */make$92
 ];
 
@@ -9755,7 +11064,7 @@ var Toolbar$1 = /* module */[
   /* make */make$93
 ];
 
-var jsMapperConstantArray$74 = /* array */[
+var jsMapperConstantArray$85 = /* array */[
   /* tuple */[
     -1031209551,
     "top-end"
@@ -9807,11 +11116,11 @@ var jsMapperConstantArray$74 = /* array */[
 ];
 
 function placementToJs(param) {
-  return Js_mapperRt.binarySearch(12, param, jsMapperConstantArray$74);
+  return Js_mapperRt.binarySearch(12, param, jsMapperConstantArray$85);
 }
 
 function placementFromJs(param) {
-  return Js_mapperRt.revSearch(12, jsMapperConstantArray$74, param);
+  return Js_mapperRt.revSearch(12, jsMapperConstantArray$85, param);
 }
 
 function to_string$77(param) {
@@ -9895,7 +11204,7 @@ function make$94(className, disableFocusListener, disableHoverListener, disableT
     tmp.open = _open[0];
   }
   var tmp$5 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(12, v, jsMapperConstantArray$74);
+          return Js_mapperRt.binarySearch(12, v, jsMapperConstantArray$85);
         }), placement);
   if (tmp$5) {
     tmp.placement = tmp$5[0];
@@ -9978,7 +11287,7 @@ var TouchRipple$1 = /* module */[
   /* make */make$95
 ];
 
-var jsMapperConstantArray$75 = /* array */[
+var jsMapperConstantArray$86 = /* array */[
   /* tuple */[
     -788068560,
     "justify"
@@ -10001,15 +11310,15 @@ var jsMapperConstantArray$75 = /* array */[
   ]
 ];
 
-function alignToJs(param) {
-  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$75);
+function alignToJs$1(param) {
+  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$86);
 }
 
-function alignFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$75, param);
+function alignFromJs$1(param) {
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$86, param);
 }
 
-var jsMapperConstantArray$76 = /* array */[
+var jsMapperConstantArray$87 = /* array */[
   /* tuple */[
     -791844958,
     "primary"
@@ -10036,15 +11345,15 @@ var jsMapperConstantArray$76 = /* array */[
   ]
 ];
 
-function colorToJs$12(param) {
-  return Js_mapperRt.binarySearch(6, param, jsMapperConstantArray$76);
+function colorToJs$14(param) {
+  return Js_mapperRt.binarySearch(6, param, jsMapperConstantArray$87);
 }
 
-function colorFromJs$12(param) {
-  return Js_mapperRt.revSearch(6, jsMapperConstantArray$76, param);
+function colorFromJs$14(param) {
+  return Js_mapperRt.revSearch(6, jsMapperConstantArray$87, param);
 }
 
-var jsMapperConstantArray$77 = /* array */[
+var jsMapperConstantArray$88 = /* array */[
   /* tuple */[
     -904051921,
     "body1"
@@ -10091,12 +11400,12 @@ var jsMapperConstantArray$77 = /* array */[
   ]
 ];
 
-function variantToJs$7(param) {
-  return Js_mapperRt.binarySearch(11, param, jsMapperConstantArray$77);
+function variantToJs$9(param) {
+  return Js_mapperRt.binarySearch(11, param, jsMapperConstantArray$88);
 }
 
-function variantFromJs$7(param) {
-  return Js_mapperRt.revSearch(11, jsMapperConstantArray$77, param);
+function variantFromJs$9(param) {
+  return Js_mapperRt.revSearch(11, jsMapperConstantArray$88, param);
 }
 
 function to_string$79(param) {
@@ -10168,7 +11477,7 @@ var Classes$79 = /* module */[
 function make$96(align, className, color, component, gutterBottom, headlineMapping, noWrap, paragraph, variant, classes, style, children) {
   var tmp = { };
   var tmp$1 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(5, v, jsMapperConstantArray$75);
+          return Js_mapperRt.binarySearch(5, v, jsMapperConstantArray$86);
         }), align);
   if (tmp$1) {
     tmp.align = tmp$1[0];
@@ -10177,7 +11486,7 @@ function make$96(align, className, color, component, gutterBottom, headlineMappi
     tmp.className = className[0];
   }
   var tmp$2 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(6, v, jsMapperConstantArray$76);
+          return Js_mapperRt.binarySearch(6, v, jsMapperConstantArray$87);
         }), color);
   if (tmp$2) {
     tmp.color = tmp$2[0];
@@ -10199,7 +11508,7 @@ function make$96(align, className, color, component, gutterBottom, headlineMappi
     tmp.paragraph = paragraph[0];
   }
   var tmp$4 = Js_option.map((function (v) {
-          return Js_mapperRt.binarySearch(11, v, jsMapperConstantArray$77);
+          return Js_mapperRt.binarySearch(11, v, jsMapperConstantArray$88);
         }), variant);
   if (tmp$4) {
     tmp.variant = tmp$4[0];
@@ -10215,12 +11524,12 @@ function make$96(align, className, color, component, gutterBottom, headlineMappi
 }
 
 var Typography$1 = /* module */[
-  /* alignToJs */alignToJs,
-  /* alignFromJs */alignFromJs,
-  /* colorToJs */colorToJs$12,
-  /* colorFromJs */colorFromJs$12,
-  /* variantToJs */variantToJs$7,
-  /* variantFromJs */variantFromJs$7,
+  /* alignToJs */alignToJs$1,
+  /* alignFromJs */alignFromJs$1,
+  /* colorToJs */colorToJs$14,
+  /* colorFromJs */colorFromJs$14,
+  /* variantToJs */variantToJs$9,
+  /* variantFromJs */variantFromJs$9,
   /* Classes */Classes$79,
   /* make */make$96
 ];

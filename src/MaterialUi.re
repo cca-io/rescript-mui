@@ -686,6 +686,9 @@ module AppBar = {
       ~className: string=?,
       ~color: string=?,
       ~position: string=?,
+      ~component: 'union_rrgc=?,
+      ~elevation: 'number_7=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -699,6 +702,10 @@ module AppBar = {
         ~className: option(string)=?,
         ~color: option(color)=?,
         ~position: option(position)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~elevation: option([ | `Int(int) | `Float(float)])=?,
+        ~square: option(bool)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -710,6 +717,9 @@ module AppBar = {
           ~className?,
           ~color=?Js.Option.map((. v) => colorToJs(v), color),
           ~position=?Js.Option.map((. v) => positionToJs(v), position),
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -752,7 +762,7 @@ module Avatar = {
       ~alt: string=?,
       ~childrenClassName: string=?,
       ~className: string=?,
-      ~component: 'union_rvgz=?,
+      ~component: 'union_rbd7=?,
       ~imgProps: Js.t({..})=?,
       ~sizes: string=?,
       ~src: string=?,
@@ -804,7 +814,7 @@ module Backdrop = {
   type typeTransitionDuration_shape;
   [@bs.obj]
   external makeTransitionDuration_shape :
-    (~enter: 'number_n=?, ~exit: 'number_s=?, unit) =>
+    (~enter: 'number_f=?, ~exit: 'number_s=?, unit) =>
     typeTransitionDuration_shape =
     "";
   [@bs.get_index]
@@ -866,7 +876,7 @@ module Backdrop = {
       ~className: string=?,
       ~invisible: bool=?,
       ~_open: bool,
-      ~transitionDuration: 'union_rdzx=?,
+      ~transitionDuration: 'union_r353=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -964,7 +974,7 @@ module Badge = {
       ~badgeContent: ReasonReact.reactElement,
       ~className: string=?,
       ~color: string=?,
-      ~component: 'union_rm2r=?,
+      ~component: 'union_rj7q=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -1044,7 +1054,29 @@ module BottomNavigationAction = {
       ~onClick: ReactEventRe.Mouse.t => unit=?,
       ~selected: bool=?,
       ~showLabel: bool=?,
-      ~value: 'any_r6wi=?,
+      ~value: 'any_r28i=?,
+      ~buttonRef: 'genericCallback=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_ralg=?,
+      ~disabled: bool=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
+      ~onBlur: ReactEventRe.Focus.t => unit=?,
+      ~onFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
+      ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseUp: ReactEventRe.Mouse.t => unit=?,
+      ~onTouchEnd: ReactEventRe.Touch.t => unit=?,
+      ~onTouchMove: ReactEventRe.Touch.t => unit=?,
+      ~onTouchStart: ReactEventRe.Touch.t => unit=?,
+      ~role: string=?,
+      ~tabIndex: 'union_r1de=?,
+      ~_TouchRippleProps: Js.t({..})=?,
+      ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -1062,7 +1094,30 @@ module BottomNavigationAction = {
         ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
         ~selected: option(bool)=?,
         ~showLabel: option(bool)=?,
-        ~value: option('any_r6wi)=?,
+        ~value: option('any_r28i)=?,
+        ~buttonRef: option('genericCallback)=?,
+        ~centerRipple: option(bool)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~disabled: option(bool)=?,
+        ~disableRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
+        ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
+        ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseLeave: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseUp: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onTouchEnd: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchMove: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchStart: option(ReactEventRe.Touch.t => unit)=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~_TouchRippleProps: option(Js.t({..}))=?,
+        ~_type: option(string)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -1079,6 +1134,28 @@ module BottomNavigationAction = {
           ~selected?,
           ~showLabel?,
           ~value?,
+          ~buttonRef?,
+          ~centerRipple?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~disabled?,
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
+          ~onBlur?,
+          ~onFocus?,
+          ~onKeyboardFocus?,
+          ~onKeyDown?,
+          ~onKeyUp?,
+          ~onMouseDown?,
+          ~onMouseLeave?,
+          ~onMouseUp?,
+          ~onTouchEnd?,
+          ~onTouchMove?,
+          ~onTouchStart?,
+          ~role?,
+          ~tabIndex=?Js.Option.map((. v) => unwrapValue(v), tabIndex),
+          ~_TouchRippleProps?,
+          ~_type?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -1113,9 +1190,9 @@ module BottomNavigation = {
   external makeProps :
     (
       ~className: string=?,
-      ~onChange: 'any_rmxd=?,
+      ~onChange: 'any_rzbj=?,
       ~showLabels: bool=?,
-      ~value: 'any_ro6o=?,
+      ~value: 'any_rzra=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -1127,9 +1204,9 @@ module BottomNavigation = {
   let make =
       (
         ~className: option(string)=?,
-        ~onChange: option((ReactEventRe.Form.t, 'any_r8a0) => unit)=?,
+        ~onChange: option((ReactEventRe.Form.t, 'any_rxxw) => unit)=?,
         ~showLabels: option(bool)=?,
-        ~value: option('any_ro6o)=?,
+        ~value: option('any_rzra)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -1181,7 +1258,7 @@ module ButtonBase = {
       ~buttonRef: 'genericCallback=?,
       ~centerRipple: bool=?,
       ~className: string=?,
-      ~component: 'union_rd68=?,
+      ~component: 'union_rmdd=?,
       ~disabled: bool=?,
       ~disableRipple: bool=?,
       ~focusRipple: bool=?,
@@ -1199,7 +1276,7 @@ module ButtonBase = {
       ~onTouchMove: ReactEventRe.Touch.t => unit=?,
       ~onTouchStart: ReactEventRe.Touch.t => unit=?,
       ~role: string=?,
-      ~tabIndex: 'union_rf75=?,
+      ~tabIndex: 'union_r7vi=?,
       ~_TouchRippleProps: Js.t({..})=?,
       ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -1365,7 +1442,7 @@ module Button = {
     (
       ~className: string=?,
       ~color: string=?,
-      ~component: 'union_ridc=?,
+      ~component: 'union_r3si=?,
       ~disabled: bool=?,
       ~disableFocusRipple: bool=?,
       ~disableRipple: bool=?,
@@ -1376,6 +1453,24 @@ module Button = {
       ~size: string=?,
       ~_type: string=?,
       ~variant: string=?,
+      ~buttonRef: 'genericCallback=?,
+      ~centerRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~onBlur: ReactEventRe.Focus.t => unit=?,
+      ~onClick: ReactEventRe.Mouse.t => unit=?,
+      ~onFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
+      ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseUp: ReactEventRe.Mouse.t => unit=?,
+      ~onTouchEnd: ReactEventRe.Touch.t => unit=?,
+      ~onTouchMove: ReactEventRe.Touch.t => unit=?,
+      ~onTouchStart: ReactEventRe.Touch.t => unit=?,
+      ~role: string=?,
+      ~tabIndex: 'union_r4ql=?,
+      ~_TouchRippleProps: Js.t({..})=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -1400,6 +1495,24 @@ module Button = {
         ~size: option(size)=?,
         ~_type: option(string)=?,
         ~variant: option(variant)=?,
+        ~buttonRef: option('genericCallback)=?,
+        ~centerRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
+        ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseLeave: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseUp: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onTouchEnd: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchMove: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchStart: option(ReactEventRe.Touch.t => unit)=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~_TouchRippleProps: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -1421,6 +1534,24 @@ module Button = {
           ~size=?Js.Option.map((. v) => sizeToJs(v), size),
           ~_type?,
           ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
+          ~buttonRef?,
+          ~centerRipple?,
+          ~focusRipple?,
+          ~onBlur?,
+          ~onClick?,
+          ~onFocus?,
+          ~onKeyboardFocus?,
+          ~onKeyDown?,
+          ~onKeyUp?,
+          ~onMouseDown?,
+          ~onMouseLeave?,
+          ~onMouseUp?,
+          ~onTouchEnd?,
+          ~onTouchMove?,
+          ~onTouchStart?,
+          ~role?,
+          ~tabIndex=?Js.Option.map((. v) => unwrapValue(v), tabIndex),
+          ~_TouchRippleProps?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -1515,7 +1646,7 @@ module CardContent = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_rmml=?,
+      ~component: 'union_rgpk=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -1590,7 +1721,7 @@ module CardHeader = {
       ~action: ReasonReact.reactElement=?,
       ~avatar: ReasonReact.reactElement=?,
       ~className: string=?,
-      ~component: 'union_r2nw=?,
+      ~component: 'union_r8yf=?,
       ~subheader: ReasonReact.reactElement=?,
       ~title: ReasonReact.reactElement=?,
       ~classes: Js.Dict.t(string)=?,
@@ -1661,7 +1792,7 @@ module CardMedia = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_roew=?,
+      ~component: 'union_r08z=?,
       ~image: string=?,
       ~src: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -1726,6 +1857,9 @@ module Card = {
     (
       ~className: string=?,
       ~raised: bool=?,
+      ~component: 'union_rhbt=?,
+      ~elevation: 'number_5=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -1738,6 +1872,10 @@ module Card = {
       (
         ~className: option(string)=?,
         ~raised: option(bool)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~elevation: option([ | `Int(int) | `Float(float)])=?,
+        ~square: option(bool)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -1748,6 +1886,9 @@ module Card = {
         makeProps(
           ~className?,
           ~raised?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -1799,7 +1940,7 @@ module Checkbox = {
   [@bs.obj]
   external makeProps :
     (
-      ~checked: 'union_rhkb=?,
+      ~checked: 'union_r3m3=?,
       ~checkedIcon: ReasonReact.reactElement=?,
       ~color: string=?,
       ~disabled: bool=?,
@@ -1810,7 +1951,7 @@ module Checkbox = {
       ~indeterminateIcon: ReasonReact.reactElement=?,
       ~inputProps: Js.t({..})=?,
       ~inputRef: 'genericCallback=?,
-      ~onChange: 'any_r91y=?,
+      ~onChange: 'any_r32g=?,
       ~_type: string=?,
       ~value: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -1912,13 +2053,13 @@ module Chip = {
     (
       ~avatar: ReasonReact.reactElement=?,
       ~className: string=?,
-      ~component: 'union_rjja=?,
+      ~component: 'union_rmmp=?,
       ~deleteIcon: ReasonReact.reactElement=?,
       ~label: ReasonReact.reactElement=?,
       ~onClick: ReactEventRe.Mouse.t => unit=?,
       ~onDelete: ReactEventRe.Synthetic.t => unit=?,
       ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
-      ~tabIndex: 'union_rc5r=?,
+      ~tabIndex: 'union_rab2=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -2021,11 +2162,11 @@ module CircularProgress = {
     (
       ~className: string=?,
       ~color: string=?,
-      ~max: 'number_8=?,
-      ~min: 'number_j=?,
-      ~size: 'union_rwnh=?,
-      ~thickness: 'number_1=?,
-      ~value: 'number_6=?,
+      ~max: 'number_9=?,
+      ~min: 'number_e=?,
+      ~size: 'union_rm6c=?,
+      ~thickness: 'number_b=?,
+      ~value: 'number_p=?,
       ~variant: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
@@ -2121,7 +2262,7 @@ module Collapse = {
   type typeTimeout_shape;
   [@bs.obj]
   external makeTimeout_shape :
-    (~enter: 'number_z=?, ~exit: 'number_m=?, unit) => typeTimeout_shape =
+    (~enter: 'number_2=?, ~exit: 'number_x=?, unit) => typeTimeout_shape =
     "";
   [@bs.get_index]
   external getFromTimeout_shape : (typeTimeout_shape, string) => 'a = "";
@@ -2186,7 +2327,7 @@ module Collapse = {
     (
       ~className: string=?,
       ~collapsedHeight: string=?,
-      ~component: 'union_rck7=?,
+      ~component: 'union_rbr9=?,
       ~_in: bool=?,
       ~onEnter: ReactEventRe.Synthetic.t => unit=?,
       ~onEntered: ReactEventRe.Synthetic.t => unit=?,
@@ -2194,7 +2335,7 @@ module Collapse = {
       ~onExit: ReactEventRe.Synthetic.t => unit=?,
       ~onExiting: ReactEventRe.Synthetic.t => unit=?,
       ~theme: Js.t({..})=?,
-      ~timeout: 'union_rcrf=?,
+      ~timeout: 'union_ruv9=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -2331,6 +2472,37 @@ module DialogActions = {
 };
 
 module DialogContentText = {
+  [@bs.deriving jsConverter]
+  type align = [
+    | [@bs.as "inherit"] `Inherit
+    | [@bs.as "left"] `Left
+    | [@bs.as "center"] `Center
+    | [@bs.as "right"] `Right
+    | [@bs.as "justify"] `Justify
+  ];
+  [@bs.deriving jsConverter]
+  type color = [
+    | [@bs.as "inherit"] `Inherit
+    | [@bs.as "primary"] `Primary
+    | [@bs.as "textSecondary"] `TextSecondary
+    | [@bs.as "secondary"] `Secondary
+    | [@bs.as "error"] `Error
+    | [@bs.as "default"] `Default
+  ];
+  [@bs.deriving jsConverter]
+  type variant = [
+    | [@bs.as "display4"] `Display4
+    | [@bs.as "display3"] `Display3
+    | [@bs.as "display2"] `Display2
+    | [@bs.as "display1"] `Display1
+    | [@bs.as "headline"] `Headline
+    | [@bs.as "title"] `Title
+    | [@bs.as "subheading"] `Subheading
+    | [@bs.as "body2"] `Body2
+    | [@bs.as "body1"] `Body1
+    | [@bs.as "caption"] `Caption
+    | [@bs.as "button"] `Button
+  ];
   module Classes = {
     type classesType =
       | Root(string);
@@ -2356,6 +2528,14 @@ module DialogContentText = {
   external makeProps :
     (
       ~className: string=?,
+      ~align: string=?,
+      ~color: string=?,
+      ~component: 'union_r1lf=?,
+      ~gutterBottom: bool=?,
+      ~headlineMapping: Js.t({..})=?,
+      ~noWrap: bool=?,
+      ~paragraph: bool=?,
+      ~variant: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -2367,6 +2547,15 @@ module DialogContentText = {
   let make =
       (
         ~className: option(string)=?,
+        ~align: option(align)=?,
+        ~color: option(color)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~gutterBottom: option(bool)=?,
+        ~headlineMapping: option(Js.t({..}))=?,
+        ~noWrap: option(bool)=?,
+        ~paragraph: option(bool)=?,
+        ~variant: option(variant)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -2376,6 +2565,14 @@ module DialogContentText = {
       ~props=
         makeProps(
           ~className?,
+          ~align=?Js.Option.map((. v) => alignToJs(v), align),
+          ~color=?Js.Option.map((. v) => colorToJs(v), color),
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~gutterBottom?,
+          ~headlineMapping?,
+          ~noWrap?,
+          ~paragraph?,
+          ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -2506,7 +2703,7 @@ module Dialog = {
   type typeTransitionDuration_shape;
   [@bs.obj]
   external makeTransitionDuration_shape :
-    (~enter: 'number_g=?, ~exit: 'number_b=?, unit) =>
+    (~enter: 'number_q=?, ~exit: 'number_z=?, unit) =>
     typeTransitionDuration_shape =
     "";
   [@bs.get_index]
@@ -2588,7 +2785,7 @@ module Dialog = {
       ~fullWidth: bool=?,
       ~maxWidth: string=?,
       ~onBackdropClick: ReactEventRe.Mouse.t => unit=?,
-      ~onClose: 'any_rqz7=?,
+      ~onClose: 'any_r7rc=?,
       ~onEnter: ReactEventRe.Synthetic.t => unit=?,
       ~onEntered: ReactEventRe.Synthetic.t => unit=?,
       ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -2598,8 +2795,17 @@ module Dialog = {
       ~onExiting: ReactEventRe.Synthetic.t => unit=?,
       ~_open: bool,
       ~_PaperProps: Js.t({..})=?,
-      ~transition: 'union_ru45=?,
-      ~transitionDuration: 'union_rqm7=?,
+      ~transition: 'union_r4in=?,
+      ~transitionDuration: 'union_r9d5=?,
+      ~_BackdropComponent: 'union_rr32=?,
+      ~container: 'union_rid5=?,
+      ~disableAutoFocus: bool=?,
+      ~disableEnforceFocus: bool=?,
+      ~disableRestoreFocus: bool=?,
+      ~hideBackdrop: bool=?,
+      ~keepMounted: bool=?,
+      ~manager: Js.t({..})=?,
+      ~onRendered: ReactEventRe.Synthetic.t => unit=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -2638,6 +2844,19 @@ module Dialog = {
                | `Object(typeTransitionDuration_shape)
              ],
            )=?,
+        ~_BackdropComponent:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~container:
+           option(
+             [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
+           )=?,
+        ~disableAutoFocus: option(bool)=?,
+        ~disableEnforceFocus: option(bool)=?,
+        ~disableRestoreFocus: option(bool)=?,
+        ~hideBackdrop: option(bool)=?,
+        ~keepMounted: option(bool)=?,
+        ~manager: option(Js.t({..}))=?,
+        ~onRendered: option(ReactEventRe.Synthetic.t => unit)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -2675,6 +2894,16 @@ module Dialog = {
                 },
               transitionDuration,
             ),
+          ~_BackdropComponent=?
+            Js.Option.map((. v) => unwrapValue(v), _BackdropComponent),
+          ~container=?Js.Option.map((. v) => unwrapValue(v), container),
+          ~disableAutoFocus?,
+          ~disableEnforceFocus?,
+          ~disableRestoreFocus?,
+          ~hideBackdrop?,
+          ~keepMounted?,
+          ~manager?,
+          ~onRendered?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -2719,7 +2948,7 @@ module Divider = {
     (
       ~absolute: bool=?,
       ~className: string=?,
-      ~component: 'union_r6ep=?,
+      ~component: 'union_rzn4=?,
       ~inset: bool=?,
       ~light: bool=?,
       ~classes: Js.Dict.t(string)=?,
@@ -2770,7 +2999,7 @@ module Drawer = {
   type typeTransitionDuration_shape;
   [@bs.obj]
   external makeTransitionDuration_shape :
-    (~enter: 'number_2=?, ~exit: 'number_h=?, unit) =>
+    (~enter: 'number_6=?, ~exit: 'number_h=?, unit) =>
     typeTransitionDuration_shape =
     "";
   [@bs.get_index]
@@ -2864,14 +3093,14 @@ module Drawer = {
     (
       ~anchor: string=?,
       ~className: string=?,
-      ~elevation: 'number_t=?,
+      ~elevation: 'number_v=?,
       ~_ModalProps: Js.t({..})=?,
-      ~onClose: 'any_rr1y=?,
+      ~onClose: 'any_r3oi=?,
       ~_open: bool=?,
       ~_PaperProps: Js.t({..})=?,
       ~_SlideProps: Js.t({..})=?,
       ~theme: Js.t({..})=?,
-      ~transitionDuration: 'union_raps=?,
+      ~transitionDuration: 'union_rkxi=?,
       ~variant: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
@@ -3094,6 +3323,27 @@ module ExpansionPanelSummary = {
       ~expandIcon: ReasonReact.reactElement=?,
       ~onChange: ReactEventRe.Form.t => unit=?,
       ~onClick: ReactEventRe.Mouse.t => unit=?,
+      ~buttonRef: 'genericCallback=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_r22x=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
+      ~onBlur: ReactEventRe.Focus.t => unit=?,
+      ~onFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
+      ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseUp: ReactEventRe.Mouse.t => unit=?,
+      ~onTouchEnd: ReactEventRe.Touch.t => unit=?,
+      ~onTouchMove: ReactEventRe.Touch.t => unit=?,
+      ~onTouchStart: ReactEventRe.Touch.t => unit=?,
+      ~role: string=?,
+      ~tabIndex: 'union_r8vh=?,
+      ~_TouchRippleProps: Js.t({..})=?,
+      ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -3110,6 +3360,28 @@ module ExpansionPanelSummary = {
         ~expandIcon: option(ReasonReact.reactElement)=?,
         ~onChange: option(ReactEventRe.Form.t => unit)=?,
         ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
+        ~buttonRef: option('genericCallback)=?,
+        ~centerRipple: option(bool)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~disableRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
+        ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
+        ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseLeave: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseUp: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onTouchEnd: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchMove: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchStart: option(ReactEventRe.Touch.t => unit)=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~_TouchRippleProps: option(Js.t({..}))=?,
+        ~_type: option(string)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -3124,6 +3396,27 @@ module ExpansionPanelSummary = {
           ~expandIcon?,
           ~onChange?,
           ~onClick?,
+          ~buttonRef?,
+          ~centerRipple?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
+          ~onBlur?,
+          ~onFocus?,
+          ~onKeyboardFocus?,
+          ~onKeyDown?,
+          ~onKeyUp?,
+          ~onMouseDown?,
+          ~onMouseLeave?,
+          ~onMouseUp?,
+          ~onTouchEnd?,
+          ~onTouchMove?,
+          ~onTouchStart?,
+          ~role?,
+          ~tabIndex=?Js.Option.map((. v) => unwrapValue(v), tabIndex),
+          ~_TouchRippleProps?,
+          ~_type?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -3168,7 +3461,10 @@ module ExpansionPanel = {
       ~defaultExpanded: bool=?,
       ~disabled: bool=?,
       ~expanded: bool=?,
-      ~onChange: 'any_r60x=?,
+      ~onChange: 'any_rtrg=?,
+      ~component: 'union_r89u=?,
+      ~elevation: 'number_7=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -3185,6 +3481,10 @@ module ExpansionPanel = {
         ~disabled: option(bool)=?,
         ~expanded: option(bool)=?,
         ~onChange: option((ReactEventRe.Form.t, bool) => unit)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~elevation: option([ | `Int(int) | `Float(float)])=?,
+        ~square: option(bool)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -3199,6 +3499,9 @@ module ExpansionPanel = {
           ~disabled?,
           ~expanded?,
           ~onChange?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -3211,7 +3514,7 @@ module Fade = {
   type typeTimeout_shape;
   [@bs.obj]
   external makeTimeout_shape :
-    (~enter: 'number_h=?, ~exit: 'number_z=?, unit) => typeTimeout_shape =
+    (~enter: 'number_i=?, ~exit: 'number_w=?, unit) => typeTimeout_shape =
     "";
   [@bs.get_index]
   external getFromTimeout_shape : (typeTimeout_shape, string) => 'a = "";
@@ -3246,7 +3549,7 @@ module Fade = {
       ~onEnter: ReactEventRe.Synthetic.t => unit=?,
       ~onExit: ReactEventRe.Synthetic.t => unit=?,
       ~theme: Js.t({..})=?,
-      ~timeout: 'union_rsxy=?,
+      ~timeout: 'union_rvyd=?,
       unit
     ) =>
     _ =
@@ -3320,14 +3623,14 @@ module FormControlLabel = {
   [@bs.obj]
   external makeProps :
     (
-      ~checked: 'union_r6f8=?,
+      ~checked: 'union_rfin=?,
       ~className: string=?,
       ~control: ReasonReact.reactElement=?,
       ~disabled: bool=?,
       ~inputRef: 'genericCallback=?,
       ~label: ReasonReact.reactElement=?,
       ~name: string=?,
-      ~onChange: 'any_r5cp=?,
+      ~onChange: 'any_rv27=?,
       ~value: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
@@ -3414,7 +3717,7 @@ module FormControl = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_rujd=?,
+      ~component: 'union_rlld=?,
       ~disabled: bool=?,
       ~error: bool=?,
       ~fullWidth: bool=?,
@@ -3564,7 +3867,7 @@ module FormHelperText = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_r2ap=?,
+      ~component: 'union_rd60=?,
       ~disabled: bool=?,
       ~error: bool=?,
       ~margin: string=?,
@@ -3643,7 +3946,7 @@ module FormLabel = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_rlv6=?,
+      ~component: 'union_rod4=?,
       ~disabled: bool=?,
       ~error: bool=?,
       ~focused: bool=?,
@@ -3827,9 +4130,9 @@ module GridListTile = {
   external makeProps :
     (
       ~className: string=?,
-      ~cols: 'number_r=?,
-      ~component: 'union_r5cd=?,
-      ~rows: 'number_n=?,
+      ~cols: 'number_q=?,
+      ~component: 'union_rgdz=?,
+      ~rows: 'number_e=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -3892,11 +4195,11 @@ module GridList = {
   [@bs.obj]
   external makeProps :
     (
-      ~cellHeight: 'union_ryff=?,
+      ~cellHeight: 'union_rnf4=?,
       ~className: string=?,
-      ~cols: 'number_u=?,
-      ~component: 'union_rzk3=?,
-      ~spacing: 'number_p=?,
+      ~cols: 'number_p=?,
+      ~component: 'union_rq5u=?,
+      ~spacing: 'number_z=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -4212,7 +4515,7 @@ module Grid = {
       ~alignContent: string=?,
       ~alignItems: string=?,
       ~className: string=?,
-      ~component: 'union_rfk1=?,
+      ~component: 'union_rp0p=?,
       ~container: bool=?,
       ~direction: string=?,
       ~hidden: Js.t({..})=?,
@@ -4221,7 +4524,7 @@ module Grid = {
       ~lg: string=?,
       ~md: string=?,
       ~sm: string=?,
-      ~spacing: 'number_rjp2=?,
+      ~spacing: 'number_rssl=?,
       ~wrap: string=?,
       ~xl: string=?,
       ~xs: string=?,
@@ -4293,7 +4596,7 @@ module Grow = {
   type typeTimeout_shape;
   [@bs.obj]
   external makeTimeout_shape :
-    (~enter: 'number_g=?, ~exit: 'number_d=?, unit) => typeTimeout_shape =
+    (~enter: 'number_e=?, ~exit: 'number_h=?, unit) => typeTimeout_shape =
     "";
   [@bs.get_index]
   external getFromTimeout_shape : (typeTimeout_shape, string) => 'a = "";
@@ -4330,7 +4633,7 @@ module Grow = {
       ~onEnter: ReactEventRe.Synthetic.t => unit=?,
       ~onExit: ReactEventRe.Synthetic.t => unit=?,
       ~theme: Js.t({..})=?,
-      ~timeout: 'union_rar8=?,
+      ~timeout: 'union_rs32=?,
       unit
     ) =>
     _ =
@@ -4416,7 +4719,7 @@ module Hidden = {
       ~lgUp: bool=?,
       ~mdDown: bool=?,
       ~mdUp: bool=?,
-      ~only: 'union_rohb=?,
+      ~only: 'union_ryei=?,
       ~smDown: bool=?,
       ~smUp: bool=?,
       ~xlDown: bool=?,
@@ -4532,6 +4835,27 @@ module IconButton = {
       ~color: string=?,
       ~disabled: bool=?,
       ~disableRipple: bool=?,
+      ~buttonRef: 'genericCallback=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_rmgz=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
+      ~onBlur: ReactEventRe.Focus.t => unit=?,
+      ~onClick: ReactEventRe.Mouse.t => unit=?,
+      ~onFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
+      ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseUp: ReactEventRe.Mouse.t => unit=?,
+      ~onTouchEnd: ReactEventRe.Touch.t => unit=?,
+      ~onTouchMove: ReactEventRe.Touch.t => unit=?,
+      ~onTouchStart: ReactEventRe.Touch.t => unit=?,
+      ~role: string=?,
+      ~tabIndex: 'union_ru2t=?,
+      ~_TouchRippleProps: Js.t({..})=?,
+      ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -4546,6 +4870,28 @@ module IconButton = {
         ~color: option(color)=?,
         ~disabled: option(bool)=?,
         ~disableRipple: option(bool)=?,
+        ~buttonRef: option('genericCallback)=?,
+        ~centerRipple: option(bool)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
+        ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
+        ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseLeave: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseUp: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onTouchEnd: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchMove: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchStart: option(ReactEventRe.Touch.t => unit)=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~_TouchRippleProps: option(Js.t({..}))=?,
+        ~_type: option(string)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -4558,6 +4904,27 @@ module IconButton = {
           ~color=?Js.Option.map((. v) => colorToJs(v), color),
           ~disabled?,
           ~disableRipple?,
+          ~buttonRef?,
+          ~centerRipple?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~focusRipple?,
+          ~focusVisibleClassName?,
+          ~onBlur?,
+          ~onClick?,
+          ~onFocus?,
+          ~onKeyboardFocus?,
+          ~onKeyDown?,
+          ~onKeyUp?,
+          ~onMouseDown?,
+          ~onMouseLeave?,
+          ~onMouseUp?,
+          ~onTouchEnd?,
+          ~onTouchMove?,
+          ~onTouchStart?,
+          ~role?,
+          ~tabIndex=?Js.Option.map((. v) => unwrapValue(v), tabIndex),
+          ~_TouchRippleProps?,
+          ~_type?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -4681,7 +5048,7 @@ module InputAdornment = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_rvsi=?,
+      ~component: 'union_rbry=?,
       ~disableTypography: bool=?,
       ~position: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -4767,6 +5134,7 @@ module InputLabel = {
       ~margin: string=?,
       ~required: bool=?,
       ~shrink: bool=?,
+      ~component: 'union_rqvu=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -4786,6 +5154,8 @@ module InputLabel = {
         ~margin: option(margin)=?,
         ~required: option(bool)=?,
         ~shrink: option(bool)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -4803,6 +5173,7 @@ module InputLabel = {
           ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
           ~required?,
           ~shrink?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -4877,21 +5248,21 @@ module Input = {
       ~autoComplete: string=?,
       ~autoFocus: bool=?,
       ~className: string=?,
-      ~defaultValue: 'union_rdr2=?,
+      ~defaultValue: 'union_rlzg=?,
       ~disabled: bool=?,
       ~disableUnderline: bool=?,
       ~endAdornment: ReasonReact.reactElement=?,
       ~error: bool=?,
       ~fullWidth: bool=?,
       ~id: string=?,
-      ~inputComponent: 'any_rqt2=?,
+      ~inputComponent: 'any_rttr=?,
       ~inputProps: Js.t({..})=?,
       ~inputRef: 'genericCallback=?,
       ~margin: string=?,
       ~multiline: bool=?,
       ~name: string=?,
       ~onBlur: ReactEventRe.Focus.t => unit=?,
-      ~onChange: 'any_rgpr=?,
+      ~onChange: 'any_r6xc=?,
       ~onEmpty: 'genericCallback=?,
       ~onFilled: 'genericCallback=?,
       ~onFocus: ReactEventRe.Focus.t => unit=?,
@@ -4899,11 +5270,11 @@ module Input = {
       ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
       ~placeholder: string=?,
       ~readOnly: bool=?,
-      ~rows: 'union_reu5=?,
-      ~rowsMax: 'union_rlpo=?,
+      ~rows: 'union_rs0p=?,
+      ~rowsMax: 'union_rk71=?,
       ~startAdornment: ReasonReact.reactElement=?,
       ~_type: string=?,
-      ~value: 'union_rt5w=?,
+      ~value: 'union_rp99=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -4925,7 +5296,7 @@ module Input = {
         ~error: option(bool)=?,
         ~fullWidth: option(bool)=?,
         ~id: option(string)=?,
-        ~inputComponent: option('any_rqt2)=?,
+        ~inputComponent: option('any_rttr)=?,
         ~inputProps: option(Js.t({..}))=?,
         ~inputRef: option('genericCallback)=?,
         ~margin: option(margin)=?,
@@ -5086,8 +5457,8 @@ module LinearProgress = {
     (
       ~className: string=?,
       ~color: string=?,
-      ~value: 'number_3=?,
-      ~valueBuffer: 'number_2=?,
+      ~value: 'number_z=?,
+      ~valueBuffer: 'number_y=?,
       ~variant: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
@@ -5425,14 +5796,14 @@ module ListItem = {
     (
       ~button: bool=?,
       ~className: string=?,
-      ~component: 'union_rpig=?,
-      ~_ContainerComponent: 'union_r0co=?,
+      ~component: 'union_r0t0=?,
+      ~_ContainerComponent: 'union_rcrp=?,
       ~_ContainerProps: Js.t({..})=?,
       ~dense: bool=?,
       ~disabled: bool=?,
       ~disableGutters: bool=?,
       ~divider: bool=?,
-      ~value: 'union_riob=?,
+      ~value: 'union_r2l8=?,
       ~onFocus: ReactEventRe.Focus.t => unit=?,
       ~onClick: ReactEventRe.Mouse.t => unit=?,
       ~classes: Js.Dict.t(string)=?,
@@ -5541,7 +5912,7 @@ module ListSubheader = {
     (
       ~className: string=?,
       ~color: string=?,
-      ~component: 'union_r8fp=?,
+      ~component: 'union_rpwx=?,
       ~disableSticky: bool=?,
       ~inset: bool=?,
       ~classes: Js.Dict.t(string)=?,
@@ -5616,7 +5987,7 @@ module List = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_rrhn=?,
+      ~component: 'union_rf4t=?,
       ~dense: bool=?,
       ~disablePadding: bool=?,
       ~subheader: ReasonReact.reactElement=?,
@@ -5686,12 +6057,19 @@ module MenuItem = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_rlos=?,
+      ~component: 'union_rx8f=?,
       ~role: string=?,
       ~selected: bool=?,
-      ~value: 'union_r66r=?,
+      ~value: 'union_r0qx=?,
       ~onFocus: ReactEventRe.Focus.t => unit=?,
       ~onClick: ReactEventRe.Mouse.t => unit=?,
+      ~button: bool=?,
+      ~_ContainerComponent: 'union_re10=?,
+      ~_ContainerProps: Js.t({..})=?,
+      ~dense: bool=?,
+      ~disabled: bool=?,
+      ~disableGutters: bool=?,
+      ~divider: bool=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -5718,6 +6096,14 @@ module MenuItem = {
            )=?,
         ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
         ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
+        ~button: option(bool)=?,
+        ~_ContainerComponent:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~_ContainerProps: option(Js.t({..}))=?,
+        ~dense: option(bool)=?,
+        ~disabled: option(bool)=?,
+        ~disableGutters: option(bool)=?,
+        ~divider: option(bool)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -5733,6 +6119,14 @@ module MenuItem = {
           ~value=?Js.Option.map((. v) => unwrapValue(v), value),
           ~onFocus?,
           ~onClick?,
+          ~button?,
+          ~_ContainerComponent=?
+            Js.Option.map((. v) => unwrapValue(v), _ContainerComponent),
+          ~_ContainerProps?,
+          ~dense?,
+          ~disabled?,
+          ~disableGutters?,
+          ~divider?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -5748,6 +6142,10 @@ module MenuList = {
       ~className: string=?,
       ~onBlur: ReactEventRe.Focus.t => unit=?,
       ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~component: 'union_rxoy=?,
+      ~dense: bool=?,
+      ~disablePadding: bool=?,
+      ~subheader: ReasonReact.reactElement=?,
       unit
     ) =>
     _ =
@@ -5759,11 +6157,26 @@ module MenuList = {
         ~className: option(string)=?,
         ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
         ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~dense: option(bool)=?,
+        ~disablePadding: option(bool)=?,
+        ~subheader: option(ReasonReact.reactElement)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props=makeProps(~className?, ~onBlur?, ~onKeyDown?, ()),
+      ~props=
+        makeProps(
+          ~className?,
+          ~onBlur?,
+          ~onKeyDown?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~dense?,
+          ~disablePadding?,
+          ~subheader?,
+          (),
+        ),
       children,
     );
 };
@@ -5772,7 +6185,7 @@ module Menu = {
   type typeTransitionDuration_shape;
   [@bs.obj]
   external makeTransitionDuration_shape :
-    (~enter: 'number_c=?, ~exit: 'number_n=?, unit) =>
+    (~enter: 'number_m=?, ~exit: 'number_f=?, unit) =>
     typeTransitionDuration_shape =
     "";
   [@bs.get_index]
@@ -5806,6 +6219,150 @@ module Menu = {
   };
   [@bs.deriving jsConverter]
   type transitionDuration_enum = [ | [@bs.as "auto"] `Auto];
+  [@bs.deriving jsConverter]
+  type horizontal_enum = [
+    | [@bs.as "left"] `Left
+    | [@bs.as "center"] `Center
+    | [@bs.as "right"] `Right
+  ];
+  [@bs.deriving jsConverter]
+  type vertical_enum = [
+    | [@bs.as "top"] `Top
+    | [@bs.as "center"] `Center
+    | [@bs.as "bottom"] `Bottom
+  ];
+  type typeAnchorOrigin;
+  [@bs.obj]
+  external makeAnchorOrigin :
+    (~horizontal: 'union_r9mr=?, ~vertical: 'union_rs4h=?, unit) =>
+    typeAnchorOrigin =
+    "";
+  [@bs.get_index]
+  external getFromAnchorOrigin : (typeAnchorOrigin, string) => 'a = "";
+  let convertAnchorOrigin = (madeObj: option(typeAnchorOrigin)) => {
+    let returnObj: Js.Dict.t(string) = Js.Dict.empty();
+    switch (madeObj) {
+    | Some(madeObj) =>
+      Js.Dict.set(
+        returnObj,
+        "horizontal",
+        toJsUnsafe(
+          Js.Option.map(
+            (. v) =>
+              switch (v) {
+              | `Enum(v) => unwrapValue(`String(horizontal_enumToJs(v)))
+              | v => unwrapValue(v)
+              },
+            getFromAnchorOrigin(madeObj, "horizontal"),
+          ),
+        ),
+      );
+      Js.Dict.set(
+        returnObj,
+        "vertical",
+        toJsUnsafe(
+          Js.Option.map(
+            (. v) =>
+              switch (v) {
+              | `Enum(v) => unwrapValue(`String(vertical_enumToJs(v)))
+              | v => unwrapValue(v)
+              },
+            getFromAnchorOrigin(madeObj, "vertical"),
+          ),
+        ),
+      );
+      ();
+    | None => ()
+    };
+    Some(returnObj);
+  };
+  type typeAnchorPosition;
+  [@bs.obj]
+  external makeAnchorPosition :
+    (~top: 'number_r=?, ~left: 'number_e=?, unit) => typeAnchorPosition =
+    "";
+  [@bs.get_index]
+  external getFromAnchorPosition : (typeAnchorPosition, string) => 'a = "";
+  let convertAnchorPosition = (madeObj: option(typeAnchorPosition)) => {
+    let returnObj: Js.Dict.t(string) = Js.Dict.empty();
+    switch (madeObj) {
+    | Some(madeObj) =>
+      Js.Dict.set(
+        returnObj,
+        "top",
+        toJsUnsafe(
+          Js.Option.map(
+            (. v) => unwrapValue(v),
+            getFromAnchorPosition(madeObj, "top"),
+          ),
+        ),
+      );
+      Js.Dict.set(
+        returnObj,
+        "left",
+        toJsUnsafe(
+          Js.Option.map(
+            (. v) => unwrapValue(v),
+            getFromAnchorPosition(madeObj, "left"),
+          ),
+        ),
+      );
+      ();
+    | None => ()
+    };
+    Some(returnObj);
+  };
+  [@bs.deriving jsConverter]
+  type anchorReference = [
+    | [@bs.as "anchorEl"] `AnchorEl
+    | [@bs.as "anchorPosition"] `AnchorPosition
+    | [@bs.as "none"] `None
+  ];
+  type typeTransformOrigin;
+  [@bs.obj]
+  external makeTransformOrigin :
+    (~horizontal: 'union_rxti=?, ~vertical: 'union_r521=?, unit) =>
+    typeTransformOrigin =
+    "";
+  [@bs.get_index]
+  external getFromTransformOrigin : (typeTransformOrigin, string) => 'a = "";
+  let convertTransformOrigin = (madeObj: option(typeTransformOrigin)) => {
+    let returnObj: Js.Dict.t(string) = Js.Dict.empty();
+    switch (madeObj) {
+    | Some(madeObj) =>
+      Js.Dict.set(
+        returnObj,
+        "horizontal",
+        toJsUnsafe(
+          Js.Option.map(
+            (. v) =>
+              switch (v) {
+              | `Enum(v) => unwrapValue(`String(horizontal_enumToJs(v)))
+              | v => unwrapValue(v)
+              },
+            getFromTransformOrigin(madeObj, "horizontal"),
+          ),
+        ),
+      );
+      Js.Dict.set(
+        returnObj,
+        "vertical",
+        toJsUnsafe(
+          Js.Option.map(
+            (. v) =>
+              switch (v) {
+              | `Enum(v) => unwrapValue(`String(vertical_enumToJs(v)))
+              | v => unwrapValue(v)
+              },
+            getFromTransformOrigin(madeObj, "vertical"),
+          ),
+        ),
+      );
+      ();
+    | None => ()
+    };
+    Some(returnObj);
+  };
   module Classes = {
     type classesType =
       | Paper(string);
@@ -5830,9 +6387,9 @@ module Menu = {
   [@bs.obj]
   external makeProps :
     (
-      ~anchorEl: 'any_rx6y=?,
+      ~anchorEl: 'any_r36q=?,
       ~_MenuListProps: Js.t({..})=?,
-      ~onClose: 'any_rx32=?,
+      ~onClose: 'any_rfxc=?,
       ~onEnter: ReactEventRe.Synthetic.t => unit=?,
       ~onEntered: ReactEventRe.Synthetic.t => unit=?,
       ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -5843,7 +6400,18 @@ module Menu = {
       ~_PaperProps: Js.t({..})=?,
       ~_PopoverClasses: Js.t({..})=?,
       ~theme: Js.t({..})=?,
-      ~transitionDuration: 'union_rftg=?,
+      ~transitionDuration: 'union_rjrj=?,
+      ~action: 'any_r3k5=?,
+      ~anchorOrigin: 'any_rqme=?,
+      ~anchorPosition: 'any_r2nc=?,
+      ~anchorReference: string=?,
+      ~container: 'union_ru4r=?,
+      ~elevation: 'number_7=?,
+      ~getContentAnchorEl: 'genericCallback=?,
+      ~marginThreshold: 'number_q=?,
+      ~role: string=?,
+      ~transformOrigin: 'any_rkhb=?,
+      ~transition: 'union_rp24=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -5854,7 +6422,7 @@ module Menu = {
   external reactClass : ReasonReact.reactClass = "default";
   let make =
       (
-        ~anchorEl: option('any_rx6y)=?,
+        ~anchorEl: option('any_r36q)=?,
         ~_MenuListProps: option(Js.t({..}))=?,
         ~onClose: option(ReactEventRe.Synthetic.t => unit)=?,
         ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,
@@ -5876,6 +6444,21 @@ module Menu = {
                | `Enum(transitionDuration_enum)
              ],
            )=?,
+        ~action: option(Js.t({..}) => unit)=?,
+        ~anchorOrigin: option(typeAnchorOrigin)=?,
+        ~anchorPosition: option(typeAnchorPosition)=?,
+        ~anchorReference: option(anchorReference)=?,
+        ~container:
+           option(
+             [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
+           )=?,
+        ~elevation: option([ | `Int(int) | `Float(float)])=?,
+        ~getContentAnchorEl: option('genericCallback)=?,
+        ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
+        ~role: option(string)=?,
+        ~transformOrigin: option(typeTransformOrigin)=?,
+        ~transition:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -5909,6 +6492,19 @@ module Menu = {
                 },
               transitionDuration,
             ),
+          ~action?,
+          ~anchorOrigin=?convertAnchorOrigin(anchorOrigin),
+          ~anchorPosition=?convertAnchorPosition(anchorPosition),
+          ~anchorReference=?
+            Js.Option.map((. v) => anchorReferenceToJs(v), anchorReference),
+          ~container=?Js.Option.map((. v) => unwrapValue(v), container),
+          ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
+          ~getContentAnchorEl?,
+          ~marginThreshold=?
+            Js.Option.map((. v) => unwrapValue(v), marginThreshold),
+          ~role?,
+          ~transformOrigin=?convertTransformOrigin(transformOrigin),
+          ~transition=?Js.Option.map((. v) => unwrapValue(v), transition),
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -5975,13 +6571,16 @@ module MobileStepper = {
   [@bs.obj]
   external makeProps :
     (
-      ~activeStep: 'number_z=?,
+      ~activeStep: 'number_a=?,
       ~backButton: ReasonReact.reactElement=?,
       ~className: string=?,
       ~nextButton: ReasonReact.reactElement=?,
       ~position: string=?,
-      ~steps: 'number_1,
+      ~steps: 'number_7,
       ~variant: string=?,
+      ~component: 'union_r6sm=?,
+      ~elevation: 'number_6=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -5999,6 +6598,10 @@ module MobileStepper = {
         ~position: option(position)=?,
         ~steps: [ | `Int(int) | `Float(float)],
         ~variant: option(variant)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~elevation: option([ | `Int(int) | `Float(float)])=?,
+        ~square: option(bool)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -6014,6 +6617,9 @@ module MobileStepper = {
           ~position=?Js.Option.map((. v) => positionToJs(v), position),
           ~steps=unwrapValue(steps),
           ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -6050,10 +6656,10 @@ module Modal = {
   [@bs.obj]
   external makeProps :
     (
-      ~_BackdropComponent: 'union_rqud=?,
+      ~_BackdropComponent: 'union_ruhx=?,
       ~_BackdropProps: Js.t({..})=?,
       ~className: string=?,
-      ~container: 'union_r36e=?,
+      ~container: 'union_r1fw=?,
       ~disableAutoFocus: bool=?,
       ~disableBackdropClick: bool=?,
       ~disableEnforceFocus: bool=?,
@@ -6063,7 +6669,7 @@ module Modal = {
       ~keepMounted: bool=?,
       ~manager: Js.t({..})=?,
       ~onBackdropClick: ReactEventRe.Mouse.t => unit=?,
-      ~onClose: 'any_ryag=?,
+      ~onClose: 'any_rf2m=?,
       ~onEscapeKeyDown: ReactEventRe.Keyboard.t => unit=?,
       ~onRendered: ReactEventRe.Synthetic.t => unit=?,
       ~_open: bool,
@@ -6138,7 +6744,7 @@ module MuiThemeProvider = {
     (
       ~disableStylesGeneration: bool=?,
       ~sheetsManager: Js.t({..})=?,
-      ~theme: 'union_r0n3,
+      ~theme: 'union_r7cy,
       unit
     ) =>
     _ =
@@ -6272,8 +6878,8 @@ module Paper = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_r11s=?,
-      ~elevation: 'number_2=?,
+      ~component: 'union_rus3=?,
+      ~elevation: 'number_n=?,
       ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
@@ -6326,7 +6932,7 @@ module Popover = {
   type typeAnchorOrigin;
   [@bs.obj]
   external makeAnchorOrigin :
-    (~horizontal: 'union_rqfw=?, ~vertical: 'union_rokt=?, unit) =>
+    (~horizontal: 'union_rcpc=?, ~vertical: 'union_rtmx=?, unit) =>
     typeAnchorOrigin =
     "";
   [@bs.get_index]
@@ -6371,7 +6977,7 @@ module Popover = {
   type typeAnchorPosition;
   [@bs.obj]
   external makeAnchorPosition :
-    (~top: 'number_n=?, ~left: 'number_d=?, unit) => typeAnchorPosition =
+    (~top: 'number_f=?, ~left: 'number_8=?, unit) => typeAnchorPosition =
     "";
   [@bs.get_index]
   external getFromAnchorPosition : (typeAnchorPosition, string) => 'a = "";
@@ -6413,7 +7019,7 @@ module Popover = {
   type typeTransformOrigin;
   [@bs.obj]
   external makeTransformOrigin :
-    (~horizontal: 'union_rvvo=?, ~vertical: 'union_rbib=?, unit) =>
+    (~horizontal: 'union_rnm6=?, ~vertical: 'union_rpqr=?, unit) =>
     typeTransformOrigin =
     "";
   [@bs.get_index]
@@ -6458,7 +7064,7 @@ module Popover = {
   type typeTransitionDuration_shape;
   [@bs.obj]
   external makeTransitionDuration_shape :
-    (~enter: 'number_s=?, ~exit: 'number_2=?, unit) =>
+    (~enter: 'number_n=?, ~exit: 'number_s=?, unit) =>
     typeTransitionDuration_shape =
     "";
   [@bs.get_index]
@@ -6516,16 +7122,16 @@ module Popover = {
   [@bs.obj]
   external makeProps :
     (
-      ~action: 'any_r30u=?,
-      ~anchorEl: 'union_rvh7=?,
-      ~anchorOrigin: 'any_rmsh=?,
-      ~anchorPosition: 'any_ruoc=?,
+      ~action: 'any_re15=?,
+      ~anchorEl: 'union_rngk=?,
+      ~anchorOrigin: 'any_reth=?,
+      ~anchorPosition: 'any_rqoy=?,
       ~anchorReference: string=?,
-      ~container: 'union_rl47=?,
-      ~elevation: 'number_b=?,
+      ~container: 'union_rdsu=?,
+      ~elevation: 'number_c=?,
       ~getContentAnchorEl: 'genericCallback=?,
-      ~marginThreshold: 'number_v=?,
-      ~onClose: 'any_r7pe=?,
+      ~marginThreshold: 'number_n=?,
+      ~onClose: 'any_r9sq=?,
       ~onEnter: ReactEventRe.Synthetic.t => unit=?,
       ~onEntered: ReactEventRe.Synthetic.t => unit=?,
       ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -6535,9 +7141,23 @@ module Popover = {
       ~_open: bool,
       ~_PaperProps: Js.t({..})=?,
       ~role: string=?,
-      ~transformOrigin: 'any_rt49=?,
-      ~transition: 'union_r5u3=?,
-      ~transitionDuration: 'union_rflp=?,
+      ~transformOrigin: 'any_rza1=?,
+      ~transition: 'union_rwmy=?,
+      ~transitionDuration: 'union_r5ts=?,
+      ~_BackdropComponent: 'union_rrpr=?,
+      ~_BackdropProps: Js.t({..})=?,
+      ~className: string=?,
+      ~disableAutoFocus: bool=?,
+      ~disableBackdropClick: bool=?,
+      ~disableEnforceFocus: bool=?,
+      ~disableEscapeKeyDown: bool=?,
+      ~disableRestoreFocus: bool=?,
+      ~hideBackdrop: bool=?,
+      ~keepMounted: bool=?,
+      ~manager: Js.t({..})=?,
+      ~onBackdropClick: ReactEventRe.Mouse.t => unit=?,
+      ~onEscapeKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~onRendered: ReactEventRe.Synthetic.t => unit=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -6585,6 +7205,21 @@ module Popover = {
                | `Enum(transitionDuration_enum)
              ],
            )=?,
+        ~_BackdropComponent:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~_BackdropProps: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~disableAutoFocus: option(bool)=?,
+        ~disableBackdropClick: option(bool)=?,
+        ~disableEnforceFocus: option(bool)=?,
+        ~disableEscapeKeyDown: option(bool)=?,
+        ~disableRestoreFocus: option(bool)=?,
+        ~hideBackdrop: option(bool)=?,
+        ~keepMounted: option(bool)=?,
+        ~manager: option(Js.t({..}))=?,
+        ~onBackdropClick: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onEscapeKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onRendered: option(ReactEventRe.Synthetic.t => unit)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -6628,6 +7263,21 @@ module Popover = {
                 },
               transitionDuration,
             ),
+          ~_BackdropComponent=?
+            Js.Option.map((. v) => unwrapValue(v), _BackdropComponent),
+          ~_BackdropProps?,
+          ~className?,
+          ~disableAutoFocus?,
+          ~disableBackdropClick?,
+          ~disableEnforceFocus?,
+          ~disableEscapeKeyDown?,
+          ~disableRestoreFocus?,
+          ~hideBackdrop?,
+          ~keepMounted?,
+          ~manager?,
+          ~onBackdropClick?,
+          ~onEscapeKeyDown?,
+          ~onRendered?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -6640,7 +7290,7 @@ module Portal = {
   [@bs.obj]
   external makeProps :
     (
-      ~container: 'union_r1zd=?,
+      ~container: 'union_rkbb=?,
       ~onRendered: ReactEventRe.Synthetic.t => unit=?,
       unit
     ) =>
@@ -6675,9 +7325,11 @@ module RadioGroup = {
     (
       ~name: string=?,
       ~onBlur: ReactEventRe.Focus.t => unit=?,
-      ~onChange: 'any_rpa6=?,
+      ~onChange: 'any_rcj6=?,
       ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
       ~value: string=?,
+      ~className: string=?,
+      ~row: bool=?,
       unit
     ) =>
     _ =
@@ -6691,12 +7343,23 @@ module RadioGroup = {
         ~onChange: option((ReactEventRe.Form.t, string) => unit)=?,
         ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
         ~value: option(string)=?,
+        ~className: option(string)=?,
+        ~row: option(bool)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props=
-        makeProps(~name?, ~onBlur?, ~onChange?, ~onKeyDown?, ~value?, ()),
+        makeProps(
+          ~name?,
+          ~onBlur?,
+          ~onChange?,
+          ~onKeyDown?,
+          ~value?,
+          ~className?,
+          ~row?,
+          (),
+        ),
       children,
     );
 };
@@ -6744,7 +7407,7 @@ module Radio = {
   [@bs.obj]
   external makeProps :
     (
-      ~checked: 'union_r7aq=?,
+      ~checked: 'union_r65z=?,
       ~checkedIcon: ReasonReact.reactElement=?,
       ~color: string=?,
       ~disabled: bool=?,
@@ -6753,7 +7416,7 @@ module Radio = {
       ~id: string=?,
       ~inputProps: Js.t({..})=?,
       ~inputRef: 'genericCallback=?,
-      ~onChange: 'any_ryl0=?,
+      ~onChange: 'any_rgxt=?,
       ~_type: string=?,
       ~value: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -6807,6 +7470,8 @@ module Radio = {
 };
 
 module Select = {
+  [@bs.deriving jsConverter]
+  type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
   module Classes = {
     type classesType =
       | Root(string)
@@ -6850,13 +7515,40 @@ module Select = {
       ~_MenuProps: Js.t({..})=?,
       ~multiple: bool=?,
       ~native: bool=?,
-      ~onChange: 'any_rt5c=?,
-      ~onClose: 'any_rsi0=?,
-      ~onOpen: 'any_r7pi=?,
+      ~onChange: 'any_r586=?,
+      ~onClose: 'any_rtag=?,
+      ~onOpen: 'any_rqmb=?,
       ~_open: bool=?,
-      ~renderValue: 'any_rhns=?,
+      ~renderValue: 'any_rh28=?,
       ~_SelectDisplayProps: Js.t({..})=?,
-      ~value: 'union_rjbb=?,
+      ~value: 'union_r76a=?,
+      ~autoComplete: string=?,
+      ~autoFocus: bool=?,
+      ~className: string=?,
+      ~defaultValue: 'union_rdti=?,
+      ~disabled: bool=?,
+      ~disableUnderline: bool=?,
+      ~endAdornment: ReasonReact.reactElement=?,
+      ~error: bool=?,
+      ~fullWidth: bool=?,
+      ~id: string=?,
+      ~inputComponent: 'any_r98h=?,
+      ~inputRef: 'genericCallback=?,
+      ~margin: string=?,
+      ~multiline: bool=?,
+      ~name: string=?,
+      ~onBlur: ReactEventRe.Focus.t => unit=?,
+      ~onEmpty: 'genericCallback=?,
+      ~onFilled: 'genericCallback=?,
+      ~onFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
+      ~placeholder: string=?,
+      ~readOnly: bool=?,
+      ~rows: 'union_rog9=?,
+      ~rowsMax: 'union_rsd1=?,
+      ~startAdornment: ReasonReact.reactElement=?,
+      ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -6878,7 +7570,7 @@ module Select = {
         ~onClose: option(ReactEventRe.Synthetic.t => unit)=?,
         ~onOpen: option(ReactEventRe.Synthetic.t => unit)=?,
         ~_open: option(bool)=?,
-        ~renderValue: option('any_r49c => ReasonReact.reactElement)=?,
+        ~renderValue: option('any_rp93 => ReasonReact.reactElement)=?,
         ~_SelectDisplayProps: option(Js.t({..}))=?,
         ~value:
            option(
@@ -6891,6 +7583,34 @@ module Select = {
                  )
              ],
            )=?,
+        ~autoComplete: option(string)=?,
+        ~autoFocus: option(bool)=?,
+        ~className: option(string)=?,
+        ~defaultValue:
+           option([ | `String(string) | `Int(int) | `Float(float)])=?,
+        ~disabled: option(bool)=?,
+        ~disableUnderline: option(bool)=?,
+        ~endAdornment: option(ReasonReact.reactElement)=?,
+        ~error: option(bool)=?,
+        ~fullWidth: option(bool)=?,
+        ~id: option(string)=?,
+        ~inputComponent: option('any_r98h)=?,
+        ~inputRef: option('genericCallback)=?,
+        ~margin: option(margin)=?,
+        ~multiline: option(bool)=?,
+        ~name: option(string)=?,
+        ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
+        ~onEmpty: option('genericCallback)=?,
+        ~onFilled: option('genericCallback)=?,
+        ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~placeholder: option(string)=?,
+        ~readOnly: option(bool)=?,
+        ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
+        ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
+        ~startAdornment: option(ReasonReact.reactElement)=?,
+        ~_type: option(string)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -6913,6 +7633,34 @@ module Select = {
           ~renderValue?,
           ~_SelectDisplayProps?,
           ~value=?Js.Option.map((. v) => unwrapValue(v), value),
+          ~autoComplete?,
+          ~autoFocus?,
+          ~className?,
+          ~defaultValue=?
+            Js.Option.map((. v) => unwrapValue(v), defaultValue),
+          ~disabled?,
+          ~disableUnderline?,
+          ~endAdornment?,
+          ~error?,
+          ~fullWidth?,
+          ~id?,
+          ~inputComponent?,
+          ~inputRef?,
+          ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
+          ~multiline?,
+          ~name?,
+          ~onBlur?,
+          ~onEmpty?,
+          ~onFilled?,
+          ~onFocus?,
+          ~onKeyDown?,
+          ~onKeyUp?,
+          ~placeholder?,
+          ~readOnly?,
+          ~rows=?Js.Option.map((. v) => unwrapValue(v), rows),
+          ~rowsMax=?Js.Option.map((. v) => unwrapValue(v), rowsMax),
+          ~startAdornment?,
+          ~_type?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -6932,7 +7680,7 @@ module Slide = {
   type typeTimeout_shape;
   [@bs.obj]
   external makeTimeout_shape :
-    (~enter: 'number_j=?, ~exit: 'number_4=?, unit) => typeTimeout_shape =
+    (~enter: 'number_o=?, ~exit: 'number_0=?, unit) => typeTimeout_shape =
     "";
   [@bs.get_index]
   external getFromTimeout_shape : (typeTimeout_shape, string) => 'a = "";
@@ -6970,7 +7718,7 @@ module Slide = {
       ~onExit: ReactEventRe.Synthetic.t => unit=?,
       ~onExited: ReactEventRe.Synthetic.t => unit=?,
       ~theme: Js.t({..})=?,
-      ~timeout: 'union_rwqb=?,
+      ~timeout: 'union_r5rl=?,
       unit
     ) =>
     _ =
@@ -7053,6 +7801,9 @@ module SnackbarContent = {
       ~action: ReasonReact.reactElement=?,
       ~className: string=?,
       ~message: ReasonReact.reactElement=?,
+      ~component: 'union_r9io=?,
+      ~elevation: 'number_z=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -7066,6 +7817,10 @@ module SnackbarContent = {
         ~action: option(ReasonReact.reactElement)=?,
         ~className: option(string)=?,
         ~message: option(ReasonReact.reactElement)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~elevation: option([ | `Int(int) | `Float(float)])=?,
+        ~square: option(bool)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -7077,6 +7832,9 @@ module SnackbarContent = {
           ~action?,
           ~className?,
           ~message?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -7101,7 +7859,7 @@ module Snackbar = {
   type typeAnchorOrigin;
   [@bs.obj]
   external makeAnchorOrigin :
-    (~horizontal: 'union_rpgg=?, ~vertical: 'union_ry9t=?, unit) =>
+    (~horizontal: 'union_r0kz=?, ~vertical: 'union_rl2j=?, unit) =>
     typeAnchorOrigin =
     "";
   [@bs.get_index]
@@ -7146,7 +7904,7 @@ module Snackbar = {
   type typeTransitionDuration_shape;
   [@bs.obj]
   external makeTransitionDuration_shape :
-    (~enter: 'number_k=?, ~exit: 'number_e=?, unit) =>
+    (~enter: 'number_w=?, ~exit: 'number_a=?, unit) =>
     typeTransitionDuration_shape =
     "";
   [@bs.get_index]
@@ -7221,13 +7979,13 @@ module Snackbar = {
   external makeProps :
     (
       ~action: ReasonReact.reactElement=?,
-      ~anchorOrigin: 'any_rtvv=?,
-      ~autoHideDuration: 'number_z=?,
+      ~anchorOrigin: 'any_r1gp=?,
+      ~autoHideDuration: 'number_c=?,
       ~className: string=?,
       ~disableWindowBlurListener: bool=?,
-      ~key: 'any_rzjx=?,
+      ~key: 'any_rhvt=?,
       ~message: ReasonReact.reactElement=?,
-      ~onClose: 'any_rdzd=?,
+      ~onClose: 'any_r5wy=?,
       ~onEnter: ReactEventRe.Synthetic.t => unit=?,
       ~onEntered: ReactEventRe.Synthetic.t => unit=?,
       ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -7237,10 +7995,10 @@ module Snackbar = {
       ~onMouseEnter: ReactEventRe.Mouse.t => unit=?,
       ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
       ~_open: bool=?,
-      ~resumeHideDuration: 'number_0=?,
+      ~resumeHideDuration: 'number_e=?,
       ~_SnackbarContentProps: Js.t({..})=?,
-      ~transition: 'union_rsv1=?,
-      ~transitionDuration: 'union_r533=?,
+      ~transition: 'union_r186=?,
+      ~transitionDuration: 'union_riu5=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -7256,7 +8014,7 @@ module Snackbar = {
         ~autoHideDuration: option([ | `Int(int) | `Float(float)])=?,
         ~className: option(string)=?,
         ~disableWindowBlurListener: option(bool)=?,
-        ~key: option('any_rzjx)=?,
+        ~key: option('any_rhvt)=?,
         ~message: option(ReasonReact.reactElement)=?,
         ~onClose: option((ReactEventRe.Synthetic.t, string) => unit)=?,
         ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,
@@ -7373,6 +8131,28 @@ module StepButton = {
       ~last: bool=?,
       ~optional: ReasonReact.reactElement=?,
       ~orientation: string=?,
+      ~buttonRef: 'genericCallback=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_rzf9=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
+      ~onBlur: ReactEventRe.Focus.t => unit=?,
+      ~onClick: ReactEventRe.Mouse.t => unit=?,
+      ~onFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
+      ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseUp: ReactEventRe.Mouse.t => unit=?,
+      ~onTouchEnd: ReactEventRe.Touch.t => unit=?,
+      ~onTouchMove: ReactEventRe.Touch.t => unit=?,
+      ~onTouchStart: ReactEventRe.Touch.t => unit=?,
+      ~role: string=?,
+      ~tabIndex: 'union_r4m2=?,
+      ~_TouchRippleProps: Js.t({..})=?,
+      ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -7392,6 +8172,29 @@ module StepButton = {
         ~last: option(bool)=?,
         ~optional: option(ReasonReact.reactElement)=?,
         ~orientation: option(orientation)=?,
+        ~buttonRef: option('genericCallback)=?,
+        ~centerRipple: option(bool)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~disableRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
+        ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
+        ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseLeave: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseUp: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onTouchEnd: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchMove: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchStart: option(ReactEventRe.Touch.t => unit)=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~_TouchRippleProps: option(Js.t({..}))=?,
+        ~_type: option(string)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -7410,6 +8213,28 @@ module StepButton = {
           ~optional?,
           ~orientation=?
             Js.Option.map((. v) => orientationToJs(v), orientation),
+          ~buttonRef?,
+          ~centerRipple?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
+          ~onBlur?,
+          ~onClick?,
+          ~onFocus?,
+          ~onKeyboardFocus?,
+          ~onKeyDown?,
+          ~onKeyUp?,
+          ~onMouseDown?,
+          ~onMouseLeave?,
+          ~onMouseUp?,
+          ~onTouchEnd?,
+          ~onTouchMove?,
+          ~onTouchStart?,
+          ~role?,
+          ~tabIndex=?Js.Option.map((. v) => unwrapValue(v), tabIndex),
+          ~_TouchRippleProps?,
+          ~_type?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -7427,7 +8252,7 @@ module StepContent = {
   type typeTransitionDuration_shape;
   [@bs.obj]
   external makeTransitionDuration_shape :
-    (~enter: 'number_l=?, ~exit: 'number_m=?, unit) =>
+    (~enter: 'number_a=?, ~exit: 'number_l=?, unit) =>
     typeTransitionDuration_shape =
     "";
   [@bs.get_index]
@@ -7499,7 +8324,7 @@ module StepContent = {
       ~optional: bool=?,
       ~orientation: string=?,
       ~transition: 'genericCallback=?,
-      ~transitionDuration: 'union_rxyu=?,
+      ~transitionDuration: 'union_rioz=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -7798,7 +8623,7 @@ module Step = {
       ~completed: bool=?,
       ~connector: ReasonReact.reactElement=?,
       ~disabled: bool=?,
-      ~index: 'number_4=?,
+      ~index: 'number_m=?,
       ~last: bool=?,
       ~orientation: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -7885,12 +8710,15 @@ module Stepper = {
   [@bs.obj]
   external makeProps :
     (
-      ~activeStep: 'number_r=?,
+      ~activeStep: 'number_4=?,
       ~alternativeLabel: bool=?,
       ~className: string=?,
       ~connector: ReasonReact.reactElement=?,
       ~nonLinear: bool=?,
       ~orientation: string=?,
+      ~component: 'union_rpv1=?,
+      ~elevation: 'number_4=?,
+      ~square: bool=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -7907,6 +8735,10 @@ module Stepper = {
         ~connector: option(ReasonReact.reactElement)=?,
         ~nonLinear: option(bool)=?,
         ~orientation: option(orientation)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~elevation: option([ | `Int(int) | `Float(float)])=?,
+        ~square: option(bool)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -7922,6 +8754,9 @@ module Stepper = {
           ~nonLinear?,
           ~orientation=?
             Js.Option.map((. v) => orientationToJs(v), orientation),
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
+          ~square?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -8031,7 +8866,7 @@ module SwipeableDrawer = {
   type typeTransitionDuration_shape;
   [@bs.obj]
   external makeTransitionDuration_shape :
-    (~enter: 'number_b=?, ~exit: 'number_1=?, unit) =>
+    (~enter: 'number_j=?, ~exit: 'number_0=?, unit) =>
     typeTransitionDuration_shape =
     "";
   [@bs.get_index]
@@ -8077,14 +8912,17 @@ module SwipeableDrawer = {
       ~disableDiscovery: bool=?,
       ~disableSwipeToOpen: bool=?,
       ~_ModalProps: Js.t({..})=?,
-      ~onClose: 'any_rk94,
-      ~onOpen: 'any_r63e,
+      ~onClose: 'any_rwwg,
+      ~onOpen: 'any_r6ev,
       ~_open: bool,
       ~_PaperProps: Js.t({..})=?,
-      ~swipeAreaWidth: 'number_h=?,
+      ~swipeAreaWidth: 'number_i=?,
       ~theme: Js.t({..})=?,
-      ~transitionDuration: 'union_rbrb=?,
+      ~transitionDuration: 'union_rai1=?,
       ~variant: string=?,
+      ~className: string=?,
+      ~elevation: 'number_l=?,
+      ~_SlideProps: Js.t({..})=?,
       unit
     ) =>
     _ =
@@ -8113,6 +8951,9 @@ module SwipeableDrawer = {
              ],
            )=?,
         ~variant: option(variant)=?,
+        ~className: option(string)=?,
+        ~elevation: option([ | `Int(int) | `Float(float)])=?,
+        ~_SlideProps: option(Js.t({..}))=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -8142,6 +8983,9 @@ module SwipeableDrawer = {
               transitionDuration,
             ),
           ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
+          ~className?,
+          ~elevation=?Js.Option.map((. v) => unwrapValue(v), elevation),
+          ~_SlideProps?,
           (),
         ),
       children,
@@ -8149,6 +8993,13 @@ module SwipeableDrawer = {
 };
 
 module SwitchBase = {
+  [@bs.deriving jsConverter]
+  type color = [
+    | [@bs.as "default"] `Default
+    | [@bs.as "inherit"] `Inherit
+    | [@bs.as "primary"] `Primary
+    | [@bs.as "secondary"] `Secondary
+  ];
   module Classes = {
     type classesType =
       | Root(string)
@@ -8182,7 +9033,7 @@ module SwitchBase = {
   [@bs.obj]
   external makeProps :
     (
-      ~checked: 'union_rhxy=?,
+      ~checked: 'union_rwhx=?,
       ~checkedIcon: ReasonReact.reactElement,
       ~className: string=?,
       ~defaultChecked: bool=?,
@@ -8195,10 +9046,30 @@ module SwitchBase = {
       ~inputProps: Js.t({..})=?,
       ~inputRef: 'genericCallback=?,
       ~name: string=?,
-      ~onChange: 'any_rlq6=?,
-      ~tabIndex: 'union_rzck=?,
+      ~onChange: 'any_r14j=?,
+      ~tabIndex: 'union_rla5=?,
       ~_type: string=?,
       ~value: string=?,
+      ~color: string=?,
+      ~buttonRef: 'genericCallback=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_rnvk=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
+      ~onBlur: ReactEventRe.Focus.t => unit=?,
+      ~onClick: ReactEventRe.Mouse.t => unit=?,
+      ~onFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
+      ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseUp: ReactEventRe.Mouse.t => unit=?,
+      ~onTouchEnd: ReactEventRe.Touch.t => unit=?,
+      ~onTouchMove: ReactEventRe.Touch.t => unit=?,
+      ~onTouchStart: ReactEventRe.Touch.t => unit=?,
+      ~role: string=?,
+      ~_TouchRippleProps: Js.t({..})=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -8226,6 +9097,27 @@ module SwitchBase = {
         ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
         ~_type: option(string)=?,
         ~value: option(string)=?,
+        ~color: option(color)=?,
+        ~buttonRef: option('genericCallback)=?,
+        ~centerRipple: option(bool)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
+        ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
+        ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseLeave: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseUp: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onTouchEnd: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchMove: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchStart: option(ReactEventRe.Touch.t => unit)=?,
+        ~role: option(string)=?,
+        ~_TouchRippleProps: option(Js.t({..}))=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -8251,6 +9143,26 @@ module SwitchBase = {
           ~tabIndex=?Js.Option.map((. v) => unwrapValue(v), tabIndex),
           ~_type?,
           ~value?,
+          ~color=?Js.Option.map((. v) => colorToJs(v), color),
+          ~buttonRef?,
+          ~centerRipple?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~focusRipple?,
+          ~focusVisibleClassName?,
+          ~onBlur?,
+          ~onClick?,
+          ~onFocus?,
+          ~onKeyboardFocus?,
+          ~onKeyDown?,
+          ~onKeyUp?,
+          ~onMouseDown?,
+          ~onMouseLeave?,
+          ~onMouseUp?,
+          ~onTouchEnd?,
+          ~onTouchMove?,
+          ~onTouchStart?,
+          ~role?,
+          ~_TouchRippleProps?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -8314,7 +9226,7 @@ module Switch = {
   [@bs.obj]
   external makeProps :
     (
-      ~checked: 'union_rgzm=?,
+      ~checked: 'union_r23p=?,
       ~checkedIcon: ReasonReact.reactElement=?,
       ~className: string=?,
       ~color: string=?,
@@ -8325,7 +9237,7 @@ module Switch = {
       ~id: string=?,
       ~inputProps: Js.t({..})=?,
       ~inputRef: 'genericCallback=?,
-      ~onChange: 'any_rnqu=?,
+      ~onChange: 'any_r1tm=?,
       ~_type: string=?,
       ~value: string=?,
       ~classes: Js.Dict.t(string)=?,
@@ -8456,7 +9368,28 @@ module Tab = {
       ~onClick: ReactEventRe.Mouse.t => unit=?,
       ~selected: bool=?,
       ~textColor: string=?,
-      ~value: 'any_rqor=?,
+      ~value: 'any_rcx3=?,
+      ~buttonRef: 'genericCallback=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_rd4p=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
+      ~onBlur: ReactEventRe.Focus.t => unit=?,
+      ~onFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
+      ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseUp: ReactEventRe.Mouse.t => unit=?,
+      ~onTouchEnd: ReactEventRe.Touch.t => unit=?,
+      ~onTouchMove: ReactEventRe.Touch.t => unit=?,
+      ~onTouchStart: ReactEventRe.Touch.t => unit=?,
+      ~role: string=?,
+      ~tabIndex: 'union_rg21=?,
+      ~_TouchRippleProps: Js.t({..})=?,
+      ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -8477,7 +9410,29 @@ module Tab = {
         ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
         ~selected: option(bool)=?,
         ~textColor: option(textColor)=?,
-        ~value: option('any_rqor)=?,
+        ~value: option('any_rcx3)=?,
+        ~buttonRef: option('genericCallback)=?,
+        ~centerRipple: option(bool)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~disableRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
+        ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
+        ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseLeave: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseUp: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onTouchEnd: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchMove: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchStart: option(ReactEventRe.Touch.t => unit)=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~_TouchRippleProps: option(Js.t({..}))=?,
+        ~_type: option(string)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -8497,6 +9452,27 @@ module Tab = {
           ~selected?,
           ~textColor=?Js.Option.map((. v) => textColorToJs(v), textColor),
           ~value?,
+          ~buttonRef?,
+          ~centerRipple?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
+          ~onBlur?,
+          ~onFocus?,
+          ~onKeyboardFocus?,
+          ~onKeyDown?,
+          ~onKeyUp?,
+          ~onMouseDown?,
+          ~onMouseLeave?,
+          ~onMouseUp?,
+          ~onTouchEnd?,
+          ~onTouchMove?,
+          ~onTouchStart?,
+          ~role?,
+          ~tabIndex=?Js.Option.map((. v) => unwrapValue(v), tabIndex),
+          ~_TouchRippleProps?,
+          ~_type?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -8508,7 +9484,7 @@ module Tab = {
 module TableBody = {
   [@bs.obj]
   external makeProps :
-    (~className: string=?, ~component: 'union_rna7=?, unit) => _ =
+    (~className: string=?, ~component: 'union_rsoc=?, unit) => _ =
     "";
   [@bs.module "material-ui/Table/TableBody"]
   external reactClass : ReasonReact.reactClass = "default";
@@ -8597,7 +9573,7 @@ module TableCell = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_rsz5=?,
+      ~component: 'union_rnvb=?,
       ~numeric: bool=?,
       ~padding: string=?,
       ~scope: string=?,
@@ -8649,7 +9625,7 @@ module TableCell = {
 };
 
 module TableFooter = {
-  [@bs.obj] external makeProps : (~component: 'union_roiu=?, unit) => _ = "";
+  [@bs.obj] external makeProps : (~component: 'union_r6xm=?, unit) => _ = "";
   [@bs.module "material-ui/Table/TableFooter"]
   external reactClass : ReasonReact.reactClass = "default";
   let make =
@@ -8672,7 +9648,7 @@ module TableFooter = {
 module TableHead = {
   [@bs.obj]
   external makeProps :
-    (~className: string=?, ~component: 'union_rh37=?, unit) => _ =
+    (~className: string=?, ~component: 'union_r9in=?, unit) => _ =
     "";
   [@bs.module "material-ui/Table/TableHead"]
   external reactClass : ReasonReact.reactClass = "default";
@@ -8696,6 +9672,25 @@ module TableHead = {
 };
 
 module TablePagination = {
+  [@bs.deriving jsConverter]
+  type padding = [
+    | [@bs.as "default"] `Default
+    | [@bs.as "checkbox"] `Checkbox
+    | [@bs.as "dense"] `Dense
+    | [@bs.as "none"] `None
+  ];
+  [@bs.deriving jsConverter]
+  type sortDirection = [
+    | [@bs.as "asc"] `Asc
+    | [@bs.as "desc"] `Desc
+    | [@bs.as "false"] `False
+  ];
+  [@bs.deriving jsConverter]
+  type variant = [
+    | [@bs.as "head"] `Head
+    | [@bs.as "body"] `Body
+    | [@bs.as "footer"] `Footer
+  ];
   module Classes = {
     type classesType =
       | Root(string)
@@ -8744,20 +9739,26 @@ module TablePagination = {
   [@bs.obj]
   external makeProps :
     (
-      ~_Actions: 'union_rxp7=?,
+      ~_Actions: 'union_rmhi=?,
       ~backIconButtonProps: Js.t({..})=?,
-      ~colSpan: 'number_k=?,
-      ~component: 'union_rmr5=?,
-      ~count: 'number_l,
+      ~colSpan: 'number_6=?,
+      ~component: 'union_rh39=?,
+      ~count: 'number_e,
       ~labelDisplayedRows: 'labelDisplayedRows=?,
       ~labelRowsPerPage: 'labelRowsPerPage=?,
       ~nextIconButtonProps: Js.t({..})=?,
-      ~onChangePage: 'any_rg2l,
-      ~onChangeRowsPerPage: 'any_rr3b=?,
-      ~page: 'number_m,
-      ~rowsPerPage: 'number_8,
+      ~onChangePage: 'any_ryth,
+      ~onChangeRowsPerPage: 'any_rd91=?,
+      ~page: 'number_u,
+      ~rowsPerPage: 'number_t,
       ~rowsPerPageOptions: array(int)=?,
       ~_SelectProps: Js.t({..})=?,
+      ~className: string=?,
+      ~numeric: bool=?,
+      ~padding: string=?,
+      ~scope: string=?,
+      ~sortDirection: string=?,
+      ~variant: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -8802,6 +9803,12 @@ module TablePagination = {
         ~rowsPerPage: [ | `Int(int) | `Float(float)],
         ~rowsPerPageOptions: option(array(int))=?,
         ~_SelectProps: option(Js.t({..}))=?,
+        ~className: option(string)=?,
+        ~numeric: option(bool)=?,
+        ~padding: option(padding)=?,
+        ~scope: option(string)=?,
+        ~sortDirection: option(sortDirection)=?,
+        ~variant: option(variant)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -8828,6 +9835,13 @@ module TablePagination = {
               rowsPerPageOptions,
             ),
           ~_SelectProps?,
+          ~className?,
+          ~numeric?,
+          ~padding=?Js.Option.map((. v) => paddingToJs(v), padding),
+          ~scope?,
+          ~sortDirection=?
+            Js.Option.map((. v) => sortDirectionToJs(v), sortDirection),
+          ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -8874,7 +9888,7 @@ module TableRow = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_rms6=?,
+      ~component: 'union_rtst=?,
       ~hover: bool=?,
       ~selected: bool=?,
       ~onDoubleClick: ReactEventRe.Mouse.t => unit=?,
@@ -8957,6 +9971,29 @@ module TableSortLabel = {
       ~active: bool=?,
       ~className: string=?,
       ~direction: string=?,
+      ~buttonRef: 'genericCallback=?,
+      ~centerRipple: bool=?,
+      ~component: 'union_rw35=?,
+      ~disabled: bool=?,
+      ~disableRipple: bool=?,
+      ~focusRipple: bool=?,
+      ~focusVisibleClassName: string=?,
+      ~onBlur: ReactEventRe.Focus.t => unit=?,
+      ~onClick: ReactEventRe.Mouse.t => unit=?,
+      ~onFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+      ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
+      ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
+      ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
+      ~onMouseUp: ReactEventRe.Mouse.t => unit=?,
+      ~onTouchEnd: ReactEventRe.Touch.t => unit=?,
+      ~onTouchMove: ReactEventRe.Touch.t => unit=?,
+      ~onTouchStart: ReactEventRe.Touch.t => unit=?,
+      ~role: string=?,
+      ~tabIndex: 'union_rsbx=?,
+      ~_TouchRippleProps: Js.t({..})=?,
+      ~_type: string=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -8970,6 +10007,30 @@ module TableSortLabel = {
         ~active: option(bool)=?,
         ~className: option(string)=?,
         ~direction: option(direction)=?,
+        ~buttonRef: option('genericCallback)=?,
+        ~centerRipple: option(bool)=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
+        ~disabled: option(bool)=?,
+        ~disableRipple: option(bool)=?,
+        ~focusRipple: option(bool)=?,
+        ~focusVisibleClassName: option(string)=?,
+        ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
+        ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+        ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
+        ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseLeave: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onMouseUp: option(ReactEventRe.Mouse.t => unit)=?,
+        ~onTouchEnd: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchMove: option(ReactEventRe.Touch.t => unit)=?,
+        ~onTouchStart: option(ReactEventRe.Touch.t => unit)=?,
+        ~role: option(string)=?,
+        ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+        ~_TouchRippleProps: option(Js.t({..}))=?,
+        ~_type: option(string)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -8981,6 +10042,29 @@ module TableSortLabel = {
           ~active?,
           ~className?,
           ~direction=?Js.Option.map((. v) => directionToJs(v), direction),
+          ~buttonRef?,
+          ~centerRipple?,
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
+          ~disabled?,
+          ~disableRipple?,
+          ~focusRipple?,
+          ~focusVisibleClassName?,
+          ~onBlur?,
+          ~onClick?,
+          ~onFocus?,
+          ~onKeyboardFocus?,
+          ~onKeyDown?,
+          ~onKeyUp?,
+          ~onMouseDown?,
+          ~onMouseLeave?,
+          ~onMouseUp?,
+          ~onTouchEnd?,
+          ~onTouchMove?,
+          ~onTouchStart?,
+          ~role?,
+          ~tabIndex=?Js.Option.map((. v) => unwrapValue(v), tabIndex),
+          ~_TouchRippleProps?,
+          ~_type?,
           ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
           ~style?,
           (),
@@ -9015,7 +10099,7 @@ module Table = {
   external makeProps :
     (
       ~className: string=?,
-      ~component: 'union_rlg0=?,
+      ~component: 'union_rbg5=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -9113,18 +10197,18 @@ module Tabs = {
   [@bs.obj]
   external makeProps :
     (
-      ~action: 'any_r06p=?,
+      ~action: 'any_r5s7=?,
       ~centered: bool=?,
       ~className: string=?,
       ~fullWidth: bool=?,
       ~indicatorColor: string=?,
-      ~onChange: 'any_r0fh=?,
+      ~onChange: 'any_rqfn=?,
       ~scrollable: bool=?,
       ~scrollButtons: string=?,
-      ~_TabScrollButton: 'union_rwe0=?,
+      ~_TabScrollButton: 'union_rv5o=?,
       ~textColor: string=?,
       ~theme: Js.t({..})=?,
-      ~value: 'any_ruba=?,
+      ~value: 'any_ryu0=?,
       ~classes: Js.Dict.t(string)=?,
       ~style: ReactDOMRe.Style.t=?,
       unit
@@ -9147,7 +10231,7 @@ module Tabs = {
            option([ | `String(string) | `Callback('genericCallback)])=?,
         ~textColor: option(textColor)=?,
         ~theme: option(Js.t({..}))=?,
-        ~value: option('any_ruba)=?,
+        ~value: option('any_ryu0)=?,
         ~classes: option(Classes.t)=?,
         ~style: option(ReactDOMRe.Style.t)=?,
         children,
@@ -9192,7 +10276,7 @@ module TextField = {
       ~autoComplete: string=?,
       ~autoFocus: bool=?,
       ~className: string=?,
-      ~defaultValue: 'union_rr60=?,
+      ~defaultValue: 'union_rfze=?,
       ~disabled: bool=?,
       ~error: bool=?,
       ~_FormHelperTextProps: Js.t({..})=?,
@@ -9208,16 +10292,17 @@ module TextField = {
       ~multiline: bool=?,
       ~name: string=?,
       ~onBlur: ReactEventRe.Focus.t => unit=?,
-      ~onChange: 'any_rxzn=?,
+      ~onChange: 'any_r8w5=?,
       ~onFocus: ReactEventRe.Focus.t => unit=?,
       ~placeholder: string=?,
       ~required: bool=?,
-      ~rows: 'union_rrhs=?,
-      ~rowsMax: 'union_rjk5=?,
+      ~rows: 'union_r6uu=?,
+      ~rowsMax: 'union_rzi3=?,
       ~select: bool=?,
       ~_SelectProps: Js.t({..})=?,
       ~_type: string=?,
-      ~value: 'union_ra92=?,
+      ~value: 'union_r50a=?,
+      ~component: 'union_r516=?,
       unit
     ) =>
     _ =
@@ -9266,6 +10351,8 @@ module TextField = {
                  )
              ],
            )=?,
+        ~component:
+           option([ | `String(string) | `Callback('genericCallback)])=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -9302,6 +10389,7 @@ module TextField = {
           ~_SelectProps?,
           ~_type?,
           ~value=?Js.Option.map((. v) => unwrapValue(v), value),
+          ~component=?Js.Option.map((. v) => unwrapValue(v), component),
           (),
         ),
       children,
@@ -9436,13 +10524,13 @@ module Tooltip = {
       ~disableFocusListener: bool=?,
       ~disableHoverListener: bool=?,
       ~disableTouchListener: bool=?,
-      ~enterDelay: 'number_2=?,
-      ~enterTouchDelay: 'number_j=?,
+      ~enterDelay: 'number_l=?,
+      ~enterTouchDelay: 'number_0=?,
       ~id: string=?,
-      ~leaveDelay: 'number_7=?,
-      ~leaveTouchDelay: 'number_4=?,
-      ~onClose: 'any_rwky=?,
-      ~onOpen: 'any_rtth=?,
+      ~leaveDelay: 'number_n=?,
+      ~leaveTouchDelay: 'number_l=?,
+      ~onClose: 'any_rlcn=?,
+      ~onOpen: 'any_rju6=?,
       ~_open: bool=?,
       ~placement: string=?,
       ~_PopperProps: Js.t({..})=?,
@@ -9711,7 +10799,7 @@ module Typography = {
       ~align: string=?,
       ~className: string=?,
       ~color: string=?,
-      ~component: 'union_rq52=?,
+      ~component: 'union_rr10=?,
       ~gutterBottom: bool=?,
       ~headlineMapping: Js.t({..})=?,
       ~noWrap: bool=?,
@@ -9766,7 +10854,7 @@ module Zoom = {
   type typeTimeout_shape;
   [@bs.obj]
   external makeTimeout_shape :
-    (~enter: 'number_i=?, ~exit: 'number_b=?, unit) => typeTimeout_shape =
+    (~enter: 'number_0=?, ~exit: 'number_i=?, unit) => typeTimeout_shape =
     "";
   [@bs.get_index]
   external getFromTimeout_shape : (typeTimeout_shape, string) => 'a = "";
@@ -9801,7 +10889,7 @@ module Zoom = {
       ~onEnter: ReactEventRe.Synthetic.t => unit=?,
       ~onExit: ReactEventRe.Synthetic.t => unit=?,
       ~theme: Js.t({..})=?,
-      ~timeout: 'union_r1dw=?,
+      ~timeout: 'union_rres=?,
       unit
     ) =>
     _ =
