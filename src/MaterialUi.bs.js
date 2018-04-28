@@ -1937,14 +1937,10 @@ var BottomNavigation$1 = /* module */[
 ];
 
 function to_string$6(param) {
-  switch (param.tag | 0) {
-    case 0 : 
-        return "root";
-    case 1 : 
-        return "disabled";
-    case 2 : 
-        return "focusVisible";
-    
+  if (param.tag) {
+    return "disabled";
+  } else {
+    return "root";
   }
 }
 
