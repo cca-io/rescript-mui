@@ -10,16 +10,16 @@
     indefinite-observable "^1.0.1"
 
 "@types/react-transition-group@^2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-2.0.8.tgz#1ea86f6d8288e4bba8d743317ba9cc61cdacc1ad"
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-2.0.9.tgz#ed6a71fb711e524345844defec2a861c1a222a03"
   dependencies:
     "@types/react" "*"
 
 "@types/react@*":
-  version "16.3.8"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.8.tgz#40c7e4eca3f48783e4c4ccee26fc7f5a5a476d84"
+  version "16.3.13"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.13.tgz#47d466462b774556c1174ea0eda22c0578643362"
   dependencies:
-    csstype "^2.0.0"
+    csstype "^2.2.0"
 
 asap@~2.0.3:
   version "2.0.6"
@@ -39,10 +39,6 @@ brcast@^3.0.1:
 bs-platform@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-3.0.0.tgz#38f200730db52fdea37819376b6ac3dfb20244c0"
-
-chain-function@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/chain-function/-/chain-function-1.0.0.tgz#0d4ab37e7e18ead0bdc47b920764118ce58733dc"
 
 change-emitter@^0.1.2:
   version "0.1.6"
@@ -66,15 +62,15 @@ css-vendor@^0.3.8:
   dependencies:
     is-in-browser "^1.0.2"
 
-csstype@^2.0.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.2.0.tgz#1656ef97553ac53b77090844a2531c6660ebd902"
+csstype@^2.0.0, csstype@^2.2.0:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.4.2.tgz#158e36c69566bf968da63d0ba14eda1c20e8643a"
 
 deepmerge@^2.0.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.1.0.tgz#511a54fff405fc346f0240bb270a3e9533a31102"
 
-dom-helpers@^3.2.0, dom-helpers@^3.2.1:
+dom-helpers@^3.2.1, dom-helpers@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.3.1.tgz#fc1a4e15ffdf60ddde03a480a9c0fece821dd4a6"
 
@@ -240,8 +236,8 @@ keycode@^2.1.9:
   resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.2.0.tgz#3d0af56dc7b8b8e5cba8d0a97f107204eec22b04"
 
 lodash@^4.2.0:
-  version "4.17.5"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1:
   version "1.3.1"
@@ -336,8 +332,8 @@ rafl@~1.2.1:
     global "~4.3.0"
 
 "react-dom@>=15.0.0 || >=16.0.0":
-  version "16.3.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.0.tgz#b318e52184188ecb5c3e81117420cca40618643e"
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -384,18 +380,16 @@ react-scrollbar-size@^2.0.2:
     stifle "^1.0.2"
 
 react-transition-group@^2.2.1:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.3.0.tgz#8dd1af58f6af284b19fd057f512e74f20438ad31"
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.3.1.tgz#31d611b33e143a5e0f2d94c348e026a0f3b474b6"
   dependencies:
-    chain-function "^1.0.0"
-    dom-helpers "^3.2.0"
+    dom-helpers "^3.3.1"
     loose-envify "^1.3.1"
-    prop-types "^15.5.8"
-    warning "^3.0.0"
+    prop-types "^15.6.1"
 
 "react@>=15.0.0 || >=16.0.0":
-  version "16.3.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.3.0.tgz#fc5a01c68f91e9b38e92cf83f7b795ebdca8ddff"
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -403,8 +397,8 @@ react-transition-group@^2.2.1:
     prop-types "^15.6.0"
 
 reason-react@~0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.4.0.tgz#c3ee831db60abea372fe3e8c2d0b475954f9db70"
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.4.1.tgz#f1c8bf0d116be6bf43109912ee4d95e58dd7c64f"
   dependencies:
     react ">=15.0.0 || >=16.0.0"
     react-dom ">=15.0.0 || >=16.0.0"
