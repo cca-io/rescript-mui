@@ -10,7 +10,7 @@
 
 (_Tags are copied from [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
-## 0.1.91
+## 0.2.0
 * :bug: Fixed the `Grid` component so it requires numbers instead of strings
 
 ## 0.1.9
