@@ -40,7 +40,7 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_rl7y=?,
+    ~checked: 'union_rm6t=?,
     ~checkedIcon: ReasonReact.reactElement,
     ~className: string=?,
     ~defaultChecked: bool=?,
@@ -53,14 +53,14 @@ external makeProps :
     ~inputProps: Js.t({..})=?,
     ~inputRef: 'genericCallback=?,
     ~name: string=?,
-    ~onChange: 'any_rl37=?,
-    ~tabIndex: 'union_re8l=?,
+    ~onChange: 'any_r7zu=?,
+    ~tabIndex: 'union_r4fg=?,
     ~_type: string=?,
     ~value: string=?,
     ~color: string=?,
     ~buttonRef: 'genericCallback=?,
     ~centerRipple: bool=?,
-    ~component: 'union_ry6z=?,
+    ~component: 'union_rk5v=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,

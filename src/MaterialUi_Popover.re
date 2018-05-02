@@ -16,7 +16,7 @@ type typeAnchorOrigin;
 
 [@bs.obj]
 external makeAnchorOrigin :
-  (~horizontal: 'union_ri6r=?, ~vertical: 'union_rqzs=?, unit) =>
+  (~horizontal: 'union_req9=?, ~vertical: 'union_rkn1=?, unit) =>
   typeAnchorOrigin =
   "";
 
@@ -69,7 +69,7 @@ type typeAnchorPosition;
 
 [@bs.obj]
 external makeAnchorPosition :
-  (~top: 'number_y=?, ~left: 'number_h=?, unit) => typeAnchorPosition =
+  (~top: 'number_9=?, ~left: 'number_a=?, unit) => typeAnchorPosition =
   "";
 
 [@bs.get_index]
@@ -116,7 +116,7 @@ type typeTransformOrigin;
 
 [@bs.obj]
 external makeTransformOrigin :
-  (~horizontal: 'union_rusa=?, ~vertical: 'union_ryug=?, unit) =>
+  (~horizontal: 'union_r339=?, ~vertical: 'union_rgpf=?, unit) =>
   typeTransformOrigin =
   "";
 
@@ -169,7 +169,7 @@ type typeTransitionDuration_shape;
 
 [@bs.obj]
 external makeTransitionDuration_shape :
-  (~enter: 'number_3=?, ~exit: 'number_d=?, unit) =>
+  (~enter: 'number_o=?, ~exit: 'number_f=?, unit) =>
   typeTransitionDuration_shape =
   "";
 
@@ -231,16 +231,16 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~action: 'any_ri8p=?,
-    ~anchorEl: 'union_racm=?,
-    ~anchorOrigin: 'any_rtuz=?,
-    ~anchorPosition: 'any_rt8s=?,
+    ~action: 'any_r59f=?,
+    ~anchorEl: 'union_rzj4=?,
+    ~anchorOrigin: 'any_rmf2=?,
+    ~anchorPosition: 'any_rnq5=?,
     ~anchorReference: string=?,
-    ~container: 'union_r6bi=?,
-    ~elevation: 'number_5=?,
+    ~container: 'union_r4kw=?,
+    ~elevation: 'number_u=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_1=?,
-    ~onClose: 'any_rrrc=?,
+    ~marginThreshold: 'number_c=?,
+    ~onClose: 'any_rclb=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -250,10 +250,10 @@ external makeProps :
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~role: string=?,
-    ~transformOrigin: 'any_rkwc=?,
-    ~transition: 'union_r2db=?,
-    ~transitionDuration: 'union_rlu2=?,
-    ~_BackdropComponent: 'union_r0vg=?,
+    ~transformOrigin: 'any_rc2h=?,
+    ~transition: 'union_rgde=?,
+    ~transitionDuration: 'union_rtg7=?,
+    ~_BackdropComponent: 'union_r536=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
     ~disableAutoFocus: bool=?,

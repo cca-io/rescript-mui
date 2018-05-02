@@ -2,7 +2,7 @@ type typeTransitionDuration_shape;
 
 [@bs.obj]
 external makeTransitionDuration_shape :
-  (~enter: 'number_2=?, ~exit: 'number_8=?, unit) =>
+  (~enter: 'number_4=?, ~exit: 'number_i=?, unit) =>
   typeTransitionDuration_shape =
   "";
 
@@ -57,7 +57,7 @@ type typeAnchorOrigin;
 
 [@bs.obj]
 external makeAnchorOrigin :
-  (~horizontal: 'union_r262=?, ~vertical: 'union_r1r0=?, unit) =>
+  (~horizontal: 'union_rqtv=?, ~vertical: 'union_rzgp=?, unit) =>
   typeAnchorOrigin =
   "";
 
@@ -110,7 +110,7 @@ type typeAnchorPosition;
 
 [@bs.obj]
 external makeAnchorPosition :
-  (~top: 'number_8=?, ~left: 'number_r=?, unit) => typeAnchorPosition =
+  (~top: 'number_q=?, ~left: 'number_l=?, unit) => typeAnchorPosition =
   "";
 
 [@bs.get_index]
@@ -157,7 +157,7 @@ type typeTransformOrigin;
 
 [@bs.obj]
 external makeTransformOrigin :
-  (~horizontal: 'union_rlo4=?, ~vertical: 'union_ric1=?, unit) =>
+  (~horizontal: 'union_rcvv=?, ~vertical: 'union_rdky=?, unit) =>
   typeTransformOrigin =
   "";
 
@@ -231,9 +231,9 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~anchorEl: 'any_rc65=?,
+    ~anchorEl: 'any_rhhr=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_r5pr=?,
+    ~onClose: 'any_r2p3=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -244,18 +244,18 @@ external makeProps :
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rv4x=?,
-    ~action: 'any_rlp2=?,
-    ~anchorOrigin: 'any_r108=?,
-    ~anchorPosition: 'any_rk7v=?,
+    ~transitionDuration: 'union_rf1w=?,
+    ~action: 'any_rj6o=?,
+    ~anchorOrigin: 'any_r66u=?,
+    ~anchorPosition: 'any_r5l0=?,
     ~anchorReference: string=?,
-    ~container: 'union_ramr=?,
-    ~elevation: 'number_t=?,
+    ~container: 'union_rixc=?,
+    ~elevation: 'number_q=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_g=?,
+    ~marginThreshold: 'number_h=?,
     ~role: string=?,
-    ~transformOrigin: 'any_rtkc=?,
-    ~transition: 'union_rhce=?,
+    ~transformOrigin: 'any_rxl2=?,
+    ~transition: 'union_rfx2=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -268,7 +268,7 @@ external reactClass : ReasonReact.reactClass = "default";
 
 let make =
     (
-      ~anchorEl: option('any_rc65)=?,
+      ~anchorEl: option('any_rhhr)=?,
       ~_MenuListProps: option(Js.t({..}))=?,
       ~onClose: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,

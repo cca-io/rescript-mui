@@ -1,4 +1,4 @@
-[@bs.obj] external makeProps : (~component: 'union_rzha=?, unit) => _ = "";
+[@bs.obj] external makeProps : (~component: 'union_rbr9=?, unit) => _ = "";
 
 [@bs.module "material-ui/Table/TableFooter"]
 external reactClass : ReasonReact.reactClass = "default";

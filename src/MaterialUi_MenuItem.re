@@ -27,14 +27,14 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rmdk=?,
+    ~component: 'union_rjuh=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~value: 'union_rgij=?,
+    ~value: 'union_rcxy=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~button: bool=?,
-    ~_ContainerComponent: 'union_r429=?,
+    ~_ContainerComponent: 'union_rxr5=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,

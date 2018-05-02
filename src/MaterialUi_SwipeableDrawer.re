@@ -10,7 +10,7 @@ type typeTransitionDuration_shape;
 
 [@bs.obj]
 external makeTransitionDuration_shape :
-  (~enter: 'number_2=?, ~exit: 'number_i=?, unit) =>
+  (~enter: 'number_e=?, ~exit: 'number_s=?, unit) =>
   typeTransitionDuration_shape =
   "";
 
@@ -59,16 +59,16 @@ external makeProps :
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_ruvu,
-    ~onOpen: 'any_rtar,
+    ~onClose: 'any_rko4,
+    ~onOpen: 'any_ru63,
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_4=?,
+    ~swipeAreaWidth: 'number_c=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rh2z=?,
+    ~transitionDuration: 'union_rp21=?,
     ~variant: string=?,
     ~className: string=?,
-    ~elevation: 'number_e=?,
+    ~elevation: 'number_j=?,
     ~_SlideProps: Js.t({..})=?,
     unit
   ) =>

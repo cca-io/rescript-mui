@@ -3,7 +3,7 @@ external makeProps :
   (
     ~disableStylesGeneration: bool=?,
     ~sheetsManager: Js.t({..})=?,
-    ~theme: 'union_rn9t,
+    ~theme: 'union_ri2i,
     unit
   ) =>
   _ =

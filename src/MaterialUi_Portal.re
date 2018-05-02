@@ -1,7 +1,7 @@
 [@bs.obj]
 external makeProps :
   (
-    ~container: 'union_rr7l=?,
+    ~container: 'union_rs0t=?,
     ~onRendered: ReactEventRe.Synthetic.t => unit=?,
     unit
   ) =>

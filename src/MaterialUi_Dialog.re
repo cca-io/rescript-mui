@@ -10,7 +10,7 @@ type typeTransitionDuration_shape;
 
 [@bs.obj]
 external makeTransitionDuration_shape :
-  (~enter: 'number_x=?, ~exit: 'number_p=?, unit) =>
+  (~enter: 'number_w=?, ~exit: 'number_v=?, unit) =>
   typeTransitionDuration_shape =
   "";
 
@@ -95,7 +95,7 @@ external makeProps :
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEventRe.Mouse.t => unit=?,
-    ~onClose: 'any_r6d2=?,
+    ~onClose: 'any_rp99=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -105,10 +105,10 @@ external makeProps :
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
-    ~transition: 'union_rqml=?,
-    ~transitionDuration: 'union_rt7b=?,
-    ~_BackdropComponent: 'union_rulx=?,
-    ~container: 'union_rdd6=?,
+    ~transition: 'union_rbv9=?,
+    ~transitionDuration: 'union_r6mj=?,
+    ~_BackdropComponent: 'union_rn64=?,
+    ~container: 'union_rvsv=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disableRestoreFocus: bool=?,

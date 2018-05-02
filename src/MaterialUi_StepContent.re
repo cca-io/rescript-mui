@@ -8,7 +8,7 @@ type typeTransitionDuration_shape;
 
 [@bs.obj]
 external makeTransitionDuration_shape :
-  (~enter: 'number_g=?, ~exit: 'number_l=?, unit) =>
+  (~enter: 'number_5=?, ~exit: 'number_o=?, unit) =>
   typeTransitionDuration_shape =
   "";
 
@@ -84,7 +84,7 @@ external makeProps :
     ~optional: bool=?,
     ~orientation: string=?,
     ~transition: 'genericCallback=?,
-    ~transitionDuration: 'union_r9q2=?,
+    ~transitionDuration: 'union_rcqp=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit

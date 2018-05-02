@@ -35,58 +35,49 @@ type justify = [
 ];
 
 [@bs.deriving jsConverter]
-type lg = [
-  | [@bs.as "false"] `False
-  | [@bs.as "true"] `True
-  | [@bs.as "1"] `V1
-  | [@bs.as "2"] `V2
-  | [@bs.as "3"] `V3
-  | [@bs.as "4"] `V4
-  | [@bs.as "5"] `V5
-  | [@bs.as "6"] `V6
-  | [@bs.as "7"] `V7
-  | [@bs.as "8"] `V8
-  | [@bs.as "9"] `V9
-  | [@bs.as "10"] `V10
-  | [@bs.as "11"] `V11
-  | [@bs.as "12"] `V12
-];
+type lg =
+  | [@bs.as 1] V1
+  | [@bs.as 2] V2
+  | [@bs.as 3] V3
+  | [@bs.as 4] V4
+  | [@bs.as 5] V5
+  | [@bs.as 6] V6
+  | [@bs.as 7] V7
+  | [@bs.as 8] V8
+  | [@bs.as 9] V9
+  | [@bs.as 10] V10
+  | [@bs.as 11] V11
+  | [@bs.as 12] V12;
 
 [@bs.deriving jsConverter]
-type md = [
-  | [@bs.as "false"] `False
-  | [@bs.as "true"] `True
-  | [@bs.as "1"] `V1
-  | [@bs.as "2"] `V2
-  | [@bs.as "3"] `V3
-  | [@bs.as "4"] `V4
-  | [@bs.as "5"] `V5
-  | [@bs.as "6"] `V6
-  | [@bs.as "7"] `V7
-  | [@bs.as "8"] `V8
-  | [@bs.as "9"] `V9
-  | [@bs.as "10"] `V10
-  | [@bs.as "11"] `V11
-  | [@bs.as "12"] `V12
-];
+type md =
+  | [@bs.as 1] V1
+  | [@bs.as 2] V2
+  | [@bs.as 3] V3
+  | [@bs.as 4] V4
+  | [@bs.as 5] V5
+  | [@bs.as 6] V6
+  | [@bs.as 7] V7
+  | [@bs.as 8] V8
+  | [@bs.as 9] V9
+  | [@bs.as 10] V10
+  | [@bs.as 11] V11
+  | [@bs.as 12] V12;
 
 [@bs.deriving jsConverter]
-type sm = [
-  | [@bs.as "false"] `False
-  | [@bs.as "true"] `True
-  | [@bs.as "1"] `V1
-  | [@bs.as "2"] `V2
-  | [@bs.as "3"] `V3
-  | [@bs.as "4"] `V4
-  | [@bs.as "5"] `V5
-  | [@bs.as "6"] `V6
-  | [@bs.as "7"] `V7
-  | [@bs.as "8"] `V8
-  | [@bs.as "9"] `V9
-  | [@bs.as "10"] `V10
-  | [@bs.as "11"] `V11
-  | [@bs.as "12"] `V12
-];
+type sm =
+  | [@bs.as 1] V1
+  | [@bs.as 2] V2
+  | [@bs.as 3] V3
+  | [@bs.as 4] V4
+  | [@bs.as 5] V5
+  | [@bs.as 6] V6
+  | [@bs.as 7] V7
+  | [@bs.as 8] V8
+  | [@bs.as 9] V9
+  | [@bs.as 10] V10
+  | [@bs.as 11] V11
+  | [@bs.as 12] V12;
 
 [@bs.deriving jsConverter]
 type spacing =
@@ -104,40 +95,34 @@ type wrap = [
 ];
 
 [@bs.deriving jsConverter]
-type xl = [
-  | [@bs.as "false"] `False
-  | [@bs.as "true"] `True
-  | [@bs.as "1"] `V1
-  | [@bs.as "2"] `V2
-  | [@bs.as "3"] `V3
-  | [@bs.as "4"] `V4
-  | [@bs.as "5"] `V5
-  | [@bs.as "6"] `V6
-  | [@bs.as "7"] `V7
-  | [@bs.as "8"] `V8
-  | [@bs.as "9"] `V9
-  | [@bs.as "10"] `V10
-  | [@bs.as "11"] `V11
-  | [@bs.as "12"] `V12
-];
+type xl =
+  | [@bs.as 1] V1
+  | [@bs.as 2] V2
+  | [@bs.as 3] V3
+  | [@bs.as 4] V4
+  | [@bs.as 5] V5
+  | [@bs.as 6] V6
+  | [@bs.as 7] V7
+  | [@bs.as 8] V8
+  | [@bs.as 9] V9
+  | [@bs.as 10] V10
+  | [@bs.as 11] V11
+  | [@bs.as 12] V12;
 
 [@bs.deriving jsConverter]
-type xs = [
-  | [@bs.as "false"] `False
-  | [@bs.as "true"] `True
-  | [@bs.as "1"] `V1
-  | [@bs.as "2"] `V2
-  | [@bs.as "3"] `V3
-  | [@bs.as "4"] `V4
-  | [@bs.as "5"] `V5
-  | [@bs.as "6"] `V6
-  | [@bs.as "7"] `V7
-  | [@bs.as "8"] `V8
-  | [@bs.as "9"] `V9
-  | [@bs.as "10"] `V10
-  | [@bs.as "11"] `V11
-  | [@bs.as "12"] `V12
-];
+type xs =
+  | [@bs.as 1] V1
+  | [@bs.as 2] V2
+  | [@bs.as 3] V3
+  | [@bs.as 4] V4
+  | [@bs.as 5] V5
+  | [@bs.as 6] V6
+  | [@bs.as 7] V7
+  | [@bs.as 8] V8
+  | [@bs.as 9] V9
+  | [@bs.as 10] V10
+  | [@bs.as 11] V11
+  | [@bs.as 12] V12;
 
 module Classes = {
   type classesType =
@@ -278,19 +263,19 @@ external makeProps :
     ~alignContent: string=?,
     ~alignItems: string=?,
     ~className: string=?,
-    ~component: 'union_rmng=?,
+    ~component: 'union_rnuy=?,
     ~container: bool=?,
     ~direction: string=?,
     ~hidden: Js.t({..})=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: string=?,
-    ~md: string=?,
-    ~sm: string=?,
-    ~spacing: 'number_r8st=?,
+    ~lg: 'number_rzs6=?,
+    ~md: 'number_rmwv=?,
+    ~sm: 'number_r2yr=?,
+    ~spacing: 'number_rfnf=?,
     ~wrap: string=?,
-    ~xl: string=?,
-    ~xs: string=?,
+    ~xl: 'number_ra1b=?,
+    ~xs: 'number_roji=?,
     ~zeroMinWidth: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

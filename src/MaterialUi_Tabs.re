@@ -67,18 +67,18 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~action: 'any_r2ib=?,
+    ~action: 'any_r4k7=?,
     ~centered: bool=?,
     ~className: string=?,
     ~fullWidth: bool=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_rnxj=?,
+    ~onChange: 'any_r760=?,
     ~scrollable: bool=?,
     ~scrollButtons: string=?,
-    ~_TabScrollButton: 'union_rbks=?,
+    ~_TabScrollButton: 'union_rtgg=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_r6c6=?,
+    ~value: 'any_rj4r=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -103,7 +103,7 @@ let make =
          option([ | `String(string) | `Callback('genericCallback)])=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_r6c6)=?,
+      ~value: option('any_rj4r)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,

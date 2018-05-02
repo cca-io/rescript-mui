@@ -10,7 +10,7 @@ type typeTransitionDuration_shape;
 
 [@bs.obj]
 external makeTransitionDuration_shape :
-  (~enter: 'number_6=?, ~exit: 'number_2=?, unit) =>
+  (~enter: 'number_c=?, ~exit: 'number_f=?, unit) =>
   typeTransitionDuration_shape =
   "";
 
@@ -108,14 +108,14 @@ external makeProps :
   (
     ~anchor: string=?,
     ~className: string=?,
-    ~elevation: 'number_p=?,
+    ~elevation: 'number_g=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rvln=?,
+    ~onClose: 'any_r4ey=?,
     ~_open: bool=?,
     ~_PaperProps: Js.t({..})=?,
     ~_SlideProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_r9mr=?,
+    ~transitionDuration: 'union_rbzb=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

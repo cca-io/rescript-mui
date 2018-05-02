@@ -24,9 +24,9 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~onChange: 'any_rwuq=?,
+    ~onChange: 'any_rgjv=?,
     ~showLabels: bool=?,
-    ~value: 'any_r6sa=?,
+    ~value: 'any_rodl=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -40,9 +40,9 @@ external reactClass : ReasonReact.reactClass = "default";
 let make =
     (
       ~className: option(string)=?,
-      ~onChange: option((ReactEventRe.Form.t, 'any_rczc) => unit)=?,
+      ~onChange: option((ReactEventRe.Form.t, 'any_rwk4) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_r6sa)=?,
+      ~value: option('any_rodl)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,

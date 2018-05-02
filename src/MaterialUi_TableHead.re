@@ -1,6 +1,6 @@
 [@bs.obj]
 external makeProps :
-  (~className: string=?, ~component: 'union_rque=?, unit) => _ =
+  (~className: string=?, ~component: 'union_rweq=?, unit) => _ =
   "";
 
 [@bs.module "material-ui/Table/TableHead"]

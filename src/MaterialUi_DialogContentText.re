@@ -60,7 +60,7 @@ external makeProps :
     ~className: string=?,
     ~align: string=?,
     ~color: string=?,
-    ~component: 'union_rjlp=?,
+    ~component: 'union_rib1=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~noWrap: bool=?,

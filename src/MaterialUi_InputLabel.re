@@ -47,7 +47,7 @@ external makeProps :
     ~margin: string=?,
     ~required: bool=?,
     ~shrink: bool=?,
-    ~component: 'union_rxsl=?,
+    ~component: 'union_r8e6=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit

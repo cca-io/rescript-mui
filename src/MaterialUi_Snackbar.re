@@ -16,7 +16,7 @@ type typeAnchorOrigin;
 
 [@bs.obj]
 external makeAnchorOrigin :
-  (~horizontal: 'union_ruq2=?, ~vertical: 'union_rcte=?, unit) =>
+  (~horizontal: 'union_rhbt=?, ~vertical: 'union_rz3d=?, unit) =>
   typeAnchorOrigin =
   "";
 
@@ -69,7 +69,7 @@ type typeTransitionDuration_shape;
 
 [@bs.obj]
 external makeTransitionDuration_shape :
-  (~enter: 'number_9=?, ~exit: 'number_l=?, unit) =>
+  (~enter: 'number_1=?, ~exit: 'number_b=?, unit) =>
   typeTransitionDuration_shape =
   "";
 
@@ -147,13 +147,13 @@ module Classes = {
 external makeProps :
   (
     ~action: ReasonReact.reactElement=?,
-    ~anchorOrigin: 'any_rupw=?,
-    ~autoHideDuration: 'number_q=?,
+    ~anchorOrigin: 'any_r44u=?,
+    ~autoHideDuration: 'number_v=?,
     ~className: string=?,
     ~disableWindowBlurListener: bool=?,
-    ~key: 'any_rm99=?,
+    ~key: 'any_rso4=?,
     ~message: ReasonReact.reactElement=?,
-    ~onClose: 'any_rjoy=?,
+    ~onClose: 'any_rnrt=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -163,10 +163,10 @@ external makeProps :
     ~onMouseEnter: ReactEventRe.Mouse.t => unit=?,
     ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
     ~_open: bool=?,
-    ~resumeHideDuration: 'number_k=?,
+    ~resumeHideDuration: 'number_u=?,
     ~_SnackbarContentProps: Js.t({..})=?,
-    ~transition: 'union_rbh6=?,
-    ~transitionDuration: 'union_rk7i=?,
+    ~transition: 'union_rpd9=?,
+    ~transitionDuration: 'union_r171=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -184,7 +184,7 @@ let make =
       ~autoHideDuration: option([ | `Int(int) | `Float(float)])=?,
       ~className: option(string)=?,
       ~disableWindowBlurListener: option(bool)=?,
-      ~key: option('any_rm99)=?,
+      ~key: option('any_rso4)=?,
       ~message: option(ReasonReact.reactElement)=?,
       ~onClose: option((ReactEventRe.Synthetic.t, string) => unit)=?,
       ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,

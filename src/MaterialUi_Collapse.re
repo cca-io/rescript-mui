@@ -2,7 +2,7 @@ type typeTimeout_shape;
 
 [@bs.obj]
 external makeTimeout_shape :
-  (~enter: 'number_w=?, ~exit: 'number_c=?, unit) => typeTimeout_shape =
+  (~enter: 'number_3=?, ~exit: 'number_0=?, unit) => typeTimeout_shape =
   "";
 
 [@bs.get_index]
@@ -72,7 +72,7 @@ external makeProps :
   (
     ~className: string=?,
     ~collapsedHeight: string=?,
-    ~component: 'union_r3w2=?,
+    ~component: 'union_rc1v=?,
     ~_in: bool=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
@@ -80,7 +80,7 @@ external makeProps :
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_reaz=?,
+    ~timeout: 'union_roj2=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
