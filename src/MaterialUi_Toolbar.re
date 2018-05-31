@@ -35,7 +35,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Toolbar/Toolbar"]
+[@bs.module "@material-ui/core/Toolbar/Toolbar"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

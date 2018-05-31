@@ -50,7 +50,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/ButtonBase/TouchRipple"]
+[@bs.module "@material-ui/core/ButtonBase/TouchRipple"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

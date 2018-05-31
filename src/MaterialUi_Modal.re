@@ -26,10 +26,10 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~_BackdropComponent: 'union_rx2m=?,
+    ~_BackdropComponent: 'union_rw36=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
-    ~container: 'union_r24x=?,
+    ~container: 'union_rjqp=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -39,10 +39,10 @@ external makeProps :
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEventRe.Mouse.t => unit=?,
-    ~onClose: 'any_rsa6=?,
+    ~onClose: 'any_rtq0=?,
     ~onEscapeKeyDown: ReactEventRe.Keyboard.t => unit=?,
     ~onRendered: ReactEventRe.Synthetic.t => unit=?,
-    ~_open: bool,
+    ~open_: bool,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -50,7 +50,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Modal/Modal"]
+[@bs.module "@material-ui/core/Modal/Modal"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -75,7 +75,7 @@ let make =
       ~onClose: option((ReactEventRe.Synthetic.t, string) => unit)=?,
       ~onEscapeKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
       ~onRendered: option(ReactEventRe.Synthetic.t => unit)=?,
-      ~_open: bool,
+      ~open_: bool,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -108,7 +108,7 @@ let make =
         ~onClose?,
         ~onEscapeKeyDown?,
         ~onRendered?,
-        ~_open,
+        ~open_,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,
         (),

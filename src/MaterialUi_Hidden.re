@@ -38,7 +38,7 @@ external makeProps :
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_rhfl=?,
+    ~only: 'union_r39h=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,
@@ -50,7 +50,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Hidden/Hidden"]
+[@bs.module "@material-ui/core/Hidden/Hidden"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

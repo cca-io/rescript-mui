@@ -69,6 +69,7 @@ external makeProps :
     ~last: bool=?,
     ~optional: ReasonReact.reactElement=?,
     ~orientation: string=?,
+    ~_StepIconProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -76,7 +77,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Stepper/StepLabel"]
+[@bs.module "@material-ui/core/StepLabel/StepLabel"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -91,6 +92,7 @@ let make =
       ~last: option(bool)=?,
       ~optional: option(ReasonReact.reactElement)=?,
       ~orientation: option(orientation)=?,
+      ~_StepIconProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -110,6 +112,7 @@ let make =
         ~optional?,
         ~orientation=?
           Js.Option.map((. v) => orientationToJs(v), orientation),
+        ~_StepIconProps?,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,
         (),

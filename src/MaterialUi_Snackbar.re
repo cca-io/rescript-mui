@@ -12,95 +12,16 @@ type vertical_enum = [
   | [@bs.as "bottom"] `Bottom
 ];
 
-type typeAnchorOrigin;
-
-[@bs.obj]
-external makeAnchorOrigin :
-  (~horizontal: 'union_rhbt=?, ~vertical: 'union_rz3d=?, unit) =>
-  typeAnchorOrigin =
-  "";
-
-[@bs.get_index]
-external getFromAnchorOrigin : (typeAnchorOrigin, string) => 'a = "";
-
-let convertAnchorOrigin = (madeObj: option(typeAnchorOrigin)) => {
-  let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-  switch (madeObj) {
-  | Some(madeObj) =>
-    Js.Dict.set(
-      returnObj,
-      "horizontal",
-      MaterialUi_Helpers.toJsUnsafe(
-        Js.Option.map(
-          (. v) =>
-            switch (v) {
-            | `Enum(v) =>
-              MaterialUi_Helpers.unwrapValue(
-                `String(horizontal_enumToJs(v)),
-              )
-            | v => MaterialUi_Helpers.unwrapValue(v)
-            },
-          getFromAnchorOrigin(madeObj, "horizontal"),
-        ),
-      ),
-    );
-    Js.Dict.set(
-      returnObj,
-      "vertical",
-      MaterialUi_Helpers.toJsUnsafe(
-        Js.Option.map(
-          (. v) =>
-            switch (v) {
-            | `Enum(v) =>
-              MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
-            | v => MaterialUi_Helpers.unwrapValue(v)
-            },
-          getFromAnchorOrigin(madeObj, "vertical"),
-        ),
-      ),
-    );
-    ();
-  | None => ()
-  };
-  Some(returnObj);
+[@bs.deriving abstract]
+type anchorOrigin = {
+  horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
+  vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
 };
 
-type typeTransitionDuration_shape;
-
-[@bs.obj]
-external makeTransitionDuration_shape :
-  (~enter: 'number_1=?, ~exit: 'number_b=?, unit) =>
-  typeTransitionDuration_shape =
-  "";
-
-[@bs.get_index]
-external getFromTransitionDuration_shape :
-  (typeTransitionDuration_shape, string) => 'a =
-  "";
-
-let convertTransitionDuration_shape = (madeObj: typeTransitionDuration_shape) => {
-  let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-  Js.Dict.set(
-    returnObj,
-    "enter",
-    MaterialUi_Helpers.toJsUnsafe(
-      Js.Option.map(
-        (. v) => MaterialUi_Helpers.unwrapValue(v),
-        getFromTransitionDuration_shape(madeObj, "enter"),
-      ),
-    ),
-  );
-  Js.Dict.set(
-    returnObj,
-    "exit",
-    MaterialUi_Helpers.toJsUnsafe(
-      Js.Option.map(
-        (. v) => MaterialUi_Helpers.unwrapValue(v),
-        getFromTransitionDuration_shape(madeObj, "exit"),
-      ),
-    ),
-  );
-  returnObj;
+[@bs.deriving abstract]
+type transitionDuration_shape = {
+  enter: [ | `Int(int) | `Float(float)],
+  exit: [ | `Int(int) | `Float(float)],
 };
 
 module Classes = {
@@ -147,13 +68,14 @@ module Classes = {
 external makeProps :
   (
     ~action: ReasonReact.reactElement=?,
-    ~anchorOrigin: 'any_r44u=?,
+    ~anchorOrigin: anchorOrigin=?,
     ~autoHideDuration: 'number_v=?,
     ~className: string=?,
+    ~_ContentProps: Js.t({..})=?,
     ~disableWindowBlurListener: bool=?,
-    ~key: 'any_rso4=?,
+    ~key: 'any_rbdc=?,
     ~message: ReasonReact.reactElement=?,
-    ~onClose: 'any_rnrt=?,
+    ~onClose: 'any_rw4u=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -162,11 +84,11 @@ external makeProps :
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
     ~onMouseEnter: ReactEventRe.Mouse.t => unit=?,
     ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
-    ~_open: bool=?,
-    ~resumeHideDuration: 'number_u=?,
-    ~_SnackbarContentProps: Js.t({..})=?,
-    ~transition: 'union_rpd9=?,
-    ~transitionDuration: 'union_r171=?,
+    ~open_: bool=?,
+    ~resumeHideDuration: 'number_w=?,
+    ~_TransitionComponent: 'union_rbeq=?,
+    ~transitionDuration: 'union_rrhw=?,
+    ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -174,17 +96,18 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Snackbar/Snackbar"]
+[@bs.module "@material-ui/core/Snackbar/Snackbar"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
     (
       ~action: option(ReasonReact.reactElement)=?,
-      ~anchorOrigin: option(typeAnchorOrigin)=?,
+      ~anchorOrigin: option(anchorOrigin)=?,
       ~autoHideDuration: option([ | `Int(int) | `Float(float)])=?,
       ~className: option(string)=?,
+      ~_ContentProps: option(Js.t({..}))=?,
       ~disableWindowBlurListener: option(bool)=?,
-      ~key: option('any_rso4)=?,
+      ~key: option('any_rbdc)=?,
       ~message: option(ReasonReact.reactElement)=?,
       ~onClose: option((ReactEventRe.Synthetic.t, string) => unit)=?,
       ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,
@@ -195,19 +118,19 @@ let make =
       ~onExiting: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onMouseEnter: option(ReactEventRe.Mouse.t => unit)=?,
       ~onMouseLeave: option(ReactEventRe.Mouse.t => unit)=?,
-      ~_open: option(bool)=?,
+      ~open_: option(bool)=?,
       ~resumeHideDuration: option([ | `Int(int) | `Float(float)])=?,
-      ~_SnackbarContentProps: option(Js.t({..}))=?,
-      ~transition:
+      ~_TransitionComponent:
          option([ | `String(string) | `Callback('genericCallback)])=?,
       ~transitionDuration:
          option(
            [
              | `Int(int)
              | `Float(float)
-             | `Object(typeTransitionDuration_shape)
+             | `Object(transitionDuration_shape)
            ],
          )=?,
+      ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -217,13 +140,14 @@ let make =
     ~props=
       makeProps(
         ~action?,
-        ~anchorOrigin=?convertAnchorOrigin(anchorOrigin),
+        ~anchorOrigin?,
         ~autoHideDuration=?
           Js.Option.map(
             (. v) => MaterialUi_Helpers.unwrapValue(v),
             autoHideDuration,
           ),
         ~className?,
+        ~_ContentProps?,
         ~disableWindowBlurListener?,
         ~key?,
         ~message?,
@@ -236,30 +160,23 @@ let make =
         ~onExiting?,
         ~onMouseEnter?,
         ~onMouseLeave?,
-        ~_open?,
+        ~open_?,
         ~resumeHideDuration=?
           Js.Option.map(
             (. v) => MaterialUi_Helpers.unwrapValue(v),
             resumeHideDuration,
           ),
-        ~_SnackbarContentProps?,
-        ~transition=?
+        ~_TransitionComponent=?
           Js.Option.map(
             (. v) => MaterialUi_Helpers.unwrapValue(v),
-            transition,
+            _TransitionComponent,
           ),
         ~transitionDuration=?
           Js.Option.map(
-            (. v) =>
-              switch (v) {
-              | `Object(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `Element(convertTransitionDuration_shape(v)),
-                )
-              | v => MaterialUi_Helpers.unwrapValue(v)
-              },
+            (. v) => MaterialUi_Helpers.unwrapValue(v),
             transitionDuration,
           ),
+        ~_TransitionProps?,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,
         (),

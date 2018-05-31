@@ -42,7 +42,7 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_rqwt=?,
+    ~checked: 'union_rww5=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~color: string=?,
     ~disabled: bool=?,
@@ -51,8 +51,8 @@ external makeProps :
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
     ~inputRef: 'genericCallback=?,
-    ~onChange: 'any_ros3=?,
-    ~_type: string=?,
+    ~onChange: 'any_r5cy=?,
+    ~type_: string=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -61,7 +61,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Radio/Radio"]
+[@bs.module "@material-ui/core/Radio/Radio"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -76,7 +76,7 @@ let make =
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef: option('genericCallback)=?,
       ~onChange: option((ReactEventRe.Form.t, bool) => unit)=?,
-      ~_type: option(string)=?,
+      ~type_: option(string)=?,
       ~value: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -100,7 +100,7 @@ let make =
         ~inputProps?,
         ~inputRef?,
         ~onChange?,
-        ~_type?,
+        ~type_?,
         ~value?,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,

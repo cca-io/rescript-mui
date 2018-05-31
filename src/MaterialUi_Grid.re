@@ -85,6 +85,7 @@ type spacing =
   | [@bs.as 8] V8
   | [@bs.as 16] V16
   | [@bs.as 24] V24
+  | [@bs.as 32] V32
   | [@bs.as 40] V40;
 
 [@bs.deriving jsConverter]
@@ -150,6 +151,7 @@ module Classes = {
     | Spacing_Xs_8(string)
     | Spacing_Xs_16(string)
     | Spacing_Xs_24(string)
+    | Spacing_Xs_32(string)
     | Spacing_Xs_40(string)
     | Grid_Xs(string)
     | Grid_Xs_1(string)
@@ -191,6 +193,7 @@ module Classes = {
     | Spacing_Xs_8(_) => "spacing-xs-8"
     | Spacing_Xs_16(_) => "spacing-xs-16"
     | Spacing_Xs_24(_) => "spacing-xs-24"
+    | Spacing_Xs_32(_) => "spacing-xs-32"
     | Spacing_Xs_40(_) => "spacing-xs-40"
     | Grid_Xs(_) => "grid-xs"
     | Grid_Xs_1(_) => "grid-xs-1"
@@ -235,6 +238,7 @@ module Classes = {
              | Spacing_Xs_8(className)
              | Spacing_Xs_16(className)
              | Spacing_Xs_24(className)
+             | Spacing_Xs_32(className)
              | Spacing_Xs_40(className)
              | Grid_Xs(className)
              | Grid_Xs_1(className)
@@ -263,19 +267,18 @@ external makeProps :
     ~alignContent: string=?,
     ~alignItems: string=?,
     ~className: string=?,
-    ~component: 'union_rnuy=?,
+    ~component: 'union_rtdh=?,
     ~container: bool=?,
     ~direction: string=?,
-    ~hidden: Js.t({..})=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rzs6=?,
-    ~md: 'number_rmwv=?,
-    ~sm: 'number_r2yr=?,
-    ~spacing: 'number_rfnf=?,
+    ~lg: 'number_rzcx=?,
+    ~md: 'number_rwmg=?,
+    ~sm: 'number_r06d=?,
+    ~spacing: 'number_rbnk=?,
     ~wrap: string=?,
-    ~xl: 'number_ra1b=?,
-    ~xs: 'number_roji=?,
+    ~xl: 'number_ris5=?,
+    ~xs: 'number_rqa4=?,
     ~zeroMinWidth: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -284,7 +287,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Grid/Grid"]
+[@bs.module "@material-ui/core/Grid/Grid"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -295,7 +298,6 @@ let make =
       ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~container: option(bool)=?,
       ~direction: option(direction)=?,
-      ~hidden: option(Js.t({..}))=?,
       ~item: option(bool)=?,
       ~justify: option(justify)=?,
       ~lg: option(lg)=?,
@@ -325,7 +327,6 @@ let make =
           ),
         ~container?,
         ~direction=?Js.Option.map((. v) => directionToJs(v), direction),
-        ~hidden?,
         ~item?,
         ~justify=?Js.Option.map((. v) => justifyToJs(v), justify),
         ~lg=?Js.Option.map((. v) => lgToJs(v), lg),

@@ -16,6 +16,7 @@ type size = [
 [@bs.deriving jsConverter]
 type variant = [
   | [@bs.as "flat"] `Flat
+  | [@bs.as "outlined"] `Outlined
   | [@bs.as "raised"] `Raised
   | [@bs.as "fab"] `Fab
 ];
@@ -26,6 +27,7 @@ module Classes = {
     | Label(string)
     | FlatPrimary(string)
     | FlatSecondary(string)
+    | Outlined(string)
     | ColorInherit(string)
     | Raised(string)
     | RaisedPrimary(string)
@@ -44,6 +46,7 @@ module Classes = {
     | Label(_) => "label"
     | FlatPrimary(_) => "flatPrimary"
     | FlatSecondary(_) => "flatSecondary"
+    | Outlined(_) => "outlined"
     | ColorInherit(_) => "colorInherit"
     | Raised(_) => "raised"
     | RaisedPrimary(_) => "raisedPrimary"
@@ -65,6 +68,7 @@ module Classes = {
              | Label(className)
              | FlatPrimary(className)
              | FlatSecondary(className)
+             | Outlined(className)
              | ColorInherit(className)
              | Raised(className)
              | RaisedPrimary(className)
@@ -89,7 +93,7 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rgsv=?,
+    ~component: 'union_ri3k=?,
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
@@ -98,15 +102,16 @@ external makeProps :
     ~href: string=?,
     ~mini: bool=?,
     ~size: string=?,
-    ~_type: string=?,
+    ~type_: string=?,
     ~variant: string=?,
-    ~buttonRef: 'genericCallback=?,
+    ~action: 'any_rg17=?,
+    ~buttonRef: 'union_r5b6=?,
     ~centerRipple: bool=?,
     ~focusRipple: bool=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
-    ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+    ~onFocusVisible: 'genericCallback=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
     ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
@@ -116,7 +121,7 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_ryo9=?,
+    ~tabIndex: 'union_rtrf=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -125,7 +130,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Button/Button"]
+[@bs.module "@material-ui/core/Button/Button"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -141,15 +146,19 @@ let make =
       ~href: option(string)=?,
       ~mini: option(bool)=?,
       ~size: option(size)=?,
-      ~_type: option(string)=?,
+      ~type_: option(string)=?,
       ~variant: option(variant)=?,
-      ~buttonRef: option('genericCallback)=?,
+      ~action: option(Js.t({..}) => unit)=?,
+      ~buttonRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~centerRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
       ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
       ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
-      ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+      ~onFocusVisible: option('genericCallback)=?,
       ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
       ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
@@ -184,15 +193,20 @@ let make =
         ~href?,
         ~mini?,
         ~size=?Js.Option.map((. v) => sizeToJs(v), size),
-        ~_type?,
+        ~type_?,
         ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
-        ~buttonRef?,
+        ~action?,
+        ~buttonRef=?
+          Js.Option.map(
+            (. v) => MaterialUi_Helpers.unwrapValue(v),
+            buttonRef,
+          ),
         ~centerRipple?,
         ~focusRipple?,
         ~onBlur?,
         ~onClick?,
         ~onFocus?,
-        ~onKeyboardFocus?,
+        ~onFocusVisible?,
         ~onKeyDown?,
         ~onKeyUp?,
         ~onMouseDown?,

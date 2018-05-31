@@ -32,8 +32,8 @@ external makeProps :
     ~action: ReasonReact.reactElement=?,
     ~className: string=?,
     ~message: ReasonReact.reactElement=?,
-    ~component: 'union_rced=?,
-    ~elevation: 'number_u=?,
+    ~component: 'union_rqeo=?,
+    ~elevation: 'number_g=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -42,7 +42,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Snackbar/SnackbarContent"]
+[@bs.module "@material-ui/core/SnackbarContent/SnackbarContent"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

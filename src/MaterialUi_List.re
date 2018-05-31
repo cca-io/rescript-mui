@@ -33,7 +33,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rk8z=?,
+    ~component: 'union_rnl9=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: ReasonReact.reactElement=?,
@@ -44,7 +44,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/List/List"]
+[@bs.module "@material-ui/core/List/List"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

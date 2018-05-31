@@ -25,6 +25,7 @@ module Classes = {
     | Root(string)
     | Toolbar(string)
     | Spacer(string)
+    | MenuItem(string)
     | Caption(string)
     | Input(string)
     | SelectRoot(string)
@@ -37,6 +38,7 @@ module Classes = {
     | Root(_) => "root"
     | Toolbar(_) => "toolbar"
     | Spacer(_) => "spacer"
+    | MenuItem(_) => "menuItem"
     | Caption(_) => "caption"
     | Input(_) => "input"
     | SelectRoot(_) => "selectRoot"
@@ -52,6 +54,7 @@ module Classes = {
              | Root(className)
              | Toolbar(className)
              | Spacer(className)
+             | MenuItem(className)
              | Caption(className)
              | Input(className)
              | SelectRoot(className)
@@ -69,18 +72,18 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~_Actions: 'union_r5ls=?,
+    ~_ActionsComponent: 'union_ryyo=?,
     ~backIconButtonProps: Js.t({..})=?,
-    ~colSpan: 'number_o=?,
-    ~component: 'union_rogy=?,
-    ~count: 'number_4,
+    ~colSpan: 'number_a=?,
+    ~component: 'union_rry3=?,
+    ~count: 'number_h,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_r5bh,
-    ~onChangeRowsPerPage: 'any_r7bt=?,
-    ~page: 'number_m,
-    ~rowsPerPage: 'number_y,
+    ~onChangePage: 'any_rkko,
+    ~onChangeRowsPerPage: 'any_rxo2=?,
+    ~page: 'number_6,
+    ~rowsPerPage: 'number_w,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~className: string=?,
@@ -96,12 +99,13 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Table/TablePagination"]
+[@bs.module "@material-ui/core/TablePagination/TablePagination"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
     (
-      ~_Actions: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~_ActionsComponent:
+         option([ | `String(string) | `Callback('genericCallback)])=?,
       ~backIconButtonProps: option(Js.t({..}))=?,
       ~colSpan: option([ | `Int(int) | `Float(float)])=?,
       ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
@@ -148,10 +152,10 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
-        ~_Actions=?
+        ~_ActionsComponent=?
           Js.Option.map(
             (. v) => MaterialUi_Helpers.unwrapValue(v),
-            _Actions,
+            _ActionsComponent,
           ),
         ~backIconButtonProps?,
         ~colSpan=?

@@ -46,7 +46,7 @@ external makeProps :
     ~badgeContent: ReasonReact.reactElement,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_recn=?,
+    ~component: 'union_ra33=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -54,7 +54,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Badge/Badge"]
+[@bs.module "@material-ui/core/Badge/Badge"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

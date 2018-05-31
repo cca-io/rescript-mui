@@ -102,8 +102,8 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_r8sy=?,
-    ~elevation: 'number_v=?,
+    ~component: 'union_rpjg=?,
+    ~elevation: 'number_y=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -112,7 +112,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Paper/Paper"]
+[@bs.module "@material-ui/core/Paper/Paper"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

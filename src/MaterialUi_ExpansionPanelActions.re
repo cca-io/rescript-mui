@@ -34,7 +34,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/ExpansionPanel/ExpansionPanelActions"]
+[@bs.module "@material-ui/core/ExpansionPanelActions/ExpansionPanelActions"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

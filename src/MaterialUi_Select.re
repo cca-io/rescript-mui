@@ -40,29 +40,30 @@ external makeProps :
   (
     ~autoWidth: bool=?,
     ~displayEmpty: bool=?,
+    ~_IconComponent: 'union_r5oa=?,
     ~input: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
     ~_MenuProps: Js.t({..})=?,
     ~multiple: bool=?,
     ~native: bool=?,
-    ~onChange: 'any_rfe8=?,
-    ~onClose: 'any_ry4w=?,
-    ~onOpen: 'any_r8nv=?,
-    ~_open: bool=?,
-    ~renderValue: 'any_r8qt=?,
+    ~onChange: 'any_rqqy=?,
+    ~onClose: 'any_r4hv=?,
+    ~onOpen: 'any_r2h4=?,
+    ~open_: bool=?,
+    ~renderValue: 'any_rzpw=?,
     ~_SelectDisplayProps: Js.t({..})=?,
-    ~value: 'union_ruwa=?,
+    ~value: 'union_rarx=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_r3rg=?,
+    ~defaultValue: 'union_rmbr=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_ro5v=?,
+    ~inputComponent: 'any_rjad=?,
     ~inputRef: 'genericCallback=?,
     ~margin: string=?,
     ~multiline: bool=?,
@@ -75,10 +76,10 @@ external makeProps :
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
-    ~rows: 'union_ra0q=?,
-    ~rowsMax: 'union_r2or=?,
+    ~rows: 'union_rgtg=?,
+    ~rowsMax: 'union_rw16=?,
     ~startAdornment: ReasonReact.reactElement=?,
-    ~_type: string=?,
+    ~type_: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -86,13 +87,15 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Select/Select"]
+[@bs.module "@material-ui/core/Select/Select"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
     (
       ~autoWidth: option(bool)=?,
       ~displayEmpty: option(bool)=?,
+      ~_IconComponent:
+         option([ | `String(string) | `Callback('genericCallback)])=?,
       ~input: option(ReasonReact.reactElement)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~_MenuProps: option(Js.t({..}))=?,
@@ -101,8 +104,8 @@ let make =
       ~onChange: option((ReactEventRe.Form.t, Js.t({..})) => unit)=?,
       ~onClose: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onOpen: option(ReactEventRe.Synthetic.t => unit)=?,
-      ~_open: option(bool)=?,
-      ~renderValue: option('any_rxwk => ReasonReact.reactElement)=?,
+      ~open_: option(bool)=?,
+      ~renderValue: option('any_rs7g => ReasonReact.reactElement)=?,
       ~_SelectDisplayProps: option(Js.t({..}))=?,
       ~value:
          option(
@@ -126,7 +129,7 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_ro5v)=?,
+      ~inputComponent: option('any_rjad)=?,
       ~inputRef: option('genericCallback)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
@@ -142,7 +145,7 @@ let make =
       ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(ReasonReact.reactElement)=?,
-      ~_type: option(string)=?,
+      ~type_: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -153,6 +156,11 @@ let make =
       makeProps(
         ~autoWidth?,
         ~displayEmpty?,
+        ~_IconComponent=?
+          Js.Option.map(
+            (. v) => MaterialUi_Helpers.unwrapValue(v),
+            _IconComponent,
+          ),
         ~input?,
         ~inputProps?,
         ~_MenuProps?,
@@ -161,7 +169,7 @@ let make =
         ~onChange?,
         ~onClose?,
         ~onOpen?,
-        ~_open?,
+        ~open_?,
         ~renderValue?,
         ~_SelectDisplayProps?,
         ~value=?
@@ -201,7 +209,7 @@ let make =
             rowsMax,
           ),
         ~startAdornment?,
-        ~_type?,
+        ~type_?,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,
         (),

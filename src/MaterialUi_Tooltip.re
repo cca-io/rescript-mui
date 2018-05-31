@@ -16,7 +16,6 @@ type placement = [
 
 module Classes = {
   type classesType =
-    | Root(string)
     | Popper(string)
     | Open(string)
     | Tooltip(string)
@@ -28,7 +27,6 @@ module Classes = {
   type t = list(classesType);
   let to_string =
     fun
-    | Root(_) => "root"
     | Popper(_) => "popper"
     | Open(_) => "open"
     | Tooltip(_) => "tooltip"
@@ -43,7 +41,6 @@ module Classes = {
          ~f=
            (obj, classType) => {
              switch (classType) {
-             | Root(className)
              | Popper(className)
              | Open(className)
              | Tooltip(className)
@@ -67,14 +64,14 @@ external makeProps :
     ~disableFocusListener: bool=?,
     ~disableHoverListener: bool=?,
     ~disableTouchListener: bool=?,
-    ~enterDelay: 'number_o=?,
-    ~enterTouchDelay: 'number_i=?,
+    ~enterDelay: 'number_u=?,
+    ~enterTouchDelay: 'number_m=?,
     ~id: string=?,
-    ~leaveDelay: 'number_4=?,
-    ~leaveTouchDelay: 'number_o=?,
-    ~onClose: 'any_rif8=?,
-    ~onOpen: 'any_rwuq=?,
-    ~_open: bool=?,
+    ~leaveDelay: 'number_9=?,
+    ~leaveTouchDelay: 'number_q=?,
+    ~onClose: 'any_rz7y=?,
+    ~onOpen: 'any_r5ra=?,
+    ~open_: bool=?,
     ~placement: string=?,
     ~_PopperProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
@@ -86,7 +83,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Tooltip/Tooltip"]
+[@bs.module "@material-ui/core/Tooltip/Tooltip"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -102,7 +99,7 @@ let make =
       ~leaveTouchDelay: option([ | `Int(int) | `Float(float)])=?,
       ~onClose: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onOpen: option(ReactEventRe.Synthetic.t => unit)=?,
-      ~_open: option(bool)=?,
+      ~open_: option(bool)=?,
       ~placement: option(placement)=?,
       ~_PopperProps: option(Js.t({..}))=?,
       ~theme: option(Js.t({..}))=?,
@@ -142,7 +139,7 @@ let make =
           ),
         ~onClose?,
         ~onOpen?,
-        ~_open?,
+        ~open_?,
         ~placement=?Js.Option.map((. v) => placementToJs(v), placement),
         ~_PopperProps?,
         ~theme?,

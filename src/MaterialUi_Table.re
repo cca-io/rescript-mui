@@ -24,7 +24,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_r5ca=?,
+    ~component: 'union_rt0d=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -32,7 +32,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Table/Table"]
+[@bs.module "@material-ui/core/Table/Table"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

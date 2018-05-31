@@ -4,7 +4,7 @@ external makeProps :
     ~className: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
-    ~component: 'union_rkib=?,
+    ~component: 'union_rmku=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: ReasonReact.reactElement=?,
@@ -13,7 +13,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Menu/MenuList"]
+[@bs.module "@material-ui/core/MenuList/MenuList"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

@@ -33,7 +33,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rpg3=?,
+    ~component: 'union_r2hz=?,
     ~disableTypography: bool=?,
     ~position: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -43,7 +43,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Input/InputAdornment"]
+[@bs.module "@material-ui/core/InputAdornment/InputAdornment"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

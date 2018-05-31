@@ -120,6 +120,8 @@ module Modal = MaterialUi_Modal;
 
 module MuiThemeProvider = MaterialUi_MuiThemeProvider;
 
+module NativeSelect = MaterialUi_NativeSelect;
+
 module Paper = MaterialUi_Paper;
 
 module Popover = MaterialUi_Popover;
@@ -130,6 +132,8 @@ module RadioGroup = MaterialUi_RadioGroup;
 
 module Radio = MaterialUi_Radio;
 
+module RootRef = MaterialUi_RootRef;
+
 module Select = MaterialUi_Select;
 
 module Slide = MaterialUi_Slide;
@@ -139,6 +143,8 @@ module SnackbarContent = MaterialUi_SnackbarContent;
 module Snackbar = MaterialUi_Snackbar;
 
 module StepButton = MaterialUi_StepButton;
+
+module StepConnector = MaterialUi_StepConnector;
 
 module StepContent = MaterialUi_StepContent;
 

@@ -42,7 +42,7 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_rjtw=?,
+    ~checked: 'union_r4hr=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~color: string=?,
     ~disabled: bool=?,
@@ -53,8 +53,8 @@ external makeProps :
     ~indeterminateIcon: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
     ~inputRef: 'genericCallback=?,
-    ~onChange: 'any_rx2t=?,
-    ~_type: string=?,
+    ~onChange: 'any_rxyp=?,
+    ~type_: string=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -63,7 +63,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Checkbox/Checkbox"]
+[@bs.module "@material-ui/core/Checkbox/Checkbox"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -80,7 +80,7 @@ let make =
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef: option('genericCallback)=?,
       ~onChange: option((ReactEventRe.Form.t, bool) => unit)=?,
-      ~_type: option(string)=?,
+      ~type_: option(string)=?,
       ~value: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -106,7 +106,7 @@ let make =
         ~inputProps?,
         ~inputRef?,
         ~onChange?,
-        ~_type?,
+        ~type_?,
         ~value?,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,

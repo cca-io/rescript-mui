@@ -26,11 +26,11 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~cellHeight: 'union_rozr=?,
+    ~cellHeight: 'union_rpb5=?,
     ~className: string=?,
-    ~cols: 'number_x=?,
-    ~component: 'union_ri3n=?,
-    ~spacing: 'number_f=?,
+    ~cols: 'number_f=?,
+    ~component: 'union_rk8a=?,
+    ~spacing: 'number_p=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -38,7 +38,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/GridList/GridList"]
+[@bs.module "@material-ui/core/GridList/GridList"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

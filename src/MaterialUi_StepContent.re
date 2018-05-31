@@ -4,42 +4,10 @@ type orientation = [
   | [@bs.as "vertical"] `Vertical
 ];
 
-type typeTransitionDuration_shape;
-
-[@bs.obj]
-external makeTransitionDuration_shape :
-  (~enter: 'number_5=?, ~exit: 'number_o=?, unit) =>
-  typeTransitionDuration_shape =
-  "";
-
-[@bs.get_index]
-external getFromTransitionDuration_shape :
-  (typeTransitionDuration_shape, string) => 'a =
-  "";
-
-let convertTransitionDuration_shape = (madeObj: typeTransitionDuration_shape) => {
-  let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-  Js.Dict.set(
-    returnObj,
-    "enter",
-    MaterialUi_Helpers.toJsUnsafe(
-      Js.Option.map(
-        (. v) => MaterialUi_Helpers.unwrapValue(v),
-        getFromTransitionDuration_shape(madeObj, "enter"),
-      ),
-    ),
-  );
-  Js.Dict.set(
-    returnObj,
-    "exit",
-    MaterialUi_Helpers.toJsUnsafe(
-      Js.Option.map(
-        (. v) => MaterialUi_Helpers.unwrapValue(v),
-        getFromTransitionDuration_shape(madeObj, "exit"),
-      ),
-    ),
-  );
-  returnObj;
+[@bs.deriving abstract]
+type transitionDuration_shape = {
+  enter: [ | `Int(int) | `Float(float)],
+  exit: [ | `Int(int) | `Float(float)],
 };
 
 [@bs.deriving jsConverter]
@@ -83,8 +51,9 @@ external makeProps :
     ~last: bool=?,
     ~optional: bool=?,
     ~orientation: string=?,
-    ~transition: 'genericCallback=?,
-    ~transitionDuration: 'union_rcqp=?,
+    ~_TransitionComponent: 'genericCallback=?,
+    ~transitionDuration: 'union_r6wk=?,
+    ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -92,7 +61,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Stepper/StepContent"]
+[@bs.module "@material-ui/core/StepContent/StepContent"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -104,16 +73,17 @@ let make =
       ~last: option(bool)=?,
       ~optional: option(bool)=?,
       ~orientation: option(orientation)=?,
-      ~transition: option('genericCallback)=?,
+      ~_TransitionComponent: option('genericCallback)=?,
       ~transitionDuration:
          option(
            [
              | `Int(int)
              | `Float(float)
-             | `Object(typeTransitionDuration_shape)
+             | `Object(transitionDuration_shape)
              | `Enum(transitionDuration_enum)
            ],
          )=?,
+      ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -130,7 +100,7 @@ let make =
         ~optional?,
         ~orientation=?
           Js.Option.map((. v) => orientationToJs(v), orientation),
-        ~transition?,
+        ~_TransitionComponent?,
         ~transitionDuration=?
           Js.Option.map(
             (. v) =>
@@ -139,14 +109,11 @@ let make =
                 MaterialUi_Helpers.unwrapValue(
                   `String(transitionDuration_enumToJs(v)),
                 )
-              | `Object(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `Element(convertTransitionDuration_shape(v)),
-                )
               | v => MaterialUi_Helpers.unwrapValue(v)
               },
             transitionDuration,
           ),
+        ~_TransitionProps?,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,
         (),

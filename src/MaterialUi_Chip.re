@@ -43,13 +43,13 @@ external makeProps :
   (
     ~avatar: ReasonReact.reactElement=?,
     ~className: string=?,
-    ~component: 'union_r4od=?,
+    ~component: 'union_ro01=?,
     ~deleteIcon: ReasonReact.reactElement=?,
     ~label: ReasonReact.reactElement=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~onDelete: ReactEventRe.Synthetic.t => unit=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
-    ~tabIndex: 'union_r7b7=?,
+    ~tabIndex: 'union_reg8=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -57,7 +57,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Chip/Chip"]
+[@bs.module "@material-ui/core/Chip/Chip"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

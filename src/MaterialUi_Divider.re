@@ -34,7 +34,7 @@ external makeProps :
   (
     ~absolute: bool=?,
     ~className: string=?,
-    ~component: 'union_rd4z=?,
+    ~component: 'union_rdw6=?,
     ~inset: bool=?,
     ~light: bool=?,
     ~classes: Js.Dict.t(string)=?,
@@ -44,7 +44,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Divider/Divider"]
+[@bs.module "@material-ui/core/Divider/Divider"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

@@ -72,7 +72,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/GridList/GridListTileBar"]
+[@bs.module "@material-ui/core/GridListTileBar/GridListTileBar"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

@@ -50,15 +50,16 @@ external makeProps :
     ~color: string=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
-    ~buttonRef: 'genericCallback=?,
+    ~action: 'any_rlbb=?,
+    ~buttonRef: 'union_rftk=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rk1y=?,
+    ~component: 'union_ri1y=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
-    ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+    ~onFocusVisible: 'genericCallback=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
     ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
@@ -68,9 +69,9 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rhwi=?,
+    ~tabIndex: 'union_r583=?,
     ~_TouchRippleProps: Js.t({..})=?,
-    ~_type: string=?,
+    ~type_: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -78,7 +79,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/IconButton/IconButton"]
+[@bs.module "@material-ui/core/IconButton/IconButton"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -87,7 +88,11 @@ let make =
       ~color: option(color)=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
-      ~buttonRef: option('genericCallback)=?,
+      ~action: option(Js.t({..}) => unit)=?,
+      ~buttonRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~centerRipple: option(bool)=?,
       ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~focusRipple: option(bool)=?,
@@ -95,7 +100,7 @@ let make =
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
       ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
       ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
-      ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+      ~onFocusVisible: option('genericCallback)=?,
       ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
       ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
@@ -107,7 +112,7 @@ let make =
       ~role: option(string)=?,
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
-      ~_type: option(string)=?,
+      ~type_: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -120,7 +125,12 @@ let make =
         ~color=?Js.Option.map((. v) => colorToJs(v), color),
         ~disabled?,
         ~disableRipple?,
-        ~buttonRef?,
+        ~action?,
+        ~buttonRef=?
+          Js.Option.map(
+            (. v) => MaterialUi_Helpers.unwrapValue(v),
+            buttonRef,
+          ),
         ~centerRipple?,
         ~component=?
           Js.Option.map(
@@ -132,7 +142,7 @@ let make =
         ~onBlur?,
         ~onClick?,
         ~onFocus?,
-        ~onKeyboardFocus?,
+        ~onFocusVisible?,
         ~onKeyDown?,
         ~onKeyUp?,
         ~onMouseDown?,
@@ -148,7 +158,7 @@ let make =
             tabIndex,
           ),
         ~_TouchRippleProps?,
-        ~_type?,
+        ~type_?,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,
         (),

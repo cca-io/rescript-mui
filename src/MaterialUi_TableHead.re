@@ -1,9 +1,9 @@
 [@bs.obj]
 external makeProps :
-  (~className: string=?, ~component: 'union_rweq=?, unit) => _ =
+  (~className: string=?, ~component: 'union_r3wz=?, unit) => _ =
   "";
 
-[@bs.module "material-ui/Table/TableHead"]
+[@bs.module "@material-ui/core/TableHead/TableHead"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

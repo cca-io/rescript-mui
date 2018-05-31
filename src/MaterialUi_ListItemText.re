@@ -50,7 +50,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/List/ListItemText"]
+[@bs.module "@material-ui/core/ListItemText/ListItemText"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

@@ -35,7 +35,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Dialog/DialogActions"]
+[@bs.module "@material-ui/core/DialogActions/DialogActions"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

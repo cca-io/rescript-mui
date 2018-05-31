@@ -33,9 +33,9 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~cols: 'number_1=?,
-    ~component: 'union_rgui=?,
-    ~rows: 'number_u=?,
+    ~cols: 'number_3=?,
+    ~component: 'union_rj3a=?,
+    ~rows: 'number_j=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -43,7 +43,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/GridList/GridListTile"]
+[@bs.module "@material-ui/core/GridListTile/GridListTile"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

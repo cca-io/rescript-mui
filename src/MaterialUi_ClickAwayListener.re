@@ -24,7 +24,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/utils/ClickAwayListener"]
+[@bs.module "@material-ui/core/ClickAwayListener/ClickAwayListener"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

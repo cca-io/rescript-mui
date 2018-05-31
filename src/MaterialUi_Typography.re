@@ -129,7 +129,7 @@ external makeProps :
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rd4m=?,
+    ~component: 'union_rtq4=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~noWrap: bool=?,
@@ -142,7 +142,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Typography/Typography"]
+[@bs.module "@material-ui/core/Typography/Typography"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

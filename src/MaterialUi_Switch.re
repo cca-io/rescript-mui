@@ -54,7 +54,7 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_r1ml=?,
+    ~checked: 'union_rdf6=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~className: string=?,
     ~color: string=?,
@@ -65,8 +65,8 @@ external makeProps :
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
     ~inputRef: 'genericCallback=?,
-    ~onChange: 'any_rd2u=?,
-    ~_type: string=?,
+    ~onChange: 'any_r3l5=?,
+    ~type_: string=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -75,7 +75,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Switch/Switch"]
+[@bs.module "@material-ui/core/Switch/Switch"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -92,7 +92,7 @@ let make =
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef: option('genericCallback)=?,
       ~onChange: option((ReactEventRe.Form.t, bool) => unit)=?,
-      ~_type: option(string)=?,
+      ~type_: option(string)=?,
       ~value: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -118,7 +118,7 @@ let make =
         ~inputProps?,
         ~inputRef?,
         ~onChange?,
-        ~_type?,
+        ~type_?,
         ~value?,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,

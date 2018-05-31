@@ -63,8 +63,8 @@ external makeProps :
     ~className: string=?,
     ~color: string=?,
     ~position: string=?,
-    ~component: 'union_r2vg=?,
-    ~elevation: 'number_z=?,
+    ~component: 'union_rw1q=?,
+    ~elevation: 'number_a=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -73,7 +73,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/AppBar/AppBar"]
+[@bs.module "@material-ui/core/AppBar/AppBar"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

@@ -11,7 +11,7 @@ external makeProps :
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rhwr=?,
+    ~defaultValue: 'union_r2jo=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -27,23 +27,23 @@ external makeProps :
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
-    ~onChange: 'any_ruqm=?,
+    ~onChange: 'any_r1we=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_rce0=?,
-    ~rowsMax: 'union_r844=?,
+    ~rows: 'union_r7jw=?,
+    ~rowsMax: 'union_rzss=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
-    ~_type: string=?,
-    ~value: 'union_rr9r=?,
-    ~component: 'union_rkmg=?,
+    ~type_: string=?,
+    ~value: 'union_rw61=?,
+    ~component: 'union_r4xm=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "material-ui/TextField/TextField"]
+[@bs.module "@material-ui/core/TextField/TextField"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -76,7 +76,7 @@ let make =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~select: option(bool)=?,
       ~_SelectProps: option(Js.t({..}))=?,
-      ~_type: option(string)=?,
+      ~type_: option(string)=?,
       ~value:
          option(
            [
@@ -131,7 +131,7 @@ let make =
           ),
         ~select?,
         ~_SelectProps?,
-        ~_type?,
+        ~type_?,
         ~value=?
           Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
         ~component=?

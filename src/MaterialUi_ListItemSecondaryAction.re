@@ -31,7 +31,9 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/List/ListItemSecondaryAction"]
+[@bs.module
+  "@material-ui/core/ListItemSecondaryAction/ListItemSecondaryAction"
+]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

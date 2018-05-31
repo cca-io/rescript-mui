@@ -36,7 +36,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rxas=?,
+    ~component: 'union_r4nd=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~focused: bool=?,
@@ -48,7 +48,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Form/FormLabel"]
+[@bs.module "@material-ui/core/FormLabel/FormLabel"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

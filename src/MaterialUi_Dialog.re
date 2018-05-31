@@ -6,42 +6,10 @@ type maxWidth = [
   | [@bs.as "false"] `False
 ];
 
-type typeTransitionDuration_shape;
-
-[@bs.obj]
-external makeTransitionDuration_shape :
-  (~enter: 'number_w=?, ~exit: 'number_v=?, unit) =>
-  typeTransitionDuration_shape =
-  "";
-
-[@bs.get_index]
-external getFromTransitionDuration_shape :
-  (typeTransitionDuration_shape, string) => 'a =
-  "";
-
-let convertTransitionDuration_shape = (madeObj: typeTransitionDuration_shape) => {
-  let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-  Js.Dict.set(
-    returnObj,
-    "enter",
-    MaterialUi_Helpers.toJsUnsafe(
-      Js.Option.map(
-        (. v) => MaterialUi_Helpers.unwrapValue(v),
-        getFromTransitionDuration_shape(madeObj, "enter"),
-      ),
-    ),
-  );
-  Js.Dict.set(
-    returnObj,
-    "exit",
-    MaterialUi_Helpers.toJsUnsafe(
-      Js.Option.map(
-        (. v) => MaterialUi_Helpers.unwrapValue(v),
-        getFromTransitionDuration_shape(madeObj, "exit"),
-      ),
-    ),
-  );
-  returnObj;
+[@bs.deriving abstract]
+type transitionDuration_shape = {
+  enter: [ | `Int(int) | `Float(float)],
+  exit: [ | `Int(int) | `Float(float)],
 };
 
 module Classes = {
@@ -95,7 +63,7 @@ external makeProps :
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEventRe.Mouse.t => unit=?,
-    ~onClose: 'any_rp99=?,
+    ~onClose: 'any_rutj=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -103,12 +71,13 @@ external makeProps :
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~onExited: ReactEventRe.Synthetic.t => unit=?,
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
-    ~_open: bool,
+    ~open_: bool,
     ~_PaperProps: Js.t({..})=?,
-    ~transition: 'union_rbv9=?,
-    ~transitionDuration: 'union_r6mj=?,
-    ~_BackdropComponent: 'union_rn64=?,
-    ~container: 'union_rvsv=?,
+    ~_TransitionComponent: 'union_reo7=?,
+    ~transitionDuration: 'union_ri62=?,
+    ~_TransitionProps: Js.t({..})=?,
+    ~_BackdropComponent: 'union_rbjn=?,
+    ~container: 'union_r8pp=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disableRestoreFocus: bool=?,
@@ -123,7 +92,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Dialog/Dialog"]
+[@bs.module "@material-ui/core/Dialog/Dialog"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -144,18 +113,19 @@ let make =
       ~onExit: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onExited: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onExiting: option(ReactEventRe.Synthetic.t => unit)=?,
-      ~_open: bool,
+      ~open_: bool,
       ~_PaperProps: option(Js.t({..}))=?,
-      ~transition:
+      ~_TransitionComponent:
          option([ | `String(string) | `Callback('genericCallback)])=?,
       ~transitionDuration:
          option(
            [
              | `Int(int)
              | `Float(float)
-             | `Object(typeTransitionDuration_shape)
+             | `Object(transitionDuration_shape)
            ],
          )=?,
+      ~_TransitionProps: option(Js.t({..}))=?,
       ~_BackdropComponent:
          option([ | `String(string) | `Callback('genericCallback)])=?,
       ~container:
@@ -193,25 +163,19 @@ let make =
         ~onExit?,
         ~onExited?,
         ~onExiting?,
-        ~_open,
+        ~open_,
         ~_PaperProps?,
-        ~transition=?
+        ~_TransitionComponent=?
           Js.Option.map(
             (. v) => MaterialUi_Helpers.unwrapValue(v),
-            transition,
+            _TransitionComponent,
           ),
         ~transitionDuration=?
           Js.Option.map(
-            (. v) =>
-              switch (v) {
-              | `Object(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `Element(convertTransitionDuration_shape(v)),
-                )
-              | v => MaterialUi_Helpers.unwrapValue(v)
-              },
+            (. v) => MaterialUi_Helpers.unwrapValue(v),
             transitionDuration,
           ),
+        ~_TransitionProps?,
         ~_BackdropComponent=?
           Js.Option.map(
             (. v) => MaterialUi_Helpers.unwrapValue(v),

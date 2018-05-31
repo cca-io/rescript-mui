@@ -6,42 +6,10 @@ type anchor = [
   | [@bs.as "bottom"] `Bottom
 ];
 
-type typeTransitionDuration_shape;
-
-[@bs.obj]
-external makeTransitionDuration_shape :
-  (~enter: 'number_e=?, ~exit: 'number_s=?, unit) =>
-  typeTransitionDuration_shape =
-  "";
-
-[@bs.get_index]
-external getFromTransitionDuration_shape :
-  (typeTransitionDuration_shape, string) => 'a =
-  "";
-
-let convertTransitionDuration_shape = (madeObj: typeTransitionDuration_shape) => {
-  let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-  Js.Dict.set(
-    returnObj,
-    "enter",
-    MaterialUi_Helpers.toJsUnsafe(
-      Js.Option.map(
-        (. v) => MaterialUi_Helpers.unwrapValue(v),
-        getFromTransitionDuration_shape(madeObj, "enter"),
-      ),
-    ),
-  );
-  Js.Dict.set(
-    returnObj,
-    "exit",
-    MaterialUi_Helpers.toJsUnsafe(
-      Js.Option.map(
-        (. v) => MaterialUi_Helpers.unwrapValue(v),
-        getFromTransitionDuration_shape(madeObj, "exit"),
-      ),
-    ),
-  );
-  returnObj;
+[@bs.deriving abstract]
+type transitionDuration_shape = {
+  enter: [ | `Int(int) | `Float(float)],
+  exit: [ | `Int(int) | `Float(float)],
 };
 
 [@bs.deriving jsConverter]
@@ -59,23 +27,23 @@ external makeProps :
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rko4,
-    ~onOpen: 'any_ru63,
-    ~_open: bool,
+    ~onClose: 'any_rs6j,
+    ~onOpen: 'any_ra0b,
+    ~open_: bool,
     ~_PaperProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_c=?,
+    ~swipeAreaWidth: 'number_4=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rp21=?,
+    ~transitionDuration: 'union_r6uw=?,
     ~variant: string=?,
     ~className: string=?,
-    ~elevation: 'number_j=?,
+    ~elevation: 'number_b=?,
     ~_SlideProps: Js.t({..})=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "material-ui/SwipeableDrawer/SwipeableDrawer"]
+[@bs.module "@material-ui/core/SwipeableDrawer/SwipeableDrawer"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -87,7 +55,7 @@ let make =
       ~_ModalProps: option(Js.t({..}))=?,
       ~onClose: ReactEventRe.Synthetic.t => unit,
       ~onOpen: ReactEventRe.Synthetic.t => unit,
-      ~_open: bool,
+      ~open_: bool,
       ~_PaperProps: option(Js.t({..}))=?,
       ~swipeAreaWidth: option([ | `Int(int) | `Float(float)])=?,
       ~theme: option(Js.t({..}))=?,
@@ -96,7 +64,7 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(typeTransitionDuration_shape)
+             | `Object(transitionDuration_shape)
            ],
          )=?,
       ~variant: option(variant)=?,
@@ -116,7 +84,7 @@ let make =
         ~_ModalProps?,
         ~onClose,
         ~onOpen,
-        ~_open,
+        ~open_,
         ~_PaperProps?,
         ~swipeAreaWidth=?
           Js.Option.map(
@@ -126,14 +94,7 @@ let make =
         ~theme?,
         ~transitionDuration=?
           Js.Option.map(
-            (. v) =>
-              switch (v) {
-              | `Object(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `Element(convertTransitionDuration_shape(v)),
-                )
-              | v => MaterialUi_Helpers.unwrapValue(v)
-              },
+            (. v) => MaterialUi_Helpers.unwrapValue(v),
             transitionDuration,
           ),
         ~variant=?Js.Option.map((. v) => variantToJs(v), variant),

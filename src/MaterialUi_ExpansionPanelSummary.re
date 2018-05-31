@@ -44,15 +44,16 @@ external makeProps :
     ~expandIcon: ReasonReact.reactElement=?,
     ~onChange: ReactEventRe.Form.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
-    ~buttonRef: 'genericCallback=?,
+    ~action: 'any_rynt=?,
+    ~buttonRef: 'union_rmv5=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rhds=?,
+    ~component: 'union_rwd2=?,
     ~disableRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
-    ~onKeyboardFocus: ReactEventRe.Focus.t => unit=?,
+    ~onFocusVisible: 'genericCallback=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
     ~onMouseDown: ReactEventRe.Mouse.t => unit=?,
@@ -62,9 +63,9 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rxkd=?,
+    ~tabIndex: 'union_r7p8=?,
     ~_TouchRippleProps: Js.t({..})=?,
-    ~_type: string=?,
+    ~type_: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -72,7 +73,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/ExpansionPanel/ExpansionPanelSummary"]
+[@bs.module "@material-ui/core/ExpansionPanelSummary/ExpansionPanelSummary"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -83,7 +84,11 @@ let make =
       ~expandIcon: option(ReasonReact.reactElement)=?,
       ~onChange: option(ReactEventRe.Form.t => unit)=?,
       ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
-      ~buttonRef: option('genericCallback)=?,
+      ~action: option(Js.t({..}) => unit)=?,
+      ~buttonRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~centerRipple: option(bool)=?,
       ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~disableRipple: option(bool)=?,
@@ -91,7 +96,7 @@ let make =
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
       ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
-      ~onKeyboardFocus: option(ReactEventRe.Focus.t => unit)=?,
+      ~onFocusVisible: option('genericCallback)=?,
       ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
       ~onMouseDown: option(ReactEventRe.Mouse.t => unit)=?,
@@ -103,7 +108,7 @@ let make =
       ~role: option(string)=?,
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
-      ~_type: option(string)=?,
+      ~type_: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -118,7 +123,12 @@ let make =
         ~expandIcon?,
         ~onChange?,
         ~onClick?,
-        ~buttonRef?,
+        ~action?,
+        ~buttonRef=?
+          Js.Option.map(
+            (. v) => MaterialUi_Helpers.unwrapValue(v),
+            buttonRef,
+          ),
         ~centerRipple?,
         ~component=?
           Js.Option.map(
@@ -130,7 +140,7 @@ let make =
         ~focusVisibleClassName?,
         ~onBlur?,
         ~onFocus?,
-        ~onKeyboardFocus?,
+        ~onFocusVisible?,
         ~onKeyDown?,
         ~onKeyUp?,
         ~onMouseDown?,
@@ -146,7 +156,7 @@ let make =
             tabIndex,
           ),
         ~_TouchRippleProps?,
-        ~_type?,
+        ~type_?,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,
         (),

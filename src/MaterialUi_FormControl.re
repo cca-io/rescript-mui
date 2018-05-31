@@ -40,7 +40,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rd6m=?,
+    ~component: 'union_roqc=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
@@ -55,7 +55,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Form/FormControl"]
+[@bs.module "@material-ui/core/FormControl/FormControl"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

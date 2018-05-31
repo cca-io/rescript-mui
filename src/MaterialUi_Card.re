@@ -25,8 +25,8 @@ external makeProps :
   (
     ~className: string=?,
     ~raised: bool=?,
-    ~component: 'union_r1q3=?,
-    ~elevation: 'number_a=?,
+    ~component: 'union_rrrc=?,
+    ~elevation: 'number_u=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -35,7 +35,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Card/Card"]
+[@bs.module "@material-ui/core/Card/Card"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

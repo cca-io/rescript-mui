@@ -60,7 +60,7 @@ external makeProps :
     ~className: string=?,
     ~align: string=?,
     ~color: string=?,
-    ~component: 'union_rib1=?,
+    ~component: 'union_ruwj=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~noWrap: bool=?,
@@ -73,7 +73,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Dialog/DialogContentText"]
+[@bs.module "@material-ui/core/DialogContentText/DialogContentText"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

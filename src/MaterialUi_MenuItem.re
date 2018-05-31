@@ -27,19 +27,20 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rjuh=?,
+    ~component: 'union_rull=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~value: 'union_rcxy=?,
+    ~value: 'union_rdnq=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~button: bool=?,
-    ~_ContainerComponent: 'union_rxr5=?,
+    ~_ContainerComponent: 'union_rg1a=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
     ~disableGutters: bool=?,
     ~divider: bool=?,
+    ~focusVisibleClassName: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -47,7 +48,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Menu/MenuItem"]
+[@bs.module "@material-ui/core/MenuItem/MenuItem"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -75,6 +76,7 @@ let make =
       ~disabled: option(bool)=?,
       ~disableGutters: option(bool)=?,
       ~divider: option(bool)=?,
+      ~focusVisibleClassName: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -106,6 +108,7 @@ let make =
         ~disabled?,
         ~disableGutters?,
         ~divider?,
+        ~focusVisibleClassName?,
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,
         (),

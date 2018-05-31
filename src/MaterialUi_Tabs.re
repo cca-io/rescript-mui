@@ -67,18 +67,19 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~action: 'any_r4k7=?,
+    ~action: 'any_rqwg=?,
     ~centered: bool=?,
     ~className: string=?,
     ~fullWidth: bool=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_r760=?,
+    ~onChange: 'any_r8ww=?,
     ~scrollable: bool=?,
+    ~_ScrollButtonComponent: 'union_rf02=?,
     ~scrollButtons: string=?,
-    ~_TabScrollButton: 'union_rtgg=?,
+    ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_rj4r=?,
+    ~value: 'any_rht1=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -86,7 +87,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Tabs/Tabs"]
+[@bs.module "@material-ui/core/Tabs/Tabs"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -98,12 +99,13 @@ let make =
       ~indicatorColor: option(indicatorColor)=?,
       ~onChange: option((ReactEventRe.Form.t, int) => unit)=?,
       ~scrollable: option(bool)=?,
-      ~scrollButtons: option(scrollButtons)=?,
-      ~_TabScrollButton:
+      ~_ScrollButtonComponent:
          option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~scrollButtons: option(scrollButtons)=?,
+      ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_rj4r)=?,
+      ~value: option('any_rht1)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -120,13 +122,14 @@ let make =
           Js.Option.map((. v) => indicatorColorToJs(v), indicatorColor),
         ~onChange?,
         ~scrollable?,
-        ~scrollButtons=?
-          Js.Option.map((. v) => scrollButtonsToJs(v), scrollButtons),
-        ~_TabScrollButton=?
+        ~_ScrollButtonComponent=?
           Js.Option.map(
             (. v) => MaterialUi_Helpers.unwrapValue(v),
-            _TabScrollButton,
+            _ScrollButtonComponent,
           ),
+        ~scrollButtons=?
+          Js.Option.map((. v) => scrollButtonsToJs(v), scrollButtons),
+        ~_TabIndicatorProps?,
         ~textColor=?Js.Option.map((. v) => textColorToJs(v), textColor),
         ~theme?,
         ~value?,

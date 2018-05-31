@@ -15,21 +15,25 @@ type variant = [
 module Classes = {
   type classesType =
     | Root(string)
+    | Static(string)
+    | Indeterminate(string)
     | ColorPrimary(string)
     | ColorSecondary(string)
     | Svg(string)
-    | SvgIndeterminate(string)
     | Circle(string)
+    | CircleStatic(string)
     | CircleIndeterminate(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
+    | Static(_) => "static"
+    | Indeterminate(_) => "indeterminate"
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary"
     | Svg(_) => "svg"
-    | SvgIndeterminate(_) => "svgIndeterminate"
     | Circle(_) => "circle"
+    | CircleStatic(_) => "circleStatic"
     | CircleIndeterminate(_) => "circleIndeterminate";
   let to_obj = listOfClasses =>
     listOfClasses
@@ -38,11 +42,13 @@ module Classes = {
            (obj, classType) => {
              switch (classType) {
              | Root(className)
+             | Static(className)
+             | Indeterminate(className)
              | ColorPrimary(className)
              | ColorSecondary(className)
              | Svg(className)
-             | SvgIndeterminate(className)
              | Circle(className)
+             | CircleStatic(className)
              | CircleIndeterminate(className) =>
                Js.Dict.set(obj, to_string(classType), className)
              };
@@ -57,11 +63,9 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~max: 'number_l=?,
-    ~min: 'number_f=?,
-    ~size: 'union_r89b=?,
-    ~thickness: 'number_9=?,
-    ~value: 'number_y=?,
+    ~size: 'union_rjna=?,
+    ~thickness: 'number_i=?,
+    ~value: 'number_i=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -70,15 +74,13 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Progress/CircularProgress"]
+[@bs.module "@material-ui/core/CircularProgress/CircularProgress"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~max: option([ | `Int(int) | `Float(float)])=?,
-      ~min: option([ | `Int(int) | `Float(float)])=?,
       ~size: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~thickness: option([ | `Int(int) | `Float(float)])=?,
       ~value: option([ | `Int(int) | `Float(float)])=?,
@@ -93,10 +95,6 @@ let make =
       makeProps(
         ~className?,
         ~color=?Js.Option.map((. v) => colorToJs(v), color),
-        ~max=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), max),
-        ~min=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), min),
         ~size=?
           Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), size),
         ~thickness=?

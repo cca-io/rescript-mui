@@ -1,11 +1,11 @@
 [@bs.deriving jsConverter]
 type color = [
   | [@bs.as "inherit"] `Inherit
+  | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
   | [@bs.as "action"] `Action
-  | [@bs.as "disabled"] `Disabled
   | [@bs.as "error"] `Error
-  | [@bs.as "primary"] `Primary
+  | [@bs.as "disabled"] `Disabled
 ];
 
 module Classes = {
@@ -14,8 +14,8 @@ module Classes = {
     | ColorPrimary(string)
     | ColorSecondary(string)
     | ColorAction(string)
-    | ColorDisabled(string)
-    | ColorError(string);
+    | ColorError(string)
+    | ColorDisabled(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -23,8 +23,8 @@ module Classes = {
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary"
     | ColorAction(_) => "colorAction"
-    | ColorDisabled(_) => "colorDisabled"
-    | ColorError(_) => "colorError";
+    | ColorError(_) => "colorError"
+    | ColorDisabled(_) => "colorDisabled";
   let to_obj = listOfClasses =>
     listOfClasses
     |> StdLabels.List.fold_left(
@@ -35,8 +35,8 @@ module Classes = {
              | ColorPrimary(className)
              | ColorSecondary(className)
              | ColorAction(className)
-             | ColorDisabled(className)
-             | ColorError(className) =>
+             | ColorError(className)
+             | ColorDisabled(className) =>
                Js.Dict.set(obj, to_string(classType), className)
              };
              obj;
@@ -57,7 +57,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Icon/Icon"]
+[@bs.module "@material-ui/core/Icon/Icon"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

@@ -44,7 +44,7 @@ external makeProps :
     ~completed: bool=?,
     ~connector: ReasonReact.reactElement=?,
     ~disabled: bool=?,
-    ~index: 'number_4=?,
+    ~index: 'number_v=?,
     ~last: bool=?,
     ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -54,7 +54,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Stepper/Step"]
+[@bs.module "@material-ui/core/Step/Step"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

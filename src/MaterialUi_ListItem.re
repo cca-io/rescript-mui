@@ -52,14 +52,15 @@ external makeProps :
   (
     ~button: bool=?,
     ~className: string=?,
-    ~component: 'union_rzz2=?,
-    ~_ContainerComponent: 'union_rawz=?,
+    ~component: 'union_rt3r=?,
+    ~_ContainerComponent: 'union_rugm=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
     ~disableGutters: bool=?,
     ~divider: bool=?,
-    ~value: 'union_ry49=?,
+    ~focusVisibleClassName: string=?,
+    ~value: 'union_rn1d=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
@@ -69,7 +70,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/List/ListItem"]
+[@bs.module "@material-ui/core/ListItem/ListItem"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
@@ -84,6 +85,7 @@ let make =
       ~disabled: option(bool)=?,
       ~disableGutters: option(bool)=?,
       ~divider: option(bool)=?,
+      ~focusVisibleClassName: option(string)=?,
       ~value:
          option(
            [
@@ -120,6 +122,7 @@ let make =
         ~disabled?,
         ~disableGutters?,
         ~divider?,
+        ~focusVisibleClassName?,
         ~value=?
           Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
         ~onFocus?,

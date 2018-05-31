@@ -43,7 +43,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Stepper/StepIcon"]
+[@bs.module "@material-ui/core/StepIcon/StepIcon"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

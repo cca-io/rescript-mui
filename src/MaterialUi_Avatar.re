@@ -32,7 +32,7 @@ external makeProps :
     ~alt: string=?,
     ~childrenClassName: string=?,
     ~className: string=?,
-    ~component: 'union_rkft=?,
+    ~component: 'union_r55y=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,
@@ -44,7 +44,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Avatar/Avatar"]
+[@bs.module "@material-ui/core/Avatar/Avatar"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

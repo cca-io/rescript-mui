@@ -4,34 +4,18 @@ type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
 module Classes = {
   type classesType =
     | Root(string)
-    | FormControl(string)
-    | Focused(string)
+    | Select(string)
+    | SelectMenu(string)
     | Disabled(string)
-    | Underline(string)
-    | Error(string)
-    | Multiline(string)
-    | FullWidth(string)
-    | Input(string)
-    | InputMarginDense(string)
-    | InputMultiline(string)
-    | InputType(string)
-    | InputTypeSearch(string);
+    | Icon(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | FormControl(_) => "formControl"
-    | Focused(_) => "focused"
+    | Select(_) => "select"
+    | SelectMenu(_) => "selectMenu"
     | Disabled(_) => "disabled"
-    | Underline(_) => "underline"
-    | Error(_) => "error"
-    | Multiline(_) => "multiline"
-    | FullWidth(_) => "fullWidth"
-    | Input(_) => "input"
-    | InputMarginDense(_) => "inputMarginDense"
-    | InputMultiline(_) => "inputMultiline"
-    | InputType(_) => "inputType"
-    | InputTypeSearch(_) => "inputTypeSearch";
+    | Icon(_) => "icon";
   let to_obj = listOfClasses =>
     listOfClasses
     |> StdLabels.List.fold_left(
@@ -39,18 +23,10 @@ module Classes = {
            (obj, classType) => {
              switch (classType) {
              | Root(className)
-             | FormControl(className)
-             | Focused(className)
+             | Select(className)
+             | SelectMenu(className)
              | Disabled(className)
-             | Underline(className)
-             | Error(className)
-             | Multiline(className)
-             | FullWidth(className)
-             | Input(className)
-             | InputMarginDense(className)
-             | InputMultiline(className)
-             | InputType(className)
-             | InputTypeSearch(className) =>
+             | Icon(className) =>
                Js.Dict.set(obj, to_string(classType), className)
              };
              obj;
@@ -62,24 +38,27 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
+    ~_IconComponent: 'union_rqci=?,
+    ~input: ReasonReact.reactElement=?,
+    ~inputProps: Js.t({..})=?,
+    ~onChange: 'any_rvxa=?,
+    ~value: 'union_rad8=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rr01=?,
+    ~defaultValue: 'union_rdzh=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_r6ov=?,
-    ~inputProps: Js.t({..})=?,
+    ~inputComponent: 'any_r3iq=?,
     ~inputRef: 'genericCallback=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
-    ~onChange: 'any_r3ws=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
@@ -87,11 +66,10 @@ external makeProps :
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
-    ~rows: 'union_roey=?,
-    ~rowsMax: 'union_rctg=?,
+    ~rows: 'union_rw6r=?,
+    ~rowsMax: 'union_r5cz=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~type_: string=?,
-    ~value: 'union_rv11=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -99,11 +77,17 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "@material-ui/core/Input/Input"]
+[@bs.module "@material-ui/core/NativeSelect/NativeSelect"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
     (
+      ~_IconComponent:
+         option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~input: option(ReasonReact.reactElement)=?,
+      ~inputProps: option(Js.t({..}))=?,
+      ~onChange: option(ReactEventRe.Form.t => unit)=?,
+      ~value: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
@@ -115,14 +99,12 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_r6ov)=?,
-      ~inputProps: option(Js.t({..}))=?,
+      ~inputComponent: option('any_r3iq)=?,
       ~inputRef: option('genericCallback)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
-      ~onChange: option(ReactEventRe.Form.t => unit)=?,
       ~onEmpty: option('genericCallback)=?,
       ~onFilled: option('genericCallback)=?,
       ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
@@ -134,17 +116,6 @@ let make =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(ReasonReact.reactElement)=?,
       ~type_: option(string)=?,
-      ~value:
-         option(
-           [
-             | `String(string)
-             | `Int(int)
-             | `Float(float)
-             | `Array(
-                 array([ | `String(string) | `Int(int) | `Float(float)]),
-               )
-           ],
-         )=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -153,6 +124,16 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
+        ~_IconComponent=?
+          Js.Option.map(
+            (. v) => MaterialUi_Helpers.unwrapValue(v),
+            _IconComponent,
+          ),
+        ~input?,
+        ~inputProps?,
+        ~onChange?,
+        ~value=?
+          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
         ~autoComplete?,
         ~autoFocus?,
         ~className?,
@@ -168,13 +149,11 @@ let make =
         ~fullWidth?,
         ~id?,
         ~inputComponent?,
-        ~inputProps?,
         ~inputRef?,
         ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
         ~multiline?,
         ~name?,
         ~onBlur?,
-        ~onChange?,
         ~onEmpty?,
         ~onFilled?,
         ~onFocus?,
@@ -191,8 +170,6 @@ let make =
           ),
         ~startAdornment?,
         ~type_?,
-        ~value=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,
         (),

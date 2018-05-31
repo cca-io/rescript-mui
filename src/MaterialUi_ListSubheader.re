@@ -44,7 +44,7 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rgn8=?,
+    ~component: 'union_rwhk=?,
     ~disableSticky: bool=?,
     ~inset: bool=?,
     ~classes: Js.Dict.t(string)=?,
@@ -54,7 +54,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/List/ListSubheader"]
+[@bs.module "@material-ui/core/ListSubheader/ListSubheader"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

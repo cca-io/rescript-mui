@@ -1,36 +1,7 @@
-type typeTimeout_shape;
-
-[@bs.obj]
-external makeTimeout_shape :
-  (~enter: 'number_o=?, ~exit: 'number_f=?, unit) => typeTimeout_shape =
-  "";
-
-[@bs.get_index]
-external getFromTimeout_shape : (typeTimeout_shape, string) => 'a = "";
-
-let convertTimeout_shape = (madeObj: typeTimeout_shape) => {
-  let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-  Js.Dict.set(
-    returnObj,
-    "enter",
-    MaterialUi_Helpers.toJsUnsafe(
-      Js.Option.map(
-        (. v) => MaterialUi_Helpers.unwrapValue(v),
-        getFromTimeout_shape(madeObj, "enter"),
-      ),
-    ),
-  );
-  Js.Dict.set(
-    returnObj,
-    "exit",
-    MaterialUi_Helpers.toJsUnsafe(
-      Js.Option.map(
-        (. v) => MaterialUi_Helpers.unwrapValue(v),
-        getFromTimeout_shape(madeObj, "exit"),
-      ),
-    ),
-  );
-  returnObj;
+[@bs.deriving abstract]
+type timeout_shape = {
+  enter: [ | `Int(int) | `Float(float)],
+  exit: [ | `Int(int) | `Float(float)],
 };
 
 [@bs.deriving jsConverter]
@@ -39,22 +10,22 @@ type timeout_enum = [ | [@bs.as "auto"] `Auto];
 [@bs.obj]
 external makeProps :
   (
-    ~_in: bool=?,
+    ~in_: bool=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rpt2=?,
+    ~timeout: 'union_rcyy=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "material-ui/transitions/Grow"]
+[@bs.module "@material-ui/core/Grow/Grow"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
     (
-      ~_in: option(bool)=?,
+      ~in_: option(bool)=?,
       ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onExit: option(ReactEventRe.Synthetic.t => unit)=?,
       ~theme: option(Js.t({..}))=?,
@@ -63,7 +34,7 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(typeTimeout_shape)
+             | `Object(timeout_shape)
              | `Enum(timeout_enum)
            ],
          )=?,
@@ -73,7 +44,7 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
-        ~_in?,
+        ~in_?,
         ~onEnter?,
         ~onExit?,
         ~theme?,
@@ -83,10 +54,6 @@ let make =
               switch (v) {
               | `Enum(v) =>
                 MaterialUi_Helpers.unwrapValue(`String(timeout_enumToJs(v)))
-              | `Object(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `Element(convertTimeout_shape(v)),
-                )
               | v => MaterialUi_Helpers.unwrapValue(v)
               },
             timeout,

@@ -67,7 +67,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_ruwv=?,
+    ~component: 'union_rkt3=?,
     ~numeric: bool=?,
     ~padding: string=?,
     ~scope: string=?,
@@ -81,7 +81,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Table/TableCell"]
+[@bs.module "@material-ui/core/TableCell/TableCell"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

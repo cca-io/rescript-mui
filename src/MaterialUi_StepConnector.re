@@ -1,18 +1,28 @@
-[@bs.deriving abstract]
-type transitionDuration_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
-};
+[@bs.deriving jsConverter]
+type orientation = [
+  | [@bs.as "horizontal"] `Horizontal
+  | [@bs.as "vertical"] `Vertical
+];
 
 module Classes = {
   type classesType =
     | Root(string)
-    | Invisible(string);
+    | Horizontal(string)
+    | Vertical(string)
+    | AlternativeLabel(string)
+    | Line(string)
+    | LineHorizontal(string)
+    | LineVertical(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | Invisible(_) => "invisible";
+    | Horizontal(_) => "horizontal"
+    | Vertical(_) => "vertical"
+    | AlternativeLabel(_) => "alternativeLabel"
+    | Line(_) => "line"
+    | LineHorizontal(_) => "lineHorizontal"
+    | LineVertical(_) => "lineVertical";
   let to_obj = listOfClasses =>
     listOfClasses
     |> StdLabels.List.fold_left(
@@ -20,7 +30,12 @@ module Classes = {
            (obj, classType) => {
              switch (classType) {
              | Root(className)
-             | Invisible(className) =>
+             | Horizontal(className)
+             | Vertical(className)
+             | AlternativeLabel(className)
+             | Line(className)
+             | LineHorizontal(className)
+             | LineVertical(className) =>
                Js.Dict.set(obj, to_string(classType), className)
              };
              obj;
@@ -32,10 +47,9 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
+    ~alternativeLabel: bool=?,
     ~className: string=?,
-    ~invisible: bool=?,
-    ~open_: bool,
-    ~transitionDuration: 'union_rrz8=?,
+    ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -43,22 +57,14 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "@material-ui/core/Backdrop/Backdrop"]
+[@bs.module "@material-ui/core/StepConnector/StepConnector"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
     (
+      ~alternativeLabel: option(bool)=?,
       ~className: option(string)=?,
-      ~invisible: option(bool)=?,
-      ~open_: bool,
-      ~transitionDuration:
-         option(
-           [
-             | `Int(int)
-             | `Float(float)
-             | `Object(transitionDuration_shape)
-           ],
-         )=?,
+      ~orientation: option(orientation)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -67,14 +73,10 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
+        ~alternativeLabel?,
         ~className?,
-        ~invisible?,
-        ~open_,
-        ~transitionDuration=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            transitionDuration,
-          ),
+        ~orientation=?
+          Js.Option.map((. v) => orientationToJs(v), orientation),
         ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
         ~style?,
         (),

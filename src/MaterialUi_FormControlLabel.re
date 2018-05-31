@@ -29,14 +29,14 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_rlq9=?,
+    ~checked: 'union_r37r=?,
     ~className: string=?,
     ~control: ReasonReact.reactElement=?,
     ~disabled: bool=?,
     ~inputRef: 'genericCallback=?,
     ~label: ReasonReact.reactElement=?,
     ~name: string=?,
-    ~onChange: 'any_rk7h=?,
+    ~onChange: 'any_rhwo=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -45,7 +45,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Form/FormControlLabel"]
+[@bs.module "@material-ui/core/FormControlLabel/FormControlLabel"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =

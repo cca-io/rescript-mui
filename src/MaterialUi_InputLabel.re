@@ -47,7 +47,7 @@ external makeProps :
     ~margin: string=?,
     ~required: bool=?,
     ~shrink: bool=?,
-    ~component: 'union_r8e6=?,
+    ~component: 'union_rzgc=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -55,7 +55,7 @@ external makeProps :
   _ =
   "";
 
-[@bs.module "material-ui/Input/InputLabel"]
+[@bs.module "@material-ui/core/InputLabel/InputLabel"]
 external reactClass : ReasonReact.reactClass = "default";
 
 let make =
