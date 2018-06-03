@@ -37,24 +37,23 @@ module Classes = {
     | CircleIndeterminate(_) => "circleIndeterminate";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Static(className)
-             | Indeterminate(className)
-             | ColorPrimary(className)
-             | ColorSecondary(className)
-             | Svg(className)
-             | Circle(className)
-             | CircleStatic(className)
-             | CircleIndeterminate(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Static(className)
+           | Indeterminate(className)
+           | ColorPrimary(className)
+           | ColorSecondary(className)
+           | Svg(className)
+           | Circle(className)
+           | CircleStatic(className)
+           | CircleIndeterminate(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -63,9 +62,9 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_rjna=?,
-    ~thickness: 'number_i=?,
-    ~value: 'number_i=?,
+    ~size: 'union_rs5z=?,
+    ~thickness: 'number_a=?,
+    ~value: 'number_0=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -73,10 +72,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/CircularProgress/CircularProgress"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -94,18 +91,15 @@ let make =
     ~props=
       makeProps(
         ~className?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
         ~size=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), size),
+          size |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~thickness=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            thickness,
-          ),
+          thickness |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~value=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
-        ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          value |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~variant=?variant |. Belt.Option.map(v => variantToJs(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

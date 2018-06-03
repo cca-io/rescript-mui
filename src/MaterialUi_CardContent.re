@@ -7,16 +7,15 @@ module Classes = {
     | Root(_) => "root";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -24,17 +23,15 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rw4k=?,
+    ~component: 'union_rtdj=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/CardContent/CardContent"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -49,11 +46,8 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

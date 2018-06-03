@@ -27,21 +27,20 @@ module Classes = {
     | ColorDisabled(_) => "colorDisabled";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | ColorPrimary(className)
-             | ColorSecondary(className)
-             | ColorAction(className)
-             | ColorError(className)
-             | ColorDisabled(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | ColorPrimary(className)
+           | ColorSecondary(className)
+           | ColorAction(className)
+           | ColorError(className)
+           | ColorDisabled(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -56,10 +55,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Icon/Icon"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -73,8 +70,8 @@ let make =
     ~props=
       makeProps(
         ~className?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

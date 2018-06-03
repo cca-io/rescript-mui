@@ -11,18 +11,17 @@ module Classes = {
     | Img(_) => "img";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | ColorDefault(className)
-             | Img(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | ColorDefault(className)
+           | Img(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -32,7 +31,7 @@ external makeProps :
     ~alt: string=?,
     ~childrenClassName: string=?,
     ~className: string=?,
-    ~component: 'union_r55y=?,
+    ~component: 'union_rpvr=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,
@@ -43,10 +42,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Avatar/Avatar"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~alt: option(string)=?,
@@ -69,15 +66,12 @@ let make =
         ~childrenClassName?,
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~imgProps?,
         ~sizes?,
         ~src?,
         ~srcSet?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

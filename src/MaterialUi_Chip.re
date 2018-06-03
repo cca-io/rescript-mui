@@ -19,22 +19,21 @@ module Classes = {
     | DeleteIcon(_) => "deleteIcon";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Clickable(className)
-             | Deletable(className)
-             | Avatar(className)
-             | AvatarChildren(className)
-             | Label(className)
-             | DeleteIcon(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Clickable(className)
+           | Deletable(className)
+           | Avatar(className)
+           | AvatarChildren(className)
+           | Label(className)
+           | DeleteIcon(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -43,23 +42,21 @@ external makeProps :
   (
     ~avatar: ReasonReact.reactElement=?,
     ~className: string=?,
-    ~component: 'union_ro01=?,
+    ~component: 'union_relc=?,
     ~deleteIcon: ReasonReact.reactElement=?,
     ~label: ReasonReact.reactElement=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~onDelete: ReactEventRe.Synthetic.t => unit=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
-    ~tabIndex: 'union_reg8=?,
+    ~tabIndex: 'union_r40j=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Chip/Chip"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~avatar: option(ReasonReact.reactElement)=?,
@@ -82,21 +79,15 @@ let make =
         ~avatar?,
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~deleteIcon?,
         ~label?,
         ~onClick?,
         ~onDelete?,
         ~onKeyDown?,
         ~tabIndex=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            tabIndex,
-          ),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          tabIndex |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

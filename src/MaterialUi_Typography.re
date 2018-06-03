@@ -87,39 +87,38 @@ module Classes = {
     | ColorError(_) => "colorError";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Display4(className)
-             | Display3(className)
-             | Display2(className)
-             | Display1(className)
-             | Headline(className)
-             | Title(className)
-             | Subheading(className)
-             | Body2(className)
-             | Body1(className)
-             | Caption(className)
-             | Button(className)
-             | AlignLeft(className)
-             | AlignCenter(className)
-             | AlignRight(className)
-             | AlignJustify(className)
-             | NoWrap(className)
-             | GutterBottom(className)
-             | Paragraph(className)
-             | ColorInherit(className)
-             | ColorPrimary(className)
-             | ColorSecondary(className)
-             | ColorTextSecondary(className)
-             | ColorError(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Display4(className)
+           | Display3(className)
+           | Display2(className)
+           | Display1(className)
+           | Headline(className)
+           | Title(className)
+           | Subheading(className)
+           | Body2(className)
+           | Body1(className)
+           | Caption(className)
+           | Button(className)
+           | AlignLeft(className)
+           | AlignCenter(className)
+           | AlignRight(className)
+           | AlignJustify(className)
+           | NoWrap(className)
+           | GutterBottom(className)
+           | Paragraph(className)
+           | ColorInherit(className)
+           | ColorPrimary(className)
+           | ColorSecondary(className)
+           | ColorTextSecondary(className)
+           | ColorError(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -129,7 +128,7 @@ external makeProps :
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rtq4=?,
+    ~component: 'union_rdu1=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~noWrap: bool=?,
@@ -141,10 +140,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Typography/Typography"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~align: option(align)=?,
@@ -164,20 +161,17 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
-        ~align=?Js.Option.map((. v) => alignToJs(v), align),
+        ~align=?align |. Belt.Option.map(v => alignToJs(v)),
         ~className?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~gutterBottom?,
         ~headlineMapping?,
         ~noWrap?,
         ~paragraph?,
-        ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~variant=?variant |. Belt.Option.map(v => variantToJs(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

@@ -33,26 +33,25 @@ module Classes = {
     | LabelContainer(_) => "labelContainer";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Horizontal(className)
-             | Vertical(className)
-             | Active(className)
-             | Completed(className)
-             | AlternativeLabel(className)
-             | Error(className)
-             | Disabled(className)
-             | Label(className)
-             | IconContainer(className)
-             | LabelContainer(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Horizontal(className)
+           | Vertical(className)
+           | Active(className)
+           | Completed(className)
+           | AlternativeLabel(className)
+           | Error(className)
+           | Disabled(className)
+           | Label(className)
+           | IconContainer(className)
+           | LabelContainer(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -76,10 +75,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/StepLabel/StepLabel"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~active: option(bool)=?,
@@ -110,10 +107,9 @@ let make =
         ~icon?,
         ~last?,
         ~optional?,
-        ~orientation=?
-          Js.Option.map((. v) => orientationToJs(v), orientation),
+        ~orientation=?orientation |. Belt.Option.map(v => orientationToJs(v)),
         ~_StepIconProps?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

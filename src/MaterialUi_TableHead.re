@@ -1,11 +1,9 @@
 [@bs.obj]
 external makeProps :
-  (~className: string=?, ~component: 'union_r3wz=?, unit) => _ =
+  (~className: string=?, ~component: 'union_r6mp=?, unit) => _ =
   "";
-
 [@bs.module "@material-ui/core/TableHead/TableHead"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -18,10 +16,7 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         (),
       ),
     children,

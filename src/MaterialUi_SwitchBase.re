@@ -21,26 +21,25 @@ module Classes = {
     | Input(_) => "input";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Checked(className)
-             | Disabled(className)
-             | Input(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Checked(className)
+           | Disabled(className)
+           | Input(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_rhzu=?,
+    ~checked: 'union_rnih=?,
     ~checkedIcon: ReasonReact.reactElement,
     ~className: string=?,
     ~defaultChecked: bool=?,
@@ -53,15 +52,15 @@ external makeProps :
     ~inputProps: Js.t({..})=?,
     ~inputRef: 'genericCallback=?,
     ~name: string=?,
-    ~onChange: 'any_rcqf=?,
-    ~tabIndex: 'union_rc02=?,
-    ~type_: string=?,
+    ~onChange: 'any_rkly=?,
+    ~tabIndex: 'union_rbnp=?,
+    ~_type: string=?,
     ~value: string=?,
     ~color: string=?,
-    ~action: 'any_rt9s=?,
-    ~buttonRef: 'union_rbmh=?,
+    ~action: 'any_r2z1=?,
+    ~buttonRef: 'union_ri19=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rcbw=?,
+    ~component: 'union_regt=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
@@ -84,10 +83,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/internal/SwitchBase"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~checked: option([ | `Bool(bool) | `String(string)])=?,
@@ -140,10 +137,7 @@ let make =
     ~props=
       makeProps(
         ~checked=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            checked,
-          ),
+          checked |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~checkedIcon,
         ~className?,
         ~defaultChecked?,
@@ -158,25 +152,16 @@ let make =
         ~name?,
         ~onChange?,
         ~tabIndex=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            tabIndex,
-          ),
-        ~type_?,
+          tabIndex |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~_type=?type_,
         ~value?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
         ~action?,
         ~buttonRef=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            buttonRef,
-          ),
+          buttonRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~centerRipple?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~focusRipple?,
         ~focusVisibleClassName?,
         ~onBlur?,
@@ -193,7 +178,7 @@ let make =
         ~onTouchStart?,
         ~role?,
         ~_TouchRippleProps?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

@@ -1,7 +1,34 @@
-[@bs.deriving abstract]
-type transitionDuration_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module TransitionDuration_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 [@bs.deriving jsConverter]
@@ -21,16 +48,99 @@ type vertical_enum = [
   | [@bs.as "bottom"] `Bottom
 ];
 
-[@bs.deriving abstract]
-type anchorOrigin = {
-  horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
-  vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
+module AnchorOrigin = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
+    [@bs.optional]
+    vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
+  };
+  let make = t;
+
+  let unwrap = (obj: option(t)) =>
+    switch (obj) {
+    | Some(obj) =>
+      let unwrappedMap = Js.Dict.empty();
+
+      switch (
+        obj
+        |. horizontal
+        |. Belt.Option.map(v =>
+             switch (v) {
+             | `Enum(v) =>
+               MaterialUi_Helpers.unwrapValue(
+                 `String(horizontal_enumToJs(v)),
+               )
+
+             | v => MaterialUi_Helpers.unwrapValue(v)
+             }
+           )
+      ) {
+      | Some(v) =>
+        unwrappedMap
+        |. Js.Dict.set("horizontal", v |. MaterialUi_Helpers.toJsUnsafe)
+      | None => ()
+      };
+
+      switch (
+        obj
+        |. vertical
+        |. Belt.Option.map(v =>
+             switch (v) {
+             | `Enum(v) =>
+               MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
+
+             | v => MaterialUi_Helpers.unwrapValue(v)
+             }
+           )
+      ) {
+      | Some(v) =>
+        unwrappedMap
+        |. Js.Dict.set("vertical", v |. MaterialUi_Helpers.toJsUnsafe)
+      | None => ()
+      };
+
+      Some(unwrappedMap);
+    | None => None
+    };
 };
 
-[@bs.deriving abstract]
-type anchorPosition = {
-  top: [ | `Int(int) | `Float(float)],
-  left: [ | `Int(int) | `Float(float)],
+module AnchorPosition = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    top: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    left: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: option(t)) =>
+    switch (obj) {
+    | Some(obj) =>
+      let unwrappedMap = Js.Dict.empty();
+
+      switch (
+        obj |. top |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      ) {
+      | Some(v) =>
+        unwrappedMap |. Js.Dict.set("top", v |. MaterialUi_Helpers.toJsUnsafe)
+      | None => ()
+      };
+
+      switch (
+        obj |. left |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      ) {
+      | Some(v) =>
+        unwrappedMap
+        |. Js.Dict.set("left", v |. MaterialUi_Helpers.toJsUnsafe)
+      | None => ()
+      };
+
+      Some(unwrappedMap);
+    | None => None
+    };
 };
 
 [@bs.deriving jsConverter]
@@ -40,10 +150,62 @@ type anchorReference = [
   | [@bs.as "none"] `None
 ];
 
-[@bs.deriving abstract]
-type transformOrigin = {
-  horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
-  vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
+module TransformOrigin = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
+    [@bs.optional]
+    vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
+  };
+  let make = t;
+
+  let unwrap = (obj: option(t)) =>
+    switch (obj) {
+    | Some(obj) =>
+      let unwrappedMap = Js.Dict.empty();
+
+      switch (
+        obj
+        |. horizontal
+        |. Belt.Option.map(v =>
+             switch (v) {
+             | `Enum(v) =>
+               MaterialUi_Helpers.unwrapValue(
+                 `String(horizontal_enumToJs(v)),
+               )
+
+             | v => MaterialUi_Helpers.unwrapValue(v)
+             }
+           )
+      ) {
+      | Some(v) =>
+        unwrappedMap
+        |. Js.Dict.set("horizontal", v |. MaterialUi_Helpers.toJsUnsafe)
+      | None => ()
+      };
+
+      switch (
+        obj
+        |. vertical
+        |. Belt.Option.map(v =>
+             switch (v) {
+             | `Enum(v) =>
+               MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
+
+             | v => MaterialUi_Helpers.unwrapValue(v)
+             }
+           )
+      ) {
+      | Some(v) =>
+        unwrappedMap
+        |. Js.Dict.set("vertical", v |. MaterialUi_Helpers.toJsUnsafe)
+      | None => ()
+      };
+
+      Some(unwrappedMap);
+    | None => None
+    };
 };
 
 module Classes = {
@@ -55,47 +217,46 @@ module Classes = {
     | Paper(_) => "paper";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Paper(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Paper(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
 [@bs.obj]
 external makeProps :
   (
-    ~anchorEl: 'any_rjjr=?,
+    ~anchorEl: 'any_r25w=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_rpg8=?,
+    ~onClose: 'any_r9gm=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~onExited: ReactEventRe.Synthetic.t => unit=?,
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
-    ~open_: bool,
+    ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_r26e=?,
-    ~action: 'any_rxep=?,
-    ~anchorOrigin: anchorOrigin=?,
-    ~anchorPosition: anchorPosition=?,
+    ~transitionDuration: 'union_rwrb=?,
+    ~action: 'any_rsfr=?,
+    ~anchorOrigin: 'any_rio9=?,
+    ~anchorPosition: 'any_r39e=?,
     ~anchorReference: string=?,
-    ~container: 'union_rdks=?,
-    ~elevation: 'number_c=?,
+    ~container: 'union_rinp=?,
+    ~elevation: 'number_7=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_s=?,
+    ~marginThreshold: 'number_0=?,
     ~role: string=?,
-    ~transformOrigin: transformOrigin=?,
-    ~_TransitionComponent: 'union_rchg=?,
+    ~transformOrigin: 'any_rhfc=?,
+    ~_TransitionComponent: 'union_rlxf=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -103,13 +264,11 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Menu/Menu"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
-      ~anchorEl: option('any_rjjr)=?,
+      ~anchorEl: option('any_r25w)=?,
       ~_MenuListProps: option(Js.t({..}))=?,
       ~onClose: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,
@@ -127,13 +286,13 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(transitionDuration_shape)
+             | `Object(TransitionDuration_shape.t)
              | `Enum(transitionDuration_enum)
            ],
          )=?,
       ~action: option(Js.t({..}) => unit)=?,
-      ~anchorOrigin: option(anchorOrigin)=?,
-      ~anchorPosition: option(anchorPosition)=?,
+      ~anchorOrigin: option(AnchorOrigin.t)=?,
+      ~anchorPosition: option(AnchorPosition.t)=?,
       ~anchorReference: option(anchorReference)=?,
       ~container:
          option(
@@ -143,7 +302,7 @@ let make =
       ~getContentAnchorEl: option('genericCallback)=?,
       ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
       ~role: option(string)=?,
-      ~transformOrigin: option(transformOrigin)=?,
+      ~transformOrigin: option(TransformOrigin.t)=?,
       ~_TransitionComponent:
          option([ | `String(string) | `Callback('genericCallback)])=?,
       ~_TransitionProps: option(Js.t({..}))=?,
@@ -164,52 +323,42 @@ let make =
         ~onExit?,
         ~onExited?,
         ~onExiting?,
-        ~open_,
+        ~_open=open_,
         ~_PaperProps?,
         ~_PopoverClasses?,
         ~theme?,
         ~transitionDuration=?
-          Js.Option.map(
-            (. v) =>
-              switch (v) {
-              | `Enum(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `String(transitionDuration_enumToJs(v)),
-                )
-              | v => MaterialUi_Helpers.unwrapValue(v)
-              },
-            transitionDuration,
-          ),
+          transitionDuration
+          |. Belt.Option.map(v =>
+               switch (v) {
+               | `Enum(v) =>
+                 MaterialUi_Helpers.unwrapValue(
+                   `String(transitionDuration_enumToJs(v)),
+                 )
+
+               | v => MaterialUi_Helpers.unwrapValue(v)
+               }
+             ),
         ~action?,
-        ~anchorOrigin?,
-        ~anchorPosition?,
+        ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
+        ~anchorPosition=?AnchorPosition.unwrap(anchorPosition),
         ~anchorReference=?
-          Js.Option.map((. v) => anchorReferenceToJs(v), anchorReference),
+          anchorReference |. Belt.Option.map(v => anchorReferenceToJs(v)),
         ~container=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            container,
-          ),
+          container |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~elevation=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            elevation,
-          ),
+          elevation |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~getContentAnchorEl?,
         ~marginThreshold=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            marginThreshold,
-          ),
+          marginThreshold
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~role?,
-        ~transformOrigin?,
+        ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
         ~_TransitionComponent=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            _TransitionComponent,
-          ),
+          _TransitionComponent
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_TransitionProps?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

@@ -25,21 +25,20 @@ module Classes = {
     | Label(_) => "label";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | ColorInherit(className)
-             | ColorPrimary(className)
-             | ColorSecondary(className)
-             | Disabled(className)
-             | Label(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | ColorInherit(className)
+           | ColorPrimary(className)
+           | ColorSecondary(className)
+           | Disabled(className)
+           | Label(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -50,10 +49,10 @@ external makeProps :
     ~color: string=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
-    ~action: 'any_rlbb=?,
-    ~buttonRef: 'union_rftk=?,
+    ~action: 'any_rh44=?,
+    ~buttonRef: 'union_ridf=?,
     ~centerRipple: bool=?,
-    ~component: 'union_ri1y=?,
+    ~component: 'union_rs15=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
@@ -69,19 +68,17 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r583=?,
+    ~tabIndex: 'union_r62b=?,
     ~_TouchRippleProps: Js.t({..})=?,
-    ~type_: string=?,
+    ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/IconButton/IconButton"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -122,21 +119,15 @@ let make =
     ~props=
       makeProps(
         ~className?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
         ~disabled?,
         ~disableRipple?,
         ~action?,
         ~buttonRef=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            buttonRef,
-          ),
+          buttonRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~centerRipple?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~focusRipple?,
         ~focusVisibleClassName?,
         ~onBlur?,
@@ -153,13 +144,10 @@ let make =
         ~onTouchStart?,
         ~role?,
         ~tabIndex=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            tabIndex,
-          ),
+          tabIndex |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_TouchRippleProps?,
-        ~type_?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~_type=?type_,
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

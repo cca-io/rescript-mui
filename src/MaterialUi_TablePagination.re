@@ -47,43 +47,42 @@ module Classes = {
     | Actions(_) => "actions";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Toolbar(className)
-             | Spacer(className)
-             | MenuItem(className)
-             | Caption(className)
-             | Input(className)
-             | SelectRoot(className)
-             | Select(className)
-             | SelectIcon(className)
-             | Actions(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Toolbar(className)
+           | Spacer(className)
+           | MenuItem(className)
+           | Caption(className)
+           | Input(className)
+           | SelectRoot(className)
+           | Select(className)
+           | SelectIcon(className)
+           | Actions(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
 [@bs.obj]
 external makeProps :
   (
-    ~_ActionsComponent: 'union_ryyo=?,
+    ~_ActionsComponent: 'union_r66w=?,
     ~backIconButtonProps: Js.t({..})=?,
-    ~colSpan: 'number_a=?,
-    ~component: 'union_rry3=?,
-    ~count: 'number_h,
+    ~colSpan: 'number_g=?,
+    ~component: 'union_r9en=?,
+    ~count: 'number_5,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_rkko,
-    ~onChangeRowsPerPage: 'any_rxo2=?,
-    ~page: 'number_6,
-    ~rowsPerPage: 'number_w,
+    ~onChangePage: 'any_rl46,
+    ~onChangeRowsPerPage: 'any_rgxj=?,
+    ~page: 'number_n,
+    ~rowsPerPage: 'number_r,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~className: string=?,
@@ -98,10 +97,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/TablePagination/TablePagination"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~_ActionsComponent:
@@ -153,21 +150,13 @@ let make =
     ~props=
       makeProps(
         ~_ActionsComponent=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            _ActionsComponent,
-          ),
+          _ActionsComponent
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~backIconButtonProps?,
         ~colSpan=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            colSpan,
-          ),
+          colSpan |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~count=MaterialUi_Helpers.unwrapValue(count),
         ~labelDisplayedRows?,
         ~labelRowsPerPage?,
@@ -177,20 +166,20 @@ let make =
         ~page=MaterialUi_Helpers.unwrapValue(page),
         ~rowsPerPage=MaterialUi_Helpers.unwrapValue(rowsPerPage),
         ~rowsPerPageOptions=?
-          Js.Option.map(
-            (. v) =>
-              Js.Array.map(item => MaterialUi_Helpers.toJsUnsafe(item), v),
-            rowsPerPageOptions,
-          ),
+          rowsPerPageOptions
+          |. Belt.Option.map(v =>
+               v
+               |. Belt.Array.map(item => MaterialUi_Helpers.toJsUnsafe(item))
+             ),
         ~_SelectProps?,
         ~className?,
         ~numeric?,
-        ~padding=?Js.Option.map((. v) => paddingToJs(v), padding),
+        ~padding=?padding |. Belt.Option.map(v => paddingToJs(v)),
         ~scope?,
         ~sortDirection=?
-          Js.Option.map((. v) => sortDirectionToJs(v), sortDirection),
-        ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          sortDirection |. Belt.Option.map(v => sortDirectionToJs(v)),
+        ~variant=?variant |. Belt.Option.map(v => variantToJs(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

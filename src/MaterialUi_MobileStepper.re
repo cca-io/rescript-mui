@@ -35,23 +35,22 @@ module Classes = {
     | Progress(_) => "progress";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | PositionBottom(className)
-             | PositionTop(className)
-             | PositionStatic(className)
-             | Dots(className)
-             | Dot(className)
-             | DotActive(className)
-             | Progress(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | PositionBottom(className)
+           | PositionTop(className)
+           | PositionStatic(className)
+           | Dots(className)
+           | Dot(className)
+           | DotActive(className)
+           | Progress(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -63,10 +62,10 @@ external makeProps :
     ~className: string=?,
     ~nextButton: ReasonReact.reactElement=?,
     ~position: string=?,
-    ~steps: 'number_z,
+    ~steps: 'number_3,
     ~variant: string=?,
-    ~component: 'union_rldo=?,
-    ~elevation: 'number_r=?,
+    ~component: 'union_rouk=?,
+    ~elevation: 'number_x=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -74,10 +73,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/MobileStepper/MobileStepper"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~activeStep: option([ | `Int(int) | `Float(float)])=?,
@@ -99,28 +96,20 @@ let make =
     ~props=
       makeProps(
         ~activeStep=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            activeStep,
-          ),
+          activeStep
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~backButton?,
         ~className?,
         ~nextButton?,
-        ~position=?Js.Option.map((. v) => positionToJs(v), position),
+        ~position=?position |. Belt.Option.map(v => positionToJs(v)),
         ~steps=MaterialUi_Helpers.unwrapValue(steps),
-        ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
+        ~variant=?variant |. Belt.Option.map(v => variantToJs(v)),
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~elevation=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            elevation,
-          ),
+          elevation |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~square?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

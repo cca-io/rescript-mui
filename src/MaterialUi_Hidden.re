@@ -27,7 +27,6 @@ type only_arrayOf = [
   | [@bs.as "lg"] `Lg
   | [@bs.as "xl"] `Xl
 ];
-
 [@bs.obj]
 external makeProps :
   (
@@ -38,7 +37,7 @@ external makeProps :
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_r39h=?,
+    ~only: 'union_r400=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,
@@ -49,10 +48,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Hidden/Hidden"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -77,23 +74,23 @@ let make =
       makeProps(
         ~className?,
         ~implementation=?
-          Js.Option.map((. v) => implementationToJs(v), implementation),
+          implementation |. Belt.Option.map(v => implementationToJs(v)),
         ~initialWidth=?
-          Js.Option.map((. v) => initialWidthToJs(v), initialWidth),
+          initialWidth |. Belt.Option.map(v => initialWidthToJs(v)),
         ~lgDown?,
         ~lgUp?,
         ~mdDown?,
         ~mdUp?,
         ~only=?
-          Js.Option.map(
-            (. v) =>
-              switch (v) {
-              | `Enum(v) =>
-                MaterialUi_Helpers.unwrapValue(`String(only_enumToJs(v)))
-              | v => MaterialUi_Helpers.unwrapValue(v)
-              },
-            only,
-          ),
+          only
+          |. Belt.Option.map(v =>
+               switch (v) {
+               | `Enum(v) =>
+                 MaterialUi_Helpers.unwrapValue(`String(only_enumToJs(v)))
+
+               | v => MaterialUi_Helpers.unwrapValue(v)
+               }
+             ),
         ~smDown?,
         ~smUp?,
         ~xlDown?,

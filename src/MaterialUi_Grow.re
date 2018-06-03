@@ -1,28 +1,52 @@
-[@bs.deriving abstract]
-type timeout_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module Timeout_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 [@bs.deriving jsConverter]
 type timeout_enum = [ | [@bs.as "auto"] `Auto];
-
 [@bs.obj]
 external makeProps :
   (
-    ~in_: bool=?,
+    ~_in: bool=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rcyy=?,
+    ~timeout: 'union_ri8g=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Grow/Grow"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~in_: option(bool)=?,
@@ -34,7 +58,7 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(timeout_shape)
+             | `Object(Timeout_shape.t)
              | `Enum(timeout_enum)
            ],
          )=?,
@@ -44,20 +68,22 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
-        ~in_?,
+        ~_in=?in_,
         ~onEnter?,
         ~onExit?,
         ~theme?,
         ~timeout=?
-          Js.Option.map(
-            (. v) =>
-              switch (v) {
-              | `Enum(v) =>
-                MaterialUi_Helpers.unwrapValue(`String(timeout_enumToJs(v)))
-              | v => MaterialUi_Helpers.unwrapValue(v)
-              },
-            timeout,
-          ),
+          timeout
+          |. Belt.Option.map(v =>
+               switch (v) {
+               | `Enum(v) =>
+                 MaterialUi_Helpers.unwrapValue(
+                   `String(timeout_enumToJs(v)),
+                 )
+
+               | v => MaterialUi_Helpers.unwrapValue(v)
+               }
+             ),
         (),
       ),
     children,

@@ -12,16 +12,95 @@ type vertical_enum = [
   | [@bs.as "bottom"] `Bottom
 ];
 
-[@bs.deriving abstract]
-type anchorOrigin = {
-  horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
-  vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
+module AnchorOrigin = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
+    [@bs.optional]
+    vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
+  };
+  let make = t;
+
+  let unwrap = (obj: option(t)) =>
+    switch (obj) {
+    | Some(obj) =>
+      let unwrappedMap = Js.Dict.empty();
+
+      switch (
+        obj
+        |. horizontal
+        |. Belt.Option.map(v =>
+             switch (v) {
+             | `Enum(v) =>
+               MaterialUi_Helpers.unwrapValue(
+                 `String(horizontal_enumToJs(v)),
+               )
+
+             | v => MaterialUi_Helpers.unwrapValue(v)
+             }
+           )
+      ) {
+      | Some(v) =>
+        unwrappedMap
+        |. Js.Dict.set("horizontal", v |. MaterialUi_Helpers.toJsUnsafe)
+      | None => ()
+      };
+
+      switch (
+        obj
+        |. vertical
+        |. Belt.Option.map(v =>
+             switch (v) {
+             | `Enum(v) =>
+               MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
+
+             | v => MaterialUi_Helpers.unwrapValue(v)
+             }
+           )
+      ) {
+      | Some(v) =>
+        unwrappedMap
+        |. Js.Dict.set("vertical", v |. MaterialUi_Helpers.toJsUnsafe)
+      | None => ()
+      };
+
+      Some(unwrappedMap);
+    | None => None
+    };
 };
 
-[@bs.deriving abstract]
-type transitionDuration_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module TransitionDuration_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 module Classes = {
@@ -45,22 +124,21 @@ module Classes = {
     | AnchorOriginBottomLeft(_) => "anchorOriginBottomLeft";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | AnchorOriginTopCenter(className)
-             | AnchorOriginBottomCenter(className)
-             | AnchorOriginTopRight(className)
-             | AnchorOriginBottomRight(className)
-             | AnchorOriginTopLeft(className)
-             | AnchorOriginBottomLeft(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | AnchorOriginTopCenter(className)
+           | AnchorOriginBottomCenter(className)
+           | AnchorOriginTopRight(className)
+           | AnchorOriginBottomRight(className)
+           | AnchorOriginTopLeft(className)
+           | AnchorOriginBottomLeft(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -68,14 +146,14 @@ module Classes = {
 external makeProps :
   (
     ~action: ReasonReact.reactElement=?,
-    ~anchorOrigin: anchorOrigin=?,
-    ~autoHideDuration: 'number_v=?,
+    ~anchorOrigin: 'any_r5i0=?,
+    ~autoHideDuration: 'number_0=?,
     ~className: string=?,
     ~_ContentProps: Js.t({..})=?,
     ~disableWindowBlurListener: bool=?,
-    ~key: 'any_rbdc=?,
+    ~key: 'any_rojl=?,
     ~message: ReasonReact.reactElement=?,
-    ~onClose: 'any_rw4u=?,
+    ~onClose: 'any_rkcp=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -84,10 +162,10 @@ external makeProps :
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
     ~onMouseEnter: ReactEventRe.Mouse.t => unit=?,
     ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
-    ~open_: bool=?,
-    ~resumeHideDuration: 'number_w=?,
-    ~_TransitionComponent: 'union_rbeq=?,
-    ~transitionDuration: 'union_rrhw=?,
+    ~_open: bool=?,
+    ~resumeHideDuration: 'number_i=?,
+    ~_TransitionComponent: 'union_riuc=?,
+    ~transitionDuration: 'union_rg1n=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -95,19 +173,17 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Snackbar/Snackbar"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~action: option(ReasonReact.reactElement)=?,
-      ~anchorOrigin: option(anchorOrigin)=?,
+      ~anchorOrigin: option(AnchorOrigin.t)=?,
       ~autoHideDuration: option([ | `Int(int) | `Float(float)])=?,
       ~className: option(string)=?,
       ~_ContentProps: option(Js.t({..}))=?,
       ~disableWindowBlurListener: option(bool)=?,
-      ~key: option('any_rbdc)=?,
+      ~key: option('any_rojl)=?,
       ~message: option(ReasonReact.reactElement)=?,
       ~onClose: option((ReactEventRe.Synthetic.t, string) => unit)=?,
       ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,
@@ -127,7 +203,7 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(transitionDuration_shape)
+             | `Object(TransitionDuration_shape.t)
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
@@ -140,12 +216,10 @@ let make =
     ~props=
       makeProps(
         ~action?,
-        ~anchorOrigin?,
+        ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
         ~autoHideDuration=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            autoHideDuration,
-          ),
+          autoHideDuration
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~className?,
         ~_ContentProps?,
         ~disableWindowBlurListener?,
@@ -160,24 +234,18 @@ let make =
         ~onExiting?,
         ~onMouseEnter?,
         ~onMouseLeave?,
-        ~open_?,
+        ~_open=?open_,
         ~resumeHideDuration=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            resumeHideDuration,
-          ),
+          resumeHideDuration
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_TransitionComponent=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            _TransitionComponent,
-          ),
+          _TransitionComponent
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~transitionDuration=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            transitionDuration,
-          ),
+          transitionDuration
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_TransitionProps?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

@@ -11,29 +11,28 @@ module Classes = {
     | FocusVisible(_) => "focusVisible";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Disabled(className)
-             | FocusVisible(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Disabled(className)
+           | FocusVisible(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
 [@bs.obj]
 external makeProps :
   (
-    ~action: 'any_rv4h=?,
-    ~buttonRef: 'union_rahb=?,
+    ~action: 'any_rr3r=?,
+    ~buttonRef: 'union_rzb5=?,
     ~centerRipple: bool=?,
     ~className: string=?,
-    ~component: 'union_r6te=?,
+    ~component: 'union_r9z0=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~focusRipple: bool=?,
@@ -51,19 +50,17 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rvwq=?,
+    ~tabIndex: 'union_rk80=?,
     ~_TouchRippleProps: Js.t({..})=?,
-    ~type_: string=?,
+    ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/ButtonBase/ButtonBase"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~action: option(Js.t({..}) => unit)=?,
@@ -104,17 +101,11 @@ let make =
       makeProps(
         ~action?,
         ~buttonRef=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            buttonRef,
-          ),
+          buttonRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~centerRipple?,
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disabled?,
         ~disableRipple?,
         ~focusRipple?,
@@ -133,13 +124,10 @@ let make =
         ~onTouchStart?,
         ~role?,
         ~tabIndex=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            tabIndex,
-          ),
+          tabIndex |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_TouchRippleProps?,
-        ~type_?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~_type=?type_,
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

@@ -1,25 +1,50 @@
-[@bs.deriving abstract]
-type timeout_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module Timeout_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 [@bs.obj]
 external makeProps :
   (
-    ~in_: bool=?,
+    ~_in: bool=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_r1sg=?,
+    ~timeout: 'union_r0ws=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Zoom/Zoom"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~in_: option(bool)=?,
@@ -27,22 +52,19 @@ let make =
       ~onExit: option(ReactEventRe.Synthetic.t => unit)=?,
       ~theme: option(Js.t({..}))=?,
       ~timeout:
-         option([ | `Int(int) | `Float(float) | `Object(timeout_shape)])=?,
+         option([ | `Int(int) | `Float(float) | `Object(Timeout_shape.t)])=?,
       children,
     ) =>
   ReasonReact.wrapJsForReason(
     ~reactClass,
     ~props=
       makeProps(
-        ~in_?,
+        ~_in=?in_,
         ~onEnter?,
         ~onExit?,
         ~theme?,
         ~timeout=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            timeout,
-          ),
+          timeout |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         (),
       ),
     children,

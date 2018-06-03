@@ -25,25 +25,24 @@ module Classes = {
     | SecondaryAction(_) => "secondaryAction";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Container(className)
-             | FocusVisible(className)
-             | Default(className)
-             | Dense(className)
-             | Disabled(className)
-             | Divider(className)
-             | Gutters(className)
-             | Button(className)
-             | SecondaryAction(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Container(className)
+           | FocusVisible(className)
+           | Default(className)
+           | Dense(className)
+           | Disabled(className)
+           | Divider(className)
+           | Gutters(className)
+           | Button(className)
+           | SecondaryAction(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -52,15 +51,15 @@ external makeProps :
   (
     ~button: bool=?,
     ~className: string=?,
-    ~component: 'union_rt3r=?,
-    ~_ContainerComponent: 'union_rugm=?,
+    ~component: 'union_r1pn=?,
+    ~_ContainerComponent: 'union_r8b1=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
     ~disableGutters: bool=?,
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
-    ~value: 'union_rn1d=?,
+    ~value: 'union_rqcd=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
@@ -69,10 +68,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/ListItem/ListItem"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~button: option(bool)=?,
@@ -108,15 +105,10 @@ let make =
         ~button?,
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_ContainerComponent=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            _ContainerComponent,
-          ),
+          _ContainerComponent
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_ContainerProps?,
         ~dense?,
         ~disabled?,
@@ -124,10 +116,10 @@ let make =
         ~divider?,
         ~focusVisibleClassName?,
         ~value=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
+          value |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~onFocus?,
         ~onClick?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

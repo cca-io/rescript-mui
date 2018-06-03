@@ -33,26 +33,25 @@ module Classes = {
     | ActionIconActionPosLeft(_) => "actionIconActionPosLeft";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | TitlePositionBottom(className)
-             | TitlePositionTop(className)
-             | RootSubtitle(className)
-             | TitleWrap(className)
-             | TitleWrapActionPosLeft(className)
-             | TitleWrapActionPosRight(className)
-             | Title(className)
-             | Subtitle(className)
-             | ActionIcon(className)
-             | ActionIconActionPosLeft(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | TitlePositionBottom(className)
+           | TitlePositionTop(className)
+           | RootSubtitle(className)
+           | TitleWrap(className)
+           | TitleWrapActionPosLeft(className)
+           | TitleWrapActionPosRight(className)
+           | Title(className)
+           | Subtitle(className)
+           | ActionIcon(className)
+           | ActionIconActionPosLeft(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -71,10 +70,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/GridListTileBar/GridListTileBar"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~actionIcon: option(ReasonReact.reactElement)=?,
@@ -93,13 +90,13 @@ let make =
       makeProps(
         ~actionIcon?,
         ~actionPosition=?
-          Js.Option.map((. v) => actionPositionToJs(v), actionPosition),
+          actionPosition |. Belt.Option.map(v => actionPositionToJs(v)),
         ~className?,
         ~subtitle?,
         ~title?,
         ~titlePosition=?
-          Js.Option.map((. v) => titlePositionToJs(v), titlePosition),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          titlePosition |. Belt.Option.map(v => titlePositionToJs(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

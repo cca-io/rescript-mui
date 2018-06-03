@@ -6,31 +6,56 @@ type direction = [
   | [@bs.as "down"] `Down
 ];
 
-[@bs.deriving abstract]
-type timeout_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module Timeout_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 [@bs.obj]
 external makeProps :
   (
     ~direction: string=?,
-    ~in_: bool=?,
+    ~_in: bool=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~onExited: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rmi2=?,
+    ~timeout: 'union_rw0q=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Slide/Slide"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~direction: option(direction)=?,
@@ -41,25 +66,22 @@ let make =
       ~onExited: option(ReactEventRe.Synthetic.t => unit)=?,
       ~theme: option(Js.t({..}))=?,
       ~timeout:
-         option([ | `Int(int) | `Float(float) | `Object(timeout_shape)])=?,
+         option([ | `Int(int) | `Float(float) | `Object(Timeout_shape.t)])=?,
       children,
     ) =>
   ReasonReact.wrapJsForReason(
     ~reactClass,
     ~props=
       makeProps(
-        ~direction=?Js.Option.map((. v) => directionToJs(v), direction),
-        ~in_?,
+        ~direction=?direction |. Belt.Option.map(v => directionToJs(v)),
+        ~_in=?in_,
         ~onEnter?,
         ~onEntering?,
         ~onExit?,
         ~onExited?,
         ~theme?,
         ~timeout=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            timeout,
-          ),
+          timeout |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         (),
       ),
     children,

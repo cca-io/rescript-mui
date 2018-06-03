@@ -4,10 +4,37 @@ type orientation = [
   | [@bs.as "vertical"] `Vertical
 ];
 
-[@bs.deriving abstract]
-type transitionDuration_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module TransitionDuration_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 [@bs.deriving jsConverter]
@@ -26,18 +53,17 @@ module Classes = {
     | Transition(_) => "transition";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Last(className)
-             | Transition(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Last(className)
+           | Transition(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -52,7 +78,7 @@ external makeProps :
     ~optional: bool=?,
     ~orientation: string=?,
     ~_TransitionComponent: 'genericCallback=?,
-    ~transitionDuration: 'union_r6wk=?,
+    ~transitionDuration: 'union_riur=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -60,10 +86,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/StepContent/StepContent"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~active: option(bool)=?,
@@ -79,7 +103,7 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(transitionDuration_shape)
+             | `Object(TransitionDuration_shape.t)
              | `Enum(transitionDuration_enum)
            ],
          )=?,
@@ -98,23 +122,22 @@ let make =
         ~completed?,
         ~last?,
         ~optional?,
-        ~orientation=?
-          Js.Option.map((. v) => orientationToJs(v), orientation),
+        ~orientation=?orientation |. Belt.Option.map(v => orientationToJs(v)),
         ~_TransitionComponent?,
         ~transitionDuration=?
-          Js.Option.map(
-            (. v) =>
-              switch (v) {
-              | `Enum(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `String(transitionDuration_enumToJs(v)),
-                )
-              | v => MaterialUi_Helpers.unwrapValue(v)
-              },
-            transitionDuration,
-          ),
+          transitionDuration
+          |. Belt.Option.map(v =>
+               switch (v) {
+               | `Enum(v) =>
+                 MaterialUi_Helpers.unwrapValue(
+                   `String(transitionDuration_enumToJs(v)),
+                 )
+
+               | v => MaterialUi_Helpers.unwrapValue(v)
+               }
+             ),
         ~_TransitionProps?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

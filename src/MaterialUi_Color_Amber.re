@@ -1,4 +1,4 @@
-[@bs.module "material-ui/colors/amber"]
+[@bs.module "@material-ui/core/colors/amber"]
 external amberExt : Js.Dict.t(string) = "default";
 
 let c50: string = Js.Dict.unsafeGet(amberExt, "50");

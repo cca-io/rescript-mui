@@ -25,22 +25,21 @@ module Classes = {
     | LineVertical(_) => "lineVertical";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Horizontal(className)
-             | Vertical(className)
-             | AlternativeLabel(className)
-             | Line(className)
-             | LineHorizontal(className)
-             | LineVertical(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Horizontal(className)
+           | Vertical(className)
+           | AlternativeLabel(className)
+           | Line(className)
+           | LineHorizontal(className)
+           | LineVertical(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -56,10 +55,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/StepConnector/StepConnector"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~alternativeLabel: option(bool)=?,
@@ -75,9 +72,8 @@ let make =
       makeProps(
         ~alternativeLabel?,
         ~className?,
-        ~orientation=?
-          Js.Option.map((. v) => orientationToJs(v), orientation),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~orientation=?orientation |. Belt.Option.map(v => orientationToJs(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

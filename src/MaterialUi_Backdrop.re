@@ -1,7 +1,34 @@
-[@bs.deriving abstract]
-type transitionDuration_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module TransitionDuration_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 module Classes = {
@@ -15,17 +42,16 @@ module Classes = {
     | Invisible(_) => "invisible";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Invisible(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Invisible(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -34,18 +60,16 @@ external makeProps :
   (
     ~className: string=?,
     ~invisible: bool=?,
-    ~open_: bool,
-    ~transitionDuration: 'union_rrz8=?,
+    ~_open: bool,
+    ~transitionDuration: 'union_rvqs=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Backdrop/Backdrop"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -56,7 +80,7 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(transitionDuration_shape)
+             | `Object(TransitionDuration_shape.t)
            ],
          )=?,
       ~classes: option(Classes.t)=?,
@@ -69,13 +93,11 @@ let make =
       makeProps(
         ~className?,
         ~invisible?,
-        ~open_,
+        ~_open=open_,
         ~transitionDuration=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            transitionDuration,
-          ),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          transitionDuration
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

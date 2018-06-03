@@ -9,17 +9,16 @@ module Classes = {
     | Selected(_) => "selected";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Selected(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Selected(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -27,14 +26,14 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rull=?,
+    ~component: 'union_rrdf=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~value: 'union_rdnq=?,
+    ~value: 'union_rhu2=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~button: bool=?,
-    ~_ContainerComponent: 'union_rg1a=?,
+    ~_ContainerComponent: 'union_r9n9=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -47,10 +46,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/MenuItem/MenuItem"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -87,29 +84,24 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~role?,
         ~selected?,
         ~value=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
+          value |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~onFocus?,
         ~onClick?,
         ~button?,
         ~_ContainerComponent=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            _ContainerComponent,
-          ),
+          _ContainerComponent
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_ContainerProps?,
         ~dense?,
         ~disabled?,
         ~disableGutters?,
         ~divider?,
         ~focusVisibleClassName?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

@@ -17,21 +17,20 @@ module Classes = {
     | ExpandIcon(_) => "expandIcon";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Expanded(className)
-             | Focused(className)
-             | Disabled(className)
-             | Content(className)
-             | ExpandIcon(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Expanded(className)
+           | Focused(className)
+           | Disabled(className)
+           | Content(className)
+           | ExpandIcon(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -44,10 +43,10 @@ external makeProps :
     ~expandIcon: ReasonReact.reactElement=?,
     ~onChange: ReactEventRe.Form.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
-    ~action: 'any_rynt=?,
-    ~buttonRef: 'union_rmv5=?,
+    ~action: 'any_rfge=?,
+    ~buttonRef: 'union_rxv9=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rwd2=?,
+    ~component: 'union_r2ur=?,
     ~disableRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -63,19 +62,17 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r7p8=?,
+    ~tabIndex: 'union_rxqr=?,
     ~_TouchRippleProps: Js.t({..})=?,
-    ~type_: string=?,
+    ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/ExpansionPanelSummary/ExpansionPanelSummary"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -125,16 +122,10 @@ let make =
         ~onClick?,
         ~action?,
         ~buttonRef=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            buttonRef,
-          ),
+          buttonRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~centerRipple?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disableRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,
@@ -151,13 +142,10 @@ let make =
         ~onTouchStart?,
         ~role?,
         ~tabIndex=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            tabIndex,
-          ),
+          tabIndex |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_TouchRippleProps?,
-        ~type_?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~_type=?type_,
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

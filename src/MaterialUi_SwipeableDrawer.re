@@ -6,10 +6,37 @@ type anchor = [
   | [@bs.as "bottom"] `Bottom
 ];
 
-[@bs.deriving abstract]
-type transitionDuration_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module TransitionDuration_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 [@bs.deriving jsConverter]
@@ -18,7 +45,6 @@ type variant = [
   | [@bs.as "persistent"] `Persistent
   | [@bs.as "temporary"] `Temporary
 ];
-
 [@bs.obj]
 external makeProps :
   (
@@ -27,25 +53,23 @@ external makeProps :
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rs6j,
-    ~onOpen: 'any_ra0b,
-    ~open_: bool,
+    ~onClose: 'any_r9df,
+    ~onOpen: 'any_rgex,
+    ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_4=?,
+    ~swipeAreaWidth: 'number_l=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_r6uw=?,
+    ~transitionDuration: 'union_rm27=?,
     ~variant: string=?,
     ~className: string=?,
-    ~elevation: 'number_b=?,
+    ~elevation: 'number_g=?,
     ~_SlideProps: Js.t({..})=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/SwipeableDrawer/SwipeableDrawer"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~anchor: option(anchor)=?,
@@ -64,7 +88,7 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(transitionDuration_shape)
+             | `Object(TransitionDuration_shape.t)
            ],
          )=?,
       ~variant: option(variant)=?,
@@ -77,33 +101,26 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
-        ~anchor=?Js.Option.map((. v) => anchorToJs(v), anchor),
+        ~anchor=?anchor |. Belt.Option.map(v => anchorToJs(v)),
         ~disableBackdropTransition?,
         ~disableDiscovery?,
         ~disableSwipeToOpen?,
         ~_ModalProps?,
         ~onClose,
         ~onOpen,
-        ~open_,
+        ~_open=open_,
         ~_PaperProps?,
         ~swipeAreaWidth=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            swipeAreaWidth,
-          ),
+          swipeAreaWidth
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~theme?,
         ~transitionDuration=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            transitionDuration,
-          ),
-        ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
+          transitionDuration
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~variant=?variant |. Belt.Option.map(v => variantToJs(v)),
         ~className?,
         ~elevation=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            elevation,
-          ),
+          elevation |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_SlideProps?,
         (),
       ),

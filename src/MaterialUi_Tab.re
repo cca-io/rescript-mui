@@ -36,27 +36,26 @@ module Classes = {
     | LabelWrapped(_) => "labelWrapped";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | LabelIcon(className)
-             | TextColorInherit(className)
-             | TextColorPrimary(className)
-             | TextColorSecondary(className)
-             | Selected(className)
-             | Disabled(className)
-             | FullWidth(className)
-             | Wrapper(className)
-             | LabelContainer(className)
-             | Label(className)
-             | LabelWrapped(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | LabelIcon(className)
+           | TextColorInherit(className)
+           | TextColorPrimary(className)
+           | TextColorSecondary(className)
+           | Selected(className)
+           | Disabled(className)
+           | FullWidth(className)
+           | Wrapper(className)
+           | LabelContainer(className)
+           | Label(className)
+           | LabelWrapped(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -73,11 +72,11 @@ external makeProps :
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~selected: bool=?,
     ~textColor: string=?,
-    ~value: 'any_r93t=?,
-    ~action: 'any_rs15=?,
-    ~buttonRef: 'union_raca=?,
+    ~value: 'any_rl5h=?,
+    ~action: 'any_r6ue=?,
+    ~buttonRef: 'union_rl76=?,
     ~centerRipple: bool=?,
-    ~component: 'union_r4as=?,
+    ~component: 'union_r4sm=?,
     ~disableRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -93,19 +92,17 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rlxf=?,
+    ~tabIndex: 'union_r0s6=?,
     ~_TouchRippleProps: Js.t({..})=?,
-    ~type_: string=?,
+    ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Tab/Tab"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -118,7 +115,7 @@ let make =
       ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~textColor: option(textColor)=?,
-      ~value: option('any_r93t)=?,
+      ~value: option('any_rl5h)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
@@ -161,20 +158,14 @@ let make =
         ~onChange?,
         ~onClick?,
         ~selected?,
-        ~textColor=?Js.Option.map((. v) => textColorToJs(v), textColor),
+        ~textColor=?textColor |. Belt.Option.map(v => textColorToJs(v)),
         ~value?,
         ~action?,
         ~buttonRef=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            buttonRef,
-          ),
+          buttonRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~centerRipple?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disableRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,
@@ -191,13 +182,10 @@ let make =
         ~onTouchStart?,
         ~role?,
         ~tabIndex=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            tabIndex,
-          ),
+          tabIndex |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_TouchRippleProps?,
-        ~type_?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~_type=?type_,
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

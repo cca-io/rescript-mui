@@ -19,19 +19,18 @@ module Classes = {
     | AlternativeLabel(_) => "alternativeLabel";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Horizontal(className)
-             | Vertical(className)
-             | AlternativeLabel(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Horizontal(className)
+           | Vertical(className)
+           | AlternativeLabel(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -44,7 +43,7 @@ external makeProps :
     ~completed: bool=?,
     ~connector: ReasonReact.reactElement=?,
     ~disabled: bool=?,
-    ~index: 'number_v=?,
+    ~index: 'number_q=?,
     ~last: bool=?,
     ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -53,10 +52,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Step/Step"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~active: option(bool)=?,
@@ -83,11 +80,10 @@ let make =
         ~connector?,
         ~disabled?,
         ~index=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), index),
+          index |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~last?,
-        ~orientation=?
-          Js.Option.map((. v) => orientationToJs(v), orientation),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~orientation=?orientation |. Belt.Option.map(v => orientationToJs(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

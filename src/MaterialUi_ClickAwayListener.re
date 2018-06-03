@@ -12,7 +12,6 @@ type touchEvent = [
   | [@bs.as "onTouchEnd"] `OnTouchEnd
   | [@bs.as "false"] `False
 ];
-
 [@bs.obj]
 external makeProps :
   (
@@ -23,10 +22,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/ClickAwayListener/ClickAwayListener"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~mouseEvent: option(mouseEvent)=?,
@@ -38,9 +35,9 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
-        ~mouseEvent=?Js.Option.map((. v) => mouseEventToJs(v), mouseEvent),
+        ~mouseEvent=?mouseEvent |. Belt.Option.map(v => mouseEventToJs(v)),
         ~onClickAway,
-        ~touchEvent=?Js.Option.map((. v) => touchEventToJs(v), touchEvent),
+        ~touchEvent=?touchEvent |. Belt.Option.map(v => touchEventToJs(v)),
         (),
       ),
     children,

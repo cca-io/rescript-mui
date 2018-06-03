@@ -37,23 +37,22 @@ module Classes = {
     | TooltipPlacementBottom(_) => "tooltipPlacementBottom";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Popper(className)
-             | Open(className)
-             | Tooltip(className)
-             | Touch(className)
-             | TooltipPlacementLeft(className)
-             | TooltipPlacementRight(className)
-             | TooltipPlacementTop(className)
-             | TooltipPlacementBottom(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Popper(className)
+           | Open(className)
+           | Tooltip(className)
+           | Touch(className)
+           | TooltipPlacementLeft(className)
+           | TooltipPlacementRight(className)
+           | TooltipPlacementTop(className)
+           | TooltipPlacementBottom(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -64,14 +63,14 @@ external makeProps :
     ~disableFocusListener: bool=?,
     ~disableHoverListener: bool=?,
     ~disableTouchListener: bool=?,
-    ~enterDelay: 'number_u=?,
-    ~enterTouchDelay: 'number_m=?,
+    ~enterDelay: 'number_g=?,
+    ~enterTouchDelay: 'number_5=?,
     ~id: string=?,
-    ~leaveDelay: 'number_9=?,
-    ~leaveTouchDelay: 'number_q=?,
-    ~onClose: 'any_rz7y=?,
-    ~onOpen: 'any_r5ra=?,
-    ~open_: bool=?,
+    ~leaveDelay: 'number_4=?,
+    ~leaveTouchDelay: 'number_b=?,
+    ~onClose: 'any_rhwv=?,
+    ~onOpen: 'any_r2oe=?,
+    ~_open: bool=?,
     ~placement: string=?,
     ~_PopperProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
@@ -82,10 +81,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Tooltip/Tooltip"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -117,34 +114,26 @@ let make =
         ~disableHoverListener?,
         ~disableTouchListener?,
         ~enterDelay=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            enterDelay,
-          ),
+          enterDelay
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~enterTouchDelay=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            enterTouchDelay,
-          ),
+          enterTouchDelay
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~id?,
         ~leaveDelay=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            leaveDelay,
-          ),
+          leaveDelay
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~leaveTouchDelay=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            leaveTouchDelay,
-          ),
+          leaveTouchDelay
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~onClose?,
         ~onOpen?,
-        ~open_?,
-        ~placement=?Js.Option.map((. v) => placementToJs(v), placement),
+        ~_open=?open_,
+        ~placement=?placement |. Belt.Option.map(v => placementToJs(v)),
         ~_PopperProps?,
         ~theme?,
         ~title,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

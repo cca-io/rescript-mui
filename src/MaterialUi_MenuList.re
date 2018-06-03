@@ -4,7 +4,7 @@ external makeProps :
     ~className: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
-    ~component: 'union_rmku=?,
+    ~component: 'union_rldx=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: ReasonReact.reactElement=?,
@@ -12,10 +12,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/MenuList/MenuList"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -35,10 +33,7 @@ let make =
         ~onBlur?,
         ~onKeyDown?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~dense?,
         ~disablePadding?,
         ~subheader?,

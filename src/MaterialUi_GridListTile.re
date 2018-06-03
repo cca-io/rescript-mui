@@ -13,19 +13,18 @@ module Classes = {
     | ImgFullWidth(_) => "imgFullWidth";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Tile(className)
-             | ImgFullHeight(className)
-             | ImgFullWidth(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Tile(className)
+           | ImgFullHeight(className)
+           | ImgFullWidth(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -33,8 +32,8 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~cols: 'number_3=?,
-    ~component: 'union_rj3a=?,
+    ~cols: 'number_0=?,
+    ~component: 'union_rf5q=?,
     ~rows: 'number_j=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -42,10 +41,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/GridListTile/GridListTile"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -62,15 +59,12 @@ let make =
       makeProps(
         ~className?,
         ~cols=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), cols),
+          cols |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~rows=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), rows),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          rows |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

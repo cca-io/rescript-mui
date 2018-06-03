@@ -37,23 +37,22 @@ module Classes = {
     | ColorSecondary(_) => "colorSecondary";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | PositionFixed(className)
-             | PositionAbsolute(className)
-             | PositionSticky(className)
-             | PositionStatic(className)
-             | ColorDefault(className)
-             | ColorPrimary(className)
-             | ColorSecondary(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | PositionFixed(className)
+           | PositionAbsolute(className)
+           | PositionSticky(className)
+           | PositionStatic(className)
+           | ColorDefault(className)
+           | ColorPrimary(className)
+           | ColorSecondary(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -63,8 +62,8 @@ external makeProps :
     ~className: string=?,
     ~color: string=?,
     ~position: string=?,
-    ~component: 'union_rw1q=?,
-    ~elevation: 'number_a=?,
+    ~component: 'union_rnjj=?,
+    ~elevation: 'number_4=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -72,10 +71,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/AppBar/AppBar"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -93,20 +90,14 @@ let make =
     ~props=
       makeProps(
         ~className?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
-        ~position=?Js.Option.map((. v) => positionToJs(v), position),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
+        ~position=?position |. Belt.Option.map(v => positionToJs(v)),
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~elevation=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            elevation,
-          ),
+          elevation |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~square?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

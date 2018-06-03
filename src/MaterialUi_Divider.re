@@ -13,19 +13,18 @@ module Classes = {
     | Light(_) => "light";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Absolute(className)
-             | Inset(className)
-             | Light(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Absolute(className)
+           | Inset(className)
+           | Light(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -34,7 +33,7 @@ external makeProps :
   (
     ~absolute: bool=?,
     ~className: string=?,
-    ~component: 'union_rdw6=?,
+    ~component: 'union_ryxa=?,
     ~inset: bool=?,
     ~light: bool=?,
     ~classes: Js.Dict.t(string)=?,
@@ -43,10 +42,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Divider/Divider"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~absolute: option(bool)=?,
@@ -65,13 +62,10 @@ let make =
         ~absolute?,
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~inset?,
         ~light?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

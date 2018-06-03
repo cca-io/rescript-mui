@@ -1,16 +1,14 @@
 [@bs.obj]
 external makeProps :
   (
-    ~container: 'union_r16x=?,
+    ~container: 'union_r1l8=?,
     ~onRendered: ReactEventRe.Synthetic.t => unit=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Portal/Portal"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~container:
@@ -25,10 +23,7 @@ let make =
     ~props=
       makeProps(
         ~container=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            container,
-          ),
+          container |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~onRendered?,
         (),
       ),

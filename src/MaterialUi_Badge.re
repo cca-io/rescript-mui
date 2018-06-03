@@ -23,20 +23,19 @@ module Classes = {
     | ColorError(_) => "colorError";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Badge(className)
-             | ColorPrimary(className)
-             | ColorSecondary(className)
-             | ColorError(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Badge(className)
+           | ColorPrimary(className)
+           | ColorSecondary(className)
+           | ColorError(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -46,17 +45,15 @@ external makeProps :
     ~badgeContent: ReasonReact.reactElement,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ra33=?,
+    ~component: 'union_reot=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Badge/Badge"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~badgeContent: ReasonReact.reactElement,
@@ -73,13 +70,10 @@ let make =
       makeProps(
         ~badgeContent,
         ~className?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

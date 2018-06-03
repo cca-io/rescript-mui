@@ -11,32 +11,31 @@ module Classes = {
     | Label(_) => "label";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Disabled(className)
-             | Label(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Disabled(className)
+           | Label(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_r37r=?,
+    ~checked: 'union_rmdy=?,
     ~className: string=?,
     ~control: ReasonReact.reactElement=?,
     ~disabled: bool=?,
     ~inputRef: 'genericCallback=?,
     ~label: ReasonReact.reactElement=?,
     ~name: string=?,
-    ~onChange: 'any_rhwo=?,
+    ~onChange: 'any_ryz6=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -44,10 +43,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/FormControlLabel/FormControlLabel"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~checked: option([ | `Bool(bool) | `String(string)])=?,
@@ -68,10 +65,7 @@ let make =
     ~props=
       makeProps(
         ~checked=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            checked,
-          ),
+          checked |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~className?,
         ~control?,
         ~disabled?,
@@ -80,7 +74,7 @@ let make =
         ~name?,
         ~onChange?,
         ~value?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

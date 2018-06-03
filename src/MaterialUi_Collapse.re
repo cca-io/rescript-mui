@@ -1,7 +1,34 @@
-[@bs.deriving abstract]
-type timeout_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module Timeout_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 [@bs.deriving jsConverter]
@@ -22,19 +49,18 @@ module Classes = {
     | WrapperInner(_) => "wrapperInner";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Container(className)
-             | Entered(className)
-             | Wrapper(className)
-             | WrapperInner(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Container(className)
+           | Entered(className)
+           | Wrapper(className)
+           | WrapperInner(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -43,25 +69,23 @@ external makeProps :
   (
     ~className: string=?,
     ~collapsedHeight: string=?,
-    ~component: 'union_r7oj=?,
-    ~in_: bool=?,
+    ~component: 'union_reo5=?,
+    ~_in: bool=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rxjd=?,
+    ~timeout: 'union_rars=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Collapse/Collapse"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -79,7 +103,7 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(timeout_shape)
+             | `Object(Timeout_shape.t)
              | `Enum(timeout_enum)
            ],
          )=?,
@@ -94,11 +118,8 @@ let make =
         ~className?,
         ~collapsedHeight?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
-        ~in_?,
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~_in=?in_,
         ~onEnter?,
         ~onEntered?,
         ~onEntering?,
@@ -106,16 +127,18 @@ let make =
         ~onExiting?,
         ~theme?,
         ~timeout=?
-          Js.Option.map(
-            (. v) =>
-              switch (v) {
-              | `Enum(v) =>
-                MaterialUi_Helpers.unwrapValue(`String(timeout_enumToJs(v)))
-              | v => MaterialUi_Helpers.unwrapValue(v)
-              },
-            timeout,
-          ),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          timeout
+          |. Belt.Option.map(v =>
+               switch (v) {
+               | `Enum(v) =>
+                 MaterialUi_Helpers.unwrapValue(
+                   `String(timeout_enumToJs(v)),
+                 )
+
+               | v => MaterialUi_Helpers.unwrapValue(v)
+               }
+             ),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

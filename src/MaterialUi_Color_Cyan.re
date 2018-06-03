@@ -1,4 +1,4 @@
-[@bs.module "material-ui/colors/cyan"]
+[@bs.module "@material-ui/core/colors/cyan"]
 external cyanExt : Js.Dict.t(string) = "default";
 
 let c50: string = Js.Dict.unsafeGet(cyanExt, "50");

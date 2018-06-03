@@ -19,22 +19,21 @@ module Classes = {
     | ChildPulsate(_) => "childPulsate";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Ripple(className)
-             | RippleVisible(className)
-             | RipplePulsate(className)
-             | Child(className)
-             | ChildLeaving(className)
-             | ChildPulsate(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Ripple(className)
+           | RippleVisible(className)
+           | RipplePulsate(className)
+           | Child(className)
+           | ChildLeaving(className)
+           | ChildPulsate(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -49,10 +48,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/ButtonBase/TouchRipple"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~center: option(bool)=?,
@@ -67,7 +64,7 @@ let make =
       makeProps(
         ~center?,
         ~className?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

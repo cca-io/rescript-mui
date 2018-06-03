@@ -1,4 +1,4 @@
-[@bs.module "material-ui/colors/red"]
+[@bs.module "@material-ui/core/colors/red"]
 external redExt : Js.Dict.t(string) = "default";
 
 let c50: string = Js.Dict.unsafeGet(redExt, "50");

@@ -43,23 +43,22 @@ module Classes = {
     | PaddingNone(_) => "paddingNone";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Head(className)
-             | Body(className)
-             | Footer(className)
-             | Numeric(className)
-             | PaddingDense(className)
-             | PaddingCheckbox(className)
-             | PaddingNone(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Head(className)
+           | Body(className)
+           | Footer(className)
+           | Numeric(className)
+           | PaddingDense(className)
+           | PaddingCheckbox(className)
+           | PaddingNone(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -67,7 +66,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rkt3=?,
+    ~component: 'union_ry6d=?,
     ~numeric: bool=?,
     ~padding: string=?,
     ~scope: string=?,
@@ -80,10 +79,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/TableCell/TableCell"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -104,18 +101,15 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~numeric?,
-        ~padding=?Js.Option.map((. v) => paddingToJs(v), padding),
+        ~padding=?padding |. Belt.Option.map(v => paddingToJs(v)),
         ~scope?,
         ~sortDirection=?
-          Js.Option.map((. v) => sortDirectionToJs(v), sortDirection),
-        ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
+          sortDirection |. Belt.Option.map(v => sortDirectionToJs(v)),
+        ~variant=?variant |. Belt.Option.map(v => variantToJs(v)),
         ~colSpan?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

@@ -22,27 +22,26 @@ module Classes = {
     | ColorSecondary(_) => "colorSecondary";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Checked(className)
-             | Disabled(className)
-             | ColorPrimary(className)
-             | ColorSecondary(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Checked(className)
+           | Disabled(className)
+           | ColorPrimary(className)
+           | ColorSecondary(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_r4hr=?,
+    ~checked: 'union_rmuy=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~color: string=?,
     ~disabled: bool=?,
@@ -53,8 +52,8 @@ external makeProps :
     ~indeterminateIcon: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
     ~inputRef: 'genericCallback=?,
-    ~onChange: 'any_rxyp=?,
-    ~type_: string=?,
+    ~onChange: 'any_rptf=?,
+    ~_type: string=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -62,10 +61,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Checkbox/Checkbox"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~checked: option([ | `Bool(bool) | `String(string)])=?,
@@ -91,12 +88,9 @@ let make =
     ~props=
       makeProps(
         ~checked=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            checked,
-          ),
+          checked |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~checkedIcon?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
         ~disabled?,
         ~disableRipple?,
         ~icon?,
@@ -106,9 +100,9 @@ let make =
         ~inputProps?,
         ~inputRef?,
         ~onChange?,
-        ~type_?,
+        ~_type=?type_,
         ~value?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

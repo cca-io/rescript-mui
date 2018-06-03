@@ -6,10 +6,37 @@ type anchor = [
   | [@bs.as "bottom"] `Bottom
 ];
 
-[@bs.deriving abstract]
-type transitionDuration_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module TransitionDuration_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 [@bs.deriving jsConverter]
@@ -48,26 +75,25 @@ module Classes = {
     | Modal(_) => "modal";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Docked(className)
-             | Paper(className)
-             | PaperAnchorLeft(className)
-             | PaperAnchorRight(className)
-             | PaperAnchorTop(className)
-             | PaperAnchorBottom(className)
-             | PaperAnchorDockedLeft(className)
-             | PaperAnchorDockedTop(className)
-             | PaperAnchorDockedRight(className)
-             | PaperAnchorDockedBottom(className)
-             | Modal(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Docked(className)
+           | Paper(className)
+           | PaperAnchorLeft(className)
+           | PaperAnchorRight(className)
+           | PaperAnchorTop(className)
+           | PaperAnchorBottom(className)
+           | PaperAnchorDockedLeft(className)
+           | PaperAnchorDockedTop(className)
+           | PaperAnchorDockedRight(className)
+           | PaperAnchorDockedBottom(className)
+           | Modal(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -76,14 +102,14 @@ external makeProps :
   (
     ~anchor: string=?,
     ~className: string=?,
-    ~elevation: 'number_a=?,
+    ~elevation: 'number_p=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_r0b4=?,
-    ~open_: bool=?,
+    ~onClose: 'any_rlob=?,
+    ~_open: bool=?,
     ~_PaperProps: Js.t({..})=?,
     ~_SlideProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rzim=?,
+    ~transitionDuration: 'union_rqgg=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -91,10 +117,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Drawer/Drawer"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~anchor: option(anchor)=?,
@@ -111,7 +135,7 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(transitionDuration_shape)
+             | `Object(TransitionDuration_shape.t)
            ],
          )=?,
       ~variant: option(variant)=?,
@@ -123,26 +147,21 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
-        ~anchor=?Js.Option.map((. v) => anchorToJs(v), anchor),
+        ~anchor=?anchor |. Belt.Option.map(v => anchorToJs(v)),
         ~className?,
         ~elevation=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            elevation,
-          ),
+          elevation |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_ModalProps?,
         ~onClose?,
-        ~open_?,
+        ~_open=?open_,
         ~_PaperProps?,
         ~_SlideProps?,
         ~theme?,
         ~transitionDuration=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            transitionDuration,
-          ),
-        ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          transitionDuration
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~variant=?variant |. Belt.Option.map(v => variantToJs(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

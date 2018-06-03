@@ -60,31 +60,30 @@ module Classes = {
     | FullWidth(_) => "fullWidth";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Label(className)
-             | FlatPrimary(className)
-             | FlatSecondary(className)
-             | Outlined(className)
-             | ColorInherit(className)
-             | Raised(className)
-             | RaisedPrimary(className)
-             | RaisedSecondary(className)
-             | FocusVisible(className)
-             | Disabled(className)
-             | Fab(className)
-             | Mini(className)
-             | SizeSmall(className)
-             | SizeLarge(className)
-             | FullWidth(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Label(className)
+           | FlatPrimary(className)
+           | FlatSecondary(className)
+           | Outlined(className)
+           | ColorInherit(className)
+           | Raised(className)
+           | RaisedPrimary(className)
+           | RaisedSecondary(className)
+           | FocusVisible(className)
+           | Disabled(className)
+           | Fab(className)
+           | Mini(className)
+           | SizeSmall(className)
+           | SizeLarge(className)
+           | FullWidth(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -93,7 +92,7 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ri3k=?,
+    ~component: 'union_r1c7=?,
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
@@ -102,10 +101,10 @@ external makeProps :
     ~href: string=?,
     ~mini: bool=?,
     ~size: string=?,
-    ~type_: string=?,
+    ~_type: string=?,
     ~variant: string=?,
-    ~action: 'any_rg17=?,
-    ~buttonRef: 'union_r5b6=?,
+    ~action: 'any_rb62=?,
+    ~buttonRef: 'union_r729=?,
     ~centerRipple: bool=?,
     ~focusRipple: bool=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
@@ -121,7 +120,7 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rtrf=?,
+    ~tabIndex: 'union_rnaj=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -129,10 +128,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Button/Button"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -179,12 +176,9 @@ let make =
     ~props=
       makeProps(
         ~className?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disabled?,
         ~disableFocusRipple?,
         ~disableRipple?,
@@ -192,15 +186,12 @@ let make =
         ~fullWidth?,
         ~href?,
         ~mini?,
-        ~size=?Js.Option.map((. v) => sizeToJs(v), size),
-        ~type_?,
-        ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
+        ~size=?size |. Belt.Option.map(v => sizeToJs(v)),
+        ~_type=?type_,
+        ~variant=?variant |. Belt.Option.map(v => variantToJs(v)),
         ~action?,
         ~buttonRef=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            buttonRef,
-          ),
+          buttonRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~centerRipple?,
         ~focusRipple?,
         ~onBlur?,
@@ -217,12 +208,9 @@ let make =
         ~onTouchStart?,
         ~role?,
         ~tabIndex=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            tabIndex,
-          ),
+          tabIndex |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_TouchRippleProps?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

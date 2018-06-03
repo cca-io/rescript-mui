@@ -18,42 +18,41 @@ module Classes = {
     | Icon(_) => "icon";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Select(className)
-             | SelectMenu(className)
-             | Disabled(className)
-             | Icon(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Select(className)
+           | SelectMenu(className)
+           | Disabled(className)
+           | Icon(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
 [@bs.obj]
 external makeProps :
   (
-    ~_IconComponent: 'union_rqci=?,
+    ~_IconComponent: 'union_r3hs=?,
     ~input: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_rvxa=?,
-    ~value: 'union_rad8=?,
+    ~onChange: 'any_r6j2=?,
+    ~value: 'union_rrn6=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rdzh=?,
+    ~defaultValue: 'union_r0k5=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_r3iq=?,
+    ~inputComponent: 'any_rm6q=?,
     ~inputRef: 'genericCallback=?,
     ~margin: string=?,
     ~multiline: bool=?,
@@ -66,20 +65,18 @@ external makeProps :
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
-    ~rows: 'union_rw6r=?,
-    ~rowsMax: 'union_r5cz=?,
+    ~rows: 'union_rpr7=?,
+    ~rowsMax: 'union_rgb8=?,
     ~startAdornment: ReasonReact.reactElement=?,
-    ~type_: string=?,
+    ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/NativeSelect/NativeSelect"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~_IconComponent:
@@ -99,7 +96,7 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_r3iq)=?,
+      ~inputComponent: option('any_rm6q)=?,
       ~inputRef: option('genericCallback)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
@@ -125,23 +122,19 @@ let make =
     ~props=
       makeProps(
         ~_IconComponent=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            _IconComponent,
-          ),
+          _IconComponent
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~input?,
         ~inputProps?,
         ~onChange?,
         ~value=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
+          value |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~autoComplete?,
         ~autoFocus?,
         ~className?,
         ~defaultValue=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            defaultValue,
-          ),
+          defaultValue
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disabled?,
         ~disableUnderline?,
         ~endAdornment?,
@@ -150,7 +143,7 @@ let make =
         ~id?,
         ~inputComponent?,
         ~inputRef?,
-        ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
+        ~margin=?margin |. Belt.Option.map(v => marginToJs(v)),
         ~multiline?,
         ~name?,
         ~onBlur?,
@@ -162,15 +155,12 @@ let make =
         ~placeholder?,
         ~readOnly?,
         ~rows=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), rows),
+          rows |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~rowsMax=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            rowsMax,
-          ),
+          rowsMax |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~startAdornment?,
-        ~type_?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~_type=?type_,
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

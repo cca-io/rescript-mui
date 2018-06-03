@@ -20,19 +20,18 @@ module Classes = {
     | FullWidth(_) => "fullWidth";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | MarginNormal(className)
-             | MarginDense(className)
-             | FullWidth(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | MarginNormal(className)
+           | MarginDense(className)
+           | FullWidth(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -40,7 +39,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_roqc=?,
+    ~component: 'union_rp3x=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
@@ -54,10 +53,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/FormControl/FormControl"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -79,18 +76,15 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disabled?,
         ~error?,
         ~fullWidth?,
-        ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
+        ~margin=?margin |. Belt.Option.map(v => marginToJs(v)),
         ~onBlur?,
         ~onFocus?,
         ~required?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

@@ -210,54 +210,53 @@ module Classes = {
     | Grid_Xs_12(_) => "grid-xs-12";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Container(className)
-             | Item(className)
-             | ZeroMinWidth(className)
-             | Direction_Xs_Column(className)
-             | Direction_Xs_Column_Reverse(className)
-             | Direction_Xs_Row_Reverse(className)
-             | Wrap_Xs_Nowrap(className)
-             | Wrap_Xs_Wrap_Reverse(className)
-             | Align_Items_Xs_Center(className)
-             | Align_Items_Xs_Flex_Start(className)
-             | Align_Items_Xs_Flex_End(className)
-             | Align_Items_Xs_Baseline(className)
-             | Align_Content_Xs_Center(className)
-             | Align_Content_Xs_Flex_Start(className)
-             | Align_Content_Xs_Flex_End(className)
-             | Align_Content_Xs_Space_Between(className)
-             | Align_Content_Xs_Space_Around(className)
-             | Justify_Xs_Center(className)
-             | Justify_Xs_Flex_End(className)
-             | Justify_Xs_Space_Between(className)
-             | Justify_Xs_Space_Around(className)
-             | Spacing_Xs_8(className)
-             | Spacing_Xs_16(className)
-             | Spacing_Xs_24(className)
-             | Spacing_Xs_32(className)
-             | Spacing_Xs_40(className)
-             | Grid_Xs(className)
-             | Grid_Xs_1(className)
-             | Grid_Xs_2(className)
-             | Grid_Xs_3(className)
-             | Grid_Xs_4(className)
-             | Grid_Xs_5(className)
-             | Grid_Xs_6(className)
-             | Grid_Xs_7(className)
-             | Grid_Xs_8(className)
-             | Grid_Xs_9(className)
-             | Grid_Xs_10(className)
-             | Grid_Xs_11(className)
-             | Grid_Xs_12(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Container(className)
+           | Item(className)
+           | ZeroMinWidth(className)
+           | Direction_Xs_Column(className)
+           | Direction_Xs_Column_Reverse(className)
+           | Direction_Xs_Row_Reverse(className)
+           | Wrap_Xs_Nowrap(className)
+           | Wrap_Xs_Wrap_Reverse(className)
+           | Align_Items_Xs_Center(className)
+           | Align_Items_Xs_Flex_Start(className)
+           | Align_Items_Xs_Flex_End(className)
+           | Align_Items_Xs_Baseline(className)
+           | Align_Content_Xs_Center(className)
+           | Align_Content_Xs_Flex_Start(className)
+           | Align_Content_Xs_Flex_End(className)
+           | Align_Content_Xs_Space_Between(className)
+           | Align_Content_Xs_Space_Around(className)
+           | Justify_Xs_Center(className)
+           | Justify_Xs_Flex_End(className)
+           | Justify_Xs_Space_Between(className)
+           | Justify_Xs_Space_Around(className)
+           | Spacing_Xs_8(className)
+           | Spacing_Xs_16(className)
+           | Spacing_Xs_24(className)
+           | Spacing_Xs_32(className)
+           | Spacing_Xs_40(className)
+           | Grid_Xs(className)
+           | Grid_Xs_1(className)
+           | Grid_Xs_2(className)
+           | Grid_Xs_3(className)
+           | Grid_Xs_4(className)
+           | Grid_Xs_5(className)
+           | Grid_Xs_6(className)
+           | Grid_Xs_7(className)
+           | Grid_Xs_8(className)
+           | Grid_Xs_9(className)
+           | Grid_Xs_10(className)
+           | Grid_Xs_11(className)
+           | Grid_Xs_12(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -267,18 +266,18 @@ external makeProps :
     ~alignContent: string=?,
     ~alignItems: string=?,
     ~className: string=?,
-    ~component: 'union_rtdh=?,
+    ~component: 'union_rcqm=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rzcx=?,
-    ~md: 'number_rwmg=?,
-    ~sm: 'number_r06d=?,
-    ~spacing: 'number_rbnk=?,
+    ~lg: 'number_rljt=?,
+    ~md: 'number_rvgz=?,
+    ~sm: 'number_rivb=?,
+    ~spacing: 'number_ry6f=?,
     ~wrap: string=?,
-    ~xl: 'number_ris5=?,
-    ~xs: 'number_rqa4=?,
+    ~xl: 'number_rykp=?,
+    ~xs: 'number_rs8h=?,
     ~zeroMinWidth: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -286,10 +285,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Grid/Grid"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~alignContent: option(alignContent)=?,
@@ -317,27 +314,24 @@ let make =
     ~props=
       makeProps(
         ~alignContent=?
-          Js.Option.map((. v) => alignContentToJs(v), alignContent),
-        ~alignItems=?Js.Option.map((. v) => alignItemsToJs(v), alignItems),
+          alignContent |. Belt.Option.map(v => alignContentToJs(v)),
+        ~alignItems=?alignItems |. Belt.Option.map(v => alignItemsToJs(v)),
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~container?,
-        ~direction=?Js.Option.map((. v) => directionToJs(v), direction),
+        ~direction=?direction |. Belt.Option.map(v => directionToJs(v)),
         ~item?,
-        ~justify=?Js.Option.map((. v) => justifyToJs(v), justify),
-        ~lg=?Js.Option.map((. v) => lgToJs(v), lg),
-        ~md=?Js.Option.map((. v) => mdToJs(v), md),
-        ~sm=?Js.Option.map((. v) => smToJs(v), sm),
-        ~spacing=?Js.Option.map((. v) => spacingToJs(v), spacing),
-        ~wrap=?Js.Option.map((. v) => wrapToJs(v), wrap),
-        ~xl=?Js.Option.map((. v) => xlToJs(v), xl),
-        ~xs=?Js.Option.map((. v) => xsToJs(v), xs),
+        ~justify=?justify |. Belt.Option.map(v => justifyToJs(v)),
+        ~lg=?lg |. Belt.Option.map(v => lgToJs(v)),
+        ~md=?md |. Belt.Option.map(v => mdToJs(v)),
+        ~sm=?sm |. Belt.Option.map(v => smToJs(v)),
+        ~spacing=?spacing |. Belt.Option.map(v => spacingToJs(v)),
+        ~wrap=?wrap |. Belt.Option.map(v => wrapToJs(v)),
+        ~xl=?xl |. Belt.Option.map(v => xlToJs(v)),
+        ~xs=?xs |. Belt.Option.map(v => xsToJs(v)),
         ~zeroMinWidth?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

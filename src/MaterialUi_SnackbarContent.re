@@ -11,18 +11,17 @@ module Classes = {
     | Action(_) => "action";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Message(className)
-             | Action(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Message(className)
+           | Action(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -32,8 +31,8 @@ external makeProps :
     ~action: ReasonReact.reactElement=?,
     ~className: string=?,
     ~message: ReasonReact.reactElement=?,
-    ~component: 'union_rqeo=?,
-    ~elevation: 'number_g=?,
+    ~component: 'union_ruu8=?,
+    ~elevation: 'number_1=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -41,10 +40,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/SnackbarContent/SnackbarContent"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~action: option(ReasonReact.reactElement)=?,
@@ -65,17 +62,11 @@ let make =
         ~className?,
         ~message?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~elevation=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            elevation,
-          ),
+          elevation |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~square?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

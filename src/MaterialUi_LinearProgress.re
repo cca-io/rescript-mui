@@ -51,31 +51,30 @@ module Classes = {
     | Bar2Buffer(_) => "bar2Buffer";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | ColorPrimary(className)
-             | ColorSecondary(className)
-             | Buffer(className)
-             | Query(className)
-             | Dashed(className)
-             | DashedColorPrimary(className)
-             | DashedColorSecondary(className)
-             | Bar(className)
-             | BarColorPrimary(className)
-             | BarColorSecondary(className)
-             | Bar1Indeterminate(className)
-             | Bar2Indeterminate(className)
-             | Bar1Determinate(className)
-             | Bar1Buffer(className)
-             | Bar2Buffer(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | ColorPrimary(className)
+           | ColorSecondary(className)
+           | Buffer(className)
+           | Query(className)
+           | Dashed(className)
+           | DashedColorPrimary(className)
+           | DashedColorSecondary(className)
+           | Bar(className)
+           | BarColorPrimary(className)
+           | BarColorSecondary(className)
+           | Bar1Indeterminate(className)
+           | Bar2Indeterminate(className)
+           | Bar1Determinate(className)
+           | Bar1Buffer(className)
+           | Bar2Buffer(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -84,8 +83,8 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_b=?,
-    ~valueBuffer: 'number_z=?,
+    ~value: 'number_8=?,
+    ~valueBuffer: 'number_p=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -93,10 +92,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/LinearProgress/LinearProgress"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -113,16 +110,14 @@ let make =
     ~props=
       makeProps(
         ~className?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
         ~value=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
+          value |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~valueBuffer=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            valueBuffer,
-          ),
-        ~variant=?Js.Option.map((. v) => variantToJs(v), variant),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          valueBuffer
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~variant=?variant |. Belt.Option.map(v => variantToJs(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

@@ -6,10 +6,37 @@ type maxWidth = [
   | [@bs.as "false"] `False
 ];
 
-[@bs.deriving abstract]
-type transitionDuration_shape = {
-  enter: [ | `Int(int) | `Float(float)],
-  exit: [ | `Int(int) | `Float(float)],
+module TransitionDuration_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    switch (
+      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+    ) {
+    | Some(v) =>
+      unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
 };
 
 module Classes = {
@@ -33,22 +60,21 @@ module Classes = {
     | PaperFullScreen(_) => "paperFullScreen";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Paper(className)
-             | PaperWidthXs(className)
-             | PaperWidthSm(className)
-             | PaperWidthMd(className)
-             | PaperFullWidth(className)
-             | PaperFullScreen(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Paper(className)
+           | PaperWidthXs(className)
+           | PaperWidthSm(className)
+           | PaperWidthMd(className)
+           | PaperFullWidth(className)
+           | PaperFullScreen(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -63,7 +89,7 @@ external makeProps :
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEventRe.Mouse.t => unit=?,
-    ~onClose: 'any_rutj=?,
+    ~onClose: 'any_r2xs=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -71,13 +97,13 @@ external makeProps :
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~onExited: ReactEventRe.Synthetic.t => unit=?,
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
-    ~open_: bool,
+    ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
-    ~_TransitionComponent: 'union_reo7=?,
-    ~transitionDuration: 'union_ri62=?,
+    ~_TransitionComponent: 'union_rci5=?,
+    ~transitionDuration: 'union_r6xa=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_rbjn=?,
-    ~container: 'union_r8pp=?,
+    ~_BackdropComponent: 'union_rxyf=?,
+    ~container: 'union_rsbw=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disableRestoreFocus: bool=?,
@@ -91,10 +117,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Dialog/Dialog"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~_BackdropProps: option(Js.t({..}))=?,
@@ -122,7 +146,7 @@ let make =
            [
              | `Int(int)
              | `Float(float)
-             | `Object(transitionDuration_shape)
+             | `Object(TransitionDuration_shape.t)
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
@@ -153,7 +177,7 @@ let make =
         ~disableEscapeKeyDown?,
         ~fullScreen?,
         ~fullWidth?,
-        ~maxWidth=?Js.Option.map((. v) => maxWidthToJs(v), maxWidth),
+        ~maxWidth=?maxWidth |. Belt.Option.map(v => maxWidthToJs(v)),
         ~onBackdropClick?,
         ~onClose?,
         ~onEnter?,
@@ -163,29 +187,20 @@ let make =
         ~onExit?,
         ~onExited?,
         ~onExiting?,
-        ~open_,
+        ~_open=open_,
         ~_PaperProps?,
         ~_TransitionComponent=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            _TransitionComponent,
-          ),
+          _TransitionComponent
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~transitionDuration=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            transitionDuration,
-          ),
+          transitionDuration
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_TransitionProps?,
         ~_BackdropComponent=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            _BackdropComponent,
-          ),
+          _BackdropComponent
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~container=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            container,
-          ),
+          container |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disableAutoFocus?,
         ~disableEnforceFocus?,
         ~disableRestoreFocus?,
@@ -193,7 +208,7 @@ let make =
         ~keepMounted?,
         ~manager?,
         ~onRendered?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

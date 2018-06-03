@@ -1,4 +1,4 @@
-[@bs.module "material-ui/colors/common"]
+[@bs.module "@material-ui/core/colors/common"]
 external commonExt : Js.Dict.t(string) = "default";
 
 let black: string = Js.Dict.unsafeGet(commonExt, "black");

@@ -1,4 +1,4 @@
-[@bs.module "material-ui/colors/teal"]
+[@bs.module "@material-ui/core/colors/teal"]
 external tealExt : Js.Dict.t(string) = "default";
 
 let c50: string = Js.Dict.unsafeGet(tealExt, "50");

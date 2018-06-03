@@ -22,20 +22,19 @@ module Classes = {
     | Sticky(_) => "sticky";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | ColorPrimary(className)
-             | ColorInherit(className)
-             | Inset(className)
-             | Sticky(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | ColorPrimary(className)
+           | ColorInherit(className)
+           | Inset(className)
+           | Sticky(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -44,7 +43,7 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rwhk=?,
+    ~component: 'union_ru4v=?,
     ~disableSticky: bool=?,
     ~inset: bool=?,
     ~classes: Js.Dict.t(string)=?,
@@ -53,10 +52,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/ListSubheader/ListSubheader"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -73,15 +70,12 @@ let make =
     ~props=
       makeProps(
         ~className?,
-        ~color=?Js.Option.map((. v) => colorToJs(v), color),
+        ~color=?color |. Belt.Option.map(v => colorToJs(v)),
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disableSticky?,
         ~inset?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

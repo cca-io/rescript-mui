@@ -1,4 +1,4 @@
-[@bs.module "material-ui/colors/indigo"]
+[@bs.module "@material-ui/core/colors/indigo"]
 external indigoExt : Js.Dict.t(string) = "default";
 
 let c50: string = Js.Dict.unsafeGet(indigoExt, "50");

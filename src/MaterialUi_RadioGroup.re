@@ -3,7 +3,7 @@ external makeProps :
   (
     ~name: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
-    ~onChange: 'any_ry16=?,
+    ~onChange: 'any_rlwv=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
     ~value: string=?,
     ~className: string=?,
@@ -12,10 +12,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/RadioGroup/RadioGroup"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~name: option(string)=?,

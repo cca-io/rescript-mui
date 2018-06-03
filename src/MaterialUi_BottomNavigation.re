@@ -7,16 +7,15 @@ module Classes = {
     | Root(_) => "root";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -24,25 +23,23 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~onChange: 'any_r5z6=?,
+    ~onChange: 'any_r1c0=?,
     ~showLabels: bool=?,
-    ~value: 'any_rtv2=?,
+    ~value: 'any_re1r=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/BottomNavigation/BottomNavigation"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
-      ~onChange: option((ReactEventRe.Form.t, 'any_ra4o) => unit)=?,
+      ~onChange: option((ReactEventRe.Form.t, 'any_rnv4) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_rtv2)=?,
+      ~value: option('any_re1r)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -55,7 +52,7 @@ let make =
         ~onChange?,
         ~showLabels?,
         ~value?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

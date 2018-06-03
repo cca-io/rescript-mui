@@ -1,4 +1,4 @@
-[@bs.module "material-ui/colors/deepOrange"]
+[@bs.module "@material-ui/core/colors/deepOrange"]
 external deepOrangeExt : Js.Dict.t(string) = "default";
 
 let c50: string = Js.Dict.unsafeGet(deepOrangeExt, "50");

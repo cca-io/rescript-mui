@@ -34,28 +34,27 @@ module Classes = {
     | InputTypeSearch(_) => "inputTypeSearch";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | FormControl(className)
-             | Focused(className)
-             | Disabled(className)
-             | Underline(className)
-             | Error(className)
-             | Multiline(className)
-             | FullWidth(className)
-             | Input(className)
-             | InputMarginDense(className)
-             | InputMultiline(className)
-             | InputType(className)
-             | InputTypeSearch(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | FormControl(className)
+           | Focused(className)
+           | Disabled(className)
+           | Underline(className)
+           | Error(className)
+           | Multiline(className)
+           | FullWidth(className)
+           | Input(className)
+           | InputMarginDense(className)
+           | InputMultiline(className)
+           | InputType(className)
+           | InputTypeSearch(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -65,21 +64,21 @@ external makeProps :
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rr01=?,
+    ~defaultValue: 'union_r1ye=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_r6ov=?,
+    ~inputComponent: 'any_rnqi=?,
     ~inputProps: Js.t({..})=?,
     ~inputRef: 'genericCallback=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
-    ~onChange: 'any_r3ws=?,
+    ~onChange: 'any_rf57=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
@@ -87,21 +86,19 @@ external makeProps :
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
-    ~rows: 'union_roey=?,
-    ~rowsMax: 'union_rctg=?,
+    ~rows: 'union_riz3=?,
+    ~rowsMax: 'union_rut0=?,
     ~startAdornment: ReasonReact.reactElement=?,
-    ~type_: string=?,
-    ~value: 'union_rv11=?,
+    ~_type: string=?,
+    ~value: 'union_rrw2=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Input/Input"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~autoComplete: option(string)=?,
@@ -115,7 +112,7 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_r6ov)=?,
+      ~inputComponent: option('any_rnqi)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef: option('genericCallback)=?,
       ~margin: option(margin)=?,
@@ -157,10 +154,8 @@ let make =
         ~autoFocus?,
         ~className?,
         ~defaultValue=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            defaultValue,
-          ),
+          defaultValue
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disabled?,
         ~disableUnderline?,
         ~endAdornment?,
@@ -170,7 +165,7 @@ let make =
         ~inputComponent?,
         ~inputProps?,
         ~inputRef?,
-        ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
+        ~margin=?margin |. Belt.Option.map(v => marginToJs(v)),
         ~multiline?,
         ~name?,
         ~onBlur?,
@@ -183,17 +178,14 @@ let make =
         ~placeholder?,
         ~readOnly?,
         ~rows=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), rows),
+          rows |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~rowsMax=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            rowsMax,
-          ),
+          rowsMax |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~startAdornment?,
-        ~type_?,
+        ~_type=?type_,
         ~value=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+          value |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

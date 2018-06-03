@@ -59,42 +59,41 @@ module Classes = {
     | Elevation24(_) => "elevation24";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Rounded(className)
-             | Elevation0(className)
-             | Elevation1(className)
-             | Elevation2(className)
-             | Elevation3(className)
-             | Elevation4(className)
-             | Elevation5(className)
-             | Elevation6(className)
-             | Elevation7(className)
-             | Elevation8(className)
-             | Elevation9(className)
-             | Elevation10(className)
-             | Elevation11(className)
-             | Elevation12(className)
-             | Elevation13(className)
-             | Elevation14(className)
-             | Elevation15(className)
-             | Elevation16(className)
-             | Elevation17(className)
-             | Elevation18(className)
-             | Elevation19(className)
-             | Elevation20(className)
-             | Elevation21(className)
-             | Elevation22(className)
-             | Elevation23(className)
-             | Elevation24(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Rounded(className)
+           | Elevation0(className)
+           | Elevation1(className)
+           | Elevation2(className)
+           | Elevation3(className)
+           | Elevation4(className)
+           | Elevation5(className)
+           | Elevation6(className)
+           | Elevation7(className)
+           | Elevation8(className)
+           | Elevation9(className)
+           | Elevation10(className)
+           | Elevation11(className)
+           | Elevation12(className)
+           | Elevation13(className)
+           | Elevation14(className)
+           | Elevation15(className)
+           | Elevation16(className)
+           | Elevation17(className)
+           | Elevation18(className)
+           | Elevation19(className)
+           | Elevation20(className)
+           | Elevation21(className)
+           | Elevation22(className)
+           | Elevation23(className)
+           | Elevation24(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -102,8 +101,8 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rpjg=?,
-    ~elevation: 'number_y=?,
+    ~component: 'union_ritk=?,
+    ~elevation: 'number_o=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -111,10 +110,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Paper/Paper"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -131,17 +128,11 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~elevation=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            elevation,
-          ),
+          elevation |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~square?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

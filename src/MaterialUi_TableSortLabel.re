@@ -18,20 +18,19 @@ module Classes = {
     | IconDirectionAsc(_) => "iconDirectionAsc";
   let to_obj = listOfClasses =>
     listOfClasses
-    |> StdLabels.List.fold_left(
-         ~f=
-           (obj, classType) => {
-             switch (classType) {
-             | Root(className)
-             | Active(className)
-             | Icon(className)
-             | IconDirectionDesc(className)
-             | IconDirectionAsc(className) =>
-               Js.Dict.set(obj, to_string(classType), className)
-             };
-             obj;
-           },
-         ~init=Js.Dict.empty(),
+    |. Belt.List.reduce(
+         Js.Dict.empty(),
+         (obj, classType) => {
+           switch (classType) {
+           | Root(className)
+           | Active(className)
+           | Icon(className)
+           | IconDirectionDesc(className)
+           | IconDirectionAsc(className) =>
+             Js.Dict.set(obj, to_string(classType), className)
+           };
+           obj;
+         },
        );
 };
 
@@ -41,10 +40,10 @@ external makeProps :
     ~active: bool=?,
     ~className: string=?,
     ~direction: string=?,
-    ~action: 'any_rrtm=?,
-    ~buttonRef: 'union_rs1b=?,
+    ~action: 'any_r7hb=?,
+    ~buttonRef: 'union_r8lg=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rvnh=?,
+    ~component: 'union_rn4c=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~focusRipple: bool=?,
@@ -62,19 +61,17 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rfh1=?,
+    ~tabIndex: 'union_rj5d=?,
     ~_TouchRippleProps: Js.t({..})=?,
-    ~type_: string=?,
+    ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/TableSortLabel/TableSortLabel"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~active: option(bool)=?,
@@ -117,19 +114,13 @@ let make =
       makeProps(
         ~active?,
         ~className?,
-        ~direction=?Js.Option.map((. v) => directionToJs(v), direction),
+        ~direction=?direction |. Belt.Option.map(v => directionToJs(v)),
         ~action?,
         ~buttonRef=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            buttonRef,
-          ),
+          buttonRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~centerRipple?,
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disabled?,
         ~disableRipple?,
         ~focusRipple?,
@@ -148,13 +139,10 @@ let make =
         ~onTouchStart?,
         ~role?,
         ~tabIndex=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            tabIndex,
-          ),
+          tabIndex |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_TouchRippleProps?,
-        ~type_?,
-        ~classes=?Js.Option.map((. v) => Classes.to_obj(v), classes),
+        ~_type=?type_,
+        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
       ),

@@ -4,14 +4,13 @@ type margin = [
   | [@bs.as "dense"] `Dense
   | [@bs.as "normal"] `Normal
 ];
-
 [@bs.obj]
 external makeProps :
   (
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_r2jo=?,
+    ~defaultValue: 'union_roio=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -27,25 +26,23 @@ external makeProps :
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
-    ~onChange: 'any_r1we=?,
+    ~onChange: 'any_re7b=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_r7jw=?,
-    ~rowsMax: 'union_rzss=?,
+    ~rows: 'union_rqbl=?,
+    ~rowsMax: 'union_rgzy=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
-    ~type_: string=?,
-    ~value: 'union_rw61=?,
-    ~component: 'union_r4xm=?,
+    ~_type: string=?,
+    ~value: 'union_r45i=?,
+    ~component: 'union_rgxd=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/TextField/TextField"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~autoComplete: option(string)=?,
@@ -99,10 +96,8 @@ let make =
         ~autoFocus?,
         ~className?,
         ~defaultValue=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            defaultValue,
-          ),
+          defaultValue
+          |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disabled?,
         ~error?,
         ~_FormHelperTextProps?,
@@ -114,7 +109,7 @@ let make =
         ~inputProps?,
         ~inputRef?,
         ~label?,
-        ~margin=?Js.Option.map((. v) => marginToJs(v), margin),
+        ~margin=?margin |. Belt.Option.map(v => marginToJs(v)),
         ~multiline?,
         ~name?,
         ~onBlur?,
@@ -123,22 +118,16 @@ let make =
         ~placeholder?,
         ~required?,
         ~rows=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), rows),
+          rows |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~rowsMax=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            rowsMax,
-          ),
+          rowsMax |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~select?,
         ~_SelectProps?,
-        ~type_?,
+        ~_type=?type_,
         ~value=?
-          Js.Option.map((. v) => MaterialUi_Helpers.unwrapValue(v), value),
+          value |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~component=?
-          Js.Option.map(
-            (. v) => MaterialUi_Helpers.unwrapValue(v),
-            component,
-          ),
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         (),
       ),
     children,
