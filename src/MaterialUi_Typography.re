@@ -128,7 +128,7 @@ external makeProps :
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rdu1=?,
+    ~component: 'union_r0k4=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~noWrap: bool=?,

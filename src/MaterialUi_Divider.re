@@ -33,7 +33,7 @@ external makeProps :
   (
     ~absolute: bool=?,
     ~className: string=?,
-    ~component: 'union_ryxa=?,
+    ~component: 'union_ry8h=?,
     ~inset: bool=?,
     ~light: bool=?,
     ~classes: Js.Dict.t(string)=?,

@@ -66,19 +66,19 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~action: 'any_rwi4=?,
+    ~action: 'any_r0j1=?,
     ~centered: bool=?,
     ~className: string=?,
     ~fullWidth: bool=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_ra0i=?,
+    ~onChange: 'any_rxha=?,
     ~scrollable: bool=?,
-    ~_ScrollButtonComponent: 'union_rlbn=?,
+    ~_ScrollButtonComponent: 'union_r0sm=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_rctm=?,
+    ~value: 'any_rxy8=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -102,7 +102,7 @@ let make =
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_rctm)=?,
+      ~value: option('any_rxy8)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,

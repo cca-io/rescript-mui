@@ -3,7 +3,7 @@ external makeProps :
   (
     ~name: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
-    ~onChange: 'any_rlwv=?,
+    ~onChange: 'any_rp4u=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
     ~value: string=?,
     ~className: string=?,

@@ -43,7 +43,7 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ru4v=?,
+    ~component: 'union_rmqd=?,
     ~disableSticky: bool=?,
     ~inset: bool=?,
     ~classes: Js.Dict.t(string)=?,

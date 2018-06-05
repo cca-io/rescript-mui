@@ -232,9 +232,9 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~anchorEl: 'any_r25w=?,
+    ~anchorEl: 'any_rvz1=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_r9gm=?,
+    ~onClose: 'any_r1j5=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -245,18 +245,18 @@ external makeProps :
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rwrb=?,
-    ~action: 'any_rsfr=?,
-    ~anchorOrigin: 'any_rio9=?,
-    ~anchorPosition: 'any_r39e=?,
+    ~transitionDuration: 'union_rqg1=?,
+    ~action: 'any_rmfp=?,
+    ~anchorOrigin: 'any_rzmu=?,
+    ~anchorPosition: 'any_rggv=?,
     ~anchorReference: string=?,
-    ~container: 'union_rinp=?,
-    ~elevation: 'number_7=?,
+    ~container: 'union_rqzo=?,
+    ~elevation: 'number_n=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_0=?,
+    ~marginThreshold: 'number_k=?,
     ~role: string=?,
-    ~transformOrigin: 'any_rhfc=?,
-    ~_TransitionComponent: 'union_rlxf=?,
+    ~transformOrigin: 'any_rwmc=?,
+    ~_TransitionComponent: 'union_rsyx=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -268,7 +268,7 @@ external makeProps :
 external reactClass : ReasonReact.reactClass = "default";
 let make =
     (
-      ~anchorEl: option('any_r25w)=?,
+      ~anchorEl: option('any_rvz1)=?,
       ~_MenuListProps: option(Js.t({..}))=?,
       ~onClose: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,

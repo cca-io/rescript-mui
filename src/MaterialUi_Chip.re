@@ -42,13 +42,13 @@ external makeProps :
   (
     ~avatar: ReasonReact.reactElement=?,
     ~className: string=?,
-    ~component: 'union_relc=?,
+    ~component: 'union_ryn7=?,
     ~deleteIcon: ReasonReact.reactElement=?,
     ~label: ReasonReact.reactElement=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~onDelete: ReactEventRe.Synthetic.t => unit=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
-    ~tabIndex: 'union_r40j=?,
+    ~tabIndex: 'union_r3ni=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit

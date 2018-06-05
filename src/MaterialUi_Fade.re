@@ -38,7 +38,7 @@ external makeProps :
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rn4w=?,
+    ~timeout: 'union_r3oo=?,
     unit
   ) =>
   _ =

@@ -40,7 +40,7 @@ external makeProps :
     ~action: ReasonReact.reactElement=?,
     ~avatar: ReasonReact.reactElement=?,
     ~className: string=?,
-    ~component: 'union_rvwb=?,
+    ~component: 'union_rk3s=?,
     ~subheader: ReasonReact.reactElement=?,
     ~title: ReasonReact.reactElement=?,
     ~classes: Js.Dict.t(string)=?,

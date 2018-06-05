@@ -69,7 +69,7 @@ external makeProps :
   (
     ~className: string=?,
     ~collapsedHeight: string=?,
-    ~component: 'union_reo5=?,
+    ~component: 'union_r83v=?,
     ~_in: bool=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
@@ -77,7 +77,7 @@ external makeProps :
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rars=?,
+    ~timeout: 'union_r4dn=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit

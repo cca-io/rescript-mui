@@ -31,7 +31,7 @@ external makeProps :
     ~alt: string=?,
     ~childrenClassName: string=?,
     ~className: string=?,
-    ~component: 'union_rpvr=?,
+    ~component: 'union_r2oa=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,

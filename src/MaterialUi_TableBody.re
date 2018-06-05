@@ -1,6 +1,6 @@
 [@bs.obj]
 external makeProps :
-  (~className: string=?, ~component: 'union_r6zg=?, unit) => _ =
+  (~className: string=?, ~component: 'union_r6qs=?, unit) => _ =
   "";
 [@bs.module "@material-ui/core/TableBody/TableBody"]
 external reactClass : ReasonReact.reactClass = "default";
