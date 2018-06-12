@@ -15,8 +15,10 @@ type size = [
 
 [@bs.deriving jsConverter]
 type variant = [
+  | [@bs.as "text"] `Text
   | [@bs.as "flat"] `Flat
   | [@bs.as "outlined"] `Outlined
+  | [@bs.as "contained"] `Contained
   | [@bs.as "raised"] `Raised
   | [@bs.as "fab"] `Fab
 ];
