@@ -41,7 +41,7 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_r231=?,
+    ~checked: 'union_ryur=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~color: string=?,
     ~disabled: bool=?,
@@ -51,8 +51,8 @@ external makeProps :
     ~indeterminate: bool=?,
     ~indeterminateIcon: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'genericCallback=?,
-    ~onChange: 'any_r46q=?,
+    ~inputRef: 'union_rckj=?,
+    ~onChange: 'any_rq8p=?,
     ~_type: string=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -61,8 +61,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Checkbox/Checkbox"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~checked: option([ | `Bool(bool) | `String(string)])=?,
@@ -75,7 +77,10 @@ let make =
       ~indeterminate: option(bool)=?,
       ~indeterminateIcon: option(ReasonReact.reactElement)=?,
       ~inputProps: option(Js.t({..}))=?,
-      ~inputRef: option('genericCallback)=?,
+      ~inputRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~onChange: option((ReactEventRe.Form.t, bool) => unit)=?,
       ~type_: option(string)=?,
       ~value: option(string)=?,
@@ -98,7 +103,8 @@ let make =
         ~indeterminate?,
         ~indeterminateIcon?,
         ~inputProps?,
-        ~inputRef?,
+        ~inputRef=?
+          inputRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~onChange?,
         ~_type=?type_,
         ~value?,

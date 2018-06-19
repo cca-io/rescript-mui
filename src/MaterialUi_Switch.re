@@ -53,7 +53,7 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_rn7r=?,
+    ~checked: 'union_rwet=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~className: string=?,
     ~color: string=?,
@@ -63,8 +63,8 @@ external makeProps :
     ~icon: ReasonReact.reactElement=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'genericCallback=?,
-    ~onChange: 'any_rj2f=?,
+    ~inputRef: 'union_rwct=?,
+    ~onChange: 'any_rqmp=?,
     ~_type: string=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -73,8 +73,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Switch/Switch"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~checked: option([ | `Bool(bool) | `String(string)])=?,
@@ -87,7 +89,10 @@ let make =
       ~icon: option(ReasonReact.reactElement)=?,
       ~id: option(string)=?,
       ~inputProps: option(Js.t({..}))=?,
-      ~inputRef: option('genericCallback)=?,
+      ~inputRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~onChange: option((ReactEventRe.Form.t, bool) => unit)=?,
       ~type_: option(string)=?,
       ~value: option(string)=?,
@@ -110,7 +115,8 @@ let make =
         ~icon?,
         ~id?,
         ~inputProps?,
-        ~inputRef?,
+        ~inputRef=?
+          inputRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~onChange?,
         ~_type=?type_,
         ~value?,

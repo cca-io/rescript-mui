@@ -101,8 +101,8 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rk9q=?,
-    ~elevation: 'number_i=?,
+    ~component: 'union_ruz9=?,
+    ~elevation: 'number_z=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -110,12 +110,21 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Paper/Paper"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,

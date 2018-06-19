@@ -1,14 +1,16 @@
 [@bs.obj]
 external makeProps :
   (
-    ~container: 'union_r5ky=?,
+    ~container: 'union_rlmt=?,
     ~onRendered: ReactEventRe.Synthetic.t => unit=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Portal/Portal"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~container:

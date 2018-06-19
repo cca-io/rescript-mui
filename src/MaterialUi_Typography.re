@@ -128,7 +128,7 @@ external makeProps :
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r0k4=?,
+    ~component: 'union_rlcw=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~noWrap: bool=?,
@@ -140,14 +140,23 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Typography/Typography"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~align: option(align)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~gutterBottom: option(bool)=?,
       ~headlineMapping: option(Js.t({..}))=?,
       ~noWrap: option(bool)=?,

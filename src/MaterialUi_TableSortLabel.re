@@ -40,12 +40,13 @@ external makeProps :
     ~active: bool=?,
     ~className: string=?,
     ~direction: string=?,
-    ~action: 'any_ryjs=?,
-    ~buttonRef: 'union_rasa=?,
+    ~action: 'any_rj3j=?,
+    ~buttonRef: 'union_rskz=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rn5y=?,
+    ~component: 'union_rjtn=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
+    ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
@@ -61,7 +62,7 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rk2f=?,
+    ~tabIndex: 'union_rl8x=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -70,8 +71,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/TableSortLabel/TableSortLabel"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~active: option(bool)=?,
@@ -83,9 +86,17 @@ let make =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
+      ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
@@ -123,6 +134,7 @@ let make =
           component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disabled?,
         ~disableRipple?,
+        ~disableTouchRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,
         ~onBlur?,

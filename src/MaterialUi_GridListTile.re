@@ -32,22 +32,31 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~cols: 'number_9=?,
-    ~component: 'union_rfb6=?,
-    ~rows: 'number_e=?,
+    ~cols: 'number_w=?,
+    ~component: 'union_r90j=?,
+    ~rows: 'number_6=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/GridListTile/GridListTile"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
       ~cols: option([ | `Int(int) | `Float(float)])=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~rows: option([ | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,

@@ -43,7 +43,7 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rmqd=?,
+    ~component: 'union_r326=?,
     ~disableSticky: bool=?,
     ~inset: bool=?,
     ~classes: Js.Dict.t(string)=?,
@@ -52,13 +52,22 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/ListSubheader/ListSubheader"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~disableSticky: option(bool)=?,
       ~inset: option(bool)=?,
       ~classes: option(Classes.t)=?,

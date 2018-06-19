@@ -64,21 +64,21 @@ external makeProps :
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_r8l3=?,
+    ~defaultValue: 'union_rxxv=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rs0v=?,
+    ~inputComponent: 'any_rfd8=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'genericCallback=?,
+    ~inputRef: 'union_ro0j=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
-    ~onChange: 'any_ra3k=?,
+    ~onChange: 'any_rf99=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
@@ -86,19 +86,21 @@ external makeProps :
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
-    ~rows: 'union_rq2q=?,
-    ~rowsMax: 'union_rnwd=?,
+    ~rows: 'union_rmmd=?,
+    ~rowsMax: 'union_r64i=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
-    ~value: 'union_rcdh=?,
+    ~value: 'union_rnlz=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Input/Input"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~autoComplete: option(string)=?,
@@ -112,9 +114,12 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_rs0v)=?,
+      ~inputComponent: option('any_rfd8)=?,
       ~inputProps: option(Js.t({..}))=?,
-      ~inputRef: option('genericCallback)=?,
+      ~inputRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -164,7 +169,8 @@ let make =
         ~id?,
         ~inputComponent?,
         ~inputProps?,
-        ~inputRef?,
+        ~inputRef=?
+          inputRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~margin=?margin |. Belt.Option.map(v => marginToJs(v)),
         ~multiline?,
         ~name?,

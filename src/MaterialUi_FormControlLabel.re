@@ -28,14 +28,14 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_r5a7=?,
+    ~checked: 'union_rl7o=?,
     ~className: string=?,
     ~control: ReasonReact.reactElement=?,
     ~disabled: bool=?,
-    ~inputRef: 'genericCallback=?,
+    ~inputRef: 'union_rtn7=?,
     ~label: ReasonReact.reactElement=?,
     ~name: string=?,
-    ~onChange: 'any_rcx3=?,
+    ~onChange: 'any_r1mu=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -43,15 +43,20 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/FormControlLabel/FormControlLabel"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~checked: option([ | `Bool(bool) | `String(string)])=?,
       ~className: option(string)=?,
       ~control: option(ReasonReact.reactElement)=?,
       ~disabled: option(bool)=?,
-      ~inputRef: option('genericCallback)=?,
+      ~inputRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~label: option(ReasonReact.reactElement)=?,
       ~name: option(string)=?,
       ~onChange: option((ReactEventRe.Form.t, bool) => unit)=?,
@@ -69,7 +74,8 @@ let make =
         ~className?,
         ~control?,
         ~disabled?,
-        ~inputRef?,
+        ~inputRef=?
+          inputRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~label?,
         ~name?,
         ~onChange?,

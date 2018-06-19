@@ -10,6 +10,9 @@
 
 (_Tags are copied from [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 0.3.1
+* :rocket: Updated to MaterialUI v1.2.2
+
 ## 0.3.0
 * :rocket: Updated to MaterialUI v1.1.0
 * :boom: Switched to `[bs.deriving abstract]` to work with object shapes (see component `Popover` as an example)

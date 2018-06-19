@@ -43,11 +43,12 @@ external makeProps :
     ~expandIcon: ReasonReact.reactElement=?,
     ~onChange: ReactEventRe.Form.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
-    ~action: 'any_r06o=?,
-    ~buttonRef: 'union_r0o6=?,
+    ~action: 'any_rnq1=?,
+    ~buttonRef: 'union_rlf7=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rxyc=?,
+    ~component: 'union_rcdw=?,
     ~disableRipple: bool=?,
+    ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
@@ -62,7 +63,7 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rrf0=?,
+    ~tabIndex: 'union_rp51=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -71,8 +72,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/ExpansionPanelSummary/ExpansionPanelSummary"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
@@ -87,8 +90,16 @@ let make =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~disableRipple: option(bool)=?,
+      ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
@@ -127,6 +138,7 @@ let make =
         ~component=?
           component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disableRipple?,
+        ~disableTouchRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,
         ~onBlur?,

@@ -13,10 +13,8 @@ module TransitionDuration_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
-
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
-
     switch (
       obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
@@ -24,7 +22,6 @@ module TransitionDuration_shape = {
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     switch (
       obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
@@ -32,7 +29,6 @@ module TransitionDuration_shape = {
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     unwrappedMap;
   };
 };
@@ -78,7 +74,7 @@ external makeProps :
     ~optional: bool=?,
     ~orientation: string=?,
     ~_TransitionComponent: 'genericCallback=?,
-    ~transitionDuration: 'union_r8bv=?,
+    ~transitionDuration: 'union_r11n=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -86,8 +82,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/StepContent/StepContent"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~active: option(bool)=?,
@@ -132,7 +130,6 @@ let make =
                  MaterialUi_Helpers.unwrapValue(
                    `String(transitionDuration_enumToJs(v)),
                  )
-
                | v => MaterialUi_Helpers.unwrapValue(v)
                }
              ),

@@ -62,9 +62,9 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_ri3w=?,
-    ~thickness: 'number_p=?,
-    ~value: 'number_z=?,
+    ~size: 'union_rlj1=?,
+    ~thickness: 'number_i=?,
+    ~value: 'number_n=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -72,8 +72,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/CircularProgress/CircularProgress"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,

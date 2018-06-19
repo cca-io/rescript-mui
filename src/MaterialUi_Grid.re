@@ -35,49 +35,55 @@ type justify = [
 ];
 
 [@bs.deriving jsConverter]
-type lg =
-  | [@bs.as 1] V1
-  | [@bs.as 2] V2
-  | [@bs.as 3] V3
-  | [@bs.as 4] V4
-  | [@bs.as 5] V5
-  | [@bs.as 6] V6
-  | [@bs.as 7] V7
-  | [@bs.as 8] V8
-  | [@bs.as 9] V9
-  | [@bs.as 10] V10
-  | [@bs.as 11] V11
-  | [@bs.as 12] V12;
+type lg = [
+  | [@bs.as "auto"] `Auto
+  | [@bs.as "1"] `V1
+  | [@bs.as "2"] `V2
+  | [@bs.as "3"] `V3
+  | [@bs.as "4"] `V4
+  | [@bs.as "5"] `V5
+  | [@bs.as "6"] `V6
+  | [@bs.as "7"] `V7
+  | [@bs.as "8"] `V8
+  | [@bs.as "9"] `V9
+  | [@bs.as "10"] `V10
+  | [@bs.as "11"] `V11
+  | [@bs.as "12"] `V12
+];
 
 [@bs.deriving jsConverter]
-type md =
-  | [@bs.as 1] V1
-  | [@bs.as 2] V2
-  | [@bs.as 3] V3
-  | [@bs.as 4] V4
-  | [@bs.as 5] V5
-  | [@bs.as 6] V6
-  | [@bs.as 7] V7
-  | [@bs.as 8] V8
-  | [@bs.as 9] V9
-  | [@bs.as 10] V10
-  | [@bs.as 11] V11
-  | [@bs.as 12] V12;
+type md = [
+  | [@bs.as "auto"] `Auto
+  | [@bs.as "1"] `V1
+  | [@bs.as "2"] `V2
+  | [@bs.as "3"] `V3
+  | [@bs.as "4"] `V4
+  | [@bs.as "5"] `V5
+  | [@bs.as "6"] `V6
+  | [@bs.as "7"] `V7
+  | [@bs.as "8"] `V8
+  | [@bs.as "9"] `V9
+  | [@bs.as "10"] `V10
+  | [@bs.as "11"] `V11
+  | [@bs.as "12"] `V12
+];
 
 [@bs.deriving jsConverter]
-type sm =
-  | [@bs.as 1] V1
-  | [@bs.as 2] V2
-  | [@bs.as 3] V3
-  | [@bs.as 4] V4
-  | [@bs.as 5] V5
-  | [@bs.as 6] V6
-  | [@bs.as 7] V7
-  | [@bs.as 8] V8
-  | [@bs.as 9] V9
-  | [@bs.as 10] V10
-  | [@bs.as 11] V11
-  | [@bs.as 12] V12;
+type sm = [
+  | [@bs.as "auto"] `Auto
+  | [@bs.as "1"] `V1
+  | [@bs.as "2"] `V2
+  | [@bs.as "3"] `V3
+  | [@bs.as "4"] `V4
+  | [@bs.as "5"] `V5
+  | [@bs.as "6"] `V6
+  | [@bs.as "7"] `V7
+  | [@bs.as "8"] `V8
+  | [@bs.as "9"] `V9
+  | [@bs.as "10"] `V10
+  | [@bs.as "11"] `V11
+  | [@bs.as "12"] `V12
+];
 
 [@bs.deriving jsConverter]
 type spacing =
@@ -96,34 +102,38 @@ type wrap = [
 ];
 
 [@bs.deriving jsConverter]
-type xl =
-  | [@bs.as 1] V1
-  | [@bs.as 2] V2
-  | [@bs.as 3] V3
-  | [@bs.as 4] V4
-  | [@bs.as 5] V5
-  | [@bs.as 6] V6
-  | [@bs.as 7] V7
-  | [@bs.as 8] V8
-  | [@bs.as 9] V9
-  | [@bs.as 10] V10
-  | [@bs.as 11] V11
-  | [@bs.as 12] V12;
+type xl = [
+  | [@bs.as "auto"] `Auto
+  | [@bs.as "1"] `V1
+  | [@bs.as "2"] `V2
+  | [@bs.as "3"] `V3
+  | [@bs.as "4"] `V4
+  | [@bs.as "5"] `V5
+  | [@bs.as "6"] `V6
+  | [@bs.as "7"] `V7
+  | [@bs.as "8"] `V8
+  | [@bs.as "9"] `V9
+  | [@bs.as "10"] `V10
+  | [@bs.as "11"] `V11
+  | [@bs.as "12"] `V12
+];
 
 [@bs.deriving jsConverter]
-type xs =
-  | [@bs.as 1] V1
-  | [@bs.as 2] V2
-  | [@bs.as 3] V3
-  | [@bs.as 4] V4
-  | [@bs.as 5] V5
-  | [@bs.as 6] V6
-  | [@bs.as 7] V7
-  | [@bs.as 8] V8
-  | [@bs.as 9] V9
-  | [@bs.as 10] V10
-  | [@bs.as 11] V11
-  | [@bs.as 12] V12;
+type xs = [
+  | [@bs.as "auto"] `Auto
+  | [@bs.as "1"] `V1
+  | [@bs.as "2"] `V2
+  | [@bs.as "3"] `V3
+  | [@bs.as "4"] `V4
+  | [@bs.as "5"] `V5
+  | [@bs.as "6"] `V6
+  | [@bs.as "7"] `V7
+  | [@bs.as "8"] `V8
+  | [@bs.as "9"] `V9
+  | [@bs.as "10"] `V10
+  | [@bs.as "11"] `V11
+  | [@bs.as "12"] `V12
+];
 
 module Classes = {
   type classesType =
@@ -153,7 +163,8 @@ module Classes = {
     | Spacing_Xs_24(string)
     | Spacing_Xs_32(string)
     | Spacing_Xs_40(string)
-    | Grid_Xs(string)
+    | Grid_Xs_Auto(string)
+    | Grid_Xs_True(string)
     | Grid_Xs_1(string)
     | Grid_Xs_2(string)
     | Grid_Xs_3(string)
@@ -195,7 +206,8 @@ module Classes = {
     | Spacing_Xs_24(_) => "spacing-xs-24"
     | Spacing_Xs_32(_) => "spacing-xs-32"
     | Spacing_Xs_40(_) => "spacing-xs-40"
-    | Grid_Xs(_) => "grid-xs"
+    | Grid_Xs_Auto(_) => "grid-xs-auto"
+    | Grid_Xs_True(_) => "grid-xs-true"
     | Grid_Xs_1(_) => "grid-xs-1"
     | Grid_Xs_2(_) => "grid-xs-2"
     | Grid_Xs_3(_) => "grid-xs-3"
@@ -240,7 +252,8 @@ module Classes = {
            | Spacing_Xs_24(className)
            | Spacing_Xs_32(className)
            | Spacing_Xs_40(className)
-           | Grid_Xs(className)
+           | Grid_Xs_Auto(className)
+           | Grid_Xs_True(className)
            | Grid_Xs_1(className)
            | Grid_Xs_2(className)
            | Grid_Xs_3(className)
@@ -266,18 +279,18 @@ external makeProps :
     ~alignContent: string=?,
     ~alignItems: string=?,
     ~className: string=?,
-    ~component: 'union_rs3c=?,
+    ~component: 'union_rwg3=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rc3v=?,
-    ~md: 'number_rwh4=?,
-    ~sm: 'number_rvlt=?,
-    ~spacing: 'number_r1up=?,
+    ~lg: string=?,
+    ~md: string=?,
+    ~sm: string=?,
+    ~spacing: 'number_rlxo=?,
     ~wrap: string=?,
-    ~xl: 'number_rs1y=?,
-    ~xs: 'number_rada=?,
+    ~xl: string=?,
+    ~xs: string=?,
     ~zeroMinWidth: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -285,14 +298,23 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Grid/Grid"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~alignContent: option(alignContent)=?,
       ~alignItems: option(alignItems)=?,
       ~className: option(string)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~container: option(bool)=?,
       ~direction: option(direction)=?,
       ~item: option(bool)=?,

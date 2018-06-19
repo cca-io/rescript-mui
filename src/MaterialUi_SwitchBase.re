@@ -39,7 +39,7 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~checked: 'union_reix=?,
+    ~checked: 'union_ryud=?,
     ~checkedIcon: ReasonReact.reactElement,
     ~className: string=?,
     ~defaultChecked: bool=?,
@@ -50,22 +50,23 @@ external makeProps :
     ~indeterminate: bool=?,
     ~indeterminateIcon: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'genericCallback=?,
+    ~inputRef: 'union_rsbc=?,
     ~name: string=?,
-    ~onChange: 'any_rgq6=?,
-    ~tabIndex: 'union_r1jj=?,
+    ~onBlur: ReactEventRe.Focus.t => unit=?,
+    ~onChange: 'any_rsbh=?,
+    ~onFocus: ReactEventRe.Focus.t => unit=?,
+    ~tabIndex: 'union_rnzj=?,
     ~_type: string=?,
     ~value: string=?,
     ~color: string=?,
-    ~action: 'any_r32z=?,
-    ~buttonRef: 'union_rwe6=?,
+    ~action: 'any_r8aa=?,
+    ~buttonRef: 'union_rghf=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rzmg=?,
+    ~component: 'union_rs8i=?,
+    ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
-    ~onBlur: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
-    ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~onFocusVisible: 'genericCallback=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
@@ -83,8 +84,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/internal/SwitchBase"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~checked: option([ | `Bool(bool) | `String(string)])=?,
@@ -98,9 +101,14 @@ let make =
       ~indeterminate: option(bool)=?,
       ~indeterminateIcon: option(ReasonReact.reactElement)=?,
       ~inputProps: option(Js.t({..}))=?,
-      ~inputRef: option('genericCallback)=?,
+      ~inputRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~name: option(string)=?,
+      ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
       ~onChange: option((ReactEventRe.Form.t, bool) => unit)=?,
+      ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~type_: option(string)=?,
       ~value: option(string)=?,
@@ -111,12 +119,18 @@ let make =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
+      ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
-      ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
       ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
-      ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
       ~onFocusVisible: option('genericCallback)=?,
       ~onKeyDown: option(ReactEventRe.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEventRe.Keyboard.t => unit)=?,
@@ -148,9 +162,12 @@ let make =
         ~indeterminate?,
         ~indeterminateIcon?,
         ~inputProps?,
-        ~inputRef?,
+        ~inputRef=?
+          inputRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~name?,
+        ~onBlur?,
         ~onChange?,
+        ~onFocus?,
         ~tabIndex=?
           tabIndex |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~_type=?type_,
@@ -162,11 +179,10 @@ let make =
         ~centerRipple?,
         ~component=?
           component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~disableTouchRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,
-        ~onBlur?,
         ~onClick?,
-        ~onFocus?,
         ~onFocusVisible?,
         ~onKeyDown?,
         ~onKeyUp?,

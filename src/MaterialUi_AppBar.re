@@ -62,8 +62,8 @@ external makeProps :
     ~className: string=?,
     ~color: string=?,
     ~position: string=?,
-    ~component: 'union_re8i=?,
-    ~elevation: 'number_e=?,
+    ~component: 'union_ryme=?,
+    ~elevation: 'number_9=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -71,14 +71,23 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/AppBar/AppBar"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~position: option(position)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,

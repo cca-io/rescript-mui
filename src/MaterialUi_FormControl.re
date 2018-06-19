@@ -39,13 +39,11 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rhbe=?,
+    ~component: 'union_rneu=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~margin: string=?,
-    ~onBlur: ReactEventRe.Focus.t => unit=?,
-    ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~required: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -53,18 +51,25 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/FormControl/FormControl"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~margin: option(margin)=?,
-      ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
-      ~onFocus: option(ReactEventRe.Focus.t => unit)=?,
       ~required: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -81,8 +86,6 @@ let make =
         ~error?,
         ~fullWidth?,
         ~margin=?margin |. Belt.Option.map(v => marginToJs(v)),
-        ~onBlur?,
-        ~onFocus?,
         ~required?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

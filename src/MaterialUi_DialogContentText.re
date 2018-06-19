@@ -59,7 +59,7 @@ external makeProps :
     ~className: string=?,
     ~align: string=?,
     ~color: string=?,
-    ~component: 'union_rkvi=?,
+    ~component: 'union_r1ix=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~noWrap: bool=?,
@@ -71,14 +71,23 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/DialogContentText/DialogContentText"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
       ~align: option(align)=?,
       ~color: option(color)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~gutterBottom: option(bool)=?,
       ~headlineMapping: option(Js.t({..}))=?,
       ~noWrap: option(bool)=?,

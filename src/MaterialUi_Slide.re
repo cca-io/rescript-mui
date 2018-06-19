@@ -15,10 +15,8 @@ module Timeout_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
-
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
-
     switch (
       obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
@@ -26,7 +24,6 @@ module Timeout_shape = {
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     switch (
       obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
@@ -34,7 +31,6 @@ module Timeout_shape = {
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     unwrappedMap;
   };
 };
@@ -49,13 +45,15 @@ external makeProps :
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~onExited: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rynq=?,
+    ~timeout: 'union_r8n7=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Slide/Slide"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~direction: option(direction)=?,

@@ -31,7 +31,7 @@ external makeProps :
     ~alt: string=?,
     ~childrenClassName: string=?,
     ~className: string=?,
-    ~component: 'union_r2oa=?,
+    ~component: 'union_rj12=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,
@@ -42,14 +42,23 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Avatar/Avatar"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~alt: option(string)=?,
       ~childrenClassName: option(string)=?,
       ~className: option(string)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~imgProps: option(Js.t({..}))=?,
       ~sizes: option(string)=?,
       ~src: option(string)=?,
