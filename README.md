@@ -19,7 +19,7 @@ Add the entry `./node_modules/@jsiebern/bs-material-ui/ppx_withStyles` to the `p
 
 ## Example
 
-Please see [the examples folder](https://github.com/jsiebern/bs-material-ui/tree/master/src).
+Please see [the examples folder](https://github.com/jsiebern/bs-material-ui/tree/master/examples).
 
 ## withStyles
 
