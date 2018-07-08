@@ -10,6 +10,9 @@
 
 (_Tags are copied from [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 0.3.2
+* :rocket: Added `ppx_withStyles` for `linux` and `mac`
+
 ## 0.3.1
 * :rocket: Updated to MaterialUI v1.2.2
 
