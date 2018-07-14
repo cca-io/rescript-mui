@@ -21,19 +21,22 @@ module AnchorOrigin = {
     vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
   };
   let make = t;
+
   let unwrap = (obj: option(t)) =>
     switch (obj) {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
+
       switch (
         obj
-        |. horizontal
+        |. horizontalGet
         |. Belt.Option.map(v =>
              switch (v) {
              | `Enum(v) =>
                MaterialUi_Helpers.unwrapValue(
                  `String(horizontal_enumToJs(v)),
                )
+
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -43,13 +46,15 @@ module AnchorOrigin = {
         |. Js.Dict.set("horizontal", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
+
       switch (
         obj
-        |. vertical
+        |. verticalGet
         |. Belt.Option.map(v =>
              switch (v) {
              | `Enum(v) =>
                MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
+
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -59,6 +64,7 @@ module AnchorOrigin = {
         |. Js.Dict.set("vertical", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
+
       Some(unwrappedMap);
     | None => None
     };
@@ -73,25 +79,33 @@ module AnchorPosition = {
     left: [ | `Int(int) | `Float(float)],
   };
   let make = t;
+
   let unwrap = (obj: option(t)) =>
     switch (obj) {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
+
       switch (
-        obj |. top |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+        obj
+        |. topGet
+        |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
       ) {
       | Some(v) =>
         unwrappedMap |. Js.Dict.set("top", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
+
       switch (
-        obj |. left |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+        obj
+        |. leftGet
+        |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
       ) {
       | Some(v) =>
         unwrappedMap
         |. Js.Dict.set("left", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
+
       Some(unwrappedMap);
     | None => None
     };
@@ -113,19 +127,22 @@ module TransformOrigin = {
     vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
   };
   let make = t;
+
   let unwrap = (obj: option(t)) =>
     switch (obj) {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
+
       switch (
         obj
-        |. horizontal
+        |. horizontalGet
         |. Belt.Option.map(v =>
              switch (v) {
              | `Enum(v) =>
                MaterialUi_Helpers.unwrapValue(
                  `String(horizontal_enumToJs(v)),
                )
+
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -135,13 +152,15 @@ module TransformOrigin = {
         |. Js.Dict.set("horizontal", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
+
       switch (
         obj
-        |. vertical
+        |. verticalGet
         |. Belt.Option.map(v =>
              switch (v) {
              | `Enum(v) =>
                MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
+
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -151,6 +170,7 @@ module TransformOrigin = {
         |. Js.Dict.set("vertical", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
+
       Some(unwrappedMap);
     | None => None
     };
@@ -165,22 +185,30 @@ module TransitionDuration_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
+
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
     switch (
-      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      obj
+      |. enterGet
+      |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
     | Some(v) =>
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
+
     switch (
-      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      obj
+      |. exitGet
+      |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
     | Some(v) =>
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
+
     unwrappedMap;
   };
 };
@@ -212,16 +240,16 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~action: 'any_rkws=?,
-    ~anchorEl: 'union_rg6m=?,
-    ~anchorOrigin: 'any_ru7c=?,
-    ~anchorPosition: 'any_rl1u=?,
+    ~action: 'any_ronw=?,
+    ~anchorEl: 'union_reag=?,
+    ~anchorOrigin: 'any_rsw7=?,
+    ~anchorPosition: 'any_r4rk=?,
     ~anchorReference: string=?,
-    ~container: 'union_r15i=?,
-    ~elevation: 'number_t=?,
+    ~container: 'union_rpgy=?,
+    ~elevation: 'number_v=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_v=?,
-    ~onClose: 'any_rdu1=?,
+    ~marginThreshold: 'number_i=?,
+    ~onClose: 'any_ru1c=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -231,11 +259,11 @@ external makeProps :
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~role: string=?,
-    ~transformOrigin: 'any_riib=?,
-    ~_TransitionComponent: 'union_rkcn=?,
-    ~transitionDuration: 'union_red3=?,
+    ~transformOrigin: 'any_rx8e=?,
+    ~_TransitionComponent: 'union_rxv8=?,
+    ~transitionDuration: 'union_rp8u=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_r6en=?,
+    ~_BackdropComponent: 'union_rhd2=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
     ~disableAutoFocus: bool=?,
@@ -255,10 +283,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Popover/Popover"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~action: option(Js.t({..}) => unit)=?,
@@ -288,13 +314,7 @@ let make =
       ~role: option(string)=?,
       ~transformOrigin: option(TransformOrigin.t)=?,
       ~_TransitionComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+         option([ | `String(string) | `Callback('genericCallback)])=?,
       ~transitionDuration:
          option(
            [
@@ -306,13 +326,7 @@ let make =
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~_BackdropComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+         option([ | `String(string) | `Callback('genericCallback)])=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~className: option(string)=?,
       ~disableAutoFocus: option(bool)=?,
@@ -371,6 +385,7 @@ let make =
                  MaterialUi_Helpers.unwrapValue(
                    `String(transitionDuration_enumToJs(v)),
                  )
+
                | v => MaterialUi_Helpers.unwrapValue(v)
                }
              ),

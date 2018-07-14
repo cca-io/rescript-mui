@@ -26,14 +26,14 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_rv5m=?,
+    ~component: 'union_rbuj=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~value: 'union_rgg1=?,
+    ~value: 'union_r44t=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~button: bool=?,
-    ~_ContainerComponent: 'union_rp06=?,
+    ~_ContainerComponent: 'union_r3to=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -46,21 +46,12 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/MenuItem/MenuItem"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~role: option(string)=?,
       ~selected: option(bool)=?,
       ~value:
@@ -76,13 +67,7 @@ let make =
       ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
       ~button: option(bool)=?,
       ~_ContainerComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+         option([ | `String(string) | `Callback('genericCallback)])=?,
       ~_ContainerProps: option(Js.t({..}))=?,
       ~dense: option(bool)=?,
       ~disabled: option(bool)=?,

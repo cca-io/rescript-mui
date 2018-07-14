@@ -32,7 +32,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_riby=?,
+    ~component: 'union_r90n=?,
     ~disableTypography: bool=?,
     ~position: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -41,21 +41,12 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/InputAdornment/InputAdornment"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~disableTypography: option(bool)=?,
       ~position: option(position)=?,
       ~classes: option(Classes.t)=?,

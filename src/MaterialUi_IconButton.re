@@ -49,11 +49,10 @@ external makeProps :
     ~color: string=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
-    ~action: 'any_rd5p=?,
-    ~buttonRef: 'union_r3wc=?,
+    ~action: 'any_rcru=?,
+    ~buttonRef: 'union_rykj=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rosr=?,
-    ~disableTouchRipple: bool=?,
+    ~component: 'union_r0gk=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
@@ -69,7 +68,7 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rbf9=?,
+    ~tabIndex: 'union_r3t5=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -78,10 +77,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/IconButton/IconButton"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -94,15 +91,7 @@ let make =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
-      ~disableTouchRipple: option(bool)=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
@@ -139,7 +128,6 @@ let make =
         ~centerRipple?,
         ~component=?
           component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
-        ~disableTouchRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,
         ~onBlur?,

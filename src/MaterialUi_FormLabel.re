@@ -35,7 +35,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_r0xv=?,
+    ~component: 'union_r8bq=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~focused: bool=?,
@@ -46,21 +46,12 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/FormLabel/FormLabel"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~disabled: option(bool)=?,
       ~error: option(bool)=?,
       ~focused: option(bool)=?,

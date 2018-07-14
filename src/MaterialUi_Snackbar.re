@@ -21,19 +21,22 @@ module AnchorOrigin = {
     vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
   };
   let make = t;
+
   let unwrap = (obj: option(t)) =>
     switch (obj) {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
+
       switch (
         obj
-        |. horizontal
+        |. horizontalGet
         |. Belt.Option.map(v =>
              switch (v) {
              | `Enum(v) =>
                MaterialUi_Helpers.unwrapValue(
                  `String(horizontal_enumToJs(v)),
                )
+
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -43,13 +46,15 @@ module AnchorOrigin = {
         |. Js.Dict.set("horizontal", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
+
       switch (
         obj
-        |. vertical
+        |. verticalGet
         |. Belt.Option.map(v =>
              switch (v) {
              | `Enum(v) =>
                MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
+
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -59,6 +64,7 @@ module AnchorOrigin = {
         |. Js.Dict.set("vertical", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
+
       Some(unwrappedMap);
     | None => None
     };
@@ -73,22 +79,30 @@ module TransitionDuration_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
+
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
     switch (
-      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      obj
+      |. enterGet
+      |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
     | Some(v) =>
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
+
     switch (
-      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      obj
+      |. exitGet
+      |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
     | Some(v) =>
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
+
     unwrappedMap;
   };
 };
@@ -136,14 +150,14 @@ module Classes = {
 external makeProps :
   (
     ~action: ReasonReact.reactElement=?,
-    ~anchorOrigin: 'any_r51h=?,
-    ~autoHideDuration: 'number_k=?,
+    ~anchorOrigin: 'any_rh2t=?,
+    ~autoHideDuration: 'number_r=?,
     ~className: string=?,
     ~_ContentProps: Js.t({..})=?,
     ~disableWindowBlurListener: bool=?,
-    ~key: 'any_r45g=?,
+    ~key: 'any_rake=?,
     ~message: ReasonReact.reactElement=?,
-    ~onClose: 'any_rpqg=?,
+    ~onClose: 'any_rmda=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -153,9 +167,9 @@ external makeProps :
     ~onMouseEnter: ReactEventRe.Mouse.t => unit=?,
     ~onMouseLeave: ReactEventRe.Mouse.t => unit=?,
     ~_open: bool=?,
-    ~resumeHideDuration: 'number_b=?,
-    ~_TransitionComponent: 'union_r01g=?,
-    ~transitionDuration: 'union_rzq5=?,
+    ~resumeHideDuration: 'number_i=?,
+    ~_TransitionComponent: 'union_r4vr=?,
+    ~transitionDuration: 'union_rz7v=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -163,10 +177,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Snackbar/Snackbar"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~action: option(ReasonReact.reactElement)=?,
@@ -175,7 +187,7 @@ let make =
       ~className: option(string)=?,
       ~_ContentProps: option(Js.t({..}))=?,
       ~disableWindowBlurListener: option(bool)=?,
-      ~key: option('any_r45g)=?,
+      ~key: option('any_rake)=?,
       ~message: option(ReasonReact.reactElement)=?,
       ~onClose: option((ReactEventRe.Synthetic.t, string) => unit)=?,
       ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,
@@ -189,13 +201,7 @@ let make =
       ~open_: option(bool)=?,
       ~resumeHideDuration: option([ | `Int(int) | `Float(float)])=?,
       ~_TransitionComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+         option([ | `String(string) | `Callback('genericCallback)])=?,
       ~transitionDuration:
          option(
            [

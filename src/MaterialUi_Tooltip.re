@@ -63,13 +63,13 @@ external makeProps :
     ~disableFocusListener: bool=?,
     ~disableHoverListener: bool=?,
     ~disableTouchListener: bool=?,
-    ~enterDelay: 'number_7=?,
-    ~enterTouchDelay: 'number_u=?,
+    ~enterDelay: 'number_r=?,
+    ~enterTouchDelay: 'number_g=?,
     ~id: string=?,
-    ~leaveDelay: 'number_j=?,
-    ~leaveTouchDelay: 'number_4=?,
-    ~onClose: 'any_ro6b=?,
-    ~onOpen: 'any_repv=?,
+    ~leaveDelay: 'number_f=?,
+    ~leaveTouchDelay: 'number_8=?,
+    ~onClose: 'any_rpjl=?,
+    ~onOpen: 'any_rpi4=?,
     ~_open: bool=?,
     ~placement: string=?,
     ~_PopperProps: Js.t({..})=?,
@@ -81,10 +81,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Tooltip/Tooltip"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,

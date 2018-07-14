@@ -7,29 +7,36 @@ module Timeout_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
+
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
     switch (
-      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      obj
+      |. enterGet
+      |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
     | Some(v) =>
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
+
     switch (
-      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      obj
+      |. exitGet
+      |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
     | Some(v) =>
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
+
     unwrappedMap;
   };
 };
 
 [@bs.deriving jsConverter]
 type timeout_enum = [ | [@bs.as "auto"] `Auto];
-
 [@bs.obj]
 external makeProps :
   (
@@ -37,15 +44,13 @@ external makeProps :
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rnt9=?,
+    ~timeout: 'union_r2k7=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Grow/Grow"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~in_: option(bool)=?,
@@ -79,6 +84,7 @@ let make =
                  MaterialUi_Helpers.unwrapValue(
                    `String(timeout_enumToJs(v)),
                  )
+
                | v => MaterialUi_Helpers.unwrapValue(v)
                }
              ),

@@ -25,10 +25,10 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~_BackdropComponent: 'union_r3j9=?,
+    ~_BackdropComponent: 'union_rz4n=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
-    ~container: 'union_rub3=?,
+    ~container: 'union_r8em=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -38,7 +38,7 @@ external makeProps :
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEventRe.Mouse.t => unit=?,
-    ~onClose: 'any_reav=?,
+    ~onClose: 'any_r8sc=?,
     ~onEscapeKeyDown: ReactEventRe.Keyboard.t => unit=?,
     ~onRendered: ReactEventRe.Synthetic.t => unit=?,
     ~_open: bool,
@@ -48,20 +48,12 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Modal/Modal"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~_BackdropComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+         option([ | `String(string) | `Callback('genericCallback)])=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~className: option(string)=?,
       ~container:

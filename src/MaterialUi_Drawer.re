@@ -15,22 +15,30 @@ module TransitionDuration_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
+
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
     switch (
-      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      obj
+      |. enterGet
+      |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
     | Some(v) =>
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
+
     switch (
-      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      obj
+      |. exitGet
+      |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
     | Some(v) =>
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
+
     unwrappedMap;
   };
 };
@@ -98,14 +106,14 @@ external makeProps :
   (
     ~anchor: string=?,
     ~className: string=?,
-    ~elevation: 'number_r=?,
+    ~elevation: 'number_d=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rh64=?,
+    ~onClose: 'any_rg03=?,
     ~_open: bool=?,
     ~_PaperProps: Js.t({..})=?,
     ~_SlideProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rf96=?,
+    ~transitionDuration: 'union_rmnb=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -113,10 +121,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Drawer/Drawer"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~anchor: option(anchor)=?,

@@ -28,14 +28,13 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~action: 'any_rxq6=?,
-    ~buttonRef: 'union_rx8o=?,
+    ~action: 'any_rw3r=?,
+    ~buttonRef: 'union_rjpd=?,
     ~centerRipple: bool=?,
     ~className: string=?,
-    ~component: 'union_rtn1=?,
+    ~component: 'union_rbld=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
-    ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
@@ -51,7 +50,7 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rqq5=?,
+    ~tabIndex: 'union_rd1k=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -60,10 +59,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/ButtonBase/ButtonBase"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~action: option(Js.t({..}) => unit)=?,
@@ -73,17 +70,9 @@ let make =
          )=?,
       ~centerRipple: option(bool)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
-      ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
@@ -119,7 +108,6 @@ let make =
           component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disabled?,
         ~disableRipple?,
-        ~disableTouchRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,
         ~onBlur?,

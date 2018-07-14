@@ -45,30 +45,21 @@ external makeProps :
     ~badgeContent: ReasonReact.reactElement,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ravp=?,
+    ~component: 'union_rhmd=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Badge/Badge"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~badgeContent: ReasonReact.reactElement,
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,

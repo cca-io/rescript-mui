@@ -15,10 +15,8 @@ type size = [
 
 [@bs.deriving jsConverter]
 type variant = [
-  | [@bs.as "text"] `Text
   | [@bs.as "flat"] `Flat
   | [@bs.as "outlined"] `Outlined
-  | [@bs.as "contained"] `Contained
   | [@bs.as "raised"] `Raised
   | [@bs.as "fab"] `Fab
 ];
@@ -27,16 +25,10 @@ module Classes = {
   type classesType =
     | Root(string)
     | Label(string)
-    | TextPrimary(string)
-    | TextSecondary(string)
-    | Flat(string)
     | FlatPrimary(string)
     | FlatSecondary(string)
     | Outlined(string)
     | ColorInherit(string)
-    | Contained(string)
-    | ContainedPrimary(string)
-    | ContainedSecondary(string)
     | Raised(string)
     | RaisedPrimary(string)
     | RaisedSecondary(string)
@@ -52,16 +44,10 @@ module Classes = {
     fun
     | Root(_) => "root"
     | Label(_) => "label"
-    | TextPrimary(_) => "textPrimary"
-    | TextSecondary(_) => "textSecondary"
-    | Flat(_) => "flat"
     | FlatPrimary(_) => "flatPrimary"
     | FlatSecondary(_) => "flatSecondary"
     | Outlined(_) => "outlined"
     | ColorInherit(_) => "colorInherit"
-    | Contained(_) => "contained"
-    | ContainedPrimary(_) => "containedPrimary"
-    | ContainedSecondary(_) => "containedSecondary"
     | Raised(_) => "raised"
     | RaisedPrimary(_) => "raisedPrimary"
     | RaisedSecondary(_) => "raisedSecondary"
@@ -80,16 +66,10 @@ module Classes = {
            switch (classType) {
            | Root(className)
            | Label(className)
-           | TextPrimary(className)
-           | TextSecondary(className)
-           | Flat(className)
            | FlatPrimary(className)
            | FlatSecondary(className)
            | Outlined(className)
            | ColorInherit(className)
-           | Contained(className)
-           | ContainedPrimary(className)
-           | ContainedSecondary(className)
            | Raised(className)
            | RaisedPrimary(className)
            | RaisedSecondary(className)
@@ -112,7 +92,7 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r4gh=?,
+    ~component: 'union_ruqs=?,
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
@@ -123,10 +103,9 @@ external makeProps :
     ~size: string=?,
     ~_type: string=?,
     ~variant: string=?,
-    ~action: 'any_rhh9=?,
-    ~buttonRef: 'union_r4pq=?,
+    ~action: 'any_rq4b=?,
+    ~buttonRef: 'union_r1f8=?,
     ~centerRipple: bool=?,
-    ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
@@ -141,7 +120,7 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rp0z=?,
+    ~tabIndex: 'union_r9q6=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -149,22 +128,13 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Button/Button"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~disabled: option(bool)=?,
       ~disableFocusRipple: option(bool)=?,
       ~disableRipple: option(bool)=?,
@@ -181,7 +151,6 @@ let make =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
       ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
@@ -224,7 +193,6 @@ let make =
         ~buttonRef=?
           buttonRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~centerRipple?,
-        ~disableTouchRipple?,
         ~focusRipple?,
         ~onBlur?,
         ~onClick?,

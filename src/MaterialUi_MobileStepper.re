@@ -57,15 +57,15 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~activeStep: 'number_i=?,
+    ~activeStep: 'number_0=?,
     ~backButton: ReasonReact.reactElement=?,
     ~className: string=?,
     ~nextButton: ReasonReact.reactElement=?,
     ~position: string=?,
-    ~steps: 'number_k,
+    ~steps: 'number_o,
     ~variant: string=?,
-    ~component: 'union_r229=?,
-    ~elevation: 'number_3=?,
+    ~component: 'union_rmeh=?,
+    ~elevation: 'number_r=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -73,10 +73,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/MobileStepper/MobileStepper"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~activeStep: option([ | `Int(int) | `Float(float)])=?,
@@ -86,14 +84,7 @@ let make =
       ~position: option(position)=?,
       ~steps: [ | `Int(int) | `Float(float)],
       ~variant: option(variant)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,

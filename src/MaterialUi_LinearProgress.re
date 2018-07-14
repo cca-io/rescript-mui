@@ -83,8 +83,8 @@ external makeProps :
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_k=?,
-    ~valueBuffer: 'number_r=?,
+    ~value: 'number_p=?,
+    ~valueBuffer: 'number_k=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -92,10 +92,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/LinearProgress/LinearProgress"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,

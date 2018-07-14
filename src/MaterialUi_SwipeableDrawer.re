@@ -15,22 +15,30 @@ module TransitionDuration_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
+
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
     switch (
-      obj |. enter |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      obj
+      |. enterGet
+      |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
     | Some(v) =>
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
+
     switch (
-      obj |. exit |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+      obj
+      |. exitGet
+      |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
     ) {
     | Some(v) =>
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
+
     unwrappedMap;
   };
 };
@@ -41,7 +49,6 @@ type variant = [
   | [@bs.as "persistent"] `Persistent
   | [@bs.as "temporary"] `Temporary
 ];
-
 [@bs.obj]
 external makeProps :
   (
@@ -50,25 +57,23 @@ external makeProps :
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rjun,
-    ~onOpen: 'any_rsu1,
+    ~onClose: 'any_r4xl,
+    ~onOpen: 'any_r325,
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_8=?,
+    ~swipeAreaWidth: 'number_j=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rcum=?,
+    ~transitionDuration: 'union_r5f0=?,
     ~variant: string=?,
     ~className: string=?,
-    ~elevation: 'number_8=?,
+    ~elevation: 'number_w=?,
     ~_SlideProps: Js.t({..})=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/SwipeableDrawer/SwipeableDrawer"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~anchor: option(anchor)=?,

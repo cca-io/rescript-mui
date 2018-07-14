@@ -42,37 +42,26 @@ external makeProps :
   (
     ~avatar: ReasonReact.reactElement=?,
     ~className: string=?,
-    ~clickable: bool=?,
-    ~component: 'union_rpx7=?,
+    ~component: 'union_rxva=?,
     ~deleteIcon: ReasonReact.reactElement=?,
     ~label: ReasonReact.reactElement=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~onDelete: ReactEventRe.Synthetic.t => unit=?,
     ~onKeyDown: ReactEventRe.Keyboard.t => unit=?,
-    ~tabIndex: 'union_rbmd=?,
+    ~tabIndex: 'union_r789=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Chip/Chip"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~avatar: option(ReasonReact.reactElement)=?,
       ~className: option(string)=?,
-      ~clickable: option(bool)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~deleteIcon: option(ReasonReact.reactElement)=?,
       ~label: option(ReasonReact.reactElement)=?,
       ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
@@ -89,7 +78,6 @@ let make =
       makeProps(
         ~avatar?,
         ~className?,
-        ~clickable?,
         ~component=?
           component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~deleteIcon?,
