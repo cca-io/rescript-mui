@@ -46,17 +46,15 @@ external makeProps :
     ~margin: string=?,
     ~required: bool=?,
     ~shrink: bool=?,
-    ~component: 'union_rwb2=?,
+    ~component: 'union_rpr4=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/InputLabel/InputLabel"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -68,14 +66,7 @@ let make =
       ~margin: option(margin)=?,
       ~required: option(bool)=?,
       ~shrink: option(bool)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,

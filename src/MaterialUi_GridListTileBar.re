@@ -70,10 +70,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/GridListTileBar/GridListTileBar"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~actionIcon: option(ReasonReact.reactElement)=?,

@@ -10,6 +10,11 @@
 
 (_Tags are copied from [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 0.3.2
+* :rocket: Updated to MaterialUI v1.3.1
+* :rocket: Added a postinstall hook for a platform dependant install of the ppx_withStyles
+* :boom: Updated to Bucklescript v4.0.0 (abstract shapes field access switched from `key` to `keyGet`)
+
 ## 0.3.1
 * :rocket: Updated to MaterialUI v1.2.2
 

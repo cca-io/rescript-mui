@@ -37,23 +37,23 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~_IconComponent: 'union_rirr=?,
+    ~_IconComponent: 'union_rktv=?,
     ~input: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_rb8e=?,
-    ~value: 'union_r5fw=?,
+    ~onChange: 'any_rj0x=?,
+    ~value: 'union_rrs8=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rzqa=?,
+    ~defaultValue: 'union_ru10=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rkgh=?,
-    ~inputRef: 'union_rmpo=?,
+    ~inputComponent: 'any_rw2g=?,
+    ~inputRef: 'genericCallback=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
@@ -65,8 +65,8 @@ external makeProps :
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
-    ~rows: 'union_rzbt=?,
-    ~rowsMax: 'union_rdim=?,
+    ~rows: 'union_ry7b=?,
+    ~rowsMax: 'union_r1mw=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -75,20 +75,12 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/NativeSelect/NativeSelect"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~_IconComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+         option([ | `String(string) | `Callback('genericCallback)])=?,
       ~input: option(ReasonReact.reactElement)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~onChange: option(ReactEventRe.Form.t => unit)=?,
@@ -104,11 +96,8 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_rkgh)=?,
-      ~inputRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
+      ~inputComponent: option('any_rw2g)=?,
+      ~inputRef: option('genericCallback)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -153,8 +142,7 @@ let make =
         ~fullWidth?,
         ~id?,
         ~inputComponent?,
-        ~inputRef=?
-          inputRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~inputRef?,
         ~margin=?margin |. Belt.Option.map(v => marginToJs(v)),
         ~multiline?,
         ~name?,

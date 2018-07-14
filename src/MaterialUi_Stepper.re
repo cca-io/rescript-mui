@@ -37,14 +37,14 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~activeStep: 'number_n=?,
+    ~activeStep: 'number_m=?,
     ~alternativeLabel: bool=?,
     ~className: string=?,
     ~connector: ReasonReact.reactElement=?,
     ~nonLinear: bool=?,
     ~orientation: string=?,
-    ~component: 'union_rewu=?,
-    ~elevation: 'number_a=?,
+    ~component: 'union_r8e1=?,
+    ~elevation: 'number_q=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -52,10 +52,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Stepper/Stepper"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~activeStep: option([ | `Int(int) | `Float(float)])=?,
@@ -64,14 +62,7 @@ let make =
       ~connector: option(ReasonReact.reactElement)=?,
       ~nonLinear: option(bool)=?,
       ~orientation: option(orientation)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,

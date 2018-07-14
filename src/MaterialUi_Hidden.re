@@ -27,7 +27,6 @@ type only_arrayOf = [
   | [@bs.as "lg"] `Lg
   | [@bs.as "xl"] `Xl
 ];
-
 [@bs.obj]
 external makeProps :
   (
@@ -38,7 +37,7 @@ external makeProps :
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_rzfo=?,
+    ~only: 'union_rm8y=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,
@@ -49,10 +48,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/Hidden/Hidden"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -90,6 +87,7 @@ let make =
                switch (v) {
                | `Enum(v) =>
                  MaterialUi_Helpers.unwrapValue(`String(only_enumToJs(v)))
+
                | v => MaterialUi_Helpers.unwrapValue(v)
                }
              ),

@@ -4,14 +4,13 @@ type margin = [
   | [@bs.as "dense"] `Dense
   | [@bs.as "normal"] `Normal
 ];
-
 [@bs.obj]
 external makeProps :
   (
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rg5z=?,
+    ~defaultValue: 'union_r2kb=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -21,31 +20,29 @@ external makeProps :
     ~_InputLabelProps: Js.t({..})=?,
     ~_InputProps: Js.t({..})=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rkp9=?,
+    ~inputRef: 'genericCallback=?,
     ~label: ReasonReact.reactElement=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
-    ~onChange: 'any_r187=?,
+    ~onChange: 'any_r1cn=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_rhg2=?,
-    ~rowsMax: 'union_rrlo=?,
+    ~rows: 'union_rixm=?,
+    ~rowsMax: 'union_rd04=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
     ~_type: string=?,
-    ~value: 'union_r1jb=?,
-    ~component: 'union_rwmw=?,
+    ~value: 'union_r7bk=?,
+    ~component: 'union_rns2=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/TextField/TextField"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~autoComplete: option(string)=?,
@@ -62,10 +59,7 @@ let make =
       ~_InputLabelProps: option(Js.t({..}))=?,
       ~_InputProps: option(Js.t({..}))=?,
       ~inputProps: option(Js.t({..}))=?,
-      ~inputRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
+      ~inputRef: option('genericCallback)=?,
       ~label: option(ReasonReact.reactElement)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
@@ -91,14 +85,7 @@ let make =
                )
            ],
          )=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       children,
     ) =>
   ReasonReact.wrapJsForReason(
@@ -120,8 +107,7 @@ let make =
         ~_InputLabelProps?,
         ~_InputProps?,
         ~inputProps?,
-        ~inputRef=?
-          inputRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
+        ~inputRef?,
         ~label?,
         ~margin=?margin |. Belt.Option.map(v => marginToJs(v)),
         ~multiline?,

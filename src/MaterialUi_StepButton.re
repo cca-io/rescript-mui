@@ -43,12 +43,11 @@ external makeProps :
     ~last: bool=?,
     ~optional: ReasonReact.reactElement=?,
     ~orientation: string=?,
-    ~action: 'any_rx3t=?,
-    ~buttonRef: 'union_r1yl=?,
+    ~action: 'any_rncz=?,
+    ~buttonRef: 'union_rier=?,
     ~centerRipple: bool=?,
-    ~component: 'union_resd=?,
+    ~component: 'union_rkz6=?,
     ~disableRipple: bool=?,
-    ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
@@ -64,7 +63,7 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rscp=?,
+    ~tabIndex: 'union_rx2n=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -73,10 +72,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/StepButton/StepButton"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~active: option(bool)=?,
@@ -94,16 +91,8 @@ let make =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~disableRipple: option(bool)=?,
-      ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
@@ -146,7 +135,6 @@ let make =
         ~component=?
           component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disableRipple?,
-        ~disableTouchRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,
         ~onBlur?,

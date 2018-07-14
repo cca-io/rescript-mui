@@ -23,25 +23,23 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~onChange: 'any_rty1=?,
+    ~onChange: 'any_rdxj=?,
     ~showLabels: bool=?,
-    ~value: 'any_ri3g=?,
+    ~value: 'any_r7cc=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/BottomNavigation/BottomNavigation"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
-      ~onChange: option((ReactEventRe.Form.t, 'any_rsa0) => unit)=?,
+      ~onChange: option((ReactEventRe.Form.t, 'any_rj9a) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_ri3g)=?,
+      ~value: option('any_r7cc)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,

@@ -33,9 +33,9 @@ external makeProps :
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_rmqa=?,
-    ~component: 'union_rd6b=?,
-    ~elevation: 'number_8=?,
+    ~onChange: 'any_r9od=?,
+    ~component: 'union_rgkg=?,
+    ~elevation: 'number_9=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -43,10 +43,8 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/ExpansionPanel/ExpansionPanel"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
@@ -55,14 +53,7 @@ let make =
       ~disabled: option(bool)=?,
       ~expanded: option(bool)=?,
       ~onChange: option((ReactEventRe.Form.t, bool) => unit)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,

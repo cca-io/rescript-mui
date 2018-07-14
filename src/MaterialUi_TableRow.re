@@ -35,7 +35,7 @@ module Classes = {
 external makeProps :
   (
     ~className: string=?,
-    ~component: 'union_r5ij=?,
+    ~component: 'union_re56=?,
     ~hover: bool=?,
     ~selected: bool=?,
     ~onDoubleClick: ReactEventRe.Mouse.t => unit=?,
@@ -45,21 +45,12 @@ external makeProps :
   ) =>
   _ =
   "";
-
 [@bs.module "@material-ui/core/TableRow/TableRow"]
 external reactClass : ReasonReact.reactClass = "default";
-
 let make =
     (
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `ObjectGeneric(Js.t({..}))
-           ],
-         )=?,
+      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
       ~hover: option(bool)=?,
       ~selected: option(bool)=?,
       ~onDoubleClick: option(ReactEventRe.Mouse.t => unit)=?,
