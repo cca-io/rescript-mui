@@ -6,3 +6,4 @@ node_modules
 .gitignore
 .idea
 ppx_withStyles
+src/*.bs.js

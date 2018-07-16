@@ -35,7 +35,7 @@ if (!supported) {
     process.exit();
 }
 
-if (!fs.existsSync('ppx')) {
+if (!fs.existsSync('ppx_withStyles')) {
     copyFileSync(filename, 'ppx_withStyles');
     fs.chmodSync('ppx_withStyles', 0755);
 }

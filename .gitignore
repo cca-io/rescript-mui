@@ -4,3 +4,4 @@ lib
 .idea
 yarn-error.log
 ppx_withStyles
+src/*.bs.js
