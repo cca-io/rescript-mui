@@ -7,10 +7,8 @@ module Timeout_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
-
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
-
     switch (
       obj
       |. enterGet
@@ -20,7 +18,6 @@ module Timeout_shape = {
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     switch (
       obj
       |. exitGet
@@ -30,7 +27,6 @@ module Timeout_shape = {
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     unwrappedMap;
   };
 };
@@ -42,13 +38,15 @@ external makeProps :
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_r4q9=?,
+    ~timeout: 'union_r9gj=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Zoom/Zoom"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~in_: option(bool)=?,

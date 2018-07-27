@@ -72,12 +72,13 @@ external makeProps :
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~selected: bool=?,
     ~textColor: string=?,
-    ~value: 'any_rlk0=?,
-    ~action: 'any_r95g=?,
-    ~buttonRef: 'union_r8sl=?,
+    ~value: 'any_rlkn=?,
+    ~action: 'any_r4fr=?,
+    ~buttonRef: 'union_rzl6=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rh6g=?,
+    ~component: 'union_rupi=?,
     ~disableRipple: bool=?,
+    ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
@@ -92,7 +93,7 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rnw3=?,
+    ~tabIndex: 'union_rq1n=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -101,8 +102,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Tab/Tab"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
@@ -115,15 +118,23 @@ let make =
       ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~textColor: option(textColor)=?,
-      ~value: option('any_rlk0)=?,
+      ~value: option('any_rlkn)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~disableRipple: option(bool)=?,
+      ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
@@ -167,6 +178,7 @@ let make =
         ~component=?
           component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disableRipple?,
+        ~disableTouchRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,
         ~onBlur?,

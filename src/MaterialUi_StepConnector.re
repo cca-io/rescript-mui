@@ -55,8 +55,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/StepConnector/StepConnector"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~alternativeLabel: option(bool)=?,

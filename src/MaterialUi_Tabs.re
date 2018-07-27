@@ -66,43 +66,60 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~action: 'any_r190=?,
+    ~action: 'any_rakh=?,
     ~centered: bool=?,
     ~className: string=?,
+    ~component: 'union_r0f0=?,
     ~fullWidth: bool=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_rbvv=?,
+    ~onChange: 'any_rtks=?,
     ~scrollable: bool=?,
-    ~_ScrollButtonComponent: 'union_rcuy=?,
+    ~_ScrollButtonComponent: 'union_risb=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_r7y0=?,
+    ~value: 'any_r99m=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Tabs/Tabs"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~action: option(Js.t({..}) => unit)=?,
       ~centered: option(bool)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~fullWidth: option(bool)=?,
       ~indicatorColor: option(indicatorColor)=?,
       ~onChange: option((ReactEventRe.Form.t, int) => unit)=?,
       ~scrollable: option(bool)=?,
       ~_ScrollButtonComponent:
-         option([ | `String(string) | `Callback('genericCallback)])=?,
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~scrollButtons: option(scrollButtons)=?,
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_r7y0)=?,
+      ~value: option('any_r99m)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -114,6 +131,8 @@ let make =
         ~action?,
         ~centered?,
         ~className?,
+        ~component=?
+          component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~fullWidth?,
         ~indicatorColor=?
           indicatorColor |. Belt.Option.map(v => indicatorColorToJs(v)),

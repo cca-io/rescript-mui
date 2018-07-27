@@ -3,13 +3,15 @@ external makeProps :
   (
     ~disableStylesGeneration: bool=?,
     ~sheetsManager: Js.t({..})=?,
-    ~theme: 'union_rdrb,
+    ~theme: 'union_rqcv,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/styles/MuiThemeProvider"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~disableStylesGeneration: option(bool)=?,

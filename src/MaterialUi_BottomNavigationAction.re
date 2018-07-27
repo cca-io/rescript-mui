@@ -41,13 +41,14 @@ external makeProps :
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~selected: bool=?,
     ~showLabel: bool=?,
-    ~value: 'any_rgk1=?,
-    ~action: 'any_rbxl=?,
-    ~buttonRef: 'union_rm29=?,
+    ~value: 'any_rryp=?,
+    ~action: 'any_r4w7=?,
+    ~buttonRef: 'union_r48x=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rqha=?,
+    ~component: 'union_r2ox=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
+    ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEventRe.Focus.t => unit=?,
@@ -62,7 +63,7 @@ external makeProps :
     ~onTouchMove: ReactEventRe.Touch.t => unit=?,
     ~onTouchStart: ReactEventRe.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rd6v=?,
+    ~tabIndex: 'union_rm51=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -71,8 +72,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/BottomNavigationAction/BottomNavigationAction"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
@@ -82,16 +85,24 @@ let make =
       ~onClick: option(ReactEventRe.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~showLabel: option(bool)=?,
-      ~value: option('any_rgk1)=?,
+      ~value: option('any_rryp)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
+      ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEventRe.Focus.t => unit)=?,
@@ -133,6 +144,7 @@ let make =
           component |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~disabled?,
         ~disableRipple?,
+        ~disableTouchRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,
         ~onBlur?,

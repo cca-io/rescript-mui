@@ -10,6 +10,10 @@
 
 (_Tags are copied from [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 0.3.3
+* :rocket: Updated to MaterialUI v1.4.1
+* :bug: Grid component sizes were converted to strings
+
 ## 0.3.2
 * :rocket: Added `ppx_withStyles` for `linux` and `mac`
 * :rocket: Updated to MaterialUI v1.3.1

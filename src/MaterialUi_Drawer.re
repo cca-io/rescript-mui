@@ -15,10 +15,8 @@ module TransitionDuration_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
-
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
-
     switch (
       obj
       |. enterGet
@@ -28,7 +26,6 @@ module TransitionDuration_shape = {
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     switch (
       obj
       |. exitGet
@@ -38,7 +35,6 @@ module TransitionDuration_shape = {
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     unwrappedMap;
   };
 };
@@ -106,14 +102,14 @@ external makeProps :
   (
     ~anchor: string=?,
     ~className: string=?,
-    ~elevation: 'number_d=?,
+    ~elevation: 'number_h=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rg03=?,
+    ~onClose: 'any_rtat=?,
     ~_open: bool=?,
     ~_PaperProps: Js.t({..})=?,
     ~_SlideProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rmnb=?,
+    ~transitionDuration: 'union_r282=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -121,8 +117,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Drawer/Drawer"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~anchor: option(anchor)=?,

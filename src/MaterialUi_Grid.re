@@ -153,7 +153,8 @@ module Classes = {
     | Spacing_Xs_24(string)
     | Spacing_Xs_32(string)
     | Spacing_Xs_40(string)
-    | Grid_Xs(string)
+    | Grid_Xs_Auto(string)
+    | Grid_Xs_True(string)
     | Grid_Xs_1(string)
     | Grid_Xs_2(string)
     | Grid_Xs_3(string)
@@ -195,7 +196,8 @@ module Classes = {
     | Spacing_Xs_24(_) => "spacing-xs-24"
     | Spacing_Xs_32(_) => "spacing-xs-32"
     | Spacing_Xs_40(_) => "spacing-xs-40"
-    | Grid_Xs(_) => "grid-xs"
+    | Grid_Xs_Auto(_) => "grid-xs-auto"
+    | Grid_Xs_True(_) => "grid-xs-true"
     | Grid_Xs_1(_) => "grid-xs-1"
     | Grid_Xs_2(_) => "grid-xs-2"
     | Grid_Xs_3(_) => "grid-xs-3"
@@ -240,7 +242,8 @@ module Classes = {
            | Spacing_Xs_24(className)
            | Spacing_Xs_32(className)
            | Spacing_Xs_40(className)
-           | Grid_Xs(className)
+           | Grid_Xs_Auto(className)
+           | Grid_Xs_True(className)
            | Grid_Xs_1(className)
            | Grid_Xs_2(className)
            | Grid_Xs_3(className)
@@ -266,18 +269,18 @@ external makeProps :
     ~alignContent: string=?,
     ~alignItems: string=?,
     ~className: string=?,
-    ~component: 'union_r071=?,
+    ~component: 'union_rvgj=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rgwb=?,
-    ~md: 'number_rxl5=?,
-    ~sm: 'number_rqoj=?,
-    ~spacing: 'number_rmz3=?,
+    ~lg: 'number_rx8o=?,
+    ~md: 'number_r7ud=?,
+    ~sm: 'number_rpid=?,
+    ~spacing: 'number_roie=?,
     ~wrap: string=?,
-    ~xl: 'number_rqwq=?,
-    ~xs: 'number_rkap=?,
+    ~xl: 'number_rprc=?,
+    ~xs: 'number_rzt8=?,
     ~zeroMinWidth: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -285,14 +288,23 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Grid/Grid"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~alignContent: option(alignContent)=?,
       ~alignItems: option(alignItems)=?,
       ~className: option(string)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~container: option(bool)=?,
       ~direction: option(direction)=?,
       ~item: option(bool)=?,

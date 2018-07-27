@@ -71,18 +71,18 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~_ActionsComponent: 'union_rfr5=?,
+    ~_ActionsComponent: 'union_rm70=?,
     ~backIconButtonProps: Js.t({..})=?,
-    ~colSpan: 'number_a=?,
-    ~component: 'union_reo7=?,
-    ~count: 'number_s,
+    ~colSpan: 'number_6=?,
+    ~component: 'union_r1yl=?,
+    ~count: 'number_v,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_re5b,
-    ~onChangeRowsPerPage: 'any_r5vn=?,
-    ~page: 'number_5,
-    ~rowsPerPage: 'number_g,
+    ~onChangePage: 'any_rmm7,
+    ~onChangeRowsPerPage: 'any_rruc=?,
+    ~page: 'number_e,
+    ~rowsPerPage: 'number_n,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~className: string=?,
@@ -97,15 +97,30 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/TablePagination/TablePagination"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~_ActionsComponent:
-         option([ | `String(string) | `Callback('genericCallback)])=?,
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~backIconButtonProps: option(Js.t({..}))=?,
       ~colSpan: option([ | `Int(int) | `Float(float)])=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~count: [ | `Int(int) | `Float(float)],
       ~labelDisplayedRows:
          option(

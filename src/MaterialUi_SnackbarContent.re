@@ -31,8 +31,8 @@ external makeProps :
     ~action: ReasonReact.reactElement=?,
     ~className: string=?,
     ~message: ReasonReact.reactElement=?,
-    ~component: 'union_rfyz=?,
-    ~elevation: 'number_4=?,
+    ~component: 'union_r4cf=?,
+    ~elevation: 'number_h=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -40,14 +40,23 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/SnackbarContent/SnackbarContent"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~action: option(ReasonReact.reactElement)=?,
       ~className: option(string)=?,
       ~message: option(ReasonReact.reactElement)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,

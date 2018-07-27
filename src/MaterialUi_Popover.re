@@ -21,12 +21,10 @@ module AnchorOrigin = {
     vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
   };
   let make = t;
-
   let unwrap = (obj: option(t)) =>
     switch (obj) {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
-
       switch (
         obj
         |. horizontalGet
@@ -36,7 +34,6 @@ module AnchorOrigin = {
                MaterialUi_Helpers.unwrapValue(
                  `String(horizontal_enumToJs(v)),
                )
-
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -46,7 +43,6 @@ module AnchorOrigin = {
         |. Js.Dict.set("horizontal", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       switch (
         obj
         |. verticalGet
@@ -54,7 +50,6 @@ module AnchorOrigin = {
              switch (v) {
              | `Enum(v) =>
                MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
-
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -64,7 +59,6 @@ module AnchorOrigin = {
         |. Js.Dict.set("vertical", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       Some(unwrappedMap);
     | None => None
     };
@@ -79,12 +73,10 @@ module AnchorPosition = {
     left: [ | `Int(int) | `Float(float)],
   };
   let make = t;
-
   let unwrap = (obj: option(t)) =>
     switch (obj) {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
-
       switch (
         obj
         |. topGet
@@ -94,7 +86,6 @@ module AnchorPosition = {
         unwrappedMap |. Js.Dict.set("top", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       switch (
         obj
         |. leftGet
@@ -105,7 +96,6 @@ module AnchorPosition = {
         |. Js.Dict.set("left", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       Some(unwrappedMap);
     | None => None
     };
@@ -127,12 +117,10 @@ module TransformOrigin = {
     vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
   };
   let make = t;
-
   let unwrap = (obj: option(t)) =>
     switch (obj) {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
-
       switch (
         obj
         |. horizontalGet
@@ -142,7 +130,6 @@ module TransformOrigin = {
                MaterialUi_Helpers.unwrapValue(
                  `String(horizontal_enumToJs(v)),
                )
-
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -152,7 +139,6 @@ module TransformOrigin = {
         |. Js.Dict.set("horizontal", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       switch (
         obj
         |. verticalGet
@@ -160,7 +146,6 @@ module TransformOrigin = {
              switch (v) {
              | `Enum(v) =>
                MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
-
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -170,7 +155,6 @@ module TransformOrigin = {
         |. Js.Dict.set("vertical", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       Some(unwrappedMap);
     | None => None
     };
@@ -185,10 +169,8 @@ module TransitionDuration_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
-
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
-
     switch (
       obj
       |. enterGet
@@ -198,7 +180,6 @@ module TransitionDuration_shape = {
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     switch (
       obj
       |. exitGet
@@ -208,7 +189,6 @@ module TransitionDuration_shape = {
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     unwrappedMap;
   };
 };
@@ -240,16 +220,16 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~action: 'any_ronw=?,
-    ~anchorEl: 'union_reag=?,
-    ~anchorOrigin: 'any_rsw7=?,
-    ~anchorPosition: 'any_r4rk=?,
+    ~action: 'any_ri3n=?,
+    ~anchorEl: 'union_r93w=?,
+    ~anchorOrigin: 'any_rp9l=?,
+    ~anchorPosition: 'any_ryng=?,
     ~anchorReference: string=?,
-    ~container: 'union_rpgy=?,
-    ~elevation: 'number_v=?,
+    ~container: 'union_rw9r=?,
+    ~elevation: 'number_g=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_i=?,
-    ~onClose: 'any_ru1c=?,
+    ~marginThreshold: 'number_b=?,
+    ~onClose: 'any_rba2=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -259,11 +239,11 @@ external makeProps :
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~role: string=?,
-    ~transformOrigin: 'any_rx8e=?,
-    ~_TransitionComponent: 'union_rxv8=?,
-    ~transitionDuration: 'union_rp8u=?,
+    ~transformOrigin: 'any_rrat=?,
+    ~_TransitionComponent: 'union_rw3r=?,
+    ~transitionDuration: 'union_rwoh=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_rhd2=?,
+    ~_BackdropComponent: 'union_rkcf=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
     ~disableAutoFocus: bool=?,
@@ -283,8 +263,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Popover/Popover"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~action: option(Js.t({..}) => unit)=?,
@@ -314,7 +296,13 @@ let make =
       ~role: option(string)=?,
       ~transformOrigin: option(TransformOrigin.t)=?,
       ~_TransitionComponent:
-         option([ | `String(string) | `Callback('genericCallback)])=?,
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~transitionDuration:
          option(
            [
@@ -326,7 +314,13 @@ let make =
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~_BackdropComponent:
-         option([ | `String(string) | `Callback('genericCallback)])=?,
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~className: option(string)=?,
       ~disableAutoFocus: option(bool)=?,
@@ -385,7 +379,6 @@ let make =
                  MaterialUi_Helpers.unwrapValue(
                    `String(transitionDuration_enumToJs(v)),
                  )
-
                | v => MaterialUi_Helpers.unwrapValue(v)
                }
              ),

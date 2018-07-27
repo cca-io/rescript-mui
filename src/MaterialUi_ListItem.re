@@ -51,15 +51,15 @@ external makeProps :
   (
     ~button: bool=?,
     ~className: string=?,
-    ~component: 'union_r8l0=?,
-    ~_ContainerComponent: 'union_rx5c=?,
+    ~component: 'union_r1xx=?,
+    ~_ContainerComponent: 'union_r3tc=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
     ~disableGutters: bool=?,
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
-    ~value: 'union_rdxm=?,
+    ~value: 'union_rf6j=?,
     ~onFocus: ReactEventRe.Focus.t => unit=?,
     ~onClick: ReactEventRe.Mouse.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
@@ -68,15 +68,30 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/ListItem/ListItem"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~button: option(bool)=?,
       ~className: option(string)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~_ContainerComponent:
-         option([ | `String(string) | `Callback('genericCallback)])=?,
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~_ContainerProps: option(Js.t({..}))=?,
       ~dense: option(bool)=?,
       ~disabled: option(bool)=?,

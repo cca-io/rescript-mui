@@ -7,10 +7,8 @@ module TransitionDuration_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
-
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
-
     switch (
       obj
       |. enterGet
@@ -20,7 +18,6 @@ module TransitionDuration_shape = {
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     switch (
       obj
       |. exitGet
@@ -30,7 +27,6 @@ module TransitionDuration_shape = {
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     unwrappedMap;
   };
 };
@@ -61,12 +57,10 @@ module AnchorOrigin = {
     vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
   };
   let make = t;
-
   let unwrap = (obj: option(t)) =>
     switch (obj) {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
-
       switch (
         obj
         |. horizontalGet
@@ -76,7 +70,6 @@ module AnchorOrigin = {
                MaterialUi_Helpers.unwrapValue(
                  `String(horizontal_enumToJs(v)),
                )
-
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -86,7 +79,6 @@ module AnchorOrigin = {
         |. Js.Dict.set("horizontal", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       switch (
         obj
         |. verticalGet
@@ -94,7 +86,6 @@ module AnchorOrigin = {
              switch (v) {
              | `Enum(v) =>
                MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
-
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -104,7 +95,6 @@ module AnchorOrigin = {
         |. Js.Dict.set("vertical", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       Some(unwrappedMap);
     | None => None
     };
@@ -119,12 +109,10 @@ module AnchorPosition = {
     left: [ | `Int(int) | `Float(float)],
   };
   let make = t;
-
   let unwrap = (obj: option(t)) =>
     switch (obj) {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
-
       switch (
         obj
         |. topGet
@@ -134,7 +122,6 @@ module AnchorPosition = {
         unwrappedMap |. Js.Dict.set("top", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       switch (
         obj
         |. leftGet
@@ -145,7 +132,6 @@ module AnchorPosition = {
         |. Js.Dict.set("left", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       Some(unwrappedMap);
     | None => None
     };
@@ -167,12 +153,10 @@ module TransformOrigin = {
     vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
   };
   let make = t;
-
   let unwrap = (obj: option(t)) =>
     switch (obj) {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
-
       switch (
         obj
         |. horizontalGet
@@ -182,7 +166,6 @@ module TransformOrigin = {
                MaterialUi_Helpers.unwrapValue(
                  `String(horizontal_enumToJs(v)),
                )
-
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -192,7 +175,6 @@ module TransformOrigin = {
         |. Js.Dict.set("horizontal", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       switch (
         obj
         |. verticalGet
@@ -200,7 +182,6 @@ module TransformOrigin = {
              switch (v) {
              | `Enum(v) =>
                MaterialUi_Helpers.unwrapValue(`String(vertical_enumToJs(v)))
-
              | v => MaterialUi_Helpers.unwrapValue(v)
              }
            )
@@ -210,7 +191,6 @@ module TransformOrigin = {
         |. Js.Dict.set("vertical", v |. MaterialUi_Helpers.toJsUnsafe)
       | None => ()
       };
-
       Some(unwrappedMap);
     | None => None
     };
@@ -240,9 +220,9 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~anchorEl: 'any_rmo3=?,
+    ~anchorEl: 'any_refs=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_r8ar=?,
+    ~onClose: 'any_rlxi=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -253,18 +233,18 @@ external makeProps :
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_r11z=?,
-    ~action: 'any_rwwq=?,
-    ~anchorOrigin: 'any_ryge=?,
-    ~anchorPosition: 'any_ruj9=?,
+    ~transitionDuration: 'union_redq=?,
+    ~action: 'any_rip0=?,
+    ~anchorOrigin: 'any_roid=?,
+    ~anchorPosition: 'any_rste=?,
     ~anchorReference: string=?,
-    ~container: 'union_rrf6=?,
-    ~elevation: 'number_4=?,
+    ~container: 'union_rxnj=?,
+    ~elevation: 'number_2=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_t=?,
+    ~marginThreshold: 'number_4=?,
     ~role: string=?,
-    ~transformOrigin: 'any_rrwd=?,
-    ~_TransitionComponent: 'union_ruft=?,
+    ~transformOrigin: 'any_r5tu=?,
+    ~_TransitionComponent: 'union_rum0=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -272,11 +252,13 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Menu/Menu"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
-      ~anchorEl: option('any_rmo3)=?,
+      ~anchorEl: option('any_refs)=?,
       ~_MenuListProps: option(Js.t({..}))=?,
       ~onClose: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,
@@ -312,7 +294,13 @@ let make =
       ~role: option(string)=?,
       ~transformOrigin: option(TransformOrigin.t)=?,
       ~_TransitionComponent:
-         option([ | `String(string) | `Callback('genericCallback)])=?,
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -343,7 +331,6 @@ let make =
                  MaterialUi_Helpers.unwrapValue(
                    `String(transitionDuration_enumToJs(v)),
                  )
-
                | v => MaterialUi_Helpers.unwrapValue(v)
                }
              ),

@@ -39,31 +39,31 @@ external makeProps :
   (
     ~autoWidth: bool=?,
     ~displayEmpty: bool=?,
-    ~_IconComponent: 'union_rwvq=?,
+    ~_IconComponent: 'union_rkk0=?,
     ~input: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
     ~_MenuProps: Js.t({..})=?,
     ~multiple: bool=?,
     ~native: bool=?,
-    ~onChange: 'any_r8k3=?,
-    ~onClose: 'any_rh1s=?,
-    ~onOpen: 'any_rfvu=?,
+    ~onChange: 'any_rch7=?,
+    ~onClose: 'any_rofw=?,
+    ~onOpen: 'any_rvo7=?,
     ~_open: bool=?,
-    ~renderValue: 'any_r2xr=?,
+    ~renderValue: 'any_rq5p=?,
     ~_SelectDisplayProps: Js.t({..})=?,
-    ~value: 'union_r0l4=?,
+    ~value: 'union_repb=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rcve=?,
+    ~defaultValue: 'union_rppl=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_r1xd=?,
-    ~inputRef: 'genericCallback=?,
+    ~inputComponent: 'any_rnvb=?,
+    ~inputRef: 'union_rin8=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
@@ -75,8 +75,8 @@ external makeProps :
     ~onKeyUp: ReactEventRe.Keyboard.t => unit=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
-    ~rows: 'union_rdib=?,
-    ~rowsMax: 'union_rupb=?,
+    ~rows: 'union_r2ip=?,
+    ~rowsMax: 'union_rm32=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -85,14 +85,22 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Select/Select"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~autoWidth: option(bool)=?,
       ~displayEmpty: option(bool)=?,
       ~_IconComponent:
-         option([ | `String(string) | `Callback('genericCallback)])=?,
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~input: option(ReasonReact.reactElement)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~_MenuProps: option(Js.t({..}))=?,
@@ -102,7 +110,7 @@ let make =
       ~onClose: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onOpen: option(ReactEventRe.Synthetic.t => unit)=?,
       ~open_: option(bool)=?,
-      ~renderValue: option('any_rcrm => ReasonReact.reactElement)=?,
+      ~renderValue: option('any_rw3k => ReasonReact.reactElement)=?,
       ~_SelectDisplayProps: option(Js.t({..}))=?,
       ~value:
          option(
@@ -126,8 +134,11 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_r1xd)=?,
-      ~inputRef: option('genericCallback)=?,
+      ~inputComponent: option('any_rnvb)=?,
+      ~inputRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -182,7 +193,8 @@ let make =
         ~fullWidth?,
         ~id?,
         ~inputComponent?,
-        ~inputRef?,
+        ~inputRef=?
+          inputRef |. Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)),
         ~margin=?margin |. Belt.Option.map(v => marginToJs(v)),
         ~multiline?,
         ~name?,

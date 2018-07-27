@@ -7,10 +7,8 @@ module Timeout_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
-
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
-
     switch (
       obj
       |. enterGet
@@ -20,7 +18,6 @@ module Timeout_shape = {
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     switch (
       obj
       |. exitGet
@@ -30,7 +27,6 @@ module Timeout_shape = {
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     unwrappedMap;
   };
 };
@@ -73,7 +69,7 @@ external makeProps :
   (
     ~className: string=?,
     ~collapsedHeight: string=?,
-    ~component: 'union_rtnj=?,
+    ~component: 'union_rpv4=?,
     ~_in: bool=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
@@ -81,20 +77,29 @@ external makeProps :
     ~onExit: ReactEventRe.Synthetic.t => unit=?,
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_r8cg=?,
+    ~timeout: 'union_rvj5=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Collapse/Collapse"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
       ~collapsedHeight: option(string)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~in_: option(bool)=?,
       ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,
       ~onEntered: option(ReactEventRe.Synthetic.t => unit)=?,
@@ -138,7 +143,6 @@ let make =
                  MaterialUi_Helpers.unwrapValue(
                    `String(timeout_enumToJs(v)),
                  )
-
                | v => MaterialUi_Helpers.unwrapValue(v)
                }
              ),

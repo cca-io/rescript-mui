@@ -15,10 +15,8 @@ module TransitionDuration_shape = {
     exit: [ | `Int(int) | `Float(float)],
   };
   let make = t;
-
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
-
     switch (
       obj
       |. enterGet
@@ -28,7 +26,6 @@ module TransitionDuration_shape = {
       unwrappedMap |. Js.Dict.set("enter", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     switch (
       obj
       |. exitGet
@@ -38,7 +35,6 @@ module TransitionDuration_shape = {
       unwrappedMap |. Js.Dict.set("exit", v |. MaterialUi_Helpers.toJsUnsafe)
     | None => ()
     };
-
     unwrappedMap;
   };
 };
@@ -93,7 +89,7 @@ external makeProps :
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEventRe.Mouse.t => unit=?,
-    ~onClose: 'any_rfj9=?,
+    ~onClose: 'any_rv30=?,
     ~onEnter: ReactEventRe.Synthetic.t => unit=?,
     ~onEntered: ReactEventRe.Synthetic.t => unit=?,
     ~onEntering: ReactEventRe.Synthetic.t => unit=?,
@@ -103,11 +99,11 @@ external makeProps :
     ~onExiting: ReactEventRe.Synthetic.t => unit=?,
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
-    ~_TransitionComponent: 'union_rfk0=?,
-    ~transitionDuration: 'union_rcgl=?,
+    ~_TransitionComponent: 'union_rfnt=?,
+    ~transitionDuration: 'union_rdbx=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_r14t=?,
-    ~container: 'union_rt28=?,
+    ~_BackdropComponent: 'union_rp28=?,
+    ~container: 'union_reb2=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disableRestoreFocus: bool=?,
@@ -121,8 +117,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Dialog/Dialog"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~_BackdropProps: option(Js.t({..}))=?,
@@ -144,7 +142,13 @@ let make =
       ~open_: bool,
       ~_PaperProps: option(Js.t({..}))=?,
       ~_TransitionComponent:
-         option([ | `String(string) | `Callback('genericCallback)])=?,
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~transitionDuration:
          option(
            [
@@ -155,7 +159,13 @@ let make =
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~_BackdropComponent:
-         option([ | `String(string) | `Callback('genericCallback)])=?,
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~container:
          option(
            [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],

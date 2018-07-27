@@ -40,7 +40,7 @@ external makeProps :
     ~action: ReasonReact.reactElement=?,
     ~avatar: ReasonReact.reactElement=?,
     ~className: string=?,
-    ~component: 'union_rg0g=?,
+    ~component: 'union_rqs4=?,
     ~subheader: ReasonReact.reactElement=?,
     ~title: ReasonReact.reactElement=?,
     ~classes: Js.Dict.t(string)=?,
@@ -49,14 +49,23 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/CardHeader/CardHeader"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~action: option(ReasonReact.reactElement)=?,
       ~avatar: option(ReasonReact.reactElement)=?,
       ~className: option(string)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~subheader: option(ReasonReact.reactElement)=?,
       ~title: option(ReasonReact.reactElement)=?,
       ~classes: option(Classes.t)=?,

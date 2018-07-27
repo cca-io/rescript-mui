@@ -41,8 +41,10 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/StepIcon/StepIcon"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~active: option(bool)=?,

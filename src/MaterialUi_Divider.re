@@ -33,7 +33,7 @@ external makeProps :
   (
     ~absolute: bool=?,
     ~className: string=?,
-    ~component: 'union_r8f1=?,
+    ~component: 'union_rfl6=?,
     ~inset: bool=?,
     ~light: bool=?,
     ~classes: Js.Dict.t(string)=?,
@@ -42,13 +42,22 @@ external makeProps :
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/Divider/Divider"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~absolute: option(bool)=?,
       ~className: option(string)=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~inset: option(bool)=?,
       ~light: option(bool)=?,
       ~classes: option(Classes.t)=?,

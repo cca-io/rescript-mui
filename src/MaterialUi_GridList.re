@@ -25,26 +25,35 @@ module Classes = {
 [@bs.obj]
 external makeProps :
   (
-    ~cellHeight: 'union_rt8q=?,
+    ~cellHeight: 'union_rt5b=?,
     ~className: string=?,
-    ~cols: 'number_2=?,
-    ~component: 'union_rvz2=?,
-    ~spacing: 'number_x=?,
+    ~cols: 'number_b=?,
+    ~component: 'union_r4ab=?,
+    ~spacing: 'number_l=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/GridList/GridList"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~cellHeight:
          option([ | `Int(int) | `Float(float) | `Enum(cellHeight_enum)])=?,
       ~className: option(string)=?,
       ~cols: option([ | `Int(int) | `Float(float)])=?,
-      ~component: option([ | `String(string) | `Callback('genericCallback)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~spacing: option([ | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -62,7 +71,6 @@ let make =
                  MaterialUi_Helpers.unwrapValue(
                    `String(cellHeight_enumToJs(v)),
                  )
-
                | v => MaterialUi_Helpers.unwrapValue(v)
                }
              ),

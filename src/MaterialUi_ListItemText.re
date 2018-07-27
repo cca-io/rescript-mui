@@ -41,22 +41,28 @@ external makeProps :
     ~disableTypography: bool=?,
     ~inset: bool=?,
     ~primary: ReasonReact.reactElement=?,
+    ~primaryTypographyProps: Js.t({..})=?,
     ~secondary: ReasonReact.reactElement=?,
+    ~secondaryTypographyProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core/ListItemText/ListItemText"]
 external reactClass : ReasonReact.reactClass = "default";
+
 let make =
     (
       ~className: option(string)=?,
       ~disableTypography: option(bool)=?,
       ~inset: option(bool)=?,
       ~primary: option(ReasonReact.reactElement)=?,
+      ~primaryTypographyProps: option(Js.t({..}))=?,
       ~secondary: option(ReasonReact.reactElement)=?,
+      ~secondaryTypographyProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -69,7 +75,9 @@ let make =
         ~disableTypography?,
         ~inset?,
         ~primary?,
+        ~primaryTypographyProps?,
         ~secondary?,
+        ~secondaryTypographyProps?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),
