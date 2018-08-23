@@ -10,6 +10,10 @@
 
 (_Tags are copied from [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 0.4.0
+* :rocket: Updated to MaterialUI v1.5.1
+* :boom: Updated to ReasonReact v5 (using `ReactEvent` instead of `ReactEventRe`)
+
 ## 0.3.3
 * :rocket: Updated to MaterialUI v1.4.1
 * :bug: Grid component sizes were converted to strings

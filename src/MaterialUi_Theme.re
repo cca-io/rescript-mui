@@ -69,8 +69,7 @@ let tFromJs = theme => {
   typography: (),
   mixins: (),
   breakpoints: (),
-  shadows:
-    Js.Array.reduce((lst, entry) => [entry, ...lst], [], theme##shadows),
+  shadows: Js.Array.reduce((lst, entry) => [entry, ...lst], [], theme##shadows),
   transitions: Transitions.tFromJs(theme##transitions),
   spacing: {
     unit: theme##spacing##unit,

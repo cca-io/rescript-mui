@@ -20,28 +20,19 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
   /* Helper Component for turning the wrapped Component into a Reason Component */
   module Helper = {
     let make = (~render, ~reactClass: ReasonReact.reactClass, children) =>
-      ReasonReact.wrapJsForReason(
-        ~reactClass,
-        ~props={"render": render},
-        children,
-      );
+      ReasonReact.wrapJsForReason(~reactClass, ~props={"render": render}, children);
   };
   /* Imported from MUI */
   type withStylesComponent('a) = (. 'a) => ReasonReact.reactClass;
   [@bs.module "@material-ui/core/styles"]
-  external withStylesExt : 'styles => withStylesComponent('component) =
-    "withStyles";
+  external withStylesExt : 'styles => withStylesComponent('component) = "withStyles";
   let createStylesWrapper = styles => withStylesExt(styles);
   /* Generating the Wrapper */
   let generateWrapper = () => {
     let wrapper = createStylesWrapper(S.classRecordToJs(S.classes));
     wrapper(.
       ReasonReact.wrapReasonForJs(~component=innerComponent, jsProps =>
-        makeStateLessComponent(
-          ~render=
-            jsProps##render(S.classRecordStringsFromJs(jsProps##classes)),
-          [||],
-        )
+        makeStateLessComponent(~render=jsProps##render(S.classRecordStringsFromJs(jsProps##classes)), [||])
       ),
     );
   };
@@ -53,13 +44,9 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
   type actions =
     | SetWrapper(ReasonReact.reactClass);
   let component = ReasonReact.reducerComponent("WithStylesSafeCached");
-  let make =
-      (~render: S.classRecordStrings => ReasonReact.reactElement, children) => {
+  let make = (~render: S.classRecordStrings => ReasonReact.reactElement, children) => {
     ...component,
-    initialState: () => {
-      hash: objectHash(S.classes),
-      wrapper: generateWrapper(),
-    },
+    initialState: () => {hash: objectHash(S.classes), wrapper: generateWrapper()},
     reducer: (action, state) =>
       switch (action) {
       | SetWrapper(wrapper) => ReasonReact.Update({...state, wrapper})
@@ -72,8 +59,7 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
         {hash: newHash, wrapper: generateWrapper()};
       };
     },
-    render: ({state}) =>
-      <Helper render reactClass=state.wrapper> children </Helper>,
+    render: ({state}) => <Helper render reactClass=state.wrapper> children </Helper>,
   };
 };
 
@@ -92,33 +78,21 @@ let innerMake = (~render, ~classes: Js.t({..}), _children) => {
 type withStylesComponent('a) = (. 'a) => ReasonReact.reactClass;
 
 [@bs.module "@material-ui/core/styles"]
-external withStylesExt : 'styles => withStylesComponent('component) =
-  "withStyles";
+external withStylesExt : 'styles => withStylesComponent('component) = "withStyles";
 
 let createStylesWrapper = styles => withStylesExt(styles);
 
 /* Helper Component for turning the wrapped Component into a Reason Component */
 module Helper = {
   let make = (~render, ~reactClass: ReasonReact.reactClass, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={"render": render},
-      children,
-    );
+    ReasonReact.wrapJsForReason(~reactClass, ~props={"render": render}, children);
 };
 
 /* Generating the Wrapper */
-let generateWrapper =
-    (
-      classes: option(list(style)),
-      classesWithTheme: option(MaterialUi_Theme.t => list(style)),
-    ) => {
+let generateWrapper = (classes: option(list(style)), classesWithTheme: option(MaterialUi_Theme.t => list(style))) => {
   let generateDict = (lst: list(style)) => {
     let classDict: Js.Dict.t(ReactDOMRe.Style.t) = Js.Dict.empty();
-    StdLabels.List.iter(
-      ~f=style => Js.Dict.set(classDict, style.name, style.styles),
-      lst,
-    );
+    StdLabels.List.iter(~f=style => Js.Dict.set(classDict, style.name, style.styles), lst);
     classDict;
   };
   let wrapper =
@@ -128,9 +102,7 @@ let generateWrapper =
       switch (classesWithTheme) {
       | Some(classesWithTheme) =>
         createStylesWrapper(
-          MaterialUi_Helpers.toJsUnsafe(theme =>
-            generateDict(classesWithTheme(MaterialUi_Theme.tFromJs(theme)))
-          ),
+          MaterialUi_Helpers.toJsUnsafe(theme => generateDict(classesWithTheme(MaterialUi_Theme.tFromJs(theme)))),
         )
       | None => createStylesWrapper(generateDict([]))
       }
@@ -177,6 +149,5 @@ let make =
       {hash: newHash, wrapper: generateWrapper(classes, classesWithTheme)};
     };
   },
-  render: ({state}) =>
-    <Helper render reactClass=state.wrapper> children </Helper>,
+  render: ({state}) => <Helper render reactClass=state.wrapper> children </Helper>,
 };
