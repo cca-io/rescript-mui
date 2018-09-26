@@ -38,7 +38,8 @@ let component = ReasonReact.statelessComponent("Example");
 
 [%mui.withStyles
   "StyledExample"({
-    alignRight: ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ())
+    alignRight:
+      ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ()),
   })
 ];
 
@@ -46,15 +47,13 @@ let make = _children => {
   ...component,
   render: _self =>
     <StyledExample
-      render=(
+      render={
         classes =>
-          <div className=classes.alignRight>
-            (
-              ReasonReact.stringToElement("Example text - aligned to the right")
-            )
+          <div className={classes.alignRight}>
+            "Example text - aligned to the right"->ReasonReact.string
           </div>
-      )
-    />
+      }
+    />,
 };
 ```
 
@@ -71,18 +70,17 @@ let make = _children => {
       classes=[
         {
           name: "alignRight",
-          styles: ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ())
-        }
+          styles:
+            ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ()),
+        },
       ]
-      render=(
+      render={
         classes =>
           <div className=classes##alignRight>
-            (
-              ReasonReact.stringToElement("Example text - aligned to the right")
-            )
+            "Example text - aligned to the right"->ReasonReact.string
           </div>
-      )
-    />
+      }
+    />,
 };
 ```
 
@@ -114,7 +112,10 @@ let component = ReasonReact.statelessComponent("Example");
   "OverrideExample"({
     fontSize: ReactDOMRe.Style.make(~fontSize="30px", ()),
     bgColor:
-      ReactDOMRe.Style.make(~backgroundColor=MaterialUi.Colors.Red.c300, ())
+      ReactDOMRe.Style.make(
+        ~backgroundColor=MaterialUi.Colors.Red.c300,
+        (),
+      ),
   })
 ];
 
@@ -122,16 +123,19 @@ let make = _children => {
   ...component,
   render: _self =>
     <OverrideExample
-      render=(
+      render={
         classes =>
           <MaterialUi.Button
             color=`Primary
             variant=`Raised
-            classes=[Root(classes.fontSize), RaisedPrimary(classes.bgColor)]>
-            (ReasonReact.stringToElement("Example Button"))
+            classes=[
+              Root(classes.fontSize),
+              RaisedPrimary(classes.bgColor),
+            ]>
+            "Example Button"
           </MaterialUi.Button>
-      )
-    />
+      }
+    />,
 };
 ```
 
@@ -140,8 +144,8 @@ let make = _children => {
 - [x] ~~Write a code extension for conveniently using a typesafe `withStyles`~~ (2018-02-08)
 - [ ] Make the code extension work with `theme => object` function
 - [x] ~~Expose a nested `Colors` module~~ (2017-11-15)
-- [x] ~~Think of a way to use `theme => object` pattern as `withStyles` argument~~(2017-11-25)
+- [x] ~~Think of a way to use `theme => object` pattern as `withStyles` argument~~ (2017-11-25)
 - [ ] Add `WithTheme` component
-- [ ] Add `ThemeProvider` component
+- [x] ~~Add `ThemeProvider` component~~ (2018-09-26 automatically caught by extractor now)
 - [x] ~~Implement classname overrides~~ (2017-11-15)
 - [ ] Implement ref function signatures

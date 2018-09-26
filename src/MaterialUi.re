@@ -1,5 +1,4 @@
-
-        module AppBar = MaterialUi_AppBar;
+module AppBar = MaterialUi_AppBar;
 module Avatar = MaterialUi_Avatar;
 module Backdrop = MaterialUi_Backdrop;
 module Badge = MaterialUi_Badge;
@@ -7,6 +6,7 @@ module BottomNavigationAction = MaterialUi_BottomNavigationAction;
 module BottomNavigation = MaterialUi_BottomNavigation;
 module ButtonBase = MaterialUi_ButtonBase;
 module Button = MaterialUi_Button;
+module CardActionArea = MaterialUi_CardActionArea;
 module CardActions = MaterialUi_CardActions;
 module CardContent = MaterialUi_CardContent;
 module CardHeader = MaterialUi_CardHeader;
@@ -30,6 +30,7 @@ module ExpansionPanelDetails = MaterialUi_ExpansionPanelDetails;
 module ExpansionPanelSummary = MaterialUi_ExpansionPanelSummary;
 module ExpansionPanel = MaterialUi_ExpansionPanel;
 module Fade = MaterialUi_Fade;
+module FilledInput = MaterialUi_FilledInput;
 module FormControlLabel = MaterialUi_FormControlLabel;
 module FormControl = MaterialUi_FormControl;
 module FormGroup = MaterialUi_FormGroup;
@@ -44,6 +45,7 @@ module Hidden = MaterialUi_Hidden;
 module IconButton = MaterialUi_IconButton;
 module Icon = MaterialUi_Icon;
 module InputAdornment = MaterialUi_InputAdornment;
+module InputBase = MaterialUi_InputBase;
 module InputLabel = MaterialUi_InputLabel;
 module Input = MaterialUi_Input;
 module LinearProgress = MaterialUi_LinearProgress;
@@ -61,8 +63,11 @@ module MobileStepper = MaterialUi_MobileStepper;
 module Modal = MaterialUi_Modal;
 module MuiThemeProvider = MaterialUi_MuiThemeProvider;
 module NativeSelect = MaterialUi_NativeSelect;
+module NoSsr = MaterialUi_NoSsr;
+module OutlinedInput = MaterialUi_OutlinedInput;
 module Paper = MaterialUi_Paper;
 module Popover = MaterialUi_Popover;
+module Popper = MaterialUi_Popper;
 module Portal = MaterialUi_Portal;
 module RadioGroup = MaterialUi_RadioGroup;
 module Radio = MaterialUi_Radio;
@@ -80,7 +85,6 @@ module Step = MaterialUi_Step;
 module Stepper = MaterialUi_Stepper;
 module SvgIcon = MaterialUi_SvgIcon;
 module SwipeableDrawer = MaterialUi_SwipeableDrawer;
-module SwitchBase = MaterialUi_SwitchBase;
 module Switch = MaterialUi_Switch;
 module Tab = MaterialUi_Tab;
 module TableBody = MaterialUi_TableBody;
@@ -98,73 +102,50 @@ module Tooltip = MaterialUi_Tooltip;
 module TouchRipple = MaterialUi_TouchRipple;
 module Typography = MaterialUi_Typography;
 module Zoom = MaterialUi_Zoom;
-        
-        module Colors = {
-            
-                module Common = MaterialUi_Color_Common;
-            
 
-                module Red = MaterialUi_Color_Red;
-            
+module Colors = {
+  module Common = MaterialUi_Color_Common;
 
-                module Pink = MaterialUi_Color_Pink;
-            
+  module Red = MaterialUi_Color_Red;
 
-                module Purple = MaterialUi_Color_Purple;
-            
+  module Pink = MaterialUi_Color_Pink;
 
-                module DeepPurple = MaterialUi_Color_DeepPurple;
-            
+  module Purple = MaterialUi_Color_Purple;
 
-                module Indigo = MaterialUi_Color_Indigo;
-            
+  module DeepPurple = MaterialUi_Color_DeepPurple;
 
-                module Blue = MaterialUi_Color_Blue;
-            
+  module Indigo = MaterialUi_Color_Indigo;
 
-                module LightBlue = MaterialUi_Color_LightBlue;
-            
+  module Blue = MaterialUi_Color_Blue;
 
-                module Cyan = MaterialUi_Color_Cyan;
-            
+  module LightBlue = MaterialUi_Color_LightBlue;
 
-                module Teal = MaterialUi_Color_Teal;
-            
+  module Cyan = MaterialUi_Color_Cyan;
 
-                module Green = MaterialUi_Color_Green;
-            
+  module Teal = MaterialUi_Color_Teal;
 
-                module LightGreen = MaterialUi_Color_LightGreen;
-            
+  module Green = MaterialUi_Color_Green;
 
-                module Lime = MaterialUi_Color_Lime;
-            
+  module LightGreen = MaterialUi_Color_LightGreen;
 
-                module Yellow = MaterialUi_Color_Yellow;
-            
+  module Lime = MaterialUi_Color_Lime;
 
-                module Amber = MaterialUi_Color_Amber;
-            
+  module Yellow = MaterialUi_Color_Yellow;
 
-                module Orange = MaterialUi_Color_Orange;
-            
+  module Amber = MaterialUi_Color_Amber;
 
-                module DeepOrange = MaterialUi_Color_DeepOrange;
-            
+  module Orange = MaterialUi_Color_Orange;
 
-                module Brown = MaterialUi_Color_Brown;
-            
+  module DeepOrange = MaterialUi_Color_DeepOrange;
 
-                module Grey = MaterialUi_Color_Grey;
-            
+  module Brown = MaterialUi_Color_Brown;
 
-                module BlueGrey = MaterialUi_Color_BlueGrey;
-            
-        };
-    
-        
-        module type WithStylesSafeTemplate = MaterialUi_WithStyles.WithStylesSafeTemplate;
-        module WithStylesSafe = MaterialUi_WithStyles.WithStylesSafe;
-        module Theme = MaterialUi_Theme;
-        module WithStyles = MaterialUi_WithStyles;
-    
+  module Grey = MaterialUi_Color_Grey;
+
+  module BlueGrey = MaterialUi_Color_BlueGrey;
+};
+
+module type WithStylesSafeTemplate = MaterialUi_WithStyles.WithStylesSafeTemplate;
+module WithStylesSafe = MaterialUi_WithStyles.WithStylesSafe;
+module Theme = MaterialUi_Theme;
+module WithStyles = MaterialUi_WithStyles;

@@ -1,18 +1,14 @@
 module Classes = {
   type classesType =
     | Root(string)
-    | Selected(string)
-    | IconOnly(string)
-    | Wrapper(string)
-    | Label(string);
+    | FocusVisible(string)
+    | FocusHighlight(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | Selected(_) => "selected"
-    | IconOnly(_) => "iconOnly"
-    | Wrapper(_) => "wrapper"
-    | Label(_) => "label";
+    | FocusVisible(_) => "focusVisible"
+    | FocusHighlight(_) => "focusHighlight";
   let to_obj = listOfClasses =>
     listOfClasses
     ->(
@@ -21,10 +17,8 @@ module Classes = {
           (obj, classType) => {
             switch (classType) {
             | Root(className)
-            | Selected(className)
-            | IconOnly(className)
-            | Wrapper(className)
-            | Label(className) =>
+            | FocusVisible(className)
+            | FocusHighlight(className) =>
               Js.Dict.set(obj, to_string(classType), className)
             };
             obj;
@@ -37,23 +31,17 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~icon: ReasonReact.reactElement=?,
-    ~label: ReasonReact.reactElement=?,
-    ~onChange: ReactEvent.Form.t => unit=?,
-    ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~selected: bool=?,
-    ~showLabel: bool=?,
-    ~value: 'any_r4n9=?,
-    ~action: 'any_r2kh=?,
-    ~buttonRef: 'union_rq5w=?,
+    ~focusVisibleClassName: string=?,
+    ~action: 'any_rdta=?,
+    ~buttonRef: 'union_rvc1=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rdf1=?,
+    ~component: 'union_rdan=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
-    ~focusVisibleClassName: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onFocusVisible: 'genericCallback=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
@@ -65,7 +53,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rtmo=?,
+    ~tabIndex: 'union_rtjc=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -75,17 +63,11 @@ external makeProps:
   _ =
   "";
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "BottomNavigationAction";
+external reactClass: ReasonReact.reactClass = "CardActionArea";
 let make =
     (
       ~className: option(string)=?,
-      ~icon: option(ReasonReact.reactElement)=?,
-      ~label: option(ReasonReact.reactElement)=?,
-      ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~selected: option(bool)=?,
-      ~showLabel: option(bool)=?,
-      ~value: option('any_r4n9)=?,
+      ~focusVisibleClassName: option(string)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
@@ -104,8 +86,8 @@ let make =
       ~disableRipple: option(bool)=?,
       ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
-      ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
+      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onFocusVisible: option('genericCallback)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
@@ -129,13 +111,7 @@ let make =
     ~props=
       makeProps(
         ~className?,
-        ~icon?,
-        ~label?,
-        ~onChange?,
-        ~onClick?,
-        ~selected?,
-        ~showLabel?,
-        ~value?,
+        ~focusVisibleClassName?,
         ~action?,
         ~buttonRef=?
           buttonRef
@@ -148,8 +124,8 @@ let make =
         ~disableRipple?,
         ~disableTouchRipple?,
         ~focusRipple?,
-        ~focusVisibleClassName?,
         ~onBlur?,
+        ~onClick?,
         ~onFocus?,
         ~onFocusVisible?,
         ~onKeyDown?,

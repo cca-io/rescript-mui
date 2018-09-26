@@ -1,4 +1,4 @@
-external toJsUnsafe : 'a => 'b = "%identity";
+external toJsUnsafe: 'a => 'b = "%identity";
 
 let unwrapValue =
   fun
@@ -16,6 +16,6 @@ let unwrapValue =
   | `ObjectGeneric(og) => toJsUnsafe(og)
   | `Array(ag) => toJsUnsafe(ag)
   | `Any(an) => toJsUnsafe(an)
-  | `Object(_) => assert false
-  | `Enum(_) => assert false
-  | `EnumArray(_) => assert false;
+  | `Object(_) => assert(false)
+  | `Enum(_) => assert(false)
+  | `EnumArray(_) => assert(false);

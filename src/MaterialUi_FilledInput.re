@@ -1,32 +1,37 @@
 [@bs.deriving jsConverter]
-type variant = [
-  | [@bs.as "standard"] `Standard
-  | [@bs.as "outlined"] `Outlined
-  | [@bs.as "filled"] `Filled
-];
-
-[@bs.deriving jsConverter]
 type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
 
 module Classes = {
   type classesType =
     | Root(string)
-    | Select(string)
-    | Filled(string)
-    | Outlined(string)
-    | SelectMenu(string)
+    | Underline(string)
+    | Focused(string)
     | Disabled(string)
-    | Icon(string);
+    | AdornedStart(string)
+    | AdornedEnd(string)
+    | Error(string)
+    | Multiline(string)
+    | Input(string)
+    | InputMarginDense(string)
+    | InputMultiline(string)
+    | InputAdornedStart(string)
+    | InputAdornedEnd(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | Select(_) => "select"
-    | Filled(_) => "filled"
-    | Outlined(_) => "outlined"
-    | SelectMenu(_) => "selectMenu"
+    | Underline(_) => "underline"
+    | Focused(_) => "focused"
     | Disabled(_) => "disabled"
-    | Icon(_) => "icon";
+    | AdornedStart(_) => "adornedStart"
+    | AdornedEnd(_) => "adornedEnd"
+    | Error(_) => "error"
+    | Multiline(_) => "multiline"
+    | Input(_) => "input"
+    | InputMarginDense(_) => "inputMarginDense"
+    | InputMultiline(_) => "inputMultiline"
+    | InputAdornedStart(_) => "inputAdornedStart"
+    | InputAdornedEnd(_) => "inputAdornedEnd";
   let to_obj = listOfClasses =>
     listOfClasses
     ->(
@@ -35,12 +40,18 @@ module Classes = {
           (obj, classType) => {
             switch (classType) {
             | Root(className)
-            | Select(className)
-            | Filled(className)
-            | Outlined(className)
-            | SelectMenu(className)
+            | Underline(className)
+            | Focused(className)
             | Disabled(className)
-            | Icon(className) =>
+            | AdornedStart(className)
+            | AdornedEnd(className)
+            | Error(className)
+            | Multiline(className)
+            | Input(className)
+            | InputMarginDense(className)
+            | InputMultiline(className)
+            | InputAdornedStart(className)
+            | InputAdornedEnd(className) =>
               Js.Dict.set(obj, to_string(classType), className)
             };
             obj;
@@ -52,44 +63,30 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~autoWidth: bool=?,
-    ~displayEmpty: bool=?,
-    ~_IconComponent: 'union_ruap=?,
-    ~input: ReasonReact.reactElement=?,
-    ~inputProps: Js.t({..})=?,
-    ~_MenuProps: Js.t({..})=?,
-    ~multiple: bool=?,
-    ~native: bool=?,
-    ~onChange: 'any_r1yp=?,
-    ~onClose: 'any_ri34=?,
-    ~onOpen: 'any_rx93=?,
-    ~_open: bool=?,
-    ~renderValue: 'any_rglm=?,
-    ~_SelectDisplayProps: Js.t({..})=?,
-    ~value: 'union_rl1x=?,
-    ~variant: string=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rnie=?,
+    ~defaultValue: 'union_ruya=?,
     ~disabled: bool=?,
-    ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rg8e=?,
-    ~inputRef: 'union_r24s=?,
+    ~inputComponent: 'union_rqet=?,
+    ~inputProps: Js.t({..})=?,
+    ~inputRef: 'union_r6i9=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
+    ~onChange: 'any_rgg2=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rkb5=?,
-    ~rowsMax: 'union_rk7n=?,
+    ~rows: 'union_rxtd=?,
+    ~rowsMax: 'union_rmd9=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
+    ~value: 'union_rrdc=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
@@ -104,12 +101,20 @@ external makeProps:
   _ =
   "";
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Select";
+external reactClass: ReasonReact.reactClass = "FilledInput";
 let make =
     (
-      ~autoWidth: option(bool)=?,
-      ~displayEmpty: option(bool)=?,
-      ~_IconComponent:
+      ~autoComplete: option(string)=?,
+      ~autoFocus: option(bool)=?,
+      ~className: option(string)=?,
+      ~defaultValue:
+         option([ | `String(string) | `Int(int) | `Float(float)])=?,
+      ~disabled: option(bool)=?,
+      ~endAdornment: option(ReasonReact.reactElement)=?,
+      ~error: option(bool)=?,
+      ~fullWidth: option(bool)=?,
+      ~id: option(string)=?,
+      ~inputComponent:
          option(
            [
              | `String(string)
@@ -117,17 +122,22 @@ let make =
              | `ObjectGeneric(Js.t({..}))
            ],
          )=?,
-      ~input: option(ReasonReact.reactElement)=?,
       ~inputProps: option(Js.t({..}))=?,
-      ~_MenuProps: option(Js.t({..}))=?,
-      ~multiple: option(bool)=?,
-      ~native: option(bool)=?,
-      ~onChange: option((ReactEvent.Form.t, Js.t({..})) => unit)=?,
-      ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
-      ~onOpen: option(ReactEvent.Synthetic.t => unit)=?,
-      ~open_: option(bool)=?,
-      ~renderValue: option('any_rzcq => ReasonReact.reactElement)=?,
-      ~_SelectDisplayProps: option(Js.t({..}))=?,
+      ~inputRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
+      ~margin: option(margin)=?,
+      ~multiline: option(bool)=?,
+      ~name: option(string)=?,
+      ~onChange: option(ReactEvent.Form.t => unit)=?,
+      ~placeholder: option(string)=?,
+      ~readOnly: option(bool)=?,
+      ~required: option(bool)=?,
+      ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
+      ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
+      ~startAdornment: option(ReasonReact.reactElement)=?,
+      ~type_: option(string)=?,
       ~value:
          option(
            [
@@ -147,33 +157,6 @@ let make =
                )
            ],
          )=?,
-      ~variant: option(variant)=?,
-      ~autoComplete: option(string)=?,
-      ~autoFocus: option(bool)=?,
-      ~className: option(string)=?,
-      ~defaultValue:
-         option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~disabled: option(bool)=?,
-      ~disableUnderline: option(bool)=?,
-      ~endAdornment: option(ReasonReact.reactElement)=?,
-      ~error: option(bool)=?,
-      ~fullWidth: option(bool)=?,
-      ~id: option(string)=?,
-      ~inputComponent: option('any_rg8e)=?,
-      ~inputRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
-      ~margin: option(margin)=?,
-      ~multiline: option(bool)=?,
-      ~name: option(string)=?,
-      ~placeholder: option(string)=?,
-      ~readOnly: option(bool)=?,
-      ~required: option(bool)=?,
-      ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~startAdornment: option(ReasonReact.reactElement)=?,
-      ~type_: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onEmpty: option('genericCallback)=?,
       ~onFilled: option('genericCallback)=?,
@@ -189,25 +172,6 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
-        ~autoWidth?,
-        ~displayEmpty?,
-        ~_IconComponent=?
-          _IconComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~input?,
-        ~inputProps?,
-        ~_MenuProps?,
-        ~multiple?,
-        ~native?,
-        ~onChange?,
-        ~onClose?,
-        ~onOpen?,
-        ~_open=?open_,
-        ~renderValue?,
-        ~_SelectDisplayProps?,
-        ~value=?
-          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~autoComplete?,
         ~autoFocus?,
         ~className?,
@@ -215,17 +179,20 @@ let make =
           defaultValue
           ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~disabled?,
-        ~disableUnderline?,
         ~endAdornment?,
         ~error?,
         ~fullWidth?,
         ~id?,
-        ~inputComponent?,
+        ~inputComponent=?
+          inputComponent
+          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+        ~inputProps?,
         ~inputRef=?
           inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
         ~multiline?,
         ~name?,
+        ~onChange?,
         ~placeholder?,
         ~readOnly?,
         ~required?,
@@ -235,6 +202,8 @@ let make =
           rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~startAdornment?,
         ~_type=?type_,
+        ~value=?
+          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~onBlur?,
         ~onEmpty?,
         ~onFilled?,

@@ -10,6 +10,12 @@
 
 (_Tags are copied from [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 0.4.1
+* :rocket: Updated to MaterialUi v3.1.1
+* :bug: Brought back the `Popper` component
+* :bug: Fixed `WithStyles` component crashing when themed argument is not passed
+* :house: Switched binding style to support both `es6` and `commonjs`
+
 ## 0.4.0
 * :rocket: Updated to MaterialUI v1.5.1
 * :boom: Updated to ReasonReact v5 (using `ReactEvent` instead of `ReactEventRe`)
