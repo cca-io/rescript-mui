@@ -10,6 +10,9 @@ module Classes = {
     | Horizontal(string)
     | Vertical(string)
     | AlternativeLabel(string)
+    | Active(string)
+    | Completed(string)
+    | Disabled(string)
     | Line(string)
     | LineHorizontal(string)
     | LineVertical(string);
@@ -20,6 +23,9 @@ module Classes = {
     | Horizontal(_) => "horizontal"
     | Vertical(_) => "vertical"
     | AlternativeLabel(_) => "alternativeLabel"
+    | Active(_) => "active"
+    | Completed(_) => "completed"
+    | Disabled(_) => "disabled"
     | Line(_) => "line"
     | LineHorizontal(_) => "lineHorizontal"
     | LineVertical(_) => "lineVertical";
@@ -34,6 +40,9 @@ module Classes = {
             | Horizontal(className)
             | Vertical(className)
             | AlternativeLabel(className)
+            | Active(className)
+            | Completed(className)
+            | Disabled(className)
             | Line(className)
             | LineHorizontal(className)
             | LineVertical(className) =>
@@ -48,8 +57,12 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
+    ~active: bool=?,
     ~alternativeLabel: bool=?,
     ~className: string=?,
+    ~completed: bool=?,
+    ~disabled: bool=?,
+    ~index: 'number_0=?,
     ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -61,8 +74,12 @@ external makeProps:
 external reactClass: ReasonReact.reactClass = "StepConnector";
 let make =
     (
+      ~active: option(bool)=?,
       ~alternativeLabel: option(bool)=?,
       ~className: option(string)=?,
+      ~completed: option(bool)=?,
+      ~disabled: option(bool)=?,
+      ~index: option([ | `Int(int) | `Float(float)])=?,
       ~orientation: option(orientation)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -72,8 +89,13 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
+        ~active?,
         ~alternativeLabel?,
         ~className?,
+        ~completed?,
+        ~disabled?,
+        ~index=?
+          index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

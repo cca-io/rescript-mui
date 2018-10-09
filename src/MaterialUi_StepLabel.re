@@ -70,6 +70,7 @@ external makeProps:
     ~last: bool=?,
     ~optional: ReasonReact.reactElement=?,
     ~orientation: string=?,
+    ~_StepIconComponent: 'union_rx6d=?,
     ~_StepIconProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -91,6 +92,14 @@ let make =
       ~last: option(bool)=?,
       ~optional: option(ReasonReact.reactElement)=?,
       ~orientation: option(orientation)=?,
+      ~_StepIconComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~_StepIconProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -110,6 +119,9 @@ let make =
         ~last?,
         ~optional?,
         ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+        ~_StepIconComponent=?
+          _StepIconComponent
+          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~_StepIconProps?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

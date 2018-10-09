@@ -10,6 +10,9 @@
 
 (_Tags are copied from [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 0.4.2
+* :rocket: Updated to MaterialUi v3.2.0
+
 ## 0.4.1
 * :rocket: Updated to MaterialUi v3.1.1
 * :bug: Brought back the `Popper` component

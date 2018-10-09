@@ -1,4 +1,4 @@
-[@bs.obj] external makeProps: (~rootRef: 'union_rusi, unit) => _ = "";
+[@bs.obj] external makeProps: (~rootRef: 'union_r6oq, unit) => _ = "";
 [@bs.module "@material-ui/core"]
 external reactClass: ReasonReact.reactClass = "RootRef";
 let make =

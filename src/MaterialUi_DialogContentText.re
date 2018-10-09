@@ -20,6 +20,21 @@ type color = [
 
 [@bs.deriving jsConverter]
 type variant = [
+  | [@bs.as "h1"] `H1
+  | [@bs.as "h2"] `H2
+  | [@bs.as "h3"] `H3
+  | [@bs.as "h4"] `H4
+  | [@bs.as "h5"] `H5
+  | [@bs.as "h6"] `H6
+  | [@bs.as "subtitle1"] `Subtitle1
+  | [@bs.as "subtitle2"] `Subtitle2
+  | [@bs.as "body1"] `Body1
+  | [@bs.as "body2"] `Body2
+  | [@bs.as "caption"] `Caption
+  | [@bs.as "button"] `Button
+  | [@bs.as "overline"] `Overline
+  | [@bs.as "srOnly"] `SrOnly
+  | [@bs.as "inherit"] `Inherit
   | [@bs.as "display4"] `Display4
   | [@bs.as "display3"] `Display3
   | [@bs.as "display2"] `Display2
@@ -27,12 +42,6 @@ type variant = [
   | [@bs.as "headline"] `Headline
   | [@bs.as "title"] `Title
   | [@bs.as "subheading"] `Subheading
-  | [@bs.as "body2"] `Body2
-  | [@bs.as "body1"] `Body1
-  | [@bs.as "caption"] `Caption
-  | [@bs.as "button"] `Button
-  | [@bs.as "srOnly"] `SrOnly
-  | [@bs.as "inherit"] `Inherit
 ];
 
 module Classes = {
@@ -64,9 +73,10 @@ external makeProps:
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rgsj=?,
+    ~component: 'union_rrsu=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
+    ~internalDeprecatedVariant: bool=?,
     ~noWrap: bool=?,
     ~paragraph: bool=?,
     ~variant: string=?,
@@ -93,6 +103,7 @@ let make =
          )=?,
       ~gutterBottom: option(bool)=?,
       ~headlineMapping: option(Js.t({..}))=?,
+      ~internalDeprecatedVariant: option(bool)=?,
       ~noWrap: option(bool)=?,
       ~paragraph: option(bool)=?,
       ~variant: option(variant)=?,
@@ -112,6 +123,7 @@ let make =
           ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~gutterBottom?,
         ~headlineMapping?,
+        ~internalDeprecatedVariant?,
         ~noWrap?,
         ~paragraph?,
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),

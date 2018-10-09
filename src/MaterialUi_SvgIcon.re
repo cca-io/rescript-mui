@@ -68,7 +68,7 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rprd=?,
+    ~component: 'union_ro1a=?,
     ~fontSize: string=?,
     ~nativeColor: string=?,
     ~titleAccess: string=?,

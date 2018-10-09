@@ -27,10 +27,10 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~_BackdropComponent: 'union_ruym=?,
+    ~_BackdropComponent: 'union_ry3i=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
-    ~container: 'union_ryhm=?,
+    ~container: 'union_r22u=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -41,7 +41,7 @@ external makeProps:
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rvrz=?,
+    ~onClose: 'any_r2k6=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,

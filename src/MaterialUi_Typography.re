@@ -20,6 +20,21 @@ type color = [
 
 [@bs.deriving jsConverter]
 type variant = [
+  | [@bs.as "h1"] `H1
+  | [@bs.as "h2"] `H2
+  | [@bs.as "h3"] `H3
+  | [@bs.as "h4"] `H4
+  | [@bs.as "h5"] `H5
+  | [@bs.as "h6"] `H6
+  | [@bs.as "subtitle1"] `Subtitle1
+  | [@bs.as "subtitle2"] `Subtitle2
+  | [@bs.as "body1"] `Body1
+  | [@bs.as "body2"] `Body2
+  | [@bs.as "caption"] `Caption
+  | [@bs.as "button"] `Button
+  | [@bs.as "overline"] `Overline
+  | [@bs.as "srOnly"] `SrOnly
+  | [@bs.as "inherit"] `Inherit
   | [@bs.as "display4"] `Display4
   | [@bs.as "display3"] `Display3
   | [@bs.as "display2"] `Display2
@@ -27,12 +42,6 @@ type variant = [
   | [@bs.as "headline"] `Headline
   | [@bs.as "title"] `Title
   | [@bs.as "subheading"] `Subheading
-  | [@bs.as "body2"] `Body2
-  | [@bs.as "body1"] `Body1
-  | [@bs.as "caption"] `Caption
-  | [@bs.as "button"] `Button
-  | [@bs.as "srOnly"] `SrOnly
-  | [@bs.as "inherit"] `Inherit
 ];
 
 module Classes = {
@@ -49,6 +58,15 @@ module Classes = {
     | Body1(string)
     | Caption(string)
     | Button(string)
+    | H1(string)
+    | H2(string)
+    | H3(string)
+    | H4(string)
+    | H5(string)
+    | H6(string)
+    | Subtitle1(string)
+    | Subtitle2(string)
+    | Overline(string)
     | SrOnly(string)
     | AlignLeft(string)
     | AlignCenter(string)
@@ -78,6 +96,15 @@ module Classes = {
     | Body1(_) => "body1"
     | Caption(_) => "caption"
     | Button(_) => "button"
+    | H1(_) => "h1"
+    | H2(_) => "h2"
+    | H3(_) => "h3"
+    | H4(_) => "h4"
+    | H5(_) => "h5"
+    | H6(_) => "h6"
+    | Subtitle1(_) => "subtitle1"
+    | Subtitle2(_) => "subtitle2"
+    | Overline(_) => "overline"
     | SrOnly(_) => "srOnly"
     | AlignLeft(_) => "alignLeft"
     | AlignCenter(_) => "alignCenter"
@@ -111,6 +138,15 @@ module Classes = {
             | Body1(className)
             | Caption(className)
             | Button(className)
+            | H1(className)
+            | H2(className)
+            | H3(className)
+            | H4(className)
+            | H5(className)
+            | H6(className)
+            | Subtitle1(className)
+            | Subtitle2(className)
+            | Overline(className)
             | SrOnly(className)
             | AlignLeft(className)
             | AlignCenter(className)
@@ -139,9 +175,10 @@ external makeProps:
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_raaw=?,
+    ~component: 'union_r13u=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
+    ~internalDeprecatedVariant: bool=?,
     ~noWrap: bool=?,
     ~paragraph: bool=?,
     ~variant: string=?,
@@ -168,6 +205,7 @@ let make =
          )=?,
       ~gutterBottom: option(bool)=?,
       ~headlineMapping: option(Js.t({..}))=?,
+      ~internalDeprecatedVariant: option(bool)=?,
       ~noWrap: option(bool)=?,
       ~paragraph: option(bool)=?,
       ~variant: option(variant)=?,
@@ -187,6 +225,7 @@ let make =
           ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~gutterBottom?,
         ~headlineMapping?,
+        ~internalDeprecatedVariant?,
         ~noWrap?,
         ~paragraph?,
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),

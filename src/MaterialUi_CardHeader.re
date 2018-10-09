@@ -42,7 +42,7 @@ external makeProps:
     ~action: ReasonReact.reactElement=?,
     ~avatar: ReasonReact.reactElement=?,
     ~className: string=?,
-    ~component: 'union_rzhy=?,
+    ~component: 'union_ryq4=?,
     ~disableTypography: bool=?,
     ~subheader: ReasonReact.reactElement=?,
     ~subheaderTypographyProps: Js.t({..})=?,
