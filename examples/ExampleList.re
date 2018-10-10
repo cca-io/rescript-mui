@@ -10,10 +10,10 @@ let component = ReasonReact.statelessComponent("Example");
         ~overflow="auto",
         ~maxHeight="300px",
         ~backgroundColor="#FFFFFF",
-        ()
+        (),
       ),
     listSection: ReactDOMRe.Style.make(~backgroundColor="inherit", ()),
-    ul: ReactDOMRe.Style.make(~backgroundColor="inherit", ~padding="0", ())
+    ul: ReactDOMRe.Style.make(~backgroundColor="inherit", ~padding="0", ()),
   })
 ];
 
@@ -23,73 +23,73 @@ let make = _children => {
     let subheader = <li />;
     MaterialUi.(
       <ExampleStyles
-        render=(
+        render={
           classes =>
             <Card>
               <CardHeader
-                title=(ReasonReact.stringToElement("Example Title"))
-                subheader=(ReasonReact.stringToElement("A Subtitle"))
+                title={ReasonReact.string("Example Title")}
+                subheader={ReasonReact.string("A Subtitle")}
               />
               <CardContent>
-                <List className=classes.root subheader>
-                  (
-                    ReasonReact.arrayToElement(
+                <List className={classes.root} subheader>
+                  {
+                    ReasonReact.array(
                       [|0, 1, 2, 3, 4|]
                       |> Array.map(sectionId =>
                            <li
-                             key=("section-" ++ string_of_int(sectionId))
-                             className=classes.listSection>
-                             <ul className=classes.ul>
-                               (
-                                 ReasonReact.arrayToElement(
+                             key={"section-" ++ string_of_int(sectionId)}
+                             className={classes.listSection}>
+                             <ul className={classes.ul}>
+                               {
+                                 ReasonReact.array(
                                    Array.append(
                                      [|
                                        <ListSubheader key="header">
-                                         (
-                                           ReasonReact.stringToElement(
+                                         {
+                                           ReasonReact.string(
                                              "I'm sticky "
-                                             ++ string_of_int(sectionId)
+                                             ++ string_of_int(sectionId),
                                            )
-                                         )
-                                       </ListSubheader>
+                                         }
+                                       </ListSubheader>,
                                      |],
                                      [|0, 1, 2|]
                                      |> Array.map(item =>
                                           <ListItem
-                                            key=(
+                                            key={
                                               "item-"
                                               ++ string_of_int(sectionId)
                                               ++ "-"
                                               ++ string_of_int(item)
-                                            )>
+                                            }>
                                             <ListItemText
-                                              primary=(
-                                                ReasonReact.stringToElement(
+                                              primary={
+                                                ReasonReact.string(
                                                   "Item "
-                                                  ++ string_of_int(item)
+                                                  ++ string_of_int(item),
                                                 )
-                                              )
+                                              }
                                             />
                                           </ListItem>
-                                        )
-                                   )
+                                        ),
+                                   ),
                                  )
-                               )
+                               }
                              </ul>
                            </li>
-                         )
+                         ),
                     )
-                  )
+                  }
                 </List>
               </CardContent>
               <CardActions>
                 <Button color=`Primary variant=`Raised href="#/example/route">
-                  (ReasonReact.stringToElement("Go to example"))
+                  {ReasonReact.string("Go to example")}
                 </Button>
               </CardActions>
             </Card>
-        )
+        }
       />
     );
-  }
+  },
 };
