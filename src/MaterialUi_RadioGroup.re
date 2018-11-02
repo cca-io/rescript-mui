@@ -3,9 +3,9 @@ external makeProps:
   (
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rr23=?,
+    ~onChange: 'any_rxgz=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~value: string=?,
+    ~value: 'union_re0e=?,
     ~className: string=?,
     ~row: bool=?,
     unit
@@ -20,7 +20,10 @@ let make =
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onChange: option((ReactEvent.Form.t, string) => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-      ~value: option(string)=?,
+      ~value:
+         option(
+           [ | `String(string) | `Int(int) | `Float(float) | `Bool(bool)],
+         )=?,
       ~className: option(string)=?,
       ~row: option(bool)=?,
       children,
@@ -33,7 +36,8 @@ let make =
         ~onBlur?,
         ~onChange?,
         ~onKeyDown?,
-        ~value?,
+        ~value=?
+          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~className?,
         ~row?,
         (),

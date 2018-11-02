@@ -43,7 +43,7 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~checked: 'union_ruq9=?,
+    ~checked: 'union_rjn2=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~color: string=?,
     ~disabled: bool=?,
@@ -51,10 +51,10 @@ external makeProps:
     ~icon: ReasonReact.reactElement=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rj3n=?,
-    ~onChange: 'any_r5zc=?,
+    ~inputRef: 'union_rfns=?,
+    ~onChange: 'any_rvdj=?,
     ~_type: string=?,
-    ~value: string=?,
+    ~value: 'union_rd8s=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -79,7 +79,10 @@ let make =
          )=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~type_: option(string)=?,
-      ~value: option(string)=?,
+      ~value:
+         option(
+           [ | `String(string) | `Int(int) | `Float(float) | `Bool(bool)],
+         )=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -101,7 +104,8 @@ let make =
           inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~onChange?,
         ~_type=?type_,
-        ~value?,
+        ~value=?
+          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),

@@ -1,11 +1,13 @@
 module Classes = {
   type classesType =
     | Root(string)
+    | Gutters(string)
     | Selected(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
+    | Gutters(_) => "gutters"
     | Selected(_) => "selected";
   let to_obj = listOfClasses =>
     listOfClasses
@@ -15,6 +17,7 @@ module Classes = {
           (obj, classType) => {
             switch (classType) {
             | Root(className)
+            | Gutters(className)
             | Selected(className) =>
               Js.Dict.set(obj, to_string(classType), className)
             };
@@ -28,18 +31,18 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_r3k5=?,
+    ~component: 'union_r6o6=?,
+    ~disableGutters: bool=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~value: 'union_rrgw=?,
+    ~value: 'union_rhe0=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~button: bool=?,
-    ~_ContainerComponent: 'union_rf7i=?,
+    ~_ContainerComponent: 'union_rju8=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
-    ~disableGutters: bool=?,
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -61,6 +64,7 @@ let make =
              | `ObjectGeneric(Js.t({..}))
            ],
          )=?,
+      ~disableGutters: option(bool)=?,
       ~role: option(string)=?,
       ~selected: option(bool)=?,
       ~value:
@@ -86,7 +90,6 @@ let make =
       ~_ContainerProps: option(Js.t({..}))=?,
       ~dense: option(bool)=?,
       ~disabled: option(bool)=?,
-      ~disableGutters: option(bool)=?,
       ~divider: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
       ~classes: option(Classes.t)=?,
@@ -101,6 +104,7 @@ let make =
         ~component=?
           component
           ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+        ~disableGutters?,
         ~role?,
         ~selected?,
         ~value=?
@@ -114,7 +118,6 @@ let make =
         ~_ContainerProps?,
         ~dense?,
         ~disabled?,
-        ~disableGutters?,
         ~divider?,
         ~focusVisibleClassName?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

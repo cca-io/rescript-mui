@@ -1,11 +1,22 @@
 {
     "name": "@jsiebern/bs-material-ui",
     "namespace": false,
-    "sources": "src",
+    "sources": [
+        {
+            "dir": "examples",
+            "subdirs": true
+        },
+        {
+            "dir": "src"
+        }
+    ],
     "package-specs": {
         "module": "commonjs",
         "in-source": true
     },
+    "ppx-flags": [
+        "./ppx_withStyles"
+    ],
     "bs-dependencies": [
         "reason-react"
     ],

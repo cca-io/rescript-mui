@@ -5,3 +5,5 @@ lib
 yarn-error.log
 ppx_withStyles
 src/*.bs.js
+.cache
+dist

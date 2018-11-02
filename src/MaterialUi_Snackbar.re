@@ -6,11 +6,7 @@ type horizontal = [
 ];
 
 [@bs.deriving jsConverter]
-type vertical = [
-  | [@bs.as "top"] `Top
-  | [@bs.as "center"] `Center
-  | [@bs.as "bottom"] `Bottom
-];
+type vertical = [ | [@bs.as "top"] `Top | [@bs.as "bottom"] `Bottom];
 
 module AnchorOrigin = {
   [@bs.deriving abstract]
@@ -124,15 +120,15 @@ module Classes = {
 external makeProps:
   (
     ~action: ReasonReact.reactElement=?,
-    ~anchorOrigin: 'any_r4jg=?,
-    ~autoHideDuration: 'number_4=?,
+    ~anchorOrigin: 'any_rm3f=?,
+    ~autoHideDuration: 'number_y=?,
     ~className: string=?,
     ~_ClickAwayListenerProps: Js.t({..})=?,
     ~_ContentProps: Js.t({..})=?,
     ~disableWindowBlurListener: bool=?,
-    ~key: 'any_rbyn=?,
+    ~key: 'any_r0gz=?,
     ~message: ReasonReact.reactElement=?,
-    ~onClose: 'any_rfqg=?,
+    ~onClose: 'any_rewd=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -142,9 +138,9 @@ external makeProps:
     ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
     ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
     ~_open: bool=?,
-    ~resumeHideDuration: 'number_e=?,
-    ~_TransitionComponent: 'union_rdb4=?,
-    ~transitionDuration: 'union_rxat=?,
+    ~resumeHideDuration: 'number_8=?,
+    ~_TransitionComponent: 'union_rqwq=?,
+    ~transitionDuration: 'union_rs82=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -163,7 +159,7 @@ let make =
       ~_ClickAwayListenerProps: option(Js.t({..}))=?,
       ~_ContentProps: option(Js.t({..}))=?,
       ~disableWindowBlurListener: option(bool)=?,
-      ~key: option('any_rbyn)=?,
+      ~key: option('any_r0gz)=?,
       ~message: option(ReasonReact.reactElement)=?,
       ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,

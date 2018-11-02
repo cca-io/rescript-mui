@@ -70,7 +70,7 @@ external makeProps:
     ~last: bool=?,
     ~optional: ReasonReact.reactElement=?,
     ~orientation: string=?,
-    ~_StepIconComponent: 'union_rx6d=?,
+    ~_StepIconComponent: 'union_rxjz=?,
     ~_StepIconProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

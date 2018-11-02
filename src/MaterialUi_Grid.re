@@ -275,18 +275,18 @@ external makeProps:
     ~alignContent: string=?,
     ~alignItems: string=?,
     ~className: string=?,
-    ~component: 'union_r6r1=?,
+    ~component: 'union_rbno=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rzno=?,
-    ~md: 'number_rgtm=?,
-    ~sm: 'number_r6ns=?,
-    ~spacing: 'number_rnkm=?,
+    ~lg: 'number_rd17=?,
+    ~md: 'number_rfbm=?,
+    ~sm: 'number_rd3j=?,
+    ~spacing: 'number_rqyv=?,
     ~wrap: string=?,
-    ~xl: 'number_r9rl=?,
-    ~xs: 'number_r46h=?,
+    ~xl: 'number_rukg=?,
+    ~xs: 'number_rqas=?,
     ~zeroMinWidth: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -321,6 +321,11 @@ let make =
       ~xl: option(xl)=?,
       ~xs: option(xs)=?,
       ~zeroMinWidth: option(bool)=?,
+      ~xsAuto: option(bool)=?,
+      ~smAuto: option(bool)=?,
+      ~mdAuto: option(bool)=?,
+      ~lgAuto: option(bool)=?,
+      ~xlAuto: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -340,13 +345,38 @@ let make =
         ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
         ~item?,
         ~justify=?justify->(Belt.Option.map(v => justifyToJs(v))),
-        ~lg=?lg->(Belt.Option.map(v => lgToJs(v))),
-        ~md=?md->(Belt.Option.map(v => mdToJs(v))),
-        ~sm=?sm->(Belt.Option.map(v => smToJs(v))),
+        ~lg=?
+          lgAuto
+          ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+          ->Belt.Option.getWithDefault(
+              lg->(Belt.Option.map(v => lgToJs(v))),
+            ),
+        ~md=?
+          mdAuto
+          ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+          ->Belt.Option.getWithDefault(
+              md->(Belt.Option.map(v => mdToJs(v))),
+            ),
+        ~sm=?
+          smAuto
+          ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+          ->Belt.Option.getWithDefault(
+              sm->(Belt.Option.map(v => smToJs(v))),
+            ),
         ~spacing=?spacing->(Belt.Option.map(v => spacingToJs(v))),
         ~wrap=?wrap->(Belt.Option.map(v => wrapToJs(v))),
-        ~xl=?xl->(Belt.Option.map(v => xlToJs(v))),
-        ~xs=?xs->(Belt.Option.map(v => xsToJs(v))),
+        ~xl=?
+          xlAuto
+          ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+          ->Belt.Option.getWithDefault(
+              xl->(Belt.Option.map(v => xlToJs(v))),
+            ),
+        ~xs=?
+          xsAuto
+          ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+          ->Belt.Option.getWithDefault(
+              xs->(Belt.Option.map(v => xsToJs(v))),
+            ),
         ~zeroMinWidth?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

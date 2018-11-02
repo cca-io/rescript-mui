@@ -13,9 +13,14 @@ module type WithStylesSafeTemplate = {
 module WithStylesSafe = (S: WithStylesSafeTemplate) => {
   /* Component */
   let innerComponent = ReasonReact.statelessComponent("WithStyles");
-  let makeStateLessComponent = (~render: ReasonReact.reactElement, _children) => {
+  let makeStateLessComponent =
+      (~render: option(ReasonReact.reactElement), children) => {
     ...innerComponent,
-    render: _self => render,
+    render: _self =>
+      switch (render) {
+      | Some(render) => render
+      | None => children
+      },
   };
   /* Helper Component for turning the wrapped Component into a Reason Component */
   module Helper = {
@@ -33,18 +38,28 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
     "withStyles";
   let createStylesWrapper = styles => withStylesExt(styles);
   /* Generating the Wrapper */
-  let generateWrapper = () => {
+  let generateWrapper = children => {
     let wrapper = createStylesWrapper(S.classRecordToJs(S.classes));
     wrapper(.
       ReasonReact.wrapReasonForJs(~component=innerComponent, jsProps =>
         makeStateLessComponent(
           ~render=
-            jsProps##render(S.classRecordStringsFromJs(jsProps##classes)),
-          [||],
+            switch (jsProps##render) {
+            | Some(render) =>
+              render(S.classRecordStringsFromJs(jsProps##classes))
+            | None => None
+            },
+          children(S.classRecordStringsFromJs(jsProps##classes)),
         )
       ),
     );
   };
+
+  external childrenIdentity:
+    array('a) =>
+    array(option(S.classRecordStrings => ReasonReact.reactElement)) =
+    "%identity";
+
   /* Reducer Component to cache the wrapper component */
   type state = {
     hash: string,
@@ -54,11 +69,23 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
     | SetWrapper(ReasonReact.reactClass);
   let component = ReasonReact.reducerComponent("WithStylesSafeCached");
   let make =
-      (~render: S.classRecordStrings => ReasonReact.reactElement, children) => {
+      (
+        ~render: option(S.classRecordStrings => ReasonReact.reactElement)=?,
+        children: array('a),
+      ) => {
     ...component,
     initialState: () => {
       hash: objectHash(S.classes),
-      wrapper: generateWrapper(),
+      wrapper:
+        generateWrapper(
+          children
+          ->childrenIdentity
+          ->Belt.Array.get(0)
+          ->Belt.Option.map(children =>
+              children->Belt.Option.getWithDefault(_ => ReasonReact.null)
+            )
+          ->Belt.Option.getWithDefault(_ => ReasonReact.null),
+        ),
     },
     reducer: (action, state) =>
       switch (action) {
@@ -69,7 +96,19 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
       if (newHash === state.hash) {
         state;
       } else {
-        {hash: newHash, wrapper: generateWrapper()};
+        {
+          hash: newHash,
+          wrapper:
+            generateWrapper(
+              children
+              ->childrenIdentity
+              ->Belt.Array.get(0)
+              ->Belt.Option.map(children =>
+                  children->Belt.Option.getWithDefault(_ => ReasonReact.null)
+                )
+              ->Belt.Option.getWithDefault(_ => ReasonReact.null),
+            ),
+        };
       };
     },
     render: ({state}) =>

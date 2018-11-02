@@ -48,7 +48,7 @@ external makeProps:
     ~completed: bool=?,
     ~connector: ReasonReact.reactElement=?,
     ~disabled: bool=?,
-    ~index: 'number_s=?,
+    ~index: 'number_p=?,
     ~last: bool=?,
     ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,

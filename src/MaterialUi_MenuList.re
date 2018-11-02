@@ -4,7 +4,7 @@ external makeProps:
     ~className: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~component: 'union_rnfp=?,
+    ~component: 'union_rukw=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: ReasonReact.reactElement=?,

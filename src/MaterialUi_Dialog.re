@@ -48,6 +48,7 @@ module Classes = {
     | Root(string)
     | ScrollPaper(string)
     | ScrollBody(string)
+    | Container(string)
     | Paper(string)
     | PaperScrollPaper(string)
     | PaperScrollBody(string)
@@ -63,6 +64,7 @@ module Classes = {
     | Root(_) => "root"
     | ScrollPaper(_) => "scrollPaper"
     | ScrollBody(_) => "scrollBody"
+    | Container(_) => "container"
     | Paper(_) => "paper"
     | PaperScrollPaper(_) => "paperScrollPaper"
     | PaperScrollBody(_) => "paperScrollBody"
@@ -82,6 +84,7 @@ module Classes = {
             | Root(className)
             | ScrollPaper(className)
             | ScrollBody(className)
+            | Container(className)
             | Paper(className)
             | PaperScrollPaper(className)
             | PaperScrollBody(className)
@@ -110,7 +113,7 @@ external makeProps:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rubc=?,
+    ~onClose: 'any_rhqp=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -121,11 +124,11 @@ external makeProps:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_r2m8=?,
-    ~transitionDuration: 'union_rcxs=?,
+    ~_TransitionComponent: 'union_rffm=?,
+    ~transitionDuration: 'union_r1h1=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_r6ne=?,
-    ~container: 'union_rpm4=?,
+    ~_BackdropComponent: 'union_rkpv=?,
+    ~container: 'union_rex9=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
