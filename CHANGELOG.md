@@ -14,6 +14,7 @@
 * :rocket: Updated to MaterialUi v3.2.2
 * :rocket: Added `xsAuto` ,`smAuto` ,`mdAuto` ,`lgAuto` ,`xlAuto` properties to the `Grid` component (will override their respective set properties if defined)
 * :rocket: `mui.withStyles` generated components now accept a single child **OR** a render prop (no `...` array spread when using as a `HOC`)
+* :house: Added an example page: Clone the project, `yarn install`, then `yarn examples` to start the dev server
 
 
 ## 0.4.2
