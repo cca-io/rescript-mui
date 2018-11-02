@@ -7,16 +7,15 @@ let make = _children => {
       classes=[
         {
           name: "alignRight",
-          styles: ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ())
-        }
+          styles:
+            ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ()),
+        },
       ]
-      render=(
+      render={
         classes =>
           <div className=classes##alignRight>
-            (
-              ReasonReact.stringToElement("Example text - aligned to the right")
-            )
+            {ReasonReact.string("Example text - aligned to the right")}
           </div>
-      )
-    />
+      }
+    />,
 };
