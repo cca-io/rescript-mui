@@ -29,7 +29,7 @@
         "reason-react": "^0.5.3"
     },
     "peerDependencies": {
-        "@material-ui/core": "~3.2.0"
+        "@material-ui/core": "~3.3.2"
     },
     "dependencies": {
         "object-hash": "^1.2.0"
