@@ -9,29 +9,28 @@ module Classes = {
     fun
     | Root(_) => "root";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
-    ~cellHeight: 'union_ri37=?,
+    ~cellHeight: 'union_r63c=?,
     ~className: string=?,
-    ~cols: 'number_m=?,
-    ~component: 'union_rxlb=?,
-    ~spacing: 'number_c=?,
+    ~cols: 'number_y=?,
+    ~component: 'union_rl0p=?,
+    ~spacing: 'number_3=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -64,25 +63,25 @@ let make =
     ~props=
       makeProps(
         ~cellHeight=?
-          cellHeight
-          ->(
-              Belt.Option.map(v =>
-                switch (v) {
-                | `Enum(v) =>
-                  MaterialUi_Helpers.unwrapValue(
-                    `String(cellHeight_enumToJs(v)),
-                  )
+          cellHeight->(
+                        Belt.Option.map(v =>
+                          switch (v) {
+                          | `Enum(v) =>
+                            MaterialUi_Helpers.unwrapValue(
+                              `String(cellHeight_enumToJs(v)),
+                            )
 
-                | v => MaterialUi_Helpers.unwrapValue(v)
-                }
-              )
-            ),
+                          | v => MaterialUi_Helpers.unwrapValue(v)
+                          }
+                        )
+                      ),
         ~className?,
         ~cols=?
           cols->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~spacing=?
           spacing->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

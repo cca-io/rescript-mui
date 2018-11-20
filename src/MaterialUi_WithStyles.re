@@ -1,4 +1,6 @@
-[@bs.module] external objectHash: 'a => string = "object-hash";
+type classRecordDef('classRecord) =
+  | Record('classRecord)
+  | ThemeFunc(MaterialUi_Theme.t => 'classRecord);
 
 module type WithStylesSafeTemplate = {
   type classRecord;
@@ -7,227 +9,88 @@ module type WithStylesSafeTemplate = {
   type classRecordStringsJs;
   let classRecordToJs: classRecord => classRecordJs;
   let classRecordStringsFromJs: classRecordStringsJs => classRecordStrings;
-  let classes: classRecord;
+  let classes: classRecordDef(classRecord);
 };
 
 module WithStylesSafe = (S: WithStylesSafeTemplate) => {
-  /* Component */
-  let innerComponent = ReasonReact.statelessComponent("WithStyles");
-  let makeStateLessComponent =
-      (~render: option(ReasonReact.reactElement), children) => {
-    ...innerComponent,
-    render: _self =>
-      switch (render) {
-      | Some(render) => render
-      | None => children
-      },
-  };
-  /* Helper Component for turning the wrapped Component into a Reason Component */
-  module Helper = {
-    let make = (~render, ~reactClass: ReasonReact.reactClass, children) =>
+  [@bs.module "@material-ui/styles"]
+  external createStyled: S.classRecordJs => ReasonReact.reactClass = "";
+
+  [@bs.module "@material-ui/styles"]
+  external createStyledWithTheme:
+    (MaterialUi_Theme.t => S.classRecordJs) => ReasonReact.reactClass =
+    "createStyled";
+
+  module Styled = {
+    let styled =
+      switch (S.classes) {
+      | Record(record) => createStyled(record->S.classRecordToJs)
+      | ThemeFunc(func) =>
+        createStyledWithTheme(theme => func(theme)->S.classRecordToJs)
+      };
+
+    let make =
+        (
+          children:
+            {. "classes": S.classRecordStringsJs} => ReasonReact.reactElement,
+        ) =>
       ReasonReact.wrapJsForReason(
-        ~reactClass,
-        ~props={"render": render},
+        ~reactClass=styled,
+        ~props=Js.Obj.empty(),
         children,
       );
   };
-  /* Imported from MUI */
-  type withStylesComponent('a) = (. 'a) => ReasonReact.reactClass;
-  [@bs.module "@material-ui/core/styles"]
-  external withStylesExt: 'styles => withStylesComponent('component) =
-    "withStyles";
-  let createStylesWrapper = styles => withStylesExt(styles);
-  /* Generating the Wrapper */
-  let generateWrapper = children => {
-    let wrapper = createStylesWrapper(S.classRecordToJs(S.classes));
-    wrapper(.
-      ReasonReact.wrapReasonForJs(~component=innerComponent, jsProps =>
-        makeStateLessComponent(
-          ~render=
-            switch (jsProps##render) {
-            | Some(render) =>
-              render(S.classRecordStringsFromJs(jsProps##classes))
-            | None => None
-            },
-          children(S.classRecordStringsFromJs(jsProps##classes)),
-        )
-      ),
-    );
-  };
 
-  external childrenIdentity:
-    array('a) =>
-    array(option(S.classRecordStrings => ReasonReact.reactElement)) =
-    "%identity";
-
-  /* Reducer Component to cache the wrapper component */
-  type state = {
-    hash: string,
-    wrapper: ReasonReact.reactClass,
-  };
-  type actions =
-    | SetWrapper(ReasonReact.reactClass);
-  let component = ReasonReact.reducerComponent("WithStylesSafeCached");
-  let make =
-      (
-        ~render: option(S.classRecordStrings => ReasonReact.reactElement)=?,
-        children: array('a),
-      ) => {
+  let component = ReasonReact.statelessComponent("WithStylesSafe");
+  let make = children => {
     ...component,
-    initialState: () => {
-      hash: objectHash(S.classes),
-      wrapper:
-        generateWrapper(
-          children
-          ->childrenIdentity
-          ->Belt.Array.get(0)
-          ->Belt.Option.map(children =>
-              children->Belt.Option.getWithDefault(_ => ReasonReact.null)
-            )
-          ->Belt.Option.getWithDefault(_ => ReasonReact.null),
-        ),
-    },
-    reducer: (action, state) =>
-      switch (action) {
-      | SetWrapper(wrapper) => ReasonReact.Update({...state, wrapper})
-      },
-    willReceiveProps: ({state}) => {
-      let newHash = objectHash(S.classes);
-      if (newHash === state.hash) {
-        state;
-      } else {
-        {
-          hash: newHash,
-          wrapper:
-            generateWrapper(
-              children
-              ->childrenIdentity
-              ->Belt.Array.get(0)
-              ->Belt.Option.map(children =>
-                  children->Belt.Option.getWithDefault(_ => ReasonReact.null)
-                )
-              ->Belt.Option.getWithDefault(_ => ReasonReact.null),
-            ),
-        };
-      };
-    },
-    render: ({state}) =>
-      <Helper render reactClass={state.wrapper}> children </Helper>,
+    render: _ =>
+      <Styled>
+        ...{classes => children(classes##classes->S.classRecordStringsFromJs)}
+      </Styled>,
   };
 };
+
+[@bs.module "@material-ui/styles"]
+external createStyled: Js.Dict.t(ReactDOMRe.Style.t) => ReasonReact.reactClass =
+  "";
+[@bs.module "@material-ui/styles"]
+external createStyledWithTheme:
+  (MaterialUi_Theme.t => Js.Dict.t(ReactDOMRe.Style.t)) =>
+  ReasonReact.reactClass =
+  "";
+external renderFunctionToChildren: 'b => 'a = "%identity";
 
 type style = {
   name: string,
   styles: ReactDOMRe.Style.t,
 };
 
-let innerComponent = ReasonReact.statelessComponent("WithStyles");
-
-let innerMake = (~render, ~classes: Js.t({..}), _children) => {
-  ...innerComponent,
-  render: _self => render(classes),
-};
-
-type withStylesComponent('a) = (. 'a) => ReasonReact.reactClass;
-
-[@bs.module "@material-ui/core/styles"]
-external withStylesExt: 'styles => withStylesComponent('component) =
-  "withStyles";
-
-let createStylesWrapper = styles => withStylesExt(styles);
-
-/* Helper Component for turning the wrapped Component into a Reason Component */
-module Helper = {
-  let make = (~render, ~reactClass: ReasonReact.reactClass, children) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={"render": render},
-      children,
-    );
-};
-
-/* Generating the Wrapper */
-let generateWrapper =
-    (
-      classes: option(list(style)),
-      classesWithTheme: option(MaterialUi_Theme.t => list(style)),
-    ) => {
-  let generateDict = (lst: list(style)) => {
-    let classDict: Js.Dict.t(ReactDOMRe.Style.t) = Js.Dict.empty();
-    StdLabels.List.iter(
-      ~f=style => Js.Dict.set(classDict, style.name, style.styles),
-      lst,
-    );
-    classDict;
-  };
-  let wrapper =
-    switch (classes) {
-    | Some(classes) => createStylesWrapper(generateDict(classes))
-    | None =>
-      switch (classesWithTheme) {
-      | Some(classesWithTheme) =>
-        createStylesWrapper(
-          MaterialUi_Helpers.toJsUnsafe(theme =>
-            generateDict(classesWithTheme(MaterialUi_Theme.tFromJs(theme)))
-          ),
-        )
-      | None => createStylesWrapper(generateDict([]))
-      }
-    };
-  wrapper(.
-    ReasonReact.wrapReasonForJs(~component=innerComponent, jsProps =>
-      innerMake(~render=jsProps##render, ~classes=jsProps##classes, [||])
-    ),
-  );
-};
-
-/* Reducer Component to cache the wrapper component */
-type state = {
-  hash: string,
-  wrapper: ReasonReact.reactClass,
-};
-
-type actions =
-  | SetWrapper(ReasonReact.reactClass);
-
-let component = ReasonReact.reducerComponent("WithStylesCached");
-
 let make =
     (
       ~classes: option(list(style))=?,
       ~classesWithTheme: option(MaterialUi_Theme.t => list(style))=?,
-      ~render,
-      children,
+      ~render: Js.t({..}) => ReasonReact.reactElement,
+      _,
     ) => {
-  ...component,
-  initialState: () => {
-    hash:
-      classes
-      ->Belt.Option.map(classes => objectHash(classes))
-      ->Belt.Option.getWithDefault("")
-      ++ classesWithTheme
-         ->Belt.Option.map(classesWithTheme => objectHash(classesWithTheme))
-         ->Belt.Option.getWithDefault(""),
-    wrapper: generateWrapper(classes, classesWithTheme),
-  },
-  reducer: (action, state) =>
-    switch (action) {
-    | SetWrapper(wrapper) => ReasonReact.Update({...state, wrapper})
-    },
-  willReceiveProps: ({state}) => {
-    let newHash =
-      classes
-      ->Belt.Option.map(classes => objectHash(classes))
-      ->Belt.Option.getWithDefault("")
-      ++ classesWithTheme
-         ->Belt.Option.map(classesWithTheme => objectHash(classesWithTheme))
-         ->Belt.Option.getWithDefault("");
-    if (newHash === state.hash) {
-      state;
-    } else {
-      {hash: newHash, wrapper: generateWrapper(classes, classesWithTheme)};
+  let generateDict = (lst: list(style)) => {
+    let classDict: Js.Dict.t(ReactDOMRe.Style.t) = Js.Dict.empty();
+    lst->Belt.List.forEach(style =>
+      Js.Dict.set(classDict, style.name, style.styles)
+    );
+    classDict;
+  };
+
+  let styled =
+    switch (classes, classesWithTheme) {
+    | (Some(classList), None) => createStyled(classList->generateDict)
+    | (None, Some(func)) =>
+      createStyledWithTheme(theme => func(theme)->generateDict)
+    | _ => raise(Not_found)
     };
-  },
-  render: ({state}) =>
-    <Helper render reactClass={state.wrapper}> children </Helper>,
+
+  ReasonReact.wrapJsForReason(
+    ~reactClass=styled, ~props=Js.Obj.empty(), styles =>
+    render(styles##classes)
+  );
 };

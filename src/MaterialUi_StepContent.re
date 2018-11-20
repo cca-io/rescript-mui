@@ -52,21 +52,20 @@ module Classes = {
     | Last(_) => "last"
     | Transition(_) => "transition";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Last(className)
-            | Transition(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Last(className)
+                         | Transition(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -80,7 +79,7 @@ external makeProps:
     ~optional: bool=?,
     ~orientation: string=?,
     ~_TransitionComponent: 'genericCallback=?,
-    ~transitionDuration: 'union_role=?,
+    ~transitionDuration: 'union_ran3=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -127,19 +126,20 @@ let make =
         ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
         ~_TransitionComponent?,
         ~transitionDuration=?
-          transitionDuration
-          ->(
-              Belt.Option.map(v =>
-                switch (v) {
-                | `Enum(v) =>
-                  MaterialUi_Helpers.unwrapValue(
-                    `String(transitionDuration_enumToJs(v)),
-                  )
+          transitionDuration->(
+                                Belt.Option.map(v =>
+                                  switch (v) {
+                                  | `Enum(v) =>
+                                    MaterialUi_Helpers.unwrapValue(
+                                      `String(
+                                        transitionDuration_enumToJs(v),
+                                      ),
+                                    )
 
-                | v => MaterialUi_Helpers.unwrapValue(v)
-                }
-              )
-            ),
+                                  | v => MaterialUi_Helpers.unwrapValue(v)
+                                  }
+                                )
+                              ),
         ~_TransitionProps?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

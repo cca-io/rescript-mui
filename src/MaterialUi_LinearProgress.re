@@ -52,35 +52,34 @@ module Classes = {
     | Bar2Determinate(_) => "bar2Determinate"
     | Bar2Buffer(_) => "bar2Buffer";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className)
-            | Buffer(className)
-            | Query(className)
-            | Dashed(className)
-            | DashedColorPrimary(className)
-            | DashedColorSecondary(className)
-            | Bar(className)
-            | BarColorPrimary(className)
-            | BarColorSecondary(className)
-            | Bar1Indeterminate(className)
-            | Bar1Determinate(className)
-            | Bar1Buffer(className)
-            | Bar2Indeterminate(className)
-            | Bar2Determinate(className)
-            | Bar2Buffer(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className)
+                         | Buffer(className)
+                         | Query(className)
+                         | Dashed(className)
+                         | DashedColorPrimary(className)
+                         | DashedColorSecondary(className)
+                         | Bar(className)
+                         | BarColorPrimary(className)
+                         | BarColorSecondary(className)
+                         | Bar1Indeterminate(className)
+                         | Bar1Determinate(className)
+                         | Bar1Buffer(className)
+                         | Bar2Indeterminate(className)
+                         | Bar2Determinate(className)
+                         | Bar2Buffer(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -88,8 +87,8 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_k=?,
-    ~valueBuffer: 'number_l=?,
+    ~value: 'number_j=?,
+    ~valueBuffer: 'number_w=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -119,8 +118,11 @@ let make =
         ~value=?
           value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~valueBuffer=?
-          valueBuffer
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          valueBuffer->(
+                         Belt.Option.map(v =>
+                           MaterialUi_Helpers.unwrapValue(v)
+                         )
+                       ),
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

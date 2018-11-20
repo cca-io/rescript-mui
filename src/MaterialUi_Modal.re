@@ -8,29 +8,28 @@ module Classes = {
     | Root(_) => "root"
     | Hidden(_) => "hidden";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Hidden(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Hidden(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
-    ~_BackdropComponent: 'union_raqz=?,
+    ~_BackdropComponent: 'union_rfkn=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
-    ~container: 'union_rbvk=?,
+    ~container: 'union_rnqw=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -41,7 +40,7 @@ external makeProps:
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rq3z=?,
+    ~onClose: 'any_rfuc=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
@@ -92,13 +91,17 @@ let make =
     ~props=
       makeProps(
         ~_BackdropComponent=?
-          _BackdropComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _BackdropComponent->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~_BackdropProps?,
         ~className?,
         ~container=?
-          container
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          container->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableAutoFocus?,
         ~disableBackdropClick?,
         ~disableEnforceFocus?,

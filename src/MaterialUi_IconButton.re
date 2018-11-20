@@ -24,24 +24,23 @@ module Classes = {
     | Disabled(_) => "disabled"
     | Label(_) => "label";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | ColorInherit(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className)
-            | Disabled(className)
-            | Label(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | ColorInherit(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className)
+                         | Disabled(className)
+                         | Label(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -51,10 +50,10 @@ external makeProps:
     ~color: string=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
-    ~action: 'any_ry2q=?,
-    ~buttonRef: 'union_r8qr=?,
+    ~action: 'any_rfr1=?,
+    ~buttonRef: 'union_rl8q=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rgh9=?,
+    ~component: 'union_raaq=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -71,7 +70,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rrq1=?,
+    ~tabIndex: 'union_r024=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -135,12 +134,14 @@ let make =
         ~disableRipple?,
         ~action?,
         ~buttonRef=?
-          buttonRef
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          buttonRef->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~centerRipple?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableTouchRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,

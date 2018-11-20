@@ -26,29 +26,28 @@ module Classes = {
     | MarginDense(_) => "marginDense"
     | FullWidth(_) => "fullWidth";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | MarginNormal(className)
-            | MarginDense(className)
-            | FullWidth(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | MarginNormal(className)
+                         | MarginDense(className)
+                         | FullWidth(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_r23i=?,
+    ~component: 'union_rrjv=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
@@ -90,8 +89,9 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disabled?,
         ~error?,
         ~fullWidth?,

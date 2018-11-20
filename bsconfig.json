@@ -1,8 +1,7 @@
 {
     "name": "@jsiebern/bs-material-ui",
     "namespace": false,
-    "sources": [
-        {
+    "sources": [{
             "dir": "examples",
             "subdirs": true
         },
@@ -15,7 +14,7 @@
         "in-source": true
     },
     "ppx-flags": [
-        "./ppx_withStyles"
+        "./node_modules/@jsiebern/bs-material-ui-ppx/ppx"
     ],
     "bs-dependencies": [
         "reason-react"

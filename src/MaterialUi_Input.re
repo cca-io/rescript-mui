@@ -33,31 +33,30 @@ module Classes = {
     | InputType(_) => "inputType"
     | InputTypeSearch(_) => "inputTypeSearch";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | FormControl(className)
-            | Focused(className)
-            | Disabled(className)
-            | Underline(className)
-            | Error(className)
-            | Multiline(className)
-            | FullWidth(className)
-            | Input(className)
-            | InputMarginDense(className)
-            | InputMultiline(className)
-            | InputType(className)
-            | InputTypeSearch(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | FormControl(className)
+                         | Focused(className)
+                         | Disabled(className)
+                         | Underline(className)
+                         | Error(className)
+                         | Multiline(className)
+                         | FullWidth(className)
+                         | Input(className)
+                         | InputMarginDense(className)
+                         | InputMultiline(className)
+                         | InputType(className)
+                         | InputTypeSearch(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -66,28 +65,28 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_ro4h=?,
+    ~defaultValue: 'union_r1ql=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rtkd=?,
+    ~inputComponent: 'any_rqst=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rdte=?,
+    ~inputRef: 'union_rhpu=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
-    ~onChange: 'any_rt2x=?,
+    ~onChange: 'any_rd8i=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rln8=?,
-    ~rowsMax: 'union_r9kb=?,
+    ~rows: 'union_rjch=?,
+    ~rowsMax: 'union_r3kg=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
-    ~value: 'union_rw8r=?,
+    ~value: 'union_rqq7=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
@@ -116,7 +115,7 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_rtkd)=?,
+      ~inputComponent: option('any_rqst)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef:
          option(
@@ -171,8 +170,11 @@ let make =
         ~autoFocus?,
         ~className?,
         ~defaultValue=?
-          defaultValue
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          defaultValue->(
+                          Belt.Option.map(v =>
+                            MaterialUi_Helpers.unwrapValue(v)
+                          )
+                        ),
         ~disabled?,
         ~disableUnderline?,
         ~endAdornment?,

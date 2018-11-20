@@ -26,29 +26,28 @@ module Classes = {
     | SecondaryAction(_) => "secondaryAction"
     | Selected(_) => "selected";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Container(className)
-            | FocusVisible(className)
-            | Default(className)
-            | Dense(className)
-            | Disabled(className)
-            | Divider(className)
-            | Gutters(className)
-            | Button(className)
-            | SecondaryAction(className)
-            | Selected(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Container(className)
+                         | FocusVisible(className)
+                         | Default(className)
+                         | Dense(className)
+                         | Disabled(className)
+                         | Divider(className)
+                         | Gutters(className)
+                         | Button(className)
+                         | SecondaryAction(className)
+                         | Selected(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -56,8 +55,8 @@ external makeProps:
   (
     ~button: bool=?,
     ~className: string=?,
-    ~component: 'union_rklr=?,
-    ~_ContainerComponent: 'union_ryjc=?,
+    ~component: 'union_rhjc=?,
+    ~_ContainerComponent: 'union_r6ed=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -65,7 +64,7 @@ external makeProps:
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~selected: bool=?,
-    ~value: 'union_r3jz=?,
+    ~value: 'union_r86e=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
@@ -125,11 +124,15 @@ let make =
         ~button?,
         ~className?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~_ContainerComponent=?
-          _ContainerComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _ContainerComponent->(
+                                 Belt.Option.map(v =>
+                                   MaterialUi_Helpers.unwrapValue(v)
+                                 )
+                               ),
         ~_ContainerProps?,
         ~dense?,
         ~disabled?,

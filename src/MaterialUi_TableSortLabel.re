@@ -17,23 +17,22 @@ module Classes = {
     | IconDirectionDesc(_) => "iconDirectionDesc"
     | IconDirectionAsc(_) => "iconDirectionAsc";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Active(className)
-            | Icon(className)
-            | IconDirectionDesc(className)
-            | IconDirectionAsc(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Active(className)
+                         | Icon(className)
+                         | IconDirectionDesc(className)
+                         | IconDirectionAsc(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -44,10 +43,10 @@ external makeProps:
     ~direction: string=?,
     ~hideSortIcon: bool=?,
     ~_IconComponent: 'genericCallback=?,
-    ~action: 'any_rh17=?,
-    ~buttonRef: 'union_rwo8=?,
+    ~action: 'any_rrht=?,
+    ~buttonRef: 'union_rzar=?,
     ~centerRipple: bool=?,
-    ~component: 'union_ry52=?,
+    ~component: 'union_ri16=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -66,7 +65,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rqha=?,
+    ~tabIndex: 'union_rrfe=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -134,12 +133,14 @@ let make =
         ~_IconComponent?,
         ~action?,
         ~buttonRef=?
-          buttonRef
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          buttonRef->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~centerRipple?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disabled?,
         ~disableRipple?,
         ~disableTouchRipple?,

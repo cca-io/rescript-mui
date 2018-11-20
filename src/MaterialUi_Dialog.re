@@ -75,31 +75,30 @@ module Classes = {
     | PaperFullWidth(_) => "paperFullWidth"
     | PaperFullScreen(_) => "paperFullScreen";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | ScrollPaper(className)
-            | ScrollBody(className)
-            | Container(className)
-            | Paper(className)
-            | PaperScrollPaper(className)
-            | PaperScrollBody(className)
-            | PaperWidthXs(className)
-            | PaperWidthSm(className)
-            | PaperWidthMd(className)
-            | PaperWidthLg(className)
-            | PaperFullWidth(className)
-            | PaperFullScreen(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | ScrollPaper(className)
+                         | ScrollBody(className)
+                         | Container(className)
+                         | Paper(className)
+                         | PaperScrollPaper(className)
+                         | PaperScrollBody(className)
+                         | PaperWidthXs(className)
+                         | PaperWidthSm(className)
+                         | PaperWidthMd(className)
+                         | PaperWidthLg(className)
+                         | PaperFullWidth(className)
+                         | PaperFullScreen(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -113,7 +112,7 @@ external makeProps:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rhqp=?,
+    ~onClose: 'any_r111=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -124,11 +123,11 @@ external makeProps:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_rffm=?,
-    ~transitionDuration: 'union_r1h1=?,
+    ~_TransitionComponent: 'union_rjp0=?,
+    ~transitionDuration: 'union_r6u0=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_rkpv=?,
-    ~container: 'union_rex9=?,
+    ~_BackdropComponent: 'union_ry52=?,
+    ~container: 'union_ri63=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
@@ -231,18 +230,28 @@ let make =
         ~_PaperProps?,
         ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
         ~_TransitionComponent=?
-          _TransitionComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _TransitionComponent->(
+                                  Belt.Option.map(v =>
+                                    MaterialUi_Helpers.unwrapValue(v)
+                                  )
+                                ),
         ~transitionDuration=?
-          transitionDuration
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          transitionDuration->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~_TransitionProps?,
         ~_BackdropComponent=?
-          _BackdropComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _BackdropComponent->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~container=?
-          container
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          container->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableAutoFocus?,
         ~disableEnforceFocus?,
         ~disablePortal?,

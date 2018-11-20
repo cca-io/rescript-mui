@@ -48,6 +48,7 @@ type variant = [
 
 module Classes = {
   type classesType =
+    | Root(string)
     | Docked(string)
     | Paper(string)
     | PaperAnchorLeft(string)
@@ -62,6 +63,7 @@ module Classes = {
   type t = list(classesType);
   let to_string =
     fun
+    | Root(_) => "root"
     | Docked(_) => "docked"
     | Paper(_) => "paper"
     | PaperAnchorLeft(_) => "paperAnchorLeft"
@@ -74,29 +76,29 @@ module Classes = {
     | PaperAnchorDockedBottom(_) => "paperAnchorDockedBottom"
     | Modal(_) => "modal";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Docked(className)
-            | Paper(className)
-            | PaperAnchorLeft(className)
-            | PaperAnchorRight(className)
-            | PaperAnchorTop(className)
-            | PaperAnchorBottom(className)
-            | PaperAnchorDockedLeft(className)
-            | PaperAnchorDockedTop(className)
-            | PaperAnchorDockedRight(className)
-            | PaperAnchorDockedBottom(className)
-            | Modal(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Docked(className)
+                         | Paper(className)
+                         | PaperAnchorLeft(className)
+                         | PaperAnchorRight(className)
+                         | PaperAnchorTop(className)
+                         | PaperAnchorBottom(className)
+                         | PaperAnchorDockedLeft(className)
+                         | PaperAnchorDockedTop(className)
+                         | PaperAnchorDockedRight(className)
+                         | PaperAnchorDockedBottom(className)
+                         | Modal(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -104,14 +106,14 @@ external makeProps:
   (
     ~anchor: string=?,
     ~className: string=?,
-    ~elevation: 'number_d=?,
+    ~elevation: 'number_2=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_r0xt=?,
+    ~onClose: 'any_rvds=?,
     ~_open: bool=?,
     ~_PaperProps: Js.t({..})=?,
     ~_SlideProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_resc=?,
+    ~transitionDuration: 'union_rjdw=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -152,8 +154,9 @@ let make =
         ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
         ~className?,
         ~elevation=?
-          elevation
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          elevation->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~_ModalProps?,
         ~onClose?,
         ~_open=?open_,
@@ -161,8 +164,11 @@ let make =
         ~_SlideProps?,
         ~theme?,
         ~transitionDuration=?
-          transitionDuration
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          transitionDuration->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

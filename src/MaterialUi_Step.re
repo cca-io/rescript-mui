@@ -20,23 +20,22 @@ module Classes = {
     | AlternativeLabel(_) => "alternativeLabel"
     | Completed(_) => "completed";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Horizontal(className)
-            | Vertical(className)
-            | AlternativeLabel(className)
-            | Completed(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Horizontal(className)
+                         | Vertical(className)
+                         | AlternativeLabel(className)
+                         | Completed(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -48,7 +47,7 @@ external makeProps:
     ~completed: bool=?,
     ~connector: ReasonReact.reactElement=?,
     ~disabled: bool=?,
-    ~index: 'number_p=?,
+    ~index: 'number_r=?,
     ~last: bool=?,
     ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,

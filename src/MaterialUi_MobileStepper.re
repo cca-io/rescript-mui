@@ -34,41 +34,40 @@ module Classes = {
     | DotActive(_) => "dotActive"
     | Progress(_) => "progress";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | PositionBottom(className)
-            | PositionTop(className)
-            | PositionStatic(className)
-            | Dots(className)
-            | Dot(className)
-            | DotActive(className)
-            | Progress(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | PositionBottom(className)
+                         | PositionTop(className)
+                         | PositionStatic(className)
+                         | Dots(className)
+                         | Dot(className)
+                         | DotActive(className)
+                         | Progress(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
-    ~activeStep: 'number_q=?,
+    ~activeStep: 'number_g=?,
     ~backButton: ReasonReact.reactElement=?,
     ~className: string=?,
     ~_LinearProgressProps: Js.t({..})=?,
     ~nextButton: ReasonReact.reactElement=?,
     ~position: string=?,
-    ~steps: 'number_m,
+    ~steps: 'number_6,
     ~variant: string=?,
-    ~component: 'union_rmrr=?,
-    ~elevation: 'number_f=?,
+    ~component: 'union_rajk=?,
+    ~elevation: 'number_p=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -107,8 +106,9 @@ let make =
     ~props=
       makeProps(
         ~activeStep=?
-          activeStep
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          activeStep->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
         ~backButton?,
         ~className?,
         ~_LinearProgressProps?,
@@ -117,11 +117,13 @@ let make =
         ~steps=MaterialUi_Helpers.unwrapValue(steps),
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
-          elevation
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          elevation->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~square?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

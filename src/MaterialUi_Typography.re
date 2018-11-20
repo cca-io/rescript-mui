@@ -120,53 +120,52 @@ module Classes = {
     | ColorTextSecondary(_) => "colorTextSecondary"
     | ColorError(_) => "colorError";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Display4(className)
-            | Display3(className)
-            | Display2(className)
-            | Display1(className)
-            | Headline(className)
-            | Title(className)
-            | Subheading(className)
-            | Body2(className)
-            | Body1(className)
-            | Caption(className)
-            | Button(className)
-            | H1(className)
-            | H2(className)
-            | H3(className)
-            | H4(className)
-            | H5(className)
-            | H6(className)
-            | Subtitle1(className)
-            | Subtitle2(className)
-            | Overline(className)
-            | SrOnly(className)
-            | AlignLeft(className)
-            | AlignCenter(className)
-            | AlignRight(className)
-            | AlignJustify(className)
-            | NoWrap(className)
-            | GutterBottom(className)
-            | Paragraph(className)
-            | ColorInherit(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className)
-            | ColorTextPrimary(className)
-            | ColorTextSecondary(className)
-            | ColorError(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Display4(className)
+                         | Display3(className)
+                         | Display2(className)
+                         | Display1(className)
+                         | Headline(className)
+                         | Title(className)
+                         | Subheading(className)
+                         | Body2(className)
+                         | Body1(className)
+                         | Caption(className)
+                         | Button(className)
+                         | H1(className)
+                         | H2(className)
+                         | H3(className)
+                         | H4(className)
+                         | H5(className)
+                         | H6(className)
+                         | Subtitle1(className)
+                         | Subtitle2(className)
+                         | Overline(className)
+                         | SrOnly(className)
+                         | AlignLeft(className)
+                         | AlignCenter(className)
+                         | AlignRight(className)
+                         | AlignJustify(className)
+                         | NoWrap(className)
+                         | GutterBottom(className)
+                         | Paragraph(className)
+                         | ColorInherit(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className)
+                         | ColorTextPrimary(className)
+                         | ColorTextSecondary(className)
+                         | ColorError(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -175,7 +174,7 @@ external makeProps:
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rd5q=?,
+    ~component: 'union_rhps=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~internalDeprecatedVariant: bool=?,
@@ -221,8 +220,9 @@ let make =
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~gutterBottom?,
         ~headlineMapping?,
         ~internalDeprecatedVariant?,

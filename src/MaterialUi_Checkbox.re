@@ -23,30 +23,29 @@ module Classes = {
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Checked(className)
-            | Disabled(className)
-            | Indeterminate(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Checked(className)
+                         | Disabled(className)
+                         | Indeterminate(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
-    ~checked: 'union_rb8v=?,
+    ~checked: 'union_rl0j=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~className: string=?,
     ~color: string=?,
@@ -57,8 +56,8 @@ external makeProps:
     ~indeterminate: bool=?,
     ~indeterminateIcon: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rlpi=?,
-    ~onChange: 'any_rtii=?,
+    ~inputRef: 'union_rw4y=?,
+    ~onChange: 'any_r3ga=?,
     ~_type: string=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,

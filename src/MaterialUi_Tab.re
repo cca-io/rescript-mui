@@ -35,30 +35,29 @@ module Classes = {
     | Label(_) => "label"
     | LabelWrapped(_) => "labelWrapped";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | LabelIcon(className)
-            | TextColorInherit(className)
-            | TextColorPrimary(className)
-            | TextColorSecondary(className)
-            | Selected(className)
-            | Disabled(className)
-            | FullWidth(className)
-            | Wrapper(className)
-            | LabelContainer(className)
-            | Label(className)
-            | LabelWrapped(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | LabelIcon(className)
+                         | TextColorInherit(className)
+                         | TextColorPrimary(className)
+                         | TextColorSecondary(className)
+                         | Selected(className)
+                         | Disabled(className)
+                         | FullWidth(className)
+                         | Wrapper(className)
+                         | LabelContainer(className)
+                         | Label(className)
+                         | LabelWrapped(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -74,11 +73,11 @@ external makeProps:
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~selected: bool=?,
     ~textColor: string=?,
-    ~value: 'any_rf1q=?,
-    ~action: 'any_r9wp=?,
-    ~buttonRef: 'union_roch=?,
+    ~value: 'any_rt0d=?,
+    ~action: 'any_rhy3=?,
+    ~buttonRef: 'union_r24n=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rj72=?,
+    ~component: 'union_rj93=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -95,7 +94,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rt0w=?,
+    ~tabIndex: 'union_rpa4=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -118,7 +117,7 @@ let make =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~textColor: option(textColor)=?,
-      ~value: option('any_rf1q)=?,
+      ~value: option('any_rt0d)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
@@ -173,12 +172,14 @@ let make =
         ~value?,
         ~action?,
         ~buttonRef=?
-          buttonRef
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          buttonRef->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~centerRipple?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableRipple?,
         ~disableTouchRipple?,
         ~focusRipple?,

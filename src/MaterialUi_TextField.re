@@ -17,7 +17,7 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_r0fo=?,
+    ~defaultValue: 'union_rj9a=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -27,24 +27,24 @@ external makeProps:
     ~_InputLabelProps: Js.t({..})=?,
     ~_InputProps: Js.t({..})=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rucg=?,
+    ~inputRef: 'union_rjm2=?,
     ~label: ReasonReact.reactElement=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rmwp=?,
+    ~onChange: 'any_r4cc=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_rgv5=?,
-    ~rowsMax: 'union_rblv=?,
+    ~rows: 'union_rvn6=?,
+    ~rowsMax: 'union_rhnx=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
     ~_type: string=?,
-    ~value: 'union_r8rl=?,
+    ~value: 'union_r7if=?,
     ~variant: string=?,
-    ~component: 'union_rfwt=?,
+    ~component: 'union_rdnp=?,
     unit
   ) =>
   _ =
@@ -123,8 +123,11 @@ let make =
         ~autoFocus?,
         ~className?,
         ~defaultValue=?
-          defaultValue
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          defaultValue->(
+                          Belt.Option.map(v =>
+                            MaterialUi_Helpers.unwrapValue(v)
+                          )
+                        ),
         ~disabled?,
         ~error?,
         ~_FormHelperTextProps?,
@@ -156,8 +159,9 @@ let make =
           value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         (),
       ),
     children,

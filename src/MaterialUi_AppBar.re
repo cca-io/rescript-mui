@@ -39,27 +39,26 @@ module Classes = {
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | PositionFixed(className)
-            | PositionAbsolute(className)
-            | PositionSticky(className)
-            | PositionStatic(className)
-            | PositionRelative(className)
-            | ColorDefault(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | PositionFixed(className)
+                         | PositionAbsolute(className)
+                         | PositionSticky(className)
+                         | PositionStatic(className)
+                         | PositionRelative(className)
+                         | ColorDefault(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -68,8 +67,8 @@ external makeProps:
     ~className: string=?,
     ~color: string=?,
     ~position: string=?,
-    ~component: 'union_rhd2=?,
-    ~elevation: 'number_p=?,
+    ~component: 'union_r6ji=?,
+    ~elevation: 'number_x=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -106,11 +105,13 @@ let make =
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
         ~position=?position->(Belt.Option.map(v => positionToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
-          elevation
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          elevation->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~square?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

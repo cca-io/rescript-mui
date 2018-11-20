@@ -82,44 +82,43 @@ module Classes = {
     | SizeLarge(_) => "sizeLarge"
     | FullWidth(_) => "fullWidth";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Label(className)
-            | Text(className)
-            | TextPrimary(className)
-            | TextSecondary(className)
-            | Flat(className)
-            | FlatPrimary(className)
-            | FlatSecondary(className)
-            | Outlined(className)
-            | OutlinedPrimary(className)
-            | OutlinedSecondary(className)
-            | Contained(className)
-            | ContainedPrimary(className)
-            | ContainedSecondary(className)
-            | Raised(className)
-            | RaisedPrimary(className)
-            | RaisedSecondary(className)
-            | Fab(className)
-            | ExtendedFab(className)
-            | FocusVisible(className)
-            | Disabled(className)
-            | ColorInherit(className)
-            | Mini(className)
-            | SizeSmall(className)
-            | SizeLarge(className)
-            | FullWidth(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Label(className)
+                         | Text(className)
+                         | TextPrimary(className)
+                         | TextSecondary(className)
+                         | Flat(className)
+                         | FlatPrimary(className)
+                         | FlatSecondary(className)
+                         | Outlined(className)
+                         | OutlinedPrimary(className)
+                         | OutlinedSecondary(className)
+                         | Contained(className)
+                         | ContainedPrimary(className)
+                         | ContainedSecondary(className)
+                         | Raised(className)
+                         | RaisedPrimary(className)
+                         | RaisedSecondary(className)
+                         | Fab(className)
+                         | ExtendedFab(className)
+                         | FocusVisible(className)
+                         | Disabled(className)
+                         | ColorInherit(className)
+                         | Mini(className)
+                         | SizeSmall(className)
+                         | SizeLarge(className)
+                         | FullWidth(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -127,7 +126,7 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rw80=?,
+    ~component: 'union_r77g=?,
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
@@ -138,8 +137,8 @@ external makeProps:
     ~size: string=?,
     ~_type: string=?,
     ~variant: string=?,
-    ~action: 'any_r2zu=?,
-    ~buttonRef: 'union_rbpj=?,
+    ~action: 'any_r004=?,
+    ~buttonRef: 'union_rrkg=?,
     ~centerRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -156,7 +155,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rkw4=?,
+    ~tabIndex: 'union_rz1h=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -222,8 +221,9 @@ let make =
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disabled?,
         ~disableFocusRipple?,
         ~disableRipple?,
@@ -236,8 +236,9 @@ let make =
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~action?,
         ~buttonRef=?
-          buttonRef
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          buttonRef->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~centerRipple?,
         ~disableTouchRipple?,
         ~focusRipple?,

@@ -40,27 +40,26 @@ module Classes = {
     | FontSizeSmall(_) => "fontSizeSmall"
     | FontSizeLarge(_) => "fontSizeLarge";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className)
-            | ColorAction(className)
-            | ColorError(className)
-            | ColorDisabled(className)
-            | FontSizeInherit(className)
-            | FontSizeSmall(className)
-            | FontSizeLarge(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className)
+                         | ColorAction(className)
+                         | ColorError(className)
+                         | ColorDisabled(className)
+                         | FontSizeInherit(className)
+                         | FontSizeSmall(className)
+                         | FontSizeLarge(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -68,9 +67,10 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rg09=?,
+    ~component: 'union_rwyf=?,
     ~fontSize: string=?,
     ~nativeColor: string=?,
+    ~shapeRendering: string=?,
     ~titleAccess: string=?,
     ~viewBox: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -95,6 +95,7 @@ let make =
          )=?,
       ~fontSize: option(fontSize)=?,
       ~nativeColor: option(string)=?,
+      ~shapeRendering: option(string)=?,
       ~titleAccess: option(string)=?,
       ~viewBox: option(string)=?,
       ~classes: option(Classes.t)=?,
@@ -108,10 +109,12 @@ let make =
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
         ~nativeColor?,
+        ~shapeRendering?,
         ~titleAccess?,
         ~viewBox?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

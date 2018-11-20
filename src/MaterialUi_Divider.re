@@ -12,22 +12,21 @@ module Classes = {
     | Inset(_) => "inset"
     | Light(_) => "light";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Absolute(className)
-            | Inset(className)
-            | Light(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Absolute(className)
+                         | Inset(className)
+                         | Light(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -35,7 +34,7 @@ external makeProps:
   (
     ~absolute: bool=?,
     ~className: string=?,
-    ~component: 'union_rc89=?,
+    ~component: 'union_ra4a=?,
     ~inset: bool=?,
     ~light: bool=?,
     ~classes: Js.Dict.t(string)=?,
@@ -71,8 +70,9 @@ let make =
         ~absolute?,
         ~className?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~inset?,
         ~light?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

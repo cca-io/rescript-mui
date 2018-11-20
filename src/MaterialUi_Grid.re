@@ -214,59 +214,58 @@ module Classes = {
     | Grid_Xs_11(_) => "grid-xs-11"
     | Grid_Xs_12(_) => "grid-xs-12";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Container(className)
-            | Item(className)
-            | ZeroMinWidth(className)
-            | Direction_Xs_Column(className)
-            | Direction_Xs_Column_Reverse(className)
-            | Direction_Xs_Row_Reverse(className)
-            | Wrap_Xs_Nowrap(className)
-            | Wrap_Xs_Wrap_Reverse(className)
-            | Align_Items_Xs_Center(className)
-            | Align_Items_Xs_Flex_Start(className)
-            | Align_Items_Xs_Flex_End(className)
-            | Align_Items_Xs_Baseline(className)
-            | Align_Content_Xs_Center(className)
-            | Align_Content_Xs_Flex_Start(className)
-            | Align_Content_Xs_Flex_End(className)
-            | Align_Content_Xs_Space_Between(className)
-            | Align_Content_Xs_Space_Around(className)
-            | Justify_Xs_Center(className)
-            | Justify_Xs_Flex_End(className)
-            | Justify_Xs_Space_Between(className)
-            | Justify_Xs_Space_Around(className)
-            | Justify_Xs_Space_Evenly(className)
-            | Spacing_Xs_8(className)
-            | Spacing_Xs_16(className)
-            | Spacing_Xs_24(className)
-            | Spacing_Xs_32(className)
-            | Spacing_Xs_40(className)
-            | Grid_Xs_Auto(className)
-            | Grid_Xs_True(className)
-            | Grid_Xs_1(className)
-            | Grid_Xs_2(className)
-            | Grid_Xs_3(className)
-            | Grid_Xs_4(className)
-            | Grid_Xs_5(className)
-            | Grid_Xs_6(className)
-            | Grid_Xs_7(className)
-            | Grid_Xs_8(className)
-            | Grid_Xs_9(className)
-            | Grid_Xs_10(className)
-            | Grid_Xs_11(className)
-            | Grid_Xs_12(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Container(className)
+                         | Item(className)
+                         | ZeroMinWidth(className)
+                         | Direction_Xs_Column(className)
+                         | Direction_Xs_Column_Reverse(className)
+                         | Direction_Xs_Row_Reverse(className)
+                         | Wrap_Xs_Nowrap(className)
+                         | Wrap_Xs_Wrap_Reverse(className)
+                         | Align_Items_Xs_Center(className)
+                         | Align_Items_Xs_Flex_Start(className)
+                         | Align_Items_Xs_Flex_End(className)
+                         | Align_Items_Xs_Baseline(className)
+                         | Align_Content_Xs_Center(className)
+                         | Align_Content_Xs_Flex_Start(className)
+                         | Align_Content_Xs_Flex_End(className)
+                         | Align_Content_Xs_Space_Between(className)
+                         | Align_Content_Xs_Space_Around(className)
+                         | Justify_Xs_Center(className)
+                         | Justify_Xs_Flex_End(className)
+                         | Justify_Xs_Space_Between(className)
+                         | Justify_Xs_Space_Around(className)
+                         | Justify_Xs_Space_Evenly(className)
+                         | Spacing_Xs_8(className)
+                         | Spacing_Xs_16(className)
+                         | Spacing_Xs_24(className)
+                         | Spacing_Xs_32(className)
+                         | Spacing_Xs_40(className)
+                         | Grid_Xs_Auto(className)
+                         | Grid_Xs_True(className)
+                         | Grid_Xs_1(className)
+                         | Grid_Xs_2(className)
+                         | Grid_Xs_3(className)
+                         | Grid_Xs_4(className)
+                         | Grid_Xs_5(className)
+                         | Grid_Xs_6(className)
+                         | Grid_Xs_7(className)
+                         | Grid_Xs_8(className)
+                         | Grid_Xs_9(className)
+                         | Grid_Xs_10(className)
+                         | Grid_Xs_11(className)
+                         | Grid_Xs_12(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -275,18 +274,18 @@ external makeProps:
     ~alignContent: string=?,
     ~alignItems: string=?,
     ~className: string=?,
-    ~component: 'union_rbno=?,
+    ~component: 'union_rgfs=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rd17=?,
-    ~md: 'number_rfbm=?,
-    ~sm: 'number_rd3j=?,
-    ~spacing: 'number_rqyv=?,
+    ~lg: 'number_r3ss=?,
+    ~md: 'number_rgwq=?,
+    ~sm: 'number_r937=?,
+    ~spacing: 'number_r8tx=?,
     ~wrap: string=?,
-    ~xl: 'number_rukg=?,
-    ~xs: 'number_rqas=?,
+    ~xl: 'number_rks3=?,
+    ~xs: 'number_roex=?,
     ~zeroMinWidth: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -339,8 +338,9 @@ let make =
         ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
         ~className?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~container?,
         ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
         ~item?,

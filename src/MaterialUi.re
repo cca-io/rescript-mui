@@ -148,4 +148,5 @@ module Colors = {
 module type WithStylesSafeTemplate = MaterialUi_WithStyles.WithStylesSafeTemplate;
 module WithStylesSafe = MaterialUi_WithStyles.WithStylesSafe;
 module Theme = MaterialUi_Theme;
+module ThemeOptions = MaterialUi_ThemeOptions;
 module WithStyles = MaterialUi_WithStyles;

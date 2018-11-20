@@ -46,45 +46,44 @@ module Classes = {
     | MenuItem(_) => "menuItem"
     | Actions(_) => "actions";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Toolbar(className)
-            | Spacer(className)
-            | Caption(className)
-            | SelectRoot(className)
-            | Select(className)
-            | SelectIcon(className)
-            | Input(className)
-            | MenuItem(className)
-            | Actions(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Toolbar(className)
+                         | Spacer(className)
+                         | Caption(className)
+                         | SelectRoot(className)
+                         | Select(className)
+                         | SelectIcon(className)
+                         | Input(className)
+                         | MenuItem(className)
+                         | Actions(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
-    ~_ActionsComponent: 'union_rfp9=?,
+    ~_ActionsComponent: 'union_rhov=?,
     ~backIconButtonProps: Js.t({..})=?,
-    ~colSpan: 'number_s=?,
-    ~component: 'union_r53t=?,
-    ~count: 'number_y,
+    ~colSpan: 'number_8=?,
+    ~component: 'union_rqgh=?,
+    ~count: 'number_m,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_r63a,
-    ~onChangeRowsPerPage: 'any_rn3a=?,
-    ~page: 'number_t,
-    ~rowsPerPage: 'number_3,
+    ~onChangePage: 'any_rwuz,
+    ~onChangeRowsPerPage: 'any_ri7c=?,
+    ~page: 'number_6,
+    ~rowsPerPage: 'number_i,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~className: string=?,
@@ -165,14 +164,18 @@ let make =
     ~props=
       makeProps(
         ~_ActionsComponent=?
-          _ActionsComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _ActionsComponent->(
+                               Belt.Option.map(v =>
+                                 MaterialUi_Helpers.unwrapValue(v)
+                               )
+                             ),
         ~backIconButtonProps?,
         ~colSpan=?
           colSpan->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~count=MaterialUi_Helpers.unwrapValue(count),
         ~labelDisplayedRows?,
         ~labelRowsPerPage?,
@@ -182,15 +185,15 @@ let make =
         ~page=MaterialUi_Helpers.unwrapValue(page),
         ~rowsPerPage=MaterialUi_Helpers.unwrapValue(rowsPerPage),
         ~rowsPerPageOptions=?
-          rowsPerPageOptions
-          ->(
-              Belt.Option.map(v =>
-                v
-                ->(
-                    Belt.Array.map(item => MaterialUi_Helpers.toJsUnsafe(item))
-                  )
-              )
-            ),
+          rowsPerPageOptions->(
+                                Belt.Option.map(v =>
+                                  v->(
+                                       Belt.Array.map(item =>
+                                         MaterialUi_Helpers.toJsUnsafe(item)
+                                       )
+                                     )
+                                )
+                              ),
         ~_SelectProps?,
         ~className?,
         ~numeric?,

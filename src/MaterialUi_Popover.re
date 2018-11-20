@@ -25,43 +25,41 @@ module AnchorOrigin = {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
 
-      unwrappedMap
-      ->(
-          Js.Dict.set(
-            "horizontal",
-            (
-              fun
-              | `Enum(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `String(horizontal_enumToJs(v)),
-                )
+      unwrappedMap->(
+                      Js.Dict.set(
+                        "horizontal",
+                        (
+                          fun
+                          | `Enum(v) =>
+                            MaterialUi_Helpers.unwrapValue(
+                              `String(horizontal_enumToJs(v)),
+                            )
 
-              | v => MaterialUi_Helpers.unwrapValue(v)
-            )(
-              obj->horizontalGet,
-            )
-            ->MaterialUi_Helpers.toJsUnsafe,
-          )
-        );
+                          | v => MaterialUi_Helpers.unwrapValue(v)
+                        )(
+                          obj->horizontalGet,
+                        )
+                        ->MaterialUi_Helpers.toJsUnsafe,
+                      )
+                    );
 
-      unwrappedMap
-      ->(
-          Js.Dict.set(
-            "vertical",
-            (
-              fun
-              | `Enum(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `String(vertical_enumToJs(v)),
-                )
+      unwrappedMap->(
+                      Js.Dict.set(
+                        "vertical",
+                        (
+                          fun
+                          | `Enum(v) =>
+                            MaterialUi_Helpers.unwrapValue(
+                              `String(vertical_enumToJs(v)),
+                            )
 
-              | v => MaterialUi_Helpers.unwrapValue(v)
-            )(
-              obj->verticalGet,
-            )
-            ->MaterialUi_Helpers.toJsUnsafe,
-          )
-        );
+                          | v => MaterialUi_Helpers.unwrapValue(v)
+                        )(
+                          obj->verticalGet,
+                        )
+                        ->MaterialUi_Helpers.toJsUnsafe,
+                      )
+                    );
 
       Some(unwrappedMap);
     | None => None
@@ -81,23 +79,21 @@ module AnchorPosition = {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
 
-      unwrappedMap
-      ->(
-          Js.Dict.set(
-            "left",
-            MaterialUi_Helpers.unwrapValue(obj->leftGet)
-            ->MaterialUi_Helpers.toJsUnsafe,
-          )
-        );
+      unwrappedMap->(
+                      Js.Dict.set(
+                        "left",
+                        MaterialUi_Helpers.unwrapValue(obj->leftGet)
+                        ->MaterialUi_Helpers.toJsUnsafe,
+                      )
+                    );
 
-      unwrappedMap
-      ->(
-          Js.Dict.set(
-            "top",
-            MaterialUi_Helpers.unwrapValue(obj->topGet)
-            ->MaterialUi_Helpers.toJsUnsafe,
-          )
-        );
+      unwrappedMap->(
+                      Js.Dict.set(
+                        "top",
+                        MaterialUi_Helpers.unwrapValue(obj->topGet)
+                        ->MaterialUi_Helpers.toJsUnsafe,
+                      )
+                    );
 
       Some(unwrappedMap);
     | None => None
@@ -124,43 +120,41 @@ module TransformOrigin = {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
 
-      unwrappedMap
-      ->(
-          Js.Dict.set(
-            "horizontal",
-            (
-              fun
-              | `Enum(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `String(horizontal_enumToJs(v)),
-                )
+      unwrappedMap->(
+                      Js.Dict.set(
+                        "horizontal",
+                        (
+                          fun
+                          | `Enum(v) =>
+                            MaterialUi_Helpers.unwrapValue(
+                              `String(horizontal_enumToJs(v)),
+                            )
 
-              | v => MaterialUi_Helpers.unwrapValue(v)
-            )(
-              obj->horizontalGet,
-            )
-            ->MaterialUi_Helpers.toJsUnsafe,
-          )
-        );
+                          | v => MaterialUi_Helpers.unwrapValue(v)
+                        )(
+                          obj->horizontalGet,
+                        )
+                        ->MaterialUi_Helpers.toJsUnsafe,
+                      )
+                    );
 
-      unwrappedMap
-      ->(
-          Js.Dict.set(
-            "vertical",
-            (
-              fun
-              | `Enum(v) =>
-                MaterialUi_Helpers.unwrapValue(
-                  `String(vertical_enumToJs(v)),
-                )
+      unwrappedMap->(
+                      Js.Dict.set(
+                        "vertical",
+                        (
+                          fun
+                          | `Enum(v) =>
+                            MaterialUi_Helpers.unwrapValue(
+                              `String(vertical_enumToJs(v)),
+                            )
 
-              | v => MaterialUi_Helpers.unwrapValue(v)
-            )(
-              obj->verticalGet,
-            )
-            ->MaterialUi_Helpers.toJsUnsafe,
-          )
-        );
+                          | v => MaterialUi_Helpers.unwrapValue(v)
+                        )(
+                          obj->verticalGet,
+                        )
+                        ->MaterialUi_Helpers.toJsUnsafe,
+                      )
+                    );
 
       Some(unwrappedMap);
     | None => None
@@ -211,35 +205,34 @@ module Classes = {
     fun
     | Paper(_) => "paper";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Paper(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Paper(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
-    ~action: 'any_riqq=?,
-    ~anchorEl: 'union_rsix=?,
-    ~anchorOrigin: 'any_r6kl=?,
-    ~anchorPosition: 'any_rlru=?,
+    ~action: 'any_r58f=?,
+    ~anchorEl: 'union_ra5h=?,
+    ~anchorOrigin: 'any_rckc=?,
+    ~anchorPosition: 'any_rlbq=?,
     ~anchorReference: string=?,
-    ~container: 'union_rxr0=?,
-    ~elevation: 'number_u=?,
+    ~container: 'union_r87k=?,
+    ~elevation: 'number_6=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_l=?,
+    ~marginThreshold: 'number_i=?,
     ~_ModalClasses: Js.t({..})=?,
-    ~onClose: 'any_rykc=?,
+    ~onClose: 'any_rx1g=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -249,11 +242,11 @@ external makeProps:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~role: string=?,
-    ~transformOrigin: 'any_rhad=?,
-    ~_TransitionComponent: 'union_r8ls=?,
-    ~transitionDuration: 'union_ru28=?,
+    ~transformOrigin: 'any_rzg9=?,
+    ~_TransitionComponent: 'union_rwoq=?,
+    ~transitionDuration: 'union_r8l1=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_rk2k=?,
+    ~_BackdropComponent: 'union_rqej=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
     ~disableAutoFocus: bool=?,
@@ -361,15 +354,20 @@ let make =
         ~anchorReference=?
           anchorReference->(Belt.Option.map(v => anchorReferenceToJs(v))),
         ~container=?
-          container
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          container->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
-          elevation
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          elevation->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~getContentAnchorEl?,
         ~marginThreshold=?
-          marginThreshold
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          marginThreshold->(
+                             Belt.Option.map(v =>
+                               MaterialUi_Helpers.unwrapValue(v)
+                             )
+                           ),
         ~_ModalClasses?,
         ~onClose?,
         ~onEnter?,
@@ -383,26 +381,33 @@ let make =
         ~role?,
         ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
         ~_TransitionComponent=?
-          _TransitionComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _TransitionComponent->(
+                                  Belt.Option.map(v =>
+                                    MaterialUi_Helpers.unwrapValue(v)
+                                  )
+                                ),
         ~transitionDuration=?
-          transitionDuration
-          ->(
-              Belt.Option.map(v =>
-                switch (v) {
-                | `Enum(v) =>
-                  MaterialUi_Helpers.unwrapValue(
-                    `String(transitionDuration_enumToJs(v)),
-                  )
+          transitionDuration->(
+                                Belt.Option.map(v =>
+                                  switch (v) {
+                                  | `Enum(v) =>
+                                    MaterialUi_Helpers.unwrapValue(
+                                      `String(
+                                        transitionDuration_enumToJs(v),
+                                      ),
+                                    )
 
-                | v => MaterialUi_Helpers.unwrapValue(v)
-                }
-              )
-            ),
+                                  | v => MaterialUi_Helpers.unwrapValue(v)
+                                  }
+                                )
+                              ),
         ~_TransitionProps?,
         ~_BackdropComponent=?
-          _BackdropComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _BackdropComponent->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~_BackdropProps?,
         ~className?,
         ~disableAutoFocus?,

@@ -12,31 +12,30 @@ module Classes = {
     | ImgFullHeight(_) => "imgFullHeight"
     | ImgFullWidth(_) => "imgFullWidth";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Tile(className)
-            | ImgFullHeight(className)
-            | ImgFullWidth(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Tile(className)
+                         | ImgFullHeight(className)
+                         | ImgFullWidth(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
     ~className: string=?,
-    ~cols: 'number_o=?,
-    ~component: 'union_ry82=?,
-    ~rows: 'number_y=?,
+    ~cols: 'number_1=?,
+    ~component: 'union_r939=?,
+    ~rows: 'number_6=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -70,8 +69,9 @@ let make =
         ~cols=?
           cols->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~rows=?
           rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

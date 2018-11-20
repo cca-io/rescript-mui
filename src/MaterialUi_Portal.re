@@ -1,7 +1,7 @@
 [@bs.obj]
 external makeProps:
   (
-    ~container: 'union_r03a=?,
+    ~container: 'union_rw0u=?,
     ~disablePortal: bool=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     unit
@@ -25,8 +25,9 @@ let make =
     ~props=
       makeProps(
         ~container=?
-          container
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          container->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disablePortal?,
         ~onRendered?,
         (),

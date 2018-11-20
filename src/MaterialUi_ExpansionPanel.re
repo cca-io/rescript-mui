@@ -10,21 +10,20 @@ module Classes = {
     | Expanded(_) => "expanded"
     | Disabled(_) => "disabled";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Expanded(className)
-            | Disabled(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Expanded(className)
+                         | Disabled(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -35,9 +34,9 @@ external makeProps:
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_ry0m=?,
-    ~component: 'union_rp73=?,
-    ~elevation: 'number_l=?,
+    ~onChange: 'any_rp69=?,
+    ~component: 'union_r9wp=?,
+    ~elevation: 'number_o=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -80,11 +79,13 @@ let make =
         ~expanded?,
         ~onChange?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
-          elevation
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          elevation->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~square?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

@@ -22,29 +22,28 @@ module Classes = {
     | PositionStart(_) => "positionStart"
     | PositionEnd(_) => "positionEnd";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Filled(className)
-            | PositionStart(className)
-            | PositionEnd(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Filled(className)
+                         | PositionStart(className)
+                         | PositionEnd(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_rodm=?,
+    ~component: 'union_rxd5=?,
     ~disableTypography: bool=?,
     ~position: string=?,
     ~variant: string=?,
@@ -80,8 +79,9 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableTypography?,
         ~position=?position->(Belt.Option.map(v => positionToJs(v))),
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),

@@ -14,23 +14,22 @@ module Classes = {
     | Wrapper(_) => "wrapper"
     | Label(_) => "label";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Selected(className)
-            | IconOnly(className)
-            | Wrapper(className)
-            | Label(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Selected(className)
+                         | IconOnly(className)
+                         | Wrapper(className)
+                         | Label(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -43,11 +42,11 @@ external makeProps:
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~selected: bool=?,
     ~showLabel: bool=?,
-    ~value: 'any_rlbp=?,
-    ~action: 'any_rw7c=?,
-    ~buttonRef: 'union_r5fu=?,
+    ~value: 'any_rube=?,
+    ~action: 'any_rynp=?,
+    ~buttonRef: 'union_r0zi=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rqvs=?,
+    ~component: 'union_r4ro=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -65,7 +64,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rfj6=?,
+    ~tabIndex: 'union_rgpf=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -85,7 +84,7 @@ let make =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~showLabel: option(bool)=?,
-      ~value: option('any_rlbp)=?,
+      ~value: option('any_rube)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
@@ -138,12 +137,14 @@ let make =
         ~value?,
         ~action?,
         ~buttonRef=?
-          buttonRef
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          buttonRef->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~centerRipple?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disabled?,
         ~disableRipple?,
         ~disableTouchRipple?,

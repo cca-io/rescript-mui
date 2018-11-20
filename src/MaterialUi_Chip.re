@@ -67,43 +67,42 @@ module Classes = {
     | DeleteIconOutlinedColorPrimary(_) => "deleteIconOutlinedColorPrimary"
     | DeleteIconOutlinedColorSecondary(_) => "deleteIconOutlinedColorSecondary";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className)
-            | Clickable(className)
-            | ClickableColorPrimary(className)
-            | ClickableColorSecondary(className)
-            | Deletable(className)
-            | DeletableColorPrimary(className)
-            | DeletableColorSecondary(className)
-            | Outlined(className)
-            | OutlinedPrimary(className)
-            | OutlinedSecondary(className)
-            | Avatar(className)
-            | AvatarColorPrimary(className)
-            | AvatarColorSecondary(className)
-            | AvatarChildren(className)
-            | Icon(className)
-            | IconColorPrimary(className)
-            | IconColorSecondary(className)
-            | Label(className)
-            | DeleteIcon(className)
-            | DeleteIconColorPrimary(className)
-            | DeleteIconColorSecondary(className)
-            | DeleteIconOutlinedColorPrimary(className)
-            | DeleteIconOutlinedColorSecondary(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className)
+                         | Clickable(className)
+                         | ClickableColorPrimary(className)
+                         | ClickableColorSecondary(className)
+                         | Deletable(className)
+                         | DeletableColorPrimary(className)
+                         | DeletableColorSecondary(className)
+                         | Outlined(className)
+                         | OutlinedPrimary(className)
+                         | OutlinedSecondary(className)
+                         | Avatar(className)
+                         | AvatarColorPrimary(className)
+                         | AvatarColorSecondary(className)
+                         | AvatarChildren(className)
+                         | Icon(className)
+                         | IconColorPrimary(className)
+                         | IconColorSecondary(className)
+                         | Label(className)
+                         | DeleteIcon(className)
+                         | DeleteIconColorPrimary(className)
+                         | DeleteIconColorSecondary(className)
+                         | DeleteIconOutlinedColorPrimary(className)
+                         | DeleteIconOutlinedColorSecondary(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -113,7 +112,7 @@ external makeProps:
     ~className: string=?,
     ~clickable: bool=?,
     ~color: string=?,
-    ~component: 'union_rlec=?,
+    ~component: 'union_rjvl=?,
     ~deleteIcon: ReasonReact.reactElement=?,
     ~icon: ReasonReact.reactElement=?,
     ~label: ReasonReact.reactElement=?,
@@ -121,7 +120,7 @@ external makeProps:
     ~onDelete: ReactEvent.Synthetic.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-    ~tabIndex: 'union_r16c=?,
+    ~tabIndex: 'union_rz8h=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -167,8 +166,9 @@ let make =
         ~clickable?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~deleteIcon?,
         ~icon?,
         ~label?,

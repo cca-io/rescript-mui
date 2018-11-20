@@ -6,28 +6,27 @@ module Classes = {
     fun
     | Root(_) => "root";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
     ~className: string=?,
-    ~onChange: 'any_rsc8=?,
+    ~onChange: 'any_r6zd=?,
     ~showLabels: bool=?,
-    ~value: 'any_ru35=?,
+    ~value: 'any_r4yt=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -39,9 +38,9 @@ external reactClass: ReasonReact.reactClass = "BottomNavigation";
 let make =
     (
       ~className: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rnev) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rcst) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_ru35)=?,
+      ~value: option('any_r4yt)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,

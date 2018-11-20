@@ -37,7 +37,7 @@ external makeProps:
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_ragk=?,
+    ~only: 'union_r9h1=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,
@@ -82,17 +82,18 @@ let make =
         ~mdDown?,
         ~mdUp?,
         ~only=?
-          only
-          ->(
-              Belt.Option.map(v =>
-                switch (v) {
-                | `Enum(v) =>
-                  MaterialUi_Helpers.unwrapValue(`String(only_enumToJs(v)))
+          only->(
+                  Belt.Option.map(v =>
+                    switch (v) {
+                    | `Enum(v) =>
+                      MaterialUi_Helpers.unwrapValue(
+                        `String(only_enumToJs(v)),
+                      )
 
-                | v => MaterialUi_Helpers.unwrapValue(v)
-                }
-              )
-            ),
+                    | v => MaterialUi_Helpers.unwrapValue(v)
+                    }
+                  )
+                ),
         ~smDown?,
         ~smUp?,
         ~xlDown?,

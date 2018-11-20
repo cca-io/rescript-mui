@@ -18,22 +18,21 @@ module Classes = {
     | Vertical(_) => "vertical"
     | TouchRipple(_) => "touchRipple";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Horizontal(className)
-            | Vertical(className)
-            | TouchRipple(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Horizontal(className)
+                         | Vertical(className)
+                         | TouchRipple(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -48,10 +47,10 @@ external makeProps:
     ~last: bool=?,
     ~optional: ReasonReact.reactElement=?,
     ~orientation: string=?,
-    ~action: 'any_ra2t=?,
-    ~buttonRef: 'union_r3e2=?,
+    ~action: 'any_rnh4=?,
+    ~buttonRef: 'union_rzq0=?,
     ~centerRipple: bool=?,
-    ~component: 'union_r35s=?,
+    ~component: 'union_rpkq=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -69,7 +68,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rpqu=?,
+    ~tabIndex: 'union_r84a=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -144,12 +143,14 @@ let make =
         ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
         ~action?,
         ~buttonRef=?
-          buttonRef
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          buttonRef->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~centerRipple?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableRipple?,
         ~disableTouchRipple?,
         ~focusRipple?,

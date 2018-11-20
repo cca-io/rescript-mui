@@ -40,7 +40,7 @@ external makeProps:
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rbtf=?,
+    ~timeout: 'union_rq2k=?,
     unit
   ) =>
   _ =
@@ -73,19 +73,18 @@ let make =
         ~onExit?,
         ~theme?,
         ~timeout=?
-          timeout
-          ->(
-              Belt.Option.map(v =>
-                switch (v) {
-                | `Enum(v) =>
-                  MaterialUi_Helpers.unwrapValue(
-                    `String(timeout_enumToJs(v)),
-                  )
+          timeout->(
+                     Belt.Option.map(v =>
+                       switch (v) {
+                       | `Enum(v) =>
+                         MaterialUi_Helpers.unwrapValue(
+                           `String(timeout_enumToJs(v)),
+                         )
 
-                | v => MaterialUi_Helpers.unwrapValue(v)
-                }
-              )
-            ),
+                       | v => MaterialUi_Helpers.unwrapValue(v)
+                       }
+                     )
+                   ),
         (),
       ),
     children,

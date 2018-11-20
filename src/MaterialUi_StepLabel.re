@@ -32,29 +32,28 @@ module Classes = {
     | AlternativeLabel(_) => "alternativeLabel"
     | LabelContainer(_) => "labelContainer";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Horizontal(className)
-            | Vertical(className)
-            | Label(className)
-            | Active(className)
-            | Completed(className)
-            | Error(className)
-            | Disabled(className)
-            | IconContainer(className)
-            | AlternativeLabel(className)
-            | LabelContainer(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Horizontal(className)
+                         | Vertical(className)
+                         | Label(className)
+                         | Active(className)
+                         | Completed(className)
+                         | Error(className)
+                         | Disabled(className)
+                         | IconContainer(className)
+                         | AlternativeLabel(className)
+                         | LabelContainer(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -70,7 +69,7 @@ external makeProps:
     ~last: bool=?,
     ~optional: ReasonReact.reactElement=?,
     ~orientation: string=?,
-    ~_StepIconComponent: 'union_rxjz=?,
+    ~_StepIconComponent: 'union_rnzb=?,
     ~_StepIconProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -120,8 +119,11 @@ let make =
         ~optional?,
         ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
         ~_StepIconComponent=?
-          _StepIconComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _StepIconComponent->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~_StepIconProps?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

@@ -33,31 +33,30 @@ module Classes = {
     | InputAdornedStart(_) => "inputAdornedStart"
     | InputAdornedEnd(_) => "inputAdornedEnd";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Underline(className)
-            | Focused(className)
-            | Disabled(className)
-            | AdornedStart(className)
-            | AdornedEnd(className)
-            | Error(className)
-            | Multiline(className)
-            | Input(className)
-            | InputMarginDense(className)
-            | InputMultiline(className)
-            | InputAdornedStart(className)
-            | InputAdornedEnd(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Underline(className)
+                         | Focused(className)
+                         | Disabled(className)
+                         | AdornedStart(className)
+                         | AdornedEnd(className)
+                         | Error(className)
+                         | Multiline(className)
+                         | Input(className)
+                         | InputMarginDense(className)
+                         | InputMultiline(className)
+                         | InputAdornedStart(className)
+                         | InputAdornedEnd(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -66,27 +65,27 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_r91v=?,
+    ~defaultValue: 'union_rx5t=?,
     ~disabled: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_rxzi=?,
+    ~inputComponent: 'union_rn0j=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_raoq=?,
+    ~inputRef: 'union_r7b7=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
-    ~onChange: 'any_rmpq=?,
+    ~onChange: 'any_rzfk=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_r3re=?,
-    ~rowsMax: 'union_rl03=?,
+    ~rows: 'union_r8lj=?,
+    ~rowsMax: 'union_r5al=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
-    ~value: 'union_r6c9=?,
+    ~value: 'union_ro93=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
@@ -176,16 +175,22 @@ let make =
         ~autoFocus?,
         ~className?,
         ~defaultValue=?
-          defaultValue
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          defaultValue->(
+                          Belt.Option.map(v =>
+                            MaterialUi_Helpers.unwrapValue(v)
+                          )
+                        ),
         ~disabled?,
         ~endAdornment?,
         ~error?,
         ~fullWidth?,
         ~id?,
         ~inputComponent=?
-          inputComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          inputComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
         ~inputProps?,
         ~inputRef=?
           inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

@@ -48,22 +48,21 @@ module Classes = {
     | Wrapper(_) => "wrapper"
     | WrapperInner(_) => "wrapperInner";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Container(className)
-            | Entered(className)
-            | Wrapper(className)
-            | WrapperInner(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Container(className)
+                         | Entered(className)
+                         | Wrapper(className)
+                         | WrapperInner(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -71,7 +70,7 @@ external makeProps:
   (
     ~className: string=?,
     ~collapsedHeight: string=?,
-    ~component: 'union_rpex=?,
+    ~component: 'union_ryyt=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
@@ -79,7 +78,7 @@ external makeProps:
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_redu=?,
+    ~timeout: 'union_rtcx=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -127,8 +126,9 @@ let make =
         ~className?,
         ~collapsedHeight?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~_in=?in_,
         ~onEnter?,
         ~onEntered?,
@@ -137,19 +137,18 @@ let make =
         ~onExiting?,
         ~theme?,
         ~timeout=?
-          timeout
-          ->(
-              Belt.Option.map(v =>
-                switch (v) {
-                | `Enum(v) =>
-                  MaterialUi_Helpers.unwrapValue(
-                    `String(timeout_enumToJs(v)),
-                  )
+          timeout->(
+                     Belt.Option.map(v =>
+                       switch (v) {
+                       | `Enum(v) =>
+                         MaterialUi_Helpers.unwrapValue(
+                           `String(timeout_enumToJs(v)),
+                         )
 
-                | v => MaterialUi_Helpers.unwrapValue(v)
-                }
-              )
-            ),
+                       | v => MaterialUi_Helpers.unwrapValue(v)
+                       }
+                     )
+                   ),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),

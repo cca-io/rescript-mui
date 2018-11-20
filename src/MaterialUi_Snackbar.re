@@ -21,21 +21,21 @@ module AnchorOrigin = {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
 
-      unwrappedMap
-      ->(
-          Js.Dict.set(
-            "horizontal",
-            horizontalToJs(obj->horizontalGet)->MaterialUi_Helpers.toJsUnsafe,
-          )
-        );
+      unwrappedMap->(
+                      Js.Dict.set(
+                        "horizontal",
+                        horizontalToJs(obj->horizontalGet)
+                        ->MaterialUi_Helpers.toJsUnsafe,
+                      )
+                    );
 
-      unwrappedMap
-      ->(
-          Js.Dict.set(
-            "vertical",
-            verticalToJs(obj->verticalGet)->MaterialUi_Helpers.toJsUnsafe,
-          )
-        );
+      unwrappedMap->(
+                      Js.Dict.set(
+                        "vertical",
+                        verticalToJs(obj->verticalGet)
+                        ->MaterialUi_Helpers.toJsUnsafe,
+                      )
+                    );
 
       Some(unwrappedMap);
     | None => None
@@ -95,40 +95,39 @@ module Classes = {
     | AnchorOriginTopLeft(_) => "anchorOriginTopLeft"
     | AnchorOriginBottomLeft(_) => "anchorOriginBottomLeft";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | AnchorOriginTopCenter(className)
-            | AnchorOriginBottomCenter(className)
-            | AnchorOriginTopRight(className)
-            | AnchorOriginBottomRight(className)
-            | AnchorOriginTopLeft(className)
-            | AnchorOriginBottomLeft(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | AnchorOriginTopCenter(className)
+                         | AnchorOriginBottomCenter(className)
+                         | AnchorOriginTopRight(className)
+                         | AnchorOriginBottomRight(className)
+                         | AnchorOriginTopLeft(className)
+                         | AnchorOriginBottomLeft(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
     ~action: ReasonReact.reactElement=?,
-    ~anchorOrigin: 'any_rm3f=?,
-    ~autoHideDuration: 'number_y=?,
+    ~anchorOrigin: 'any_r0v5=?,
+    ~autoHideDuration: 'number_l=?,
     ~className: string=?,
     ~_ClickAwayListenerProps: Js.t({..})=?,
     ~_ContentProps: Js.t({..})=?,
     ~disableWindowBlurListener: bool=?,
-    ~key: 'any_r0gz=?,
+    ~key: 'any_riu2=?,
     ~message: ReasonReact.reactElement=?,
-    ~onClose: 'any_rewd=?,
+    ~onClose: 'any_rfp7=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -138,9 +137,9 @@ external makeProps:
     ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
     ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
     ~_open: bool=?,
-    ~resumeHideDuration: 'number_8=?,
-    ~_TransitionComponent: 'union_rqwq=?,
-    ~transitionDuration: 'union_rs82=?,
+    ~resumeHideDuration: 'number_z=?,
+    ~_TransitionComponent: 'union_r8h2=?,
+    ~transitionDuration: 'union_rzur=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -159,7 +158,7 @@ let make =
       ~_ClickAwayListenerProps: option(Js.t({..}))=?,
       ~_ContentProps: option(Js.t({..}))=?,
       ~disableWindowBlurListener: option(bool)=?,
-      ~key: option('any_r0gz)=?,
+      ~key: option('any_riu2)=?,
       ~message: option(ReasonReact.reactElement)=?,
       ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
@@ -200,8 +199,11 @@ let make =
         ~action?,
         ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
         ~autoHideDuration=?
-          autoHideDuration
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          autoHideDuration->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
         ~className?,
         ~_ClickAwayListenerProps?,
         ~_ContentProps?,
@@ -219,14 +221,23 @@ let make =
         ~onMouseLeave?,
         ~_open=?open_,
         ~resumeHideDuration=?
-          resumeHideDuration
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          resumeHideDuration->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~_TransitionComponent=?
-          _TransitionComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _TransitionComponent->(
+                                  Belt.Option.map(v =>
+                                    MaterialUi_Helpers.unwrapValue(v)
+                                  )
+                                ),
         ~transitionDuration=?
-          transitionDuration
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          transitionDuration->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~_TransitionProps?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

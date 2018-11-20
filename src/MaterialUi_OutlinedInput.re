@@ -33,31 +33,30 @@ module Classes = {
     | InputAdornedStart(_) => "inputAdornedStart"
     | InputAdornedEnd(_) => "inputAdornedEnd";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Focused(className)
-            | Disabled(className)
-            | AdornedStart(className)
-            | AdornedEnd(className)
-            | Error(className)
-            | Multiline(className)
-            | NotchedOutline(className)
-            | Input(className)
-            | InputMarginDense(className)
-            | InputMultiline(className)
-            | InputAdornedStart(className)
-            | InputAdornedEnd(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Focused(className)
+                         | Disabled(className)
+                         | AdornedStart(className)
+                         | AdornedEnd(className)
+                         | Error(className)
+                         | Multiline(className)
+                         | NotchedOutline(className)
+                         | Input(className)
+                         | InputMarginDense(className)
+                         | InputMultiline(className)
+                         | InputAdornedStart(className)
+                         | InputAdornedEnd(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -66,29 +65,29 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rpse=?,
+    ~defaultValue: 'union_r4bf=?,
     ~disabled: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_rda5=?,
+    ~inputComponent: 'union_r1qi=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_r5iw=?,
-    ~labelWidth: 'number_a,
+    ~inputRef: 'union_r9a3=?,
+    ~labelWidth: 'number_m,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~notched: bool=?,
-    ~onChange: 'any_r91c=?,
+    ~onChange: 'any_rcy1=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_r8gc=?,
-    ~rowsMax: 'union_rlgc=?,
+    ~rows: 'union_r5y6=?,
+    ~rowsMax: 'union_r3t0=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
-    ~value: 'union_r42s=?,
+    ~value: 'union_rr8i=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
@@ -180,16 +179,22 @@ let make =
         ~autoFocus?,
         ~className?,
         ~defaultValue=?
-          defaultValue
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          defaultValue->(
+                          Belt.Option.map(v =>
+                            MaterialUi_Helpers.unwrapValue(v)
+                          )
+                        ),
         ~disabled?,
         ~endAdornment?,
         ~error?,
         ~fullWidth?,
         ~id?,
         ~inputComponent=?
-          inputComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          inputComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
         ~inputProps?,
         ~inputRef=?
           inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

@@ -22,7 +22,8 @@ module Classes = {
     | Svg(string)
     | Circle(string)
     | CircleStatic(string)
-    | CircleIndeterminate(string);
+    | CircleIndeterminate(string)
+    | CircleDisableShrink(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -34,29 +35,30 @@ module Classes = {
     | Svg(_) => "svg"
     | Circle(_) => "circle"
     | CircleStatic(_) => "circleStatic"
-    | CircleIndeterminate(_) => "circleIndeterminate";
+    | CircleIndeterminate(_) => "circleIndeterminate"
+    | CircleDisableShrink(_) => "circleDisableShrink";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Static(className)
-            | Indeterminate(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className)
-            | Svg(className)
-            | Circle(className)
-            | CircleStatic(className)
-            | CircleIndeterminate(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Static(className)
+                         | Indeterminate(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className)
+                         | Svg(className)
+                         | Circle(className)
+                         | CircleStatic(className)
+                         | CircleIndeterminate(className)
+                         | CircleDisableShrink(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -64,9 +66,9 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_rr1i=?,
-    ~thickness: 'number_6=?,
-    ~value: 'number_s=?,
+    ~size: 'union_rtda=?,
+    ~thickness: 'number_h=?,
+    ~value: 'number_8=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -97,8 +99,9 @@ let make =
         ~size=?
           size->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~thickness=?
-          thickness
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          thickness->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~value=?
           value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),

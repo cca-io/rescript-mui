@@ -40,27 +40,26 @@ module Classes = {
     | FontSizeSmall(_) => "fontSizeSmall"
     | FontSizeLarge(_) => "fontSizeLarge";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className)
-            | ColorAction(className)
-            | ColorError(className)
-            | ColorDisabled(className)
-            | FontSizeInherit(className)
-            | FontSizeSmall(className)
-            | FontSizeLarge(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className)
+                         | ColorAction(className)
+                         | ColorError(className)
+                         | ColorDisabled(className)
+                         | FontSizeInherit(className)
+                         | FontSizeSmall(className)
+                         | FontSizeLarge(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -68,7 +67,7 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r7pb=?,
+    ~component: 'union_rss9=?,
     ~fontSize: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -102,8 +101,9 @@ let make =
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

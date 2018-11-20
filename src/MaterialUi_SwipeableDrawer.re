@@ -52,19 +52,19 @@ external makeProps:
     ~disableBackdropTransition: bool=?,
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
-    ~hysteresis: 'number_y=?,
-    ~minFlingVelocity: 'number_x=?,
+    ~hysteresis: 'number_0=?,
+    ~minFlingVelocity: 'number_u=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_r6b7,
-    ~onOpen: 'any_rhnm,
+    ~onClose: 'any_rpnn,
+    ~onOpen: 'any_rlmi,
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_l=?,
+    ~swipeAreaWidth: 'number_y=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rdvc=?,
+    ~transitionDuration: 'union_r6ht=?,
     ~variant: string=?,
     ~className: string=?,
-    ~elevation: 'number_e=?,
+    ~elevation: 'number_d=?,
     ~_SlideProps: Js.t({..})=?,
     unit
   ) =>
@@ -110,28 +110,39 @@ let make =
         ~disableDiscovery?,
         ~disableSwipeToOpen?,
         ~hysteresis=?
-          hysteresis
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          hysteresis->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
         ~minFlingVelocity=?
-          minFlingVelocity
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          minFlingVelocity->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
         ~_ModalProps?,
         ~onClose,
         ~onOpen,
         ~_open=open_,
         ~_PaperProps?,
         ~swipeAreaWidth=?
-          swipeAreaWidth
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          swipeAreaWidth->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
         ~theme?,
         ~transitionDuration=?
-          transitionDuration
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          transitionDuration->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~className?,
         ~elevation=?
-          elevation
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          elevation->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~_SlideProps?,
         (),
       ),

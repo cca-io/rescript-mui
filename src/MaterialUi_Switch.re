@@ -29,33 +29,32 @@ module Classes = {
     | Disabled(_) => "disabled"
     | Bar(_) => "bar";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Icon(className)
-            | IconChecked(className)
-            | SwitchBase(className)
-            | Checked(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className)
-            | Disabled(className)
-            | Bar(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Icon(className)
+                         | IconChecked(className)
+                         | SwitchBase(className)
+                         | Checked(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className)
+                         | Disabled(className)
+                         | Bar(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
-    ~checked: 'union_rhr3=?,
+    ~checked: 'union_rh17=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~className: string=?,
     ~color: string=?,
@@ -65,10 +64,10 @@ external makeProps:
     ~icon: ReasonReact.reactElement=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rkb5=?,
-    ~onChange: 'any_rjsu=?,
+    ~inputRef: 'union_r9fc=?,
+    ~onChange: 'any_rl9s=?,
     ~_type: string=?,
-    ~value: 'union_ro8e=?,
+    ~value: 'union_rmfs=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit

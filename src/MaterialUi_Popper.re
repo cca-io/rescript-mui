@@ -16,8 +16,8 @@ type placement = [
 [@bs.obj]
 external makeProps:
   (
-    ~anchorEl: 'union_rwd7=?,
-    ~container: 'union_rzpn=?,
+    ~anchorEl: 'union_ryho=?,
+    ~container: 'union_rnw3=?,
     ~disablePortal: bool=?,
     ~keepMounted: bool=?,
     ~modifiers: Js.t({..})=?,
@@ -59,8 +59,9 @@ let make =
         ~anchorEl=?
           anchorEl->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~container=?
-          container
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          container->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disablePortal?,
         ~keepMounted?,
         ~modifiers?,

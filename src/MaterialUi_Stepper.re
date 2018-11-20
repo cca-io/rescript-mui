@@ -18,35 +18,34 @@ module Classes = {
     | Vertical(_) => "vertical"
     | AlternativeLabel(_) => "alternativeLabel";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Horizontal(className)
-            | Vertical(className)
-            | AlternativeLabel(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Horizontal(className)
+                         | Vertical(className)
+                         | AlternativeLabel(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
-    ~activeStep: 'number_r=?,
+    ~activeStep: 'number_h=?,
     ~alternativeLabel: bool=?,
     ~className: string=?,
     ~connector: ReasonReact.reactElement=?,
     ~nonLinear: bool=?,
     ~orientation: string=?,
-    ~component: 'union_rpgy=?,
-    ~elevation: 'number_f=?,
+    ~component: 'union_r1ab=?,
+    ~elevation: 'number_i=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -83,19 +82,22 @@ let make =
     ~props=
       makeProps(
         ~activeStep=?
-          activeStep
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          activeStep->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
         ~alternativeLabel?,
         ~className?,
         ~connector?,
         ~nonLinear?,
         ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
-          elevation
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          elevation->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~square?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

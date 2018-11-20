@@ -18,25 +18,24 @@ module Classes = {
     | ChildLeaving(_) => "childLeaving"
     | ChildPulsate(_) => "childPulsate";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Ripple(className)
-            | RippleVisible(className)
-            | RipplePulsate(className)
-            | Child(className)
-            | ChildLeaving(className)
-            | ChildPulsate(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Ripple(className)
+                         | RippleVisible(className)
+                         | RipplePulsate(className)
+                         | Child(className)
+                         | ChildLeaving(className)
+                         | ChildPulsate(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]

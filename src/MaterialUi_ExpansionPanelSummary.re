@@ -16,24 +16,23 @@ module Classes = {
     | Content(_) => "content"
     | ExpandIcon(_) => "expandIcon";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Expanded(className)
-            | Focused(className)
-            | Disabled(className)
-            | Content(className)
-            | ExpandIcon(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Expanded(className)
+                         | Focused(className)
+                         | Disabled(className)
+                         | Content(className)
+                         | ExpandIcon(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -46,10 +45,10 @@ external makeProps:
     ~_IconButtonProps: Js.t({..})=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~action: 'any_rlw9=?,
-    ~buttonRef: 'union_r6ze=?,
+    ~action: 'any_rtxg=?,
+    ~buttonRef: 'union_rfhe=?,
     ~centerRipple: bool=?,
-    ~component: 'union_r7o8=?,
+    ~component: 'union_ra7i=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -66,7 +65,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rjlq=?,
+    ~tabIndex: 'union_rwvq=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -136,12 +135,14 @@ let make =
         ~onClick?,
         ~action?,
         ~buttonRef=?
-          buttonRef
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          buttonRef->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~centerRipple?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableRipple?,
         ~disableTouchRipple?,
         ~focusRipple?,

@@ -28,25 +28,24 @@ module Classes = {
     | Disabled(_) => "disabled"
     | Icon(_) => "icon";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Select(className)
-            | Filled(className)
-            | Outlined(className)
-            | SelectMenu(className)
-            | Disabled(className)
-            | Icon(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Select(className)
+                         | Filled(className)
+                         | Outlined(className)
+                         | SelectMenu(className)
+                         | Disabled(className)
+                         | Icon(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -54,40 +53,40 @@ external makeProps:
   (
     ~autoWidth: bool=?,
     ~displayEmpty: bool=?,
-    ~_IconComponent: 'union_rt46=?,
+    ~_IconComponent: 'union_rqk0=?,
     ~input: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
     ~_MenuProps: Js.t({..})=?,
     ~multiple: bool=?,
     ~native: bool=?,
-    ~onChange: 'any_rnrj=?,
-    ~onClose: 'any_rq0d=?,
-    ~onOpen: 'any_rull=?,
+    ~onChange: 'any_rrhr=?,
+    ~onClose: 'any_rtix=?,
+    ~onOpen: 'any_r97f=?,
     ~_open: bool=?,
-    ~renderValue: 'any_r89c=?,
+    ~renderValue: 'any_r007=?,
     ~_SelectDisplayProps: Js.t({..})=?,
-    ~value: 'union_rd8l=?,
+    ~value: 'union_r62x=?,
     ~variant: string=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rs6c=?,
+    ~defaultValue: 'union_rw5t=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_ru91=?,
-    ~inputRef: 'union_rd64=?,
+    ~inputComponent: 'any_rps6=?,
+    ~inputRef: 'union_rdld=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_r0ah=?,
-    ~rowsMax: 'union_rvs2=?,
+    ~rows: 'union_r8ac=?,
+    ~rowsMax: 'union_rztd=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
@@ -126,7 +125,7 @@ let make =
       ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
       ~onOpen: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: option(bool)=?,
-      ~renderValue: option('any_rr1u => ReasonReact.reactElement)=?,
+      ~renderValue: option('any_r937 => ReasonReact.reactElement)=?,
       ~_SelectDisplayProps: option(Js.t({..}))=?,
       ~value:
          option(
@@ -135,6 +134,7 @@ let make =
              | `Int(int)
              | `Float(float)
              | `Bool(bool)
+             | `ObjectGeneric(Js.t({..}))
              | `Array(
                  array(
                    [
@@ -142,6 +142,7 @@ let make =
                      | `Int(int)
                      | `Float(float)
                      | `Bool(bool)
+                     | `ObjectGeneric(Js.t({..}))
                    ],
                  ),
                )
@@ -159,7 +160,7 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_ru91)=?,
+      ~inputComponent: option('any_rps6)=?,
       ~inputRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
@@ -192,8 +193,11 @@ let make =
         ~autoWidth?,
         ~displayEmpty?,
         ~_IconComponent=?
-          _IconComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _IconComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
         ~input?,
         ~inputProps?,
         ~_MenuProps?,
@@ -212,8 +216,11 @@ let make =
         ~autoFocus?,
         ~className?,
         ~defaultValue=?
-          defaultValue
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          defaultValue->(
+                          Belt.Option.map(v =>
+                            MaterialUi_Helpers.unwrapValue(v)
+                          )
+                        ),
         ~disabled?,
         ~disableUnderline?,
         ~endAdornment?,

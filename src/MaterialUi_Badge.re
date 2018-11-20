@@ -12,7 +12,8 @@ module Classes = {
     | Badge(string)
     | ColorPrimary(string)
     | ColorSecondary(string)
-    | ColorError(string);
+    | ColorError(string)
+    | Invisible(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -20,25 +21,26 @@ module Classes = {
     | Badge(_) => "badge"
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary"
-    | ColorError(_) => "colorError";
+    | ColorError(_) => "colorError"
+    | Invisible(_) => "invisible";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Badge(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className)
-            | ColorError(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Badge(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className)
+                         | ColorError(className)
+                         | Invisible(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -47,7 +49,8 @@ external makeProps:
     ~badgeContent: ReasonReact.reactElement,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rnk7=?,
+    ~component: 'union_rkud=?,
+    ~invisible: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -69,6 +72,7 @@ let make =
              | `ObjectGeneric(Js.t({..}))
            ],
          )=?,
+      ~invisible: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -81,8 +85,10 @@ let make =
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
+        ~invisible?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),

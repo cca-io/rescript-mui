@@ -41,35 +41,34 @@ module Classes = {
     | InputAdornedStart(_) => "inputAdornedStart"
     | InputAdornedEnd(_) => "inputAdornedEnd";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | FormControl(className)
-            | Focused(className)
-            | Disabled(className)
-            | AdornedStart(className)
-            | AdornedEnd(className)
-            | Error(className)
-            | MarginDense(className)
-            | Multiline(className)
-            | FullWidth(className)
-            | Input(className)
-            | InputMarginDense(className)
-            | InputMultiline(className)
-            | InputType(className)
-            | InputTypeSearch(className)
-            | InputAdornedStart(className)
-            | InputAdornedEnd(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | FormControl(className)
+                         | Focused(className)
+                         | Disabled(className)
+                         | AdornedStart(className)
+                         | AdornedEnd(className)
+                         | Error(className)
+                         | MarginDense(className)
+                         | Multiline(className)
+                         | FullWidth(className)
+                         | Input(className)
+                         | InputMarginDense(className)
+                         | InputMultiline(className)
+                         | InputType(className)
+                         | InputTypeSearch(className)
+                         | InputAdornedStart(className)
+                         | InputAdornedEnd(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -78,20 +77,20 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_ruvu=?,
+    ~defaultValue: 'union_rsfg=?,
     ~disabled: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_rajy=?,
+    ~inputComponent: 'union_ryje=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_r8w8=?,
+    ~inputRef: 'union_rp33=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_r7cx=?,
+    ~onChange: 'any_r1ol=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
@@ -101,11 +100,11 @@ external makeProps:
     ~readOnly: bool=?,
     ~renderPrefix: 'genericCallback=?,
     ~required: bool=?,
-    ~rows: 'union_rjij=?,
-    ~rowsMax: 'union_rvv5=?,
+    ~rows: 'union_r1gm=?,
+    ~rowsMax: 'union_reju=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
-    ~value: 'union_rjl8=?,
+    ~value: 'union_ruwf=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -188,16 +187,22 @@ let make =
         ~autoFocus?,
         ~className?,
         ~defaultValue=?
-          defaultValue
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          defaultValue->(
+                          Belt.Option.map(v =>
+                            MaterialUi_Helpers.unwrapValue(v)
+                          )
+                        ),
         ~disabled?,
         ~endAdornment?,
         ~error?,
         ~fullWidth?,
         ~id?,
         ~inputComponent=?
-          inputComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          inputComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
         ~inputProps?,
         ~inputRef=?
           inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

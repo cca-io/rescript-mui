@@ -18,32 +18,31 @@ module Classes = {
     | Required(_) => "required"
     | Asterisk(_) => "asterisk";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Focused(className)
-            | Disabled(className)
-            | Error(className)
-            | Filled(className)
-            | Required(className)
-            | Asterisk(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Focused(className)
+                         | Disabled(className)
+                         | Error(className)
+                         | Filled(className)
+                         | Required(className)
+                         | Asterisk(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_rtok=?,
+    ~component: 'union_r0di=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~filled: bool=?,
@@ -83,8 +82,9 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disabled?,
         ~error?,
         ~filled?,

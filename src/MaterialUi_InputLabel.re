@@ -11,6 +11,10 @@ type variant = [
 module Classes = {
   type classesType =
     | Root(string)
+    | Focused(string)
+    | Disabled(string)
+    | Error(string)
+    | Required(string)
     | FormControl(string)
     | MarginDense(string)
     | Shrink(string)
@@ -21,6 +25,10 @@ module Classes = {
   let to_string =
     fun
     | Root(_) => "root"
+    | Focused(_) => "focused"
+    | Disabled(_) => "disabled"
+    | Error(_) => "error"
+    | Required(_) => "required"
     | FormControl(_) => "formControl"
     | MarginDense(_) => "marginDense"
     | Shrink(_) => "shrink"
@@ -28,25 +36,28 @@ module Classes = {
     | Filled(_) => "filled"
     | Outlined(_) => "outlined";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | FormControl(className)
-            | MarginDense(className)
-            | Shrink(className)
-            | Animated(className)
-            | Filled(className)
-            | Outlined(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Focused(className)
+                         | Disabled(className)
+                         | Error(className)
+                         | Required(className)
+                         | FormControl(className)
+                         | MarginDense(className)
+                         | Shrink(className)
+                         | Animated(className)
+                         | Filled(className)
+                         | Outlined(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
@@ -62,7 +73,7 @@ external makeProps:
     ~required: bool=?,
     ~shrink: bool=?,
     ~variant: string=?,
-    ~component: 'union_rac7=?,
+    ~component: 'union_rldv=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -112,8 +123,9 @@ let make =
         ~shrink?,
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~filled?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

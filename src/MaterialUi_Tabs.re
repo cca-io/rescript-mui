@@ -42,46 +42,45 @@ module Classes = {
     | ScrollButtonsAuto(_) => "scrollButtonsAuto"
     | Indicator(_) => "indicator";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | FlexContainer(className)
-            | Centered(className)
-            | Scroller(className)
-            | Fixed(className)
-            | Scrollable(className)
-            | ScrollButtons(className)
-            | ScrollButtonsAuto(className)
-            | Indicator(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | FlexContainer(className)
+                         | Centered(className)
+                         | Scroller(className)
+                         | Fixed(className)
+                         | Scrollable(className)
+                         | ScrollButtons(className)
+                         | ScrollButtonsAuto(className)
+                         | Indicator(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
-    ~action: 'any_rs0y=?,
+    ~action: 'any_rift=?,
     ~centered: bool=?,
     ~className: string=?,
-    ~component: 'union_rff5=?,
+    ~component: 'union_r8i8=?,
     ~fullWidth: bool=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_ratk=?,
+    ~onChange: 'any_r7bf=?,
     ~scrollable: bool=?,
-    ~_ScrollButtonComponent: 'union_ri5s=?,
+    ~_ScrollButtonComponent: 'union_rzpv=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_rl62=?,
+    ~value: 'any_rolc=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -119,7 +118,7 @@ let make =
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_rl62)=?,
+      ~value: option('any_rolc)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -132,16 +131,20 @@ let make =
         ~centered?,
         ~className?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~fullWidth?,
         ~indicatorColor=?
           indicatorColor->(Belt.Option.map(v => indicatorColorToJs(v))),
         ~onChange?,
         ~scrollable?,
         ~_ScrollButtonComponent=?
-          _ScrollButtonComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _ScrollButtonComponent->(
+                                    Belt.Option.map(v =>
+                                      MaterialUi_Helpers.unwrapValue(v)
+                                    )
+                                  ),
         ~scrollButtons=?
           scrollButtons->(Belt.Option.map(v => scrollButtonsToJs(v))),
         ~_TabIndicatorProps?,

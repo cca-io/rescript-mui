@@ -42,33 +42,32 @@ module Classes = {
     | PaddingCheckbox(_) => "paddingCheckbox"
     | PaddingNone(_) => "paddingNone";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Head(className)
-            | Body(className)
-            | Footer(className)
-            | Numeric(className)
-            | PaddingDense(className)
-            | PaddingCheckbox(className)
-            | PaddingNone(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Head(className)
+                         | Body(className)
+                         | Footer(className)
+                         | Numeric(className)
+                         | PaddingDense(className)
+                         | PaddingCheckbox(className)
+                         | PaddingNone(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_r8bt=?,
+    ~component: 'union_rnls=?,
     ~numeric: bool=?,
     ~padding: string=?,
     ~scope: string=?,
@@ -110,8 +109,9 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~numeric?,
         ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
         ~scope?,

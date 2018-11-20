@@ -10,36 +10,35 @@ module Classes = {
     | Gutters(_) => "gutters"
     | Selected(_) => "selected";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Gutters(className)
-            | Selected(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Gutters(className)
+                         | Selected(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_r6o6=?,
+    ~component: 'union_rkrg=?,
     ~disableGutters: bool=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~value: 'union_rhe0=?,
+    ~value: 'union_r63h=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~button: bool=?,
-    ~_ContainerComponent: 'union_rju8=?,
+    ~_ContainerComponent: 'union_rfz9=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -102,8 +101,9 @@ let make =
       makeProps(
         ~className?,
         ~component=?
-          component
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableGutters?,
         ~role?,
         ~selected?,
@@ -113,8 +113,11 @@ let make =
         ~onClick?,
         ~button?,
         ~_ContainerComponent=?
-          _ContainerComponent
-          ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+          _ContainerComponent->(
+                                 Belt.Option.map(v =>
+                                   MaterialUi_Helpers.unwrapValue(v)
+                                 )
+                               ),
         ~_ContainerProps?,
         ~dense?,
         ~disabled?,

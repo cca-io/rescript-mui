@@ -21,29 +21,28 @@ module Classes = {
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary";
   let to_obj = listOfClasses =>
-    listOfClasses
-    ->(
-        Belt.List.reduce(
-          Js.Dict.empty(),
-          (obj, classType) => {
-            switch (classType) {
-            | Root(className)
-            | Checked(className)
-            | Disabled(className)
-            | ColorPrimary(className)
-            | ColorSecondary(className) =>
-              Js.Dict.set(obj, to_string(classType), className)
-            };
-            obj;
-          },
-        )
-      );
+    listOfClasses->(
+                     Belt.List.reduce(
+                       Js.Dict.empty(),
+                       (obj, classType) => {
+                         switch (classType) {
+                         | Root(className)
+                         | Checked(className)
+                         | Disabled(className)
+                         | ColorPrimary(className)
+                         | ColorSecondary(className) =>
+                           Js.Dict.set(obj, to_string(classType), className)
+                         };
+                         obj;
+                       },
+                     )
+                   );
 };
 
 [@bs.obj]
 external makeProps:
   (
-    ~checked: 'union_rjn2=?,
+    ~checked: 'union_rh24=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~color: string=?,
     ~disabled: bool=?,
@@ -51,10 +50,10 @@ external makeProps:
     ~icon: ReasonReact.reactElement=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rfns=?,
-    ~onChange: 'any_rvdj=?,
+    ~inputRef: 'union_r1nu=?,
+    ~onChange: 'any_rfnf=?,
     ~_type: string=?,
-    ~value: 'union_rd8s=?,
+    ~value: 'union_rs53=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
