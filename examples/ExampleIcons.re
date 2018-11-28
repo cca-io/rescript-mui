@@ -51,14 +51,14 @@ let make = _ => {
         <MaterialUi_Typography variant=`H6>
           "Icon Sizes:"
         </MaterialUi_Typography>
-        <MaterialUi_Tooltip title={"Small"->rs}>
-          <MaterialUi_Icons icon=`SupervisedUserCircle fontSize=`Small />
+        <MaterialUi_Tooltip title={"Large"->rs}>
+          <MaterialUi_Icons icon=`SupervisedUserCircle fontSize=`Large />
         </MaterialUi_Tooltip>
         <MaterialUi_Tooltip title={"Default"->rs}>
           <MaterialUi_Icons icon=`SupervisedUserCircle fontSize=`Default />
         </MaterialUi_Tooltip>
-        <MaterialUi_Tooltip title={"Large"->rs}>
-          <MaterialUi_Icons icon=`SupervisedUserCircle fontSize=`Large />
+        <MaterialUi_Tooltip title={"Small"->rs}>
+          <MaterialUi_Icons icon=`SupervisedUserCircle fontSize=`Small />
         </MaterialUi_Tooltip>
       </div>
     </>,

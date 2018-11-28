@@ -171,6 +171,8 @@ module ComponentsProps = {
     [@bs.optional] [@bs.as "MuiTypography"]
     muiTypography: Js.Dict.t(string),
   };
+
+  let make = t;
 };
 
 module Overrides = {
@@ -357,6 +359,8 @@ module Overrides = {
     [@bs.optional] [@bs.as "MuiTypography"]
     muiTypography: Js.Dict.t(string),
   };
+
+  let make = t;
 };
 
 module BreakpointValues = {
@@ -373,6 +377,8 @@ module BreakpointValues = {
     [@bs.optional] [@bs.as "xl"]
     xl: float,
   };
+
+  let make = t;
 };
 
 module Shape = {
@@ -381,6 +387,8 @@ module Shape = {
     [@bs.as "borderRadius"]
     borderRadius: float,
   };
+
+  let make = t;
 };
 
 module Breakpoints = {
@@ -401,6 +409,8 @@ module Breakpoints = {
     [@bs.as "width"]
     width: string => float,
   };
+
+  let make = t;
 };
 
 module CSSProperties = {
@@ -415,6 +425,8 @@ module Mixins = {
     [@bs.as "toolbar"]
     toolbar: CSSProperties.t,
   };
+
+  let make = t;
 };
 
 module CommonColors = {
@@ -425,6 +437,8 @@ module CommonColors = {
     [@bs.as "white"]
     white: string,
   };
+
+  let make = t;
 };
 
 module PaletteColor = {
@@ -439,6 +453,8 @@ module PaletteColor = {
     [@bs.as "contrastText"]
     contrastText: string,
   };
+
+  let make = t;
 };
 
 module Color = {
@@ -473,6 +489,8 @@ module Color = {
     [@bs.as "A700"]
     a700: string,
   };
+
+  let make = t;
 };
 
 module TypeText = {
@@ -487,6 +505,8 @@ module TypeText = {
     [@bs.as "hint"]
     hint: string,
   };
+
+  let make = t;
 };
 
 module TypeAction = {
@@ -505,6 +525,8 @@ module TypeAction = {
     [@bs.as "disabledBackground"]
     disabledBackground: string,
   };
+
+  let make = t;
 };
 
 module TypeBackground = {
@@ -515,6 +537,8 @@ module TypeBackground = {
     [@bs.as "paper"]
     paper: string,
   };
+
+  let make = t;
 };
 
 module Palette = {
@@ -549,6 +573,8 @@ module Palette = {
     [@bs.as "augmentColor"]
     augmentColor: fixType,
   };
+
+  let make = t;
 };
 
 module Spacing = {
@@ -557,6 +583,8 @@ module Spacing = {
     [@bs.as "unit"]
     unit: float,
   };
+
+  let make = t;
 };
 
 module Easing = {
@@ -571,6 +599,8 @@ module Easing = {
     [@bs.as "sharp"]
     sharp: string,
   };
+
+  let make = t;
 };
 
 module Duration = {
@@ -591,6 +621,8 @@ module Duration = {
     [@bs.as "leavingScreen"]
     leavingScreen: float,
   };
+
+  let make = t;
 };
 
 module Transitions = {
@@ -601,6 +633,8 @@ module Transitions = {
     [@bs.as "duration"]
     duration: Duration.t,
   };
+
+  let make = t;
 };
 
 module Typography = {
@@ -623,6 +657,8 @@ module ZIndex = {
     [@bs.as "tooltip"]
     tooltip: float,
   };
+
+  let make = t;
 };
 
 module Theme = {
@@ -653,6 +689,13 @@ module Theme = {
     [@bs.as "zIndex"]
     zIndex: ZIndex.t,
   };
+
+  let make = t;
 };
 
 type t = Theme.t;
+
+let make = Theme.t;
+
+[@bs.module "@material-ui/core/styles"]
+external create: MaterialUi_ThemeOptions.t => t = "createMuiTheme";

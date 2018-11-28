@@ -171,6 +171,8 @@ module ComponentsProps = {
     [@bs.optional] [@bs.as "MuiTypography"]
     muiTypography: Js.Dict.t(string),
   };
+
+  let make = t;
 };
 
 module Overrides = {
@@ -357,6 +359,8 @@ module Overrides = {
     [@bs.optional] [@bs.as "MuiTypography"]
     muiTypography: Js.Dict.t(string),
   };
+
+  let make = t;
 };
 
 module Partial = {
@@ -397,6 +401,8 @@ module PaletteOptions = {
     [@bs.optional] [@bs.as "getContrastText"]
     getContrastText: string => string,
   };
+
+  let make = t;
 };
 
 module TransitionsOptions = {
@@ -411,6 +417,8 @@ module TransitionsOptions = {
     [@bs.optional] [@bs.as "getAutoHeightDuration"]
     getAutoHeightDuration: float => float,
   };
+
+  let make = t;
 };
 
 module ThemeOptions = {
@@ -441,6 +449,10 @@ module ThemeOptions = {
     [@bs.optional] [@bs.as "zIndex"]
     zIndex: Partial.t,
   };
+
+  let make = t;
 };
 
 type t = ThemeOptions.t;
+
+let make = ThemeOptions.t;

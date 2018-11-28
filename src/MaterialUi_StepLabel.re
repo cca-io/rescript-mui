@@ -69,7 +69,7 @@ external makeProps:
     ~last: bool=?,
     ~optional: ReasonReact.reactElement=?,
     ~orientation: string=?,
-    ~_StepIconComponent: 'union_rqpu=?,
+    ~_StepIconComponent: 'union_ru3x=?,
     ~_StepIconProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

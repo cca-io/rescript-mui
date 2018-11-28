@@ -24,9 +24,9 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~onChange: 'any_rzlr=?,
+    ~onChange: 'any_rpaf=?,
     ~showLabels: bool=?,
-    ~value: 'any_r632=?,
+    ~value: 'any_r2kf=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -38,9 +38,9 @@ external reactClass: ReasonReact.reactClass = "BottomNavigation";
 let make =
     (
       ~className: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rfjp) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rid1) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_r632)=?,
+      ~value: option('any_r2kf)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
