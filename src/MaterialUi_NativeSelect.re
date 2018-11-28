@@ -51,32 +51,33 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~_IconComponent: 'union_rk2v=?,
+    ~_IconComponent: 'union_r5dy=?,
     ~input: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_r4r2=?,
-    ~value: 'union_rxd3=?,
+    ~muiFormControl: Js.t({..})=?,
+    ~onChange: 'any_ryg6=?,
+    ~value: 'union_rh1k=?,
     ~variant: string=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rjdd=?,
+    ~defaultValue: 'union_r2yp=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rxsy=?,
-    ~inputRef: 'union_rzs8=?,
+    ~inputComponent: 'any_rwzk=?,
+    ~inputRef: 'union_rbqs=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_ri97=?,
-    ~rowsMax: 'union_rvni=?,
+    ~rows: 'union_rp77=?,
+    ~rowsMax: 'union_r0uj=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
@@ -106,6 +107,7 @@ let make =
          )=?,
       ~input: option(ReasonReact.reactElement)=?,
       ~inputProps: option(Js.t({..}))=?,
+      ~muiFormControl: option(Js.t({..}))=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~value:
          option(
@@ -116,14 +118,33 @@ let make =
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
       ~defaultValue:
-         option([ | `String(string) | `Int(int) | `Float(float)])=?,
+         option(
+           [
+             | `String(string)
+             | `Int(int)
+             | `Float(float)
+             | `Bool(bool)
+             | `ObjectGeneric(Js.t({..}))
+             | `Array(
+                 array(
+                   [
+                     | `String(string)
+                     | `Int(int)
+                     | `Float(float)
+                     | `Bool(bool)
+                     | `ObjectGeneric(Js.t({..}))
+                   ],
+                 ),
+               )
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(ReasonReact.reactElement)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_rxsy)=?,
+      ~inputComponent: option('any_rwzk)=?,
       ~inputRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
@@ -161,6 +182,7 @@ let make =
                           ),
         ~input?,
         ~inputProps?,
+        ~muiFormControl?,
         ~onChange?,
         ~value=?
           value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

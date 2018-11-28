@@ -1,3 +1,9 @@
+[@bs.deriving jsConverter]
+type alignItems = [
+  | [@bs.as "flex-start"] `Flex_Start
+  | [@bs.as "center"] `Center
+];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -5,6 +11,7 @@ module Classes = {
     | FocusVisible(string)
     | Default(string)
     | Dense(string)
+    | AlignItemsFlexStart(string)
     | Disabled(string)
     | Divider(string)
     | Gutters(string)
@@ -19,6 +26,7 @@ module Classes = {
     | FocusVisible(_) => "focusVisible"
     | Default(_) => "default"
     | Dense(_) => "dense"
+    | AlignItemsFlexStart(_) => "alignItemsFlexStart"
     | Disabled(_) => "disabled"
     | Divider(_) => "divider"
     | Gutters(_) => "gutters"
@@ -36,6 +44,7 @@ module Classes = {
                          | FocusVisible(className)
                          | Default(className)
                          | Dense(className)
+                         | AlignItemsFlexStart(className)
                          | Disabled(className)
                          | Divider(className)
                          | Gutters(className)
@@ -53,10 +62,11 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
+    ~alignItems: string=?,
     ~button: bool=?,
     ~className: string=?,
-    ~component: 'union_rhjc=?,
-    ~_ContainerComponent: 'union_r6ed=?,
+    ~component: 'union_r4la=?,
+    ~_ContainerComponent: 'union_rm9q=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -64,7 +74,7 @@ external makeProps:
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~selected: bool=?,
-    ~value: 'union_r86e=?,
+    ~value: 'union_rv47=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
@@ -77,6 +87,7 @@ external makeProps:
 external reactClass: ReasonReact.reactClass = "ListItem";
 let make =
     (
+      ~alignItems: option(alignItems)=?,
       ~button: option(bool)=?,
       ~className: option(string)=?,
       ~component:
@@ -121,6 +132,7 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
+        ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
         ~button?,
         ~className?,
         ~component=?

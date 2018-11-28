@@ -1,3 +1,9 @@
+[@bs.deriving jsConverter]
+type alignItems = [
+  | [@bs.as "flex-start"] `Flex_Start
+  | [@bs.as "center"] `Center
+];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -30,15 +36,16 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_rkrg=?,
+    ~component: 'union_rg3e=?,
     ~disableGutters: bool=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~value: 'union_r63h=?,
+    ~value: 'union_rtzo=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~alignItems: string=?,
     ~button: bool=?,
-    ~_ContainerComponent: 'union_rfz9=?,
+    ~_ContainerComponent: 'union_re7j=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -77,6 +84,7 @@ let make =
          )=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~alignItems: option(alignItems)=?,
       ~button: option(bool)=?,
       ~_ContainerComponent:
          option(
@@ -111,6 +119,7 @@ let make =
           value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~onFocus?,
         ~onClick?,
+        ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
         ~button?,
         ~_ContainerComponent=?
           _ContainerComponent->(

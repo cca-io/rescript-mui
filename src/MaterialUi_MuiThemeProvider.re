@@ -4,7 +4,7 @@ external makeProps:
     ~disableStylesGeneration: bool=?,
     ~sheetsCache: Js.t({..})=?,
     ~sheetsManager: Js.t({..})=?,
-    ~theme: 'union_ry8e,
+    ~theme: 'union_rlpy,
     unit
   ) =>
   _ =

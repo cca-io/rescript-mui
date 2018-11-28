@@ -29,6 +29,7 @@ module ExpansionPanelActions = MaterialUi_ExpansionPanelActions;
 module ExpansionPanelDetails = MaterialUi_ExpansionPanelDetails;
 module ExpansionPanelSummary = MaterialUi_ExpansionPanelSummary;
 module ExpansionPanel = MaterialUi_ExpansionPanel;
+module Fab = MaterialUi_Fab;
 module Fade = MaterialUi_Fade;
 module FilledInput = MaterialUi_FilledInput;
 module FormControlLabel = MaterialUi_FormControlLabel;

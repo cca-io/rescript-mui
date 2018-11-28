@@ -1,11 +1,13 @@
 module Classes = {
   type classesType =
     | Root(string)
+    | AlignItemsFlexStart(string)
     | Icon(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
+    | AlignItemsFlexStart(_) => "alignItemsFlexStart"
     | Icon(_) => "icon";
   let to_obj = listOfClasses =>
     listOfClasses->(
@@ -14,6 +16,7 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
+                         | AlignItemsFlexStart(className)
                          | Icon(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };

@@ -1,3 +1,11 @@
+[@bs.module]
+external iconClasses: Js.Dict.t(ReasonReact.reactClass) =
+  "@material-ui/icons";
+
+type iconName = MaterialUi_IconsNames.t;
+
+module type IconType = {let icon: iconName;};
+
 [@bs.deriving jsConverter]
 type color = [
   | [@bs.as "inherit"] `Inherit
@@ -67,18 +75,22 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r452=?,
+    ~component: 'union_rpwt=?,
     ~fontSize: string=?,
+    ~nativeColor: string=?,
+    ~shapeRendering: string=?,
+    ~titleAccess: string=?,
+    ~viewBox: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Icon";
+
 let make =
     (
+      ~icon: iconName,
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~component:
@@ -90,12 +102,17 @@ let make =
            ],
          )=?,
       ~fontSize: option(fontSize)=?,
+      ~nativeColor: option(string)=?,
+      ~shapeRendering: option(string)=?,
+      ~titleAccess: option(string)=?,
+      ~viewBox: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
     ) =>
   ReasonReact.wrapJsForReason(
-    ~reactClass,
+    ~reactClass=
+      iconClasses->Js.Dict.unsafeGet(icon->MaterialUi_IconsNames.tToJs),
     ~props=
       makeProps(
         ~className?,
@@ -105,6 +122,10 @@ let make =
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
                      ),
         ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
+        ~nativeColor?,
+        ~shapeRendering?,
+        ~titleAccess?,
+        ~viewBox?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),

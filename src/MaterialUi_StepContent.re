@@ -79,7 +79,7 @@ external makeProps:
     ~optional: bool=?,
     ~orientation: string=?,
     ~_TransitionComponent: 'genericCallback=?,
-    ~transitionDuration: 'union_ran3=?,
+    ~transitionDuration: 'union_rpe8=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

@@ -46,15 +46,16 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~checked: 'union_r1kx=?,
+    ~checked: 'union_rcly=?,
     ~className: string=?,
     ~control: ReasonReact.reactElement=?,
     ~disabled: bool=?,
-    ~inputRef: 'union_r7cy=?,
+    ~inputRef: 'union_r663=?,
     ~label: ReasonReact.reactElement=?,
     ~labelPlacement: string=?,
+    ~muiFormControl: Js.t({..})=?,
     ~name: string=?,
-    ~onChange: 'any_rerm=?,
+    ~onChange: 'any_r20h=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -76,6 +77,7 @@ let make =
          )=?,
       ~label: option(ReasonReact.reactElement)=?,
       ~labelPlacement: option(labelPlacement)=?,
+      ~muiFormControl: option(Js.t({..}))=?,
       ~name: option(string)=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~value: option(string)=?,
@@ -97,6 +99,7 @@ let make =
         ~label?,
         ~labelPlacement=?
           labelPlacement->(Belt.Option.map(v => labelPlacementToJs(v))),
+        ~muiFormControl?,
         ~name?,
         ~onChange?,
         ~value?,

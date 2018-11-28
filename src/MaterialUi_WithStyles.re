@@ -90,7 +90,8 @@ let make =
     };
 
   ReasonReact.wrapJsForReason(
-    ~reactClass=styled, ~props=Js.Obj.empty(), styles =>
-    render(styles##classes)
+    ~reactClass=styled,
+    ~props=Js.Obj.empty(),
+    render->renderFunctionToChildren,
   );
 };

@@ -1,16 +1,25 @@
+[@bs.deriving jsConverter]
+type variant = [
+  | [@bs.as "fullWidth"] `FullWidth
+  | [@bs.as "inset"] `Inset
+  | [@bs.as "middle"] `Middle
+];
+
 module Classes = {
   type classesType =
     | Root(string)
     | Absolute(string)
     | Inset(string)
-    | Light(string);
+    | Light(string)
+    | Middle(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
     | Absolute(_) => "absolute"
     | Inset(_) => "inset"
-    | Light(_) => "light";
+    | Light(_) => "light"
+    | Middle(_) => "middle";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -20,7 +29,8 @@ module Classes = {
                          | Root(className)
                          | Absolute(className)
                          | Inset(className)
-                         | Light(className) =>
+                         | Light(className)
+                         | Middle(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -34,9 +44,9 @@ external makeProps:
   (
     ~absolute: bool=?,
     ~className: string=?,
-    ~component: 'union_ra4a=?,
-    ~inset: bool=?,
+    ~component: 'union_r0mx=?,
     ~light: bool=?,
+    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -57,8 +67,8 @@ let make =
              | `ObjectGeneric(Js.t({..}))
            ],
          )=?,
-      ~inset: option(bool)=?,
       ~light: option(bool)=?,
+      ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -73,8 +83,8 @@ let make =
           component->(
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
                      ),
-        ~inset?,
         ~light?,
+        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),

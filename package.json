@@ -21,6 +21,7 @@
   "devDependencies": {
     "@jsiebern/bs-material-ui-ppx": "^1.0.0",
     "@material-ui/core": "^3.5.1",
+    "@material-ui/icons": "^3.0.1",
     "bs-platform": "^4.0.7",
     "bsb-js": "^1.1.7",
     "parcel-bundler": "^1.10.3",

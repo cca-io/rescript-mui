@@ -46,6 +46,17 @@ let make = _children => {
                <br />
                <Grid container=true alignItems=`Center>
                  <Grid item=true md=V6>
+                   <Typography variant=`H5> "Icons" </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleIcons /> </Grid>
+               </Grid>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
                    <Typography variant=`H5> "Popover" </Typography>
                  </Grid>
                  <Grid item=true md=V6> <ExamplePopover /> </Grid>

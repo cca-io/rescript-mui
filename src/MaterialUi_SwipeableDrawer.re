@@ -52,19 +52,20 @@ external makeProps:
     ~disableBackdropTransition: bool=?,
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
-    ~hysteresis: 'number_0=?,
-    ~minFlingVelocity: 'number_u=?,
+    ~hysteresis: 'number_r=?,
+    ~minFlingVelocity: 'number_l=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rpnn,
-    ~onOpen: 'any_rlmi,
+    ~onClose: 'any_rjse,
+    ~onOpen: 'any_r9fx,
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_y=?,
+    ~_SwipeAreaProps: Js.t({..})=?,
+    ~swipeAreaWidth: 'number_8=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_r6ht=?,
+    ~transitionDuration: 'union_ro4o=?,
     ~variant: string=?,
     ~className: string=?,
-    ~elevation: 'number_d=?,
+    ~elevation: 'number_r=?,
     ~_SlideProps: Js.t({..})=?,
     unit
   ) =>
@@ -85,6 +86,7 @@ let make =
       ~onOpen: ReactEvent.Synthetic.t => unit,
       ~open_: bool,
       ~_PaperProps: option(Js.t({..}))=?,
+      ~_SwipeAreaProps: option(Js.t({..}))=?,
       ~swipeAreaWidth: option([ | `Int(int) | `Float(float)])=?,
       ~theme: option(Js.t({..}))=?,
       ~transitionDuration:
@@ -124,6 +126,7 @@ let make =
         ~onOpen,
         ~_open=open_,
         ~_PaperProps?,
+        ~_SwipeAreaProps?,
         ~swipeAreaWidth=?
           swipeAreaWidth->(
                             Belt.Option.map(v =>

@@ -72,7 +72,7 @@ external makeProps:
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rf4m=?,
+    ~component: 'union_rz86=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~internalDeprecatedVariant: bool=?,

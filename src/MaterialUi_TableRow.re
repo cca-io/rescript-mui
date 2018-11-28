@@ -36,7 +36,7 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_rrma=?,
+    ~component: 'union_r341=?,
     ~hover: bool=?,
     ~selected: bool=?,
     ~onDoubleClick: ReactEvent.Mouse.t => unit=?,

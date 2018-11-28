@@ -77,20 +77,21 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rsfg=?,
+    ~defaultValue: 'union_rgow=?,
     ~disabled: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_ryje=?,
+    ~inputComponent: 'union_rf46=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rp33=?,
+    ~inputRef: 'union_ro5h=?,
     ~margin: string=?,
+    ~muiFormControl: Js.t({..})=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_r1ol=?,
+    ~onChange: 'any_ruy7=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
@@ -100,11 +101,11 @@ external makeProps:
     ~readOnly: bool=?,
     ~renderPrefix: 'genericCallback=?,
     ~required: bool=?,
-    ~rows: 'union_r1gm=?,
-    ~rowsMax: 'union_reju=?,
+    ~rows: 'union_rkv7=?,
+    ~rowsMax: 'union_rc7g=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
-    ~value: 'union_ruwf=?,
+    ~value: 'union_rqx5=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -119,7 +120,26 @@ let make =
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
       ~defaultValue:
-         option([ | `String(string) | `Int(int) | `Float(float)])=?,
+         option(
+           [
+             | `String(string)
+             | `Int(int)
+             | `Float(float)
+             | `Bool(bool)
+             | `ObjectGeneric(Js.t({..}))
+             | `Array(
+                 array(
+                   [
+                     | `String(string)
+                     | `Int(int)
+                     | `Float(float)
+                     | `Bool(bool)
+                     | `ObjectGeneric(Js.t({..}))
+                   ],
+                 ),
+               )
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(ReasonReact.reactElement)=?,
       ~error: option(bool)=?,
@@ -139,6 +159,7 @@ let make =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~margin: option(margin)=?,
+      ~muiFormControl: option(Js.t({..}))=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
@@ -163,6 +184,7 @@ let make =
              | `Int(int)
              | `Float(float)
              | `Bool(bool)
+             | `ObjectGeneric(Js.t({..}))
              | `Array(
                  array(
                    [
@@ -170,6 +192,7 @@ let make =
                      | `Int(int)
                      | `Float(float)
                      | `Bool(bool)
+                     | `ObjectGeneric(Js.t({..}))
                    ],
                  ),
                )
@@ -207,6 +230,7 @@ let make =
         ~inputRef=?
           inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
+        ~muiFormControl?,
         ~multiline?,
         ~name?,
         ~onBlur?,

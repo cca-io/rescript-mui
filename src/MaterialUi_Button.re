@@ -16,12 +16,12 @@ type size = [
 [@bs.deriving jsConverter]
 type variant = [
   | [@bs.as "text"] `Text
-  | [@bs.as "flat"] `Flat
   | [@bs.as "outlined"] `Outlined
   | [@bs.as "contained"] `Contained
-  | [@bs.as "raised"] `Raised
   | [@bs.as "fab"] `Fab
   | [@bs.as "extendedFab"] `ExtendedFab
+  | [@bs.as "flat"] `Flat
+  | [@bs.as "raised"] `Raised
 ];
 
 module Classes = {
@@ -126,7 +126,7 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r77g=?,
+    ~component: 'union_r6jc=?,
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
@@ -137,8 +137,8 @@ external makeProps:
     ~size: string=?,
     ~_type: string=?,
     ~variant: string=?,
-    ~action: 'any_r004=?,
-    ~buttonRef: 'union_rrkg=?,
+    ~action: 'any_rrfh=?,
+    ~buttonRef: 'union_r1ds=?,
     ~centerRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -155,7 +155,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rz1h=?,
+    ~tabIndex: 'union_r8f9=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

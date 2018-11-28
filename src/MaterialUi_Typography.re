@@ -174,7 +174,7 @@ external makeProps:
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rhps=?,
+    ~component: 'union_r09w=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~internalDeprecatedVariant: bool=?,

@@ -1,14 +1,46 @@
+[@bs.deriving jsConverter]
+type color = [
+  | [@bs.as "default"] `Default
+  | [@bs.as "inherit"] `Inherit
+  | [@bs.as "primary"] `Primary
+  | [@bs.as "secondary"] `Secondary
+];
+
+[@bs.deriving jsConverter]
+type size = [
+  | [@bs.as "small"] `Small
+  | [@bs.as "medium"] `Medium
+  | [@bs.as "large"] `Large
+];
+
+[@bs.deriving jsConverter]
+type variant = [ | [@bs.as "round"] `Round | [@bs.as "extended"] `Extended];
+
 module Classes = {
   type classesType =
     | Root(string)
+    | Label(string)
+    | Primary(string)
+    | Secondary(string)
+    | Extended(string)
     | FocusVisible(string)
-    | FocusHighlight(string);
+    | Disabled(string)
+    | ColorInherit(string)
+    | SizeSmall(string)
+    | SizeMedium(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
+    | Label(_) => "label"
+    | Primary(_) => "primary"
+    | Secondary(_) => "secondary"
+    | Extended(_) => "extended"
     | FocusVisible(_) => "focusVisible"
-    | FocusHighlight(_) => "focusHighlight";
+    | Disabled(_) => "disabled"
+    | ColorInherit(_) => "colorInherit"
+    | SizeSmall(_) => "sizeSmall"
+    | SizeMedium(_) => "sizeMedium";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -16,8 +48,15 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
+                         | Label(className)
+                         | Primary(className)
+                         | Secondary(className)
+                         | Extended(className)
                          | FocusVisible(className)
-                         | FocusHighlight(className) =>
+                         | Disabled(className)
+                         | ColorInherit(className)
+                         | SizeSmall(className)
+                         | SizeMedium(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -30,13 +69,19 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~focusVisibleClassName: string=?,
-    ~action: 'any_rybq=?,
-    ~buttonRef: 'union_roid=?,
-    ~centerRipple: bool=?,
-    ~component: 'union_r6mi=?,
+    ~color: string=?,
+    ~component: 'union_r3gc=?,
     ~disabled: bool=?,
+    ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
+    ~focusVisibleClassName: string=?,
+    ~href: string=?,
+    ~size: string=?,
+    ~_type: string=?,
+    ~variant: string=?,
+    ~action: 'any_ra31=?,
+    ~buttonRef: 'union_rq9m=?,
+    ~centerRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
@@ -52,9 +97,8 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rss4=?,
+    ~tabIndex: 'union_rjvd=?,
     ~_TouchRippleProps: Js.t({..})=?,
-    ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -62,17 +106,11 @@ external makeProps:
   _ =
   "";
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "CardActionArea";
+external reactClass: ReasonReact.reactClass = "Fab";
 let make =
     (
       ~className: option(string)=?,
-      ~focusVisibleClassName: option(string)=?,
-      ~action: option(Js.t({..}) => unit)=?,
-      ~buttonRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
-      ~centerRipple: option(bool)=?,
+      ~color: option(color)=?,
       ~component:
          option(
            [
@@ -82,7 +120,19 @@ let make =
            ],
          )=?,
       ~disabled: option(bool)=?,
+      ~disableFocusRipple: option(bool)=?,
       ~disableRipple: option(bool)=?,
+      ~focusVisibleClassName: option(string)=?,
+      ~href: option(string)=?,
+      ~size: option(size)=?,
+      ~type_: option(string)=?,
+      ~variant: option(variant)=?,
+      ~action: option(Js.t({..}) => unit)=?,
+      ~buttonRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
+      ~centerRipple: option(bool)=?,
       ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
@@ -100,7 +150,6 @@ let make =
       ~role: option(string)=?,
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
-      ~type_: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -110,19 +159,25 @@ let make =
     ~props=
       makeProps(
         ~className?,
+        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
+        ~disabled?,
+        ~disableFocusRipple?,
+        ~disableRipple?,
         ~focusVisibleClassName?,
+        ~href?,
+        ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+        ~_type=?type_,
+        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~action?,
         ~buttonRef=?
           buttonRef->(
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
                      ),
         ~centerRipple?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disabled?,
-        ~disableRipple?,
         ~disableTouchRipple?,
         ~focusRipple?,
         ~onBlur?,
@@ -141,7 +196,6 @@ let make =
         ~tabIndex=?
           tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~_TouchRippleProps?,
-        ~_type=?type_,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),

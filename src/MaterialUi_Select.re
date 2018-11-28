@@ -53,42 +53,43 @@ external makeProps:
   (
     ~autoWidth: bool=?,
     ~displayEmpty: bool=?,
-    ~_IconComponent: 'union_rqk0=?,
+    ~_IconComponent: 'union_r3o3=?,
     ~input: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
     ~_MenuProps: Js.t({..})=?,
     ~multiple: bool=?,
     ~native: bool=?,
-    ~onChange: 'any_rrhr=?,
-    ~onClose: 'any_rtix=?,
-    ~onOpen: 'any_r97f=?,
+    ~onChange: 'any_r34m=?,
+    ~onClose: 'any_r30l=?,
+    ~onOpen: 'any_rdxa=?,
     ~_open: bool=?,
-    ~renderValue: 'any_r007=?,
+    ~renderValue: 'any_ry99=?,
     ~_SelectDisplayProps: Js.t({..})=?,
-    ~value: 'union_r62x=?,
+    ~value: 'union_rt6d=?,
     ~variant: string=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rw5t=?,
+    ~defaultValue: 'union_rqsj=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rps6=?,
-    ~inputRef: 'union_rdld=?,
+    ~inputComponent: 'any_rjs2=?,
+    ~inputRef: 'union_r96t=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_r8ac=?,
-    ~rowsMax: 'union_rztd=?,
+    ~rows: 'union_rvlv=?,
+    ~rowsMax: 'union_rhri=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
+    ~muiFormControl: Js.t({..})=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
@@ -125,7 +126,7 @@ let make =
       ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
       ~onOpen: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: option(bool)=?,
-      ~renderValue: option('any_r937 => ReasonReact.reactElement)=?,
+      ~renderValue: option('any_r3dk => ReasonReact.reactElement)=?,
       ~_SelectDisplayProps: option(Js.t({..}))=?,
       ~value:
          option(
@@ -153,14 +154,33 @@ let make =
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
       ~defaultValue:
-         option([ | `String(string) | `Int(int) | `Float(float)])=?,
+         option(
+           [
+             | `String(string)
+             | `Int(int)
+             | `Float(float)
+             | `Bool(bool)
+             | `ObjectGeneric(Js.t({..}))
+             | `Array(
+                 array(
+                   [
+                     | `String(string)
+                     | `Int(int)
+                     | `Float(float)
+                     | `Bool(bool)
+                     | `ObjectGeneric(Js.t({..}))
+                   ],
+                 ),
+               )
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(ReasonReact.reactElement)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_rps6)=?,
+      ~inputComponent: option('any_rjs2)=?,
       ~inputRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
@@ -175,6 +195,7 @@ let make =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(ReasonReact.reactElement)=?,
       ~type_: option(string)=?,
+      ~muiFormControl: option(Js.t({..}))=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onEmpty: option('genericCallback)=?,
       ~onFilled: option('genericCallback)=?,
@@ -242,6 +263,7 @@ let make =
           rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~startAdornment?,
         ~_type=?type_,
+        ~muiFormControl?,
         ~onBlur?,
         ~onEmpty?,
         ~onFilled?,
