@@ -4,8 +4,7 @@ external makeProps:
     ~disableStylesGeneration: bool=?,
     ~sheetsCache: Js.t({..})=?,
     ~sheetsManager: Js.t({..})=?,
-    ~theme: 'union_rvpn,
-    ~xlAuto: MaterialUi_Theme.t,
+    ~theme: MaterialUi_Theme.t(_),
     unit
   ) =>
   _ =
@@ -17,8 +16,7 @@ let make =
       ~disableStylesGeneration: option(bool)=?,
       ~sheetsCache: option(Js.t({..}))=?,
       ~sheetsManager: option(Js.t({..}))=?,
-      ~theme: [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-      ~xlAuto: MaterialUi_Theme.t,
+      ~theme: MaterialUi_Theme.t(_),
       children,
     ) =>
   ReasonReact.wrapJsForReason(
@@ -28,8 +26,7 @@ let make =
         ~disableStylesGeneration?,
         ~sheetsCache?,
         ~sheetsManager?,
-        ~theme=MaterialUi_Helpers.unwrapValue(theme),
-        ~xlAuto,
+        ~theme,
         (),
       ),
     children,

@@ -87,8 +87,8 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_e=?,
-    ~valueBuffer: 'number_t=?,
+    ~value: 'number_1=?,
+    ~valueBuffer: 'number_e=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

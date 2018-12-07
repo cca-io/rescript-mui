@@ -61,7 +61,7 @@ external makeProps:
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
-    ~index: 'number_g=?,
+    ~index: 'number_y=?,
     ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

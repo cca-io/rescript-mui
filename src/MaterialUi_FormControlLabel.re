@@ -46,16 +46,16 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~checked: 'union_rbmd=?,
+    ~checked: 'union_ryww=?,
     ~className: string=?,
     ~control: ReasonReact.reactElement=?,
     ~disabled: bool=?,
-    ~inputRef: 'union_rfak=?,
+    ~inputRef: 'union_rf1z=?,
     ~label: ReasonReact.reactElement=?,
     ~labelPlacement: string=?,
     ~muiFormControl: Js.t({..})=?,
     ~name: string=?,
-    ~onChange: 'any_r5mx=?,
+    ~onChange: 'any_rnda=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

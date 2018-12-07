@@ -67,7 +67,7 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ryuv=?,
+    ~component: 'union_rdyi=?,
     ~fontSize: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

@@ -44,7 +44,7 @@ external makeProps:
   (
     ~absolute: bool=?,
     ~className: string=?,
-    ~component: 'union_r48y=?,
+    ~component: 'union_r95s=?,
     ~light: bool=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,

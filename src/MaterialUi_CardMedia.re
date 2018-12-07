@@ -27,7 +27,7 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_r8qg=?,
+    ~component: 'union_r58n=?,
     ~image: string=?,
     ~src: string=?,
     ~classes: Js.Dict.t(string)=?,

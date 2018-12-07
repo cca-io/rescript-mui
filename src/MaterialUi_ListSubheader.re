@@ -47,7 +47,7 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r386=?,
+    ~component: 'union_rmvv=?,
     ~disableGutters: bool=?,
     ~disableSticky: bool=?,
     ~inset: bool=?,

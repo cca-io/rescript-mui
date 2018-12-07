@@ -32,7 +32,7 @@ external makeProps:
     ~alt: string=?,
     ~childrenClassName: string=?,
     ~className: string=?,
-    ~component: 'union_rmvx=?,
+    ~component: 'union_r0lt=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,

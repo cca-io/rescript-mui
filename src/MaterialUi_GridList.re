@@ -26,10 +26,10 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~cellHeight: 'union_ralv=?,
+    ~cellHeight: 'union_ryxg=?,
     ~className: string=?,
-    ~cols: 'number_d=?,
-    ~component: 'union_r5ee=?,
+    ~cols: 'number_k=?,
+    ~component: 'union_rh2z=?,
     ~spacing: 'number_w=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
