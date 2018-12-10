@@ -23,8 +23,10 @@ to add the library to your project dependencies. And add `@jsiebern/bs-material-
 
 ## Installation of the `withStyles` code extension (ppx)
 
-Install the package: `yarn add --dev @jsiebern/reason-mui-withstyles-ppx`.
+Install the package: `yarn add --dev @jsiebern/bs-material-ui-ppx`.
+
 (The PPX builds on the fly using `bsb-native`. This is a quite heavy dependency and takes a while but will ensure that the PPX runs on your system)
+
 Add the entry `./node_modules/@jsiebern/bs-material-ui-ppx/ppx` to the `ppx-flags` node of your `bsconfig.json`.
 
 ## Example
