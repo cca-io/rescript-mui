@@ -18,21 +18,21 @@ module BreakpointValues = {
 
 module Breakpoints = {
   [@bs.deriving abstract]
-  type t('between, 'down, 'only, 'up, 'width) = {
+  type t = {
     [@bs.as "between"]
-    between: Js.t('between),
+    between: Js.Json.t,
     [@bs.as "down"]
-    down: Js.t('down),
+    down: Js.Json.t,
     [@bs.as "keys"]
     keys: array(string),
     [@bs.as "only"]
-    only: Js.t('only),
+    only: Js.Json.t,
     [@bs.as "up"]
-    up: Js.t('up),
+    up: Js.Json.t,
     [@bs.as "values"]
     values: BreakpointValues.t,
     [@bs.as "width"]
-    width: Js.t('width),
+    width: Js.Json.t,
   };
 
   let make = t;
@@ -40,9 +40,9 @@ module Breakpoints = {
 
 module Mixins = {
   [@bs.deriving abstract]
-  type t('gutters) = {
+  type t = {
     [@bs.as "gutters"]
-    gutters: Js.t('gutters),
+    gutters: Js.Json.t,
     [@bs.as "toolbar"]
     toolbar: ReactDOMRe.Style.t,
   };
@@ -113,6 +113,8 @@ module Overrides = {
     muiExpansionPanelDetails: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "MuiExpansionPanelSummary"]
     muiExpansionPanelSummary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "MuiFab"]
+    muiFab: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "MuiFilledInput"]
     muiFilledInput: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "MuiFormControl"]
@@ -352,11 +354,11 @@ module TypeText = {
 
 module Palette = {
   [@bs.deriving abstract]
-  type t('augmentColor, 'getContrastText, 'primary, 'secondary) = {
+  type t = {
     [@bs.as "action"]
     action: TypeAction.t,
     [@bs.as "augmentColor"]
-    augmentColor: Js.t('augmentColor),
+    augmentColor: Js.Json.t,
     [@bs.as "background"]
     background: TypeBackground.t,
     [@bs.as "common"]
@@ -368,13 +370,13 @@ module Palette = {
     [@bs.as "error"]
     error: PaletteColor.t,
     [@bs.as "getContrastText"]
-    getContrastText: Js.t('getContrastText),
+    getContrastText: Js.Json.t,
     [@bs.as "grey"]
     grey: Color.t,
     [@bs.as "primary"]
-    primary: Js.t('primary),
+    primary: PaletteColor.t,
     [@bs.as "secondary"]
-    secondary: Js.t('secondary),
+    secondary: PaletteColor.t,
     [@bs.as "text"]
     text: TypeText.t,
     [@bs.as "tonalOffset"]
@@ -388,254 +390,173 @@ module Palette = {
 
 module ComponentsProps = {
   [@bs.deriving abstract]
-  type t(
-    'muiAppBar,
-    'muiAvatar,
-    'muiBackdrop,
-    'muiBadge,
-    'muiBottomNavigation,
-    'muiBottomNavigationAction,
-    'muiButton,
-    'muiButtonBase,
-    'muiCard,
-    'muiCardActions,
-    'muiCardContent,
-    'muiCardHeader,
-    'muiCardMedia,
-    'muiCheckbox,
-    'muiChip,
-    'muiCircularProgress,
-    'muiCollapse,
-    'muiCssBaseline,
-    'muiDialog,
-    'muiDialogActions,
-    'muiDialogContent,
-    'muiDialogContentText,
-    'muiDialogTitle,
-    'muiDivider,
-    'muiDrawer,
-    'muiExpansionPanel,
-    'muiExpansionPanelActions,
-    'muiExpansionPanelDetails,
-    'muiExpansionPanelSummary,
-    'muiFormControl,
-    'muiFormControlLabel,
-    'muiFormGroup,
-    'muiFormHelperText,
-    'muiFormLabel,
-    'muiGrid,
-    'muiGridList,
-    'muiGridListTile,
-    'muiGridListTileBar,
-    'muiIcon,
-    'muiIconButton,
-    'muiInput,
-    'muiInputAdornment,
-    'muiInputLabel,
-    'muiLinearProgress,
-    'muiList,
-    'muiListItem,
-    'muiListItemAvatar,
-    'muiListItemIcon,
-    'muiListItemSecondaryAction,
-    'muiListItemText,
-    'muiListSubheader,
-    'muiMenu,
-    'muiMenuItem,
-    'muiMobileStepper,
-    'muiModal,
-    'muiNativeSelect,
-    'muiPaper,
-    'muiPopover,
-    'muiRadio,
-    'muiSelect,
-    'muiSnackbar,
-    'muiSnackbarContent,
-    'muiStep,
-    'muiStepButton,
-    'muiStepConnector,
-    'muiStepContent,
-    'muiStepIcon,
-    'muiStepLabel,
-    'muiStepper,
-    'muiSvgIcon,
-    'muiSwitch,
-    'muiSwitchBase,
-    'muiTab,
-    'muiTable,
-    'muiTableCell,
-    'muiTablePagination,
-    'muiTableRow,
-    'muiTableSortLabel,
-    'muiTabs,
-    'muiToolbar,
-    'muiTooltip,
-    'muiTypography,
-  ) = {
+  type t = {
     [@bs.optional] [@bs.as "MuiAppBar"]
-    muiAppBar: Js.t('muiAppBar),
+    muiAppBar: Js.Json.t,
     [@bs.optional] [@bs.as "MuiAvatar"]
-    muiAvatar: Js.t('muiAvatar),
+    muiAvatar: Js.Json.t,
     [@bs.optional] [@bs.as "MuiBackdrop"]
-    muiBackdrop: Js.t('muiBackdrop),
+    muiBackdrop: Js.Json.t,
     [@bs.optional] [@bs.as "MuiBadge"]
-    muiBadge: Js.t('muiBadge),
+    muiBadge: Js.Json.t,
     [@bs.optional] [@bs.as "MuiBottomNavigation"]
-    muiBottomNavigation: Js.t('muiBottomNavigation),
+    muiBottomNavigation: Js.Json.t,
     [@bs.optional] [@bs.as "MuiBottomNavigationAction"]
-    muiBottomNavigationAction: Js.t('muiBottomNavigationAction),
+    muiBottomNavigationAction: Js.Json.t,
     [@bs.optional] [@bs.as "MuiButton"]
-    muiButton: Js.t('muiButton),
+    muiButton: Js.Json.t,
     [@bs.optional] [@bs.as "MuiButtonBase"]
-    muiButtonBase: Js.t('muiButtonBase),
+    muiButtonBase: Js.Json.t,
     [@bs.optional] [@bs.as "MuiCard"]
-    muiCard: Js.t('muiCard),
+    muiCard: Js.Json.t,
     [@bs.optional] [@bs.as "MuiCardActions"]
-    muiCardActions: Js.t('muiCardActions),
+    muiCardActions: Js.Json.t,
     [@bs.optional] [@bs.as "MuiCardContent"]
-    muiCardContent: Js.t('muiCardContent),
+    muiCardContent: Js.Json.t,
     [@bs.optional] [@bs.as "MuiCardHeader"]
-    muiCardHeader: Js.t('muiCardHeader),
+    muiCardHeader: Js.Json.t,
     [@bs.optional] [@bs.as "MuiCardMedia"]
-    muiCardMedia: Js.t('muiCardMedia),
+    muiCardMedia: Js.Json.t,
     [@bs.optional] [@bs.as "MuiCheckbox"]
-    muiCheckbox: Js.t('muiCheckbox),
+    muiCheckbox: Js.Json.t,
     [@bs.optional] [@bs.as "MuiChip"]
-    muiChip: Js.t('muiChip),
+    muiChip: Js.Json.t,
     [@bs.optional] [@bs.as "MuiCircularProgress"]
-    muiCircularProgress: Js.t('muiCircularProgress),
+    muiCircularProgress: Js.Json.t,
     [@bs.optional] [@bs.as "MuiCollapse"]
-    muiCollapse: Js.t('muiCollapse),
+    muiCollapse: Js.Json.t,
     [@bs.optional] [@bs.as "MuiCssBaseline"]
-    muiCssBaseline: Js.t('muiCssBaseline),
+    muiCssBaseline: Js.Json.t,
     [@bs.optional] [@bs.as "MuiDialog"]
-    muiDialog: Js.t('muiDialog),
+    muiDialog: Js.Json.t,
     [@bs.optional] [@bs.as "MuiDialogActions"]
-    muiDialogActions: Js.t('muiDialogActions),
+    muiDialogActions: Js.Json.t,
     [@bs.optional] [@bs.as "MuiDialogContent"]
-    muiDialogContent: Js.t('muiDialogContent),
+    muiDialogContent: Js.Json.t,
     [@bs.optional] [@bs.as "MuiDialogContentText"]
-    muiDialogContentText: Js.t('muiDialogContentText),
+    muiDialogContentText: Js.Json.t,
     [@bs.optional] [@bs.as "MuiDialogTitle"]
-    muiDialogTitle: Js.t('muiDialogTitle),
+    muiDialogTitle: Js.Json.t,
     [@bs.optional] [@bs.as "MuiDivider"]
-    muiDivider: Js.t('muiDivider),
+    muiDivider: Js.Json.t,
     [@bs.optional] [@bs.as "MuiDrawer"]
-    muiDrawer: Js.t('muiDrawer),
+    muiDrawer: Js.Json.t,
     [@bs.optional] [@bs.as "MuiExpansionPanel"]
-    muiExpansionPanel: Js.t('muiExpansionPanel),
+    muiExpansionPanel: Js.Json.t,
     [@bs.optional] [@bs.as "MuiExpansionPanelActions"]
-    muiExpansionPanelActions: Js.t('muiExpansionPanelActions),
+    muiExpansionPanelActions: Js.Json.t,
     [@bs.optional] [@bs.as "MuiExpansionPanelDetails"]
-    muiExpansionPanelDetails: Js.t('muiExpansionPanelDetails),
+    muiExpansionPanelDetails: Js.Json.t,
     [@bs.optional] [@bs.as "MuiExpansionPanelSummary"]
-    muiExpansionPanelSummary: Js.t('muiExpansionPanelSummary),
+    muiExpansionPanelSummary: Js.Json.t,
     [@bs.optional] [@bs.as "MuiFormControl"]
-    muiFormControl: Js.t('muiFormControl),
+    muiFormControl: Js.Json.t,
     [@bs.optional] [@bs.as "MuiFormControlLabel"]
-    muiFormControlLabel: Js.t('muiFormControlLabel),
+    muiFormControlLabel: Js.Json.t,
     [@bs.optional] [@bs.as "MuiFormGroup"]
-    muiFormGroup: Js.t('muiFormGroup),
+    muiFormGroup: Js.Json.t,
     [@bs.optional] [@bs.as "MuiFormHelperText"]
-    muiFormHelperText: Js.t('muiFormHelperText),
+    muiFormHelperText: Js.Json.t,
     [@bs.optional] [@bs.as "MuiFormLabel"]
-    muiFormLabel: Js.t('muiFormLabel),
+    muiFormLabel: Js.Json.t,
     [@bs.optional] [@bs.as "MuiGrid"]
-    muiGrid: Js.t('muiGrid),
+    muiGrid: Js.Json.t,
     [@bs.optional] [@bs.as "MuiGridList"]
-    muiGridList: Js.t('muiGridList),
+    muiGridList: Js.Json.t,
     [@bs.optional] [@bs.as "MuiGridListTile"]
-    muiGridListTile: Js.t('muiGridListTile),
+    muiGridListTile: Js.Json.t,
     [@bs.optional] [@bs.as "MuiGridListTileBar"]
-    muiGridListTileBar: Js.t('muiGridListTileBar),
+    muiGridListTileBar: Js.Json.t,
     [@bs.optional] [@bs.as "MuiIcon"]
-    muiIcon: Js.t('muiIcon),
+    muiIcon: Js.Json.t,
     [@bs.optional] [@bs.as "MuiIconButton"]
-    muiIconButton: Js.t('muiIconButton),
+    muiIconButton: Js.Json.t,
     [@bs.optional] [@bs.as "MuiInput"]
-    muiInput: Js.t('muiInput),
+    muiInput: Js.Json.t,
     [@bs.optional] [@bs.as "MuiInputAdornment"]
-    muiInputAdornment: Js.t('muiInputAdornment),
+    muiInputAdornment: Js.Json.t,
     [@bs.optional] [@bs.as "MuiInputLabel"]
-    muiInputLabel: Js.t('muiInputLabel),
+    muiInputLabel: Js.Json.t,
     [@bs.optional] [@bs.as "MuiLinearProgress"]
-    muiLinearProgress: Js.t('muiLinearProgress),
+    muiLinearProgress: Js.Json.t,
     [@bs.optional] [@bs.as "MuiList"]
-    muiList: Js.t('muiList),
+    muiList: Js.Json.t,
     [@bs.optional] [@bs.as "MuiListItem"]
-    muiListItem: Js.t('muiListItem),
+    muiListItem: Js.Json.t,
     [@bs.optional] [@bs.as "MuiListItemAvatar"]
-    muiListItemAvatar: Js.t('muiListItemAvatar),
+    muiListItemAvatar: Js.Json.t,
     [@bs.optional] [@bs.as "MuiListItemIcon"]
-    muiListItemIcon: Js.t('muiListItemIcon),
+    muiListItemIcon: Js.Json.t,
     [@bs.optional] [@bs.as "MuiListItemSecondaryAction"]
-    muiListItemSecondaryAction: Js.t('muiListItemSecondaryAction),
+    muiListItemSecondaryAction: Js.Json.t,
     [@bs.optional] [@bs.as "MuiListItemText"]
-    muiListItemText: Js.t('muiListItemText),
+    muiListItemText: Js.Json.t,
     [@bs.optional] [@bs.as "MuiListSubheader"]
-    muiListSubheader: Js.t('muiListSubheader),
+    muiListSubheader: Js.Json.t,
     [@bs.optional] [@bs.as "MuiMenu"]
-    muiMenu: Js.t('muiMenu),
+    muiMenu: Js.Json.t,
     [@bs.optional] [@bs.as "MuiMenuItem"]
-    muiMenuItem: Js.t('muiMenuItem),
+    muiMenuItem: Js.Json.t,
     [@bs.optional] [@bs.as "MuiMobileStepper"]
-    muiMobileStepper: Js.t('muiMobileStepper),
+    muiMobileStepper: Js.Json.t,
     [@bs.optional] [@bs.as "MuiModal"]
-    muiModal: Js.t('muiModal),
+    muiModal: Js.Json.t,
     [@bs.optional] [@bs.as "MuiNativeSelect"]
-    muiNativeSelect: Js.t('muiNativeSelect),
+    muiNativeSelect: Js.Json.t,
     [@bs.optional] [@bs.as "MuiPaper"]
-    muiPaper: Js.t('muiPaper),
+    muiPaper: Js.Json.t,
     [@bs.optional] [@bs.as "MuiPopover"]
-    muiPopover: Js.t('muiPopover),
+    muiPopover: Js.Json.t,
     [@bs.optional] [@bs.as "MuiRadio"]
-    muiRadio: Js.t('muiRadio),
+    muiRadio: Js.Json.t,
     [@bs.optional] [@bs.as "MuiSelect"]
-    muiSelect: Js.t('muiSelect),
+    muiSelect: Js.Json.t,
     [@bs.optional] [@bs.as "MuiSnackbar"]
-    muiSnackbar: Js.t('muiSnackbar),
+    muiSnackbar: Js.Json.t,
     [@bs.optional] [@bs.as "MuiSnackbarContent"]
-    muiSnackbarContent: Js.t('muiSnackbarContent),
+    muiSnackbarContent: Js.Json.t,
     [@bs.optional] [@bs.as "MuiStep"]
-    muiStep: Js.t('muiStep),
+    muiStep: Js.Json.t,
     [@bs.optional] [@bs.as "MuiStepButton"]
-    muiStepButton: Js.t('muiStepButton),
+    muiStepButton: Js.Json.t,
     [@bs.optional] [@bs.as "MuiStepConnector"]
-    muiStepConnector: Js.t('muiStepConnector),
+    muiStepConnector: Js.Json.t,
     [@bs.optional] [@bs.as "MuiStepContent"]
-    muiStepContent: Js.t('muiStepContent),
+    muiStepContent: Js.Json.t,
     [@bs.optional] [@bs.as "MuiStepIcon"]
-    muiStepIcon: Js.t('muiStepIcon),
+    muiStepIcon: Js.Json.t,
     [@bs.optional] [@bs.as "MuiStepLabel"]
-    muiStepLabel: Js.t('muiStepLabel),
+    muiStepLabel: Js.Json.t,
     [@bs.optional] [@bs.as "MuiStepper"]
-    muiStepper: Js.t('muiStepper),
+    muiStepper: Js.Json.t,
     [@bs.optional] [@bs.as "MuiSvgIcon"]
-    muiSvgIcon: Js.t('muiSvgIcon),
+    muiSvgIcon: Js.Json.t,
     [@bs.optional] [@bs.as "MuiSwitch"]
-    muiSwitch: Js.t('muiSwitch),
+    muiSwitch: Js.Json.t,
     [@bs.optional] [@bs.as "MuiSwitchBase"]
-    muiSwitchBase: Js.t('muiSwitchBase),
+    muiSwitchBase: Js.Json.t,
     [@bs.optional] [@bs.as "MuiTab"]
-    muiTab: Js.t('muiTab),
+    muiTab: Js.Json.t,
     [@bs.optional] [@bs.as "MuiTable"]
-    muiTable: Js.t('muiTable),
+    muiTable: Js.Json.t,
     [@bs.optional] [@bs.as "MuiTableCell"]
-    muiTableCell: Js.t('muiTableCell),
+    muiTableCell: Js.Json.t,
     [@bs.optional] [@bs.as "MuiTablePagination"]
-    muiTablePagination: Js.t('muiTablePagination),
+    muiTablePagination: Js.Json.t,
     [@bs.optional] [@bs.as "MuiTableRow"]
-    muiTableRow: Js.t('muiTableRow),
+    muiTableRow: Js.Json.t,
     [@bs.optional] [@bs.as "MuiTableSortLabel"]
-    muiTableSortLabel: Js.t('muiTableSortLabel),
+    muiTableSortLabel: Js.Json.t,
     [@bs.optional] [@bs.as "MuiTabs"]
-    muiTabs: Js.t('muiTabs),
+    muiTabs: Js.Json.t,
     [@bs.optional] [@bs.as "MuiToolbar"]
-    muiToolbar: Js.t('muiToolbar),
+    muiToolbar: Js.Json.t,
     [@bs.optional] [@bs.as "MuiTooltip"]
-    muiTooltip: Js.t('muiTooltip),
+    muiTooltip: Js.Json.t,
+    [@bs.optional] [@bs.as "MuiTouchRipple"]
+    muiTouchRipple: Js.Json.t,
     [@bs.optional] [@bs.as "MuiTypography"]
-    muiTypography: Js.t('muiTypography),
+    muiTypography: Js.Json.t,
   };
 
   let make = t;
@@ -3073,7 +2994,7 @@ module Title = {
 
 module Typography = {
   [@bs.deriving abstract]
-  type t('pxToRem) = {
+  type t = {
     [@bs.as "body1"]
     body1: Body1.t,
     [@bs.as "body2"]
@@ -3117,7 +3038,7 @@ module Typography = {
     [@bs.as "overline"]
     overline: Overline.t,
     [@bs.as "pxToRem"]
-    pxToRem: Js.t('pxToRem),
+    pxToRem: Js.Json.t,
     [@bs.as "subheading"]
     subheading: Subheading.t,
     [@bs.as "subtitle1"]
@@ -3228,197 +3149,19 @@ module ZIndex = {
 
 module Theme = {
   [@bs.deriving abstract]
-  type t(
-    'between,
-    'down,
-    'only,
-    'up,
-    'width,
-    'gutters,
-    'augmentColor,
-    'getContrastText,
-    'primary,
-    'secondary,
-    'muiAppBar,
-    'muiAvatar,
-    'muiBackdrop,
-    'muiBadge,
-    'muiBottomNavigation,
-    'muiBottomNavigationAction,
-    'muiButton,
-    'muiButtonBase,
-    'muiCard,
-    'muiCardActions,
-    'muiCardContent,
-    'muiCardHeader,
-    'muiCardMedia,
-    'muiCheckbox,
-    'muiChip,
-    'muiCircularProgress,
-    'muiCollapse,
-    'muiCssBaseline,
-    'muiDialog,
-    'muiDialogActions,
-    'muiDialogContent,
-    'muiDialogContentText,
-    'muiDialogTitle,
-    'muiDivider,
-    'muiDrawer,
-    'muiExpansionPanel,
-    'muiExpansionPanelActions,
-    'muiExpansionPanelDetails,
-    'muiExpansionPanelSummary,
-    'muiFormControl,
-    'muiFormControlLabel,
-    'muiFormGroup,
-    'muiFormHelperText,
-    'muiFormLabel,
-    'muiGrid,
-    'muiGridList,
-    'muiGridListTile,
-    'muiGridListTileBar,
-    'muiIcon,
-    'muiIconButton,
-    'muiInput,
-    'muiInputAdornment,
-    'muiInputLabel,
-    'muiLinearProgress,
-    'muiList,
-    'muiListItem,
-    'muiListItemAvatar,
-    'muiListItemIcon,
-    'muiListItemSecondaryAction,
-    'muiListItemText,
-    'muiListSubheader,
-    'muiMenu,
-    'muiMenuItem,
-    'muiMobileStepper,
-    'muiModal,
-    'muiNativeSelect,
-    'muiPaper,
-    'muiPopover,
-    'muiRadio,
-    'muiSelect,
-    'muiSnackbar,
-    'muiSnackbarContent,
-    'muiStep,
-    'muiStepButton,
-    'muiStepConnector,
-    'muiStepContent,
-    'muiStepIcon,
-    'muiStepLabel,
-    'muiStepper,
-    'muiSvgIcon,
-    'muiSwitch,
-    'muiSwitchBase,
-    'muiTab,
-    'muiTable,
-    'muiTableCell,
-    'muiTablePagination,
-    'muiTableRow,
-    'muiTableSortLabel,
-    'muiTabs,
-    'muiToolbar,
-    'muiTooltip,
-    'muiTypography,
-    'pxToRem,
-  ) = {
+  type t = {
     [@bs.as "breakpoints"]
-    breakpoints: Breakpoints.t('between, 'down, 'only, 'up, 'width),
+    breakpoints: Breakpoints.t,
     [@bs.as "direction"]
     direction: string,
     [@bs.as "mixins"]
-    mixins: Mixins.t('gutters),
+    mixins: Mixins.t,
     [@bs.optional] [@bs.as "overrides"]
     overrides: Overrides.t,
     [@bs.as "palette"]
-    palette: Palette.t('augmentColor, 'getContrastText, 'primary, 'secondary),
+    palette: Palette.t,
     [@bs.optional] [@bs.as "props"]
-    props:
-      ComponentsProps.t(
-        'muiAppBar,
-        'muiAvatar,
-        'muiBackdrop,
-        'muiBadge,
-        'muiBottomNavigation,
-        'muiBottomNavigationAction,
-        'muiButton,
-        'muiButtonBase,
-        'muiCard,
-        'muiCardActions,
-        'muiCardContent,
-        'muiCardHeader,
-        'muiCardMedia,
-        'muiCheckbox,
-        'muiChip,
-        'muiCircularProgress,
-        'muiCollapse,
-        'muiCssBaseline,
-        'muiDialog,
-        'muiDialogActions,
-        'muiDialogContent,
-        'muiDialogContentText,
-        'muiDialogTitle,
-        'muiDivider,
-        'muiDrawer,
-        'muiExpansionPanel,
-        'muiExpansionPanelActions,
-        'muiExpansionPanelDetails,
-        'muiExpansionPanelSummary,
-        'muiFormControl,
-        'muiFormControlLabel,
-        'muiFormGroup,
-        'muiFormHelperText,
-        'muiFormLabel,
-        'muiGrid,
-        'muiGridList,
-        'muiGridListTile,
-        'muiGridListTileBar,
-        'muiIcon,
-        'muiIconButton,
-        'muiInput,
-        'muiInputAdornment,
-        'muiInputLabel,
-        'muiLinearProgress,
-        'muiList,
-        'muiListItem,
-        'muiListItemAvatar,
-        'muiListItemIcon,
-        'muiListItemSecondaryAction,
-        'muiListItemText,
-        'muiListSubheader,
-        'muiMenu,
-        'muiMenuItem,
-        'muiMobileStepper,
-        'muiModal,
-        'muiNativeSelect,
-        'muiPaper,
-        'muiPopover,
-        'muiRadio,
-        'muiSelect,
-        'muiSnackbar,
-        'muiSnackbarContent,
-        'muiStep,
-        'muiStepButton,
-        'muiStepConnector,
-        'muiStepContent,
-        'muiStepIcon,
-        'muiStepLabel,
-        'muiStepper,
-        'muiSvgIcon,
-        'muiSwitch,
-        'muiSwitchBase,
-        'muiTab,
-        'muiTable,
-        'muiTableCell,
-        'muiTablePagination,
-        'muiTableRow,
-        'muiTableSortLabel,
-        'muiTabs,
-        'muiToolbar,
-        'muiTooltip,
-        'muiTypography,
-      ),
+    props: ComponentsProps.t,
     [@bs.as "shadows"]
     shadows: array(string),
     [@bs.as "shape"]
@@ -3428,206 +3171,15 @@ module Theme = {
     [@bs.as "transitions"]
     transitions: Transitions.t,
     [@bs.as "typography"]
-    typography: Typography.t('pxToRem),
+    typography: Typography.t,
     [@bs.as "zIndex"]
     zIndex: ZIndex.t,
   };
 
   let make = t;
 };
-
-type t('p) =
-  Theme.t(
-    'between,
-    'down,
-    'only,
-    'up,
-    'width,
-    'gutters,
-    'augmentColor,
-    'getContrastText,
-    'primary,
-    'secondary,
-    'muiAppBar,
-    'muiAvatar,
-    'muiBackdrop,
-    'muiBadge,
-    'muiBottomNavigation,
-    'muiBottomNavigationAction,
-    'muiButton,
-    'muiButtonBase,
-    'muiCard,
-    'muiCardActions,
-    'muiCardContent,
-    'muiCardHeader,
-    'muiCardMedia,
-    'muiCheckbox,
-    'muiChip,
-    'muiCircularProgress,
-    'muiCollapse,
-    'muiCssBaseline,
-    'muiDialog,
-    'muiDialogActions,
-    'muiDialogContent,
-    'muiDialogContentText,
-    'muiDialogTitle,
-    'muiDivider,
-    'muiDrawer,
-    'muiExpansionPanel,
-    'muiExpansionPanelActions,
-    'muiExpansionPanelDetails,
-    'muiExpansionPanelSummary,
-    'muiFormControl,
-    'muiFormControlLabel,
-    'muiFormGroup,
-    'muiFormHelperText,
-    'muiFormLabel,
-    'muiGrid,
-    'muiGridList,
-    'muiGridListTile,
-    'muiGridListTileBar,
-    'muiIcon,
-    'muiIconButton,
-    'muiInput,
-    'muiInputAdornment,
-    'muiInputLabel,
-    'muiLinearProgress,
-    'muiList,
-    'muiListItem,
-    'muiListItemAvatar,
-    'muiListItemIcon,
-    'muiListItemSecondaryAction,
-    'muiListItemText,
-    'muiListSubheader,
-    'muiMenu,
-    'muiMenuItem,
-    'muiMobileStepper,
-    'muiModal,
-    'muiNativeSelect,
-    'muiPaper,
-    'muiPopover,
-    'muiRadio,
-    'muiSelect,
-    'muiSnackbar,
-    'muiSnackbarContent,
-    'muiStep,
-    'muiStepButton,
-    'muiStepConnector,
-    'muiStepContent,
-    'muiStepIcon,
-    'muiStepLabel,
-    'muiStepper,
-    'muiSvgIcon,
-    'muiSwitch,
-    'muiSwitchBase,
-    'muiTab,
-    'muiTable,
-    'muiTableCell,
-    'muiTablePagination,
-    'muiTableRow,
-    'muiTableSortLabel,
-    'muiTabs,
-    'muiToolbar,
-    'muiTooltip,
-    'muiTypography,
-    'pxToRem,
-  )
-constraint 'p = (
-  'between,
-  'down,
-  'only,
-  'up,
-  'width,
-  'gutters,
-  'augmentColor,
-  'getContrastText,
-  'primary,
-  'secondary,
-  'muiAppBar,
-  'muiAvatar,
-  'muiBackdrop,
-  'muiBadge,
-  'muiBottomNavigation,
-  'muiBottomNavigationAction,
-  'muiButton,
-  'muiButtonBase,
-  'muiCard,
-  'muiCardActions,
-  'muiCardContent,
-  'muiCardHeader,
-  'muiCardMedia,
-  'muiCheckbox,
-  'muiChip,
-  'muiCircularProgress,
-  'muiCollapse,
-  'muiCssBaseline,
-  'muiDialog,
-  'muiDialogActions,
-  'muiDialogContent,
-  'muiDialogContentText,
-  'muiDialogTitle,
-  'muiDivider,
-  'muiDrawer,
-  'muiExpansionPanel,
-  'muiExpansionPanelActions,
-  'muiExpansionPanelDetails,
-  'muiExpansionPanelSummary,
-  'muiFormControl,
-  'muiFormControlLabel,
-  'muiFormGroup,
-  'muiFormHelperText,
-  'muiFormLabel,
-  'muiGrid,
-  'muiGridList,
-  'muiGridListTile,
-  'muiGridListTileBar,
-  'muiIcon,
-  'muiIconButton,
-  'muiInput,
-  'muiInputAdornment,
-  'muiInputLabel,
-  'muiLinearProgress,
-  'muiList,
-  'muiListItem,
-  'muiListItemAvatar,
-  'muiListItemIcon,
-  'muiListItemSecondaryAction,
-  'muiListItemText,
-  'muiListSubheader,
-  'muiMenu,
-  'muiMenuItem,
-  'muiMobileStepper,
-  'muiModal,
-  'muiNativeSelect,
-  'muiPaper,
-  'muiPopover,
-  'muiRadio,
-  'muiSelect,
-  'muiSnackbar,
-  'muiSnackbarContent,
-  'muiStep,
-  'muiStepButton,
-  'muiStepConnector,
-  'muiStepContent,
-  'muiStepIcon,
-  'muiStepLabel,
-  'muiStepper,
-  'muiSvgIcon,
-  'muiSwitch,
-  'muiSwitchBase,
-  'muiTab,
-  'muiTable,
-  'muiTableCell,
-  'muiTablePagination,
-  'muiTableRow,
-  'muiTableSortLabel,
-  'muiTabs,
-  'muiToolbar,
-  'muiTooltip,
-  'muiTypography,
-  'pxToRem,
-);
+type t = Theme.t;
 let make = Theme.make;
 
 [@bs.module "@material-ui/core/styles"]
-external create: MaterialUi_ThemeOptions.t(_) => t(_) = "createMuiTheme";
+external create: MaterialUi_ThemeOptions.t => t = "createMuiTheme";

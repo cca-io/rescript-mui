@@ -78,8 +78,8 @@ external makeProps:
     ~last: bool=?,
     ~optional: bool=?,
     ~orientation: string=?,
-    ~_TransitionComponent: 'genericCallback=?,
-    ~transitionDuration: 'union_rghy=?,
+    ~_TransitionComponent: 'union_r6jm=?,
+    ~transitionDuration: 'union_rt83=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -98,7 +98,14 @@ let make =
       ~last: option(bool)=?,
       ~optional: option(bool)=?,
       ~orientation: option(orientation)=?,
-      ~_TransitionComponent: option('genericCallback)=?,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `ObjectGeneric(Js.t({..}))
+           ],
+         )=?,
       ~transitionDuration:
          option(
            [
@@ -124,7 +131,12 @@ let make =
         ~last?,
         ~optional?,
         ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
-        ~_TransitionComponent?,
+        ~_TransitionComponent=?
+          _TransitionComponent->(
+                                  Belt.Option.map(v =>
+                                    MaterialUi_Helpers.unwrapValue(v)
+                                  )
+                                ),
         ~transitionDuration=?
           transitionDuration->(
                                 Belt.Option.map(v =>

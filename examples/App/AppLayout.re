@@ -90,6 +90,17 @@ let make = _children => {
                <br />
                <Grid container=true alignItems=`Center>
                  <Grid item=true md=V6>
+                   <Typography variant=`H5> "Theme Provider" </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleThemeProvider /> </Grid>
+               </Grid>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
                    <Typography variant=`H5> "List" </Typography>
                  </Grid>
                  <Grid item=true md=V6> <ExampleList /> </Grid>

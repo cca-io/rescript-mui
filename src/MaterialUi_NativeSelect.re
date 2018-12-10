@@ -51,33 +51,33 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~_IconComponent: 'union_rdm2=?,
+    ~_IconComponent: 'union_rvnd=?,
     ~input: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
     ~muiFormControl: Js.t({..})=?,
-    ~onChange: 'any_ri4z=?,
-    ~value: 'union_r1rl=?,
+    ~onChange: 'any_r3mw=?,
+    ~value: 'union_rt3x=?,
     ~variant: string=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_r9mj=?,
+    ~defaultValue: 'union_r4xk=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rppz=?,
-    ~inputRef: 'union_rip5=?,
+    ~inputComponent: 'any_rofn=?,
+    ~inputRef: 'union_rhzb=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rmfu=?,
-    ~rowsMax: 'union_r4z7=?,
+    ~rows: 'union_rjst=?,
+    ~rowsMax: 'union_rhvv=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
@@ -111,7 +111,22 @@ let make =
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~value:
          option(
-           [ | `String(string) | `Int(int) | `Float(float) | `Bool(bool)],
+           [
+             | `String(string)
+             | `Int(int)
+             | `Float(float)
+             | `Bool(bool)
+             | `Array(
+                 array(
+                   [
+                     | `String(string)
+                     | `Int(int)
+                     | `Float(float)
+                     | `Bool(bool)
+                   ],
+                 ),
+               )
+           ],
          )=?,
       ~variant: option(variant)=?,
       ~autoComplete: option(string)=?,
@@ -144,7 +159,7 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_rppz)=?,
+      ~inputComponent: option('any_rofn)=?,
       ~inputRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],

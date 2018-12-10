@@ -65,27 +65,28 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rhtt=?,
+    ~defaultValue: 'union_rhkf=?,
     ~disabled: bool=?,
+    ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_rtnl=?,
+    ~inputComponent: 'union_rkqr=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rhi2=?,
+    ~inputRef: 'union_ry3u=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
-    ~onChange: 'any_r8re=?,
+    ~onChange: 'any_rpq6=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_r410=?,
-    ~rowsMax: 'union_r7nc=?,
+    ~rows: 'union_rdmd=?,
+    ~rowsMax: 'union_ryct=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
-    ~value: 'union_rouz=?,
+    ~value: 'union_r2bw=?,
     ~muiFormControl: Js.t({..})=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onEmpty: 'genericCallback=?,
@@ -108,8 +109,28 @@ let make =
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
       ~defaultValue:
-         option([ | `String(string) | `Int(int) | `Float(float)])=?,
+         option(
+           [
+             | `String(string)
+             | `Int(int)
+             | `Float(float)
+             | `Bool(bool)
+             | `ObjectGeneric(Js.t({..}))
+             | `Array(
+                 array(
+                   [
+                     | `String(string)
+                     | `Int(int)
+                     | `Float(float)
+                     | `Bool(bool)
+                     | `ObjectGeneric(Js.t({..}))
+                   ],
+                 ),
+               )
+           ],
+         )=?,
       ~disabled: option(bool)=?,
+      ~disableUnderline: option(bool)=?,
       ~endAdornment: option(ReasonReact.reactElement)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
@@ -145,6 +166,7 @@ let make =
              | `Int(int)
              | `Float(float)
              | `Bool(bool)
+             | `ObjectGeneric(Js.t({..}))
              | `Array(
                  array(
                    [
@@ -152,6 +174,7 @@ let make =
                      | `Int(int)
                      | `Float(float)
                      | `Bool(bool)
+                     | `ObjectGeneric(Js.t({..}))
                    ],
                  ),
                )
@@ -183,6 +206,7 @@ let make =
                           )
                         ),
         ~disabled?,
+        ~disableUnderline?,
         ~endAdornment?,
         ~error?,
         ~fullWidth?,

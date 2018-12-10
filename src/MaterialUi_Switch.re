@@ -54,7 +54,7 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~checked: 'union_rqk4=?,
+    ~checked: 'union_rtlq=?,
     ~checkedIcon: ReasonReact.reactElement=?,
     ~className: string=?,
     ~color: string=?,
@@ -64,10 +64,10 @@ external makeProps:
     ~icon: ReasonReact.reactElement=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_r2po=?,
-    ~onChange: 'any_rgjx=?,
+    ~inputRef: 'union_rcmh=?,
+    ~onChange: 'any_rcym=?,
     ~_type: string=?,
-    ~value: 'union_rl6l=?,
+    ~value: 'union_rrko=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit

@@ -25,8 +25,8 @@ external makeProps:
   (
     ~className: string=?,
     ~raised: bool=?,
-    ~component: 'union_r0vl=?,
-    ~elevation: 'number_a=?,
+    ~component: 'union_rrh0=?,
+    ~elevation: 'number_k=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

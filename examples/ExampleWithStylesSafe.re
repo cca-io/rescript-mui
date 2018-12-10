@@ -1,4 +1,4 @@
-let component = ReasonReact.statelessComponent("Example");
+let component = ReasonReact.statelessComponent(__MODULE__);
 
 [%mui.withStyles
   "StyledExample"({
@@ -14,7 +14,10 @@ module Theme = MaterialUi_Theme;
         ReactDOMRe.Style.make(
           ~color=MaterialUi.Colors.Common.white,
           ~backgroundColor=
-            theme->Theme.Theme.paletteGet->Theme.Palette.primaryGet##main,
+            theme
+            ->Theme.Theme.paletteGet
+            ->Theme.Palette.primaryGet
+            ->Theme.PaletteColor.mainGet,
           (),
         ),
     }

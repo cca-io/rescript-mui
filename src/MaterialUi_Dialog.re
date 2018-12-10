@@ -4,6 +4,7 @@ type maxWidth = [
   | [@bs.as "sm"] `Sm
   | [@bs.as "md"] `Md
   | [@bs.as "lg"] `Lg
+  | [@bs.as "xl"] `Xl
   | [@bs.as "false"] `False
 ];
 
@@ -56,6 +57,7 @@ module Classes = {
     | PaperWidthSm(string)
     | PaperWidthMd(string)
     | PaperWidthLg(string)
+    | PaperWidthXl(string)
     | PaperFullWidth(string)
     | PaperFullScreen(string);
   type t = list(classesType);
@@ -72,6 +74,7 @@ module Classes = {
     | PaperWidthSm(_) => "paperWidthSm"
     | PaperWidthMd(_) => "paperWidthMd"
     | PaperWidthLg(_) => "paperWidthLg"
+    | PaperWidthXl(_) => "paperWidthXl"
     | PaperFullWidth(_) => "paperFullWidth"
     | PaperFullScreen(_) => "paperFullScreen";
   let to_obj = listOfClasses =>
@@ -91,6 +94,7 @@ module Classes = {
                          | PaperWidthSm(className)
                          | PaperWidthMd(className)
                          | PaperWidthLg(className)
+                         | PaperWidthXl(className)
                          | PaperFullWidth(className)
                          | PaperFullScreen(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
@@ -112,7 +116,7 @@ external makeProps:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rhqs=?,
+    ~onClose: 'any_ritt=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -121,13 +125,12 @@ external makeProps:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_rwe8=?,
-    ~transitionDuration: 'union_rk1p=?,
+    ~_TransitionComponent: 'union_r27m=?,
+    ~transitionDuration: 'union_rvhv=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_r20s=?,
-    ~container: 'union_rgw3=?,
+    ~_BackdropComponent: 'union_rqr0=?,
+    ~container: 'union_r3it=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
@@ -163,7 +166,6 @@ let make =
       ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: bool,
-      ~_PaperProps: option(Js.t({..}))=?,
       ~scroll: option(scroll)=?,
       ~_TransitionComponent:
          option(
@@ -227,7 +229,6 @@ let make =
         ~onExited?,
         ~onExiting?,
         ~_open=open_,
-        ~_PaperProps?,
         ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
         ~_TransitionComponent=?
           _TransitionComponent->(

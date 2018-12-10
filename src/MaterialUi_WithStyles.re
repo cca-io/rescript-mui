@@ -1,6 +1,6 @@
-type classRecordDef('classRecord, 'a) =
+type classRecordDef('classRecord) =
   | Record('classRecord)
-  | ThemeFunc(MaterialUi_Theme.t('a) => 'classRecord);
+  | ThemeFunc(MaterialUi_Theme.t => 'classRecord);
 
 module type WithStylesSafeTemplate = {
   type classRecord;
@@ -9,7 +9,7 @@ module type WithStylesSafeTemplate = {
   type classRecordStringsJs;
   let classRecordToJs: classRecord => classRecordJs;
   let classRecordStringsFromJs: classRecordStringsJs => classRecordStrings;
-  let classes: classRecordDef(classRecord, _);
+  let classes: classRecordDef(classRecord);
 };
 
 module WithStylesSafe = (S: WithStylesSafeTemplate) => {
@@ -18,7 +18,7 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
 
   [@bs.module "@material-ui/styles"]
   external createStyledWithTheme:
-    (MaterialUi_Theme.t(_) => S.classRecordJs) => ReasonReact.reactClass =
+    (MaterialUi_Theme.t => S.classRecordJs) => ReasonReact.reactClass =
     "createStyled";
 
   module Styled = {
@@ -56,7 +56,7 @@ external createStyled: Js.Dict.t(ReactDOMRe.Style.t) => ReasonReact.reactClass =
   "";
 [@bs.module "@material-ui/styles"]
 external createStyledWithTheme:
-  (MaterialUi_Theme.t(_) => Js.Dict.t(ReactDOMRe.Style.t)) =>
+  (MaterialUi_Theme.t => Js.Dict.t(ReactDOMRe.Style.t)) =>
   ReasonReact.reactClass =
   "";
 external renderFunctionToChildren: 'b => 'a = "%identity";
@@ -69,7 +69,7 @@ type style = {
 let make =
     (
       ~classes: option(list(style))=?,
-      ~classesWithTheme: option(MaterialUi_Theme.t(_) => list(style))=?,
+      ~classesWithTheme: option(MaterialUi_Theme.t => list(style))=?,
       ~render: Js.t({..}) => ReasonReact.reactElement,
       _,
     ) => {

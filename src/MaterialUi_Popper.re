@@ -16,15 +16,14 @@ type placement = [
 [@bs.obj]
 external makeProps:
   (
-    ~anchorEl: 'union_r5i9=?,
-    ~container: 'union_rxno=?,
+    ~anchorEl: 'union_rwr9=?,
+    ~container: 'union_rbbn=?,
     ~disablePortal: bool=?,
     ~keepMounted: bool=?,
     ~modifiers: Js.t({..})=?,
     ~_open: bool,
     ~placement: string=?,
     ~popperOptions: Js.t({..})=?,
-    ~theme: Js.t({..})=?,
     ~transition: bool=?,
     unit
   ) =>
@@ -48,7 +47,6 @@ let make =
       ~open_: bool,
       ~placement: option(placement)=?,
       ~popperOptions: option(Js.t({..}))=?,
-      ~theme: option(Js.t({..}))=?,
       ~transition: option(bool)=?,
       children,
     ) =>
@@ -68,7 +66,6 @@ let make =
         ~_open=open_,
         ~placement=?placement->(Belt.Option.map(v => placementToJs(v))),
         ~popperOptions?,
-        ~theme?,
         ~transition?,
         (),
       ),

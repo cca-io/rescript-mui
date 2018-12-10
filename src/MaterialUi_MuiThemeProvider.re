@@ -4,7 +4,7 @@ external makeProps:
     ~disableStylesGeneration: bool=?,
     ~sheetsCache: Js.t({..})=?,
     ~sheetsManager: Js.t({..})=?,
-    ~theme: MaterialUi_Theme.t(_),
+    ~theme: MaterialUi_Theme.t,
     unit
   ) =>
   _ =
@@ -16,7 +16,7 @@ let make =
       ~disableStylesGeneration: option(bool)=?,
       ~sheetsCache: option(Js.t({..}))=?,
       ~sheetsManager: option(Js.t({..}))=?,
-      ~theme: MaterialUi_Theme.t(_),
+      ~theme: MaterialUi_Theme.t,
       children,
     ) =>
   ReasonReact.wrapJsForReason(

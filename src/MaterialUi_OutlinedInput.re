@@ -65,29 +65,29 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_r5nb=?,
+    ~defaultValue: 'union_r3zw=?,
     ~disabled: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_riqn=?,
+    ~inputComponent: 'union_r75h=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rc3o=?,
-    ~labelWidth: 'number_z,
+    ~inputRef: 'union_r43z=?,
+    ~labelWidth: 'number_0,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~notched: bool=?,
-    ~onChange: 'any_r1f2=?,
+    ~onChange: 'any_ri2h=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rvq5=?,
-    ~rowsMax: 'union_rm2s=?,
+    ~rows: 'union_r5cq=?,
+    ~rowsMax: 'union_r7xu=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
-    ~value: 'union_rs0q=?,
+    ~value: 'union_rw2y=?,
     ~muiFormControl: Js.t({..})=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onEmpty: 'genericCallback=?,
@@ -110,7 +110,26 @@ let make =
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
       ~defaultValue:
-         option([ | `String(string) | `Int(int) | `Float(float)])=?,
+         option(
+           [
+             | `String(string)
+             | `Int(int)
+             | `Float(float)
+             | `Bool(bool)
+             | `ObjectGeneric(Js.t({..}))
+             | `Array(
+                 array(
+                   [
+                     | `String(string)
+                     | `Int(int)
+                     | `Float(float)
+                     | `Bool(bool)
+                     | `ObjectGeneric(Js.t({..}))
+                   ],
+                 ),
+               )
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(ReasonReact.reactElement)=?,
       ~error: option(bool)=?,
@@ -149,6 +168,7 @@ let make =
              | `Int(int)
              | `Float(float)
              | `Bool(bool)
+             | `ObjectGeneric(Js.t({..}))
              | `Array(
                  array(
                    [
@@ -156,6 +176,7 @@ let make =
                      | `Int(int)
                      | `Float(float)
                      | `Bool(bool)
+                     | `ObjectGeneric(Js.t({..}))
                    ],
                  ),
                )

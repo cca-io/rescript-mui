@@ -17,6 +17,8 @@ module Classes = {
     | Root(string)
     | ColorPrimary(string)
     | ColorSecondary(string)
+    | Determinate(string)
+    | Indeterminate(string)
     | Buffer(string)
     | Query(string)
     | Dashed(string)
@@ -29,7 +31,6 @@ module Classes = {
     | Bar1Determinate(string)
     | Bar1Buffer(string)
     | Bar2Indeterminate(string)
-    | Bar2Determinate(string)
     | Bar2Buffer(string);
   type t = list(classesType);
   let to_string =
@@ -37,6 +38,8 @@ module Classes = {
     | Root(_) => "root"
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary"
+    | Determinate(_) => "determinate"
+    | Indeterminate(_) => "indeterminate"
     | Buffer(_) => "buffer"
     | Query(_) => "query"
     | Dashed(_) => "dashed"
@@ -49,7 +52,6 @@ module Classes = {
     | Bar1Determinate(_) => "bar1Determinate"
     | Bar1Buffer(_) => "bar1Buffer"
     | Bar2Indeterminate(_) => "bar2Indeterminate"
-    | Bar2Determinate(_) => "bar2Determinate"
     | Bar2Buffer(_) => "bar2Buffer";
   let to_obj = listOfClasses =>
     listOfClasses->(
@@ -60,6 +62,8 @@ module Classes = {
                          | Root(className)
                          | ColorPrimary(className)
                          | ColorSecondary(className)
+                         | Determinate(className)
+                         | Indeterminate(className)
                          | Buffer(className)
                          | Query(className)
                          | Dashed(className)
@@ -72,7 +76,6 @@ module Classes = {
                          | Bar1Determinate(className)
                          | Bar1Buffer(className)
                          | Bar2Indeterminate(className)
-                         | Bar2Determinate(className)
                          | Bar2Buffer(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
@@ -87,8 +90,8 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_1=?,
-    ~valueBuffer: 'number_e=?,
+    ~value: 'number_c=?,
+    ~valueBuffer: 'number_m=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
