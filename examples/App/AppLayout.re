@@ -11,6 +11,13 @@
   })
 ];
 
+let theme =
+  MaterialUi_Theme.create(
+    MaterialUi_ThemeOptions.(
+      make(~typography=Typography.make(~useNextVariants=true, ()), ())
+    ),
+  );
+
 let component = ReasonReact.statelessComponent(__MODULE__);
 
 let make = _children => {
@@ -19,93 +26,110 @@ let make = _children => {
     <Styles>
       ...MaterialUi.(
            classes =>
-             <div className={classes.container}>
-               <CssBaseline />
-               <Grid container=true>
-                 <Grid item=true md=V12>
-                   <Typography variant=`H4>
-                     "@jsiebern/bs-material-ui Examples"
-                   </Typography>
+             <ThemeProvider theme>
+               <div className={classes.container}>
+                 <CssBaseline />
+                 <Grid container=true>
+                   <Grid item=true md=V12>
+                     <Typography variant=`H4>
+                       "@jsiebern/bs-material-ui Examples"
+                     </Typography>
+                   </Grid>
                  </Grid>
-               </Grid>
-               <br />
-               <br />
-               <Divider />
-               <br />
-               <br />
-               <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
-                   <Typography variant=`H5> "Class Override" </Typography>
+                 <br />
+                 <br />
+                 <Divider />
+                 <br />
+                 <br />
+                 <Grid container=true alignItems=`Center>
+                   <Grid item=true md=V6>
+                     <Typography variant=`H5> "Class Override" </Typography>
+                   </Grid>
+                   <Grid item=true md=V6> <ExampleClassOverride /> </Grid>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleClassOverride /> </Grid>
-               </Grid>
-               <br />
-               <br />
-               <Divider />
-               <br />
-               <br />
-               <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
-                   <Typography variant=`H5> "Icons" </Typography>
+                 <br />
+                 <br />
+                 <Divider />
+                 <br />
+                 <br />
+                 <Grid container=true alignItems=`Center>
+                   <Grid item=true md=V6>
+                     <Typography variant=`H5> "Icons" </Typography>
+                   </Grid>
+                   <Grid item=true md=V6> <ExampleIcons /> </Grid>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleIcons /> </Grid>
-               </Grid>
-               <br />
-               <br />
-               <Divider />
-               <br />
-               <br />
-               <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
-                   <Typography variant=`H5> "Popover" </Typography>
+                 <br />
+                 <br />
+                 <Divider />
+                 <br />
+                 <br />
+                 <Grid container=true alignItems=`Center>
+                   <Grid item=true md=V6>
+                     <Typography variant=`H5> "Popover" </Typography>
+                   </Grid>
+                   <Grid item=true md=V6> <ExamplePopover /> </Grid>
                  </Grid>
-                 <Grid item=true md=V6> <ExamplePopover /> </Grid>
-               </Grid>
-               <br />
-               <br />
-               <Divider />
-               <br />
-               <br />
-               <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
-                   <Typography variant=`H5> "WithStylesSafe" </Typography>
+                 <br />
+                 <br />
+                 <Divider />
+                 <br />
+                 <br />
+                 <Grid container=true alignItems=`Center>
+                   <Grid item=true md=V6>
+                     <Typography variant=`H5> "WithStylesSafe" </Typography>
+                   </Grid>
+                   <Grid item=true md=V6> <ExampleWithStylesSafe /> </Grid>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleWithStylesSafe /> </Grid>
-               </Grid>
-               <br />
-               <br />
-               <Divider />
-               <br />
-               <br />
-               <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
-                   <Typography variant=`H5> "WithStylesUnsafe" </Typography>
+                 <br />
+                 <br />
+                 <Divider />
+                 <br />
+                 <br />
+                 <Grid container=true alignItems=`Center>
+                   <Grid item=true md=V6>
+                     <Typography variant=`H5> "WithStylesUnsafe" </Typography>
+                   </Grid>
+                   <Grid item=true md=V6> <ExampleWithStylesUnsafe /> </Grid>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleWithStylesUnsafe /> </Grid>
-               </Grid>
-               <br />
-               <br />
-               <Divider />
-               <br />
-               <br />
-               <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
-                   <Typography variant=`H5> "Theme Provider" </Typography>
+                 <br />
+                 <br />
+                 <Divider />
+                 <br />
+                 <br />
+                 <Grid container=true alignItems=`Center>
+                   <Grid item=true md=V6>
+                     <Typography variant=`H5> "Theme Provider" </Typography>
+                   </Grid>
+                   <Grid item=true md=V6> <ExampleThemeProvider /> </Grid>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleThemeProvider /> </Grid>
-               </Grid>
-               <br />
-               <br />
-               <Divider />
-               <br />
-               <br />
-               <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
-                   <Typography variant=`H5> "List" </Typography>
+                 <br />
+                 <br />
+                 <Divider />
+                 <br />
+                 <br />
+                 <Grid container=true alignItems=`Center>
+                   <Grid item=true md=V6>
+                     <Typography variant=`H5>
+                       "Theme Provider Override"
+                     </Typography>
+                   </Grid>
+                   <Grid item=true md=V6>
+                     <ExampleThemeProviderOverride />
+                   </Grid>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleList /> </Grid>
-               </Grid>
-             </div>
+                 <br />
+                 <br />
+                 <Divider />
+                 <br />
+                 <br />
+                 <Grid container=true alignItems=`Center>
+                   <Grid item=true md=V6>
+                     <Typography variant=`H5> "List" </Typography>
+                   </Grid>
+                   <Grid item=true md=V6> <ExampleList /> </Grid>
+                 </Grid>
+               </div>
+             </ThemeProvider>
          )
     </Styles>,
 };

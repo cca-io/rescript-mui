@@ -87,7 +87,7 @@ let make = _children => {
                    </CardContent>
                    <CardActions>
                      <Button
-                       color=`Primary variant=`Raised href="#/example/route">
+                       color=`Primary variant=`Contained href="#/example/route">
                        {ReasonReact.string("Go to example")}
                      </Button>
                    </CardActions>

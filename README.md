@@ -44,6 +44,8 @@ HOC do not translate well into Reason which is why we are using a [render prop](
 
 **Make sure you have implemented the ppx file (see installation for reference)**
 
+**Important: In order to use `theme => styles` you need to provide a `<MaterialUi_ThemeProvider theme={MaterialUi_Theme.create()}>` at the top of the tree!**
+
 The code extension allows you to write a typesafe styled component with ease. It follows the format `[%mui.withStyles "ComponentName"({ className: ReactDOMRe.Style.t })]`. The generated Component has a render function which passes on a `record` with the class keys. See the example below.
 
 ```reason
@@ -140,7 +142,7 @@ let make = _children => {
         classes =>
           <MaterialUi.Button
             color=`Primary
-            variant=`Raised
+            variant=`Contained
             classes=[
               Root(classes.fontSize),
               RaisedPrimary(classes.bgColor),

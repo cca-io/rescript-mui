@@ -16,7 +16,7 @@ let make = _children => {
            classes =>
              <MaterialUi.Button
                color=`Primary
-               variant=`Raised
+               variant=`Contained
                classes=[
                  Root(classes.fontSize),
                  RaisedPrimary(classes.bgColor),

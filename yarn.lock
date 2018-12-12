@@ -651,7 +651,7 @@
     bsb-native "^4.0.9"
     yauzl "^2.10.0"
 
-"@material-ui/core@^3.0.0":
+"@material-ui/core@^3.6.2":
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-3.6.2.tgz#b1e300ebd717909ffc4c7fd456f48e568156091a"
   integrity sha512-ONWU8ZCrhzzmeh6QXbYwicZxD0wSxj32UOSmPHXReZs4RTaeXOtLVloIxh7810fIR/GkfGXa/UJIK/woSHW4/Q==
@@ -692,7 +692,7 @@
     "@babel/runtime" "7.0.0"
     recompose "^0.29.0"
 
-"@material-ui/styles@^3.0.0-alpha.1":
+"@material-ui/styles@3.0.0-alpha.3":
   version "3.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/@material-ui/styles/-/styles-3.0.0-alpha.3.tgz#85bd94245d6837628a8e528ba1502cbdd2b12207"
   integrity sha512-uwKym7YMBPHc4gWFg8h2hlBrzOuIKuzbazkS6PYndpJttysB/z8gFZqgTzeFYBMSTdTRF4yxELGF46d+VkOF0A==
