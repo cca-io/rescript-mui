@@ -3,9 +3,9 @@ external makeProps:
   (
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rft5=?,
+    ~onChange: 'any_rlvu=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~value: 'union_ru3x=?,
+    ~value: 'union_rmkp=?,
     ~className: string=?,
     ~row: bool=?,
     unit

@@ -38,14 +38,14 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~activeStep: 'number_g=?,
+    ~activeStep: 'number_z=?,
     ~alternativeLabel: bool=?,
     ~className: string=?,
     ~connector: ReasonReact.reactElement=?,
     ~nonLinear: bool=?,
     ~orientation: string=?,
-    ~component: 'union_rbxy=?,
-    ~elevation: 'number_1=?,
+    ~component: 'union_rfko=?,
+    ~elevation: 'number_d=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

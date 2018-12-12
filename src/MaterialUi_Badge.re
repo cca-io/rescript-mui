@@ -49,7 +49,7 @@ external makeProps:
     ~badgeContent: ReasonReact.reactElement,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rvit=?,
+    ~component: 'union_r2vb=?,
     ~invisible: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

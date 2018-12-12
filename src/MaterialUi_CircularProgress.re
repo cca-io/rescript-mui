@@ -66,9 +66,9 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_rees=?,
-    ~thickness: 'number_y=?,
-    ~value: 'number_z=?,
+    ~size: 'union_roqb=?,
+    ~thickness: 'number_8=?,
+    ~value: 'number_p=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

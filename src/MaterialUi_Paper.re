@@ -102,8 +102,8 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_rcte=?,
-    ~elevation: 'number_4=?,
+    ~component: 'union_rbjm=?,
+    ~elevation: 'number_m=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

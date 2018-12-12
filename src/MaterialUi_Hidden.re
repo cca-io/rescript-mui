@@ -37,7 +37,7 @@ external makeProps:
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_r4hj=?,
+    ~only: 'union_rnpn=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,

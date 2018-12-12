@@ -43,7 +43,7 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_rcqq=?,
+    ~component: 'union_rbew=?,
     ~disableTypography: bool=?,
     ~position: string=?,
     ~variant: string=?,
