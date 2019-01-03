@@ -33,7 +33,7 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_rmw1=?,
+    ~component: 'union_r05e=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: ReasonReact.reactElement=?,

@@ -1,6 +1,6 @@
 {
   "name": "@jsiebern/bs-material-ui",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "This library provides Reason bindings for material-ui.",
   "keywords": [
     "bucklescript",
@@ -28,8 +28,7 @@
     "@jsiebern/bs-material-ui-ppx": "^1.0.0",
     "@material-ui/core": "^3.6.2",
     "@material-ui/icons": "^3.0.1",
-    "@material-ui/styles": "3.0.0-alpha.3",
-    "bs-platform": "^4.0.7",
+    "bs-platform": "^4.0.15",
     "bsb-js": "^1.1.7",
     "parcel-bundler": "^1.10.3",
     "react": "^16.3.0",
@@ -37,8 +36,7 @@
     "reason-react": "^0.5.3"
   },
   "peerDependencies": {
-    "@material-ui/core": "^3.6.2",
-    "@material-ui/icons": "^3.0.1",
-    "@material-ui/styles": "^3.0.0-alpha.3"
+    "@material-ui/core": "^3.8.1",
+    "@material-ui/icons": "^3.0.1"
   }
 }

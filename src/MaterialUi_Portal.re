@@ -1,7 +1,7 @@
 [@bs.obj]
 external makeProps:
   (
-    ~container: 'union_rbri=?,
+    ~container: 'union_rayo=?,
     ~disablePortal: bool=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     unit

@@ -11,11 +11,10 @@ let make = _children => {
             ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ()),
         },
       ]
-      render={
-        classes =>
-          <div className=classes##alignRight>
-            {ReasonReact.string("Example text - aligned to the right")}
-          </div>
+      render={classes =>
+        <div className=classes##alignRight>
+          {ReasonReact.string("Example text - aligned to the right")}
+        </div>
       }
     />,
 };

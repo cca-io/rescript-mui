@@ -33,9 +33,9 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~cols: 'number_0=?,
-    ~component: 'union_rqf9=?,
-    ~rows: 'number_k=?,
+    ~cols: 'number_b=?,
+    ~component: 'union_rdab=?,
+    ~rows: 'number_n=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit

@@ -13,20 +13,21 @@ module type WithStylesSafeTemplate = {
 };
 
 module WithStylesSafe = (S: WithStylesSafeTemplate) => {
-  [@bs.module "@material-ui/styles"]
-  external createStyled: S.classRecordJs => ReasonReact.reactClass = "";
+  [@bs.module "./MaterialUi_WithStyles_Helper.js"]
+  external withStyles: S.classRecordJs => ReasonReact.reactClass =
+    "createStyled";
 
-  [@bs.module "@material-ui/styles"]
-  external createStyledWithTheme:
+  [@bs.module "./MaterialUi_WithStyles_Helper.js"]
+  external withStylesWithTheme:
     (MaterialUi_Theme.t => S.classRecordJs) => ReasonReact.reactClass =
     "createStyled";
 
   module Styled = {
     let styled =
       switch (S.classes) {
-      | Record(record) => createStyled(record->S.classRecordToJs)
+      | Record(record) => withStyles(record->S.classRecordToJs)
       | ThemeFunc(func) =>
-        createStyledWithTheme(theme => func(theme)->S.classRecordToJs)
+        withStylesWithTheme(theme => func(theme)->S.classRecordToJs)
       };
 
     let make =
@@ -51,10 +52,10 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
   };
 };
 
-[@bs.module "@material-ui/styles"]
+[@bs.module "./MaterialUi_WithStyles_Helper.js"]
 external createStyled: Js.Dict.t(ReactDOMRe.Style.t) => ReasonReact.reactClass =
   "";
-[@bs.module "@material-ui/styles"]
+[@bs.module "./MaterialUi_WithStyles_Helper.js"]
 external createStyledWithTheme:
   (MaterialUi_Theme.t => Js.Dict.t(ReactDOMRe.Style.t)) =>
   ReasonReact.reactClass =
@@ -90,8 +91,7 @@ let make =
     };
 
   ReasonReact.wrapJsForReason(
-    ~reactClass=styled,
-    ~props=Js.Obj.empty(),
-    render->renderFunctionToChildren,
+    ~reactClass=styled, ~props=Js.Obj.empty(), styles =>
+    render(styles##classes)->renderFunctionToChildren
   );
 };

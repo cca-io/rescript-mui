@@ -241,6 +241,8 @@ module CardActionsClassKey = {
   type t = {
     [@bs.optional] [@bs.as "action"]
     action: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "disableActionSpacing"]
+    disableActionSpacing: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
   };
@@ -429,6 +431,18 @@ module DialogClassKey = {
     scrollBody: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "scrollPaper"]
     scrollPaper: ReactDOMRe.Style.t,
+  };
+
+  let make = t;
+};
+
+module DialogActionsClassKey = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "action"]
+    action: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "root"]
+    root: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -1655,6 +1669,8 @@ module TooltipClassKey = {
   type t = {
     [@bs.optional] [@bs.as "popper"]
     popper: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "popperInteractive"]
+    popperInteractive: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "tooltip"]
     tooltip: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "tooltipPlacementBottom"]
@@ -1810,7 +1826,7 @@ module Overrides = {
     [@bs.optional] [@bs.as "MuiDialog"]
     muiDialog: DialogClassKey.t,
     [@bs.optional] [@bs.as "MuiDialogActions"]
-    muiDialogActions: CardActionsClassKey.t,
+    muiDialogActions: DialogActionsClassKey.t,
     [@bs.optional] [@bs.as "MuiDialogContent"]
     muiDialogContent: CSSProperties.t,
     [@bs.optional] [@bs.as "MuiDialogContentText"]
@@ -1824,7 +1840,7 @@ module Overrides = {
     [@bs.optional] [@bs.as "MuiExpansionPanel"]
     muiExpansionPanel: ExpansionPanelClassKey.t,
     [@bs.optional] [@bs.as "MuiExpansionPanelActions"]
-    muiExpansionPanelActions: CardActionsClassKey.t,
+    muiExpansionPanelActions: DialogActionsClassKey.t,
     [@bs.optional] [@bs.as "MuiExpansionPanelDetails"]
     muiExpansionPanelDetails: CSSProperties.t,
     [@bs.optional] [@bs.as "MuiExpansionPanelSummary"]

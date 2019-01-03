@@ -32,7 +32,7 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~component: 'union_rfze=?,
+    ~component: 'union_rs1j=?,
     ~padding: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

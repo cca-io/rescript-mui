@@ -74,7 +74,7 @@ external makeProps:
     ~required: bool=?,
     ~shrink: bool=?,
     ~variant: string=?,
-    ~component: 'union_rga8=?,
+    ~component: 'union_reot=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

@@ -692,26 +692,6 @@
     "@babel/runtime" "7.0.0"
     recompose "^0.29.0"
 
-"@material-ui/styles@3.0.0-alpha.3":
-  version "3.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@material-ui/styles/-/styles-3.0.0-alpha.3.tgz#85bd94245d6837628a8e528ba1502cbdd2b12207"
-  integrity sha512-uwKym7YMBPHc4gWFg8h2hlBrzOuIKuzbazkS6PYndpJttysB/z8gFZqgTzeFYBMSTdTRF4yxELGF46d+VkOF0A==
-  dependencies:
-    "@babel/runtime" "7.1.2"
-    "@material-ui/utils" "^3.0.0-alpha.0"
-    classnames "^2.2.5"
-    deepmerge "^3.0.0"
-    hoist-non-react-statics "^3.2.1"
-    jss "^9.3.3"
-    jss-camel-case "^6.0.0"
-    jss-default-unit "^8.0.2"
-    jss-global "^3.0.0"
-    jss-nested "^6.0.1"
-    jss-props-sort "^6.0.0"
-    jss-vendor-prefixer "^7.0.0"
-    prop-types "^15.6.0"
-    warning "^4.0.1"
-
 "@material-ui/utils@^3.0.0-alpha.0":
   version "3.0.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@material-ui/utils/-/utils-3.0.0-alpha.0.tgz#506fcaf531a9a8f58a73ff2d3dfaa36c0f238506"
@@ -1110,10 +1090,10 @@ browserslist@^4.0.0, browserslist@^4.1.0:
     electron-to-chromium "^1.3.82"
     node-releases "^1.0.1"
 
-bs-platform@^4.0.7:
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-4.0.7.tgz#1a0bbf0fef439fef5f1a88ba60d5ac8a6d73570c"
-  integrity sha512-39ZXSugB03PznE7eSVwxq5z4S8Cn44r22T2eFd7rgFQ94HaB/mCNHXG0epF3mJLYhhhyPT9w3e/t+FAIjSdAkg==
+bs-platform@^4.0.15:
+  version "4.0.15"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-4.0.15.tgz#d6fce32bc598c3d40947e2d75ce227218b221cea"
+  integrity sha512-HFRNL0QXmDsOe2TTcAm0Sm+0lMOjfvV+0cDf5oD33ku1vhRMM67uD79XF2OsZCpPJhi+Q+GJtwRPUUxgTFIebg==
 
 bsb-js@^1.1.7:
   version "1.1.7"

@@ -72,7 +72,7 @@ external makeProps:
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rnpk=?,
+    ~component: 'union_rg5q=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~internalDeprecatedVariant: bool=?,

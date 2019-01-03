@@ -62,7 +62,7 @@ external makeProps:
     ~className: string=?,
     ~invisible: bool=?,
     ~_open: bool,
-    ~transitionDuration: 'union_r8v7=?,
+    ~transitionDuration: 'union_ru69=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
