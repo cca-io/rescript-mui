@@ -1,6 +1,5 @@
 # Important: Version 1.0.0
 I have changed the bindings version to 1.0.0 to reflect the fact that there probably won't be any structural / breaking changes in the future to come.
-This is mostly due to the introduction of `@material-ui/styles`.
 
 The bindings now include all icons, as well as an (almost) fully typed theme support as well.
 
