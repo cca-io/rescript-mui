@@ -1,0 +1,1 @@
+declare type Reason$Type$Primitive = 'string' | 'bool' | 'float' | 'int' | 'ReasonReact.reactElement.t';

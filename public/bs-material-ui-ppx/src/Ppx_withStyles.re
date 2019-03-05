@@ -1,0 +1,1 @@
+let () = Ast_mapper.run_main(Mapper.withStylesMapper);

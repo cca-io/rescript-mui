@@ -1,0 +1,23 @@
+{
+    "name": "reason-mui-binding-generator",
+    "reason": {
+        "react-jsx": 2
+    },
+    "sources": [
+        {
+            "dir": "../../output/reason"
+        }
+    ],
+    "package-specs": [
+        {
+            "module": "commonjs",
+            "in-source": true
+        }
+    ],
+    "suffix": ".bs.js",
+    "namespace": true,
+    "bs-dependencies": [
+        "reason-react"
+    ],
+    "refmt": 3
+}
