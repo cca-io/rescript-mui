@@ -47,6 +47,7 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_rwnh=?,
     ~disableGutters: bool=?,
     ~disableSticky: bool=?,
     ~inset: bool=?,
@@ -62,6 +63,14 @@ let make =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disableGutters: option(bool)=?,
       ~disableSticky: option(bool)=?,
       ~inset: option(bool)=?,
@@ -75,6 +84,10 @@ let make =
       makeProps(
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableGutters?,
         ~disableSticky?,
         ~inset?,

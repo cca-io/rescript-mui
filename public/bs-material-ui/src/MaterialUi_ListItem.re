@@ -65,6 +65,8 @@ external makeProps:
     ~alignItems: string=?,
     ~button: bool=?,
     ~className: string=?,
+    ~component: 'union_rm6j=?,
+    ~_ContainerComponent: 'union_r7cr=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -72,7 +74,7 @@ external makeProps:
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~selected: bool=?,
-    ~value: 'union_r51k=?,
+    ~value: 'union_r9n0=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
@@ -88,6 +90,22 @@ let make =
       ~alignItems: option(alignItems)=?,
       ~button: option(bool)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
+      ~_ContainerComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_ContainerProps: option(Js.t({..}))=?,
       ~dense: option(bool)=?,
       ~disabled: option(bool)=?,
@@ -117,6 +135,16 @@ let make =
         ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
         ~button?,
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
+        ~_ContainerComponent=?
+          _ContainerComponent->(
+                                 Belt.Option.map(v =>
+                                   MaterialUi_Helpers.unwrapValue(v)
+                                 )
+                               ),
         ~_ContainerProps?,
         ~dense?,
         ~disabled?,

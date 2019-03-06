@@ -116,7 +116,7 @@ external makeProps:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_ra7a=?,
+    ~onClose: 'any_rlps=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -125,12 +125,15 @@ external makeProps:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
+    ~_PaperComponent: 'union_rdjp=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~transitionDuration: 'union_r0ah=?,
+    ~_TransitionComponent: 'union_ru51=?,
+    ~transitionDuration: 'union_ryqp=?,
     ~_TransitionProps: Js.t({..})=?,
+    ~_BackdropComponent: 'union_rhmu=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rxb3=?,
+    ~container: 'union_r5za=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
@@ -166,8 +169,24 @@ let make =
       ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: bool,
+      ~_PaperComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_PaperProps: option(Js.t({..}))=?,
       ~scroll: option(scroll)=?,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~transitionDuration:
          option(
            [
@@ -177,6 +196,14 @@ let make =
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
+      ~_BackdropComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~closeAfterTransition: option(bool)=?,
       ~container:
          option(
@@ -215,8 +242,20 @@ let make =
         ~onExited?,
         ~onExiting?,
         ~_open=open_,
+        ~_PaperComponent=?
+          _PaperComponent->(
+                             Belt.Option.map(v =>
+                               MaterialUi_Helpers.unwrapValue(v)
+                             )
+                           ),
         ~_PaperProps?,
         ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
+        ~_TransitionComponent=?
+          _TransitionComponent->(
+                                  Belt.Option.map(v =>
+                                    MaterialUi_Helpers.unwrapValue(v)
+                                  )
+                                ),
         ~transitionDuration=?
           transitionDuration->(
                                 Belt.Option.map(v =>
@@ -224,6 +263,12 @@ let make =
                                 )
                               ),
         ~_TransitionProps?,
+        ~_BackdropComponent=?
+          _BackdropComponent->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~closeAfterTransition?,
         ~container=?
           container->(

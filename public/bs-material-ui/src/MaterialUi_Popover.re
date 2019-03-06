@@ -225,17 +225,17 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~action: 'any_rhvh=?,
-    ~anchorEl: 'union_r83s=?,
-    ~anchorOrigin: 'any_rhzh=?,
-    ~anchorPosition: 'any_rfbd=?,
+    ~action: 'any_rwen=?,
+    ~anchorEl: 'union_rwdq=?,
+    ~anchorOrigin: 'any_r8l0=?,
+    ~anchorPosition: 'any_rbsx=?,
     ~anchorReference: string=?,
-    ~container: 'union_ryfp=?,
-    ~elevation: 'number_l=?,
+    ~container: 'union_r5rp=?,
+    ~elevation: 'number_w=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_z=?,
+    ~marginThreshold: 'number_5=?,
     ~_ModalClasses: Js.t({..})=?,
-    ~onClose: 'any_r53r=?,
+    ~onClose: 'any_rqdi=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -245,9 +245,11 @@ external makeProps:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~role: string=?,
-    ~transformOrigin: 'any_rrth=?,
-    ~transitionDuration: 'union_r1n1=?,
+    ~transformOrigin: 'any_rv55=?,
+    ~_TransitionComponent: 'union_r9hm=?,
+    ~transitionDuration: 'union_rvuu=?,
     ~_TransitionProps: Js.t({..})=?,
+    ~_BackdropComponent: 'union_r62r=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
     ~closeAfterTransition: bool=?,
@@ -300,6 +302,14 @@ let make =
       ~_PaperProps: option(Js.t({..}))=?,
       ~role: option(string)=?,
       ~transformOrigin: option(TransformOrigin.t)=?,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~transitionDuration:
          option(
            [
@@ -310,6 +320,14 @@ let make =
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
+      ~_BackdropComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~className: option(string)=?,
       ~closeAfterTransition: option(bool)=?,
@@ -367,6 +385,12 @@ let make =
         ~_PaperProps?,
         ~role?,
         ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
+        ~_TransitionComponent=?
+          _TransitionComponent->(
+                                  Belt.Option.map(v =>
+                                    MaterialUi_Helpers.unwrapValue(v)
+                                  )
+                                ),
         ~transitionDuration=?
           transitionDuration->(
                                 Belt.Option.map(v =>
@@ -383,6 +407,12 @@ let make =
                                 )
                               ),
         ~_TransitionProps?,
+        ~_BackdropComponent=?
+          _BackdropComponent->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~_BackdropProps?,
         ~className?,
         ~closeAfterTransition?,

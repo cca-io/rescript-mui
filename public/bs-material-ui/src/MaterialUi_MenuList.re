@@ -5,6 +5,7 @@ external makeProps:
     ~disableListWrap: bool=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~component: 'union_raof=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: ReasonReact.reactElement=?,
@@ -20,6 +21,14 @@ let make =
       ~disableListWrap: option(bool)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~dense: option(bool)=?,
       ~disablePadding: option(bool)=?,
       ~subheader: option(ReasonReact.reactElement)=?,
@@ -33,6 +42,10 @@ let make =
         ~disableListWrap?,
         ~onBlur?,
         ~onKeyDown?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~dense?,
         ~disablePadding?,
         ~subheader?,

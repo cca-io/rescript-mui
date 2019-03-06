@@ -112,6 +112,7 @@ external makeProps:
     ~className: string=?,
     ~clickable: bool=?,
     ~color: string=?,
+    ~component: 'union_r7vz=?,
     ~deleteIcon: ReasonReact.reactElement=?,
     ~icon: ReasonReact.reactElement=?,
     ~label: ReasonReact.reactElement=?,
@@ -119,7 +120,7 @@ external makeProps:
     ~onDelete: ReactEvent.Synthetic.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-    ~tabIndex: 'union_r550=?,
+    ~tabIndex: 'union_rdhh=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -135,6 +136,14 @@ let make =
       ~className: option(string)=?,
       ~clickable: option(bool)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~deleteIcon: option(ReasonReact.reactElement)=?,
       ~icon: option(ReasonReact.reactElement)=?,
       ~label: option(ReasonReact.reactElement)=?,
@@ -156,6 +165,10 @@ let make =
         ~className?,
         ~clickable?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~deleteIcon?,
         ~icon?,
         ~label?,

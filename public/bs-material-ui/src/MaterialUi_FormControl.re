@@ -47,6 +47,7 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
+    ~component: 'union_rx37=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
@@ -64,6 +65,14 @@ external reactClass: ReasonReact.reactClass = "FormControl";
 let make =
     (
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
@@ -79,6 +88,10 @@ let make =
     ~props=
       makeProps(
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disabled?,
         ~error?,
         ~fullWidth?,

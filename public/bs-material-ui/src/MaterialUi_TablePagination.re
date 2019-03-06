@@ -81,16 +81,18 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
+    ~_ActionsComponent: 'union_rtrt=?,
     ~backIconButtonProps: Js.t({..})=?,
     ~colSpan: 'number_f=?,
-    ~count: 'number_1,
+    ~component: 'union_rpoy=?,
+    ~count: 'number_8,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_ricc,
-    ~onChangeRowsPerPage: 'any_rcea=?,
-    ~page: 'number_y,
-    ~rowsPerPage: 'number_4,
+    ~onChangePage: 'any_rge1,
+    ~onChangeRowsPerPage: 'any_rugi=?,
+    ~page: 'number_u,
+    ~rowsPerPage: 'number_w,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~align: string=?,
@@ -109,8 +111,24 @@ external makeProps:
 external reactClass: ReasonReact.reactClass = "TablePagination";
 let make =
     (
+      ~_ActionsComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~backIconButtonProps: option(Js.t({..}))=?,
       ~colSpan: option([ | `Int(int) | `Float(float)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~count: [ | `Int(int) | `Float(float)],
       ~labelDisplayedRows:
          option(
@@ -154,9 +172,19 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
+        ~_ActionsComponent=?
+          _ActionsComponent->(
+                               Belt.Option.map(v =>
+                                 MaterialUi_Helpers.unwrapValue(v)
+                               )
+                             ),
         ~backIconButtonProps?,
         ~colSpan=?
           colSpan->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~count=MaterialUi_Helpers.unwrapValue(count),
         ~labelDisplayedRows?,
         ~labelRowsPerPage?,

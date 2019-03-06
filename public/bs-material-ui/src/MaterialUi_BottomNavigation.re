@@ -24,9 +24,10 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~onChange: 'any_rey9=?,
+    ~component: 'union_rx2m=?,
+    ~onChange: 'any_r3q0=?,
     ~showLabels: bool=?,
-    ~value: 'any_rm4n=?,
+    ~value: 'any_rwis=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -38,9 +39,17 @@ external reactClass: ReasonReact.reactClass = "BottomNavigation";
 let make =
     (
       ~className: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_r5ei) => unit)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_r23d) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_rm4n)=?,
+      ~value: option('any_rwis)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -50,6 +59,10 @@ let make =
     ~props=
       makeProps(
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~onChange?,
         ~showLabels?,
         ~value?,

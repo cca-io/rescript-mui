@@ -1,7 +1,7 @@
 import * as Path from 'path';
 import * as Fs from 'fs';
 
-import Convert from '@jsiebern/json-schema-parser';
+import Convert from '../../json-schema-parser/src_ts';
 import outputDirectory from './output';
 
 const RenderTheme = () => {
@@ -35,6 +35,48 @@ const RenderTheme = () => {
                 replaceWith: 'ReasonReact.reactElement',
             },
         ],
+        replaceKeys: [
+            {
+                re: /fontFamily/m,
+                replaceWith: { type: 'string' },
+            },
+            {
+                re: /fontWeightLight/m,
+                replaceWith: { type: 'string' },
+            },
+            {
+                re: /fontWeightMedium/m,
+                replaceWith: { type: 'string' },
+            },
+            {
+                re: /fontWeightRegular/m,
+                replaceWith: { type: 'string' },
+            },
+            {
+                re: /color/m,
+                replaceWith: { type: 'string' },
+            },
+            {
+                re: /fontSize/m,
+                replaceWith: { type: 'string' },
+            },
+            {
+                re: /fontWeight/m,
+                replaceWith: { type: 'string' },
+            },
+            {
+                re: /letterSpacing/m,
+                replaceWith: { type: 'string' },
+            },
+            {
+                re: /lineHeight/m,
+                replaceWith: { type: 'string' },
+            },
+            {
+                re: /textTransform/m,
+                replaceWith: { type: 'string' },
+            },
+        ],
     };
 
     const themeConvert = Convert(theme, 'Theme', options);
@@ -44,6 +86,6 @@ const RenderTheme = () => {
         theme: themeConvert ? themeConvert.refmt : '',
         themeOptions: themeOptionsConvert ? themeOptionsConvert.refmt : '',
     };
-}
+};
 
 export default RenderTheme();

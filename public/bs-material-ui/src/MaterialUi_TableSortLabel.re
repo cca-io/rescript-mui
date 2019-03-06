@@ -42,9 +42,11 @@ external makeProps:
     ~className: string=?,
     ~direction: string=?,
     ~hideSortIcon: bool=?,
-    ~action: 'any_r75h=?,
-    ~buttonRef: 'union_rcgr=?,
+    ~_IconComponent: 'union_re1q=?,
+    ~action: 'any_rrww=?,
+    ~buttonRef: 'union_rq1f=?,
     ~centerRipple: bool=?,
+    ~component: 'union_rkgp=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -63,7 +65,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rc0d=?,
+    ~tabIndex: 'union_r6rh=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -80,12 +82,28 @@ let make =
       ~className: option(string)=?,
       ~direction: option(direction)=?,
       ~hideSortIcon: option(bool)=?,
+      ~_IconComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
       ~disableTouchRipple: option(bool)=?,
@@ -119,12 +137,22 @@ let make =
         ~className?,
         ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
         ~hideSortIcon?,
+        ~_IconComponent=?
+          _IconComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
         ~action?,
         ~buttonRef=?
           buttonRef->(
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
                      ),
         ~centerRipple?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disabled?,
         ~disableRipple?,
         ~disableTouchRipple?,

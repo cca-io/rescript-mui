@@ -5,7 +5,10 @@ import { JSONSchema7Definition } from 'json-schema';
 import SchemaParser from './schema';
 import { Parser } from './_base';
 
-export const getReplacement = (schema: SchemaParser, def: JSONSchema7Definition) => {
+export const getReplacement = (
+    schema: SchemaParser,
+    def: JSONSchema7Definition
+) => {
     if (typeof def === 'boolean' || typeof def.$ref === 'undefined') {
         return null;
     }
@@ -19,19 +22,23 @@ export const getReplacement = (schema: SchemaParser, def: JSONSchema7Definition)
         for (let i = 0; i < replaceRefs.length; i++) {
             const replaceRef = { ...replaceRefs[i] };
             if (replaceRef.re.test(refKey)) {
-                return replaceRef.replaceWith
+                return replaceRef.replaceWith;
             }
         }
     }
 
     return null;
-}
+};
 
 class RefParser extends BaseParser {
     private parser: Parser | false = false;
     private replacement: string | null = null;
 
-    public constructor(schema: SchemaParser, key: string, def: JSONSchema7Definition) {
+    public constructor(
+        schema: SchemaParser,
+        key: string,
+        def: JSONSchema7Definition
+    ) {
         super(schema, key, def);
         if (typeof def === 'boolean' || typeof def.$ref === 'undefined') {
             return;
@@ -45,7 +52,7 @@ class RefParser extends BaseParser {
             return;
         }
 
-        const parserClass = getParser(schema, refDef.def);
+        const parserClass = getParser(schema, refDef.def, key);
         if (!parserClass) {
             return;
         }

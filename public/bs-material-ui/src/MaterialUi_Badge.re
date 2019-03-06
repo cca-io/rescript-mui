@@ -55,8 +55,9 @@ external makeProps:
     ~badgeContent: ReasonReact.reactElement=?,
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_rri2=?,
     ~invisible: bool=?,
-    ~max: 'number_r=?,
+    ~max: 'number_l=?,
     ~showZero: bool=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -72,6 +73,14 @@ let make =
       ~badgeContent: option(ReasonReact.reactElement)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~invisible: option(bool)=?,
       ~max: option([ | `Int(int) | `Float(float)])=?,
       ~showZero: option(bool)=?,
@@ -87,6 +96,10 @@ let make =
         ~badgeContent?,
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~invisible?,
         ~max=?max->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~showZero?,

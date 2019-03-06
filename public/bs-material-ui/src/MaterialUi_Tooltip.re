@@ -63,19 +63,20 @@ external makeProps:
     ~disableFocusListener: bool=?,
     ~disableHoverListener: bool=?,
     ~disableTouchListener: bool=?,
-    ~enterDelay: 'number_y=?,
-    ~enterTouchDelay: 'number_z=?,
+    ~enterDelay: 'number_2=?,
+    ~enterTouchDelay: 'number_r=?,
     ~id: string=?,
     ~interactive: bool=?,
-    ~leaveDelay: 'number_3=?,
+    ~leaveDelay: 'number_c=?,
     ~leaveTouchDelay: 'number_y=?,
-    ~onClose: 'any_ra7i=?,
-    ~onOpen: 'any_rppb=?,
+    ~onClose: 'any_rekn=?,
+    ~onOpen: 'any_rzsg=?,
     ~_open: bool=?,
     ~placement: string=?,
     ~_PopperProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
     ~title: ReasonReact.reactElement,
+    ~_TransitionComponent: 'union_r54k=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -103,6 +104,14 @@ let make =
       ~_PopperProps: option(Js.t({..}))=?,
       ~theme: option(Js.t({..}))=?,
       ~title: ReasonReact.reactElement,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -144,6 +153,12 @@ let make =
         ~_PopperProps?,
         ~theme?,
         ~title,
+        ~_TransitionComponent=?
+          _TransitionComponent->(
+                                  Belt.Option.map(v =>
+                                    MaterialUi_Helpers.unwrapValue(v)
+                                  )
+                                ),
         ~_TransitionProps?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

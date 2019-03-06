@@ -33,6 +33,7 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
+    ~component: 'union_rrgj=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: ReasonReact.reactElement=?,
@@ -47,6 +48,14 @@ external reactClass: ReasonReact.reactClass = "List";
 let make =
     (
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~dense: option(bool)=?,
       ~disablePadding: option(bool)=?,
       ~subheader: option(ReasonReact.reactElement)=?,
@@ -59,6 +68,10 @@ let make =
     ~props=
       makeProps(
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~dense?,
         ~disablePadding?,
         ~subheader?,

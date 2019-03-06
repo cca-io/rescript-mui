@@ -33,8 +33,9 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~cols: 'number_b=?,
-    ~rows: 'number_q=?,
+    ~cols: 'number_4=?,
+    ~component: 'union_rr8a=?,
+    ~rows: 'number_m=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -47,6 +48,14 @@ let make =
     (
       ~className: option(string)=?,
       ~cols: option([ | `Int(int) | `Float(float)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~rows: option([ | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -59,6 +68,10 @@ let make =
         ~className?,
         ~cols=?
           cols->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~rows=?
           rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

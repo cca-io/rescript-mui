@@ -25,7 +25,8 @@ external makeProps:
   (
     ~className: string=?,
     ~raised: bool=?,
-    ~elevation: 'number_i=?,
+    ~component: 'union_r63q=?,
+    ~elevation: 'number_e=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -39,6 +40,14 @@ let make =
     (
       ~className: option(string)=?,
       ~raised: option(bool)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
@@ -51,6 +60,10 @@ let make =
       makeProps(
         ~className?,
         ~raised?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
           elevation->(
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))

@@ -225,10 +225,10 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~anchorEl: 'any_r5vq=?,
+    ~anchorEl: 'any_ra4t=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_rrzl=?,
+    ~onClose: 'any_rjub=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -239,18 +239,19 @@ external makeProps:
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_r1tj=?,
-    ~action: 'any_rv0w=?,
-    ~anchorOrigin: 'any_rxsv=?,
-    ~anchorPosition: 'any_r08d=?,
+    ~transitionDuration: 'union_rki3=?,
+    ~action: 'any_r673=?,
+    ~anchorOrigin: 'any_rpj9=?,
+    ~anchorPosition: 'any_rcmo=?,
     ~anchorReference: string=?,
-    ~container: 'union_rfut=?,
-    ~elevation: 'number_9=?,
+    ~container: 'union_rkhc=?,
+    ~elevation: 'number_e=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_c=?,
+    ~marginThreshold: 'number_y=?,
     ~_ModalClasses: Js.t({..})=?,
     ~role: string=?,
-    ~transformOrigin: 'any_rxlr=?,
+    ~transformOrigin: 'any_rl0n=?,
+    ~_TransitionComponent: 'union_rbiw=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -262,7 +263,7 @@ external makeProps:
 external reactClass: ReasonReact.reactClass = "Menu";
 let make =
     (
-      ~anchorEl: option('any_r5vq)=?,
+      ~anchorEl: option('any_ra4t)=?,
       ~disableAutoFocusItem: option(bool)=?,
       ~_MenuListProps: option(Js.t({..}))=?,
       ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
@@ -299,6 +300,14 @@ let make =
       ~_ModalClasses: option(Js.t({..}))=?,
       ~role: option(string)=?,
       ~transformOrigin: option(TransformOrigin.t)=?,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -360,6 +369,12 @@ let make =
         ~_ModalClasses?,
         ~role?,
         ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
+        ~_TransitionComponent=?
+          _TransitionComponent->(
+                                  Belt.Option.map(v =>
+                                    MaterialUi_Helpers.unwrapValue(v)
+                                  )
+                                ),
         ~_TransitionProps?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

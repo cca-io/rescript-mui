@@ -1,12 +1,12 @@
 [@bs.obj]
 external makeProps:
   (
-    ~defaultValue: 'union_rw4t=?,
+    ~defaultValue: 'union_rjnd=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_ridv=?,
+    ~onChange: 'any_r5dm=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~value: 'union_rt7d=?,
+    ~value: 'union_r5is=?,
     ~className: string=?,
     ~row: bool=?,
     unit

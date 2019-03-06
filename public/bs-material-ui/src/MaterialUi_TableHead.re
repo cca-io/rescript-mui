@@ -24,6 +24,7 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
+    ~component: 'union_rvcu=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -35,6 +36,14 @@ external reactClass: ReasonReact.reactClass = "TableHead";
 let make =
     (
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       children,
@@ -44,6 +53,10 @@ let make =
     ~props=
       makeProps(
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,
         (),

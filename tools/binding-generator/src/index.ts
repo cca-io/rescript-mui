@@ -123,7 +123,6 @@ const parseInit = () => {
         module ThemeOptions = MaterialUi_ThemeOptions;
         module ThemeProvider = MaterialUi_ThemeProvider;
         module WithStyles = MaterialUi_WithStyles;
-        module Icons = MaterialUi_Icons;
     `
     );
 

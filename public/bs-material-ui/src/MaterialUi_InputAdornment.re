@@ -46,6 +46,7 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
+    ~component: 'union_r5yu=?,
     ~disablePointerEvents: bool=?,
     ~disableTypography: bool=?,
     ~muiFormControl: Js.t({..})=?,
@@ -62,6 +63,14 @@ external reactClass: ReasonReact.reactClass = "InputAdornment";
 let make =
     (
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disablePointerEvents: option(bool)=?,
       ~disableTypography: option(bool)=?,
       ~muiFormControl: option(Js.t({..}))=?,
@@ -76,6 +85,10 @@ let make =
     ~props=
       makeProps(
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disablePointerEvents?,
         ~disableTypography?,
         ~muiFormControl?,

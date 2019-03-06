@@ -17,7 +17,7 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rui3=?,
+    ~defaultValue: 'union_rhc2=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -27,23 +27,24 @@ external makeProps:
     ~_InputLabelProps: Js.t({..})=?,
     ~_InputProps: Js.t({..})=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rum5=?,
+    ~inputRef: 'union_rr7w=?,
     ~label: ReasonReact.reactElement=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_r4g4=?,
+    ~onChange: 'any_rxno=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_rp77=?,
-    ~rowsMax: 'union_rdf4=?,
+    ~rows: 'union_radq=?,
+    ~rowsMax: 'union_r24u=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
     ~_type: string=?,
-    ~value: 'union_rrdv=?,
+    ~value: 'union_rvor=?,
     ~variant: string=?,
+    ~component: 'union_rj18=?,
     unit
   ) =>
   _ =
@@ -104,6 +105,14 @@ let make =
            ],
          )=?,
       ~variant: option(variant)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       children,
     ) =>
   ReasonReact.wrapJsForReason(
@@ -149,6 +158,10 @@ let make =
         ~value=?
           value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         (),
       ),
     children,

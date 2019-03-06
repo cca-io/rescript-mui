@@ -65,28 +65,29 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rvo0=?,
+    ~defaultValue: 'union_rfv5=?,
     ~disabled: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
+    ~inputComponent: 'union_ruj9=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rjix=?,
-    ~labelWidth: 'number_l,
+    ~inputRef: 'union_rjq2=?,
+    ~labelWidth: 'number_o,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~notched: bool=?,
-    ~onChange: 'any_rzaw=?,
+    ~onChange: 'any_ros3=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rn08=?,
-    ~rowsMax: 'union_r6a6=?,
+    ~rows: 'union_rwnj=?,
+    ~rowsMax: 'union_rhoh=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
-    ~value: 'union_rz0v=?,
+    ~value: 'union_rbp1=?,
     ~muiFormControl: Js.t({..})=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
@@ -135,6 +136,14 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
+      ~inputComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef:
          option(
@@ -205,6 +214,12 @@ let make =
         ~error?,
         ~fullWidth?,
         ~id?,
+        ~inputComponent=?
+          inputComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
         ~inputProps?,
         ~inputRef=?
           inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

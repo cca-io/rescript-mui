@@ -126,6 +126,7 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_rvtk=?,
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
@@ -136,8 +137,8 @@ external makeProps:
     ~size: string=?,
     ~_type: string=?,
     ~variant: string=?,
-    ~action: 'any_rjr0=?,
-    ~buttonRef: 'union_rnnn=?,
+    ~action: 'any_rsjr=?,
+    ~buttonRef: 'union_re7m=?,
     ~centerRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -154,7 +155,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rfmf=?,
+    ~tabIndex: 'union_romf=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -168,6 +169,14 @@ let make =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~disableFocusRipple: option(bool)=?,
       ~disableRipple: option(bool)=?,
@@ -211,6 +220,10 @@ let make =
       makeProps(
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disabled?,
         ~disableFocusRipple?,
         ~disableRipple?,

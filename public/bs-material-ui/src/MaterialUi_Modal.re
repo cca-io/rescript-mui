@@ -26,10 +26,11 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
+    ~_BackdropComponent: 'union_rluo=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rg4u=?,
+    ~container: 'union_r23y=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -40,7 +41,7 @@ external makeProps:
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_r98y=?,
+    ~onClose: 'any_r046=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
@@ -54,6 +55,14 @@ external makeProps:
 external reactClass: ReasonReact.reactClass = "Modal";
 let make =
     (
+      ~_BackdropComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~className: option(string)=?,
       ~closeAfterTransition: option(bool)=?,
@@ -83,6 +92,12 @@ let make =
     ~reactClass,
     ~props=
       makeProps(
+        ~_BackdropComponent=?
+          _BackdropComponent->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
         ~_BackdropProps?,
         ~className?,
         ~closeAfterTransition?,

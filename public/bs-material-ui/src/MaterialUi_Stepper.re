@@ -38,13 +38,14 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~activeStep: 'number_1=?,
+    ~activeStep: 'number_l=?,
     ~alternativeLabel: bool=?,
     ~className: string=?,
     ~connector: ReasonReact.reactElement=?,
     ~nonLinear: bool=?,
     ~orientation: string=?,
-    ~elevation: 'number_y=?,
+    ~component: 'union_r5qj=?,
+    ~elevation: 'number_a=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -62,6 +63,14 @@ let make =
       ~connector: option(ReasonReact.reactElement)=?,
       ~nonLinear: option(bool)=?,
       ~orientation: option(orientation)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
@@ -81,6 +90,10 @@ let make =
         ~connector?,
         ~nonLinear?,
         ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
           elevation->(
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))

@@ -74,16 +74,18 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~action: 'any_r668=?,
+    ~action: 'any_rc6y=?,
     ~centered: bool=?,
     ~className: string=?,
+    ~component: 'union_r6z1=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_rv7e=?,
+    ~onChange: 'any_rzaa=?,
+    ~_ScrollButtonComponent: 'union_r40c=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_rb73=?,
+    ~value: 'any_riwl=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -98,13 +100,29 @@ let make =
       ~action: option(Js.t({..}) => unit)=?,
       ~centered: option(bool)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~indicatorColor: option(indicatorColor)=?,
       ~onChange: option((ReactEvent.Form.t, int) => unit)=?,
+      ~_ScrollButtonComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~scrollButtons: option(scrollButtons)=?,
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_rb73)=?,
+      ~value: option('any_riwl)=?,
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -117,9 +135,19 @@ let make =
         ~action?,
         ~centered?,
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~indicatorColor=?
           indicatorColor->(Belt.Option.map(v => indicatorColorToJs(v))),
         ~onChange?,
+        ~_ScrollButtonComponent=?
+          _ScrollButtonComponent->(
+                                    Belt.Option.map(v =>
+                                      MaterialUi_Helpers.unwrapValue(v)
+                                    )
+                                  ),
         ~scrollButtons=?
           scrollButtons->(Belt.Option.map(v => scrollButtonsToJs(v))),
         ~_TabIndicatorProps?,

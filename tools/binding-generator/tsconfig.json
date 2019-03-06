@@ -1,23 +1,11 @@
 {
-    "include": [
-        "./src/**/*",
-        "./node_modules/@jsiebern/json-schema-to-reason/**/*"
-    ],
+    "include": ["./src/**/*", "./../json-schema-parser/src_ts/**/*"],
     "compilerOptions": {
-        "paths": {
-            "@jsiebern/json-schema-to-reason": ["node_modules/@jsiebern/json-schema-to-reason"]
-        },
         "baseUrl": ".",
         "outDir": "./build/",
         "module": "commonjs",
         "target": "es5",
-        "lib": [
-            "dom",
-            "es2015",
-            "es2016",
-            "es2017",
-            "esnext"
-        ],
+        "lib": ["dom", "es2015", "es2016", "es2017", "esnext"],
         "jsx": "react",
         "moduleResolution": "node",
         "forceConsistentCasingInFileNames": true,
@@ -31,7 +19,8 @@
         "downlevelIteration": true,
         "typeRoots": [
             "node_modules/@types",
-            "src/@types"
+            "src/@types",
+            "../json-schema-parser/src_ts/@types"
         ]
     }
 }

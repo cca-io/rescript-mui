@@ -27,6 +27,7 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
+    ~component: 'union_r3vq=?,
     ~image: string=?,
     ~src: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -40,6 +41,14 @@ external reactClass: ReasonReact.reactClass = "CardMedia";
 let make =
     (
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~image: option(string)=?,
       ~src: option(string)=?,
       ~classes: option(Classes.t)=?,
@@ -51,6 +60,10 @@ let make =
     ~props=
       makeProps(
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~image?,
         ~src?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

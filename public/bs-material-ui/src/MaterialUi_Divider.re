@@ -44,6 +44,7 @@ external makeProps:
   (
     ~absolute: bool=?,
     ~className: string=?,
+    ~component: 'union_raff=?,
     ~light: bool=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -58,6 +59,14 @@ let make =
     (
       ~absolute: option(bool)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~light: option(bool)=?,
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
@@ -70,6 +79,10 @@ let make =
       makeProps(
         ~absolute?,
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~light?,
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

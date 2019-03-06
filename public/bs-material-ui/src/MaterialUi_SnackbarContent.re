@@ -32,7 +32,8 @@ external makeProps:
     ~action: ReasonReact.reactElement=?,
     ~className: string=?,
     ~message: ReasonReact.reactElement=?,
-    ~elevation: 'number_x=?,
+    ~component: 'union_rkul=?,
+    ~elevation: 'number_b=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -47,6 +48,14 @@ let make =
       ~action: option(ReasonReact.reactElement)=?,
       ~className: option(string)=?,
       ~message: option(ReasonReact.reactElement)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
@@ -60,6 +69,10 @@ let make =
         ~action?,
         ~className?,
         ~message?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
           elevation->(
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))

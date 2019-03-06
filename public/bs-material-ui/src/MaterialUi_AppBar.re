@@ -67,7 +67,8 @@ external makeProps:
     ~className: string=?,
     ~color: string=?,
     ~position: string=?,
-    ~elevation: 'number_n=?,
+    ~component: 'union_r4yd=?,
+    ~elevation: 'number_d=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -82,6 +83,14 @@ let make =
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~position: option(position)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
@@ -95,6 +104,10 @@ let make =
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
         ~position=?position->(Belt.Option.map(v => positionToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
           elevation->(
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))

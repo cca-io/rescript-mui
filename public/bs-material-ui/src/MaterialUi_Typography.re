@@ -177,6 +177,7 @@ external makeProps:
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_rybx=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~inline: bool=?,
@@ -198,6 +199,14 @@ let make =
       ~align: option(align)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~gutterBottom: option(bool)=?,
       ~headlineMapping: option(Js.t({..}))=?,
       ~inline: option(bool)=?,
@@ -217,6 +226,10 @@ let make =
         ~align=?align->(Belt.Option.map(v => alignToJs(v))),
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~gutterBottom?,
         ~headlineMapping?,
         ~inline?,

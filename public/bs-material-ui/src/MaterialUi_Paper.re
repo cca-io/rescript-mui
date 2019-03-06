@@ -102,7 +102,8 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
-    ~elevation: 'number_3=?,
+    ~component: 'union_rlun=?,
+    ~elevation: 'number_e=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -115,6 +116,14 @@ external reactClass: ReasonReact.reactClass = "Paper";
 let make =
     (
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
@@ -126,6 +135,10 @@ let make =
     ~props=
       makeProps(
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
           elevation->(
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))

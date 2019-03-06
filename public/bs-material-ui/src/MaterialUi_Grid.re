@@ -274,17 +274,18 @@ external makeProps:
     ~alignContent: string=?,
     ~alignItems: string=?,
     ~className: string=?,
+    ~component: 'union_rxnz=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_ruag=?,
-    ~md: 'number_rgd2=?,
-    ~sm: 'number_rlp1=?,
-    ~spacing: 'number_rna3=?,
+    ~lg: 'number_rdm9=?,
+    ~md: 'number_ru2j=?,
+    ~sm: 'number_rblu=?,
+    ~spacing: 'number_rkqx=?,
     ~wrap: string=?,
-    ~xl: 'number_ra2j=?,
-    ~xs: 'number_r5h3=?,
+    ~xl: 'number_r9cz=?,
+    ~xs: 'number_rm63=?,
     ~zeroMinWidth: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -299,6 +300,14 @@ let make =
       ~alignContent: option(alignContent)=?,
       ~alignItems: option(alignItems)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~container: option(bool)=?,
       ~direction: option(direction)=?,
       ~item: option(bool)=?,
@@ -328,6 +337,10 @@ let make =
           alignContent->(Belt.Option.map(v => alignContentToJs(v))),
         ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~container?,
         ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
         ~item?,

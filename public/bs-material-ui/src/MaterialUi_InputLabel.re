@@ -74,6 +74,7 @@ external makeProps:
     ~required: bool=?,
     ~shrink: bool=?,
     ~variant: string=?,
+    ~component: 'union_r492=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -96,6 +97,14 @@ let make =
       ~required: option(bool)=?,
       ~shrink: option(bool)=?,
       ~variant: option(variant)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~filled: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -116,6 +125,10 @@ let make =
         ~required?,
         ~shrink?,
         ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~filled?,
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
         ~style?,

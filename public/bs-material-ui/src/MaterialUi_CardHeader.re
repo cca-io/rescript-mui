@@ -41,6 +41,7 @@ external makeProps:
     ~action: ReasonReact.reactElement=?,
     ~avatar: ReasonReact.reactElement=?,
     ~className: string=?,
+    ~component: 'union_rrtk=?,
     ~disableTypography: bool=?,
     ~subheader: ReasonReact.reactElement=?,
     ~subheaderTypographyProps: Js.t({..})=?,
@@ -59,6 +60,14 @@ let make =
       ~action: option(ReasonReact.reactElement)=?,
       ~avatar: option(ReasonReact.reactElement)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disableTypography: option(bool)=?,
       ~subheader: option(ReasonReact.reactElement)=?,
       ~subheaderTypographyProps: option(Js.t({..}))=?,
@@ -75,6 +84,10 @@ let make =
         ~action?,
         ~avatar?,
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableTypography?,
         ~subheader?,
         ~subheaderTypographyProps?,

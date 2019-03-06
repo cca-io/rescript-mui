@@ -89,6 +89,7 @@ external makeProps:
   (
     ~align: string=?,
     ~className: string=?,
+    ~component: 'union_rimd=?,
     ~padding: string=?,
     ~scope: string=?,
     ~sortDirection: string=?,
@@ -106,6 +107,14 @@ let make =
     (
       ~align: option(align)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~padding: option(padding)=?,
       ~scope: option(string)=?,
       ~sortDirection: option(sortDirection)=?,
@@ -121,6 +130,10 @@ let make =
       makeProps(
         ~align=?align->(Belt.Option.map(v => alignToJs(v))),
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
         ~scope?,
         ~sortDirection=?

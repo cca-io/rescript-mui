@@ -64,6 +64,7 @@ external makeProps:
     ~block: bool=?,
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_rl60=?,
     ~_TypographyClasses: Js.t({..})=?,
     ~underline: string=?,
     ~variant: string=?,
@@ -88,6 +89,14 @@ let make =
       ~block: option(bool)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_TypographyClasses: option(Js.t({..}))=?,
       ~underline: option(underline)=?,
       ~variant: option(string)=?,
@@ -110,6 +119,10 @@ let make =
         ~block?,
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~_TypographyClasses?,
         ~underline=?underline->(Belt.Option.map(v => underlineToJs(v))),
         ~variant?,

@@ -37,9 +37,10 @@ external makeProps:
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_rfd6=?,
+    ~onChange: 'any_rvy9=?,
     ~square: bool=?,
-    ~elevation: 'number_6=?,
+    ~component: 'union_rge4=?,
+    ~elevation: 'number_e=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -57,6 +58,14 @@ let make =
       ~expanded: option(bool)=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~square: option(bool)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -73,6 +82,10 @@ let make =
         ~expanded?,
         ~onChange?,
         ~square?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~elevation=?
           elevation->(
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))

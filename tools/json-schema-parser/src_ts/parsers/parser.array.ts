@@ -16,11 +16,13 @@ class ArrayParser extends BaseParser {
         }
         if (Array.isArray(this.def.items)) {
             // TODO: Can be many things
-            this.itemsParser = new StringParser(this.schema, '', { type: 'string' });
+            this.itemsParser = new StringParser(this.schema, '', {
+                type: 'string'
+            });
             return;
         }
 
-        const parser = getParser(this.schema, this.def.items);
+        const parser = getParser(this.schema, this.def.items, this.key);
         if (!parser) {
             return;
         }

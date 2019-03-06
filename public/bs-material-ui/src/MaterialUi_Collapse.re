@@ -70,6 +70,7 @@ external makeProps:
   (
     ~className: string=?,
     ~collapsedHeight: string=?,
+    ~component: 'union_rwya=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
@@ -77,7 +78,7 @@ external makeProps:
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_re2k=?,
+    ~timeout: 'union_relt=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -90,6 +91,14 @@ let make =
     (
       ~className: option(string)=?,
       ~collapsedHeight: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~in_: option(bool)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
       ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
@@ -116,6 +125,10 @@ let make =
       makeProps(
         ~className?,
         ~collapsedHeight?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~_in=?in_,
         ~onEnter?,
         ~onEntered?,

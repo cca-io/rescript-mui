@@ -50,9 +50,10 @@ external makeProps:
     ~color: string=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
-    ~action: 'any_rvp3=?,
-    ~buttonRef: 'union_rhqs=?,
+    ~action: 'any_rc4k=?,
+    ~buttonRef: 'union_rxhk=?,
     ~centerRipple: bool=?,
+    ~component: 'union_r4ab=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -69,7 +70,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rkz7=?,
+    ~tabIndex: 'union_r8lk=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -92,6 +93,14 @@ let make =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
@@ -129,6 +138,10 @@ let make =
                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
                      ),
         ~centerRipple?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableTouchRipple?,
         ~focusRipple?,
         ~focusVisibleClassName?,

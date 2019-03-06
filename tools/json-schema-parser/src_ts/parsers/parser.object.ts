@@ -25,7 +25,7 @@ class ObjectParser extends BaseParser {
 
         const properties = this.def.properties;
         Object.keys(properties).forEach(key => {
-            const parser = getParser(this.schema, properties[key]);
+            const parser = getParser(this.schema, properties[key], key);
             if (!parser) {
                 return;
             }
@@ -47,7 +47,7 @@ class ObjectParser extends BaseParser {
             properties: this.properties.map(property => ({
                 name: property.key,
                 optional: !required.includes(property.key),
-                reasonType: property.getReasonType(),
+                reasonType: property.getReasonType()
             }))
         };
         this.schema.moduleParsers[this.moduleName] = this;
@@ -55,26 +55,38 @@ class ObjectParser extends BaseParser {
 
     public getReasonType() {
         if (this.properties.length) {
-            const genericObjects = this.module.properties.filter(p => p.reasonType === 'Js.t({..})').map(p => `'${generateAttributeName(p.name)}`).join(',');
-            return `${this.moduleName}.t${genericObjects ? `(${genericObjects})` : ''}`;
-        }
-        else {
+            const genericObjects = this.module.properties
+                .filter(p => p.reasonType === 'Js.t({..})')
+                .map(p => `'${generateAttributeName(p.name)}`)
+                .join(',');
+            return `${this.moduleName}.t${
+                genericObjects ? `(${genericObjects})` : ''
+            }`;
+        } else {
             return 'Js.Json.t';
         }
     }
 
     public getGenericObjectProperties() {
         const genericObjectProperties = [
-            ...this.module.properties.filter(p => p.reasonType === 'Js.t({..})').map(p => `'${generateAttributeName(p.name)}`),
-            ...this.module.properties.filter(p => p.reasonType.includes('.t(') && !p.reasonType.includes('{..}')).reduce((prev, p) => {
-                const re = /.*\.t\((.*)\)/m;
-                const match = re.exec(p.reasonType);
-                if (match) {
-                    const parts = match[1].split(',');
-                    return [...prev, ...parts];
-                }
-                return prev;
-            }, [])
+            ...this.module.properties
+                .filter(p => p.reasonType === 'Js.t({..})')
+                .map(p => `'${generateAttributeName(p.name)}`),
+            ...this.module.properties
+                .filter(
+                    p =>
+                        p.reasonType.includes('.t(') &&
+                        !p.reasonType.includes('{..}')
+                )
+                .reduce((prev, p) => {
+                    const re = /.*\.t\((.*)\)/m;
+                    const match = re.exec(p.reasonType);
+                    if (match) {
+                        const parts = match[1].split(',');
+                        return [...prev, ...parts];
+                    }
+                    return prev;
+                }, [])
         ];
         return genericObjectProperties.join(',');
     }
@@ -86,16 +98,31 @@ class ObjectParser extends BaseParser {
             module ${this.moduleName} {
                 [@bs.deriving abstract]
                 type t${genericObjects ? `(${genericObjects})` : ''} = {
-                    ${this.module.properties.map(property => {
-                const attributeName = generateAttributeName(property.name);
-                return `
+                    ${this.module.properties
+                        .map(property => {
+                            const attributeName = generateAttributeName(
+                                property.name
+                            );
+                            return `
                             ${property.optional ? '[@bs.optional]' : ''}
                             [@bs.as "${property.name}"]
-                            ${attributeName}: ${property.reasonType.replace('Js.t({..})', `Js.t('${attributeName})`)},
+                            ${attributeName}: ${property.reasonType.replace(
+                                'Js.t({..})',
+                                `Js.t('${attributeName})`
+                            )},
                         `;
-            }).join('\n')}
+                        })
+                        .join('\n')}
                 };
-                ${this.properties.map(property => property.getGetterFunc(this.module.properties.filter(p => p.name === property.key)[0].optional)).join('\n')}
+                ${this.properties
+                    .map(property =>
+                        property.getGetterFunc(
+                            this.module.properties.filter(
+                                p => p.name === property.key
+                            )[0].optional
+                        )
+                    )
+                    .join('\n')}
                 let make = t;
             }
         `;

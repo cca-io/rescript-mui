@@ -53,39 +53,40 @@ external makeProps:
   (
     ~autoWidth: bool=?,
     ~displayEmpty: bool=?,
+    ~_IconComponent: 'union_r9zd=?,
     ~input: ReasonReact.reactElement=?,
     ~inputProps: Js.t({..})=?,
     ~_MenuProps: Js.t({..})=?,
     ~multiple: bool=?,
     ~native: bool=?,
-    ~onChange: 'any_rzn5=?,
-    ~onClose: 'any_r3td=?,
-    ~onOpen: 'any_rouq=?,
+    ~onChange: 'any_r9pn=?,
+    ~onClose: 'any_rbxl=?,
+    ~onOpen: 'any_rl8l=?,
     ~_open: bool=?,
-    ~renderValue: 'any_rnfu=?,
+    ~renderValue: 'any_rr3g=?,
     ~_SelectDisplayProps: Js.t({..})=?,
-    ~value: 'union_re3l=?,
+    ~value: 'union_rxmx=?,
     ~variant: string=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rith=?,
+    ~defaultValue: 'union_rjd4=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_ro4t=?,
-    ~inputRef: 'union_rfue=?,
+    ~inputComponent: 'any_r59w=?,
+    ~inputRef: 'union_rrvl=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_ra64=?,
-    ~rowsMax: 'union_radf=?,
+    ~rows: 'union_rq27=?,
+    ~rowsMax: 'union_r3j3=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
     ~muiFormControl: Js.t({..})=?,
@@ -109,6 +110,14 @@ let make =
     (
       ~autoWidth: option(bool)=?,
       ~displayEmpty: option(bool)=?,
+      ~_IconComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~input: option(ReasonReact.reactElement)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~_MenuProps: option(Js.t({..}))=?,
@@ -118,7 +127,7 @@ let make =
       ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
       ~onOpen: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: option(bool)=?,
-      ~renderValue: option('any_rvz5 => ReasonReact.reactElement)=?,
+      ~renderValue: option('any_r6ru => ReasonReact.reactElement)=?,
       ~_SelectDisplayProps: option(Js.t({..}))=?,
       ~value:
          option(
@@ -172,7 +181,7 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_ro4t)=?,
+      ~inputComponent: option('any_r59w)=?,
       ~inputRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
@@ -206,6 +215,12 @@ let make =
       makeProps(
         ~autoWidth?,
         ~displayEmpty?,
+        ~_IconComponent=?
+          _IconComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
         ~input?,
         ~inputProps?,
         ~_MenuProps?,

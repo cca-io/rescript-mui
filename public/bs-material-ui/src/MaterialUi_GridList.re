@@ -26,10 +26,11 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~cellHeight: 'union_rwp3=?,
+    ~cellHeight: 'union_r30v=?,
     ~className: string=?,
-    ~cols: 'number_v=?,
-    ~spacing: 'number_v=?,
+    ~cols: 'number_h=?,
+    ~component: 'union_r7c2=?,
+    ~spacing: 'number_r=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -44,6 +45,14 @@ let make =
          option([ | `Int(int) | `Float(float) | `Enum(cellHeight_enum)])=?,
       ~className: option(string)=?,
       ~cols: option([ | `Int(int) | `Float(float)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~spacing: option([ | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -69,6 +78,10 @@ let make =
         ~className?,
         ~cols=?
           cols->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~spacing=?
           spacing->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
         ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

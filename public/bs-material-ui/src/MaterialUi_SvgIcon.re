@@ -67,6 +67,7 @@ external makeProps:
   (
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_rd4b=?,
     ~fontSize: string=?,
     ~nativeColor: string=?,
     ~shapeRendering: string=?,
@@ -84,6 +85,14 @@ let make =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~fontSize: option(fontSize)=?,
       ~nativeColor: option(string)=?,
       ~shapeRendering: option(string)=?,
@@ -99,6 +108,10 @@ let make =
       makeProps(
         ~className?,
         ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
         ~nativeColor?,
         ~shapeRendering?,

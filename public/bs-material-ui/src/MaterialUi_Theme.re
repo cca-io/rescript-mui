@@ -54,11 +54,11 @@ module AppBarClassKey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "colorDefault"]
-    colorDefault: ReactDOMRe.Style.t,
+    colorDefault: string,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "positionAbsolute"]
     positionAbsolute: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "positionFixed"]
@@ -80,7 +80,7 @@ module AvatarClassKey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "colorDefault"]
-    colorDefault: ReactDOMRe.Style.t,
+    colorDefault: string,
     [@bs.optional] [@bs.as "img"]
     img: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -108,9 +108,9 @@ module BadgeClassKey = {
     [@bs.optional] [@bs.as "badge"]
     badge: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "dot"]
     dot: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "invisible"]
@@ -154,7 +154,7 @@ module ButtonClassKey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "colorInherit"]
-    colorInherit: ReactDOMRe.Style.t,
+    colorInherit: string,
     [@bs.optional] [@bs.as "contained"]
     contained: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "containedPrimary"]
@@ -290,9 +290,9 @@ module CheckboxClassKey = {
     [@bs.optional] [@bs.as "checked"]
     checked: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "indeterminate"]
@@ -324,9 +324,9 @@ module ChipClassKey = {
     [@bs.optional] [@bs.as "clickableSecondary"]
     clickableSecondary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "deletable"]
     deletable: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "deletablePrimary"]
@@ -370,9 +370,9 @@ module CircularProgressClassKey = {
     [@bs.optional] [@bs.as "circleStatic"]
     circleStatic: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "indeterminate"]
     indeterminate: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -538,7 +538,7 @@ module FabClassKey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "colorInherit"]
-    colorInherit: ReactDOMRe.Style.t,
+    colorInherit: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "extended"]
@@ -820,21 +820,21 @@ module IconClassKey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "colorAction"]
-    colorAction: ReactDOMRe.Style.t,
+    colorAction: string,
     [@bs.optional] [@bs.as "colorDisabled"]
-    colorDisabled: ReactDOMRe.Style.t,
+    colorDisabled: string,
     [@bs.optional] [@bs.as "colorError"]
-    colorError: ReactDOMRe.Style.t,
+    colorError: string,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "fontSizeInherit"]
-    fontSizeInherit: ReactDOMRe.Style.t,
+    fontSizeInherit: string,
     [@bs.optional] [@bs.as "fontSizeLarge"]
-    fontSizeLarge: ReactDOMRe.Style.t,
+    fontSizeLarge: string,
     [@bs.optional] [@bs.as "fontSizeSmall"]
-    fontSizeSmall: ReactDOMRe.Style.t,
+    fontSizeSmall: string,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
   };
@@ -846,11 +846,11 @@ module IconButtonClassKey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "colorInherit"]
-    colorInherit: ReactDOMRe.Style.t,
+    colorInherit: string,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "label"]
@@ -1000,9 +1000,9 @@ module LinearProgressClassKey = {
     [@bs.optional] [@bs.as "buffer"]
     buffer: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "dashed"]
     dashed: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "dashedColorPrimary"]
@@ -1122,9 +1122,9 @@ module ListSubheaderClassKey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "colorInherit"]
-    colorInherit: ReactDOMRe.Style.t,
+    colorInherit: string,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "gutters"]
     gutters: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inset"]
@@ -1312,9 +1312,9 @@ module RadioClassKey = {
     [@bs.optional] [@bs.as "checked"]
     checked: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "input"]
@@ -1490,9 +1490,9 @@ module SwitchClassKey = {
     [@bs.optional] [@bs.as "checked"]
     checked: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorPrimary"]
-    colorPrimary: ReactDOMRe.Style.t,
+    colorPrimary: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "icon"]
@@ -1754,13 +1754,13 @@ module TypographyClassKey = {
     [@bs.optional] [@bs.as "caption"]
     caption: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorError"]
-    colorError: ReactDOMRe.Style.t,
+    colorError: string,
     [@bs.optional] [@bs.as "colorInherit"]
-    colorInherit: ReactDOMRe.Style.t,
+    colorInherit: string,
     [@bs.optional] [@bs.as "colorSecondary"]
-    colorSecondary: ReactDOMRe.Style.t,
+    colorSecondary: string,
     [@bs.optional] [@bs.as "colorTextSecondary"]
-    colorTextSecondary: ReactDOMRe.Style.t,
+    colorTextSecondary: string,
     [@bs.optional] [@bs.as "display1"]
     display1: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "display2"]
@@ -2220,53 +2220,501 @@ module Transitions = {
   let make = t;
 };
 
+module Body1 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Body2 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Button = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Caption = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Display1 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Display2 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Display3 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Display4 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module H1 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module H2 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module H3 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module H4 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module H5 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module H6 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Headline = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Overline = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Subheading = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Subtitle1 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Subtitle2 = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
+module Title = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.as "color"]
+    color: string,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
+    [@bs.as "fontSize"]
+    fontSize: string,
+    [@bs.as "fontWeight"]
+    fontWeight: string,
+    [@bs.optional] [@bs.as "letterSpacing"]
+    letterSpacing: string,
+    [@bs.optional] [@bs.as "lineHeight"]
+    lineHeight: string,
+    [@bs.optional] [@bs.as "textTransform"]
+    textTransform: string,
+  };
+
+  let make = t;
+};
+
 module Typography = {
   [@bs.deriving abstract]
   type t = {
     [@bs.as "body1"]
-    body1: Js.Json.t,
+    body1: Body1.t,
     [@bs.as "body2"]
-    body2: Js.Json.t,
+    body2: Body2.t,
     [@bs.as "button"]
-    button: Js.Json.t,
+    button: Button.t,
     [@bs.as "caption"]
-    caption: Js.Json.t,
+    caption: Caption.t,
     [@bs.as "display1"]
-    display1: Js.Json.t,
+    display1: Display1.t,
     [@bs.as "display2"]
-    display2: Js.Json.t,
+    display2: Display2.t,
     [@bs.as "display3"]
-    display3: Js.Json.t,
+    display3: Display3.t,
     [@bs.as "display4"]
-    display4: Js.Json.t,
+    display4: Display4.t,
+    [@bs.as "fontFamily"]
+    fontFamily: string,
     [@bs.as "fontSize"]
-    fontSize: float,
+    fontSize: string,
+    [@bs.as "fontWeightLight"]
+    fontWeightLight: string,
+    [@bs.as "fontWeightMedium"]
+    fontWeightMedium: string,
+    [@bs.as "fontWeightRegular"]
+    fontWeightRegular: string,
     [@bs.as "h1"]
-    h1: Js.Json.t,
+    h1: H1.t,
     [@bs.as "h2"]
-    h2: Js.Json.t,
+    h2: H2.t,
     [@bs.as "h3"]
-    h3: Js.Json.t,
+    h3: H3.t,
     [@bs.as "h4"]
-    h4: Js.Json.t,
+    h4: H4.t,
     [@bs.as "h5"]
-    h5: Js.Json.t,
+    h5: H5.t,
     [@bs.as "h6"]
-    h6: Js.Json.t,
+    h6: H6.t,
     [@bs.as "headline"]
-    headline: Js.Json.t,
+    headline: Headline.t,
     [@bs.as "overline"]
-    overline: Js.Json.t,
+    overline: Overline.t,
     [@bs.as "pxToRem"]
     pxToRem: Js.Json.t,
     [@bs.as "subheading"]
-    subheading: Js.Json.t,
+    subheading: Subheading.t,
     [@bs.as "subtitle1"]
-    subtitle1: Js.Json.t,
+    subtitle1: Subtitle1.t,
     [@bs.as "subtitle2"]
-    subtitle2: Js.Json.t,
+    subtitle2: Subtitle2.t,
     [@bs.as "title"]
-    title: Js.Json.t,
+    title: Title.t,
   };
 
   let make = t;

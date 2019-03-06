@@ -29,10 +29,11 @@ module Classes = {
 [@bs.obj]
 external makeProps:
   (
-    ~action: 'any_rprf=?,
-    ~buttonRef: 'union_rcme=?,
+    ~action: 'any_rrv2=?,
+    ~buttonRef: 'union_rpu6=?,
     ~centerRipple: bool=?,
     ~className: string=?,
+    ~component: 'union_rol1=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -51,7 +52,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rsp2=?,
+    ~tabIndex: 'union_rt5d=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -71,6 +72,14 @@ let make =
          )=?,
       ~centerRipple: option(bool)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
       ~disableTouchRipple: option(bool)=?,
@@ -107,6 +116,10 @@ let make =
                      ),
         ~centerRipple?,
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disabled?,
         ~disableRipple?,
         ~disableTouchRipple?,

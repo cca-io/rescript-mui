@@ -36,14 +36,16 @@ module Classes = {
 external makeProps:
   (
     ~className: string=?,
+    ~component: 'union_rvr4=?,
     ~disableGutters: bool=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~value: 'union_rm23=?,
+    ~value: 'union_rvei=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~alignItems: string=?,
     ~button: bool=?,
+    ~_ContainerComponent: 'union_r0w0=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -60,6 +62,14 @@ external reactClass: ReasonReact.reactClass = "MenuItem";
 let make =
     (
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disableGutters: option(bool)=?,
       ~role: option(string)=?,
       ~selected: option(bool)=?,
@@ -76,6 +86,14 @@ let make =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~alignItems: option(alignItems)=?,
       ~button: option(bool)=?,
+      ~_ContainerComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_ContainerProps: option(Js.t({..}))=?,
       ~dense: option(bool)=?,
       ~disabled: option(bool)=?,
@@ -90,6 +108,10 @@ let make =
     ~props=
       makeProps(
         ~className?,
+        ~component=?
+          component->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
         ~disableGutters?,
         ~role?,
         ~selected?,
@@ -99,6 +121,12 @@ let make =
         ~onClick?,
         ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
         ~button?,
+        ~_ContainerComponent=?
+          _ContainerComponent->(
+                                 Belt.Option.map(v =>
+                                   MaterialUi_Helpers.unwrapValue(v)
+                                 )
+                               ),
         ~_ContainerProps?,
         ~dense?,
         ~disabled?,

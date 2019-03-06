@@ -77,20 +77,21 @@ external makeProps:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rm1x=?,
+    ~defaultValue: 'union_rh7u=?,
     ~disabled: bool=?,
     ~endAdornment: ReasonReact.reactElement=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
+    ~inputComponent: 'union_rg41=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rx2y=?,
+    ~inputRef: 'union_rxwo=?,
     ~margin: string=?,
     ~muiFormControl: Js.t({..})=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rzw5=?,
+    ~onChange: 'any_r7bh=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
@@ -101,11 +102,11 @@ external makeProps:
     ~readOnly: bool=?,
     ~renderPrefix: 'genericCallback=?,
     ~required: bool=?,
-    ~rows: 'union_r4wd=?,
-    ~rowsMax: 'union_r33z=?,
+    ~rows: 'union_r3kn=?,
+    ~rowsMax: 'union_rpqi=?,
     ~startAdornment: ReasonReact.reactElement=?,
     ~_type: string=?,
-    ~value: 'union_rxzs=?,
+    ~value: 'union_r2jd=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -145,6 +146,14 @@ let make =
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
+      ~inputComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef:
          option(
@@ -213,6 +222,12 @@ let make =
         ~error?,
         ~fullWidth?,
         ~id?,
+        ~inputComponent=?
+          inputComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
         ~inputProps?,
         ~inputRef=?
           inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

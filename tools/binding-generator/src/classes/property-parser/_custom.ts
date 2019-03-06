@@ -1,9 +1,15 @@
 import Base from './base';
 import EnumFactory from './_enum';
+import UnionFactory from './_union';
 
 const factory = (propertyType: PropType$Custom) => {
-    if (propertyType.raw != null && propertyType.raw.indexOf('PropTypes.oneOf') > -1) {
-        const match = /PropTypes\.oneOf\(\[((.|\n)*)\]\)/gm.exec(propertyType.raw);
+    if (
+        propertyType.raw != null &&
+        propertyType.raw.indexOf('PropTypes.oneOf') > -1
+    ) {
+        const match = /PropTypes\.oneOf\(\[((.|\n)*)\]\)/gm.exec(
+            propertyType.raw
+        );
         if (match != null) {
             const array = match[1].split(',').reduce((prev, value) => {
                 const match = /'(.*)'/gm.exec(value);
@@ -14,9 +20,19 @@ const factory = (propertyType: PropType$Custom) => {
             }, []);
             return EnumFactory({
                 name: 'enum',
-                value: array.map(value => ({ value, computed: false })),
+                value: array.map(value => ({ value, computed: false }))
             });
         }
+    }
+
+    if (
+        propertyType.raw != null &&
+        propertyType.raw.includes('componentPropType')
+    ) {
+        return UnionFactory({
+            name: 'union',
+            value: [{ name: 'string' }, { name: 'func' }, { name: 'Element' }]
+        });
     }
 
     return class PrimitiveParser extends Base {
@@ -31,7 +47,7 @@ const factory = (propertyType: PropType$Custom) => {
                 this._wrapJs = this._propertyType.wrapJs;
             }
         }
-    }
+    };
 };
 
 export default factory;
