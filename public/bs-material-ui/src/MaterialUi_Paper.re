@@ -99,11 +99,12 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rlun=?,
-    ~elevation: 'number_e=?,
+    ~component: 'union_r90x=?,
+    ~elevation: 'number_o=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -111,10 +112,14 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Paper";
+external reactComponent: React.component('a) = "Paper";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
@@ -128,25 +133,19 @@ let make =
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~elevation=?
-          elevation->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~square?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~className?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~elevation=?
+        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~square?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

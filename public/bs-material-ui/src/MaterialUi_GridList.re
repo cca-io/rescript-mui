@@ -24,25 +24,30 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~cellHeight: 'union_r30v=?,
+    ~cellHeight: 'union_r3v4=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~cols: 'number_h=?,
-    ~component: 'union_r7c2=?,
-    ~spacing: 'number_r=?,
+    ~cols: 'number_y=?,
+    ~component: 'union_rnub=?,
+    ~spacing: 'number_j=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "GridList";
+external reactComponent: React.component('a) = "GridList";
+
+[@react.component]
 let make =
     (
       ~cellHeight:
          option([ | `Int(int) | `Float(float) | `Enum(cellHeight_enum)])=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~cols: option([ | `Int(int) | `Float(float)])=?,
       ~component:
@@ -56,37 +61,32 @@ let make =
       ~spacing: option([ | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~cellHeight=?
-          cellHeight->(
-                        Belt.Option.map(v =>
-                          switch (v) {
-                          | `Enum(v) =>
-                            MaterialUi_Helpers.unwrapValue(
-                              `String(cellHeight_enumToJs(v)),
-                            )
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~cellHeight=?
+        cellHeight->(
+                      Belt.Option.map(v =>
+                        switch (v) {
+                        | `Enum(v) =>
+                          MaterialUi_Helpers.unwrapValue(
+                            `String(cellHeight_enumToJs(v)),
+                          )
 
-                          | v => MaterialUi_Helpers.unwrapValue(v)
-                          }
-                        )
-                      ),
-        ~className?,
-        ~cols=?
-          cols->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~spacing=?
-          spacing->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+                        | v => MaterialUi_Helpers.unwrapValue(v)
+                        }
+                      )
+                    ),
+      ~children?,
+      ~className?,
+      ~cols=?cols->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~spacing=?
+        spacing->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

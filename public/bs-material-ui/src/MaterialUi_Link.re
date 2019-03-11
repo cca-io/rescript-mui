@@ -59,12 +59,13 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~block: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rl60=?,
+    ~component: 'union_rhr3=?,
     ~_TypographyClasses: Js.t({..})=?,
     ~underline: string=?,
     ~variant: string=?,
@@ -82,11 +83,15 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Link";
+external reactComponent: React.component('a) = "Link";
+
+[@react.component]
 let make =
     (
       ~block: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~component:
@@ -110,33 +115,29 @@ let make =
       ~theme: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~block?,
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~_TypographyClasses?,
-        ~underline=?underline->(Belt.Option.map(v => underlineToJs(v))),
-        ~variant?,
-        ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-        ~gutterBottom?,
-        ~headlineMapping?,
-        ~inline?,
-        ~internalDeprecatedVariant?,
-        ~noWrap?,
-        ~paragraph?,
-        ~theme?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~block?,
+      ~children?,
+      ~className?,
+      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~_TypographyClasses?,
+      ~underline=?underline->(Belt.Option.map(v => underlineToJs(v))),
+      ~variant?,
+      ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+      ~gutterBottom?,
+      ~headlineMapping?,
+      ~inline?,
+      ~internalDeprecatedVariant?,
+      ~noWrap?,
+      ~paragraph?,
+      ~theme?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

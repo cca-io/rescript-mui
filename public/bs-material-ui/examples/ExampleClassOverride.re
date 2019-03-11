@@ -1,4 +1,4 @@
-let component = ReasonReact.statelessComponent("Example");
+[@bs.config {jsx: 3}];
 
 [%mui.withStyles
   "OverrideExample"({
@@ -8,21 +8,15 @@ let component = ReasonReact.statelessComponent("Example");
   })
 ];
 
-let make = _children => {
-  ...component,
-  render: _self =>
-    <OverrideExample>
-      ...{
-           classes =>
-             <MaterialUi.Button
-               color=`Primary
-               variant=`Contained
-               classes=[
-                 Root(classes.fontSize),
-                 RaisedPrimary(classes.bgColor),
-               ]>
-               {ReasonReact.string("Example Button")}
-             </MaterialUi.Button>
-         }
-    </OverrideExample>,
-};
+[@react.component]
+let make = () =>
+  <OverrideExample>
+    ...{classes =>
+      <MaterialUi.Button
+        color=`Primary
+        variant=`Contained
+        classes=[Root(classes.fontSize), RaisedPrimary(classes.bgColor)]>
+        {ReasonReact.string("Example Button")}
+      </MaterialUi.Button>
+    }
+  </OverrideExample>;

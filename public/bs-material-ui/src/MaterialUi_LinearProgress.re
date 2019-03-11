@@ -86,12 +86,12 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_p=?,
-    ~valueBuffer: 'number_6=?,
+    ~value: 'number_6=?,
+    ~valueBuffer: 'number_0=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -99,8 +99,11 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "LinearProgress";
+external reactComponent: React.component('a) = "LinearProgress";
+
+[@react.component]
 let make =
     (
       ~className: option(string)=?,
@@ -110,26 +113,21 @@ let make =
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~value=?
-          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~valueBuffer=?
-          valueBuffer->(
-                         Belt.Option.map(v =>
-                           MaterialUi_Helpers.unwrapValue(v)
-                         )
-                       ),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~className?,
+      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+      ~value=?
+        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~valueBuffer=?
+        valueBuffer->(
+                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                     ),
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

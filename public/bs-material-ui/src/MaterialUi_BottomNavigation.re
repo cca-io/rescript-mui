@@ -21,23 +21,28 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rx2m=?,
-    ~onChange: 'any_r3q0=?,
+    ~component: 'union_rt6y=?,
+    ~onChange: 'any_rg90=?,
     ~showLabels: bool=?,
-    ~value: 'any_rwis=?,
+    ~value: 'any_rmvi=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "BottomNavigation";
+external reactComponent: React.component('a) = "BottomNavigation";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
@@ -47,28 +52,24 @@ let make =
              | `Element(ReasonReact.reactElement)
            ],
          )=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_r23d) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rbhm) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_rwis)=?,
+      ~value: option('any_rmvi)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~onChange?,
-        ~showLabels?,
-        ~value?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~className?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~onChange?,
+      ~showLabels?,
+      ~value?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

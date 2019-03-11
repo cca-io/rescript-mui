@@ -39,15 +39,16 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~active: bool=?,
     ~alternativeLabel: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~completed: bool=?,
-    ~connector: ReasonReact.reactElement=?,
+    ~connector: React.element=?,
     ~disabled: bool=?,
-    ~index: 'number_t=?,
+    ~index: 'number_7=?,
     ~last: bool=?,
     ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -56,40 +57,42 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Step";
+external reactComponent: React.component('a) = "Step";
+
+[@react.component]
 let make =
     (
       ~active: option(bool)=?,
       ~alternativeLabel: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~completed: option(bool)=?,
-      ~connector: option(ReasonReact.reactElement)=?,
+      ~connector: option(React.element)=?,
       ~disabled: option(bool)=?,
       ~index: option([ | `Int(int) | `Float(float)])=?,
       ~last: option(bool)=?,
       ~orientation: option(orientation)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~active?,
-        ~alternativeLabel?,
-        ~className?,
-        ~completed?,
-        ~connector?,
-        ~disabled?,
-        ~index=?
-          index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~last?,
-        ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~active?,
+      ~alternativeLabel?,
+      ~children?,
+      ~className?,
+      ~completed?,
+      ~connector?,
+      ~disabled?,
+      ~index=?
+        index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~last?,
+      ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

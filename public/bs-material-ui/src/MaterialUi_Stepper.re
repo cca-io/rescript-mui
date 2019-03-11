@@ -36,16 +36,17 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~activeStep: 'number_l=?,
+    ~activeStep: 'number_f=?,
     ~alternativeLabel: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~connector: ReasonReact.reactElement=?,
+    ~connector: React.element=?,
     ~nonLinear: bool=?,
     ~orientation: string=?,
-    ~component: 'union_r5qj=?,
-    ~elevation: 'number_a=?,
+    ~component: 'union_r9yk=?,
+    ~elevation: 'number_u=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -53,14 +54,18 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Stepper";
+external reactComponent: React.component('a) = "Stepper";
+
+[@react.component]
 let make =
     (
       ~activeStep: option([ | `Int(int) | `Float(float)])=?,
       ~alternativeLabel: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
-      ~connector: option(ReasonReact.reactElement)=?,
+      ~connector: option(React.element)=?,
       ~nonLinear: option(bool)=?,
       ~orientation: option(orientation)=?,
       ~component:
@@ -75,33 +80,25 @@ let make =
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~activeStep=?
-          activeStep->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
-        ~alternativeLabel?,
-        ~className?,
-        ~connector?,
-        ~nonLinear?,
-        ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~elevation=?
-          elevation->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~square?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~activeStep=?
+        activeStep->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~alternativeLabel?,
+      ~children?,
+      ~className?,
+      ~connector?,
+      ~nonLinear?,
+      ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~elevation=?
+        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~square?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

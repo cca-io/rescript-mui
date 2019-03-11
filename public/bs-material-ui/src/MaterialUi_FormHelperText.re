@@ -52,10 +52,11 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rl32=?,
+    ~component: 'union_rzge=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~filled: bool=?,
@@ -70,10 +71,14 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "FormHelperText";
+external reactComponent: React.component('a) = "FormHelperText";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
@@ -93,28 +98,24 @@ let make =
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disabled?,
-        ~error?,
-        ~filled?,
-        ~focused?,
-        ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
-        ~muiFormControl?,
-        ~required?,
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~className?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~disabled?,
+      ~error?,
+      ~filled?,
+      ~focused?,
+      ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
+      ~muiFormControl?,
+      ~required?,
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

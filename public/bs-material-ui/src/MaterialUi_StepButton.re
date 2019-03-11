@@ -36,21 +36,22 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~active: bool=?,
     ~alternativeLabel: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
-    ~icon: ReasonReact.reactElement=?,
+    ~icon: React.element=?,
     ~last: bool=?,
-    ~optional: ReasonReact.reactElement=?,
+    ~optional: React.element=?,
     ~orientation: string=?,
-    ~action: 'any_ry2u=?,
-    ~buttonRef: 'union_rujf=?,
+    ~action: 'any_ra8a=?,
+    ~buttonRef: 'union_r2y8=?,
     ~centerRipple: bool=?,
-    ~component: 'union_r87v=?,
+    ~component: 'union_r6bm=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -68,7 +69,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r45r=?,
+    ~tabIndex: 'union_rzcx=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -77,18 +78,22 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "StepButton";
+external reactComponent: React.component('a) = "StepButton";
+
+[@react.component]
 let make =
     (
       ~active: option(bool)=?,
       ~alternativeLabel: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~completed: option(bool)=?,
       ~disabled: option(bool)=?,
-      ~icon: option(ReasonReact.reactElement)=?,
+      ~icon: option(React.element)=?,
       ~last: option(bool)=?,
-      ~optional: option(ReasonReact.reactElement)=?,
+      ~optional: option(React.element)=?,
       ~orientation: option(orientation)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
@@ -126,55 +131,49 @@ let make =
       ~type_: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~active?,
-        ~alternativeLabel?,
-        ~className?,
-        ~completed?,
-        ~disabled?,
-        ~icon?,
-        ~last?,
-        ~optional?,
-        ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
-        ~action?,
-        ~buttonRef=?
-          buttonRef->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~centerRipple?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disableRipple?,
-        ~disableTouchRipple?,
-        ~focusRipple?,
-        ~focusVisibleClassName?,
-        ~onBlur?,
-        ~onClick?,
-        ~onFocus?,
-        ~onFocusVisible?,
-        ~onKeyDown?,
-        ~onKeyUp?,
-        ~onMouseDown?,
-        ~onMouseLeave?,
-        ~onMouseUp?,
-        ~onTouchEnd?,
-        ~onTouchMove?,
-        ~onTouchStart?,
-        ~role?,
-        ~tabIndex=?
-          tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~_TouchRippleProps?,
-        ~_type=?type_,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~active?,
+      ~alternativeLabel?,
+      ~children?,
+      ~className?,
+      ~completed?,
+      ~disabled?,
+      ~icon?,
+      ~last?,
+      ~optional?,
+      ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+      ~action?,
+      ~buttonRef=?
+        buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~centerRipple?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~disableRipple?,
+      ~disableTouchRipple?,
+      ~focusRipple?,
+      ~focusVisibleClassName?,
+      ~onBlur?,
+      ~onClick?,
+      ~onFocus?,
+      ~onFocusVisible?,
+      ~onKeyDown?,
+      ~onKeyUp?,
+      ~onMouseDown?,
+      ~onMouseLeave?,
+      ~onMouseUp?,
+      ~onTouchEnd?,
+      ~onTouchMove?,
+      ~onTouchStart?,
+      ~role?,
+      ~tabIndex=?
+        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~_TouchRippleProps?,
+      ~_type=?type_,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

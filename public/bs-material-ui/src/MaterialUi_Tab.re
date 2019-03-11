@@ -61,23 +61,24 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~disabled: bool=?,
     ~fullWidth: bool=?,
-    ~icon: ReasonReact.reactElement=?,
-    ~indicator: ReasonReact.reactElement=?,
-    ~label: ReasonReact.reactElement=?,
+    ~icon: React.element=?,
+    ~indicator: React.element=?,
+    ~label: React.element=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~selected: bool=?,
     ~textColor: string=?,
-    ~value: 'any_ru5b=?,
-    ~action: 'any_rybn=?,
-    ~buttonRef: 'union_rliz=?,
+    ~value: 'any_rt9q=?,
+    ~action: 'any_r9k1=?,
+    ~buttonRef: 'union_r6t6=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rhpu=?,
+    ~component: 'union_rm9d=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -94,7 +95,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r3ak=?,
+    ~tabIndex: 'union_rmkz=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -103,21 +104,25 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Tab";
+external reactComponent: React.component('a) = "Tab";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~disabled: option(bool)=?,
       ~fullWidth: option(bool)=?,
-      ~icon: option(ReasonReact.reactElement)=?,
-      ~indicator: option(ReasonReact.reactElement)=?,
-      ~label: option(ReasonReact.reactElement)=?,
+      ~icon: option(React.element)=?,
+      ~indicator: option(React.element)=?,
+      ~label: option(React.element)=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~textColor: option(textColor)=?,
-      ~value: option('any_ru5b)=?,
+      ~value: option('any_rt9q)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
@@ -153,56 +158,50 @@ let make =
       ~type_: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~disabled?,
-        ~fullWidth?,
-        ~icon?,
-        ~indicator?,
-        ~label?,
-        ~onChange?,
-        ~onClick?,
-        ~selected?,
-        ~textColor=?textColor->(Belt.Option.map(v => textColorToJs(v))),
-        ~value?,
-        ~action?,
-        ~buttonRef=?
-          buttonRef->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~centerRipple?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disableRipple?,
-        ~disableTouchRipple?,
-        ~focusRipple?,
-        ~focusVisibleClassName?,
-        ~onBlur?,
-        ~onFocus?,
-        ~onFocusVisible?,
-        ~onKeyDown?,
-        ~onKeyUp?,
-        ~onMouseDown?,
-        ~onMouseLeave?,
-        ~onMouseUp?,
-        ~onTouchEnd?,
-        ~onTouchMove?,
-        ~onTouchStart?,
-        ~role?,
-        ~tabIndex=?
-          tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~_TouchRippleProps?,
-        ~_type=?type_,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~className?,
+      ~disabled?,
+      ~fullWidth?,
+      ~icon?,
+      ~indicator?,
+      ~label?,
+      ~onChange?,
+      ~onClick?,
+      ~selected?,
+      ~textColor=?textColor->(Belt.Option.map(v => textColorToJs(v))),
+      ~value?,
+      ~action?,
+      ~buttonRef=?
+        buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~centerRipple?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~disableRipple?,
+      ~disableTouchRipple?,
+      ~focusRipple?,
+      ~focusVisibleClassName?,
+      ~onBlur?,
+      ~onFocus?,
+      ~onFocusVisible?,
+      ~onKeyDown?,
+      ~onKeyUp?,
+      ~onMouseDown?,
+      ~onMouseLeave?,
+      ~onMouseUp?,
+      ~onTouchEnd?,
+      ~onTouchMove?,
+      ~onTouchStart?,
+      ~role?,
+      ~tabIndex=?
+        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~_TouchRippleProps?,
+      ~_type=?type_,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

@@ -1,3 +1,5 @@
+[@bs.config {jsx: 3}];
+
 let theme =
   MaterialUi_Theme.create(
     MaterialUi_ThemeOptions.(
@@ -13,22 +15,18 @@ let theme =
     ),
   );
 
-let component = ReasonReact.statelessComponent(__MODULE__);
-
-let make = _ => {
-  ...component,
-  render: _ =>
-    MaterialUi.(
-      <div>
+[@react.component]
+let make = () =>
+  MaterialUi.(
+    <div>
+      <Button color=`Primary variant=`Outlined>
+        "Default Primary Color"->React.string
+      </Button>
+      " "->ReasonReact.string
+      <MuiThemeProvider theme>
         <Button color=`Primary variant=`Outlined>
-          "Default Primary Color"
+          "Themed Primary Color"->React.string
         </Button>
-        " "->ReasonReact.string
-        <MuiThemeProvider theme>
-          <Button color=`Primary variant=`Outlined>
-            "Themed Primary Color"
-          </Button>
-        </MuiThemeProvider>
-      </div>
-    ),
-};
+      </MuiThemeProvider>
+    </div>
+  );

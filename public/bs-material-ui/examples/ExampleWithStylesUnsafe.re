@@ -1,44 +1,42 @@
-let component = ReasonReact.statelessComponent("Example");
+[@bs.config {jsx: 3}];
 
-let make = _children => {
-  ...component,
-  render: _self =>
-    <div>
-      <MaterialUi.WithStyles
-        classes=[
+[@react.component]
+let make = () =>
+  <div>
+    <MaterialUi.WithStyles
+      classes=[
+        {
+          name: "alignRight",
+          styles:
+            ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ()),
+        },
+      ]
+      render={classes =>
+        <div className=classes##alignRight>
+          {ReasonReact.string("Example text - aligned to the right")}
+        </div>
+      }
+    />
+    <MaterialUi.WithStyles
+      classesWithTheme={theme =>
+        [
           {
-            name: "alignRight",
+            name: "mystyle",
             styles:
-              ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ()),
+              ReactDOMRe.Style.make(
+                ~minHeight="50px",
+                ~backgroundColor=
+                  MaterialUi_Theme.(
+                    theme
+                    ->Theme.paletteGet
+                    ->Palette.secondaryGet
+                    ->PaletteColor.mainGet
+                  ),
+                (),
+              ),
           },
         ]
-        render={classes =>
-          <div className=classes##alignRight>
-            {ReasonReact.string("Example text - aligned to the right")}
-          </div>
-        }
-      />
-      <MaterialUi.WithStyles
-        classesWithTheme={theme =>
-          [
-            {
-              name: "mystyle",
-              styles:
-                ReactDOMRe.Style.make(
-                  ~minHeight="50px",
-                  ~backgroundColor=
-                    MaterialUi_Theme.(
-                      theme
-                      ->Theme.paletteGet
-                      ->Palette.secondaryGet
-                      ->PaletteColor.mainGet
-                    ),
-                  (),
-                ),
-            },
-          ]
-        }
-        render={classes => <div className=classes##mystyle />}
-      />
-    </div>,
-};
+      }
+      render={classes => <div className=classes##mystyle />}
+    />
+  </div>;

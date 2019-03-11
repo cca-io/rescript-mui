@@ -1,3 +1,5 @@
+[@bs.config {jsx: 3}];
+
 external styleToString: ReactDOMRe.Style.t => string = "%identity";
 
 let theme =
@@ -34,19 +36,15 @@ let theme =
     ),
   );
 
-let component = ReasonReact.statelessComponent(__MODULE__);
-
-let make = _ => {
-  ...component,
-  render: _ =>
-    MaterialUi.(
-      <div>
-        <MuiThemeProvider theme>
-          <Button color=`Secondary variant=`Outlined>
-            <ExampleIcons.Icons.SupervisedUserCircle_Filled />
-            "Overriden Outline Styles"->ReasonReact.string
-          </Button>
-        </MuiThemeProvider>
-      </div>
-    ),
-};
+[@react.component]
+let make = () =>
+  MaterialUi.(
+    <div>
+      <MuiThemeProvider theme>
+        <Button color=`Secondary variant=`Outlined>
+          <ExampleIcons.SupervisedUserCircle.Filled />
+          "Overriden Outline Styles"->React.string
+        </Button>
+      </MuiThemeProvider>
+    </div>
+  );

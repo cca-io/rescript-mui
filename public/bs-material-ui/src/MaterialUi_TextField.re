@@ -12,49 +12,54 @@ type variant = [
   | [@bs.as "filled"] `Filled
 ];
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~defaultValue: 'union_rhc2=?,
+    ~defaultValue: 'union_rlxo=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
     ~fullWidth: bool=?,
-    ~helperText: ReasonReact.reactElement=?,
+    ~helperText: React.element=?,
     ~id: string=?,
     ~_InputLabelProps: Js.t({..})=?,
     ~_InputProps: Js.t({..})=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rr7w=?,
-    ~label: ReasonReact.reactElement=?,
+    ~inputRef: 'union_rvji=?,
+    ~label: React.element=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rxno=?,
+    ~onChange: 'any_rt5q=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_radq=?,
-    ~rowsMax: 'union_r24u=?,
+    ~rows: 'union_rqej=?,
+    ~rowsMax: 'union_rsg3=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
     ~_type: string=?,
-    ~value: 'union_rvor=?,
+    ~value: 'union_rkpl=?,
     ~variant: string=?,
-    ~component: 'union_rj18=?,
+    ~component: 'union_rsew=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "TextField";
+external reactComponent: React.component('a) = "TextField";
+
+[@react.component]
 let make =
     (
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~defaultValue:
          option([ | `String(string) | `Int(int) | `Float(float)])=?,
@@ -62,7 +67,7 @@ let make =
       ~error: option(bool)=?,
       ~_FormHelperTextProps: option(Js.t({..}))=?,
       ~fullWidth: option(bool)=?,
-      ~helperText: option(ReasonReact.reactElement)=?,
+      ~helperText: option(React.element)=?,
       ~id: option(string)=?,
       ~_InputLabelProps: option(Js.t({..}))=?,
       ~_InputProps: option(Js.t({..}))=?,
@@ -71,7 +76,7 @@ let make =
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
-      ~label: option(ReasonReact.reactElement)=?,
+      ~label: option(React.element)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -113,56 +118,49 @@ let make =
              | `Element(ReasonReact.reactElement)
            ],
          )=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~autoComplete?,
-        ~autoFocus?,
-        ~className?,
-        ~defaultValue=?
-          defaultValue->(
-                          Belt.Option.map(v =>
-                            MaterialUi_Helpers.unwrapValue(v)
-                          )
-                        ),
-        ~disabled?,
-        ~error?,
-        ~_FormHelperTextProps?,
-        ~fullWidth?,
-        ~helperText?,
-        ~id?,
-        ~_InputLabelProps?,
-        ~_InputProps?,
-        ~inputProps?,
-        ~inputRef=?
-          inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~label?,
-        ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
-        ~multiline?,
-        ~name?,
-        ~onBlur?,
-        ~onChange?,
-        ~onFocus?,
-        ~placeholder?,
-        ~required?,
-        ~rows=?
-          rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~rowsMax=?
-          rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~select?,
-        ~_SelectProps?,
-        ~_type=?type_,
-        ~value=?
-          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~autoComplete?,
+      ~autoFocus?,
+      ~children?,
+      ~className?,
+      ~defaultValue=?
+        defaultValue->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
+      ~disabled?,
+      ~error?,
+      ~_FormHelperTextProps?,
+      ~fullWidth?,
+      ~helperText?,
+      ~id?,
+      ~_InputLabelProps?,
+      ~_InputProps?,
+      ~inputProps?,
+      ~inputRef=?
+        inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~label?,
+      ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
+      ~multiline?,
+      ~name?,
+      ~onBlur?,
+      ~onChange?,
+      ~onFocus?,
+      ~placeholder?,
+      ~required?,
+      ~rows=?rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~rowsMax=?
+        rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~select?,
+      ~_SelectProps?,
+      ~_type=?type_,
+      ~value=?
+        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      (),
+    ),
   );

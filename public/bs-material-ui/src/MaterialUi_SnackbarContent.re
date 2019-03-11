@@ -27,13 +27,14 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~action: ReasonReact.reactElement=?,
+    ~action: React.element=?,
     ~className: string=?,
-    ~message: ReasonReact.reactElement=?,
-    ~component: 'union_rkul=?,
-    ~elevation: 'number_b=?,
+    ~message: React.element=?,
+    ~children: 'children=?,
+    ~component: 'union_rzp1=?,
+    ~elevation: 'number_q=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -41,13 +42,17 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "SnackbarContent";
+external reactComponent: React.component('a) = "SnackbarContent";
+
+[@react.component]
 let make =
     (
-      ~action: option(ReasonReact.reactElement)=?,
+      ~action: option(React.element)=?,
       ~className: option(string)=?,
-      ~message: option(ReasonReact.reactElement)=?,
+      ~message: option(React.element)=?,
+      ~children: option('children)=?,
       ~component:
          option(
            [
@@ -60,27 +65,21 @@ let make =
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~action?,
-        ~className?,
-        ~message?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~elevation=?
-          elevation->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~square?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~action?,
+      ~className?,
+      ~message?,
+      ~children?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~elevation=?
+        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~square?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

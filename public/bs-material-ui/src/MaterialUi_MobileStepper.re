@@ -56,18 +56,19 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~activeStep: 'number_x=?,
-    ~backButton: ReasonReact.reactElement=?,
+    ~activeStep: 'number_p=?,
+    ~backButton: React.element=?,
     ~className: string=?,
     ~_LinearProgressProps: Js.t({..})=?,
-    ~nextButton: ReasonReact.reactElement=?,
+    ~nextButton: React.element=?,
     ~position: string=?,
-    ~steps: 'number_s,
+    ~steps: 'number_e,
     ~variant: string=?,
-    ~component: 'union_r335=?,
-    ~elevation: 'number_7=?,
+    ~children: 'children=?,
+    ~component: 'union_rhh3=?,
+    ~elevation: 'number_k=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -75,18 +76,22 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "MobileStepper";
+external reactComponent: React.component('a) = "MobileStepper";
+
+[@react.component]
 let make =
     (
       ~activeStep: option([ | `Int(int) | `Float(float)])=?,
-      ~backButton: option(ReasonReact.reactElement)=?,
+      ~backButton: option(React.element)=?,
       ~className: option(string)=?,
       ~_LinearProgressProps: option(Js.t({..}))=?,
-      ~nextButton: option(ReasonReact.reactElement)=?,
+      ~nextButton: option(React.element)=?,
       ~position: option(position)=?,
       ~steps: [ | `Int(int) | `Float(float)],
       ~variant: option(variant)=?,
+      ~children: option('children)=?,
       ~component:
          option(
            [
@@ -99,35 +104,27 @@ let make =
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~activeStep=?
-          activeStep->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
-        ~backButton?,
-        ~className?,
-        ~_LinearProgressProps?,
-        ~nextButton?,
-        ~position=?position->(Belt.Option.map(v => positionToJs(v))),
-        ~steps=MaterialUi_Helpers.unwrapValue(steps),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~elevation=?
-          elevation->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~square?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~activeStep=?
+        activeStep->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~backButton?,
+      ~className?,
+      ~_LinearProgressProps?,
+      ~nextButton?,
+      ~position=?position->(Belt.Option.map(v => positionToJs(v))),
+      ~steps=MaterialUi_Helpers.unwrapValue(steps),
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~children?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~elevation=?
+        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~square?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

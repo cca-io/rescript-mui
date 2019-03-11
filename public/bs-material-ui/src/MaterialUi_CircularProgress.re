@@ -62,13 +62,13 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_rk04=?,
-    ~thickness: 'number_k=?,
-    ~value: 'number_p=?,
+    ~size: 'union_rj99=?,
+    ~thickness: 'number_4=?,
+    ~value: 'number_4=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -76,8 +76,11 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "CircularProgress";
+external reactComponent: React.component('a) = "CircularProgress";
+
+[@react.component]
 let make =
     (
       ~className: option(string)=?,
@@ -88,26 +91,20 @@ let make =
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~size=?
-          size->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~thickness=?
-          thickness->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~value=?
-          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~className?,
+      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+      ~size=?size->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~thickness=?
+        thickness->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~value=?
+        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

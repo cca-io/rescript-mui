@@ -14,10 +14,11 @@ type placement = [
   | [@bs.as "top"] `Top
 ];
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~anchorEl: 'union_rfk1=?,
-    ~container: 'union_r2lm=?,
+    ~anchorEl: 'union_r45a=?,
+    ~children: 'children=?,
+    ~container: 'union_rrnc=?,
     ~disablePortal: bool=?,
     ~keepMounted: bool=?,
     ~modifiers: Js.t({..})=?,
@@ -29,14 +30,18 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Popper";
+external reactComponent: React.component('a) = "Popper";
+
+[@react.component]
 let make =
     (
       ~anchorEl:
          option(
            [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
          )=?,
+      ~children: option('children)=?,
       ~container:
          option(
            [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
@@ -48,26 +53,22 @@ let make =
       ~placement: option(placement)=?,
       ~popperOptions: option(Js.t({..}))=?,
       ~transition: option(bool)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~anchorEl=?
-          anchorEl->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~container=?
-          container->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disablePortal?,
-        ~keepMounted?,
-        ~modifiers?,
-        ~_open=open_,
-        ~placement=?placement->(Belt.Option.map(v => placementToJs(v))),
-        ~popperOptions?,
-        ~transition?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~anchorEl=?
+        anchorEl->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~children?,
+      ~container=?
+        container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~disablePortal?,
+      ~keepMounted?,
+      ~modifiers?,
+      ~_open=open_,
+      ~placement=?placement->(Belt.Option.map(v => placementToJs(v))),
+      ~popperOptions?,
+      ~transition?,
+      (),
+    ),
   );

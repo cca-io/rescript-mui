@@ -8,7 +8,7 @@ const factory = (propertyType: PropType$Custom) => {
         propertyType.raw.indexOf('PropTypes.oneOf') > -1
     ) {
         const match = /PropTypes\.oneOf\(\[((.|\n)*)\]\)/gm.exec(
-            propertyType.raw
+            propertyType.raw,
         );
         if (match != null) {
             const array = match[1].split(',').reduce((prev, value) => {
@@ -20,7 +20,7 @@ const factory = (propertyType: PropType$Custom) => {
             }, []);
             return EnumFactory({
                 name: 'enum',
-                value: array.map(value => ({ value, computed: false }))
+                value: array.map(value => ({ value, computed: false })),
             });
         }
     }
@@ -31,7 +31,7 @@ const factory = (propertyType: PropType$Custom) => {
     ) {
         return UnionFactory({
             name: 'union',
-            value: [{ name: 'string' }, { name: 'func' }, { name: 'Element' }]
+            value: [{ name: 'string' }, { name: 'func' }, { name: 'Element' }],
         });
     }
 
@@ -39,6 +39,12 @@ const factory = (propertyType: PropType$Custom) => {
         private _propertyType: PropType$Custom = propertyType;
 
         public executeParse() {
+            // Custom children
+            if (this._property.name === 'children') {
+                this._reasonType = `'children`;
+                return;
+            }
+
             this._reasonType = this._propertyType.reasonType;
             if (typeof this._propertyType.jsType !== 'undefined') {
                 this._jsType = this._propertyType.jsType;

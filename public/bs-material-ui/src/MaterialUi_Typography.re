@@ -172,12 +172,13 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~align: string=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rybx=?,
+    ~component: 'union_rx07=?,
     ~gutterBottom: bool=?,
     ~headlineMapping: Js.t({..})=?,
     ~inline: bool=?,
@@ -192,11 +193,15 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Typography";
+external reactComponent: React.component('a) = "Typography";
+
+[@react.component]
 let make =
     (
       ~align: option(align)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~component:
@@ -217,30 +222,26 @@ let make =
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~gutterBottom?,
-        ~headlineMapping?,
-        ~inline?,
-        ~internalDeprecatedVariant?,
-        ~noWrap?,
-        ~paragraph?,
-        ~theme?,
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+      ~children?,
+      ~className?,
+      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~gutterBottom?,
+      ~headlineMapping?,
+      ~inline?,
+      ~internalDeprecatedVariant?,
+      ~noWrap?,
+      ~paragraph?,
+      ~theme?,
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

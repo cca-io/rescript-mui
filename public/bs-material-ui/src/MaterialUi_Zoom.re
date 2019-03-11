@@ -32,40 +32,43 @@ module Timeout_shape = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_r2yz=?,
+    ~timeout: 'union_r5fu=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Zoom";
+external reactComponent: React.component('a) = "Zoom";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~in_: option(bool)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
       ~theme: option(Js.t({..}))=?,
       ~timeout:
          option([ | `Int(int) | `Float(float) | `Object(Timeout_shape.t)])=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~_in=?in_,
-        ~onEnter?,
-        ~onExit?,
-        ~theme?,
-        ~timeout=?
-          timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~_in=?in_,
+      ~onEnter?,
+      ~onExit?,
+      ~theme?,
+      ~timeout=?
+        timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      (),
+    ),
   );

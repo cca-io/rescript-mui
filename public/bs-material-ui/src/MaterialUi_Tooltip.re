@@ -58,25 +58,26 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~disableFocusListener: bool=?,
     ~disableHoverListener: bool=?,
     ~disableTouchListener: bool=?,
     ~enterDelay: 'number_2=?,
-    ~enterTouchDelay: 'number_r=?,
+    ~enterTouchDelay: 'number_k=?,
     ~id: string=?,
     ~interactive: bool=?,
-    ~leaveDelay: 'number_c=?,
-    ~leaveTouchDelay: 'number_y=?,
-    ~onClose: 'any_rekn=?,
-    ~onOpen: 'any_rzsg=?,
+    ~leaveDelay: 'number_9=?,
+    ~leaveTouchDelay: 'number_0=?,
+    ~onClose: 'any_r4da=?,
+    ~onOpen: 'any_r5tj=?,
     ~_open: bool=?,
     ~placement: string=?,
     ~_PopperProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~title: ReasonReact.reactElement,
-    ~_TransitionComponent: 'union_r54k=?,
+    ~title: React.element,
+    ~_TransitionComponent: 'union_rg0d=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -84,10 +85,14 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Tooltip";
+external reactComponent: React.component('a) = "Tooltip";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~disableFocusListener: option(bool)=?,
       ~disableHoverListener: option(bool)=?,
       ~disableTouchListener: option(bool)=?,
@@ -103,7 +108,7 @@ let make =
       ~placement: option(placement)=?,
       ~_PopperProps: option(Js.t({..}))=?,
       ~theme: option(Js.t({..}))=?,
-      ~title: ReasonReact.reactElement,
+      ~title: React.element,
       ~_TransitionComponent:
          option(
            [
@@ -115,54 +120,48 @@ let make =
       ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~disableFocusListener?,
-        ~disableHoverListener?,
-        ~disableTouchListener?,
-        ~enterDelay=?
-          enterDelay->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
-        ~enterTouchDelay=?
-          enterTouchDelay->(
-                             Belt.Option.map(v =>
-                               MaterialUi_Helpers.unwrapValue(v)
-                             )
-                           ),
-        ~id?,
-        ~interactive?,
-        ~leaveDelay=?
-          leaveDelay->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
-        ~leaveTouchDelay=?
-          leaveTouchDelay->(
-                             Belt.Option.map(v =>
-                               MaterialUi_Helpers.unwrapValue(v)
-                             )
-                           ),
-        ~onClose?,
-        ~onOpen?,
-        ~_open=?open_,
-        ~placement=?placement->(Belt.Option.map(v => placementToJs(v))),
-        ~_PopperProps?,
-        ~theme?,
-        ~title,
-        ~_TransitionComponent=?
-          _TransitionComponent->(
-                                  Belt.Option.map(v =>
-                                    MaterialUi_Helpers.unwrapValue(v)
-                                  )
-                                ),
-        ~_TransitionProps?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~disableFocusListener?,
+      ~disableHoverListener?,
+      ~disableTouchListener?,
+      ~enterDelay=?
+        enterDelay->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~enterTouchDelay=?
+        enterTouchDelay->(
+                           Belt.Option.map(v =>
+                             MaterialUi_Helpers.unwrapValue(v)
+                           )
+                         ),
+      ~id?,
+      ~interactive?,
+      ~leaveDelay=?
+        leaveDelay->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~leaveTouchDelay=?
+        leaveTouchDelay->(
+                           Belt.Option.map(v =>
+                             MaterialUi_Helpers.unwrapValue(v)
+                           )
+                         ),
+      ~onClose?,
+      ~onOpen?,
+      ~_open=?open_,
+      ~placement=?placement->(Belt.Option.map(v => placementToJs(v))),
+      ~_PopperProps?,
+      ~theme?,
+      ~title,
+      ~_TransitionComponent=?
+        _TransitionComponent->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
+      ~_TransitionProps?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

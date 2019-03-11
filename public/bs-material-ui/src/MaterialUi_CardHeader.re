@@ -36,16 +36,16 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~action: ReasonReact.reactElement=?,
-    ~avatar: ReasonReact.reactElement=?,
+    ~action: React.element=?,
+    ~avatar: React.element=?,
     ~className: string=?,
-    ~component: 'union_rrtk=?,
+    ~component: 'union_rp7g=?,
     ~disableTypography: bool=?,
-    ~subheader: ReasonReact.reactElement=?,
+    ~subheader: React.element=?,
     ~subheaderTypographyProps: Js.t({..})=?,
-    ~title: ReasonReact.reactElement=?,
+    ~title: React.element=?,
     ~titleTypographyProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -53,12 +53,15 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "CardHeader";
+external reactComponent: React.component('a) = "CardHeader";
+
+[@react.component]
 let make =
     (
-      ~action: option(ReasonReact.reactElement)=?,
-      ~avatar: option(ReasonReact.reactElement)=?,
+      ~action: option(React.element)=?,
+      ~avatar: option(React.element)=?,
       ~className: option(string)=?,
       ~component:
          option(
@@ -69,33 +72,28 @@ let make =
            ],
          )=?,
       ~disableTypography: option(bool)=?,
-      ~subheader: option(ReasonReact.reactElement)=?,
+      ~subheader: option(React.element)=?,
       ~subheaderTypographyProps: option(Js.t({..}))=?,
-      ~title: option(ReasonReact.reactElement)=?,
+      ~title: option(React.element)=?,
       ~titleTypographyProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~action?,
-        ~avatar?,
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disableTypography?,
-        ~subheader?,
-        ~subheaderTypographyProps?,
-        ~title?,
-        ~titleTypographyProps?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~action?,
+      ~avatar?,
+      ~className?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~disableTypography?,
+      ~subheader?,
+      ~subheaderTypographyProps?,
+      ~title?,
+      ~titleTypographyProps?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

@@ -14,10 +14,10 @@ export default {
                 name: 'union',
                 value: [
                     {
-                        name: 'string'
+                        name: 'string',
                     },
                     {
-                        name: 'number'
+                        name: 'number',
                     },
                     {
                         name: 'arrayOf',
@@ -45,16 +45,34 @@ export default {
             description: '-',
         },
     },
+    CardContent: {
+        children: {
+            type: {
+                name: 'node',
+            },
+            required: false,
+            description: '-',
+        },
+    },
+    List: {
+        children: {
+            type: {
+                name: 'node',
+            },
+            required: false,
+            description: '-',
+        },
+    },
     ListItem: {
         value: {
             type: {
                 name: 'union',
                 value: [
                     {
-                        name: 'string'
+                        name: 'string',
                     },
                     {
-                        name: 'number'
+                        name: 'number',
                     },
                     {
                         name: 'arrayOf',
@@ -85,7 +103,7 @@ export default {
     Menu: {
         anchorEl: {
             type: {
-                name: 'any'
+                name: 'any',
             },
             required: false,
             description: '-',
@@ -95,8 +113,9 @@ export default {
         labelRowsPerPage: {
             type: {
                 name: 'custom',
-                reasonType: '({. "from": int, "to": int, "count": int, "page": int}) => ReasonReact.reactElement',
-                jsType: '\'labelRowsPerPage',
+                reasonType:
+                    '({. "from": int, "to": int, "count": int, "page": int}) => ReasonReact.reactElement',
+                jsType: "'labelRowsPerPage",
             },
             required: false,
             description: '-',
@@ -104,8 +123,9 @@ export default {
         labelDisplayedRows: {
             type: {
                 name: 'custom',
-                reasonType: '({. "from": int, "to": int, "count": int}) => string',
-                jsType: '\'labelDisplayedRows',
+                reasonType:
+                    '({. "from": int, "to": int, "count": int}) => string',
+                jsType: "'labelDisplayedRows",
             },
             required: false,
             description: '-',
@@ -115,7 +135,7 @@ export default {
                 name: 'arrayOf',
                 value: {
                     name: 'int',
-                }
+                },
             },
             required: false,
             description: '-',

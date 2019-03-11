@@ -57,13 +57,13 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~actionIcon: ReasonReact.reactElement=?,
+    ~actionIcon: React.element=?,
     ~actionPosition: string=?,
     ~className: string=?,
-    ~subtitle: ReasonReact.reactElement=?,
-    ~title: ReasonReact.reactElement=?,
+    ~subtitle: React.element=?,
+    ~title: React.element=?,
     ~titlePosition: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -71,35 +71,35 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "GridListTileBar";
+external reactComponent: React.component('a) = "GridListTileBar";
+
+[@react.component]
 let make =
     (
-      ~actionIcon: option(ReasonReact.reactElement)=?,
+      ~actionIcon: option(React.element)=?,
       ~actionPosition: option(actionPosition)=?,
       ~className: option(string)=?,
-      ~subtitle: option(ReasonReact.reactElement)=?,
-      ~title: option(ReasonReact.reactElement)=?,
+      ~subtitle: option(React.element)=?,
+      ~title: option(React.element)=?,
       ~titlePosition: option(titlePosition)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~actionIcon?,
-        ~actionPosition=?
-          actionPosition->(Belt.Option.map(v => actionPositionToJs(v))),
-        ~className?,
-        ~subtitle?,
-        ~title?,
-        ~titlePosition=?
-          titlePosition->(Belt.Option.map(v => titlePositionToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~actionIcon?,
+      ~actionPosition=?
+        actionPosition->(Belt.Option.map(v => actionPositionToJs(v))),
+      ~className?,
+      ~subtitle?,
+      ~title?,
+      ~titlePosition=?
+        titlePosition->(Belt.Option.map(v => titlePositionToJs(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

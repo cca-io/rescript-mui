@@ -44,18 +44,18 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~checked: 'union_rxhv=?,
+    ~checked: 'union_r70s=?,
     ~className: string=?,
-    ~control: ReasonReact.reactElement=?,
+    ~control: React.element=?,
     ~disabled: bool=?,
-    ~inputRef: 'union_rqpa=?,
-    ~label: ReasonReact.reactElement=?,
+    ~inputRef: 'union_r7n2=?,
+    ~label: React.element=?,
     ~labelPlacement: string=?,
     ~muiFormControl: Js.t({..})=?,
     ~name: string=?,
-    ~onChange: 'any_rp90=?,
+    ~onChange: 'any_rr3t=?,
     ~value: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -63,19 +63,22 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "FormControlLabel";
+external reactComponent: React.component('a) = "FormControlLabel";
+
+[@react.component]
 let make =
     (
       ~checked: option([ | `Bool(bool) | `String(string)])=?,
       ~className: option(string)=?,
-      ~control: option(ReasonReact.reactElement)=?,
+      ~control: option(React.element)=?,
       ~disabled: option(bool)=?,
       ~inputRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
-      ~label: option(ReasonReact.reactElement)=?,
+      ~label: option(React.element)=?,
       ~labelPlacement: option(labelPlacement)=?,
       ~muiFormControl: option(Js.t({..}))=?,
       ~name: option(string)=?,
@@ -83,29 +86,26 @@ let make =
       ~value: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~checked=?
-          checked->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~className?,
-        ~control?,
-        ~disabled?,
-        ~inputRef=?
-          inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~label?,
-        ~labelPlacement=?
-          labelPlacement->(Belt.Option.map(v => labelPlacementToJs(v))),
-        ~muiFormControl?,
-        ~name?,
-        ~onChange?,
-        ~value?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~checked=?
+        checked->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~className?,
+      ~control?,
+      ~disabled?,
+      ~inputRef=?
+        inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~label?,
+      ~labelPlacement=?
+        labelPlacement->(Belt.Option.map(v => labelPlacementToJs(v))),
+      ~muiFormControl?,
+      ~name?,
+      ~onChange?,
+      ~value?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

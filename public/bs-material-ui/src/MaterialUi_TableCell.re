@@ -85,11 +85,12 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~align: string=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rimd=?,
+    ~component: 'union_rtt3=?,
     ~padding: string=?,
     ~scope: string=?,
     ~sortDirection: string=?,
@@ -101,11 +102,15 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "TableCell";
+external reactComponent: React.component('a) = "TableCell";
+
+[@react.component]
 let make =
     (
       ~align: option(align)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
@@ -122,27 +127,23 @@ let make =
       ~colSpan: option(int)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
-        ~scope?,
-        ~sortDirection=?
-          sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~colSpan?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+      ~children?,
+      ~className?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
+      ~scope?,
+      ~sortDirection=?
+        sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~colSpan?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

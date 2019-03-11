@@ -102,19 +102,20 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~anchor: string=?,
     ~_BackdropProps: Js.t({..})=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_z=?,
+    ~elevation: 'number_k=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rg9k=?,
+    ~onClose: 'any_rqjl=?,
     ~_open: bool=?,
     ~_PaperProps: Js.t({..})=?,
     ~_SlideProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rggy=?,
+    ~transitionDuration: 'union_rgmo=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -122,12 +123,16 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Drawer";
+external reactComponent: React.component('a) = "Drawer";
+
+[@react.component]
 let make =
     (
       ~anchor: option(anchor)=?,
       ~_BackdropProps: option(Js.t({..}))=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~_ModalProps: option(Js.t({..}))=?,
@@ -147,35 +152,31 @@ let make =
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
-        ~_BackdropProps?,
-        ~className?,
-        ~elevation=?
-          elevation->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~_ModalProps?,
-        ~onClose?,
-        ~_open=?open_,
-        ~_PaperProps?,
-        ~_SlideProps?,
-        ~theme?,
-        ~transitionDuration=?
-          transitionDuration->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
+      ~_BackdropProps?,
+      ~children?,
+      ~className?,
+      ~elevation=?
+        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~_ModalProps?,
+      ~onClose?,
+      ~_open=?open_,
+      ~_PaperProps?,
+      ~_SlideProps?,
+      ~theme?,
+      ~transitionDuration=?
+        transitionDuration->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

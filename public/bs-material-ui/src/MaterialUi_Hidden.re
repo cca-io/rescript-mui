@@ -28,8 +28,9 @@ type only_arrayOf = [
   | [@bs.as "xl"] `Xl
 ];
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~implementation: string=?,
     ~initialWidth: string=?,
@@ -37,7 +38,7 @@ external makeProps:
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_r3jv=?,
+    ~only: 'union_rpsj=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,
@@ -48,10 +49,14 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Hidden";
+external reactComponent: React.component('a) = "Hidden";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~implementation: option(implementation)=?,
       ~initialWidth: option(initialWidth)=?,
@@ -66,41 +71,39 @@ let make =
       ~xlUp: option(bool)=?,
       ~xsDown: option(bool)=?,
       ~xsUp: option(bool)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~implementation=?
-          implementation->(Belt.Option.map(v => implementationToJs(v))),
-        ~initialWidth=?
-          initialWidth->(Belt.Option.map(v => initialWidthToJs(v))),
-        ~lgDown?,
-        ~lgUp?,
-        ~mdDown?,
-        ~mdUp?,
-        ~only=?
-          only->(
-                  Belt.Option.map(v =>
-                    switch (v) {
-                    | `Enum(v) =>
-                      MaterialUi_Helpers.unwrapValue(
-                        `String(only_enumToJs(v)),
-                      )
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~className?,
+      ~implementation=?
+        implementation->(Belt.Option.map(v => implementationToJs(v))),
+      ~initialWidth=?
+        initialWidth->(Belt.Option.map(v => initialWidthToJs(v))),
+      ~lgDown?,
+      ~lgUp?,
+      ~mdDown?,
+      ~mdUp?,
+      ~only=?
+        only->(
+                Belt.Option.map(v =>
+                  switch (v) {
+                  | `Enum(v) =>
+                    MaterialUi_Helpers.unwrapValue(
+                      `String(only_enumToJs(v)),
+                    )
 
-                    | v => MaterialUi_Helpers.unwrapValue(v)
-                    }
-                  )
-                ),
-        ~smDown?,
-        ~smUp?,
-        ~xlDown?,
-        ~xlUp?,
-        ~xsDown?,
-        ~xsUp?,
-        (),
-      ),
-    children,
+                  | v => MaterialUi_Helpers.unwrapValue(v)
+                  }
+                )
+              ),
+      ~smDown?,
+      ~smUp?,
+      ~xlDown?,
+      ~xlUp?,
+      ~xsDown?,
+      ~xsUp?,
+      (),
+    ),
   );

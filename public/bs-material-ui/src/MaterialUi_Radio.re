@@ -40,36 +40,39 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~checked: 'union_ruwr=?,
-    ~checkedIcon: ReasonReact.reactElement=?,
+    ~checked: 'union_ry2v=?,
+    ~checkedIcon: React.element=?,
     ~color: string=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
-    ~icon: ReasonReact.reactElement=?,
+    ~icon: React.element=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_r74v=?,
-    ~onChange: 'any_roh1=?,
+    ~inputRef: 'union_rcar=?,
+    ~onChange: 'any_ri9d=?,
     ~_type: string=?,
-    ~value: 'union_r9b8=?,
+    ~value: 'union_re3z=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Radio";
+external reactComponent: React.component('a) = "Radio";
+
+[@react.component]
 let make =
     (
       ~checked: option([ | `Bool(bool) | `String(string)])=?,
-      ~checkedIcon: option(ReasonReact.reactElement)=?,
+      ~checkedIcon: option(React.element)=?,
       ~color: option(color)=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
-      ~icon: option(ReasonReact.reactElement)=?,
+      ~icon: option(React.element)=?,
       ~id: option(string)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef:
@@ -84,30 +87,27 @@ let make =
          )=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~checked=?
-          checked->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~checkedIcon?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~disabled?,
-        ~disableRipple?,
-        ~icon?,
-        ~id?,
-        ~inputProps?,
-        ~inputRef=?
-          inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~onChange?,
-        ~_type=?type_,
-        ~value=?
-          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~checked=?
+        checked->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~checkedIcon?,
+      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+      ~disabled?,
+      ~disableRipple?,
+      ~icon?,
+      ~id?,
+      ~inputProps?,
+      ~inputRef=?
+        inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~onChange?,
+      ~_type=?type_,
+      ~value=?
+        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

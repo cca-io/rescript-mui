@@ -40,8 +40,9 @@ module Timeout_shape = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~direction: string=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
@@ -49,15 +50,19 @@ external makeProps:
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rrb5=?,
+    ~timeout: 'union_r3a8=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Slide";
+external reactComponent: React.component('a) = "Slide";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~direction: option(direction)=?,
       ~in_: option(bool)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
@@ -67,22 +72,20 @@ let make =
       ~theme: option(Js.t({..}))=?,
       ~timeout:
          option([ | `Int(int) | `Float(float) | `Object(Timeout_shape.t)])=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
-        ~_in=?in_,
-        ~onEnter?,
-        ~onEntering?,
-        ~onExit?,
-        ~onExited?,
-        ~theme?,
-        ~timeout=?
-          timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
+      ~_in=?in_,
+      ~onEnter?,
+      ~onEntering?,
+      ~onExit?,
+      ~onExited?,
+      ~theme?,
+      ~timeout=?
+        timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      (),
+    ),
   );

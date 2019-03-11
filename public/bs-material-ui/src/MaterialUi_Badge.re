@@ -50,14 +50,15 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~badgeContent: ReasonReact.reactElement=?,
+    ~badgeContent: React.element=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rri2=?,
+    ~component: 'union_r1n4=?,
     ~invisible: bool=?,
-    ~max: 'number_l=?,
+    ~max: 'number_6=?,
     ~showZero: bool=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -66,11 +67,15 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Badge";
+external reactComponent: React.component('a) = "Badge";
+
+[@react.component]
 let make =
     (
-      ~badgeContent: option(ReasonReact.reactElement)=?,
+      ~badgeContent: option(React.element)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~component:
@@ -87,26 +92,22 @@ let make =
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~badgeContent?,
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~invisible?,
-        ~max=?max->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~showZero?,
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~badgeContent?,
+      ~children?,
+      ~className?,
+      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~invisible?,
+      ~max=?max->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~showZero?,
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

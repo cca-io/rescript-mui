@@ -9,17 +9,23 @@ class PropertyParserBase {
 
     protected _reasonType: string = '';
     protected _jsType: string = '';
-    protected _wrapJs: (safeName: string) => string = (safeName: string) => safeName;
+    protected _wrapJs: (safeName: string) => string = (safeName: string) =>
+        safeName;
     protected _module: string = '';
     protected _valid: boolean = true;
 
     protected _emitToComponent: boolean | 'moduleOnly';
 
-    constructor(property: Property, emitToComponent: boolean | 'moduleOnly' = true) {
+    constructor(
+        property: Property,
+        emitToComponent: boolean | 'moduleOnly' = true,
+    ) {
         this._property = property;
         this._emitToComponent = emitToComponent;
 
-        this._plugins = Object.keys(Plugins).map(pluginKey => new Plugins[pluginKey](this))
+        this._plugins = Object.keys(Plugins).map(
+            pluginKey => new Plugins[pluginKey](this),
+        );
     }
 
     // Getters
@@ -55,6 +61,18 @@ class PropertyParserBase {
         this._wrapJs = newValue;
     }
 
+    public set jsType(newValue) {
+        this._jsType = newValue;
+    }
+
+    public set reasonType(newValue) {
+        this._reasonType = newValue;
+    }
+
+    public set required(newValue) {
+        this._property.signature.required = newValue;
+    }
+
     // Parse functions
     public parse() {
         this.runPlugins('beforeParse');
@@ -63,13 +81,12 @@ class PropertyParserBase {
         this.writeToComponent();
     }
 
-    public executeParse() { }
+    public executeParse() {}
 
     private runPlugins(when: 'beforeParse' | 'beforeWrite') {
         if (when === 'beforeParse') {
             this._plugins.forEach(plugin => plugin.beforeParse());
-        }
-        else {
+        } else {
             this._plugins.forEach(plugin => plugin.beforeWrite());
         }
     }
@@ -79,16 +96,25 @@ class PropertyParserBase {
             if (this._valid && this._reasonType) {
                 let makeName = this.property.safeName;
                 let index;
-                if ((index = reservedNames.indexOf(makeName.replace('_', ''))) > -1) {
+                if (
+                    (index = reservedNames.indexOf(makeName.replace('_', ''))) >
+                    -1
+                ) {
                     makeName = `_${reservedNames[index]}`;
                 }
                 let Make = `~${this.property.safeName}: ${this._reasonType},`;
-                let MakeProps = `~${makeName}: ${this._jsType ? this._jsType : this._reasonType},`;
-                let WrapJs = `~${makeName}=${this._wrapJs(this.property.safeName)},`;
+                let MakeProps = `~${makeName}: ${
+                    this._jsType ? this._jsType : this._reasonType
+                },`;
+                let WrapJs = `~${makeName}=${this._wrapJs(
+                    this.property.safeName,
+                )},`;
 
                 // Optional
                 if (!this.property.signature.required) {
-                    Make = `~${this.property.safeName}: option(${this._reasonType})=?,`;
+                    Make = `~${this.property.safeName}: option(${
+                        this._reasonType
+                    })=?,`;
                     MakeProps = `${MakeProps.replace(',', '=?')},`;
                     WrapJs = `${WrapJs.replace('=', '=?')}`;
                 }

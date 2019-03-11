@@ -36,14 +36,15 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~disableTypography: bool=?,
     ~inset: bool=?,
-    ~primary: ReasonReact.reactElement=?,
+    ~primary: React.element=?,
     ~primaryTypographyProps: Js.t({..})=?,
-    ~secondary: ReasonReact.reactElement=?,
+    ~secondary: React.element=?,
     ~secondaryTypographyProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
@@ -52,37 +53,39 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "ListItemText";
+external reactComponent: React.component('a) = "ListItemText";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~disableTypography: option(bool)=?,
       ~inset: option(bool)=?,
-      ~primary: option(ReasonReact.reactElement)=?,
+      ~primary: option(React.element)=?,
       ~primaryTypographyProps: option(Js.t({..}))=?,
-      ~secondary: option(ReasonReact.reactElement)=?,
+      ~secondary: option(React.element)=?,
       ~secondaryTypographyProps: option(Js.t({..}))=?,
       ~theme: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~disableTypography?,
-        ~inset?,
-        ~primary?,
-        ~primaryTypographyProps?,
-        ~secondary?,
-        ~secondaryTypographyProps?,
-        ~theme?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~className?,
+      ~disableTypography?,
+      ~inset?,
+      ~primary?,
+      ~primaryTypographyProps?,
+      ~secondary?,
+      ~secondaryTypographyProps?,
+      ~theme?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

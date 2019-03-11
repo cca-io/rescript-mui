@@ -1,6 +1,7 @@
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~disableStylesGeneration: bool=?,
     ~sheetsCache: Js.t({..})=?,
     ~sheetsManager: Js.t({..})=?,
@@ -9,25 +10,27 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "MuiThemeProvider";
+external reactComponent: React.component('a) = "MuiThemeProvider";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~disableStylesGeneration: option(bool)=?,
       ~sheetsCache: option(Js.t({..}))=?,
       ~sheetsManager: option(Js.t({..}))=?,
       ~theme: MaterialUi_Theme.t,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~disableStylesGeneration?,
-        ~sheetsCache?,
-        ~sheetsManager?,
-        ~theme,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~disableStylesGeneration?,
+      ~sheetsCache?,
+      ~sheetsManager?,
+      ~theme,
+      (),
+    ),
   );

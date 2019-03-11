@@ -69,17 +69,18 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~active: bool=?,
     ~alternativeLabel: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~completed: bool=?,
     ~last: bool=?,
     ~optional: bool=?,
     ~orientation: string=?,
-    ~_TransitionComponent: 'union_rgle=?,
-    ~transitionDuration: 'union_ragc=?,
+    ~_TransitionComponent: 'union_rr0q=?,
+    ~transitionDuration: 'union_rho7=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -87,12 +88,16 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "StepContent";
+external reactComponent: React.component('a) = "StepContent";
+
+[@react.component]
 let make =
     (
       ~active: option(bool)=?,
       ~alternativeLabel: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~completed: option(bool)=?,
       ~last: option(bool)=?,
@@ -118,44 +123,40 @@ let make =
       ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~active?,
-        ~alternativeLabel?,
-        ~className?,
-        ~completed?,
-        ~last?,
-        ~optional?,
-        ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
-        ~_TransitionComponent=?
-          _TransitionComponent->(
-                                  Belt.Option.map(v =>
-                                    MaterialUi_Helpers.unwrapValue(v)
-                                  )
-                                ),
-        ~transitionDuration=?
-          transitionDuration->(
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~active?,
+      ~alternativeLabel?,
+      ~children?,
+      ~className?,
+      ~completed?,
+      ~last?,
+      ~optional?,
+      ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+      ~_TransitionComponent=?
+        _TransitionComponent->(
                                 Belt.Option.map(v =>
-                                  switch (v) {
-                                  | `Enum(v) =>
-                                    MaterialUi_Helpers.unwrapValue(
-                                      `String(
-                                        transitionDuration_enumToJs(v),
-                                      ),
-                                    )
-
-                                  | v => MaterialUi_Helpers.unwrapValue(v)
-                                  }
+                                  MaterialUi_Helpers.unwrapValue(v)
                                 )
                               ),
-        ~_TransitionProps?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+      ~transitionDuration=?
+        transitionDuration->(
+                              Belt.Option.map(v =>
+                                switch (v) {
+                                | `Enum(v) =>
+                                  MaterialUi_Helpers.unwrapValue(
+                                    `String(transitionDuration_enumToJs(v)),
+                                  )
+
+                                | v => MaterialUi_Helpers.unwrapValue(v)
+                                }
+                              )
+                            ),
+      ~_TransitionProps?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

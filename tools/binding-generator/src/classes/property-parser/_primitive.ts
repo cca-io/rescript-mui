@@ -8,7 +8,6 @@ const factory = (propertyType: PropType$Primitive) => {
 
         public executeParse() {
             switch (this._propertyType.name) {
-
                 // -- String
                 case 'string':
                 case 'String':
@@ -24,13 +23,16 @@ const factory = (propertyType: PropType$Primitive) => {
                 // -- Number
                 case 'number':
                     this._reasonType = '[ | `Int(int) | `Float(float) ]';
-                    this._jsType = `'number_${Math.random().toString(36).substr(2, 1)}`;
+                    this._jsType = `'number_${Math.random()
+                        .toString(36)
+                        .substr(2, 1)}`;
 
                     if (this.required) {
-                        this._wrapJs = (name) => `MaterialUi_Helpers.unwrapValue(${name})`;
-                    }
-                    else {
-                        this._wrapJs = (name) => `${name} |. Belt.Option.map((v) => MaterialUi_Helpers.unwrapValue(v))`;
+                        this._wrapJs = name =>
+                            `MaterialUi_Helpers.unwrapValue(${name})`;
+                    } else {
+                        this._wrapJs = name =>
+                            `${name} |. Belt.Option.map((v) => MaterialUi_Helpers.unwrapValue(v))`;
                     }
                     break;
                 case 'int':
@@ -48,7 +50,7 @@ const factory = (propertyType: PropType$Primitive) => {
                 case 'ReactElement':
                 case 'ComponentType<object>':
                 case 'Element<any>':
-                    this._reasonType = 'ReasonReact.reactElement';
+                    this._reasonType = 'React.element';
                     break;
 
                 // Generic Object
@@ -75,10 +77,16 @@ const factory = (propertyType: PropType$Primitive) => {
                 // Unhandled
                 default:
                     this._valid = false;
-                    Console.warn(`PrimitiveParser: Primitive type ${Console.colors.red}${JSON.stringify(this._propertyType.name)}${Console.colors.yellow} does not map to anything`);
+                    Console.warn(
+                        `PrimitiveParser: Primitive type ${
+                            Console.colors.red
+                        }${JSON.stringify(this._propertyType.name)}${
+                            Console.colors.yellow
+                        } does not map to anything`,
+                    );
             }
         }
-    }
+    };
 };
 
 export default factory;

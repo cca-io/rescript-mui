@@ -27,12 +27,13 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~alt: string=?,
+    ~children: 'children=?,
     ~childrenClassName: string=?,
     ~className: string=?,
-    ~component: 'union_rlvk=?,
+    ~component: 'union_rofa=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,
@@ -43,11 +44,15 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Avatar";
+external reactComponent: React.component('a) = "Avatar";
+
+[@react.component]
 let make =
     (
       ~alt: option(string)=?,
+      ~children: option('children)=?,
       ~childrenClassName: option(string)=?,
       ~className: option(string)=?,
       ~component:
@@ -64,26 +69,22 @@ let make =
       ~srcSet: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~alt?,
-        ~childrenClassName?,
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~imgProps?,
-        ~sizes?,
-        ~src?,
-        ~srcSet?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~alt?,
+      ~children?,
+      ~childrenClassName?,
+      ~className?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~imgProps?,
+      ~sizes?,
+      ~src?,
+      ~srcSet?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

@@ -66,11 +66,12 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~collapsedHeight: string=?,
-    ~component: 'union_rwya=?,
+    ~component: 'union_rl9v=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
@@ -78,17 +79,21 @@ external makeProps:
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_relt=?,
+    ~timeout: 'union_r98m=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Collapse";
+external reactComponent: React.component('a) = "Collapse";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~collapsedHeight: option(string)=?,
       ~component:
@@ -117,41 +122,37 @@ let make =
          )=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~collapsedHeight?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~_in=?in_,
-        ~onEnter?,
-        ~onEntered?,
-        ~onEntering?,
-        ~onExit?,
-        ~onExiting?,
-        ~theme?,
-        ~timeout=?
-          timeout->(
-                     Belt.Option.map(v =>
-                       switch (v) {
-                       | `Enum(v) =>
-                         MaterialUi_Helpers.unwrapValue(
-                           `String(timeout_enumToJs(v)),
-                         )
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~className?,
+      ~collapsedHeight?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~_in=?in_,
+      ~onEnter?,
+      ~onEntered?,
+      ~onEntering?,
+      ~onExit?,
+      ~onExiting?,
+      ~theme?,
+      ~timeout=?
+        timeout->(
+                   Belt.Option.map(v =>
+                     switch (v) {
+                     | `Enum(v) =>
+                       MaterialUi_Helpers.unwrapValue(
+                         `String(timeout_enumToJs(v)),
+                       )
 
-                       | v => MaterialUi_Helpers.unwrapValue(v)
-                       }
-                     )
-                   ),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+                     | v => MaterialUi_Helpers.unwrapValue(v)
+                     }
+                   )
+                 ),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

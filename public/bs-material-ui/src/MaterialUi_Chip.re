@@ -106,21 +106,22 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~avatar: ReasonReact.reactElement=?,
+    ~avatar: React.element=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~clickable: bool=?,
     ~color: string=?,
-    ~component: 'union_r7vz=?,
-    ~deleteIcon: ReasonReact.reactElement=?,
-    ~icon: ReasonReact.reactElement=?,
-    ~label: ReasonReact.reactElement=?,
+    ~component: 'union_ril2=?,
+    ~deleteIcon: React.element=?,
+    ~icon: React.element=?,
+    ~label: React.element=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~onDelete: ReactEvent.Synthetic.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-    ~tabIndex: 'union_rdhh=?,
+    ~tabIndex: 'union_rnhu=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -128,11 +129,15 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Chip";
+external reactComponent: React.component('a) = "Chip";
+
+[@react.component]
 let make =
     (
-      ~avatar: option(ReasonReact.reactElement)=?,
+      ~avatar: option(React.element)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~clickable: option(bool)=?,
       ~color: option(color)=?,
@@ -144,9 +149,9 @@ let make =
              | `Element(ReasonReact.reactElement)
            ],
          )=?,
-      ~deleteIcon: option(ReasonReact.reactElement)=?,
-      ~icon: option(ReasonReact.reactElement)=?,
-      ~label: option(ReasonReact.reactElement)=?,
+      ~deleteIcon: option(React.element)=?,
+      ~icon: option(React.element)=?,
+      ~label: option(React.element)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~onDelete: option(ReactEvent.Synthetic.t => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
@@ -155,33 +160,29 @@ let make =
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~avatar?,
-        ~className?,
-        ~clickable?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~deleteIcon?,
-        ~icon?,
-        ~label?,
-        ~onClick?,
-        ~onDelete?,
-        ~onKeyDown?,
-        ~onKeyUp?,
-        ~tabIndex=?
-          tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~avatar?,
+      ~children?,
+      ~className?,
+      ~clickable?,
+      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~deleteIcon?,
+      ~icon?,
+      ~label?,
+      ~onClick?,
+      ~onDelete?,
+      ~onKeyDown?,
+      ~onKeyUp?,
+      ~tabIndex=?
+        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

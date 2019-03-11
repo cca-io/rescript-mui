@@ -1,7 +1,8 @@
-module ExampleApp = {
-  let component = ReasonReact.statelessComponent(__MODULE__);
+[@bs.config {jsx: 3}];
 
-  let make = _children => {...component, render: _self => <AppLayout />};
+module ExampleApp = {
+  [@react.component]
+  let make = _ => <AppLayout />;
 };
 
 ReactDOMRe.renderToElementWithId(<ExampleApp />, "app");

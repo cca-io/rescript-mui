@@ -24,13 +24,14 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~_BackdropComponent: 'union_rluo=?,
+    ~_BackdropComponent: 'union_rmi8=?,
     ~_BackdropProps: Js.t({..})=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_r23y=?,
+    ~container: 'union_rr1k=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -41,7 +42,7 @@ external makeProps:
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_r046=?,
+    ~onClose: 'any_ra5t=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
@@ -51,8 +52,11 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Modal";
+external reactComponent: React.component('a) = "Modal";
+
+[@react.component]
 let make =
     (
       ~_BackdropComponent:
@@ -64,6 +68,7 @@ let make =
            ],
          )=?,
       ~_BackdropProps: option(Js.t({..}))=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~closeAfterTransition: option(bool)=?,
       ~container:
@@ -86,42 +91,38 @@ let make =
       ~open_: bool,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~_BackdropComponent=?
-          _BackdropComponent->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
-        ~_BackdropProps?,
-        ~className?,
-        ~closeAfterTransition?,
-        ~container=?
-          container->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disableAutoFocus?,
-        ~disableBackdropClick?,
-        ~disableEnforceFocus?,
-        ~disableEscapeKeyDown?,
-        ~disablePortal?,
-        ~disableRestoreFocus?,
-        ~hideBackdrop?,
-        ~keepMounted?,
-        ~manager?,
-        ~onBackdropClick?,
-        ~onClose?,
-        ~onEscapeKeyDown?,
-        ~onRendered?,
-        ~_open=open_,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~_BackdropComponent=?
+        _BackdropComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
+      ~_BackdropProps?,
+      ~children?,
+      ~className?,
+      ~closeAfterTransition?,
+      ~container=?
+        container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~disableAutoFocus?,
+      ~disableBackdropClick?,
+      ~disableEnforceFocus?,
+      ~disableEscapeKeyDown?,
+      ~disablePortal?,
+      ~disableRestoreFocus?,
+      ~hideBackdrop?,
+      ~keepMounted?,
+      ~manager?,
+      ~onBackdropClick?,
+      ~onClose?,
+      ~onEscapeKeyDown?,
+      ~onRendered?,
+      ~_open=open_,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

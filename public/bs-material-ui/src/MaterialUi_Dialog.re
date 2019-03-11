@@ -106,9 +106,10 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~_BackdropProps: Js.t({..})=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~disableBackdropClick: bool=?,
     ~disableEscapeKeyDown: bool=?,
@@ -116,7 +117,7 @@ external makeProps:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rlps=?,
+    ~onClose: 'any_rfic=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -125,15 +126,15 @@ external makeProps:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperComponent: 'union_rdjp=?,
+    ~_PaperComponent: 'union_r0fb=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_ru51=?,
-    ~transitionDuration: 'union_ryqp=?,
+    ~_TransitionComponent: 'union_r605=?,
+    ~transitionDuration: 'union_rw5q=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_rhmu=?,
+    ~_BackdropComponent: 'union_rp6h=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_r5za=?,
+    ~container: 'union_r2cl=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
@@ -148,11 +149,15 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Dialog";
+external reactComponent: React.component('a) = "Dialog";
+
+[@react.component]
 let make =
     (
       ~_BackdropProps: option(Js.t({..}))=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~disableBackdropClick: option(bool)=?,
       ~disableEscapeKeyDown: option(bool)=?,
@@ -219,72 +224,68 @@ let make =
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~_BackdropProps?,
-        ~className?,
-        ~disableBackdropClick?,
-        ~disableEscapeKeyDown?,
-        ~fullScreen?,
-        ~fullWidth?,
-        ~maxWidth=?maxWidth->(Belt.Option.map(v => maxWidthToJs(v))),
-        ~onBackdropClick?,
-        ~onClose?,
-        ~onEnter?,
-        ~onEntered?,
-        ~onEntering?,
-        ~onEscapeKeyDown?,
-        ~onExit?,
-        ~onExited?,
-        ~onExiting?,
-        ~_open=open_,
-        ~_PaperComponent=?
-          _PaperComponent->(
-                             Belt.Option.map(v =>
-                               MaterialUi_Helpers.unwrapValue(v)
-                             )
-                           ),
-        ~_PaperProps?,
-        ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
-        ~_TransitionComponent=?
-          _TransitionComponent->(
-                                  Belt.Option.map(v =>
-                                    MaterialUi_Helpers.unwrapValue(v)
-                                  )
-                                ),
-        ~transitionDuration=?
-          transitionDuration->(
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~_BackdropProps?,
+      ~children?,
+      ~className?,
+      ~disableBackdropClick?,
+      ~disableEscapeKeyDown?,
+      ~fullScreen?,
+      ~fullWidth?,
+      ~maxWidth=?maxWidth->(Belt.Option.map(v => maxWidthToJs(v))),
+      ~onBackdropClick?,
+      ~onClose?,
+      ~onEnter?,
+      ~onEntered?,
+      ~onEntering?,
+      ~onEscapeKeyDown?,
+      ~onExit?,
+      ~onExited?,
+      ~onExiting?,
+      ~_open=open_,
+      ~_PaperComponent=?
+        _PaperComponent->(
+                           Belt.Option.map(v =>
+                             MaterialUi_Helpers.unwrapValue(v)
+                           )
+                         ),
+      ~_PaperProps?,
+      ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
+      ~_TransitionComponent=?
+        _TransitionComponent->(
                                 Belt.Option.map(v =>
                                   MaterialUi_Helpers.unwrapValue(v)
                                 )
                               ),
-        ~_TransitionProps?,
-        ~_BackdropComponent=?
-          _BackdropComponent->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
-        ~closeAfterTransition?,
-        ~container=?
-          container->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disableAutoFocus?,
-        ~disableEnforceFocus?,
-        ~disablePortal?,
-        ~disableRestoreFocus?,
-        ~hideBackdrop?,
-        ~keepMounted?,
-        ~manager?,
-        ~onRendered?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+      ~transitionDuration=?
+        transitionDuration->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
+      ~_TransitionProps?,
+      ~_BackdropComponent=?
+        _BackdropComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
+      ~closeAfterTransition?,
+      ~container=?
+        container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~disableAutoFocus?,
+      ~disableEnforceFocus?,
+      ~disablePortal?,
+      ~disableRestoreFocus?,
+      ~hideBackdrop?,
+      ~keepMounted?,
+      ~manager?,
+      ~onRendered?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

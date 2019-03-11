@@ -6,19 +6,17 @@
             "dir": "examples",
             "subdirs": true
         },
-        {
-            "dir": "src"
-        }
+        "src"
     ],
     "package-specs": {
         "module": "commonjs",
         "in-source": true
     },
-    "ppx-flags": ["@jsiebern/bs-material-ui-ppx/ppx"],
+    "ppx-flags": [
+        "@jsiebern/bs-material-ui-ppx/ppx",
+        "reason-react/_build/default/jsx_ppx/reactjs_jsx_ppx_v3.exe"
+    ],
     "bs-dependencies": ["reason-react", "@mscharley/bs-material-ui-icons"],
-    "reason": {
-        "react-jsx": 2
-    },
     "bsc-flags": ["-bs-super-errors"],
     "refmt": 3,
     "suffix": ".bs.js"

@@ -61,8 +61,9 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~disableAnimation: bool=?,
     ~disabled: bool=?,
@@ -74,7 +75,7 @@ external makeProps:
     ~required: bool=?,
     ~shrink: bool=?,
     ~variant: string=?,
-    ~component: 'union_r492=?,
+    ~component: 'union_r9o6=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -82,10 +83,14 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "InputLabel";
+external reactComponent: React.component('a) = "InputLabel";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~disableAnimation: option(bool)=?,
       ~disabled: option(bool)=?,
@@ -108,31 +113,27 @@ let make =
       ~filled: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~disableAnimation?,
-        ~disabled?,
-        ~error?,
-        ~focused?,
-        ~_FormLabelClasses?,
-        ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
-        ~muiFormControl?,
-        ~required?,
-        ~shrink?,
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~filled?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~className?,
+      ~disableAnimation?,
+      ~disabled?,
+      ~error?,
+      ~focused?,
+      ~_FormLabelClasses?,
+      ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
+      ~muiFormControl?,
+      ~required?,
+      ~shrink?,
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~filled?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

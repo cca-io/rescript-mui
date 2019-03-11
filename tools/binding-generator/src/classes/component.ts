@@ -7,7 +7,7 @@ import Property from './property';
 
 class Component {
     // Statics
-    static ignorePropNames = [ 'children', 'classes', 'style' ];
+    static ignorePropNames = ['key', 'classes', 'style'];
 
     // ComponentSignature
     readonly _component: ComponentSignature;
@@ -40,8 +40,13 @@ class Component {
     }
 
     public mergeProperties(toMerge: Property[]) {
-        const filtered = toMerge.filter(pi => this._properties.find(p => p.name === pi.name) == null);
-        filtered.forEach(prop => { prop.component = this; prop.parse(); });
+        const filtered = toMerge.filter(
+            pi => this._properties.find(p => p.name === pi.name) == null,
+        );
+        filtered.forEach(prop => {
+            prop.component = this;
+            prop.parse();
+        });
         this._properties = [...this._properties, ...filtered];
     }
 
@@ -58,11 +63,13 @@ class Component {
         }
     }
 
-    public addToSection(section: 'Module' | 'Make' | 'MakeProps' | 'WrapJs', content: string) {
+    public addToSection(
+        section: 'Module' | 'Make' | 'MakeProps' | 'WrapJs',
+        content: string,
+    ) {
         if (section === 'Module') {
             this._sectionModule[Hash(content)] = content;
-        }
-        else {
+        } else {
             const addTo = this.getSectionByKey(section);
             if (addTo) {
                 addTo.push(content);
@@ -72,9 +79,10 @@ class Component {
 
     private renderSection(section: 'Module' | 'Make' | 'MakeProps' | 'WrapJs') {
         if (section === 'Module') {
-            return Object.keys(this._sectionModule).map(key => this._sectionModule[key]).join('\n');
-        }
-        else {
+            return Object.keys(this._sectionModule)
+                .map(key => this._sectionModule[key])
+                .join('\n');
+        } else {
             const renderFrom = this.getSectionByKey(section);
             if (renderFrom && renderFrom.length) {
                 return renderFrom.join('\n');
@@ -85,14 +93,26 @@ class Component {
 
     private parse() {
         if (this._component.props != null) {
-            const props = { ...this._component.props, ...GetCustomProps(this._component.name) };
+            const props = {
+                ...this._component.props,
+                ...GetCustomProps(this._component.name),
+            };
             const propKeys = Object.keys(props);
-            this._properties = propKeys.filter(
-                propKey => Component.ignorePropNames.indexOf(propKey) === -1
-            ).reduce(
-                (arr, propKey) => props != null ? [ ...arr, new Property(propKey, props[propKey], this) ] : arr,
-                []
-            );
+            this._properties = propKeys
+                .filter(
+                    propKey =>
+                        Component.ignorePropNames.indexOf(propKey) === -1,
+                )
+                .reduce(
+                    (arr, propKey) =>
+                        props != null
+                            ? [
+                                  ...arr,
+                                  new Property(propKey, props[propKey], this),
+                              ]
+                            : arr,
+                    [],
+                );
         }
     }
 
@@ -106,20 +126,36 @@ class Component {
 
     public render() {
         this.injectClasses();
-        const hasProps = this._component.props != null || this._component.styles.classes.length > 0;
+        const hasProps =
+            this._component.props != null ||
+            this._component.styles.classes.length > 0;
 
         return `
             ${this.renderSection('Module')}
-            ${hasProps ? `[@bs.obj] external makeProps : (${this.renderSection('MakeProps')} unit) => _ = "";` : ''}
-            [@bs.module "${this._component.importPath}"] external reactClass : ReasonReact.reactClass = "${this._component.importName || 'default'}";
+            ${
+                hasProps
+                    ? `[@bs.obj] external makePropsMui : (${this.renderSection(
+                          'MakeProps',
+                      )} unit) => _ = "";`
+                    : ''
+            }
+
+            [@bs.module "${
+                this._component.importPath
+            }"] external reactComponent : React.component('a) = "${this
+            ._component.importName || 'default'}";
+
+            [@react.component]
             let make = (
                 ${this.renderSection('Make')}
-                children
-            ) => ReasonReact.wrapJsForReason(
-                    ~reactClass,
-                    ~props=${!hasProps ? 'Js.Obj.empty()' : `makeProps(${this.renderSection('WrapJs')} ())`},
-                    children
-                );
+            ) => React.createElement(
+                reactComponent,
+                ${
+                    !hasProps
+                        ? 'Js.Obj.empty()'
+                        : `makePropsMui(${this.renderSection('WrapJs')} ())`
+                }
+            );
         `;
     }
 }

@@ -60,13 +60,14 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~alignItems: string=?,
     ~button: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rm6j=?,
-    ~_ContainerComponent: 'union_r7cr=?,
+    ~component: 'union_r7rh=?,
+    ~_ContainerComponent: 'union_rp2y=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -74,7 +75,7 @@ external makeProps:
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~selected: bool=?,
-    ~value: 'union_r9n0=?,
+    ~value: 'union_r65r=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
@@ -83,12 +84,16 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "ListItem";
+external reactComponent: React.component('a) = "ListItem";
+
+[@react.component]
 let make =
     (
       ~alignItems: option(alignItems)=?,
       ~button: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
@@ -126,39 +131,35 @@ let make =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
-        ~button?,
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~_ContainerComponent=?
-          _ContainerComponent->(
-                                 Belt.Option.map(v =>
-                                   MaterialUi_Helpers.unwrapValue(v)
-                                 )
-                               ),
-        ~_ContainerProps?,
-        ~dense?,
-        ~disabled?,
-        ~disableGutters?,
-        ~divider?,
-        ~focusVisibleClassName?,
-        ~selected?,
-        ~value=?
-          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~onFocus?,
-        ~onClick?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
+      ~button?,
+      ~children?,
+      ~className?,
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~_ContainerComponent=?
+        _ContainerComponent->(
+                               Belt.Option.map(v =>
+                                 MaterialUi_Helpers.unwrapValue(v)
+                               )
+                             ),
+      ~_ContainerProps?,
+      ~dense?,
+      ~disabled?,
+      ~disableGutters?,
+      ~divider?,
+      ~focusVisibleClassName?,
+      ~selected?,
+      ~value=?
+        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~onFocus?,
+      ~onClick?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

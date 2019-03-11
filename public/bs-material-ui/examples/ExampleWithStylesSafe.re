@@ -1,4 +1,4 @@
-let component = ReasonReact.statelessComponent(__MODULE__);
+[@bs.config {jsx: 3}];
 
 [%mui.withStyles
   "StyledExample"({
@@ -24,31 +24,25 @@ module Theme = MaterialUi_Theme;
   )
 ];
 
-let make = _children => {
-  ...component,
-  render: _self =>
-    <div>
-      <StyledExample>
-        ...{
-             classes =>
-               <div className={classes.alignRight}>
-                 {ReasonReact.string("Example text - aligned to the right")}
-               </div>
-           }
-      </StyledExample>
-      <br />
-      <br />
-      <StyledExampleTheme>
-        ...{
-             classes =>
-               <div className={classes.background}>
-                 {
-                   ReasonReact.string(
-                     "Example text on a background coming from the Mui Theme object",
-                   )
-                 }
-               </div>
-           }
-      </StyledExampleTheme>
-    </div>,
-};
+[@react.component]
+let make = () =>
+  <div>
+    <StyledExample>
+      ...{classes =>
+        <div className={classes.alignRight}>
+          {ReasonReact.string("Example text - aligned to the right")}
+        </div>
+      }
+    </StyledExample>
+    <br />
+    <br />
+    <StyledExampleTheme>
+      ...{classes =>
+        <div className={classes.background}>
+          {ReasonReact.string(
+             "Example text on a background coming from the Mui Theme object",
+           )}
+        </div>
+      }
+    </StyledExampleTheme>
+  </div>;

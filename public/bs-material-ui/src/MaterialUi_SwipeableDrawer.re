@@ -46,26 +46,27 @@ type variant = [
   | [@bs.as "temporary"] `Temporary
 ];
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~anchor: string=?,
     ~disableBackdropTransition: bool=?,
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_b=?,
-    ~minFlingVelocity: 'number_t=?,
+    ~hysteresis: 'number_6=?,
+    ~minFlingVelocity: 'number_3=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rzr4,
-    ~onOpen: 'any_rjxu,
+    ~onClose: 'any_rnyh,
+    ~onOpen: 'any_rwsr,
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~_SwipeAreaProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_5=?,
+    ~swipeAreaWidth: 'number_q=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_ruxf=?,
+    ~transitionDuration: 'union_r6ft=?,
     ~variant: string=?,
     ~_BackdropProps: Js.t({..})=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~elevation: 'number_7=?,
     ~_SlideProps: Js.t({..})=?,
@@ -73,8 +74,11 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "SwipeableDrawer";
+external reactComponent: React.component('a) = "SwipeableDrawer";
+
+[@react.component]
 let make =
     (
       ~anchor: option(anchor)=?,
@@ -102,58 +106,53 @@ let make =
          )=?,
       ~variant: option(variant)=?,
       ~_BackdropProps: option(Js.t({..}))=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~_SlideProps: option(Js.t({..}))=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
-        ~disableBackdropTransition?,
-        ~disableDiscovery?,
-        ~disableSwipeToOpen?,
-        ~hideBackdrop?,
-        ~hysteresis=?
-          hysteresis->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
-        ~minFlingVelocity=?
-          minFlingVelocity->(
-                              Belt.Option.map(v =>
-                                MaterialUi_Helpers.unwrapValue(v)
-                              )
-                            ),
-        ~_ModalProps?,
-        ~onClose,
-        ~onOpen,
-        ~_open=open_,
-        ~_PaperProps?,
-        ~_SwipeAreaProps?,
-        ~swipeAreaWidth=?
-          swipeAreaWidth->(
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
+      ~disableBackdropTransition?,
+      ~disableDiscovery?,
+      ~disableSwipeToOpen?,
+      ~hideBackdrop?,
+      ~hysteresis=?
+        hysteresis->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~minFlingVelocity=?
+        minFlingVelocity->(
                             Belt.Option.map(v =>
                               MaterialUi_Helpers.unwrapValue(v)
                             )
                           ),
-        ~theme?,
-        ~transitionDuration=?
-          transitionDuration->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~_BackdropProps?,
-        ~className?,
-        ~elevation=?
-          elevation->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~_SlideProps?,
-        (),
-      ),
-    children,
+      ~_ModalProps?,
+      ~onClose,
+      ~onOpen,
+      ~_open=open_,
+      ~_PaperProps?,
+      ~_SwipeAreaProps?,
+      ~swipeAreaWidth=?
+        swipeAreaWidth->(
+                          Belt.Option.map(v =>
+                            MaterialUi_Helpers.unwrapValue(v)
+                          )
+                        ),
+      ~theme?,
+      ~transitionDuration=?
+        transitionDuration->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~_BackdropProps?,
+      ~children?,
+      ~className?,
+      ~elevation=?
+        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~_SlideProps?,
+      (),
+    ),
   );

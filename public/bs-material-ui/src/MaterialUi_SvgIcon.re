@@ -63,11 +63,12 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rd4b=?,
+    ~component: 'union_rlpi=?,
     ~fontSize: string=?,
     ~nativeColor: string=?,
     ~shapeRendering: string=?,
@@ -79,10 +80,14 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "SvgIcon";
+external reactComponent: React.component('a) = "SvgIcon";
+
+[@react.component]
 let make =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~component:
@@ -100,26 +105,22 @@ let make =
       ~viewBox: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
-        ~nativeColor?,
-        ~shapeRendering?,
-        ~titleAccess?,
-        ~viewBox?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~children?,
+      ~className?,
+      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+      ~component=?
+        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
+      ~nativeColor?,
+      ~shapeRendering?,
+      ~titleAccess?,
+      ~viewBox?,
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );

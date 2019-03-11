@@ -54,14 +54,14 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~active: bool=?,
     ~alternativeLabel: bool=?,
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
-    ~index: 'number_r=?,
+    ~index: 'number_4=?,
     ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -69,8 +69,11 @@ external makeProps:
   ) =>
   _ =
   "";
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "StepConnector";
+external reactComponent: React.component('a) = "StepConnector";
+
+[@react.component]
 let make =
     (
       ~active: option(bool)=?,
@@ -82,23 +85,20 @@ let make =
       ~orientation: option(orientation)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~active?,
-        ~alternativeLabel?,
-        ~className?,
-        ~completed?,
-        ~disabled?,
-        ~index=?
-          index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  React.createElement(
+    reactComponent,
+    makePropsMui(
+      ~active?,
+      ~alternativeLabel?,
+      ~className?,
+      ~completed?,
+      ~disabled?,
+      ~index=?
+        index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+      ~style?,
+      (),
+    ),
   );
