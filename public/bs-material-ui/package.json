@@ -1,6 +1,6 @@
 {
     "name": "@jsiebern/bs-material-ui",
-    "version": "1.1.0",
+    "version": "1.1.0-hooks.2",
     "description": "This library provides Reason bindings for material-ui.",
     "keywords": [
         "bucklescript",
@@ -26,7 +26,7 @@
     ],
     "peerDependencies": {
         "@material-ui/core": "^3.9.2",
-        "@material-ui/icons": "^3.0.1"
+        "reason-react": "git://github.com/reasonml/reason-react.git#hooks"
     },
     "devDependencies": {
         "@jsiebern/bs-material-ui-ppx": "^1.0.0",
@@ -37,7 +37,6 @@
         "bsb-js": "^1.1.7",
         "parcel-bundler": "^1.10.3",
         "react": "^16.3.0",
-        "react-dom": "^16.3.0",
-        "reason-react": "git://github.com/reasonml/reason-react.git#hooks"
+        "react-dom": "^16.3.0"
     }
 }

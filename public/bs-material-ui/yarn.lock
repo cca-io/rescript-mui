@@ -4400,7 +4400,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@>=16.8.1, react-dom@^16.3.0:
+react-dom@^16.3.0:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.4.tgz#1061a8e01a2b3b0c8160037441c3bf00a0e3bc48"
   integrity sha512-Ob2wK7XG2tUDt7ps7LtLzGYYB6DXMCLj0G5fO6WeEICtT4/HdpOi7W/xLzZnR6RCG1tYza60nMdqtxzA8FaPJQ==
@@ -4444,7 +4444,7 @@ react-transition-group@^2.2.1:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react@>=16.8.1, react@^16.3.0:
+react@^16.3.0:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.4.tgz#fdf7bd9ae53f03a9c4cd1a371432c206be1c4768"
   integrity sha512-0GQ6gFXfUH7aZcjGVymlPOASTuSjlQL4ZtVC5YKH+3JL6bBLCVO21DknzmaPlI90LN253ojj02nsapy+j7wIjg==
@@ -4484,13 +4484,6 @@ readdirp@^2.2.1:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
-
-"reason-react@git://github.com/reasonml/reason-react.git#hooks":
-  version "0.5.3"
-  resolved "git://github.com/reasonml/reason-react.git#6cde3d560b537a8f53d80c3039e6f47e7628c271"
-  dependencies:
-    react ">=16.8.1"
-    react-dom ">=16.8.1"
 
 "recompose@0.28.0 - 0.30.0":
   version "0.30.0"
