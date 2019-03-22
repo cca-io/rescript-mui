@@ -11,8 +11,8 @@
     "author": "Jonathan Siebern <jsiebern88@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "build": "bsb -make-world -backend native && cp ./lib/bs/native/ppx_withStyles.native ./ppx",
-        "postinstall": "bsb -make-world -backend native && cp ./lib/bs/native/ppx_withStyles.native ./ppx",
+        "build": "bsb -make-world -backend native && cp ./lib/bs/native/ppx_withstyles.native ./ppx",
+        "postinstall": "bsb -make-world -backend native && cp ./lib/bs/native/ppx_withstyles.native ./ppx",
         "clean": "bsb -clean-world",
         "watch": "bsb -make-world -backend native -w"
     },
