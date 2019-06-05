@@ -1,5 +1,3 @@
-[@bs.config {jsx: 3}];
-
 [%mui.withStyles
   "Styles"({
     container:

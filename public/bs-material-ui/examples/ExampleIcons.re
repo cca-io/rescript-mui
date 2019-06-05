@@ -1,5 +1,3 @@
-[@bs.config {jsx: 3}];
-
 module SupervisedUserCircle = {
   open Belt.Option;
 

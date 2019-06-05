@@ -1,5 +1,3 @@
-[@bs.config {jsx: 3}];
-
 [%mui.withStyles
   "StyledExample"({
     alignRight: ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ()),

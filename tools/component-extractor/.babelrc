@@ -8,6 +8,15 @@
     "@babel/flow"
   ],
   "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@material-ui/styles": "./styles",
+          "@material-ui/utils": "./utils"
+        }
+      }
+    ],
     ["@babel/plugin-transform-runtime", {
       "corejs": false
     }],

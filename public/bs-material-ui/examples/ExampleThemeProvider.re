@@ -1,5 +1,3 @@
-[@bs.config {jsx: 3}];
-
 let theme =
   MaterialUi_Theme.create(
     MaterialUi_ThemeOptions.(

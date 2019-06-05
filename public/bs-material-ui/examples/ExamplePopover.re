@@ -1,5 +1,3 @@
-[@bs.config {jsx: 3}];
-
 open Belt;
 
 external toDomElement: 'a => Dom.element = "%identity";

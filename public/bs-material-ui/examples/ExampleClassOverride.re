@@ -1,5 +1,3 @@
-[@bs.config {jsx: 3}];
-
 [%mui.withStyles
   "OverrideExample"({
     fontSize: ReactDOMRe.Style.make(~fontSize="30px", ()),

@@ -1,22 +1,18 @@
 {
-    "name": "@jsiebern/bs-material-ui",
-    "namespace": false,
-    "sources": [{
-        "dir": "src"
-    }],
-    "package-specs": {
-        "module": "commonjs",
-        "in-source": true
-    },
-    "ppx-flags": [
-        "reason-react/_build/default/jsx_ppx/reactjs_jsx_ppx_v3.exe"
-    ],
-    "bs-dependencies": [
-        "reason-react"
-    ],
-    "bsc-flags": [
-        "-bs-super-errors"
-    ],
-    "refmt": 3,
-    "suffix": ".bs.js"
+	"name": "@jsiebern/bs-material-ui",
+	"namespace": false,
+	"sources": [
+		{
+			"dir": "src"
+		}
+	],
+	"package-specs": {
+		"module": "commonjs",
+		"in-source": true
+	},
+	"ppx-flags": [ "reason-react/_build/default/jsx_ppx/reactjs_jsx_ppx_v3.exe" ],
+	"bs-dependencies": [ "reason-react" ],
+	"bsc-flags": [ "-bs-super-errors" ],
+	"refmt": 3,
+	"suffix": ".bs.js"
 }

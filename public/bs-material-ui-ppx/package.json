@@ -23,5 +23,8 @@
     "dependencies": {
         "bsb-native": "^4.0.9",
         "yauzl": "^2.10.0"
+    },
+    "devDependencies": {
+        "clsx": "^1.0.4"
     }
 }

@@ -1,5 +1,3 @@
-[@bs.config {jsx: 3}];
-
 type classRecordDef('classRecord) =
   | Record('classRecord)
   | ThemeFunc(MaterialUi_Theme.t => 'classRecord);

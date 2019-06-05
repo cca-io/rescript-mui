@@ -1,5 +1,3 @@
-[@bs.config {jsx: 3}];
-
 external styleToString: ReactDOMRe.Style.t => string = "%identity";
 
 let theme =
