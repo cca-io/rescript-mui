@@ -9,7 +9,6 @@ module Classes = {
     | Root(string)
     | Container(string)
     | FocusVisible(string)
-    | Default(string)
     | Dense(string)
     | AlignItemsFlexStart(string)
     | Disabled(string)
@@ -24,7 +23,6 @@ module Classes = {
     | Root(_) => "root"
     | Container(_) => "container"
     | FocusVisible(_) => "focusVisible"
-    | Default(_) => "default"
     | Dense(_) => "dense"
     | AlignItemsFlexStart(_) => "alignItemsFlexStart"
     | Disabled(_) => "disabled"
@@ -42,7 +40,6 @@ module Classes = {
                          | Root(className)
                          | Container(className)
                          | FocusVisible(className)
-                         | Default(className)
                          | Dense(className)
                          | AlignItemsFlexStart(className)
                          | Disabled(className)
@@ -63,11 +60,10 @@ module Classes = {
 external makePropsMui:
   (
     ~alignItems: string=?,
+    ~autoFocus: bool=?,
     ~button: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r7rh=?,
-    ~_ContainerComponent: 'union_rp2y=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -75,7 +71,7 @@ external makePropsMui:
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~selected: bool=?,
-    ~value: 'union_r65r=?,
+    ~value: 'union_rbar=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
@@ -92,25 +88,10 @@ external reactComponent: React.component('a) = "ListItem";
 let make =
     (
       ~alignItems: option(alignItems)=?,
+      ~autoFocus: option(bool)=?,
       ~button: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
-      ~_ContainerComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~_ContainerProps: option(Js.t({..}))=?,
       ~dense: option(bool)=?,
       ~disabled: option(bool)=?,
@@ -136,17 +117,10 @@ let make =
     reactComponent,
     makePropsMui(
       ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
+      ~autoFocus?,
       ~button?,
       ~children?,
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~_ContainerComponent=?
-        _ContainerComponent->(
-                               Belt.Option.map(v =>
-                                 MaterialUi_Helpers.unwrapValue(v)
-                               )
-                             ),
       ~_ContainerProps?,
       ~dense?,
       ~disabled?,

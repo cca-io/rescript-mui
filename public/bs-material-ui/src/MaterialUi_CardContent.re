@@ -24,7 +24,6 @@ module Classes = {
 external makePropsMui:
   (
     ~className: string=?,
-    ~component: 'union_rlw2=?,
     ~children: 'children=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -40,14 +39,6 @@ external reactComponent: React.component('a) = "CardContent";
 let make =
     (
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~children: option('children)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -56,8 +47,6 @@ let make =
     reactComponent,
     makePropsMui(
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~children?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,

@@ -1,15 +1,44 @@
+module Actions = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    current: Js.Json.t,
+  };
+  let make = t;
+
+  let unwrap = (obj: option(t)) => {
+    switch (obj) {
+    | Some(obj) =>
+      let unwrappedMap = Js.Dict.empty();
+
+      switch (obj->currentGet) {
+      | Some(v) =>
+        unwrappedMap->(
+                        Js.Dict.set(
+                          "current",
+                          v->MaterialUi_Helpers.toJsUnsafe,
+                        )
+                      )
+      | None => ()
+      };
+
+      Some(unwrappedMap);
+    | None => None
+    };
+  };
+};
+
 [@bs.obj]
 external makePropsMui:
   (
+    ~actions: 'any_r2t5=?,
     ~children: 'children=?,
-    ~defaultValue: 'union_r9la=?,
+    ~defaultValue: 'any_r0p7=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_r4w5=?,
+    ~onChange: 'any_r6cf=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~value: 'union_re1h=?,
-    ~className: string=?,
-    ~row: bool=?,
+    ~value: string=?,
     unit
   ) =>
   _ =
@@ -21,38 +50,26 @@ external reactComponent: React.component('a) = "RadioGroup";
 [@react.component]
 let make =
     (
+      ~actions: option(Actions.t)=?,
       ~children: option('children)=?,
-      ~defaultValue:
-         option(
-           [ | `String(string) | `Int(int) | `Float(float) | `Bool(bool)],
-         )=?,
+      ~defaultValue: option('any_r0p7)=?,
       ~name: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onChange: option((ReactEvent.Form.t, string) => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-      ~value:
-         option(
-           [ | `String(string) | `Int(int) | `Float(float) | `Bool(bool)],
-         )=?,
-      ~className: option(string)=?,
-      ~row: option(bool)=?,
+      ~value: option(string)=?,
     ) =>
   React.createElement(
     reactComponent,
     makePropsMui(
+      ~actions=?Actions.unwrap(actions),
       ~children?,
-      ~defaultValue=?
-        defaultValue->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
+      ~defaultValue?,
       ~name?,
       ~onBlur?,
       ~onChange?,
       ~onKeyDown?,
-      ~value=?
-        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~className?,
-      ~row?,
+      ~value?,
       (),
     ),
   );

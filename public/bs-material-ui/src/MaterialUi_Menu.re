@@ -35,185 +35,28 @@ module TransitionDuration_shape = {
 type transitionDuration_enum = [ | [@bs.as "auto"] `Auto];
 
 [@bs.deriving jsConverter]
-type horizontal_enum = [
-  | [@bs.as "left"] `Left
-  | [@bs.as "center"] `Center
-  | [@bs.as "right"] `Right
+type variant = [
+  | [@bs.as "menu"] `Menu
+  | [@bs.as "selectedMenu"] `SelectedMenu
 ];
-
-[@bs.deriving jsConverter]
-type vertical_enum = [
-  | [@bs.as "top"] `Top
-  | [@bs.as "center"] `Center
-  | [@bs.as "bottom"] `Bottom
-];
-
-module AnchorOrigin = {
-  [@bs.deriving abstract]
-  type t = {
-    horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
-    vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
-  };
-  let make = t;
-
-  let unwrap = (obj: option(t)) => {
-    switch (obj) {
-    | Some(obj) =>
-      let unwrappedMap = Js.Dict.empty();
-
-      unwrappedMap->(
-                      Js.Dict.set(
-                        "horizontal",
-                        (
-                          fun
-                          | `Enum(v) =>
-                            MaterialUi_Helpers.unwrapValue(
-                              `String(horizontal_enumToJs(v)),
-                            )
-
-                          | v => MaterialUi_Helpers.unwrapValue(v)
-                        )(
-                          obj->horizontalGet,
-                        )
-                        ->MaterialUi_Helpers.toJsUnsafe,
-                      )
-                    );
-
-      unwrappedMap->(
-                      Js.Dict.set(
-                        "vertical",
-                        (
-                          fun
-                          | `Enum(v) =>
-                            MaterialUi_Helpers.unwrapValue(
-                              `String(vertical_enumToJs(v)),
-                            )
-
-                          | v => MaterialUi_Helpers.unwrapValue(v)
-                        )(
-                          obj->verticalGet,
-                        )
-                        ->MaterialUi_Helpers.toJsUnsafe,
-                      )
-                    );
-
-      Some(unwrappedMap);
-    | None => None
-    };
-  };
-};
-
-module AnchorPosition = {
-  [@bs.deriving abstract]
-  type t = {
-    left: [ | `Int(int) | `Float(float)],
-    top: [ | `Int(int) | `Float(float)],
-  };
-  let make = t;
-
-  let unwrap = (obj: option(t)) => {
-    switch (obj) {
-    | Some(obj) =>
-      let unwrappedMap = Js.Dict.empty();
-
-      unwrappedMap->(
-                      Js.Dict.set(
-                        "left",
-                        MaterialUi_Helpers.unwrapValue(obj->leftGet)
-                        ->MaterialUi_Helpers.toJsUnsafe,
-                      )
-                    );
-
-      unwrappedMap->(
-                      Js.Dict.set(
-                        "top",
-                        MaterialUi_Helpers.unwrapValue(obj->topGet)
-                        ->MaterialUi_Helpers.toJsUnsafe,
-                      )
-                    );
-
-      Some(unwrappedMap);
-    | None => None
-    };
-  };
-};
-
-[@bs.deriving jsConverter]
-type anchorReference = [
-  | [@bs.as "anchorEl"] `AnchorEl
-  | [@bs.as "anchorPosition"] `AnchorPosition
-  | [@bs.as "none"] `None
-];
-
-module TransformOrigin = {
-  [@bs.deriving abstract]
-  type t = {
-    horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
-    vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
-  };
-  let make = t;
-
-  let unwrap = (obj: option(t)) => {
-    switch (obj) {
-    | Some(obj) =>
-      let unwrappedMap = Js.Dict.empty();
-
-      unwrappedMap->(
-                      Js.Dict.set(
-                        "horizontal",
-                        (
-                          fun
-                          | `Enum(v) =>
-                            MaterialUi_Helpers.unwrapValue(
-                              `String(horizontal_enumToJs(v)),
-                            )
-
-                          | v => MaterialUi_Helpers.unwrapValue(v)
-                        )(
-                          obj->horizontalGet,
-                        )
-                        ->MaterialUi_Helpers.toJsUnsafe,
-                      )
-                    );
-
-      unwrappedMap->(
-                      Js.Dict.set(
-                        "vertical",
-                        (
-                          fun
-                          | `Enum(v) =>
-                            MaterialUi_Helpers.unwrapValue(
-                              `String(vertical_enumToJs(v)),
-                            )
-
-                          | v => MaterialUi_Helpers.unwrapValue(v)
-                        )(
-                          obj->verticalGet,
-                        )
-                        ->MaterialUi_Helpers.toJsUnsafe,
-                      )
-                    );
-
-      Some(unwrappedMap);
-    | None => None
-    };
-  };
-};
 
 module Classes = {
   type classesType =
-    | Paper(string);
+    | Paper(string)
+    | List(string);
   type t = list(classesType);
   let to_string =
     fun
-    | Paper(_) => "paper";
+    | Paper(_) => "paper"
+    | List(_) => "list";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
                        Js.Dict.empty(),
                        (obj, classType) => {
                          switch (classType) {
-                         | Paper(className) =>
+                         | Paper(className)
+                         | List(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -225,11 +68,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'any_rvi1=?,
+    ~anchorEl: 'any_r30h=?,
+    ~autoFocus: bool=?,
     ~children: 'children=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_ryi6=?,
+    ~onClose: 'any_r40x=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -240,20 +84,8 @@ external makePropsMui:
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_r9u5=?,
-    ~action: 'any_rwk9=?,
-    ~anchorOrigin: 'any_r81m=?,
-    ~anchorPosition: 'any_rk6g=?,
-    ~anchorReference: string=?,
-    ~container: 'union_rtmb=?,
-    ~elevation: 'number_g=?,
-    ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_t=?,
-    ~_ModalClasses: Js.t({..})=?,
-    ~role: string=?,
-    ~transformOrigin: 'any_rpea=?,
-    ~_TransitionComponent: 'union_rph1=?,
-    ~_TransitionProps: Js.t({..})=?,
+    ~transitionDuration: 'union_r0hc=?,
+    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -267,7 +99,8 @@ external reactComponent: React.component('a) = "Menu";
 [@react.component]
 let make =
     (
-      ~anchorEl: option('any_rvi1)=?,
+      ~anchorEl: option('any_r30h)=?,
+      ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~disableAutoFocusItem: option(bool)=?,
       ~_MenuListProps: option(Js.t({..}))=?,
@@ -291,29 +124,7 @@ let make =
              | `Enum(transitionDuration_enum)
            ],
          )=?,
-      ~action: option(Js.t({..}) => unit)=?,
-      ~anchorOrigin: option(AnchorOrigin.t)=?,
-      ~anchorPosition: option(AnchorPosition.t)=?,
-      ~anchorReference: option(anchorReference)=?,
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
-      ~elevation: option([ | `Int(int) | `Float(float)])=?,
-      ~getContentAnchorEl: option('genericCallback)=?,
-      ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
-      ~_ModalClasses: option(Js.t({..}))=?,
-      ~role: option(string)=?,
-      ~transformOrigin: option(TransformOrigin.t)=?,
-      ~_TransitionComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
-      ~_TransitionProps: option(Js.t({..}))=?,
+      ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -321,6 +132,7 @@ let make =
     reactComponent,
     makePropsMui(
       ~anchorEl?,
+      ~autoFocus?,
       ~children?,
       ~disableAutoFocusItem?,
       ~_MenuListProps?,
@@ -348,32 +160,7 @@ let make =
                                 }
                               )
                             ),
-      ~action?,
-      ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
-      ~anchorPosition=?AnchorPosition.unwrap(anchorPosition),
-      ~anchorReference=?
-        anchorReference->(Belt.Option.map(v => anchorReferenceToJs(v))),
-      ~container=?
-        container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~getContentAnchorEl?,
-      ~marginThreshold=?
-        marginThreshold->(
-                           Belt.Option.map(v =>
-                             MaterialUi_Helpers.unwrapValue(v)
-                           )
-                         ),
-      ~_ModalClasses?,
-      ~role?,
-      ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
-      ~_TransitionComponent=?
-        _TransitionComponent->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
-      ~_TransitionProps?,
+      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

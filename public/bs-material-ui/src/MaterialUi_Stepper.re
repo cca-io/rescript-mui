@@ -38,16 +38,13 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_f=?,
+    ~activeStep: 'number_9=?,
     ~alternativeLabel: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~connector: React.element=?,
     ~nonLinear: bool=?,
     ~orientation: string=?,
-    ~component: 'union_r9yk=?,
-    ~elevation: 'number_u=?,
-    ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -68,16 +65,6 @@ let make =
       ~connector: option(React.element)=?,
       ~nonLinear: option(bool)=?,
       ~orientation: option(orientation)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
-      ~elevation: option([ | `Int(int) | `Float(float)])=?,
-      ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -92,11 +79,6 @@ let make =
       ~connector?,
       ~nonLinear?,
       ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~square?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

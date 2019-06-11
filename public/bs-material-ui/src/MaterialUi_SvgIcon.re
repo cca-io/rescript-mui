@@ -68,9 +68,8 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rlpi=?,
     ~fontSize: string=?,
-    ~nativeColor: string=?,
+    ~htmlColor: string=?,
     ~shapeRendering: string=?,
     ~titleAccess: string=?,
     ~viewBox: string=?,
@@ -90,16 +89,8 @@ let make =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~fontSize: option(fontSize)=?,
-      ~nativeColor: option(string)=?,
+      ~htmlColor: option(string)=?,
       ~shapeRendering: option(string)=?,
       ~titleAccess: option(string)=?,
       ~viewBox: option(string)=?,
@@ -112,10 +103,8 @@ let make =
       ~children?,
       ~className?,
       ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
-      ~nativeColor?,
+      ~htmlColor?,
       ~shapeRendering?,
       ~titleAccess?,
       ~viewBox?,

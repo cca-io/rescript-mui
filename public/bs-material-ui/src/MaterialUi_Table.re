@@ -2,9 +2,11 @@
 type padding = [
   | [@bs.as "default"] `Default
   | [@bs.as "checkbox"] `Checkbox
-  | [@bs.as "dense"] `Dense
   | [@bs.as "none"] `None
 ];
+
+[@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
 
 module Classes = {
   type classesType =
@@ -33,8 +35,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rin2=?,
     ~padding: string=?,
+    ~size: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -50,15 +52,8 @@ let make =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~padding: option(padding)=?,
+      ~size: option(size)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -67,9 +62,8 @@ let make =
     makePropsMui(
       ~children?,
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
+      ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

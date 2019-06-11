@@ -41,7 +41,6 @@ external makePropsMui:
     ~action: React.element=?,
     ~avatar: React.element=?,
     ~className: string=?,
-    ~component: 'union_rp7g=?,
     ~disableTypography: bool=?,
     ~subheader: React.element=?,
     ~subheaderTypographyProps: Js.t({..})=?,
@@ -63,14 +62,6 @@ let make =
       ~action: option(React.element)=?,
       ~avatar: option(React.element)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~disableTypography: option(bool)=?,
       ~subheader: option(React.element)=?,
       ~subheaderTypographyProps: option(Js.t({..}))=?,
@@ -85,8 +76,6 @@ let make =
       ~action?,
       ~avatar?,
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~disableTypography?,
       ~subheader?,
       ~subheaderTypographyProps?,

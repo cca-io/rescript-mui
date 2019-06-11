@@ -16,15 +16,16 @@ type placement = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'union_r45a=?,
+    ~anchorEl: 'union_r8yo=?,
     ~children: 'children=?,
-    ~container: 'union_rrnc=?,
+    ~container: 'union_rjev=?,
     ~disablePortal: bool=?,
     ~keepMounted: bool=?,
     ~modifiers: Js.t({..})=?,
     ~_open: bool,
     ~placement: string=?,
     ~popperOptions: Js.t({..})=?,
+    ~popperRef: 'union_rtb3=?,
     ~transition: bool=?,
     unit
   ) =>
@@ -52,6 +53,10 @@ let make =
       ~open_: bool,
       ~placement: option(placement)=?,
       ~popperOptions: option(Js.t({..}))=?,
+      ~popperRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~transition: option(bool)=?,
     ) =>
   React.createElement(
@@ -68,6 +73,8 @@ let make =
       ~_open=open_,
       ~placement=?placement->(Belt.Option.map(v => placementToJs(v))),
       ~popperOptions?,
+      ~popperRef=?
+        popperRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~transition?,
       (),
     ),

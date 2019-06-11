@@ -2,7 +2,6 @@ let theme =
   MaterialUi_Theme.create(
     MaterialUi_ThemeOptions.(
       make(
-        ~typography=Typography.make(~useNextVariants=true, ()),
         ~palette=
           PaletteOptions.make(
             ~primary=Primary.make(~main="#8fe830", ()),

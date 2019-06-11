@@ -68,9 +68,6 @@ external makePropsMui:
     ~className: string=?,
     ~color: string=?,
     ~position: string=?,
-    ~component: 'union_rtui=?,
-    ~elevation: 'number_o=?,
-    ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -88,16 +85,6 @@ let make =
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~position: option(position)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
-      ~elevation: option([ | `Int(int) | `Float(float)])=?,
-      ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -108,11 +95,6 @@ let make =
       ~className?,
       ~color=?color->(Belt.Option.map(v => colorToJs(v))),
       ~position=?position->(Belt.Option.map(v => positionToJs(v))),
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~square?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

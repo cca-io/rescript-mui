@@ -1,12 +1,12 @@
 module Classes = {
   type classesType =
     | Root(string)
-    | Action(string);
+    | Spacing(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | Action(_) => "action";
+    | Spacing(_) => "spacing";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -14,7 +14,7 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
-                         | Action(className) =>
+                         | Spacing(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -28,6 +28,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
+    ~disableSpacing: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -43,6 +44,7 @@ let make =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~disableSpacing: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -51,6 +53,7 @@ let make =
     makePropsMui(
       ~children?,
       ~className?,
+      ~disableSpacing?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

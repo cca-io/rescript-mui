@@ -25,10 +25,9 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rt6y=?,
-    ~onChange: 'any_rg90=?,
+    ~onChange: 'any_rylb=?,
     ~showLabels: bool=?,
-    ~value: 'any_rmvi=?,
+    ~value: 'any_rvad=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -44,17 +43,9 @@ let make =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rbhm) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rd3p) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_rmvi)=?,
+      ~value: option('any_rvad)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -63,8 +54,6 @@ let make =
     makePropsMui(
       ~children?,
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~onChange?,
       ~showLabels?,
       ~value?,

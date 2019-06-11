@@ -68,7 +68,6 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r99h=?,
     ~fontSize: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -86,14 +85,6 @@ let make =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~fontSize: option(fontSize)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -104,8 +95,6 @@ let make =
       ~children?,
       ~className?,
       ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,

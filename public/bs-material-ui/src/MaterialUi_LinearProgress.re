@@ -90,8 +90,9 @@ external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_6=?,
-    ~valueBuffer: 'number_0=?,
+    ~theme: Js.t({..})=?,
+    ~value: 'number_g=?,
+    ~valueBuffer: 'number_f=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -108,6 +109,7 @@ let make =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~theme: option(Js.t({..}))=?,
       ~value: option([ | `Int(int) | `Float(float)])=?,
       ~valueBuffer: option([ | `Int(int) | `Float(float)])=?,
       ~variant: option(variant)=?,
@@ -119,6 +121,7 @@ let make =
     makePropsMui(
       ~className?,
       ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+      ~theme?,
       ~value=?
         value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~valueBuffer=?

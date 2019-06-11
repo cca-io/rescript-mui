@@ -15,6 +15,7 @@ module Classes = {
     | Disabled(string)
     | Error(string)
     | Required(string)
+    | Asterisk(string)
     | FormControl(string)
     | MarginDense(string)
     | Shrink(string)
@@ -29,6 +30,7 @@ module Classes = {
     | Disabled(_) => "disabled"
     | Error(_) => "error"
     | Required(_) => "required"
+    | Asterisk(_) => "asterisk"
     | FormControl(_) => "formControl"
     | MarginDense(_) => "marginDense"
     | Shrink(_) => "shrink"
@@ -46,6 +48,7 @@ module Classes = {
                          | Disabled(className)
                          | Error(className)
                          | Required(className)
+                         | Asterisk(className)
                          | FormControl(className)
                          | MarginDense(className)
                          | Shrink(className)
@@ -69,14 +72,11 @@ external makePropsMui:
     ~disabled: bool=?,
     ~error: bool=?,
     ~focused: bool=?,
-    ~_FormLabelClasses: Js.t({..})=?,
     ~margin: string=?,
     ~muiFormControl: Js.t({..})=?,
     ~required: bool=?,
     ~shrink: bool=?,
     ~variant: string=?,
-    ~component: 'union_r9o6=?,
-    ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -96,21 +96,11 @@ let make =
       ~disabled: option(bool)=?,
       ~error: option(bool)=?,
       ~focused: option(bool)=?,
-      ~_FormLabelClasses: option(Js.t({..}))=?,
       ~margin: option(margin)=?,
       ~muiFormControl: option(Js.t({..}))=?,
       ~required: option(bool)=?,
       ~shrink: option(bool)=?,
       ~variant: option(variant)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
-      ~filled: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -123,15 +113,11 @@ let make =
       ~disabled?,
       ~error?,
       ~focused?,
-      ~_FormLabelClasses?,
       ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
       ~muiFormControl?,
       ~required?,
       ~shrink?,
       ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~filled?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

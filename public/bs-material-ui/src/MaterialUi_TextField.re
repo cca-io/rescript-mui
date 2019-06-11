@@ -18,7 +18,7 @@ external makePropsMui:
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~defaultValue: 'union_rlxo=?,
+    ~defaultValue: 'any_rhzx=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -28,24 +28,23 @@ external makePropsMui:
     ~_InputLabelProps: Js.t({..})=?,
     ~_InputProps: Js.t({..})=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rvji=?,
+    ~inputRef: 'union_rgee=?,
     ~label: React.element=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rt5q=?,
+    ~onChange: 'any_r0bq=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_rqej=?,
-    ~rowsMax: 'union_rsg3=?,
+    ~rows: 'union_r2yh=?,
+    ~rowsMax: 'union_r06v=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
     ~_type: string=?,
-    ~value: 'union_rkpl=?,
+    ~value: 'any_rqq8=?,
     ~variant: string=?,
-    ~component: 'union_rsew=?,
     unit
   ) =>
   _ =
@@ -61,8 +60,7 @@ let make =
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~defaultValue:
-         option([ | `String(string) | `Int(int) | `Float(float)])=?,
+      ~defaultValue: option('any_rhzx)=?,
       ~disabled: option(bool)=?,
       ~error: option(bool)=?,
       ~_FormHelperTextProps: option(Js.t({..}))=?,
@@ -90,34 +88,8 @@ let make =
       ~select: option(bool)=?,
       ~_SelectProps: option(Js.t({..}))=?,
       ~type_: option(string)=?,
-      ~value:
-         option(
-           [
-             | `String(string)
-             | `Int(int)
-             | `Float(float)
-             | `Bool(bool)
-             | `Array(
-                 array(
-                   [
-                     | `String(string)
-                     | `Int(int)
-                     | `Float(float)
-                     | `Bool(bool)
-                   ],
-                 ),
-               )
-           ],
-         )=?,
+      ~value: option('any_rqq8)=?,
       ~variant: option(variant)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
     ) =>
   React.createElement(
     reactComponent,
@@ -126,10 +98,7 @@ let make =
       ~autoFocus?,
       ~children?,
       ~className?,
-      ~defaultValue=?
-        defaultValue->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
+      ~defaultValue?,
       ~disabled?,
       ~error?,
       ~_FormHelperTextProps?,
@@ -156,11 +125,8 @@ let make =
       ~select?,
       ~_SelectProps?,
       ~_type=?type_,
-      ~value=?
-        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~value?,
       ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       (),
     ),
   );

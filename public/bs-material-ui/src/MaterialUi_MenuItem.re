@@ -1,9 +1,3 @@
-[@bs.deriving jsConverter]
-type alignItems = [
-  | [@bs.as "flex-start"] `Flex_Start
-  | [@bs.as "center"] `Center
-];
-
 module Classes = {
   type classesType =
     | Root(string)
@@ -37,21 +31,14 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rqoe=?,
+    ~disabled: bool=?,
     ~disableGutters: bool=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~value: 'union_rpyr=?,
+    ~tabIndex: 'number_5=?,
+    ~value: 'union_rool=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~alignItems: string=?,
-    ~button: bool=?,
-    ~_ContainerComponent: 'union_rleg=?,
-    ~_ContainerProps: Js.t({..})=?,
-    ~dense: bool=?,
-    ~disabled: bool=?,
-    ~divider: bool=?,
-    ~focusVisibleClassName: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -67,17 +54,11 @@ let make =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
+      ~disabled: option(bool)=?,
       ~disableGutters: option(bool)=?,
       ~role: option(string)=?,
       ~selected: option(bool)=?,
+      ~tabIndex: option([ | `Int(int) | `Float(float)])=?,
       ~value:
          option(
            [
@@ -89,21 +70,6 @@ let make =
          )=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~alignItems: option(alignItems)=?,
-      ~button: option(bool)=?,
-      ~_ContainerComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
-      ~_ContainerProps: option(Js.t({..}))=?,
-      ~dense: option(bool)=?,
-      ~disabled: option(bool)=?,
-      ~divider: option(bool)=?,
-      ~focusVisibleClassName: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -112,28 +78,16 @@ let make =
     makePropsMui(
       ~children?,
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~disabled?,
       ~disableGutters?,
       ~role?,
       ~selected?,
+      ~tabIndex=?
+        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~value=?
         value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~onFocus?,
       ~onClick?,
-      ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
-      ~button?,
-      ~_ContainerComponent=?
-        _ContainerComponent->(
-                               Belt.Option.map(v =>
-                                 MaterialUi_Helpers.unwrapValue(v)
-                               )
-                             ),
-      ~_ContainerProps?,
-      ~dense?,
-      ~disabled?,
-      ~divider?,
-      ~focusVisibleClassName?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

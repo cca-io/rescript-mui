@@ -4,7 +4,6 @@ let theme =
   MaterialUi_Theme.create(
     MaterialUi_ThemeOptions.(
       make(
-        ~typography=Typography.make(~useNextVariants=true, ()),
         ~overrides=
           Overrides.make(
             ~muiButton=
@@ -13,7 +12,7 @@ let theme =
                   ReactDOMRe.Style.make(
                     ~fontSize="12px",
                     ~fontWeight="300",
-                    ~color="gray !important",
+                    ~color="gray",
                     (),
                   )
                   ->ReactDOMRe.Style.unsafeAddProp(

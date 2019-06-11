@@ -6,6 +6,9 @@ type color = [
 ];
 
 [@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+
+[@bs.deriving jsConverter]
 type variant = [
   | [@bs.as "default"] `Default
   | [@bs.as "outlined"] `Outlined
@@ -14,6 +17,7 @@ type variant = [
 module Classes = {
   type classesType =
     | Root(string)
+    | SizeSmall(string)
     | ColorPrimary(string)
     | ColorSecondary(string)
     | Clickable(string)
@@ -26,14 +30,18 @@ module Classes = {
     | OutlinedPrimary(string)
     | OutlinedSecondary(string)
     | Avatar(string)
+    | AvatarSmall(string)
     | AvatarColorPrimary(string)
     | AvatarColorSecondary(string)
     | AvatarChildren(string)
     | Icon(string)
+    | IconSmall(string)
     | IconColorPrimary(string)
     | IconColorSecondary(string)
     | Label(string)
+    | LabelSmall(string)
     | DeleteIcon(string)
+    | DeleteIconSmall(string)
     | DeleteIconColorPrimary(string)
     | DeleteIconColorSecondary(string)
     | DeleteIconOutlinedColorPrimary(string)
@@ -42,6 +50,7 @@ module Classes = {
   let to_string =
     fun
     | Root(_) => "root"
+    | SizeSmall(_) => "sizeSmall"
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary"
     | Clickable(_) => "clickable"
@@ -54,14 +63,18 @@ module Classes = {
     | OutlinedPrimary(_) => "outlinedPrimary"
     | OutlinedSecondary(_) => "outlinedSecondary"
     | Avatar(_) => "avatar"
+    | AvatarSmall(_) => "avatarSmall"
     | AvatarColorPrimary(_) => "avatarColorPrimary"
     | AvatarColorSecondary(_) => "avatarColorSecondary"
     | AvatarChildren(_) => "avatarChildren"
     | Icon(_) => "icon"
+    | IconSmall(_) => "iconSmall"
     | IconColorPrimary(_) => "iconColorPrimary"
     | IconColorSecondary(_) => "iconColorSecondary"
     | Label(_) => "label"
+    | LabelSmall(_) => "labelSmall"
     | DeleteIcon(_) => "deleteIcon"
+    | DeleteIconSmall(_) => "deleteIconSmall"
     | DeleteIconColorPrimary(_) => "deleteIconColorPrimary"
     | DeleteIconColorSecondary(_) => "deleteIconColorSecondary"
     | DeleteIconOutlinedColorPrimary(_) => "deleteIconOutlinedColorPrimary"
@@ -73,6 +86,7 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
+                         | SizeSmall(className)
                          | ColorPrimary(className)
                          | ColorSecondary(className)
                          | Clickable(className)
@@ -85,14 +99,18 @@ module Classes = {
                          | OutlinedPrimary(className)
                          | OutlinedSecondary(className)
                          | Avatar(className)
+                         | AvatarSmall(className)
                          | AvatarColorPrimary(className)
                          | AvatarColorSecondary(className)
                          | AvatarChildren(className)
                          | Icon(className)
+                         | IconSmall(className)
                          | IconColorPrimary(className)
                          | IconColorSecondary(className)
                          | Label(className)
+                         | LabelSmall(className)
                          | DeleteIcon(className)
+                         | DeleteIconSmall(className)
                          | DeleteIconColorPrimary(className)
                          | DeleteIconColorSecondary(className)
                          | DeleteIconOutlinedColorPrimary(className)
@@ -113,7 +131,6 @@ external makePropsMui:
     ~className: string=?,
     ~clickable: bool=?,
     ~color: string=?,
-    ~component: 'union_ril2=?,
     ~deleteIcon: React.element=?,
     ~icon: React.element=?,
     ~label: React.element=?,
@@ -121,7 +138,7 @@ external makePropsMui:
     ~onDelete: ReactEvent.Synthetic.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-    ~tabIndex: 'union_rnhu=?,
+    ~size: string=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -141,14 +158,6 @@ let make =
       ~className: option(string)=?,
       ~clickable: option(bool)=?,
       ~color: option(color)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~deleteIcon: option(React.element)=?,
       ~icon: option(React.element)=?,
       ~label: option(React.element)=?,
@@ -156,7 +165,7 @@ let make =
       ~onDelete: option(ReactEvent.Synthetic.t => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-      ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+      ~size: option(size)=?,
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -169,8 +178,6 @@ let make =
       ~className?,
       ~clickable?,
       ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~deleteIcon?,
       ~icon?,
       ~label?,
@@ -178,8 +185,7 @@ let make =
       ~onDelete?,
       ~onKeyDown?,
       ~onKeyUp?,
-      ~tabIndex=?
-        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
       ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,

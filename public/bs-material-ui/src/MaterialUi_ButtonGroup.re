@@ -15,7 +15,6 @@ type size = [
 
 [@bs.deriving jsConverter]
 type variant = [
-  | [@bs.as "text"] `Text
   | [@bs.as "outlined"] `Outlined
   | [@bs.as "contained"] `Contained
 ];
@@ -23,42 +22,28 @@ type variant = [
 module Classes = {
   type classesType =
     | Root(string)
-    | Label(string)
-    | Text(string)
-    | TextPrimary(string)
-    | TextSecondary(string)
-    | Outlined(string)
-    | OutlinedPrimary(string)
-    | OutlinedSecondary(string)
     | Contained(string)
-    | ContainedPrimary(string)
-    | ContainedSecondary(string)
-    | FocusVisible(string)
-    | Disabled(string)
-    | ColorInherit(string)
-    | SizeSmall(string)
-    | SizeLarge(string)
-    | FullWidth(string);
+    | FullWidth(string)
+    | Grouped(string)
+    | GroupedOutlined(string)
+    | GroupedOutlinedPrimary(string)
+    | GroupedOutlinedSecondary(string)
+    | GroupedContained(string)
+    | GroupedContainedPrimary(string)
+    | GroupedContainedSecondary(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | Label(_) => "label"
-    | Text(_) => "text"
-    | TextPrimary(_) => "textPrimary"
-    | TextSecondary(_) => "textSecondary"
-    | Outlined(_) => "outlined"
-    | OutlinedPrimary(_) => "outlinedPrimary"
-    | OutlinedSecondary(_) => "outlinedSecondary"
     | Contained(_) => "contained"
-    | ContainedPrimary(_) => "containedPrimary"
-    | ContainedSecondary(_) => "containedSecondary"
-    | FocusVisible(_) => "focusVisible"
-    | Disabled(_) => "disabled"
-    | ColorInherit(_) => "colorInherit"
-    | SizeSmall(_) => "sizeSmall"
-    | SizeLarge(_) => "sizeLarge"
-    | FullWidth(_) => "fullWidth";
+    | FullWidth(_) => "fullWidth"
+    | Grouped(_) => "grouped"
+    | GroupedOutlined(_) => "groupedOutlined"
+    | GroupedOutlinedPrimary(_) => "groupedOutlinedPrimary"
+    | GroupedOutlinedSecondary(_) => "groupedOutlinedSecondary"
+    | GroupedContained(_) => "groupedContained"
+    | GroupedContainedPrimary(_) => "groupedContainedPrimary"
+    | GroupedContainedSecondary(_) => "groupedContainedSecondary";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -66,22 +51,15 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
-                         | Label(className)
-                         | Text(className)
-                         | TextPrimary(className)
-                         | TextSecondary(className)
-                         | Outlined(className)
-                         | OutlinedPrimary(className)
-                         | OutlinedSecondary(className)
                          | Contained(className)
-                         | ContainedPrimary(className)
-                         | ContainedSecondary(className)
-                         | FocusVisible(className)
-                         | Disabled(className)
-                         | ColorInherit(className)
-                         | SizeSmall(className)
-                         | SizeLarge(className)
-                         | FullWidth(className) =>
+                         | FullWidth(className)
+                         | Grouped(className)
+                         | GroupedOutlined(className)
+                         | GroupedOutlinedPrimary(className)
+                         | GroupedOutlinedSecondary(className)
+                         | GroupedContained(className)
+                         | GroupedContainedPrimary(className)
+                         | GroupedContainedSecondary(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -99,11 +77,8 @@ external makePropsMui:
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
-    ~focusVisibleClassName: string=?,
     ~fullWidth: bool=?,
-    ~href: string=?,
     ~size: string=?,
-    ~_type: string=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -113,7 +88,7 @@ external makePropsMui:
   "";
 
 [@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Button";
+external reactComponent: React.component('a) = "ButtonGroup";
 
 [@react.component]
 let make =
@@ -124,11 +99,8 @@ let make =
       ~disabled: option(bool)=?,
       ~disableFocusRipple: option(bool)=?,
       ~disableRipple: option(bool)=?,
-      ~focusVisibleClassName: option(string)=?,
       ~fullWidth: option(bool)=?,
-      ~href: option(string)=?,
       ~size: option(size)=?,
-      ~type_: option(string)=?,
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -142,11 +114,8 @@ let make =
       ~disabled?,
       ~disableFocusRipple?,
       ~disableRipple?,
-      ~focusVisibleClassName?,
       ~fullWidth?,
-      ~href?,
       ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-      ~_type=?type_,
       ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,

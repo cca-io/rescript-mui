@@ -5,29 +5,43 @@ type color = [
   | [@bs.as "default"] `Default
 ];
 
+[@bs.deriving jsConverter]
+type edge = [
+  | [@bs.as "start"] `Start
+  | [@bs.as "end"] `End
+  | [@bs.as "false"] `False
+];
+
+[@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+
 module Classes = {
   type classesType =
     | Root(string)
-    | Icon(string)
-    | IconChecked(string)
+    | EdgeStart(string)
+    | EdgeEnd(string)
     | SwitchBase(string)
-    | Checked(string)
     | ColorPrimary(string)
     | ColorSecondary(string)
+    | Checked(string)
     | Disabled(string)
-    | Bar(string);
+    | Input(string)
+    | Thumb(string)
+    | Track(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | Icon(_) => "icon"
-    | IconChecked(_) => "iconChecked"
+    | EdgeStart(_) => "edgeStart"
+    | EdgeEnd(_) => "edgeEnd"
     | SwitchBase(_) => "switchBase"
-    | Checked(_) => "checked"
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary"
+    | Checked(_) => "checked"
     | Disabled(_) => "disabled"
-    | Bar(_) => "bar";
+    | Input(_) => "input"
+    | Thumb(_) => "thumb"
+    | Track(_) => "track";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -35,14 +49,16 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
-                         | Icon(className)
-                         | IconChecked(className)
+                         | EdgeStart(className)
+                         | EdgeEnd(className)
                          | SwitchBase(className)
-                         | Checked(className)
                          | ColorPrimary(className)
                          | ColorSecondary(className)
+                         | Checked(className)
                          | Disabled(className)
-                         | Bar(className) =>
+                         | Input(className)
+                         | Thumb(className)
+                         | Track(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -54,20 +70,24 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~checked: 'union_rvzq=?,
+    ~checked: bool=?,
     ~checkedIcon: React.element=?,
     ~className: string=?,
     ~color: string=?,
     ~defaultChecked: bool=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
+    ~edge: string=?,
     ~icon: React.element=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rbqp=?,
-    ~onChange: 'any_rpem=?,
+    ~inputRef: 'union_roou=?,
+    ~onChange: 'any_rrka=?,
     ~_type: string=?,
-    ~value: 'union_re7n=?,
+    ~value: 'any_rikn=?,
+    ~children: 'children=?,
+    ~disableFocusRipple: bool=?,
+    ~size: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -81,13 +101,14 @@ external reactComponent: React.component('a) = "Switch";
 [@react.component]
 let make =
     (
-      ~checked: option([ | `Bool(bool) | `String(string)])=?,
+      ~checked: option(bool)=?,
       ~checkedIcon: option(React.element)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~defaultChecked: option(bool)=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
+      ~edge: option(edge)=?,
       ~icon: option(React.element)=?,
       ~id: option(string)=?,
       ~inputProps: option(Js.t({..}))=?,
@@ -97,24 +118,24 @@ let make =
          )=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~type_: option(string)=?,
-      ~value:
-         option(
-           [ | `String(string) | `Int(int) | `Float(float) | `Bool(bool)],
-         )=?,
+      ~value: option('any_rikn)=?,
+      ~children: option('children)=?,
+      ~disableFocusRipple: option(bool)=?,
+      ~size: option(size)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
   React.createElement(
     reactComponent,
     makePropsMui(
-      ~checked=?
-        checked->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~checked?,
       ~checkedIcon?,
       ~className?,
       ~color=?color->(Belt.Option.map(v => colorToJs(v))),
       ~defaultChecked?,
       ~disabled?,
       ~disableRipple?,
+      ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
       ~icon?,
       ~id?,
       ~inputProps?,
@@ -122,8 +143,10 @@ let make =
         inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~onChange?,
       ~_type=?type_,
-      ~value=?
-        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~value?,
+      ~children?,
+      ~disableFocusRipple?,
+      ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

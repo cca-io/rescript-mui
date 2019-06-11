@@ -11,9 +11,11 @@ type align = [
 type padding = [
   | [@bs.as "default"] `Default
   | [@bs.as "checkbox"] `Checkbox
-  | [@bs.as "dense"] `Dense
   | [@bs.as "none"] `None
 ];
+
+[@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
 
 [@bs.deriving jsConverter]
 type sortDirection = [
@@ -35,8 +37,7 @@ module Classes = {
     | Head(string)
     | Body(string)
     | Footer(string)
-    | Numeric(string)
-    | PaddingDense(string)
+    | SizeSmall(string)
     | PaddingCheckbox(string)
     | PaddingNone(string)
     | AlignLeft(string)
@@ -50,8 +51,7 @@ module Classes = {
     | Head(_) => "head"
     | Body(_) => "body"
     | Footer(_) => "footer"
-    | Numeric(_) => "numeric"
-    | PaddingDense(_) => "paddingDense"
+    | SizeSmall(_) => "sizeSmall"
     | PaddingCheckbox(_) => "paddingCheckbox"
     | PaddingNone(_) => "paddingNone"
     | AlignLeft(_) => "alignLeft"
@@ -68,8 +68,7 @@ module Classes = {
                          | Head(className)
                          | Body(className)
                          | Footer(className)
-                         | Numeric(className)
-                         | PaddingDense(className)
+                         | SizeSmall(className)
                          | PaddingCheckbox(className)
                          | PaddingNone(className)
                          | AlignLeft(className)
@@ -90,9 +89,9 @@ external makePropsMui:
     ~align: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rtt3=?,
     ~padding: string=?,
     ~scope: string=?,
+    ~size: string=?,
     ~sortDirection: string=?,
     ~variant: string=?,
     ~colSpan: int=?,
@@ -112,16 +111,9 @@ let make =
       ~align: option(align)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~padding: option(padding)=?,
       ~scope: option(string)=?,
+      ~size: option(size)=?,
       ~sortDirection: option(sortDirection)=?,
       ~variant: option(variant)=?,
       ~colSpan: option(int)=?,
@@ -134,10 +126,9 @@ let make =
       ~align=?align->(Belt.Option.map(v => alignToJs(v))),
       ~children?,
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
       ~scope?,
+      ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
       ~sortDirection=?
         sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
       ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),

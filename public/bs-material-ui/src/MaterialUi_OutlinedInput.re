@@ -9,6 +9,7 @@ module Classes = {
     | AdornedStart(string)
     | AdornedEnd(string)
     | Error(string)
+    | MarginDense(string)
     | Multiline(string)
     | NotchedOutline(string)
     | Input(string)
@@ -25,6 +26,7 @@ module Classes = {
     | AdornedStart(_) => "adornedStart"
     | AdornedEnd(_) => "adornedEnd"
     | Error(_) => "error"
+    | MarginDense(_) => "marginDense"
     | Multiline(_) => "multiline"
     | NotchedOutline(_) => "notchedOutline"
     | Input(_) => "input"
@@ -44,6 +46,7 @@ module Classes = {
                          | AdornedStart(className)
                          | AdornedEnd(className)
                          | Error(className)
+                         | MarginDense(className)
                          | Multiline(className)
                          | NotchedOutline(className)
                          | Input(className)
@@ -65,38 +68,28 @@ external makePropsMui:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_rocu=?,
+    ~defaultValue: 'any_rqad=?,
     ~disabled: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_rit7=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rr2l=?,
-    ~labelWidth: 'number_z,
+    ~inputRef: 'union_r1rk=?,
+    ~labelWidth: 'number_e=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~notched: bool=?,
-    ~onChange: 'any_rhay=?,
+    ~onChange: 'any_r80t=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_ri58=?,
-    ~rowsMax: 'union_rmey=?,
+    ~rows: 'union_rvpz=?,
+    ~rowsMax: 'union_r6dj=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'union_rt3j=?,
-    ~muiFormControl: Js.t({..})=?,
-    ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~onEmpty: 'genericCallback=?,
-    ~onFilled: 'genericCallback=?,
-    ~onFocus: ReactEvent.Focus.t => unit=?,
-    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-    ~renderPrefix: 'genericCallback=?,
+    ~value: 'any_rn4w=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -113,46 +106,18 @@ let make =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue:
-         option(
-           [
-             | `String(string)
-             | `Int(int)
-             | `Float(float)
-             | `Bool(bool)
-             | `ObjectGeneric(Js.t({..}))
-             | `Array(
-                 array(
-                   [
-                     | `String(string)
-                     | `Int(int)
-                     | `Float(float)
-                     | `Bool(bool)
-                     | `ObjectGeneric(Js.t({..}))
-                   ],
-                 ),
-               )
-           ],
-         )=?,
+      ~defaultValue: option('any_rqad)=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
-      ~labelWidth: [ | `Int(int) | `Float(float)],
+      ~labelWidth: option([ | `Int(int) | `Float(float)])=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -165,36 +130,7 @@ let make =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value:
-         option(
-           [
-             | `String(string)
-             | `Int(int)
-             | `Float(float)
-             | `Bool(bool)
-             | `ObjectGeneric(Js.t({..}))
-             | `Array(
-                 array(
-                   [
-                     | `String(string)
-                     | `Int(int)
-                     | `Float(float)
-                     | `Bool(bool)
-                     | `ObjectGeneric(Js.t({..}))
-                   ],
-                 ),
-               )
-           ],
-         )=?,
-      ~muiFormControl: option(Js.t({..}))=?,
-      ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~onEmpty: option('genericCallback)=?,
-      ~onFilled: option('genericCallback)=?,
-      ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-      ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-      ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-      ~renderPrefix: option('genericCallback)=?,
+      ~value: option('any_rn4w)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -204,25 +140,17 @@ let make =
       ~autoComplete?,
       ~autoFocus?,
       ~className?,
-      ~defaultValue=?
-        defaultValue->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
+      ~defaultValue?,
       ~disabled?,
       ~endAdornment?,
       ~error?,
       ~fullWidth?,
       ~id?,
-      ~inputComponent=?
-        inputComponent->(
-                          Belt.Option.map(v =>
-                            MaterialUi_Helpers.unwrapValue(v)
-                          )
-                        ),
       ~inputProps?,
       ~inputRef=?
         inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~labelWidth=MaterialUi_Helpers.unwrapValue(labelWidth),
+      ~labelWidth=?
+        labelWidth->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
       ~multiline?,
       ~name?,
@@ -236,17 +164,7 @@ let make =
         rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~startAdornment?,
       ~_type=?type_,
-      ~value=?
-        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~muiFormControl?,
-      ~onBlur?,
-      ~onClick?,
-      ~onEmpty?,
-      ~onFilled?,
-      ~onFocus?,
-      ~onKeyDown?,
-      ~onKeyUp?,
-      ~renderPrefix?,
+      ~value?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

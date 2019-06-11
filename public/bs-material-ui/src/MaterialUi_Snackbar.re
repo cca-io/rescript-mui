@@ -120,15 +120,15 @@ module Classes = {
 external makePropsMui:
   (
     ~action: React.element=?,
-    ~anchorOrigin: 'any_r6mf=?,
-    ~autoHideDuration: 'number_8=?,
+    ~anchorOrigin: 'any_rsyo=?,
+    ~autoHideDuration: 'number_z=?,
     ~children: 'children=?,
     ~className: string=?,
     ~_ClickAwayListenerProps: Js.t({..})=?,
     ~_ContentProps: Js.t({..})=?,
     ~disableWindowBlurListener: bool=?,
     ~message: React.element=?,
-    ~onClose: 'any_rvu5=?,
+    ~onClose: 'any_ru4h=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -138,9 +138,8 @@ external makePropsMui:
     ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
     ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
     ~_open: bool=?,
-    ~resumeHideDuration: 'number_t=?,
-    ~_TransitionComponent: 'union_rg38=?,
-    ~transitionDuration: 'union_r9ae=?,
+    ~resumeHideDuration: 'number_3=?,
+    ~transitionDuration: 'union_r9mx=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -175,14 +174,6 @@ let make =
       ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
       ~open_: option(bool)=?,
       ~resumeHideDuration: option([ | `Int(int) | `Float(float)])=?,
-      ~_TransitionComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~transitionDuration:
          option(
            [
@@ -228,12 +219,6 @@ let make =
                                 MaterialUi_Helpers.unwrapValue(v)
                               )
                             ),
-      ~_TransitionComponent=?
-        _TransitionComponent->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
       ~transitionDuration=?
         transitionDuration->(
                               Belt.Option.map(v =>

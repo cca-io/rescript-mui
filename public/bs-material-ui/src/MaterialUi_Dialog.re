@@ -53,6 +53,7 @@ module Classes = {
     | Paper(string)
     | PaperScrollPaper(string)
     | PaperScrollBody(string)
+    | PaperWidthFalse(string)
     | PaperWidthXs(string)
     | PaperWidthSm(string)
     | PaperWidthMd(string)
@@ -70,6 +71,7 @@ module Classes = {
     | Paper(_) => "paper"
     | PaperScrollPaper(_) => "paperScrollPaper"
     | PaperScrollBody(_) => "paperScrollBody"
+    | PaperWidthFalse(_) => "paperWidthFalse"
     | PaperWidthXs(_) => "paperWidthXs"
     | PaperWidthSm(_) => "paperWidthSm"
     | PaperWidthMd(_) => "paperWidthMd"
@@ -90,6 +92,7 @@ module Classes = {
                          | Paper(className)
                          | PaperScrollPaper(className)
                          | PaperScrollBody(className)
+                         | PaperWidthFalse(className)
                          | PaperWidthXs(className)
                          | PaperWidthSm(className)
                          | PaperWidthMd(className)
@@ -117,7 +120,7 @@ external makePropsMui:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rfic=?,
+    ~onClose: 'any_r7f5=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -126,23 +129,10 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperComponent: 'union_r0fb=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_r605=?,
-    ~transitionDuration: 'union_rw5q=?,
+    ~transitionDuration: 'union_r30t=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_rp6h=?,
-    ~closeAfterTransition: bool=?,
-    ~container: 'union_r2cl=?,
-    ~disableAutoFocus: bool=?,
-    ~disableEnforceFocus: bool=?,
-    ~disablePortal: bool=?,
-    ~disableRestoreFocus: bool=?,
-    ~hideBackdrop: bool=?,
-    ~keepMounted: bool=?,
-    ~manager: Js.t({..})=?,
-    ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -174,24 +164,8 @@ let make =
       ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: bool,
-      ~_PaperComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~_PaperProps: option(Js.t({..}))=?,
       ~scroll: option(scroll)=?,
-      ~_TransitionComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~transitionDuration:
          option(
            [
@@ -201,27 +175,6 @@ let make =
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
-      ~_BackdropComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
-      ~closeAfterTransition: option(bool)=?,
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
-      ~disableAutoFocus: option(bool)=?,
-      ~disableEnforceFocus: option(bool)=?,
-      ~disablePortal: option(bool)=?,
-      ~disableRestoreFocus: option(bool)=?,
-      ~hideBackdrop: option(bool)=?,
-      ~keepMounted: option(bool)=?,
-      ~manager: option(Js.t({..}))=?,
-      ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -246,20 +199,8 @@ let make =
       ~onExited?,
       ~onExiting?,
       ~_open=open_,
-      ~_PaperComponent=?
-        _PaperComponent->(
-                           Belt.Option.map(v =>
-                             MaterialUi_Helpers.unwrapValue(v)
-                           )
-                         ),
       ~_PaperProps?,
       ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
-      ~_TransitionComponent=?
-        _TransitionComponent->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
       ~transitionDuration=?
         transitionDuration->(
                               Belt.Option.map(v =>
@@ -267,23 +208,6 @@ let make =
                               )
                             ),
       ~_TransitionProps?,
-      ~_BackdropComponent=?
-        _BackdropComponent->(
-                              Belt.Option.map(v =>
-                                MaterialUi_Helpers.unwrapValue(v)
-                              )
-                            ),
-      ~closeAfterTransition?,
-      ~container=?
-        container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~disableAutoFocus?,
-      ~disableEnforceFocus?,
-      ~disablePortal?,
-      ~disableRestoreFocus?,
-      ~hideBackdrop?,
-      ~keepMounted?,
-      ~manager?,
-      ~onRendered?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

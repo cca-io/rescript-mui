@@ -1,25 +1,32 @@
 [@bs.deriving jsConverter]
-type variant = [
-  | [@bs.as "fullWidth"] `FullWidth
-  | [@bs.as "inset"] `Inset
-  | [@bs.as "middle"] `Middle
+type maxWidth = [
+  | [@bs.as "xs"] `Xs
+  | [@bs.as "sm"] `Sm
+  | [@bs.as "md"] `Md
+  | [@bs.as "lg"] `Lg
+  | [@bs.as "xl"] `Xl
+  | [@bs.as "false"] `False
 ];
 
 module Classes = {
   type classesType =
     | Root(string)
-    | Absolute(string)
-    | Inset(string)
-    | Light(string)
-    | Middle(string);
+    | Fixed(string)
+    | MaxWidthXs(string)
+    | MaxWidthSm(string)
+    | MaxWidthMd(string)
+    | MaxWidthLg(string)
+    | MaxWidthXl(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | Absolute(_) => "absolute"
-    | Inset(_) => "inset"
-    | Light(_) => "light"
-    | Middle(_) => "middle";
+    | Fixed(_) => "fixed"
+    | MaxWidthXs(_) => "maxWidthXs"
+    | MaxWidthSm(_) => "maxWidthSm"
+    | MaxWidthMd(_) => "maxWidthMd"
+    | MaxWidthLg(_) => "maxWidthLg"
+    | MaxWidthXl(_) => "maxWidthXl";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -27,10 +34,12 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
-                         | Absolute(className)
-                         | Inset(className)
-                         | Light(className)
-                         | Middle(className) =>
+                         | Fixed(className)
+                         | MaxWidthXs(className)
+                         | MaxWidthSm(className)
+                         | MaxWidthMd(className)
+                         | MaxWidthLg(className)
+                         | MaxWidthXl(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -42,10 +51,10 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~absolute: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~light: bool=?,
-    ~variant: string=?,
+    ~fixed: bool=?,
+    ~maxWidth: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -54,25 +63,25 @@ external makePropsMui:
   "";
 
 [@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Divider";
+external reactComponent: React.component('a) = "Container";
 
 [@react.component]
 let make =
     (
-      ~absolute: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
-      ~light: option(bool)=?,
-      ~variant: option(variant)=?,
+      ~fixed: option(bool)=?,
+      ~maxWidth: option(maxWidth)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
   React.createElement(
     reactComponent,
     makePropsMui(
-      ~absolute?,
+      ~children?,
       ~className?,
-      ~light?,
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~fixed?,
+      ~maxWidth=?maxWidth->(Belt.Option.map(v => maxWidthToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

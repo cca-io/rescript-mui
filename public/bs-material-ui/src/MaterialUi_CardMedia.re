@@ -27,7 +27,6 @@ module Classes = {
 external makePropsMui:
   (
     ~className: string=?,
-    ~component: 'union_r9qe=?,
     ~image: string=?,
     ~src: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -44,14 +43,6 @@ external reactComponent: React.component('a) = "CardMedia";
 let make =
     (
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~image: option(string)=?,
       ~src: option(string)=?,
       ~classes: option(Classes.t)=?,
@@ -61,8 +52,6 @@ let make =
     reactComponent,
     makePropsMui(
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~image?,
       ~src?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

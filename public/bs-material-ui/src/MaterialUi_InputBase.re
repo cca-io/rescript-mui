@@ -16,7 +16,6 @@ module Classes = {
     | Input(string)
     | InputMarginDense(string)
     | InputMultiline(string)
-    | InputType(string)
     | InputTypeSearch(string)
     | InputAdornedStart(string)
     | InputAdornedEnd(string);
@@ -36,7 +35,6 @@ module Classes = {
     | Input(_) => "input"
     | InputMarginDense(_) => "inputMarginDense"
     | InputMultiline(_) => "inputMultiline"
-    | InputType(_) => "inputType"
     | InputTypeSearch(_) => "inputTypeSearch"
     | InputAdornedStart(_) => "inputAdornedStart"
     | InputAdornedEnd(_) => "inputAdornedEnd";
@@ -59,7 +57,6 @@ module Classes = {
                          | Input(className)
                          | InputMarginDense(className)
                          | InputMultiline(className)
-                         | InputType(className)
                          | InputTypeSearch(className)
                          | InputAdornedStart(className)
                          | InputAdornedEnd(className) =>
@@ -74,24 +71,23 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~aria_describedby: string=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_r527=?,
+    ~defaultValue: 'any_rc90=?,
     ~disabled: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_rluz=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rbta=?,
+    ~inputRef: 'union_rxkd=?,
     ~margin: string=?,
-    ~muiFormControl: Js.t({..})=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_r6e5=?,
+    ~onChange: 'any_rs70=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
@@ -102,11 +98,11 @@ external makePropsMui:
     ~readOnly: bool=?,
     ~renderPrefix: 'genericCallback=?,
     ~required: bool=?,
-    ~rows: 'union_r415=?,
-    ~rowsMax: 'union_r0pi=?,
+    ~rows: 'union_rwe5=?,
+    ~rowsMax: 'union_r16m=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'union_ruu1=?,
+    ~value: 'any_r6tr=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -120,50 +116,22 @@ external reactComponent: React.component('a) = "InputBase";
 [@react.component]
 let make =
     (
+      ~aria_describedby: option(string)=?,
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue:
-         option(
-           [
-             | `String(string)
-             | `Int(int)
-             | `Float(float)
-             | `Bool(bool)
-             | `ObjectGeneric(Js.t({..}))
-             | `Array(
-                 array(
-                   [
-                     | `String(string)
-                     | `Int(int)
-                     | `Float(float)
-                     | `Bool(bool)
-                     | `ObjectGeneric(Js.t({..}))
-                   ],
-                 ),
-               )
-           ],
-         )=?,
+      ~defaultValue: option('any_rc90)=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~margin: option(margin)=?,
-      ~muiFormControl: option(Js.t({..}))=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
@@ -182,56 +150,27 @@ let make =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value:
-         option(
-           [
-             | `String(string)
-             | `Int(int)
-             | `Float(float)
-             | `Bool(bool)
-             | `ObjectGeneric(Js.t({..}))
-             | `Array(
-                 array(
-                   [
-                     | `String(string)
-                     | `Int(int)
-                     | `Float(float)
-                     | `Bool(bool)
-                     | `ObjectGeneric(Js.t({..}))
-                   ],
-                 ),
-               )
-           ],
-         )=?,
+      ~value: option('any_r6tr)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
   React.createElement(
     reactComponent,
     makePropsMui(
+      ~aria_describedby?,
       ~autoComplete?,
       ~autoFocus?,
       ~className?,
-      ~defaultValue=?
-        defaultValue->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
+      ~defaultValue?,
       ~disabled?,
       ~endAdornment?,
       ~error?,
       ~fullWidth?,
       ~id?,
-      ~inputComponent=?
-        inputComponent->(
-                          Belt.Option.map(v =>
-                            MaterialUi_Helpers.unwrapValue(v)
-                          )
-                        ),
       ~inputProps?,
       ~inputRef=?
         inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
-      ~muiFormControl?,
       ~multiline?,
       ~name?,
       ~onBlur?,
@@ -251,8 +190,7 @@ let make =
         rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~startAdornment?,
       ~_type=?type_,
-      ~value=?
-        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~value?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

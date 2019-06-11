@@ -109,6 +109,36 @@ type anchorReference = [
   | [@bs.as "none"] `None
 ];
 
+module PaperProps = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    component: React.element,
+  };
+  let make = t;
+
+  let unwrap = (obj: option(t)) => {
+    switch (obj) {
+    | Some(obj) =>
+      let unwrappedMap = Js.Dict.empty();
+
+      switch (obj->componentGet) {
+      | Some(v) =>
+        unwrappedMap->(
+                        Js.Dict.set(
+                          "component",
+                          v->MaterialUi_Helpers.toJsUnsafe,
+                        )
+                      )
+      | None => ()
+      };
+
+      Some(unwrappedMap);
+    | None => None
+    };
+  };
+};
+
 module TransformOrigin = {
   [@bs.deriving abstract]
   type t = {
@@ -225,18 +255,18 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rw7a=?,
-    ~anchorEl: 'union_r4bc=?,
-    ~anchorOrigin: 'any_rg6b=?,
-    ~anchorPosition: 'any_r2u6=?,
+    ~action: 'any_re2b=?,
+    ~anchorEl: 'union_rkvz=?,
+    ~anchorOrigin: 'any_rsww=?,
+    ~anchorPosition: 'any_r2no=?,
     ~anchorReference: string=?,
     ~children: 'children=?,
-    ~container: 'union_ru35=?,
-    ~elevation: 'number_n=?,
+    ~container: 'union_rv6w=?,
+    ~elevation: 'number_d=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_r=?,
+    ~marginThreshold: 'number_g=?,
     ~_ModalClasses: Js.t({..})=?,
-    ~onClose: 'any_r4rz=?,
+    ~onClose: 'any_r27h=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -244,28 +274,10 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperProps: Js.t({..})=?,
-    ~role: string=?,
-    ~transformOrigin: 'any_rxjk=?,
-    ~_TransitionComponent: 'union_r54g=?,
-    ~transitionDuration: 'union_rcc6=?,
+    ~_PaperProps: 'any_rxwj=?,
+    ~transformOrigin: 'any_r196=?,
+    ~transitionDuration: 'union_rlk1=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_rfwr=?,
-    ~_BackdropProps: Js.t({..})=?,
-    ~className: string=?,
-    ~closeAfterTransition: bool=?,
-    ~disableAutoFocus: bool=?,
-    ~disableBackdropClick: bool=?,
-    ~disableEnforceFocus: bool=?,
-    ~disableEscapeKeyDown: bool=?,
-    ~disablePortal: bool=?,
-    ~disableRestoreFocus: bool=?,
-    ~hideBackdrop: bool=?,
-    ~keepMounted: bool=?,
-    ~manager: Js.t({..})=?,
-    ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -304,17 +316,8 @@ let make =
       ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: bool,
-      ~_PaperProps: option(Js.t({..}))=?,
-      ~role: option(string)=?,
+      ~_PaperProps: option(PaperProps.t)=?,
       ~transformOrigin: option(TransformOrigin.t)=?,
-      ~_TransitionComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~transitionDuration:
          option(
            [
@@ -325,29 +328,6 @@ let make =
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
-      ~_BackdropComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
-      ~_BackdropProps: option(Js.t({..}))=?,
-      ~className: option(string)=?,
-      ~closeAfterTransition: option(bool)=?,
-      ~disableAutoFocus: option(bool)=?,
-      ~disableBackdropClick: option(bool)=?,
-      ~disableEnforceFocus: option(bool)=?,
-      ~disableEscapeKeyDown: option(bool)=?,
-      ~disablePortal: option(bool)=?,
-      ~disableRestoreFocus: option(bool)=?,
-      ~hideBackdrop: option(bool)=?,
-      ~keepMounted: option(bool)=?,
-      ~manager: option(Js.t({..}))=?,
-      ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-      ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -382,15 +362,8 @@ let make =
       ~onExited?,
       ~onExiting?,
       ~_open=open_,
-      ~_PaperProps?,
-      ~role?,
+      ~_PaperProps=?PaperProps.unwrap(_PaperProps),
       ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
-      ~_TransitionComponent=?
-        _TransitionComponent->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
       ~transitionDuration=?
         transitionDuration->(
                               Belt.Option.map(v =>
@@ -405,27 +378,6 @@ let make =
                               )
                             ),
       ~_TransitionProps?,
-      ~_BackdropComponent=?
-        _BackdropComponent->(
-                              Belt.Option.map(v =>
-                                MaterialUi_Helpers.unwrapValue(v)
-                              )
-                            ),
-      ~_BackdropProps?,
-      ~className?,
-      ~closeAfterTransition?,
-      ~disableAutoFocus?,
-      ~disableBackdropClick?,
-      ~disableEnforceFocus?,
-      ~disableEscapeKeyDown?,
-      ~disablePortal?,
-      ~disableRestoreFocus?,
-      ~hideBackdrop?,
-      ~keepMounted?,
-      ~manager?,
-      ~onBackdropClick?,
-      ~onEscapeKeyDown?,
-      ~onRendered?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

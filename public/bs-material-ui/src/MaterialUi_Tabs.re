@@ -7,6 +7,7 @@ type indicatorColor = [
 [@bs.deriving jsConverter]
 type scrollButtons = [
   | [@bs.as "auto"] `Auto
+  | [@bs.as "desktop"] `Desktop
   | [@bs.as "on"] `On
   | [@bs.as "off"] `Off
 ];
@@ -34,7 +35,7 @@ module Classes = {
     | Fixed(string)
     | Scrollable(string)
     | ScrollButtons(string)
-    | ScrollButtonsAuto(string)
+    | ScrollButtonsDesktop(string)
     | Indicator(string);
   type t = list(classesType);
   let to_string =
@@ -46,7 +47,7 @@ module Classes = {
     | Fixed(_) => "fixed"
     | Scrollable(_) => "scrollable"
     | ScrollButtons(_) => "scrollButtons"
-    | ScrollButtonsAuto(_) => "scrollButtonsAuto"
+    | ScrollButtonsDesktop(_) => "scrollButtonsDesktop"
     | Indicator(_) => "indicator";
   let to_obj = listOfClasses =>
     listOfClasses->(
@@ -61,7 +62,7 @@ module Classes = {
                          | Fixed(className)
                          | Scrollable(className)
                          | ScrollButtons(className)
-                         | ScrollButtonsAuto(className)
+                         | ScrollButtonsDesktop(className)
                          | Indicator(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
@@ -74,19 +75,18 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rupi=?,
+    ~action: 'any_rd2a=?,
     ~centered: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rvor=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_rsd2=?,
-    ~_ScrollButtonComponent: 'union_rmpc=?,
+    ~innerRef: 'union_rnsa=?,
+    ~onChange: 'any_r28l=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_r42m=?,
+    ~value: 'any_rn50=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -105,29 +105,17 @@ let make =
       ~centered: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~indicatorColor: option(indicatorColor)=?,
-      ~onChange: option((ReactEvent.Form.t, int) => unit)=?,
-      ~_ScrollButtonComponent:
+      ~innerRef:
          option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rzyb) => unit)=?,
       ~scrollButtons: option(scrollButtons)=?,
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_r42m)=?,
+      ~value: option('any_rn50)=?,
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -139,17 +127,11 @@ let make =
       ~centered?,
       ~children?,
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~indicatorColor=?
         indicatorColor->(Belt.Option.map(v => indicatorColorToJs(v))),
+      ~innerRef=?
+        innerRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~onChange?,
-      ~_ScrollButtonComponent=?
-        _ScrollButtonComponent->(
-                                  Belt.Option.map(v =>
-                                    MaterialUi_Helpers.unwrapValue(v)
-                                  )
-                                ),
       ~scrollButtons=?
         scrollButtons->(Belt.Option.map(v => scrollButtonsToJs(v))),
       ~_TabIndicatorProps?,

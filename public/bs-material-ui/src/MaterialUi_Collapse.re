@@ -38,6 +38,7 @@ module Classes = {
   type classesType =
     | Container(string)
     | Entered(string)
+    | Hidden(string)
     | Wrapper(string)
     | WrapperInner(string);
   type t = list(classesType);
@@ -45,6 +46,7 @@ module Classes = {
     fun
     | Container(_) => "container"
     | Entered(_) => "entered"
+    | Hidden(_) => "hidden"
     | Wrapper(_) => "wrapper"
     | WrapperInner(_) => "wrapperInner";
   let to_obj = listOfClasses =>
@@ -55,6 +57,7 @@ module Classes = {
                          switch (classType) {
                          | Container(className)
                          | Entered(className)
+                         | Hidden(className)
                          | Wrapper(className)
                          | WrapperInner(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
@@ -71,7 +74,6 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~collapsedHeight: string=?,
-    ~component: 'union_rl9v=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
@@ -79,7 +81,7 @@ external makePropsMui:
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_r98m=?,
+    ~timeout: 'union_ryhk=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -96,14 +98,6 @@ let make =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~collapsedHeight: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~in_: option(bool)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
       ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
@@ -129,8 +123,6 @@ let make =
       ~children?,
       ~className?,
       ~collapsedHeight?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~_in=?in_,
       ~onEnter?,
       ~onEntered?,

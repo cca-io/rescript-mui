@@ -12,3 +12,4 @@ lib
 .bsb.lock
 
 _test
+Error.re

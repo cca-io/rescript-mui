@@ -1,34 +1,3 @@
-[@bs.deriving jsConverter]
-type align = [
-  | [@bs.as "inherit"] `Inherit
-  | [@bs.as "left"] `Left
-  | [@bs.as "center"] `Center
-  | [@bs.as "right"] `Right
-  | [@bs.as "justify"] `Justify
-];
-
-[@bs.deriving jsConverter]
-type padding = [
-  | [@bs.as "default"] `Default
-  | [@bs.as "checkbox"] `Checkbox
-  | [@bs.as "dense"] `Dense
-  | [@bs.as "none"] `None
-];
-
-[@bs.deriving jsConverter]
-type sortDirection = [
-  | [@bs.as "asc"] `Asc
-  | [@bs.as "desc"] `Desc
-  | [@bs.as "false"] `False
-];
-
-[@bs.deriving jsConverter]
-type variant = [
-  | [@bs.as "head"] `Head
-  | [@bs.as "body"] `Body
-  | [@bs.as "footer"] `Footer
-];
-
 module Classes = {
   type classesType =
     | Root(string)
@@ -81,27 +50,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~_ActionsComponent: 'union_r6s1=?,
     ~backIconButtonProps: Js.t({..})=?,
-    ~colSpan: 'number_n=?,
-    ~component: 'union_rrdp=?,
-    ~count: 'number_l,
+    ~colSpan: 'number_d=?,
+    ~count: 'number_3,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_ryjf,
-    ~onChangeRowsPerPage: 'any_rfjq=?,
-    ~page: 'number_h,
-    ~rowsPerPage: 'number_4,
+    ~onChangePage: 'any_rmsg,
+    ~onChangeRowsPerPage: 'any_rclr=?,
+    ~rowsPerPage: 'number_3,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
-    ~align: string=?,
-    ~children: 'children=?,
-    ~className: string=?,
-    ~padding: string=?,
-    ~scope: string=?,
-    ~sortDirection: string=?,
-    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -115,24 +74,8 @@ external reactComponent: React.component('a) = "TablePagination";
 [@react.component]
 let make =
     (
-      ~_ActionsComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~backIconButtonProps: option(Js.t({..}))=?,
       ~colSpan: option([ | `Int(int) | `Float(float)])=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~count: [ | `Int(int) | `Float(float)],
       ~labelDisplayedRows:
          option(
@@ -158,41 +101,24 @@ let make =
       ~nextIconButtonProps: option(Js.t({..}))=?,
       ~onChangePage: (ReactEvent.Mouse.t, int) => unit,
       ~onChangeRowsPerPage: option(ReactEvent.Form.t => unit)=?,
-      ~page: [ | `Int(int) | `Float(float)],
       ~rowsPerPage: [ | `Int(int) | `Float(float)],
       ~rowsPerPageOptions: option(array(int))=?,
       ~_SelectProps: option(Js.t({..}))=?,
-      ~align: option(align)=?,
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~padding: option(padding)=?,
-      ~scope: option(string)=?,
-      ~sortDirection: option(sortDirection)=?,
-      ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
   React.createElement(
     reactComponent,
     makePropsMui(
-      ~_ActionsComponent=?
-        _ActionsComponent->(
-                             Belt.Option.map(v =>
-                               MaterialUi_Helpers.unwrapValue(v)
-                             )
-                           ),
       ~backIconButtonProps?,
       ~colSpan=?
         colSpan->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~count=MaterialUi_Helpers.unwrapValue(count),
       ~labelDisplayedRows?,
       ~labelRowsPerPage?,
       ~nextIconButtonProps?,
       ~onChangePage,
       ~onChangeRowsPerPage?,
-      ~page=MaterialUi_Helpers.unwrapValue(page),
       ~rowsPerPage=MaterialUi_Helpers.unwrapValue(rowsPerPage),
       ~rowsPerPageOptions=?
         rowsPerPageOptions->(
@@ -205,14 +131,6 @@ let make =
                               )
                             ),
       ~_SelectProps?,
-      ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-      ~children?,
-      ~className?,
-      ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
-      ~scope?,
-      ~sortDirection=?
-        sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

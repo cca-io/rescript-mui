@@ -1,3 +1,10 @@
+[@bs.deriving jsConverter]
+type type_ = [
+  | [@bs.as "submit"] `Submit
+  | [@bs.as "reset"] `Reset
+  | [@bs.as "button"] `Button
+];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -29,12 +36,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_r0fc=?,
-    ~buttonRef: 'union_rr1h=?,
+    ~action: 'any_rjyy=?,
+    ~buttonRef: 'union_r9wv=?,
     ~centerRipple: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rkg9=?,
+    ~component: React.element=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -53,7 +60,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r52t=?,
+    ~tabIndex: 'union_r81x=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -77,14 +84,7 @@ let make =
       ~centerRipple: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
+      ~component: option(React.element)=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
       ~disableTouchRipple: option(bool)=?,
@@ -105,7 +105,7 @@ let make =
       ~role: option(string)=?,
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
-      ~type_: option(string)=?,
+      ~type_: option(type_)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -118,8 +118,7 @@ let make =
       ~centerRipple?,
       ~children?,
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~component?,
       ~disabled?,
       ~disableRipple?,
       ~disableTouchRipple?,
@@ -141,7 +140,7 @@ let make =
       ~tabIndex=?
         tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~_TouchRippleProps?,
-      ~_type=?type_,
+      ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

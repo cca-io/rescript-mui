@@ -13,7 +13,7 @@ let make = () =>
       <MaterialUi.Button
         color=`Primary
         variant=`Contained
-        classes=[Root(classes.fontSize), RaisedPrimary(classes.bgColor)]>
+        classes=[Root(classes.fontSize), ContainedPrimary(classes.bgColor)]>
         {ReasonReact.string("Example Button")}
       </MaterialUi.Button>
     }

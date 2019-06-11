@@ -83,11 +83,16 @@ type sm =
 [@bs.deriving jsConverter]
 type spacing =
   | [@bs.as 0] V0
+  | [@bs.as 1] V1
+  | [@bs.as 2] V2
+  | [@bs.as 3] V3
+  | [@bs.as 4] V4
+  | [@bs.as 5] V5
+  | [@bs.as 6] V6
+  | [@bs.as 7] V7
   | [@bs.as 8] V8
-  | [@bs.as 16] V16
-  | [@bs.as 24] V24
-  | [@bs.as 32] V32
-  | [@bs.as 40] V40;
+  | [@bs.as 9] V9
+  | [@bs.as 10] V10;
 
 [@bs.deriving jsConverter]
 type wrap = [
@@ -128,6 +133,7 @@ type xs =
 
 module Classes = {
   type classesType =
+    | Root(string)
     | Container(string)
     | Item(string)
     | ZeroMinWidth(string)
@@ -150,11 +156,16 @@ module Classes = {
     | Justify_Xs_Space_Between(string)
     | Justify_Xs_Space_Around(string)
     | Justify_Xs_Space_Evenly(string)
+    | Spacing_Xs_1(string)
+    | Spacing_Xs_2(string)
+    | Spacing_Xs_3(string)
+    | Spacing_Xs_4(string)
+    | Spacing_Xs_5(string)
+    | Spacing_Xs_6(string)
+    | Spacing_Xs_7(string)
     | Spacing_Xs_8(string)
-    | Spacing_Xs_16(string)
-    | Spacing_Xs_24(string)
-    | Spacing_Xs_32(string)
-    | Spacing_Xs_40(string)
+    | Spacing_Xs_9(string)
+    | Spacing_Xs_10(string)
     | Grid_Xs_Auto(string)
     | Grid_Xs_True(string)
     | Grid_Xs_1(string)
@@ -172,6 +183,7 @@ module Classes = {
   type t = list(classesType);
   let to_string =
     fun
+    | Root(_) => "root"
     | Container(_) => "container"
     | Item(_) => "item"
     | ZeroMinWidth(_) => "zeroMinWidth"
@@ -194,11 +206,16 @@ module Classes = {
     | Justify_Xs_Space_Between(_) => "justify-xs-space-between"
     | Justify_Xs_Space_Around(_) => "justify-xs-space-around"
     | Justify_Xs_Space_Evenly(_) => "justify-xs-space-evenly"
+    | Spacing_Xs_1(_) => "spacing-xs-1"
+    | Spacing_Xs_2(_) => "spacing-xs-2"
+    | Spacing_Xs_3(_) => "spacing-xs-3"
+    | Spacing_Xs_4(_) => "spacing-xs-4"
+    | Spacing_Xs_5(_) => "spacing-xs-5"
+    | Spacing_Xs_6(_) => "spacing-xs-6"
+    | Spacing_Xs_7(_) => "spacing-xs-7"
     | Spacing_Xs_8(_) => "spacing-xs-8"
-    | Spacing_Xs_16(_) => "spacing-xs-16"
-    | Spacing_Xs_24(_) => "spacing-xs-24"
-    | Spacing_Xs_32(_) => "spacing-xs-32"
-    | Spacing_Xs_40(_) => "spacing-xs-40"
+    | Spacing_Xs_9(_) => "spacing-xs-9"
+    | Spacing_Xs_10(_) => "spacing-xs-10"
     | Grid_Xs_Auto(_) => "grid-xs-auto"
     | Grid_Xs_True(_) => "grid-xs-true"
     | Grid_Xs_1(_) => "grid-xs-1"
@@ -219,6 +236,7 @@ module Classes = {
                        Js.Dict.empty(),
                        (obj, classType) => {
                          switch (classType) {
+                         | Root(className)
                          | Container(className)
                          | Item(className)
                          | ZeroMinWidth(className)
@@ -241,11 +259,16 @@ module Classes = {
                          | Justify_Xs_Space_Between(className)
                          | Justify_Xs_Space_Around(className)
                          | Justify_Xs_Space_Evenly(className)
+                         | Spacing_Xs_1(className)
+                         | Spacing_Xs_2(className)
+                         | Spacing_Xs_3(className)
+                         | Spacing_Xs_4(className)
+                         | Spacing_Xs_5(className)
+                         | Spacing_Xs_6(className)
+                         | Spacing_Xs_7(className)
                          | Spacing_Xs_8(className)
-                         | Spacing_Xs_16(className)
-                         | Spacing_Xs_24(className)
-                         | Spacing_Xs_32(className)
-                         | Spacing_Xs_40(className)
+                         | Spacing_Xs_9(className)
+                         | Spacing_Xs_10(className)
                          | Grid_Xs_Auto(className)
                          | Grid_Xs_True(className)
                          | Grid_Xs_1(className)
@@ -275,18 +298,17 @@ external makePropsMui:
     ~alignItems: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rp8u=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rc2f=?,
-    ~md: 'number_r1qo=?,
-    ~sm: 'number_rz7k=?,
-    ~spacing: 'number_ritv=?,
+    ~lg: 'number_re7g=?,
+    ~md: 'number_rxgd=?,
+    ~sm: 'number_r2ee=?,
+    ~spacing: 'number_rnba=?,
     ~wrap: string=?,
-    ~xl: 'number_r7n5=?,
-    ~xs: 'number_rm59=?,
+    ~xl: 'number_rnzm=?,
+    ~xs: 'number_ru6p=?,
     ~zeroMinWidth: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -305,14 +327,6 @@ let make =
       ~alignItems: option(alignItems)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~container: option(bool)=?,
       ~direction: option(direction)=?,
       ~item: option(bool)=?,
@@ -341,8 +355,6 @@ let make =
       ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
       ~children?,
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~container?,
       ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
       ~item?,

@@ -99,7 +99,7 @@ const factory = (propertyType: PropType$Shape) => {
                             
                         };
                     };
-                `;
+                `.replace(/Js\.t\(\{\.\.\}\)/g, 'Js.Json.t');
 
 				this._wrapJs = (name) => `${this._moduleName}.unwrap(${name})`;
 				this._reasonType = `${this._moduleName}.t`;

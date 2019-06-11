@@ -47,7 +47,6 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_ri0j=?,
     ~disablePointerEvents: bool=?,
     ~disableTypography: bool=?,
     ~muiFormControl: Js.t({..})=?,
@@ -68,14 +67,6 @@ let make =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~disablePointerEvents: option(bool)=?,
       ~disableTypography: option(bool)=?,
       ~muiFormControl: option(Js.t({..}))=?,
@@ -89,8 +80,6 @@ let make =
     makePropsMui(
       ~children?,
       ~className?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~disablePointerEvents?,
       ~disableTypography?,
       ~muiFormControl?,

@@ -1,23 +1,26 @@
 {
-    "name": "@jsiebern/bs-material-ui",
-    "namespace": false,
-    "sources": [
-        {
-            "dir": "examples",
-            "subdirs": true
-        },
-        "src"
-    ],
-    "package-specs": {
-        "module": "commonjs",
-        "in-source": true
-    },
-    "ppx-flags": [
-        "@jsiebern/bs-material-ui-ppx/ppx",
-        "reason-react/_build/default/jsx_ppx/reactjs_jsx_ppx_v3.exe"
-    ],
-    "bs-dependencies": ["reason-react", "@mscharley/bs-material-ui-icons"],
-    "bsc-flags": ["-bs-super-errors"],
-    "refmt": 3,
-    "suffix": ".bs.js"
+	"name": "@jsiebern/bs-material-ui",
+	"reason": {
+		"react-jsx": 3
+	},
+	"namespace": false,
+	"sources": [
+		{
+			"dir": "examples",
+			"subdirs": true
+		},
+		"src"
+	],
+	"package-specs": {
+		"module": "commonjs",
+		"in-source": true
+	},
+	"ppx-flags": [ "@jsiebern/bs-material-ui-ppx/ppx" ],
+	"bs-dependencies": [ "reason-react", "@mscharley/bs-material-ui-icons" ],
+	"bsc-flags": [ "-bs-super-errors" ],
+	"warnings": {
+		"number": "-103"
+	},
+	"refmt": 3,
+	"suffix": ".bs.js"
 }

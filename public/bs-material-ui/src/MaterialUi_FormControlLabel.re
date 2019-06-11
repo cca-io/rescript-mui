@@ -46,17 +46,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~checked: 'union_r70s=?,
+    ~checked: bool=?,
     ~className: string=?,
     ~control: React.element=?,
     ~disabled: bool=?,
-    ~inputRef: 'union_r7n2=?,
+    ~inputRef: 'union_r8zv=?,
     ~label: React.element=?,
     ~labelPlacement: string=?,
     ~muiFormControl: Js.t({..})=?,
     ~name: string=?,
-    ~onChange: 'any_rr3t=?,
-    ~value: string=?,
+    ~onChange: 'any_r31p=?,
+    ~value: 'any_rr1d=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -70,7 +70,7 @@ external reactComponent: React.component('a) = "FormControlLabel";
 [@react.component]
 let make =
     (
-      ~checked: option([ | `Bool(bool) | `String(string)])=?,
+      ~checked: option(bool)=?,
       ~className: option(string)=?,
       ~control: option(React.element)=?,
       ~disabled: option(bool)=?,
@@ -83,15 +83,14 @@ let make =
       ~muiFormControl: option(Js.t({..}))=?,
       ~name: option(string)=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
-      ~value: option(string)=?,
+      ~value: option('any_rr1d)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
   React.createElement(
     reactComponent,
     makePropsMui(
-      ~checked=?
-        checked->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~checked?,
       ~className?,
       ~control?,
       ~disabled?,

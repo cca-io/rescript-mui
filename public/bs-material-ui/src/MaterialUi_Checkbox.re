@@ -45,9 +45,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~checked: 'union_rov9=?,
+    ~checked: bool=?,
     ~checkedIcon: React.element=?,
-    ~className: string=?,
     ~color: string=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
@@ -56,10 +55,10 @@ external makePropsMui:
     ~indeterminate: bool=?,
     ~indeterminateIcon: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_r4ds=?,
-    ~onChange: 'any_rv4u=?,
+    ~inputRef: 'union_rm3q=?,
+    ~onChange: 'any_rgto=?,
     ~_type: string=?,
-    ~value: string=?,
+    ~value: 'any_r4e8=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -73,9 +72,8 @@ external reactComponent: React.component('a) = "Checkbox";
 [@react.component]
 let make =
     (
-      ~checked: option([ | `Bool(bool) | `String(string)])=?,
+      ~checked: option(bool)=?,
       ~checkedIcon: option(React.element)=?,
-      ~className: option(string)=?,
       ~color: option(color)=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
@@ -90,17 +88,15 @@ let make =
          )=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~type_: option(string)=?,
-      ~value: option(string)=?,
+      ~value: option('any_r4e8)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
   React.createElement(
     reactComponent,
     makePropsMui(
-      ~checked=?
-        checked->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~checked?,
       ~checkedIcon?,
-      ~className?,
       ~color=?color->(Belt.Option.map(v => colorToJs(v))),
       ~disabled?,
       ~disableRipple?,

@@ -34,14 +34,12 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~_CollapseProps: Js.t({..})=?,
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_r6nq=?,
+    ~onChange: 'any_r0b3=?,
     ~square: bool=?,
-    ~component: 'union_rxqc=?,
-    ~elevation: 'number_y=?,
+    ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -57,21 +55,12 @@ let make =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~_CollapseProps: option(Js.t({..}))=?,
       ~defaultExpanded: option(bool)=?,
       ~disabled: option(bool)=?,
       ~expanded: option(bool)=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~square: option(bool)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
-      ~elevation: option([ | `Int(int) | `Float(float)])=?,
+      ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -80,16 +69,12 @@ let make =
     makePropsMui(
       ~children?,
       ~className?,
-      ~_CollapseProps?,
       ~defaultExpanded?,
       ~disabled?,
       ~expanded?,
       ~onChange?,
       ~square?,
-      ~component=?
-        component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~_TransitionProps?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

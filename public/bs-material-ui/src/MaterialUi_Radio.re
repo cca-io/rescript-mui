@@ -42,7 +42,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~checked: 'union_ry2v=?,
+    ~checked: bool=?,
     ~checkedIcon: React.element=?,
     ~color: string=?,
     ~disabled: bool=?,
@@ -50,10 +50,11 @@ external makePropsMui:
     ~icon: React.element=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rcar=?,
-    ~onChange: 'any_ri9d=?,
+    ~inputRef: 'union_rqoh=?,
+    ~name: string=?,
+    ~onChange: 'any_r77o=?,
     ~_type: string=?,
-    ~value: 'union_re3z=?,
+    ~value: 'any_r4qr=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -67,7 +68,7 @@ external reactComponent: React.component('a) = "Radio";
 [@react.component]
 let make =
     (
-      ~checked: option([ | `Bool(bool) | `String(string)])=?,
+      ~checked: option(bool)=?,
       ~checkedIcon: option(React.element)=?,
       ~color: option(color)=?,
       ~disabled: option(bool)=?,
@@ -79,20 +80,17 @@ let make =
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
+      ~name: option(string)=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~type_: option(string)=?,
-      ~value:
-         option(
-           [ | `String(string) | `Int(int) | `Float(float) | `Bool(bool)],
-         )=?,
+      ~value: option('any_r4qr)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
   React.createElement(
     reactComponent,
     makePropsMui(
-      ~checked=?
-        checked->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~checked?,
       ~checkedIcon?,
       ~color=?color->(Belt.Option.map(v => colorToJs(v))),
       ~disabled?,
@@ -102,10 +100,10 @@ let make =
       ~inputProps?,
       ~inputRef=?
         inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~name?,
       ~onChange?,
       ~_type=?type_,
-      ~value=?
-        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~value?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

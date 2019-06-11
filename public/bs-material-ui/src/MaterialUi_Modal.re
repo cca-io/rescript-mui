@@ -1,37 +1,10 @@
-module Classes = {
-  type classesType =
-    | Root(string)
-    | Hidden(string);
-  type t = list(classesType);
-  let to_string =
-    fun
-    | Root(_) => "root"
-    | Hidden(_) => "hidden";
-  let to_obj = listOfClasses =>
-    listOfClasses->(
-                     Belt.List.reduce(
-                       Js.Dict.empty(),
-                       (obj, classType) => {
-                         switch (classType) {
-                         | Root(className)
-                         | Hidden(className) =>
-                           Js.Dict.set(obj, to_string(classType), className)
-                         };
-                         obj;
-                       },
-                     )
-                   );
-};
-
 [@bs.obj]
 external makePropsMui:
   (
-    ~_BackdropComponent: 'union_rmi8=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
-    ~className: string=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rr1k=?,
+    ~container: 'union_rqc9=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -39,15 +12,15 @@ external makePropsMui:
     ~disablePortal: bool=?,
     ~disableRestoreFocus: bool=?,
     ~hideBackdrop: bool=?,
+    ~innerRef: 'union_rwk9=?,
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_ra5t=?,
+    ~onClose: 'any_r1ji=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~classes: Js.Dict.t(string)=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~theme: Js.t({..})=?,
     unit
   ) =>
   _ =
@@ -59,17 +32,8 @@ external reactComponent: React.component('a) = "Modal";
 [@react.component]
 let make =
     (
-      ~_BackdropComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
-           ],
-         )=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~children: option('children)=?,
-      ~className: option(string)=?,
       ~closeAfterTransition: option(bool)=?,
       ~container:
          option(
@@ -82,6 +46,10 @@ let make =
       ~disablePortal: option(bool)=?,
       ~disableRestoreFocus: option(bool)=?,
       ~hideBackdrop: option(bool)=?,
+      ~innerRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~keepMounted: option(bool)=?,
       ~manager: option(Js.t({..}))=?,
       ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
@@ -89,21 +57,13 @@ let make =
       ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: bool,
-      ~classes: option(Classes.t)=?,
-      ~style: option(ReactDOMRe.Style.t)=?,
+      ~theme: option(Js.t({..}))=?,
     ) =>
   React.createElement(
     reactComponent,
     makePropsMui(
-      ~_BackdropComponent=?
-        _BackdropComponent->(
-                              Belt.Option.map(v =>
-                                MaterialUi_Helpers.unwrapValue(v)
-                              )
-                            ),
       ~_BackdropProps?,
       ~children?,
-      ~className?,
       ~closeAfterTransition?,
       ~container=?
         container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
@@ -114,6 +74,8 @@ let make =
       ~disablePortal?,
       ~disableRestoreFocus?,
       ~hideBackdrop?,
+      ~innerRef=?
+        innerRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~keepMounted?,
       ~manager?,
       ~onBackdropClick?,
@@ -121,8 +83,7 @@ let make =
       ~onEscapeKeyDown?,
       ~onRendered?,
       ~_open=open_,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
+      ~theme?,
       (),
     ),
   );
