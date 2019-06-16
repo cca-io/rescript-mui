@@ -80,6 +80,7 @@ external makePropsMui:
     ~_TypographyClasses: Js.t({..})=?,
     ~underline: string=?,
     ~variant: string=?,
+    ~key: string=?,
     ~align: string=?,
     ~display: string=?,
     ~gutterBottom: bool=?,
@@ -94,11 +95,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Link";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -108,6 +105,7 @@ let make =
       ~_TypographyClasses: option(Js.t({..}))=?,
       ~underline: option(underline)=?,
       ~variant: option(string)=?,
+      ~key: option(string)=?,
       ~align: option(align)=?,
       ~display: option(display)=?,
       ~gutterBottom: option(bool)=?,
@@ -117,27 +115,28 @@ let make =
       ~variantMapping: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~onBlur?,
-      ~onFocus?,
-      ~_TypographyClasses?,
-      ~underline=?underline->(Belt.Option.map(v => underlineToJs(v))),
-      ~variant?,
-      ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-      ~display=?display->(Belt.Option.map(v => displayToJs(v))),
-      ~gutterBottom?,
-      ~noWrap?,
-      ~paragraph?,
-      ~theme?,
-      ~variantMapping?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~onBlur?,
+    ~onFocus?,
+    ~_TypographyClasses?,
+    ~underline=?underline->(Belt.Option.map(v => underlineToJs(v))),
+    ~variant?,
+    ~key?,
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~display=?display->(Belt.Option.map(v => displayToJs(v))),
+    ~gutterBottom?,
+    ~noWrap?,
+    ~paragraph?,
+    ~theme?,
+    ~variantMapping?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Link";

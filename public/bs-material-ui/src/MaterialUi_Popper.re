@@ -16,27 +16,24 @@ type placement = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'union_r13w=?,
+    ~anchorEl: 'union_r68d=?,
     ~children: 'children=?,
-    ~container: 'union_rrap=?,
+    ~container: 'union_rqys=?,
     ~disablePortal: bool=?,
     ~keepMounted: bool=?,
     ~modifiers: Js.t({..})=?,
     ~_open: bool,
     ~placement: string=?,
     ~popperOptions: Js.t({..})=?,
-    ~popperRef: 'union_rg5s=?,
+    ~popperRef: 'union_rt5q=?,
     ~transition: bool=?,
+    ~key: string=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Popper";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~anchorEl:
          option(
@@ -58,24 +55,27 @@ let make =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~transition: option(bool)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~anchorEl=?
-        anchorEl->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~children?,
-      ~container=?
-        container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~disablePortal?,
-      ~keepMounted?,
-      ~modifiers?,
-      ~_open=open_,
-      ~placement=?placement->(Belt.Option.map(v => placementToJs(v))),
-      ~popperOptions?,
-      ~popperRef=?
-        popperRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~transition?,
+      ~key: option(string)=?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~anchorEl=?
+      anchorEl->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~children?,
+    ~container=?
+      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disablePortal?,
+    ~keepMounted?,
+    ~modifiers?,
+    ~_open=open_,
+    ~placement=?placement->(Belt.Option.map(v => placementToJs(v))),
+    ~popperOptions?,
+    ~popperRef=?
+      popperRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~transition?,
+    ~key?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Popper";

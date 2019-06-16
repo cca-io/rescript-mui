@@ -26,7 +26,8 @@ external makePropsMui:
     ~className: string=?,
     ~raised: bool=?,
     ~children: 'children=?,
-    ~elevation: 'number_0=?,
+    ~key: string=?,
+    ~elevation: 'number_v=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -35,31 +36,29 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Card";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~className: option(string)=?,
       ~raised: option(bool)=?,
       ~children: option('children)=?,
+      ~key: option(string)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~className?,
-      ~raised?,
-      ~children?,
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~square?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~className?,
+    ~raised?,
+    ~children?,
+    ~key?,
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~square?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Card";

@@ -40,6 +40,7 @@ external makePropsMui:
     ~hover: bool=?,
     ~selected: bool=?,
     ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -47,30 +48,29 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "TableRow";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~hover: option(bool)=?,
       ~selected: option(bool)=?,
       ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~hover?,
-      ~selected?,
-      ~onDoubleClick?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~hover?,
+    ~selected?,
+    ~onDoubleClick?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "TableRow";

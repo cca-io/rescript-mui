@@ -48,9 +48,10 @@ external makePropsMui:
     ~completed: bool=?,
     ~connector: React.element=?,
     ~disabled: bool=?,
-    ~index: 'number_s=?,
+    ~index: 'number_u=?,
     ~last: bool=?,
     ~orientation: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -58,11 +59,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Step";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~active: option(bool)=?,
       ~alternativeLabel: option(bool)=?,
@@ -74,33 +71,34 @@ let make =
       ~index: option([ | `Int(int) | `Float(float)])=?,
       ~last: option(bool)=?,
       ~orientation: option(orientation)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~active?,
-      ~alternativeLabel?,
-      ~children?,
-      ~className?,
-      ~completed?,
-      ~connector?,
-      ~disabled?,
-      ~index=?
-        index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~last?,
-      ~orientation=?
-        orientation->(
-                       Belt.Option.map(v =>
-                         switch (v->Obj.magic->Js.Json.classify) {
-                         | JSONString(str) => str
-                         | _ => orientationToJs(v)
-                         }
-                       )
-                     ),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~active?,
+    ~alternativeLabel?,
+    ~children?,
+    ~className?,
+    ~completed?,
+    ~connector?,
+    ~disabled?,
+    ~index=?index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~last?,
+    ~orientation=?
+      orientation->(
+                     Belt.Option.map(v =>
+                       switch (v->Obj.magic->Js.Json.classify) {
+                       | JSONString(str) => str
+                       | _ => orientationToJs(v)
+                       }
+                     )
+                   ),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Step";

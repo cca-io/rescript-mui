@@ -95,6 +95,7 @@ external makePropsMui:
     ~sortDirection: string=?,
     ~variant: string=?,
     ~colSpan: int=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -102,11 +103,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "TableCell";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~align: option(align)=?,
       ~children: option('children)=?,
@@ -117,24 +114,27 @@ let make =
       ~sortDirection: option(sortDirection)=?,
       ~variant: option(variant)=?,
       ~colSpan: option(int)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-      ~children?,
-      ~className?,
-      ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
-      ~scope?,
-      ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-      ~sortDirection=?
-        sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~colSpan?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~children?,
+    ~className?,
+    ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
+    ~scope?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~sortDirection=?
+      sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~colSpan?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "TableCell";

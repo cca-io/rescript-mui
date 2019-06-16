@@ -105,8 +105,9 @@ external makePropsMui:
     ~size: string=?,
     ~_type: string=?,
     ~variant: string=?,
-    ~action: 'any_r08r=?,
-    ~buttonRef: 'union_rrmx=?,
+    ~key: string=?,
+    ~action: 'any_r01r=?,
+    ~buttonRef: 'union_rtf7=?,
     ~centerRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -124,7 +125,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_re6w=?,
+    ~tabIndex: 'union_rztm=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -133,11 +134,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Button";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -151,6 +148,7 @@ let make =
       ~size: option(size)=?,
       ~type_: option(string)=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
@@ -177,47 +175,49 @@ let make =
       ~_TouchRippleProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~disabled?,
-      ~disableFocusRipple?,
-      ~disableRipple?,
-      ~focusVisibleClassName?,
-      ~fullWidth?,
-      ~href?,
-      ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-      ~_type=?type_,
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~action?,
-      ~buttonRef=?
-        buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~centerRipple?,
-      ~disableTouchRipple?,
-      ~focusRipple?,
-      ~onBlur?,
-      ~onClick?,
-      ~onDragEnd?,
-      ~onFocus?,
-      ~onFocusVisible?,
-      ~onKeyDown?,
-      ~onKeyUp?,
-      ~onMouseDown?,
-      ~onMouseLeave?,
-      ~onMouseUp?,
-      ~onTouchEnd?,
-      ~onTouchMove?,
-      ~onTouchStart?,
-      ~role?,
-      ~tabIndex=?
-        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~_TouchRippleProps?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~disabled?,
+    ~disableFocusRipple?,
+    ~disableRipple?,
+    ~focusVisibleClassName?,
+    ~fullWidth?,
+    ~href?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~_type=?type_,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~action?,
+    ~buttonRef=?
+      buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~centerRipple?,
+    ~disableTouchRipple?,
+    ~focusRipple?,
+    ~onBlur?,
+    ~onClick?,
+    ~onDragEnd?,
+    ~onFocus?,
+    ~onFocusVisible?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~onMouseDown?,
+    ~onMouseLeave?,
+    ~onMouseUp?,
+    ~onTouchEnd?,
+    ~onTouchMove?,
+    ~onTouchStart?,
+    ~role?,
+    ~tabIndex=?
+      tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_TouchRippleProps?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Button";

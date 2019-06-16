@@ -71,6 +71,7 @@ external makePropsMui:
     ~optional: React.element=?,
     ~orientation: string=?,
     ~_StepIconProps: Js.t({..})=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -78,11 +79,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "StepLabel";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~active: option(bool)=?,
       ~alternativeLabel: option(bool)=?,
@@ -96,34 +93,37 @@ let make =
       ~optional: option(React.element)=?,
       ~orientation: option(orientation)=?,
       ~_StepIconProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~active?,
-      ~alternativeLabel?,
-      ~children?,
-      ~className?,
-      ~completed?,
-      ~disabled?,
-      ~error?,
-      ~icon?,
-      ~last?,
-      ~optional?,
-      ~orientation=?
-        orientation->(
-                       Belt.Option.map(v =>
-                         switch (v->Obj.magic->Js.Json.classify) {
-                         | JSONString(str) => str
-                         | _ => orientationToJs(v)
-                         }
-                       )
-                     ),
-      ~_StepIconProps?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~active?,
+    ~alternativeLabel?,
+    ~children?,
+    ~className?,
+    ~completed?,
+    ~disabled?,
+    ~error?,
+    ~icon?,
+    ~last?,
+    ~optional?,
+    ~orientation=?
+      orientation->(
+                     Belt.Option.map(v =>
+                       switch (v->Obj.magic->Js.Json.classify) {
+                       | JSONString(str) => str
+                       | _ => orientationToJs(v)
+                       }
+                     )
+                   ),
+    ~_StepIconProps?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "StepLabel";

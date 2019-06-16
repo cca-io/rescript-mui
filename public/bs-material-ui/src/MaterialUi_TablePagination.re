@@ -84,16 +84,17 @@ module Classes = {
 external makePropsMui:
   (
     ~backIconButtonProps: Js.t({..})=?,
-    ~colSpan: 'number_l=?,
-    ~count: 'number_6,
+    ~colSpan: 'number_m=?,
+    ~count: 'number_g,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_r9km,
-    ~onChangeRowsPerPage: 'any_r4p6=?,
-    ~rowsPerPage: 'number_y,
+    ~onChangePage: 'any_rtn6,
+    ~onChangeRowsPerPage: 'any_rzs5=?,
+    ~rowsPerPage: 'number_u,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
+    ~key: string=?,
     ~align: string=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -109,11 +110,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "TablePagination";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~backIconButtonProps: option(Js.t({..}))=?,
       ~colSpan: option([ | `Int(int) | `Float(float)])=?,
@@ -145,6 +142,7 @@ let make =
       ~rowsPerPage: [ | `Int(int) | `Float(float)],
       ~rowsPerPageOptions: option(array(int))=?,
       ~_SelectProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
       ~align: option(align)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -155,42 +153,44 @@ let make =
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~backIconButtonProps?,
-      ~colSpan=?
-        colSpan->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~count=MaterialUi_Helpers.unwrapValue(count),
-      ~labelDisplayedRows?,
-      ~labelRowsPerPage?,
-      ~nextIconButtonProps?,
-      ~onChangePage,
-      ~onChangeRowsPerPage?,
-      ~rowsPerPage=MaterialUi_Helpers.unwrapValue(rowsPerPage),
-      ~rowsPerPageOptions=?
-        rowsPerPageOptions->(
-                              Belt.Option.map(v =>
-                                v->(
-                                     Belt.Array.map(item =>
-                                       MaterialUi_Helpers.toJsUnsafe(item)
-                                     )
-                                   )
-                              )
-                            ),
-      ~_SelectProps?,
-      ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-      ~children?,
-      ~className?,
-      ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
-      ~scope?,
-      ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-      ~sortDirection=?
-        sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~backIconButtonProps?,
+    ~colSpan=?
+      colSpan->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~count=MaterialUi_Helpers.unwrapValue(count),
+    ~labelDisplayedRows?,
+    ~labelRowsPerPage?,
+    ~nextIconButtonProps?,
+    ~onChangePage,
+    ~onChangeRowsPerPage?,
+    ~rowsPerPage=MaterialUi_Helpers.unwrapValue(rowsPerPage),
+    ~rowsPerPageOptions=?
+      rowsPerPageOptions->(
+                            Belt.Option.map(v =>
+                              v->(
+                                   Belt.Array.map(item =>
+                                     MaterialUi_Helpers.toJsUnsafe(item)
+                                   )
+                                 )
+                            )
+                          ),
+    ~_SelectProps?,
+    ~key?,
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~children?,
+    ~className?,
+    ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
+    ~scope?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~sortDirection=?
+      sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "TablePagination";

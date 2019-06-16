@@ -46,6 +46,7 @@ external makePropsMui:
     ~primaryTypographyProps: Js.t({..})=?,
     ~secondary: React.element=?,
     ~secondaryTypographyProps: Js.t({..})=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -53,11 +54,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "ListItemText";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -67,22 +64,25 @@ let make =
       ~primaryTypographyProps: option(Js.t({..}))=?,
       ~secondary: option(React.element)=?,
       ~secondaryTypographyProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~disableTypography?,
-      ~inset?,
-      ~primary?,
-      ~primaryTypographyProps?,
-      ~secondary?,
-      ~secondaryTypographyProps?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~disableTypography?,
+    ~inset?,
+    ~primary?,
+    ~primaryTypographyProps?,
+    ~secondary?,
+    ~secondaryTypographyProps?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "ListItemText";

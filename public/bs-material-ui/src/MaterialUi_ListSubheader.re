@@ -51,6 +51,7 @@ external makePropsMui:
     ~disableGutters: bool=?,
     ~disableSticky: bool=?,
     ~inset: bool=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -58,11 +59,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "ListSubheader";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -70,20 +67,23 @@ let make =
       ~disableGutters: option(bool)=?,
       ~disableSticky: option(bool)=?,
       ~inset: option(bool)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~disableGutters?,
-      ~disableSticky?,
-      ~inset?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~disableGutters?,
+    ~disableSticky?,
+    ~inset?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "ListSubheader";

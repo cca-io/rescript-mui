@@ -234,12 +234,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'any_rgrl=?,
+    ~anchorEl: 'any_r7rl=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_rc9p=?,
+    ~onClose: 'any_rdc0=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -250,18 +250,19 @@ external makePropsMui:
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_r9t9=?,
+    ~transitionDuration: 'union_r3ab=?,
     ~variant: string=?,
-    ~action: 'any_r3of=?,
-    ~anchorOrigin: 'any_rv1s=?,
-    ~anchorPosition: 'any_r3d9=?,
+    ~key: string=?,
+    ~action: 'any_rx9o=?,
+    ~anchorOrigin: 'any_rqmo=?,
+    ~anchorPosition: 'any_r5yv=?,
     ~anchorReference: string=?,
-    ~container: 'union_r0j2=?,
-    ~elevation: 'number_c=?,
+    ~container: 'union_rl78=?,
+    ~elevation: 'number_u=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_7=?,
+    ~marginThreshold: 'number_h=?,
     ~_ModalClasses: Js.t({..})=?,
-    ~transformOrigin: 'any_r7ip=?,
+    ~transformOrigin: 'any_r7c0=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -270,13 +271,9 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Menu";
-
-[@react.component]
-let make =
+let makeProps =
     (
-      ~anchorEl: option('any_rgrl)=?,
+      ~anchorEl: option('any_r7rl)=?,
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~disableAutoFocusItem: option(bool)=?,
@@ -302,6 +299,7 @@ let make =
            ],
          )=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~anchorOrigin: option(AnchorOrigin.t)=?,
       ~anchorPosition: option(AnchorPosition.t)=?,
@@ -318,61 +316,62 @@ let make =
       ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~anchorEl?,
-      ~autoFocus?,
-      ~children?,
-      ~disableAutoFocusItem?,
-      ~_MenuListProps?,
-      ~onClose?,
-      ~onEnter?,
-      ~onEntered?,
-      ~onEntering?,
-      ~onExit?,
-      ~onExited?,
-      ~onExiting?,
-      ~_open=open_,
-      ~_PaperProps?,
-      ~_PopoverClasses?,
-      ~theme?,
-      ~transitionDuration=?
-        transitionDuration->(
-                              Belt.Option.map(v =>
-                                switch (v) {
-                                | `Enum(v) =>
-                                  MaterialUi_Helpers.unwrapValue(
-                                    `String(transitionDuration_enumToJs(v)),
-                                  )
-
-                                | v => MaterialUi_Helpers.unwrapValue(v)
-                                }
-                              )
-                            ),
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~action?,
-      ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
-      ~anchorPosition=?AnchorPosition.unwrap(anchorPosition),
-      ~anchorReference=?
-        anchorReference->(Belt.Option.map(v => anchorReferenceToJs(v))),
-      ~container=?
-        container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~getContentAnchorEl?,
-      ~marginThreshold=?
-        marginThreshold->(
-                           Belt.Option.map(v =>
-                             MaterialUi_Helpers.unwrapValue(v)
-                           )
-                         ),
-      ~_ModalClasses?,
-      ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
-      ~_TransitionProps?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~anchorEl?,
+    ~autoFocus?,
+    ~children?,
+    ~disableAutoFocusItem?,
+    ~_MenuListProps?,
+    ~onClose?,
+    ~onEnter?,
+    ~onEntered?,
+    ~onEntering?,
+    ~onExit?,
+    ~onExited?,
+    ~onExiting?,
+    ~_open=open_,
+    ~_PaperProps?,
+    ~_PopoverClasses?,
+    ~theme?,
+    ~transitionDuration=?
+      transitionDuration->(
+                            Belt.Option.map(v =>
+                              switch (v) {
+                              | `Enum(v) =>
+                                MaterialUi_Helpers.unwrapValue(
+                                  `String(transitionDuration_enumToJs(v)),
+                                )
+
+                              | v => MaterialUi_Helpers.unwrapValue(v)
+                              }
+                            )
+                          ),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~action?,
+    ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
+    ~anchorPosition=?AnchorPosition.unwrap(anchorPosition),
+    ~anchorReference=?
+      anchorReference->(Belt.Option.map(v => anchorReferenceToJs(v))),
+    ~container=?
+      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~getContentAnchorEl?,
+    ~marginThreshold=?
+      marginThreshold->(
+                         Belt.Option.map(v =>
+                           MaterialUi_Helpers.unwrapValue(v)
+                         )
+                       ),
+    ~_ModalClasses?,
+    ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
+    ~_TransitionProps?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Menu";

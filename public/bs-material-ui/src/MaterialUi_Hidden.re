@@ -38,23 +38,20 @@ external makePropsMui:
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_ri75=?,
+    ~only: 'union_rzj6=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,
     ~xlUp: bool=?,
     ~xsDown: bool=?,
     ~xsUp: bool=?,
+    ~key: string=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Hidden";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -71,39 +68,39 @@ let make =
       ~xlUp: option(bool)=?,
       ~xsDown: option(bool)=?,
       ~xsUp: option(bool)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~implementation=?
-        implementation->(Belt.Option.map(v => implementationToJs(v))),
-      ~initialWidth=?
-        initialWidth->(Belt.Option.map(v => initialWidthToJs(v))),
-      ~lgDown?,
-      ~lgUp?,
-      ~mdDown?,
-      ~mdUp?,
-      ~only=?
-        only->(
-                Belt.Option.map(v =>
-                  switch (v) {
-                  | `Enum(v) =>
-                    MaterialUi_Helpers.unwrapValue(
-                      `String(only_enumToJs(v)),
-                    )
-
-                  | v => MaterialUi_Helpers.unwrapValue(v)
-                  }
-                )
-              ),
-      ~smDown?,
-      ~smUp?,
-      ~xlDown?,
-      ~xlUp?,
-      ~xsDown?,
-      ~xsUp?,
+      ~key: option(string)=?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~implementation=?
+      implementation->(Belt.Option.map(v => implementationToJs(v))),
+    ~initialWidth=?initialWidth->(Belt.Option.map(v => initialWidthToJs(v))),
+    ~lgDown?,
+    ~lgUp?,
+    ~mdDown?,
+    ~mdUp?,
+    ~only=?
+      only->(
+              Belt.Option.map(v =>
+                switch (v) {
+                | `Enum(v) =>
+                  MaterialUi_Helpers.unwrapValue(`String(only_enumToJs(v)))
+
+                | v => MaterialUi_Helpers.unwrapValue(v)
+                }
+              )
+            ),
+    ~smDown?,
+    ~smUp?,
+    ~xlDown?,
+    ~xlUp?,
+    ~xsDown?,
+    ~xsUp?,
+    ~key?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Hidden";

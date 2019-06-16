@@ -71,9 +71,10 @@ external makePropsMui:
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~selected: bool=?,
-    ~value: 'union_ruon=?,
+    ~value: 'union_rhuk=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -81,11 +82,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "ListItem";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~alignItems: option(alignItems)=?,
       ~autoFocus: option(bool)=?,
@@ -110,30 +107,32 @@ let make =
          )=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
-      ~autoFocus?,
-      ~button?,
-      ~children?,
-      ~className?,
-      ~_ContainerProps?,
-      ~dense?,
-      ~disabled?,
-      ~disableGutters?,
-      ~divider?,
-      ~focusVisibleClassName?,
-      ~selected?,
-      ~value=?
-        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~onFocus?,
-      ~onClick?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
+    ~autoFocus?,
+    ~button?,
+    ~children?,
+    ~className?,
+    ~_ContainerProps?,
+    ~dense?,
+    ~disabled?,
+    ~disableGutters?,
+    ~divider?,
+    ~focusVisibleClassName?,
+    ~selected?,
+    ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~onFocus?,
+    ~onClick?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "ListItem";

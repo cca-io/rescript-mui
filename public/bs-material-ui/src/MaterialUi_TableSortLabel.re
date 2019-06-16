@@ -50,8 +50,9 @@ external makePropsMui:
     ~className: string=?,
     ~direction: string=?,
     ~hideSortIcon: bool=?,
-    ~action: 'any_rcil=?,
-    ~buttonRef: 'union_rxng=?,
+    ~key: string=?,
+    ~action: 'any_rlxm=?,
+    ~buttonRef: 'union_rkiu=?,
     ~centerRipple: bool=?,
     ~component: React.element=?,
     ~disabled: bool=?,
@@ -73,7 +74,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r0rj=?,
+    ~tabIndex: 'union_re9e=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -83,17 +84,14 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "TableSortLabel";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~active: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~direction: option(direction)=?,
       ~hideSortIcon: option(bool)=?,
+      ~key: option(string)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
@@ -125,45 +123,47 @@ let make =
       ~type_: option(type_)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~active?,
-      ~children?,
-      ~className?,
-      ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
-      ~hideSortIcon?,
-      ~action?,
-      ~buttonRef=?
-        buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~centerRipple?,
-      ~component?,
-      ~disabled?,
-      ~disableRipple?,
-      ~disableTouchRipple?,
-      ~focusRipple?,
-      ~focusVisibleClassName?,
-      ~onBlur?,
-      ~onClick?,
-      ~onDragEnd?,
-      ~onFocus?,
-      ~onFocusVisible?,
-      ~onKeyDown?,
-      ~onKeyUp?,
-      ~onMouseDown?,
-      ~onMouseLeave?,
-      ~onMouseUp?,
-      ~onTouchEnd?,
-      ~onTouchMove?,
-      ~onTouchStart?,
-      ~role?,
-      ~tabIndex=?
-        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~_TouchRippleProps?,
-      ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~active?,
+    ~children?,
+    ~className?,
+    ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
+    ~hideSortIcon?,
+    ~key?,
+    ~action?,
+    ~buttonRef=?
+      buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~centerRipple?,
+    ~component?,
+    ~disabled?,
+    ~disableRipple?,
+    ~disableTouchRipple?,
+    ~focusRipple?,
+    ~focusVisibleClassName?,
+    ~onBlur?,
+    ~onClick?,
+    ~onDragEnd?,
+    ~onFocus?,
+    ~onFocusVisible?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~onMouseDown?,
+    ~onMouseLeave?,
+    ~onMouseUp?,
+    ~onTouchEnd?,
+    ~onTouchMove?,
+    ~onTouchStart?,
+    ~role?,
+    ~tabIndex=?
+      tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_TouchRippleProps?,
+    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "TableSortLabel";

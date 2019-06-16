@@ -167,6 +167,7 @@ external makePropsMui:
     ~theme: Js.t({..})=?,
     ~variant: string=?,
     ~variantMapping: Js.t({..})=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -174,11 +175,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Typography";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~align: option(align)=?,
       ~children: option('children)=?,
@@ -191,25 +188,28 @@ let make =
       ~theme: option(Js.t({..}))=?,
       ~variant: option(variant)=?,
       ~variantMapping: option(Js.t({..}))=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-      ~children?,
-      ~className?,
-      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~display=?display->(Belt.Option.map(v => displayToJs(v))),
-      ~gutterBottom?,
-      ~noWrap?,
-      ~paragraph?,
-      ~theme?,
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~variantMapping?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~display=?display->(Belt.Option.map(v => displayToJs(v))),
+    ~gutterBottom?,
+    ~noWrap?,
+    ~paragraph?,
+    ~theme?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~variantMapping?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Typography";

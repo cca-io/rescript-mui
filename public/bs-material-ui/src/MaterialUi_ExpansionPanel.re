@@ -37,10 +37,11 @@ external makePropsMui:
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_r1vu=?,
+    ~onChange: 'any_rcac=?,
     ~square: bool=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~elevation: 'number_o=?,
+    ~key: string=?,
+    ~elevation: 'number_1=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -48,11 +49,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "ExpansionPanel";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -62,25 +59,28 @@ let make =
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~square: option(bool)=?,
       ~_TransitionProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~defaultExpanded?,
-      ~disabled?,
-      ~expanded?,
-      ~onChange?,
-      ~square?,
-      ~_TransitionProps?,
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~defaultExpanded?,
+    ~disabled?,
+    ~expanded?,
+    ~onChange?,
+    ~square?,
+    ~_TransitionProps?,
+    ~key?,
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "ExpansionPanel";

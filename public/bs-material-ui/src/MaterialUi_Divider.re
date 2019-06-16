@@ -46,6 +46,7 @@ external makePropsMui:
     ~className: string=?,
     ~light: bool=?,
     ~variant: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -53,28 +54,27 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Divider";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~absolute: option(bool)=?,
       ~className: option(string)=?,
       ~light: option(bool)=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~absolute?,
-      ~className?,
-      ~light?,
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~absolute?,
+    ~className?,
+    ~light?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Divider";

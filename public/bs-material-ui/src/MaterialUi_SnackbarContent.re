@@ -32,6 +32,7 @@ external makePropsMui:
     ~action: React.element=?,
     ~className: string=?,
     ~message: React.element=?,
+    ~key: string=?,
     ~children: 'children=?,
     ~elevation: 'number_a=?,
     ~square: bool=?,
@@ -42,33 +43,32 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "SnackbarContent";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~action: option(React.element)=?,
       ~className: option(string)=?,
       ~message: option(React.element)=?,
+      ~key: option(string)=?,
       ~children: option('children)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~action?,
-      ~className?,
-      ~message?,
-      ~children?,
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~square?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~action?,
+    ~className?,
+    ~message?,
+    ~key?,
+    ~children?,
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~square?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "SnackbarContent";

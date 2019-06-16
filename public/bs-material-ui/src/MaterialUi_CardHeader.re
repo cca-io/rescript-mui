@@ -46,6 +46,7 @@ external makePropsMui:
     ~subheaderTypographyProps: Js.t({..})=?,
     ~title: React.element=?,
     ~titleTypographyProps: Js.t({..})=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -53,11 +54,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "CardHeader";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~action: option(React.element)=?,
       ~avatar: option(React.element)=?,
@@ -67,22 +64,25 @@ let make =
       ~subheaderTypographyProps: option(Js.t({..}))=?,
       ~title: option(React.element)=?,
       ~titleTypographyProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~action?,
-      ~avatar?,
-      ~className?,
-      ~disableTypography?,
-      ~subheader?,
-      ~subheaderTypographyProps?,
-      ~title?,
-      ~titleTypographyProps?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~action?,
+    ~avatar?,
+    ~className?,
+    ~disableTypography?,
+    ~subheader?,
+    ~subheaderTypographyProps?,
+    ~title?,
+    ~titleTypographyProps?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "CardHeader";

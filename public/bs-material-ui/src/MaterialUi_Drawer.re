@@ -108,15 +108,16 @@ external makePropsMui:
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_l=?,
+    ~elevation: 'number_6=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_ruhq=?,
+    ~onClose: 'any_rx71=?,
     ~_open: bool=?,
     ~_PaperProps: Js.t({..})=?,
     ~_SlideProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rli0=?,
+    ~transitionDuration: 'union_rins=?,
     ~variant: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -124,11 +125,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Drawer";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~anchor: option(anchor)=?,
       ~_BackdropProps: option(Js.t({..}))=?,
@@ -150,33 +147,36 @@ let make =
            ],
          )=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
-      ~_BackdropProps?,
-      ~children?,
-      ~className?,
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~_ModalProps?,
-      ~onClose?,
-      ~_open=?open_,
-      ~_PaperProps?,
-      ~_SlideProps?,
-      ~theme?,
-      ~transitionDuration=?
-        transitionDuration->(
-                              Belt.Option.map(v =>
-                                MaterialUi_Helpers.unwrapValue(v)
-                              )
-                            ),
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
+    ~_BackdropProps?,
+    ~children?,
+    ~className?,
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_ModalProps?,
+    ~onClose?,
+    ~_open=?open_,
+    ~_PaperProps?,
+    ~_SlideProps?,
+    ~theme?,
+    ~transitionDuration=?
+      transitionDuration->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Drawer";

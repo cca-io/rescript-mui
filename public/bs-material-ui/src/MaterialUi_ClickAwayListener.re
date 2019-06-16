@@ -19,29 +19,29 @@ external makePropsMui:
     ~mouseEvent: string=?,
     ~onClickAway: ReactEvent.Mouse.t => unit,
     ~touchEvent: string=?,
+    ~key: string=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "ClickAwayListener";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~mouseEvent: option(mouseEvent)=?,
       ~onClickAway: ReactEvent.Mouse.t => unit,
       ~touchEvent: option(touchEvent)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~mouseEvent=?mouseEvent->(Belt.Option.map(v => mouseEventToJs(v))),
-      ~onClickAway,
-      ~touchEvent=?touchEvent->(Belt.Option.map(v => touchEventToJs(v))),
+      ~key: option(string)=?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~mouseEvent=?mouseEvent->(Belt.Option.map(v => mouseEventToJs(v))),
+    ~onClickAway,
+    ~touchEvent=?touchEvent->(Belt.Option.map(v => touchEventToJs(v))),
+    ~key?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "ClickAwayListener";

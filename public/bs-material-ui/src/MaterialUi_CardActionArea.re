@@ -39,8 +39,9 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~focusVisibleClassName: string=?,
-    ~action: 'any_rth8=?,
-    ~buttonRef: 'union_rrwr=?,
+    ~key: string=?,
+    ~action: 'any_rotp=?,
+    ~buttonRef: 'union_rwrb=?,
     ~centerRipple: bool=?,
     ~component: React.element=?,
     ~disabled: bool=?,
@@ -61,7 +62,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rpyv=?,
+    ~tabIndex: 'union_rkph=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -71,15 +72,12 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "CardActionArea";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~focusVisibleClassName: option(string)=?,
+      ~key: option(string)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
@@ -110,42 +108,44 @@ let make =
       ~type_: option(type_)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~focusVisibleClassName?,
-      ~action?,
-      ~buttonRef=?
-        buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~centerRipple?,
-      ~component?,
-      ~disabled?,
-      ~disableRipple?,
-      ~disableTouchRipple?,
-      ~focusRipple?,
-      ~onBlur?,
-      ~onClick?,
-      ~onDragEnd?,
-      ~onFocus?,
-      ~onFocusVisible?,
-      ~onKeyDown?,
-      ~onKeyUp?,
-      ~onMouseDown?,
-      ~onMouseLeave?,
-      ~onMouseUp?,
-      ~onTouchEnd?,
-      ~onTouchMove?,
-      ~onTouchStart?,
-      ~role?,
-      ~tabIndex=?
-        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~_TouchRippleProps?,
-      ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~focusVisibleClassName?,
+    ~key?,
+    ~action?,
+    ~buttonRef=?
+      buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~centerRipple?,
+    ~component?,
+    ~disabled?,
+    ~disableRipple?,
+    ~disableTouchRipple?,
+    ~focusRipple?,
+    ~onBlur?,
+    ~onClick?,
+    ~onDragEnd?,
+    ~onFocus?,
+    ~onFocusVisible?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~onMouseDown?,
+    ~onMouseLeave?,
+    ~onMouseUp?,
+    ~onTouchEnd?,
+    ~onTouchMove?,
+    ~onTouchStart?,
+    ~role?,
+    ~tabIndex=?
+      tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_TouchRippleProps?,
+    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "CardActionArea";

@@ -1,20 +1,23 @@
 [@bs.obj]
 external makePropsMui:
-  (~children: 'children=?, ~defer: bool=?, ~fallback: React.element=?, unit) =>
+  (
+    ~children: 'children=?,
+    ~defer: bool=?,
+    ~fallback: React.element=?,
+    ~key: string=?,
+    unit
+  ) =>
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "NoSsr";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~defer: option(bool)=?,
       ~fallback: option(React.element)=?,
+      ~key: option(string)=?,
+      (),
     ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(~children?, ~defer?, ~fallback?, ()),
-  );
+  makePropsMui(~children?, ~defer?, ~fallback?, ~key?, ());
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "NoSsr";

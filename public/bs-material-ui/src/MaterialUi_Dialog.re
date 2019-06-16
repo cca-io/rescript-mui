@@ -120,7 +120,7 @@ external makePropsMui:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_r5vh=?,
+    ~onClose: 'any_rl8e=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -131,16 +131,17 @@ external makePropsMui:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~transitionDuration: 'union_rbj2=?,
+    ~transitionDuration: 'union_rlg0=?,
     ~_TransitionProps: Js.t({..})=?,
+    ~key: string=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rysf=?,
+    ~container: 'union_rpag=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
     ~disableRestoreFocus: bool=?,
     ~hideBackdrop: bool=?,
-    ~innerRef: 'union_remv=?,
+    ~innerRef: 'union_rd9k=?,
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
@@ -152,11 +153,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Dialog";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~_BackdropProps: option(Js.t({..}))=?,
       ~children: option('children)=?,
@@ -187,6 +184,7 @@ let make =
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
       ~closeAfterTransition: option(bool)=?,
       ~container:
          option(
@@ -207,53 +205,55 @@ let make =
       ~theme: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~_BackdropProps?,
-      ~children?,
-      ~className?,
-      ~disableBackdropClick?,
-      ~disableEscapeKeyDown?,
-      ~fullScreen?,
-      ~fullWidth?,
-      ~maxWidth=?maxWidth->(Belt.Option.map(v => maxWidthToJs(v))),
-      ~onBackdropClick?,
-      ~onClose?,
-      ~onEnter?,
-      ~onEntered?,
-      ~onEntering?,
-      ~onEscapeKeyDown?,
-      ~onExit?,
-      ~onExited?,
-      ~onExiting?,
-      ~_open=open_,
-      ~_PaperProps?,
-      ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
-      ~transitionDuration=?
-        transitionDuration->(
-                              Belt.Option.map(v =>
-                                MaterialUi_Helpers.unwrapValue(v)
-                              )
-                            ),
-      ~_TransitionProps?,
-      ~closeAfterTransition?,
-      ~container=?
-        container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~disableAutoFocus?,
-      ~disableEnforceFocus?,
-      ~disablePortal?,
-      ~disableRestoreFocus?,
-      ~hideBackdrop?,
-      ~innerRef=?
-        innerRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~keepMounted?,
-      ~manager?,
-      ~onRendered?,
-      ~theme?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~_BackdropProps?,
+    ~children?,
+    ~className?,
+    ~disableBackdropClick?,
+    ~disableEscapeKeyDown?,
+    ~fullScreen?,
+    ~fullWidth?,
+    ~maxWidth=?maxWidth->(Belt.Option.map(v => maxWidthToJs(v))),
+    ~onBackdropClick?,
+    ~onClose?,
+    ~onEnter?,
+    ~onEntered?,
+    ~onEntering?,
+    ~onEscapeKeyDown?,
+    ~onExit?,
+    ~onExited?,
+    ~onExiting?,
+    ~_open=open_,
+    ~_PaperProps?,
+    ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
+    ~transitionDuration=?
+      transitionDuration->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~_TransitionProps?,
+    ~key?,
+    ~closeAfterTransition?,
+    ~container=?
+      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disableAutoFocus?,
+    ~disableEnforceFocus?,
+    ~disablePortal?,
+    ~disableRestoreFocus?,
+    ~hideBackdrop?,
+    ~innerRef=?
+      innerRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~keepMounted?,
+    ~manager?,
+    ~onRendered?,
+    ~theme?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Dialog";

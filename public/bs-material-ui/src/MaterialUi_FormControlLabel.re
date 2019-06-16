@@ -50,13 +50,14 @@ external makePropsMui:
     ~className: string=?,
     ~control: React.element=?,
     ~disabled: bool=?,
-    ~inputRef: 'union_rj3p=?,
+    ~inputRef: 'union_rz9q=?,
     ~label: React.element=?,
     ~labelPlacement: string=?,
     ~muiFormControl: Js.t({..})=?,
     ~name: string=?,
-    ~onChange: 'any_rztb=?,
-    ~value: 'any_r10s=?,
+    ~onChange: 'any_ra1r=?,
+    ~value: 'any_rgfp=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -64,11 +65,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "FormControlLabel";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~checked: option(bool)=?,
       ~className: option(string)=?,
@@ -83,28 +80,31 @@ let make =
       ~muiFormControl: option(Js.t({..}))=?,
       ~name: option(string)=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
-      ~value: option('any_r10s)=?,
+      ~value: option('any_rgfp)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~checked?,
-      ~className?,
-      ~control?,
-      ~disabled?,
-      ~inputRef=?
-        inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~label?,
-      ~labelPlacement=?
-        labelPlacement->(Belt.Option.map(v => labelPlacementToJs(v))),
-      ~muiFormControl?,
-      ~name?,
-      ~onChange?,
-      ~value?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~checked?,
+    ~className?,
+    ~control?,
+    ~disabled?,
+    ~inputRef=?
+      inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~label?,
+    ~labelPlacement=?
+      labelPlacement->(Belt.Option.map(v => labelPlacementToJs(v))),
+    ~muiFormControl?,
+    ~name?,
+    ~onChange?,
+    ~value?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "FormControlLabel";

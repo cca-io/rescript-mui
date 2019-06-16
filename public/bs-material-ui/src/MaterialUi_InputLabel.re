@@ -77,6 +77,7 @@ external makePropsMui:
     ~required: bool=?,
     ~shrink: bool=?,
     ~variant: string=?,
+    ~key: string=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -85,11 +86,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "InputLabel";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -102,27 +99,30 @@ let make =
       ~required: option(bool)=?,
       ~shrink: option(bool)=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~filled: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~disableAnimation?,
-      ~disabled?,
-      ~error?,
-      ~focused?,
-      ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
-      ~muiFormControl?,
-      ~required?,
-      ~shrink?,
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~filled?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~disableAnimation?,
+    ~disabled?,
+    ~error?,
+    ~focused?,
+    ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
+    ~muiFormControl?,
+    ~required?,
+    ~shrink?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~filled?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "InputLabel";

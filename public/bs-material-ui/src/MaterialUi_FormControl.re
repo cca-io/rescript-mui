@@ -54,6 +54,7 @@ external makePropsMui:
     ~margin: string=?,
     ~required: bool=?,
     ~variant: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -61,11 +62,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "FormControl";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -75,22 +72,25 @@ let make =
       ~margin: option(margin)=?,
       ~required: option(bool)=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~disabled?,
-      ~error?,
-      ~fullWidth?,
-      ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
-      ~required?,
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~disabled?,
+    ~error?,
+    ~fullWidth?,
+    ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
+    ~required?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "FormControl";

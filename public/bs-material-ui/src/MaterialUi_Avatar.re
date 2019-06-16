@@ -37,6 +37,7 @@ external makePropsMui:
     ~sizes: string=?,
     ~src: string=?,
     ~srcSet: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -44,11 +45,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Avatar";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~alt: option(string)=?,
       ~children: option('children)=?,
@@ -58,22 +55,25 @@ let make =
       ~sizes: option(string)=?,
       ~src: option(string)=?,
       ~srcSet: option(string)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~alt?,
-      ~children?,
-      ~childrenClassName?,
-      ~className?,
-      ~imgProps?,
-      ~sizes?,
-      ~src?,
-      ~srcSet?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~alt?,
+    ~children?,
+    ~childrenClassName?,
+    ~className?,
+    ~imgProps?,
+    ~sizes?,
+    ~src?,
+    ~srcSet?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Avatar";

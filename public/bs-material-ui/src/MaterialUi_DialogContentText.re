@@ -70,6 +70,7 @@ module Classes = {
 external makePropsMui:
   (
     ~children: 'children=?,
+    ~key: string=?,
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
@@ -87,13 +88,10 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "DialogContentText";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
+      ~key: option(string)=?,
       ~align: option(align)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
@@ -106,23 +104,25 @@ let make =
       ~variantMapping: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-      ~className?,
-      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~display=?display->(Belt.Option.map(v => displayToJs(v))),
-      ~gutterBottom?,
-      ~noWrap?,
-      ~paragraph?,
-      ~theme?,
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~variantMapping?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~key?,
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~display=?display->(Belt.Option.map(v => displayToJs(v))),
+    ~gutterBottom?,
+    ~noWrap?,
+    ~paragraph?,
+    ~theme?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~variantMapping?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "DialogContentText";

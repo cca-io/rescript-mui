@@ -57,9 +57,10 @@ external makePropsMui:
     ~className: string=?,
     ~color: string=?,
     ~invisible: bool=?,
-    ~max: 'number_o=?,
+    ~max: 'number_k=?,
     ~showZero: bool=?,
     ~variant: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -67,11 +68,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Badge";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~badgeContent: option(React.element)=?,
       ~children: option('children)=?,
@@ -81,22 +78,24 @@ let make =
       ~max: option([ | `Int(int) | `Float(float)])=?,
       ~showZero: option(bool)=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~badgeContent?,
-      ~children?,
-      ~className?,
-      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~invisible?,
-      ~max=?max->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~showZero?,
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~badgeContent?,
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~invisible?,
+    ~max=?max->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~showZero?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Badge";

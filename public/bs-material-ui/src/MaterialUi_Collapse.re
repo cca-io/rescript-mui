@@ -81,7 +81,8 @@ external makePropsMui:
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_r5cg=?,
+    ~timeout: 'union_rtqf=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -89,11 +90,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Collapse";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -114,37 +111,40 @@ let make =
              | `Enum(timeout_enum)
            ],
          )=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~collapsedHeight?,
-      ~_in=?in_,
-      ~onEnter?,
-      ~onEntered?,
-      ~onEntering?,
-      ~onExit?,
-      ~onExiting?,
-      ~theme?,
-      ~timeout=?
-        timeout->(
-                   Belt.Option.map(v =>
-                     switch (v) {
-                     | `Enum(v) =>
-                       MaterialUi_Helpers.unwrapValue(
-                         `String(timeout_enumToJs(v)),
-                       )
-
-                     | v => MaterialUi_Helpers.unwrapValue(v)
-                     }
-                   )
-                 ),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~collapsedHeight?,
+    ~_in=?in_,
+    ~onEnter?,
+    ~onEntered?,
+    ~onEntering?,
+    ~onExit?,
+    ~onExiting?,
+    ~theme?,
+    ~timeout=?
+      timeout->(
+                 Belt.Option.map(v =>
+                   switch (v) {
+                   | `Enum(v) =>
+                     MaterialUi_Helpers.unwrapValue(
+                       `String(timeout_enumToJs(v)),
+                     )
+
+                   | v => MaterialUi_Helpers.unwrapValue(v)
+                   }
+                 )
+               ),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Collapse";

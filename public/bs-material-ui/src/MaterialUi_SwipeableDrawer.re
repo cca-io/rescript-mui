@@ -143,33 +143,30 @@ external makePropsMui:
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_c=?,
-    ~minFlingVelocity: 'number_b=?,
-    ~_ModalProps: 'any_rhi4=?,
-    ~onClose: 'any_rjf8,
-    ~onOpen: 'any_r1ij,
+    ~hysteresis: 'number_p=?,
+    ~minFlingVelocity: 'number_2=?,
+    ~_ModalProps: 'any_r9ly=?,
+    ~onClose: 'any_rlay,
+    ~onOpen: 'any_r93f,
     ~_open: bool,
-    ~_PaperProps: 'any_r46k=?,
+    ~_PaperProps: 'any_r1e4=?,
     ~_SwipeAreaProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_l=?,
+    ~swipeAreaWidth: 'number_c=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rrg1=?,
+    ~transitionDuration: 'union_r5mf=?,
     ~variant: string=?,
+    ~key: string=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_2=?,
+    ~elevation: 'number_o=?,
     ~_SlideProps: Js.t({..})=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "SwipeableDrawer";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~anchor: option(anchor)=?,
       ~disableBackdropTransition: option(bool)=?,
@@ -195,54 +192,55 @@ let make =
            ],
          )=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~_SlideProps: option(Js.t({..}))=?,
+      (),
     ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
-      ~disableBackdropTransition?,
-      ~disableDiscovery?,
-      ~disableSwipeToOpen?,
-      ~hideBackdrop?,
-      ~hysteresis=?
-        hysteresis->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~minFlingVelocity=?
-        minFlingVelocity->(
-                            Belt.Option.map(v =>
-                              MaterialUi_Helpers.unwrapValue(v)
-                            )
-                          ),
-      ~_ModalProps=?ModalProps.unwrap(_ModalProps),
-      ~onClose,
-      ~onOpen,
-      ~_open=open_,
-      ~_PaperProps=?PaperProps.unwrap(_PaperProps),
-      ~_SwipeAreaProps?,
-      ~swipeAreaWidth=?
-        swipeAreaWidth->(
+  makePropsMui(
+    ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
+    ~disableBackdropTransition?,
+    ~disableDiscovery?,
+    ~disableSwipeToOpen?,
+    ~hideBackdrop?,
+    ~hysteresis=?
+      hysteresis->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~minFlingVelocity=?
+      minFlingVelocity->(
                           Belt.Option.map(v =>
                             MaterialUi_Helpers.unwrapValue(v)
                           )
                         ),
-      ~theme?,
-      ~transitionDuration=?
-        transitionDuration->(
-                              Belt.Option.map(v =>
-                                MaterialUi_Helpers.unwrapValue(v)
-                              )
-                            ),
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~_BackdropProps?,
-      ~children?,
-      ~className?,
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~_SlideProps?,
-      (),
-    ),
+    ~_ModalProps=?ModalProps.unwrap(_ModalProps),
+    ~onClose,
+    ~onOpen,
+    ~_open=open_,
+    ~_PaperProps=?PaperProps.unwrap(_PaperProps),
+    ~_SwipeAreaProps?,
+    ~swipeAreaWidth=?
+      swipeAreaWidth->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
+    ~theme?,
+    ~transitionDuration=?
+      transitionDuration->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~_BackdropProps?,
+    ~children?,
+    ~className?,
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_SlideProps?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "SwipeableDrawer";

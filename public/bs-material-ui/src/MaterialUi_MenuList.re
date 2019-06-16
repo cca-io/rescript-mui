@@ -31,12 +31,13 @@ module Actions = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_ru28=?,
+    ~actions: 'any_rd2z=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~disableListWrap: bool=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~key: string=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,
@@ -45,11 +46,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "MenuList";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~actions: option(Actions.t)=?,
       ~autoFocus: option(bool)=?,
@@ -57,22 +54,25 @@ let make =
       ~className: option(string)=?,
       ~disableListWrap: option(bool)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+      ~key: option(string)=?,
       ~dense: option(bool)=?,
       ~disablePadding: option(bool)=?,
       ~subheader: option(React.element)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~actions=?Actions.unwrap(actions),
-      ~autoFocus?,
-      ~children?,
-      ~className?,
-      ~disableListWrap?,
-      ~onKeyDown?,
-      ~dense?,
-      ~disablePadding?,
-      ~subheader?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~actions=?Actions.unwrap(actions),
+    ~autoFocus?,
+    ~children?,
+    ~className?,
+    ~disableListWrap?,
+    ~onKeyDown?,
+    ~key?,
+    ~dense?,
+    ~disablePadding?,
+    ~subheader?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "MenuList";

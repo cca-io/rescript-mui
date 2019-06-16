@@ -65,6 +65,7 @@ external makePropsMui:
     ~subtitle: React.element=?,
     ~title: React.element=?,
     ~titlePosition: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -72,11 +73,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "GridListTileBar";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~actionIcon: option(React.element)=?,
       ~actionPosition: option(actionPosition)=?,
@@ -84,22 +81,25 @@ let make =
       ~subtitle: option(React.element)=?,
       ~title: option(React.element)=?,
       ~titlePosition: option(titlePosition)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~actionIcon?,
-      ~actionPosition=?
-        actionPosition->(Belt.Option.map(v => actionPositionToJs(v))),
-      ~className?,
-      ~subtitle?,
-      ~title?,
-      ~titlePosition=?
-        titlePosition->(Belt.Option.map(v => titlePositionToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~actionIcon?,
+    ~actionPosition=?
+      actionPosition->(Belt.Option.map(v => actionPositionToJs(v))),
+    ~className?,
+    ~subtitle?,
+    ~title?,
+    ~titlePosition=?
+      titlePosition->(Belt.Option.map(v => titlePositionToJs(v))),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "GridListTileBar";

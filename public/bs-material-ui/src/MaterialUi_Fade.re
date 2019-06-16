@@ -39,17 +39,14 @@ external makePropsMui:
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rji4=?,
+    ~timeout: 'union_r0br=?,
+    ~key: string=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Fade";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~in_: option(bool)=?,
@@ -58,17 +55,19 @@ let make =
       ~theme: option(Js.t({..}))=?,
       ~timeout:
          option([ | `Int(int) | `Float(float) | `Object(Timeout_shape.t)])=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~_in=?in_,
-      ~onEnter?,
-      ~onExit?,
-      ~theme?,
-      ~timeout=?
-        timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~key: option(string)=?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~_in=?in_,
+    ~onEnter?,
+    ~onExit?,
+    ~theme?,
+    ~timeout=?
+      timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~key?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Fade";

@@ -140,6 +140,7 @@ external makePropsMui:
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
     ~size: string=?,
     ~variant: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -147,11 +148,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Chip";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~avatar: option(React.element)=?,
       ~children: option('children)=?,
@@ -167,28 +164,30 @@ let make =
       ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
       ~size: option(size)=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~avatar?,
-      ~children?,
-      ~className?,
-      ~clickable?,
-      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~deleteIcon?,
-      ~icon?,
-      ~label?,
-      ~onClick?,
-      ~onDelete?,
-      ~onKeyDown?,
-      ~onKeyUp?,
-      ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~avatar?,
+    ~children?,
+    ~className?,
+    ~clickable?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~deleteIcon?,
+    ~icon?,
+    ~label?,
+    ~onClick?,
+    ~onDelete?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Chip";

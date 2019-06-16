@@ -36,8 +36,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rm2q=?,
-    ~buttonRef: 'union_rdoi=?,
+    ~action: 'any_rvzz=?,
+    ~buttonRef: 'union_rngm=?,
     ~centerRipple: bool=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -61,9 +61,10 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rff1=?,
+    ~tabIndex: 'union_rk3a=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -71,11 +72,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "ButtonBase";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
@@ -108,44 +105,47 @@ let make =
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
       ~type_: option(type_)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~action?,
-      ~buttonRef=?
-        buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~centerRipple?,
-      ~children?,
-      ~className?,
-      ~component?,
-      ~disabled?,
-      ~disableRipple?,
-      ~disableTouchRipple?,
-      ~focusRipple?,
-      ~focusVisibleClassName?,
-      ~onBlur?,
-      ~onClick?,
-      ~onDragEnd?,
-      ~onFocus?,
-      ~onFocusVisible?,
-      ~onKeyDown?,
-      ~onKeyUp?,
-      ~onMouseDown?,
-      ~onMouseLeave?,
-      ~onMouseUp?,
-      ~onTouchEnd?,
-      ~onTouchMove?,
-      ~onTouchStart?,
-      ~role?,
-      ~tabIndex=?
-        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~_TouchRippleProps?,
-      ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~action?,
+    ~buttonRef=?
+      buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~centerRipple?,
+    ~children?,
+    ~className?,
+    ~component?,
+    ~disabled?,
+    ~disableRipple?,
+    ~disableTouchRipple?,
+    ~focusRipple?,
+    ~focusVisibleClassName?,
+    ~onBlur?,
+    ~onClick?,
+    ~onDragEnd?,
+    ~onFocus?,
+    ~onFocusVisible?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~onMouseDown?,
+    ~onMouseLeave?,
+    ~onMouseUp?,
+    ~onTouchEnd?,
+    ~onTouchMove?,
+    ~onTouchStart?,
+    ~role?,
+    ~tabIndex=?
+      tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_TouchRippleProps?,
+    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "ButtonBase";

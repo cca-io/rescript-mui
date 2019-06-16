@@ -50,17 +50,14 @@ external makePropsMui:
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rjlv=?,
+    ~timeout: 'union_rf0i=?,
+    ~key: string=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Slide";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~direction: option(direction)=?,
@@ -72,20 +69,22 @@ let make =
       ~theme: option(Js.t({..}))=?,
       ~timeout:
          option([ | `Int(int) | `Float(float) | `Object(Timeout_shape.t)])=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
-      ~_in=?in_,
-      ~onEnter?,
-      ~onEntering?,
-      ~onExit?,
-      ~onExited?,
-      ~theme?,
-      ~timeout=?
-        timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~key: option(string)=?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
+    ~_in=?in_,
+    ~onEnter?,
+    ~onEntering?,
+    ~onExit?,
+    ~onExited?,
+    ~theme?,
+    ~timeout=?
+      timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~key?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Slide";

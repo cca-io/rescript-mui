@@ -49,6 +49,7 @@ external makePropsMui:
     ~focused: bool=?,
     ~muiFormControl: Js.t({..})=?,
     ~required: bool=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -56,11 +57,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "FormLabel";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -70,22 +67,25 @@ let make =
       ~focused: option(bool)=?,
       ~muiFormControl: option(Js.t({..}))=?,
       ~required: option(bool)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~disabled?,
-      ~error?,
-      ~filled?,
-      ~focused?,
-      ~muiFormControl?,
-      ~required?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~disabled?,
+    ~error?,
+    ~filled?,
+    ~focused?,
+    ~muiFormControl?,
+    ~required?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "FormLabel";

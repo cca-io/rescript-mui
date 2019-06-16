@@ -1,8 +1,9 @@
-[@bs.obj] external makePropsMui: (~children: 'children=?, unit) => _ = "";
+[@bs.obj]
+external makePropsMui: (~children: 'children=?, ~key: string=?, unit) => _ =
+  "";
+
+let makeProps = (~children: option('children)=?, ~key: option(string)=?, ()) =>
+  makePropsMui(~children?, ~key?, ());
 
 [@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "CssBaseline";
-
-[@react.component]
-let make = (~children: option('children)=?) =>
-  React.createElement(reactComponent, makePropsMui(~children?, ()));
+external make: React.component('a) = "CssBaseline";

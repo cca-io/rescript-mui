@@ -41,10 +41,11 @@ external makePropsMui:
     ~disableGutters: bool=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~tabIndex: 'number_p=?,
-    ~value: 'union_r2ty=?,
+    ~tabIndex: 'number_0=?,
+    ~value: 'union_reh2=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~key: string=?,
     ~alignItems: string=?,
     ~autoFocus: bool=?,
     ~button: bool=?,
@@ -59,11 +60,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "MenuItem";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -83,6 +80,7 @@ let make =
          )=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~key: option(string)=?,
       ~alignItems: option(alignItems)=?,
       ~autoFocus: option(bool)=?,
       ~button: option(bool)=?,
@@ -92,31 +90,32 @@ let make =
       ~focusVisibleClassName: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~disabled?,
-      ~disableGutters?,
-      ~role?,
-      ~selected?,
-      ~tabIndex=?
-        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~value=?
-        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~onFocus?,
-      ~onClick?,
-      ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
-      ~autoFocus?,
-      ~button?,
-      ~_ContainerProps?,
-      ~dense?,
-      ~divider?,
-      ~focusVisibleClassName?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~disabled?,
+    ~disableGutters?,
+    ~role?,
+    ~selected?,
+    ~tabIndex=?
+      tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~onFocus?,
+    ~onClick?,
+    ~key?,
+    ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
+    ~autoFocus?,
+    ~button?,
+    ~_ContainerProps?,
+    ~dense?,
+    ~divider?,
+    ~focusVisibleClassName?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "MenuItem";

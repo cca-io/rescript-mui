@@ -302,14 +302,15 @@ external makePropsMui:
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rnrb=?,
-    ~md: 'number_rawi=?,
-    ~sm: 'number_r7ly=?,
-    ~spacing: 'number_r9lu=?,
+    ~lg: 'number_rmqn=?,
+    ~md: 'number_r5qx=?,
+    ~sm: 'number_rew4=?,
+    ~spacing: 'number_ru9c=?,
     ~wrap: string=?,
-    ~xl: 'number_rvc6=?,
-    ~xs: 'number_rq9m=?,
+    ~xl: 'number_r4nj=?,
+    ~xs: 'number_rz0b=?,
     ~zeroMinWidth: bool=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -317,11 +318,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Grid";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~alignContent: option(alignContent)=?,
       ~alignItems: option(alignItems)=?,
@@ -344,46 +341,47 @@ let make =
       ~mdAuto: option(bool)=?,
       ~lgAuto: option(bool)=?,
       ~xlAuto: option(bool)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~alignContent=?
-        alignContent->(Belt.Option.map(v => alignContentToJs(v))),
-      ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
-      ~children?,
-      ~className?,
-      ~container?,
-      ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
-      ~item?,
-      ~justify=?justify->(Belt.Option.map(v => justifyToJs(v))),
-      ~lg=?
-        lgAuto
-        ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-        ->Belt.Option.getWithDefault(lg->(Belt.Option.map(v => lgToJs(v)))),
-      ~md=?
-        mdAuto
-        ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-        ->Belt.Option.getWithDefault(md->(Belt.Option.map(v => mdToJs(v)))),
-      ~sm=?
-        smAuto
-        ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-        ->Belt.Option.getWithDefault(sm->(Belt.Option.map(v => smToJs(v)))),
-      ~spacing=?spacing->(Belt.Option.map(v => spacingToJs(v))),
-      ~wrap=?wrap->(Belt.Option.map(v => wrapToJs(v))),
-      ~xl=?
-        xlAuto
-        ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-        ->Belt.Option.getWithDefault(xl->(Belt.Option.map(v => xlToJs(v)))),
-      ~xs=?
-        xsAuto
-        ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-        ->Belt.Option.getWithDefault(xs->(Belt.Option.map(v => xsToJs(v)))),
-      ~zeroMinWidth?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~alignContent=?alignContent->(Belt.Option.map(v => alignContentToJs(v))),
+    ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
+    ~children?,
+    ~className?,
+    ~container?,
+    ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
+    ~item?,
+    ~justify=?justify->(Belt.Option.map(v => justifyToJs(v))),
+    ~lg=?
+      lgAuto
+      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+      ->Belt.Option.getWithDefault(lg->(Belt.Option.map(v => lgToJs(v)))),
+    ~md=?
+      mdAuto
+      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+      ->Belt.Option.getWithDefault(md->(Belt.Option.map(v => mdToJs(v)))),
+    ~sm=?
+      smAuto
+      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+      ->Belt.Option.getWithDefault(sm->(Belt.Option.map(v => smToJs(v)))),
+    ~spacing=?spacing->(Belt.Option.map(v => spacingToJs(v))),
+    ~wrap=?wrap->(Belt.Option.map(v => wrapToJs(v))),
+    ~xl=?
+      xlAuto
+      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+      ->Belt.Option.getWithDefault(xl->(Belt.Option.map(v => xlToJs(v)))),
+    ~xs=?
+      xsAuto
+      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+      ->Belt.Option.getWithDefault(xs->(Belt.Option.map(v => xsToJs(v)))),
+    ~zeroMinWidth?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Grid";

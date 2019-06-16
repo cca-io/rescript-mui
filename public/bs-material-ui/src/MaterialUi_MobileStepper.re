@@ -58,16 +58,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_u=?,
+    ~activeStep: 'number_f=?,
     ~backButton: React.element=?,
     ~className: string=?,
     ~_LinearProgressProps: Js.t({..})=?,
     ~nextButton: React.element=?,
     ~position: string=?,
-    ~steps: 'number_j,
+    ~steps: 'number_2,
     ~variant: string=?,
+    ~key: string=?,
     ~children: 'children=?,
-    ~elevation: 'number_n=?,
+    ~elevation: 'number_u=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -76,11 +77,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "MobileStepper";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~activeStep: option([ | `Int(int) | `Float(float)])=?,
       ~backButton: option(React.element)=?,
@@ -90,30 +87,33 @@ let make =
       ~position: option(position)=?,
       ~steps: [ | `Int(int) | `Float(float)],
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~children: option('children)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~activeStep=?
-        activeStep->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~backButton?,
-      ~className?,
-      ~_LinearProgressProps?,
-      ~nextButton?,
-      ~position=?position->(Belt.Option.map(v => positionToJs(v))),
-      ~steps=MaterialUi_Helpers.unwrapValue(steps),
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~children?,
-      ~elevation=?
-        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~square?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~activeStep=?
+      activeStep->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~backButton?,
+    ~className?,
+    ~_LinearProgressProps?,
+    ~nextButton?,
+    ~position=?position->(Belt.Option.map(v => positionToJs(v))),
+    ~steps=MaterialUi_Helpers.unwrapValue(steps),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~children?,
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~square?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "MobileStepper";

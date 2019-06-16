@@ -120,15 +120,16 @@ module Classes = {
 external makePropsMui:
   (
     ~action: React.element=?,
-    ~anchorOrigin: 'any_rzox=?,
-    ~autoHideDuration: 'number_o=?,
+    ~anchorOrigin: 'any_ryko=?,
+    ~autoHideDuration: 'number_u=?,
     ~children: 'children=?,
     ~className: string=?,
     ~_ClickAwayListenerProps: Js.t({..})=?,
     ~_ContentProps: Js.t({..})=?,
     ~disableWindowBlurListener: bool=?,
+    ~key: string=?,
     ~message: React.element=?,
-    ~onClose: 'any_rjtr=?,
+    ~onClose: 'any_r77h=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -138,8 +139,8 @@ external makePropsMui:
     ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
     ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
     ~_open: bool=?,
-    ~resumeHideDuration: 'number_u=?,
-    ~transitionDuration: 'union_rwn3=?,
+    ~resumeHideDuration: 'number_6=?,
+    ~transitionDuration: 'union_reyo=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -148,11 +149,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Snackbar";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~action: option(React.element)=?,
       ~anchorOrigin: option(AnchorOrigin.t)=?,
@@ -162,6 +159,7 @@ let make =
       ~_ClickAwayListenerProps: option(Js.t({..}))=?,
       ~_ContentProps: option(Js.t({..}))=?,
       ~disableWindowBlurListener: option(bool)=?,
+      ~key: option(string)=?,
       ~message: option(React.element)=?,
       ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
@@ -185,49 +183,51 @@ let make =
       ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
+      (),
     ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~action?,
-      ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
-      ~autoHideDuration=?
-        autoHideDuration->(
+  makePropsMui(
+    ~action?,
+    ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
+    ~autoHideDuration=?
+      autoHideDuration->(
+                          Belt.Option.map(v =>
+                            MaterialUi_Helpers.unwrapValue(v)
+                          )
+                        ),
+    ~children?,
+    ~className?,
+    ~_ClickAwayListenerProps?,
+    ~_ContentProps?,
+    ~disableWindowBlurListener?,
+    ~key?,
+    ~message?,
+    ~onClose?,
+    ~onEnter?,
+    ~onEntered?,
+    ~onEntering?,
+    ~onExit?,
+    ~onExited?,
+    ~onExiting?,
+    ~onMouseEnter?,
+    ~onMouseLeave?,
+    ~_open=?open_,
+    ~resumeHideDuration=?
+      resumeHideDuration->(
                             Belt.Option.map(v =>
                               MaterialUi_Helpers.unwrapValue(v)
                             )
                           ),
-      ~children?,
-      ~className?,
-      ~_ClickAwayListenerProps?,
-      ~_ContentProps?,
-      ~disableWindowBlurListener?,
-      ~message?,
-      ~onClose?,
-      ~onEnter?,
-      ~onEntered?,
-      ~onEntering?,
-      ~onExit?,
-      ~onExited?,
-      ~onExiting?,
-      ~onMouseEnter?,
-      ~onMouseLeave?,
-      ~_open=?open_,
-      ~resumeHideDuration=?
-        resumeHideDuration->(
-                              Belt.Option.map(v =>
-                                MaterialUi_Helpers.unwrapValue(v)
-                              )
-                            ),
-      ~transitionDuration=?
-        transitionDuration->(
-                              Belt.Option.map(v =>
-                                MaterialUi_Helpers.unwrapValue(v)
-                              )
-                            ),
-      ~_TransitionProps?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
-      (),
-    ),
+    ~transitionDuration=?
+      transitionDuration->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~_TransitionProps?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Snackbar";

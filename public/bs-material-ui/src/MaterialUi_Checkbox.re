@@ -65,10 +65,11 @@ external makePropsMui:
     ~indeterminate: bool=?,
     ~indeterminateIcon: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rphx=?,
-    ~onChange: 'any_r2k5=?,
+    ~inputRef: 'union_rbiv=?,
+    ~onChange: 'any_rw6t=?,
     ~_type: string=?,
-    ~value: 'any_rs7g=?,
+    ~value: 'any_rrbu=?,
+    ~key: string=?,
     ~children: 'children=?,
     ~className: string=?,
     ~disableFocusRipple: bool=?,
@@ -81,11 +82,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Checkbox";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~checked: option(bool)=?,
       ~checkedIcon: option(React.element)=?,
@@ -103,7 +100,8 @@ let make =
          )=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rs7g)=?,
+      ~value: option('any_rrbu)=?,
+      ~key: option(string)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~disableFocusRipple: option(bool)=?,
@@ -111,32 +109,34 @@ let make =
       ~size: option(size)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~checked?,
-      ~checkedIcon?,
-      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~disabled?,
-      ~disableRipple?,
-      ~icon?,
-      ~id?,
-      ~indeterminate?,
-      ~indeterminateIcon?,
-      ~inputProps?,
-      ~inputRef=?
-        inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~onChange?,
-      ~_type=?type_,
-      ~value?,
-      ~children?,
-      ~className?,
-      ~disableFocusRipple?,
-      ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
-      ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~checked?,
+    ~checkedIcon?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~disabled?,
+    ~disableRipple?,
+    ~icon?,
+    ~id?,
+    ~indeterminate?,
+    ~indeterminateIcon?,
+    ~inputProps?,
+    ~inputRef=?
+      inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~onChange?,
+    ~_type=?type_,
+    ~value?,
+    ~key?,
+    ~children?,
+    ~className?,
+    ~disableFocusRipple?,
+    ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Checkbox";

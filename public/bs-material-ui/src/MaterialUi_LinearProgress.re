@@ -91,9 +91,10 @@ external makePropsMui:
     ~className: string=?,
     ~color: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'number_g=?,
-    ~valueBuffer: 'number_v=?,
+    ~value: 'number_9=?,
+    ~valueBuffer: 'number_g=?,
     ~variant: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -101,11 +102,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "LinearProgress";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
@@ -113,24 +110,24 @@ let make =
       ~value: option([ | `Int(int) | `Float(float)])=?,
       ~valueBuffer: option([ | `Int(int) | `Float(float)])=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~className?,
-      ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-      ~theme?,
-      ~value=?
-        value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~valueBuffer=?
-        valueBuffer->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~theme?,
+    ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~valueBuffer=?
+      valueBuffer->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "LinearProgress";

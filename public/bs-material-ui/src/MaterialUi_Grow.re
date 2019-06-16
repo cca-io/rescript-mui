@@ -41,17 +41,14 @@ external makePropsMui:
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_rvpz=?,
+    ~timeout: 'union_rbmu=?,
+    ~key: string=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Grow";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~in_: option(bool)=?,
@@ -67,28 +64,30 @@ let make =
              | `Enum(timeout_enum)
            ],
          )=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~_in=?in_,
-      ~onEnter?,
-      ~onExit?,
-      ~theme?,
-      ~timeout=?
-        timeout->(
-                   Belt.Option.map(v =>
-                     switch (v) {
-                     | `Enum(v) =>
-                       MaterialUi_Helpers.unwrapValue(
-                         `String(timeout_enumToJs(v)),
-                       )
-
-                     | v => MaterialUi_Helpers.unwrapValue(v)
-                     }
-                   )
-                 ),
+      ~key: option(string)=?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~_in=?in_,
+    ~onEnter?,
+    ~onExit?,
+    ~theme?,
+    ~timeout=?
+      timeout->(
+                 Belt.Option.map(v =>
+                   switch (v) {
+                   | `Enum(v) =>
+                     MaterialUi_Helpers.unwrapValue(
+                       `String(timeout_enumToJs(v)),
+                     )
+
+                   | v => MaterialUi_Helpers.unwrapValue(v)
+                   }
+                 )
+               ),
+    ~key?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Grow";

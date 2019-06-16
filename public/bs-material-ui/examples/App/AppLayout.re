@@ -149,6 +149,31 @@ let make = () =>
                </Grid>
                <Grid item=true md=V6> <ExampleStepper /> </Grid>
              </Grid>
+             <br />
+             <br />
+             <Divider />
+             <br />
+             <br />
+             <Grid container=true alignItems=`Center>
+               <Grid item=true md=V6>
+                 <Typography variant=`H5>
+                   <a
+                     href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/selects/SimpleSelect.tsx"
+                     target="_blank">
+                     "Select"->React.string
+                   </a>
+                 </Typography>
+               </Grid>
+               <Grid item=true md=V6> <ExampleSelect /> </Grid>
+             </Grid>
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
            </div>
        )
   </Styles>;

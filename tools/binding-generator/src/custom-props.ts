@@ -45,6 +45,29 @@ export default {
 			description: '-',
 		},
 	},
+	Select: {
+		value: {
+			type: {
+				name: 'union',
+				value: [
+					{
+						name: 'string',
+					},
+					{
+						name: 'number',
+					},
+					{
+						name: 'arrayOf',
+						value: {
+							name: 'string',
+						},
+					},
+				],
+			},
+			required: false,
+			description: '-',
+		},
+	},
 	CardContent: {
 		children: {
 			type: {

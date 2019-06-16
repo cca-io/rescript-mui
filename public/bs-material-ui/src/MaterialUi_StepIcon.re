@@ -39,6 +39,7 @@ external makePropsMui:
     ~completed: bool=?,
     ~error: bool=?,
     ~icon: React.element,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -46,28 +47,27 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "StepIcon";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~active: option(bool)=?,
       ~completed: option(bool)=?,
       ~error: option(bool)=?,
       ~icon: React.element,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~active?,
-      ~completed?,
-      ~error?,
-      ~icon,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~active?,
+    ~completed?,
+    ~error?,
+    ~icon,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "StepIcon";

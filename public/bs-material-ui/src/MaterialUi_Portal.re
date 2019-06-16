@@ -2,19 +2,16 @@
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~container: 'union_ru5r=?,
+    ~container: 'union_rtu1=?,
     ~disablePortal: bool=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
+    ~key: string=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Portal";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~container:
@@ -23,15 +20,18 @@ let make =
          )=?,
       ~disablePortal: option(bool)=?,
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~container=?
-        container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~disablePortal?,
-      ~onRendered?,
+      ~key: option(string)=?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~container=?
+      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disablePortal?,
+    ~onRendered?,
+    ~key?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Portal";

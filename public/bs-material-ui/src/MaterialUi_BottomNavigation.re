@@ -25,9 +25,10 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~onChange: 'any_r881=?,
+    ~onChange: 'any_rts1=?,
     ~showLabels: bool=?,
-    ~value: 'any_rvl3=?,
+    ~value: 'any_rzin=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -35,30 +36,29 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "BottomNavigation";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rjy9) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rgmu) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_rvl3)=?,
+      ~value: option('any_rzin)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~className?,
-      ~onChange?,
-      ~showLabels?,
-      ~value?,
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~onChange?,
+    ~showLabels?,
+    ~value?,
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "BottomNavigation";

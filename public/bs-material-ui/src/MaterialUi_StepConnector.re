@@ -61,8 +61,9 @@ external makePropsMui:
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
-    ~index: 'number_8=?,
+    ~index: 'number_r=?,
     ~orientation: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -70,11 +71,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "StepConnector";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~active: option(bool)=?,
       ~alternativeLabel: option(bool)=?,
@@ -83,30 +80,32 @@ let make =
       ~disabled: option(bool)=?,
       ~index: option([ | `Int(int) | `Float(float)])=?,
       ~orientation: option(orientation)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~active?,
-      ~alternativeLabel?,
-      ~className?,
-      ~completed?,
-      ~disabled?,
-      ~index=?
-        index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~orientation=?
-        orientation->(
-                       Belt.Option.map(v =>
-                         switch (v->Obj.magic->Js.Json.classify) {
-                         | JSONString(str) => str
-                         | _ => orientationToJs(v)
-                         }
-                       )
-                     ),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~active?,
+    ~alternativeLabel?,
+    ~className?,
+    ~completed?,
+    ~disabled?,
+    ~index=?index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~orientation=?
+      orientation->(
+                     Belt.Option.map(v =>
+                       switch (v->Obj.magic->Js.Json.classify) {
+                       | JSONString(str) => str
+                       | _ => orientationToJs(v)
+                       }
+                     )
+                   ),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "StepConnector";

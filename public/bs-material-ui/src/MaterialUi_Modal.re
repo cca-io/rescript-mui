@@ -4,7 +4,7 @@ external makePropsMui:
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_raae=?,
+    ~container: 'union_r10p=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -12,25 +12,22 @@ external makePropsMui:
     ~disablePortal: bool=?,
     ~disableRestoreFocus: bool=?,
     ~hideBackdrop: bool=?,
-    ~innerRef: 'union_rh0p=?,
+    ~innerRef: 'union_rig3=?,
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rrnl=?,
+    ~onClose: 'any_rpch=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
     ~theme: Js.t({..})=?,
+    ~key: string=?,
     unit
   ) =>
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Modal";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~_BackdropProps: option(Js.t({..}))=?,
       ~children: option('children)=?,
@@ -58,32 +55,34 @@ let make =
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: bool,
       ~theme: option(Js.t({..}))=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~_BackdropProps?,
-      ~children?,
-      ~closeAfterTransition?,
-      ~container=?
-        container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~disableAutoFocus?,
-      ~disableBackdropClick?,
-      ~disableEnforceFocus?,
-      ~disableEscapeKeyDown?,
-      ~disablePortal?,
-      ~disableRestoreFocus?,
-      ~hideBackdrop?,
-      ~innerRef=?
-        innerRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~keepMounted?,
-      ~manager?,
-      ~onBackdropClick?,
-      ~onClose?,
-      ~onEscapeKeyDown?,
-      ~onRendered?,
-      ~_open=open_,
-      ~theme?,
+      ~key: option(string)=?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~_BackdropProps?,
+    ~children?,
+    ~closeAfterTransition?,
+    ~container=?
+      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disableAutoFocus?,
+    ~disableBackdropClick?,
+    ~disableEnforceFocus?,
+    ~disableEscapeKeyDown?,
+    ~disablePortal?,
+    ~disableRestoreFocus?,
+    ~hideBackdrop?,
+    ~innerRef=?
+      innerRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~keepMounted?,
+    ~manager?,
+    ~onBackdropClick?,
+    ~onClose?,
+    ~onEscapeKeyDown?,
+    ~onRendered?,
+    ~_open=open_,
+    ~theme?,
+    ~key?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Modal";

@@ -75,19 +75,20 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rjiy=?,
+    ~action: 'any_rhl2=?,
     ~centered: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~indicatorColor: string=?,
-    ~innerRef: 'union_rnml=?,
-    ~onChange: 'any_r06n=?,
+    ~innerRef: 'union_rgqb=?,
+    ~onChange: 'any_rzve=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_rcho=?,
+    ~value: 'any_rmob=?,
     ~variant: string=?,
+    ~key: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -95,11 +96,7 @@ external makePropsMui:
   _ =
   "";
 
-[@bs.module "@material-ui/core"]
-external reactComponent: React.component('a) = "Tabs";
-
-[@react.component]
-let make =
+let makeProps =
     (
       ~action: option(Js.t({..}) => unit)=?,
       ~centered: option(bool)=?,
@@ -110,45 +107,47 @@ let make =
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rlv8) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rf38) => unit)=?,
       ~scrollButtons: option(scrollButtons)=?,
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_rcho)=?,
+      ~value: option('any_rmob)=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~action?,
-      ~centered?,
-      ~children?,
-      ~className?,
-      ~indicatorColor=?
-        indicatorColor->(Belt.Option.map(v => indicatorColorToJs(v))),
-      ~innerRef=?
-        innerRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~onChange?,
-      ~scrollButtons=?
-        scrollButtons->(Belt.Option.map(v => scrollButtonsToJs(v))),
-      ~_TabIndicatorProps?,
-      ~textColor=?
-        textColor->(
-                     Belt.Option.map(v =>
-                       switch (v->Obj.magic->Js.Json.classify) {
-                       | JSONString(str) => str
-                       | _ => textColorToJs(v)
-                       }
-                     )
-                   ),
-      ~theme?,
-      ~value?,
-      ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-      ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-      ~style?,
       (),
-    ),
+    ) =>
+  makePropsMui(
+    ~action?,
+    ~centered?,
+    ~children?,
+    ~className?,
+    ~indicatorColor=?
+      indicatorColor->(Belt.Option.map(v => indicatorColorToJs(v))),
+    ~innerRef=?
+      innerRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~onChange?,
+    ~scrollButtons=?
+      scrollButtons->(Belt.Option.map(v => scrollButtonsToJs(v))),
+    ~_TabIndicatorProps?,
+    ~textColor=?
+      textColor->(
+                   Belt.Option.map(v =>
+                     switch (v->Obj.magic->Js.Json.classify) {
+                     | JSONString(str) => str
+                     | _ => textColorToJs(v)
+                     }
+                   )
+                 ),
+    ~theme?,
+    ~value?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Tabs";
