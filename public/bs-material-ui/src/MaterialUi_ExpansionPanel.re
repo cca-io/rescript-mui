@@ -37,7 +37,7 @@ external makePropsMui:
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_r0b3=?,
+    ~onChange: 'any_rwbn=?,
     ~square: bool=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,

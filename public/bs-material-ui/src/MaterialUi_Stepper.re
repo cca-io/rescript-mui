@@ -38,7 +38,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_9=?,
+    ~activeStep: 'number_q=?,
     ~alternativeLabel: bool=?,
     ~children: 'children=?,
     ~className: string=?,

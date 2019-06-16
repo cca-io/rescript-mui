@@ -79,7 +79,7 @@ external makePropsMui:
     ~last: bool=?,
     ~optional: bool=?,
     ~orientation: string=?,
-    ~transitionDuration: 'union_rhcj=?,
+    ~transitionDuration: 'union_r0hz=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

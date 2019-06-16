@@ -68,12 +68,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'any_r30h=?,
+    ~anchorEl: 'any_r1td=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_r40x=?,
+    ~onClose: 'any_ryy1=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -84,7 +84,7 @@ external makePropsMui:
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_r0hc=?,
+    ~transitionDuration: 'union_r9ye=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -99,7 +99,7 @@ external reactComponent: React.component('a) = "Menu";
 [@react.component]
 let make =
     (
-      ~anchorEl: option('any_r30h)=?,
+      ~anchorEl: option('any_r1td)=?,
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~disableAutoFocusItem: option(bool)=?,

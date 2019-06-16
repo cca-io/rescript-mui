@@ -36,8 +36,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rjyy=?,
-    ~buttonRef: 'union_r9wv=?,
+    ~action: 'any_rwoj=?,
+    ~buttonRef: 'union_raps=?,
     ~centerRipple: bool=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -49,6 +49,7 @@ external makePropsMui:
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onDragEnd: ReactEvent.Mouse.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onFocusVisible: 'genericCallback=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
@@ -60,7 +61,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r81x=?,
+    ~tabIndex: 'union_re3o=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -92,6 +93,7 @@ let make =
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~onDragEnd: option(ReactEvent.Mouse.t => unit)=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onFocusVisible: option('genericCallback)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
@@ -126,6 +128,7 @@ let make =
       ~focusVisibleClassName?,
       ~onBlur?,
       ~onClick?,
+      ~onDragEnd?,
       ~onFocus?,
       ~onFocusVisible?,
       ~onKeyDown?,

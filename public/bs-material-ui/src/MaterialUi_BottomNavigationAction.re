@@ -43,7 +43,7 @@ external makePropsMui:
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~selected: bool=?,
     ~showLabel: bool=?,
-    ~value: 'any_rdp0=?,
+    ~value: 'any_rgq3=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -65,7 +65,7 @@ let make =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~showLabel: option(bool)=?,
-      ~value: option('any_rdp0)=?,
+      ~value: option('any_rgq3)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>

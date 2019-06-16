@@ -15,22 +15,5 @@ external makePropsMui:
 external reactComponent: React.component('a) = "MuiThemeProvider";
 
 [@react.component]
-let make =
-    (
-      ~children: option('children)=?,
-      ~disableStylesGeneration: option(bool)=?,
-      ~sheetsCache: option(Js.t({..}))=?,
-      ~sheetsManager: option(Js.t({..}))=?,
-      ~theme: MaterialUi_Theme.t,
-    ) =>
-  React.createElement(
-    reactComponent,
-    makePropsMui(
-      ~children?,
-      ~disableStylesGeneration?,
-      ~sheetsCache?,
-      ~sheetsManager?,
-      ~theme,
-      (),
-    ),
-  );
+let make = (~children: option('children)=?, ~theme: MaterialUi_Theme.t) =>
+  React.createElement(reactComponent, makePropsMui(~children?, ~theme, ()));

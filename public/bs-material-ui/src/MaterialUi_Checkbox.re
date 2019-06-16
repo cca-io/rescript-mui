@@ -55,10 +55,10 @@ external makePropsMui:
     ~indeterminate: bool=?,
     ~indeterminateIcon: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rm3q=?,
-    ~onChange: 'any_rgto=?,
+    ~inputRef: 'union_rwkb=?,
+    ~onChange: 'any_rcco=?,
     ~_type: string=?,
-    ~value: 'any_r4e8=?,
+    ~value: 'any_r4jc=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -88,7 +88,7 @@ let make =
          )=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~type_: option(string)=?,
-      ~value: option('any_r4e8)=?,
+      ~value: option('any_r4jc)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>

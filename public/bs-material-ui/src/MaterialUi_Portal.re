@@ -2,7 +2,7 @@
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~container: 'union_rhx5=?,
+    ~container: 'union_r0nf=?,
     ~disablePortal: bool=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     unit

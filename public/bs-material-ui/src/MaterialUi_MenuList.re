@@ -31,7 +31,7 @@ module Actions = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_rfcr=?,
+    ~actions: 'any_rfnj=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,

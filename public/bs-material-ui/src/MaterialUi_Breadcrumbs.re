@@ -34,9 +34,9 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~itemsAfterCollapse: 'number_y=?,
-    ~itemsBeforeCollapse: 'number_7=?,
-    ~maxItems: 'number_z=?,
+    ~itemsAfterCollapse: 'number_j=?,
+    ~itemsBeforeCollapse: 'number_s=?,
+    ~maxItems: 'number_g=?,
     ~separator: React.element=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

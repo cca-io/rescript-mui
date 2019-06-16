@@ -50,11 +50,11 @@ external makePropsMui:
     ~icon: React.element=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rqoh=?,
+    ~inputRef: 'union_roit=?,
     ~name: string=?,
-    ~onChange: 'any_r77o=?,
+    ~onChange: 'any_r0w5=?,
     ~_type: string=?,
-    ~value: 'any_r4qr=?,
+    ~value: 'any_rr8m=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -83,7 +83,7 @@ let make =
       ~name: option(string)=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~type_: option(string)=?,
-      ~value: option('any_r4qr)=?,
+      ~value: option('any_rr8m)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>

@@ -25,9 +25,9 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~onChange: 'any_rylb=?,
+    ~onChange: 'any_ri2z=?,
     ~showLabels: bool=?,
-    ~value: 'any_rvad=?,
+    ~value: 'any_rxft=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -43,9 +43,9 @@ let make =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rd3p) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rleh) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_rvad)=?,
+      ~value: option('any_rxft)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
