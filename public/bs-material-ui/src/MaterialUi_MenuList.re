@@ -31,12 +31,15 @@ module Actions = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_rfnj=?,
+    ~actions: 'any_ryyb=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~disableListWrap: bool=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~dense: bool=?,
+    ~disablePadding: bool=?,
+    ~subheader: React.element=?,
     unit
   ) =>
   _ =
@@ -54,6 +57,9 @@ let make =
       ~className: option(string)=?,
       ~disableListWrap: option(bool)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+      ~dense: option(bool)=?,
+      ~disablePadding: option(bool)=?,
+      ~subheader: option(React.element)=?,
     ) =>
   React.createElement(
     reactComponent,
@@ -64,6 +70,9 @@ let make =
       ~className?,
       ~disableListWrap?,
       ~onKeyDown?,
+      ~dense?,
+      ~disablePadding?,
+      ~subheader?,
       (),
     ),
   );

@@ -48,7 +48,7 @@ external makePropsMui:
     ~completed: bool=?,
     ~connector: React.element=?,
     ~disabled: bool=?,
-    ~index: 'number_9=?,
+    ~index: 'number_e=?,
     ~last: bool=?,
     ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -90,7 +90,15 @@ let make =
       ~index=?
         index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~last?,
-      ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+      ~orientation=?
+        orientation->(
+                       Belt.Option.map(v =>
+                         switch (v->Obj.magic->Js.Json.classify) {
+                         | JSONString(str) => str
+                         | _ => orientationToJs(v)
+                         }
+                       )
+                     ),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

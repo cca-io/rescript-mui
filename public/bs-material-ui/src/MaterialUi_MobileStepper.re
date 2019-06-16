@@ -58,14 +58,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_t=?,
+    ~activeStep: 'number_m=?,
     ~backButton: React.element=?,
     ~className: string=?,
     ~_LinearProgressProps: Js.t({..})=?,
     ~nextButton: React.element=?,
     ~position: string=?,
-    ~steps: 'number_7,
+    ~steps: 'number_j,
     ~variant: string=?,
+    ~children: 'children=?,
+    ~elevation: 'number_k=?,
+    ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -87,6 +90,9 @@ let make =
       ~position: option(position)=?,
       ~steps: [ | `Int(int) | `Float(float)],
       ~variant: option(variant)=?,
+      ~children: option('children)=?,
+      ~elevation: option([ | `Int(int) | `Float(float)])=?,
+      ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -102,6 +108,10 @@ let make =
       ~position=?position->(Belt.Option.map(v => positionToJs(v))),
       ~steps=MaterialUi_Helpers.unwrapValue(steps),
       ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~children?,
+      ~elevation=?
+        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~square?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

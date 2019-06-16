@@ -16,6 +16,22 @@ type underline = [
   | [@bs.as "always"] `Always
 ];
 
+[@bs.deriving jsConverter]
+type align = [
+  | [@bs.as "inherit"] `Inherit
+  | [@bs.as "left"] `Left
+  | [@bs.as "center"] `Center
+  | [@bs.as "right"] `Right
+  | [@bs.as "justify"] `Justify
+];
+
+[@bs.deriving jsConverter]
+type display = [
+  | [@bs.as "initial"] `Initial
+  | [@bs.as "block"] `Block
+  | [@bs.as "inline"] `Inline
+];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -64,6 +80,13 @@ external makePropsMui:
     ~_TypographyClasses: Js.t({..})=?,
     ~underline: string=?,
     ~variant: string=?,
+    ~align: string=?,
+    ~display: string=?,
+    ~gutterBottom: bool=?,
+    ~noWrap: bool=?,
+    ~paragraph: bool=?,
+    ~theme: Js.t({..})=?,
+    ~variantMapping: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -85,6 +108,13 @@ let make =
       ~_TypographyClasses: option(Js.t({..}))=?,
       ~underline: option(underline)=?,
       ~variant: option(string)=?,
+      ~align: option(align)=?,
+      ~display: option(display)=?,
+      ~gutterBottom: option(bool)=?,
+      ~noWrap: option(bool)=?,
+      ~paragraph: option(bool)=?,
+      ~theme: option(Js.t({..}))=?,
+      ~variantMapping: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -99,6 +129,13 @@ let make =
       ~_TypographyClasses?,
       ~underline=?underline->(Belt.Option.map(v => underlineToJs(v))),
       ~variant?,
+      ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+      ~display=?display->(Belt.Option.map(v => displayToJs(v))),
+      ~gutterBottom?,
+      ~noWrap?,
+      ~paragraph?,
+      ~theme?,
+      ~variantMapping?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

@@ -61,7 +61,7 @@ external makePropsMui:
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
-    ~index: 'number_t=?,
+    ~index: 'number_y=?,
     ~orientation: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -96,7 +96,15 @@ let make =
       ~disabled?,
       ~index=?
         index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-      ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+      ~orientation=?
+        orientation->(
+                       Belt.Option.map(v =>
+                         switch (v->Obj.magic->Js.Json.classify) {
+                         | JSONString(str) => str
+                         | _ => orientationToJs(v)
+                         }
+                       )
+                     ),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

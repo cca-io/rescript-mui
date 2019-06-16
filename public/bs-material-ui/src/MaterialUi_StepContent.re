@@ -79,7 +79,7 @@ external makePropsMui:
     ~last: bool=?,
     ~optional: bool=?,
     ~orientation: string=?,
-    ~transitionDuration: 'union_r0hz=?,
+    ~transitionDuration: 'union_rdxf=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -125,7 +125,15 @@ let make =
       ~completed?,
       ~last?,
       ~optional?,
-      ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+      ~orientation=?
+        orientation->(
+                       Belt.Option.map(v =>
+                         switch (v->Obj.magic->Js.Json.classify) {
+                         | JSONString(str) => str
+                         | _ => orientationToJs(v)
+                         }
+                       )
+                     ),
       ~transitionDuration=?
         transitionDuration->(
                               Belt.Option.map(v =>

@@ -16,16 +16,16 @@ type placement = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'union_r0mu=?,
+    ~anchorEl: 'union_rk9d=?,
     ~children: 'children=?,
-    ~container: 'union_rd8y=?,
+    ~container: 'union_rmii=?,
     ~disablePortal: bool=?,
     ~keepMounted: bool=?,
     ~modifiers: Js.t({..})=?,
     ~_open: bool,
     ~placement: string=?,
     ~popperOptions: Js.t({..})=?,
-    ~popperRef: 'union_rp08=?,
+    ~popperRef: 'union_roge=?,
     ~transition: bool=?,
     unit
   ) =>

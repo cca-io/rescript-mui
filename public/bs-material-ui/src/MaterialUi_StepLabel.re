@@ -112,7 +112,15 @@ let make =
       ~icon?,
       ~last?,
       ~optional?,
-      ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+      ~orientation=?
+        orientation->(
+                       Belt.Option.map(v =>
+                         switch (v->Obj.magic->Js.Json.classify) {
+                         | JSONString(str) => str
+                         | _ => orientationToJs(v)
+                         }
+                       )
+                     ),
       ~_StepIconProps?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,

@@ -5,6 +5,16 @@ type color = [
   | [@bs.as "default"] `Default
 ];
 
+[@bs.deriving jsConverter]
+type edge = [
+  | [@bs.as "start"] `Start
+  | [@bs.as "end"] `End
+  | [@bs.as "false"] `False
+];
+
+[@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -55,10 +65,15 @@ external makePropsMui:
     ~indeterminate: bool=?,
     ~indeterminateIcon: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rwkb=?,
-    ~onChange: 'any_rcco=?,
+    ~inputRef: 'union_rc47=?,
+    ~onChange: 'any_rdn7=?,
     ~_type: string=?,
-    ~value: 'any_r4jc=?,
+    ~value: 'any_rrk7=?,
+    ~children: 'children=?,
+    ~className: string=?,
+    ~disableFocusRipple: bool=?,
+    ~edge: string=?,
+    ~size: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -88,7 +103,12 @@ let make =
          )=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~type_: option(string)=?,
-      ~value: option('any_r4jc)=?,
+      ~value: option('any_rrk7)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~disableFocusRipple: option(bool)=?,
+      ~edge: option(edge)=?,
+      ~size: option(size)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -110,6 +130,11 @@ let make =
       ~onChange?,
       ~_type=?type_,
       ~value?,
+      ~children?,
+      ~className?,
+      ~disableFocusRipple?,
+      ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
+      ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

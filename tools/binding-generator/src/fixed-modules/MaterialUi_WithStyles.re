@@ -18,6 +18,21 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
   let withStylesWithTheme:
     (MaterialUi_Theme.t => S.classRecordJs) => React.component('a) = MaterialUi_WithStyles_Helper.createStyled;
 
+  [@bs.module "@material-ui/styles"]
+  external makeStyles: 'a => 'b = "makeStyles";
+  [@bs.module "@material-ui/styles"]
+  external makeStylesWithTheme: ('a => 'b) => 'c = "makeStyles";
+  let useStyles = (): S.classRecordStrings => {
+    (
+      switch (S.classes) {
+      | Record(record) => makeStyles(record->S.classRecordToJs)
+      | ThemeFunc(func) =>
+        makeStylesWithTheme(theme => func(theme)->S.classRecordToJs)
+      }
+    )
+    ->S.classRecordStringsFromJs;
+  };
+
   module Styled = {
     let styled =
       switch (S.classes) {

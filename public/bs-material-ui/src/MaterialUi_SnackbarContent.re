@@ -32,6 +32,9 @@ external makePropsMui:
     ~action: React.element=?,
     ~className: string=?,
     ~message: React.element=?,
+    ~children: 'children=?,
+    ~elevation: 'number_t=?,
+    ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -48,6 +51,9 @@ let make =
       ~action: option(React.element)=?,
       ~className: option(string)=?,
       ~message: option(React.element)=?,
+      ~children: option('children)=?,
+      ~elevation: option([ | `Int(int) | `Float(float)])=?,
+      ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -57,6 +63,10 @@ let make =
       ~action?,
       ~className?,
       ~message?,
+      ~children?,
+      ~elevation=?
+        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~square?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

@@ -37,9 +37,10 @@ external makePropsMui:
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_rwbn=?,
+    ~onChange: 'any_rd7l=?,
     ~square: bool=?,
     ~_TransitionProps: Js.t({..})=?,
+    ~elevation: 'number_p=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -61,6 +62,7 @@ let make =
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~square: option(bool)=?,
       ~_TransitionProps: option(Js.t({..}))=?,
+      ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -75,6 +77,8 @@ let make =
       ~onChange?,
       ~square?,
       ~_TransitionProps?,
+      ~elevation=?
+        elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

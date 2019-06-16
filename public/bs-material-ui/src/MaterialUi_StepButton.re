@@ -4,6 +4,13 @@ type orientation = [
   | [@bs.as "vertical"] `Vertical
 ];
 
+[@bs.deriving jsConverter]
+type type_ = [
+  | [@bs.as "submit"] `Submit
+  | [@bs.as "reset"] `Reset
+  | [@bs.as "button"] `Button
+];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -48,6 +55,31 @@ external makePropsMui:
     ~last: bool=?,
     ~optional: React.element=?,
     ~orientation: string=?,
+    ~action: 'any_rjtp=?,
+    ~buttonRef: 'union_rnw5=?,
+    ~centerRipple: bool=?,
+    ~component: React.element=?,
+    ~disableRipple: bool=?,
+    ~disableTouchRipple: bool=?,
+    ~focusRipple: bool=?,
+    ~focusVisibleClassName: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onDragEnd: ReactEvent.Mouse.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onFocusVisible: 'genericCallback=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+    ~onMouseDown: ReactEvent.Mouse.t => unit=?,
+    ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+    ~onMouseUp: ReactEvent.Mouse.t => unit=?,
+    ~onTouchEnd: ReactEvent.Touch.t => unit=?,
+    ~onTouchMove: ReactEvent.Touch.t => unit=?,
+    ~onTouchStart: ReactEvent.Touch.t => unit=?,
+    ~role: string=?,
+    ~tabIndex: 'union_rm7a=?,
+    ~_TouchRippleProps: Js.t({..})=?,
+    ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -71,6 +103,34 @@ let make =
       ~last: option(bool)=?,
       ~optional: option(React.element)=?,
       ~orientation: option(orientation)=?,
+      ~action: option(Js.t({..}) => unit)=?,
+      ~buttonRef:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
+      ~centerRipple: option(bool)=?,
+      ~component: option(React.element)=?,
+      ~disableRipple: option(bool)=?,
+      ~disableTouchRipple: option(bool)=?,
+      ~focusRipple: option(bool)=?,
+      ~focusVisibleClassName: option(string)=?,
+      ~onBlur: option(ReactEvent.Focus.t => unit)=?,
+      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~onDragEnd: option(ReactEvent.Mouse.t => unit)=?,
+      ~onFocus: option(ReactEvent.Focus.t => unit)=?,
+      ~onFocusVisible: option('genericCallback)=?,
+      ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+      ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
+      ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
+      ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
+      ~onMouseUp: option(ReactEvent.Mouse.t => unit)=?,
+      ~onTouchEnd: option(ReactEvent.Touch.t => unit)=?,
+      ~onTouchMove: option(ReactEvent.Touch.t => unit)=?,
+      ~onTouchStart: option(ReactEvent.Touch.t => unit)=?,
+      ~role: option(string)=?,
+      ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+      ~_TouchRippleProps: option(Js.t({..}))=?,
+      ~type_: option(type_)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -86,7 +146,42 @@ let make =
       ~icon?,
       ~last?,
       ~optional?,
-      ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+      ~orientation=?
+        orientation->(
+                       Belt.Option.map(v =>
+                         switch (v->Obj.magic->Js.Json.classify) {
+                         | JSONString(str) => str
+                         | _ => orientationToJs(v)
+                         }
+                       )
+                     ),
+      ~action?,
+      ~buttonRef=?
+        buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~centerRipple?,
+      ~component?,
+      ~disableRipple?,
+      ~disableTouchRipple?,
+      ~focusRipple?,
+      ~focusVisibleClassName?,
+      ~onBlur?,
+      ~onClick?,
+      ~onDragEnd?,
+      ~onFocus?,
+      ~onFocusVisible?,
+      ~onKeyDown?,
+      ~onKeyUp?,
+      ~onMouseDown?,
+      ~onMouseLeave?,
+      ~onMouseUp?,
+      ~onTouchEnd?,
+      ~onTouchMove?,
+      ~onTouchStart?,
+      ~role?,
+      ~tabIndex=?
+        tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+      ~_TouchRippleProps?,
+      ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

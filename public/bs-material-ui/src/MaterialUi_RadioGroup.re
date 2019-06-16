@@ -31,14 +31,16 @@ module Actions = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_r4eh=?,
+    ~actions: 'any_r6wc=?,
     ~children: 'children=?,
-    ~defaultValue: 'any_rgnl=?,
+    ~defaultValue: 'any_rx1g=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_r7u2=?,
+    ~onChange: 'any_roo6=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~value: string=?,
+    ~className: string=?,
+    ~row: bool=?,
     unit
   ) =>
   _ =
@@ -52,12 +54,14 @@ let make =
     (
       ~actions: option(Actions.t)=?,
       ~children: option('children)=?,
-      ~defaultValue: option('any_rgnl)=?,
+      ~defaultValue: option('any_rx1g)=?,
       ~name: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onChange: option((ReactEvent.Form.t, string) => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~value: option(string)=?,
+      ~className: option(string)=?,
+      ~row: option(bool)=?,
     ) =>
   React.createElement(
     reactComponent,
@@ -70,6 +74,8 @@ let make =
       ~onChange?,
       ~onKeyDown?,
       ~value?,
+      ~className?,
+      ~row?,
       (),
     ),
   );

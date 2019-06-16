@@ -77,6 +77,7 @@ external makePropsMui:
     ~required: bool=?,
     ~shrink: bool=?,
     ~variant: string=?,
+    ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -101,6 +102,7 @@ let make =
       ~required: option(bool)=?,
       ~shrink: option(bool)=?,
       ~variant: option(variant)=?,
+      ~filled: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -118,6 +120,7 @@ let make =
       ~required?,
       ~shrink?,
       ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      ~filled?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

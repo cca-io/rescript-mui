@@ -57,7 +57,7 @@ external makePropsMui:
     ~className: string=?,
     ~color: string=?,
     ~invisible: bool=?,
-    ~max: 'number_k=?,
+    ~max: 'number_i=?,
     ~showZero: bool=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,

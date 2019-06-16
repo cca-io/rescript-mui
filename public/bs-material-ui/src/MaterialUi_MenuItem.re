@@ -1,3 +1,9 @@
+[@bs.deriving jsConverter]
+type alignItems = [
+  | [@bs.as "flex-start"] `Flex_Start
+  | [@bs.as "center"] `Center
+];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -35,10 +41,17 @@ external makePropsMui:
     ~disableGutters: bool=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~tabIndex: 'number_u=?,
-    ~value: 'union_rsu3=?,
+    ~tabIndex: 'number_e=?,
+    ~value: 'union_rmtj=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~alignItems: string=?,
+    ~autoFocus: bool=?,
+    ~button: bool=?,
+    ~_ContainerProps: Js.t({..})=?,
+    ~dense: bool=?,
+    ~divider: bool=?,
+    ~focusVisibleClassName: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -70,6 +83,13 @@ let make =
          )=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~alignItems: option(alignItems)=?,
+      ~autoFocus: option(bool)=?,
+      ~button: option(bool)=?,
+      ~_ContainerProps: option(Js.t({..}))=?,
+      ~dense: option(bool)=?,
+      ~divider: option(bool)=?,
+      ~focusVisibleClassName: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
     ) =>
@@ -88,6 +108,13 @@ let make =
         value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
       ~onFocus?,
       ~onClick?,
+      ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
+      ~autoFocus?,
+      ~button?,
+      ~_ContainerProps?,
+      ~dense?,
+      ~divider?,
+      ~focusVisibleClassName?,
       ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
       ~style?,
       (),

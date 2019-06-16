@@ -7,6 +7,8 @@ import * as reactDocgen from 'react-docgen';
 import getStylesCreator from './../styles/getStylesCreator';
 import createMuiTheme from './../core/styles/createMuiTheme';
 import * as colors from './../core/colors';
+import getInheritance from './inheritance';
+import parseTest from './parseTest';
 
 import findComponents from './find-components';
 import ensureExists from './ensure-folder-exists';
@@ -20,7 +22,7 @@ const outputDirectory = path.join(__dirname, '../../../', 'output', 'json');
 
 rimraf.sync(path.join(outputDirectory, '*.json'));
 
-components.forEach((componentPath) => {
+components.forEach(async (componentPath) => {
 	const src = readFileSync(componentPath, 'utf8');
 
 	if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
@@ -56,10 +58,9 @@ components.forEach((componentPath) => {
 	reactAPI.importPath = '@material-ui/core'; // `@material-ui/core/${componentPath.replace(`${rootDirectory}/`, '').replace('.js', '')}`;
 
 	// Inheritance
-	const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
-	const inheritedComponent = src.match(inheritedComponentRegexp);
-	const inheritsFrom = !inheritedComponent ? '' : inheritedComponent[1];
-	reactAPI.inheritsFrom = inheritsFrom;
+	const testInfo = await parseTest(reactAPI.filename);
+	const inheritance = getInheritance(testInfo, src);
+	reactAPI.inheritsFrom = inheritance ? inheritance.component : '';
 
 	if (typeof reactAPI.props.classes !== 'undefined') {
 		reactAPI.props.classes.flowType = {
