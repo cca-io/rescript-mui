@@ -58,7 +58,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_m=?,
+    ~activeStep: 'number_u=?,
     ~backButton: React.element=?,
     ~className: string=?,
     ~_LinearProgressProps: Js.t({..})=?,
@@ -67,7 +67,7 @@ external makePropsMui:
     ~steps: 'number_j,
     ~variant: string=?,
     ~children: 'children=?,
-    ~elevation: 'number_k=?,
+    ~elevation: 'number_n=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

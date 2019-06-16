@@ -1,6 +1,6 @@
 [@bs.obj]
 external makePropsMui:
-  (~children: 'children=?, ~rootRef: 'union_ruqx, unit) => _ =
+  (~children: 'children=?, ~rootRef: 'union_r6vk, unit) => _ =
   "";
 
 [@bs.module "@material-ui/core"]

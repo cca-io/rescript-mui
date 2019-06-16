@@ -37,10 +37,10 @@ external makePropsMui:
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_rd7l=?,
+    ~onChange: 'any_r1vu=?,
     ~square: bool=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~elevation: 'number_p=?,
+    ~elevation: 'number_o=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit

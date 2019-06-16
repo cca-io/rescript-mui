@@ -75,18 +75,18 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rkzc=?,
+    ~action: 'any_rjiy=?,
     ~centered: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~indicatorColor: string=?,
-    ~innerRef: 'union_re0p=?,
-    ~onChange: 'any_rf7z=?,
+    ~innerRef: 'union_rnml=?,
+    ~onChange: 'any_r06n=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_rwqh=?,
+    ~value: 'any_rcho=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -110,12 +110,12 @@ let make =
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rd42) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rlv8) => unit)=?,
       ~scrollButtons: option(scrollButtons)=?,
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_rwqh)=?,
+      ~value: option('any_rcho)=?,
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -135,7 +135,15 @@ let make =
       ~scrollButtons=?
         scrollButtons->(Belt.Option.map(v => scrollButtonsToJs(v))),
       ~_TabIndicatorProps?,
-      ~textColor=?textColor->(Belt.Option.map(v => textColorToJs(v))),
+      ~textColor=?
+        textColor->(
+                     Belt.Option.map(v =>
+                       switch (v->Obj.magic->Js.Json.classify) {
+                       | JSONString(str) => str
+                       | _ => textColorToJs(v)
+                       }
+                     )
+                   ),
       ~theme?,
       ~value?,
       ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),

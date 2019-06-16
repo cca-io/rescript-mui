@@ -38,14 +38,14 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_2=?,
+    ~activeStep: 'number_j=?,
     ~alternativeLabel: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~connector: React.element=?,
     ~nonLinear: bool=?,
     ~orientation: string=?,
-    ~elevation: 'number_8=?,
+    ~elevation: 'number_p=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

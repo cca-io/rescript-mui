@@ -26,7 +26,7 @@ external makePropsMui:
     ~className: string=?,
     ~raised: bool=?,
     ~children: 'children=?,
-    ~elevation: 'number_8=?,
+    ~elevation: 'number_0=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

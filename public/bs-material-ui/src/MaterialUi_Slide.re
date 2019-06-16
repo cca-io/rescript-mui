@@ -50,7 +50,7 @@ external makePropsMui:
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~theme: Js.t({..})=?,
-    ~timeout: 'union_r30d=?,
+    ~timeout: 'union_rjlv=?,
     unit
   ) =>
   _ =

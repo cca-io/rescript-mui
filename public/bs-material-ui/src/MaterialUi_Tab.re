@@ -77,10 +77,10 @@ external makePropsMui:
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~selected: bool=?,
     ~textColor: string=?,
-    ~value: 'any_rt1q=?,
+    ~value: 'any_rey2=?,
     ~wrapped: bool=?,
-    ~action: 'any_rodr=?,
-    ~buttonRef: 'union_rhb4=?,
+    ~action: 'any_rcpd=?,
+    ~buttonRef: 'union_rttg=?,
     ~centerRipple: bool=?,
     ~component: React.element=?,
     ~disableTouchRipple: bool=?,
@@ -99,7 +99,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rsgr=?,
+    ~tabIndex: 'union_rbmn=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -128,7 +128,7 @@ let make =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~textColor: option(textColor)=?,
-      ~value: option('any_rt1q)=?,
+      ~value: option('any_rey2)=?,
       ~wrapped: option(bool)=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
@@ -174,7 +174,15 @@ let make =
       ~onChange?,
       ~onClick?,
       ~selected?,
-      ~textColor=?textColor->(Belt.Option.map(v => textColorToJs(v))),
+      ~textColor=?
+        textColor->(
+                     Belt.Option.map(v =>
+                       switch (v->Obj.magic->Js.Json.classify) {
+                       | JSONString(str) => str
+                       | _ => textColorToJs(v)
+                       }
+                     )
+                   ),
       ~value?,
       ~wrapped?,
       ~action?,

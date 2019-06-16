@@ -124,6 +124,23 @@ let make = () =>
                <Grid item=true md=V6>
                  <Typography variant=`H5>
                    <a
+                     href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/tabs/DisabledTabs.tsx"
+                     target="_blank">
+                     "Tabs"->React.string
+                   </a>
+                 </Typography>
+               </Grid>
+               <Grid item=true md=V6> <ExampleTabs /> </Grid>
+             </Grid>
+             <br />
+             <br />
+             <Divider />
+             <br />
+             <br />
+             <Grid container=true alignItems=`Center>
+               <Grid item=true md=V6>
+                 <Typography variant=`H5>
+                   <a
                      href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/steppers/VerticalLinearStepper.tsx"
                      target="_blank">
                      "Stepper"->React.string

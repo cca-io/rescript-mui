@@ -1,25 +1,31 @@
 import PluginBase from './base';
 
 class PluginGridSizes extends PluginBase {
-	private isOrientationProp() {
-		if (!this._parser.property.component.name.includes('Step')) {
-			return false;
-		}
-		if ([ 'orientation' ].indexOf(this._parser.property.name) == -1) {
-			return false;
-		}
+	private applyTo = {
+		Step: [ 'orientation' ],
+		Tab: [ 'textColor' ],
+	};
 
-		return true;
+	private isPassThroughProp() {
+		const keys = Object.keys(this.applyTo);
+		for (let key of keys) {
+			if (this._parser.property.component.name.includes(key)) {
+				if (this.applyTo[key].indexOf(this._parser.property.name) > -1) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public beforeParse() {
-		if (!this.isOrientationProp()) {
+		if (!this.isPassThroughProp()) {
 			return;
 		}
 	}
 
 	public beforeWrite() {
-		if (!this.isOrientationProp()) {
+		if (!this.isPassThroughProp()) {
 			return;
 		}
 

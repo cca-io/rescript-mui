@@ -34,8 +34,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~cols: 'number_4=?,
-    ~rows: 'number_1=?,
+    ~cols: 'number_r=?,
+    ~rows: 'number_l=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
