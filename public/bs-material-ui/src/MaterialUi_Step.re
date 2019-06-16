@@ -48,10 +48,11 @@ external makePropsMui:
     ~completed: bool=?,
     ~connector: React.element=?,
     ~disabled: bool=?,
-    ~index: 'number_u=?,
+    ~index: 'number_8=?,
     ~last: bool=?,
     ~orientation: string=?,
     ~key: string=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -72,6 +73,7 @@ let makeProps =
       ~last: option(bool)=?,
       ~orientation: option(orientation)=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -96,6 +98,7 @@ let makeProps =
                      )
                    ),
     ~key?,
+    ~_ref=?ref_,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

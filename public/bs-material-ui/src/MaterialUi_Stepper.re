@@ -38,7 +38,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_9=?,
+    ~activeStep: 'number_a=?,
     ~alternativeLabel: bool=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -46,7 +46,8 @@ external makePropsMui:
     ~nonLinear: bool=?,
     ~orientation: string=?,
     ~key: string=?,
-    ~elevation: 'number_w=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
+    ~elevation: 'number_f=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -65,6 +66,7 @@ let makeProps =
       ~nonLinear: option(bool)=?,
       ~orientation: option(orientation)=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
@@ -89,6 +91,7 @@ let makeProps =
                      )
                    ),
     ~key?,
+    ~_ref=?ref_,
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~square?,

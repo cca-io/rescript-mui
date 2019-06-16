@@ -56,8 +56,9 @@ external makePropsMui:
     ~optional: React.element=?,
     ~orientation: string=?,
     ~key: string=?,
-    ~action: 'any_rdu1=?,
-    ~buttonRef: 'union_rcfh=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
+    ~action: 'any_rv67=?,
+    ~buttonRef: 'union_r6rt=?,
     ~centerRipple: bool=?,
     ~component: React.element=?,
     ~disableRipple: bool=?,
@@ -78,7 +79,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r7yp=?,
+    ~tabIndex: 'union_rugt=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -101,6 +102,7 @@ let makeProps =
       ~optional: option(React.element)=?,
       ~orientation: option(orientation)=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
@@ -153,6 +155,7 @@ let makeProps =
                      )
                    ),
     ~key?,
+    ~_ref=?ref_,
     ~action?,
     ~buttonRef=?
       buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

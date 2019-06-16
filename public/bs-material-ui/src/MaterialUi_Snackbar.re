@@ -120,8 +120,8 @@ module Classes = {
 external makePropsMui:
   (
     ~action: React.element=?,
-    ~anchorOrigin: 'any_ryko=?,
-    ~autoHideDuration: 'number_u=?,
+    ~anchorOrigin: 'any_rkl3=?,
+    ~autoHideDuration: 'number_9=?,
     ~children: 'children=?,
     ~className: string=?,
     ~_ClickAwayListenerProps: Js.t({..})=?,
@@ -129,7 +129,7 @@ external makePropsMui:
     ~disableWindowBlurListener: bool=?,
     ~key: string=?,
     ~message: React.element=?,
-    ~onClose: 'any_r77h=?,
+    ~onClose: 'any_r7tf=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -139,9 +139,10 @@ external makePropsMui:
     ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
     ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
     ~_open: bool=?,
-    ~resumeHideDuration: 'number_6=?,
-    ~transitionDuration: 'union_reyo=?,
+    ~resumeHideDuration: 'number_d=?,
+    ~transitionDuration: 'union_r3i9=?,
     ~_TransitionProps: Js.t({..})=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -181,6 +182,7 @@ let makeProps =
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -224,6 +226,7 @@ let makeProps =
                             )
                           ),
     ~_TransitionProps?,
+    ~_ref=?ref_,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

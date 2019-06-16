@@ -36,8 +36,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rvzz=?,
-    ~buttonRef: 'union_rngm=?,
+    ~action: 'any_rlq9=?,
+    ~buttonRef: 'union_rj1p=?,
     ~centerRipple: bool=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -61,10 +61,11 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rk3a=?,
+    ~tabIndex: 'union_rspi=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~key: string=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -106,6 +107,7 @@ let makeProps =
       ~_TouchRippleProps: option(Js.t({..}))=?,
       ~type_: option(type_)=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -142,6 +144,7 @@ let makeProps =
     ~_TouchRippleProps?,
     ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
     ~key?,
+    ~_ref=?ref_,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

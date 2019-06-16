@@ -61,9 +61,10 @@ external makePropsMui:
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
-    ~index: 'number_r=?,
+    ~index: 'number_f=?,
     ~orientation: string=?,
     ~key: string=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -81,6 +82,7 @@ let makeProps =
       ~index: option([ | `Int(int) | `Float(float)])=?,
       ~orientation: option(orientation)=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -102,6 +104,7 @@ let makeProps =
                      )
                    ),
     ~key?,
+    ~_ref=?ref_,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

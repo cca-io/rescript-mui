@@ -70,6 +70,7 @@ external makePropsMui:
     ~color: string=?,
     ~fontSize: string=?,
     ~key: string=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -84,6 +85,7 @@ let makeProps =
       ~color: option(color)=?,
       ~fontSize: option(fontSize)=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -94,6 +96,7 @@ let makeProps =
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
     ~key?,
+    ~_ref=?ref_,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

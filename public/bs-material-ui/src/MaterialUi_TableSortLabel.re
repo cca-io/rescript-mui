@@ -51,8 +51,9 @@ external makePropsMui:
     ~direction: string=?,
     ~hideSortIcon: bool=?,
     ~key: string=?,
-    ~action: 'any_rlxm=?,
-    ~buttonRef: 'union_rkiu=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
+    ~action: 'any_rf1h=?,
+    ~buttonRef: 'union_r0gi=?,
     ~centerRipple: bool=?,
     ~component: React.element=?,
     ~disabled: bool=?,
@@ -74,7 +75,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_re9e=?,
+    ~tabIndex: 'union_r8xn=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -92,6 +93,7 @@ let makeProps =
       ~direction: option(direction)=?,
       ~hideSortIcon: option(bool)=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~action: option(Js.t({..}) => unit)=?,
       ~buttonRef:
          option(
@@ -132,6 +134,7 @@ let makeProps =
     ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
     ~hideSortIcon?,
     ~key?,
+    ~_ref=?ref_,
     ~action?,
     ~buttonRef=?
       buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

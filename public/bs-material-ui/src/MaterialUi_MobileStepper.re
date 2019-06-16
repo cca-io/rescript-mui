@@ -58,17 +58,18 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_f=?,
+    ~activeStep: 'number_a=?,
     ~backButton: React.element=?,
     ~className: string=?,
     ~_LinearProgressProps: Js.t({..})=?,
     ~nextButton: React.element=?,
     ~position: string=?,
-    ~steps: 'number_2,
+    ~steps: 'number_7,
     ~variant: string=?,
     ~key: string=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
     ~children: 'children=?,
-    ~elevation: 'number_u=?,
+    ~elevation: 'number_i=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -88,6 +89,7 @@ let makeProps =
       ~steps: [ | `Int(int) | `Float(float)],
       ~variant: option(variant)=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~children: option('children)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
@@ -106,6 +108,7 @@ let makeProps =
     ~steps=MaterialUi_Helpers.unwrapValue(steps),
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
+    ~_ref=?ref_,
     ~children?,
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

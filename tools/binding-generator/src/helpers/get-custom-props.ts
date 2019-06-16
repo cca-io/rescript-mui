@@ -8,6 +8,15 @@ const defaults = {
 		required: false,
 		description: '-',
 	},
+	ref: {
+		type: {
+			name: 'custom',
+			reasonType: 'React.Ref.t(option(Dom.element))',
+			jsType: 'React.Ref.t(option(Dom.element))',
+		},
+		required: false,
+		description: '-',
+	},
 };
 
 const GetCustomProps = (componentName: string) =>

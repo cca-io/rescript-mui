@@ -262,4 +262,13 @@ export default {
 			description: '-',
 		},
 	},
+	InputLabel: {
+		htmlFor: {
+			type: {
+				name: 'string',
+			},
+			required: true,
+			description: '-',
+		},
+	},
 };

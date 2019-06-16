@@ -26,6 +26,7 @@ external makePropsMui:
     ~className: string=?,
     ~children: 'children=?,
     ~key: string=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -38,6 +39,7 @@ let makeProps =
       ~className: option(string)=?,
       ~children: option('children)=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -46,6 +48,7 @@ let makeProps =
     ~className?,
     ~children?,
     ~key?,
+    ~_ref=?ref_,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

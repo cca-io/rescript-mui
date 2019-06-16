@@ -4,7 +4,7 @@ external makePropsMui:
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_r10p=?,
+    ~container: 'union_rvkd=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -12,16 +12,17 @@ external makePropsMui:
     ~disablePortal: bool=?,
     ~disableRestoreFocus: bool=?,
     ~hideBackdrop: bool=?,
-    ~innerRef: 'union_rig3=?,
+    ~innerRef: 'union_r8rq=?,
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rpch=?,
+    ~onClose: 'any_ru3x=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
     ~theme: Js.t({..})=?,
     ~key: string=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
     unit
   ) =>
   _ =
@@ -56,6 +57,7 @@ let makeProps =
       ~open_: bool,
       ~theme: option(Js.t({..}))=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       (),
     ) =>
   makePropsMui(
@@ -82,6 +84,7 @@ let makeProps =
     ~_open=open_,
     ~theme?,
     ~key?,
+    ~_ref=?ref_,
     (),
   );
 

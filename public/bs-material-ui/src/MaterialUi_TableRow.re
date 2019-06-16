@@ -41,6 +41,7 @@ external makePropsMui:
     ~selected: bool=?,
     ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
     ~key: string=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -56,6 +57,7 @@ let makeProps =
       ~selected: option(bool)=?,
       ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -67,6 +69,7 @@ let makeProps =
     ~selected?,
     ~onDoubleClick?,
     ~key?,
+    ~_ref=?ref_,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

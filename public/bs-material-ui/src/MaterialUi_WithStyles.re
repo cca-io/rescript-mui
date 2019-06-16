@@ -21,13 +21,17 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
   [@bs.module "@material-ui/styles"]
   external makeStyles: 'a => 'b = "makeStyles";
   [@bs.module "@material-ui/styles"]
-  external makeStylesWithTheme: ('a => 'b) => 'c = "makeStyles";
+  external makeStylesWithTheme: (. ('a => 'b)) => 'c = "makeStyles";
   let useStyles = (): S.classRecordStrings => {
     (
       switch (S.classes) {
       | Record(record) => makeStyles(record->S.classRecordToJs)
       | ThemeFunc(func) =>
-        makeStylesWithTheme(theme => func(theme)->S.classRecordToJs)
+        let m =
+          makeStylesWithTheme(.theme => {
+            func(theme)->S.classRecordToJs;
+          });
+        m(.)->Obj.magic;
       }
     )
     ->S.classRecordStringsFromJs;

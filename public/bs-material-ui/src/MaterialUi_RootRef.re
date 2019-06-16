@@ -1,6 +1,13 @@
 [@bs.obj]
 external makePropsMui:
-  (~children: 'children=?, ~rootRef: 'union_rri4, ~key: string=?, unit) => _ =
+  (
+    ~children: 'children=?,
+    ~rootRef: 'union_re07,
+    ~key: string=?,
+    ~_ref: React.Ref.t(Dom.element)=?,
+    unit
+  ) =>
+  _ =
   "";
 
 let makeProps =
@@ -11,12 +18,14 @@ let makeProps =
          | `ObjectGeneric(Js.t({..}))
        ],
       ~key: option(string)=?,
+      ~ref_: option(React.Ref.t(Dom.element))=?,
       (),
     ) =>
   makePropsMui(
     ~children?,
     ~rootRef=MaterialUi_Helpers.unwrapValue(rootRef),
     ~key?,
+    ~_ref=?ref_,
     (),
   );
 
