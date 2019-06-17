@@ -6,13 +6,7 @@ let getSpacing = (theme, num) =>
 [%mui.withStyles
   "ExampleStyles"(theme =>
     {
-      root:
-        ReactDOMRe.Style.make(
-          ~display="flex",
-          ~flexDirection="column",
-          ~flexWrap="wrap",
-          (),
-        ),
+      root: ReactDOMRe.Style.make(~display="flex", ~flexWrap="wrap", ()),
       formControl:
         ReactDOMRe.Style.make(
           ~margin=theme->getSpacing(1),

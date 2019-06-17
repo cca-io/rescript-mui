@@ -13,167 +13,172 @@
 
 [@react.component]
 let make = () =>
-  <Styles>
-    ...MaterialUi.(
-         classes =>
-           <div className={classes.container}>
-             <CssBaseline />
-             <Grid container=true>
-               <Grid item=true md=V12>
-                 <Typography variant=`H4>
-                   "@jsiebern/bs-material-ui Examples"
-                 </Typography>
+  <MaterialUi_ThemeProvider
+    theme={MaterialUi_Theme.create(MaterialUi_ThemeOptions.make())}>
+    <Styles>
+      ...MaterialUi.(
+           classes =>
+             <div className={classes.container}>
+               <CssBaseline />
+               <Grid container=true>
+                 <Grid item=true md=V12>
+                   <Typography variant=`H4>
+                     "@jsiebern/bs-material-ui Examples"
+                   </Typography>
+                 </Grid>
                </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5> "Class Override" </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5> "Class Override" </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleClassOverride /> </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExampleClassOverride /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5> "Icons" </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5> "Icons" </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleIcons /> </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExampleIcons /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5> "Popover" </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5> "Popover" </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExamplePopover /> </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExamplePopover /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5> "WithStylesSafe" </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5> "WithStylesSafe" </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleWithStylesSafe /> </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExampleWithStylesSafe /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5> "WithStylesUnsafe" </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5> "WithStylesUnsafe" </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleWithStylesUnsafe /> </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExampleWithStylesUnsafe /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5> "Theme Provider" </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5> "Theme Provider" </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleThemeProvider /> </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExampleThemeProvider /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5>
-                   "Theme Provider Override"
-                 </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5>
+                     "Theme Provider Override"
+                   </Typography>
+                 </Grid>
+                 <Grid item=true md=V6>
+                   <ExampleThemeProviderOverride />
+                 </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExampleThemeProviderOverride /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5> "List" </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5> "List" </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleList /> </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExampleList /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5>
-                   <a
-                     href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/tabs/DisabledTabs.tsx"
-                     target="_blank">
-                     "Tabs"->React.string
-                   </a>
-                 </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5>
+                     <a
+                       href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/tabs/DisabledTabs.tsx"
+                       target="_blank">
+                       "Tabs"->React.string
+                     </a>
+                   </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleTabs /> </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExampleTabs /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5>
-                   <a
-                     href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/steppers/VerticalLinearStepper.tsx"
-                     target="_blank">
-                     "Stepper"->React.string
-                   </a>
-                 </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5>
+                     <a
+                       href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/steppers/VerticalLinearStepper.tsx"
+                       target="_blank">
+                       "Stepper"->React.string
+                     </a>
+                   </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleStepper /> </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExampleStepper /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <Divider />
-             <br />
-             <br />
-             <Grid container=true alignItems=`Center>
-               <Grid item=true md=V6>
-                 <Typography variant=`H5>
-                   <a
-                     href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/selects/SimpleSelect.tsx"
-                     target="_blank">
-                     "Select"->React.string
-                   </a>
-                 </Typography>
+               <br />
+               <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5>
+                     <a
+                       href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/selects/SimpleSelect.tsx"
+                       target="_blank">
+                       "Select"->React.string
+                     </a>
+                   </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleSelect /> </Grid>
                </Grid>
-               <Grid item=true md=V6> <ExampleSelect /> </Grid>
-             </Grid>
-             <br />
-             <br />
-             <br />
-             <br />
-             <br />
-             <br />
-             <br />
-             <br />
-           </div>
-       )
-  </Styles>;
+               <br />
+               <br />
+               <br />
+               <br />
+               <br />
+               <br />
+               <br />
+               <br />
+             </div>
+         )
+    </Styles>
+  </MaterialUi_ThemeProvider>;
