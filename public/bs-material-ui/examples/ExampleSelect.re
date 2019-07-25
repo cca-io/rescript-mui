@@ -29,7 +29,6 @@ type state = {
 let make = () => {
   let classes = ExampleStyles.useStyles();
 
-  Js.log(classes);
   let (values, setValues) =
     React.useReducer((_, v) => v, {age: "", name: "hai"});
 
