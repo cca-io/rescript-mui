@@ -143,25 +143,25 @@ external makePropsMui:
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_2=?,
-    ~minFlingVelocity: 'number_q=?,
-    ~_ModalProps: 'any_rs8n=?,
-    ~onClose: 'any_r7q4,
-    ~onOpen: 'any_r52k,
+    ~hysteresis: 'number_x=?,
+    ~minFlingVelocity: 'number_4=?,
+    ~_ModalProps: 'any_rcz5=?,
+    ~onClose: 'any_r0rm,
+    ~onOpen: 'any_rzqo,
     ~_open: bool,
-    ~_PaperProps: 'any_rm0r=?,
+    ~_PaperProps: 'any_rhn9=?,
     ~_SwipeAreaProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_a=?,
-    ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rh8i=?,
+    ~swipeAreaWidth: 'number_n=?,
+    ~transitionDuration: 'union_rcua=?,
     ~variant: string=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(Dom.element)=?,
+    ~_ref: React.Ref.t(option(Dom.element))=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_x=?,
+    ~elevation: 'number_e=?,
     ~_SlideProps: Js.t({..})=?,
+    ~theme: Js.t({..})=?,
     unit
   ) =>
   _ =
@@ -183,7 +183,6 @@ let makeProps =
       ~_PaperProps: option(PaperProps.t)=?,
       ~_SwipeAreaProps: option(Js.t({..}))=?,
       ~swipeAreaWidth: option([ | `Int(int) | `Float(float)])=?,
-      ~theme: option(Js.t({..}))=?,
       ~transitionDuration:
          option(
            [
@@ -194,12 +193,13 @@ let makeProps =
          )=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(Dom.element))=?,
+      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~_SlideProps: option(Js.t({..}))=?,
+      ~theme: option(Js.t({..}))=?,
       (),
     ) =>
   makePropsMui(
@@ -226,7 +226,6 @@ let makeProps =
       swipeAreaWidth->(
                         Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
                       ),
-    ~theme?,
     ~transitionDuration=?
       transitionDuration->(
                             Belt.Option.map(v =>
@@ -242,6 +241,7 @@ let makeProps =
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_SlideProps?,
+    ~theme?,
     (),
   );
 

@@ -106,7 +106,7 @@ let makeProps =
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~filled: option(bool)=?,
       ~classes: option(Classes.t)=?,
-      ~style: option(ReactDOMRe.Style.t)=?, 
+      ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(

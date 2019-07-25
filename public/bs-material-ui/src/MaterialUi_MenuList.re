@@ -31,14 +31,14 @@ module Actions = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_r0uq=?,
+    ~actions: 'any_rjje=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~disableListWrap: bool=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(Dom.element)=?,
+    ~_ref: React.Ref.t(option(Dom.element))=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,
@@ -56,7 +56,7 @@ let makeProps =
       ~disableListWrap: option(bool)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(Dom.element))=?,
+      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~dense: option(bool)=?,
       ~disablePadding: option(bool)=?,
       ~subheader: option(React.element)=?,

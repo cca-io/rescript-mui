@@ -34,10 +34,10 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~cols: 'number_s=?,
-    ~rows: 'number_9=?,
+    ~cols: 'number_t=?,
+    ~rows: 'number_8=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(Dom.element)=?,
+    ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -52,7 +52,7 @@ let makeProps =
       ~cols: option([ | `Int(int) | `Float(float)])=?,
       ~rows: option([ | `Int(int) | `Float(float)])=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(Dom.element))=?,
+      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),

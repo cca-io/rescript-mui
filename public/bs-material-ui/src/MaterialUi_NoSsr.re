@@ -5,7 +5,7 @@ external makePropsMui:
     ~defer: bool=?,
     ~fallback: React.element=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(Dom.element)=?,
+    ~_ref: React.Ref.t(option(Dom.element))=?,
     unit
   ) =>
   _ =
@@ -17,7 +17,7 @@ let makeProps =
       ~defer: option(bool)=?,
       ~fallback: option(React.element)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(Dom.element))=?,
+      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       (),
     ) =>
   makePropsMui(~children?, ~defer?, ~fallback?, ~key?, ~_ref=?ref_, ());

@@ -2,9 +2,9 @@
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~rootRef: 'union_re07,
+    ~rootRef: 'union_r0rs,
     ~key: string=?,
-    ~_ref: React.Ref.t(Dom.element)=?,
+    ~_ref: React.Ref.t(option(Dom.element))=?,
     unit
   ) =>
   _ =
@@ -18,7 +18,7 @@ let makeProps =
          | `ObjectGeneric(Js.t({..}))
        ],
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(Dom.element))=?,
+      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       (),
     ) =>
   makePropsMui(

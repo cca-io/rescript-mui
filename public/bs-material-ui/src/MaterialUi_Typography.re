@@ -168,7 +168,7 @@ external makePropsMui:
     ~variant: string=?,
     ~variantMapping: Js.t({..})=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(Dom.element)=?,
+    ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -190,7 +190,7 @@ let makeProps =
       ~variant: option(variant)=?,
       ~variantMapping: option(Js.t({..}))=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(Dom.element))=?,
+      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),

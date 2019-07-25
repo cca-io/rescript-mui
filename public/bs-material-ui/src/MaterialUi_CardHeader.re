@@ -47,7 +47,7 @@ external makePropsMui:
     ~title: React.element=?,
     ~titleTypographyProps: Js.t({..})=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(Dom.element)=?,
+    ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -66,7 +66,7 @@ let makeProps =
       ~title: option(React.element)=?,
       ~titleTypographyProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(Dom.element))=?,
+      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),

@@ -2500,6 +2500,16 @@ module Shape = {
   let make = t;
 };
 
+module Status = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "danger"]
+    danger: string,
+  };
+
+  let make = t;
+};
+
 module Duration = {
   [@bs.deriving abstract]
   type t = {
@@ -2669,6 +2679,8 @@ module ThemeOptions = {
     shape: Shape.t,
     [@bs.optional] [@bs.as "spacing"]
     spacing: Js.Json.t,
+    [@bs.optional] [@bs.as "status"]
+    status: Status.t,
     [@bs.optional] [@bs.as "transitions"]
     transitions: TransitionsOptions.t,
     [@bs.optional] [@bs.as "typography"]

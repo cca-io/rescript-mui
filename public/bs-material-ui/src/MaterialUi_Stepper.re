@@ -38,7 +38,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_a=?,
+    ~activeStep: 'number_j=?,
     ~alternativeLabel: bool=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -46,8 +46,8 @@ external makePropsMui:
     ~nonLinear: bool=?,
     ~orientation: string=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(Dom.element)=?,
-    ~elevation: 'number_f=?,
+    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~elevation: 'number_n=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -66,7 +66,7 @@ let makeProps =
       ~nonLinear: option(bool)=?,
       ~orientation: option(orientation)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(Dom.element))=?,
+      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,

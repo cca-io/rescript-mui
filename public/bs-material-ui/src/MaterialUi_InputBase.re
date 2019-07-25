@@ -15,6 +15,7 @@ module Classes = {
     | FullWidth(string)
     | Input(string)
     | InputMarginDense(string)
+    | InputSelect(string)
     | InputMultiline(string)
     | InputTypeSearch(string)
     | InputAdornedStart(string)
@@ -34,6 +35,7 @@ module Classes = {
     | FullWidth(_) => "fullWidth"
     | Input(_) => "input"
     | InputMarginDense(_) => "inputMarginDense"
+    | InputSelect(_) => "inputSelect"
     | InputMultiline(_) => "inputMultiline"
     | InputTypeSearch(_) => "inputTypeSearch"
     | InputAdornedStart(_) => "inputAdornedStart"
@@ -56,6 +58,7 @@ module Classes = {
                          | FullWidth(className)
                          | Input(className)
                          | InputMarginDense(className)
+                         | InputSelect(className)
                          | InputMultiline(className)
                          | InputTypeSearch(className)
                          | InputAdornedStart(className)
@@ -75,19 +78,19 @@ external makePropsMui:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_ryyt=?,
+    ~defaultValue: 'any_r7aw=?,
     ~disabled: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rnyk=?,
+    ~inputRef: 'union_rg8q=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_ra34=?,
+    ~onChange: 'any_rlnd=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~onEmpty: 'genericCallback=?,
     ~onFilled: 'genericCallback=?,
@@ -98,13 +101,14 @@ external makePropsMui:
     ~readOnly: bool=?,
     ~renderPrefix: 'genericCallback=?,
     ~required: bool=?,
-    ~rows: 'union_r078=?,
-    ~rowsMax: 'union_r7ge=?,
+    ~rows: 'union_re18=?,
+    ~rowsMax: 'union_rn72=?,
+    ~select: bool=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_rgf1=?,
+    ~value: 'any_r9s3=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(Dom.element)=?,
+    ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -118,7 +122,7 @@ let makeProps =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_ryyt)=?,
+      ~defaultValue: option('any_r7aw)=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
@@ -146,11 +150,12 @@ let makeProps =
       ~required: option(bool)=?,
       ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
+      ~select: option(bool)=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rgf1)=?,
+      ~value: option('any_r9s3)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(Dom.element))=?,
+      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -187,6 +192,7 @@ let makeProps =
     ~rows=?rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~rowsMax=?
       rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~select?,
     ~startAdornment?,
     ~_type=?type_,
     ~value?,

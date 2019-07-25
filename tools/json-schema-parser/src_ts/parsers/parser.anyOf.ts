@@ -14,7 +14,7 @@ class AnyOfParser extends BaseParser {
 			return;
 		}
 
-		if (this.def.anyOf[0]['$ref'] && this.def.anyOf[0]['$ref'].includes('CreateCSSProperties')) {
+		if (this.def.anyOf[0]['$ref'] && this.def.anyOf[0]['$ref'].includes('CSSProperties')) {
 			this.objParser = new class extends ObjectParser {
 				public getReasonType() {
 					return 'ReactDOMRe.Style.t';

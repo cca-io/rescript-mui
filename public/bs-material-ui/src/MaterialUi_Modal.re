@@ -4,7 +4,7 @@ external makePropsMui:
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rvkd=?,
+    ~container: 'union_rhzp=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -12,17 +12,15 @@ external makePropsMui:
     ~disablePortal: bool=?,
     ~disableRestoreFocus: bool=?,
     ~hideBackdrop: bool=?,
-    ~innerRef: 'union_r8rq=?,
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_ru3x=?,
+    ~onClose: 'any_rdl6=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~theme: Js.t({..})=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(Dom.element)=?,
+    ~_ref: React.Ref.t(option(Dom.element))=?,
     unit
   ) =>
   _ =
@@ -44,10 +42,6 @@ let makeProps =
       ~disablePortal: option(bool)=?,
       ~disableRestoreFocus: option(bool)=?,
       ~hideBackdrop: option(bool)=?,
-      ~innerRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
       ~keepMounted: option(bool)=?,
       ~manager: option(Js.t({..}))=?,
       ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
@@ -55,9 +49,8 @@ let makeProps =
       ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: bool,
-      ~theme: option(Js.t({..}))=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(Dom.element))=?,
+      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       (),
     ) =>
   makePropsMui(
@@ -73,8 +66,6 @@ let makeProps =
     ~disablePortal?,
     ~disableRestoreFocus?,
     ~hideBackdrop?,
-    ~innerRef=?
-      innerRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~keepMounted?,
     ~manager?,
     ~onBackdropClick?,
@@ -82,7 +73,6 @@ let makeProps =
     ~onEscapeKeyDown?,
     ~onRendered?,
     ~_open=open_,
-    ~theme?,
     ~key?,
     ~_ref=?ref_,
     (),
