@@ -159,6 +159,8 @@ module BottomNavigationActionClassKey = {
 module BreadcrumbsClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "li"]
+    li: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "ol"]
     ol: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -466,6 +468,28 @@ module CollapseClassKey = {
   let make = t;
 };
 
+module ContainerClassKey = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "fixed"]
+    fixed: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "maxWidthLg"]
+    maxWidthLg: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "maxWidthMd"]
+    maxWidthMd: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "maxWidthSm"]
+    maxWidthSm: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "maxWidthXl"]
+    maxWidthXl: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "maxWidthXs"]
+    maxWidthXs: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "root"]
+    root: ReactDOMRe.Style.t,
+  };
+
+  let make = t;
+};
+
 module MuiCssBaseline = {
   [@bs.deriving abstract]
   type t = {
@@ -681,16 +705,26 @@ module FilledInputClassKey = {
     error: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "focused"]
     focused: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "formControl"]
+    formControl: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "fullWidth"]
+    fullWidth: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "input"]
     input: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputAdornedEnd"]
     inputAdornedEnd: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputAdornedStart"]
     inputAdornedStart: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "inputHiddenLabel"]
+    inputHiddenLabel: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputMarginDense"]
     inputMarginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputMultiline"]
     inputMultiline: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "inputTypeSearch"]
+    inputTypeSearch: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "marginDense"]
+    marginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "multiline"]
     multiline: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -859,6 +893,8 @@ module GridClassKey = {
     justifyXsSpaceAround: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "justify-xs-space-between"]
     justifyXsSpaceBetween: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "root"]
+    root: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "spacing-xs-1"]
     spacingXs1: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "spacing-xs-10"]
@@ -1035,6 +1071,10 @@ module InputAdornmentClassKey = {
     disablePointerEvents: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "filled"]
     filled: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "hiddenLabel"]
+    hiddenLabel: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "marginDense"]
+    marginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "positionEnd"]
     positionEnd: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "positionStart"]
@@ -1069,6 +1109,8 @@ module InputBaseClassKey = {
     inputAdornedEnd: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputAdornedStart"]
     inputAdornedStart: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "inputHiddenLabel"]
+    inputHiddenLabel: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputMarginDense"]
     inputMarginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputMultiline"]
@@ -1405,6 +1447,10 @@ module OutlinedInputClassKey = {
     inputMarginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputMultiline"]
     inputMultiline: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "inputSelect"]
+    inputSelect: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "marginDense"]
+    marginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "multiline"]
     multiline: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "notchedOutline"]
@@ -1508,6 +1554,40 @@ module RadioClassKey = {
   let make = t;
 };
 
+module SliderClassKey = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "disabled"]
+    disabled: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "mark"]
+    mark: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "markActive"]
+    markActive: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "markLabel"]
+    markLabel: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "markLabelActive"]
+    markLabelActive: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "marked"]
+    marked: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "rail"]
+    rail: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "root"]
+    root: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "rtl"]
+    rtl: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "thumb"]
+    thumb: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "track"]
+    track: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "valueLabel"]
+    valueLabel: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "vertical"]
+    vertical: ReactDOMRe.Style.t,
+  };
+
+  let make = t;
+};
+
 module SnackbarClassKey = {
   [@bs.deriving abstract]
   type t = {
@@ -1544,11 +1624,13 @@ module SnackbarContentClassKey = {
   let make = t;
 };
 
-module StepperClasskey = {
+module StepClasskey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "alternativeLabel"]
     alternativeLabel: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "completed"]
+    completed: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "horizontal"]
     horizontal: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -1664,6 +1746,22 @@ module StepLabelClasskey = {
   let make = t;
 };
 
+module StepperClasskey = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "alternativeLabel"]
+    alternativeLabel: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "horizontal"]
+    horizontal: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "root"]
+    root: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "vertical"]
+    vertical: ReactDOMRe.Style.t,
+  };
+
+  let make = t;
+};
+
 module SwitchClassKey = {
   [@bs.deriving abstract]
   type t = {
@@ -1679,28 +1777,14 @@ module SwitchClassKey = {
     input: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "sizeSmall"]
+    sizeSmall: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "switchBase"]
     switchBase: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "thumb"]
     thumb: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "track"]
     track: ReactDOMRe.Style.t,
-  };
-
-  let make = t;
-};
-
-module SwitchBaseClassKey = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional] [@bs.as "checked"]
-    checked: ReactDOMRe.Style.t,
-    [@bs.optional] [@bs.as "disabled"]
-    disabled: ReactDOMRe.Style.t,
-    [@bs.optional] [@bs.as "input"]
-    input: ReactDOMRe.Style.t,
-    [@bs.optional] [@bs.as "root"]
-    root: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -2073,6 +2157,8 @@ module Overrides = {
     muiCircularProgress: CircularProgressClassKey.t,
     [@bs.optional] [@bs.as "MuiCollapse"]
     muiCollapse: CollapseClassKey.t,
+    [@bs.optional] [@bs.as "MuiContainer"]
+    muiContainer: ContainerClassKey.t,
     [@bs.optional] [@bs.as "MuiCssBaseline"]
     muiCssBaseline: MuiCssBaseline.t,
     [@bs.optional] [@bs.as "MuiDialog"]
@@ -2169,12 +2255,14 @@ module Overrides = {
     muiRadio: RadioClassKey.t,
     [@bs.optional] [@bs.as "MuiSelect"]
     muiSelect: NativeSelectClassKey.t,
+    [@bs.optional] [@bs.as "MuiSlider"]
+    muiSlider: SliderClassKey.t,
     [@bs.optional] [@bs.as "MuiSnackbar"]
     muiSnackbar: SnackbarClassKey.t,
     [@bs.optional] [@bs.as "MuiSnackbarContent"]
     muiSnackbarContent: SnackbarContentClassKey.t,
     [@bs.optional] [@bs.as "MuiStep"]
-    muiStep: StepperClasskey.t,
+    muiStep: StepClasskey.t,
     [@bs.optional] [@bs.as "MuiStepButton"]
     muiStepButton: StepButtonClasskey.t,
     [@bs.optional] [@bs.as "MuiStepConnector"]
@@ -2191,8 +2279,6 @@ module Overrides = {
     muiSvgIcon: IconClassKey.t,
     [@bs.optional] [@bs.as "MuiSwitch"]
     muiSwitch: SwitchClassKey.t,
-    [@bs.optional] [@bs.as "MuiSwitchBase"]
-    muiSwitchBase: SwitchBaseClassKey.t,
     [@bs.optional] [@bs.as "MuiTab"]
     muiTab: TabClassKey.t,
     [@bs.optional] [@bs.as "MuiTable"]
@@ -2500,16 +2586,6 @@ module Shape = {
   let make = t;
 };
 
-module Status = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional] [@bs.as "danger"]
-    danger: string,
-  };
-
-  let make = t;
-};
-
 module Duration = {
   [@bs.deriving abstract]
   type t = {
@@ -2678,15 +2754,38 @@ module ThemeOptions = {
     [@bs.optional] [@bs.as "shape"]
     shape: Shape.t,
     [@bs.optional] [@bs.as "spacing"]
-    spacing: Js.Json.t,
-    [@bs.optional] [@bs.as "status"]
-    status: Status.t,
+    spacing: string,
     [@bs.optional] [@bs.as "transitions"]
     transitions: TransitionsOptions.t,
     [@bs.optional] [@bs.as "typography"]
     typography: Typography.t,
     [@bs.optional] [@bs.as "zIndex"]
     zIndex: ZIndex.t,
+  };
+
+  let spacingGet = value => {
+    let isNumeric: 'a => bool = [%raw
+      {|
+                function(obj) {
+                    var realStringObj = obj && obj.toString();
+                    return typeof obj !== 'object' && (realStringObj - parseFloat(realStringObj) + 1) >= 0;
+                }
+            |}
+    ];
+    let isBool: 'a => bool = [%raw
+      {|
+                function(obj) {
+                    return typeof obj === 'boolean';
+                }
+            |}
+    ];
+
+    spacingGet(value)
+    ->Belt.Option.map(v =>
+        isNumeric(v)
+          ? `Float(Obj.magic(v))
+          : isBool(v) ? `Bool(Obj.magic(v)) : `String(Obj.magic(v))
+      );
   };
 
   let make = t;

@@ -71,6 +71,8 @@ module PaperProps = {
   type t = {
     [@bs.optional]
     component: React.element,
+    [@bs.optional]
+    style: Js.Json.t,
   };
   let make = t;
 
@@ -87,6 +89,12 @@ module PaperProps = {
                           v->MaterialUi_Helpers.toJsUnsafe,
                         )
                       )
+      | None => ()
+      };
+
+      switch (obj->styleGet) {
+      | Some(v) =>
+        unwrappedMap->(Js.Dict.set("style", v->MaterialUi_Helpers.toJsUnsafe))
       | None => ()
       };
 
@@ -143,23 +151,23 @@ external makePropsMui:
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_x=?,
-    ~minFlingVelocity: 'number_4=?,
-    ~_ModalProps: 'any_rcz5=?,
-    ~onClose: 'any_r0rm,
-    ~onOpen: 'any_rzqo,
+    ~hysteresis: 'number_w=?,
+    ~minFlingVelocity: 'number_i=?,
+    ~_ModalProps: 'any_r4l1=?,
+    ~onClose: 'any_rem5,
+    ~onOpen: 'any_ry0k,
     ~_open: bool,
-    ~_PaperProps: 'any_rhn9=?,
+    ~_PaperProps: 'any_rj45=?,
     ~_SwipeAreaProps: Js.t({..})=?,
     ~swipeAreaWidth: 'number_n=?,
-    ~transitionDuration: 'union_rcua=?,
+    ~transitionDuration: 'union_r7ie=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_e=?,
+    ~elevation: 'number_s=?,
     ~_SlideProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
     unit

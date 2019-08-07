@@ -14,7 +14,9 @@ module Classes = {
     | Filled(string)
     | PositionStart(string)
     | PositionEnd(string)
-    | DisablePointerEvents(string);
+    | DisablePointerEvents(string)
+    | HiddenLabel(string)
+    | MarginDense(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -22,7 +24,9 @@ module Classes = {
     | Filled(_) => "filled"
     | PositionStart(_) => "positionStart"
     | PositionEnd(_) => "positionEnd"
-    | DisablePointerEvents(_) => "disablePointerEvents";
+    | DisablePointerEvents(_) => "disablePointerEvents"
+    | HiddenLabel(_) => "hiddenLabel"
+    | MarginDense(_) => "marginDense";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -33,7 +37,9 @@ module Classes = {
                          | Filled(className)
                          | PositionStart(className)
                          | PositionEnd(className)
-                         | DisablePointerEvents(className) =>
+                         | DisablePointerEvents(className)
+                         | HiddenLabel(className)
+                         | MarginDense(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;

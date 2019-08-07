@@ -77,12 +77,12 @@ external makePropsMui:
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~selected: bool=?,
     ~textColor: string=?,
-    ~value: 'any_rwfi=?,
+    ~value: 'any_rrj9=?,
     ~wrapped: bool=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~action: 'any_r46t=?,
-    ~buttonRef: 'union_ro5f=?,
+    ~action: 'union_rrkn=?,
+    ~buttonRef: 'union_rw7s=?,
     ~centerRipple: bool=?,
     ~component: React.element=?,
     ~disableTouchRipple: bool=?,
@@ -101,7 +101,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rnj2=?,
+    ~tabIndex: 'union_rpcj=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -126,11 +126,14 @@ let makeProps =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~textColor: option(textColor)=?,
-      ~value: option('any_rwfi)=?,
+      ~value: option('any_rrj9)=?,
       ~wrapped: option(bool)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
-      ~action: option(Js.t({..}) => unit)=?,
+      ~action:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~buttonRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
@@ -186,7 +189,8 @@ let makeProps =
     ~wrapped?,
     ~key?,
     ~_ref=?ref_,
-    ~action?,
+    ~action=?
+      action->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~buttonRef=?
       buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~centerRipple?,

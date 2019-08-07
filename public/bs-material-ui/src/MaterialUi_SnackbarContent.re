@@ -35,7 +35,7 @@ external makePropsMui:
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~children: 'children=?,
-    ~elevation: 'number_7=?,
+    ~elevation: 'number_c=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

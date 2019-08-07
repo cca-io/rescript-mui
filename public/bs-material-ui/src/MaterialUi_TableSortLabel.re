@@ -52,8 +52,8 @@ external makePropsMui:
     ~hideSortIcon: bool=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~action: 'any_rwnb=?,
-    ~buttonRef: 'union_rjvg=?,
+    ~action: 'union_rbds=?,
+    ~buttonRef: 'union_rn5a=?,
     ~centerRipple: bool=?,
     ~component: React.element=?,
     ~disabled: bool=?,
@@ -75,7 +75,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rvg5=?,
+    ~tabIndex: 'union_rya1=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -94,7 +94,10 @@ let makeProps =
       ~hideSortIcon: option(bool)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
-      ~action: option(Js.t({..}) => unit)=?,
+      ~action:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~buttonRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
@@ -135,7 +138,8 @@ let makeProps =
     ~hideSortIcon?,
     ~key?,
     ~_ref=?ref_,
-    ~action?,
+    ~action=?
+      action->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~buttonRef=?
       buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~centerRipple?,

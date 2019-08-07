@@ -70,7 +70,7 @@ external makePropsMui:
     ~position: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~elevation: 'number_y=?,
+    ~elevation: 'number_c=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

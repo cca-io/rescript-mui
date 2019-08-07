@@ -25,9 +25,9 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~onChange: 'any_rpn1=?,
+    ~onChange: 'any_rlxp=?,
     ~showLabels: bool=?,
-    ~value: 'any_rn5m=?,
+    ~value: 'any_r2ap=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
@@ -41,9 +41,9 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rnq4) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rfqg) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_rn5m)=?,
+      ~value: option('any_r2ap)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~classes: option(Classes.t)=?,

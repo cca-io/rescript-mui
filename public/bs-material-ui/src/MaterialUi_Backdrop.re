@@ -62,7 +62,7 @@ external makePropsMui:
     ~className: string=?,
     ~invisible: bool=?,
     ~_open: bool,
-    ~transitionDuration: 'union_ryg0=?,
+    ~transitionDuration: 'union_r78o=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,

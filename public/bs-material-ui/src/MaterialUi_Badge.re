@@ -57,7 +57,7 @@ external makePropsMui:
     ~className: string=?,
     ~color: string=?,
     ~invisible: bool=?,
-    ~max: 'number_1=?,
+    ~max: 'number_9=?,
     ~showZero: bool=?,
     ~variant: string=?,
     ~key: string=?,

@@ -38,7 +38,7 @@ external makePropsMui:
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_rgxf=?,
+    ~timeout: 'union_rsb9=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     unit

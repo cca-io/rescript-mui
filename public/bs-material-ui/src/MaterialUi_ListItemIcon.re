@@ -1,17 +1,20 @@
 module Classes = {
   type classesType =
-    | Root(string);
+    | Root(string)
+    | AlignItemsFlexStart(string);
   type t = list(classesType);
   let to_string =
     fun
-    | Root(_) => "root";
+    | Root(_) => "root"
+    | AlignItemsFlexStart(_) => "alignItemsFlexStart";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
                        Js.Dict.empty(),
                        (obj, classType) => {
                          switch (classType) {
-                         | Root(className) =>
+                         | Root(className)
+                         | AlignItemsFlexStart(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;

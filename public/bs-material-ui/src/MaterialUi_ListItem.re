@@ -71,7 +71,7 @@ external makePropsMui:
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~selected: bool=?,
-    ~value: 'union_r3yz=?,
+    ~value: 'union_r5ub=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~key: string=?,

@@ -79,7 +79,7 @@ external makePropsMui:
     ~last: bool=?,
     ~optional: bool=?,
     ~orientation: string=?,
-    ~transitionDuration: 'union_rocg=?,
+    ~transitionDuration: 'union_rhfh=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,

@@ -2,7 +2,7 @@
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~rootRef: 'union_r0rs,
+    ~rootRef: 'union_rkcf,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     unit

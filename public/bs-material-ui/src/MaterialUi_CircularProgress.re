@@ -66,9 +66,9 @@ external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_rfn4=?,
-    ~thickness: 'number_e=?,
-    ~value: 'number_m=?,
+    ~size: 'union_r4r9=?,
+    ~thickness: 'number_g=?,
+    ~value: 'number_o=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,

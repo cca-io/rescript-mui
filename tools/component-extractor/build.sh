@@ -54,7 +54,7 @@ mv node_modules node_modules_tmp
 cd $pwd
 
 # Extract json schemas
-cd ~/.mui-clone;
+cd ~/.mui-clone/packages/material-ui;
 "${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json Theme --topRef --ignoreErrors --excludePrivate --required -o "${pwd}/../../output/json/theme.json"
 echo "Extracted theme.json"
 "${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json ThemeOptions --topRef --ignoreErrors --excludePrivate --required -o "${pwd}/../../output/json/theme-options.json"

@@ -5,6 +5,12 @@ type indicatorColor = [
 ];
 
 [@bs.deriving jsConverter]
+type orientation = [
+  | [@bs.as "horizontal"] `Horizontal
+  | [@bs.as "vertical"] `Vertical
+];
+
+[@bs.deriving jsConverter]
 type scrollButtons = [
   | [@bs.as "auto"] `Auto
   | [@bs.as "desktop"] `Desktop
@@ -29,7 +35,9 @@ type variant = [
 module Classes = {
   type classesType =
     | Root(string)
+    | Vertical(string)
     | FlexContainer(string)
+    | FlexContainerVertical(string)
     | Centered(string)
     | Scroller(string)
     | Fixed(string)
@@ -41,7 +49,9 @@ module Classes = {
   let to_string =
     fun
     | Root(_) => "root"
+    | Vertical(_) => "vertical"
     | FlexContainer(_) => "flexContainer"
+    | FlexContainerVertical(_) => "flexContainerVertical"
     | Centered(_) => "centered"
     | Scroller(_) => "scroller"
     | Fixed(_) => "fixed"
@@ -56,7 +66,9 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
+                         | Vertical(className)
                          | FlexContainer(className)
+                         | FlexContainerVertical(className)
                          | Centered(className)
                          | Scroller(className)
                          | Fixed(className)
@@ -75,18 +87,18 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rrj6=?,
+    ~action: 'any_rkvz=?,
     ~centered: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~indicatorColor: string=?,
-    ~innerRef: 'union_rbbz=?,
-    ~onChange: 'any_rhb8=?,
+    ~onChange: 'any_rgbi=?,
+    ~orientation: string=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_rrgu=?,
+    ~value: 'any_r4rt=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -104,16 +116,13 @@ let makeProps =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~indicatorColor: option(indicatorColor)=?,
-      ~innerRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rrsf) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rcgc) => unit)=?,
+      ~orientation: option(orientation)=?,
       ~scrollButtons: option(scrollButtons)=?,
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_rrgu)=?,
+      ~value: option('any_r4rt)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -128,9 +137,8 @@ let makeProps =
     ~className?,
     ~indicatorColor=?
       indicatorColor->(Belt.Option.map(v => indicatorColorToJs(v))),
-    ~innerRef=?
-      innerRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~onChange?,
+    ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
     ~scrollButtons=?
       scrollButtons->(Belt.Option.map(v => scrollButtonsToJs(v))),
     ~_TabIndicatorProps?,

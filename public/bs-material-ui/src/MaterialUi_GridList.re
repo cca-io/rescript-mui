@@ -26,11 +26,11 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~cellHeight: 'union_rk0z=?,
+    ~cellHeight: 'union_rfse=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~cols: 'number_f=?,
-    ~spacing: 'number_l=?,
+    ~cols: 'number_w=?,
+    ~spacing: 'number_v=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,

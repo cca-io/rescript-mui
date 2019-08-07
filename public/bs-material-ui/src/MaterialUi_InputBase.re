@@ -19,7 +19,8 @@ module Classes = {
     | InputMultiline(string)
     | InputTypeSearch(string)
     | InputAdornedStart(string)
-    | InputAdornedEnd(string);
+    | InputAdornedEnd(string)
+    | InputHiddenLabel(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -39,7 +40,8 @@ module Classes = {
     | InputMultiline(_) => "inputMultiline"
     | InputTypeSearch(_) => "inputTypeSearch"
     | InputAdornedStart(_) => "inputAdornedStart"
-    | InputAdornedEnd(_) => "inputAdornedEnd";
+    | InputAdornedEnd(_) => "inputAdornedEnd"
+    | InputHiddenLabel(_) => "inputHiddenLabel";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -62,7 +64,8 @@ module Classes = {
                          | InputMultiline(className)
                          | InputTypeSearch(className)
                          | InputAdornedStart(className)
-                         | InputAdornedEnd(className) =>
+                         | InputAdornedEnd(className)
+                         | InputHiddenLabel(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -78,22 +81,20 @@ external makePropsMui:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_r7aw=?,
+    ~defaultValue: 'any_r466=?,
     ~disabled: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rg8q=?,
+    ~inputRef: 'union_ra2k=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rlnd=?,
+    ~onChange: 'any_rsxr=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~onEmpty: 'genericCallback=?,
-    ~onFilled: 'genericCallback=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
@@ -101,12 +102,12 @@ external makePropsMui:
     ~readOnly: bool=?,
     ~renderPrefix: 'genericCallback=?,
     ~required: bool=?,
-    ~rows: 'union_re18=?,
-    ~rowsMax: 'union_rn72=?,
+    ~rows: 'union_r61t=?,
+    ~rowsMax: 'union_r4vl=?,
     ~select: bool=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_r9s3=?,
+    ~value: 'any_rdc3=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
@@ -122,7 +123,7 @@ let makeProps =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_r7aw)=?,
+      ~defaultValue: option('any_r466)=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
@@ -139,8 +140,6 @@ let makeProps =
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~onEmpty: option('genericCallback)=?,
-      ~onFilled: option('genericCallback)=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
@@ -153,7 +152,7 @@ let makeProps =
       ~select: option(bool)=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_r9s3)=?,
+      ~value: option('any_rdc3)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~classes: option(Classes.t)=?,
@@ -180,8 +179,6 @@ let makeProps =
     ~onBlur?,
     ~onChange?,
     ~onClick?,
-    ~onEmpty?,
-    ~onFilled?,
     ~onFocus?,
     ~onKeyDown?,
     ~onKeyUp?,

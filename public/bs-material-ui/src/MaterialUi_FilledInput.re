@@ -14,6 +14,7 @@ module Classes = {
     | Multiline(string)
     | Input(string)
     | InputMarginDense(string)
+    | InputHiddenLabel(string)
     | InputSelect(string)
     | InputMultiline(string)
     | InputAdornedStart(string)
@@ -32,6 +33,7 @@ module Classes = {
     | Multiline(_) => "multiline"
     | Input(_) => "input"
     | InputMarginDense(_) => "inputMarginDense"
+    | InputHiddenLabel(_) => "inputHiddenLabel"
     | InputSelect(_) => "inputSelect"
     | InputMultiline(_) => "inputMultiline"
     | InputAdornedStart(_) => "inputAdornedStart"
@@ -53,6 +55,7 @@ module Classes = {
                          | Multiline(className)
                          | Input(className)
                          | InputMarginDense(className)
+                         | InputHiddenLabel(className)
                          | InputSelect(className)
                          | InputMultiline(className)
                          | InputAdornedStart(className)
@@ -71,7 +74,7 @@ external makePropsMui:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_rjk4=?,
+    ~defaultValue: 'any_r9fi=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: React.element=?,
@@ -79,26 +82,24 @@ external makePropsMui:
     ~fullWidth: bool=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_r29m=?,
+    ~inputRef: 'union_r2g0=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
-    ~onChange: 'any_r6jh=?,
+    ~onChange: 'any_rjzt=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rxn2=?,
-    ~rowsMax: 'union_rfc2=?,
+    ~rows: 'union_rd63=?,
+    ~rowsMax: 'union_rivk=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_rwqj=?,
+    ~value: 'any_r1pd=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~aria_describedby: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~onEmpty: 'genericCallback=?,
-    ~onFilled: 'genericCallback=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
@@ -116,7 +117,7 @@ let makeProps =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_rjk4)=?,
+      ~defaultValue: option('any_r9fi)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(React.element)=?,
@@ -139,14 +140,12 @@ let makeProps =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rwqj)=?,
+      ~value: option('any_r1pd)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~aria_describedby: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~onEmpty: option('genericCallback)=?,
-      ~onFilled: option('genericCallback)=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
@@ -188,8 +187,6 @@ let makeProps =
     ~aria_describedby?,
     ~onBlur?,
     ~onClick?,
-    ~onEmpty?,
-    ~onFilled?,
     ~onFocus?,
     ~onKeyDown?,
     ~onKeyUp?,

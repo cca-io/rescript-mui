@@ -23,6 +23,7 @@ module Classes = {
     | SwitchBase(string)
     | ColorPrimary(string)
     | ColorSecondary(string)
+    | SizeSmall(string)
     | Checked(string)
     | Disabled(string)
     | Input(string)
@@ -37,6 +38,7 @@ module Classes = {
     | SwitchBase(_) => "switchBase"
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary"
+    | SizeSmall(_) => "sizeSmall"
     | Checked(_) => "checked"
     | Disabled(_) => "disabled"
     | Input(_) => "input"
@@ -54,6 +56,7 @@ module Classes = {
                          | SwitchBase(className)
                          | ColorPrimary(className)
                          | ColorSecondary(className)
+                         | SizeSmall(className)
                          | Checked(className)
                          | Disabled(className)
                          | Input(className)
@@ -81,17 +84,18 @@ external makePropsMui:
     ~icon: React.element=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_r1in=?,
-    ~onChange: 'any_r6vd=?,
+    ~inputRef: 'union_r8vh=?,
+    ~onChange: 'any_relv=?,
+    ~required: bool=?,
+    ~size: string=?,
     ~_type: string=?,
-    ~value: 'any_rcoy=?,
+    ~value: 'any_rw03=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~children: 'children=?,
     ~disableFocusRipple: bool=?,
-    ~size: string=?,
-    ~action: 'any_rkjc=?,
-    ~buttonRef: 'union_rvg4=?,
+    ~action: 'union_raxw=?,
+    ~buttonRef: 'union_r1ph=?,
     ~centerRipple: bool=?,
     ~component: React.element=?,
     ~disableTouchRipple: bool=?,
@@ -111,7 +115,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r7og=?,
+    ~tabIndex: 'union_rmuq=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -138,14 +142,18 @@ let makeProps =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
+      ~required: option(bool)=?,
+      ~size: option(size)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rcoy)=?,
+      ~value: option('any_rw03)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~children: option('children)=?,
       ~disableFocusRipple: option(bool)=?,
-      ~size: option(size)=?,
-      ~action: option(Js.t({..}) => unit)=?,
+      ~action:
+         option(
+           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
+         )=?,
       ~buttonRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
@@ -190,14 +198,16 @@ let makeProps =
     ~inputRef=?
       inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~onChange?,
+    ~required?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
     ~_type=?type_,
     ~value?,
     ~key?,
     ~_ref=?ref_,
     ~children?,
     ~disableFocusRipple?,
-    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-    ~action?,
+    ~action=?
+      action->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~buttonRef=?
       buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~centerRipple?,
