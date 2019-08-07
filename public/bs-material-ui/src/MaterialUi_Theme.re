@@ -2918,7 +2918,7 @@ module Theme = {
     [@bs.as "shape"]
     shape: Shape.t,
     [@bs.as "spacing"]
-    spacing: Js.Json.t,
+    spacing: int => int,
     [@bs.as "transitions"]
     transitions: Transitions.t,
     [@bs.as "typography"]

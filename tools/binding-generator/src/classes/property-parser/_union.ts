@@ -63,7 +63,11 @@ const factory = (propertyType: PropType$Union) => {
 					} else if (Identify.isShape(type)) {
 						reasonTypes.push(`Object(${unionProp.reasonType})`);
 					} else if (Identify.isFunc(type)) {
-						reasonTypes.push(`Callback(${unionProp.reasonType})`);
+						if (this._property.name === 'component') {
+							reasonTypes.push(`Callback(unit => React.element)`);
+						} else {
+							reasonTypes.push(`Callback(${unionProp.reasonType})`);
+						}
 					} else if (Identify.isArrayOf(type)) {
 						if (unionProp.reasonType.substr(0, 1) === '[') {
 							unionProp.reasonType

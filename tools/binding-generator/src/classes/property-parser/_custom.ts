@@ -21,7 +21,10 @@ const factory = (propertyType: PropType$Custom) => {
 		}
 	}
 
-	if (propertyType.raw != null && propertyType.raw.includes('componentPropType')) {
+	if (
+		propertyType.raw != null &&
+		(propertyType.raw.includes('componentPropType') || propertyType.raw.includes('elementType'))
+	) {
 		return UnionFactory({
 			name: 'union',
 			value: [ { name: 'string' }, { name: 'func' }, { name: 'Element' } ],

@@ -33,6 +33,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~childrenClassName: string=?,
     ~className: string=?,
+    ~component: 'union_rw7p=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,
@@ -52,6 +53,14 @@ let makeProps =
       ~children: option('children)=?,
       ~childrenClassName: option(string)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~imgProps: option(Js.t({..}))=?,
       ~sizes: option(string)=?,
       ~src: option(string)=?,
@@ -67,6 +76,8 @@ let makeProps =
     ~children?,
     ~childrenClassName?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~imgProps?,
     ~sizes?,
     ~src?,

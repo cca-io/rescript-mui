@@ -56,8 +56,9 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_ripi=?,
     ~invisible: bool=?,
-    ~max: 'number_9=?,
+    ~max: 'number_x=?,
     ~showZero: bool=?,
     ~variant: string=?,
     ~key: string=?,
@@ -75,6 +76,14 @@ let makeProps =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~invisible: option(bool)=?,
       ~max: option([ | `Int(int) | `Float(float)])=?,
       ~showZero: option(bool)=?,
@@ -90,6 +99,8 @@ let makeProps =
     ~children?,
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~invisible?,
     ~max=?max->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~showZero?,

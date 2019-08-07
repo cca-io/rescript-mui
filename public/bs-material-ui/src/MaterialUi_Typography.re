@@ -160,6 +160,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_rf3s=?,
     ~display: string=?,
     ~gutterBottom: bool=?,
     ~noWrap: bool=?,
@@ -182,6 +183,14 @@ let makeProps =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~display: option(display)=?,
       ~gutterBottom: option(bool)=?,
       ~noWrap: option(bool)=?,
@@ -200,6 +209,8 @@ let makeProps =
     ~children?,
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~display=?display->(Belt.Option.map(v => displayToJs(v))),
     ~gutterBottom?,
     ~noWrap?,

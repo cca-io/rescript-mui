@@ -89,6 +89,7 @@ external makePropsMui:
     ~align: string=?,
     ~children: 'children=?,
     ~className: string=?,
+    ~component: 'union_rb8g=?,
     ~padding: string=?,
     ~scope: string=?,
     ~size: string=?,
@@ -109,6 +110,14 @@ let makeProps =
       ~align: option(align)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~padding: option(padding)=?,
       ~scope: option(string)=?,
       ~size: option(size)=?,
@@ -125,6 +134,8 @@ let makeProps =
     ~align=?align->(Belt.Option.map(v => alignToJs(v))),
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
     ~scope?,
     ~size=?size->(Belt.Option.map(v => sizeToJs(v))),

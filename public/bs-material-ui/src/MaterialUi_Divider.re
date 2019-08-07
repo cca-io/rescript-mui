@@ -44,6 +44,7 @@ external makePropsMui:
   (
     ~absolute: bool=?,
     ~className: string=?,
+    ~component: 'union_rwdm=?,
     ~light: bool=?,
     ~role: string=?,
     ~variant: string=?,
@@ -60,6 +61,14 @@ let makeProps =
     (
       ~absolute: option(bool)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~light: option(bool)=?,
       ~role: option(string)=?,
       ~variant: option(variant)=?,
@@ -72,6 +81,8 @@ let makeProps =
   makePropsMui(
     ~absolute?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~light?,
     ~role?,
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),

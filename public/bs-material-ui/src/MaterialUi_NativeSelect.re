@@ -52,33 +52,34 @@ module Classes = {
 external makePropsMui:
   (
     ~children: 'children=?,
+    ~_IconComponent: 'union_rz4r=?,
     ~input: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_r837=?,
-    ~value: 'any_rfjq=?,
+    ~onChange: 'any_r6pu=?,
+    ~value: 'any_rx96=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_r6vs=?,
+    ~defaultValue: 'any_reif=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rf43=?,
-    ~inputRef: 'union_rcr4=?,
+    ~inputComponent: 'any_rkm5=?,
+    ~inputRef: 'union_rbi5=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_r1u7=?,
-    ~rowsMax: 'union_rlre=?,
+    ~rows: 'union_rdg2=?,
+    ~rowsMax: 'union_rqvx=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
     ~aria_describedby: string=?,
@@ -99,24 +100,32 @@ external makePropsMui:
 let makeProps =
     (
       ~children: option('children)=?,
+      ~_IconComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~input: option(React.element)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~value: option('any_rfjq)=?,
+      ~value: option('any_rx96)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_r6vs)=?,
+      ~defaultValue: option('any_reif)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_rf43)=?,
+      ~inputComponent: option('any_rkm5)=?,
       ~inputRef:
          option(
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
@@ -145,6 +154,10 @@ let makeProps =
     ) =>
   makePropsMui(
     ~children?,
+    ~_IconComponent=?
+      _IconComponent->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
     ~input?,
     ~inputProps?,
     ~onChange?,

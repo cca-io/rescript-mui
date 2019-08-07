@@ -37,6 +37,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
+    ~component: 'union_rrp4=?,
     ~hover: bool=?,
     ~selected: bool=?,
     ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
@@ -53,6 +54,14 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~hover: option(bool)=?,
       ~selected: option(bool)=?,
       ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
@@ -65,6 +74,8 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~hover?,
     ~selected?,
     ~onDoubleClick?,

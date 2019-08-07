@@ -74,6 +74,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_r364=?,
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
@@ -94,6 +95,14 @@ let makeProps =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~disableFocusRipple: option(bool)=?,
       ~disableRipple: option(bool)=?,
@@ -110,6 +119,8 @@ let makeProps =
     ~children?,
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disabled?,
     ~disableFocusRipple?,
     ~disableRipple?,

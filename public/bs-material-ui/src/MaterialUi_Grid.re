@@ -298,17 +298,18 @@ external makePropsMui:
     ~alignItems: string=?,
     ~children: 'children=?,
     ~className: string=?,
+    ~component: 'union_rerb=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rdlq=?,
-    ~md: 'number_ri84=?,
-    ~sm: 'number_r9kt=?,
-    ~spacing: 'number_ricz=?,
+    ~lg: 'number_r0tc=?,
+    ~md: 'number_rbtx=?,
+    ~sm: 'number_rsnl=?,
+    ~spacing: 'number_r63m=?,
     ~wrap: string=?,
-    ~xl: 'number_roc2=?,
-    ~xs: 'number_r381=?,
+    ~xl: 'number_r7uc=?,
+    ~xs: 'number_rqbc=?,
     ~zeroMinWidth: bool=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -325,6 +326,14 @@ let makeProps =
       ~alignItems: option(alignItems)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~container: option(bool)=?,
       ~direction: option(direction)=?,
       ~item: option(bool)=?,
@@ -353,6 +362,8 @@ let makeProps =
     ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~container?,
     ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
     ~item?,

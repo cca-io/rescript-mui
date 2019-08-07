@@ -50,13 +50,13 @@ external makePropsMui:
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~selected: bool=?,
     ~showLabel: bool=?,
-    ~value: 'any_ryxg=?,
+    ~value: 'any_rmx0=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~action: 'union_rs2t=?,
-    ~buttonRef: 'union_r4ip=?,
+    ~action: 'union_rzk4=?,
+    ~buttonRef: 'union_rk6h=?,
     ~centerRipple: bool=?,
-    ~component: React.element=?,
+    ~component: 'union_rvxc=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -75,7 +75,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r6bj=?,
+    ~tabIndex: 'union_rac5=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -95,7 +95,7 @@ let makeProps =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~showLabel: option(bool)=?,
-      ~value: option('any_ryxg)=?,
+      ~value: option('any_rmx0)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~action:
@@ -107,7 +107,14 @@ let makeProps =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component: option(React.element)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
       ~disableTouchRipple: option(bool)=?,
@@ -150,7 +157,8 @@ let makeProps =
     ~buttonRef=?
       buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~centerRipple?,
-    ~component?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disabled?,
     ~disableRipple?,
     ~disableTouchRipple?,

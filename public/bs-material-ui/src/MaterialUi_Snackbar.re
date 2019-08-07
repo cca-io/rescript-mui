@@ -120,8 +120,8 @@ module Classes = {
 external makePropsMui:
   (
     ~action: React.element=?,
-    ~anchorOrigin: 'any_rv75=?,
-    ~autoHideDuration: 'number_6=?,
+    ~anchorOrigin: 'any_r1sm=?,
+    ~autoHideDuration: 'number_x=?,
     ~children: 'children=?,
     ~className: string=?,
     ~_ClickAwayListenerProps: Js.t({..})=?,
@@ -129,7 +129,7 @@ external makePropsMui:
     ~disableWindowBlurListener: bool=?,
     ~key: string=?,
     ~message: React.element=?,
-    ~onClose: 'any_rcr5=?,
+    ~onClose: 'any_rkv0=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -140,7 +140,8 @@ external makePropsMui:
     ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
     ~_open: bool=?,
     ~resumeHideDuration: 'number_t=?,
-    ~transitionDuration: 'union_r3lg=?,
+    ~_TransitionComponent: 'union_radr=?,
+    ~transitionDuration: 'union_rj29=?,
     ~_TransitionProps: Js.t({..})=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
@@ -173,6 +174,14 @@ let makeProps =
       ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
       ~open_: option(bool)=?,
       ~resumeHideDuration: option([ | `Int(int) | `Float(float)])=?,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~transitionDuration:
          option(
            [
@@ -219,6 +228,12 @@ let makeProps =
                               MaterialUi_Helpers.unwrapValue(v)
                             )
                           ),
+    ~_TransitionComponent=?
+      _TransitionComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
     ~transitionDuration=?
       transitionDuration->(
                             Belt.Option.map(v =>

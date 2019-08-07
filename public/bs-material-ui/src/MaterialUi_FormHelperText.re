@@ -56,6 +56,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
+    ~component: 'union_r49i=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~filled: bool=?,
@@ -76,6 +77,14 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~error: option(bool)=?,
       ~filled: option(bool)=?,
@@ -92,6 +101,8 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disabled?,
     ~error?,
     ~filled?,

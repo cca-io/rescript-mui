@@ -79,6 +79,7 @@ external makePropsMui:
     ~htmlFor: string,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~component: 'union_r1o5=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -102,6 +103,14 @@ let makeProps =
       ~htmlFor: string,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~filled: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -121,6 +130,8 @@ let makeProps =
     ~htmlFor,
     ~key?,
     ~_ref=?ref_,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~filled?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,

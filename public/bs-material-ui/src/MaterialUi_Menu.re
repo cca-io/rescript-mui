@@ -234,12 +234,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'any_rasm=?,
+    ~anchorEl: 'any_rxdo=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_rno6=?,
+    ~onClose: 'any_r2xd=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -250,20 +250,21 @@ external makePropsMui:
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
     ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rzqh=?,
+    ~transitionDuration: 'union_rn0s=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~action: 'any_rnfl=?,
-    ~anchorOrigin: 'any_r6ay=?,
-    ~anchorPosition: 'any_racd=?,
+    ~action: 'any_ruth=?,
+    ~anchorOrigin: 'any_rar1=?,
+    ~anchorPosition: 'any_rgkc=?,
     ~anchorReference: string=?,
-    ~container: 'union_rnun=?,
-    ~elevation: 'number_s=?,
+    ~container: 'union_rbys=?,
+    ~elevation: 'number_o=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_6=?,
+    ~marginThreshold: 'number_s=?,
     ~_ModalClasses: Js.t({..})=?,
-    ~transformOrigin: 'any_r1cc=?,
+    ~transformOrigin: 'any_rpvw=?,
+    ~_TransitionComponent: 'union_rptb=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -274,7 +275,7 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~anchorEl: option('any_rasm)=?,
+      ~anchorEl: option('any_rxdo)=?,
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~disableAutoFocusItem: option(bool)=?,
@@ -315,6 +316,14 @@ let makeProps =
       ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
       ~_ModalClasses: option(Js.t({..}))=?,
       ~transformOrigin: option(TransformOrigin.t)=?,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
@@ -371,6 +380,12 @@ let makeProps =
                        ),
     ~_ModalClasses?,
     ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
+    ~_TransitionComponent=?
+      _TransitionComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
     ~_TransitionProps?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,

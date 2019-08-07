@@ -1,7 +1,6 @@
 module Theme = MaterialUi_Theme.Theme;
 module Mixins = MaterialUi_Theme.Mixins;
 module ZIndex = MaterialUi_Theme.ZIndex;
-module Spacing = MaterialUi_Theme.Spacing;
 module Breakpoints = MaterialUi_Theme.Breakpoints;
 module PaletteColor = MaterialUi_Theme.PaletteColor;
 module Palette = MaterialUi_Theme.Palette;
@@ -60,7 +59,7 @@ let transitionCreate =
       ~affectMargin=false,
       ~easing: string,
       ~duration: float,
-      ()
+      (),
     ) => {
   let transitions = Theme.transitionsGet(theme);
 

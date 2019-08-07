@@ -75,6 +75,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_r6w2=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~_TypographyClasses: Js.t({..})=?,
@@ -101,6 +102,14 @@ let makeProps =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~_TypographyClasses: option(Js.t({..}))=?,
@@ -123,6 +132,8 @@ let makeProps =
     ~children?,
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~onBlur?,
     ~onFocus?,
     ~_TypographyClasses?,

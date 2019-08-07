@@ -83,15 +83,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~_ActionsComponent: 'union_rxaj=?,
     ~backIconButtonProps: Js.t({..})=?,
-    ~colSpan: 'number_j=?,
-    ~count: 'number_q,
+    ~colSpan: 'number_8=?,
+    ~component: 'union_r3yb=?,
+    ~count: 'number_o,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_rs2k,
-    ~onChangeRowsPerPage: 'any_r48e=?,
-    ~rowsPerPage: 'number_y,
+    ~onChangePage: 'any_rp6p,
+    ~onChangeRowsPerPage: 'any_rpan=?,
+    ~rowsPerPage: 'number_j,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~key: string=?,
@@ -113,8 +115,24 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~_ActionsComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~backIconButtonProps: option(Js.t({..}))=?,
       ~colSpan: option([ | `Int(int) | `Float(float)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~count: [ | `Int(int) | `Float(float)],
       ~labelDisplayedRows:
          option(
@@ -158,9 +176,17 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
+    ~_ActionsComponent=?
+      _ActionsComponent->(
+                           Belt.Option.map(v =>
+                             MaterialUi_Helpers.unwrapValue(v)
+                           )
+                         ),
     ~backIconButtonProps?,
     ~colSpan=?
       colSpan->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~count=MaterialUi_Helpers.unwrapValue(count),
     ~labelDisplayedRows?,
     ~labelRowsPerPage?,

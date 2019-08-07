@@ -27,6 +27,7 @@ module Classes = {
 external makePropsMui:
   (
     ~className: string=?,
+    ~component: 'union_r4ze=?,
     ~image: string=?,
     ~src: string=?,
     ~key: string=?,
@@ -41,6 +42,14 @@ external makePropsMui:
 let makeProps =
     (
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~image: option(string)=?,
       ~src: option(string)=?,
       ~key: option(string)=?,
@@ -51,6 +60,8 @@ let makeProps =
     ) =>
   makePropsMui(
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~image?,
     ~src?,
     ~key?,

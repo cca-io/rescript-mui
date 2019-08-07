@@ -25,9 +25,10 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~onChange: 'any_rlxp=?,
+    ~component: 'union_rfr2=?,
+    ~onChange: 'any_rsns=?,
     ~showLabels: bool=?,
-    ~value: 'any_r2ap=?,
+    ~value: 'any_r656=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
@@ -41,9 +42,17 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rfqg) => unit)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rwsa) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_r2ap)=?,
+      ~value: option('any_r656)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~classes: option(Classes.t)=?,
@@ -53,6 +62,8 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~onChange?,
     ~showLabels?,
     ~value?,

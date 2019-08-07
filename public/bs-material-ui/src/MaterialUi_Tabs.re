@@ -87,18 +87,20 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rkvz=?,
+    ~action: 'any_rj41=?,
     ~centered: bool=?,
     ~children: 'children=?,
     ~className: string=?,
+    ~component: 'union_r9b7=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_rgbi=?,
+    ~onChange: 'any_rzni=?,
     ~orientation: string=?,
+    ~_ScrollButtonComponent: 'union_ry1n=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
     ~theme: Js.t({..})=?,
-    ~value: 'any_r4rt=?,
+    ~value: 'any_rmre=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -115,14 +117,30 @@ let makeProps =
       ~centered: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~indicatorColor: option(indicatorColor)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rcgc) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_r95k) => unit)=?,
       ~orientation: option(orientation)=?,
+      ~_ScrollButtonComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~scrollButtons: option(scrollButtons)=?,
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
       ~theme: option(Js.t({..}))=?,
-      ~value: option('any_r4rt)=?,
+      ~value: option('any_rmre)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -135,10 +153,18 @@ let makeProps =
     ~centered?,
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~indicatorColor=?
       indicatorColor->(Belt.Option.map(v => indicatorColorToJs(v))),
     ~onChange?,
     ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+    ~_ScrollButtonComponent=?
+      _ScrollButtonComponent->(
+                                Belt.Option.map(v =>
+                                  MaterialUi_Helpers.unwrapValue(v)
+                                )
+                              ),
     ~scrollButtons=?
       scrollButtons->(Belt.Option.map(v => scrollButtonsToJs(v))),
     ~_TabIndicatorProps?,

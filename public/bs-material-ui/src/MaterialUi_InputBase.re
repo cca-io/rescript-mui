@@ -81,19 +81,20 @@ external makePropsMui:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_r466=?,
+    ~defaultValue: 'any_rxmc=?,
     ~disabled: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
+    ~inputComponent: 'union_rom8=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_ra2k=?,
+    ~inputRef: 'union_rjmc=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rsxr=?,
+    ~onChange: 'any_r9n2=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
@@ -102,12 +103,12 @@ external makePropsMui:
     ~readOnly: bool=?,
     ~renderPrefix: 'genericCallback=?,
     ~required: bool=?,
-    ~rows: 'union_r61t=?,
-    ~rowsMax: 'union_r4vl=?,
+    ~rows: 'union_rayo=?,
+    ~rowsMax: 'union_rek1=?,
     ~select: bool=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_rdc3=?,
+    ~value: 'any_rbdh=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
@@ -123,12 +124,20 @@ let makeProps =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_r466)=?,
+      ~defaultValue: option('any_rxmc)=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
+      ~inputComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef:
          option(
@@ -152,7 +161,7 @@ let makeProps =
       ~select: option(bool)=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rdc3)=?,
+      ~value: option('any_rbdh)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~classes: option(Classes.t)=?,
@@ -170,6 +179,10 @@ let makeProps =
     ~error?,
     ~fullWidth?,
     ~id?,
+    ~inputComponent=?
+      inputComponent->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
     ~inputProps?,
     ~inputRef=?
       inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

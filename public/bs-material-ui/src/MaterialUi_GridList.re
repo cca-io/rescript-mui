@@ -26,11 +26,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~cellHeight: 'union_rfse=?,
+    ~cellHeight: 'union_rfsx=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~cols: 'number_w=?,
-    ~spacing: 'number_v=?,
+    ~cols: 'number_e=?,
+    ~component: 'union_rmgp=?,
+    ~spacing: 'number_s=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
@@ -47,6 +48,14 @@ let makeProps =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~cols: option([ | `Int(int) | `Float(float)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~spacing: option([ | `Int(int) | `Float(float)])=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -71,6 +80,8 @@ let makeProps =
     ~children?,
     ~className?,
     ~cols=?cols->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~spacing=?
       spacing->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~key?,

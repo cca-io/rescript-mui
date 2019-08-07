@@ -57,10 +57,10 @@ external makePropsMui:
     ~orientation: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~action: 'union_regj=?,
-    ~buttonRef: 'union_rfyh=?,
+    ~action: 'union_ra6o=?,
+    ~buttonRef: 'union_rs2b=?,
     ~centerRipple: bool=?,
-    ~component: React.element=?,
+    ~component: 'union_rcp6=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -79,7 +79,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r1d2=?,
+    ~tabIndex: 'union_rwjv=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -112,7 +112,14 @@ let makeProps =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component: option(React.element)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disableRipple: option(bool)=?,
       ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
@@ -164,7 +171,8 @@ let makeProps =
     ~buttonRef=?
       buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~centerRipple?,
-    ~component?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disableRipple?,
     ~disableTouchRipple?,
     ~focusRipple?,

@@ -37,6 +37,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
+    ~component: 'union_r89o=?,
     ~disableGutters: bool=?,
     ~variant: string=?,
     ~key: string=?,
@@ -52,6 +53,14 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disableGutters: option(bool)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
@@ -63,6 +72,8 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disableGutters?,
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,

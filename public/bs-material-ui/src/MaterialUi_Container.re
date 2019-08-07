@@ -53,6 +53,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
+    ~component: 'union_r048=?,
     ~fixed: bool=?,
     ~maxWidth: string=?,
     ~key: string=?,
@@ -68,6 +69,14 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~fixed: option(bool)=?,
       ~maxWidth: option(maxWidth)=?,
       ~key: option(string)=?,
@@ -79,6 +88,8 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~fixed?,
     ~maxWidth=?maxWidth->(Belt.Option.map(v => maxWidthToJs(v))),
     ~key?,

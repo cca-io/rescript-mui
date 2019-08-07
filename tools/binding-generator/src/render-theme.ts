@@ -38,6 +38,10 @@ const RenderTheme = () => {
 				re: /HTML.*Element/m,
 				replaceWith: 'ReasonReact.reactElement',
 			},
+			{
+				re: /Spacing/m,
+				replaceWith: 'int => int',
+			},
 		],
 		replaceKeys: [
 			{

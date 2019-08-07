@@ -34,6 +34,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
+    ~component: 'union_rcdv=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,
@@ -50,6 +51,14 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~dense: option(bool)=?,
       ~disablePadding: option(bool)=?,
       ~subheader: option(React.element)=?,
@@ -62,6 +71,8 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~dense?,
     ~disablePadding?,
     ~subheader?,

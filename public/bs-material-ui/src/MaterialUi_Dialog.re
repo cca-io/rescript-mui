@@ -120,7 +120,7 @@ external makePropsMui:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rygy=?,
+    ~onClose: 'any_r0cf=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -129,14 +129,17 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
+    ~_PaperComponent: 'union_rml5=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~transitionDuration: 'union_ralp=?,
+    ~_TransitionComponent: 'union_rtwj=?,
+    ~transitionDuration: 'union_rhoa=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_BackdropComponent: 'union_rh2r=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rzx3=?,
+    ~container: 'union_rew6=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
@@ -173,8 +176,24 @@ let makeProps =
       ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: bool,
+      ~_PaperComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_PaperProps: option(Js.t({..}))=?,
       ~scroll: option(scroll)=?,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~transitionDuration:
          option(
            [
@@ -186,6 +205,14 @@ let makeProps =
       ~_TransitionProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~_BackdropComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~closeAfterTransition: option(bool)=?,
       ~container:
          option(
@@ -223,8 +250,20 @@ let makeProps =
     ~onExited?,
     ~onExiting?,
     ~_open=open_,
+    ~_PaperComponent=?
+      _PaperComponent->(
+                         Belt.Option.map(v =>
+                           MaterialUi_Helpers.unwrapValue(v)
+                         )
+                       ),
     ~_PaperProps?,
     ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
+    ~_TransitionComponent=?
+      _TransitionComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
     ~transitionDuration=?
       transitionDuration->(
                             Belt.Option.map(v =>
@@ -234,6 +273,12 @@ let makeProps =
     ~_TransitionProps?,
     ~key?,
     ~_ref=?ref_,
+    ~_BackdropComponent=?
+      _BackdropComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
     ~closeAfterTransition?,
     ~container=?
       container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

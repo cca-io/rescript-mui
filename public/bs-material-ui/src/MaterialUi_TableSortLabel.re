@@ -50,12 +50,13 @@ external makePropsMui:
     ~className: string=?,
     ~direction: string=?,
     ~hideSortIcon: bool=?,
+    ~_IconComponent: 'union_r9ps=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~action: 'union_rbds=?,
-    ~buttonRef: 'union_rn5a=?,
+    ~action: 'union_r5vc=?,
+    ~buttonRef: 'union_r8ht=?,
     ~centerRipple: bool=?,
-    ~component: React.element=?,
+    ~component: 'union_rpmz=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -75,7 +76,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rya1=?,
+    ~tabIndex: 'union_r6n5=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -92,6 +93,14 @@ let makeProps =
       ~className: option(string)=?,
       ~direction: option(direction)=?,
       ~hideSortIcon: option(bool)=?,
+      ~_IconComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~action:
@@ -103,7 +112,14 @@ let makeProps =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component: option(React.element)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
       ~disableTouchRipple: option(bool)=?,
@@ -136,6 +152,10 @@ let makeProps =
     ~className?,
     ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
     ~hideSortIcon?,
+    ~_IconComponent=?
+      _IconComponent->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
     ~key?,
     ~_ref=?ref_,
     ~action=?
@@ -143,7 +163,8 @@ let makeProps =
     ~buttonRef=?
       buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~centerRipple?,
-    ~component?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disabled?,
     ~disableRipple?,
     ~disableTouchRipple?,

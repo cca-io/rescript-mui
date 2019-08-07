@@ -68,6 +68,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_ruz1=?,
     ~fontSize: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -83,6 +84,14 @@ let makeProps =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~fontSize: option(fontSize)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -94,6 +103,8 @@ let makeProps =
     ~children?,
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
     ~key?,
     ~_ref=?ref_,

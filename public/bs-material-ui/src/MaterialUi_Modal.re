@@ -1,10 +1,11 @@
 [@bs.obj]
 external makePropsMui:
   (
+    ~_BackdropComponent: 'union_rukw=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_r3yv=?,
+    ~container: 'union_rsvn=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -16,7 +17,7 @@ external makePropsMui:
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rgbf=?,
+    ~onClose: 'any_rbyn=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
@@ -29,6 +30,14 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~_BackdropComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~children: option('children)=?,
       ~closeAfterTransition: option(bool)=?,
@@ -56,6 +65,12 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
+    ~_BackdropComponent=?
+      _BackdropComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
     ~_BackdropProps?,
     ~children?,
     ~closeAfterTransition?,

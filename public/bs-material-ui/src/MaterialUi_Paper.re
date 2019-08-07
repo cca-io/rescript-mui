@@ -103,7 +103,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_9=?,
+    ~component: 'union_rs4j=?,
+    ~elevation: 'number_r=?,
     ~square: bool=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -118,6 +119,14 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~key: option(string)=?,
@@ -129,6 +138,8 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~square?,

@@ -75,6 +75,7 @@ external makePropsMui:
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
+    ~component: 'union_r7i7=?,
     ~display: string=?,
     ~gutterBottom: bool=?,
     ~noWrap: bool=?,
@@ -97,6 +98,14 @@ let makeProps =
       ~align: option(align)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~display: option(display)=?,
       ~gutterBottom: option(bool)=?,
       ~noWrap: option(bool)=?,
@@ -115,6 +124,8 @@ let makeProps =
     ~align=?align->(Belt.Option.map(v => alignToJs(v))),
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~display=?display->(Belt.Option.map(v => displayToJs(v))),
     ~gutterBottom?,
     ~noWrap?,

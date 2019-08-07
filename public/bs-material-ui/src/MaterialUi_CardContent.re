@@ -24,6 +24,7 @@ module Classes = {
 external makePropsMui:
   (
     ~className: string=?,
+    ~component: 'union_rzu4=?,
     ~children: 'children=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -37,6 +38,14 @@ external makePropsMui:
 let makeProps =
     (
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~children: option('children)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -46,6 +55,8 @@ let makeProps =
     ) =>
   makePropsMui(
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~children?,
     ~key?,
     ~_ref=?ref_,

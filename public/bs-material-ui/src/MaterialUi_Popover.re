@@ -113,7 +113,11 @@ module PaperProps = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
-    component: React.element,
+    component: [
+      | `String(string)
+      | `Callback(unit => React.element)
+      | `Element(ReasonReact.reactElement)
+    ],
   };
   let make = t;
 
@@ -122,7 +126,11 @@ module PaperProps = {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
 
-      switch (obj->componentGet) {
+      switch (
+        obj
+        ->componentGet
+        ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+      ) {
       | Some(v) =>
         unwrappedMap->(
                         Js.Dict.set(
@@ -255,18 +263,18 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rb99=?,
-    ~anchorEl: 'union_rsnc=?,
-    ~anchorOrigin: 'any_r6je=?,
-    ~anchorPosition: 'any_rurw=?,
+    ~action: 'any_rzrx=?,
+    ~anchorEl: 'union_rk7s=?,
+    ~anchorOrigin: 'any_r1md=?,
+    ~anchorPosition: 'any_r6e6=?,
     ~anchorReference: string=?,
     ~children: 'children=?,
-    ~container: 'union_repc=?,
-    ~elevation: 'number_k=?,
+    ~container: 'union_rr1y=?,
+    ~elevation: 'number_o=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_l=?,
+    ~marginThreshold: 'number_j=?,
     ~_ModalClasses: Js.t({..})=?,
-    ~onClose: 'any_rl50=?,
+    ~onClose: 'any_r3b8=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -274,12 +282,14 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperProps: 'any_rxfc=?,
-    ~transformOrigin: 'any_rzea=?,
-    ~transitionDuration: 'union_rgbf=?,
+    ~_PaperProps: 'any_rm4v=?,
+    ~transformOrigin: 'any_rrjb=?,
+    ~_TransitionComponent: 'union_rh39=?,
+    ~transitionDuration: 'union_riat=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_BackdropComponent: 'union_ryiz=?,
     ~_BackdropProps: Js.t({..})=?,
     ~closeAfterTransition: bool=?,
     ~disableAutoFocus: bool=?,
@@ -331,6 +341,14 @@ let makeProps =
       ~open_: bool,
       ~_PaperProps: option(PaperProps.t)=?,
       ~transformOrigin: option(TransformOrigin.t)=?,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~transitionDuration:
          option(
            [
@@ -343,6 +361,14 @@ let makeProps =
       ~_TransitionProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~_BackdropComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~closeAfterTransition: option(bool)=?,
       ~disableAutoFocus: option(bool)=?,
@@ -393,6 +419,12 @@ let makeProps =
     ~_open=open_,
     ~_PaperProps=?PaperProps.unwrap(_PaperProps),
     ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
+    ~_TransitionComponent=?
+      _TransitionComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
     ~transitionDuration=?
       transitionDuration->(
                             Belt.Option.map(v =>
@@ -409,6 +441,12 @@ let makeProps =
     ~_TransitionProps?,
     ~key?,
     ~_ref=?ref_,
+    ~_BackdropComponent=?
+      _BackdropComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
     ~_BackdropProps?,
     ~closeAfterTransition?,
     ~disableAutoFocus?,

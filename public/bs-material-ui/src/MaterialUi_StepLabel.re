@@ -70,6 +70,7 @@ external makePropsMui:
     ~last: bool=?,
     ~optional: React.element=?,
     ~orientation: string=?,
+    ~_StepIconComponent: 'union_r1x8=?,
     ~_StepIconProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -93,6 +94,14 @@ let makeProps =
       ~last: option(bool)=?,
       ~optional: option(React.element)=?,
       ~orientation: option(orientation)=?,
+      ~_StepIconComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_StepIconProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -120,6 +129,12 @@ let makeProps =
                        }
                      )
                    ),
+    ~_StepIconComponent=?
+      _StepIconComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
     ~_StepIconProps?,
     ~key?,
     ~_ref=?ref_,

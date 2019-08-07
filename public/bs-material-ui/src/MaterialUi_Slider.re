@@ -78,21 +78,24 @@ external makePropsMui:
     ~aria_label: string=?,
     ~aria_labelledby: string=?,
     ~className: string=?,
-    ~defaultValue: 'union_ry1o=?,
+    ~component: 'union_ryfz=?,
+    ~defaultValue: 'union_r5s0=?,
     ~disabled: bool=?,
-    ~getAriaValueText: 'any_raio=?,
-    ~marks: 'union_rmv4=?,
-    ~max: 'number_d=?,
-    ~min: 'number_e=?,
+    ~getAriaValueText: 'any_r7gd=?,
+    ~marks: 'union_rho1=?,
+    ~max: 'number_m=?,
+    ~min: 'number_z=?,
     ~name: string=?,
-    ~onChange: 'any_ryn6=?,
-    ~onChangeCommitted: 'any_rkfb=?,
+    ~onChange: 'any_rn08=?,
+    ~onChangeCommitted: 'any_rrk2=?,
     ~onMouseDown: ReactEvent.Mouse.t => unit=?,
     ~orientation: string=?,
-    ~step: 'number_e=?,
-    ~value: 'union_rq6c=?,
+    ~step: 'number_v=?,
+    ~_ThumbComponent: 'union_rg8e=?,
+    ~value: 'union_r98y=?,
+    ~_ValueLabelComponent: 'union_rzf3=?,
     ~valueLabelDisplay: string=?,
-    ~valueLabelFormat: 'union_rc0e=?,
+    ~valueLabelFormat: 'union_ra9h=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
@@ -107,6 +110,14 @@ let makeProps =
       ~aria_label: option(string)=?,
       ~aria_labelledby: option(string)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~defaultValue:
          option(
            [
@@ -118,15 +129,23 @@ let makeProps =
          )=?,
       ~disabled: option(bool)=?,
       ~getAriaValueText: option((int, int) => unit)=?,
-      ~marks: option([ | `Bool(bool) | `Array('any_rha0)])=?,
+      ~marks: option([ | `Bool(bool) | `Array('any_r26b)])=?,
       ~max: option([ | `Int(int) | `Float(float)])=?,
       ~min: option([ | `Int(int) | `Float(float)])=?,
       ~name: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_r196) => unit)=?,
-      ~onChangeCommitted: option((Js.t({..}), 'any_rbxw) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rtju) => unit)=?,
+      ~onChangeCommitted: option((Js.t({..}), 'any_ryg5) => unit)=?,
       ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
       ~orientation: option(orientation)=?,
       ~step: option([ | `Int(int) | `Float(float)])=?,
+      ~_ThumbComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~value:
          option(
            [
@@ -134,6 +153,14 @@ let makeProps =
              | `Float(float)
              | `IntArray(array(int))
              | `FloatArray(array(float))
+           ],
+         )=?,
+      ~_ValueLabelComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
            ],
          )=?,
       ~valueLabelDisplay: option(valueLabelDisplay)=?,
@@ -149,6 +176,8 @@ let makeProps =
     ~aria_label?,
     ~aria_labelledby?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~defaultValue=?
       defaultValue->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disabled?,
@@ -162,7 +191,19 @@ let makeProps =
     ~onMouseDown?,
     ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
     ~step=?step->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_ThumbComponent=?
+      _ThumbComponent->(
+                         Belt.Option.map(v =>
+                           MaterialUi_Helpers.unwrapValue(v)
+                         )
+                       ),
     ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_ValueLabelComponent=?
+      _ValueLabelComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
     ~valueLabelDisplay=?
       valueLabelDisplay->(Belt.Option.map(v => valueLabelDisplayToJs(v))),
     ~valueLabelFormat=?

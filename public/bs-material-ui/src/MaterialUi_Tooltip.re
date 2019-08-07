@@ -64,19 +64,20 @@ external makePropsMui:
     ~disableFocusListener: bool=?,
     ~disableHoverListener: bool=?,
     ~disableTouchListener: bool=?,
-    ~enterDelay: 'number_i=?,
+    ~enterDelay: 'number_4=?,
     ~enterTouchDelay: 'number_4=?,
     ~id: string=?,
     ~interactive: bool=?,
-    ~leaveDelay: 'number_c=?,
-    ~leaveTouchDelay: 'number_h=?,
-    ~onClose: 'any_rw52=?,
-    ~onOpen: 'any_rkpt=?,
+    ~leaveDelay: 'number_o=?,
+    ~leaveTouchDelay: 'number_4=?,
+    ~onClose: 'any_r0yx=?,
+    ~onOpen: 'any_r7a8=?,
     ~_open: bool=?,
     ~placement: string=?,
     ~_PopperProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
     ~title: React.element,
+    ~_TransitionComponent: 'union_r1mw=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -106,6 +107,14 @@ let makeProps =
       ~_PopperProps: option(Js.t({..}))=?,
       ~theme: option(Js.t({..}))=?,
       ~title: React.element,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -143,6 +152,12 @@ let makeProps =
     ~_PopperProps?,
     ~theme?,
     ~title,
+    ~_TransitionComponent=?
+      _TransitionComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
     ~_TransitionProps?,
     ~key?,
     ~_ref=?ref_,

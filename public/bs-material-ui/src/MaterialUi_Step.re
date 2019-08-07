@@ -48,7 +48,7 @@ external makePropsMui:
     ~completed: bool=?,
     ~connector: React.element=?,
     ~disabled: bool=?,
-    ~index: 'number_6=?,
+    ~index: 'number_x=?,
     ~last: bool=?,
     ~orientation: string=?,
     ~key: string=?,

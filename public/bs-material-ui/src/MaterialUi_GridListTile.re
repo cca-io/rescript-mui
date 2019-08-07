@@ -34,8 +34,9 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~cols: 'number_g=?,
-    ~rows: 'number_m=?,
+    ~cols: 'number_f=?,
+    ~component: 'union_rvyx=?,
+    ~rows: 'number_7=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
@@ -50,6 +51,14 @@ let makeProps =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~cols: option([ | `Int(int) | `Float(float)])=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~rows: option([ | `Int(int) | `Float(float)])=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -61,6 +70,8 @@ let makeProps =
     ~children?,
     ~className?,
     ~cols=?cols->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~rows=?rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~key?,
     ~_ref=?ref_,

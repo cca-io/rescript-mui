@@ -10,7 +10,11 @@ module BackdropProps = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
-    component: React.element,
+    component: [
+      | `String(string)
+      | `Callback(unit => React.element)
+      | `Element(ReasonReact.reactElement)
+    ],
   };
   let make = t;
 
@@ -19,7 +23,11 @@ module BackdropProps = {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
 
-      switch (obj->componentGet) {
+      switch (
+        obj
+        ->componentGet
+        ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+      ) {
       | Some(v) =>
         unwrappedMap->(
                         Js.Dict.set(
@@ -70,7 +78,11 @@ module PaperProps = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
-    component: React.element,
+    component: [
+      | `String(string)
+      | `Callback(unit => React.element)
+      | `Element(ReasonReact.reactElement)
+    ],
     [@bs.optional]
     style: Js.Json.t,
   };
@@ -81,7 +93,11 @@ module PaperProps = {
     | Some(obj) =>
       let unwrappedMap = Js.Dict.empty();
 
-      switch (obj->componentGet) {
+      switch (
+        obj
+        ->componentGet
+        ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+      ) {
       | Some(v) =>
         unwrappedMap->(
                         Js.Dict.set(
@@ -151,23 +167,23 @@ external makePropsMui:
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_w=?,
-    ~minFlingVelocity: 'number_i=?,
-    ~_ModalProps: 'any_r4l1=?,
-    ~onClose: 'any_rem5,
-    ~onOpen: 'any_ry0k,
+    ~hysteresis: 'number_a=?,
+    ~minFlingVelocity: 'number_9=?,
+    ~_ModalProps: 'any_ro2w=?,
+    ~onClose: 'any_rnk0,
+    ~onOpen: 'any_rmkf,
     ~_open: bool,
-    ~_PaperProps: 'any_rj45=?,
+    ~_PaperProps: 'any_r4ub=?,
     ~_SwipeAreaProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_n=?,
-    ~transitionDuration: 'union_r7ie=?,
+    ~swipeAreaWidth: 'number_l=?,
+    ~transitionDuration: 'union_rh1t=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_s=?,
+    ~elevation: 'number_3=?,
     ~_SlideProps: Js.t({..})=?,
     ~theme: Js.t({..})=?,
     unit

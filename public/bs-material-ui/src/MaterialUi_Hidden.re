@@ -38,7 +38,7 @@ external makePropsMui:
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_r6up=?,
+    ~only: 'union_rc7n=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,

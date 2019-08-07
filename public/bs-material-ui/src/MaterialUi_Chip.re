@@ -131,6 +131,7 @@ external makePropsMui:
     ~className: string=?,
     ~clickable: bool=?,
     ~color: string=?,
+    ~component: 'union_r9vy=?,
     ~deleteIcon: React.element=?,
     ~icon: React.element=?,
     ~label: React.element=?,
@@ -156,6 +157,14 @@ let makeProps =
       ~className: option(string)=?,
       ~clickable: option(bool)=?,
       ~color: option(color)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~deleteIcon: option(React.element)=?,
       ~icon: option(React.element)=?,
       ~label: option(React.element)=?,
@@ -177,6 +186,8 @@ let makeProps =
     ~className?,
     ~clickable?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~deleteIcon?,
     ~icon?,
     ~label?,

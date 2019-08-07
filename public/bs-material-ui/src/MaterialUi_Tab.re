@@ -77,14 +77,14 @@ external makePropsMui:
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~selected: bool=?,
     ~textColor: string=?,
-    ~value: 'any_rrj9=?,
+    ~value: 'any_rs9v=?,
     ~wrapped: bool=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~action: 'union_rrkn=?,
-    ~buttonRef: 'union_rw7s=?,
+    ~action: 'union_rzrr=?,
+    ~buttonRef: 'union_rt7e=?,
     ~centerRipple: bool=?,
-    ~component: React.element=?,
+    ~component: 'union_rqun=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -101,7 +101,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rpcj=?,
+    ~tabIndex: 'union_r6ix=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -126,7 +126,7 @@ let makeProps =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~textColor: option(textColor)=?,
-      ~value: option('any_rrj9)=?,
+      ~value: option('any_rs9v)=?,
       ~wrapped: option(bool)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -139,7 +139,14 @@ let makeProps =
            [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
          )=?,
       ~centerRipple: option(bool)=?,
-      ~component: option(React.element)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
@@ -194,7 +201,8 @@ let makeProps =
     ~buttonRef=?
       buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~centerRipple?,
-    ~component?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disableTouchRipple?,
     ~focusRipple?,
     ~focusVisibleClassName?,

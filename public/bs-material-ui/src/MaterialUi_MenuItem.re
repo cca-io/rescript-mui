@@ -40,13 +40,14 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
+    ~component: 'union_r2bf=?,
     ~dense: bool=?,
     ~disabled: bool=?,
     ~disableGutters: bool=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~tabIndex: 'number_f=?,
-    ~value: 'union_r6tb=?,
+    ~tabIndex: 'number_j=?,
+    ~value: 'union_rg65=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~key: string=?,
@@ -54,6 +55,7 @@ external makePropsMui:
     ~alignItems: string=?,
     ~autoFocus: bool=?,
     ~button: bool=?,
+    ~_ContainerComponent: 'union_roh5=?,
     ~_ContainerProps: Js.t({..})=?,
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
@@ -68,6 +70,14 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~dense: option(bool)=?,
       ~disabled: option(bool)=?,
       ~disableGutters: option(bool)=?,
@@ -90,6 +100,14 @@ let makeProps =
       ~alignItems: option(alignItems)=?,
       ~autoFocus: option(bool)=?,
       ~button: option(bool)=?,
+      ~_ContainerComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~_ContainerProps: option(Js.t({..}))=?,
       ~divider: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
@@ -100,6 +118,8 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~dense?,
     ~disabled?,
     ~disableGutters?,
@@ -115,6 +135,12 @@ let makeProps =
     ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
     ~autoFocus?,
     ~button?,
+    ~_ContainerComponent=?
+      _ContainerComponent->(
+                             Belt.Option.map(v =>
+                               MaterialUi_Helpers.unwrapValue(v)
+                             )
+                           ),
     ~_ContainerProps?,
     ~divider?,
     ~focusVisibleClassName?,

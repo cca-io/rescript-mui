@@ -74,27 +74,28 @@ external makePropsMui:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_r9fi=?,
+    ~defaultValue: 'any_ry1e=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
+    ~inputComponent: 'union_razv=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_r2g0=?,
+    ~inputRef: 'union_rq49=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
-    ~onChange: 'any_rjzt=?,
+    ~onChange: 'any_rnu9=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rd63=?,
-    ~rowsMax: 'union_rivk=?,
+    ~rows: 'union_rpna=?,
+    ~rowsMax: 'union_rkqe=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_r1pd=?,
+    ~value: 'any_rdqk=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~aria_describedby: string=?,
@@ -117,13 +118,21 @@ let makeProps =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_r9fi)=?,
+      ~defaultValue: option('any_ry1e)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
+      ~inputComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~inputProps: option(Js.t({..}))=?,
       ~inputRef:
          option(
@@ -140,7 +149,7 @@ let makeProps =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_r1pd)=?,
+      ~value: option('any_rdqk)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~aria_describedby: option(string)=?,
@@ -166,6 +175,10 @@ let makeProps =
     ~error?,
     ~fullWidth?,
     ~id?,
+    ~inputComponent=?
+      inputComponent->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
     ~inputProps?,
     ~inputRef=?
       inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

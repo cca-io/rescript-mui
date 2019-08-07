@@ -79,7 +79,8 @@ external makePropsMui:
     ~last: bool=?,
     ~optional: bool=?,
     ~orientation: string=?,
-    ~transitionDuration: 'union_rhfh=?,
+    ~_TransitionComponent: 'union_ru3x=?,
+    ~transitionDuration: 'union_r0ec=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -100,6 +101,14 @@ let makeProps =
       ~last: option(bool)=?,
       ~optional: option(bool)=?,
       ~orientation: option(orientation)=?,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~transitionDuration:
          option(
            [
@@ -133,6 +142,12 @@ let makeProps =
                        }
                      )
                    ),
+    ~_TransitionComponent=?
+      _TransitionComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
     ~transitionDuration=?
       transitionDuration->(
                             Belt.Option.map(v =>

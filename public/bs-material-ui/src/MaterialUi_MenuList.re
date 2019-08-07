@@ -31,7 +31,7 @@ module Actions = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_rw5o=?,
+    ~actions: 'any_r21j=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -39,6 +39,7 @@ external makePropsMui:
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~component: 'union_r594=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,
@@ -57,6 +58,14 @@ let makeProps =
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(ReasonReact.reactElement)
+           ],
+         )=?,
       ~dense: option(bool)=?,
       ~disablePadding: option(bool)=?,
       ~subheader: option(React.element)=?,
@@ -71,6 +80,8 @@ let makeProps =
     ~onKeyDown?,
     ~key?,
     ~_ref=?ref_,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~dense?,
     ~disablePadding?,
     ~subheader?,
