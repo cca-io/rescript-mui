@@ -157,3 +157,4 @@ module ThemeOptions = MaterialUi_ThemeOptions;
 module ThemeProvider = MaterialUi_ThemeProvider;
 module MuiThemeProvider = MaterialUi_ThemeProvider;
 module WithStyles = MaterialUi_WithStyles;
+module Theme_Helpers = MaterialUi_Theme_Helpers;
