@@ -33,7 +33,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~childrenClassName: string=?,
     ~className: string=?,
-    ~component: 'union_rw7p=?,
+    ~component: 'union_r28t=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,

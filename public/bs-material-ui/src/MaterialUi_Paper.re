@@ -103,8 +103,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rs4j=?,
-    ~elevation: 'number_r=?,
+    ~component: 'union_rd41=?,
+    ~elevation: 'number_x=?,
     ~square: bool=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,

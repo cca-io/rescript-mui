@@ -234,12 +234,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'any_rxdo=?,
+    ~anchorEl: 'any_rkci=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_r2xd=?,
+    ~onClose: 'any_rfki=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -249,22 +249,21 @@ external makePropsMui:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
-    ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_rn0s=?,
+    ~transitionDuration: 'union_rnz5=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~action: 'any_ruth=?,
-    ~anchorOrigin: 'any_rar1=?,
-    ~anchorPosition: 'any_rgkc=?,
+    ~action: 'any_refe=?,
+    ~anchorOrigin: 'any_rfrr=?,
+    ~anchorPosition: 'any_rb57=?,
     ~anchorReference: string=?,
-    ~container: 'union_rbys=?,
-    ~elevation: 'number_o=?,
+    ~container: 'union_ra0t=?,
+    ~elevation: 'number_c=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_s=?,
+    ~marginThreshold: 'number_r=?,
     ~_ModalClasses: Js.t({..})=?,
-    ~transformOrigin: 'any_rpvw=?,
-    ~_TransitionComponent: 'union_rptb=?,
+    ~transformOrigin: 'any_rej0=?,
+    ~_TransitionComponent: 'union_rmue=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -275,7 +274,7 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~anchorEl: option('any_rxdo)=?,
+      ~anchorEl: option('any_rkci)=?,
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~disableAutoFocusItem: option(bool)=?,
@@ -290,7 +289,6 @@ let makeProps =
       ~open_: bool,
       ~_PaperProps: option(Js.t({..}))=?,
       ~_PopoverClasses: option(Js.t({..}))=?,
-      ~theme: option(Js.t({..}))=?,
       ~transitionDuration:
          option(
            [
@@ -345,7 +343,6 @@ let makeProps =
     ~_open=open_,
     ~_PaperProps?,
     ~_PopoverClasses?,
-    ~theme?,
     ~transitionDuration=?
       transitionDuration->(
                             Belt.Option.map(v =>

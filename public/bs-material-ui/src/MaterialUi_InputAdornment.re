@@ -53,7 +53,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rapp=?,
+    ~component: 'union_rwi8=?,
     ~disablePointerEvents: bool=?,
     ~disableTypography: bool=?,
     ~muiFormControl: Js.t({..})=?,

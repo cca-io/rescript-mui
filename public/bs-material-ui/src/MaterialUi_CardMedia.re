@@ -27,7 +27,7 @@ module Classes = {
 external makePropsMui:
   (
     ~className: string=?,
-    ~component: 'union_r4ze=?,
+    ~component: 'union_r2os=?,
     ~image: string=?,
     ~src: string=?,
     ~key: string=?,

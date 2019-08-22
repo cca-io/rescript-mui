@@ -68,6 +68,38 @@ export default {
 			description: '-',
 		},
 	},
+	TextField: {
+		value: {
+			type: {
+				name: 'union',
+				value: [
+					{
+						name: 'string',
+					},
+					{
+						name: 'number',
+					},
+				],
+			},
+			required: false,
+			description: '-',
+		},
+		defaultValue: {
+			type: {
+				name: 'union',
+				value: [
+					{
+						name: 'string',
+					},
+					{
+						name: 'number',
+					},
+				],
+			},
+			required: false,
+			description: '-',
+		},
+	},
 	CardContent: {
 		children: {
 			type: {

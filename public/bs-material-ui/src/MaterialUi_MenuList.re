@@ -31,7 +31,7 @@ module Actions = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_r21j=?,
+    ~actions: 'any_rjd3=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -39,7 +39,7 @@ external makePropsMui:
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~component: 'union_r594=?,
+    ~component: 'union_rst9=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,

@@ -12,7 +12,7 @@
 		"src"
 	],
 	"package-specs": {
-		"module": "commonjs",
+		"module": "es6",
 		"in-source": true
 	},
 	"ppx-flags": [ "@jsiebern/bs-material-ui-ppx/ppx" ],

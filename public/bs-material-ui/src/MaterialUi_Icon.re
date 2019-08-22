@@ -68,7 +68,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ruz1=?,
+    ~component: 'union_rnnv=?,
     ~fontSize: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,

@@ -2,6 +2,8 @@ module TransitionDuration_shape = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
     enter: [ | `Int(int) | `Float(float)],
     [@bs.optional]
     exit: [ | `Int(int) | `Float(float)],
@@ -10,6 +12,16 @@ module TransitionDuration_shape = {
 
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
 
     switch (
       obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
@@ -59,10 +71,11 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~invisible: bool=?,
     ~_open: bool,
-    ~transitionDuration: 'union_rknt=?,
+    ~transitionDuration: 'union_rpy5=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~classes: Js.Dict.t(string)=?,
@@ -74,6 +87,7 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~invisible: option(bool)=?,
       ~open_: bool,
@@ -92,6 +106,7 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
+    ~children?,
     ~className?,
     ~invisible?,
     ~_open=open_,

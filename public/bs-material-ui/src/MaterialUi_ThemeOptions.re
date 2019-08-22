@@ -581,6 +581,8 @@ module DividerClassKey = {
     middle: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "vertical"]
+    vertical: ReactDOMRe.Style.t,
   };
 
   let make = t;

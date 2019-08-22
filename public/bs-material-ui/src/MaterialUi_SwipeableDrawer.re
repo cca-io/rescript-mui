@@ -167,25 +167,24 @@ external makePropsMui:
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_a=?,
-    ~minFlingVelocity: 'number_9=?,
-    ~_ModalProps: 'any_ro2w=?,
-    ~onClose: 'any_rnk0,
-    ~onOpen: 'any_rmkf,
+    ~hysteresis: 'number_s=?,
+    ~minFlingVelocity: 'number_p=?,
+    ~_ModalProps: 'any_rmmu=?,
+    ~onClose: 'any_rtjt,
+    ~onOpen: 'any_rztj,
     ~_open: bool,
-    ~_PaperProps: 'any_r4ub=?,
+    ~_PaperProps: 'any_rau8=?,
     ~_SwipeAreaProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_l=?,
-    ~transitionDuration: 'union_rh1t=?,
+    ~swipeAreaWidth: 'number_5=?,
+    ~transitionDuration: 'union_roey=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_3=?,
+    ~elevation: 'number_g=?,
     ~_SlideProps: Js.t({..})=?,
-    ~theme: Js.t({..})=?,
     unit
   ) =>
   _ =
@@ -223,7 +222,6 @@ let makeProps =
       ~className: option(string)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~_SlideProps: option(Js.t({..}))=?,
-      ~theme: option(Js.t({..}))=?,
       (),
     ) =>
   makePropsMui(
@@ -265,7 +263,6 @@ let makeProps =
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_SlideProps?,
-    ~theme?,
     (),
   );
 

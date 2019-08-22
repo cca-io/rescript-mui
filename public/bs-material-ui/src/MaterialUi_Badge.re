@@ -1,13 +1,13 @@
 [@bs.deriving jsConverter]
 type color = [
   | [@bs.as "default"] `Default
+  | [@bs.as "error"] `Error
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
-  | [@bs.as "error"] `Error
 ];
 
 [@bs.deriving jsConverter]
-type variant = [ | [@bs.as "standard"] `Standard | [@bs.as "dot"] `Dot];
+type variant = [ | [@bs.as "dot"] `Dot | [@bs.as "standard"] `Standard];
 
 module Classes = {
   type classesType =
@@ -56,9 +56,9 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ripi=?,
+    ~component: 'union_rv30=?,
     ~invisible: bool=?,
-    ~max: 'number_x=?,
+    ~max: 'number_v=?,
     ~showZero: bool=?,
     ~variant: string=?,
     ~key: string=?,

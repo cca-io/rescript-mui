@@ -87,20 +87,19 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rj41=?,
+    ~action: 'any_rjtj=?,
     ~centered: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r9b7=?,
+    ~component: 'union_rld0=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_rzni=?,
+    ~onChange: 'any_rboc=?,
     ~orientation: string=?,
-    ~_ScrollButtonComponent: 'union_ry1n=?,
+    ~_ScrollButtonComponent: 'union_rp99=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
-    ~theme: Js.t({..})=?,
-    ~value: 'any_rmre=?,
+    ~value: 'any_r9a2=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -126,7 +125,7 @@ let makeProps =
            ],
          )=?,
       ~indicatorColor: option(indicatorColor)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_r95k) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rf74) => unit)=?,
       ~orientation: option(orientation)=?,
       ~_ScrollButtonComponent:
          option(
@@ -139,8 +138,7 @@ let makeProps =
       ~scrollButtons: option(scrollButtons)=?,
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
-      ~theme: option(Js.t({..}))=?,
-      ~value: option('any_rmre)=?,
+      ~value: option('any_r9a2)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -177,7 +175,6 @@ let makeProps =
                      }
                    )
                  ),
-    ~theme?,
     ~value?,
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,

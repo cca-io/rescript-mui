@@ -1,18 +1,18 @@
 [@bs.deriving jsConverter]
 type color = [
+  | [@bs.as "default"] `Default
   | [@bs.as "inherit"] `Inherit
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
-  | [@bs.as "default"] `Default
 ];
 
 [@bs.deriving jsConverter]
 type position = [
-  | [@bs.as "fixed"] `Fixed
   | [@bs.as "absolute"] `Absolute
-  | [@bs.as "sticky"] `Sticky
-  | [@bs.as "static"] `Static
+  | [@bs.as "fixed"] `Fixed
   | [@bs.as "relative"] `Relative
+  | [@bs.as "static"] `Static
+  | [@bs.as "sticky"] `Sticky
 ];
 
 module Classes = {
@@ -70,8 +70,8 @@ external makePropsMui:
     ~position: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~component: 'union_r3hu=?,
-    ~elevation: 'number_l=?,
+    ~component: 'union_rnub=?,
+    ~elevation: 'number_a=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

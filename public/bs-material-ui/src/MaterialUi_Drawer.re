@@ -108,14 +108,13 @@ external makePropsMui:
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_y=?,
+    ~elevation: 'number_m=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rgbf=?,
+    ~onClose: 'any_r9p0=?,
     ~_open: bool=?,
     ~_PaperProps: Js.t({..})=?,
     ~_SlideProps: Js.t({..})=?,
-    ~theme: Js.t({..})=?,
-    ~transitionDuration: 'union_r2vp=?,
+    ~transitionDuration: 'union_r4rd=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -138,7 +137,6 @@ let makeProps =
       ~open_: option(bool)=?,
       ~_PaperProps: option(Js.t({..}))=?,
       ~_SlideProps: option(Js.t({..}))=?,
-      ~theme: option(Js.t({..}))=?,
       ~transitionDuration:
          option(
            [
@@ -166,7 +164,6 @@ let makeProps =
     ~_open=?open_,
     ~_PaperProps?,
     ~_SlideProps?,
-    ~theme?,
     ~transitionDuration=?
       transitionDuration->(
                             Belt.Option.map(v =>

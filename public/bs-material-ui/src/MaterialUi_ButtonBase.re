@@ -36,12 +36,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'union_r9lq=?,
-    ~buttonRef: 'union_r08t=?,
+    ~action: 'union_rcnp=?,
+    ~buttonRef: 'union_r5sw=?,
     ~centerRipple: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rfy6=?,
+    ~component: 'union_r1fi=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -61,7 +61,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rh23=?,
+    ~tabIndex: 'union_ryl4=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~key: string=?,

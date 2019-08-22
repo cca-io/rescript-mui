@@ -2,7 +2,7 @@
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~container: 'union_r8iv=?,
+    ~container: 'union_r791=?,
     ~disablePortal: bool=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~key: string=?,
@@ -15,10 +15,7 @@ external makePropsMui:
 let makeProps =
     (
       ~children: option('children)=?,
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
+      ~container: option([ | `Callback('genericCallback)])=?,
       ~disablePortal: option(bool)=?,
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~key: option(string)=?,
