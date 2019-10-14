@@ -298,18 +298,18 @@ external makePropsMui:
     ~alignItems: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r5c6=?,
+    ~component: 'union_rb7z=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rd93=?,
-    ~md: 'number_rtfm=?,
-    ~sm: 'number_rdr2=?,
-    ~spacing: 'number_r03f=?,
+    ~lg: 'number_reua=?,
+    ~md: 'number_rr58=?,
+    ~sm: 'number_r923=?,
+    ~spacing: 'number_r8o3=?,
     ~wrap: string=?,
-    ~xl: 'number_rf7k=?,
-    ~xs: 'number_rsom=?,
+    ~xl: 'number_ryb9=?,
+    ~xs: 'number_r1a1=?,
     ~zeroMinWidth: bool=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
@@ -331,7 +331,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~container: option(bool)=?,

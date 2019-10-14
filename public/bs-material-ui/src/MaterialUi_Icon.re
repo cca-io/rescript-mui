@@ -68,7 +68,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rjuu=?,
+    ~component: 'union_ruur=?,
     ~fontSize: string=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
@@ -89,7 +89,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~fontSize: option(fontSize)=?,

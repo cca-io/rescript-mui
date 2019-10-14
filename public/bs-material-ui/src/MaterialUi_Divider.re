@@ -53,7 +53,7 @@ external makePropsMui:
   (
     ~absolute: bool=?,
     ~className: string=?,
-    ~component: 'union_rgjp=?,
+    ~component: 'union_r0xr=?,
     ~light: bool=?,
     ~orientation: string=?,
     ~role: string=?,
@@ -76,7 +76,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~light: option(bool)=?,

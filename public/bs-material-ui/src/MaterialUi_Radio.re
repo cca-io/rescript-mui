@@ -61,10 +61,10 @@ external makePropsMui:
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
     ~name: string=?,
-    ~onChange: 'any_ru5h=?,
+    ~onChange: 'any_rlbt=?,
     ~required: bool=?,
     ~_type: string=?,
-    ~value: 'any_r974=?,
+    ~value: 'any_rhwm=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
@@ -73,7 +73,7 @@ external makePropsMui:
     ~edge: string=?,
     ~size: string=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rbme=?,
+    ~component: 'union_rx0b=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -91,7 +91,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rctw=?,
+    ~tabIndex: 'union_r3lr=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -114,7 +114,7 @@ let makeProps =
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~required: option(bool)=?,
       ~type_: option(string)=?,
-      ~value: option('any_r974)=?,
+      ~value: option('any_rhwm)=?,
       ~key: option(string)=?,
       ~ref_: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,
@@ -128,7 +128,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~disableTouchRipple: option(bool)=?,

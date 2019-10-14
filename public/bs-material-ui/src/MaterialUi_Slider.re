@@ -109,26 +109,26 @@ external makePropsMui:
     ~aria_labelledby: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rlsj=?,
-    ~defaultValue: 'union_rxn1=?,
+    ~component: 'union_r6aj=?,
+    ~defaultValue: 'union_rva4=?,
     ~disabled: bool=?,
-    ~getAriaLabel: 'any_r5fb=?,
-    ~getAriaValueText: 'any_roxa=?,
-    ~marks: 'union_rip7=?,
-    ~max: 'number_2=?,
-    ~min: 'number_k=?,
+    ~getAriaLabel: 'any_ras8=?,
+    ~getAriaValueText: 'any_rwpj=?,
+    ~marks: 'union_r37r=?,
+    ~max: 'number_4=?,
+    ~min: 'number_p=?,
     ~name: string=?,
-    ~onChange: 'any_ra4v=?,
-    ~onChangeCommitted: 'any_r9kw=?,
+    ~onChange: 'any_rpsj=?,
+    ~onChangeCommitted: 'any_r5tl=?,
     ~onMouseDown: ReactEvent.Mouse.t => unit=?,
     ~orientation: string=?,
-    ~step: 'number_5=?,
-    ~_ThumbComponent: 'union_rmw9=?,
+    ~step: 'number_i=?,
+    ~_ThumbComponent: 'union_r0pi=?,
     ~track: string=?,
-    ~value: 'union_riiw=?,
-    ~_ValueLabelComponent: 'union_rw7c=?,
+    ~value: 'union_rt7d=?,
+    ~_ValueLabelComponent: 'union_rgu1=?,
     ~valueLabelDisplay: string=?,
-    ~valueLabelFormat: 'union_raza=?,
+    ~valueLabelFormat: 'union_rx5k=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -148,7 +148,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~defaultValue:
@@ -163,12 +163,12 @@ let makeProps =
       ~disabled: option(bool)=?,
       ~getAriaLabel: option(int => string)=?,
       ~getAriaValueText: option((int, int) => string)=?,
-      ~marks: option([ | `Bool(bool) | `Array('any_ryxw)])=?,
+      ~marks: option([ | `Bool(bool) | `Array('any_rpsq)])=?,
       ~max: option([ | `Int(int) | `Float(float)])=?,
       ~min: option([ | `Int(int) | `Float(float)])=?,
       ~name: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rji0) => unit)=?,
-      ~onChangeCommitted: option((Js.t({..}), 'any_rdv2) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rwvj) => unit)=?,
+      ~onChangeCommitted: option((Js.t({..}), 'any_ri2l) => unit)=?,
       ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
       ~orientation: option(orientation)=?,
       ~step: option([ | `Int(int) | `Float(float)])=?,
@@ -177,7 +177,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~track: option(track)=?,
@@ -195,7 +195,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~valueLabelDisplay: option(valueLabelDisplay)=?,

@@ -75,7 +75,7 @@ external makePropsMui:
     ~className: string=?,
     ~invisible: bool=?,
     ~_open: bool,
-    ~transitionDuration: 'union_r4fr=?,
+    ~transitionDuration: 'union_ruzp=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,

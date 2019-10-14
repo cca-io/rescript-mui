@@ -74,14 +74,14 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~collapsedHeight: string=?,
-    ~component: 'union_rjs5=?,
+    ~component: 'union_rmgw=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_rb58=?,
+    ~timeout: 'union_rixv=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -101,7 +101,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~in_: option(bool)=?,

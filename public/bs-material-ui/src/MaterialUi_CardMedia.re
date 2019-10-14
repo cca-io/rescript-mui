@@ -31,7 +31,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r9aq=?,
+    ~component: 'union_r5k9=?,
     ~image: string=?,
     ~src: string=?,
     ~key: string=?,
@@ -52,7 +52,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~image: option(string)=?,

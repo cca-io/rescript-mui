@@ -24,7 +24,7 @@ module Classes = {
 external makePropsMui:
   (
     ~className: string=?,
-    ~component: 'union_ry7b=?,
+    ~component: 'union_rrhr=?,
     ~children: 'children=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
@@ -43,7 +43,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~children: option('children)=?,

@@ -18,7 +18,7 @@ const res = Converter(JSON.stringify(json), 'Theme', {
 		},
 		{
 			re: /HTML.*Element/m,
-			replaceWith: 'React.reactElement',
+			replaceWith: 'React.element',
 		},
 	],
 });

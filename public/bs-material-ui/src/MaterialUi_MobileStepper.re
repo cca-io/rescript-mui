@@ -58,19 +58,19 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_g=?,
+    ~activeStep: 'number_4=?,
     ~backButton: React.element=?,
     ~className: string=?,
     ~_LinearProgressProps: Js.t({..})=?,
     ~nextButton: React.element=?,
     ~position: string=?,
-    ~steps: 'number_8,
+    ~steps: 'number_e,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
-    ~component: 'union_r1f5=?,
-    ~elevation: 'number_w=?,
+    ~component: 'union_rcrb=?,
+    ~elevation: 'number_h=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -97,7 +97,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,

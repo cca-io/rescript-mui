@@ -83,19 +83,19 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~_ActionsComponent: 'union_rg67=?,
+    ~_ActionsComponent: 'union_rg4k=?,
     ~backIconButtonProps: Js.t({..})=?,
     ~className: string=?,
-    ~colSpan: 'number_j=?,
-    ~component: 'union_rcg5=?,
-    ~count: 'number_a,
+    ~colSpan: 'number_4=?,
+    ~component: 'union_r564=?,
+    ~count: 'number_9,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_rgnc,
-    ~onChangeRowsPerPage: 'any_rff0=?,
+    ~onChangePage: 'any_r46z,
+    ~onChangeRowsPerPage: 'any_rhkl=?,
     ~page: int=?,
-    ~rowsPerPage: 'number_c,
+    ~rowsPerPage: 'number_i,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~key: string=?,
@@ -121,7 +121,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~backIconButtonProps: option(Js.t({..}))=?,
@@ -132,7 +132,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~count: [ | `Int(int) | `Float(float)],
@@ -155,7 +155,7 @@ let makeProps =
              "count": int,
              "page": int,
            } =>
-           React.reactElement,
+           React.element,
          )=?,
       ~nextIconButtonProps: option(Js.t({..}))=?,
       ~onChangePage: (ReactEvent.Mouse.t, int) => unit,

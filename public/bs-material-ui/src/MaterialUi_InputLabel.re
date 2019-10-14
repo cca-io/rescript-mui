@@ -79,7 +79,7 @@ external makePropsMui:
     ~htmlFor: string,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r9w2=?,
+    ~component: 'union_rz3c=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -108,7 +108,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~filled: option(bool)=?,

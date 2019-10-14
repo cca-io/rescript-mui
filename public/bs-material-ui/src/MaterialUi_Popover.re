@@ -116,7 +116,7 @@ module PaperProps = {
     component: [
       | `String(string)
       | `Callback(unit => React.element)
-      | `Element(React.reactElement)
+      | `Element(React.element)
     ],
   };
   let make = t;
@@ -266,17 +266,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'union_rbgp=?,
-    ~anchorOrigin: 'any_rwzu=?,
-    ~anchorPosition: 'any_rsp3=?,
+    ~anchorEl: 'union_rjhk=?,
+    ~anchorOrigin: 'any_rwbq=?,
+    ~anchorPosition: 'any_rpa0=?,
     ~anchorReference: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~container: 'union_rm67=?,
-    ~elevation: 'number_y=?,
+    ~container: 'union_rgf9=?,
+    ~elevation: 'number_4=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_h=?,
-    ~onClose: 'any_rvoh=?,
+    ~marginThreshold: 'number_4=?,
+    ~onClose: 'any_r4jb=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -284,14 +284,14 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperProps: 'any_ryo6=?,
-    ~transformOrigin: 'any_r1vg=?,
-    ~_TransitionComponent: 'union_rwy7=?,
-    ~transitionDuration: 'union_rljj=?,
+    ~_PaperProps: 'any_rraj=?,
+    ~transformOrigin: 'any_rvr9=?,
+    ~_TransitionComponent: 'union_rf1y=?,
+    ~transitionDuration: 'union_rqfq=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
-    ~_BackdropComponent: 'union_rv3p=?,
+    ~_BackdropComponent: 'union_r8yl=?,
     ~_BackdropProps: Js.t({..})=?,
     ~closeAfterTransition: bool=?,
     ~disableAutoFocus: bool=?,
@@ -347,7 +347,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~transitionDuration:
@@ -367,7 +367,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~_BackdropProps: option(Js.t({..}))=?,

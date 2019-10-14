@@ -13,7 +13,7 @@ module BackdropProps = {
     component: [
       | `String(string)
       | `Callback(unit => React.element)
-      | `Element(React.reactElement)
+      | `Element(React.element)
     ],
   };
   let make = t;
@@ -81,7 +81,7 @@ module PaperProps = {
     component: [
       | `String(string)
       | `Callback(unit => React.element)
-      | `Element(React.reactElement)
+      | `Element(React.element)
     ],
     [@bs.optional]
     style: Js.Json.t,
@@ -167,23 +167,23 @@ external makePropsMui:
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_r=?,
-    ~minFlingVelocity: 'number_g=?,
-    ~_ModalProps: 'any_rbsv=?,
-    ~onClose: 'any_rl7z,
-    ~onOpen: 'any_rzpf,
+    ~hysteresis: 'number_5=?,
+    ~minFlingVelocity: 'number_d=?,
+    ~_ModalProps: 'any_r6jz=?,
+    ~onClose: 'any_rt8h,
+    ~onOpen: 'any_r65q,
     ~_open: bool,
-    ~_PaperProps: 'any_r52e=?,
+    ~_PaperProps: 'any_rfhh=?,
     ~_SwipeAreaProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_b=?,
-    ~transitionDuration: 'union_rt4k=?,
+    ~swipeAreaWidth: 'number_g=?,
+    ~transitionDuration: 'union_r0s5=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_1=?,
+    ~elevation: 'number_3=?,
     ~_SlideProps: Js.t({..})=?,
     unit
   ) =>

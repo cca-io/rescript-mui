@@ -61,7 +61,7 @@ external makePropsMui:
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
-    ~index: 'number_p=?,
+    ~index: 'number_5=?,
     ~orientation: string=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,

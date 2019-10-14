@@ -25,10 +25,10 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rfxs=?,
-    ~onChange: 'any_roqn=?,
+    ~component: 'union_rt7e=?,
+    ~onChange: 'any_rql0=?,
     ~showLabels: bool=?,
-    ~value: 'any_rkjc=?,
+    ~value: 'any_rgsp=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -47,12 +47,12 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rdto) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_r164) => unit)=?,
       ~showLabels: option(bool)=?,
-      ~value: option('any_rkjc)=?,
+      ~value: option('any_rgsp)=?,
       ~key: option(string)=?,
       ~ref_: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,

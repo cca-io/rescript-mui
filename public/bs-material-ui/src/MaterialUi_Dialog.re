@@ -120,7 +120,7 @@ external makePropsMui:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_r1do=?,
+    ~onClose: 'any_rog6=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -129,17 +129,17 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperComponent: 'union_rz5p=?,
+    ~_PaperComponent: 'union_r9ux=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_rdpv=?,
-    ~transitionDuration: 'union_roli=?,
+    ~_TransitionComponent: 'union_rb7f=?,
+    ~transitionDuration: 'union_rue0=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
-    ~_BackdropComponent: 'union_rnea=?,
+    ~_BackdropComponent: 'union_r8qp=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rqnc=?,
+    ~container: 'union_rug9=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
@@ -181,7 +181,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~_PaperProps: option(Js.t({..}))=?,
@@ -191,7 +191,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~transitionDuration:
@@ -210,7 +210,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~closeAfterTransition: option(bool)=?,

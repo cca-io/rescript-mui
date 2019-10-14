@@ -41,7 +41,7 @@ external makePropsMui:
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~defaultValue: 'union_rtq8=?,
+    ~defaultValue: 'union_r5sg=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -57,20 +57,20 @@ external makePropsMui:
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rcep=?,
+    ~onChange: 'any_rgmx=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_rqyq=?,
-    ~rowsMax: 'union_rk7p=?,
+    ~rows: 'union_ri5i=?,
+    ~rowsMax: 'union_rlb6=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
     ~_type: string=?,
-    ~value: 'union_r6hw=?,
+    ~value: 'union_rnly=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rx0i=?,
+    ~component: 'union_rerg=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -119,7 +119,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(React.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~classes: option(Classes.t)=?,
