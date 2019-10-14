@@ -240,10 +240,12 @@ type transitionDuration_enum = [ | [@bs.as "auto"] `Auto];
 
 module Classes = {
   type classesType =
+    | Root(string)
     | Paper(string);
   type t = list(classesType);
   let to_string =
     fun
+    | Root(_) => "root"
     | Paper(_) => "paper";
   let to_obj = listOfClasses =>
     listOfClasses->(
@@ -251,6 +253,7 @@ module Classes = {
                        Js.Dict.empty(),
                        (obj, classType) => {
                          switch (classType) {
+                         | Root(className)
                          | Paper(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
@@ -263,18 +266,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_r5xy=?,
-    ~anchorEl: 'union_r9ko=?,
-    ~anchorOrigin: 'any_rm1f=?,
-    ~anchorPosition: 'any_rc10=?,
+    ~anchorEl: 'union_ri64=?,
+    ~anchorOrigin: 'any_rf5l=?,
+    ~anchorPosition: 'any_rsey=?,
     ~anchorReference: string=?,
     ~children: 'children=?,
-    ~container: 'union_rv0o=?,
-    ~elevation: 'number_u=?,
+    ~className: string=?,
+    ~container: 'union_robq=?,
+    ~elevation: 'number_p=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_r=?,
-    ~_ModalClasses: Js.t({..})=?,
-    ~onClose: 'any_r30g=?,
+    ~marginThreshold: 'number_w=?,
+    ~onClose: 'any_rro0=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -282,14 +284,14 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperProps: 'any_rbej=?,
-    ~transformOrigin: 'any_rg0q=?,
-    ~_TransitionComponent: 'union_rc6x=?,
-    ~transitionDuration: 'union_rd2m=?,
+    ~_PaperProps: 'any_rgww=?,
+    ~transformOrigin: 'any_ru3v=?,
+    ~_TransitionComponent: 'union_rxwv=?,
+    ~transitionDuration: 'union_rp3h=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~_BackdropComponent: 'union_r73m=?,
+    ~_BackdropComponent: 'union_rage=?,
     ~_BackdropProps: Js.t({..})=?,
     ~closeAfterTransition: bool=?,
     ~disableAutoFocus: bool=?,
@@ -314,7 +316,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~action: option(Js.t({..}) => unit)=?,
       ~anchorEl:
          option(
            [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
@@ -323,6 +324,7 @@ let makeProps =
       ~anchorPosition: option(AnchorPosition.t)=?,
       ~anchorReference: option(anchorReference)=?,
       ~children: option('children)=?,
+      ~className: option(string)=?,
       ~container:
          option(
            [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
@@ -330,7 +332,6 @@ let makeProps =
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~getContentAnchorEl: option('genericCallback)=?,
       ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
-      ~_ModalClasses: option(Js.t({..}))=?,
       ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
       ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
@@ -389,7 +390,6 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
-    ~action?,
     ~anchorEl=?
       anchorEl->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
@@ -397,6 +397,7 @@ let makeProps =
     ~anchorReference=?
       anchorReference->(Belt.Option.map(v => anchorReferenceToJs(v))),
     ~children?,
+    ~className?,
     ~container=?
       container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~elevation=?
@@ -408,7 +409,6 @@ let makeProps =
                            MaterialUi_Helpers.unwrapValue(v)
                          )
                        ),
-    ~_ModalClasses?,
     ~onClose?,
     ~onEnter?,
     ~onEntered?,

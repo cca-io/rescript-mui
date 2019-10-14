@@ -1,19 +1,19 @@
 [@bs.deriving jsConverter]
 type color = [
+  | [@bs.as "action"] `Action
+  | [@bs.as "disabled"] `Disabled
+  | [@bs.as "error"] `Error
   | [@bs.as "inherit"] `Inherit
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
-  | [@bs.as "action"] `Action
-  | [@bs.as "error"] `Error
-  | [@bs.as "disabled"] `Disabled
 ];
 
 [@bs.deriving jsConverter]
 type fontSize = [
-  | [@bs.as "inherit"] `Inherit
   | [@bs.as "default"] `Default
-  | [@bs.as "small"] `Small
+  | [@bs.as "inherit"] `Inherit
   | [@bs.as "large"] `Large
+  | [@bs.as "small"] `Small
 ];
 
 module Classes = {
@@ -68,7 +68,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rbom=?,
+    ~component: 'union_rrld=?,
     ~fontSize: string=?,
     ~htmlColor: string=?,
     ~shapeRendering: string=?,

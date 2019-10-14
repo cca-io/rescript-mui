@@ -79,7 +79,7 @@ external makePropsMui:
     ~htmlFor: string,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~component: 'union_r6s3=?,
+    ~component: 'union_rokc=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

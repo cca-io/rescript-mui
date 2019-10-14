@@ -1,12 +1,14 @@
 module Classes = {
   type classesType =
     | Root(string)
-    | Media(string);
+    | Media(string)
+    | Img(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | Media(_) => "media";
+    | Media(_) => "media"
+    | Img(_) => "img";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -14,7 +16,8 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
-                         | Media(className) =>
+                         | Media(className)
+                         | Img(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -26,8 +29,9 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r2os=?,
+    ~component: 'union_rysj=?,
     ~image: string=?,
     ~src: string=?,
     ~key: string=?,
@@ -41,6 +45,7 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
@@ -59,6 +64,7 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
+    ~children?,
     ~className?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

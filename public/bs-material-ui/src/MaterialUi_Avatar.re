@@ -31,9 +31,8 @@ external makePropsMui:
   (
     ~alt: string=?,
     ~children: 'children=?,
-    ~childrenClassName: string=?,
     ~className: string=?,
-    ~component: 'union_r28t=?,
+    ~component: 'union_r379=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,
@@ -51,7 +50,6 @@ let makeProps =
     (
       ~alt: option(string)=?,
       ~children: option('children)=?,
-      ~childrenClassName: option(string)=?,
       ~className: option(string)=?,
       ~component:
          option(
@@ -74,7 +72,6 @@ let makeProps =
   makePropsMui(
     ~alt?,
     ~children?,
-    ~childrenClassName?,
     ~className?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

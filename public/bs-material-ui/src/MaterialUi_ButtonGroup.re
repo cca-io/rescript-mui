@@ -15,6 +15,7 @@ type size = [
 
 [@bs.deriving jsConverter]
 type variant = [
+  | [@bs.as "text"] `Text
   | [@bs.as "outlined"] `Outlined
   | [@bs.as "contained"] `Contained
 ];
@@ -25,12 +26,16 @@ module Classes = {
     | Contained(string)
     | FullWidth(string)
     | Grouped(string)
+    | GroupedText(string)
+    | GroupedTextPrimary(string)
+    | GroupedTextSecondary(string)
     | GroupedOutlined(string)
     | GroupedOutlinedPrimary(string)
     | GroupedOutlinedSecondary(string)
     | GroupedContained(string)
     | GroupedContainedPrimary(string)
-    | GroupedContainedSecondary(string);
+    | GroupedContainedSecondary(string)
+    | Disabled(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -38,12 +43,16 @@ module Classes = {
     | Contained(_) => "contained"
     | FullWidth(_) => "fullWidth"
     | Grouped(_) => "grouped"
+    | GroupedText(_) => "groupedText"
+    | GroupedTextPrimary(_) => "groupedTextPrimary"
+    | GroupedTextSecondary(_) => "groupedTextSecondary"
     | GroupedOutlined(_) => "groupedOutlined"
     | GroupedOutlinedPrimary(_) => "groupedOutlinedPrimary"
     | GroupedOutlinedSecondary(_) => "groupedOutlinedSecondary"
     | GroupedContained(_) => "groupedContained"
     | GroupedContainedPrimary(_) => "groupedContainedPrimary"
-    | GroupedContainedSecondary(_) => "groupedContainedSecondary";
+    | GroupedContainedSecondary(_) => "groupedContainedSecondary"
+    | Disabled(_) => "disabled";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -54,12 +63,16 @@ module Classes = {
                          | Contained(className)
                          | FullWidth(className)
                          | Grouped(className)
+                         | GroupedText(className)
+                         | GroupedTextPrimary(className)
+                         | GroupedTextSecondary(className)
                          | GroupedOutlined(className)
                          | GroupedOutlinedPrimary(className)
                          | GroupedOutlinedSecondary(className)
                          | GroupedContained(className)
                          | GroupedContainedPrimary(className)
-                         | GroupedContainedSecondary(className) =>
+                         | GroupedContainedSecondary(className)
+                         | Disabled(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -74,7 +87,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rwhu=?,
+    ~component: 'union_rwxy=?,
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,

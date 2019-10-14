@@ -16,7 +16,9 @@ module Classes = {
     | Outlined(string)
     | SelectMenu(string)
     | Disabled(string)
-    | Icon(string);
+    | Icon(string)
+    | IconFilled(string)
+    | IconOutlined(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -26,7 +28,9 @@ module Classes = {
     | Outlined(_) => "outlined"
     | SelectMenu(_) => "selectMenu"
     | Disabled(_) => "disabled"
-    | Icon(_) => "icon";
+    | Icon(_) => "icon"
+    | IconFilled(_) => "iconFilled"
+    | IconOutlined(_) => "iconOutlined";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -39,7 +43,9 @@ module Classes = {
                          | Outlined(className)
                          | SelectMenu(className)
                          | Disabled(className)
-                         | Icon(className) =>
+                         | Icon(className)
+                         | IconFilled(className)
+                         | IconOutlined(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -52,34 +58,33 @@ module Classes = {
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~_IconComponent: 'union_r8ll=?,
+    ~_IconComponent: 'union_rme7=?,
     ~input: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_raa7=?,
-    ~value: 'any_r9xk=?,
+    ~onChange: 'any_r9v1=?,
+    ~value: 'any_rvgb=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_r9kl=?,
+    ~defaultValue: 'any_r4bi=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_r4mh=?,
-    ~inputRef: 'union_r328=?,
+    ~inputComponent: 'any_rx4c=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rfil=?,
-    ~rowsMax: 'union_rfx5=?,
+    ~rows: 'union_rt8q=?,
+    ~rowsMax: 'union_rpr5=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
     ~aria_describedby: string=?,
@@ -111,25 +116,21 @@ let makeProps =
       ~input: option(React.element)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~value: option('any_r9xk)=?,
+      ~value: option('any_rvgb)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_r9kl)=?,
+      ~defaultValue: option('any_r4bi)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_r4mh)=?,
-      ~inputRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
+      ~inputComponent: option('any_rx4c)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -176,8 +177,6 @@ let makeProps =
     ~fullWidth?,
     ~id?,
     ~inputComponent?,
-    ~inputRef=?
-      inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
     ~multiline?,
     ~name?,

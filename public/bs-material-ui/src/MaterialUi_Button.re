@@ -36,9 +36,20 @@ module Classes = {
     | FocusVisible(string)
     | Disabled(string)
     | ColorInherit(string)
+    | TextSizeSmall(string)
+    | TextSizeLarge(string)
+    | OutlinedSizeSmall(string)
+    | OutlinedSizeLarge(string)
+    | ContainedSizeSmall(string)
+    | ContainedSizeLarge(string)
     | SizeSmall(string)
     | SizeLarge(string)
-    | FullWidth(string);
+    | FullWidth(string)
+    | StartIcon(string)
+    | EndIcon(string)
+    | IconSizeSmall(string)
+    | IconSizeMedium(string)
+    | IconSizeLarge(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -56,9 +67,20 @@ module Classes = {
     | FocusVisible(_) => "focusVisible"
     | Disabled(_) => "disabled"
     | ColorInherit(_) => "colorInherit"
+    | TextSizeSmall(_) => "textSizeSmall"
+    | TextSizeLarge(_) => "textSizeLarge"
+    | OutlinedSizeSmall(_) => "outlinedSizeSmall"
+    | OutlinedSizeLarge(_) => "outlinedSizeLarge"
+    | ContainedSizeSmall(_) => "containedSizeSmall"
+    | ContainedSizeLarge(_) => "containedSizeLarge"
     | SizeSmall(_) => "sizeSmall"
     | SizeLarge(_) => "sizeLarge"
-    | FullWidth(_) => "fullWidth";
+    | FullWidth(_) => "fullWidth"
+    | StartIcon(_) => "startIcon"
+    | EndIcon(_) => "endIcon"
+    | IconSizeSmall(_) => "iconSizeSmall"
+    | IconSizeMedium(_) => "iconSizeMedium"
+    | IconSizeLarge(_) => "iconSizeLarge";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -79,9 +101,20 @@ module Classes = {
                          | FocusVisible(className)
                          | Disabled(className)
                          | ColorInherit(className)
+                         | TextSizeSmall(className)
+                         | TextSizeLarge(className)
+                         | OutlinedSizeSmall(className)
+                         | OutlinedSizeLarge(className)
+                         | ContainedSizeSmall(className)
+                         | ContainedSizeLarge(className)
                          | SizeSmall(className)
                          | SizeLarge(className)
-                         | FullWidth(className) =>
+                         | FullWidth(className)
+                         | StartIcon(className)
+                         | EndIcon(className)
+                         | IconSizeSmall(className)
+                         | IconSizeMedium(className)
+                         | IconSizeLarge(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -96,20 +129,20 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rwie=?,
+    ~component: 'union_rgbl=?,
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
+    ~endIcon: React.element=?,
     ~focusVisibleClassName: string=?,
     ~fullWidth: bool=?,
     ~href: string=?,
     ~size: string=?,
+    ~startIcon: React.element=?,
     ~_type: string=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~action: 'union_rob7=?,
-    ~buttonRef: 'union_r6y7=?,
     ~centerRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -127,7 +160,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rrfc=?,
+    ~tabIndex: 'union_rs4l=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -152,22 +185,16 @@ let makeProps =
       ~disabled: option(bool)=?,
       ~disableFocusRipple: option(bool)=?,
       ~disableRipple: option(bool)=?,
+      ~endIcon: option(React.element)=?,
       ~focusVisibleClassName: option(string)=?,
       ~fullWidth: option(bool)=?,
       ~href: option(string)=?,
       ~size: option(size)=?,
+      ~startIcon: option(React.element)=?,
       ~type_: option(string)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
-      ~action:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
-      ~buttonRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
       ~centerRipple: option(bool)=?,
       ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
@@ -200,18 +227,16 @@ let makeProps =
     ~disabled?,
     ~disableFocusRipple?,
     ~disableRipple?,
+    ~endIcon?,
     ~focusVisibleClassName?,
     ~fullWidth?,
     ~href?,
     ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~startIcon?,
     ~_type=?type_,
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
     ~_ref=?ref_,
-    ~action=?
-      action->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~buttonRef=?
-      buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~centerRipple?,
     ~disableTouchRipple?,
     ~focusRipple?,

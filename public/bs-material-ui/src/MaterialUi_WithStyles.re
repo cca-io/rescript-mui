@@ -25,11 +25,13 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
   external makeStylesWithTheme: ('a => 'b) => x = "makeStyles";
   let useStyles = () => {
     let stylesHook =
-      switch (S.classes) {
-      | Record(record) => makeStyles(record->S.classRecordToJs)
-      | ThemeFunc(func) =>
-        makeStylesWithTheme(theme => func(theme)->S.classRecordToJs)
-      };
+      React.useMemo0(() =>
+        switch (S.classes) {
+        | Record(record) => makeStyles(record->S.classRecordToJs)
+        | ThemeFunc(func) =>
+          makeStylesWithTheme(theme => func(theme)->S.classRecordToJs)
+        }
+      );
     stylesHook()->S.classRecordStringsFromJs;
   };
 

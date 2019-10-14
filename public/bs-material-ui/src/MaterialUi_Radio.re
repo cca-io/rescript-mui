@@ -60,12 +60,11 @@ external makePropsMui:
     ~icon: React.element=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_rv3w=?,
     ~name: string=?,
-    ~onChange: 'any_r8m5=?,
+    ~onChange: 'any_rrso=?,
     ~required: bool=?,
     ~_type: string=?,
-    ~value: 'any_r24a=?,
+    ~value: 'any_rejv=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~children: 'children=?,
@@ -73,10 +72,8 @@ external makePropsMui:
     ~disableFocusRipple: bool=?,
     ~edge: string=?,
     ~size: string=?,
-    ~action: 'union_rkha=?,
-    ~buttonRef: 'union_r8rp=?,
     ~centerRipple: bool=?,
-    ~component: 'union_r29w=?,
+    ~component: 'union_rhz1=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -94,7 +91,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rrbs=?,
+    ~tabIndex: 'union_rj39=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -113,15 +110,11 @@ let makeProps =
       ~icon: option(React.element)=?,
       ~id: option(string)=?,
       ~inputProps: option(Js.t({..}))=?,
-      ~inputRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
       ~name: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
+      ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~required: option(bool)=?,
       ~type_: option(string)=?,
-      ~value: option('any_r24a)=?,
+      ~value: option('any_rejv)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~children: option('children)=?,
@@ -129,14 +122,6 @@ let makeProps =
       ~disableFocusRipple: option(bool)=?,
       ~edge: option(edge)=?,
       ~size: option(size)=?,
-      ~action:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
-      ~buttonRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
       ~centerRipple: option(bool)=?,
       ~component:
          option(
@@ -178,8 +163,6 @@ let makeProps =
     ~icon?,
     ~id?,
     ~inputProps?,
-    ~inputRef=?
-      inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~name?,
     ~onChange?,
     ~required?,
@@ -192,10 +175,6 @@ let makeProps =
     ~disableFocusRipple?,
     ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
     ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-    ~action=?
-      action->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~buttonRef=?
-      buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~centerRipple?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

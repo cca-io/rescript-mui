@@ -234,12 +234,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'any_rkci=?,
+    ~anchorEl: 'any_r9en=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_rfki=?,
+    ~onClose: 'any_rdt8=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -249,21 +249,20 @@ external makePropsMui:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
-    ~transitionDuration: 'union_rnz5=?,
+    ~transitionDuration: 'union_reou=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~action: 'any_refe=?,
-    ~anchorOrigin: 'any_rfrr=?,
-    ~anchorPosition: 'any_rb57=?,
+    ~anchorOrigin: 'any_re12=?,
+    ~anchorPosition: 'any_rbrh=?,
     ~anchorReference: string=?,
-    ~container: 'union_ra0t=?,
-    ~elevation: 'number_c=?,
+    ~className: string=?,
+    ~container: 'union_rdlz=?,
+    ~elevation: 'number_u=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_r=?,
-    ~_ModalClasses: Js.t({..})=?,
-    ~transformOrigin: 'any_rej0=?,
-    ~_TransitionComponent: 'union_rmue=?,
+    ~marginThreshold: 'number_4=?,
+    ~transformOrigin: 'any_rvcr=?,
+    ~_TransitionComponent: 'union_r09k=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -274,7 +273,7 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~anchorEl: option('any_rkci)=?,
+      ~anchorEl: option('any_r9en)=?,
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~disableAutoFocusItem: option(bool)=?,
@@ -301,10 +300,10 @@ let makeProps =
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
-      ~action: option(Js.t({..}) => unit)=?,
       ~anchorOrigin: option(AnchorOrigin.t)=?,
       ~anchorPosition: option(AnchorPosition.t)=?,
       ~anchorReference: option(anchorReference)=?,
+      ~className: option(string)=?,
       ~container:
          option(
            [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
@@ -312,7 +311,6 @@ let makeProps =
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~getContentAnchorEl: option('genericCallback)=?,
       ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
-      ~_ModalClasses: option(Js.t({..}))=?,
       ~transformOrigin: option(TransformOrigin.t)=?,
       ~_TransitionComponent:
          option(
@@ -359,11 +357,11 @@ let makeProps =
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
     ~_ref=?ref_,
-    ~action?,
     ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
     ~anchorPosition=?AnchorPosition.unwrap(anchorPosition),
     ~anchorReference=?
       anchorReference->(Belt.Option.map(v => anchorReferenceToJs(v))),
+    ~className?,
     ~container=?
       container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~elevation=?
@@ -375,7 +373,6 @@ let makeProps =
                            MaterialUi_Helpers.unwrapValue(v)
                          )
                        ),
-    ~_ModalClasses?,
     ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
     ~_TransitionComponent=?
       _TransitionComponent->(

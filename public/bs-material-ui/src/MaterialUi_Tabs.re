@@ -87,19 +87,18 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'any_rjtj=?,
     ~centered: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rld0=?,
+    ~component: 'union_rha7=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_rboc=?,
+    ~onChange: 'any_rwe6=?,
     ~orientation: string=?,
-    ~_ScrollButtonComponent: 'union_rp99=?,
+    ~_ScrollButtonComponent: 'union_rjd7=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
-    ~value: 'any_r9a2=?,
+    ~value: 'any_r6jo=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
@@ -112,7 +111,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~action: option(Js.t({..}) => unit)=?,
       ~centered: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -125,7 +123,7 @@ let makeProps =
            ],
          )=?,
       ~indicatorColor: option(indicatorColor)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_rf74) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_rwfd) => unit)=?,
       ~orientation: option(orientation)=?,
       ~_ScrollButtonComponent:
          option(
@@ -138,7 +136,7 @@ let makeProps =
       ~scrollButtons: option(scrollButtons)=?,
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
-      ~value: option('any_r9a2)=?,
+      ~value: option('any_r6jo)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
@@ -147,7 +145,6 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
-    ~action?,
     ~centered?,
     ~children?,
     ~className?,

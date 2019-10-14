@@ -20,6 +20,7 @@ module Classes = {
     | SizeSmall(string)
     | ColorPrimary(string)
     | ColorSecondary(string)
+    | Disabled(string)
     | Clickable(string)
     | ClickableColorPrimary(string)
     | ClickableColorSecondary(string)
@@ -33,7 +34,6 @@ module Classes = {
     | AvatarSmall(string)
     | AvatarColorPrimary(string)
     | AvatarColorSecondary(string)
-    | AvatarChildren(string)
     | Icon(string)
     | IconSmall(string)
     | IconColorPrimary(string)
@@ -53,6 +53,7 @@ module Classes = {
     | SizeSmall(_) => "sizeSmall"
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary"
+    | Disabled(_) => "disabled"
     | Clickable(_) => "clickable"
     | ClickableColorPrimary(_) => "clickableColorPrimary"
     | ClickableColorSecondary(_) => "clickableColorSecondary"
@@ -66,7 +67,6 @@ module Classes = {
     | AvatarSmall(_) => "avatarSmall"
     | AvatarColorPrimary(_) => "avatarColorPrimary"
     | AvatarColorSecondary(_) => "avatarColorSecondary"
-    | AvatarChildren(_) => "avatarChildren"
     | Icon(_) => "icon"
     | IconSmall(_) => "iconSmall"
     | IconColorPrimary(_) => "iconColorPrimary"
@@ -89,6 +89,7 @@ module Classes = {
                          | SizeSmall(className)
                          | ColorPrimary(className)
                          | ColorSecondary(className)
+                         | Disabled(className)
                          | Clickable(className)
                          | ClickableColorPrimary(className)
                          | ClickableColorSecondary(className)
@@ -102,7 +103,6 @@ module Classes = {
                          | AvatarSmall(className)
                          | AvatarColorPrimary(className)
                          | AvatarColorSecondary(className)
-                         | AvatarChildren(className)
                          | Icon(className)
                          | IconSmall(className)
                          | IconColorPrimary(className)
@@ -131,8 +131,9 @@ external makePropsMui:
     ~className: string=?,
     ~clickable: bool=?,
     ~color: string=?,
-    ~component: 'union_req0=?,
+    ~component: 'union_rr6p=?,
     ~deleteIcon: React.element=?,
+    ~disabled: bool=?,
     ~icon: React.element=?,
     ~label: React.element=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
@@ -166,6 +167,7 @@ let makeProps =
            ],
          )=?,
       ~deleteIcon: option(React.element)=?,
+      ~disabled: option(bool)=?,
       ~icon: option(React.element)=?,
       ~label: option(React.element)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
@@ -189,6 +191,7 @@ let makeProps =
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~deleteIcon?,
+    ~disabled?,
     ~icon?,
     ~label?,
     ~onClick?,

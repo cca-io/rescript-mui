@@ -222,6 +222,13 @@ export default {
 			required: false,
 			description: '-',
 		},
+		page: {
+			type: {
+				name: 'int',
+			},
+			required: false,
+			description: '-',
+		},
 	},
 	TableCell: {
 		colSpan: {

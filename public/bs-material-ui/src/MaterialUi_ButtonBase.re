@@ -36,12 +36,10 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~action: 'union_rcnp=?,
-    ~buttonRef: 'union_r5sw=?,
     ~centerRipple: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r1fi=?,
+    ~component: 'union_rr7l=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -61,7 +59,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_ryl4=?,
+    ~tabIndex: 'union_r0x1=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~key: string=?,
@@ -75,14 +73,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~action:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
-      ~buttonRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
       ~centerRipple: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -123,10 +113,6 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
-    ~action=?
-      action->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~buttonRef=?
-      buttonRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~centerRipple?,
     ~children?,
     ~className?,

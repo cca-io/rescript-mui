@@ -16,7 +16,9 @@ module Classes = {
     | Outlined(string)
     | SelectMenu(string)
     | Disabled(string)
-    | Icon(string);
+    | Icon(string)
+    | IconFilled(string)
+    | IconOutlined(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -26,7 +28,9 @@ module Classes = {
     | Outlined(_) => "outlined"
     | SelectMenu(_) => "selectMenu"
     | Disabled(_) => "disabled"
-    | Icon(_) => "icon";
+    | Icon(_) => "icon"
+    | IconFilled(_) => "iconFilled"
+    | IconOutlined(_) => "iconOutlined";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -39,7 +43,9 @@ module Classes = {
                          | Outlined(className)
                          | SelectMenu(className)
                          | Disabled(className)
-                         | Icon(className) =>
+                         | Icon(className)
+                         | IconFilled(className)
+                         | IconOutlined(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -54,42 +60,42 @@ external makePropsMui:
     ~autoWidth: bool=?,
     ~children: 'children=?,
     ~displayEmpty: bool=?,
-    ~_IconComponent: 'union_r6rb=?,
+    ~_IconComponent: 'union_rh4e=?,
     ~input: React.element=?,
     ~inputProps: Js.t({..})=?,
+    ~labelWidth: 'number_5=?,
     ~_MenuProps: Js.t({..})=?,
     ~multiple: bool=?,
     ~native: bool=?,
-    ~onChange: 'any_rq7a=?,
-    ~onClose: 'any_r5xw=?,
-    ~onOpen: 'any_rv5k=?,
+    ~onChange: 'any_rqyv=?,
+    ~onClose: 'any_r6su=?,
+    ~onOpen: 'any_r9pg=?,
     ~_open: bool=?,
-    ~renderValue: 'any_rjht=?,
+    ~renderValue: 'any_rl58=?,
     ~_SelectDisplayProps: Js.t({..})=?,
-    ~value: 'union_rhna=?,
+    ~value: 'union_rysz=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_rjxp=?,
+    ~defaultValue: 'any_rezz=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rdpd=?,
-    ~inputRef: 'union_rmlh=?,
+    ~inputComponent: 'any_ragj=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rsmk=?,
-    ~rowsMax: 'union_rvo6=?,
+    ~rows: 'union_rfft=?,
+    ~rowsMax: 'union_rfe0=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
     ~aria_describedby: string=?,
@@ -122,6 +128,7 @@ let makeProps =
          )=?,
       ~input: option(React.element)=?,
       ~inputProps: option(Js.t({..}))=?,
+      ~labelWidth: option([ | `Int(int) | `Float(float)])=?,
       ~_MenuProps: option(Js.t({..}))=?,
       ~multiple: option(bool)=?,
       ~native: option(bool)=?,
@@ -129,7 +136,7 @@ let makeProps =
       ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
       ~onOpen: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: option(bool)=?,
-      ~renderValue: option('any_rao1 => React.element)=?,
+      ~renderValue: option('any_r0q8 => React.element)=?,
       ~_SelectDisplayProps: option(Js.t({..}))=?,
       ~value:
          option(
@@ -146,18 +153,14 @@ let makeProps =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_rjxp)=?,
+      ~defaultValue: option('any_rezz)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_rdpd)=?,
-      ~inputRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
+      ~inputComponent: option('any_ragj)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -190,6 +193,8 @@ let makeProps =
                       ),
     ~input?,
     ~inputProps?,
+    ~labelWidth=?
+      labelWidth->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_MenuProps?,
     ~multiple?,
     ~native?,
@@ -214,8 +219,6 @@ let makeProps =
     ~fullWidth?,
     ~id?,
     ~inputComponent?,
-    ~inputRef=?
-      inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
     ~multiline?,
     ~name?,

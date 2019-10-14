@@ -43,7 +43,8 @@ module Classes = {
     | AlignLeft(string)
     | AlignCenter(string)
     | AlignRight(string)
-    | AlignJustify(string);
+    | AlignJustify(string)
+    | StickyHeader(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -57,7 +58,8 @@ module Classes = {
     | AlignLeft(_) => "alignLeft"
     | AlignCenter(_) => "alignCenter"
     | AlignRight(_) => "alignRight"
-    | AlignJustify(_) => "alignJustify";
+    | AlignJustify(_) => "alignJustify"
+    | StickyHeader(_) => "stickyHeader";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -74,7 +76,8 @@ module Classes = {
                          | AlignLeft(className)
                          | AlignCenter(className)
                          | AlignRight(className)
-                         | AlignJustify(className) =>
+                         | AlignJustify(className)
+                         | StickyHeader(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -89,7 +92,7 @@ external makePropsMui:
     ~align: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rs75=?,
+    ~component: 'union_rsf5=?,
     ~padding: string=?,
     ~scope: string=?,
     ~size: string=?,

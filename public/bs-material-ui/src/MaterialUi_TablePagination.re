@@ -83,24 +83,25 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~_ActionsComponent: 'union_ryl2=?,
+    ~_ActionsComponent: 'union_rai8=?,
     ~backIconButtonProps: Js.t({..})=?,
-    ~colSpan: 'number_v=?,
-    ~component: 'union_rw9t=?,
-    ~count: 'number_a,
+    ~className: string=?,
+    ~colSpan: 'number_n=?,
+    ~component: 'union_rvjk=?,
+    ~count: 'number_v,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_r0qy,
-    ~onChangeRowsPerPage: 'any_r46z=?,
-    ~rowsPerPage: 'number_8,
+    ~onChangePage: 'any_rhcs,
+    ~onChangeRowsPerPage: 'any_rlz8=?,
+    ~page: int=?,
+    ~rowsPerPage: 'number_c,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,
     ~align: string=?,
     ~children: 'children=?,
-    ~className: string=?,
     ~padding: string=?,
     ~scope: string=?,
     ~size: string=?,
@@ -124,6 +125,7 @@ let makeProps =
            ],
          )=?,
       ~backIconButtonProps: option(Js.t({..}))=?,
+      ~className: option(string)=?,
       ~colSpan: option([ | `Int(int) | `Float(float)])=?,
       ~component:
          option(
@@ -158,6 +160,7 @@ let makeProps =
       ~nextIconButtonProps: option(Js.t({..}))=?,
       ~onChangePage: (ReactEvent.Mouse.t, int) => unit,
       ~onChangeRowsPerPage: option(ReactEvent.Form.t => unit)=?,
+      ~page: option(int)=?,
       ~rowsPerPage: [ | `Int(int) | `Float(float)],
       ~rowsPerPageOptions: option(array(int))=?,
       ~_SelectProps: option(Js.t({..}))=?,
@@ -165,7 +168,6 @@ let makeProps =
       ~ref_: option(React.Ref.t(option(Dom.element)))=?,
       ~align: option(align)=?,
       ~children: option('children)=?,
-      ~className: option(string)=?,
       ~padding: option(padding)=?,
       ~scope: option(string)=?,
       ~size: option(size)=?,
@@ -183,6 +185,7 @@ let makeProps =
                            )
                          ),
     ~backIconButtonProps?,
+    ~className?,
     ~colSpan=?
       colSpan->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~component=?
@@ -193,6 +196,7 @@ let makeProps =
     ~nextIconButtonProps?,
     ~onChangePage,
     ~onChangeRowsPerPage?,
+    ~page?,
     ~rowsPerPage=MaterialUi_Helpers.unwrapValue(rowsPerPage),
     ~rowsPerPageOptions=?
       rowsPerPageOptions->(
@@ -209,7 +213,6 @@ let makeProps =
     ~_ref=?ref_,
     ~align=?align->(Belt.Option.map(v => alignToJs(v))),
     ~children?,
-    ~className?,
     ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
     ~scope?,
     ~size=?size->(Belt.Option.map(v => sizeToJs(v))),

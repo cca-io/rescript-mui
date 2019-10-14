@@ -24,7 +24,7 @@ module Classes = {
 external makePropsMui:
   (
     ~className: string=?,
-    ~component: 'union_rp7x=?,
+    ~component: 'union_rjs7=?,
     ~children: 'children=?,
     ~key: string=?,
     ~_ref: React.Ref.t(option(Dom.element))=?,

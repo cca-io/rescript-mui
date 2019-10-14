@@ -105,6 +105,20 @@ module BackdropClassKey = {
 module BadgeClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "anchorOriginBottomLeftRectangle"]
+    anchorOriginBottomLeftRectangle: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "anchorOriginBottomRightCircle"]
+    anchorOriginBottomRightCircle: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "anchorOriginBottomRightRectangle"]
+    anchorOriginBottomRightRectangle: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "anchorOriginTopLeftCircle"]
+    anchorOriginTopLeftCircle: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "anchorOriginTopLeftRectangle"]
+    anchorOriginTopLeftRectangle: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "anchorOriginTopRightCircle"]
+    anchorOriginTopRightCircle: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "anchorOriginTopRightRectangle"]
+    anchorOriginTopRightRectangle: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "badge"]
     badge: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorError"]
@@ -179,12 +193,24 @@ module ButtonClassKey = {
     containedPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "containedSecondary"]
     containedSecondary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "containedSizeLarge"]
+    containedSizeLarge: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "containedSizeSmall"]
+    containedSizeSmall: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "endIcon"]
+    endIcon: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "focusVisible"]
     focusVisible: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "fullWidth"]
     fullWidth: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "iconSizeLarge"]
+    iconSizeLarge: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "iconSizeMedium"]
+    iconSizeMedium: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "iconSizeSmall"]
+    iconSizeSmall: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "label"]
     label: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "outlined"]
@@ -193,18 +219,28 @@ module ButtonClassKey = {
     outlinedPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "outlinedSecondary"]
     outlinedSecondary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "outlinedSizeLarge"]
+    outlinedSizeLarge: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "outlinedSizeSmall"]
+    outlinedSizeSmall: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "sizeLarge"]
     sizeLarge: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "sizeSmall"]
     sizeSmall: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "startIcon"]
+    startIcon: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "text"]
     text: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "textPrimary"]
     textPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "textSecondary"]
     textSecondary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "textSizeLarge"]
+    textSizeLarge: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "textSizeSmall"]
+    textSizeSmall: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -245,6 +281,12 @@ module ButtonGroupClassKey = {
     groupedOutlinedPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedOutlinedSecondary"]
     groupedOutlinedSecondary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedText"]
+    groupedText: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedTextPrimary"]
+    groupedTextPrimary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedTextSecondary"]
+    groupedTextSecondary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
   };
@@ -357,8 +399,6 @@ module ChipClassKey = {
   type t = {
     [@bs.optional] [@bs.as "avatar"]
     avatar: ReactDOMRe.Style.t,
-    [@bs.optional] [@bs.as "avatarChildren"]
-    avatarChildren: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "avatarColorPrimary"]
     avatarColorPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "avatarColorSecondary"]
@@ -393,6 +433,8 @@ module ChipClassKey = {
     deleteIconOutlinedColorSecondary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "deleteIconSmall"]
     deleteIconSmall: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "disabled"]
+    disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "icon"]
     icon: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "iconColorPrimary"]
@@ -1340,9 +1382,11 @@ module ListSubheaderClassKey = {
   let make = t;
 };
 
-module MuiMenu = {
+module MenuClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "list"]
+    list: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "paper"]
     paper: ReactDOMRe.Style.t,
   };
@@ -1353,6 +1397,8 @@ module MuiMenu = {
 module MenuItemClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "dense"]
+    dense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "gutters"]
     gutters: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -1388,18 +1434,6 @@ module MobileStepperClassKey = {
   let make = t;
 };
 
-module ModalClassKey = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional] [@bs.as "hidden"]
-    hidden: ReactDOMRe.Style.t,
-    [@bs.optional] [@bs.as "root"]
-    root: ReactDOMRe.Style.t,
-  };
-
-  let make = t;
-};
-
 module NativeSelectClassKey = {
   [@bs.deriving abstract]
   type t = {
@@ -1409,6 +1443,10 @@ module NativeSelectClassKey = {
     filled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "icon"]
     icon: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "iconFilled"]
+    iconFilled: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "iconOutlined"]
+    iconOutlined: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "outlined"]
     outlined: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -1522,11 +1560,13 @@ module PaperClassKey = {
   let make = t;
 };
 
-module MuiPopover = {
+module PopoverClassKey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "paper"]
     paper: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "root"]
+    root: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -1555,6 +1595,10 @@ module RadioClassKey = {
 module SliderClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "colorPrimary"]
+    colorPrimary: string,
+    [@bs.optional] [@bs.as "colorSecondary"]
+    colorSecondary: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "mark"]
@@ -1575,8 +1619,16 @@ module SliderClassKey = {
     rtl: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "thumb"]
     thumb: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "thumbColorPrimary"]
+    thumbColorPrimary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "thumbColorSecondary"]
+    thumbColorSecondary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "track"]
     track: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "trackFalse"]
+    trackFalse: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "trackInverted"]
+    trackInverted: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "valueLabel"]
     valueLabel: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "vertical"]
@@ -1816,11 +1868,13 @@ module TabClassKey = {
   let make = t;
 };
 
-module MuiTable = {
+module TableClassKey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "stickyHeader"]
+    stickyHeader: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -1861,6 +1915,8 @@ module TableCellClassKey = {
     root: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "sizeSmall"]
     sizeSmall: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "stickyHeader"]
+    stickyHeader: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -2234,13 +2290,11 @@ module Overrides = {
     [@bs.optional] [@bs.as "MuiListSubheader"]
     muiListSubheader: ListSubheaderClassKey.t,
     [@bs.optional] [@bs.as "MuiMenu"]
-    muiMenu: MuiMenu.t,
+    muiMenu: MenuClassKey.t,
     [@bs.optional] [@bs.as "MuiMenuItem"]
     muiMenuItem: MenuItemClassKey.t,
     [@bs.optional] [@bs.as "MuiMobileStepper"]
     muiMobileStepper: MobileStepperClassKey.t,
-    [@bs.optional] [@bs.as "MuiModal"]
-    muiModal: ModalClassKey.t,
     [@bs.optional] [@bs.as "MuiNativeSelect"]
     muiNativeSelect: NativeSelectClassKey.t,
     [@bs.optional] [@bs.as "MuiOutlinedInput"]
@@ -2248,7 +2302,7 @@ module Overrides = {
     [@bs.optional] [@bs.as "MuiPaper"]
     muiPaper: PaperClassKey.t,
     [@bs.optional] [@bs.as "MuiPopover"]
-    muiPopover: MuiPopover.t,
+    muiPopover: PopoverClassKey.t,
     [@bs.optional] [@bs.as "MuiRadio"]
     muiRadio: RadioClassKey.t,
     [@bs.optional] [@bs.as "MuiSelect"]
@@ -2280,7 +2334,7 @@ module Overrides = {
     [@bs.optional] [@bs.as "MuiTab"]
     muiTab: TabClassKey.t,
     [@bs.optional] [@bs.as "MuiTable"]
-    muiTable: MuiTable.t,
+    muiTable: TableClassKey.t,
     [@bs.optional] [@bs.as "MuiTableBody"]
     muiTableBody: MuiTableBody.t,
     [@bs.optional] [@bs.as "MuiTableCell"]
