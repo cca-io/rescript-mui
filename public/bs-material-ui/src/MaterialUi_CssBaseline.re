@@ -1,11 +1,6 @@
 [@bs.obj]
 external makePropsMui:
-  (
-    ~children: 'children=?,
-    ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
-    unit
-  ) =>
+  (~children: 'children=?, ~key: string=?, ~_ref: ReactDOMRe.domRef=?, unit) =>
   _ =
   "";
 
@@ -13,7 +8,7 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       (),
     ) =>
   makePropsMui(~children?, ~key?, ~_ref=?ref_, ());

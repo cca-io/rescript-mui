@@ -20,7 +20,7 @@ external makePropsMui:
     ~onClickAway: ReactEvent.Mouse.t => unit,
     ~touchEvent: string=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
@@ -33,7 +33,7 @@ let makeProps =
       ~onClickAway: ReactEvent.Mouse.t => unit,
       ~touchEvent: option(touchEvent)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       (),
     ) =>
   makePropsMui(

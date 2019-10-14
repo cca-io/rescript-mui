@@ -37,12 +37,12 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rgyg=?,
+    ~component: 'union_r8h4=?,
     ~hover: bool=?,
     ~selected: bool=?,
     ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -66,7 +66,7 @@ let makeProps =
       ~selected: option(bool)=?,
       ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),

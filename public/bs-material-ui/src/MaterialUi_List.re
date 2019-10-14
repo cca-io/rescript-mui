@@ -34,12 +34,12 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rukq=?,
+    ~component: 'union_r8s4=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -63,7 +63,7 @@ let makeProps =
       ~disablePadding: option(bool)=?,
       ~subheader: option(React.element)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),

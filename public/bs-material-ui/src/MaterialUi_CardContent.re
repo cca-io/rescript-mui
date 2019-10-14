@@ -24,10 +24,10 @@ module Classes = {
 external makePropsMui:
   (
     ~className: string=?,
-    ~component: 'union_rjs7=?,
+    ~component: 'union_r244=?,
     ~children: 'children=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -48,7 +48,7 @@ let makeProps =
          )=?,
       ~children: option('children)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),

@@ -123,19 +123,19 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorOrigin: 'any_r3kw=?,
+    ~anchorOrigin: 'any_rt2x=?,
     ~badgeContent: React.element=?,
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rjja=?,
+    ~component: 'union_rqoz=?,
     ~invisible: bool=?,
-    ~max: 'number_p=?,
+    ~max: 'number_1=?,
     ~overlap: string=?,
     ~showZero: bool=?,
     ~variant: string=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -164,7 +164,7 @@ let makeProps =
       ~showZero: option(bool)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),

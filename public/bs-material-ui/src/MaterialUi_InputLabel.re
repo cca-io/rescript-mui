@@ -78,8 +78,8 @@ external makePropsMui:
     ~variant: string=?,
     ~htmlFor: string,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~component: 'union_rokc=?,
+    ~_ref: ReactDOMRe.domRef=?,
+    ~component: 'union_rvye=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -102,7 +102,7 @@ let makeProps =
       ~variant: option(variant)=?,
       ~htmlFor: string,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [

@@ -69,9 +69,9 @@ external makePropsMui:
     ~color: string=?,
     ~position: string=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~component: 'union_red8=?,
-    ~elevation: 'number_r=?,
+    ~_ref: ReactDOMRe.domRef=?,
+    ~component: 'union_r5rn=?,
+    ~elevation: 'number_b=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -87,7 +87,7 @@ let makeProps =
       ~color: option(color)=?,
       ~position: option(position)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [

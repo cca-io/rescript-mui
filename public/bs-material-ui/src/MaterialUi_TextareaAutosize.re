@@ -4,11 +4,11 @@ external makePropsMui:
     ~className: string=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~placeholder: string=?,
-    ~rows: 'union_r73m=?,
-    ~rowsMax: 'union_rv6y=?,
-    ~value: 'any_rbt9=?,
+    ~rows: 'union_ri19=?,
+    ~rowsMax: 'union_rqni=?,
+    ~value: 'any_r64h=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
@@ -21,9 +21,9 @@ let makeProps =
       ~placeholder: option(string)=?,
       ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~value: option('any_rbt9)=?,
+      ~value: option('any_r64h)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       (),
     ) =>
   makePropsMui(

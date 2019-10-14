@@ -37,14 +37,14 @@ external makePropsMui:
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_r71c=?,
+    ~onChange: 'any_rvzh=?,
     ~square: bool=?,
-    ~_TransitionComponent: 'union_rj02=?,
+    ~_TransitionComponent: 'union_r8sp=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~component: 'union_r4rm=?,
-    ~elevation: 'number_n=?,
+    ~_ref: ReactDOMRe.domRef=?,
+    ~component: 'union_rbfi=?,
+    ~elevation: 'number_5=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -71,7 +71,7 @@ let makeProps =
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [

@@ -71,11 +71,11 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r3o3=?,
+    ~component: 'union_rdgo=?,
     ~display: string=?,
     ~gutterBottom: bool=?,
     ~noWrap: bool=?,
@@ -93,7 +93,7 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~align: option(align)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,

@@ -38,7 +38,7 @@ external makePropsMui:
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_rd0a=?,
+    ~only: 'union_rw07=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,
@@ -46,7 +46,7 @@ external makePropsMui:
     ~xsDown: bool=?,
     ~xsUp: bool=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
@@ -70,7 +70,7 @@ let makeProps =
       ~xsDown: option(bool)=?,
       ~xsUp: option(bool)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       (),
     ) =>
   makePropsMui(

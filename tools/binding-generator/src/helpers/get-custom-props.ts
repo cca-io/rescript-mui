@@ -11,8 +11,8 @@ const defaults = {
 	ref: {
 		type: {
 			name: 'custom',
-			reasonType: 'React.Ref.t(option(Dom.element))',
-			jsType: 'React.Ref.t(option(Dom.element))',
+			reasonType: 'ReactDOMRe.domRef',
+			jsType: 'ReactDOMRe.domRef',
 		},
 		required: false,
 		description: '-',

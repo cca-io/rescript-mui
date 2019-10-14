@@ -33,10 +33,10 @@ external makePropsMui:
     ~className: string=?,
     ~message: React.element=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
-    ~component: 'union_rucb=?,
-    ~elevation: 'number_1=?,
+    ~component: 'union_rxdk=?,
+    ~elevation: 'number_p=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -51,7 +51,7 @@ let makeProps =
       ~className: option(string)=?,
       ~message: option(React.element)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,
       ~component:
          option(

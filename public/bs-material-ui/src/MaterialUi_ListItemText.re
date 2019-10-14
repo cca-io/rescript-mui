@@ -47,7 +47,7 @@ external makePropsMui:
     ~secondary: React.element=?,
     ~secondaryTypographyProps: Js.t({..})=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -66,7 +66,7 @@ let makeProps =
       ~secondary: option(React.element)=?,
       ~secondaryTypographyProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),

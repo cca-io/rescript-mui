@@ -16,9 +16,9 @@ type placement = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'union_ri1f=?,
+    ~anchorEl: 'union_r5yz=?,
     ~children: 'children=?,
-    ~container: 'union_rcb9=?,
+    ~container: 'union_rlcp=?,
     ~disablePortal: bool=?,
     ~keepMounted: bool=?,
     ~modifiers: Js.t({..})=?,
@@ -27,7 +27,7 @@ external makePropsMui:
     ~popperOptions: Js.t({..})=?,
     ~transition: bool=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
+    ~_ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
@@ -52,7 +52,7 @@ let makeProps =
       ~popperOptions: option(Js.t({..}))=?,
       ~transition: option(bool)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       (),
     ) =>
   makePropsMui(

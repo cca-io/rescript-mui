@@ -27,9 +27,9 @@ external makePropsMui:
     ~raised: bool=?,
     ~children: 'children=?,
     ~key: string=?,
-    ~_ref: React.Ref.t(option(Dom.element))=?,
-    ~component: 'union_rq88=?,
-    ~elevation: 'number_m=?,
+    ~_ref: ReactDOMRe.domRef=?,
+    ~component: 'union_rf4a=?,
+    ~elevation: 'number_6=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -44,7 +44,7 @@ let makeProps =
       ~raised: option(bool)=?,
       ~children: option('children)=?,
       ~key: option(string)=?,
-      ~ref_: option(React.Ref.t(option(Dom.element)))=?,
+      ~ref_: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
