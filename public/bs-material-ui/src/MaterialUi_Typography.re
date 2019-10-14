@@ -160,7 +160,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rivv=?,
+    ~component: 'union_renr=?,
     ~display: string=?,
     ~gutterBottom: bool=?,
     ~noWrap: bool=?,
@@ -187,7 +187,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~display: option(display)=?,

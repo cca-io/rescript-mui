@@ -79,8 +79,8 @@ external makePropsMui:
     ~last: bool=?,
     ~optional: bool=?,
     ~orientation: string=?,
-    ~_TransitionComponent: 'union_rxax=?,
-    ~transitionDuration: 'union_r6oe=?,
+    ~_TransitionComponent: 'union_r9ub=?,
+    ~transitionDuration: 'union_rv9w=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
@@ -106,7 +106,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~transitionDuration:

@@ -36,7 +36,7 @@ const RenderTheme = () => {
 			},
 			{
 				re: /HTML.*Element/m,
-				replaceWith: 'ReasonReact.reactElement',
+				replaceWith: 'React.reactElement',
 			},
 			{
 				re: /Spacing/m,

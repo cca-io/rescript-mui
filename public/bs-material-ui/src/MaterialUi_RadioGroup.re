@@ -31,14 +31,14 @@ module Actions = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_rqtj=?,
+    ~actions: 'any_rfsg=?,
     ~children: 'children=?,
-    ~defaultValue: 'any_rzov=?,
+    ~defaultValue: 'any_rccv=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rgqi=?,
+    ~onChange: 'any_r8w0=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~value: 'any_r4lb=?,
+    ~value: 'any_rp8x=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~className: string=?,
@@ -52,12 +52,12 @@ let makeProps =
     (
       ~actions: option(Actions.t)=?,
       ~children: option('children)=?,
-      ~defaultValue: option('any_rzov)=?,
+      ~defaultValue: option('any_rccv)=?,
       ~name: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-      ~value: option('any_r4lb)=?,
+      ~value: option('any_rp8x)=?,
       ~key: option(string)=?,
       ~ref_: option(ReactDOMRe.domRef)=?,
       ~className: option(string)=?,

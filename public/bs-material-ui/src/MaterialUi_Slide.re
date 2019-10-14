@@ -49,7 +49,7 @@ external makePropsMui:
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExited: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_rigf=?,
+    ~timeout: 'union_rpei=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     unit

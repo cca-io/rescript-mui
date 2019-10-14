@@ -70,8 +70,8 @@ external makePropsMui:
     ~position: string=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r5rn=?,
-    ~elevation: 'number_b=?,
+    ~component: 'union_r4uj=?,
+    ~elevation: 'number_l=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -93,7 +93,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,

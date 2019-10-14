@@ -120,8 +120,8 @@ module Classes = {
 external makePropsMui:
   (
     ~action: React.element=?,
-    ~anchorOrigin: 'any_rep8=?,
-    ~autoHideDuration: 'number_4=?,
+    ~anchorOrigin: 'any_rled=?,
+    ~autoHideDuration: 'number_t=?,
     ~children: 'children=?,
     ~className: string=?,
     ~_ClickAwayListenerProps: Js.t({..})=?,
@@ -129,7 +129,7 @@ external makePropsMui:
     ~disableWindowBlurListener: bool=?,
     ~key: string=?,
     ~message: React.element=?,
-    ~onClose: 'any_r49y=?,
+    ~onClose: 'any_r65n=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -139,9 +139,9 @@ external makePropsMui:
     ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
     ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
     ~_open: bool=?,
-    ~resumeHideDuration: 'number_d=?,
-    ~_TransitionComponent: 'union_r0mz=?,
-    ~transitionDuration: 'union_r148=?,
+    ~resumeHideDuration: 'number_l=?,
+    ~_TransitionComponent: 'union_ri7n=?,
+    ~transitionDuration: 'union_r3s2=?,
     ~_TransitionProps: Js.t({..})=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -179,7 +179,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~transitionDuration:

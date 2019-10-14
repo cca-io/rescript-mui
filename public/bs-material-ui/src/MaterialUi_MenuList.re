@@ -36,7 +36,7 @@ type variant = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_r161=?,
+    ~actions: 'any_rrk3=?,
     ~autoFocus: bool=?,
     ~autoFocusItem: bool=?,
     ~children: 'children=?,
@@ -46,7 +46,7 @@ external makePropsMui:
     ~variant: string=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rc8b=?,
+    ~component: 'union_rzbf=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,
@@ -72,7 +72,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~dense: option(bool)=?,

@@ -64,19 +64,19 @@ external makePropsMui:
     ~disableFocusListener: bool=?,
     ~disableHoverListener: bool=?,
     ~disableTouchListener: bool=?,
-    ~enterDelay: 'number_j=?,
-    ~enterTouchDelay: 'number_i=?,
+    ~enterDelay: 'number_1=?,
+    ~enterTouchDelay: 'number_y=?,
     ~id: string=?,
     ~interactive: bool=?,
-    ~leaveDelay: 'number_l=?,
-    ~leaveTouchDelay: 'number_g=?,
-    ~onClose: 'any_rqde=?,
-    ~onOpen: 'any_rexu=?,
+    ~leaveDelay: 'number_x=?,
+    ~leaveTouchDelay: 'number_6=?,
+    ~onClose: 'any_r8xl=?,
+    ~onOpen: 'any_ro6k=?,
     ~_open: bool=?,
     ~placement: string=?,
     ~_PopperProps: Js.t({..})=?,
     ~title: React.element,
-    ~_TransitionComponent: 'union_rmk1=?,
+    ~_TransitionComponent: 'union_rcio=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
@@ -110,7 +110,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,

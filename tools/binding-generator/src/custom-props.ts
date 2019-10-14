@@ -197,7 +197,7 @@ export default {
 		labelRowsPerPage: {
 			type: {
 				name: 'custom',
-				reasonType: '({. "from": int, "to": int, "count": int, "page": int}) => ReasonReact.reactElement',
+				reasonType: '({. "from": int, "to": int, "count": int, "page": int}) => React.reactElement',
 				jsType: "'labelRowsPerPage",
 			},
 			required: false,

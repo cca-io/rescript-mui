@@ -92,7 +92,7 @@ external makePropsMui:
     ~align: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r7z2=?,
+    ~component: 'union_r9x9=?,
     ~padding: string=?,
     ~scope: string=?,
     ~size: string=?,
@@ -118,7 +118,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~padding: option(padding)=?,

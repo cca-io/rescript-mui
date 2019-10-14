@@ -34,10 +34,10 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_roen=?,
-    ~itemsAfterCollapse: 'number_8=?,
-    ~itemsBeforeCollapse: 'number_g=?,
-    ~maxItems: 'number_j=?,
+    ~component: 'union_rc40=?,
+    ~itemsAfterCollapse: 'number_c=?,
+    ~itemsBeforeCollapse: 'number_d=?,
+    ~maxItems: 'number_o=?,
     ~separator: React.element=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
@@ -57,7 +57,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~itemsAfterCollapse: option([ | `Int(int) | `Float(float)])=?,

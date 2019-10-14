@@ -38,7 +38,7 @@ const factory = (propertyType: PropType$Union) => {
 							case 'Js.t({..})':
 								reasonTypes.push('ObjectGeneric(Js.t({..}))');
 								break;
-							case 'ReasonReact.reactElement':
+							case 'React.reactElement':
 							case 'React.element':
 							case 'Element<any>':
 							case 'element':
@@ -46,7 +46,7 @@ const factory = (propertyType: PropType$Union) => {
 							case 'node':
 							case 'Element':
 							case 'ComponentType<object>':
-								reasonTypes.push('Element(ReasonReact.reactElement)');
+								reasonTypes.push('Element(React.reactElement)');
 								break;
 							default:
 								Console.error(

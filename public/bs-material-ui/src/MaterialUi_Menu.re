@@ -234,12 +234,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'any_rw6u=?,
+    ~anchorEl: 'any_rdeg=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_rnbt=?,
+    ~onClose: 'any_r7ig=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -249,20 +249,20 @@ external makePropsMui:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
-    ~transitionDuration: 'union_r0lm=?,
+    ~transitionDuration: 'union_rcb8=?,
     ~variant: string=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
-    ~anchorOrigin: 'any_rmt1=?,
-    ~anchorPosition: 'any_r4i2=?,
+    ~anchorOrigin: 'any_rbin=?,
+    ~anchorPosition: 'any_rvtl=?,
     ~anchorReference: string=?,
     ~className: string=?,
-    ~container: 'union_r5ql=?,
-    ~elevation: 'number_y=?,
+    ~container: 'union_r3zu=?,
+    ~elevation: 'number_o=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_8=?,
-    ~transformOrigin: 'any_rezo=?,
-    ~_TransitionComponent: 'union_r0qj=?,
+    ~marginThreshold: 'number_g=?,
+    ~transformOrigin: 'any_rq91=?,
+    ~_TransitionComponent: 'union_rnjj=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -273,7 +273,7 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~anchorEl: option('any_rw6u)=?,
+      ~anchorEl: option('any_rdeg)=?,
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~disableAutoFocusItem: option(bool)=?,
@@ -317,7 +317,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,

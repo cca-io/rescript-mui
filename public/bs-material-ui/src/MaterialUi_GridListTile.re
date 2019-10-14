@@ -34,9 +34,9 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~cols: 'number_y=?,
-    ~component: 'union_rqrz=?,
-    ~rows: 'number_l=?,
+    ~cols: 'number_q=?,
+    ~component: 'union_rehu=?,
+    ~rows: 'number_8=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -56,7 +56,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~rows: option([ | `Int(int) | `Float(float)])=?,

@@ -40,14 +40,14 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_riq5=?,
+    ~component: 'union_rsie=?,
     ~dense: bool=?,
     ~disabled: bool=?,
     ~disableGutters: bool=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~tabIndex: 'number_9=?,
-    ~value: 'union_rhlp=?,
+    ~tabIndex: 'number_o=?,
+    ~value: 'union_r4mh=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~key: string=?,
@@ -55,7 +55,7 @@ external makePropsMui:
     ~alignItems: string=?,
     ~autoFocus: bool=?,
     ~button: bool=?,
-    ~_ContainerComponent: 'union_rf5i=?,
+    ~_ContainerComponent: 'union_rnm1=?,
     ~_ContainerProps: Js.t({..})=?,
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
@@ -75,7 +75,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~dense: option(bool)=?,
@@ -105,7 +105,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~_ContainerProps: option(Js.t({..}))=?,

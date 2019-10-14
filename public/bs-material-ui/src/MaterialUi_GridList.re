@@ -26,12 +26,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~cellHeight: 'union_rqf7=?,
+    ~cellHeight: 'union_rju0=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~cols: 'number_j=?,
-    ~component: 'union_rrg5=?,
-    ~spacing: 'number_1=?,
+    ~cols: 'number_e=?,
+    ~component: 'union_rf1j=?,
+    ~spacing: 'number_l=?,
     ~key: string=?,
     ~_ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -53,7 +53,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~spacing: option([ | `Int(int) | `Float(float)])=?,

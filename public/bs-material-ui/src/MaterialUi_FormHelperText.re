@@ -56,7 +56,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rmkv=?,
+    ~component: 'union_r4bp=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~filled: bool=?,
@@ -82,7 +82,7 @@ let makeProps =
            [
              | `String(string)
              | `Callback(unit => React.element)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.reactElement)
            ],
          )=?,
       ~disabled: option(bool)=?,
