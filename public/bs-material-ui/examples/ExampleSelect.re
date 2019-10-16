@@ -31,15 +31,22 @@ let make = () => {
   let (values, setValues) =
     React.useReducer((_, v) => v, {age: "", name: "hai"});
 
-  let inputLabel = React.useRef(None);
+  let (inputLabelEl, setInputLabelEl) = React.useReducer((_, v) => v, None);
+  let inputLabel =
+    React.useCallback0((el: Js.Nullable.t(Dom.element)) =>
+      setInputLabelEl(el->Js.toOption)
+    );
   let (labelWidth, setLabelWidth) = React.useReducer((_, l) => l, 0);
-  React.useEffect(() => {
-    switch (inputLabel->React.Ref.current) {
-    | None => ()
-    | Some(current) => setLabelWidth(current->Obj.magic##offsetWidth)
-    };
-    None;
-  });
+  React.useEffect1(
+    () => {
+      switch (inputLabelEl) {
+      | None => ()
+      | Some(current) => setLabelWidth(current->Obj.magic##offsetWidth)
+      };
+      None;
+    },
+    [|inputLabelEl|],
+  );
 
   let handleChangeAge = (e: ReactEvent.Form.t, _) => {
     setValues({...values, age: e->ReactEvent.Form.target##value});
@@ -259,7 +266,9 @@ let make = () => {
           <FormHelperText> "Required"->React.string </FormHelperText>
         </FormControl>
         <FormControl variant=`Outlined className={classes.formControl}>
-          <InputLabel htmlFor="outlined-age-simple" ref_=inputLabel>
+          <InputLabel
+            htmlFor="outlined-age-simple"
+            ref={ReactDOMRe.Ref.callbackDomRef(inputLabel)}>
             "Age"->React.string
           </InputLabel>
           <Select

@@ -36,7 +36,7 @@ type variant = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_rzkm=?,
+    ~actions: 'any_ri0w=?,
     ~autoFocus: bool=?,
     ~autoFocusItem: bool=?,
     ~children: 'children=?,
@@ -45,8 +45,8 @@ external makePropsMui:
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~variant: string=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r7zk=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~component: 'union_r8fv=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,
@@ -66,7 +66,7 @@ let makeProps =
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
@@ -90,7 +90,7 @@ let makeProps =
     ~onKeyDown?,
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~dense?,

@@ -1,6 +1,6 @@
 export const capitalize = (str: string) => str.replace(/\b\w/g, (l) => l.toUpperCase());
 export const uncapitalize = (str: string) => str.replace(/\b\w/g, (l) => l.toLowerCase());
-export const reservedNames = [ 'type', 'open', 'in', 'ref', 'to', 'for' ];
+export const reservedNames = [ 'type', 'open', 'in', 'to', 'for' ];
 export const isNumeric = (obj: any) => {
 	const realStringObj = obj && obj.toString();
 	return typeof obj !== 'object' && realStringObj - parseFloat(realStringObj) + 1 >= 0;

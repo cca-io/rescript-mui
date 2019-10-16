@@ -33,10 +33,10 @@ external makePropsMui:
     ~className: string=?,
     ~message: React.element=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
-    ~component: 'union_rg9t=?,
-    ~elevation: 'number_8=?,
+    ~component: 'union_rtmf=?,
+    ~elevation: 'number_2=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -51,7 +51,7 @@ let makeProps =
       ~className: option(string)=?,
       ~message: option(React.element)=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,
       ~component:
          option(
@@ -72,7 +72,7 @@ let makeProps =
     ~className?,
     ~message?,
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~children?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

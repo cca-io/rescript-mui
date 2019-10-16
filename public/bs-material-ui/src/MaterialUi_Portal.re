@@ -2,11 +2,11 @@
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~container: 'union_rx8t=?,
+    ~container: 'union_rqqf=?,
     ~disablePortal: bool=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
+    ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
@@ -19,7 +19,7 @@ let makeProps =
       ~disablePortal: option(bool)=?,
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       (),
     ) =>
   makePropsMui(
@@ -29,7 +29,7 @@ let makeProps =
     ~disablePortal?,
     ~onRendered?,
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     (),
   );
 

@@ -266,17 +266,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'union_rjhk=?,
-    ~anchorOrigin: 'any_rwbq=?,
-    ~anchorPosition: 'any_rpa0=?,
+    ~anchorEl: 'union_rhyf=?,
+    ~anchorOrigin: 'any_r3h2=?,
+    ~anchorPosition: 'any_rzex=?,
     ~anchorReference: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~container: 'union_rgf9=?,
-    ~elevation: 'number_4=?,
+    ~container: 'union_r5hf=?,
+    ~elevation: 'number_0=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_4=?,
-    ~onClose: 'any_r4jb=?,
+    ~marginThreshold: 'number_i=?,
+    ~onClose: 'any_rd4k=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -284,14 +284,14 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperProps: 'any_rraj=?,
-    ~transformOrigin: 'any_rvr9=?,
-    ~_TransitionComponent: 'union_rf1y=?,
-    ~transitionDuration: 'union_rqfq=?,
+    ~_PaperProps: 'any_rgpq=?,
+    ~transformOrigin: 'any_r0ad=?,
+    ~_TransitionComponent: 'union_rbdp=?,
+    ~transitionDuration: 'union_rufg=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
-    ~_BackdropComponent: 'union_r8yl=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~_BackdropComponent: 'union_rgkf=?,
     ~_BackdropProps: Js.t({..})=?,
     ~closeAfterTransition: bool=?,
     ~disableAutoFocus: bool=?,
@@ -361,7 +361,7 @@ let makeProps =
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~_BackdropComponent:
          option(
            [
@@ -440,7 +440,7 @@ let makeProps =
                           ),
     ~_TransitionProps?,
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~_BackdropComponent=?
       _BackdropComponent->(
                             Belt.Option.map(v =>

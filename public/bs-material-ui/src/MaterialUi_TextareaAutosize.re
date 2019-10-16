@@ -4,11 +4,11 @@ external makePropsMui:
     ~className: string=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~placeholder: string=?,
-    ~rows: 'union_rxpb=?,
-    ~rowsMax: 'union_ro34=?,
-    ~value: 'any_rj1w=?,
+    ~rows: 'union_rvrs=?,
+    ~rowsMax: 'union_rjxp=?,
+    ~value: 'any_r8wf=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
+    ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
@@ -21,9 +21,9 @@ let makeProps =
       ~placeholder: option(string)=?,
       ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~value: option('any_rj1w)=?,
+      ~value: option('any_r8wf)=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       (),
     ) =>
   makePropsMui(
@@ -35,7 +35,7 @@ let makeProps =
       rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~value?,
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     (),
   );
 

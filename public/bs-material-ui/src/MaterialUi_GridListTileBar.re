@@ -66,7 +66,7 @@ external makePropsMui:
     ~title: React.element=?,
     ~titlePosition: string=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -83,7 +83,7 @@ let makeProps =
       ~title: option(React.element)=?,
       ~titlePosition: option(titlePosition)=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -98,7 +98,7 @@ let makeProps =
     ~titlePosition=?
       titlePosition->(Belt.Option.map(v => titlePositionToJs(v))),
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

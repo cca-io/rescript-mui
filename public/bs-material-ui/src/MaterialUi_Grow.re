@@ -40,9 +40,9 @@ external makePropsMui:
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_r854=?,
+    ~timeout: 'union_rlcr=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
+    ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
@@ -64,7 +64,7 @@ let makeProps =
            ],
          )=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       (),
     ) =>
   makePropsMui(
@@ -86,7 +86,7 @@ let makeProps =
                  )
                ),
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     (),
   );
 

@@ -69,9 +69,9 @@ external makePropsMui:
     ~color: string=?,
     ~position: string=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rrki=?,
-    ~elevation: 'number_z=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~component: 'union_rym1=?,
+    ~elevation: 'number_4=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -87,7 +87,7 @@ let makeProps =
       ~color: option(color)=?,
       ~position: option(position)=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
@@ -108,7 +108,7 @@ let makeProps =
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~position=?position->(Belt.Option.map(v => positionToJs(v))),
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~elevation=?

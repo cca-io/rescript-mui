@@ -24,10 +24,10 @@ module Classes = {
 external makePropsMui:
   (
     ~className: string=?,
-    ~component: 'union_rrhr=?,
+    ~component: 'union_rbww=?,
     ~children: 'children=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -48,7 +48,7 @@ let makeProps =
          )=?,
       ~children: option('children)=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -59,7 +59,7 @@ let makeProps =
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~children?,
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

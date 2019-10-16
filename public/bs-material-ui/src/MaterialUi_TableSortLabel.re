@@ -50,11 +50,11 @@ external makePropsMui:
     ~className: string=?,
     ~direction: string=?,
     ~hideSortIcon: bool=?,
-    ~_IconComponent: 'union_ra7b=?,
+    ~_IconComponent: 'union_rmbl=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_r7km=?,
+    ~component: 'union_rkbw=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -74,7 +74,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rvaw=?,
+    ~tabIndex: 'union_ra6g=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -100,7 +100,7 @@ let makeProps =
            ],
          )=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~centerRipple: option(bool)=?,
       ~component:
          option(
@@ -147,7 +147,7 @@ let makeProps =
                         Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
                       ),
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~centerRipple?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

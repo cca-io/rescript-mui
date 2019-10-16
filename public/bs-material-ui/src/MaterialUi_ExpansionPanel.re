@@ -37,14 +37,14 @@ external makePropsMui:
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_rcez=?,
+    ~onChange: 'any_rxzd=?,
     ~square: bool=?,
-    ~_TransitionComponent: 'union_rame=?,
+    ~_TransitionComponent: 'union_r5nu=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rbr4=?,
-    ~elevation: 'number_z=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~component: 'union_rhrd=?,
+    ~elevation: 'number_a=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -71,7 +71,7 @@ let makeProps =
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
@@ -101,7 +101,7 @@ let makeProps =
                             ),
     ~_TransitionProps?,
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~elevation=?

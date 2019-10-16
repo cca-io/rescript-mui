@@ -71,11 +71,11 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rktm=?,
+    ~component: 'union_res5=?,
     ~display: string=?,
     ~gutterBottom: bool=?,
     ~noWrap: bool=?,
@@ -93,7 +93,7 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~align: option(align)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
@@ -118,7 +118,7 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~align=?align->(Belt.Option.map(v => alignToJs(v))),
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),

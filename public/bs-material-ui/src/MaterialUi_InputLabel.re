@@ -78,8 +78,8 @@ external makePropsMui:
     ~variant: string=?,
     ~htmlFor: string,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rz3c=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~component: 'union_r57y=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -102,7 +102,7 @@ let makeProps =
       ~variant: option(variant)=?,
       ~htmlFor: string,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
@@ -129,7 +129,7 @@ let makeProps =
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~htmlFor,
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~filled?,

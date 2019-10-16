@@ -120,7 +120,7 @@ external makePropsMui:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rog6=?,
+    ~onClose: 'any_rtno=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -129,17 +129,17 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperComponent: 'union_r9ux=?,
+    ~_PaperComponent: 'union_r8lk=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_rb7f=?,
-    ~transitionDuration: 'union_rue0=?,
+    ~_TransitionComponent: 'union_rsp5=?,
+    ~transitionDuration: 'union_rgcq=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
-    ~_ref: ReactDOMRe.domRef=?,
-    ~_BackdropComponent: 'union_r8qp=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~_BackdropComponent: 'union_rool=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rug9=?,
+    ~container: 'union_rotg=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
@@ -204,7 +204,7 @@ let makeProps =
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
-      ~ref_: option(ReactDOMRe.domRef)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~_BackdropComponent:
          option(
            [
@@ -272,7 +272,7 @@ let makeProps =
                           ),
     ~_TransitionProps?,
     ~key?,
-    ~_ref=?ref_,
+    ~ref?,
     ~_BackdropComponent=?
       _BackdropComponent->(
                             Belt.Option.map(v =>
