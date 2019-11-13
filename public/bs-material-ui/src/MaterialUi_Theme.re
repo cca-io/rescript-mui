@@ -79,12 +79,18 @@ module AppBarClassKey = {
 module AvatarClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "circle"]
+    circle: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorDefault"]
     colorDefault: string,
     [@bs.optional] [@bs.as "img"]
     img: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "rounded"]
+    rounded: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "square"]
+    square: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -265,6 +271,8 @@ module ButtonGroupClassKey = {
   type t = {
     [@bs.optional] [@bs.as "contained"]
     contained: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "disabled"]
+    disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "fullWidth"]
     fullWidth: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "grouped"]
@@ -739,6 +747,8 @@ module FilledInputClassKey = {
     adornedEnd: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "adornedStart"]
     adornedStart: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "colorSecondary"]
+    colorSecondary: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "error"]
@@ -799,10 +809,14 @@ module FormControlLabelClassKey = {
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "label"]
     label: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "labelPlacementBottom"]
+    labelPlacementBottom: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "labelPlacementStart"]
+    labelPlacementStart: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "labelPlacementTop"]
+    labelPlacementTop: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
-    [@bs.optional] [@bs.as "start"]
-    start: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -849,6 +863,8 @@ module FormLabelClassKey = {
   type t = {
     [@bs.optional] [@bs.as "asterisk"]
     asterisk: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "colorSecondary"]
+    colorSecondary: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "error"]
@@ -1075,6 +1091,8 @@ module IconButtonClassKey = {
 module InputClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "colorSecondary"]
+    colorSecondary: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "error"]
@@ -1133,6 +1151,8 @@ module InputBaseClassKey = {
     adornedEnd: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "adornedStart"]
     adornedStart: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "colorSecondary"]
+    colorSecondary: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "error"]
@@ -1467,6 +1487,8 @@ module OutlinedInputClassKey = {
     adornedEnd: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "adornedStart"]
     adornedStart: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "colorSecondary"]
+    colorSecondary: string,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "error"]
@@ -1587,6 +1609,34 @@ module RadioClassKey = {
     input: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
+  };
+
+  let make = t;
+};
+
+module SelectClassKey = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "disabled"]
+    disabled: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "filled"]
+    filled: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "icon"]
+    icon: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "iconFilled"]
+    iconFilled: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "iconOpen"]
+    iconOpen: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "iconOutlined"]
+    iconOutlined: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "outlined"]
+    outlined: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "root"]
+    root: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "select"]
+    select: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "selectMenu"]
+    selectMenu: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -2306,7 +2356,7 @@ module Overrides = {
     [@bs.optional] [@bs.as "MuiRadio"]
     muiRadio: RadioClassKey.t,
     [@bs.optional] [@bs.as "MuiSelect"]
-    muiSelect: NativeSelectClassKey.t,
+    muiSelect: SelectClassKey.t,
     [@bs.optional] [@bs.as "MuiSlider"]
     muiSlider: SliderClassKey.t,
     [@bs.optional] [@bs.as "MuiSnackbar"]
@@ -2947,6 +2997,8 @@ module ZIndex = {
     modal: float,
     [@bs.as "snackbar"]
     snackbar: float,
+    [@bs.as "speedDial"]
+    speedDial: float,
     [@bs.as "tooltip"]
     tooltip: float,
   };

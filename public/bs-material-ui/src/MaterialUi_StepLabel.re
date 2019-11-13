@@ -70,7 +70,7 @@ external makePropsMui:
     ~last: bool=?,
     ~optional: React.element=?,
     ~orientation: string=?,
-    ~_StepIconComponent: 'union_r372=?,
+    ~_StepIconComponent: 'union_rn9i=?,
     ~_StepIconProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,

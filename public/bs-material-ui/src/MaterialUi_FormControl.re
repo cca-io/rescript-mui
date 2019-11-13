@@ -1,4 +1,10 @@
 [@bs.deriving jsConverter]
+type color = [
+  | [@bs.as "primary"] `Primary
+  | [@bs.as "secondary"] `Secondary
+];
+
+[@bs.deriving jsConverter]
 type margin = [
   | [@bs.as "none"] `None
   | [@bs.as "dense"] `Dense
@@ -48,7 +54,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rlgq=?,
+    ~color: string=?,
+    ~component: 'union_r0ea=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
@@ -69,6 +76,7 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~color: option(color)=?,
       ~component:
          option(
            [
@@ -93,6 +101,7 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disabled?,

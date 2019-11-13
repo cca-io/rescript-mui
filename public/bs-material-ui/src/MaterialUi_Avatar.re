@@ -1,13 +1,26 @@
+[@bs.deriving jsConverter]
+type variant = [
+  | [@bs.as "circle"] `Circle
+  | [@bs.as "rounded"] `Rounded
+  | [@bs.as "square"] `Square
+];
+
 module Classes = {
   type classesType =
     | Root(string)
     | ColorDefault(string)
+    | Circle(string)
+    | Rounded(string)
+    | Square(string)
     | Img(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
     | ColorDefault(_) => "colorDefault"
+    | Circle(_) => "circle"
+    | Rounded(_) => "rounded"
+    | Square(_) => "square"
     | Img(_) => "img";
   let to_obj = listOfClasses =>
     listOfClasses->(
@@ -17,6 +30,9 @@ module Classes = {
                          switch (classType) {
                          | Root(className)
                          | ColorDefault(className)
+                         | Circle(className)
+                         | Rounded(className)
+                         | Square(className)
                          | Img(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
@@ -32,11 +48,12 @@ external makePropsMui:
     ~alt: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rmcc=?,
+    ~component: 'union_r8fz=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,
     ~srcSet: string=?,
+    ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -63,6 +80,7 @@ let makeProps =
       ~sizes: option(string)=?,
       ~src: option(string)=?,
       ~srcSet: option(string)=?,
+      ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -79,6 +97,7 @@ let makeProps =
     ~sizes?,
     ~src?,
     ~srcSet?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
     ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

@@ -6,6 +6,12 @@ type variant = [
 ];
 
 [@bs.deriving jsConverter]
+type color = [
+  | [@bs.as "primary"] `Primary
+  | [@bs.as "secondary"] `Secondary
+];
+
+[@bs.deriving jsConverter]
 type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
 
 module Classes = {
@@ -17,6 +23,7 @@ module Classes = {
     | SelectMenu(string)
     | Disabled(string)
     | Icon(string)
+    | IconOpen(string)
     | IconFilled(string)
     | IconOutlined(string);
   type t = list(classesType);
@@ -29,6 +36,7 @@ module Classes = {
     | SelectMenu(_) => "selectMenu"
     | Disabled(_) => "disabled"
     | Icon(_) => "icon"
+    | IconOpen(_) => "iconOpen"
     | IconFilled(_) => "iconFilled"
     | IconOutlined(_) => "iconOutlined";
   let to_obj = listOfClasses =>
@@ -44,6 +52,7 @@ module Classes = {
                          | SelectMenu(className)
                          | Disabled(className)
                          | Icon(className)
+                         | IconOpen(className)
                          | IconFilled(className)
                          | IconOutlined(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
@@ -59,43 +68,45 @@ external makePropsMui:
   (
     ~autoWidth: bool=?,
     ~children: 'children=?,
+    ~defaultValue: 'any_r4ny=?,
     ~displayEmpty: bool=?,
-    ~_IconComponent: 'union_rwcr=?,
+    ~_IconComponent: 'union_ry2a=?,
+    ~id: string=?,
     ~input: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~labelWidth: 'number_i=?,
+    ~labelId: string=?,
+    ~labelWidth: 'number_k=?,
     ~_MenuProps: Js.t({..})=?,
     ~multiple: bool=?,
     ~native: bool=?,
-    ~onChange: 'any_rurp=?,
-    ~onClose: 'any_r23b=?,
-    ~onOpen: 'any_rfls=?,
+    ~onChange: 'any_rpru=?,
+    ~onClose: 'any_rxmj=?,
+    ~onOpen: 'any_rvzx=?,
     ~_open: bool=?,
-    ~renderValue: 'any_rt7q=?,
+    ~renderValue: 'any_ryq1=?,
     ~_SelectDisplayProps: Js.t({..})=?,
-    ~value: 'union_re8t=?,
+    ~value: 'union_r5g0=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_rqhb=?,
+    ~color: string=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
-    ~id: string=?,
-    ~inputComponent: 'any_r9fp=?,
+    ~inputComponent: 'any_r1mf=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rnaq=?,
-    ~rowsMax: 'union_rvgu=?,
+    ~rows: 'union_rk33=?,
+    ~rowsMax: 'union_rr28=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
     ~aria_describedby: string=?,
@@ -117,6 +128,7 @@ let makeProps =
     (
       ~autoWidth: option(bool)=?,
       ~children: option('children)=?,
+      ~defaultValue: option('any_r4ny)=?,
       ~displayEmpty: option(bool)=?,
       ~_IconComponent:
          option(
@@ -126,8 +138,10 @@ let makeProps =
              | `Element(React.element)
            ],
          )=?,
+      ~id: option(string)=?,
       ~input: option(React.element)=?,
       ~inputProps: option(Js.t({..}))=?,
+      ~labelId: option(string)=?,
       ~labelWidth: option([ | `Int(int) | `Float(float)])=?,
       ~_MenuProps: option(Js.t({..}))=?,
       ~multiple: option(bool)=?,
@@ -136,7 +150,7 @@ let makeProps =
       ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
       ~onOpen: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: option(bool)=?,
-      ~renderValue: option('any_rt4z => 'any_r38m)=?,
+      ~renderValue: option('any_r5mf => 'any_r3fj)=?,
       ~_SelectDisplayProps: option(Js.t({..}))=?,
       ~value:
          option(
@@ -153,14 +167,13 @@ let makeProps =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_rqhb)=?,
+      ~color: option(color)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
-      ~id: option(string)=?,
-      ~inputComponent: option('any_r9fp)=?,
+      ~inputComponent: option('any_r1mf)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -186,13 +199,16 @@ let makeProps =
   makePropsMui(
     ~autoWidth?,
     ~children?,
+    ~defaultValue?,
     ~displayEmpty?,
     ~_IconComponent=?
       _IconComponent->(
                         Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
                       ),
+    ~id?,
     ~input?,
     ~inputProps?,
+    ~labelId?,
     ~labelWidth=?
       labelWidth->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_MenuProps?,
@@ -211,13 +227,12 @@ let makeProps =
     ~autoComplete?,
     ~autoFocus?,
     ~className?,
-    ~defaultValue?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~disabled?,
     ~disableUnderline?,
     ~endAdornment?,
     ~error?,
     ~fullWidth?,
-    ~id?,
     ~inputComponent?,
     ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
     ~multiline?,

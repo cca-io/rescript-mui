@@ -1,4 +1,10 @@
 [@bs.deriving jsConverter]
+type color = [
+  | [@bs.as "primary"] `Primary
+  | [@bs.as "secondary"] `Secondary
+];
+
+[@bs.deriving jsConverter]
 type margin = [
   | [@bs.as "none"] `None
   | [@bs.as "dense"] `Dense
@@ -41,7 +47,8 @@ external makePropsMui:
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~defaultValue: 'union_r3fw=?,
+    ~color: string=?,
+    ~defaultValue: 'union_rn01=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -57,20 +64,20 @@ external makePropsMui:
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rnql=?,
+    ~onChange: 'any_r883=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_r8hu=?,
-    ~rowsMax: 'union_r6ks=?,
+    ~rows: 'union_rg48=?,
+    ~rowsMax: 'union_rezo=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
     ~_type: string=?,
-    ~value: 'union_rsd9=?,
+    ~value: 'union_rmhn=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_reib=?,
+    ~component: 'union_r1jd=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -84,6 +91,7 @@ let makeProps =
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~color: option(color)=?,
       ~defaultValue:
          option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~disabled: option(bool)=?,
@@ -131,6 +139,7 @@ let makeProps =
     ~autoFocus?,
     ~children?,
     ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~defaultValue=?
       defaultValue->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disabled?,

@@ -1,4 +1,10 @@
 [@bs.deriving jsConverter]
+type color = [
+  | [@bs.as "primary"] `Primary
+  | [@bs.as "secondary"] `Secondary
+];
+
+[@bs.deriving jsConverter]
 type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
 
 module Classes = {
@@ -7,6 +13,7 @@ module Classes = {
     | FormControl(string)
     | Focused(string)
     | Disabled(string)
+    | ColorSecondary(string)
     | Underline(string)
     | Error(string)
     | Multiline(string)
@@ -22,6 +29,7 @@ module Classes = {
     | FormControl(_) => "formControl"
     | Focused(_) => "focused"
     | Disabled(_) => "disabled"
+    | ColorSecondary(_) => "colorSecondary"
     | Underline(_) => "underline"
     | Error(_) => "error"
     | Multiline(_) => "multiline"
@@ -40,6 +48,7 @@ module Classes = {
                          | FormControl(className)
                          | Focused(className)
                          | Disabled(className)
+                         | ColorSecondary(className)
                          | Underline(className)
                          | Error(className)
                          | Multiline(className)
@@ -62,27 +71,28 @@ external makePropsMui:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_reib=?,
+    ~color: string=?,
+    ~defaultValue: 'any_r31t=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rfkr=?,
+    ~inputComponent: 'any_rngh=?,
     ~inputProps: Js.t({..})=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
-    ~onChange: 'any_rpfs=?,
+    ~onChange: 'any_ragj=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rpc8=?,
-    ~rowsMax: 'union_r14e=?,
+    ~rows: 'union_rtke=?,
+    ~rowsMax: 'union_rc9i=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_rn8c=?,
+    ~value: 'any_rcea=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~aria_describedby: string=?,
@@ -105,14 +115,15 @@ let makeProps =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_reib)=?,
+      ~color: option(color)=?,
+      ~defaultValue: option('any_r31t)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_rfkr)=?,
+      ~inputComponent: option('any_rngh)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
@@ -125,7 +136,7 @@ let makeProps =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rn8c)=?,
+      ~value: option('any_rcea)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~aria_describedby: option(string)=?,
@@ -144,6 +155,7 @@ let makeProps =
     ~autoComplete?,
     ~autoFocus?,
     ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~defaultValue?,
     ~disabled?,
     ~disableUnderline?,

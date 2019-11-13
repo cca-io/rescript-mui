@@ -1,3 +1,6 @@
+[@bs.deriving jsConverter]
+type role = [ | [@bs.as "alert"] `Alert | [@bs.as "alertdialog"] `Alertdialog];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -32,11 +35,12 @@ external makePropsMui:
     ~action: React.element=?,
     ~className: string=?,
     ~message: React.element=?,
+    ~role: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
-    ~component: 'union_rtmf=?,
-    ~elevation: 'number_2=?,
+    ~component: 'union_rdxk=?,
+    ~elevation: 'number_1=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -50,6 +54,7 @@ let makeProps =
       ~action: option(React.element)=?,
       ~className: option(string)=?,
       ~message: option(React.element)=?,
+      ~role: option(role)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,
@@ -71,6 +76,7 @@ let makeProps =
     ~action?,
     ~className?,
     ~message?,
+    ~role=?role->(Belt.Option.map(v => roleToJs(v))),
     ~key?,
     ~ref?,
     ~children?,

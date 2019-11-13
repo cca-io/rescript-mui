@@ -1,6 +1,13 @@
+[@bs.deriving jsConverter]
+type color = [
+  | [@bs.as "primary"] `Primary
+  | [@bs.as "secondary"] `Secondary
+];
+
 module Classes = {
   type classesType =
     | Root(string)
+    | ColorSecondary(string)
     | Focused(string)
     | Disabled(string)
     | Error(string)
@@ -11,6 +18,7 @@ module Classes = {
   let to_string =
     fun
     | Root(_) => "root"
+    | ColorSecondary(_) => "colorSecondary"
     | Focused(_) => "focused"
     | Disabled(_) => "disabled"
     | Error(_) => "error"
@@ -24,6 +32,7 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
+                         | ColorSecondary(className)
                          | Focused(className)
                          | Disabled(className)
                          | Error(className)
@@ -43,7 +52,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rsho=?,
+    ~color: string=?,
+    ~component: 'union_r3ai=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~filled: bool=?,
@@ -62,6 +72,7 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
+      ~color: option(color)=?,
       ~component:
          option(
            [
@@ -84,6 +95,7 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disabled?,

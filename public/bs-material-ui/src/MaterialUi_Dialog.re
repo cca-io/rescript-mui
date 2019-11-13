@@ -111,6 +111,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~aria_describedby: string=?,
+    ~aria_labelledby: string=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -120,7 +122,7 @@ external makePropsMui:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rtno=?,
+    ~onClose: 'any_r1oo=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -129,17 +131,17 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperComponent: 'union_r8lk=?,
+    ~_PaperComponent: 'union_rtn7=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_rsp5=?,
-    ~transitionDuration: 'union_rgcq=?,
+    ~_TransitionComponent: 'union_ra8p=?,
+    ~transitionDuration: 'union_rhyc=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~_BackdropComponent: 'union_rool=?,
+    ~_BackdropComponent: 'union_rthm=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rotg=?,
+    ~container: 'union_rwkx=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
@@ -158,6 +160,8 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~aria_describedby: option(string)=?,
+      ~aria_labelledby: option(string)=?,
       ~_BackdropProps: option(Js.t({..}))=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
@@ -232,6 +236,8 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
+    ~aria_describedby?,
+    ~aria_labelledby?,
     ~_BackdropProps?,
     ~children?,
     ~className?,

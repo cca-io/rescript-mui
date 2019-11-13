@@ -6,6 +6,12 @@ type variant = [
 ];
 
 [@bs.deriving jsConverter]
+type color = [
+  | [@bs.as "primary"] `Primary
+  | [@bs.as "secondary"] `Secondary
+];
+
+[@bs.deriving jsConverter]
 type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
 
 module Classes = {
@@ -17,6 +23,7 @@ module Classes = {
     | SelectMenu(string)
     | Disabled(string)
     | Icon(string)
+    | IconOpen(string)
     | IconFilled(string)
     | IconOutlined(string);
   type t = list(classesType);
@@ -29,6 +36,7 @@ module Classes = {
     | SelectMenu(_) => "selectMenu"
     | Disabled(_) => "disabled"
     | Icon(_) => "icon"
+    | IconOpen(_) => "iconOpen"
     | IconFilled(_) => "iconFilled"
     | IconOutlined(_) => "iconOutlined";
   let to_obj = listOfClasses =>
@@ -44,6 +52,7 @@ module Classes = {
                          | SelectMenu(className)
                          | Disabled(className)
                          | Icon(className)
+                         | IconOpen(className)
                          | IconFilled(className)
                          | IconOutlined(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
@@ -58,33 +67,34 @@ module Classes = {
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~_IconComponent: 'union_rhvr=?,
+    ~_IconComponent: 'union_r2g8=?,
     ~input: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_rnfk=?,
-    ~value: 'any_rp4g=?,
+    ~onChange: 'any_rbfq=?,
+    ~value: 'any_rzzs=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_rcfe=?,
+    ~color: string=?,
+    ~defaultValue: 'any_re4q=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_r93z=?,
+    ~inputComponent: 'any_ro7r=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rqvk=?,
-    ~rowsMax: 'union_r8qa=?,
+    ~rows: 'union_rcd9=?,
+    ~rowsMax: 'union_rj36=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
     ~aria_describedby: string=?,
@@ -116,21 +126,22 @@ let makeProps =
       ~input: option(React.element)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~value: option('any_rp4g)=?,
+      ~value: option('any_rzzs)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_rcfe)=?,
+      ~color: option(color)=?,
+      ~defaultValue: option('any_re4q)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_r93z)=?,
+      ~inputComponent: option('any_ro7r)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -169,6 +180,7 @@ let makeProps =
     ~autoComplete?,
     ~autoFocus?,
     ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~defaultValue?,
     ~disabled?,
     ~disableUnderline?,

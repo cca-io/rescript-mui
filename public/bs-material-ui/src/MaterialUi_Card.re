@@ -23,13 +23,13 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~raised: bool=?,
-    ~children: 'children=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r1uj=?,
-    ~elevation: 'number_j=?,
+    ~component: 'union_rsts=?,
+    ~elevation: 'number_d=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -40,9 +40,9 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~raised: option(bool)=?,
-      ~children: option('children)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
@@ -60,9 +60,9 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
+    ~children?,
     ~className?,
     ~raised?,
-    ~children?,
     ~key?,
     ~ref?,
     ~component=?

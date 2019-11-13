@@ -36,7 +36,7 @@ type variant = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~actions: 'any_ri0w=?,
+    ~actions: 'any_rup4=?,
     ~autoFocus: bool=?,
     ~autoFocusItem: bool=?,
     ~children: 'children=?,
@@ -46,7 +46,7 @@ external makePropsMui:
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r8fv=?,
+    ~component: 'union_rws7=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,

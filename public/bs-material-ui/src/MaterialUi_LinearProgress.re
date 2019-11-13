@@ -90,8 +90,8 @@ external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_b=?,
-    ~valueBuffer: 'number_x=?,
+    ~value: 'number_4=?,
+    ~valueBuffer: 'number_b=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,

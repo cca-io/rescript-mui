@@ -1,9 +1,16 @@
 [@bs.deriving jsConverter]
+type color = [
+  | [@bs.as "primary"] `Primary
+  | [@bs.as "secondary"] `Secondary
+];
+
+[@bs.deriving jsConverter]
 type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
 
 module Classes = {
   type classesType =
     | Root(string)
+    | ColorSecondary(string)
     | Focused(string)
     | Disabled(string)
     | AdornedStart(string)
@@ -22,6 +29,7 @@ module Classes = {
   let to_string =
     fun
     | Root(_) => "root"
+    | ColorSecondary(_) => "colorSecondary"
     | Focused(_) => "focused"
     | Disabled(_) => "disabled"
     | AdornedStart(_) => "adornedStart"
@@ -43,6 +51,7 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
+                         | ColorSecondary(className)
                          | Focused(className)
                          | Disabled(className)
                          | AdornedStart(className)
@@ -71,28 +80,29 @@ external makePropsMui:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_ruji=?,
+    ~color: string=?,
+    ~defaultValue: 'any_rymx=?,
     ~disabled: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_rgvs=?,
+    ~inputComponent: 'union_ry5p=?,
     ~inputProps: Js.t({..})=?,
-    ~labelWidth: 'number_0=?,
+    ~labelWidth: 'number_r=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~notched: bool=?,
-    ~onChange: 'any_rmp0=?,
+    ~onChange: 'any_r394=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rmxv=?,
-    ~rowsMax: 'union_rked=?,
+    ~rows: 'union_r7tz=?,
+    ~rowsMax: 'union_rmon=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_rxpu=?,
+    ~value: 'any_rm4e=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~aria_describedby: string=?,
@@ -115,7 +125,8 @@ let makeProps =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_ruji)=?,
+      ~color: option(color)=?,
+      ~defaultValue: option('any_rymx)=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
@@ -143,7 +154,7 @@ let makeProps =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rxpu)=?,
+      ~value: option('any_rm4e)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~aria_describedby: option(string)=?,
@@ -162,6 +173,7 @@ let makeProps =
     ~autoComplete?,
     ~autoFocus?,
     ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~defaultValue?,
     ~disabled?,
     ~endAdornment?,

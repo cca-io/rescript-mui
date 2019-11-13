@@ -163,27 +163,27 @@ type variant = [
 external makePropsMui:
   (
     ~anchor: string=?,
+    ~children: 'children=?,
     ~disableBackdropTransition: bool=?,
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_9=?,
-    ~minFlingVelocity: 'number_j=?,
-    ~_ModalProps: 'any_rzkq=?,
-    ~onClose: 'any_r6qf,
-    ~onOpen: 'any_ruvp,
+    ~hysteresis: 'number_c=?,
+    ~minFlingVelocity: 'number_6=?,
+    ~_ModalProps: 'any_ro17=?,
+    ~onClose: 'any_ry37,
+    ~onOpen: 'any_rcs6,
     ~_open: bool,
-    ~_PaperProps: 'any_rmhh=?,
+    ~_PaperProps: 'any_rkm6=?,
     ~_SwipeAreaProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_3=?,
-    ~transitionDuration: 'union_rysy=?,
+    ~swipeAreaWidth: 'number_e=?,
+    ~transitionDuration: 'union_rly8=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~_BackdropProps: Js.t({..})=?,
-    ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_h=?,
+    ~elevation: 'number_d=?,
     ~_SlideProps: Js.t({..})=?,
     unit
   ) =>
@@ -193,6 +193,7 @@ external makePropsMui:
 let makeProps =
     (
       ~anchor: option(anchor)=?,
+      ~children: option('children)=?,
       ~disableBackdropTransition: option(bool)=?,
       ~disableDiscovery: option(bool)=?,
       ~disableSwipeToOpen: option(bool)=?,
@@ -218,7 +219,6 @@ let makeProps =
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~_BackdropProps: option(Js.t({..}))=?,
-      ~children: option('children)=?,
       ~className: option(string)=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~_SlideProps: option(Js.t({..}))=?,
@@ -226,6 +226,7 @@ let makeProps =
     ) =>
   makePropsMui(
     ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
+    ~children?,
     ~disableBackdropTransition?,
     ~disableDiscovery?,
     ~disableSwipeToOpen?,
@@ -258,7 +259,6 @@ let makeProps =
     ~key?,
     ~ref?,
     ~_BackdropProps?,
-    ~children?,
     ~className?,
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

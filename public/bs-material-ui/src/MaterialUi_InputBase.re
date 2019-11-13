@@ -1,4 +1,10 @@
 [@bs.deriving jsConverter]
+type color = [
+  | [@bs.as "primary"] `Primary
+  | [@bs.as "secondary"] `Secondary
+];
+
+[@bs.deriving jsConverter]
 type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
 
 module Classes = {
@@ -12,6 +18,7 @@ module Classes = {
     | Error(string)
     | MarginDense(string)
     | Multiline(string)
+    | ColorSecondary(string)
     | FullWidth(string)
     | Input(string)
     | InputMarginDense(string)
@@ -33,6 +40,7 @@ module Classes = {
     | Error(_) => "error"
     | MarginDense(_) => "marginDense"
     | Multiline(_) => "multiline"
+    | ColorSecondary(_) => "colorSecondary"
     | FullWidth(_) => "fullWidth"
     | Input(_) => "input"
     | InputMarginDense(_) => "inputMarginDense"
@@ -57,6 +65,7 @@ module Classes = {
                          | Error(className)
                          | MarginDense(className)
                          | Multiline(className)
+                         | ColorSecondary(className)
                          | FullWidth(className)
                          | Input(className)
                          | InputMarginDense(className)
@@ -81,19 +90,20 @@ external makePropsMui:
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'any_roea=?,
+    ~color: string=?,
+    ~defaultValue: 'any_rv1e=?,
     ~disabled: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_r0yw=?,
+    ~inputComponent: 'union_rzxy=?,
     ~inputProps: Js.t({..})=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_r5ig=?,
+    ~onChange: 'any_rc52=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
@@ -102,12 +112,12 @@ external makePropsMui:
     ~readOnly: bool=?,
     ~renderSuffix: 'genericCallback=?,
     ~required: bool=?,
-    ~rows: 'union_r2sj=?,
-    ~rowsMax: 'union_rln2=?,
+    ~rows: 'union_rux8=?,
+    ~rowsMax: 'union_rqmk=?,
     ~select: bool=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_rpdm=?,
+    ~value: 'any_ry9z=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -123,7 +133,8 @@ let makeProps =
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue: option('any_roea)=?,
+      ~color: option(color)=?,
+      ~defaultValue: option('any_rv1e)=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
@@ -156,7 +167,7 @@ let makeProps =
       ~select: option(bool)=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rpdm)=?,
+      ~value: option('any_ry9z)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -168,6 +179,7 @@ let makeProps =
     ~autoComplete?,
     ~autoFocus?,
     ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~defaultValue?,
     ~disabled?,
     ~endAdornment?,

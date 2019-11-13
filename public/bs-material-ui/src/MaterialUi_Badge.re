@@ -123,14 +123,14 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorOrigin: 'any_r630=?,
+    ~anchorOrigin: 'any_rkh2=?,
     ~badgeContent: React.element=?,
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ruke=?,
+    ~component: 'union_rmrd=?,
     ~invisible: bool=?,
-    ~max: 'number_k=?,
+    ~max: 'number_a=?,
     ~overlap: string=?,
     ~showZero: bool=?,
     ~variant: string=?,
