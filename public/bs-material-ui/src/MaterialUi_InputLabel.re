@@ -15,6 +15,7 @@ module Classes = {
     | Disabled(string)
     | Error(string)
     | Required(string)
+    | Asterisk(string)
     | FormControl(string)
     | MarginDense(string)
     | Shrink(string)
@@ -29,6 +30,7 @@ module Classes = {
     | Disabled(_) => "disabled"
     | Error(_) => "error"
     | Required(_) => "required"
+    | Asterisk(_) => "asterisk"
     | FormControl(_) => "formControl"
     | MarginDense(_) => "marginDense"
     | Shrink(_) => "shrink"
@@ -46,6 +48,7 @@ module Classes = {
                          | Disabled(className)
                          | Error(className)
                          | Required(className)
+                         | Asterisk(className)
                          | FormControl(className)
                          | MarginDense(className)
                          | Shrink(className)
@@ -61,20 +64,22 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~disableAnimation: bool=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~focused: bool=?,
-    ~_FormLabelClasses: Js.t({..})=?,
     ~margin: string=?,
-    ~muiFormControl: Js.t({..})=?,
     ~required: bool=?,
     ~shrink: bool=?,
     ~variant: string=?,
-    ~component: 'union_r492=?,
+    ~htmlFor: string,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~component: 'union_r57y=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -82,57 +87,56 @@ external makeProps:
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "InputLabel";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~disableAnimation: option(bool)=?,
       ~disabled: option(bool)=?,
       ~error: option(bool)=?,
       ~focused: option(bool)=?,
-      ~_FormLabelClasses: option(Js.t({..}))=?,
       ~margin: option(margin)=?,
-      ~muiFormControl: option(Js.t({..}))=?,
       ~required: option(bool)=?,
       ~shrink: option(bool)=?,
       ~variant: option(variant)=?,
+      ~htmlFor: string,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~filled: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~disableAnimation?,
-        ~disabled?,
-        ~error?,
-        ~focused?,
-        ~_FormLabelClasses?,
-        ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
-        ~muiFormControl?,
-        ~required?,
-        ~shrink?,
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~filled?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~disableAnimation?,
+    ~disabled?,
+    ~error?,
+    ~focused?,
+    ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
+    ~required?,
+    ~shrink?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~htmlFor,
+    ~key?,
+    ~ref?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~filled?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "InputLabel";

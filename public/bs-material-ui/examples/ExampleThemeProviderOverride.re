@@ -4,7 +4,6 @@ let theme =
   MaterialUi_Theme.create(
     MaterialUi_ThemeOptions.(
       make(
-        ~typography=Typography.make(~useNextVariants=true, ()),
         ~overrides=
           Overrides.make(
             ~muiButton=
@@ -13,7 +12,7 @@ let theme =
                   ReactDOMRe.Style.make(
                     ~fontSize="12px",
                     ~fontWeight="300",
-                    ~color="gray !important",
+                    ~color="gray",
                     (),
                   )
                   ->ReactDOMRe.Style.unsafeAddProp(
@@ -34,19 +33,15 @@ let theme =
     ),
   );
 
-let component = ReasonReact.statelessComponent(__MODULE__);
-
-let make = _ => {
-  ...component,
-  render: _ =>
-    MaterialUi.(
-      <div>
-        <MuiThemeProvider theme>
-          <Button color=`Secondary variant=`Outlined>
-            <ExampleIcons.Icons.SupervisedUserCircle_Filled />
-            "Overriden Outline Styles"->ReasonReact.string
-          </Button>
-        </MuiThemeProvider>
-      </div>
-    ),
-};
+[@react.component]
+let make = () =>
+  MaterialUi.(
+    <div>
+      <MuiThemeProvider theme>
+        <Button color=`Secondary variant=`Outlined>
+          <ExampleIcons.SupervisedUserCircle.Filled />
+          "Overriden Outline Styles"->React.string
+        </Button>
+      </MuiThemeProvider>
+    </div>
+  );

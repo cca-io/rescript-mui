@@ -32,40 +32,42 @@ module Timeout_shape = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
-    ~theme: Js.t({..})=?,
-    ~timeout: 'union_rhi2=?,
+    ~timeout: 'union_rdgf=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Fade";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~in_: option(bool)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
-      ~theme: option(Js.t({..}))=?,
       ~timeout:
          option([ | `Int(int) | `Float(float) | `Object(Timeout_shape.t)])=?,
-      children,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~_in=?in_,
-        ~onEnter?,
-        ~onExit?,
-        ~theme?,
-        ~timeout=?
-          timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~_in=?in_,
+    ~onEnter?,
+    ~onExit?,
+    ~timeout=?
+      timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~key?,
+    ~ref?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Fade";

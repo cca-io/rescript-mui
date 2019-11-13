@@ -86,50 +86,48 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_p=?,
-    ~valueBuffer: 'number_6=?,
+    ~value: 'number_b=?,
+    ~valueBuffer: 'number_x=?,
     ~variant: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "LinearProgress";
-let make =
+
+let makeProps =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~value: option([ | `Int(int) | `Float(float)])=?,
       ~valueBuffer: option([ | `Int(int) | `Float(float)])=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~value=?
-          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~valueBuffer=?
-          valueBuffer->(
-                         Belt.Option.map(v =>
-                           MaterialUi_Helpers.unwrapValue(v)
-                         )
-                       ),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~valueBuffer=?
+      valueBuffer->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "LinearProgress";

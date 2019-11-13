@@ -27,63 +27,64 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~alt: string=?,
-    ~childrenClassName: string=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rlvk=?,
+    ~component: 'union_rmcc=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,
     ~srcSet: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Avatar";
-let make =
+
+let makeProps =
     (
       ~alt: option(string)=?,
-      ~childrenClassName: option(string)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~imgProps: option(Js.t({..}))=?,
       ~sizes: option(string)=?,
       ~src: option(string)=?,
       ~srcSet: option(string)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~alt?,
-        ~childrenClassName?,
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~imgProps?,
-        ~sizes?,
-        ~src?,
-        ~srcSet?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~alt?,
+    ~children?,
+    ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~imgProps?,
+    ~sizes?,
+    ~src?,
+    ~srcSet?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Avatar";

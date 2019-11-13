@@ -6,22 +6,45 @@ type color = [
   | [@bs.as "secondary"] `Secondary
 ];
 
+[@bs.deriving jsConverter]
+type edge = [
+  | [@bs.as "start"] `Start
+  | [@bs.as "end"] `End
+  | [@bs.as "false"] `False
+];
+
+[@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+
+[@bs.deriving jsConverter]
+type type_ = [
+  | [@bs.as "submit"] `Submit
+  | [@bs.as "reset"] `Reset
+  | [@bs.as "button"] `Button
+];
+
 module Classes = {
   type classesType =
     | Root(string)
+    | EdgeStart(string)
+    | EdgeEnd(string)
     | ColorInherit(string)
     | ColorPrimary(string)
     | ColorSecondary(string)
     | Disabled(string)
+    | SizeSmall(string)
     | Label(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
+    | EdgeStart(_) => "edgeStart"
+    | EdgeEnd(_) => "edgeEnd"
     | ColorInherit(_) => "colorInherit"
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary"
     | Disabled(_) => "disabled"
+    | SizeSmall(_) => "sizeSmall"
     | Label(_) => "label";
   let to_obj = listOfClasses =>
     listOfClasses->(
@@ -30,10 +53,13 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
+                         | EdgeStart(className)
+                         | EdgeEnd(className)
                          | ColorInherit(className)
                          | ColorPrimary(className)
                          | ColorSecondary(className)
                          | Disabled(className)
+                         | SizeSmall(className)
                          | Label(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
@@ -44,21 +70,26 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
     ~disabled: bool=?,
+    ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
-    ~action: 'any_rc4k=?,
-    ~buttonRef: 'union_rxhk=?,
+    ~edge: string=?,
+    ~size: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_r4ab=?,
+    ~component: 'union_rzuq=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onDragLeave: ReactEvent.Mouse.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onFocusVisible: 'genericCallback=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
@@ -70,7 +101,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r8lk=?,
+    ~tabIndex: 'union_rb34=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -79,26 +110,26 @@ external makeProps:
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "IconButton";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~disabled: option(bool)=?,
+      ~disableFocusRipple: option(bool)=?,
       ~disableRipple: option(bool)=?,
-      ~action: option(Js.t({..}) => unit)=?,
-      ~buttonRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
+      ~edge: option(edge)=?,
+      ~size: option(size)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~centerRipple: option(bool)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~disableTouchRipple: option(bool)=?,
@@ -106,6 +137,7 @@ let make =
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~onDragLeave: option(ReactEvent.Mouse.t => unit)=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onFocusVisible: option('genericCallback)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
@@ -119,52 +151,50 @@ let make =
       ~role: option(string)=?,
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
-      ~type_: option(string)=?,
+      ~type_: option(type_)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~disabled?,
-        ~disableRipple?,
-        ~action?,
-        ~buttonRef=?
-          buttonRef->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~centerRipple?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disableTouchRipple?,
-        ~focusRipple?,
-        ~focusVisibleClassName?,
-        ~onBlur?,
-        ~onClick?,
-        ~onFocus?,
-        ~onFocusVisible?,
-        ~onKeyDown?,
-        ~onKeyUp?,
-        ~onMouseDown?,
-        ~onMouseLeave?,
-        ~onMouseUp?,
-        ~onTouchEnd?,
-        ~onTouchMove?,
-        ~onTouchStart?,
-        ~role?,
-        ~tabIndex=?
-          tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~_TouchRippleProps?,
-        ~_type=?type_,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~disabled?,
+    ~disableFocusRipple?,
+    ~disableRipple?,
+    ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~key?,
+    ~ref?,
+    ~centerRipple?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disableTouchRipple?,
+    ~focusRipple?,
+    ~focusVisibleClassName?,
+    ~onBlur?,
+    ~onClick?,
+    ~onDragLeave?,
+    ~onFocus?,
+    ~onFocusVisible?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~onMouseDown?,
+    ~onMouseLeave?,
+    ~onMouseUp?,
+    ~onTouchEnd?,
+    ~onTouchMove?,
+    ~onTouchStart?,
+    ~role?,
+    ~tabIndex=?
+      tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_TouchRippleProps?,
+    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "IconButton";

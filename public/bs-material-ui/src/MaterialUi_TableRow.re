@@ -33,54 +33,58 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r21j=?,
+    ~component: 'union_rqb1=?,
     ~hover: bool=?,
     ~selected: bool=?,
     ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "TableRow";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~hover: option(bool)=?,
       ~selected: option(bool)=?,
       ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~hover?,
-        ~selected?,
-        ~onDoubleClick?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~hover?,
+    ~selected?,
+    ~onDoubleClick?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "TableRow";

@@ -13,32 +13,38 @@ type touchEvent = [
   | [@bs.as "false"] `False
 ];
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~mouseEvent: string=?,
     ~onClickAway: ReactEvent.Mouse.t => unit,
     ~touchEvent: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "ClickAwayListener";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~mouseEvent: option(mouseEvent)=?,
       ~onClickAway: ReactEvent.Mouse.t => unit,
       ~touchEvent: option(touchEvent)=?,
-      children,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~mouseEvent=?mouseEvent->(Belt.Option.map(v => mouseEventToJs(v))),
-        ~onClickAway,
-        ~touchEvent=?touchEvent->(Belt.Option.map(v => touchEventToJs(v))),
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~mouseEvent=?mouseEvent->(Belt.Option.map(v => mouseEventToJs(v))),
+    ~onClickAway,
+    ~touchEvent=?touchEvent->(Belt.Option.map(v => touchEventToJs(v))),
+    ~key?,
+    ~ref?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "ClickAwayListener";

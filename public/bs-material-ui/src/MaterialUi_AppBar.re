@@ -1,18 +1,18 @@
 [@bs.deriving jsConverter]
 type color = [
+  | [@bs.as "default"] `Default
   | [@bs.as "inherit"] `Inherit
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
-  | [@bs.as "default"] `Default
 ];
 
 [@bs.deriving jsConverter]
 type position = [
-  | [@bs.as "fixed"] `Fixed
   | [@bs.as "absolute"] `Absolute
-  | [@bs.as "sticky"] `Sticky
-  | [@bs.as "static"] `Static
+  | [@bs.as "fixed"] `Fixed
   | [@bs.as "relative"] `Relative
+  | [@bs.as "static"] `Static
+  | [@bs.as "sticky"] `Sticky
 ];
 
 module Classes = {
@@ -62,13 +62,16 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
     ~position: string=?,
-    ~component: 'union_r4yd=?,
-    ~elevation: 'number_d=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~component: 'union_rym1=?,
+    ~elevation: 'number_4=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -76,46 +79,45 @@ external makeProps:
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "AppBar";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~position: option(position)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~position=?position->(Belt.Option.map(v => positionToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~elevation=?
-          elevation->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~square?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~position=?position->(Belt.Option.map(v => positionToJs(v))),
+    ~key?,
+    ~ref?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~square?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "AppBar";

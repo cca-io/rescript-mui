@@ -1,3 +1,10 @@
+[@bs.deriving jsConverter]
+type type_ = [
+  | [@bs.as "submit"] `Submit
+  | [@bs.as "reset"] `Reset
+  | [@bs.as "button"] `Button
+];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -33,26 +40,28 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
-    ~icon: ReasonReact.reactElement=?,
-    ~label: ReasonReact.reactElement=?,
+    ~icon: React.element=?,
+    ~label: React.element=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~selected: bool=?,
     ~showLabel: bool=?,
-    ~value: 'any_r53b=?,
-    ~action: 'any_r1it=?,
-    ~buttonRef: 'union_rlam=?,
+    ~value: 'any_ridl=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rv1j=?,
+    ~component: 'union_r5of=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onDragLeave: ReactEvent.Mouse.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onFocusVisible: 'genericCallback=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
@@ -64,7 +73,7 @@ external makeProps:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r7ce=?,
+    ~tabIndex: 'union_rrga=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -73,30 +82,27 @@ external makeProps:
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "BottomNavigationAction";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
-      ~icon: option(ReasonReact.reactElement)=?,
-      ~label: option(ReasonReact.reactElement)=?,
+      ~icon: option(React.element)=?,
+      ~label: option(React.element)=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~showLabel: option(bool)=?,
-      ~value: option('any_r53b)=?,
-      ~action: option(Js.t({..}) => unit)=?,
-      ~buttonRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
+      ~value: option('any_ridl)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~centerRipple: option(bool)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~disabled: option(bool)=?,
@@ -105,6 +111,7 @@ let make =
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
+      ~onDragLeave: option(ReactEvent.Mouse.t => unit)=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onFocusVisible: option('genericCallback)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
@@ -118,57 +125,52 @@ let make =
       ~role: option(string)=?,
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
-      ~type_: option(string)=?,
+      ~type_: option(type_)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~icon?,
-        ~label?,
-        ~onChange?,
-        ~onClick?,
-        ~selected?,
-        ~showLabel?,
-        ~value?,
-        ~action?,
-        ~buttonRef=?
-          buttonRef->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~centerRipple?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disabled?,
-        ~disableRipple?,
-        ~disableTouchRipple?,
-        ~focusRipple?,
-        ~focusVisibleClassName?,
-        ~onBlur?,
-        ~onFocus?,
-        ~onFocusVisible?,
-        ~onKeyDown?,
-        ~onKeyUp?,
-        ~onMouseDown?,
-        ~onMouseLeave?,
-        ~onMouseUp?,
-        ~onTouchEnd?,
-        ~onTouchMove?,
-        ~onTouchStart?,
-        ~role?,
-        ~tabIndex=?
-          tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~_TouchRippleProps?,
-        ~_type=?type_,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~icon?,
+    ~label?,
+    ~onChange?,
+    ~onClick?,
+    ~selected?,
+    ~showLabel?,
+    ~value?,
+    ~key?,
+    ~ref?,
+    ~centerRipple?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disabled?,
+    ~disableRipple?,
+    ~disableTouchRipple?,
+    ~focusRipple?,
+    ~focusVisibleClassName?,
+    ~onBlur?,
+    ~onDragLeave?,
+    ~onFocus?,
+    ~onFocusVisible?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~onMouseDown?,
+    ~onMouseLeave?,
+    ~onMouseUp?,
+    ~onTouchEnd?,
+    ~onTouchMove?,
+    ~onTouchStart?,
+    ~role?,
+    ~tabIndex=?
+      tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_TouchRippleProps?,
+    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "BottomNavigationAction";

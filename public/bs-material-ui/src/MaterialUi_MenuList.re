@@ -1,55 +1,103 @@
+module Actions = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    current: Js.Json.t,
+  };
+  let make = t;
+
+  let unwrap = (obj: option(t)) => {
+    switch (obj) {
+    | Some(obj) =>
+      let unwrappedMap = Js.Dict.empty();
+
+      switch (obj->currentGet) {
+      | Some(v) =>
+        unwrappedMap->(
+                        Js.Dict.set(
+                          "current",
+                          v->MaterialUi_Helpers.toJsUnsafe,
+                        )
+                      )
+      | None => ()
+      };
+
+      Some(unwrappedMap);
+    | None => None
+    };
+  };
+};
+
+[@bs.deriving jsConverter]
+type variant = [
+  | [@bs.as "menu"] `Menu
+  | [@bs.as "selectedMenu"] `SelectedMenu
+];
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~actions: 'any_ri0w=?,
+    ~autoFocus: bool=?,
+    ~autoFocusItem: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~disableListWrap: bool=?,
-    ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~component: 'union_raof=?,
+    ~variant: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~component: 'union_r8fv=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
-    ~subheader: ReasonReact.reactElement=?,
+    ~subheader: React.element=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "MenuList";
-let make =
+
+let makeProps =
     (
+      ~actions: option(Actions.t)=?,
+      ~autoFocus: option(bool)=?,
+      ~autoFocusItem: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~disableListWrap: option(bool)=?,
-      ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+      ~variant: option(variant)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~dense: option(bool)=?,
       ~disablePadding: option(bool)=?,
-      ~subheader: option(ReasonReact.reactElement)=?,
-      children,
+      ~subheader: option(React.element)=?,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~disableListWrap?,
-        ~onBlur?,
-        ~onKeyDown?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~dense?,
-        ~disablePadding?,
-        ~subheader?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~actions=?Actions.unwrap(actions),
+    ~autoFocus?,
+    ~autoFocusItem?,
+    ~children?,
+    ~className?,
+    ~disableListWrap?,
+    ~onKeyDown?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~ref?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~dense?,
+    ~disablePadding?,
+    ~subheader?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "MenuList";

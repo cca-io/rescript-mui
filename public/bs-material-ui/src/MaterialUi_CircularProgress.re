@@ -62,23 +62,24 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_rk04=?,
-    ~thickness: 'number_k=?,
-    ~value: 'number_p=?,
+    ~size: 'union_r0y7=?,
+    ~thickness: 'number_a=?,
+    ~value: 'number_w=?,
     ~variant: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "CircularProgress";
-let make =
+
+let makeProps =
     (
       ~className: option(string)=?,
       ~color: option(color)=?,
@@ -86,28 +87,26 @@ let make =
       ~thickness: option([ | `Int(int) | `Float(float)])=?,
       ~value: option([ | `Int(int) | `Float(float)])=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~size=?
-          size->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~thickness=?
-          thickness->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~value=?
-          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~size=?size->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~thickness=?
+      thickness->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "CircularProgress";

@@ -36,16 +36,19 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~activeStep: 'number_l=?,
+    ~activeStep: 'number_h=?,
     ~alternativeLabel: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~connector: ReasonReact.reactElement=?,
+    ~connector: React.element=?,
     ~nonLinear: bool=?,
     ~orientation: string=?,
-    ~component: 'union_r5qj=?,
-    ~elevation: 'number_a=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~component: 'union_rtjv=?,
+    ~elevation: 'number_6=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -53,55 +56,60 @@ external makeProps:
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Stepper";
-let make =
+
+let makeProps =
     (
       ~activeStep: option([ | `Int(int) | `Float(float)])=?,
       ~alternativeLabel: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
-      ~connector: option(ReasonReact.reactElement)=?,
+      ~connector: option(React.element)=?,
       ~nonLinear: option(bool)=?,
       ~orientation: option(orientation)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~activeStep=?
-          activeStep->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
-        ~alternativeLabel?,
-        ~className?,
-        ~connector?,
-        ~nonLinear?,
-        ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~elevation=?
-          elevation->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~square?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~activeStep=?
+      activeStep->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~alternativeLabel?,
+    ~children?,
+    ~className?,
+    ~connector?,
+    ~nonLinear?,
+    ~orientation=?
+      orientation->(
+                     Belt.Option.map(v =>
+                       switch (v->Obj.magic->Js.Json.classify) {
+                       | JSONString(str) => str
+                       | _ => orientationToJs(v)
+                       }
+                     )
+                   ),
+    ~key?,
+    ~ref?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~square?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Stepper";

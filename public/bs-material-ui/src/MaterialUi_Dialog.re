@@ -53,6 +53,7 @@ module Classes = {
     | Paper(string)
     | PaperScrollPaper(string)
     | PaperScrollBody(string)
+    | PaperWidthFalse(string)
     | PaperWidthXs(string)
     | PaperWidthSm(string)
     | PaperWidthMd(string)
@@ -70,6 +71,7 @@ module Classes = {
     | Paper(_) => "paper"
     | PaperScrollPaper(_) => "paperScrollPaper"
     | PaperScrollBody(_) => "paperScrollBody"
+    | PaperWidthFalse(_) => "paperWidthFalse"
     | PaperWidthXs(_) => "paperWidthXs"
     | PaperWidthSm(_) => "paperWidthSm"
     | PaperWidthMd(_) => "paperWidthMd"
@@ -90,6 +92,7 @@ module Classes = {
                          | Paper(className)
                          | PaperScrollPaper(className)
                          | PaperScrollBody(className)
+                         | PaperWidthFalse(className)
                          | PaperWidthXs(className)
                          | PaperWidthSm(className)
                          | PaperWidthMd(className)
@@ -106,9 +109,10 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~_BackdropProps: Js.t({..})=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~disableBackdropClick: bool=?,
     ~disableEscapeKeyDown: bool=?,
@@ -116,7 +120,7 @@ external makeProps:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rlps=?,
+    ~onClose: 'any_rtno=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -125,19 +129,22 @@ external makeProps:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperComponent: 'union_rdjp=?,
+    ~_PaperComponent: 'union_r8lk=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_ru51=?,
-    ~transitionDuration: 'union_ryqp=?,
+    ~_TransitionComponent: 'union_rsp5=?,
+    ~transitionDuration: 'union_rgcq=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~_BackdropComponent: 'union_rhmu=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~_BackdropComponent: 'union_rool=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_r5za=?,
+    ~container: 'union_rotg=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
     ~disableRestoreFocus: bool=?,
+    ~disableScrollLock: bool=?,
     ~hideBackdrop: bool=?,
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
@@ -148,11 +155,11 @@ external makeProps:
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Dialog";
-let make =
+
+let makeProps =
     (
       ~_BackdropProps: option(Js.t({..}))=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~disableBackdropClick: option(bool)=?,
       ~disableEscapeKeyDown: option(bool)=?,
@@ -174,7 +181,7 @@ let make =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~_PaperProps: option(Js.t({..}))=?,
@@ -184,7 +191,7 @@ let make =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~transitionDuration:
@@ -196,12 +203,14 @@ let make =
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~_BackdropComponent:
          option(
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~closeAfterTransition: option(bool)=?,
@@ -213,78 +222,79 @@ let make =
       ~disableEnforceFocus: option(bool)=?,
       ~disablePortal: option(bool)=?,
       ~disableRestoreFocus: option(bool)=?,
+      ~disableScrollLock: option(bool)=?,
       ~hideBackdrop: option(bool)=?,
       ~keepMounted: option(bool)=?,
       ~manager: option(Js.t({..}))=?,
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~_BackdropProps?,
-        ~className?,
-        ~disableBackdropClick?,
-        ~disableEscapeKeyDown?,
-        ~fullScreen?,
-        ~fullWidth?,
-        ~maxWidth=?maxWidth->(Belt.Option.map(v => maxWidthToJs(v))),
-        ~onBackdropClick?,
-        ~onClose?,
-        ~onEnter?,
-        ~onEntered?,
-        ~onEntering?,
-        ~onEscapeKeyDown?,
-        ~onExit?,
-        ~onExited?,
-        ~onExiting?,
-        ~_open=open_,
-        ~_PaperComponent=?
-          _PaperComponent->(
-                             Belt.Option.map(v =>
-                               MaterialUi_Helpers.unwrapValue(v)
-                             )
-                           ),
-        ~_PaperProps?,
-        ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
-        ~_TransitionComponent=?
-          _TransitionComponent->(
-                                  Belt.Option.map(v =>
-                                    MaterialUi_Helpers.unwrapValue(v)
-                                  )
-                                ),
-        ~transitionDuration=?
-          transitionDuration->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
-        ~_TransitionProps?,
-        ~_BackdropComponent=?
-          _BackdropComponent->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
-        ~closeAfterTransition?,
-        ~container=?
-          container->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disableAutoFocus?,
-        ~disableEnforceFocus?,
-        ~disablePortal?,
-        ~disableRestoreFocus?,
-        ~hideBackdrop?,
-        ~keepMounted?,
-        ~manager?,
-        ~onRendered?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~_BackdropProps?,
+    ~children?,
+    ~className?,
+    ~disableBackdropClick?,
+    ~disableEscapeKeyDown?,
+    ~fullScreen?,
+    ~fullWidth?,
+    ~maxWidth=?maxWidth->(Belt.Option.map(v => maxWidthToJs(v))),
+    ~onBackdropClick?,
+    ~onClose?,
+    ~onEnter?,
+    ~onEntered?,
+    ~onEntering?,
+    ~onEscapeKeyDown?,
+    ~onExit?,
+    ~onExited?,
+    ~onExiting?,
+    ~_open=open_,
+    ~_PaperComponent=?
+      _PaperComponent->(
+                         Belt.Option.map(v =>
+                           MaterialUi_Helpers.unwrapValue(v)
+                         )
+                       ),
+    ~_PaperProps?,
+    ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
+    ~_TransitionComponent=?
+      _TransitionComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
+    ~transitionDuration=?
+      transitionDuration->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~_TransitionProps?,
+    ~key?,
+    ~ref?,
+    ~_BackdropComponent=?
+      _BackdropComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~closeAfterTransition?,
+    ~container=?
+      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disableAutoFocus?,
+    ~disableEnforceFocus?,
+    ~disablePortal?,
+    ~disableRestoreFocus?,
+    ~disableScrollLock?,
+    ~hideBackdrop?,
+    ~keepMounted?,
+    ~manager?,
+    ~onRendered?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Dialog";

@@ -36,66 +36,67 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~action: ReasonReact.reactElement=?,
-    ~avatar: ReasonReact.reactElement=?,
+    ~action: React.element=?,
+    ~avatar: React.element=?,
     ~className: string=?,
-    ~component: 'union_rrtk=?,
+    ~component: 'union_rtq4=?,
     ~disableTypography: bool=?,
-    ~subheader: ReasonReact.reactElement=?,
+    ~subheader: React.element=?,
     ~subheaderTypographyProps: Js.t({..})=?,
-    ~title: ReasonReact.reactElement=?,
+    ~title: React.element=?,
     ~titleTypographyProps: Js.t({..})=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "CardHeader";
-let make =
+
+let makeProps =
     (
-      ~action: option(ReasonReact.reactElement)=?,
-      ~avatar: option(ReasonReact.reactElement)=?,
+      ~action: option(React.element)=?,
+      ~avatar: option(React.element)=?,
       ~className: option(string)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~disableTypography: option(bool)=?,
-      ~subheader: option(ReasonReact.reactElement)=?,
+      ~subheader: option(React.element)=?,
       ~subheaderTypographyProps: option(Js.t({..}))=?,
-      ~title: option(ReasonReact.reactElement)=?,
+      ~title: option(React.element)=?,
       ~titleTypographyProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~action?,
-        ~avatar?,
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disableTypography?,
-        ~subheader?,
-        ~subheaderTypographyProps?,
-        ~title?,
-        ~titleTypographyProps?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~action?,
+    ~avatar?,
+    ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disableTypography?,
+    ~subheader?,
+    ~subheaderTypographyProps?,
+    ~title?,
+    ~titleTypographyProps?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "CardHeader";

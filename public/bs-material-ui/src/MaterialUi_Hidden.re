@@ -28,8 +28,9 @@ type only_arrayOf = [
   | [@bs.as "xl"] `Xl
 ];
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~implementation: string=?,
     ~initialWidth: string=?,
@@ -37,21 +38,23 @@ external makeProps:
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_r3jv=?,
+    ~only: 'union_rrxx=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,
     ~xlUp: bool=?,
     ~xsDown: bool=?,
     ~xsUp: bool=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Hidden";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~implementation: option(implementation)=?,
       ~initialWidth: option(initialWidth)=?,
@@ -66,41 +69,41 @@ let make =
       ~xlUp: option(bool)=?,
       ~xsDown: option(bool)=?,
       ~xsUp: option(bool)=?,
-      children,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~implementation=?
-          implementation->(Belt.Option.map(v => implementationToJs(v))),
-        ~initialWidth=?
-          initialWidth->(Belt.Option.map(v => initialWidthToJs(v))),
-        ~lgDown?,
-        ~lgUp?,
-        ~mdDown?,
-        ~mdUp?,
-        ~only=?
-          only->(
-                  Belt.Option.map(v =>
-                    switch (v) {
-                    | `Enum(v) =>
-                      MaterialUi_Helpers.unwrapValue(
-                        `String(only_enumToJs(v)),
-                      )
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~implementation=?
+      implementation->(Belt.Option.map(v => implementationToJs(v))),
+    ~initialWidth=?initialWidth->(Belt.Option.map(v => initialWidthToJs(v))),
+    ~lgDown?,
+    ~lgUp?,
+    ~mdDown?,
+    ~mdUp?,
+    ~only=?
+      only->(
+              Belt.Option.map(v =>
+                switch (v) {
+                | `Enum(v) =>
+                  MaterialUi_Helpers.unwrapValue(`String(only_enumToJs(v)))
 
-                    | v => MaterialUi_Helpers.unwrapValue(v)
-                    }
-                  )
-                ),
-        ~smDown?,
-        ~smUp?,
-        ~xlDown?,
-        ~xlUp?,
-        ~xsDown?,
-        ~xsUp?,
-        (),
-      ),
-    children,
+                | v => MaterialUi_Helpers.unwrapValue(v)
+                }
+              )
+            ),
+    ~smDown?,
+    ~smUp?,
+    ~xlDown?,
+    ~xlUp?,
+    ~xsDown?,
+    ~xsUp?,
+    ~key?,
+    ~ref?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Hidden";

@@ -57,49 +57,52 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~actionIcon: ReasonReact.reactElement=?,
+    ~actionIcon: React.element=?,
     ~actionPosition: string=?,
     ~className: string=?,
-    ~subtitle: ReasonReact.reactElement=?,
-    ~title: ReasonReact.reactElement=?,
+    ~subtitle: React.element=?,
+    ~title: React.element=?,
     ~titlePosition: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "GridListTileBar";
-let make =
+
+let makeProps =
     (
-      ~actionIcon: option(ReasonReact.reactElement)=?,
+      ~actionIcon: option(React.element)=?,
       ~actionPosition: option(actionPosition)=?,
       ~className: option(string)=?,
-      ~subtitle: option(ReasonReact.reactElement)=?,
-      ~title: option(ReasonReact.reactElement)=?,
+      ~subtitle: option(React.element)=?,
+      ~title: option(React.element)=?,
       ~titlePosition: option(titlePosition)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~actionIcon?,
-        ~actionPosition=?
-          actionPosition->(Belt.Option.map(v => actionPositionToJs(v))),
-        ~className?,
-        ~subtitle?,
-        ~title?,
-        ~titlePosition=?
-          titlePosition->(Belt.Option.map(v => titlePositionToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~actionIcon?,
+    ~actionPosition=?
+      actionPosition->(Belt.Option.map(v => actionPositionToJs(v))),
+    ~className?,
+    ~subtitle?,
+    ~title?,
+    ~titlePosition=?
+      titlePosition->(Belt.Option.map(v => titlePositionToJs(v))),
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "GridListTileBar";

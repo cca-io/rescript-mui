@@ -83,11 +83,16 @@ type sm =
 [@bs.deriving jsConverter]
 type spacing =
   | [@bs.as 0] V0
+  | [@bs.as 1] V1
+  | [@bs.as 2] V2
+  | [@bs.as 3] V3
+  | [@bs.as 4] V4
+  | [@bs.as 5] V5
+  | [@bs.as 6] V6
+  | [@bs.as 7] V7
   | [@bs.as 8] V8
-  | [@bs.as 16] V16
-  | [@bs.as 24] V24
-  | [@bs.as 32] V32
-  | [@bs.as 40] V40;
+  | [@bs.as 9] V9
+  | [@bs.as 10] V10;
 
 [@bs.deriving jsConverter]
 type wrap = [
@@ -128,6 +133,7 @@ type xs =
 
 module Classes = {
   type classesType =
+    | Root(string)
     | Container(string)
     | Item(string)
     | ZeroMinWidth(string)
@@ -150,11 +156,16 @@ module Classes = {
     | Justify_Xs_Space_Between(string)
     | Justify_Xs_Space_Around(string)
     | Justify_Xs_Space_Evenly(string)
+    | Spacing_Xs_1(string)
+    | Spacing_Xs_2(string)
+    | Spacing_Xs_3(string)
+    | Spacing_Xs_4(string)
+    | Spacing_Xs_5(string)
+    | Spacing_Xs_6(string)
+    | Spacing_Xs_7(string)
     | Spacing_Xs_8(string)
-    | Spacing_Xs_16(string)
-    | Spacing_Xs_24(string)
-    | Spacing_Xs_32(string)
-    | Spacing_Xs_40(string)
+    | Spacing_Xs_9(string)
+    | Spacing_Xs_10(string)
     | Grid_Xs_Auto(string)
     | Grid_Xs_True(string)
     | Grid_Xs_1(string)
@@ -172,6 +183,7 @@ module Classes = {
   type t = list(classesType);
   let to_string =
     fun
+    | Root(_) => "root"
     | Container(_) => "container"
     | Item(_) => "item"
     | ZeroMinWidth(_) => "zeroMinWidth"
@@ -194,11 +206,16 @@ module Classes = {
     | Justify_Xs_Space_Between(_) => "justify-xs-space-between"
     | Justify_Xs_Space_Around(_) => "justify-xs-space-around"
     | Justify_Xs_Space_Evenly(_) => "justify-xs-space-evenly"
+    | Spacing_Xs_1(_) => "spacing-xs-1"
+    | Spacing_Xs_2(_) => "spacing-xs-2"
+    | Spacing_Xs_3(_) => "spacing-xs-3"
+    | Spacing_Xs_4(_) => "spacing-xs-4"
+    | Spacing_Xs_5(_) => "spacing-xs-5"
+    | Spacing_Xs_6(_) => "spacing-xs-6"
+    | Spacing_Xs_7(_) => "spacing-xs-7"
     | Spacing_Xs_8(_) => "spacing-xs-8"
-    | Spacing_Xs_16(_) => "spacing-xs-16"
-    | Spacing_Xs_24(_) => "spacing-xs-24"
-    | Spacing_Xs_32(_) => "spacing-xs-32"
-    | Spacing_Xs_40(_) => "spacing-xs-40"
+    | Spacing_Xs_9(_) => "spacing-xs-9"
+    | Spacing_Xs_10(_) => "spacing-xs-10"
     | Grid_Xs_Auto(_) => "grid-xs-auto"
     | Grid_Xs_True(_) => "grid-xs-true"
     | Grid_Xs_1(_) => "grid-xs-1"
@@ -219,6 +236,7 @@ module Classes = {
                        Js.Dict.empty(),
                        (obj, classType) => {
                          switch (classType) {
+                         | Root(className)
                          | Container(className)
                          | Item(className)
                          | ZeroMinWidth(className)
@@ -241,11 +259,16 @@ module Classes = {
                          | Justify_Xs_Space_Between(className)
                          | Justify_Xs_Space_Around(className)
                          | Justify_Xs_Space_Evenly(className)
+                         | Spacing_Xs_1(className)
+                         | Spacing_Xs_2(className)
+                         | Spacing_Xs_3(className)
+                         | Spacing_Xs_4(className)
+                         | Spacing_Xs_5(className)
+                         | Spacing_Xs_6(className)
+                         | Spacing_Xs_7(className)
                          | Spacing_Xs_8(className)
-                         | Spacing_Xs_16(className)
-                         | Spacing_Xs_24(className)
-                         | Spacing_Xs_32(className)
-                         | Spacing_Xs_40(className)
+                         | Spacing_Xs_9(className)
+                         | Spacing_Xs_10(className)
                          | Grid_Xs_Auto(className)
                          | Grid_Xs_True(className)
                          | Grid_Xs_1(className)
@@ -269,43 +292,46 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~alignContent: string=?,
     ~alignItems: string=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rxnz=?,
+    ~component: 'union_r6yv=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_rdm9=?,
-    ~md: 'number_ru2j=?,
-    ~sm: 'number_rblu=?,
-    ~spacing: 'number_rkqx=?,
+    ~lg: 'number_rdkt=?,
+    ~md: 'number_rsjz=?,
+    ~sm: 'number_ro4r=?,
+    ~spacing: 'number_r33u=?,
     ~wrap: string=?,
-    ~xl: 'number_r9cz=?,
-    ~xs: 'number_rm63=?,
+    ~xl: 'number_r909=?,
+    ~xs: 'number_rcpr=?,
     ~zeroMinWidth: bool=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Grid";
-let make =
+
+let makeProps =
     (
       ~alignContent: option(alignContent)=?,
       ~alignItems: option(alignItems)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~container: option(bool)=?,
@@ -325,62 +351,51 @@ let make =
       ~mdAuto: option(bool)=?,
       ~lgAuto: option(bool)=?,
       ~xlAuto: option(bool)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~alignContent=?
-          alignContent->(Belt.Option.map(v => alignContentToJs(v))),
-        ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~container?,
-        ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
-        ~item?,
-        ~justify=?justify->(Belt.Option.map(v => justifyToJs(v))),
-        ~lg=?
-          lgAuto
-          ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-          ->Belt.Option.getWithDefault(
-              lg->(Belt.Option.map(v => lgToJs(v))),
-            ),
-        ~md=?
-          mdAuto
-          ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-          ->Belt.Option.getWithDefault(
-              md->(Belt.Option.map(v => mdToJs(v))),
-            ),
-        ~sm=?
-          smAuto
-          ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-          ->Belt.Option.getWithDefault(
-              sm->(Belt.Option.map(v => smToJs(v))),
-            ),
-        ~spacing=?spacing->(Belt.Option.map(v => spacingToJs(v))),
-        ~wrap=?wrap->(Belt.Option.map(v => wrapToJs(v))),
-        ~xl=?
-          xlAuto
-          ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-          ->Belt.Option.getWithDefault(
-              xl->(Belt.Option.map(v => xlToJs(v))),
-            ),
-        ~xs=?
-          xsAuto
-          ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-          ->Belt.Option.getWithDefault(
-              xs->(Belt.Option.map(v => xsToJs(v))),
-            ),
-        ~zeroMinWidth?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~alignContent=?alignContent->(Belt.Option.map(v => alignContentToJs(v))),
+    ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
+    ~children?,
+    ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~container?,
+    ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
+    ~item?,
+    ~justify=?justify->(Belt.Option.map(v => justifyToJs(v))),
+    ~lg=?
+      lgAuto
+      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+      ->Belt.Option.getWithDefault(lg->(Belt.Option.map(v => lgToJs(v)))),
+    ~md=?
+      mdAuto
+      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+      ->Belt.Option.getWithDefault(md->(Belt.Option.map(v => mdToJs(v)))),
+    ~sm=?
+      smAuto
+      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+      ->Belt.Option.getWithDefault(sm->(Belt.Option.map(v => smToJs(v)))),
+    ~spacing=?spacing->(Belt.Option.map(v => spacingToJs(v))),
+    ~wrap=?wrap->(Belt.Option.map(v => wrapToJs(v))),
+    ~xl=?
+      xlAuto
+      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+      ->Belt.Option.getWithDefault(xl->(Belt.Option.map(v => xlToJs(v)))),
+    ~xs=?
+      xsAuto
+      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
+      ->Belt.Option.getWithDefault(xs->(Belt.Option.map(v => xsToJs(v)))),
+    ~zeroMinWidth?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Grid";

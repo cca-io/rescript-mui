@@ -1,5 +1,5 @@
 [@bs.module "@material-ui/core/styles"]
-external withStyles: (. 'a) => (. 'b) => ReasonReact.reactClass = "";
+external withStyles: (. 'a) => (. 'b) => React.component('c) = "withStyles";
 
 let createStyled = styles =>
   (withStyles(. styles))(. props =>

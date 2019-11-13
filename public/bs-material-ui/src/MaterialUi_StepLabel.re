@@ -57,77 +57,91 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~active: bool=?,
     ~alternativeLabel: bool=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
     ~error: bool=?,
-    ~icon: ReasonReact.reactElement=?,
+    ~icon: React.element=?,
     ~last: bool=?,
-    ~optional: ReasonReact.reactElement=?,
+    ~optional: React.element=?,
     ~orientation: string=?,
-    ~_StepIconComponent: 'union_rkfc=?,
+    ~_StepIconComponent: 'union_r372=?,
     ~_StepIconProps: Js.t({..})=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "StepLabel";
-let make =
+
+let makeProps =
     (
       ~active: option(bool)=?,
       ~alternativeLabel: option(bool)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~completed: option(bool)=?,
       ~disabled: option(bool)=?,
       ~error: option(bool)=?,
-      ~icon: option(ReasonReact.reactElement)=?,
+      ~icon: option(React.element)=?,
       ~last: option(bool)=?,
-      ~optional: option(ReasonReact.reactElement)=?,
+      ~optional: option(React.element)=?,
       ~orientation: option(orientation)=?,
       ~_StepIconComponent:
          option(
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~_StepIconProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~active?,
-        ~alternativeLabel?,
-        ~className?,
-        ~completed?,
-        ~disabled?,
-        ~error?,
-        ~icon?,
-        ~last?,
-        ~optional?,
-        ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
-        ~_StepIconComponent=?
-          _StepIconComponent->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
-        ~_StepIconProps?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~active?,
+    ~alternativeLabel?,
+    ~children?,
+    ~className?,
+    ~completed?,
+    ~disabled?,
+    ~error?,
+    ~icon?,
+    ~last?,
+    ~optional?,
+    ~orientation=?
+      orientation->(
+                     Belt.Option.map(v =>
+                       switch (v->Obj.magic->Js.Json.classify) {
+                       | JSONString(str) => str
+                       | _ => orientationToJs(v)
+                       }
+                     )
+                   ),
+    ~_StepIconComponent=?
+      _StepIconComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~_StepIconProps?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "StepLabel";

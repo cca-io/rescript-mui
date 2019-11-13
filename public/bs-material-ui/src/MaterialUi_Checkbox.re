@@ -5,6 +5,16 @@ type color = [
   | [@bs.as "default"] `Default
 ];
 
+[@bs.deriving jsConverter]
+type edge = [
+  | [@bs.as "start"] `Start
+  | [@bs.as "end"] `End
+  | [@bs.as "false"] `False
+];
+
+[@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -43,79 +53,89 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~checked: 'union_rt33=?,
-    ~checkedIcon: ReasonReact.reactElement=?,
-    ~className: string=?,
+    ~checked: bool=?,
+    ~checkedIcon: React.element=?,
     ~color: string=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
-    ~icon: ReasonReact.reactElement=?,
+    ~icon: React.element=?,
     ~id: string=?,
     ~indeterminate: bool=?,
-    ~indeterminateIcon: ReasonReact.reactElement=?,
+    ~indeterminateIcon: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~inputRef: 'union_r0ei=?,
-    ~onChange: 'any_rxzm=?,
+    ~onChange: 'any_r3g5=?,
+    ~required: bool=?,
     ~_type: string=?,
-    ~value: string=?,
+    ~value: 'any_rl22=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~children: 'children=?,
+    ~className: string=?,
+    ~disableFocusRipple: bool=?,
+    ~edge: string=?,
+    ~size: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Checkbox";
-let make =
+
+let makeProps =
     (
-      ~checked: option([ | `Bool(bool) | `String(string)])=?,
-      ~checkedIcon: option(ReasonReact.reactElement)=?,
-      ~className: option(string)=?,
+      ~checked: option(bool)=?,
+      ~checkedIcon: option(React.element)=?,
       ~color: option(color)=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
-      ~icon: option(ReasonReact.reactElement)=?,
+      ~icon: option(React.element)=?,
       ~id: option(string)=?,
       ~indeterminate: option(bool)=?,
-      ~indeterminateIcon: option(ReasonReact.reactElement)=?,
+      ~indeterminateIcon: option(React.element)=?,
       ~inputProps: option(Js.t({..}))=?,
-      ~inputRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
-      ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
+      ~onChange: option(ReactEvent.Form.t => unit)=?,
+      ~required: option(bool)=?,
       ~type_: option(string)=?,
-      ~value: option(string)=?,
+      ~value: option('any_rl22)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~disableFocusRipple: option(bool)=?,
+      ~edge: option(edge)=?,
+      ~size: option(size)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~checked=?
-          checked->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~checkedIcon?,
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~disabled?,
-        ~disableRipple?,
-        ~icon?,
-        ~id?,
-        ~indeterminate?,
-        ~indeterminateIcon?,
-        ~inputProps?,
-        ~inputRef=?
-          inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~onChange?,
-        ~_type=?type_,
-        ~value?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~checked?,
+    ~checkedIcon?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~disabled?,
+    ~disableRipple?,
+    ~icon?,
+    ~id?,
+    ~indeterminate?,
+    ~indeterminateIcon?,
+    ~inputProps?,
+    ~onChange?,
+    ~required?,
+    ~_type=?type_,
+    ~value?,
+    ~key?,
+    ~ref?,
+    ~children?,
+    ~className?,
+    ~disableFocusRipple?,
+    ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Checkbox";

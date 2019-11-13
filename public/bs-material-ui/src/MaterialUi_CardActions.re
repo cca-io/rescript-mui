@@ -1,14 +1,12 @@
 module Classes = {
   type classesType =
     | Root(string)
-    | DisableActionSpacing(string)
-    | Action(string);
+    | Spacing(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | DisableActionSpacing(_) => "disableActionSpacing"
-    | Action(_) => "action";
+    | Spacing(_) => "spacing";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -16,8 +14,7 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
-                         | DisableActionSpacing(className)
-                         | Action(className) =>
+                         | Spacing(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -27,35 +24,41 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
-    ~disableActionSpacing: bool=?,
+    ~disableSpacing: bool=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "CardActions";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
-      ~disableActionSpacing: option(bool)=?,
+      ~disableSpacing: option(bool)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~disableActionSpacing?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~disableSpacing?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "CardActions";

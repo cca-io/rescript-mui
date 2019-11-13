@@ -38,6 +38,7 @@ module Classes = {
   type classesType =
     | Container(string)
     | Entered(string)
+    | Hidden(string)
     | Wrapper(string)
     | WrapperInner(string);
   type t = list(classesType);
@@ -45,6 +46,7 @@ module Classes = {
     fun
     | Container(_) => "container"
     | Entered(_) => "entered"
+    | Hidden(_) => "hidden"
     | Wrapper(_) => "wrapper"
     | WrapperInner(_) => "wrapperInner";
   let to_obj = listOfClasses =>
@@ -55,6 +57,7 @@ module Classes = {
                          switch (classType) {
                          | Container(className)
                          | Entered(className)
+                         | Hidden(className)
                          | Wrapper(className)
                          | WrapperInner(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
@@ -66,37 +69,39 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~collapsedHeight: string=?,
-    ~component: 'union_rwya=?,
+    ~component: 'union_ri8l=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
-    ~theme: Js.t({..})=?,
-    ~timeout: 'union_relt=?,
+    ~timeout: 'union_rz03=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Collapse";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~collapsedHeight: option(string)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~in_: option(bool)=?,
@@ -105,7 +110,6 @@ let make =
       ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
-      ~theme: option(Js.t({..}))=?,
       ~timeout:
          option(
            [
@@ -115,43 +119,43 @@ let make =
              | `Enum(timeout_enum)
            ],
          )=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~collapsedHeight?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~_in=?in_,
-        ~onEnter?,
-        ~onEntered?,
-        ~onEntering?,
-        ~onExit?,
-        ~onExiting?,
-        ~theme?,
-        ~timeout=?
-          timeout->(
-                     Belt.Option.map(v =>
-                       switch (v) {
-                       | `Enum(v) =>
-                         MaterialUi_Helpers.unwrapValue(
-                           `String(timeout_enumToJs(v)),
-                         )
-
-                       | v => MaterialUi_Helpers.unwrapValue(v)
-                       }
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~collapsedHeight?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_in=?in_,
+    ~onEnter?,
+    ~onEntered?,
+    ~onEntering?,
+    ~onExit?,
+    ~onExiting?,
+    ~timeout=?
+      timeout->(
+                 Belt.Option.map(v =>
+                   switch (v) {
+                   | `Enum(v) =>
+                     MaterialUi_Helpers.unwrapValue(
+                       `String(timeout_enumToJs(v)),
                      )
-                   ),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+
+                   | v => MaterialUi_Helpers.unwrapValue(v)
+                   }
+                 )
+               ),
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Collapse";

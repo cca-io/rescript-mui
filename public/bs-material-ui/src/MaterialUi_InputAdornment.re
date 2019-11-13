@@ -14,7 +14,9 @@ module Classes = {
     | Filled(string)
     | PositionStart(string)
     | PositionEnd(string)
-    | DisablePointerEvents(string);
+    | DisablePointerEvents(string)
+    | HiddenLabel(string)
+    | MarginDense(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -22,7 +24,9 @@ module Classes = {
     | Filled(_) => "filled"
     | PositionStart(_) => "positionStart"
     | PositionEnd(_) => "positionEnd"
-    | DisablePointerEvents(_) => "disablePointerEvents";
+    | DisablePointerEvents(_) => "disablePointerEvents"
+    | HiddenLabel(_) => "hiddenLabel"
+    | MarginDense(_) => "marginDense";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -33,7 +37,9 @@ module Classes = {
                          | Filled(className)
                          | PositionStart(className)
                          | PositionEnd(className)
-                         | DisablePointerEvents(className) =>
+                         | DisablePointerEvents(className)
+                         | HiddenLabel(className)
+                         | MarginDense(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -43,32 +49,35 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r5yu=?,
+    ~component: 'union_r1j3=?,
     ~disablePointerEvents: bool=?,
     ~disableTypography: bool=?,
     ~muiFormControl: Js.t({..})=?,
     ~position: string=?,
     ~variant: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "InputAdornment";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~disablePointerEvents: option(bool)=?,
@@ -76,27 +85,28 @@ let make =
       ~muiFormControl: option(Js.t({..}))=?,
       ~position: option(position)=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disablePointerEvents?,
-        ~disableTypography?,
-        ~muiFormControl?,
-        ~position=?position->(Belt.Option.map(v => positionToJs(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disablePointerEvents?,
+    ~disableTypography?,
+    ~muiFormControl?,
+    ~position=?position->(Belt.Option.map(v => positionToJs(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "InputAdornment";

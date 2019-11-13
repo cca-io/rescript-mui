@@ -16,7 +16,9 @@ module Classes = {
     | Outlined(string)
     | SelectMenu(string)
     | Disabled(string)
-    | Icon(string);
+    | Icon(string)
+    | IconFilled(string)
+    | IconOutlined(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -26,7 +28,9 @@ module Classes = {
     | Outlined(_) => "outlined"
     | SelectMenu(_) => "selectMenu"
     | Disabled(_) => "disabled"
-    | Icon(_) => "icon";
+    | Icon(_) => "icon"
+    | IconFilled(_) => "iconFilled"
+    | IconOutlined(_) => "iconOutlined";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -39,7 +43,9 @@ module Classes = {
                          | Outlined(className)
                          | SelectMenu(className)
                          | Disabled(className)
-                         | Icon(className) =>
+                         | Icon(className)
+                         | IconFilled(className)
+                         | IconOutlined(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -49,122 +55,82 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~_IconComponent: 'union_rkq4=?,
-    ~input: ReasonReact.reactElement=?,
+    ~children: 'children=?,
+    ~_IconComponent: 'union_rhvr=?,
+    ~input: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~muiFormControl: Js.t({..})=?,
-    ~onChange: 'any_rbv9=?,
-    ~value: 'union_ryx6=?,
+    ~onChange: 'any_rnfk=?,
+    ~value: 'any_rp4g=?,
     ~variant: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
-    ~defaultValue: 'union_r7sy=?,
+    ~defaultValue: 'any_rcfe=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
-    ~endAdornment: ReasonReact.reactElement=?,
+    ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_r5dw=?,
-    ~inputRef: 'union_rpc9=?,
+    ~inputComponent: 'any_r93z=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_r1h3=?,
-    ~rowsMax: 'union_rune=?,
-    ~startAdornment: ReasonReact.reactElement=?,
+    ~rows: 'union_rqvk=?,
+    ~rowsMax: 'union_r8qa=?,
+    ~startAdornment: React.element=?,
     ~_type: string=?,
+    ~aria_describedby: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~onEmpty: 'genericCallback=?,
-    ~onFilled: 'genericCallback=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-    ~renderPrefix: 'genericCallback=?,
+    ~renderSuffix: 'genericCallback=?,
+    ~select: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "NativeSelect";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~_IconComponent:
          option(
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.element)
            ],
          )=?,
-      ~input: option(ReasonReact.reactElement)=?,
+      ~input: option(React.element)=?,
       ~inputProps: option(Js.t({..}))=?,
-      ~muiFormControl: option(Js.t({..}))=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~value:
-         option(
-           [
-             | `String(string)
-             | `Int(int)
-             | `Float(float)
-             | `Bool(bool)
-             | `Array(
-                 array(
-                   [
-                     | `String(string)
-                     | `Int(int)
-                     | `Float(float)
-                     | `Bool(bool)
-                   ],
-                 ),
-               )
-           ],
-         )=?,
+      ~value: option('any_rp4g)=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
-      ~defaultValue:
-         option(
-           [
-             | `String(string)
-             | `Int(int)
-             | `Float(float)
-             | `Bool(bool)
-             | `ObjectGeneric(Js.t({..}))
-             | `Array(
-                 array(
-                   [
-                     | `String(string)
-                     | `Int(int)
-                     | `Float(float)
-                     | `Bool(bool)
-                     | `ObjectGeneric(Js.t({..}))
-                   ],
-                 ),
-               )
-           ],
-         )=?,
+      ~defaultValue: option('any_rcfe)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
-      ~endAdornment: option(ReasonReact.reactElement)=?,
+      ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_r5dw)=?,
-      ~inputRef:
-         option(
-           [ | `Callback('genericCallback) | `ObjectGeneric(Js.t({..}))],
-         )=?,
+      ~inputComponent: option('any_r93z)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -173,78 +139,67 @@ let make =
       ~required: option(bool)=?,
       ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~startAdornment: option(ReasonReact.reactElement)=?,
+      ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
+      ~aria_describedby: option(string)=?,
       ~onBlur: option(ReactEvent.Focus.t => unit)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~onEmpty: option('genericCallback)=?,
-      ~onFilled: option('genericCallback)=?,
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-      ~renderPrefix: option('genericCallback)=?,
+      ~renderSuffix: option('genericCallback)=?,
+      ~select: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~_IconComponent=?
-          _IconComponent->(
-                            Belt.Option.map(v =>
-                              MaterialUi_Helpers.unwrapValue(v)
-                            )
-                          ),
-        ~input?,
-        ~inputProps?,
-        ~muiFormControl?,
-        ~onChange?,
-        ~value=?
-          value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~autoComplete?,
-        ~autoFocus?,
-        ~className?,
-        ~defaultValue=?
-          defaultValue->(
-                          Belt.Option.map(v =>
-                            MaterialUi_Helpers.unwrapValue(v)
-                          )
-                        ),
-        ~disabled?,
-        ~disableUnderline?,
-        ~endAdornment?,
-        ~error?,
-        ~fullWidth?,
-        ~id?,
-        ~inputComponent?,
-        ~inputRef=?
-          inputRef->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
-        ~multiline?,
-        ~name?,
-        ~placeholder?,
-        ~readOnly?,
-        ~required?,
-        ~rows=?
-          rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~rowsMax=?
-          rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~startAdornment?,
-        ~_type=?type_,
-        ~onBlur?,
-        ~onClick?,
-        ~onEmpty?,
-        ~onFilled?,
-        ~onFocus?,
-        ~onKeyDown?,
-        ~onKeyUp?,
-        ~renderPrefix?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~_IconComponent=?
+      _IconComponent->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
+    ~input?,
+    ~inputProps?,
+    ~onChange?,
+    ~value?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~ref?,
+    ~autoComplete?,
+    ~autoFocus?,
+    ~className?,
+    ~defaultValue?,
+    ~disabled?,
+    ~disableUnderline?,
+    ~endAdornment?,
+    ~error?,
+    ~fullWidth?,
+    ~id?,
+    ~inputComponent?,
+    ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
+    ~multiline?,
+    ~name?,
+    ~placeholder?,
+    ~readOnly?,
+    ~required?,
+    ~rows=?rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~rowsMax=?
+      rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~startAdornment?,
+    ~_type=?type_,
+    ~aria_describedby?,
+    ~onBlur?,
+    ~onClick?,
+    ~onFocus?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~renderSuffix?,
+    ~select?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "NativeSelect";

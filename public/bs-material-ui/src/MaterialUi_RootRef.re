@@ -1,16 +1,17 @@
-[@bs.obj] external makeProps: (~rootRef: 'union_rvdc, unit) => _ = "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "RootRef";
-let make =
+[@bs.obj]
+external makePropsMui:
+  (~children: 'children=?, ~key: string=?, ~ref: ReactDOMRe.domRef=?, unit) =>
+  _ =
+  "";
+
+let makeProps =
     (
-      ~rootRef: [
-         | `Callback('genericCallback)
-         | `ObjectGeneric(Js.t({..}))
-       ],
-      children,
+      ~children: option('children)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=makeProps(~rootRef=MaterialUi_Helpers.unwrapValue(rootRef), ()),
-    children,
-  );
+  makePropsMui(~children?, ~key?, ~ref?, ());
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "RootRef";

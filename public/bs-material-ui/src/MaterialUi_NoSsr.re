@@ -1,17 +1,25 @@
 [@bs.obj]
-external makeProps:
-  (~defer: bool=?, ~fallback: ReasonReact.reactElement=?, unit) => _ =
+external makePropsMui:
+  (
+    ~children: 'children=?,
+    ~defer: bool=?,
+    ~fallback: React.element=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
+    unit
+  ) =>
+  _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "NoSsr";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~defer: option(bool)=?,
-      ~fallback: option(ReasonReact.reactElement)=?,
-      children,
+      ~fallback: option(React.element)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=makeProps(~defer?, ~fallback?, ()),
-    children,
-  );
+  makePropsMui(~children?, ~defer?, ~fallback?, ~key?, ~ref?, ());
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "NoSsr";

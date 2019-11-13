@@ -11,9 +11,11 @@ type align = [
 type padding = [
   | [@bs.as "default"] `Default
   | [@bs.as "checkbox"] `Checkbox
-  | [@bs.as "dense"] `Dense
   | [@bs.as "none"] `None
 ];
+
+[@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
 
 [@bs.deriving jsConverter]
 type sortDirection = [
@@ -35,14 +37,14 @@ module Classes = {
     | Head(string)
     | Body(string)
     | Footer(string)
-    | Numeric(string)
-    | PaddingDense(string)
+    | SizeSmall(string)
     | PaddingCheckbox(string)
     | PaddingNone(string)
     | AlignLeft(string)
     | AlignCenter(string)
     | AlignRight(string)
-    | AlignJustify(string);
+    | AlignJustify(string)
+    | StickyHeader(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -50,14 +52,14 @@ module Classes = {
     | Head(_) => "head"
     | Body(_) => "body"
     | Footer(_) => "footer"
-    | Numeric(_) => "numeric"
-    | PaddingDense(_) => "paddingDense"
+    | SizeSmall(_) => "sizeSmall"
     | PaddingCheckbox(_) => "paddingCheckbox"
     | PaddingNone(_) => "paddingNone"
     | AlignLeft(_) => "alignLeft"
     | AlignCenter(_) => "alignCenter"
     | AlignRight(_) => "alignRight"
-    | AlignJustify(_) => "alignJustify";
+    | AlignJustify(_) => "alignJustify"
+    | StickyHeader(_) => "stickyHeader";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -68,14 +70,14 @@ module Classes = {
                          | Head(className)
                          | Body(className)
                          | Footer(className)
-                         | Numeric(className)
-                         | PaddingDense(className)
+                         | SizeSmall(className)
                          | PaddingCheckbox(className)
                          | PaddingNone(className)
                          | AlignLeft(className)
                          | AlignCenter(className)
                          | AlignRight(className)
-                         | AlignJustify(className) =>
+                         | AlignJustify(className)
+                         | StickyHeader(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -85,64 +87,71 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~align: string=?,
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rimd=?,
+    ~component: 'union_r9fh=?,
     ~padding: string=?,
     ~scope: string=?,
+    ~size: string=?,
     ~sortDirection: string=?,
     ~variant: string=?,
     ~colSpan: int=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "TableCell";
-let make =
+
+let makeProps =
     (
       ~align: option(align)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~padding: option(padding)=?,
       ~scope: option(string)=?,
+      ~size: option(size)=?,
       ~sortDirection: option(sortDirection)=?,
       ~variant: option(variant)=?,
       ~colSpan: option(int)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
-        ~scope?,
-        ~sortDirection=?
-          sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~colSpan?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~children?,
+    ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
+    ~scope?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~sortDirection=?
+      sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~colSpan?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "TableCell";

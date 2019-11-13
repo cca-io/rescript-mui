@@ -56,18 +56,21 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~activeStep: 'number_x=?,
-    ~backButton: ReasonReact.reactElement=?,
+    ~activeStep: 'number_m=?,
+    ~backButton: React.element=?,
     ~className: string=?,
     ~_LinearProgressProps: Js.t({..})=?,
-    ~nextButton: ReasonReact.reactElement=?,
+    ~nextButton: React.element=?,
     ~position: string=?,
-    ~steps: 'number_s,
+    ~steps: 'number_m,
     ~variant: string=?,
-    ~component: 'union_r335=?,
-    ~elevation: 'number_7=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~children: 'children=?,
+    ~component: 'union_repx=?,
+    ~elevation: 'number_4=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -75,59 +78,56 @@ external makeProps:
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "MobileStepper";
-let make =
+
+let makeProps =
     (
       ~activeStep: option([ | `Int(int) | `Float(float)])=?,
-      ~backButton: option(ReasonReact.reactElement)=?,
+      ~backButton: option(React.element)=?,
       ~className: option(string)=?,
       ~_LinearProgressProps: option(Js.t({..}))=?,
-      ~nextButton: option(ReasonReact.reactElement)=?,
+      ~nextButton: option(React.element)=?,
       ~position: option(position)=?,
       ~steps: [ | `Int(int) | `Float(float)],
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      ~children: option('children)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~activeStep=?
-          activeStep->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
-        ~backButton?,
-        ~className?,
-        ~_LinearProgressProps?,
-        ~nextButton?,
-        ~position=?position->(Belt.Option.map(v => positionToJs(v))),
-        ~steps=MaterialUi_Helpers.unwrapValue(steps),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~elevation=?
-          elevation->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~square?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~activeStep=?
+      activeStep->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~backButton?,
+    ~className?,
+    ~_LinearProgressProps?,
+    ~nextButton?,
+    ~position=?position->(Belt.Option.map(v => positionToJs(v))),
+    ~steps=MaterialUi_Helpers.unwrapValue(steps),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~ref?,
+    ~children?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~square?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "MobileStepper";

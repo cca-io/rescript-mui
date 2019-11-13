@@ -40,49 +40,51 @@ module Timeout_shape = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~direction: string=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExited: ReactEvent.Synthetic.t => unit=?,
-    ~theme: Js.t({..})=?,
-    ~timeout: 'union_rrb5=?,
+    ~timeout: 'union_r3zl=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Slide";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~direction: option(direction)=?,
       ~in_: option(bool)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
       ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
-      ~theme: option(Js.t({..}))=?,
       ~timeout:
          option([ | `Int(int) | `Float(float) | `Object(Timeout_shape.t)])=?,
-      children,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
-        ~_in=?in_,
-        ~onEnter?,
-        ~onEntering?,
-        ~onExit?,
-        ~onExited?,
-        ~theme?,
-        ~timeout=?
-          timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
+    ~_in=?in_,
+    ~onEnter?,
+    ~onEntering?,
+    ~onExit?,
+    ~onExited?,
+    ~timeout=?
+      timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~key?,
+    ~ref?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Slide";

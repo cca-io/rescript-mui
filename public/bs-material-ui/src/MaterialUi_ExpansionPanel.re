@@ -30,69 +30,86 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
-    ~_CollapseProps: Js.t({..})=?,
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_rvy9=?,
+    ~onChange: 'any_rxzd=?,
     ~square: bool=?,
-    ~component: 'union_rge4=?,
-    ~elevation: 'number_e=?,
+    ~_TransitionComponent: 'union_r5nu=?,
+    ~_TransitionProps: Js.t({..})=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
+    ~component: 'union_rhrd=?,
+    ~elevation: 'number_a=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "ExpansionPanel";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
-      ~_CollapseProps: option(Js.t({..}))=?,
       ~defaultExpanded: option(bool)=?,
       ~disabled: option(bool)=?,
       ~expanded: option(bool)=?,
       ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
       ~square: option(bool)=?,
-      ~component:
+      ~_TransitionComponent:
          option(
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~_TransitionProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~_CollapseProps?,
-        ~defaultExpanded?,
-        ~disabled?,
-        ~expanded?,
-        ~onChange?,
-        ~square?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~elevation=?
-          elevation->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~defaultExpanded?,
+    ~disabled?,
+    ~expanded?,
+    ~onChange?,
+    ~square?,
+    ~_TransitionComponent=?
+      _TransitionComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
+    ~_TransitionProps?,
+    ~key?,
+    ~ref?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "ExpansionPanel";

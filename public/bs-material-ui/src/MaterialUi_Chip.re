@@ -6,6 +6,9 @@ type color = [
 ];
 
 [@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+
+[@bs.deriving jsConverter]
 type variant = [
   | [@bs.as "default"] `Default
   | [@bs.as "outlined"] `Outlined
@@ -14,8 +17,10 @@ type variant = [
 module Classes = {
   type classesType =
     | Root(string)
+    | SizeSmall(string)
     | ColorPrimary(string)
     | ColorSecondary(string)
+    | Disabled(string)
     | Clickable(string)
     | ClickableColorPrimary(string)
     | ClickableColorSecondary(string)
@@ -26,14 +31,17 @@ module Classes = {
     | OutlinedPrimary(string)
     | OutlinedSecondary(string)
     | Avatar(string)
+    | AvatarSmall(string)
     | AvatarColorPrimary(string)
     | AvatarColorSecondary(string)
-    | AvatarChildren(string)
     | Icon(string)
+    | IconSmall(string)
     | IconColorPrimary(string)
     | IconColorSecondary(string)
     | Label(string)
+    | LabelSmall(string)
     | DeleteIcon(string)
+    | DeleteIconSmall(string)
     | DeleteIconColorPrimary(string)
     | DeleteIconColorSecondary(string)
     | DeleteIconOutlinedColorPrimary(string)
@@ -42,8 +50,10 @@ module Classes = {
   let to_string =
     fun
     | Root(_) => "root"
+    | SizeSmall(_) => "sizeSmall"
     | ColorPrimary(_) => "colorPrimary"
     | ColorSecondary(_) => "colorSecondary"
+    | Disabled(_) => "disabled"
     | Clickable(_) => "clickable"
     | ClickableColorPrimary(_) => "clickableColorPrimary"
     | ClickableColorSecondary(_) => "clickableColorSecondary"
@@ -54,14 +64,17 @@ module Classes = {
     | OutlinedPrimary(_) => "outlinedPrimary"
     | OutlinedSecondary(_) => "outlinedSecondary"
     | Avatar(_) => "avatar"
+    | AvatarSmall(_) => "avatarSmall"
     | AvatarColorPrimary(_) => "avatarColorPrimary"
     | AvatarColorSecondary(_) => "avatarColorSecondary"
-    | AvatarChildren(_) => "avatarChildren"
     | Icon(_) => "icon"
+    | IconSmall(_) => "iconSmall"
     | IconColorPrimary(_) => "iconColorPrimary"
     | IconColorSecondary(_) => "iconColorSecondary"
     | Label(_) => "label"
+    | LabelSmall(_) => "labelSmall"
     | DeleteIcon(_) => "deleteIcon"
+    | DeleteIconSmall(_) => "deleteIconSmall"
     | DeleteIconColorPrimary(_) => "deleteIconColorPrimary"
     | DeleteIconColorSecondary(_) => "deleteIconColorSecondary"
     | DeleteIconOutlinedColorPrimary(_) => "deleteIconOutlinedColorPrimary"
@@ -73,8 +86,10 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
+                         | SizeSmall(className)
                          | ColorPrimary(className)
                          | ColorSecondary(className)
+                         | Disabled(className)
                          | Clickable(className)
                          | ClickableColorPrimary(className)
                          | ClickableColorSecondary(className)
@@ -85,14 +100,17 @@ module Classes = {
                          | OutlinedPrimary(className)
                          | OutlinedSecondary(className)
                          | Avatar(className)
+                         | AvatarSmall(className)
                          | AvatarColorPrimary(className)
                          | AvatarColorSecondary(className)
-                         | AvatarChildren(className)
                          | Icon(className)
+                         | IconSmall(className)
                          | IconColorPrimary(className)
                          | IconColorSecondary(className)
                          | Label(className)
+                         | LabelSmall(className)
                          | DeleteIcon(className)
+                         | DeleteIconSmall(className)
                          | DeleteIconColorPrimary(className)
                          | DeleteIconColorSecondary(className)
                          | DeleteIconOutlinedColorPrimary(className)
@@ -106,33 +124,37 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~avatar: ReasonReact.reactElement=?,
+    ~avatar: React.element=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~clickable: bool=?,
     ~color: string=?,
-    ~component: 'union_r7vz=?,
-    ~deleteIcon: ReasonReact.reactElement=?,
-    ~icon: ReasonReact.reactElement=?,
-    ~label: ReasonReact.reactElement=?,
+    ~component: 'union_rm7z=?,
+    ~deleteIcon: React.element=?,
+    ~disabled: bool=?,
+    ~icon: React.element=?,
+    ~label: React.element=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~onDelete: ReactEvent.Synthetic.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-    ~tabIndex: 'union_rdhh=?,
+    ~size: string=?,
     ~variant: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Chip";
-let make =
+
+let makeProps =
     (
-      ~avatar: option(ReasonReact.reactElement)=?,
+      ~avatar: option(React.element)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~clickable: option(bool)=?,
       ~color: option(color)=?,
@@ -140,48 +162,49 @@ let make =
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
-      ~deleteIcon: option(ReasonReact.reactElement)=?,
-      ~icon: option(ReasonReact.reactElement)=?,
-      ~label: option(ReasonReact.reactElement)=?,
+      ~deleteIcon: option(React.element)=?,
+      ~disabled: option(bool)=?,
+      ~icon: option(React.element)=?,
+      ~label: option(React.element)=?,
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~onDelete: option(ReactEvent.Synthetic.t => unit)=?,
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-      ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+      ~size: option(size)=?,
       ~variant: option(variant)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~avatar?,
-        ~className?,
-        ~clickable?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~deleteIcon?,
-        ~icon?,
-        ~label?,
-        ~onClick?,
-        ~onDelete?,
-        ~onKeyDown?,
-        ~onKeyUp?,
-        ~tabIndex=?
-          tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~avatar?,
+    ~children?,
+    ~className?,
+    ~clickable?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~deleteIcon?,
+    ~disabled?,
+    ~icon?,
+    ~label?,
+    ~onClick?,
+    ~onDelete?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Chip";

@@ -13,66 +13,55 @@ type action =
   | OpenPopup((Dom.element, string))
   | ClosePopup;
 
-/* This is the basic component. */
-let component = ReasonReact.reducerComponent("PopoverExample");
+let reducer = (state: state, action: action) =>
+  switch (action) {
+  | OpenPopup((el, message)) => {anchorEl: Some(el), popupMessage: message}
+  | ClosePopup => {...state, anchorEl: None}
+  };
 
-let make = _children => {
-  ...component,
-  initialState: () => {anchorEl: None, popupMessage: ""},
-  reducer: (action, state) =>
-    switch (action) {
-    | OpenPopup((el, message)) =>
-      ReasonReact.Update({anchorEl: Some(el), popupMessage: message})
-    | ClosePopup => ReasonReact.Update({...state, anchorEl: None})
-    },
-  render: self =>
-    MaterialUi.(
-      <div>
-        <Popover
-          open_={Option.isSome(self.state.anchorEl)}
-          onClose={(_evt, _) => self.send(ClosePopup)}
-          anchorEl=?{
-            self.state.anchorEl
-            ->(
-                Option.map(el =>
-                  `ObjectGeneric(el->ReactDOMRe.domElementToObj)
-                )
-              )
-          }>
-          <div
-            style={
-              ReactDOMRe.Style.make(
-                ~fontSize="6rem",
-                ~margin="1rem",
-                ~backgroundColor="salmon",
-                (),
-              )
-            }>
-            {ReasonReact.string(self.state.popupMessage)}
-          </div>
-        </Popover>
-        <MaterialUi.List>
-          messages->(
-                      Array.mapWithIndex((i, message) =>
-                        <ListItem
-                          button=true
-                          key={string_of_int(i)}
-                          onClick={
-                            evt =>
-                              self.send(
-                                OpenPopup((
-                                  evt->ReactEvent.Mouse.target->toDomElement,
-                                  message,
-                                )),
-                              )
-                          }>
-                          <ListItemText
-                            primary={ReasonReact.string(message)}
-                          />
-                        </ListItem>
-                      )
+[@react.component]
+let make = () => {
+  let (state, dispatch) =
+    React.useReducer(reducer, {anchorEl: None, popupMessage: ""});
+
+  MaterialUi.(
+    <div>
+      <Popover
+        open_={Option.isSome(state.anchorEl)}
+        onClose={(_evt, _) => dispatch(ClosePopup)}
+        anchorEl=?{
+          state.anchorEl
+          ->(Option.map(el => `ObjectGeneric(el->ReactDOMRe.domElementToObj)))
+        }>
+        <div
+          style={ReactDOMRe.Style.make(
+            ~fontSize="6rem",
+            ~margin="1rem",
+            ~backgroundColor="salmon",
+            (),
+          )}>
+          {ReasonReact.string(state.popupMessage)}
+        </div>
+      </Popover>
+      <MaterialUi.List>
+        messages->(
+                    Array.mapWithIndex((i, message) =>
+                      <ListItem
+                        button=true
+                        key={string_of_int(i)}
+                        onClick={evt =>
+                          dispatch(
+                            OpenPopup((
+                              evt->ReactEvent.Mouse.target->toDomElement,
+                              message,
+                            )),
+                          )
+                        }>
+                        <ListItemText> {React.string(message)} </ListItemText>
+                      </ListItem>
                     )
-        </MaterialUi.List>
-      </div>
-    ),
+                  )
+      </MaterialUi.List>
+    </div>
+  );
 };

@@ -1,5 +1,17 @@
-[@bs.obj] external makeProps: unit => _ = "";
+[@bs.obj]
+external makePropsMui:
+  (~children: 'children=?, ~key: string=?, ~ref: ReactDOMRe.domRef=?, unit) =>
+  _ =
+  "";
+
+let makeProps =
+    (
+      ~children: option('children)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      (),
+    ) =>
+  makePropsMui(~children?, ~key?, ~ref?, ());
+
 [@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "CssBaseline";
-let make = children =>
-  ReasonReact.wrapJsForReason(~reactClass, ~props=makeProps(), children);
+external make: React.component('a) = "CssBaseline";

@@ -1,17 +1,20 @@
 module Classes = {
   type classesType =
-    | Root(string);
+    | Root(string)
+    | Dividers(string);
   type t = list(classesType);
   let to_string =
     fun
-    | Root(_) => "root";
+    | Root(_) => "root"
+    | Dividers(_) => "dividers";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
                        Js.Dict.empty(),
                        (obj, classType) => {
                          switch (classType) {
-                         | Root(className) =>
+                         | Root(className)
+                         | Dividers(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -21,32 +24,41 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
+    ~dividers: bool=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "DialogContent";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
+      ~dividers: option(bool)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~dividers?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "DialogContent";

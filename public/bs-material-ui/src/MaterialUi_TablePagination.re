@@ -11,9 +11,11 @@ type align = [
 type padding = [
   | [@bs.as "default"] `Default
   | [@bs.as "checkbox"] `Checkbox
-  | [@bs.as "dense"] `Dense
   | [@bs.as "none"] `None
 ];
+
+[@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
 
 [@bs.deriving jsConverter]
 type sortDirection = [
@@ -79,26 +81,30 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~_ActionsComponent: 'union_rtrt=?,
+    ~_ActionsComponent: 'union_rquz=?,
     ~backIconButtonProps: Js.t({..})=?,
-    ~colSpan: 'number_f=?,
-    ~component: 'union_rpoy=?,
+    ~className: string=?,
+    ~colSpan: 'number_1=?,
+    ~component: 'union_rspa=?,
     ~count: 'number_8,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
-    ~onChangePage: 'any_rge1,
-    ~onChangeRowsPerPage: 'any_rugi=?,
-    ~page: 'number_u,
-    ~rowsPerPage: 'number_w,
+    ~onChangePage: 'any_rasu,
+    ~onChangeRowsPerPage: 'any_r1qg=?,
+    ~page: int=?,
+    ~rowsPerPage: 'number_9,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~align: string=?,
-    ~className: string=?,
+    ~children: 'children=?,
     ~padding: string=?,
     ~scope: string=?,
+    ~size: string=?,
     ~sortDirection: string=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
@@ -107,26 +113,26 @@ external makeProps:
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "TablePagination";
-let make =
+
+let makeProps =
     (
       ~_ActionsComponent:
          option(
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~backIconButtonProps: option(Js.t({..}))=?,
+      ~className: option(string)=?,
       ~colSpan: option([ | `Int(int) | `Float(float)])=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~count: [ | `Int(int) | `Float(float)],
@@ -149,71 +155,74 @@ let make =
              "count": int,
              "page": int,
            } =>
-           ReasonReact.reactElement,
+           React.element,
          )=?,
       ~nextIconButtonProps: option(Js.t({..}))=?,
       ~onChangePage: (ReactEvent.Mouse.t, int) => unit,
       ~onChangeRowsPerPage: option(ReactEvent.Form.t => unit)=?,
-      ~page: [ | `Int(int) | `Float(float)],
+      ~page: option(int)=?,
       ~rowsPerPage: [ | `Int(int) | `Float(float)],
       ~rowsPerPageOptions: option(array(int))=?,
       ~_SelectProps: option(Js.t({..}))=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~align: option(align)=?,
-      ~className: option(string)=?,
+      ~children: option('children)=?,
       ~padding: option(padding)=?,
       ~scope: option(string)=?,
+      ~size: option(size)=?,
       ~sortDirection: option(sortDirection)=?,
       ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~_ActionsComponent=?
-          _ActionsComponent->(
-                               Belt.Option.map(v =>
-                                 MaterialUi_Helpers.unwrapValue(v)
-                               )
-                             ),
-        ~backIconButtonProps?,
-        ~colSpan=?
-          colSpan->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~count=MaterialUi_Helpers.unwrapValue(count),
-        ~labelDisplayedRows?,
-        ~labelRowsPerPage?,
-        ~nextIconButtonProps?,
-        ~onChangePage,
-        ~onChangeRowsPerPage?,
-        ~page=MaterialUi_Helpers.unwrapValue(page),
-        ~rowsPerPage=MaterialUi_Helpers.unwrapValue(rowsPerPage),
-        ~rowsPerPageOptions=?
-          rowsPerPageOptions->(
-                                Belt.Option.map(v =>
-                                  v->(
-                                       Belt.Array.map(item =>
-                                         MaterialUi_Helpers.toJsUnsafe(item)
-                                       )
-                                     )
-                                )
-                              ),
-        ~_SelectProps?,
-        ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-        ~className?,
-        ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
-        ~scope?,
-        ~sortDirection=?
-          sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~_ActionsComponent=?
+      _ActionsComponent->(
+                           Belt.Option.map(v =>
+                             MaterialUi_Helpers.unwrapValue(v)
+                           )
+                         ),
+    ~backIconButtonProps?,
+    ~className?,
+    ~colSpan=?
+      colSpan->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~count=MaterialUi_Helpers.unwrapValue(count),
+    ~labelDisplayedRows?,
+    ~labelRowsPerPage?,
+    ~nextIconButtonProps?,
+    ~onChangePage,
+    ~onChangeRowsPerPage?,
+    ~page?,
+    ~rowsPerPage=MaterialUi_Helpers.unwrapValue(rowsPerPage),
+    ~rowsPerPageOptions=?
+      rowsPerPageOptions->(
+                            Belt.Option.map(v =>
+                              v->(
+                                   Belt.Array.map(item =>
+                                     MaterialUi_Helpers.toJsUnsafe(item)
+                                   )
+                                 )
+                            )
+                          ),
+    ~_SelectProps?,
+    ~key?,
+    ~ref?,
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~children?,
+    ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
+    ~scope?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~sortDirection=?
+      sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "TablePagination";

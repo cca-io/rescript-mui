@@ -9,13 +9,20 @@ type align = [
 
 [@bs.deriving jsConverter]
 type color = [
-  | [@bs.as "default"] `Default
-  | [@bs.as "error"] `Error
+  | [@bs.as "initial"] `Initial
   | [@bs.as "inherit"] `Inherit
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
   | [@bs.as "textPrimary"] `TextPrimary
   | [@bs.as "textSecondary"] `TextSecondary
+  | [@bs.as "error"] `Error
+];
+
+[@bs.deriving jsConverter]
+type display = [
+  | [@bs.as "initial"] `Initial
+  | [@bs.as "block"] `Block
+  | [@bs.as "inline"] `Inline
 ];
 
 [@bs.deriving jsConverter]
@@ -35,13 +42,6 @@ type variant = [
   | [@bs.as "overline"] `Overline
   | [@bs.as "srOnly"] `SrOnly
   | [@bs.as "inherit"] `Inherit
-  | [@bs.as "display4"] `Display4
-  | [@bs.as "display3"] `Display3
-  | [@bs.as "display2"] `Display2
-  | [@bs.as "display1"] `Display1
-  | [@bs.as "headline"] `Headline
-  | [@bs.as "title"] `Title
-  | [@bs.as "subheading"] `Subheading
 ];
 
 module Classes = {
@@ -67,30 +67,33 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r6af=?,
+    ~component: 'union_res5=?,
+    ~display: string=?,
     ~gutterBottom: bool=?,
-    ~headlineMapping: Js.t({..})=?,
-    ~inline: bool=?,
-    ~internalDeprecatedVariant: bool=?,
     ~noWrap: bool=?,
     ~paragraph: bool=?,
-    ~theme: Js.t({..})=?,
     ~variant: string=?,
+    ~variantMapping: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "DialogContentText";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~align: option(align)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
@@ -98,44 +101,39 @@ let make =
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
+      ~display: option(display)=?,
       ~gutterBottom: option(bool)=?,
-      ~headlineMapping: option(Js.t({..}))=?,
-      ~inline: option(bool)=?,
-      ~internalDeprecatedVariant: option(bool)=?,
       ~noWrap: option(bool)=?,
       ~paragraph: option(bool)=?,
-      ~theme: option(Js.t({..}))=?,
       ~variant: option(variant)=?,
+      ~variantMapping: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~gutterBottom?,
-        ~headlineMapping?,
-        ~inline?,
-        ~internalDeprecatedVariant?,
-        ~noWrap?,
-        ~paragraph?,
-        ~theme?,
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~key?,
+    ~ref?,
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~display=?display->(Belt.Option.map(v => displayToJs(v))),
+    ~gutterBottom?,
+    ~noWrap?,
+    ~paragraph?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~variantMapping?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "DialogContentText";

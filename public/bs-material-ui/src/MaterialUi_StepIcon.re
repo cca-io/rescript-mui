@@ -33,41 +33,44 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~active: bool=?,
     ~completed: bool=?,
     ~error: bool=?,
-    ~icon: ReasonReact.reactElement,
+    ~icon: React.element,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "StepIcon";
-let make =
+
+let makeProps =
     (
       ~active: option(bool)=?,
       ~completed: option(bool)=?,
       ~error: option(bool)=?,
-      ~icon: ReasonReact.reactElement,
+      ~icon: React.element,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~active?,
-        ~completed?,
-        ~error?,
-        ~icon,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~active?,
+    ~completed?,
+    ~error?,
+    ~icon,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "StepIcon";

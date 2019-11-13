@@ -1,36 +1,37 @@
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~container: 'union_rytp=?,
+    ~children: 'children=?,
+    ~container: 'union_rqqf=?,
     ~disablePortal: bool=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Portal";
-let make =
+
+let makeProps =
     (
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
+      ~children: option('children)=?,
+      ~container: option([ | `Callback('genericCallback)])=?,
       ~disablePortal: option(bool)=?,
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
-      children,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~container=?
-          container->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~disablePortal?,
-        ~onRendered?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~container=?
+      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disablePortal?,
+    ~onRendered?,
+    ~key?,
+    ~ref?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Portal";

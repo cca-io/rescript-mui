@@ -9,13 +9,20 @@ type align = [
 
 [@bs.deriving jsConverter]
 type color = [
-  | [@bs.as "default"] `Default
-  | [@bs.as "error"] `Error
+  | [@bs.as "initial"] `Initial
   | [@bs.as "inherit"] `Inherit
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
   | [@bs.as "textPrimary"] `TextPrimary
   | [@bs.as "textSecondary"] `TextSecondary
+  | [@bs.as "error"] `Error
+];
+
+[@bs.deriving jsConverter]
+type display = [
+  | [@bs.as "initial"] `Initial
+  | [@bs.as "block"] `Block
+  | [@bs.as "inline"] `Inline
 ];
 
 [@bs.deriving jsConverter]
@@ -35,25 +42,11 @@ type variant = [
   | [@bs.as "overline"] `Overline
   | [@bs.as "srOnly"] `SrOnly
   | [@bs.as "inherit"] `Inherit
-  | [@bs.as "display4"] `Display4
-  | [@bs.as "display3"] `Display3
-  | [@bs.as "display2"] `Display2
-  | [@bs.as "display1"] `Display1
-  | [@bs.as "headline"] `Headline
-  | [@bs.as "title"] `Title
-  | [@bs.as "subheading"] `Subheading
 ];
 
 module Classes = {
   type classesType =
     | Root(string)
-    | Display4(string)
-    | Display3(string)
-    | Display2(string)
-    | Display1(string)
-    | Headline(string)
-    | Title(string)
-    | Subheading(string)
     | Body2(string)
     | Body1(string)
     | Caption(string)
@@ -81,18 +74,12 @@ module Classes = {
     | ColorTextPrimary(string)
     | ColorTextSecondary(string)
     | ColorError(string)
-    | Inline(string);
+    | DisplayInline(string)
+    | DisplayBlock(string);
   type t = list(classesType);
   let to_string =
     fun
     | Root(_) => "root"
-    | Display4(_) => "display4"
-    | Display3(_) => "display3"
-    | Display2(_) => "display2"
-    | Display1(_) => "display1"
-    | Headline(_) => "headline"
-    | Title(_) => "title"
-    | Subheading(_) => "subheading"
     | Body2(_) => "body2"
     | Body1(_) => "body1"
     | Caption(_) => "caption"
@@ -120,7 +107,8 @@ module Classes = {
     | ColorTextPrimary(_) => "colorTextPrimary"
     | ColorTextSecondary(_) => "colorTextSecondary"
     | ColorError(_) => "colorError"
-    | Inline(_) => "inline";
+    | DisplayInline(_) => "displayInline"
+    | DisplayBlock(_) => "displayBlock";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -128,13 +116,6 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
-                         | Display4(className)
-                         | Display3(className)
-                         | Display2(className)
-                         | Display1(className)
-                         | Headline(className)
-                         | Title(className)
-                         | Subheading(className)
                          | Body2(className)
                          | Body1(className)
                          | Caption(className)
@@ -162,7 +143,8 @@ module Classes = {
                          | ColorTextPrimary(className)
                          | ColorTextSecondary(className)
                          | ColorError(className)
-                         | Inline(className) =>
+                         | DisplayInline(className)
+                         | DisplayBlock(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -172,75 +154,73 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
     ~align: string=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rybx=?,
+    ~component: 'union_rd63=?,
+    ~display: string=?,
     ~gutterBottom: bool=?,
-    ~headlineMapping: Js.t({..})=?,
-    ~inline: bool=?,
-    ~internalDeprecatedVariant: bool=?,
     ~noWrap: bool=?,
     ~paragraph: bool=?,
-    ~theme: Js.t({..})=?,
     ~variant: string=?,
+    ~variantMapping: Js.t({..})=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Typography";
-let make =
+
+let makeProps =
     (
       ~align: option(align)=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
+      ~display: option(display)=?,
       ~gutterBottom: option(bool)=?,
-      ~headlineMapping: option(Js.t({..}))=?,
-      ~inline: option(bool)=?,
-      ~internalDeprecatedVariant: option(bool)=?,
       ~noWrap: option(bool)=?,
       ~paragraph: option(bool)=?,
-      ~theme: option(Js.t({..}))=?,
       ~variant: option(variant)=?,
+      ~variantMapping: option(Js.t({..}))=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~gutterBottom?,
-        ~headlineMapping?,
-        ~inline?,
-        ~internalDeprecatedVariant?,
-        ~noWrap?,
-        ~paragraph?,
-        ~theme?,
-        ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~display=?display->(Belt.Option.map(v => displayToJs(v))),
+    ~gutterBottom?,
+    ~noWrap?,
+    ~paragraph?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~variantMapping?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Typography";

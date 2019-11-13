@@ -34,25 +34,26 @@ module Timeout_shape = {
 [@bs.deriving jsConverter]
 type timeout_enum = [ | [@bs.as "auto"] `Auto];
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
-    ~theme: Js.t({..})=?,
-    ~timeout: 'union_rqce=?,
+    ~timeout: 'union_rlcr=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Grow";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~in_: option(bool)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
       ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
-      ~theme: option(Js.t({..}))=?,
       ~timeout:
          option(
            [
@@ -62,30 +63,31 @@ let make =
              | `Enum(timeout_enum)
            ],
          )=?,
-      children,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~_in=?in_,
-        ~onEnter?,
-        ~onExit?,
-        ~theme?,
-        ~timeout=?
-          timeout->(
-                     Belt.Option.map(v =>
-                       switch (v) {
-                       | `Enum(v) =>
-                         MaterialUi_Helpers.unwrapValue(
-                           `String(timeout_enumToJs(v)),
-                         )
-
-                       | v => MaterialUi_Helpers.unwrapValue(v)
-                       }
+  makePropsMui(
+    ~children?,
+    ~_in=?in_,
+    ~onEnter?,
+    ~onExit?,
+    ~timeout=?
+      timeout->(
+                 Belt.Option.map(v =>
+                   switch (v) {
+                   | `Enum(v) =>
+                     MaterialUi_Helpers.unwrapValue(
+                       `String(timeout_enumToJs(v)),
                      )
-                   ),
-        (),
-      ),
-    children,
+
+                   | v => MaterialUi_Helpers.unwrapValue(v)
+                   }
+                 )
+               ),
+    ~key?,
+    ~ref?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Grow";

@@ -2,24 +2,29 @@
 type padding = [
   | [@bs.as "default"] `Default
   | [@bs.as "checkbox"] `Checkbox
-  | [@bs.as "dense"] `Dense
   | [@bs.as "none"] `None
 ];
 
+[@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+
 module Classes = {
   type classesType =
-    | Root(string);
+    | Root(string)
+    | StickyHeader(string);
   type t = list(classesType);
   let to_string =
     fun
-    | Root(_) => "root";
+    | Root(_) => "root"
+    | StickyHeader(_) => "stickyHeader";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
                        Js.Dict.empty(),
                        (obj, classType) => {
                          switch (classType) {
-                         | Root(className) =>
+                         | Root(className)
+                         | StickyHeader(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -29,48 +34,57 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rtbx=?,
+    ~component: 'union_rqsb=?,
     ~padding: string=?,
+    ~size: string=?,
+    ~stickyHeader: bool=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Table";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~padding: option(padding)=?,
+      ~size: option(size)=?,
+      ~stickyHeader: option(bool)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~stickyHeader?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"] external make: React.component('a) = "Table";

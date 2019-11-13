@@ -117,18 +117,19 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
-    ~action: ReasonReact.reactElement=?,
-    ~anchorOrigin: 'any_rx1y=?,
-    ~autoHideDuration: 'number_5=?,
+    ~action: React.element=?,
+    ~anchorOrigin: 'any_r4qa=?,
+    ~autoHideDuration: 'number_x=?,
+    ~children: 'children=?,
     ~className: string=?,
     ~_ClickAwayListenerProps: Js.t({..})=?,
     ~_ContentProps: Js.t({..})=?,
     ~disableWindowBlurListener: bool=?,
-    ~key: 'any_rdtr=?,
-    ~message: ReasonReact.reactElement=?,
-    ~onClose: 'any_r2le=?,
+    ~key: string=?,
+    ~message: React.element=?,
+    ~onClose: 'any_re8r=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -138,29 +139,30 @@ external makeProps:
     ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
     ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
     ~_open: bool=?,
-    ~resumeHideDuration: 'number_x=?,
-    ~_TransitionComponent: 'union_rwsk=?,
-    ~transitionDuration: 'union_ryq7=?,
+    ~resumeHideDuration: 'number_i=?,
+    ~_TransitionComponent: 'union_rlem=?,
+    ~transitionDuration: 'union_rvyl=?,
     ~_TransitionProps: Js.t({..})=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "Snackbar";
-let make =
+
+let makeProps =
     (
-      ~action: option(ReasonReact.reactElement)=?,
+      ~action: option(React.element)=?,
       ~anchorOrigin: option(AnchorOrigin.t)=?,
       ~autoHideDuration: option([ | `Int(int) | `Float(float)])=?,
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~_ClickAwayListenerProps: option(Js.t({..}))=?,
       ~_ContentProps: option(Js.t({..}))=?,
       ~disableWindowBlurListener: option(bool)=?,
-      ~key: option('any_rdtr)=?,
-      ~message: option(ReasonReact.reactElement)=?,
+      ~key: option(string)=?,
+      ~message: option(React.element)=?,
       ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
       ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
@@ -177,7 +179,7 @@ let make =
            [
              | `String(string)
              | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Element(React.element)
            ],
          )=?,
       ~transitionDuration:
@@ -189,60 +191,61 @@ let make =
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~action?,
-        ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
-        ~autoHideDuration=?
-          autoHideDuration->(
+  makePropsMui(
+    ~action?,
+    ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
+    ~autoHideDuration=?
+      autoHideDuration->(
+                          Belt.Option.map(v =>
+                            MaterialUi_Helpers.unwrapValue(v)
+                          )
+                        ),
+    ~children?,
+    ~className?,
+    ~_ClickAwayListenerProps?,
+    ~_ContentProps?,
+    ~disableWindowBlurListener?,
+    ~key?,
+    ~message?,
+    ~onClose?,
+    ~onEnter?,
+    ~onEntered?,
+    ~onEntering?,
+    ~onExit?,
+    ~onExited?,
+    ~onExiting?,
+    ~onMouseEnter?,
+    ~onMouseLeave?,
+    ~_open=?open_,
+    ~resumeHideDuration=?
+      resumeHideDuration->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~_TransitionComponent=?
+      _TransitionComponent->(
                               Belt.Option.map(v =>
                                 MaterialUi_Helpers.unwrapValue(v)
                               )
                             ),
-        ~className?,
-        ~_ClickAwayListenerProps?,
-        ~_ContentProps?,
-        ~disableWindowBlurListener?,
-        ~key?,
-        ~message?,
-        ~onClose?,
-        ~onEnter?,
-        ~onEntered?,
-        ~onEntering?,
-        ~onExit?,
-        ~onExited?,
-        ~onExiting?,
-        ~onMouseEnter?,
-        ~onMouseLeave?,
-        ~_open=?open_,
-        ~resumeHideDuration=?
-          resumeHideDuration->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
-        ~_TransitionComponent=?
-          _TransitionComponent->(
-                                  Belt.Option.map(v =>
-                                    MaterialUi_Helpers.unwrapValue(v)
-                                  )
-                                ),
-        ~transitionDuration=?
-          transitionDuration->(
-                                Belt.Option.map(v =>
-                                  MaterialUi_Helpers.unwrapValue(v)
-                                )
-                              ),
-        ~_TransitionProps?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+    ~transitionDuration=?
+      transitionDuration->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~_TransitionProps?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "Snackbar";

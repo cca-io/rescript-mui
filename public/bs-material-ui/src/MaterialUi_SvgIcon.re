@@ -1,19 +1,19 @@
 [@bs.deriving jsConverter]
 type color = [
+  | [@bs.as "action"] `Action
+  | [@bs.as "disabled"] `Disabled
+  | [@bs.as "error"] `Error
   | [@bs.as "inherit"] `Inherit
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
-  | [@bs.as "action"] `Action
-  | [@bs.as "error"] `Error
-  | [@bs.as "disabled"] `Disabled
 ];
 
 [@bs.deriving jsConverter]
 type fontSize = [
-  | [@bs.as "inherit"] `Inherit
   | [@bs.as "default"] `Default
-  | [@bs.as "small"] `Small
+  | [@bs.as "inherit"] `Inherit
   | [@bs.as "large"] `Large
+  | [@bs.as "small"] `Small
 ];
 
 module Classes = {
@@ -63,63 +63,67 @@ module Classes = {
 };
 
 [@bs.obj]
-external makeProps:
+external makePropsMui:
   (
+    ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rd4b=?,
+    ~component: 'union_rzu8=?,
     ~fontSize: string=?,
-    ~nativeColor: string=?,
+    ~htmlColor: string=?,
     ~shapeRendering: string=?,
     ~titleAccess: string=?,
     ~viewBox: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
   _ =
   "";
-[@bs.module "@material-ui/core"]
-external reactClass: ReasonReact.reactClass = "SvgIcon";
-let make =
+
+let makeProps =
     (
+      ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~component:
          option(
            [
              | `String(string)
-             | `Callback('genericCallback)
-             | `Element(ReasonReact.reactElement)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
            ],
          )=?,
       ~fontSize: option(fontSize)=?,
-      ~nativeColor: option(string)=?,
+      ~htmlColor: option(string)=?,
       ~shapeRendering: option(string)=?,
       ~titleAccess: option(string)=?,
       ~viewBox: option(string)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
-      children,
+      (),
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~className?,
-        ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-        ~component=?
-          component->(
-                       Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                     ),
-        ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
-        ~nativeColor?,
-        ~shapeRendering?,
-        ~titleAccess?,
-        ~viewBox?,
-        ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-        ~style?,
-        (),
-      ),
-    children,
+  makePropsMui(
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
+    ~htmlColor?,
+    ~shapeRendering?,
+    ~titleAccess?,
+    ~viewBox?,
+    ~key?,
+    ~ref?,
+    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
+    ~style?,
+    (),
   );
+
+[@bs.module "@material-ui/core"]
+external make: React.component('a) = "SvgIcon";
