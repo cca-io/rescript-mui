@@ -1,7 +1,8 @@
+open Ast_402;
 open Asttypes;
 open Parsetree;
 
-let withStylesMapper = _argv => {
+let withStylesMapper = (_argv, _) => {
   ...Ast_mapper.default_mapper,
   structure: (mapper, structure) => {
     let rec loop = items =>

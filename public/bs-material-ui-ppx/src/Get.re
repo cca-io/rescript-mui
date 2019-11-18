@@ -1,3 +1,5 @@
+open Ast_402;
+open Asttypes;
 open Parsetree;
 
 let rec getLastExpression = (exp: expression) =>

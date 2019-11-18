@@ -1,3 +1,4 @@
+open Ast_402;
 open Asttypes;
 open Parsetree;
 
@@ -240,28 +241,29 @@ let genJsRecordConverter = (name: string, entries: list(string)) =>
       Ast_helper.Exp.constraint_(
         Ast_helper.Exp.record(
           List.map(
-            entry => (
-              Location.mknoloc(Longident.Lident(entry)),
-              Ast_helper.Exp.apply(
-                Ast_helper.Exp.ident(
-                  Location.mknoloc(Longident.Lident("##")),
+            entry =>
+              (
+                Location.mknoloc(Longident.Lident(entry)),
+                Ast_helper.Exp.apply(
+                  Ast_helper.Exp.ident(
+                    Location.mknoloc(Longident.Lident("##")),
+                  ),
+                  [
+                    (
+                      "",
+                      Ast_helper.Exp.ident(
+                        Location.mknoloc(Longident.Lident("arg")),
+                      ),
+                    ),
+                    (
+                      "",
+                      Ast_helper.Exp.ident(
+                        Location.mknoloc(Longident.Lident(entry)),
+                      ),
+                    ),
+                  ],
                 ),
-                [
-                  (
-                    "",
-                    Ast_helper.Exp.ident(
-                      Location.mknoloc(Longident.Lident("arg")),
-                    ),
-                  ),
-                  (
-                    "",
-                    Ast_helper.Exp.ident(
-                      Location.mknoloc(Longident.Lident(entry)),
-                    ),
-                  ),
-                ],
               ),
-            ),
             entries,
           ),
           None,

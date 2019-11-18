@@ -1,0 +1,19 @@
+{
+	"dependencies": {
+		"@opam/dune": "*",
+		"@opam/result": "*",
+		"@opam/yojson": "*",
+		"@opam/ocaml-migrate-parsetree": "1.2.0",
+		"@opam/ppx_tools_versioned": "*",
+		"@esy-ocaml/reason": "*",
+		"refmterr": "*",
+		"ocaml": "~4.2.3"
+	},
+	"devDependencies": {
+		"ocaml": "~4.2.0"
+	},
+	"esy": {
+		"build": "refmterr dune build -p bs_material_ui_ppx",
+		"buildsInSource": "_build"
+	}
+}

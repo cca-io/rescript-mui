@@ -2861,6 +2861,12 @@ bs-nonempty@^1.3.0:
   dependencies:
     bs-abstract "^0.16.0"
 
+bs-platform@bsansouci/bsb-native#3.2.0:
+  version "3.2.0"
+  resolved "https://codeload.github.com/bsansouci/bsb-native/tar.gz/84604c9f6a5611eed68372efdb575c00a3e72813"
+  dependencies:
+    yauzl "^2.9.1"
+
 bs-platform@~5.0.4:
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-5.0.6.tgz#88c13041fb020479800de3d82c680bf971091425"
@@ -2870,13 +2876,6 @@ bsb-js@^1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/bsb-js/-/bsb-js-1.1.7.tgz#12cc91e974f5896b3a2aa8358419d24e56f552c3"
   integrity sha512-FSR7d5Kb6KfVI5sLz9bEeD9pbA9F4Zbkk1xa6R9CJtyd+dJ7mIkxoXqv7cw7HWcuee+VpIhmjYzrplnFd/5Qgg==
-
-bsb-native@^4.0.9:
-  version "4.0.1100"
-  resolved "https://registry.yarnpkg.com/bsb-native/-/bsb-native-4.0.1100.tgz#c61e02afc12ec393b63dfb440ba7b309968e107f"
-  integrity sha512-XQ6farp7NBctlw1EOMQDvWEyOAGzwqP5G9N37Jb9KgvD/eiSNPclcMFi6BpFlNeHDYPyX4T0rSaFK7tvQFb5/Q==
-  dependencies:
-    yauzl "^2.9.1"
 
 buffer-crc32@~0.2.3:
   version "0.2.13"
