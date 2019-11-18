@@ -104,13 +104,14 @@ jobs:
           mv public/bs-material-ui-ppx/binaries/windows/bin.exe public/bs-material-ui-ppx/bin/bsb6/graphql_ppx-win-x64.exe
           mv public/bs-material-ui-ppx/binaries/linux/bin.exe public/bs-material-ui-ppx/bin/bsb6/graphql_ppx-linux-x64.exe
 
-      # - name: Publish
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: '12.x'
-      #     registry-url: 'https://registry.npmjs.org'
-      # - run: /
-      #     cd public/bs-material-ui-ppx
-      #     yarn publish --tag test
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: Publish
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: |
+          cd public/bs-material-ui-ppx
+          yarn publish --tag test
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
