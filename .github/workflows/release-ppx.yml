@@ -76,9 +76,9 @@ jobs:
       - name: Move artifacts
         run: |
           mkdir -p public/bs-material-ui-ppx/bin/bsb6
-          mv public/bs-material-ui-ppx/binaries/darwin/bin.exe public/bs-material-ui-ppx/bin/graphql_ppx-darwin-x64.exe
-          mv public/bs-material-ui-ppx/binaries/windows/bin.exe public/bs-material-ui-ppx/bin/graphql_ppx-win-x64.exe
-          mv public/bs-material-ui-ppx/binaries/linux/bin.exe public/bs-material-ui-ppx/bin/graphql_ppx-linux-x64.exe
+          mv public/bs-material-ui-ppx/binaries/darwin/bin.exe public/bs-material-ui-ppx/bin/bs_material_ui_ppx-darwin-x64.exe
+          mv public/bs-material-ui-ppx/binaries/windows/bin.exe public/bs-material-ui-ppx/bin/bs_material_ui_ppx-win-x64.exe
+          mv public/bs-material-ui-ppx/binaries/linux/bin.exe public/bs-material-ui-ppx/bin/bs_material_ui_ppx-linux-x64.exe
           rm -rf binaries
       - name: Download bsb6 linux artifacts
         uses: actions/download-artifact@master
@@ -100,9 +100,9 @@ jobs:
 
       - name: Move artifacts
         run: |
-          mv public/bs-material-ui-ppx/binaries/darwin/bin.exe public/bs-material-ui-ppx/bin/bsb6/graphql_ppx-darwin-x64.exe
-          mv public/bs-material-ui-ppx/binaries/windows/bin.exe public/bs-material-ui-ppx/bin/bsb6/graphql_ppx-win-x64.exe
-          mv public/bs-material-ui-ppx/binaries/linux/bin.exe public/bs-material-ui-ppx/bin/bsb6/graphql_ppx-linux-x64.exe
+          mv public/bs-material-ui-ppx/binaries/darwin/bin.exe public/bs-material-ui-ppx/bin/bsb6/bs_material_ui_ppx-darwin-x64.exe
+          mv public/bs-material-ui-ppx/binaries/windows/bin.exe public/bs-material-ui-ppx/bin/bsb6/bs_material_ui_ppx-win-x64.exe
+          mv public/bs-material-ui-ppx/binaries/linux/bin.exe public/bs-material-ui-ppx/bin/bsb6/bs_material_ui_ppx-linux-x64.exe
 
       - name: Publish
         uses: actions/setup-node@v1
