@@ -7,7 +7,7 @@
 	"private": false,
 	"homepage": "https://github.com/jsiebern/bs-material-ui/tree/master/public/bs-material-ui-ppx",
 	"bugs": "https://github.com/jsiebern/bs-material-ui/issues",
-	"version": "1.0.5-workflowtest.10",
+	"version": "1.0.5-workflowtest.11",
 	"author": "Jonathan Siebern <jsiebern88@gmail.com>",
 	"license": "MIT",
 	"scripts": {
