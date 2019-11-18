@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: ${{ matrix.os }}-bsb6
-          path: _build/default/src/bin.exe
+          path: public/bs-material-ui-ppx/_build/default/src/bin.exe
       # OCaml 4.02 and BuckleScript 5
       - name: install-build @402
         run: |
@@ -44,6 +44,6 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: ${{ matrix.os }}
-          path: _build/default/src/bin.exe
+          path: public/bs-material-ui-ppx/_build/default/src/bin.exe
         env:
           CI: true
