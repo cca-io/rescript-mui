@@ -109,7 +109,7 @@ jobs:
         with:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
-        run: /
+      - run: /
           cd public/bs-material-ui-ppx
           yarn publish --tag test
         env:
