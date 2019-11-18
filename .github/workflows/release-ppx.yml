@@ -107,9 +107,8 @@ jobs:
       - name: Publish
         uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
-      - name: Publish
         run: /
           cd public/bs-material-ui-ppx
           yarn publish --tag test
