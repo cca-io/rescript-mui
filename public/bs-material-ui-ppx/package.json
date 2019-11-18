@@ -7,7 +7,7 @@
 	"private": false,
 	"homepage": "https://github.com/jsiebern/reason-mui-withstyles-ppx",
 	"bugs": "https://github.com/jsiebern/reason-mui-withstyles-ppx/issues",
-	"version": "1.0.4-workflow_test.1",
+	"version": "1.0.5-workflow_test.2",
 	"author": "Jonathan Siebern <jsiebern88@gmail.com>",
 	"license": "MIT",
 	"scripts": {

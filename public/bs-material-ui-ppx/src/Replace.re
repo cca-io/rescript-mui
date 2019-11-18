@@ -53,7 +53,7 @@ let analyse = tpl => {
     };
   switch (replace) {
   | Record(moduleName, entries) =>
-    let typeModuleName = String.uncapitalize(moduleName);
+    let typeModuleName = String.uncapitalize_ascii(moduleName);
     let keys =
       entries
       |> List.map(entry => {
@@ -116,7 +116,7 @@ let analyse = tpl => {
       Generate.genModuleApply(moduleName, moduleName ++ "Defs"),
     ];
   | Func(moduleName, func, entries) =>
-    let typeModuleName = String.uncapitalize(moduleName);
+    let typeModuleName = String.uncapitalize_ascii(moduleName);
     let keys =
       entries
       |> List.map(entry => {
