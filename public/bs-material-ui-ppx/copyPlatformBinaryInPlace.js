@@ -36,7 +36,7 @@ function copyBinary(filename, destFilename) {
 	}
 
 	if (process.env.IS_BS_MATERIAL_UI_PPX_CI) {
-		console.log('graphql_ppx: IS_BS_MATERIAL_UI_PPX_CI has been set, skipping moving binary in place');
+		console.log('bs_material_ui_ppx: IS_BS_MATERIAL_UI_PPX_CI has been set, skipping moving binary in place');
 		process.exit(0);
 	}
 

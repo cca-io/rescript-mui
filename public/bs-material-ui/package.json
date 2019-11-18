@@ -20,7 +20,7 @@
 		"reason-react": "^0.7.0"
 	},
 	"devDependencies": {
-		"@jsiebern/bs-material-ui-ppx": "^1.0.4",
+		"@jsiebern/bs-material-ui-ppx": "*",
 		"@material-ui/core": "^4.6.1",
 		"@material-ui/icons": "^4.1.0",
 		"@mscharley/bs-material-ui-icons": "^1.0.1",

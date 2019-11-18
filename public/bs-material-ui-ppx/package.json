@@ -7,21 +7,17 @@
 	"private": false,
 	"homepage": "https://github.com/jsiebern/reason-mui-withstyles-ppx",
 	"bugs": "https://github.com/jsiebern/reason-mui-withstyles-ppx/issues",
-	"version": "1.0.5-workflow_test.3",
+	"version": "1.0.5-workflowtest.4",
 	"author": "Jonathan Siebern <jsiebern88@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"build": "bsb -make-world -backend native && cp ./lib/bs/native/ppx_withstyles.native ./ppx",
-		"postinstall": "bsb -make-world -backend native && cp ./lib/bs/native/ppx_withstyles.native ./ppx",
-		"clean": "bsb -clean-world",
-		"watch": "bsb -make-world -backend native -w"
+		"postinstall": "node ./copyPlatformBinaryInPlace.js"
 	},
 	"keywords": [ "Reason" ],
 	"description": "This is a ppx for using the withStyles component in @jsiebern/bs-material-ui",
-	"dependencies": {
-		"yauzl": "^2.10.0"
-	},
-	"devDependencies": {
-		"clsx": "^1.0.4"
+	"dependencies": {},
+	"devDependencies": {},
+	"publishConfig": {
+		"access": "public"
 	}
 }
