@@ -1592,6 +1592,14 @@
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.3.tgz#f060bf6eaafae4d56a7dac618980838b0696e2ab"
   integrity sha512-FmuxfCuolpLl0AnQ2NHSzoUKWEJDFl63qXjzdoWBVyFCXzMGm1spBzk7LeHNoVCiWCF7mRVms9e6jEV9+MoPbg==
 
+"@jsiebern/bs-material-ui-ppx@*":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@jsiebern/bs-material-ui-ppx/-/bs-material-ui-ppx-1.0.4.tgz#8469e6340b6acd07788f82cf7352b3aa8ada6f89"
+  integrity sha512-c/pn4OzZMJcggD2Y3v20NZq2IrWhd007sUb3Y8vcygiy/qQiKkHRHRUYnGyuKYeMppumZH5OcKuOF9GINclEeA==
+  dependencies:
+    bsb-native "^4.0.9"
+    yauzl "^2.10.0"
+
 "@material-ui/core@^4.0.2", "@material-ui/core@^4.6.1":
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.6.1.tgz#039f97443547a88c41d290deabfb4a044c6031ec"
@@ -2861,12 +2869,6 @@ bs-nonempty@^1.3.0:
   dependencies:
     bs-abstract "^0.16.0"
 
-bs-platform@bsansouci/bsb-native#3.2.0:
-  version "3.2.0"
-  resolved "https://codeload.github.com/bsansouci/bsb-native/tar.gz/84604c9f6a5611eed68372efdb575c00a3e72813"
-  dependencies:
-    yauzl "^2.9.1"
-
 bs-platform@~5.0.4:
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-5.0.6.tgz#88c13041fb020479800de3d82c680bf971091425"
@@ -2876,6 +2878,13 @@ bsb-js@^1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/bsb-js/-/bsb-js-1.1.7.tgz#12cc91e974f5896b3a2aa8358419d24e56f552c3"
   integrity sha512-FSR7d5Kb6KfVI5sLz9bEeD9pbA9F4Zbkk1xa6R9CJtyd+dJ7mIkxoXqv7cw7HWcuee+VpIhmjYzrplnFd/5Qgg==
+
+bsb-native@^4.0.9:
+  version "4.0.1100"
+  resolved "https://registry.yarnpkg.com/bsb-native/-/bsb-native-4.0.1100.tgz#c61e02afc12ec393b63dfb440ba7b309968e107f"
+  integrity sha512-XQ6farp7NBctlw1EOMQDvWEyOAGzwqP5G9N37Jb9KgvD/eiSNPclcMFi6BpFlNeHDYPyX4T0rSaFK7tvQFb5/Q==
+  dependencies:
+    yauzl "^2.9.1"
 
 buffer-crc32@~0.2.3:
   version "0.2.13"
@@ -8218,9 +8227,9 @@ serialize-javascript@^1.4.0, serialize-javascript@^1.7.0:
   integrity sha512-ke8UG8ulpFOxO8f8gRYabHQe/ZntKlcig2Mp+8+URDP1D8vJZ0KUt7LYo07q25Z/+JVSgpr/cui9PIp5H6/+nA==
 
 serialize-to-js@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/serialize-to-js/-/serialize-to-js-3.0.0.tgz#1fd8736744819a4df29dc85e9d04a44a4984edc3"
-  integrity sha512-WdGgi0jGnWCQXph2p3vkxceDnTfvfyXfYxherQMRcZjSaJzMQdMBAW6i0nojsBKIZ3fFOztZKKVbbm05VbIdRA==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/serialize-to-js/-/serialize-to-js-3.0.1.tgz#7bece9cb910c5ee1433f56500db4a5303bca6a02"
+  integrity sha512-TokHD6rY0yQxMmZCjeL8Oj+XuQK6uEx8JnBjt7PuqwWa2qY79Wb/KyhEDduTUC8Gl3S7c40jefWve7f5t4L8Lw==
 
 serve-static@^1.12.4:
   version "1.14.1"
