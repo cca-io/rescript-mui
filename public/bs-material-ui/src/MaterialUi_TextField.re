@@ -12,6 +12,9 @@ type margin = [
 ];
 
 [@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+
+[@bs.deriving jsConverter]
 type variant = [
   | [@bs.as "standard"] `Standard
   | [@bs.as "outlined"] `Outlined
@@ -48,7 +51,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~defaultValue: 'union_rn01=?,
+    ~defaultValue: 'union_rbwj=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -64,20 +67,21 @@ external makePropsMui:
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_r883=?,
+    ~onChange: 'any_rc6m=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_rg48=?,
-    ~rowsMax: 'union_rezo=?,
+    ~rows: 'union_rd7x=?,
+    ~rowsMax: 'union_r8yp=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
+    ~size: string=?,
     ~_type: string=?,
-    ~value: 'union_rmhn=?,
+    ~value: 'union_r1oh=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r1jd=?,
+    ~component: 'union_r8bx=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -117,6 +121,7 @@ let makeProps =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~select: option(bool)=?,
       ~_SelectProps: option(Js.t({..}))=?,
+      ~size: option(size)=?,
       ~type_: option(string)=?,
       ~value: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~variant: option(variant)=?,
@@ -166,6 +171,7 @@ let makeProps =
       rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~select?,
     ~_SelectProps?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
     ~_type=?type_,
     ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),

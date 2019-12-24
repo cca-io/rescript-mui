@@ -11,6 +11,7 @@ type maxWidth = [
 module Classes = {
   type classesType =
     | Root(string)
+    | DisableGutters(string)
     | Fixed(string)
     | MaxWidthXs(string)
     | MaxWidthSm(string)
@@ -21,6 +22,7 @@ module Classes = {
   let to_string =
     fun
     | Root(_) => "root"
+    | DisableGutters(_) => "disableGutters"
     | Fixed(_) => "fixed"
     | MaxWidthXs(_) => "maxWidthXs"
     | MaxWidthSm(_) => "maxWidthSm"
@@ -34,6 +36,7 @@ module Classes = {
                        (obj, classType) => {
                          switch (classType) {
                          | Root(className)
+                         | DisableGutters(className)
                          | Fixed(className)
                          | MaxWidthXs(className)
                          | MaxWidthSm(className)
@@ -53,7 +56,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rhsz=?,
+    ~component: 'union_rc5b=?,
+    ~disableGutters: bool=?,
     ~fixed: bool=?,
     ~maxWidth: string=?,
     ~key: string=?,
@@ -77,6 +81,7 @@ let makeProps =
              | `Element(React.element)
            ],
          )=?,
+      ~disableGutters: option(bool)=?,
       ~fixed: option(bool)=?,
       ~maxWidth: option(maxWidth)=?,
       ~key: option(string)=?,
@@ -90,6 +95,7 @@ let makeProps =
     ~className?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disableGutters?,
     ~fixed?,
     ~maxWidth=?maxWidth->(Belt.Option.map(v => maxWidthToJs(v))),
     ~key?,

@@ -73,15 +73,15 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~collapsedHeight: string=?,
-    ~component: 'union_rv1c=?,
+    ~collapsedHeight: 'union_rfkx=?,
+    ~component: 'union_robt=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_r8vp=?,
+    ~timeout: 'union_rory=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -95,7 +95,8 @@ let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~collapsedHeight: option(string)=?,
+      ~collapsedHeight:
+         option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~component:
          option(
            [
@@ -128,7 +129,12 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
-    ~collapsedHeight?,
+    ~collapsedHeight=?
+      collapsedHeight->(
+                         Belt.Option.map(v =>
+                           MaterialUi_Helpers.unwrapValue(v)
+                         )
+                       ),
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_in=?in_,

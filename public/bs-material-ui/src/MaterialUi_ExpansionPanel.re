@@ -1,3 +1,9 @@
+[@bs.deriving jsConverter]
+type variant = [
+  | [@bs.as "elevation"] `Elevation
+  | [@bs.as "outlined"] `Outlined
+];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -37,14 +43,15 @@ external makePropsMui:
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_rmmb=?,
+    ~onChange: 'any_rgbd=?,
     ~square: bool=?,
-    ~_TransitionComponent: 'union_r5sf=?,
+    ~_TransitionComponent: 'union_reqe=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r1uf=?,
-    ~elevation: 'number_3=?,
+    ~component: 'union_re7l=?,
+    ~elevation: 'number_m=?,
+    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -81,6 +88,7 @@ let makeProps =
            ],
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
+      ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -106,6 +114,7 @@ let makeProps =
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

@@ -16,9 +16,9 @@ type placement = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'union_r6ct=?,
+    ~anchorEl: 'union_r9p0=?,
     ~children: 'children=?,
-    ~container: 'union_rqus=?,
+    ~container: 'union_rpsx=?,
     ~disablePortal: bool=?,
     ~keepMounted: bool=?,
     ~modifiers: Js.t({..})=?,

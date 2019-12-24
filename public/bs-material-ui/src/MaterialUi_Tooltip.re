@@ -18,7 +18,10 @@ module Classes = {
   type classesType =
     | Popper(string)
     | PopperInteractive(string)
+    | PopperArrow(string)
     | Tooltip(string)
+    | TooltipArrow(string)
+    | Arrow(string)
     | Touch(string)
     | TooltipPlacementLeft(string)
     | TooltipPlacementRight(string)
@@ -29,7 +32,10 @@ module Classes = {
     fun
     | Popper(_) => "popper"
     | PopperInteractive(_) => "popperInteractive"
+    | PopperArrow(_) => "popperArrow"
     | Tooltip(_) => "tooltip"
+    | TooltipArrow(_) => "tooltipArrow"
+    | Arrow(_) => "arrow"
     | Touch(_) => "touch"
     | TooltipPlacementLeft(_) => "tooltipPlacementLeft"
     | TooltipPlacementRight(_) => "tooltipPlacementRight"
@@ -43,7 +49,10 @@ module Classes = {
                          switch (classType) {
                          | Popper(className)
                          | PopperInteractive(className)
+                         | PopperArrow(className)
                          | Tooltip(className)
+                         | TooltipArrow(className)
+                         | Arrow(className)
                          | Touch(className)
                          | TooltipPlacementLeft(className)
                          | TooltipPlacementRight(className)
@@ -60,23 +69,24 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~arrow: bool=?,
     ~children: 'children=?,
     ~disableFocusListener: bool=?,
     ~disableHoverListener: bool=?,
     ~disableTouchListener: bool=?,
-    ~enterDelay: 'number_c=?,
-    ~enterTouchDelay: 'number_1=?,
+    ~enterDelay: 'number_s=?,
+    ~enterTouchDelay: 'number_f=?,
     ~id: string=?,
     ~interactive: bool=?,
-    ~leaveDelay: 'number_r=?,
-    ~leaveTouchDelay: 'number_8=?,
-    ~onClose: 'any_rnsc=?,
-    ~onOpen: 'any_rtlt=?,
+    ~leaveDelay: 'number_i=?,
+    ~leaveTouchDelay: 'number_i=?,
+    ~onClose: 'any_rqrn=?,
+    ~onOpen: 'any_r5it=?,
     ~_open: bool=?,
     ~placement: string=?,
     ~_PopperProps: Js.t({..})=?,
     ~title: React.element,
-    ~_TransitionComponent: 'union_r1je=?,
+    ~_TransitionComponent: 'union_revx=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -89,6 +99,7 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~arrow: option(bool)=?,
       ~children: option('children)=?,
       ~disableFocusListener: option(bool)=?,
       ~disableHoverListener: option(bool)=?,
@@ -121,6 +132,7 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
+    ~arrow?,
     ~children?,
     ~disableFocusListener?,
     ~disableHoverListener?,

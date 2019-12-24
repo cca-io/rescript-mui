@@ -16,18 +16,17 @@
 	},
 	"files": [ "/src", "/bsconfig.json" ],
 	"peerDependencies": {
-		"@material-ui/core": "^4.6.1",
+		"@material-ui/core": "^4.8.1",
 		"reason-react": "^0.7.0"
 	},
 	"devDependencies": {
 		"@jsiebern/bs-material-ui-ppx": "*",
-		"@material-ui/core": "^4.6.1",
+		"@material-ui/core": "^4.8.1",
 		"@material-ui/icons": "^4.1.0",
 		"@mscharley/bs-material-ui-icons": "^1.0.1",
-		"bs-platform": "~5.0.4",
+		"bs-platform": "~7.0.1",
 		"bsb-js": "^1.1.7",
 		"clsx": "^1.0.4",
-		"parcel-bundler": "^1.12.3",
 		"reason-react": "^0.7.0"
 	}
 }

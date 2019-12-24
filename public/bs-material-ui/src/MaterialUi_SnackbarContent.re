@@ -1,6 +1,12 @@
 [@bs.deriving jsConverter]
 type role = [ | [@bs.as "alert"] `Alert | [@bs.as "alertdialog"] `Alertdialog];
 
+[@bs.deriving jsConverter]
+type variant = [
+  | [@bs.as "elevation"] `Elevation
+  | [@bs.as "outlined"] `Outlined
+];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -39,9 +45,10 @@ external makePropsMui:
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
-    ~component: 'union_rdxk=?,
-    ~elevation: 'number_1=?,
+    ~component: 'union_r9wk=?,
+    ~elevation: 'number_o=?,
     ~square: bool=?,
+    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -68,6 +75,7 @@ let makeProps =
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
+      ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -85,6 +93,7 @@ let makeProps =
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~square?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

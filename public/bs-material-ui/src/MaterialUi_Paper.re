@@ -1,7 +1,14 @@
+[@bs.deriving jsConverter]
+type variant = [
+  | [@bs.as "elevation"] `Elevation
+  | [@bs.as "outlined"] `Outlined
+];
+
 module Classes = {
   type classesType =
     | Root(string)
     | Rounded(string)
+    | Outlined(string)
     | Elevation0(string)
     | Elevation1(string)
     | Elevation2(string)
@@ -32,6 +39,7 @@ module Classes = {
     fun
     | Root(_) => "root"
     | Rounded(_) => "rounded"
+    | Outlined(_) => "outlined"
     | Elevation0(_) => "elevation0"
     | Elevation1(_) => "elevation1"
     | Elevation2(_) => "elevation2"
@@ -65,6 +73,7 @@ module Classes = {
                          switch (classType) {
                          | Root(className)
                          | Rounded(className)
+                         | Outlined(className)
                          | Elevation0(className)
                          | Elevation1(className)
                          | Elevation2(className)
@@ -103,9 +112,10 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rffa=?,
-    ~elevation: 'number_9=?,
+    ~component: 'union_rgzn=?,
+    ~elevation: 'number_5=?,
     ~square: bool=?,
+    ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -129,6 +139,7 @@ let makeProps =
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
+      ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -143,6 +154,7 @@ let makeProps =
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~square?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
     ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

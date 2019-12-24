@@ -2,7 +2,7 @@ import * as babel from '@babel/core';
 import { readFile } from 'fs-extra';
 import * as path from 'path';
 
-const workspaceRoot = path.join('/Users/jonny/.mui-clone');
+const workspaceRoot = path.join('/Users/jonathansiebern/.mui-clone');
 const babelConfigPath = path.join(workspaceRoot, 'babel.config.js');
 
 function withExtension(filepath, extension) {

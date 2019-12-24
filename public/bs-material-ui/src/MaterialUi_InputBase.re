@@ -22,7 +22,6 @@ module Classes = {
     | FullWidth(string)
     | Input(string)
     | InputMarginDense(string)
-    | InputSelect(string)
     | InputMultiline(string)
     | InputTypeSearch(string)
     | InputAdornedStart(string)
@@ -44,7 +43,6 @@ module Classes = {
     | FullWidth(_) => "fullWidth"
     | Input(_) => "input"
     | InputMarginDense(_) => "inputMarginDense"
-    | InputSelect(_) => "inputSelect"
     | InputMultiline(_) => "inputMultiline"
     | InputTypeSearch(_) => "inputTypeSearch"
     | InputAdornedStart(_) => "inputAdornedStart"
@@ -69,7 +67,6 @@ module Classes = {
                          | FullWidth(className)
                          | Input(className)
                          | InputMarginDense(className)
-                         | InputSelect(className)
                          | InputMultiline(className)
                          | InputTypeSearch(className)
                          | InputAdornedStart(className)
@@ -91,19 +88,19 @@ external makePropsMui:
     ~autoFocus: bool=?,
     ~className: string=?,
     ~color: string=?,
-    ~defaultValue: 'any_rv1e=?,
+    ~defaultValue: 'any_rtkv=?,
     ~disabled: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_rzxy=?,
+    ~inputComponent: 'union_rwj4=?,
     ~inputProps: Js.t({..})=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rc52=?,
+    ~onChange: 'any_rani=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
@@ -112,12 +109,12 @@ external makePropsMui:
     ~readOnly: bool=?,
     ~renderSuffix: 'genericCallback=?,
     ~required: bool=?,
-    ~rows: 'union_rux8=?,
-    ~rowsMax: 'union_rqmk=?,
-    ~select: bool=?,
+    ~rows: 'union_rlue=?,
+    ~rowsMax: 'union_ri15=?,
+    ~rowsMin: 'union_rm3v=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_ry9z=?,
+    ~value: 'any_rrev=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -134,7 +131,7 @@ let makeProps =
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~defaultValue: option('any_rv1e)=?,
+      ~defaultValue: option('any_rtkv)=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
@@ -164,10 +161,10 @@ let makeProps =
       ~required: option(bool)=?,
       ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~select: option(bool)=?,
+      ~rowsMin: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_ry9z)=?,
+      ~value: option('any_rrev)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -207,7 +204,8 @@ let makeProps =
     ~rows=?rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~rowsMax=?
       rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~select?,
+    ~rowsMin=?
+      rowsMin->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~startAdornment?,
     ~_type=?type_,
     ~value?,

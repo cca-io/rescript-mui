@@ -12,7 +12,8 @@ module Classes = {
     | Circle(string)
     | Rounded(string)
     | Square(string)
-    | Img(string);
+    | Img(string)
+    | Fallback(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -21,7 +22,8 @@ module Classes = {
     | Circle(_) => "circle"
     | Rounded(_) => "rounded"
     | Square(_) => "square"
-    | Img(_) => "img";
+    | Img(_) => "img"
+    | Fallback(_) => "fallback";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -33,7 +35,8 @@ module Classes = {
                          | Circle(className)
                          | Rounded(className)
                          | Square(className)
-                         | Img(className) =>
+                         | Img(className)
+                         | Fallback(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -48,7 +51,7 @@ external makePropsMui:
     ~alt: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r8fz=?,
+    ~component: 'union_roll=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,

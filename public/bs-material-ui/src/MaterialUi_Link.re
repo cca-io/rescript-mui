@@ -17,6 +17,23 @@ type underline = [
 ];
 
 [@bs.deriving jsConverter]
+type rel = [
+  | [@bs.as "alternate"] `Alternate
+  | [@bs.as "author"] `Author
+  | [@bs.as "bookmark"] `Bookmark
+  | [@bs.as "external"] `External
+  | [@bs.as "help"] `Help
+  | [@bs.as "license"] `License
+  | [@bs.as "next"] `Next
+  | [@bs.as "nofollow"] `Nofollow
+  | [@bs.as "noreferrer"] `Noreferrer
+  | [@bs.as "noopener"] `Noopener
+  | [@bs.as "prev"] `Prev
+  | [@bs.as "search"] `Search
+  | [@bs.as "tag"] `Tag
+];
+
+[@bs.deriving jsConverter]
 type align = [
   | [@bs.as "inherit"] `Inherit
   | [@bs.as "left"] `Left
@@ -75,12 +92,16 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rhvd=?,
+    ~component: 'union_rbc7=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~_TypographyClasses: Js.t({..})=?,
     ~underline: string=?,
     ~variant: string=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~href: string=?,
+    ~target: string=?,
+    ~rel: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~align: string=?,
@@ -114,6 +135,10 @@ let makeProps =
       ~_TypographyClasses: option(Js.t({..}))=?,
       ~underline: option(underline)=?,
       ~variant: option(string)=?,
+      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~href: option(string)=?,
+      ~target: option(string)=?,
+      ~rel: option(rel)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~align: option(align)=?,
@@ -137,6 +162,10 @@ let makeProps =
     ~_TypographyClasses?,
     ~underline=?underline->(Belt.Option.map(v => underlineToJs(v))),
     ~variant?,
+    ~onClick?,
+    ~href?,
+    ~target?,
+    ~rel=?rel->(Belt.Option.map(v => relToJs(v))),
     ~key?,
     ~ref?,
     ~align=?align->(Belt.Option.map(v => alignToJs(v))),

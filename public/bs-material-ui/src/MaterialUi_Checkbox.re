@@ -6,14 +6,14 @@ type color = [
 ];
 
 [@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+
+[@bs.deriving jsConverter]
 type edge = [
   | [@bs.as "start"] `Start
   | [@bs.as "end"] `End
   | [@bs.as "false"] `False
 ];
-
-[@bs.deriving jsConverter]
-type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
 
 module Classes = {
   type classesType =
@@ -65,17 +65,17 @@ external makePropsMui:
     ~indeterminate: bool=?,
     ~indeterminateIcon: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_rk0a=?,
+    ~onChange: 'any_rvki=?,
     ~required: bool=?,
+    ~size: string=?,
     ~_type: string=?,
-    ~value: 'any_rk0b=?,
+    ~value: 'any_rq4b=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
     ~className: string=?,
     ~disableFocusRipple: bool=?,
     ~edge: string=?,
-    ~size: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -97,15 +97,15 @@ let makeProps =
       ~inputProps: option(Js.t({..}))=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~required: option(bool)=?,
+      ~size: option(size)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rk0b)=?,
+      ~value: option('any_rq4b)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~disableFocusRipple: option(bool)=?,
       ~edge: option(edge)=?,
-      ~size: option(size)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -123,6 +123,7 @@ let makeProps =
     ~inputProps?,
     ~onChange?,
     ~required?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
     ~_type=?type_,
     ~value?,
     ~key?,
@@ -131,7 +132,6 @@ let makeProps =
     ~className?,
     ~disableFocusRipple?,
     ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
-    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

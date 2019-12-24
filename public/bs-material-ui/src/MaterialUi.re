@@ -94,6 +94,7 @@ module Switch = MaterialUi_Switch;
 module Tab = MaterialUi_Tab;
 module TableBody = MaterialUi_TableBody;
 module TableCell = MaterialUi_TableCell;
+module TableContainer = MaterialUi_TableContainer;
 module TableFooter = MaterialUi_TableFooter;
 module TableHead = MaterialUi_TableHead;
 module TablePagination = MaterialUi_TablePagination;

@@ -83,6 +83,8 @@ module AvatarClassKey = {
     circle: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorDefault"]
     colorDefault: string,
+    [@bs.optional] [@bs.as "fallback"]
+    fallback: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "img"]
     img: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -203,6 +205,8 @@ module ButtonClassKey = {
     containedSizeLarge: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "containedSizeSmall"]
     containedSizeSmall: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "disableElevation"]
+    disableElevation: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "endIcon"]
@@ -279,24 +283,42 @@ module ButtonGroupClassKey = {
     grouped: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedContained"]
     groupedContained: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedContainedHorizontal"]
+    groupedContainedHorizontal: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedContainedPrimary"]
     groupedContainedPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedContainedSecondary"]
     groupedContainedSecondary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedContainedVertical"]
+    groupedContainedVertical: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedHorizontal"]
+    groupedHorizontal: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedOutlined"]
     groupedOutlined: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedOutlinedHorizontal"]
+    groupedOutlinedHorizontal: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedOutlinedPrimary"]
     groupedOutlinedPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedOutlinedSecondary"]
     groupedOutlinedSecondary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedOutlinedVertical"]
+    groupedOutlinedVertical: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedText"]
     groupedText: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedTextHorizontal"]
+    groupedTextHorizontal: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedTextPrimary"]
     groupedTextPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedTextSecondary"]
     groupedTextSecondary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedTextVertical"]
+    groupedTextVertical: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedVertical"]
+    groupedVertical: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "vertical"]
+    vertical: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -517,6 +539,8 @@ module CollapseClassKey = {
 module ContainerClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "disableGutters"]
+    disableGutters: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "fixed"]
     fixed: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "maxWidthLg"]
@@ -1111,6 +1135,8 @@ module InputClassKey = {
     inputMultiline: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputTypeSearch"]
     inputTypeSearch: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "marginDense"]
+    marginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "multiline"]
     multiline: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -1505,8 +1531,6 @@ module OutlinedInputClassKey = {
     inputMarginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputMultiline"]
     inputMultiline: ReactDOMRe.Style.t,
-    [@bs.optional] [@bs.as "inputSelect"]
-    inputSelect: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "marginDense"]
     marginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "multiline"]
@@ -1573,6 +1597,8 @@ module PaperClassKey = {
     elevation8: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "elevation9"]
     elevation9: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "outlined"]
+    outlined: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "rounded"]
@@ -1972,6 +1998,16 @@ module TableCellClassKey = {
   let make = t;
 };
 
+module MuiTableContainer = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "root"]
+    root: ReactDOMRe.Style.t,
+  };
+
+  let make = t;
+};
+
 module MuiTableFooter = {
   [@bs.deriving abstract]
   type t = {
@@ -2111,12 +2147,18 @@ module ToolbarClassKey = {
 module TooltipClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "arrow"]
+    arrow: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "popper"]
     popper: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "popperArrow"]
+    popperArrow: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "popperInteractive"]
     popperInteractive: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "tooltip"]
     tooltip: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "tooltipArrow"]
+    tooltipArrow: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "tooltipPlacementBottom"]
     tooltipPlacementBottom: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "tooltipPlacementLeft"]
@@ -2389,6 +2431,8 @@ module Overrides = {
     muiTableBody: MuiTableBody.t,
     [@bs.optional] [@bs.as "MuiTableCell"]
     muiTableCell: TableCellClassKey.t,
+    [@bs.optional] [@bs.as "MuiTableContainer"]
+    muiTableContainer: MuiTableContainer.t,
     [@bs.optional] [@bs.as "MuiTableFooter"]
     muiTableFooter: MuiTableFooter.t,
     [@bs.optional] [@bs.as "MuiTableHead"]
@@ -2549,16 +2593,22 @@ module Palette = {
     getContrastText: Js.Json.t,
     [@bs.as "grey"]
     grey: Color.t,
+    [@bs.as "info"]
+    info: PaletteColor.t,
     [@bs.as "primary"]
     primary: PaletteColor.t,
     [@bs.as "secondary"]
     secondary: PaletteColor.t,
+    [@bs.as "success"]
+    success: PaletteColor.t,
     [@bs.as "text"]
     text: TypeText.t,
     [@bs.as "tonalOffset"]
     tonalOffset: float,
     [@bs.as "type"]
     type_: string,
+    [@bs.as "warning"]
+    warning: PaletteColor.t,
   };
 
   let make = t;

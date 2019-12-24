@@ -310,4 +310,49 @@ export default {
 			description: '-',
 		},
 	},
+	Link: {
+		onClick: {
+			type: {
+				name: 'func',
+			},
+			required: false,
+			description: '-',
+		},
+		href: {
+			type: {
+				name: 'string',
+			},
+			required: false,
+			description: '-',
+		},
+		target: {
+			type: {
+				name: 'string',
+			},
+			required: false,
+			description: '-',
+		},
+		rel: {
+			type: {
+				name: 'enum',
+				value: [
+					{ value: 'alternate', computed: false },
+					{ value: 'author', computed: false },
+					{ value: 'bookmark', computed: false },
+					{ value: 'external', computed: false },
+					{ value: 'help', computed: false },
+					{ value: 'license', computed: false },
+					{ value: 'next', computed: false },
+					{ value: 'nofollow', computed: false },
+					{ value: 'noreferrer', computed: false },
+					{ value: 'noopener', computed: false },
+					{ value: 'prev', computed: false },
+					{ value: 'search', computed: false },
+					{ value: 'tag', computed: false },
+				]
+			},
+			required: false,
+			description: '-',
+		},
+	},
 };

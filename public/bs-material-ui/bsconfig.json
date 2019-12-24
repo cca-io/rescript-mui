@@ -15,7 +15,7 @@
 		"module": "es6",
 		"in-source": true
 	},
-	"ppx-flags": [ "@jsiebern/bs-material-ui-ppx/ppx" ],
+	"ppx-flags": [ "@jsiebern/bs-material-ui-ppx/ppx6" ],
 	"bs-dependencies": [ "reason-react", "@mscharley/bs-material-ui-icons" ],
 	"bsc-flags": [ "-bs-super-errors" ],
 	"warnings": {

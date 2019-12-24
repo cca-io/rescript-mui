@@ -87,6 +87,8 @@ module AvatarClassKey = {
     circle: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "colorDefault"]
     colorDefault: string,
+    [@bs.optional] [@bs.as "fallback"]
+    fallback: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "img"]
     img: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -207,6 +209,8 @@ module ButtonClassKey = {
     containedSizeLarge: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "containedSizeSmall"]
     containedSizeSmall: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "disableElevation"]
+    disableElevation: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "disabled"]
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "endIcon"]
@@ -283,24 +287,42 @@ module ButtonGroupClassKey = {
     grouped: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedContained"]
     groupedContained: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedContainedHorizontal"]
+    groupedContainedHorizontal: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedContainedPrimary"]
     groupedContainedPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedContainedSecondary"]
     groupedContainedSecondary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedContainedVertical"]
+    groupedContainedVertical: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedHorizontal"]
+    groupedHorizontal: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedOutlined"]
     groupedOutlined: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedOutlinedHorizontal"]
+    groupedOutlinedHorizontal: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedOutlinedPrimary"]
     groupedOutlinedPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedOutlinedSecondary"]
     groupedOutlinedSecondary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedOutlinedVertical"]
+    groupedOutlinedVertical: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedText"]
     groupedText: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedTextHorizontal"]
+    groupedTextHorizontal: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedTextPrimary"]
     groupedTextPrimary: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "groupedTextSecondary"]
     groupedTextSecondary: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedTextVertical"]
+    groupedTextVertical: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "groupedVertical"]
+    groupedVertical: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "vertical"]
+    vertical: ReactDOMRe.Style.t,
   };
 
   let make = t;
@@ -521,6 +543,8 @@ module CollapseClassKey = {
 module ContainerClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "disableGutters"]
+    disableGutters: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "fixed"]
     fixed: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "maxWidthLg"]
@@ -1115,6 +1139,8 @@ module InputClassKey = {
     inputMultiline: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputTypeSearch"]
     inputTypeSearch: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "marginDense"]
+    marginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "multiline"]
     multiline: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
@@ -1509,8 +1535,6 @@ module OutlinedInputClassKey = {
     inputMarginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "inputMultiline"]
     inputMultiline: ReactDOMRe.Style.t,
-    [@bs.optional] [@bs.as "inputSelect"]
-    inputSelect: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "marginDense"]
     marginDense: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "multiline"]
@@ -1577,6 +1601,8 @@ module PaperClassKey = {
     elevation8: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "elevation9"]
     elevation9: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "outlined"]
+    outlined: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "rounded"]
@@ -1976,6 +2002,16 @@ module TableCellClassKey = {
   let make = t;
 };
 
+module MuiTableContainer = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "root"]
+    root: ReactDOMRe.Style.t,
+  };
+
+  let make = t;
+};
+
 module MuiTableFooter = {
   [@bs.deriving abstract]
   type t = {
@@ -2115,12 +2151,18 @@ module ToolbarClassKey = {
 module TooltipClassKey = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional] [@bs.as "arrow"]
+    arrow: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "popper"]
     popper: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "popperArrow"]
+    popperArrow: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "popperInteractive"]
     popperInteractive: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "tooltip"]
     tooltip: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "tooltipArrow"]
+    tooltipArrow: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "tooltipPlacementBottom"]
     tooltipPlacementBottom: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "tooltipPlacementLeft"]
@@ -2393,6 +2435,8 @@ module Overrides = {
     muiTableBody: MuiTableBody.t,
     [@bs.optional] [@bs.as "MuiTableCell"]
     muiTableCell: TableCellClassKey.t,
+    [@bs.optional] [@bs.as "MuiTableContainer"]
+    muiTableContainer: MuiTableContainer.t,
     [@bs.optional] [@bs.as "MuiTableFooter"]
     muiTableFooter: MuiTableFooter.t,
     [@bs.optional] [@bs.as "MuiTableHead"]
@@ -2544,6 +2588,50 @@ module Color = {
   let make = t;
 };
 
+module Info = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "50"]
+    _50: string,
+    [@bs.optional] [@bs.as "100"]
+    _100: string,
+    [@bs.optional] [@bs.as "200"]
+    _200: string,
+    [@bs.optional] [@bs.as "300"]
+    _300: string,
+    [@bs.optional] [@bs.as "400"]
+    _400: string,
+    [@bs.optional] [@bs.as "500"]
+    _500: string,
+    [@bs.optional] [@bs.as "600"]
+    _600: string,
+    [@bs.optional] [@bs.as "700"]
+    _700: string,
+    [@bs.optional] [@bs.as "800"]
+    _800: string,
+    [@bs.optional] [@bs.as "900"]
+    _900: string,
+    [@bs.optional] [@bs.as "A100"]
+    a100: string,
+    [@bs.optional] [@bs.as "A200"]
+    a200: string,
+    [@bs.optional] [@bs.as "A400"]
+    a400: string,
+    [@bs.optional] [@bs.as "A700"]
+    a700: string,
+    [@bs.optional] [@bs.as "contrastText"]
+    contrastText: string,
+    [@bs.optional] [@bs.as "dark"]
+    dark: string,
+    [@bs.optional] [@bs.as "light"]
+    light: string,
+    [@bs.as "main"]
+    main: string,
+  };
+
+  let make = t;
+};
+
 module Primary = {
   [@bs.deriving abstract]
   type t = {
@@ -2632,6 +2720,50 @@ module Secondary = {
   let make = t;
 };
 
+module Success = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "50"]
+    _50: string,
+    [@bs.optional] [@bs.as "100"]
+    _100: string,
+    [@bs.optional] [@bs.as "200"]
+    _200: string,
+    [@bs.optional] [@bs.as "300"]
+    _300: string,
+    [@bs.optional] [@bs.as "400"]
+    _400: string,
+    [@bs.optional] [@bs.as "500"]
+    _500: string,
+    [@bs.optional] [@bs.as "600"]
+    _600: string,
+    [@bs.optional] [@bs.as "700"]
+    _700: string,
+    [@bs.optional] [@bs.as "800"]
+    _800: string,
+    [@bs.optional] [@bs.as "900"]
+    _900: string,
+    [@bs.optional] [@bs.as "A100"]
+    a100: string,
+    [@bs.optional] [@bs.as "A200"]
+    a200: string,
+    [@bs.optional] [@bs.as "A400"]
+    a400: string,
+    [@bs.optional] [@bs.as "A700"]
+    a700: string,
+    [@bs.optional] [@bs.as "contrastText"]
+    contrastText: string,
+    [@bs.optional] [@bs.as "dark"]
+    dark: string,
+    [@bs.optional] [@bs.as "light"]
+    light: string,
+    [@bs.as "main"]
+    main: string,
+  };
+
+  let make = t;
+};
+
 module TypeText = {
   [@bs.deriving abstract]
   type t = {
@@ -2643,6 +2775,50 @@ module TypeText = {
     primary: string,
     [@bs.optional] [@bs.as "secondary"]
     secondary: string,
+  };
+
+  let make = t;
+};
+
+module Warning = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional] [@bs.as "50"]
+    _50: string,
+    [@bs.optional] [@bs.as "100"]
+    _100: string,
+    [@bs.optional] [@bs.as "200"]
+    _200: string,
+    [@bs.optional] [@bs.as "300"]
+    _300: string,
+    [@bs.optional] [@bs.as "400"]
+    _400: string,
+    [@bs.optional] [@bs.as "500"]
+    _500: string,
+    [@bs.optional] [@bs.as "600"]
+    _600: string,
+    [@bs.optional] [@bs.as "700"]
+    _700: string,
+    [@bs.optional] [@bs.as "800"]
+    _800: string,
+    [@bs.optional] [@bs.as "900"]
+    _900: string,
+    [@bs.optional] [@bs.as "A100"]
+    a100: string,
+    [@bs.optional] [@bs.as "A200"]
+    a200: string,
+    [@bs.optional] [@bs.as "A400"]
+    a400: string,
+    [@bs.optional] [@bs.as "A700"]
+    a700: string,
+    [@bs.optional] [@bs.as "contrastText"]
+    contrastText: string,
+    [@bs.optional] [@bs.as "dark"]
+    dark: string,
+    [@bs.optional] [@bs.as "light"]
+    light: string,
+    [@bs.as "main"]
+    main: string,
   };
 
   let make = t;
@@ -2667,16 +2843,22 @@ module PaletteOptions = {
     getContrastText: Js.Json.t,
     [@bs.optional] [@bs.as "grey"]
     grey: Color.t,
+    [@bs.optional] [@bs.as "info"]
+    info: Info.t,
     [@bs.optional] [@bs.as "primary"]
     primary: Primary.t,
     [@bs.optional] [@bs.as "secondary"]
     secondary: Secondary.t,
+    [@bs.optional] [@bs.as "success"]
+    success: Success.t,
     [@bs.optional] [@bs.as "text"]
     text: TypeText.t,
     [@bs.optional] [@bs.as "tonalOffset"]
     tonalOffset: float,
     [@bs.optional] [@bs.as "type"]
     type_: string,
+    [@bs.optional] [@bs.as "warning"]
+    warning: Warning.t,
   };
 
   let make = t;

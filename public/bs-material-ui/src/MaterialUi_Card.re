@@ -1,3 +1,9 @@
+[@bs.deriving jsConverter]
+type variant = [
+  | [@bs.as "elevation"] `Elevation
+  | [@bs.as "outlined"] `Outlined
+];
+
 module Classes = {
   type classesType =
     | Root(string);
@@ -28,9 +34,10 @@ external makePropsMui:
     ~raised: bool=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rsts=?,
-    ~elevation: 'number_d=?,
+    ~component: 'union_ry41=?,
+    ~elevation: 'number_j=?,
     ~square: bool=?,
+    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -55,6 +62,7 @@ let makeProps =
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
+      ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -70,6 +78,7 @@ let makeProps =
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~square?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

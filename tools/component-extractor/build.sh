@@ -48,7 +48,7 @@ mv node_modules_tmp node_modules
 yarn
 cd $pwd
 rm -rf ./../../output/json
-babel-node ./src/extract.js
+yarn babel-node ./src/extract.js
 cd ~/.mui-clone
 mv node_modules node_modules_tmp
 cd $pwd

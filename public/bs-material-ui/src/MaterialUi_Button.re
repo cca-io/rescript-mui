@@ -33,6 +33,7 @@ module Classes = {
     | Contained(string)
     | ContainedPrimary(string)
     | ContainedSecondary(string)
+    | DisableElevation(string)
     | FocusVisible(string)
     | Disabled(string)
     | ColorInherit(string)
@@ -64,6 +65,7 @@ module Classes = {
     | Contained(_) => "contained"
     | ContainedPrimary(_) => "containedPrimary"
     | ContainedSecondary(_) => "containedSecondary"
+    | DisableElevation(_) => "disableElevation"
     | FocusVisible(_) => "focusVisible"
     | Disabled(_) => "disabled"
     | ColorInherit(_) => "colorInherit"
@@ -98,6 +100,7 @@ module Classes = {
                          | Contained(className)
                          | ContainedPrimary(className)
                          | ContainedSecondary(className)
+                         | DisableElevation(className)
                          | FocusVisible(className)
                          | Disabled(className)
                          | ColorInherit(className)
@@ -129,8 +132,9 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ra23=?,
+    ~component: 'union_ryrr=?,
     ~disabled: bool=?,
+    ~disableElevation: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
     ~endIcon: React.element=?,
@@ -160,7 +164,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rh45=?,
+    ~tabIndex: 'union_rthf=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
@@ -183,6 +187,7 @@ let makeProps =
            ],
          )=?,
       ~disabled: option(bool)=?,
+      ~disableElevation: option(bool)=?,
       ~disableFocusRipple: option(bool)=?,
       ~disableRipple: option(bool)=?,
       ~endIcon: option(React.element)=?,
@@ -225,6 +230,7 @@ let makeProps =
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disabled?,
+    ~disableElevation?,
     ~disableFocusRipple?,
     ~disableRipple?,
     ~endIcon?,

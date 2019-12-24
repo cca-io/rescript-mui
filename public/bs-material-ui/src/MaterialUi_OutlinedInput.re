@@ -21,7 +21,6 @@ module Classes = {
     | NotchedOutline(string)
     | Input(string)
     | InputMarginDense(string)
-    | InputSelect(string)
     | InputMultiline(string)
     | InputAdornedStart(string)
     | InputAdornedEnd(string);
@@ -40,7 +39,6 @@ module Classes = {
     | NotchedOutline(_) => "notchedOutline"
     | Input(_) => "input"
     | InputMarginDense(_) => "inputMarginDense"
-    | InputSelect(_) => "inputSelect"
     | InputMultiline(_) => "inputMultiline"
     | InputAdornedStart(_) => "inputAdornedStart"
     | InputAdornedEnd(_) => "inputAdornedEnd";
@@ -62,7 +60,6 @@ module Classes = {
                          | NotchedOutline(className)
                          | Input(className)
                          | InputMarginDense(className)
-                         | InputSelect(className)
                          | InputMultiline(className)
                          | InputAdornedStart(className)
                          | InputAdornedEnd(className) =>
@@ -81,28 +78,28 @@ external makePropsMui:
     ~autoFocus: bool=?,
     ~className: string=?,
     ~color: string=?,
-    ~defaultValue: 'any_rymx=?,
+    ~defaultValue: 'any_rcm9=?,
     ~disabled: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_ry5p=?,
+    ~inputComponent: 'union_r3zq=?,
     ~inputProps: Js.t({..})=?,
-    ~labelWidth: 'number_r=?,
+    ~labelWidth: 'number_6=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~notched: bool=?,
-    ~onChange: 'any_r394=?,
+    ~onChange: 'any_rvyz=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_r7tz=?,
-    ~rowsMax: 'union_rmon=?,
+    ~rows: 'union_rjz1=?,
+    ~rowsMax: 'union_rbgt=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_rm4e=?,
+    ~value: 'any_rdsy=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~aria_describedby: string=?,
@@ -112,7 +109,7 @@ external makePropsMui:
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
     ~renderSuffix: 'genericCallback=?,
-    ~select: bool=?,
+    ~rowsMin: 'union_rtlc=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -126,7 +123,7 @@ let makeProps =
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~defaultValue: option('any_rymx)=?,
+      ~defaultValue: option('any_rcm9)=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
@@ -154,7 +151,7 @@ let makeProps =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rm4e)=?,
+      ~value: option('any_rdsy)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~aria_describedby: option(string)=?,
@@ -164,7 +161,7 @@ let makeProps =
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
       ~renderSuffix: option('genericCallback)=?,
-      ~select: option(bool)=?,
+      ~rowsMin: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -210,7 +207,8 @@ let makeProps =
     ~onKeyDown?,
     ~onKeyUp?,
     ~renderSuffix?,
-    ~select?,
+    ~rowsMin=?
+      rowsMin->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

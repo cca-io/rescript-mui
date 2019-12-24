@@ -16,6 +16,7 @@ module Classes = {
     | ColorSecondary(string)
     | Underline(string)
     | Error(string)
+    | MarginDense(string)
     | Multiline(string)
     | FullWidth(string)
     | Input(string)
@@ -32,6 +33,7 @@ module Classes = {
     | ColorSecondary(_) => "colorSecondary"
     | Underline(_) => "underline"
     | Error(_) => "error"
+    | MarginDense(_) => "marginDense"
     | Multiline(_) => "multiline"
     | FullWidth(_) => "fullWidth"
     | Input(_) => "input"
@@ -51,6 +53,7 @@ module Classes = {
                          | ColorSecondary(className)
                          | Underline(className)
                          | Error(className)
+                         | MarginDense(className)
                          | Multiline(className)
                          | FullWidth(className)
                          | Input(className)
@@ -72,27 +75,27 @@ external makePropsMui:
     ~autoFocus: bool=?,
     ~className: string=?,
     ~color: string=?,
-    ~defaultValue: 'any_r31t=?,
+    ~defaultValue: 'any_rolj=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_rngh=?,
+    ~inputComponent: 'any_rdo1=?,
     ~inputProps: Js.t({..})=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
-    ~onChange: 'any_ragj=?,
+    ~onChange: 'any_rzje=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rtke=?,
-    ~rowsMax: 'union_rc9i=?,
+    ~rows: 'union_rafz=?,
+    ~rowsMax: 'union_ry9d=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_rcea=?,
+    ~value: 'any_ryjg=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~aria_describedby: string=?,
@@ -102,7 +105,7 @@ external makePropsMui:
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
     ~renderSuffix: 'genericCallback=?,
-    ~select: bool=?,
+    ~rowsMin: 'union_r7im=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -116,14 +119,14 @@ let makeProps =
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~defaultValue: option('any_r31t)=?,
+      ~defaultValue: option('any_rolj)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_rngh)=?,
+      ~inputComponent: option('any_rdo1)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
@@ -136,7 +139,7 @@ let makeProps =
       ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rcea)=?,
+      ~value: option('any_ryjg)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~aria_describedby: option(string)=?,
@@ -146,7 +149,7 @@ let makeProps =
       ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
       ~renderSuffix: option('genericCallback)=?,
-      ~select: option(bool)=?,
+      ~rowsMin: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -187,7 +190,8 @@ let makeProps =
     ~onKeyDown?,
     ~onKeyUp?,
     ~renderSuffix?,
-    ~select?,
+    ~rowsMin=?
+      rowsMin->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

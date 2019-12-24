@@ -12,6 +12,9 @@ type margin = [
 ];
 
 [@bs.deriving jsConverter]
+type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+
+[@bs.deriving jsConverter]
 type variant = [
   | [@bs.as "standard"] `Standard
   | [@bs.as "outlined"] `Outlined
@@ -55,13 +58,14 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r0ea=?,
+    ~component: 'union_rr22=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~hiddenLabel: bool=?,
     ~margin: string=?,
     ~required: bool=?,
+    ~size: string=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -91,6 +95,7 @@ let makeProps =
       ~hiddenLabel: option(bool)=?,
       ~margin: option(margin)=?,
       ~required: option(bool)=?,
+      ~size: option(size)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
@@ -110,6 +115,7 @@ let makeProps =
     ~hiddenLabel?,
     ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
     ~required?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
     ~ref?,
