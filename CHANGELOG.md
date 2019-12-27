@@ -11,6 +11,10 @@
 
 (_Tags are copied from [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 1.2.0
+-   :rocket: Updated to MaterialUi v4.8.1
+-   :rocket: Hooks are now on the master branch / main npm package
+
 ## 1.1.0
 
 -   :rocket: Updated to MaterialUi v3.9.2

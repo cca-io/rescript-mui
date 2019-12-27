@@ -211,12 +211,15 @@ let make = (~sidebar, ~children) => {
                    className={classes.title}>
                    "Dashboard"->ReasonReact.string
                  </MaterialUi_Typography>
-                 <MaterialUi_Button
-                   variant=`Outlined
-                   color=`Default
-                   onClick={_ => setShow(false)}>
+                 <Link
+                   href="#"
+                   onClick={e => {
+                     e->ReactEvent.Mouse.preventDefault;
+                     setShow(false);
+                   }}
+                   color=`Secondary>
                    "Close Dashboard"
-                 </MaterialUi_Button>
+                 </Link>
                  <IconButton color=`Inherit>
                    <Badge
                      badgeContent={"4"->ReasonReact.string} color=`Secondary>

@@ -105,19 +105,19 @@ let make = () =>
       <MaterialUi_Typography variant=`H6>
         "Icon Types:"->rs
       </MaterialUi_Typography>
-      <MaterialUi_Tooltip title={"Default"->rs}>
+      <MaterialUi_Tooltip title={"Default"->rs} arrow=true placement=`Top>
         <span> <SupervisedUserCircle.Filled /> </span>
       </MaterialUi_Tooltip>
-      <MaterialUi_Tooltip title={"Outlined"->rs}>
+      <MaterialUi_Tooltip title={"Outlined"->rs} arrow=true placement=`Left>
         <span> <SupervisedUserCircle.Outlined /> </span>
       </MaterialUi_Tooltip>
-      <MaterialUi_Tooltip title={"Rounded"->rs}>
+      <MaterialUi_Tooltip title={"Rounded"->rs} arrow=true placement=`Top_End>
         <span> <SupervisedUserCircle.Rounded /> </span>
       </MaterialUi_Tooltip>
-      <MaterialUi_Tooltip title={"TwoTone"->rs}>
+      <MaterialUi_Tooltip title={"TwoTone"->rs} arrow=true placement=`Bottom>
         <span> <SupervisedUserCircle.TwoTone /> </span>
       </MaterialUi_Tooltip>
-      <MaterialUi_Tooltip title={"Sharp"->rs}>
+      <MaterialUi_Tooltip title={"Sharp"->rs} arrow=true placement=`Right>
         <span> <SupervisedUserCircle.Sharp /> </span>
       </MaterialUi_Tooltip>
     </div>
