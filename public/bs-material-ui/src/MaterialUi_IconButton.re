@@ -84,6 +84,8 @@ external makePropsMui:
     ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
     ~component: 'union_rqny=?,
+    ~href: string=?,
+    ~target: string=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -132,6 +134,8 @@ let makeProps =
              | `Element(React.element)
            ],
          )=?,
+      ~href: option(string)=?,
+      ~target: option(string)=?,
       ~disableTouchRipple: option(bool)=?,
       ~focusRipple: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
@@ -170,6 +174,8 @@ let makeProps =
     ~centerRipple?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~href?,
+    ~target?,
     ~disableTouchRipple?,
     ~focusRipple?,
     ~focusVisibleClassName?,
