@@ -3,16 +3,16 @@
 		"@opam/dune": "*",
 		"@opam/result": "*",
 		"@opam/yojson": "*",
-		"@opam/ocaml-migrate-parsetree": "1.2.0",
+		"@opam/ocaml-migrate-parsetree": "1.6.0",
 		"@opam/ppx_tools_versioned": "*",
-		"@esy-ocaml/reason": "3.5.0",
+		"@esy-ocaml/reason": "^3.5.0",
 		"refmterr": "*"
 	},
 	"devDependencies": {
-		"ocaml": "~4.6.0"
+		"ocaml": "~4.9.0"
 	},
 	"peerDependencies": {
-		"ocaml": ">= 4.6.0"
+		"ocaml": ">= 4.9.0"
 	},
 	"esy": {
 		"build": "refmterr dune build -p bs_material_ui_ppx",
