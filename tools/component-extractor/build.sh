@@ -35,6 +35,8 @@ rm -rf ./styles
 cp -R ~/.mui-clone/packages/material-ui-styles/src ./styles
 rm -rf ./utils
 cp -R ~/.mui-clone/packages/material-ui-utils/src ./utils
+rm -rf ./system
+cp -R ~/.mui-clone/packages/material-ui-system/src ./system
 
 # Ensure output folder
 if [ ! -d "./../../output" ]; then

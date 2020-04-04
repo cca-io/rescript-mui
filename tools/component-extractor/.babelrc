@@ -1,8 +1,11 @@
 {
   "presets": [
-    ["@babel/env", {
-      "modules": "commonjs"
-    }],
+    [
+      "@babel/env",
+      {
+        "modules": "commonjs"
+      }
+    ],
 
     "@babel/preset-react",
     "@babel/flow"
@@ -13,35 +16,49 @@
       {
         "alias": {
           "@material-ui/styles": "./styles",
-          "@material-ui/utils": "./utils"
+          "@material-ui/utils": "./utils",
+          "@material-ui/system": "./system"
         }
       }
     ],
-    ["@babel/plugin-transform-runtime", {
-      "corejs": false
-    }],
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": false
+      }
+    ],
     "babel-plugin-syntax-exponentiation-operator",
     "@babel/plugin-transform-exponentiation-operator",
     "@babel/plugin-proposal-export-default-from",
     "@babel/plugin-proposal-logical-assignment-operators",
-    ["@babel/plugin-proposal-optional-chaining", {
-      "loose": false
-    }],
-    ["@babel/plugin-proposal-pipeline-operator", {
-      "proposal": "minimal"
-    }],
-    ["@babel/plugin-proposal-nullish-coalescing-operator", {
-      "loose": false
-    }],
+    [
+      "@babel/plugin-proposal-optional-chaining",
+      {
+        "loose": false
+      }
+    ],
+    [
+      "@babel/plugin-proposal-pipeline-operator",
+      {
+        "proposal": "minimal"
+      }
+    ],
+    [
+      "@babel/plugin-proposal-nullish-coalescing-operator",
+      {
+        "loose": false
+      }
+    ],
     "@babel/plugin-proposal-do-expressions",
-    ["@babel/plugin-proposal-decorators", {
-      "legacy": true
-    }],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
     "@babel/plugin-proposal-class-properties",
 
     "@babel/plugin-transform-object-assign"
   ],
-  "ignore": [
-    "node_modules"
-  ]
+  "ignore": ["node_modules"]
 }
