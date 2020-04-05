@@ -16,7 +16,7 @@ external makePropsMui:
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rhie=?,
+    ~component: 'union_rdgp=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,

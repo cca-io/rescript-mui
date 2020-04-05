@@ -7,7 +7,6 @@ import * as Console from './helpers/console';
 import GetComponents from './helpers/get-components';
 import Component from './classes/component';
 import RenderColors from './render-colors';
-// import RenderIcons from './render-icons';
 import RenderTheme from './render-theme';
 
 const parseInit = () => {

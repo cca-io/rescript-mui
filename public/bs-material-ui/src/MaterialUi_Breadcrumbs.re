@@ -34,10 +34,10 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rijj=?,
+    ~component: 'union_rg35=?,
     ~expandText: string=?,
-    ~itemsAfterCollapse: 'number_v=?,
-    ~itemsBeforeCollapse: 'number_q=?,
+    ~itemsAfterCollapse: 'number_a=?,
+    ~itemsBeforeCollapse: 'number_x=?,
     ~maxItems: 'number_e=?,
     ~separator: React.element=?,
     ~key: string=?,
