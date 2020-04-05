@@ -46,7 +46,7 @@ module Classes = {
 external makePropsMui:
   (
     ~centerRipple: bool=?,
-    ~component: 'union_rj8z=?,
+    ~component: 'union_rsxh=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -65,7 +65,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r9bm=?,
+    ~tabIndex: 'union_rin8=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~id: string=?,

@@ -7,7 +7,7 @@
 ];
 
 [@react.component]
-let make = () =>
+let make = () => {
   <OverrideExample>
     ...{classes =>
       <MaterialUi.Button
@@ -18,3 +18,4 @@ let make = () =>
       </MaterialUi.Button>
     }
   </OverrideExample>;
+};

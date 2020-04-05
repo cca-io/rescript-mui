@@ -114,6 +114,7 @@ module Zoom = MaterialUi_Zoom;
 module Colors = MaterialUi_Colors;
 module type WithStylesSafeTemplate = MaterialUi_WithStyles.WithStylesSafeTemplate;
 module WithStylesSafe = MaterialUi_WithStyles.WithStylesSafe;
+module Core = MaterialUi_Core;
 module Theme = MaterialUi_Theme;
 module ThemeOptions = MaterialUi_ThemeOptions;
 module ThemeProvider = MaterialUi_ThemeProvider;

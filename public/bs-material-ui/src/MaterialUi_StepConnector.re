@@ -61,7 +61,7 @@ external makePropsMui:
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
-    ~index: 'number_g=?,
+    ~index: 'number_3=?,
     ~orientation: string=?,
     ~id: string=?,
     ~key: string=?,
