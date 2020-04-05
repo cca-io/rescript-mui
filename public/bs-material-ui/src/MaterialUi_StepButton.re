@@ -1,14 +1,14 @@
 [@bs.deriving jsConverter]
-type orientation = [
-  | [@bs.as "horizontal"] `Horizontal
-  | [@bs.as "vertical"] `Vertical
-];
-
-[@bs.deriving jsConverter]
 type type_ = [
   | [@bs.as "submit"] `Submit
   | [@bs.as "reset"] `Reset
   | [@bs.as "button"] `Button
+];
+
+[@bs.deriving jsConverter]
+type orientation = [
+  | [@bs.as "horizontal"] `Horizontal
+  | [@bs.as "vertical"] `Vertical
 ];
 
 module Classes = {
@@ -45,21 +45,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~active: bool=?,
-    ~alternativeLabel: bool=?,
-    ~children: 'children=?,
-    ~className: string=?,
-    ~completed: bool=?,
-    ~disabled: bool=?,
-    ~expanded: bool=?,
-    ~icon: React.element=?,
-    ~last: bool=?,
-    ~optional: React.element=?,
-    ~orientation: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rmfe=?,
+    ~component: 'union_r40r=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -78,9 +65,22 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r1r8=?,
+    ~tabIndex: 'union_rqor=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
+    ~active: bool=?,
+    ~alternativeLabel: bool=?,
+    ~children: 'children=?,
+    ~className: string=?,
+    ~completed: bool=?,
+    ~disabled: bool=?,
+    ~expanded: bool=?,
+    ~icon: React.element=?,
+    ~last: bool=?,
+    ~optional: React.element=?,
+    ~orientation: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -89,19 +89,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~active: option(bool)=?,
-      ~alternativeLabel: option(bool)=?,
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~completed: option(bool)=?,
-      ~disabled: option(bool)=?,
-      ~expanded: option(bool)=?,
-      ~icon: option(React.element)=?,
-      ~last: option(bool)=?,
-      ~optional: option(React.element)=?,
-      ~orientation: option(orientation)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~centerRipple: option(bool)=?,
       ~component:
          option(
@@ -132,32 +119,24 @@ let makeProps =
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
       ~type_: option(type_)=?,
+      ~active: option(bool)=?,
+      ~alternativeLabel: option(bool)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~completed: option(bool)=?,
+      ~disabled: option(bool)=?,
+      ~expanded: option(bool)=?,
+      ~icon: option(React.element)=?,
+      ~last: option(bool)=?,
+      ~optional: option(React.element)=?,
+      ~orientation: option(orientation)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
-    ~active?,
-    ~alternativeLabel?,
-    ~children?,
-    ~className?,
-    ~completed?,
-    ~disabled?,
-    ~expanded?,
-    ~icon?,
-    ~last?,
-    ~optional?,
-    ~orientation=?
-      orientation->(
-                     Belt.Option.map(v =>
-                       switch (v->Obj.magic->Js.Json.classify) {
-                       | JSONString(str) => str
-                       | _ => orientationToJs(v)
-                       }
-                     )
-                   ),
-    ~key?,
-    ~ref?,
     ~centerRipple?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
@@ -183,6 +162,27 @@ let makeProps =
       tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_TouchRippleProps?,
     ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~active?,
+    ~alternativeLabel?,
+    ~children?,
+    ~className?,
+    ~completed?,
+    ~disabled?,
+    ~expanded?,
+    ~icon?,
+    ~last?,
+    ~optional?,
+    ~orientation=?
+      orientation->(
+                     Belt.Option.map(v =>
+                       switch (v->Obj.magic->Js.Json.classify) {
+                       | JSONString(str) => str
+                       | _ => orientationToJs(v)
+                       }
+                     )
+                   ),
+    ~key?,
+    ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

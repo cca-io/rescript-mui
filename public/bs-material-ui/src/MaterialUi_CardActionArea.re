@@ -36,13 +36,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~children: 'children=?,
-    ~className: string=?,
-    ~focusVisibleClassName: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rx3p=?,
+    ~component: 'union_r0df=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -61,9 +56,14 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rjre=?,
+    ~tabIndex: 'union_rojm=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
+    ~children: 'children=?,
+    ~className: string=?,
+    ~focusVisibleClassName: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -72,11 +72,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~focusVisibleClassName: option(string)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~centerRipple: option(bool)=?,
       ~component:
          option(
@@ -107,16 +102,16 @@ let makeProps =
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
       ~type_: option(type_)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~focusVisibleClassName: option(string)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
-    ~children?,
-    ~className?,
-    ~focusVisibleClassName?,
-    ~key?,
-    ~ref?,
     ~centerRipple?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
@@ -142,6 +137,11 @@ let makeProps =
       tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_TouchRippleProps?,
     ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~children?,
+    ~className?,
+    ~focusVisibleClassName?,
+    ~key?,
+    ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

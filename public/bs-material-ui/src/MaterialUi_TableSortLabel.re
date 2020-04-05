@@ -1,12 +1,12 @@
 [@bs.deriving jsConverter]
-type direction = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
-
-[@bs.deriving jsConverter]
 type type_ = [
   | [@bs.as "submit"] `Submit
   | [@bs.as "reset"] `Reset
   | [@bs.as "button"] `Button
 ];
+
+[@bs.deriving jsConverter]
+type direction = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
 
 module Classes = {
   type classesType =
@@ -45,16 +45,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~active: bool=?,
-    ~children: 'children=?,
-    ~className: string=?,
-    ~direction: string=?,
-    ~hideSortIcon: bool=?,
-    ~_IconComponent: 'union_r8ky=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rysj=?,
+    ~component: 'union_r6g9=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -74,9 +66,17 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r4qd=?,
+    ~tabIndex: 'union_rpxn=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
+    ~active: bool=?,
+    ~children: 'children=?,
+    ~className: string=?,
+    ~direction: string=?,
+    ~hideSortIcon: bool=?,
+    ~_IconComponent: 'union_r2do=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -85,21 +85,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~active: option(bool)=?,
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~direction: option(direction)=?,
-      ~hideSortIcon: option(bool)=?,
-      ~_IconComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~centerRipple: option(bool)=?,
       ~component:
          option(
@@ -131,22 +116,26 @@ let makeProps =
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
       ~type_: option(type_)=?,
+      ~active: option(bool)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~direction: option(direction)=?,
+      ~hideSortIcon: option(bool)=?,
+      ~_IconComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
-    ~active?,
-    ~children?,
-    ~className?,
-    ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
-    ~hideSortIcon?,
-    ~_IconComponent=?
-      _IconComponent->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
-    ~key?,
-    ~ref?,
     ~centerRipple?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
@@ -173,6 +162,17 @@ let makeProps =
       tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_TouchRippleProps?,
     ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~active?,
+    ~children?,
+    ~className?,
+    ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
+    ~hideSortIcon?,
+    ~_IconComponent=?
+      _IconComponent->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
+    ~key?,
+    ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

@@ -1,4 +1,20 @@
 [@bs.deriving jsConverter]
+type align = [
+  | [@bs.as "inherit"] `Inherit
+  | [@bs.as "left"] `Left
+  | [@bs.as "center"] `Center
+  | [@bs.as "right"] `Right
+  | [@bs.as "justify"] `Justify
+];
+
+[@bs.deriving jsConverter]
+type display = [
+  | [@bs.as "initial"] `Initial
+  | [@bs.as "block"] `Block
+  | [@bs.as "inline"] `Inline
+];
+
+[@bs.deriving jsConverter]
 type color = [
   | [@bs.as "initial"] `Initial
   | [@bs.as "inherit"] `Inherit
@@ -31,22 +47,6 @@ type rel = [
   | [@bs.as "prev"] `Prev
   | [@bs.as "search"] `Search
   | [@bs.as "tag"] `Tag
-];
-
-[@bs.deriving jsConverter]
-type align = [
-  | [@bs.as "inherit"] `Inherit
-  | [@bs.as "left"] `Left
-  | [@bs.as "center"] `Center
-  | [@bs.as "right"] `Right
-  | [@bs.as "justify"] `Justify
-];
-
-[@bs.deriving jsConverter]
-type display = [
-  | [@bs.as "initial"] `Initial
-  | [@bs.as "block"] `Block
-  | [@bs.as "inline"] `Inline
 ];
 
 module Classes = {
@@ -89,10 +89,16 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~align: string=?,
+    ~display: string=?,
+    ~gutterBottom: bool=?,
+    ~noWrap: bool=?,
+    ~paragraph: bool=?,
+    ~variantMapping: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ri4o=?,
+    ~component: 'union_rxfc=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~_TypographyClasses: Js.t({..})=?,
@@ -104,12 +110,6 @@ external makePropsMui:
     ~rel: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~align: string=?,
-    ~display: string=?,
-    ~gutterBottom: bool=?,
-    ~noWrap: bool=?,
-    ~paragraph: bool=?,
-    ~variantMapping: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -118,6 +118,12 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~align: option(align)=?,
+      ~display: option(display)=?,
+      ~gutterBottom: option(bool)=?,
+      ~noWrap: option(bool)=?,
+      ~paragraph: option(bool)=?,
+      ~variantMapping: option(Js.t({..}))=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
@@ -140,17 +146,17 @@ let makeProps =
       ~rel: option(rel)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~align: option(align)=?,
-      ~display: option(display)=?,
-      ~gutterBottom: option(bool)=?,
-      ~noWrap: option(bool)=?,
-      ~paragraph: option(bool)=?,
-      ~variantMapping: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~display=?display->(Belt.Option.map(v => displayToJs(v))),
+    ~gutterBottom?,
+    ~noWrap?,
+    ~paragraph?,
+    ~variantMapping?,
     ~children?,
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
@@ -167,12 +173,6 @@ let makeProps =
     ~rel=?rel->(Belt.Option.map(v => relToJs(v))),
     ~key?,
     ~ref?,
-    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-    ~display=?display->(Belt.Option.map(v => displayToJs(v))),
-    ~gutterBottom?,
-    ~noWrap?,
-    ~paragraph?,
-    ~variantMapping?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

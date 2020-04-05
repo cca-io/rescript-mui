@@ -29,15 +29,15 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~component: 'union_ribm=?,
+    ~elevation: 'number_i=?,
+    ~square: bool=?,
+    ~variant: string=?,
     ~children: 'children=?,
     ~className: string=?,
     ~raised: bool=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r13d=?,
-    ~elevation: 'number_t=?,
-    ~square: bool=?,
-    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -46,11 +46,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~raised: option(bool)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
@@ -62,22 +57,27 @@ let makeProps =
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~variant: option(variant)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~raised: option(bool)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
-    ~children?,
-    ~className?,
-    ~raised?,
-    ~key?,
-    ~ref?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~square?,
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~children?,
+    ~className?,
+    ~raised?,
+    ~key?,
+    ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

@@ -1,4 +1,18 @@
 [@bs.deriving jsConverter]
+type type_ = [
+  | [@bs.as "submit"] `Submit
+  | [@bs.as "reset"] `Reset
+  | [@bs.as "button"] `Button
+];
+
+[@bs.deriving jsConverter]
+type edge = [
+  | [@bs.as "start"] `Start
+  | [@bs.as "end"] `End
+  | [@bs.as "false"] `False
+];
+
+[@bs.deriving jsConverter]
 type color = [
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
@@ -7,13 +21,6 @@ type color = [
 
 [@bs.deriving jsConverter]
 type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
-
-[@bs.deriving jsConverter]
-type edge = [
-  | [@bs.as "start"] `Start
-  | [@bs.as "end"] `End
-  | [@bs.as "false"] `False
-];
 
 module Classes = {
   type classesType =
@@ -55,6 +62,32 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~centerRipple: bool=?,
+    ~component: 'union_rczs=?,
+    ~disableTouchRipple: bool=?,
+    ~focusRipple: bool=?,
+    ~focusVisibleClassName: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onDragLeave: ReactEvent.Mouse.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onFocusVisible: 'genericCallback=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+    ~onMouseDown: ReactEvent.Mouse.t => unit=?,
+    ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+    ~onMouseUp: ReactEvent.Mouse.t => unit=?,
+    ~onTouchEnd: ReactEvent.Touch.t => unit=?,
+    ~onTouchMove: ReactEvent.Touch.t => unit=?,
+    ~onTouchStart: ReactEvent.Touch.t => unit=?,
+    ~role: string=?,
+    ~tabIndex: 'union_rt9q=?,
+    ~_TouchRippleProps: Js.t({..})=?,
+    ~_type: string=?,
+    ~children: 'children=?,
+    ~className: string=?,
+    ~disableFocusRipple: bool=?,
+    ~edge: string=?,
     ~checked: bool=?,
     ~checkedIcon: React.element=?,
     ~color: string=?,
@@ -65,16 +98,12 @@ external makePropsMui:
     ~indeterminate: bool=?,
     ~indeterminateIcon: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_rcwx=?,
+    ~onChange: 'any_rl5l=?,
     ~required: bool=?,
     ~size: string=?,
-    ~value: 'any_rst8=?,
+    ~value: 'any_r3eu=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~children: 'children=?,
-    ~className: string=?,
-    ~disableFocusRipple: bool=?,
-    ~edge: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -83,6 +112,39 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~centerRipple: option(bool)=?,
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~disableTouchRipple: option(bool)=?,
+      ~focusRipple: option(bool)=?,
+      ~focusVisibleClassName: option(string)=?,
+      ~onBlur: option(ReactEvent.Focus.t => unit)=?,
+      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~onDragLeave: option(ReactEvent.Mouse.t => unit)=?,
+      ~onFocus: option(ReactEvent.Focus.t => unit)=?,
+      ~onFocusVisible: option('genericCallback)=?,
+      ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+      ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
+      ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
+      ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
+      ~onMouseUp: option(ReactEvent.Mouse.t => unit)=?,
+      ~onTouchEnd: option(ReactEvent.Touch.t => unit)=?,
+      ~onTouchMove: option(ReactEvent.Touch.t => unit)=?,
+      ~onTouchStart: option(ReactEvent.Touch.t => unit)=?,
+      ~role: option(string)=?,
+      ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+      ~_TouchRippleProps: option(Js.t({..}))=?,
+      ~type_: option(type_)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~disableFocusRipple: option(bool)=?,
+      ~edge: option(edge)=?,
       ~checked: option(bool)=?,
       ~checkedIcon: option(React.element)=?,
       ~color: option(color)=?,
@@ -96,18 +158,42 @@ let makeProps =
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~required: option(bool)=?,
       ~size: option(size)=?,
-      ~value: option('any_rst8)=?,
+      ~value: option('any_r3eu)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~disableFocusRipple: option(bool)=?,
-      ~edge: option(edge)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~centerRipple?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disableTouchRipple?,
+    ~focusRipple?,
+    ~focusVisibleClassName?,
+    ~onBlur?,
+    ~onClick?,
+    ~onDragLeave?,
+    ~onFocus?,
+    ~onFocusVisible?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~onMouseDown?,
+    ~onMouseLeave?,
+    ~onMouseUp?,
+    ~onTouchEnd?,
+    ~onTouchMove?,
+    ~onTouchStart?,
+    ~role?,
+    ~tabIndex=?
+      tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_TouchRippleProps?,
+    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~children?,
+    ~className?,
+    ~disableFocusRipple?,
+    ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
     ~checked?,
     ~checkedIcon?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
@@ -124,10 +210,6 @@ let makeProps =
     ~value?,
     ~key?,
     ~ref?,
-    ~children?,
-    ~className?,
-    ~disableFocusRipple?,
-    ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

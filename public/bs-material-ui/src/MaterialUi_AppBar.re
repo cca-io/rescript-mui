@@ -1,4 +1,10 @@
 [@bs.deriving jsConverter]
+type variant = [
+  | [@bs.as "elevation"] `Elevation
+  | [@bs.as "outlined"] `Outlined
+];
+
+[@bs.deriving jsConverter]
 type color = [
   | [@bs.as "default"] `Default
   | [@bs.as "inherit"] `Inherit
@@ -14,12 +20,6 @@ type position = [
   | [@bs.as "relative"] `Relative
   | [@bs.as "static"] `Static
   | [@bs.as "sticky"] `Sticky
-];
-
-[@bs.deriving jsConverter]
-type variant = [
-  | [@bs.as "elevation"] `Elevation
-  | [@bs.as "outlined"] `Outlined
 ];
 
 module Classes = {
@@ -77,16 +77,16 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~component: 'union_rdop=?,
+    ~elevation: 'number_1=?,
+    ~square: bool=?,
+    ~variant: string=?,
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
     ~position: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rpds=?,
-    ~elevation: 'number_d=?,
-    ~square: bool=?,
-    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -95,12 +95,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~color: option(color)=?,
-      ~position: option(position)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
@@ -112,23 +106,29 @@ let makeProps =
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~variant: option(variant)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~color: option(color)=?,
+      ~position: option(position)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
-    ~children?,
-    ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-    ~position=?position->(Belt.Option.map(v => positionToJs(v))),
-    ~key?,
-    ~ref?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~square?,
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~position=?position->(Belt.Option.map(v => positionToJs(v))),
+    ~key?,
+    ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

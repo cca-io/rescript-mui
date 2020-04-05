@@ -1,15 +1,15 @@
 [@bs.deriving jsConverter]
-type textColor = [
-  | [@bs.as "secondary"] `Secondary
-  | [@bs.as "primary"] `Primary
-  | [@bs.as "inherit"] `Inherit
-];
-
-[@bs.deriving jsConverter]
 type type_ = [
   | [@bs.as "submit"] `Submit
   | [@bs.as "reset"] `Reset
   | [@bs.as "button"] `Button
+];
+
+[@bs.deriving jsConverter]
+type textColor = [
+  | [@bs.as "secondary"] `Secondary
+  | [@bs.as "primary"] `Primary
+  | [@bs.as "inherit"] `Inherit
 ];
 
 module Classes = {
@@ -64,25 +64,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~children: 'children=?,
-    ~className: string=?,
-    ~disabled: bool=?,
-    ~disableFocusRipple: bool=?,
-    ~disableRipple: bool=?,
-    ~fullWidth: bool=?,
-    ~icon: React.element=?,
-    ~indicator: React.element=?,
-    ~label: React.element=?,
-    ~onChange: ReactEvent.Form.t => unit=?,
-    ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~selected: bool=?,
-    ~textColor: string=?,
-    ~value: 'any_rx9q=?,
-    ~wrapped: bool=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rjrx=?,
+    ~component: 'union_r2s3=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -99,9 +82,26 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r1wm=?,
+    ~tabIndex: 'union_rxy5=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
+    ~children: 'children=?,
+    ~className: string=?,
+    ~disabled: bool=?,
+    ~disableFocusRipple: bool=?,
+    ~disableRipple: bool=?,
+    ~fullWidth: bool=?,
+    ~icon: React.element=?,
+    ~indicator: React.element=?,
+    ~label: React.element=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~selected: bool=?,
+    ~textColor: string=?,
+    ~value: 'any_rmkv=?,
+    ~wrapped: bool=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -110,23 +110,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~disabled: option(bool)=?,
-      ~disableFocusRipple: option(bool)=?,
-      ~disableRipple: option(bool)=?,
-      ~fullWidth: option(bool)=?,
-      ~icon: option(React.element)=?,
-      ~indicator: option(React.element)=?,
-      ~label: option(React.element)=?,
-      ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~selected: option(bool)=?,
-      ~textColor: option(textColor)=?,
-      ~value: option('any_rx9q)=?,
-      ~wrapped: option(bool)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~centerRipple: option(bool)=?,
       ~component:
          option(
@@ -155,11 +138,51 @@ let makeProps =
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
       ~type_: option(type_)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~disabled: option(bool)=?,
+      ~disableFocusRipple: option(bool)=?,
+      ~disableRipple: option(bool)=?,
+      ~fullWidth: option(bool)=?,
+      ~icon: option(React.element)=?,
+      ~indicator: option(React.element)=?,
+      ~label: option(React.element)=?,
+      ~onChange: option(ReactEvent.Form.t => unit)=?,
+      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~selected: option(bool)=?,
+      ~textColor: option(textColor)=?,
+      ~value: option('any_rmkv)=?,
+      ~wrapped: option(bool)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~centerRipple?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disableTouchRipple?,
+    ~focusRipple?,
+    ~focusVisibleClassName?,
+    ~onBlur?,
+    ~onDragLeave?,
+    ~onFocus?,
+    ~onFocusVisible?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~onMouseDown?,
+    ~onMouseLeave?,
+    ~onMouseUp?,
+    ~onTouchEnd?,
+    ~onTouchMove?,
+    ~onTouchStart?,
+    ~role?,
+    ~tabIndex=?
+      tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_TouchRippleProps?,
+    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
     ~children?,
     ~className?,
     ~disabled?,
@@ -185,29 +208,6 @@ let makeProps =
     ~wrapped?,
     ~key?,
     ~ref?,
-    ~centerRipple?,
-    ~component=?
-      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~disableTouchRipple?,
-    ~focusRipple?,
-    ~focusVisibleClassName?,
-    ~onBlur?,
-    ~onDragLeave?,
-    ~onFocus?,
-    ~onFocusVisible?,
-    ~onKeyDown?,
-    ~onKeyUp?,
-    ~onMouseDown?,
-    ~onMouseLeave?,
-    ~onMouseUp?,
-    ~onTouchEnd?,
-    ~onTouchMove?,
-    ~onTouchStart?,
-    ~role?,
-    ~tabIndex=?
-      tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~_TouchRippleProps?,
-    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

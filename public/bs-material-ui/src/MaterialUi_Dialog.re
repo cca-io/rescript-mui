@@ -123,6 +123,18 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~_BackdropComponent: 'union_rdok=?,
+    ~closeAfterTransition: bool=?,
+    ~container: 'union_rv98=?,
+    ~disableAutoFocus: bool=?,
+    ~disableEnforceFocus: bool=?,
+    ~disablePortal: bool=?,
+    ~disableRestoreFocus: bool=?,
+    ~disableScrollLock: bool=?,
+    ~hideBackdrop: bool=?,
+    ~keepMounted: bool=?,
+    ~manager: Js.t({..})=?,
+    ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~aria_describedby: string=?,
     ~aria_labelledby: string=?,
     ~_BackdropProps: Js.t({..})=?,
@@ -134,7 +146,7 @@ external makePropsMui:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rsac=?,
+    ~onClose: 'any_rmj9=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -143,26 +155,14 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperComponent: 'union_rb98=?,
+    ~_PaperComponent: 'union_rhgu=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_rgrr=?,
-    ~transitionDuration: 'union_rwx5=?,
+    ~_TransitionComponent: 'union_r87f=?,
+    ~transitionDuration: 'union_rjih=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~_BackdropComponent: 'union_ro59=?,
-    ~closeAfterTransition: bool=?,
-    ~container: 'union_r41j=?,
-    ~disableAutoFocus: bool=?,
-    ~disableEnforceFocus: bool=?,
-    ~disablePortal: bool=?,
-    ~disableRestoreFocus: bool=?,
-    ~disableScrollLock: bool=?,
-    ~hideBackdrop: bool=?,
-    ~keepMounted: bool=?,
-    ~manager: Js.t({..})=?,
-    ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -171,6 +171,28 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~_BackdropComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~closeAfterTransition: option(bool)=?,
+      ~container:
+         option(
+           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
+         )=?,
+      ~disableAutoFocus: option(bool)=?,
+      ~disableEnforceFocus: option(bool)=?,
+      ~disablePortal: option(bool)=?,
+      ~disableRestoreFocus: option(bool)=?,
+      ~disableScrollLock: option(bool)=?,
+      ~hideBackdrop: option(bool)=?,
+      ~keepMounted: option(bool)=?,
+      ~manager: option(Js.t({..}))=?,
+      ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~aria_describedby: option(string)=?,
       ~aria_labelledby: option(string)=?,
       ~_BackdropProps: option(Js.t({..}))=?,
@@ -220,33 +242,29 @@ let makeProps =
       ~_TransitionProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~_BackdropComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~closeAfterTransition: option(bool)=?,
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
-      ~disableAutoFocus: option(bool)=?,
-      ~disableEnforceFocus: option(bool)=?,
-      ~disablePortal: option(bool)=?,
-      ~disableRestoreFocus: option(bool)=?,
-      ~disableScrollLock: option(bool)=?,
-      ~hideBackdrop: option(bool)=?,
-      ~keepMounted: option(bool)=?,
-      ~manager: option(Js.t({..}))=?,
-      ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~_BackdropComponent=?
+      _BackdropComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~closeAfterTransition?,
+    ~container=?
+      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~disableAutoFocus?,
+    ~disableEnforceFocus?,
+    ~disablePortal?,
+    ~disableRestoreFocus?,
+    ~disableScrollLock?,
+    ~hideBackdrop?,
+    ~keepMounted?,
+    ~manager?,
+    ~onRendered?,
     ~aria_describedby?,
     ~aria_labelledby?,
     ~_BackdropProps?,
@@ -290,24 +308,6 @@ let makeProps =
     ~_TransitionProps?,
     ~key?,
     ~ref?,
-    ~_BackdropComponent=?
-      _BackdropComponent->(
-                            Belt.Option.map(v =>
-                              MaterialUi_Helpers.unwrapValue(v)
-                            )
-                          ),
-    ~closeAfterTransition?,
-    ~container=?
-      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~disableAutoFocus?,
-    ~disableEnforceFocus?,
-    ~disablePortal?,
-    ~disableRestoreFocus?,
-    ~disableScrollLock?,
-    ~hideBackdrop?,
-    ~keepMounted?,
-    ~manager?,
-    ~onRendered?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

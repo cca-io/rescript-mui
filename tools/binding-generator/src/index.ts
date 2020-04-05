@@ -8,38 +8,118 @@ import GetComponents from './helpers/get-components';
 import Component from './classes/component';
 import RenderColors from './render-colors';
 import RenderTheme from './render-theme';
+import ComponentFromJson from './helpers/component-from-json';
+
+type componentSignatures = {
+  [name: string]: ComponentSignature;
+};
+const resolveInheritance = (
+  componentSignatures: componentSignatures,
+  signature: ComponentSignature,
+) => {
+  if (
+    signature.inheritsFrom &&
+    typeof componentSignatures[signature.inheritsFrom] !== 'undefined'
+  ) {
+    let mergeSignature = componentSignatures[signature.inheritsFrom];
+    mergeSignature = resolveInheritance(componentSignatures, mergeSignature);
+    const mergeProps = { ...mergeSignature.props };
+    const props = { ...signature.props };
+    let newProps = {};
+    const propKeys = Object.keys(props);
+    const filteredMergePropKeys = Object.keys(mergeProps).filter(
+      (mergePropKey) => propKeys.indexOf(mergePropKey) === -1,
+    );
+    filteredMergePropKeys.forEach((mergePropKey) => {
+      newProps[mergePropKey] = mergeProps[mergePropKey];
+    });
+    // const filteredPropKeys = propKeys.filter((propKey) => {
+    //   const prop = props[propKey];
+    //   if (prop.description !== '@ignore') {
+    //     return true;
+    //   }
+    //   const mergeProp =
+    //     typeof mergeProps[propKey] !== 'undefined' ? mergeProps[propKey] : null;
+    //   if (!mergeProp) {
+    //     return true;
+    //   }
+    //   if (mergeProp.description !== '@ignore') {
+    //     return false;
+    //   }
+    //   return true;
+    // });
+    propKeys.forEach((propKey) => {
+      newProps[propKey] = props[propKey];
+    });
+    return {
+      ...signature,
+      props: newProps,
+    };
+  }
+  return signature;
+};
 
 const parseInit = () => {
   const rawComponents = GetComponents();
-  const components = rawComponents.map((jsonString: string) => {
+  const componentSignatures: componentSignatures = rawComponents.reduce(
+    (prev, jsonString) => {
+      const componentSignature = ComponentFromJson(jsonString);
+      return {
+        ...prev,
+        [componentSignature.name]: componentSignature,
+      };
+    },
+    {},
+  );
+
+  const components = Object.keys(componentSignatures).map((key) => {
+    let componentSignature = componentSignatures[key];
+    Console.info(
+      `Parsing ${Console.colors.yellow}${
+        componentSignature.name || componentSignature.displayName
+      }${Console.colors.reset}`,
+    );
     try {
-      const json = JSON.parse(jsonString);
-      Console.info(
-        `Parsing ${Console.colors.yellow}${json.name || json.displayName}${
-          Console.colors.reset
-        }`,
+      componentSignature = resolveInheritance(
+        componentSignatures,
+        componentSignature,
       );
-      return new Component(jsonString);
+      return new Component(componentSignature);
     } catch (e) {
       console.log(e);
       Console.error(e);
-      Console.error(jsonString);
       process.exit();
-      return null;
     }
   });
+  //   const components = rawComponents.map((jsonString: string) => {
+  //     try {
+  //       const component = ComponentFromJson(jsonString);
+  //       Console.info(
+  //         `Parsing ${Console.colors.yellow}${component.name || component.displayName}${
+  //           Console.colors.reset
+  //         }`,
+  //       );
+  //       return new Component(component);
+  //     } catch (e) {
+  //       console.log(e);
+  //       Console.error(e);
+  //       Console.error(jsonString);
+  //       process.exit();
+  //       return null;
+  //     }
+  //   });
 
   // Inheritance
-  components.forEach((c) => {
-    if (c != null && c.inheritsFrom) {
-      const cInherit = components.find(
-        (ci) => ci != null && ci.name === c.inheritsFrom,
-      );
-      if (cInherit != null) {
-        c.mergeProperties(cInherit.properties);
-      }
-    }
-  });
+  //   components.forEach((c) => {
+  //     if (c != null && c.inheritsFrom) {
+  //       const cInherit = components.find(
+  //         (ci) => ci != null && ci.name === c.inheritsFrom,
+  //       );
+  //       if (cInherit != null) {
+  //         c.mergeProperties(cInherit.properties);
+  //       }
+  //     }
+  //   });
 
   // Write component files
   components.forEach((component) => {

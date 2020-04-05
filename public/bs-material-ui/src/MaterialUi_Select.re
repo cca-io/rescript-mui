@@ -1,11 +1,4 @@
 [@bs.deriving jsConverter]
-type variant = [
-  | [@bs.as "filled"] `Filled
-  | [@bs.as "outlined"] `Outlined
-  | [@bs.as "standard"] `Standard
-];
-
-[@bs.deriving jsConverter]
 type color = [
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
@@ -13,6 +6,13 @@ type color = [
 
 [@bs.deriving jsConverter]
 type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
+
+[@bs.deriving jsConverter]
+type variant = [
+  | [@bs.as "filled"] `Filled
+  | [@bs.as "outlined"] `Outlined
+  | [@bs.as "standard"] `Standard
+];
 
 module Classes = {
   type classesType =
@@ -66,30 +66,14 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~autoWidth: bool=?,
-    ~children: 'children=?,
-    ~defaultValue: 'any_rf8t=?,
-    ~displayEmpty: bool=?,
-    ~_IconComponent: 'union_r3qg=?,
-    ~id: string=?,
-    ~input: React.element=?,
-    ~inputProps: Js.t({..})=?,
-    ~label: React.element=?,
-    ~labelId: string=?,
-    ~labelWidth: 'number_d=?,
-    ~_MenuProps: Js.t({..})=?,
-    ~multiple: bool=?,
-    ~native: bool=?,
-    ~onChange: 'any_r7hg=?,
-    ~onClose: 'any_ruq9=?,
-    ~onOpen: 'any_rbm9=?,
-    ~_open: bool=?,
-    ~renderValue: 'any_rjtn=?,
-    ~_SelectDisplayProps: Js.t({..})=?,
-    ~value: 'union_r7ls=?,
-    ~variant: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
+    ~aria_describedby: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+    ~renderSuffix: 'genericCallback=?,
+    ~rowsMin: 'union_rw7z=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~className: string=?,
@@ -99,25 +83,41 @@ external makePropsMui:
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
-    ~inputComponent: 'any_rk17=?,
+    ~inputComponent: 'union_riiu=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_r812=?,
-    ~rowsMax: 'union_rdc4=?,
+    ~rows: 'union_rfz1=?,
+    ~rowsMax: 'union_rxb9=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~aria_describedby: string=?,
-    ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~onFocus: ReactEvent.Focus.t => unit=?,
-    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-    ~renderSuffix: 'genericCallback=?,
-    ~rowsMin: 'union_ralt=?,
+    ~autoWidth: bool=?,
+    ~children: 'children=?,
+    ~defaultValue: 'any_rb44=?,
+    ~displayEmpty: bool=?,
+    ~_IconComponent: 'union_rnu7=?,
+    ~id: string=?,
+    ~input: React.element=?,
+    ~inputProps: Js.t({..})=?,
+    ~label: React.element=?,
+    ~labelId: string=?,
+    ~labelWidth: 'number_y=?,
+    ~_MenuProps: Js.t({..})=?,
+    ~multiple: bool=?,
+    ~native: bool=?,
+    ~onChange: 'any_rrug=?,
+    ~onClose: 'any_r7cc=?,
+    ~onOpen: 'any_rf5u=?,
+    ~_open: bool=?,
+    ~renderValue: 'any_rt3h=?,
+    ~_SelectDisplayProps: Js.t({..})=?,
+    ~value: 'union_raom=?,
+    ~variant: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -126,9 +126,44 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~aria_describedby: option(string)=?,
+      ~onBlur: option(ReactEvent.Focus.t => unit)=?,
+      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~onFocus: option(ReactEvent.Focus.t => unit)=?,
+      ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+      ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
+      ~renderSuffix: option('genericCallback)=?,
+      ~rowsMin: option([ | `String(string) | `Int(int) | `Float(float)])=?,
+      ~autoComplete: option(string)=?,
+      ~autoFocus: option(bool)=?,
+      ~className: option(string)=?,
+      ~color: option(color)=?,
+      ~disabled: option(bool)=?,
+      ~disableUnderline: option(bool)=?,
+      ~endAdornment: option(React.element)=?,
+      ~error: option(bool)=?,
+      ~fullWidth: option(bool)=?,
+      ~inputComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~margin: option(margin)=?,
+      ~multiline: option(bool)=?,
+      ~name: option(string)=?,
+      ~placeholder: option(string)=?,
+      ~readOnly: option(bool)=?,
+      ~required: option(bool)=?,
+      ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
+      ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
+      ~startAdornment: option(React.element)=?,
+      ~type_: option(string)=?,
       ~autoWidth: option(bool)=?,
       ~children: option('children)=?,
-      ~defaultValue: option('any_rf8t)=?,
+      ~defaultValue: option('any_rb44)=?,
       ~displayEmpty: option(bool)=?,
       ~_IconComponent:
          option(
@@ -151,7 +186,7 @@ let makeProps =
       ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
       ~onOpen: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: option(bool)=?,
-      ~renderValue: option('any_rm0h => 'any_rhln)=?,
+      ~renderValue: option('any_r3bc => 'any_reg5)=?,
       ~_SelectDisplayProps: option(Js.t({..}))=?,
       ~value:
          option(
@@ -165,39 +200,44 @@ let makeProps =
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~autoComplete: option(string)=?,
-      ~autoFocus: option(bool)=?,
-      ~className: option(string)=?,
-      ~color: option(color)=?,
-      ~disabled: option(bool)=?,
-      ~disableUnderline: option(bool)=?,
-      ~endAdornment: option(React.element)=?,
-      ~error: option(bool)=?,
-      ~fullWidth: option(bool)=?,
-      ~inputComponent: option('any_rk17)=?,
-      ~margin: option(margin)=?,
-      ~multiline: option(bool)=?,
-      ~name: option(string)=?,
-      ~placeholder: option(string)=?,
-      ~readOnly: option(bool)=?,
-      ~required: option(bool)=?,
-      ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~startAdornment: option(React.element)=?,
-      ~type_: option(string)=?,
-      ~aria_describedby: option(string)=?,
-      ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-      ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-      ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-      ~renderSuffix: option('genericCallback)=?,
-      ~rowsMin: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~aria_describedby?,
+    ~onBlur?,
+    ~onClick?,
+    ~onFocus?,
+    ~onKeyDown?,
+    ~onKeyUp?,
+    ~renderSuffix?,
+    ~rowsMin=?
+      rowsMin->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~autoComplete?,
+    ~autoFocus?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~disabled?,
+    ~disableUnderline?,
+    ~endAdornment?,
+    ~error?,
+    ~fullWidth?,
+    ~inputComponent=?
+      inputComponent->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
+    ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
+    ~multiline?,
+    ~name?,
+    ~placeholder?,
+    ~readOnly?,
+    ~required?,
+    ~rows=?rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~rowsMax=?
+      rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~startAdornment?,
+    ~_type=?type_,
     ~autoWidth?,
     ~children?,
     ~defaultValue?,
@@ -226,36 +266,6 @@ let makeProps =
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
     ~ref?,
-    ~autoComplete?,
-    ~autoFocus?,
-    ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-    ~disabled?,
-    ~disableUnderline?,
-    ~endAdornment?,
-    ~error?,
-    ~fullWidth?,
-    ~inputComponent?,
-    ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
-    ~multiline?,
-    ~name?,
-    ~placeholder?,
-    ~readOnly?,
-    ~required?,
-    ~rows=?rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~rowsMax=?
-      rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~startAdornment?,
-    ~_type=?type_,
-    ~aria_describedby?,
-    ~onBlur?,
-    ~onClick?,
-    ~onFocus?,
-    ~onKeyDown?,
-    ~onKeyUp?,
-    ~renderSuffix?,
-    ~rowsMin=?
-      rowsMin->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

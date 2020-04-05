@@ -46,12 +46,13 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~component: 'union_rz5w=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~defaultValue: 'union_r76c=?,
+    ~defaultValue: 'union_rbkh=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -67,21 +68,20 @@ external makePropsMui:
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_r6zf=?,
+    ~onChange: 'any_ry26=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_r3ca=?,
-    ~rowsMax: 'union_rjll=?,
+    ~rows: 'union_rded=?,
+    ~rowsMax: 'union_rnux=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
     ~size: string=?,
     ~_type: string=?,
-    ~value: 'union_r9za=?,
+    ~value: 'union_r2o3=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_riq9=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -90,6 +90,14 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
+           ],
+         )=?,
       ~autoComplete: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
@@ -126,19 +134,13 @@ let makeProps =
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback(unit => React.element)
-             | `Element(React.element)
-           ],
-         )=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~autoComplete?,
     ~autoFocus?,
     ~children?,
@@ -176,8 +178,6 @@ let makeProps =
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
     ~ref?,
-    ~component=?
-      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

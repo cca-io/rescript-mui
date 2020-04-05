@@ -1,13 +1,13 @@
 [@bs.deriving jsConverter]
-type orientation = [
-  | [@bs.as "horizontal"] `Horizontal
-  | [@bs.as "vertical"] `Vertical
-];
-
-[@bs.deriving jsConverter]
 type variant = [
   | [@bs.as "elevation"] `Elevation
   | [@bs.as "outlined"] `Outlined
+];
+
+[@bs.deriving jsConverter]
+type orientation = [
+  | [@bs.as "horizontal"] `Horizontal
+  | [@bs.as "vertical"] `Vertical
 ];
 
 module Classes = {
@@ -44,7 +44,11 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_3=?,
+    ~component: 'union_r7xq=?,
+    ~elevation: 'number_h=?,
+    ~square: bool=?,
+    ~variant: string=?,
+    ~activeStep: 'number_z=?,
     ~alternativeLabel: bool=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -53,10 +57,6 @@ external makePropsMui:
     ~orientation: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_ra47=?,
-    ~elevation: 'number_q=?,
-    ~square: bool=?,
-    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -65,15 +65,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~activeStep: option([ | `Int(int) | `Float(float)])=?,
-      ~alternativeLabel: option(bool)=?,
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~connector: option(React.element)=?,
-      ~nonLinear: option(bool)=?,
-      ~orientation: option(orientation)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~component:
          option(
            [
@@ -85,11 +76,26 @@ let makeProps =
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~variant: option(variant)=?,
+      ~activeStep: option([ | `Int(int) | `Float(float)])=?,
+      ~alternativeLabel: option(bool)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~connector: option(React.element)=?,
+      ~nonLinear: option(bool)=?,
+      ~orientation: option(orientation)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~square?,
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~activeStep=?
       activeStep->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~alternativeLabel?,
@@ -108,12 +114,6 @@ let makeProps =
                    ),
     ~key?,
     ~ref?,
-    ~component=?
-      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~elevation=?
-      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~square?,
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

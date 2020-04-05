@@ -1,4 +1,11 @@
 [@bs.deriving jsConverter]
+type type_ = [
+  | [@bs.as "submit"] `Submit
+  | [@bs.as "reset"] `Reset
+  | [@bs.as "button"] `Button
+];
+
+[@bs.deriving jsConverter]
 type color = [
   | [@bs.as "default"] `Default
   | [@bs.as "inherit"] `Inherit
@@ -15,13 +22,6 @@ type edge = [
 
 [@bs.deriving jsConverter]
 type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
-
-[@bs.deriving jsConverter]
-type type_ = [
-  | [@bs.as "submit"] `Submit
-  | [@bs.as "reset"] `Reset
-  | [@bs.as "button"] `Button
-];
 
 module Classes = {
   type classesType =
@@ -72,18 +72,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~children: 'children=?,
-    ~className: string=?,
-    ~color: string=?,
-    ~disabled: bool=?,
-    ~disableFocusRipple: bool=?,
-    ~disableRipple: bool=?,
-    ~edge: string=?,
-    ~size: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rf01=?,
+    ~component: 'union_r3f9=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -101,9 +91,19 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rtmp=?,
+    ~tabIndex: 'union_rd58=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
+    ~children: 'children=?,
+    ~className: string=?,
+    ~color: string=?,
+    ~disabled: bool=?,
+    ~disableFocusRipple: bool=?,
+    ~disableRipple: bool=?,
+    ~edge: string=?,
+    ~size: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -112,16 +112,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~color: option(color)=?,
-      ~disabled: option(bool)=?,
-      ~disableFocusRipple: option(bool)=?,
-      ~disableRipple: option(bool)=?,
-      ~edge: option(edge)=?,
-      ~size: option(size)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~centerRipple: option(bool)=?,
       ~component:
          option(
@@ -151,21 +141,21 @@ let makeProps =
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
       ~type_: option(type_)=?,
+      ~children: option('children)=?,
+      ~className: option(string)=?,
+      ~color: option(color)=?,
+      ~disabled: option(bool)=?,
+      ~disableFocusRipple: option(bool)=?,
+      ~disableRipple: option(bool)=?,
+      ~edge: option(edge)=?,
+      ~size: option(size)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
-    ~children?,
-    ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-    ~disabled?,
-    ~disableFocusRipple?,
-    ~disableRipple?,
-    ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
-    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-    ~key?,
-    ~ref?,
     ~centerRipple?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
@@ -190,6 +180,16 @@ let makeProps =
       tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_TouchRippleProps?,
     ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~children?,
+    ~className?,
+    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~disabled?,
+    ~disableFocusRipple?,
+    ~disableRipple?,
+    ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~key?,
+    ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

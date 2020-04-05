@@ -1,58 +1,4 @@
 [@bs.deriving jsConverter]
-type transitionDuration_enum = [ | [@bs.as "auto"] `Auto];
-
-module TransitionDuration_shape = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional]
-    appear: [ | `Int(int) | `Float(float)],
-    [@bs.optional]
-    enter: [ | `Int(int) | `Float(float)],
-    [@bs.optional]
-    exit: [ | `Int(int) | `Float(float)],
-  };
-  let make = t;
-
-  let unwrap = (obj: t) => {
-    let unwrappedMap = Js.Dict.empty();
-
-    switch (
-      obj
-      ->appearGet
-      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
-    ) {
-    | Some(v) =>
-      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
-    | None => ()
-    };
-
-    switch (
-      obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
-    ) {
-    | Some(v) =>
-      unwrappedMap->(Js.Dict.set("enter", v->MaterialUi_Helpers.toJsUnsafe))
-    | None => ()
-    };
-
-    switch (
-      obj->exitGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
-    ) {
-    | Some(v) =>
-      unwrappedMap->(Js.Dict.set("exit", v->MaterialUi_Helpers.toJsUnsafe))
-    | None => ()
-    };
-
-    unwrappedMap;
-  };
-};
-
-[@bs.deriving jsConverter]
-type variant = [
-  | [@bs.as "menu"] `Menu
-  | [@bs.as "selectedMenu"] `SelectedMenu
-];
-
-[@bs.deriving jsConverter]
 type horizontal_enum = [
   | [@bs.as "left"] `Left
   | [@bs.as "center"] `Center
@@ -218,6 +164,60 @@ module TransformOrigin = {
   };
 };
 
+[@bs.deriving jsConverter]
+type transitionDuration_enum = [ | [@bs.as "auto"] `Auto];
+
+module TransitionDuration_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
+
+    switch (
+      obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("enter", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
+
+    switch (
+      obj->exitGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("exit", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
+};
+
+[@bs.deriving jsConverter]
+type variant = [
+  | [@bs.as "menu"] `Menu
+  | [@bs.as "selectedMenu"] `SelectedMenu
+];
+
 module Classes = {
   type classesType =
     | Paper(string)
@@ -246,12 +246,39 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'any_rnpa=?,
+    ~_BackdropComponent: 'union_rrs2=?,
+    ~_BackdropProps: Js.t({..})=?,
+    ~closeAfterTransition: bool=?,
+    ~disableAutoFocus: bool=?,
+    ~disableBackdropClick: bool=?,
+    ~disableEnforceFocus: bool=?,
+    ~disableEscapeKeyDown: bool=?,
+    ~disablePortal: bool=?,
+    ~disableRestoreFocus: bool=?,
+    ~disableScrollLock: bool=?,
+    ~hideBackdrop: bool=?,
+    ~keepMounted: bool=?,
+    ~manager: Js.t({..})=?,
+    ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
+    ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onRendered: ReactEvent.Synthetic.t => unit=?,
+    ~anchorOrigin: 'any_rn3q=?,
+    ~anchorPosition: 'any_rza4=?,
+    ~anchorReference: string=?,
+    ~className: string=?,
+    ~container: 'union_rdn1=?,
+    ~elevation: 'number_q=?,
+    ~getContentAnchorEl: 'genericCallback=?,
+    ~marginThreshold: 'number_z=?,
+    ~transformOrigin: 'any_rb7v=?,
+    ~_TransitionComponent: 'union_rgnv=?,
+    ~_TransitionProps: Js.t({..})=?,
+    ~anchorEl: 'any_rmv1=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_rgrw=?,
+    ~onClose: 'any_ryhg=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -261,21 +288,10 @@ external makePropsMui:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
-    ~transitionDuration: 'union_r2f6=?,
+    ~transitionDuration: 'union_rj9k=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~anchorOrigin: 'any_ry3s=?,
-    ~anchorPosition: 'any_rlzz=?,
-    ~anchorReference: string=?,
-    ~className: string=?,
-    ~container: 'union_r8sz=?,
-    ~elevation: 'number_y=?,
-    ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_0=?,
-    ~transformOrigin: 'any_rodg=?,
-    ~_TransitionComponent: 'union_r2wu=?,
-    ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -284,7 +300,51 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~anchorEl: option('any_rnpa)=?,
+      ~_BackdropComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~_BackdropProps: option(Js.t({..}))=?,
+      ~closeAfterTransition: option(bool)=?,
+      ~disableAutoFocus: option(bool)=?,
+      ~disableBackdropClick: option(bool)=?,
+      ~disableEnforceFocus: option(bool)=?,
+      ~disableEscapeKeyDown: option(bool)=?,
+      ~disablePortal: option(bool)=?,
+      ~disableRestoreFocus: option(bool)=?,
+      ~disableScrollLock: option(bool)=?,
+      ~hideBackdrop: option(bool)=?,
+      ~keepMounted: option(bool)=?,
+      ~manager: option(Js.t({..}))=?,
+      ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+      ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
+      ~anchorOrigin: option(AnchorOrigin.t)=?,
+      ~anchorPosition: option(AnchorPosition.t)=?,
+      ~anchorReference: option(anchorReference)=?,
+      ~className: option(string)=?,
+      ~container:
+         option(
+           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
+         )=?,
+      ~elevation: option([ | `Int(int) | `Float(float)])=?,
+      ~getContentAnchorEl: option('genericCallback)=?,
+      ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
+      ~transformOrigin: option(TransformOrigin.t)=?,
+      ~_TransitionComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~_TransitionProps: option(Js.t({..}))=?,
+      ~anchorEl: option('any_rmv1)=?,
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~disableAutoFocusItem: option(bool)=?,
@@ -311,32 +371,56 @@ let makeProps =
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~anchorOrigin: option(AnchorOrigin.t)=?,
-      ~anchorPosition: option(AnchorPosition.t)=?,
-      ~anchorReference: option(anchorReference)=?,
-      ~className: option(string)=?,
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
-      ~elevation: option([ | `Int(int) | `Float(float)])=?,
-      ~getContentAnchorEl: option('genericCallback)=?,
-      ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
-      ~transformOrigin: option(TransformOrigin.t)=?,
-      ~_TransitionComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~_TransitionProps: option(Js.t({..}))=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~_BackdropComponent=?
+      _BackdropComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~_BackdropProps?,
+    ~closeAfterTransition?,
+    ~disableAutoFocus?,
+    ~disableBackdropClick?,
+    ~disableEnforceFocus?,
+    ~disableEscapeKeyDown?,
+    ~disablePortal?,
+    ~disableRestoreFocus?,
+    ~disableScrollLock?,
+    ~hideBackdrop?,
+    ~keepMounted?,
+    ~manager?,
+    ~onBackdropClick?,
+    ~onEscapeKeyDown?,
+    ~onRendered?,
+    ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
+    ~anchorPosition=?AnchorPosition.unwrap(anchorPosition),
+    ~anchorReference=?
+      anchorReference->(Belt.Option.map(v => anchorReferenceToJs(v))),
+    ~className?,
+    ~container=?
+      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~getContentAnchorEl?,
+    ~marginThreshold=?
+      marginThreshold->(
+                         Belt.Option.map(v =>
+                           MaterialUi_Helpers.unwrapValue(v)
+                         )
+                       ),
+    ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
+    ~_TransitionComponent=?
+      _TransitionComponent->(
+                              Belt.Option.map(v =>
+                                MaterialUi_Helpers.unwrapValue(v)
+                              )
+                            ),
+    ~_TransitionProps?,
     ~anchorEl?,
     ~autoFocus?,
     ~children?,
@@ -368,30 +452,6 @@ let makeProps =
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
     ~ref?,
-    ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
-    ~anchorPosition=?AnchorPosition.unwrap(anchorPosition),
-    ~anchorReference=?
-      anchorReference->(Belt.Option.map(v => anchorReferenceToJs(v))),
-    ~className?,
-    ~container=?
-      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~elevation=?
-      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~getContentAnchorEl?,
-    ~marginThreshold=?
-      marginThreshold->(
-                         Belt.Option.map(v =>
-                           MaterialUi_Helpers.unwrapValue(v)
-                         )
-                       ),
-    ~transformOrigin=?TransformOrigin.unwrap(transformOrigin),
-    ~_TransitionComponent=?
-      _TransitionComponent->(
-                              Belt.Option.map(v =>
-                                MaterialUi_Helpers.unwrapValue(v)
-                              )
-                            ),
-    ~_TransitionProps?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

@@ -38,20 +38,20 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~component: 'union_rw8c=?,
+    ~elevation: 'number_x=?,
+    ~variant: string=?,
     ~children: 'children=?,
     ~className: string=?,
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_rral=?,
+    ~onChange: 'any_rwj8=?,
     ~square: bool=?,
-    ~_TransitionComponent: 'union_r2v5=?,
+    ~_TransitionComponent: 'union_rgld=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r0lw=?,
-    ~elevation: 'number_u=?,
-    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -60,6 +60,16 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~elevation: option([ | `Int(int) | `Float(float)])=?,
+      ~variant: option(variant)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~defaultExpanded: option(bool)=?,
@@ -78,21 +88,16 @@ let makeProps =
       ~_TransitionProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback(unit => React.element)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~elevation: option([ | `Int(int) | `Float(float)])=?,
-      ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~children?,
     ~className?,
     ~defaultExpanded?,
@@ -109,11 +114,6 @@ let makeProps =
     ~_TransitionProps?,
     ~key?,
     ~ref?,
-    ~component=?
-      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~elevation=?
-      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

@@ -69,19 +69,19 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~children: 'children=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r72l=?,
+    ~component: 'union_rj7l=?,
     ~display: string=?,
     ~gutterBottom: bool=?,
     ~noWrap: bool=?,
     ~paragraph: bool=?,
     ~variant: string=?,
     ~variantMapping: Js.t({..})=?,
+    ~children: 'children=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -90,9 +90,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~children: option('children)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~align: option(align)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
@@ -110,14 +107,14 @@ let makeProps =
       ~paragraph: option(bool)=?,
       ~variant: option(variant)=?,
       ~variantMapping: option(Js.t({..}))=?,
+      ~children: option('children)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
-    ~children?,
-    ~key?,
-    ~ref?,
     ~align=?align->(Belt.Option.map(v => alignToJs(v))),
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
@@ -129,6 +126,9 @@ let makeProps =
     ~paragraph?,
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~variantMapping?,
+    ~children?,
+    ~key?,
+    ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

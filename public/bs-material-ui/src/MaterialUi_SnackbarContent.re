@@ -35,17 +35,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~children: 'children=?,
+    ~component: 'union_rjk5=?,
+    ~elevation: 'number_m=?,
+    ~square: bool=?,
+    ~variant: string=?,
     ~action: React.element=?,
     ~className: string=?,
     ~message: React.element=?,
     ~role: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~children: 'children=?,
-    ~component: 'union_ryw6=?,
-    ~elevation: 'number_c=?,
-    ~square: bool=?,
-    ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -54,12 +54,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~action: option(React.element)=?,
-      ~className: option(string)=?,
-      ~message: option(React.element)=?,
-      ~role: option(string)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,
       ~component:
          option(
@@ -72,17 +66,17 @@ let makeProps =
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
       ~variant: option(variant)=?,
+      ~action: option(React.element)=?,
+      ~className: option(string)=?,
+      ~message: option(React.element)=?,
+      ~role: option(string)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
-    ~action?,
-    ~className?,
-    ~message?,
-    ~role?,
-    ~key?,
-    ~ref?,
     ~children?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
@@ -90,6 +84,12 @@ let makeProps =
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~square?,
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~action?,
+    ~className?,
+    ~message?,
+    ~role?,
+    ~key?,
+    ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

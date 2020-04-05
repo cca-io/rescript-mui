@@ -112,8 +112,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rdsg=?,
-    ~elevation: 'number_g=?,
+    ~component: 'union_ro1s=?,
+    ~elevation: 'number_8=?,
     ~square: bool=?,
     ~variant: string=?,
     ~key: string=?,

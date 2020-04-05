@@ -162,35 +162,39 @@ type variant = [
 [@bs.obj]
 external makePropsMui:
   (
+    ~_BackdropProps: Js.t({..})=?,
+    ~className: string=?,
+    ~elevation: 'number_8=?,
+    ~_SlideProps: Js.t({..})=?,
     ~anchor: string=?,
     ~children: 'children=?,
     ~disableBackdropTransition: bool=?,
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_i=?,
-    ~minFlingVelocity: 'number_u=?,
-    ~_ModalProps: 'any_rx9w=?,
-    ~onClose: 'any_rti9,
-    ~onOpen: 'any_rjz1,
+    ~hysteresis: 'number_g=?,
+    ~minFlingVelocity: 'number_q=?,
+    ~_ModalProps: 'any_rr1n=?,
+    ~onClose: 'any_rza4,
+    ~onOpen: 'any_riul,
     ~_open: bool,
-    ~_PaperProps: 'any_rfl6=?,
+    ~_PaperProps: 'any_r8q6=?,
     ~_SwipeAreaProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_s=?,
-    ~transitionDuration: 'union_rd8x=?,
+    ~swipeAreaWidth: 'number_b=?,
+    ~transitionDuration: 'union_rkal=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~_BackdropProps: Js.t({..})=?,
-    ~className: string=?,
-    ~elevation: 'number_s=?,
-    ~_SlideProps: Js.t({..})=?,
     unit
   ) =>
   _;
 
 let makeProps =
     (
+      ~_BackdropProps: option(Js.t({..}))=?,
+      ~className: option(string)=?,
+      ~elevation: option([ | `Int(int) | `Float(float)])=?,
+      ~_SlideProps: option(Js.t({..}))=?,
       ~anchor: option(anchor)=?,
       ~children: option('children)=?,
       ~disableBackdropTransition: option(bool)=?,
@@ -217,13 +221,14 @@ let makeProps =
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~_BackdropProps: option(Js.t({..}))=?,
-      ~className: option(string)=?,
-      ~elevation: option([ | `Int(int) | `Float(float)])=?,
-      ~_SlideProps: option(Js.t({..}))=?,
       (),
     ) =>
   makePropsMui(
+    ~_BackdropProps?,
+    ~className?,
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~_SlideProps?,
     ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
     ~children?,
     ~disableBackdropTransition?,
@@ -257,11 +262,6 @@ let makeProps =
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
     ~ref?,
-    ~_BackdropProps?,
-    ~className?,
-    ~elevation=?
-      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~_SlideProps?,
     (),
   );
 

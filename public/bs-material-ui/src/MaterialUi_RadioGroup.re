@@ -1,21 +1,23 @@
 [@bs.obj]
 external makePropsMui:
   (
-    ~children: 'children=?,
-    ~defaultValue: 'union_r9bp=?,
-    ~name: string=?,
-    ~onChange: 'any_rlgb=?,
-    ~value: 'any_rpa3=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
     ~className: string=?,
     ~row: bool=?,
+    ~children: 'children=?,
+    ~defaultValue: 'union_rn8z=?,
+    ~name: string=?,
+    ~onChange: 'any_r451=?,
+    ~value: 'any_ryqm=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
   _;
 
 let makeProps =
     (
+      ~className: option(string)=?,
+      ~row: option(bool)=?,
       ~children: option('children)=?,
       ~defaultValue:
          option(
@@ -28,14 +30,14 @@ let makeProps =
          )=?,
       ~name: option(string)=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~value: option('any_rpa3)=?,
+      ~value: option('any_ryqm)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~className: option(string)=?,
-      ~row: option(bool)=?,
       (),
     ) =>
   makePropsMui(
+    ~className?,
+    ~row?,
     ~children?,
     ~defaultValue=?
       defaultValue->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
@@ -44,8 +46,6 @@ let makeProps =
     ~value?,
     ~key?,
     ~ref?,
-    ~className?,
-    ~row?,
     (),
   );
 

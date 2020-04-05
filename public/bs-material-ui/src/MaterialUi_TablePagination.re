@@ -83,25 +83,6 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~_ActionsComponent: 'union_rdta=?,
-    ~backIconButtonProps: Js.t({..})=?,
-    ~backIconButtonText: string=?,
-    ~className: string=?,
-    ~colSpan: 'number_t=?,
-    ~component: 'union_ro42=?,
-    ~count: 'number_1,
-    ~labelDisplayedRows: 'labelDisplayedRows=?,
-    ~labelRowsPerPage: 'labelRowsPerPage=?,
-    ~nextIconButtonProps: Js.t({..})=?,
-    ~nextIconButtonText: string=?,
-    ~onChangePage: 'any_rmys,
-    ~onChangeRowsPerPage: 'any_rnal=?,
-    ~page: int=?,
-    ~rowsPerPage: 'number_m,
-    ~rowsPerPageOptions: array(int)=?,
-    ~_SelectProps: Js.t({..})=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
     ~align: string=?,
     ~children: 'children=?,
     ~padding: string=?,
@@ -109,6 +90,25 @@ external makePropsMui:
     ~size: string=?,
     ~sortDirection: string=?,
     ~variant: string=?,
+    ~_ActionsComponent: 'union_rrqz=?,
+    ~backIconButtonProps: Js.t({..})=?,
+    ~backIconButtonText: string=?,
+    ~className: string=?,
+    ~colSpan: 'number_v=?,
+    ~component: 'union_rrnx=?,
+    ~count: 'number_w,
+    ~labelDisplayedRows: 'labelDisplayedRows=?,
+    ~labelRowsPerPage: 'labelRowsPerPage=?,
+    ~nextIconButtonProps: Js.t({..})=?,
+    ~nextIconButtonText: string=?,
+    ~onChangePage: 'any_rgj9,
+    ~onChangeRowsPerPage: 'any_rfcg=?,
+    ~page: int=?,
+    ~rowsPerPage: 'number_a,
+    ~rowsPerPageOptions: array(int)=?,
+    ~_SelectProps: Js.t({..})=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -117,6 +117,13 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~align: option(align)=?,
+      ~children: option('children)=?,
+      ~padding: option(padding)=?,
+      ~scope: option(string)=?,
+      ~size: option(size)=?,
+      ~sortDirection: option(sortDirection)=?,
+      ~variant: option(variant)=?,
       ~_ActionsComponent:
          option(
            [
@@ -169,18 +176,19 @@ let makeProps =
       ~_SelectProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~align: option(align)=?,
-      ~children: option('children)=?,
-      ~padding: option(padding)=?,
-      ~scope: option(string)=?,
-      ~size: option(size)=?,
-      ~sortDirection: option(sortDirection)=?,
-      ~variant: option(variant)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~children?,
+    ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
+    ~scope?,
+    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~sortDirection=?
+      sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
+    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~_ActionsComponent=?
       _ActionsComponent->(
                            Belt.Option.map(v =>
@@ -216,14 +224,6 @@ let makeProps =
     ~_SelectProps?,
     ~key?,
     ~ref?,
-    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
-    ~children?,
-    ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
-    ~scope?,
-    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-    ~sortDirection=?
-      sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

@@ -58,20 +58,20 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_q=?,
+    ~children: 'children=?,
+    ~component: 'union_r2ih=?,
+    ~elevation: 'number_w=?,
+    ~square: bool=?,
+    ~activeStep: 'number_k=?,
     ~backButton: React.element=?,
     ~className: string=?,
     ~_LinearProgressProps: Js.t({..})=?,
     ~nextButton: React.element=?,
     ~position: string=?,
-    ~steps: 'number_m,
+    ~steps: 'number_2,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~children: 'children=?,
-    ~component: 'union_rimc=?,
-    ~elevation: 'number_v=?,
-    ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -80,16 +80,6 @@ external makePropsMui:
 
 let makeProps =
     (
-      ~activeStep: option([ | `Int(int) | `Float(float)])=?,
-      ~backButton: option(React.element)=?,
-      ~className: option(string)=?,
-      ~_LinearProgressProps: option(Js.t({..}))=?,
-      ~nextButton: option(React.element)=?,
-      ~position: option(position)=?,
-      ~steps: [ | `Int(int) | `Float(float)],
-      ~variant: option(variant)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,
       ~component:
          option(
@@ -101,11 +91,27 @@ let makeProps =
          )=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~square: option(bool)=?,
+      ~activeStep: option([ | `Int(int) | `Float(float)])=?,
+      ~backButton: option(React.element)=?,
+      ~className: option(string)=?,
+      ~_LinearProgressProps: option(Js.t({..}))=?,
+      ~nextButton: option(React.element)=?,
+      ~position: option(position)=?,
+      ~steps: [ | `Int(int) | `Float(float)],
+      ~variant: option(variant)=?,
+      ~key: option(string)=?,
+      ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~children?,
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~elevation=?
+      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~square?,
     ~activeStep=?
       activeStep->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~backButton?,
@@ -117,12 +123,6 @@ let makeProps =
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
     ~key?,
     ~ref?,
-    ~children?,
-    ~component=?
-      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~elevation=?
-      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~square?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

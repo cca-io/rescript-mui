@@ -38,27 +38,27 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~alignItems: string=?,
+    ~autoFocus: bool=?,
+    ~button: bool=?,
+    ~_ContainerComponent: 'union_reom=?,
+    ~_ContainerProps: Js.t({..})=?,
+    ~divider: bool=?,
+    ~focusVisibleClassName: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r2m2=?,
+    ~component: 'union_rvcx=?,
     ~dense: bool=?,
     ~disabled: bool=?,
     ~disableGutters: bool=?,
     ~role: string=?,
     ~selected: bool=?,
-    ~tabIndex: 'number_m=?,
-    ~value: 'union_r6he=?,
+    ~tabIndex: 'number_a=?,
+    ~value: 'union_rcgr=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~alignItems: string=?,
-    ~autoFocus: bool=?,
-    ~button: bool=?,
-    ~_ContainerComponent: 'union_rnps=?,
-    ~_ContainerProps: Js.t({..})=?,
-    ~divider: bool=?,
-    ~focusVisibleClassName: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -67,6 +67,20 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~alignItems: option(alignItems)=?,
+      ~autoFocus: option(bool)=?,
+      ~button: option(bool)=?,
+      ~_ContainerComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~_ContainerProps: option(Js.t({..}))=?,
+      ~divider: option(bool)=?,
+      ~focusVisibleClassName: option(string)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~component:
@@ -96,25 +110,23 @@ let makeProps =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~alignItems: option(alignItems)=?,
-      ~autoFocus: option(bool)=?,
-      ~button: option(bool)=?,
-      ~_ContainerComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~_ContainerProps: option(Js.t({..}))=?,
-      ~divider: option(bool)=?,
-      ~focusVisibleClassName: option(string)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
+    ~autoFocus?,
+    ~button?,
+    ~_ContainerComponent=?
+      _ContainerComponent->(
+                             Belt.Option.map(v =>
+                               MaterialUi_Helpers.unwrapValue(v)
+                             )
+                           ),
+    ~_ContainerProps?,
+    ~divider?,
+    ~focusVisibleClassName?,
     ~children?,
     ~className?,
     ~component=?
@@ -131,18 +143,6 @@ let makeProps =
     ~onClick?,
     ~key?,
     ~ref?,
-    ~alignItems=?alignItems->(Belt.Option.map(v => alignItemsToJs(v))),
-    ~autoFocus?,
-    ~button?,
-    ~_ContainerComponent=?
-      _ContainerComponent->(
-                             Belt.Option.map(v =>
-                               MaterialUi_Helpers.unwrapValue(v)
-                             )
-                           ),
-    ~_ContainerProps?,
-    ~divider?,
-    ~focusVisibleClassName?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

@@ -266,32 +266,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'union_r7f3=?,
-    ~anchorOrigin: 'any_rjje=?,
-    ~anchorPosition: 'any_rt7o=?,
-    ~anchorReference: string=?,
-    ~children: 'children=?,
-    ~className: string=?,
-    ~container: 'union_rud0=?,
-    ~elevation: 'number_i=?,
-    ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_v=?,
-    ~onClose: 'any_r6vo=?,
-    ~onEnter: ReactEvent.Synthetic.t => unit=?,
-    ~onEntered: ReactEvent.Synthetic.t => unit=?,
-    ~onEntering: ReactEvent.Synthetic.t => unit=?,
-    ~onExit: ReactEvent.Synthetic.t => unit=?,
-    ~onExited: ReactEvent.Synthetic.t => unit=?,
-    ~onExiting: ReactEvent.Synthetic.t => unit=?,
-    ~_open: bool,
-    ~_PaperProps: 'any_rk7b=?,
-    ~transformOrigin: 'any_rnyg=?,
-    ~_TransitionComponent: 'union_ru9j=?,
-    ~transitionDuration: 'union_rsoa=?,
-    ~_TransitionProps: Js.t({..})=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    ~_BackdropComponent: 'union_revy=?,
+    ~_BackdropComponent: 'union_r8pa=?,
     ~_BackdropProps: Js.t({..})=?,
     ~closeAfterTransition: bool=?,
     ~disableAutoFocus: bool=?,
@@ -307,6 +282,31 @@ external makePropsMui:
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
+    ~anchorEl: 'union_rmj8=?,
+    ~anchorOrigin: 'any_rv40=?,
+    ~anchorPosition: 'any_rdqm=?,
+    ~anchorReference: string=?,
+    ~children: 'children=?,
+    ~className: string=?,
+    ~container: 'union_raig=?,
+    ~elevation: 'number_j=?,
+    ~getContentAnchorEl: 'genericCallback=?,
+    ~marginThreshold: 'number_a=?,
+    ~onClose: 'any_ri9i=?,
+    ~onEnter: ReactEvent.Synthetic.t => unit=?,
+    ~onEntered: ReactEvent.Synthetic.t => unit=?,
+    ~onEntering: ReactEvent.Synthetic.t => unit=?,
+    ~onExit: ReactEvent.Synthetic.t => unit=?,
+    ~onExited: ReactEvent.Synthetic.t => unit=?,
+    ~onExiting: ReactEvent.Synthetic.t => unit=?,
+    ~_open: bool,
+    ~_PaperProps: 'any_rryk=?,
+    ~transformOrigin: 'any_r9h6=?,
+    ~_TransitionComponent: 'union_rn0b=?,
+    ~transitionDuration: 'union_ro1q=?,
+    ~_TransitionProps: Js.t({..})=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -315,6 +315,29 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~_BackdropComponent:
+         option(
+           [
+             | `String(string)
+             | `Callback('genericCallback)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~_BackdropProps: option(Js.t({..}))=?,
+      ~closeAfterTransition: option(bool)=?,
+      ~disableAutoFocus: option(bool)=?,
+      ~disableBackdropClick: option(bool)=?,
+      ~disableEnforceFocus: option(bool)=?,
+      ~disableEscapeKeyDown: option(bool)=?,
+      ~disablePortal: option(bool)=?,
+      ~disableRestoreFocus: option(bool)=?,
+      ~disableScrollLock: option(bool)=?,
+      ~hideBackdrop: option(bool)=?,
+      ~keepMounted: option(bool)=?,
+      ~manager: option(Js.t({..}))=?,
+      ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
+      ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+      ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~anchorEl:
          option(
            [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
@@ -361,34 +384,32 @@ let makeProps =
       ~_TransitionProps: option(Js.t({..}))=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~_BackdropComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~_BackdropProps: option(Js.t({..}))=?,
-      ~closeAfterTransition: option(bool)=?,
-      ~disableAutoFocus: option(bool)=?,
-      ~disableBackdropClick: option(bool)=?,
-      ~disableEnforceFocus: option(bool)=?,
-      ~disableEscapeKeyDown: option(bool)=?,
-      ~disablePortal: option(bool)=?,
-      ~disableRestoreFocus: option(bool)=?,
-      ~disableScrollLock: option(bool)=?,
-      ~hideBackdrop: option(bool)=?,
-      ~keepMounted: option(bool)=?,
-      ~manager: option(Js.t({..}))=?,
-      ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-      ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~_BackdropComponent=?
+      _BackdropComponent->(
+                            Belt.Option.map(v =>
+                              MaterialUi_Helpers.unwrapValue(v)
+                            )
+                          ),
+    ~_BackdropProps?,
+    ~closeAfterTransition?,
+    ~disableAutoFocus?,
+    ~disableBackdropClick?,
+    ~disableEnforceFocus?,
+    ~disableEscapeKeyDown?,
+    ~disablePortal?,
+    ~disableRestoreFocus?,
+    ~disableScrollLock?,
+    ~hideBackdrop?,
+    ~keepMounted?,
+    ~manager?,
+    ~onBackdropClick?,
+    ~onEscapeKeyDown?,
+    ~onRendered?,
     ~anchorEl=?
       anchorEl->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~anchorOrigin=?AnchorOrigin.unwrap(anchorOrigin),
@@ -440,27 +461,6 @@ let makeProps =
     ~_TransitionProps?,
     ~key?,
     ~ref?,
-    ~_BackdropComponent=?
-      _BackdropComponent->(
-                            Belt.Option.map(v =>
-                              MaterialUi_Helpers.unwrapValue(v)
-                            )
-                          ),
-    ~_BackdropProps?,
-    ~closeAfterTransition?,
-    ~disableAutoFocus?,
-    ~disableBackdropClick?,
-    ~disableEnforceFocus?,
-    ~disableEscapeKeyDown?,
-    ~disablePortal?,
-    ~disableRestoreFocus?,
-    ~disableScrollLock?,
-    ~hideBackdrop?,
-    ~keepMounted?,
-    ~manager?,
-    ~onBackdropClick?,
-    ~onEscapeKeyDown?,
-    ~onRendered?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

@@ -72,6 +72,8 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~component: 'union_rdq2=?,
+    ~filled: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
@@ -86,8 +88,6 @@ external makePropsMui:
     ~htmlFor: string,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rugp=?,
-    ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
@@ -96,6 +96,15 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~component:
+         option(
+           [
+             | `String(string)
+             | `Callback(unit => React.element)
+             | `Element(React.element)
+           ],
+         )=?,
+      ~filled: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
@@ -110,20 +119,14 @@ let makeProps =
       ~htmlFor: string,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback(unit => React.element)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~filled: option(bool)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
     ) =>
   makePropsMui(
+    ~component=?
+      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~filled?,
     ~children?,
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
@@ -138,9 +141,6 @@ let makeProps =
     ~htmlFor,
     ~key?,
     ~ref?,
-    ~component=?
-      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~filled?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),
