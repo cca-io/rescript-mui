@@ -50,7 +50,7 @@ external makePropsMui:
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_rtyx=?,
+    ~timeout: 'union_rutg=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     unit

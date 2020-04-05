@@ -53,7 +53,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rgav=?,
+    ~component: 'union_rs3m=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~filled: bool=?,

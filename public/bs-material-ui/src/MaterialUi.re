@@ -110,48 +110,7 @@ module Tooltip = MaterialUi_Tooltip;
 module Typography = MaterialUi_Typography;
 module Zoom = MaterialUi_Zoom;
 
-module Colors = {
-  module Common = MaterialUi_Color_Common;
-
-  module Red = MaterialUi_Color_Red;
-
-  module Pink = MaterialUi_Color_Pink;
-
-  module Purple = MaterialUi_Color_Purple;
-
-  module DeepPurple = MaterialUi_Color_DeepPurple;
-
-  module Indigo = MaterialUi_Color_Indigo;
-
-  module Blue = MaterialUi_Color_Blue;
-
-  module LightBlue = MaterialUi_Color_LightBlue;
-
-  module Cyan = MaterialUi_Color_Cyan;
-
-  module Teal = MaterialUi_Color_Teal;
-
-  module Green = MaterialUi_Color_Green;
-
-  module LightGreen = MaterialUi_Color_LightGreen;
-
-  module Lime = MaterialUi_Color_Lime;
-
-  module Yellow = MaterialUi_Color_Yellow;
-
-  module Amber = MaterialUi_Color_Amber;
-
-  module Orange = MaterialUi_Color_Orange;
-
-  module DeepOrange = MaterialUi_Color_DeepOrange;
-
-  module Brown = MaterialUi_Color_Brown;
-
-  module Grey = MaterialUi_Color_Grey;
-
-  module BlueGrey = MaterialUi_Color_BlueGrey;
-};
-
+module Colors = MaterialUi_Colors;
 module type WithStylesSafeTemplate = MaterialUi_WithStyles.WithStylesSafeTemplate;
 module WithStylesSafe = MaterialUi_WithStyles.WithStylesSafe;
 module Theme = MaterialUi_Theme;

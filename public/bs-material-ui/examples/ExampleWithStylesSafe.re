@@ -10,7 +10,7 @@ module Theme = MaterialUi_Theme;
     {
       background:
         ReactDOMRe.Style.make(
-          ~color=MaterialUi.Colors.Common.white,
+          ~color=MaterialUi.Colors.common.white,
           ~backgroundColor=
             theme
             ->Theme.Theme.paletteGet

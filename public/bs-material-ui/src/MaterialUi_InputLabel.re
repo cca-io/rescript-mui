@@ -86,7 +86,7 @@ external makePropsMui:
     ~htmlFor: string,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_raei=?,
+    ~component: 'union_reyw=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,

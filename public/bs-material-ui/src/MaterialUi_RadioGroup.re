@@ -2,10 +2,10 @@
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~defaultValue: 'union_rugo=?,
+    ~defaultValue: 'union_resf=?,
     ~name: string=?,
-    ~onChange: 'any_rdss=?,
-    ~value: 'any_rk5c=?,
+    ~onChange: 'any_r9en=?,
+    ~value: 'any_rtfz=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~className: string=?,
@@ -28,7 +28,7 @@ let makeProps =
          )=?,
       ~name: option(string)=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~value: option('any_rk5c)=?,
+      ~value: option('any_rtfz)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~className: option(string)=?,

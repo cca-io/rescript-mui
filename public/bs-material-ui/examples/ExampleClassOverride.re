@@ -2,7 +2,7 @@
   "OverrideExample"({
     fontSize: ReactDOMRe.Style.make(~fontSize="30px", ()),
     bgColor:
-      ReactDOMRe.Style.make(~backgroundColor=MaterialUi.Colors.Red.c300, ()),
+      ReactDOMRe.Style.make(~backgroundColor=MaterialUi.Colors.red.c300, ()),
   })
 ];
 
