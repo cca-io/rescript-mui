@@ -64,8 +64,8 @@ external makePropsMui:
     ~button: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rj84=?,
-    ~_ContainerComponent: 'union_r2x3=?,
+    ~component: 'union_rl17=?,
+    ~_ContainerComponent: 'union_rg0q=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -73,7 +73,8 @@ external makePropsMui:
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~selected: bool=?,
-    ~value: 'union_rig1=?,
+    ~id: string=?,
+    ~value: 'union_ruxi=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~key: string=?,
@@ -114,6 +115,7 @@ let makeProps =
       ~divider: option(bool)=?,
       ~focusVisibleClassName: option(string)=?,
       ~selected: option(bool)=?,
+      ~id: option(string)=?,
       ~value:
          option(
            [
@@ -152,6 +154,7 @@ let makeProps =
     ~divider?,
     ~focusVisibleClassName?,
     ~selected?,
+    ~id?,
     ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~onFocus?,
     ~onClick?,

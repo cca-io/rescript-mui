@@ -1,11 +1,11 @@
 [@bs.obj]
 external makePropsMui:
   (
-    ~_BackdropComponent: 'union_r6z1=?,
+    ~_BackdropComponent: 'union_r0vy=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rxrw=?,
+    ~container: 'union_rjug=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -17,10 +17,11 @@ external makePropsMui:
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_r1x9=?,
+    ~onClose: 'any_ra33=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
+    ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     unit
@@ -59,6 +60,7 @@ let makeProps =
       ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: bool,
+      ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       (),
@@ -90,6 +92,7 @@ let makeProps =
     ~onEscapeKeyDown?,
     ~onRendered?,
     ~_open=open_,
+    ~id?,
     ~key?,
     ~ref?,
     (),

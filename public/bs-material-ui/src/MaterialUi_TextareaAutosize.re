@@ -4,10 +4,11 @@ external makePropsMui:
     ~className: string=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~placeholder: string=?,
-    ~rows: 'union_rfj6=?,
-    ~rowsMax: 'union_rwcu=?,
-    ~rowsMin: 'union_ri2j=?,
-    ~value: 'union_rcs6=?,
+    ~rows: 'union_rdk4=?,
+    ~rowsMax: 'union_rp3t=?,
+    ~rowsMin: 'union_r9og=?,
+    ~value: 'union_rdcs=?,
+    ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     unit
@@ -31,6 +32,7 @@ let makeProps =
              | `String(string)
            ],
          )=?,
+      ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       (),
@@ -45,6 +47,7 @@ let makeProps =
     ~rowsMin=?
       rowsMin->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~id?,
     ~key?,
     ~ref?,
     (),

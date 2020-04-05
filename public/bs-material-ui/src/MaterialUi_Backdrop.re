@@ -75,7 +75,8 @@ external makePropsMui:
     ~className: string=?,
     ~invisible: bool=?,
     ~_open: bool,
-    ~transitionDuration: 'union_r11m=?,
+    ~transitionDuration: 'union_rp1y=?,
+    ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -98,6 +99,7 @@ let makeProps =
              | `Object(TransitionDuration_shape.t)
            ],
          )=?,
+      ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -115,6 +117,7 @@ let makeProps =
                               MaterialUi_Helpers.unwrapValue(v)
                             )
                           ),
+    ~id?,
     ~key?,
     ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

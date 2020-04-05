@@ -53,7 +53,8 @@ external makePropsMui:
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_r990=?,
+    ~timeout: 'union_r6n0=?,
+    ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     unit
@@ -75,6 +76,7 @@ let makeProps =
              | `Object(Timeout_shape.t)
            ],
          )=?,
+      ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       (),
@@ -97,6 +99,7 @@ let makeProps =
                    }
                  )
                ),
+    ~id?,
     ~key?,
     ~ref?,
     (),

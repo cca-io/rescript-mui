@@ -22,6 +22,17 @@ class Component {
 
   constructor(componentSignature: ComponentSignature) {
     this._component = componentSignature;
+    // Add id prop
+    if (typeof this._component.props['id'] === 'undefined') {
+      this._component.props['id'] = {
+        type: {
+          name: 'string',
+        },
+        required: false,
+        description: '@ignore',
+        defaultValue: { computed: false, value: '' },
+      };
+    }
     this.parse();
   }
 

@@ -24,6 +24,7 @@ module Classes = {
 external makePropsMui:
   (
     ~children: 'children=?,
+    ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -35,6 +36,7 @@ external makePropsMui:
 let makeProps =
     (
       ~children: option('children)=?,
+      ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -43,6 +45,7 @@ let makeProps =
     ) =>
   makePropsMui(
     ~children?,
+    ~id?,
     ~key?,
     ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

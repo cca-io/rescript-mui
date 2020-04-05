@@ -72,8 +72,9 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_rdq2=?,
+    ~component: 'union_rqs8=?,
     ~filled: bool=?,
+    ~id: string=?,
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
@@ -105,6 +106,7 @@ let makeProps =
            ],
          )=?,
       ~filled: option(bool)=?,
+      ~id: option(string)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
@@ -127,6 +129,7 @@ let makeProps =
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~filled?,
+    ~id?,
     ~children?,
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),

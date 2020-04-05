@@ -6,10 +6,11 @@ type variant = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_r4np=?,
+    ~component: 'union_r9j5=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,
+    ~id: string=?,
     ~autoFocus: bool=?,
     ~autoFocusItem: bool=?,
     ~children: 'children=?,
@@ -37,6 +38,7 @@ let makeProps =
       ~dense: option(bool)=?,
       ~disablePadding: option(bool)=?,
       ~subheader: option(React.element)=?,
+      ~id: option(string)=?,
       ~autoFocus: option(bool)=?,
       ~autoFocusItem: option(bool)=?,
       ~children: option('children)=?,
@@ -55,6 +57,7 @@ let makeProps =
     ~dense?,
     ~disablePadding?,
     ~subheader?,
+    ~id?,
     ~autoFocus?,
     ~autoFocusItem?,
     ~children?,

@@ -50,7 +50,8 @@ external makePropsMui:
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_r3lm=?,
+    ~timeout: 'union_rkwi=?,
+    ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     unit
@@ -65,6 +66,7 @@ let makeProps =
       ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
       ~timeout:
          option([ | `Int(int) | `Float(float) | `Object(Timeout_shape.t)])=?,
+      ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       (),
@@ -76,6 +78,7 @@ let makeProps =
     ~onExit?,
     ~timeout=?
       timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~id?,
     ~key?,
     ~ref?,
     (),

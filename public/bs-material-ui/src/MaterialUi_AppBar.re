@@ -77,7 +77,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_rdop=?,
+    ~component: 'union_rui9=?,
     ~elevation: 'number_1=?,
     ~square: bool=?,
     ~variant: string=?,
@@ -85,6 +85,7 @@ external makePropsMui:
     ~className: string=?,
     ~color: string=?,
     ~position: string=?,
+    ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -110,6 +111,7 @@ let makeProps =
       ~className: option(string)=?,
       ~color: option(color)=?,
       ~position: option(position)=?,
+      ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -127,6 +129,7 @@ let makeProps =
     ~className?,
     ~color=?color->(Belt.Option.map(v => colorToJs(v))),
     ~position=?position->(Belt.Option.map(v => positionToJs(v))),
+    ~id?,
     ~key?,
     ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

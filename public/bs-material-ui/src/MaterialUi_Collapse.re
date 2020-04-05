@@ -85,15 +85,16 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~collapsedHeight: 'union_rph6=?,
-    ~component: 'union_rly0=?,
+    ~collapsedHeight: 'union_r7j5=?,
+    ~component: 'union_rpgf=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_r16g=?,
+    ~timeout: 'union_rdds=?,
+    ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -131,6 +132,7 @@ let makeProps =
              | `Object(Timeout_shape.t)
            ],
          )=?,
+      ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -167,6 +169,7 @@ let makeProps =
                    }
                  )
                ),
+    ~id?,
     ~key?,
     ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

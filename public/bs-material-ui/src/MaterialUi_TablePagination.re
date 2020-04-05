@@ -90,21 +90,22 @@ external makePropsMui:
     ~size: string=?,
     ~sortDirection: string=?,
     ~variant: string=?,
-    ~_ActionsComponent: 'union_rrqz=?,
+    ~id: string=?,
+    ~_ActionsComponent: 'union_rbc6=?,
     ~backIconButtonProps: Js.t({..})=?,
     ~backIconButtonText: string=?,
     ~className: string=?,
-    ~colSpan: 'number_v=?,
-    ~component: 'union_rrnx=?,
-    ~count: 'number_w,
+    ~colSpan: 'number_y=?,
+    ~component: 'union_rp6f=?,
+    ~count: 'number_r,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
     ~nextIconButtonText: string=?,
-    ~onChangePage: 'any_rgj9,
-    ~onChangeRowsPerPage: 'any_rfcg=?,
+    ~onChangePage: 'any_rvix,
+    ~onChangeRowsPerPage: 'any_rqzz=?,
     ~page: int=?,
-    ~rowsPerPage: 'number_a,
+    ~rowsPerPage: 'number_g,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~key: string=?,
@@ -124,6 +125,7 @@ let makeProps =
       ~size: option(size)=?,
       ~sortDirection: option(sortDirection)=?,
       ~variant: option(variant)=?,
+      ~id: option(string)=?,
       ~_ActionsComponent:
          option(
            [
@@ -189,6 +191,7 @@ let makeProps =
     ~sortDirection=?
       sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
     ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~id?,
     ~_ActionsComponent=?
       _ActionsComponent->(
                            Belt.Option.map(v =>

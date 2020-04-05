@@ -2,9 +2,10 @@
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~container: 'union_rq2o=?,
+    ~container: 'union_r3qi=?,
     ~disablePortal: bool=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
+    ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     unit
@@ -17,6 +18,7 @@ let makeProps =
       ~container: option([ | `Callback('genericCallback)])=?,
       ~disablePortal: option(bool)=?,
       ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
+      ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       (),
@@ -27,6 +29,7 @@ let makeProps =
       container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disablePortal?,
     ~onRendered?,
+    ~id?,
     ~key?,
     ~ref?,
     (),
