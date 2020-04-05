@@ -76,7 +76,7 @@
     "jss-plugin-rule-value-function": "^10.0.0-alpha.7",
     "jss-plugin-vendor-prefixer": "^10.0.0-alpha.7",
     "keycode": "^2.2.0",
-    "next": "^7.0.1",
+    "next": "^9.3.2",
     "normalize-scroll-left": "^0.1.2",
     "react-event-listener": "^0.6.4",
     "react-jss": "^8.5.1",
