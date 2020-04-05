@@ -41,7 +41,7 @@ external makePropsMui:
     ~action: React.element=?,
     ~avatar: React.element=?,
     ~className: string=?,
-    ~component: 'union_r4zz=?,
+    ~component: 'union_r3ly=?,
     ~disableTypography: bool=?,
     ~subheader: React.element=?,
     ~subheaderTypographyProps: Js.t({..})=?,

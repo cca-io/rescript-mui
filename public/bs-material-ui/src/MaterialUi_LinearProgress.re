@@ -90,8 +90,8 @@ external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_4=?,
-    ~valueBuffer: 'number_5=?,
+    ~value: 'number_g=?,
+    ~valueBuffer: 'number_f=?,
     ~variant: string=?,
     ~id: string=?,
     ~key: string=?,

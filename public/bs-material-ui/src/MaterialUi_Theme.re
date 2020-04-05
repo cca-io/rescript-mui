@@ -1068,7 +1068,7 @@ module GridListTileBarClassKey = {
   let make = t;
 };
 
-module IconClassKey = {
+module SvgIconClassKey = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional] [@bs.as "colorAction"]
@@ -1641,6 +1641,16 @@ module RadioClassKey = {
     disabled: ReactDOMRe.Style.t,
     [@bs.optional] [@bs.as "input"]
     input: ReactDOMRe.Style.t,
+    [@bs.optional] [@bs.as "root"]
+    root: ReactDOMRe.Style.t,
+  };
+
+  let make = t;
+};
+
+module MuiScopedCssBaseline = {
+  [@bs.deriving abstract]
+  type t = {
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
   };
@@ -2364,7 +2374,7 @@ module Overrides = {
     [@bs.optional] [@bs.as "MuiGridListTileBar"]
     muiGridListTileBar: GridListTileBarClassKey.t,
     [@bs.optional] [@bs.as "MuiIcon"]
-    muiIcon: IconClassKey.t,
+    muiIcon: SvgIconClassKey.t,
     [@bs.optional] [@bs.as "MuiIconButton"]
     muiIconButton: IconButtonClassKey.t,
     [@bs.optional] [@bs.as "MuiInput"]
@@ -2409,6 +2419,8 @@ module Overrides = {
     muiPopover: PopoverClassKey.t,
     [@bs.optional] [@bs.as "MuiRadio"]
     muiRadio: RadioClassKey.t,
+    [@bs.optional] [@bs.as "MuiScopedCssBaseline"]
+    muiScopedCssBaseline: MuiScopedCssBaseline.t,
     [@bs.optional] [@bs.as "MuiSelect"]
     muiSelect: SelectClassKey.t,
     [@bs.optional] [@bs.as "MuiSlider"]
@@ -2432,7 +2444,7 @@ module Overrides = {
     [@bs.optional] [@bs.as "MuiStepper"]
     muiStepper: StepperClasskey.t,
     [@bs.optional] [@bs.as "MuiSvgIcon"]
-    muiSvgIcon: IconClassKey.t,
+    muiSvgIcon: SvgIconClassKey.t,
     [@bs.optional] [@bs.as "MuiSwitch"]
     muiSwitch: SwitchClassKey.t,
     [@bs.optional] [@bs.as "MuiTab"]

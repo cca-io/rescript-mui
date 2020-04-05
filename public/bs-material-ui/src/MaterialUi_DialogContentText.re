@@ -72,7 +72,7 @@ external makePropsMui:
     ~align: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r0yx=?,
+    ~component: 'union_rts3=?,
     ~display: string=?,
     ~gutterBottom: bool=?,
     ~noWrap: bool=?,

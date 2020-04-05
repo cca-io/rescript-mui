@@ -6,7 +6,7 @@ type variant = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_r9j5=?,
+    ~component: 'union_rzqk=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,

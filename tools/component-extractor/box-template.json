@@ -1,0 +1,36 @@
+{
+  "description": "",
+  "methods": [],
+  "name": "Box",
+  "importName": "Box",
+  "props": {
+    "className": {
+      "type": { "name": "string" },
+      "required": false,
+      "description": ""
+    },
+    "clone": {
+      "type": { "name": "bool" },
+      "required": false,
+      "description": ""
+    },
+    "children": {
+      "type": { "name": "node" },
+      "required": false,
+      "description": ""
+    },
+    "component": {
+      "type": { "name": "custom", "raw": "elementTypeAcceptingRef" },
+      "required": false,
+      "description": "The component used for the root node.\nEither a string to use a DOM element or a component."
+    },
+    "props": {}
+  },
+  "styles": {
+    "classes": [],
+    "name": ""
+  },
+  "filename": "/Box/Box.js",
+  "importPath": "@material-ui/core",
+  "inheritsFrom": ""
+}

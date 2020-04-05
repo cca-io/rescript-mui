@@ -1,11 +1,11 @@
 [@bs.obj]
 external makePropsMui:
   (
-    ~_BackdropComponent: 'union_r0vy=?,
+    ~_BackdropComponent: 'union_rv3d=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rjug=?,
+    ~container: 'union_rdbl=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -17,7 +17,7 @@ external makePropsMui:
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_ra33=?,
+    ~onClose: 'any_r32j=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,

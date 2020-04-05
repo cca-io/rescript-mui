@@ -131,7 +131,7 @@ external makePropsMui:
     ~className: string=?,
     ~clickable: bool=?,
     ~color: string=?,
-    ~component: 'union_r0ic=?,
+    ~component: 'union_ro3b=?,
     ~deleteIcon: React.element=?,
     ~disabled: bool=?,
     ~icon: React.element=?,

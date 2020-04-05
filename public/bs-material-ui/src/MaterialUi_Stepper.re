@@ -44,12 +44,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_r8ld=?,
-    ~elevation: 'number_4=?,
+    ~component: 'union_r7ja=?,
+    ~elevation: 'number_u=?,
     ~square: bool=?,
     ~variant: string=?,
     ~id: string=?,
-    ~activeStep: 'number_t=?,
+    ~activeStep: 'number_o=?,
     ~alternativeLabel: bool=?,
     ~children: 'children=?,
     ~className: string=?,

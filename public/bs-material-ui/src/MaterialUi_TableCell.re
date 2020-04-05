@@ -92,7 +92,7 @@ external makePropsMui:
     ~align: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rfuh=?,
+    ~component: 'union_r1um=?,
     ~padding: string=?,
     ~scope: string=?,
     ~size: string=?,

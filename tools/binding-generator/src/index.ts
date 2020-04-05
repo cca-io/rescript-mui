@@ -180,7 +180,7 @@ const parseInit = () => {
           )
           .join('\n')}
         
-		module Colors = MaterialUi_Colors;
+		    module Colors = MaterialUi_Colors;
         module type WithStylesSafeTemplate = MaterialUi_WithStyles.WithStylesSafeTemplate;
         module WithStylesSafe = MaterialUi_WithStyles.WithStylesSafe;
         module Theme = MaterialUi_Theme;

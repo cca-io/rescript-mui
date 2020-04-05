@@ -4,6 +4,7 @@ module Backdrop = MaterialUi_Backdrop;
 module Badge = MaterialUi_Badge;
 module BottomNavigationAction = MaterialUi_BottomNavigationAction;
 module BottomNavigation = MaterialUi_BottomNavigation;
+module Box = MaterialUi_Box;
 module Breadcrumbs = MaterialUi_Breadcrumbs;
 module ButtonBase = MaterialUi_ButtonBase;
 module ButtonGroup = MaterialUi_ButtonGroup;

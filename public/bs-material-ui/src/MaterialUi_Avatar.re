@@ -51,7 +51,7 @@ external makePropsMui:
     ~alt: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r2fc=?,
+    ~component: 'union_rcf4=?,
     ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,

@@ -22,7 +22,7 @@ const outputDirectory = path.join(__dirname, '../../../', 'output', 'json');
 
 rimraf.sync(path.join(outputDirectory, '*.json'));
 
-components.forEach(async componentPath => {
+components.forEach(async (componentPath) => {
   const src = readFileSync(componentPath, 'utf8');
 
   if (
@@ -42,7 +42,7 @@ components.forEach(async componentPath => {
     // Collect the customization points of the `classes` property.
     styles.classes = Object.keys(
       getStylesCreator(component.styles).create(theme),
-    ).filter(className => !className.match(/^(@media|@keyframes)/));
+    ).filter((className) => !className.match(/^(@media|@keyframes)/));
     styles.name = component.default.options.name;
   }
 
@@ -72,7 +72,7 @@ components.forEach(async componentPath => {
     };
   }
 
-  ensureExists(outputDirectory, 0o744, err => {
+  ensureExists(outputDirectory, 0o744, (err) => {
     if (err) {
       console.log('Error creating directory', outputDirectory);
       console.log(err);
@@ -88,29 +88,12 @@ components.forEach(async componentPath => {
   });
 });
 
-ensureExists(outputDirectory, 0o744, err => {
+ensureExists(outputDirectory, 0o744, (err) => {
   if (err) {
     console.log('Error creating directory', outputDirectory);
     console.log(err);
     return;
   }
-
-  // Icons
-  // const regex = /export { default as ([a-zA-Z]*) } from '[a-zA-Z./]*';/gm;
-  // let iconArray = [];
-  // const str = readFileSync(path.join(__dirname, '../core', 'icons.js'), 'utf-8');
-  // let m;
-  // while ((m = regex.exec(str)) !== null) {
-  //     // This is necessary to avoid infinite loops with zero-width matches
-  //     if (m.index === regex.lastIndex) {
-  //         regex.lastIndex++;
-  //     }
-
-  //     iconArray.push(m[1]);
-  // }
-
-  // writeFileSync(path.resolve(outputDirectory, `icons.json`), JSON.stringify(iconArray));
-  // console.log('Extracted JSON for Icons');
 
   writeFileSync(
     path.resolve(outputDirectory, `colors.json`),
