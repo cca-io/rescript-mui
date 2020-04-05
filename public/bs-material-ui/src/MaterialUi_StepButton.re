@@ -51,6 +51,7 @@ external makePropsMui:
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
+    ~expanded: bool=?,
     ~icon: React.element=?,
     ~last: bool=?,
     ~optional: React.element=?,
@@ -58,7 +59,7 @@ external makePropsMui:
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_racy=?,
+    ~component: 'union_r83o=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -77,15 +78,14 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rs3y=?,
+    ~tabIndex: 'union_rsxa=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -95,6 +95,7 @@ let makeProps =
       ~className: option(string)=?,
       ~completed: option(bool)=?,
       ~disabled: option(bool)=?,
+      ~expanded: option(bool)=?,
       ~icon: option(React.element)=?,
       ~last: option(bool)=?,
       ~optional: option(React.element)=?,
@@ -142,6 +143,7 @@ let makeProps =
     ~className?,
     ~completed?,
     ~disabled?,
+    ~expanded?,
     ~icon?,
     ~last?,
     ~optional?,

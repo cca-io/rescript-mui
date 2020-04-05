@@ -2,6 +2,8 @@ module Timeout_shape = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
     enter: [ | `Int(int) | `Float(float)],
     [@bs.optional]
     exit: [ | `Int(int) | `Float(float)],
@@ -10,6 +12,16 @@ module Timeout_shape = {
 
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
 
     switch (
       obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
@@ -38,13 +50,12 @@ external makePropsMui:
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_rz6f=?,
+    ~timeout: 'union_rtyx=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

@@ -112,8 +112,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rgzn=?,
-    ~elevation: 'number_5=?,
+    ~component: 'union_rqxm=?,
+    ~elevation: 'number_4=?,
     ~square: bool=?,
     ~variant: string=?,
     ~key: string=?,
@@ -122,8 +122,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

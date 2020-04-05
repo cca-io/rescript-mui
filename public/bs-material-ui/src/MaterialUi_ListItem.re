@@ -64,8 +64,8 @@ external makePropsMui:
     ~button: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rdrt=?,
-    ~_ContainerComponent: 'union_rnjw=?,
+    ~component: 'union_re26=?,
+    ~_ContainerComponent: 'union_rbxy=?,
     ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
@@ -73,7 +73,7 @@ external makePropsMui:
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~selected: bool=?,
-    ~value: 'union_rggt=?,
+    ~value: 'union_ro7s=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~key: string=?,
@@ -82,8 +82,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

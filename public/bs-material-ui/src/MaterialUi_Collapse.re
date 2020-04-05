@@ -1,6 +1,11 @@
+[@bs.deriving jsConverter]
+type timeout_enum = [ | [@bs.as "auto"] `Auto];
+
 module Timeout_shape = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
     [@bs.optional]
     enter: [ | `Int(int) | `Float(float)],
     [@bs.optional]
@@ -10,6 +15,16 @@ module Timeout_shape = {
 
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
 
     switch (
       obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
@@ -30,9 +45,6 @@ module Timeout_shape = {
     unwrappedMap;
   };
 };
-
-[@bs.deriving jsConverter]
-type timeout_enum = [ | [@bs.as "auto"] `Auto];
 
 module Classes = {
   type classesType =
@@ -73,30 +85,29 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~collapsedHeight: 'union_rfkx=?,
-    ~component: 'union_robt=?,
+    ~collapsedHeight: 'union_rvmr=?,
+    ~component: 'union_ri6k=?,
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_rory=?,
+    ~timeout: 'union_r8sh=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~collapsedHeight:
-         option([ | `String(string) | `Int(int) | `Float(float)])=?,
+         option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~component:
          option(
            [
@@ -114,10 +125,10 @@ let makeProps =
       ~timeout:
          option(
            [
+             | `Enum(timeout_enum)
              | `Int(int)
              | `Float(float)
              | `Object(Timeout_shape.t)
-             | `Enum(timeout_enum)
            ],
          )=?,
       ~key: option(string)=?,

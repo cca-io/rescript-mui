@@ -8,8 +8,7 @@ external makePropsMui:
     ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

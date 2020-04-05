@@ -1,8 +1,7 @@
 [@bs.obj]
 external makePropsMui:
   (~children: 'children=?, ~key: string=?, ~ref: ReactDOMRe.domRef=?, unit) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

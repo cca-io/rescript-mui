@@ -76,6 +76,7 @@ module Portal = MaterialUi_Portal;
 module RadioGroup = MaterialUi_RadioGroup;
 module Radio = MaterialUi_Radio;
 module RootRef = MaterialUi_RootRef;
+module ScopedCssBaseline = MaterialUi_ScopedCssBaseline;
 module Select = MaterialUi_Select;
 module Slide = MaterialUi_Slide;
 module Slider = MaterialUi_Slider;

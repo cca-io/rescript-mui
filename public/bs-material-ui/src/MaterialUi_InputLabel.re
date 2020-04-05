@@ -86,14 +86,13 @@ external makePropsMui:
     ~htmlFor: string,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r5oq=?,
+    ~component: 'union_raei=?,
     ~filled: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

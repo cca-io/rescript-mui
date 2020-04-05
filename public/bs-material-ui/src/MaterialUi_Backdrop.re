@@ -75,15 +75,14 @@ external makePropsMui:
     ~className: string=?,
     ~invisible: bool=?,
     ~_open: bool,
-    ~transitionDuration: 'union_rurf=?,
+    ~transitionDuration: 'union_r5po=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

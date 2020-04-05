@@ -38,7 +38,7 @@ external makePropsMui:
     ~lgUp: bool=?,
     ~mdDown: bool=?,
     ~mdUp: bool=?,
-    ~only: 'union_r9bc=?,
+    ~only: 'union_rxm4=?,
     ~smDown: bool=?,
     ~smUp: bool=?,
     ~xlDown: bool=?,
@@ -49,8 +49,7 @@ external makePropsMui:
     ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

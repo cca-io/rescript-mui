@@ -1,6 +1,11 @@
+[@bs.deriving jsConverter]
+type timeout_enum = [ | [@bs.as "auto"] `Auto];
+
 module Timeout_shape = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
     [@bs.optional]
     enter: [ | `Int(int) | `Float(float)],
     [@bs.optional]
@@ -10,6 +15,16 @@ module Timeout_shape = {
 
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
 
     switch (
       obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
@@ -31,8 +46,6 @@ module Timeout_shape = {
   };
 };
 
-[@bs.deriving jsConverter]
-type timeout_enum = [ | [@bs.as "auto"] `Auto];
 [@bs.obj]
 external makePropsMui:
   (
@@ -40,13 +53,12 @@ external makePropsMui:
     ~_in: bool=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_rzm9=?,
+    ~timeout: 'union_rskb=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -57,10 +69,10 @@ let makeProps =
       ~timeout:
          option(
            [
+             | `Enum(timeout_enum)
              | `Int(int)
              | `Float(float)
              | `Object(Timeout_shape.t)
-             | `Enum(timeout_enum)
            ],
          )=?,
       ~key: option(string)=?,

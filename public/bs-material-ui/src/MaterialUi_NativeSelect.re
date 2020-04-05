@@ -1,8 +1,8 @@
 [@bs.deriving jsConverter]
 type variant = [
-  | [@bs.as "standard"] `Standard
-  | [@bs.as "outlined"] `Outlined
   | [@bs.as "filled"] `Filled
+  | [@bs.as "outlined"] `Outlined
+  | [@bs.as "standard"] `Standard
 ];
 
 [@bs.deriving jsConverter]
@@ -67,11 +67,11 @@ module Classes = {
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~_IconComponent: 'union_ryvq=?,
+    ~_IconComponent: 'union_rjmg=?,
     ~input: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_rp0o=?,
-    ~value: 'any_rggp=?,
+    ~onChange: 'any_r284=?,
+    ~value: 'any_r4mr=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -79,22 +79,22 @@ external makePropsMui:
     ~autoFocus: bool=?,
     ~className: string=?,
     ~color: string=?,
-    ~defaultValue: 'any_rkcn=?,
+    ~defaultValue: 'any_rf4d=?,
     ~disabled: bool=?,
     ~disableUnderline: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'any_r8q8=?,
+    ~inputComponent: 'any_r7fv=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_ra1s=?,
-    ~rowsMax: 'union_rtr9=?,
+    ~rows: 'union_r8hg=?,
+    ~rowsMax: 'union_rf1r=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
     ~aria_describedby: string=?,
@@ -104,13 +104,12 @@ external makePropsMui:
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
     ~renderSuffix: 'genericCallback=?,
-    ~rowsMin: 'union_rtmx=?,
+    ~rowsMin: 'union_rb50=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -126,7 +125,7 @@ let makeProps =
       ~input: option(React.element)=?,
       ~inputProps: option(Js.t({..}))=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~value: option('any_rggp)=?,
+      ~value: option('any_r4mr)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
@@ -134,14 +133,14 @@ let makeProps =
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~defaultValue: option('any_rkcn)=?,
+      ~defaultValue: option('any_rf4d)=?,
       ~disabled: option(bool)=?,
       ~disableUnderline: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~inputComponent: option('any_r8q8)=?,
+      ~inputComponent: option('any_r7fv)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,

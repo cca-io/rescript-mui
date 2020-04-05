@@ -9,6 +9,7 @@ type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
 
 module Classes = {
   type classesType =
+    | Global(string)
     | Root(string)
     | FormControl(string)
     | Focused(string)
@@ -30,6 +31,7 @@ module Classes = {
   type t = list(classesType);
   let to_string =
     fun
+    | Global(_) => "@global"
     | Root(_) => "root"
     | FormControl(_) => "formControl"
     | Focused(_) => "focused"
@@ -54,6 +56,7 @@ module Classes = {
                        Js.Dict.empty(),
                        (obj, classType) => {
                          switch (classType) {
+                         | Global(className)
                          | Root(className)
                          | FormControl(className)
                          | Focused(className)
@@ -88,19 +91,19 @@ external makePropsMui:
     ~autoFocus: bool=?,
     ~className: string=?,
     ~color: string=?,
-    ~defaultValue: 'any_rtkv=?,
+    ~defaultValue: 'any_rbt6=?,
     ~disabled: bool=?,
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
     ~id: string=?,
-    ~inputComponent: 'union_rwj4=?,
+    ~inputComponent: 'union_r2gz=?,
     ~inputProps: Js.t({..})=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rani=?,
+    ~onChange: 'any_r2bf=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
@@ -109,20 +112,19 @@ external makePropsMui:
     ~readOnly: bool=?,
     ~renderSuffix: 'genericCallback=?,
     ~required: bool=?,
-    ~rows: 'union_rlue=?,
-    ~rowsMax: 'union_ri15=?,
-    ~rowsMin: 'union_rm3v=?,
+    ~rows: 'union_rq1j=?,
+    ~rowsMax: 'union_ryej=?,
+    ~rowsMin: 'union_rgwe=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
-    ~value: 'any_rrev=?,
+    ~value: 'any_rc1a=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -131,7 +133,7 @@ let makeProps =
       ~autoFocus: option(bool)=?,
       ~className: option(string)=?,
       ~color: option(color)=?,
-      ~defaultValue: option('any_rtkv)=?,
+      ~defaultValue: option('any_rbt6)=?,
       ~disabled: option(bool)=?,
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
@@ -164,7 +166,7 @@ let makeProps =
       ~rowsMin: option([ | `String(string) | `Int(int) | `Float(float)])=?,
       ~startAdornment: option(React.element)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rrev)=?,
+      ~value: option('any_rc1a)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,

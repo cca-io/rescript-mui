@@ -44,7 +44,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_v=?,
+    ~activeStep: 'number_i=?,
     ~alternativeLabel: bool=?,
     ~children: 'children=?,
     ~className: string=?,
@@ -53,16 +53,15 @@ external makePropsMui:
     ~orientation: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rgar=?,
-    ~elevation: 'number_w=?,
+    ~component: 'union_rxcc=?,
+    ~elevation: 'number_d=?,
     ~square: bool=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

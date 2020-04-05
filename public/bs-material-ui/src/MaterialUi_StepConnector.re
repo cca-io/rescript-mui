@@ -61,7 +61,7 @@ external makePropsMui:
     ~className: string=?,
     ~completed: bool=?,
     ~disabled: bool=?,
-    ~index: 'number_b=?,
+    ~index: 'number_6=?,
     ~orientation: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -69,8 +69,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

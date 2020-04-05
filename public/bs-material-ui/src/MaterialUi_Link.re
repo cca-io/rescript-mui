@@ -1,12 +1,12 @@
 [@bs.deriving jsConverter]
 type color = [
-  | [@bs.as "default"] `Default
-  | [@bs.as "error"] `Error
+  | [@bs.as "initial"] `Initial
   | [@bs.as "inherit"] `Inherit
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
   | [@bs.as "textPrimary"] `TextPrimary
   | [@bs.as "textSecondary"] `TextSecondary
+  | [@bs.as "error"] `Error
 ];
 
 [@bs.deriving jsConverter]
@@ -92,7 +92,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rbc7=?,
+    ~component: 'union_rvkq=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~_TypographyClasses: Js.t({..})=?,
@@ -114,8 +114,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

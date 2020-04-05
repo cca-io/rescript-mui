@@ -132,7 +132,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_ryrr=?,
+    ~component: 'union_rd09=?,
     ~disabled: bool=?,
     ~disableElevation: bool=?,
     ~disableFocusRipple: bool=?,
@@ -164,14 +164,13 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rthf=?,
+    ~tabIndex: 'union_rsw9=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

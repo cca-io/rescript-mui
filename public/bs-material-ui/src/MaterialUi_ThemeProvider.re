@@ -8,8 +8,7 @@ external makePropsMui:
     ~theme: MaterialUi_Theme.t,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 [@bs.module "@material-ui/core/styles"]
 external reactComponent: React.component('a) = "MuiThemeProvider";

@@ -6,9 +6,9 @@ type color = [
 
 [@bs.deriving jsConverter]
 type variant = [
+  | [@bs.as "buffer"] `Buffer
   | [@bs.as "determinate"] `Determinate
   | [@bs.as "indeterminate"] `Indeterminate
-  | [@bs.as "buffer"] `Buffer
   | [@bs.as "query"] `Query
 ];
 
@@ -90,8 +90,8 @@ external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_0=?,
-    ~valueBuffer: 'number_1=?,
+    ~value: 'number_p=?,
+    ~valueBuffer: 'number_l=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -99,8 +99,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

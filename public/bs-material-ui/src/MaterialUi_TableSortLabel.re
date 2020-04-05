@@ -50,11 +50,11 @@ external makePropsMui:
     ~className: string=?,
     ~direction: string=?,
     ~hideSortIcon: bool=?,
-    ~_IconComponent: 'union_ro3y=?,
+    ~_IconComponent: 'union_ry1q=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_relx=?,
+    ~component: 'union_r6i9=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
@@ -74,15 +74,14 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_ro6l=?,
+    ~tabIndex: 'union_rtzt=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

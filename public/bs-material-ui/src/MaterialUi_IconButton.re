@@ -83,7 +83,7 @@ external makePropsMui:
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rqny=?,
+    ~component: 'union_rko8=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -101,15 +101,14 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_re14=?,
+    ~tabIndex: 'union_r01z=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

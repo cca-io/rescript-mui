@@ -120,7 +120,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rsuw=?,
+    ~component: 'union_r1zl=?,
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
@@ -134,8 +134,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

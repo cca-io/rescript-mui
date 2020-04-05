@@ -51,7 +51,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~defaultValue: 'union_rbwj=?,
+    ~defaultValue: 'union_r132=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -67,27 +67,26 @@ external makePropsMui:
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_rc6m=?,
+    ~onChange: 'any_rn62=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_rd7x=?,
-    ~rowsMax: 'union_r8yp=?,
+    ~rows: 'union_r8ad=?,
+    ~rowsMax: 'union_rr2x=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
     ~size: string=?,
     ~_type: string=?,
-    ~value: 'union_r1oh=?,
+    ~value: 'union_rz7m=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_r8bx=?,
+    ~component: 'union_rov2=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

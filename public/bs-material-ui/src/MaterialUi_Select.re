@@ -1,8 +1,8 @@
 [@bs.deriving jsConverter]
 type variant = [
-  | [@bs.as "standard"] `Standard
-  | [@bs.as "outlined"] `Outlined
   | [@bs.as "filled"] `Filled
+  | [@bs.as "outlined"] `Outlined
+  | [@bs.as "standard"] `Standard
 ];
 
 [@bs.deriving jsConverter]
@@ -68,24 +68,25 @@ external makePropsMui:
   (
     ~autoWidth: bool=?,
     ~children: 'children=?,
-    ~defaultValue: 'any_r6bd=?,
+    ~defaultValue: 'any_rya9=?,
     ~displayEmpty: bool=?,
-    ~_IconComponent: 'union_r6dx=?,
+    ~_IconComponent: 'union_rtzj=?,
     ~id: string=?,
     ~input: React.element=?,
     ~inputProps: Js.t({..})=?,
+    ~label: React.element=?,
     ~labelId: string=?,
-    ~labelWidth: 'number_o=?,
+    ~labelWidth: 'number_x=?,
     ~_MenuProps: Js.t({..})=?,
     ~multiple: bool=?,
     ~native: bool=?,
-    ~onChange: 'any_rjhi=?,
-    ~onClose: 'any_rrnx=?,
-    ~onOpen: 'any_rijs=?,
+    ~onChange: 'any_rqy3=?,
+    ~onClose: 'any_rgbs=?,
+    ~onOpen: 'any_rth1=?,
     ~_open: bool=?,
-    ~renderValue: 'any_r0sa=?,
+    ~renderValue: 'any_rulw=?,
     ~_SelectDisplayProps: Js.t({..})=?,
-    ~value: 'union_rpk6=?,
+    ~value: 'union_rmis=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -98,15 +99,15 @@ external makePropsMui:
     ~endAdornment: React.element=?,
     ~error: bool=?,
     ~fullWidth: bool=?,
-    ~inputComponent: 'any_rnxo=?,
+    ~inputComponent: 'any_rgzj=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~placeholder: string=?,
     ~readOnly: bool=?,
     ~required: bool=?,
-    ~rows: 'union_rbum=?,
-    ~rowsMax: 'union_rn7t=?,
+    ~rows: 'union_r16e=?,
+    ~rowsMax: 'union_rxmp=?,
     ~startAdornment: React.element=?,
     ~_type: string=?,
     ~aria_describedby: string=?,
@@ -116,19 +117,18 @@ external makePropsMui:
     ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
     ~renderSuffix: 'genericCallback=?,
-    ~rowsMin: 'union_rkq1=?,
+    ~rowsMin: 'union_ry07=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
       ~autoWidth: option(bool)=?,
       ~children: option('children)=?,
-      ~defaultValue: option('any_r6bd)=?,
+      ~defaultValue: option('any_rya9)=?,
       ~displayEmpty: option(bool)=?,
       ~_IconComponent:
          option(
@@ -141,6 +141,7 @@ let makeProps =
       ~id: option(string)=?,
       ~input: option(React.element)=?,
       ~inputProps: option(Js.t({..}))=?,
+      ~label: option(React.element)=?,
       ~labelId: option(string)=?,
       ~labelWidth: option([ | `Int(int) | `Float(float)])=?,
       ~_MenuProps: option(Js.t({..}))=?,
@@ -150,7 +151,7 @@ let makeProps =
       ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
       ~onOpen: option(ReactEvent.Synthetic.t => unit)=?,
       ~open_: option(bool)=?,
-      ~renderValue: option('any_ri9w => 'any_rroy)=?,
+      ~renderValue: option('any_rzfe => 'any_rst6)=?,
       ~_SelectDisplayProps: option(Js.t({..}))=?,
       ~value:
          option(
@@ -173,7 +174,7 @@ let makeProps =
       ~endAdornment: option(React.element)=?,
       ~error: option(bool)=?,
       ~fullWidth: option(bool)=?,
-      ~inputComponent: option('any_rnxo)=?,
+      ~inputComponent: option('any_rgzj)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
       ~name: option(string)=?,
@@ -208,6 +209,7 @@ let makeProps =
     ~id?,
     ~input?,
     ~inputProps?,
+    ~label?,
     ~labelId?,
     ~labelWidth=?
       labelWidth->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),

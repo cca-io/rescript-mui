@@ -2,15 +2,14 @@
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~container: 'union_r7ei=?,
+    ~container: 'union_rt8j=?,
     ~disablePortal: bool=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

@@ -298,18 +298,18 @@ external makePropsMui:
     ~alignItems: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rfsf=?,
+    ~component: 'union_rsey=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'number_r5f8=?,
-    ~md: 'number_ruc3=?,
-    ~sm: 'number_ryse=?,
-    ~spacing: 'number_r7a3=?,
+    ~lg: 'number_rk86=?,
+    ~md: 'number_rs1h=?,
+    ~sm: 'number_r24l=?,
+    ~spacing: 'number_rg0p=?,
     ~wrap: string=?,
-    ~xl: 'number_rf67=?,
-    ~xs: 'number_rkfv=?,
+    ~xl: 'number_rnma=?,
+    ~xs: 'number_rsn9=?,
     ~zeroMinWidth: bool=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -317,8 +317,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

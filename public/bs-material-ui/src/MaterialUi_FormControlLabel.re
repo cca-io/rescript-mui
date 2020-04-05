@@ -53,16 +53,15 @@ external makePropsMui:
     ~label: React.element=?,
     ~labelPlacement: string=?,
     ~name: string=?,
-    ~onChange: 'any_raz6=?,
-    ~value: 'any_rne9=?,
+    ~onChange: 'any_rqmk=?,
+    ~value: 'any_r8r4=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -74,7 +73,7 @@ let makeProps =
       ~labelPlacement: option(labelPlacement)=?,
       ~name: option(string)=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~value: option('any_rne9)=?,
+      ~value: option('any_r8r4)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,

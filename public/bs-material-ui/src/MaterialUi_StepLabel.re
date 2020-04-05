@@ -66,11 +66,12 @@ external makePropsMui:
     ~completed: bool=?,
     ~disabled: bool=?,
     ~error: bool=?,
+    ~expanded: bool=?,
     ~icon: React.element=?,
     ~last: bool=?,
     ~optional: React.element=?,
     ~orientation: string=?,
-    ~_StepIconComponent: 'union_r6j7=?,
+    ~_StepIconComponent: 'union_r2sw=?,
     ~_StepIconProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -78,8 +79,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -90,6 +90,7 @@ let makeProps =
       ~completed: option(bool)=?,
       ~disabled: option(bool)=?,
       ~error: option(bool)=?,
+      ~expanded: option(bool)=?,
       ~icon: option(React.element)=?,
       ~last: option(bool)=?,
       ~optional: option(React.element)=?,
@@ -117,6 +118,7 @@ let makeProps =
     ~completed?,
     ~disabled?,
     ~error?,
+    ~expanded?,
     ~icon?,
     ~last?,
     ~optional?,

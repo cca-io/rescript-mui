@@ -2,7 +2,7 @@
 type actionPosition = [ | [@bs.as "left"] `Left | [@bs.as "right"] `Right];
 
 [@bs.deriving jsConverter]
-type titlePosition = [ | [@bs.as "top"] `Top | [@bs.as "bottom"] `Bottom];
+type titlePosition = [ | [@bs.as "bottom"] `Bottom | [@bs.as "top"] `Top];
 
 module Classes = {
   type classesType =
@@ -71,8 +71,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

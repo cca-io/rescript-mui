@@ -34,16 +34,15 @@ external makePropsMui:
     ~raised: bool=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_ry41=?,
-    ~elevation: 'number_j=?,
+    ~component: 'union_rtcr=?,
+    ~elevation: 'number_b=?,
     ~square: bool=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

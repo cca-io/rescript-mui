@@ -66,9 +66,9 @@ external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_rw4q=?,
-    ~thickness: 'number_h=?,
-    ~value: 'number_x=?,
+    ~size: 'union_rhc2=?,
+    ~thickness: 'number_b=?,
+    ~value: 'number_l=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -76,8 +76,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

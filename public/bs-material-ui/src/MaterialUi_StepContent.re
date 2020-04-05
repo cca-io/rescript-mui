@@ -76,11 +76,12 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~completed: bool=?,
+    ~expanded: bool=?,
     ~last: bool=?,
     ~optional: bool=?,
     ~orientation: string=?,
-    ~_TransitionComponent: 'union_rx8o=?,
-    ~transitionDuration: 'union_r7ur=?,
+    ~_TransitionComponent: 'union_rlkk=?,
+    ~transitionDuration: 'union_ru58=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -88,8 +89,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -98,6 +98,7 @@ let makeProps =
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~completed: option(bool)=?,
+      ~expanded: option(bool)=?,
       ~last: option(bool)=?,
       ~optional: option(bool)=?,
       ~orientation: option(orientation)=?,
@@ -131,6 +132,7 @@ let makeProps =
     ~children?,
     ~className?,
     ~completed?,
+    ~expanded?,
     ~last?,
     ~optional?,
     ~orientation=?

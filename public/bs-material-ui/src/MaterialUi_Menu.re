@@ -1,6 +1,11 @@
+[@bs.deriving jsConverter]
+type transitionDuration_enum = [ | [@bs.as "auto"] `Auto];
+
 module TransitionDuration_shape = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
     [@bs.optional]
     enter: [ | `Int(int) | `Float(float)],
     [@bs.optional]
@@ -10,6 +15,16 @@ module TransitionDuration_shape = {
 
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
 
     switch (
       obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
@@ -30,9 +45,6 @@ module TransitionDuration_shape = {
     unwrappedMap;
   };
 };
-
-[@bs.deriving jsConverter]
-type transitionDuration_enum = [ | [@bs.as "auto"] `Auto];
 
 [@bs.deriving jsConverter]
 type variant = [
@@ -234,12 +246,12 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'any_rled=?,
+    ~anchorEl: 'any_rki1=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_r3jo=?,
+    ~onClose: 'any_rjer=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -249,31 +261,30 @@ external makePropsMui:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
-    ~transitionDuration: 'union_r84r=?,
+    ~transitionDuration: 'union_rm1w=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~anchorOrigin: 'any_rodg=?,
-    ~anchorPosition: 'any_rv0o=?,
+    ~anchorOrigin: 'any_r1hb=?,
+    ~anchorPosition: 'any_ra9y=?,
     ~anchorReference: string=?,
     ~className: string=?,
-    ~container: 'union_r8ff=?,
-    ~elevation: 'number_l=?,
+    ~container: 'union_r9up=?,
+    ~elevation: 'number_i=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_9=?,
-    ~transformOrigin: 'any_ri3j=?,
-    ~_TransitionComponent: 'union_rfwm=?,
+    ~marginThreshold: 'number_5=?,
+    ~transformOrigin: 'any_rhwo=?,
+    ~_TransitionComponent: 'union_riqt=?,
     ~_TransitionProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
-      ~anchorEl: option('any_rled)=?,
+      ~anchorEl: option('any_rki1)=?,
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~disableAutoFocusItem: option(bool)=?,
@@ -291,10 +302,10 @@ let makeProps =
       ~transitionDuration:
          option(
            [
+             | `Enum(transitionDuration_enum)
              | `Int(int)
              | `Float(float)
              | `Object(TransitionDuration_shape.t)
-             | `Enum(transitionDuration_enum)
            ],
          )=?,
       ~variant: option(variant)=?,

@@ -43,21 +43,20 @@ external makePropsMui:
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_rgbd=?,
+    ~onChange: 'any_ry5l=?,
     ~square: bool=?,
-    ~_TransitionComponent: 'union_reqe=?,
+    ~_TransitionComponent: 'union_rxqz=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_re7l=?,
-    ~elevation: 'number_m=?,
+    ~component: 'union_r2hi=?,
+    ~elevation: 'number_g=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

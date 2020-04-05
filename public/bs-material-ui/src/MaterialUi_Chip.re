@@ -131,7 +131,7 @@ external makePropsMui:
     ~className: string=?,
     ~clickable: bool=?,
     ~color: string=?,
-    ~component: 'union_r8v1=?,
+    ~component: 'union_rzmg=?,
     ~deleteIcon: React.element=?,
     ~disabled: bool=?,
     ~icon: React.element=?,
@@ -148,8 +148,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

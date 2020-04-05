@@ -77,12 +77,12 @@ external makePropsMui:
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~selected: bool=?,
     ~textColor: string=?,
-    ~value: 'any_rfjl=?,
+    ~value: 'any_rmg4=?,
     ~wrapped: bool=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rjvk=?,
+    ~component: 'union_rffn=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -99,15 +99,14 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rekx=?,
+    ~tabIndex: 'union_rfsw=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -124,7 +123,7 @@ let makeProps =
       ~onClick: option(ReactEvent.Mouse.t => unit)=?,
       ~selected: option(bool)=?,
       ~textColor: option(textColor)=?,
-      ~value: option('any_rfjl)=?,
+      ~value: option('any_rmg4)=?,
       ~wrapped: option(bool)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,

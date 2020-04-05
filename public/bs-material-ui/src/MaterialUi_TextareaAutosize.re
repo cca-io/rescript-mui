@@ -4,26 +4,33 @@ external makePropsMui:
     ~className: string=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~placeholder: string=?,
-    ~rows: 'union_rcvn=?,
-    ~rowsMax: 'union_rw8f=?,
-    ~rowsMin: 'union_rd33=?,
-    ~value: 'any_r63f=?,
+    ~rows: 'union_r7y6=?,
+    ~rowsMax: 'union_rp35=?,
+    ~rowsMin: 'union_r58p=?,
+    ~value: 'union_rten=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
       ~className: option(string)=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~placeholder: option(string)=?,
-      ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~rowsMin: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~value: option('any_r63f)=?,
+      ~rows: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+      ~rowsMax: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+      ~rowsMin: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+      ~value:
+         option(
+           [
+             | `Array(array(string))
+             | `Int(int)
+             | `Float(float)
+             | `String(string)
+           ],
+         )=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       (),
@@ -37,7 +44,7 @@ let makeProps =
       rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~rowsMin=?
       rowsMin->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~value?,
+    ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~key?,
     ~ref?,
     (),

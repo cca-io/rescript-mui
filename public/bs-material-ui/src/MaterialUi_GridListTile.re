@@ -34,17 +34,16 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~cols: 'number_z=?,
-    ~component: 'union_rybb=?,
-    ~rows: 'number_s=?,
+    ~cols: 'number_r=?,
+    ~component: 'union_rwqj=?,
+    ~rows: 'number_4=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

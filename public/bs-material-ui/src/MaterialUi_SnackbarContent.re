@@ -1,7 +1,4 @@
 [@bs.deriving jsConverter]
-type role = [ | [@bs.as "alert"] `Alert | [@bs.as "alertdialog"] `Alertdialog];
-
-[@bs.deriving jsConverter]
 type variant = [
   | [@bs.as "elevation"] `Elevation
   | [@bs.as "outlined"] `Outlined
@@ -45,23 +42,22 @@ external makePropsMui:
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
-    ~component: 'union_r9wk=?,
-    ~elevation: 'number_o=?,
+    ~component: 'union_rytd=?,
+    ~elevation: 'number_1=?,
     ~square: bool=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
       ~action: option(React.element)=?,
       ~className: option(string)=?,
       ~message: option(React.element)=?,
-      ~role: option(role)=?,
+      ~role: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,
@@ -84,7 +80,7 @@ let makeProps =
     ~action?,
     ~className?,
     ~message?,
-    ~role=?role->(Belt.Option.map(v => roleToJs(v))),
+    ~role?,
     ~key?,
     ~ref?,
     ~children?,

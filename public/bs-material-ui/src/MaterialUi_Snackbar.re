@@ -1,12 +1,12 @@
 [@bs.deriving jsConverter]
 type horizontal = [
-  | [@bs.as "left"] `Left
   | [@bs.as "center"] `Center
+  | [@bs.as "left"] `Left
   | [@bs.as "right"] `Right
 ];
 
 [@bs.deriving jsConverter]
-type vertical = [ | [@bs.as "top"] `Top | [@bs.as "bottom"] `Bottom];
+type vertical = [ | [@bs.as "bottom"] `Bottom | [@bs.as "top"] `Top];
 
 module AnchorOrigin = {
   [@bs.deriving abstract]
@@ -47,6 +47,8 @@ module TransitionDuration_shape = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
     enter: [ | `Int(int) | `Float(float)],
     [@bs.optional]
     exit: [ | `Int(int) | `Float(float)],
@@ -55,6 +57,16 @@ module TransitionDuration_shape = {
 
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
 
     switch (
       obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
@@ -120,8 +132,8 @@ module Classes = {
 external makePropsMui:
   (
     ~action: React.element=?,
-    ~anchorOrigin: 'any_rxqd=?,
-    ~autoHideDuration: 'number_2=?,
+    ~anchorOrigin: 'any_rvn2=?,
+    ~autoHideDuration: 'number_n=?,
     ~children: 'children=?,
     ~className: string=?,
     ~_ClickAwayListenerProps: Js.t({..})=?,
@@ -129,7 +141,7 @@ external makePropsMui:
     ~disableWindowBlurListener: bool=?,
     ~key: string=?,
     ~message: React.element=?,
-    ~onClose: 'any_re30=?,
+    ~onClose: 'any_r7u5=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -139,17 +151,16 @@ external makePropsMui:
     ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
     ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
     ~_open: bool=?,
-    ~resumeHideDuration: 'number_7=?,
-    ~_TransitionComponent: 'union_r4hi=?,
-    ~transitionDuration: 'union_rfaj=?,
+    ~resumeHideDuration: 'number_3=?,
+    ~_TransitionComponent: 'union_rz43=?,
+    ~transitionDuration: 'union_rgdt=?,
     ~_TransitionProps: Js.t({..})=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

@@ -37,7 +37,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r1rl=?,
+    ~component: 'union_rjq1=?,
     ~hover: bool=?,
     ~selected: bool=?,
     ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
@@ -47,8 +47,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

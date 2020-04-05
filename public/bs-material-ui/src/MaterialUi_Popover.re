@@ -266,17 +266,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'union_rhtt=?,
-    ~anchorOrigin: 'any_rk7y=?,
-    ~anchorPosition: 'any_r4wy=?,
+    ~anchorEl: 'union_r82w=?,
+    ~anchorOrigin: 'any_raf5=?,
+    ~anchorPosition: 'any_r96v=?,
     ~anchorReference: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~container: 'union_rndr=?,
-    ~elevation: 'number_v=?,
+    ~container: 'union_r587=?,
+    ~elevation: 'number_k=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_x=?,
-    ~onClose: 'any_r4tl=?,
+    ~marginThreshold: 'number_6=?,
+    ~onClose: 'any_rjnj=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -284,14 +284,14 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperProps: 'any_rqe6=?,
-    ~transformOrigin: 'any_r0tx=?,
-    ~_TransitionComponent: 'union_rdae=?,
-    ~transitionDuration: 'union_raol=?,
+    ~_PaperProps: 'any_rree=?,
+    ~transformOrigin: 'any_rdgd=?,
+    ~_TransitionComponent: 'union_rl29=?,
+    ~transitionDuration: 'union_r883=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~_BackdropComponent: 'union_r5ws=?,
+    ~_BackdropComponent: 'union_rzm7=?,
     ~_BackdropProps: Js.t({..})=?,
     ~closeAfterTransition: bool=?,
     ~disableAutoFocus: bool=?,
@@ -311,8 +311,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

@@ -1,9 +1,3 @@
-[@bs.deriving jsConverter]
-type orientation = [
-  | [@bs.as "horizontal"] `Horizontal
-  | [@bs.as "vertical"] `Vertical
-];
-
 module Classes = {
   type classesType =
     | Root(string)
@@ -42,36 +36,27 @@ module Classes = {
 external makePropsMui:
   (
     ~active: bool=?,
-    ~alternativeLabel: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~completed: bool=?,
-    ~connector: React.element=?,
     ~disabled: bool=?,
-    ~index: 'number_8=?,
-    ~last: bool=?,
-    ~orientation: string=?,
+    ~expanded: bool=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
       ~active: option(bool)=?,
-      ~alternativeLabel: option(bool)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~completed: option(bool)=?,
-      ~connector: option(React.element)=?,
       ~disabled: option(bool)=?,
-      ~index: option([ | `Int(int) | `Float(float)])=?,
-      ~last: option(bool)=?,
-      ~orientation: option(orientation)=?,
+      ~expanded: option(bool)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -80,23 +65,11 @@ let makeProps =
     ) =>
   makePropsMui(
     ~active?,
-    ~alternativeLabel?,
     ~children?,
     ~className?,
     ~completed?,
-    ~connector?,
     ~disabled?,
-    ~index=?index->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~last?,
-    ~orientation=?
-      orientation->(
-                     Belt.Option.map(v =>
-                       switch (v->Obj.magic->Js.Json.classify) {
-                       | JSONString(str) => str
-                       | _ => orientationToJs(v)
-                       }
-                     )
-                   ),
+    ~expanded?,
     ~key?,
     ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

@@ -1,15 +1,15 @@
 [@bs.deriving jsConverter]
 type position = [
   | [@bs.as "bottom"] `Bottom
-  | [@bs.as "top"] `Top
   | [@bs.as "static"] `Static
+  | [@bs.as "top"] `Top
 ];
 
 [@bs.deriving jsConverter]
 type variant = [
-  | [@bs.as "text"] `Text
   | [@bs.as "dots"] `Dots
   | [@bs.as "progress"] `Progress
+  | [@bs.as "text"] `Text
 ];
 
 module Classes = {
@@ -58,26 +58,25 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~activeStep: 'number_l=?,
+    ~activeStep: 'number_4=?,
     ~backButton: React.element=?,
     ~className: string=?,
     ~_LinearProgressProps: Js.t({..})=?,
     ~nextButton: React.element=?,
     ~position: string=?,
-    ~steps: 'number_7,
+    ~steps: 'number_l,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
-    ~component: 'union_rlnk=?,
-    ~elevation: 'number_4=?,
+    ~component: 'union_rj6g=?,
+    ~elevation: 'number_e=?,
     ~square: bool=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

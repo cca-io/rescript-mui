@@ -48,7 +48,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rwds=?,
+    ~component: 'union_ryxl=?,
     ~disableGutters: bool=?,
     ~disableSticky: bool=?,
     ~inset: bool=?,
@@ -58,8 +58,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

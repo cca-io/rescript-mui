@@ -53,7 +53,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_ratj=?,
+    ~component: 'union_r50t=?,
     ~disablePointerEvents: bool=?,
     ~disableTypography: bool=?,
     ~muiFormControl: Js.t({..})=?,
@@ -65,8 +65,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

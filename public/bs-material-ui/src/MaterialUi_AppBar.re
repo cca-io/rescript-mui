@@ -4,6 +4,7 @@ type color = [
   | [@bs.as "inherit"] `Inherit
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
+  | [@bs.as "transparent"] `Transparent
 ];
 
 [@bs.deriving jsConverter]
@@ -31,7 +32,9 @@ module Classes = {
     | PositionRelative(string)
     | ColorDefault(string)
     | ColorPrimary(string)
-    | ColorSecondary(string);
+    | ColorSecondary(string)
+    | ColorInherit(string)
+    | ColorTransparent(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -43,7 +46,9 @@ module Classes = {
     | PositionRelative(_) => "positionRelative"
     | ColorDefault(_) => "colorDefault"
     | ColorPrimary(_) => "colorPrimary"
-    | ColorSecondary(_) => "colorSecondary";
+    | ColorSecondary(_) => "colorSecondary"
+    | ColorInherit(_) => "colorInherit"
+    | ColorTransparent(_) => "colorTransparent";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -58,7 +63,9 @@ module Classes = {
                          | PositionRelative(className)
                          | ColorDefault(className)
                          | ColorPrimary(className)
-                         | ColorSecondary(className) =>
+                         | ColorSecondary(className)
+                         | ColorInherit(className)
+                         | ColorTransparent(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -76,16 +83,15 @@ external makePropsMui:
     ~position: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~component: 'union_rzig=?,
-    ~elevation: 'number_h=?,
+    ~component: 'union_rpa5=?,
+    ~elevation: 'number_r=?,
     ~square: bool=?,
     ~variant: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

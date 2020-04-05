@@ -18,7 +18,8 @@ module Classes = {
     | Inset(string)
     | Light(string)
     | Middle(string)
-    | Vertical(string);
+    | Vertical(string)
+    | FlexItem(string);
   type t = list(classesType);
   let to_string =
     fun
@@ -27,7 +28,8 @@ module Classes = {
     | Inset(_) => "inset"
     | Light(_) => "light"
     | Middle(_) => "middle"
-    | Vertical(_) => "vertical";
+    | Vertical(_) => "vertical"
+    | FlexItem(_) => "flexItem";
   let to_obj = listOfClasses =>
     listOfClasses->(
                      Belt.List.reduce(
@@ -39,7 +41,8 @@ module Classes = {
                          | Inset(className)
                          | Light(className)
                          | Middle(className)
-                         | Vertical(className) =>
+                         | Vertical(className)
+                         | FlexItem(className) =>
                            Js.Dict.set(obj, to_string(classType), className)
                          };
                          obj;
@@ -53,7 +56,8 @@ external makePropsMui:
   (
     ~absolute: bool=?,
     ~className: string=?,
-    ~component: 'union_r6ua=?,
+    ~component: 'union_rgn6=?,
+    ~flexItem: bool=?,
     ~light: bool=?,
     ~orientation: string=?,
     ~role: string=?,
@@ -64,8 +68,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -79,6 +82,7 @@ let makeProps =
              | `Element(React.element)
            ],
          )=?,
+      ~flexItem: option(bool)=?,
       ~light: option(bool)=?,
       ~orientation: option(orientation)=?,
       ~role: option(string)=?,
@@ -94,6 +98,7 @@ let makeProps =
     ~className?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~flexItem?,
     ~light?,
     ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
     ~role?,

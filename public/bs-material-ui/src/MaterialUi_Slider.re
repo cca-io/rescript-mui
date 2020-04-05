@@ -109,34 +109,34 @@ external makePropsMui:
     ~aria_labelledby: string=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rzc7=?,
-    ~defaultValue: 'union_rhen=?,
+    ~component: 'union_rf0y=?,
+    ~defaultValue: 'union_read=?,
     ~disabled: bool=?,
-    ~getAriaLabel: 'any_rt6y=?,
-    ~getAriaValueText: 'any_rbet=?,
-    ~marks: 'union_r05y=?,
+    ~getAriaLabel: 'any_r5lc=?,
+    ~getAriaValueText: 'any_r9gi=?,
+    ~marks: 'union_rshx=?,
     ~max: 'number_z=?,
-    ~min: 'number_j=?,
+    ~min: 'number_p=?,
     ~name: string=?,
-    ~onChange: 'any_r9ti=?,
-    ~onChangeCommitted: 'any_rxxj=?,
+    ~onChange: 'any_r59u=?,
+    ~onChangeCommitted: 'any_rhsc=?,
     ~onMouseDown: ReactEvent.Mouse.t => unit=?,
     ~orientation: string=?,
-    ~step: 'number_x=?,
-    ~_ThumbComponent: 'union_r1b2=?,
+    ~scale: 'genericCallback=?,
+    ~step: 'number_b=?,
+    ~_ThumbComponent: 'union_rnxk=?,
     ~track: string=?,
-    ~value: 'union_rquw=?,
-    ~_ValueLabelComponent: 'union_r4nb=?,
+    ~value: 'union_r43u=?,
+    ~_ValueLabelComponent: 'union_rtb8=?,
     ~valueLabelDisplay: string=?,
-    ~valueLabelFormat: 'union_r8nw=?,
+    ~valueLabelFormat: 'union_rbxt=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -163,14 +163,15 @@ let makeProps =
       ~disabled: option(bool)=?,
       ~getAriaLabel: option(int => string)=?,
       ~getAriaValueText: option((int, int) => string)=?,
-      ~marks: option([ | `Bool(bool) | `Array('any_rfyt)])=?,
+      ~marks: option([ | `Bool(bool) | `Array('any_rcli)])=?,
       ~max: option([ | `Int(int) | `Float(float)])=?,
       ~min: option([ | `Int(int) | `Float(float)])=?,
       ~name: option(string)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_r2sx) => unit)=?,
-      ~onChangeCommitted: option((Js.t({..}), 'any_r6w7) => unit)=?,
+      ~onChange: option(ReactEvent.Form.t => unit)=?,
+      ~onChangeCommitted: option(Js.t({..}) => unit)=?,
       ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
       ~orientation: option(orientation)=?,
+      ~scale: option('genericCallback)=?,
       ~step: option([ | `Int(int) | `Float(float)])=?,
       ~_ThumbComponent:
          option(
@@ -226,6 +227,7 @@ let makeProps =
     ~onChangeCommitted?,
     ~onMouseDown?,
     ~orientation=?orientation->(Belt.Option.map(v => orientationToJs(v))),
+    ~scale?,
     ~step=?step->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_ThumbComponent=?
       _ThumbComponent->(

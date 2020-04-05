@@ -41,7 +41,7 @@ external makePropsMui:
     ~action: React.element=?,
     ~avatar: React.element=?,
     ~className: string=?,
-    ~component: 'union_rqb5=?,
+    ~component: 'union_rjnb=?,
     ~disableTypography: bool=?,
     ~subheader: React.element=?,
     ~subheaderTypographyProps: Js.t({..})=?,
@@ -53,8 +53,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

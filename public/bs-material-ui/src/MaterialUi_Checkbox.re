@@ -65,11 +65,10 @@ external makePropsMui:
     ~indeterminate: bool=?,
     ~indeterminateIcon: React.element=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_rvki=?,
+    ~onChange: 'any_rgfk=?,
     ~required: bool=?,
     ~size: string=?,
-    ~_type: string=?,
-    ~value: 'any_rq4b=?,
+    ~value: 'any_rzpr=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
@@ -80,8 +79,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -98,8 +96,7 @@ let makeProps =
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~required: option(bool)=?,
       ~size: option(size)=?,
-      ~type_: option(string)=?,
-      ~value: option('any_rq4b)=?,
+      ~value: option('any_rzpr)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,
@@ -124,7 +121,6 @@ let makeProps =
     ~onChange?,
     ~required?,
     ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-    ~_type=?type_,
     ~value?,
     ~key?,
     ~ref?,

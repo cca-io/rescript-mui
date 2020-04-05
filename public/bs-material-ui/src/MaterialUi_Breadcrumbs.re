@@ -34,10 +34,11 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_ry1e=?,
-    ~itemsAfterCollapse: 'number_a=?,
-    ~itemsBeforeCollapse: 'number_k=?,
-    ~maxItems: 'number_i=?,
+    ~component: 'union_r7mm=?,
+    ~expandText: string=?,
+    ~itemsAfterCollapse: 'number_v=?,
+    ~itemsBeforeCollapse: 'number_v=?,
+    ~maxItems: 'number_9=?,
     ~separator: React.element=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -45,8 +46,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -60,6 +60,7 @@ let makeProps =
              | `Element(React.element)
            ],
          )=?,
+      ~expandText: option(string)=?,
       ~itemsAfterCollapse: option([ | `Int(int) | `Float(float)])=?,
       ~itemsBeforeCollapse: option([ | `Int(int) | `Float(float)])=?,
       ~maxItems: option([ | `Int(int) | `Float(float)])=?,
@@ -75,6 +76,7 @@ let makeProps =
     ~className?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~expandText?,
     ~itemsAfterCollapse=?
       itemsAfterCollapse->(
                             Belt.Option.map(v =>

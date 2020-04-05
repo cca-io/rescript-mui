@@ -1,14 +1,16 @@
 [@bs.deriving jsConverter]
 type anchor = [
-  | [@bs.as "left"] `Left
-  | [@bs.as "top"] `Top
-  | [@bs.as "right"] `Right
   | [@bs.as "bottom"] `Bottom
+  | [@bs.as "left"] `Left
+  | [@bs.as "right"] `Right
+  | [@bs.as "top"] `Top
 ];
 
 module TransitionDuration_shape = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
     [@bs.optional]
     enter: [ | `Int(int) | `Float(float)],
     [@bs.optional]
@@ -18,6 +20,16 @@ module TransitionDuration_shape = {
 
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
 
     switch (
       obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
@@ -108,13 +120,13 @@ external makePropsMui:
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~elevation: 'number_u=?,
+    ~elevation: 'number_v=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_r528=?,
+    ~onClose: 'any_rsge=?,
     ~_open: bool=?,
     ~_PaperProps: Js.t({..})=?,
     ~_SlideProps: Js.t({..})=?,
-    ~transitionDuration: 'union_rccx=?,
+    ~transitionDuration: 'union_r12v=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -122,8 +134,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

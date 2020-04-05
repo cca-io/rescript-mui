@@ -1,21 +1,21 @@
 [@bs.deriving jsConverter]
 type align = [
-  | [@bs.as "inherit"] `Inherit
-  | [@bs.as "left"] `Left
   | [@bs.as "center"] `Center
-  | [@bs.as "right"] `Right
+  | [@bs.as "inherit"] `Inherit
   | [@bs.as "justify"] `Justify
+  | [@bs.as "left"] `Left
+  | [@bs.as "right"] `Right
 ];
 
 [@bs.deriving jsConverter]
 type padding = [
-  | [@bs.as "default"] `Default
   | [@bs.as "checkbox"] `Checkbox
+  | [@bs.as "default"] `Default
   | [@bs.as "none"] `None
 ];
 
 [@bs.deriving jsConverter]
-type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+type size = [ | [@bs.as "medium"] `Medium | [@bs.as "small"] `Small];
 
 [@bs.deriving jsConverter]
 type sortDirection = [
@@ -26,9 +26,9 @@ type sortDirection = [
 
 [@bs.deriving jsConverter]
 type variant = [
-  | [@bs.as "head"] `Head
   | [@bs.as "body"] `Body
   | [@bs.as "footer"] `Footer
+  | [@bs.as "head"] `Head
 ];
 
 module Classes = {
@@ -83,21 +83,21 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~_ActionsComponent: 'union_rn65=?,
+    ~_ActionsComponent: 'union_rrb4=?,
     ~backIconButtonProps: Js.t({..})=?,
     ~backIconButtonText: string=?,
     ~className: string=?,
-    ~colSpan: 'number_3=?,
-    ~component: 'union_re3z=?,
-    ~count: 'number_s,
+    ~colSpan: 'number_c=?,
+    ~component: 'union_rfs2=?,
+    ~count: 'number_p,
     ~labelDisplayedRows: 'labelDisplayedRows=?,
     ~labelRowsPerPage: 'labelRowsPerPage=?,
     ~nextIconButtonProps: Js.t({..})=?,
     ~nextIconButtonText: string=?,
-    ~onChangePage: 'any_rkvp,
-    ~onChangeRowsPerPage: 'any_raxa=?,
+    ~onChangePage: 'any_rt3v,
+    ~onChangeRowsPerPage: 'any_rz2z=?,
     ~page: int=?,
-    ~rowsPerPage: 'number_o,
+    ~rowsPerPage: 'number_v,
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~key: string=?,
@@ -113,8 +113,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

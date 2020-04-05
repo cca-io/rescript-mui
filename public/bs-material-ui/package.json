@@ -1,32 +1,40 @@
 {
-	"name": "@jsiebern/bs-material-ui",
-	"version": "1.2.0",
-	"description": "This library provides Reason bindings for material-ui.",
-	"keywords": [ "bucklescript", "reason", "ocaml", "material-ui" ],
-	"homepage": "https://github.com/jsiebern/bs-material-ui",
-	"repository": "https://github.com/jsiebern/bs-material-ui",
-	"bugs": "https://github.com/jsiebern/bs-material-ui/issues",
-	"author": "Jonathan Siebern <jsiebern88@gmail.com>",
-	"main": "./src/MaterialUi.re",
-	"scripts": {
-		"bs:build": "bsb -make-world",
-		"bs:clean": "bsb -clean-world; rm -rf .cache",
-		"examples": "parcel examples/App/index.html",
-		"build": "./build.sh"
-	},
-	"files": [ "/src", "/bsconfig.json" ],
-	"peerDependencies": {
-		"@material-ui/core": "^4.8.1",
-		"reason-react": "^0.7.0"
-	},
-	"devDependencies": {
-		"@jsiebern/bs-material-ui-ppx": "*",
-		"@material-ui/core": "^4.8.1",
-		"@material-ui/icons": "^4.1.0",
-		"@mscharley/bs-material-ui-icons": "^1.0.1",
-		"bs-platform": "~7.0.1",
-		"bsb-js": "^1.1.7",
-		"clsx": "^1.0.4",
-		"reason-react": "^0.7.0"
-	}
+  "name": "@jsiebern/bs-material-ui",
+  "version": "1.2.0",
+  "description": "This library provides Reason bindings for material-ui.",
+  "keywords": [
+    "bucklescript",
+    "reason",
+    "ocaml",
+    "material-ui"
+  ],
+  "homepage": "https://github.com/jsiebern/bs-material-ui",
+  "repository": "https://github.com/jsiebern/bs-material-ui",
+  "bugs": "https://github.com/jsiebern/bs-material-ui/issues",
+  "author": "Jonathan Siebern <jsiebern88@gmail.com>",
+  "main": "./src/MaterialUi.re",
+  "scripts": {
+    "bs:build": "bsb -make-world",
+    "bs:clean": "bsb -clean-world; rm -rf .cache",
+    "examples": "parcel examples/App/index.html",
+    "build": "./build.sh"
+  },
+  "files": [
+    "/src",
+    "/bsconfig.json"
+  ],
+  "peerDependencies": {
+    "@material-ui/core": "^4.8.1",
+    "reason-react": "^0.7.0"
+  },
+  "devDependencies": {
+    "@jsiebern/bs-material-ui-ppx": "*",
+    "@material-ui/core": "^4.8.1",
+    "@material-ui/icons": "^4.1.0",
+    "@mscharley/bs-material-ui-icons": "^1.0.1",
+    "bs-platform": "7.3.0-dev.1",
+    "bsb-js": "^1.1.7",
+    "clsx": "^1.0.4",
+    "reason-react": "^0.7.0"
+  }
 }

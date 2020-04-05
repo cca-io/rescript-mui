@@ -84,17 +84,17 @@ external makePropsMui:
     ~icon: React.element=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_rpug=?,
+    ~onChange: 'any_rsjk=?,
     ~required: bool=?,
     ~size: string=?,
     ~_type: string=?,
-    ~value: 'any_rdga=?,
+    ~value: 'any_rr67=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
     ~disableFocusRipple: bool=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rpee=?,
+    ~component: 'union_rdre=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -112,14 +112,13 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r61q=?,
+    ~tabIndex: 'union_rqby=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -138,7 +137,7 @@ let makeProps =
       ~required: option(bool)=?,
       ~size: option(size)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rdga)=?,
+      ~value: option('any_rr67)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,

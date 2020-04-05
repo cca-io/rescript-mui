@@ -15,6 +15,13 @@ type edge = [
   | [@bs.as "false"] `False
 ];
 
+[@bs.deriving jsConverter]
+type type_ = [
+  | [@bs.as "submit"] `Submit
+  | [@bs.as "reset"] `Reset
+  | [@bs.as "button"] `Button
+];
+
 module Classes = {
   type classesType =
     | Root(string)
@@ -61,11 +68,10 @@ external makePropsMui:
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
     ~name: string=?,
-    ~onChange: 'any_r7io=?,
+    ~onChange: 'any_ry7w=?,
     ~required: bool=?,
     ~size: string=?,
-    ~_type: string=?,
-    ~value: 'any_rfy4=?,
+    ~value: 'any_rcx8=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~children: 'children=?,
@@ -73,7 +79,7 @@ external makePropsMui:
     ~disableFocusRipple: bool=?,
     ~edge: string=?,
     ~centerRipple: bool=?,
-    ~component: 'union_rdsz=?,
+    ~component: 'union_rsga=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -91,14 +97,14 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rdbn=?,
+    ~tabIndex: 'union_rn5p=?,
     ~_TouchRippleProps: Js.t({..})=?,
+    ~_type: string=?,
     ~classes: Js.Dict.t(string)=?,
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -114,8 +120,7 @@ let makeProps =
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~required: option(bool)=?,
       ~size: option(size)=?,
-      ~type_: option(string)=?,
-      ~value: option('any_rfy4)=?,
+      ~value: option('any_rcx8)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~children: option('children)=?,
@@ -150,6 +155,7 @@ let makeProps =
       ~role: option(string)=?,
       ~tabIndex: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~_TouchRippleProps: option(Js.t({..}))=?,
+      ~type_: option(type_)=?,
       ~classes: option(Classes.t)=?,
       ~style: option(ReactDOMRe.Style.t)=?,
       (),
@@ -167,7 +173,6 @@ let makeProps =
     ~onChange?,
     ~required?,
     ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-    ~_type=?type_,
     ~value?,
     ~key?,
     ~ref?,
@@ -198,6 +203,7 @@ let makeProps =
     ~tabIndex=?
       tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_TouchRippleProps?,
+    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
     ~style?,
     (),

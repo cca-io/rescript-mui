@@ -1,10 +1,10 @@
 [@bs.deriving jsConverter]
 type maxWidth = [
-  | [@bs.as "xs"] `Xs
-  | [@bs.as "sm"] `Sm
-  | [@bs.as "md"] `Md
   | [@bs.as "lg"] `Lg
+  | [@bs.as "md"] `Md
+  | [@bs.as "sm"] `Sm
   | [@bs.as "xl"] `Xl
+  | [@bs.as "xs"] `Xs
   | [@bs.as "false"] `False
 ];
 
@@ -15,6 +15,8 @@ module TransitionDuration_shape = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
     enter: [ | `Int(int) | `Float(float)],
     [@bs.optional]
     exit: [ | `Int(int) | `Float(float)],
@@ -23,6 +25,16 @@ module TransitionDuration_shape = {
 
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
 
     switch (
       obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
@@ -122,7 +134,7 @@ external makePropsMui:
     ~fullWidth: bool=?,
     ~maxWidth: string=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rjsn=?,
+    ~onClose: 'any_rgjv=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -131,17 +143,17 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperComponent: 'union_rzs3=?,
+    ~_PaperComponent: 'union_r1hf=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_rgh0=?,
-    ~transitionDuration: 'union_raao=?,
+    ~_TransitionComponent: 'union_r5bi=?,
+    ~transitionDuration: 'union_rpb6=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
-    ~_BackdropComponent: 'union_rj5r=?,
+    ~_BackdropComponent: 'union_r5sf=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rq5z=?,
+    ~container: 'union_ridu=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
@@ -155,8 +167,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

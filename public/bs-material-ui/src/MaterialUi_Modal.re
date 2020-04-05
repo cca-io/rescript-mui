@@ -1,11 +1,11 @@
 [@bs.obj]
 external makePropsMui:
   (
-    ~_BackdropComponent: 'union_rsa0=?,
+    ~_BackdropComponent: 'union_ri81=?,
     ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rzdm=?,
+    ~container: 'union_rols=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
     ~disableEnforceFocus: bool=?,
@@ -17,7 +17,7 @@ external makePropsMui:
     ~keepMounted: bool=?,
     ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rf3p=?,
+    ~onClose: 'any_rwgd=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
@@ -25,8 +25,7 @@ external makePropsMui:
     ~ref: ReactDOMRe.domRef=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

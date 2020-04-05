@@ -1,21 +1,21 @@
 [@bs.deriving jsConverter]
 type align = [
-  | [@bs.as "inherit"] `Inherit
-  | [@bs.as "left"] `Left
   | [@bs.as "center"] `Center
-  | [@bs.as "right"] `Right
+  | [@bs.as "inherit"] `Inherit
   | [@bs.as "justify"] `Justify
+  | [@bs.as "left"] `Left
+  | [@bs.as "right"] `Right
 ];
 
 [@bs.deriving jsConverter]
 type padding = [
-  | [@bs.as "default"] `Default
   | [@bs.as "checkbox"] `Checkbox
+  | [@bs.as "default"] `Default
   | [@bs.as "none"] `None
 ];
 
 [@bs.deriving jsConverter]
-type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+type size = [ | [@bs.as "medium"] `Medium | [@bs.as "small"] `Small];
 
 [@bs.deriving jsConverter]
 type sortDirection = [
@@ -26,9 +26,9 @@ type sortDirection = [
 
 [@bs.deriving jsConverter]
 type variant = [
-  | [@bs.as "head"] `Head
   | [@bs.as "body"] `Body
   | [@bs.as "footer"] `Footer
+  | [@bs.as "head"] `Head
 ];
 
 module Classes = {
@@ -92,7 +92,7 @@ external makePropsMui:
     ~align: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_ry51=?,
+    ~component: 'union_ru28=?,
     ~padding: string=?,
     ~scope: string=?,
     ~size: string=?,
@@ -105,8 +105,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

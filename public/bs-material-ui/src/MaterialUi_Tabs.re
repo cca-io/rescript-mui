@@ -90,15 +90,15 @@ external makePropsMui:
     ~centered: bool=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rfar=?,
+    ~component: 'union_rggo=?,
     ~indicatorColor: string=?,
-    ~onChange: 'any_ri40=?,
+    ~onChange: 'any_rj8v=?,
     ~orientation: string=?,
-    ~_ScrollButtonComponent: 'union_rvhr=?,
+    ~_ScrollButtonComponent: 'union_r4k7=?,
     ~scrollButtons: string=?,
     ~_TabIndicatorProps: Js.t({..})=?,
     ~textColor: string=?,
-    ~value: 'any_rsop=?,
+    ~value: 'any_rek9=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -106,8 +106,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -123,7 +122,7 @@ let makeProps =
            ],
          )=?,
       ~indicatorColor: option(indicatorColor)=?,
-      ~onChange: option((ReactEvent.Form.t, 'any_retg) => unit)=?,
+      ~onChange: option((ReactEvent.Form.t, 'any_r2n7) => unit)=?,
       ~orientation: option(orientation)=?,
       ~_ScrollButtonComponent:
          option(
@@ -136,7 +135,7 @@ let makeProps =
       ~scrollButtons: option(scrollButtons)=?,
       ~_TabIndicatorProps: option(Js.t({..}))=?,
       ~textColor: option(textColor)=?,
-      ~value: option('any_rsop)=?,
+      ~value: option('any_rek9)=?,
       ~variant: option(variant)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,

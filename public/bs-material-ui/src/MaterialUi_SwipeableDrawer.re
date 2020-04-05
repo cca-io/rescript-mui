@@ -168,27 +168,26 @@ external makePropsMui:
     ~disableDiscovery: bool=?,
     ~disableSwipeToOpen: bool=?,
     ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_0=?,
-    ~minFlingVelocity: 'number_h=?,
-    ~_ModalProps: 'any_rwdy=?,
-    ~onClose: 'any_ro4z,
-    ~onOpen: 'any_r5c7,
+    ~hysteresis: 'number_3=?,
+    ~minFlingVelocity: 'number_3=?,
+    ~_ModalProps: 'any_rvva=?,
+    ~onClose: 'any_r69k,
+    ~onOpen: 'any_ruza,
     ~_open: bool,
-    ~_PaperProps: 'any_rd04=?,
+    ~_PaperProps: 'any_r3ha=?,
     ~_SwipeAreaProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_w=?,
-    ~transitionDuration: 'union_rqgd=?,
+    ~swipeAreaWidth: 'number_d=?,
+    ~transitionDuration: 'union_rlzy=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~_BackdropProps: Js.t({..})=?,
     ~className: string=?,
-    ~elevation: 'number_o=?,
+    ~elevation: 'number_w=?,
     ~_SlideProps: Js.t({..})=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

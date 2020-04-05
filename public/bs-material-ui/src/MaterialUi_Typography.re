@@ -160,7 +160,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rhf4=?,
+    ~component: 'union_r2bs=?,
     ~display: string=?,
     ~gutterBottom: bool=?,
     ~noWrap: bool=?,
@@ -173,8 +173,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (

@@ -74,19 +74,20 @@ external makePropsMui:
     ~disableFocusListener: bool=?,
     ~disableHoverListener: bool=?,
     ~disableTouchListener: bool=?,
-    ~enterDelay: 'number_s=?,
-    ~enterTouchDelay: 'number_f=?,
+    ~enterDelay: 'number_y=?,
+    ~enterNextDelay: 'number_k=?,
+    ~enterTouchDelay: 'number_e=?,
     ~id: string=?,
     ~interactive: bool=?,
-    ~leaveDelay: 'number_i=?,
-    ~leaveTouchDelay: 'number_i=?,
-    ~onClose: 'any_rqrn=?,
-    ~onOpen: 'any_r5it=?,
+    ~leaveDelay: 'number_g=?,
+    ~leaveTouchDelay: 'number_z=?,
+    ~onClose: 'any_rmwp=?,
+    ~onOpen: 'any_rlo2=?,
     ~_open: bool=?,
     ~placement: string=?,
     ~_PopperProps: Js.t({..})=?,
     ~title: React.element,
-    ~_TransitionComponent: 'union_revx=?,
+    ~_TransitionComponent: 'union_r7tm=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -94,8 +95,7 @@ external makePropsMui:
     ~style: ReactDOMRe.Style.t=?,
     unit
   ) =>
-  _ =
-  "";
+  _;
 
 let makeProps =
     (
@@ -105,6 +105,7 @@ let makeProps =
       ~disableHoverListener: option(bool)=?,
       ~disableTouchListener: option(bool)=?,
       ~enterDelay: option([ | `Int(int) | `Float(float)])=?,
+      ~enterNextDelay: option([ | `Int(int) | `Float(float)])=?,
       ~enterTouchDelay: option([ | `Int(int) | `Float(float)])=?,
       ~id: option(string)=?,
       ~interactive: option(bool)=?,
@@ -139,6 +140,10 @@ let makeProps =
     ~disableTouchListener?,
     ~enterDelay=?
       enterDelay->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
+    ~enterNextDelay=?
+      enterNextDelay->(
+                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
+                      ),
     ~enterTouchDelay=?
       enterTouchDelay->(
                          Belt.Option.map(v =>
