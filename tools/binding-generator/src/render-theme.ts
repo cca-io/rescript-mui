@@ -70,7 +70,7 @@ const RenderTheme = () => {
       },
       {
         re: /fontSize/m,
-        replaceWith: { type: 'string' },
+        replaceWith: { type: 'number' },
       },
       {
         re: /fontStyle/m,

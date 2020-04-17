@@ -21,8 +21,9 @@ type size = [ | [@bs.as "medium"] `Medium | [@bs.as "small"] `Small];
 type sortDirection = [
   | [@bs.as "asc"] `Asc
   | [@bs.as "desc"] `Desc
-  | [@bs.as "false"] `False
+  | [@bs.as {json|false|json}] `False
 ];
+Js.log(sortDirectionToJs(`False));
 
 [@bs.deriving jsConverter]
 type variant = [
@@ -92,7 +93,7 @@ external makePropsMui:
     ~align: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r2k5=?,
+    ~component: 'union_r0ll=?,
     ~padding: string=?,
     ~scope: string=?,
     ~size: string=?,

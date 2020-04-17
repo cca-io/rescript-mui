@@ -1,1 +1,16 @@
-where rewrite :[props] { "':[v]'" -> "\":[v]\": { \"type\": { \"name\": \"string\", \"required\": false, \"description\": \"\" } }," }
+where
+    rewrite :[props] { "'zIndex'" -> "\"zIndex\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'mb'" -> "\"mb\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'ml'" -> "\"ml\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'mr'" -> "\"mr\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'mt'" -> "\"mt\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'mx'" -> "\"mx\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'my'" -> "\"my\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'p'" -> "\"p\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'pb'" -> "\"pb\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'pl'" -> "\"pl\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'pr'" -> "\"pr\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'pt'" -> "\"pt\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'px'" -> "\"px\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "'py'" -> "\"py\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
+    rewrite :[props] { "':[v]'" -> "\":[v]\": { \"type\": { \"name\": \"string\", \"required\": false, \"description\": \"\" } }," }

@@ -210,6 +210,23 @@ let make = () =>
                </Grid>
                <br />
                <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=V6>
+                   <Typography variant=`H5>
+                     <a
+                       href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/box/box.md"
+                       target="_blank">
+                       "Box"->React.string
+                     </a>
+                   </Typography>
+                 </Grid>
+                 <Grid item=true md=V6> <ExampleBox /> </Grid>
+               </Grid>
+               <br />
+               <br />
                <br />
                <br />
                <br />

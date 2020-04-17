@@ -1,4 +1,4 @@
-# #!/bin/bash
+#!/bin/bash
 pwd=$(pwd)
 
 # https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
@@ -64,7 +64,4 @@ echo "Extracted theme-options.json"
 cd $pwd
 
 # Extract box props
-var=$(comby -templates ./comby -f index.d.ts -d system -matcher .js -newline-separated -stdout)
-var=$(printf "$var" | sort | uniq)
-var=${var%?}
-comby "\"props\": {}" "$var" box-template.json -matcher .json -stdout | uniq > "${pwd}/../../output/json/box.json"
+./build-box.sh

@@ -2701,10 +2701,10 @@ bs-nonempty@^1.3.0:
   dependencies:
     bs-abstract "^0.16.0"
 
-bs-platform@7.3.0-dev.1:
-  version "7.3.0-dev.1"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-7.3.0-dev.1.tgz#5ef1d2d76f366039743f0b719d4ee11b23ff211a"
-  integrity sha512-QOmKYkOFBFqI6fXF33mQIwsMRLSfkhhPpC4jgkYt+jKeqWERNNDw1B7xtArgzI2rSWliXrL/CoH3ruUUspaZ2A==
+bs-platform@7.3.1:
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-7.3.1.tgz#2c148fb8aef687c6c195eae5821b31e887fb5bc4"
+  integrity sha512-RlQexm6i2gMKsfuHL8IcOHN0R/SQgxiurP96fo2nj71QgQQRh332ahOwIl0p0yNl9DH2Tg7ZV2pjG6MMMkaU6w==
 
 bsb-js@^1.1.7:
   version "1.1.7"

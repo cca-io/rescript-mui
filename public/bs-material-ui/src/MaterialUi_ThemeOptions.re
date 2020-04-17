@@ -1086,11 +1086,11 @@ module SvgIconClassKey = {
     [@bs.optional] [@bs.as "colorSecondary"]
     colorSecondary: string,
     [@bs.optional] [@bs.as "fontSizeInherit"]
-    fontSizeInherit: string,
+    fontSizeInherit: float,
     [@bs.optional] [@bs.as "fontSizeLarge"]
-    fontSizeLarge: string,
+    fontSizeLarge: float,
     [@bs.optional] [@bs.as "fontSizeSmall"]
-    fontSizeSmall: string,
+    fontSizeSmall: float,
     [@bs.optional] [@bs.as "root"]
     root: ReactDOMRe.Style.t,
   };
@@ -2986,7 +2986,7 @@ module Typography = {
     [@bs.optional] [@bs.as "fontFamily"]
     fontFamily: string,
     [@bs.optional] [@bs.as "fontSize"]
-    fontSize: string,
+    fontSize: float,
     [@bs.optional] [@bs.as "fontWeightBold"]
     fontWeightBold: string,
     [@bs.optional] [@bs.as "fontWeightLight"]

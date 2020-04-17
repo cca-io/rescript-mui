@@ -68,7 +68,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r6ke=?,
+    ~component: 'union_rr9r=?,
     ~fontSize: string=?,
     ~id: string=?,
     ~key: string=?,
