@@ -21,7 +21,7 @@ let make = () =>
              <div className={classes.container}>
                <CssBaseline />
                <Grid container=true>
-                 <Grid item=true md=V12>
+                 <Grid item=true md=Grid.Md._12>
                    <Typography variant=`H4>
                      "@jsiebern/bs-material-ui Examples"
                    </Typography>
@@ -33,10 +33,12 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5> "Class Override" </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleClassOverride /> </Grid>
+                 <Grid item=true md=Grid.Md._6>
+                   <ExampleClassOverride />
+                 </Grid>
                </Grid>
                <br />
                <br />
@@ -44,10 +46,10 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5> "Icons" </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleIcons /> </Grid>
+                 <Grid item=true md=Grid.Md._6> <ExampleIcons /> </Grid>
                </Grid>
                <br />
                <br />
@@ -55,10 +57,10 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5> "Popover" </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExamplePopover /> </Grid>
+                 <Grid item=true md=Grid.Md._6> <ExamplePopover /> </Grid>
                </Grid>
                <br />
                <br />
@@ -66,10 +68,12 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5> "WithStylesSafe" </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleWithStylesSafe /> </Grid>
+                 <Grid item=true md=Grid.Md._6>
+                   <ExampleWithStylesSafe />
+                 </Grid>
                </Grid>
                <br />
                <br />
@@ -77,10 +81,12 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5> "WithStylesUnsafe" </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleWithStylesUnsafe /> </Grid>
+                 <Grid item=true md=Grid.Md._6>
+                   <ExampleWithStylesUnsafe />
+                 </Grid>
                </Grid>
                <br />
                <br />
@@ -88,10 +94,12 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5> "Theme Provider" </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleThemeProvider /> </Grid>
+                 <Grid item=true md=Grid.Md._6>
+                   <ExampleThemeProvider />
+                 </Grid>
                </Grid>
                <br />
                <br />
@@ -99,12 +107,12 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5>
                      "Theme Provider Override"
                    </Typography>
                  </Grid>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <ExampleThemeProviderOverride />
                  </Grid>
                </Grid>
@@ -114,10 +122,10 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5> "List" </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleList /> </Grid>
+                 <Grid item=true md=Grid.Md._6> <ExampleList /> </Grid>
                </Grid>
                <br />
                <br />
@@ -125,7 +133,7 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5>
                      <a
                        href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/tabs/DisabledTabs.tsx"
@@ -134,7 +142,7 @@ let make = () =>
                      </a>
                    </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleTabs /> </Grid>
+                 <Grid item=true md=Grid.Md._6> <ExampleTabs /> </Grid>
                </Grid>
                <br />
                <br />
@@ -142,7 +150,7 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5>
                      <a
                        href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/steppers/VerticalLinearStepper.tsx"
@@ -151,7 +159,7 @@ let make = () =>
                      </a>
                    </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleStepper /> </Grid>
+                 <Grid item=true md=Grid.Md._6> <ExampleStepper /> </Grid>
                </Grid>
                <br />
                <br />
@@ -159,7 +167,7 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5>
                      <a
                        href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/selects/SimpleSelect.tsx"
@@ -168,7 +176,7 @@ let make = () =>
                      </a>
                    </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleSelect /> </Grid>
+                 <Grid item=true md=Grid.Md._6> <ExampleSelect /> </Grid>
                </Grid>
                <br />
                <br />
@@ -176,7 +184,7 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5>
                      <a
                        href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/slider/InputSlider.tsx"
@@ -185,7 +193,7 @@ let make = () =>
                      </a>
                    </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleSlider /> </Grid>
+                 <Grid item=true md=Grid.Md._6> <ExampleSlider /> </Grid>
                </Grid>
                <br />
                <br />
@@ -193,7 +201,7 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5>
                      <a
                        href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/slider/InputSlider.tsx"
@@ -202,7 +210,7 @@ let make = () =>
                      </a>
                    </Typography>
                  </Grid>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <ExampleDashboard sidebar={"Sidebar"->React.string}>
                      "Content"->React.string
                    </ExampleDashboard>
@@ -214,7 +222,7 @@ let make = () =>
                <br />
                <br />
                <Grid container=true alignItems=`Center>
-                 <Grid item=true md=V6>
+                 <Grid item=true md=Grid.Md._6>
                    <Typography variant=`H5>
                      <a
                        href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/box/box.md"
@@ -223,7 +231,7 @@ let make = () =>
                      </a>
                    </Typography>
                  </Grid>
-                 <Grid item=true md=V6> <ExampleBox /> </Grid>
+                 <Grid item=true md=Grid.Md._6> <ExampleBox /> </Grid>
                </Grid>
                <br />
                <br />

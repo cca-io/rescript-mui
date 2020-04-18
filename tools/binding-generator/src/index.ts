@@ -91,35 +91,6 @@ const parseInit = () => {
       process.exit();
     }
   });
-  //   const components = rawComponents.map((jsonString: string) => {
-  //     try {
-  //       const component = ComponentFromJson(jsonString);
-  //       Console.info(
-  //         `Parsing ${Console.colors.yellow}${component.name || component.displayName}${
-  //           Console.colors.reset
-  //         }`,
-  //       );
-  //       return new Component(component);
-  //     } catch (e) {
-  //       console.log(e);
-  //       Console.error(e);
-  //       Console.error(jsonString);
-  //       process.exit();
-  //       return null;
-  //     }
-  //   });
-
-  // Inheritance
-  //   components.forEach((c) => {
-  //     if (c != null && c.inheritsFrom) {
-  //       const cInherit = components.find(
-  //         (ci) => ci != null && ci.name === c.inheritsFrom,
-  //       );
-  //       if (cInherit != null) {
-  //         c.mergeProperties(cInherit.properties);
-  //       }
-  //     }
-  //   });
 
   // Write component files
   components.forEach((component) => {
@@ -172,6 +143,8 @@ const parseInit = () => {
   Fs.writeFileSync(
     Path.join(outputDirectory, 'reason', 'MaterialUi.re'),
     `
+        include MaterialUi_Types;
+
         ${components
           .map((component) =>
             component != null

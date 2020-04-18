@@ -20,6 +20,7 @@ interface PropType$Primitive {
     | 'Element<any>'
     | 'Function'
     | 'Node'
+    | 'ReactNode'
     | 'ComponentType<object>';
 }
 
@@ -27,8 +28,6 @@ interface PropType$Custom {
   name: 'custom';
   raw?: string;
   reasonType: string;
-  jsType?: string;
-  wrapJs?: (name: string) => string;
 }
 
 interface PropType$Literal {

@@ -1,101 +1,55 @@
-[@bs.obj]
-external makePropsMui:
+module BackdropComponent: {
+  type t;
+  let string: string => t;
+  let backdropComponent_func: MaterialUi_Types.any => t;
+  let element: React.element => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let string = (v: string) => Any(v);
+  let backdropComponent_func = (v: MaterialUi_Types.any) => Any(v);
+  let element = (v: React.element) => Any(v);
+};
+
+module Container: {
+  type t;
+  let obj: Js.Dict.t(MaterialUi_Types.any) => t;
+  let container_func: MaterialUi_Types.any => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let obj = (v: Js.Dict.t(MaterialUi_Types.any)) => Any(v);
+  let container_func = (v: MaterialUi_Types.any) => Any(v);
+};
+
+[@react.component] [@bs.module "@material-ui/core"]
+external make:
   (
-    ~_BackdropComponent: 'union_rh9h=?,
-    ~_BackdropProps: Js.t({..})=?,
-    ~children: 'children=?,
-    ~closeAfterTransition: bool=?,
-    ~container: 'union_rxq0=?,
-    ~disableAutoFocus: bool=?,
-    ~disableBackdropClick: bool=?,
-    ~disableEnforceFocus: bool=?,
-    ~disableEscapeKeyDown: bool=?,
-    ~disablePortal: bool=?,
-    ~disableRestoreFocus: bool=?,
-    ~disableScrollLock: bool=?,
-    ~hideBackdrop: bool=?,
-    ~keepMounted: bool=?,
-    ~manager: Js.t({..})=?,
-    ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_recv=?,
-    ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~onRendered: ReactEvent.Synthetic.t => unit=?,
+    ~_BackdropComponent: option(BackdropComponent.t)=?,
+    ~_BackdropProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~children: option('children)=?,
+    ~closeAfterTransition: option(bool)=?,
+    ~container: option(Container.t)=?,
+    ~disableAutoFocus: option(bool)=?,
+    ~disableBackdropClick: option(bool)=?,
+    ~disableEnforceFocus: option(bool)=?,
+    ~disableEscapeKeyDown: option(bool)=?,
+    ~disablePortal: option(bool)=?,
+    ~disableRestoreFocus: option(bool)=?,
+    ~disableScrollLock: option(bool)=?,
+    ~hideBackdrop: option(bool)=?,
+    ~keepMounted: option(bool)=?,
+    ~manager: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
+    ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
+    ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+    ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
     ~_open: bool,
-    ~id: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    unit
+    ~id: option(string)=?,
+    ~key: option(string)=?,
+    ~ref: option(ReactDOMRe.domRef)=?
   ) =>
-  _;
-
-let makeProps =
-    (
-      ~_BackdropComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~_BackdropProps: option(Js.t({..}))=?,
-      ~children: option('children)=?,
-      ~closeAfterTransition: option(bool)=?,
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
-      ~disableAutoFocus: option(bool)=?,
-      ~disableBackdropClick: option(bool)=?,
-      ~disableEnforceFocus: option(bool)=?,
-      ~disableEscapeKeyDown: option(bool)=?,
-      ~disablePortal: option(bool)=?,
-      ~disableRestoreFocus: option(bool)=?,
-      ~disableScrollLock: option(bool)=?,
-      ~hideBackdrop: option(bool)=?,
-      ~keepMounted: option(bool)=?,
-      ~manager: option(Js.t({..}))=?,
-      ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
-      ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-      ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
-      ~open_: bool,
-      ~id: option(string)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
-      (),
-    ) =>
-  makePropsMui(
-    ~_BackdropComponent=?
-      _BackdropComponent->(
-                            Belt.Option.map(v =>
-                              MaterialUi_Helpers.unwrapValue(v)
-                            )
-                          ),
-    ~_BackdropProps?,
-    ~children?,
-    ~closeAfterTransition?,
-    ~container=?
-      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~disableAutoFocus?,
-    ~disableBackdropClick?,
-    ~disableEnforceFocus?,
-    ~disableEscapeKeyDown?,
-    ~disablePortal?,
-    ~disableRestoreFocus?,
-    ~disableScrollLock?,
-    ~hideBackdrop?,
-    ~keepMounted?,
-    ~manager?,
-    ~onBackdropClick?,
-    ~onClose?,
-    ~onEscapeKeyDown?,
-    ~onRendered?,
-    ~_open=open_,
-    ~id?,
-    ~key?,
-    ~ref?,
-    (),
-  );
-
-[@bs.module "@material-ui/core"] external make: React.component('a) = "Modal";
+  React.element =
+  "Modal";

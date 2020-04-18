@@ -1,3 +1,5 @@
+include MaterialUi_Types;
+
 module AppBar = MaterialUi_AppBar;
 module Avatar = MaterialUi_Avatar;
 module Backdrop = MaterialUi_Backdrop;

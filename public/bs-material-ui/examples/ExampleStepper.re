@@ -64,7 +64,7 @@ let make = () => {
 
   MaterialUi.(
     <div className={classes.root}>
-      <Stepper activeStep={`Int(activeStep)} orientation=`Vertical>
+      <Stepper activeStep={Number.int(activeStep)} orientation=`Vertical>
         {steps->Belt.Array.mapWithIndex((index, label) =>
            <Step key=label>
              <StepLabel> label->React.string </StepLabel>
@@ -98,7 +98,7 @@ let make = () => {
       {activeStep === steps->Belt.Array.length
          ? <Paper
              square=true
-             elevation={`Int(0)}
+             elevation={Number.int(0)}
              className={classes.resetContainer}>
              <Typography>
                {j|All steps completed - you're finished|j}->React.string

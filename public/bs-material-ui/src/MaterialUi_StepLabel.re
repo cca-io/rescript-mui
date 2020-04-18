@@ -1,152 +1,73 @@
-[@bs.deriving jsConverter]
-type orientation = [
-  | [@bs.as "horizontal"] `Horizontal
-  | [@bs.as "vertical"] `Vertical
-];
-
 module Classes = {
-  type classesType =
-    | Root(string)
-    | Horizontal(string)
-    | Vertical(string)
-    | Label(string)
-    | Active(string)
-    | Completed(string)
-    | Error(string)
-    | Disabled(string)
-    | IconContainer(string)
-    | AlternativeLabel(string)
-    | LabelContainer(string);
-  type t = list(classesType);
-  let to_string =
-    fun
-    | Root(_) => "root"
-    | Horizontal(_) => "horizontal"
-    | Vertical(_) => "vertical"
-    | Label(_) => "label"
-    | Active(_) => "active"
-    | Completed(_) => "completed"
-    | Error(_) => "error"
-    | Disabled(_) => "disabled"
-    | IconContainer(_) => "iconContainer"
-    | AlternativeLabel(_) => "alternativeLabel"
-    | LabelContainer(_) => "labelContainer";
-  let to_obj = listOfClasses =>
-    listOfClasses->(
-                     Belt.List.reduce(
-                       Js.Dict.empty(),
-                       (obj, classType) => {
-                         switch (classType) {
-                         | Root(className)
-                         | Horizontal(className)
-                         | Vertical(className)
-                         | Label(className)
-                         | Active(className)
-                         | Completed(className)
-                         | Error(className)
-                         | Disabled(className)
-                         | IconContainer(className)
-                         | AlternativeLabel(className)
-                         | LabelContainer(className) =>
-                           Js.Dict.set(obj, to_string(classType), className)
-                         };
-                         obj;
-                       },
-                     )
-                   );
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    root: string,
+    [@bs.optional]
+    horizontal: string,
+    [@bs.optional]
+    vertical: string,
+    [@bs.optional]
+    label: string,
+    [@bs.optional]
+    active: string,
+    [@bs.optional]
+    completed: string,
+    [@bs.optional]
+    error: string,
+    [@bs.optional]
+    disabled: string,
+    [@bs.optional]
+    iconContainer: string,
+    [@bs.optional]
+    alternativeLabel: string,
+    [@bs.optional]
+    labelContainer: string,
+  };
+  let make = t;
 };
 
-[@bs.obj]
-external makePropsMui:
+module StepIconComponent: {
+  type t;
+  let string: string => t;
+  let stepIconComponent_func: MaterialUi_Types.any => t;
+  let element: React.element => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let string = (v: string) => Any(v);
+  let stepIconComponent_func = (v: MaterialUi_Types.any) => Any(v);
+  let element = (v: React.element) => Any(v);
+};
+
+[@react.component] [@bs.module "@material-ui/core"]
+external make:
   (
-    ~active: bool=?,
-    ~alternativeLabel: bool=?,
-    ~children: 'children=?,
-    ~className: string=?,
-    ~completed: bool=?,
-    ~disabled: bool=?,
-    ~error: bool=?,
-    ~expanded: bool=?,
-    ~icon: React.element=?,
-    ~last: bool=?,
-    ~optional: React.element=?,
-    ~orientation: string=?,
-    ~_StepIconComponent: 'union_rnso=?,
-    ~_StepIconProps: Js.t({..})=?,
-    ~id: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    ~classes: Js.Dict.t(string)=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~active: option(bool)=?,
+    ~alternativeLabel: option(bool)=?,
+    ~children: option('children)=?,
+    ~classes: option(Classes.t)=?,
+    ~className: option(string)=?,
+    ~completed: option(bool)=?,
+    ~disabled: option(bool)=?,
+    ~error: option(bool)=?,
+    ~expanded: option(bool)=?,
+    ~icon: option(React.element)=?,
+    ~last: option(bool)=?,
+    ~optional: option(React.element)=?,
+    ~orientation: option(
+                    [@bs.string] [
+                      | [@bs.as "horizontal"] `Horizontal
+                      | [@bs.as "vertical"] `Vertical
+                    ],
+                  )
+                    =?,
+    ~_StepIconComponent: option(StepIconComponent.t)=?,
+    ~_StepIconProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~id: option(string)=?,
+    ~key: option(string)=?,
+    ~ref: option(ReactDOMRe.domRef)=?
   ) =>
-  _;
-
-let makeProps =
-    (
-      ~active: option(bool)=?,
-      ~alternativeLabel: option(bool)=?,
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~completed: option(bool)=?,
-      ~disabled: option(bool)=?,
-      ~error: option(bool)=?,
-      ~expanded: option(bool)=?,
-      ~icon: option(React.element)=?,
-      ~last: option(bool)=?,
-      ~optional: option(React.element)=?,
-      ~orientation: option(orientation)=?,
-      ~_StepIconComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~_StepIconProps: option(Js.t({..}))=?,
-      ~id: option(string)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
-      ~classes: option(Classes.t)=?,
-      ~style: option(ReactDOMRe.Style.t)=?,
-      (),
-    ) =>
-  makePropsMui(
-    ~active?,
-    ~alternativeLabel?,
-    ~children?,
-    ~className?,
-    ~completed?,
-    ~disabled?,
-    ~error?,
-    ~expanded?,
-    ~icon?,
-    ~last?,
-    ~optional?,
-    ~orientation=?
-      orientation->(
-                     Belt.Option.map(v =>
-                       switch (v->Obj.magic->Js.Json.classify) {
-                       | JSONString(str) => str
-                       | _ => orientationToJs(v)
-                       }
-                     )
-                   ),
-    ~_StepIconComponent=?
-      _StepIconComponent->(
-                            Belt.Option.map(v =>
-                              MaterialUi_Helpers.unwrapValue(v)
-                            )
-                          ),
-    ~_StepIconProps?,
-    ~id?,
-    ~key?,
-    ~ref?,
-    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-    ~style?,
-    (),
-  );
-
-[@bs.module "@material-ui/core"]
-external make: React.component('a) = "StepLabel";
+  React.element =
+  "StepLabel";

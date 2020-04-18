@@ -1,39 +1,23 @@
-[@bs.obj]
-external makePropsMui:
+module Container: {
+  type t;
+  let container_func: MaterialUi_Types.any => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let container_func = (v: MaterialUi_Types.any) => Any(v);
+};
+
+[@react.component] [@bs.module "@material-ui/core"]
+external make:
   (
-    ~children: 'children=?,
-    ~container: 'union_renx=?,
-    ~disablePortal: bool=?,
-    ~onRendered: ReactEvent.Synthetic.t => unit=?,
-    ~id: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    unit
+    ~children: option('children)=?,
+    ~container: option(Container.t)=?,
+    ~disablePortal: option(bool)=?,
+    ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
+    ~id: option(string)=?,
+    ~key: option(string)=?,
+    ~ref: option(ReactDOMRe.domRef)=?
   ) =>
-  _;
-
-let makeProps =
-    (
-      ~children: option('children)=?,
-      ~container: option([ | `Callback('genericCallback)])=?,
-      ~disablePortal: option(bool)=?,
-      ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
-      ~id: option(string)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
-      (),
-    ) =>
-  makePropsMui(
-    ~children?,
-    ~container=?
-      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~disablePortal?,
-    ~onRendered?,
-    ~id?,
-    ~key?,
-    ~ref?,
-    (),
-  );
-
-[@bs.module "@material-ui/core"]
-external make: React.component('a) = "Portal";
+  React.element =
+  "Portal";

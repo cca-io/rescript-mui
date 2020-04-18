@@ -203,14 +203,14 @@ let make = (~sidebar, ~children) => {
                    }>
                    <MscharleyBsMaterialUiIcons.Menu.Filled />
                  </IconButton>
-                 <MaterialUi_Typography
-                   component={`String("h1")}
+                 <Typography
+                   component={Typography.Component.string("h1")}
                    variant=`H6
                    color=`Inherit
                    noWrap=true
                    className={classes.title}>
                    "Dashboard"->ReasonReact.string
-                 </MaterialUi_Typography>
+                 </Typography>
                  <Link
                    href="#"
                    onClick={e => {
@@ -230,16 +230,16 @@ let make = (~sidebar, ~children) => {
              </AppBar>
              <Drawer
                variant=`Permanent
-               classes=[
-                 Paper(
+               classes={Drawer.Classes.make(
+                 ~paper=
                    [|
                      classes.drawerPaper,
                      state.isOpen ? "" : classes.drawerPaperClose,
                    |]
                    |> Js.Array.joinWith(" "),
-                 ),
-               ]
-               open_={state.isOpen}>
+                 (),
+               )}
+               _open={state.isOpen}>
                <div className={classes.toolbarIcon}>
                  <IconButton onClick={_event => setState(Close)}>
                    <MscharleyBsMaterialUiIcons.ChevronLeft.Filled />

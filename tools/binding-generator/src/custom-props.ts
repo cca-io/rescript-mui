@@ -199,7 +199,6 @@ export default {
         name: 'custom',
         reasonType:
           '({. "from": int, "to": int, "count": int, "page": int}) => React.element',
-        jsType: "'labelRowsPerPage",
       },
       required: false,
       description: '-',
@@ -208,7 +207,6 @@ export default {
       type: {
         name: 'custom',
         reasonType: '({. "from": int, "to": int, "count": int}) => string',
-        jsType: "'labelDisplayedRows",
       },
       required: false,
       description: '-',
@@ -249,54 +247,11 @@ export default {
       description: '-',
     },
   },
-  Grid: {
-    xsAuto: {
-      type: {
-        name: 'bool',
-      },
-      required: false,
-      description: '-',
-      reasonOnly: true,
-    },
-    smAuto: {
-      type: {
-        name: 'bool',
-      },
-      required: false,
-      description: '-',
-      reasonOnly: true,
-    },
-    mdAuto: {
-      type: {
-        name: 'bool',
-      },
-      required: false,
-      description: '-',
-      reasonOnly: true,
-    },
-    lgAuto: {
-      type: {
-        name: 'bool',
-      },
-      required: false,
-      description: '-',
-      reasonOnly: true,
-    },
-    xlAuto: {
-      type: {
-        name: 'bool',
-      },
-      required: false,
-      description: '-',
-      reasonOnly: true,
-    },
-  },
   MuiThemeProvider: {
     theme: {
       type: {
         name: 'custom',
         reasonType: 'MaterialUi_Theme.t',
-        jsType: 'MaterialUi_Theme.t',
       },
       required: true,
       description: '-',
@@ -321,7 +276,36 @@ export default {
             {
               name: 'event',
               type: {
-                name: 'object',
+                name: 'custom',
+                reasonType: 'ReactEvent.Form.t',
+              },
+              required: true,
+            },
+            {
+              name: 'value',
+              type: { name: 'int' },
+              required: true,
+            },
+          ],
+          return: {
+            name: 'void',
+          },
+        },
+      },
+      required: false,
+      description: '-',
+    },
+    onChangeCommitted: {
+      type: {
+        name: 'signature',
+        type: 'function',
+        signature: {
+          arguments: [
+            {
+              name: 'event',
+              type: {
+                name: 'custom',
+                reasonType: 'ReactEvent.Form.t',
               },
               required: true,
             },

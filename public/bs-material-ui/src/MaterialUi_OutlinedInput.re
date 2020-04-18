@@ -1,220 +1,149 @@
-[@bs.deriving jsConverter]
-type color = [
-  | [@bs.as "primary"] `Primary
-  | [@bs.as "secondary"] `Secondary
-];
-
-[@bs.deriving jsConverter]
-type margin = [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None];
-
-module Classes = {
-  type classesType =
-    | Root(string)
-    | ColorSecondary(string)
-    | Focused(string)
-    | Disabled(string)
-    | AdornedStart(string)
-    | AdornedEnd(string)
-    | Error(string)
-    | MarginDense(string)
-    | Multiline(string)
-    | NotchedOutline(string)
-    | Input(string)
-    | InputMarginDense(string)
-    | InputMultiline(string)
-    | InputAdornedStart(string)
-    | InputAdornedEnd(string);
-  type t = list(classesType);
-  let to_string =
-    fun
-    | Root(_) => "root"
-    | ColorSecondary(_) => "colorSecondary"
-    | Focused(_) => "focused"
-    | Disabled(_) => "disabled"
-    | AdornedStart(_) => "adornedStart"
-    | AdornedEnd(_) => "adornedEnd"
-    | Error(_) => "error"
-    | MarginDense(_) => "marginDense"
-    | Multiline(_) => "multiline"
-    | NotchedOutline(_) => "notchedOutline"
-    | Input(_) => "input"
-    | InputMarginDense(_) => "inputMarginDense"
-    | InputMultiline(_) => "inputMultiline"
-    | InputAdornedStart(_) => "inputAdornedStart"
-    | InputAdornedEnd(_) => "inputAdornedEnd";
-  let to_obj = listOfClasses =>
-    listOfClasses->(
-                     Belt.List.reduce(
-                       Js.Dict.empty(),
-                       (obj, classType) => {
-                         switch (classType) {
-                         | Root(className)
-                         | ColorSecondary(className)
-                         | Focused(className)
-                         | Disabled(className)
-                         | AdornedStart(className)
-                         | AdornedEnd(className)
-                         | Error(className)
-                         | MarginDense(className)
-                         | Multiline(className)
-                         | NotchedOutline(className)
-                         | Input(className)
-                         | InputMarginDense(className)
-                         | InputMultiline(className)
-                         | InputAdornedStart(className)
-                         | InputAdornedEnd(className) =>
-                           Js.Dict.set(obj, to_string(classType), className)
-                         };
-                         obj;
-                       },
-                     )
-                   );
+module RowsMin: {
+  type t;
+  let string: string => t;
+  let int: int => t;
+  let float: float => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let string = (v: string) => Any(v);
+  let int = (v: int) => Any(v);
+  let float = (v: float) => Any(v);
 };
 
-[@bs.obj]
-external makePropsMui:
+module Classes = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    root: string,
+    [@bs.optional]
+    colorSecondary: string,
+    [@bs.optional]
+    focused: string,
+    [@bs.optional]
+    disabled: string,
+    [@bs.optional]
+    adornedStart: string,
+    [@bs.optional]
+    adornedEnd: string,
+    [@bs.optional]
+    error: string,
+    [@bs.optional]
+    marginDense: string,
+    [@bs.optional]
+    multiline: string,
+    [@bs.optional]
+    notchedOutline: string,
+    [@bs.optional]
+    input: string,
+    [@bs.optional]
+    inputMarginDense: string,
+    [@bs.optional]
+    inputMultiline: string,
+    [@bs.optional]
+    inputAdornedStart: string,
+    [@bs.optional]
+    inputAdornedEnd: string,
+  };
+  let make = t;
+};
+
+module InputComponent: {
+  type t;
+  let string: string => t;
+  let inputComponent_func: MaterialUi_Types.any => t;
+  let element: React.element => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let string = (v: string) => Any(v);
+  let inputComponent_func = (v: MaterialUi_Types.any) => Any(v);
+  let element = (v: React.element) => Any(v);
+};
+
+module Rows: {
+  type t;
+  let string: string => t;
+  let int: int => t;
+  let float: float => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let string = (v: string) => Any(v);
+  let int = (v: int) => Any(v);
+  let float = (v: float) => Any(v);
+};
+
+module RowsMax: {
+  type t;
+  let string: string => t;
+  let int: int => t;
+  let float: float => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let string = (v: string) => Any(v);
+  let int = (v: int) => Any(v);
+  let float = (v: float) => Any(v);
+};
+
+[@react.component] [@bs.module "@material-ui/core"]
+external make:
   (
-    ~aria_describedby: string=?,
-    ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~onFocus: ReactEvent.Focus.t => unit=?,
-    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-    ~renderSuffix: 'genericCallback=?,
-    ~rowsMin: 'union_r5op=?,
-    ~autoComplete: string=?,
-    ~autoFocus: bool=?,
-    ~className: string=?,
-    ~color: string=?,
-    ~defaultValue: 'any_rohu=?,
-    ~disabled: bool=?,
-    ~endAdornment: React.element=?,
-    ~error: bool=?,
-    ~fullWidth: bool=?,
-    ~id: string=?,
-    ~inputComponent: 'union_rlt8=?,
-    ~inputProps: Js.t({..})=?,
-    ~label: React.element=?,
-    ~labelWidth: 'number_y=?,
-    ~margin: string=?,
-    ~multiline: bool=?,
-    ~name: string=?,
-    ~notched: bool=?,
-    ~onChange: 'any_reoa=?,
-    ~placeholder: string=?,
-    ~readOnly: bool=?,
-    ~required: bool=?,
-    ~rows: 'union_r01a=?,
-    ~rowsMax: 'union_r7sg=?,
-    ~startAdornment: React.element=?,
-    ~_type: string=?,
-    ~value: 'any_r6el=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    ~classes: Js.Dict.t(string)=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~aria_describedby: option(string)=?,
+    ~onBlur: option(ReactEvent.Focus.t => unit)=?,
+    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
+    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
+    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
+    ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
+    ~renderSuffix: option(MaterialUi_Types.any)=?,
+    ~rowsMin: option(RowsMin.t)=?,
+    ~autoComplete: option(string)=?,
+    ~autoFocus: option(bool)=?,
+    ~classes: option(Classes.t)=?,
+    ~className: option(string)=?,
+    ~color: option(
+              [@bs.string] [
+                | [@bs.as "primary"] `Primary
+                | [@bs.as "secondary"] `Secondary
+              ],
+            )
+              =?,
+    ~defaultValue: option(MaterialUi_Types.any)=?,
+    ~disabled: option(bool)=?,
+    ~endAdornment: option(React.element)=?,
+    ~error: option(bool)=?,
+    ~fullWidth: option(bool)=?,
+    ~id: option(string)=?,
+    ~inputComponent: option(InputComponent.t)=?,
+    ~inputProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~label: option(React.element)=?,
+    ~labelWidth: option(MaterialUi_Types.Number.t)=?,
+    ~margin: option(
+               [@bs.string] [
+                 | [@bs.as "dense"] `Dense
+                 | [@bs.as "none"] `None
+               ],
+             )
+               =?,
+    ~multiline: option(bool)=?,
+    ~name: option(string)=?,
+    ~notched: option(bool)=?,
+    ~onChange: option(ReactEvent.Form.t => unit)=?,
+    ~placeholder: option(string)=?,
+    ~readOnly: option(bool)=?,
+    ~required: option(bool)=?,
+    ~rows: option(Rows.t)=?,
+    ~rowsMax: option(RowsMax.t)=?,
+    ~startAdornment: option(React.element)=?,
+    ~_type: option(string)=?,
+    ~value: option(MaterialUi_Types.any)=?,
+    ~key: option(string)=?,
+    ~ref: option(ReactDOMRe.domRef)=?
   ) =>
-  _;
-
-let makeProps =
-    (
-      ~aria_describedby: option(string)=?,
-      ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-      ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-      ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-      ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-      ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-      ~renderSuffix: option('genericCallback)=?,
-      ~rowsMin: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~autoComplete: option(string)=?,
-      ~autoFocus: option(bool)=?,
-      ~className: option(string)=?,
-      ~color: option(color)=?,
-      ~defaultValue: option('any_rohu)=?,
-      ~disabled: option(bool)=?,
-      ~endAdornment: option(React.element)=?,
-      ~error: option(bool)=?,
-      ~fullWidth: option(bool)=?,
-      ~id: option(string)=?,
-      ~inputComponent:
-         option(
-           [
-             | `String(string)
-             | `Callback('genericCallback)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~inputProps: option(Js.t({..}))=?,
-      ~label: option(React.element)=?,
-      ~labelWidth: option([ | `Int(int) | `Float(float)])=?,
-      ~margin: option(margin)=?,
-      ~multiline: option(bool)=?,
-      ~name: option(string)=?,
-      ~notched: option(bool)=?,
-      ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~placeholder: option(string)=?,
-      ~readOnly: option(bool)=?,
-      ~required: option(bool)=?,
-      ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~startAdornment: option(React.element)=?,
-      ~type_: option(string)=?,
-      ~value: option('any_r6el)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
-      ~classes: option(Classes.t)=?,
-      ~style: option(ReactDOMRe.Style.t)=?,
-      (),
-    ) =>
-  makePropsMui(
-    ~aria_describedby?,
-    ~onBlur?,
-    ~onClick?,
-    ~onFocus?,
-    ~onKeyDown?,
-    ~onKeyUp?,
-    ~renderSuffix?,
-    ~rowsMin=?
-      rowsMin->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~autoComplete?,
-    ~autoFocus?,
-    ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-    ~defaultValue?,
-    ~disabled?,
-    ~endAdornment?,
-    ~error?,
-    ~fullWidth?,
-    ~id?,
-    ~inputComponent=?
-      inputComponent->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
-    ~inputProps?,
-    ~label?,
-    ~labelWidth=?
-      labelWidth->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
-    ~multiline?,
-    ~name?,
-    ~notched?,
-    ~onChange?,
-    ~placeholder?,
-    ~readOnly?,
-    ~required?,
-    ~rows=?rows->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~rowsMax=?
-      rowsMax->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~startAdornment?,
-    ~_type=?type_,
-    ~value?,
-    ~key?,
-    ~ref?,
-    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-    ~style?,
-    (),
-  );
-
-[@bs.module "@material-ui/core"]
-external make: React.component('a) = "OutlinedInput";
+  React.element =
+  "OutlinedInput";

@@ -10,12 +10,18 @@
 let make = () => {
   <OverrideExample>
     ...{classes =>
-      <MaterialUi.Button
-        color=`Primary
-        variant=`Contained
-        classes=[Root(classes.fontSize), ContainedPrimary(classes.bgColor)]>
-        {ReasonReact.string("Example Button")}
-      </MaterialUi.Button>
+      MaterialUi.(
+        <Button
+          color=`Primary
+          variant=`Contained
+          classes={Button.Classes.make(
+            ~root=classes.fontSize,
+            ~containedPrimary=classes.bgColor,
+            (),
+          )}>
+          {ReasonReact.string("Example Button")}
+        </Button>
+      )
     }
   </OverrideExample>;
 };

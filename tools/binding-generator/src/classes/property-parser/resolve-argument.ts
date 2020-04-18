@@ -23,6 +23,11 @@ export default function (
   const Parser = GetPropertyParser(type);
   if (Parser) {
     const parser = new Parser(argumentProperty, 'moduleOnly');
+    // Ensure mixed enum in union
+    if (parser.constructor.name === 'EnumParser') {
+      // @ts-ignore
+      parser.enumType = 'mixed';
+    }
     parser.parse();
 
     return parser;

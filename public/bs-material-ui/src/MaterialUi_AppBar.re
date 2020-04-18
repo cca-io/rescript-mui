@@ -1,141 +1,85 @@
-[@bs.deriving jsConverter]
-type variant = [
-  | [@bs.as "elevation"] `Elevation
-  | [@bs.as "outlined"] `Outlined
-];
-
-[@bs.deriving jsConverter]
-type color = [
-  | [@bs.as "default"] `Default
-  | [@bs.as "inherit"] `Inherit
-  | [@bs.as "primary"] `Primary
-  | [@bs.as "secondary"] `Secondary
-  | [@bs.as "transparent"] `Transparent
-];
-
-[@bs.deriving jsConverter]
-type position = [
-  | [@bs.as "absolute"] `Absolute
-  | [@bs.as "fixed"] `Fixed
-  | [@bs.as "relative"] `Relative
-  | [@bs.as "static"] `Static
-  | [@bs.as "sticky"] `Sticky
-];
-
-module Classes = {
-  type classesType =
-    | Root(string)
-    | PositionFixed(string)
-    | PositionAbsolute(string)
-    | PositionSticky(string)
-    | PositionStatic(string)
-    | PositionRelative(string)
-    | ColorDefault(string)
-    | ColorPrimary(string)
-    | ColorSecondary(string)
-    | ColorInherit(string)
-    | ColorTransparent(string);
-  type t = list(classesType);
-  let to_string =
-    fun
-    | Root(_) => "root"
-    | PositionFixed(_) => "positionFixed"
-    | PositionAbsolute(_) => "positionAbsolute"
-    | PositionSticky(_) => "positionSticky"
-    | PositionStatic(_) => "positionStatic"
-    | PositionRelative(_) => "positionRelative"
-    | ColorDefault(_) => "colorDefault"
-    | ColorPrimary(_) => "colorPrimary"
-    | ColorSecondary(_) => "colorSecondary"
-    | ColorInherit(_) => "colorInherit"
-    | ColorTransparent(_) => "colorTransparent";
-  let to_obj = listOfClasses =>
-    listOfClasses->(
-                     Belt.List.reduce(
-                       Js.Dict.empty(),
-                       (obj, classType) => {
-                         switch (classType) {
-                         | Root(className)
-                         | PositionFixed(className)
-                         | PositionAbsolute(className)
-                         | PositionSticky(className)
-                         | PositionStatic(className)
-                         | PositionRelative(className)
-                         | ColorDefault(className)
-                         | ColorPrimary(className)
-                         | ColorSecondary(className)
-                         | ColorInherit(className)
-                         | ColorTransparent(className) =>
-                           Js.Dict.set(obj, to_string(classType), className)
-                         };
-                         obj;
-                       },
-                     )
-                   );
+module Component: {
+  type t;
+  let string: string => t;
+  let callback: (unit => React.element) => t;
+  let element: React.element => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let string = (v: string) => Any(v);
+  let callback = (v: unit => React.element) => Any(v);
+  let element = (v: React.element) => Any(v);
 };
 
-[@bs.obj]
-external makePropsMui:
+module Classes = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    root: string,
+    [@bs.optional]
+    positionFixed: string,
+    [@bs.optional]
+    positionAbsolute: string,
+    [@bs.optional]
+    positionSticky: string,
+    [@bs.optional]
+    positionStatic: string,
+    [@bs.optional]
+    positionRelative: string,
+    [@bs.optional]
+    colorDefault: string,
+    [@bs.optional]
+    colorPrimary: string,
+    [@bs.optional]
+    colorSecondary: string,
+    [@bs.optional]
+    colorInherit: string,
+    [@bs.optional]
+    colorTransparent: string,
+  };
+  let make = t;
+};
+
+[@react.component] [@bs.module "@material-ui/core"]
+external make:
   (
-    ~component: 'union_rozn=?,
-    ~elevation: 'number_n=?,
-    ~square: bool=?,
-    ~variant: string=?,
-    ~children: 'children=?,
-    ~className: string=?,
-    ~color: string=?,
-    ~position: string=?,
-    ~id: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    ~classes: Js.Dict.t(string)=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~component: option(Component.t)=?,
+    ~elevation: option(MaterialUi_Types.Number.t)=?,
+    ~square: option(bool)=?,
+    ~variant: option(
+                [@bs.string] [
+                  | [@bs.as "elevation"] `Elevation
+                  | [@bs.as "outlined"] `Outlined
+                ],
+              )
+                =?,
+    ~children: option('children)=?,
+    ~classes: option(Classes.t)=?,
+    ~className: option(string)=?,
+    ~color: option(
+              [@bs.string] [
+                | [@bs.as "default"] `Default
+                | [@bs.as "inherit"] `Inherit
+                | [@bs.as "primary"] `Primary
+                | [@bs.as "secondary"] `Secondary
+                | [@bs.as "transparent"] `Transparent
+              ],
+            )
+              =?,
+    ~position: option(
+                 [@bs.string] [
+                   | [@bs.as "absolute"] `Absolute
+                   | [@bs.as "fixed"] `Fixed
+                   | [@bs.as "relative"] `Relative
+                   | [@bs.as "static"] `Static
+                   | [@bs.as "sticky"] `Sticky
+                 ],
+               )
+                 =?,
+    ~id: option(string)=?,
+    ~key: option(string)=?,
+    ~ref: option(ReactDOMRe.domRef)=?
   ) =>
-  _;
-
-let makeProps =
-    (
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback(unit => React.element)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~elevation: option([ | `Int(int) | `Float(float)])=?,
-      ~square: option(bool)=?,
-      ~variant: option(variant)=?,
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~color: option(color)=?,
-      ~position: option(position)=?,
-      ~id: option(string)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
-      ~classes: option(Classes.t)=?,
-      ~style: option(ReactDOMRe.Style.t)=?,
-      (),
-    ) =>
-  makePropsMui(
-    ~component=?
-      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~elevation=?
-      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~square?,
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-    ~children?,
-    ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
-    ~position=?position->(Belt.Option.map(v => positionToJs(v))),
-    ~id?,
-    ~key?,
-    ~ref?,
-    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-    ~style?,
-    (),
-  );
-
-[@bs.module "@material-ui/core"]
-external make: React.component('a) = "AppBar";
+  React.element =
+  "AppBar";

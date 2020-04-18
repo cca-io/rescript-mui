@@ -1,92 +1,54 @@
-[@bs.deriving jsConverter]
-type padding = [
-  | [@bs.as "default"] `Default
-  | [@bs.as "checkbox"] `Checkbox
-  | [@bs.as "none"] `None
-];
-
-[@bs.deriving jsConverter]
-type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
-
 module Classes = {
-  type classesType =
-    | Root(string)
-    | StickyHeader(string);
-  type t = list(classesType);
-  let to_string =
-    fun
-    | Root(_) => "root"
-    | StickyHeader(_) => "stickyHeader";
-  let to_obj = listOfClasses =>
-    listOfClasses->(
-                     Belt.List.reduce(
-                       Js.Dict.empty(),
-                       (obj, classType) => {
-                         switch (classType) {
-                         | Root(className)
-                         | StickyHeader(className) =>
-                           Js.Dict.set(obj, to_string(classType), className)
-                         };
-                         obj;
-                       },
-                     )
-                   );
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    root: string,
+    [@bs.optional]
+    stickyHeader: string,
+  };
+  let make = t;
 };
 
-[@bs.obj]
-external makePropsMui:
+module Component: {
+  type t;
+  let string: string => t;
+  let callback: (unit => React.element) => t;
+  let element: React.element => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let string = (v: string) => Any(v);
+  let callback = (v: unit => React.element) => Any(v);
+  let element = (v: React.element) => Any(v);
+};
+
+[@react.component] [@bs.module "@material-ui/core"]
+external make:
   (
-    ~children: 'children=?,
-    ~className: string=?,
-    ~component: 'union_r82b=?,
-    ~padding: string=?,
-    ~size: string=?,
-    ~stickyHeader: bool=?,
-    ~id: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    ~classes: Js.Dict.t(string)=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~children: option('children)=?,
+    ~classes: option(Classes.t)=?,
+    ~className: option(string)=?,
+    ~component: option(Component.t)=?,
+    ~padding: option(
+                [@bs.string] [
+                  | [@bs.as "default"] `Default
+                  | [@bs.as "checkbox"] `Checkbox
+                  | [@bs.as "none"] `None
+                ],
+              )
+                =?,
+    ~size: option(
+             [@bs.string] [
+               | [@bs.as "small"] `Small
+               | [@bs.as "medium"] `Medium
+             ],
+           )
+             =?,
+    ~stickyHeader: option(bool)=?,
+    ~id: option(string)=?,
+    ~key: option(string)=?,
+    ~ref: option(ReactDOMRe.domRef)=?
   ) =>
-  _;
-
-let makeProps =
-    (
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~component:
-         option(
-           [
-             | `String(string)
-             | `Callback(unit => React.element)
-             | `Element(React.element)
-           ],
-         )=?,
-      ~padding: option(padding)=?,
-      ~size: option(size)=?,
-      ~stickyHeader: option(bool)=?,
-      ~id: option(string)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
-      ~classes: option(Classes.t)=?,
-      ~style: option(ReactDOMRe.Style.t)=?,
-      (),
-    ) =>
-  makePropsMui(
-    ~children?,
-    ~className?,
-    ~component=?
-      component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
-    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
-    ~stickyHeader?,
-    ~id?,
-    ~key?,
-    ~ref?,
-    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-    ~style?,
-    (),
-  );
-
-[@bs.module "@material-ui/core"] external make: React.component('a) = "Table";
+  React.element =
+  "Table";

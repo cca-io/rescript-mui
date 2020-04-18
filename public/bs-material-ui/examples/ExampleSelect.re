@@ -61,17 +61,22 @@ let make = () => {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-simple"> "Age"->React.string </InputLabel>
           <Select
-            value={`String(values.age)}
+            value={Select.Value.string(values.age)}
             onChange=handleChangeAge
-            inputProps={"id": "age-simple", "name": "age"}>
-            <MenuItem value={`String("")}>
+            inputProps={Js.Dict.fromArray([|
+              ("id", Any("age-simple")),
+              ("name", Any("age")),
+            |])}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("10")}> "Ten"->React.string </MenuItem>
-            <MenuItem value={`String("20")}>
+            <MenuItem value={MenuItem.Value.string("10")}>
+              "Ten"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("20")}>
               "Twenty"->React.string
             </MenuItem>
-            <MenuItem value={`String("30")}>
+            <MenuItem value={MenuItem.Value.string("30")}>
               "Thirty"->React.string
             </MenuItem>
           </Select>
@@ -79,17 +84,19 @@ let make = () => {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-helper"> "Age"->React.string </InputLabel>
           <Select
-            value={`String(values.age)}
+            value={Select.Value.string(values.age)}
             onChange=handleChangeAge
             input={<Input name="age" id="age-helper" />}>
-            <MenuItem value={`String("")}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("10")}> "Ten"->React.string </MenuItem>
-            <MenuItem value={`String("20")}>
+            <MenuItem value={MenuItem.Value.string("10")}>
+              "Ten"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("20")}>
               "Twenty"->React.string
             </MenuItem>
-            <MenuItem value={`String("30")}>
+            <MenuItem value={MenuItem.Value.string("30")}>
               "Thirty"->React.string
             </MenuItem>
           </Select>
@@ -99,19 +106,21 @@ let make = () => {
         </FormControl>
         <FormControl className={classes.formControl}>
           <Select
-            value={`String(values.age)}
+            value={Select.Value.string(values.age)}
             onChange=handleChangeAge
             displayEmpty=true
             name="age"
             className={classes.selectEmpty}>
-            <MenuItem value={`String("")}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("10")}> "Ten"->React.string </MenuItem>
-            <MenuItem value={`String("20")}>
+            <MenuItem value={MenuItem.Value.string("10")}>
+              "Ten"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("20")}>
               "Twenty"->React.string
             </MenuItem>
-            <MenuItem value={`String("30")}>
+            <MenuItem value={MenuItem.Value.string("30")}>
               "Thirty"->React.string
             </MenuItem>
           </Select>
@@ -122,20 +131,22 @@ let make = () => {
             "Age"->React.string
           </InputLabel>
           <Select
-            value={`String(values.age)}
+            value={Select.Value.string(values.age)}
             onChange=handleChangeAge
             input={<Input name="age" id="age-label-placeholder" />}
             displayEmpty=true
             name="age"
             className={classes.selectEmpty}>
-            <MenuItem value={`String("")}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("10")}> "Ten"->React.string </MenuItem>
-            <MenuItem value={`String("20")}>
+            <MenuItem value={MenuItem.Value.string("10")}>
+              "Ten"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("20")}>
               "Twenty"->React.string
             </MenuItem>
-            <MenuItem value={`String("30")}>
+            <MenuItem value={MenuItem.Value.string("30")}>
               "Thirty"->React.string
             </MenuItem>
           </Select>
@@ -146,17 +157,19 @@ let make = () => {
         <FormControl className={classes.formControl} disabled=true>
           <InputLabel htmlFor="name-disabled"> "Name" </InputLabel>
           <Select
-            value={`String(values.name)}
+            value={Select.Value.string(values.name)}
             onChange=handleChangeName
             input={<Input name="name" id="name-disabled" />}>
-            <MenuItem value={`String("")}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("hai")}> "Hai"->React.string </MenuItem>
-            <MenuItem value={`String("olivier")}>
+            <MenuItem value={MenuItem.Value.string("hai")}>
+              "Hai"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("olivier")}>
               "Olivier"->React.string
             </MenuItem>
-            <MenuItem value={`String("kevin")}>
+            <MenuItem value={MenuItem.Value.string("kevin")}>
               "Kevin"->React.string
             </MenuItem>
           </Select>
@@ -165,19 +178,21 @@ let make = () => {
         <FormControl className={classes.formControl} error=true>
           <InputLabel htmlFor="name-error"> "Name" </InputLabel>
           <Select
-            value={`String(values.name)}
+            value={Select.Value.string(values.name)}
             onChange=handleChangeName
             name="name"
-            renderValue={value => ({j|⚠️  - |j} ++ value)->React.string}
+            renderValue={value => Any({j|⚠️  - |j} ++ value->anyUnpack)}
             input={<Input id="name-error" />}>
-            <MenuItem value={`String("")}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("hai")}> "Hai"->React.string </MenuItem>
-            <MenuItem value={`String("olivier")}>
+            <MenuItem value={MenuItem.Value.string("hai")}>
+              "Hai"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("olivier")}>
               "Olivier"->React.string
             </MenuItem>
-            <MenuItem value={`String("kevin")}>
+            <MenuItem value={MenuItem.Value.string("kevin")}>
               "Kevin"->React.string
             </MenuItem>
           </Select>
@@ -186,17 +201,19 @@ let make = () => {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="name-readonly"> "Name" </InputLabel>
           <Select
-            value={`String(values.name)}
+            value={Select.Value.string(values.name)}
             onChange=handleChangeName
             input={<Input name="name" id="name-readonly" readOnly=true />}>
-            <MenuItem value={`String("")}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("hai")}> "Hai"->React.string </MenuItem>
-            <MenuItem value={`String("olivier")}>
+            <MenuItem value={MenuItem.Value.string("hai")}>
+              "Hai"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("olivier")}>
               "Olivier"->React.string
             </MenuItem>
-            <MenuItem value={`String("kevin")}>
+            <MenuItem value={MenuItem.Value.string("kevin")}>
               "Kevin"->React.string
             </MenuItem>
           </Select>
@@ -207,18 +224,20 @@ let make = () => {
             "Age"->React.string
           </InputLabel>
           <Select
-            value={`String(values.age)}
+            value={Select.Value.string(values.age)}
             onChange=handleChangeAge
             input={<Input name="age" id="age-auto-width" />}
             autoWidth=true>
-            <MenuItem value={`String("")}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("10")}> "Ten"->React.string </MenuItem>
-            <MenuItem value={`String("20")}>
+            <MenuItem value={MenuItem.Value.string("10")}>
+              "Ten"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("20")}>
               "Twenty"->React.string
             </MenuItem>
-            <MenuItem value={`String("30")}>
+            <MenuItem value={MenuItem.Value.string("30")}>
               "Thirty"->React.string
             </MenuItem>
           </Select>
@@ -226,19 +245,21 @@ let make = () => {
         </FormControl>
         <FormControl className={classes.formControl}>
           <Select
-            value={`String(values.age)}
+            value={Select.Value.string(values.age)}
             onChange=handleChangeAge
             name="age"
             displayEmpty=true
             className={classes.selectEmpty}>
-            <MenuItem value={`String("")} disabled=true>
+            <MenuItem value={MenuItem.Value.string("")} disabled=true>
               "Placeholder"
             </MenuItem>
-            <MenuItem value={`String("10")}> "Ten"->React.string </MenuItem>
-            <MenuItem value={`String("20")}>
+            <MenuItem value={MenuItem.Value.string("10")}>
+              "Ten"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("20")}>
               "Twenty"->React.string
             </MenuItem>
-            <MenuItem value={`String("30")}>
+            <MenuItem value={MenuItem.Value.string("30")}>
               "Thirty"->React.string
             </MenuItem>
           </Select>
@@ -247,19 +268,21 @@ let make = () => {
         <FormControl required=true className={classes.formControl}>
           <InputLabel htmlFor="age-required"> "Age"->React.string </InputLabel>
           <Select
-            value={`String(values.age)}
+            value={Select.Value.string(values.age)}
             onChange=handleChangeAge
             name="age"
-            inputProps={"id": "age-required"}
+            inputProps={Js.Dict.fromArray([|("id", Any("age-required"))|])}
             className={classes.selectEmpty}>
-            <MenuItem value={`String("")}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("10")}> "Ten"->React.string </MenuItem>
-            <MenuItem value={`String("20")}>
+            <MenuItem value={MenuItem.Value.string("10")}>
+              "Ten"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("20")}>
               "Twenty"->React.string
             </MenuItem>
-            <MenuItem value={`String("30")}>
+            <MenuItem value={MenuItem.Value.string("30")}>
               "Thirty"->React.string
             </MenuItem>
           </Select>
@@ -272,23 +295,25 @@ let make = () => {
             "Age"->React.string
           </InputLabel>
           <Select
-            value={`String(values.age)}
+            value={Select.Value.string(values.age)}
             onChange=handleChangeAge
             input={
               <OutlinedInput
-                labelWidth={`Int(labelWidth)}
+                labelWidth={Number.int(labelWidth)}
                 name="age"
                 id="outlined-age-simple"
               />
             }>
-            <MenuItem value={`String("")}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("10")}> "Ten"->React.string </MenuItem>
-            <MenuItem value={`String("20")}>
+            <MenuItem value={MenuItem.Value.string("10")}>
+              "Ten"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("20")}>
               "Twenty"->React.string
             </MenuItem>
-            <MenuItem value={`String("30")}>
+            <MenuItem value={MenuItem.Value.string("30")}>
               "Thirty"->React.string
             </MenuItem>
           </Select>
@@ -298,17 +323,19 @@ let make = () => {
             "Age"->React.string
           </InputLabel>
           <Select
-            value={`String(values.age)}
+            value={Select.Value.string(values.age)}
             onChange=handleChangeAge
             input={<FilledInput name="age" id="filled-age-simple" />}>
-            <MenuItem value={`String("")}>
+            <MenuItem value={MenuItem.Value.string("")}>
               <em> "None"->React.string </em>
             </MenuItem>
-            <MenuItem value={`String("10")}> "Ten"->React.string </MenuItem>
-            <MenuItem value={`String("20")}>
+            <MenuItem value={MenuItem.Value.string("10")}>
+              "Ten"->React.string
+            </MenuItem>
+            <MenuItem value={MenuItem.Value.string("20")}>
               "Twenty"->React.string
             </MenuItem>
-            <MenuItem value={`String("30")}>
+            <MenuItem value={MenuItem.Value.string("30")}>
               "Thirty"->React.string
             </MenuItem>
           </Select>

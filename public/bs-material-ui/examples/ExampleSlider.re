@@ -13,49 +13,46 @@ module VolumeUp =
 
 [@react.component]
 let make = () => {
+  let classes = SliderStyles.useStyles();
   let (value, setValue) = React.useReducer((_, v) => v, 0);
 
   MaterialUi.(
-    <SliderStyles>
-      ...{classes =>
-        <div className={classes.root}>
-          <Typography gutterBottom=true> "Volume" </Typography>
-          <Grid container=true spacing=V2 alignItems=`Center>
-            <Grid item=true> <VolumeUp /> </Grid>
-            <Grid item=true xsAuto=true>
-              <Slider
-                value={`Int(value)}
-                onChange={(_, v) => setValue(v)}
-                aria_labelledby="input-slider"
-              />
-            </Grid>
-            <Grid item=true>
-              <Input
-                className={classes.input}
-                value
-                margin=`Dense
-                onChange={e =>
-                  setValue(e->ReactEvent.Form.target##value->int_of_string)
-                }
-                onBlur={_ =>
-                  if (value < 0) {
-                    setValue(0);
-                  } else if (value > 100) {
-                    setValue(100);
-                  }
-                }
-                inputProps={
-                  "step": 10,
-                  "min": 0,
-                  "max": 100,
-                  "type": "number",
-                  "aria-labelledby": "input-slider",
-                }
-              />
-            </Grid>
-          </Grid>
-        </div>
-      }
-    </SliderStyles>
+    <div className={classes.root}>
+      <Typography gutterBottom=true> "Volume" </Typography>
+      <Grid container=true spacing=`V2 alignItems=`Center>
+        <Grid item=true> <VolumeUp /> </Grid>
+        <Grid item=true xs=Grid.Xs._true>
+          <Slider
+            value={Slider.Value.int(value)}
+            onChange={(_, v) => setValue(v)}
+            aria_labelledby="input-slider"
+          />
+        </Grid>
+        <Grid item=true>
+          <Input
+            className={classes.input}
+            value={Any(value)}
+            margin=`Dense
+            onChange={e =>
+              setValue(e->ReactEvent.Form.target##value->int_of_string)
+            }
+            onBlur={_ =>
+              if (value < 0) {
+                setValue(0);
+              } else if (value > 100) {
+                setValue(100);
+              }
+            }
+            inputProps={Js.Dict.fromArray([|
+              ("step", Any(10)),
+              ("min", Any(0)),
+              ("max", Any(100)),
+              ("type", Any("number")),
+              ("aria-labelledby", Any("input-slider")),
+            |])}
+          />
+        </Grid>
+      </Grid>
+    </div>
   );
 };

@@ -1,12 +1,11 @@
 import * as Hash from 'object-hash';
 import GetCustomProps from './../helpers/get-custom-props';
-import GenerateClassProp from './../helpers/generate-class-prop';
 
 import Property from './property';
 
 class Component {
   // Statics
-  static ignorePropNames = ['classes', 'style'];
+  static ignorePropNames = ['style'];
 
   // ComponentSignature
   readonly _component: ComponentSignature;
@@ -14,8 +13,6 @@ class Component {
   // Sections of the reason Component (properties can add to them as needed)
   private _sectionModule: { [hash: string]: string } = {};
   private _sectionMake: string[] = [];
-  private _sectionMakeProps: string[] = [];
-  private _sectionWrapJs: string[] = [];
 
   // Property List
   private _properties: Property[] = [];
@@ -31,6 +28,13 @@ class Component {
         required: false,
         description: '@ignore',
         defaultValue: { computed: false, value: '' },
+      };
+    }
+    // Modify classes prop
+    if (typeof this._component.props['classes'] !== 'undefined') {
+      this._component.props['classes'] = {
+        ...this._component.props['classes'],
+        required: false,
       };
     }
     this.parse();
@@ -53,19 +57,12 @@ class Component {
     switch (section) {
       case 'Make':
         return this._sectionMake;
-      case 'MakeProps':
-        return this._sectionMakeProps;
-      case 'WrapJs':
-        return this._sectionWrapJs;
       default:
         return false;
     }
   }
 
-  public addToSection(
-    section: 'Module' | 'Make' | 'MakeProps' | 'WrapJs',
-    content: string,
-  ) {
+  public addToSection(section: 'Module' | 'Make', content: string) {
     if (section === 'Module') {
       this._sectionModule[Hash(content)] = content;
     } else {
@@ -76,7 +73,7 @@ class Component {
     }
   }
 
-  private renderSection(section: 'Module' | 'Make' | 'MakeProps' | 'WrapJs') {
+  private renderSection(section: 'Module' | 'Make') {
     if (section === 'Module') {
       return Object.keys(this._sectionModule)
         .map((key) => this._sectionModule[key])
@@ -110,45 +107,15 @@ class Component {
     }
   }
 
-  private injectClasses() {
-    const classProp = GenerateClassProp(this._component);
-    this.addToSection('Module', classProp.toModule);
-    this.addToSection('Make', classProp.toMake);
-    this.addToSection('MakeProps', classProp.toMakeProps);
-    this.addToSection('WrapJs', classProp.toWrapJs);
-  }
-
   public render() {
-    this.injectClasses();
-    const hasProps =
-      this._component.props != null ||
-      this._component.styles.classes.length > 0;
-
     return `
             ${this.renderSection('Module')}
-            ${
-              hasProps
-                ? `[@bs.obj] external makePropsMui : (${this.renderSection(
-                    'MakeProps',
-                  )} unit) => _ = "";`
-                : ''
-            }
 
-            let makeProps = (
-                ${this.renderSection('Make')}
-                ()
-            ) => 
-                ${
-                  !hasProps
-                    ? 'Js.Obj.empty()'
-                    : `makePropsMui(${this.renderSection('WrapJs')} ())`
-                };
-
-            [@bs.module "${
+            [@react.component] [@bs.module "${
               this._component.importPath
-            }"] external make : React.component('a) = "${
-      this._component.importName || 'default'
-    }";
+            }"] external make : (${this.renderSection(
+      'Make',
+    )}) => React.element = "${this._component.importName || 'default'}";
         `;
   }
 }

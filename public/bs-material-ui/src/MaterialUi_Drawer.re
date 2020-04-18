@@ -1,196 +1,95 @@
-[@bs.deriving jsConverter]
-type anchor = [
-  | [@bs.as "bottom"] `Bottom
-  | [@bs.as "left"] `Left
-  | [@bs.as "right"] `Right
-  | [@bs.as "top"] `Top
-];
+module Classes = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    root: string,
+    [@bs.optional]
+    docked: string,
+    [@bs.optional]
+    paper: string,
+    [@bs.optional]
+    paperAnchorLeft: string,
+    [@bs.optional]
+    paperAnchorRight: string,
+    [@bs.optional]
+    paperAnchorTop: string,
+    [@bs.optional]
+    paperAnchorBottom: string,
+    [@bs.optional]
+    paperAnchorDockedLeft: string,
+    [@bs.optional]
+    paperAnchorDockedTop: string,
+    [@bs.optional]
+    paperAnchorDockedRight: string,
+    [@bs.optional]
+    paperAnchorDockedBottom: string,
+    [@bs.optional]
+    modal: string,
+  };
+  let make = t;
+};
 
 module TransitionDuration_shape = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
-    appear: [ | `Int(int) | `Float(float)],
+    appear: MaterialUi_Types.Number.t,
     [@bs.optional]
-    enter: [ | `Int(int) | `Float(float)],
+    enter: MaterialUi_Types.Number.t,
     [@bs.optional]
-    exit: [ | `Int(int) | `Float(float)],
+    exit: MaterialUi_Types.Number.t,
   };
   let make = t;
-
-  let unwrap = (obj: t) => {
-    let unwrappedMap = Js.Dict.empty();
-
-    switch (
-      obj
-      ->appearGet
-      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
-    ) {
-    | Some(v) =>
-      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
-    | None => ()
-    };
-
-    switch (
-      obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
-    ) {
-    | Some(v) =>
-      unwrappedMap->(Js.Dict.set("enter", v->MaterialUi_Helpers.toJsUnsafe))
-    | None => ()
-    };
-
-    switch (
-      obj->exitGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
-    ) {
-    | Some(v) =>
-      unwrappedMap->(Js.Dict.set("exit", v->MaterialUi_Helpers.toJsUnsafe))
-    | None => ()
-    };
-
-    unwrappedMap;
-  };
 };
 
-[@bs.deriving jsConverter]
-type variant = [
-  | [@bs.as "permanent"] `Permanent
-  | [@bs.as "persistent"] `Persistent
-  | [@bs.as "temporary"] `Temporary
-];
-
-module Classes = {
-  type classesType =
-    | Root(string)
-    | Docked(string)
-    | Paper(string)
-    | PaperAnchorLeft(string)
-    | PaperAnchorRight(string)
-    | PaperAnchorTop(string)
-    | PaperAnchorBottom(string)
-    | PaperAnchorDockedLeft(string)
-    | PaperAnchorDockedTop(string)
-    | PaperAnchorDockedRight(string)
-    | PaperAnchorDockedBottom(string)
-    | Modal(string);
-  type t = list(classesType);
-  let to_string =
-    fun
-    | Root(_) => "root"
-    | Docked(_) => "docked"
-    | Paper(_) => "paper"
-    | PaperAnchorLeft(_) => "paperAnchorLeft"
-    | PaperAnchorRight(_) => "paperAnchorRight"
-    | PaperAnchorTop(_) => "paperAnchorTop"
-    | PaperAnchorBottom(_) => "paperAnchorBottom"
-    | PaperAnchorDockedLeft(_) => "paperAnchorDockedLeft"
-    | PaperAnchorDockedTop(_) => "paperAnchorDockedTop"
-    | PaperAnchorDockedRight(_) => "paperAnchorDockedRight"
-    | PaperAnchorDockedBottom(_) => "paperAnchorDockedBottom"
-    | Modal(_) => "modal";
-  let to_obj = listOfClasses =>
-    listOfClasses->(
-                     Belt.List.reduce(
-                       Js.Dict.empty(),
-                       (obj, classType) => {
-                         switch (classType) {
-                         | Root(className)
-                         | Docked(className)
-                         | Paper(className)
-                         | PaperAnchorLeft(className)
-                         | PaperAnchorRight(className)
-                         | PaperAnchorTop(className)
-                         | PaperAnchorBottom(className)
-                         | PaperAnchorDockedLeft(className)
-                         | PaperAnchorDockedTop(className)
-                         | PaperAnchorDockedRight(className)
-                         | PaperAnchorDockedBottom(className)
-                         | Modal(className) =>
-                           Js.Dict.set(obj, to_string(classType), className)
-                         };
-                         obj;
-                       },
-                     )
-                   );
+module TransitionDuration: {
+  type t;
+  let int: int => t;
+  let float: float => t;
+  let shape: TransitionDuration_shape.t => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let int = (v: int) => Any(v);
+  let float = (v: float) => Any(v);
+  let shape = (v: TransitionDuration_shape.t) => Any(v);
 };
 
-[@bs.obj]
-external makePropsMui:
+[@react.component] [@bs.module "@material-ui/core"]
+external make:
   (
-    ~anchor: string=?,
-    ~_BackdropProps: Js.t({..})=?,
-    ~children: 'children=?,
-    ~className: string=?,
-    ~elevation: 'number_a=?,
-    ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rca7=?,
-    ~_open: bool=?,
-    ~_PaperProps: Js.t({..})=?,
-    ~_SlideProps: Js.t({..})=?,
-    ~transitionDuration: 'union_rz7s=?,
-    ~variant: string=?,
-    ~id: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    ~classes: Js.Dict.t(string)=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
+    ~anchor: option(
+               [@bs.string] [
+                 | [@bs.as "bottom"] `Bottom
+                 | [@bs.as "left"] `Left
+                 | [@bs.as "right"] `Right
+                 | [@bs.as "top"] `Top
+               ],
+             )
+               =?,
+    ~_BackdropProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~children: option('children)=?,
+    ~classes: option(Classes.t)=?,
+    ~className: option(string)=?,
+    ~elevation: option(MaterialUi_Types.Number.t)=?,
+    ~_ModalProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
+    ~_open: option(bool)=?,
+    ~_PaperProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~_SlideProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~transitionDuration: option(TransitionDuration.t)=?,
+    ~variant: option(
+                [@bs.string] [
+                  | [@bs.as "permanent"] `Permanent
+                  | [@bs.as "persistent"] `Persistent
+                  | [@bs.as "temporary"] `Temporary
+                ],
+              )
+                =?,
+    ~id: option(string)=?,
+    ~key: option(string)=?,
+    ~ref: option(ReactDOMRe.domRef)=?
   ) =>
-  _;
-
-let makeProps =
-    (
-      ~anchor: option(anchor)=?,
-      ~_BackdropProps: option(Js.t({..}))=?,
-      ~children: option('children)=?,
-      ~className: option(string)=?,
-      ~elevation: option([ | `Int(int) | `Float(float)])=?,
-      ~_ModalProps: option(Js.t({..}))=?,
-      ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
-      ~open_: option(bool)=?,
-      ~_PaperProps: option(Js.t({..}))=?,
-      ~_SlideProps: option(Js.t({..}))=?,
-      ~transitionDuration:
-         option(
-           [
-             | `Int(int)
-             | `Float(float)
-             | `Object(TransitionDuration_shape.t)
-           ],
-         )=?,
-      ~variant: option(variant)=?,
-      ~id: option(string)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
-      ~classes: option(Classes.t)=?,
-      ~style: option(ReactDOMRe.Style.t)=?,
-      (),
-    ) =>
-  makePropsMui(
-    ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
-    ~_BackdropProps?,
-    ~children?,
-    ~className?,
-    ~elevation=?
-      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~_ModalProps?,
-    ~onClose?,
-    ~_open=?open_,
-    ~_PaperProps?,
-    ~_SlideProps?,
-    ~transitionDuration=?
-      transitionDuration->(
-                            Belt.Option.map(v =>
-                              MaterialUi_Helpers.unwrapValue(v)
-                            )
-                          ),
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-    ~id?,
-    ~key?,
-    ~ref?,
-    ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),
-    ~style?,
-    (),
-  );
-
-[@bs.module "@material-ui/core"]
-external make: React.component('a) = "Drawer";
+  React.element =
+  "Drawer";

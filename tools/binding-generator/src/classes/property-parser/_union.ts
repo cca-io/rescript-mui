@@ -1,6 +1,7 @@
 import * as Console from './../../helpers/console';
-import { upperFirst } from 'lodash';
-import { generateAny, convertUnionToEnum } from './helpers';
+import { lowerFirst } from 'lodash';
+import { convertUnionToEnum } from './helpers';
+import generateReasonName from '../../helpers/generate-reason-name';
 import Base from './base';
 import * as Identify from './../../helpers/identify-prop-type';
 import ResolveArgument from './resolve-argument';
@@ -9,168 +10,99 @@ const factory = (propertyType: PropType$Union) => {
   return class UnionParser extends Base {
     private _propertyType: PropType$Union = propertyType;
 
-    private _hasEnum = false;
-    private _hasEnumArray = false;
-
     public executeParse() {
       const unionProps = this.resolveUnionProps();
 
-      const reasonTypes: string[] = [];
-      const enums: string[] = [];
-      const enumArrays: string[] = [];
-
-      unionProps.forEach((unionProp) => {
+      let defs: { [key: string]: string } = {};
+      defs = unionProps.reduce((prev, unionProp) => {
         const type = unionProp.property.signature.type;
 
-        if (type != null) {
-          if (Identify.isPrimitive(type) && type.name !== 'array') {
-            const pType =
-              unionProp.reasonType.indexOf("'any") === 0
-                ? 'any'
-                : unionProp.reasonType;
-            switch (pType) {
-              case 'string':
-              case 'bool':
-              case 'any':
-                reasonTypes.push(
-                  `${upperFirst(pType)}(${unionProp.reasonType})`,
-                );
-                break;
-              case '[ | `Int(int) | `Float(float) ]':
-                reasonTypes.push('Int(int)');
-                reasonTypes.push('Float(float)');
-                break;
-              case 'Js.t({..})':
-                reasonTypes.push('ObjectGeneric(Js.t({..}))');
-                break;
-              case 'React.element':
-              case 'React.element':
-              case 'Element<any>':
-              case 'element':
-              case 'Node':
-              case 'node':
-              case 'Element':
-              case 'ComponentType<object>':
-                reasonTypes.push('Element(React.element)');
-                break;
-              default:
-                Console.error(
-                  `_union: Unhandled primitive type ${
-                    Console.colors.red
-                  }${JSON.stringify(unionProp.property.signature)}${
-                    Console.colors.yellow
-                  } in Union ${Console.colors.red}${this.property.name}`,
-                );
-            }
-          } else if (
-            Identify.isPrimitive(type) &&
-            type.name.toLowerCase() === 'array'
-          ) {
-            reasonTypes.push(`Array(${generateAny()})`);
-          } else if (Identify.isEnum(type)) {
-            reasonTypes.push(`Enum(${unionProp.reasonType})`);
-            enums.push(unionProp.reasonType);
-          } else if (Identify.isShape(type)) {
-            reasonTypes.push(`Object(${unionProp.reasonType})`);
-          } else if (Identify.isFunc(type)) {
-            if (this._property.name === 'component') {
-              reasonTypes.push(`Callback(unit => React.element)`);
-            } else {
-              reasonTypes.push(`Callback(${unionProp.reasonType})`);
-            }
-          } else if (Identify.isArrayOf(type)) {
-            if (unionProp.reasonType.substr(0, 1) === '[') {
-              unionProp.reasonType
-                .replace('[', '')
-                .replace(']', '')
-                .split('|')
-                .map((t) => t.trim().replace('`', ''))
-                .filter((t) => t !== '')
-                .forEach((t) => reasonTypes.push(t));
-            } else if (unionProp.reasonType.substr(0, 5) === 'array') {
-              reasonTypes.push(`Array(${unionProp.reasonType})`);
-            } else {
-              const arrayOfType = unionProp.reasonType.replace('`', '');
-              if (arrayOfType.indexOf('EnumArray') > -1) {
-                this._hasEnumArray = true;
-                enumArrays.push(
-                  arrayOfType.replace('EnumArray(array(', '').replace('))', ''),
-                );
-              }
-              reasonTypes.push(arrayOfType);
-            }
-          } else {
-            Console.error(
-              `_union: Unhandled complex type ${
-                Console.colors.red
-              }${JSON.stringify(unionProp)}${Console.colors.yellow} in Union ${
-                Console.colors.red
-              }${this.property.name}`,
-            );
+        if (type == null) {
+          return prev;
+        }
+        if (Identify.isPrimitive(type)) {
+          const pType = unionProp.reasonType;
+          switch (pType) {
+            case 'string':
+            case 'bool':
+            case 'int':
+              return { ...prev, [pType]: unionProp.reasonType };
+            case 'MaterialUi_Types.any':
+              return { ...prev, any: 'MaterialUi_Types.any' };
+            case 'array(MaterialUi_Types.any)':
+              return { ...prev, array: 'array(MaterialUi_Types.any)' };
+            case 'MaterialUi_Types.Number.t':
+              return { ...prev, int: 'int', float: 'float' };
+            case 'Js.Dict.t(MaterialUi_Types.any)':
+              return { ...prev, obj: unionProp.reasonType };
+            case 'React.element':
+            case 'React.element':
+            case 'Element<any>':
+            case 'element':
+            case 'Node':
+            case 'node':
+            case 'Element':
+            case 'ComponentType<object>':
+              return { ...prev, element: 'React.element' };
+            default:
+              Console.error(
+                `_union: Unhandled primitive type ${
+                  Console.colors.red
+                }${JSON.stringify(unionProp.property.signature)}${
+                  Console.colors.yellow
+                } in Union ${Console.colors.red}${this.property.name}`,
+              );
           }
-        }
-      });
-
-      this._reasonType = `[ ${reasonTypes
-        .map((type) => `| \`${type} `)
-        .join('')} ]`;
-      this._jsType = generateAny('union');
-
-      const combinedLength = enums.length + enumArrays.length;
-      if (this.property.signature.required) {
-        if (this._hasEnum || this._hasEnumArray) {
-          this._wrapJs = (name) => `
-                    (fun
-                        ${enums
-                          .map(
-                            (x) =>
-                              `| \`Enum(v) => MaterialUi_Helpers.unwrapValue(\`String(${x}ToJs(v)))`,
-                          )
-                          .join('\n')}
-                        ${enumArrays
-                          .map(
-                            (x) =>
-                              `| \`EnumArray(v) => MaterialUi_Helpers.unwrapValue(\`Element(Array.map(${x}ToJs, v)))`,
-                          )
-                          .join('\n')}
-                        ${
-                          reasonTypes.length > combinedLength
-                            ? '| v => MaterialUi_Helpers.unwrapValue(v)'
-                            : ''
-                        }
-                    )(${name})
-                `;
+        } else if (
+          Identify.isEnum(type) ||
+          Identify.isShape(type) ||
+          Identify.isArrayOf(type)
+        ) {
+          let key = generateReasonName(type.name, false);
+          key =
+            typeof prev[key] === 'undefined'
+              ? key
+              : lowerFirst(unionProp.moduleName);
+          return {
+            ...prev,
+            [key]: unionProp.reasonType,
+          };
+        } else if (Identify.isFunc(type)) {
+          if (this._property.name === 'component') {
+            return { ...prev, callback: 'unit => React.element' };
+          } else {
+            return {
+              ...prev,
+              [lowerFirst(unionProp.moduleName)]: unionProp.reasonType,
+            };
+          }
         } else {
-          this._wrapJs = (name) => `MaterialUi_Helpers.unwrapValue(${name})`;
+          console.log(unionProp);
+          Console.error(
+            `_union: Unhandled complex type ${Console.colors.red}${Console.colors.yellow} in Union ${Console.colors.red}${this.property.name}`,
+          );
         }
-      } else {
-        if (this._hasEnum || this._hasEnumArray) {
-          this._wrapJs = (name) => `
-                    ${name} |. Belt.Option.map((v) => switch v {
-                        ${enums
-                          .map(
-                            (x) =>
-                              `| \`Enum(v) => MaterialUi_Helpers.unwrapValue(\`String(${x}ToJs(v)))`,
-                          )
-                          .join('\n')}
-                        ${enumArrays
-                          .map(
-                            (x) =>
-                              `| \`EnumArray(v) => MaterialUi_Helpers.unwrapValue(\`Element(Belt.Array.map(${x}ToJs, v)))`,
-                          )
-                          .join('\n')}
-                        ${
-                          reasonTypes.length > combinedLength
-                            ? '| v => MaterialUi_Helpers.unwrapValue(v)'
-                            : ''
-                        }
-                    })
-                `;
-        } else {
-          this._wrapJs = (name) =>
-            `${name} |. Belt.Option.map((v => MaterialUi_Helpers.unwrapValue(v)))`;
-        }
-      }
+
+        return prev;
+      }, defs);
+
+      this._module = `
+      module ${this.moduleName}: {
+        type t;
+        ${Object.entries(defs)
+          .map(([key, value]) => `let ${key}: (${value}) => t;`)
+          .join('\n')}
+      } = {
+        [@unboxed]
+        type t =
+          | Any('a): t;
+          ${Object.entries(defs)
+            .map(([key, value]) => `let ${key} = (v: ${value}) => Any(v);`)
+            .join('\n')}
+      };
+      `;
+
+      this._reasonType = `${this.moduleName}.t`;
     }
 
     private extractEnum() {
@@ -190,11 +122,13 @@ const factory = (propertyType: PropType$Union) => {
               if (pType.name === 'literal') {
                 return arr;
               }
-              if (pType.name === 'enum') {
-                this._hasEnum = true;
-              }
               const resolved = this.resolveType(pType);
               if (resolved) {
+                // Ensure mixed enum in union
+                if (resolved.constructor.name === 'EnumParser') {
+                  // @ts-ignore
+                  resolved.enumType = 'mixed';
+                }
                 return [...arr, resolved];
               }
               return arr;
@@ -202,7 +136,6 @@ const factory = (propertyType: PropType$Union) => {
           : [];
       const extractedEnum = this.extractEnum();
       if (extractedEnum) {
-        this._hasEnum = true;
         unionProps.push(extractedEnum);
       }
 

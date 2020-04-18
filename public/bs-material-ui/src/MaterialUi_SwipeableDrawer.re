@@ -1,47 +1,55 @@
-[@bs.deriving jsConverter]
-type anchor = [
-  | [@bs.as "left"] `Left
-  | [@bs.as "top"] `Top
-  | [@bs.as "right"] `Right
-  | [@bs.as "bottom"] `Bottom
-];
+module Classes = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    root: string,
+    [@bs.optional]
+    docked: string,
+    [@bs.optional]
+    paper: string,
+    [@bs.optional]
+    paperAnchorLeft: string,
+    [@bs.optional]
+    paperAnchorRight: string,
+    [@bs.optional]
+    paperAnchorTop: string,
+    [@bs.optional]
+    paperAnchorBottom: string,
+    [@bs.optional]
+    paperAnchorDockedLeft: string,
+    [@bs.optional]
+    paperAnchorDockedTop: string,
+    [@bs.optional]
+    paperAnchorDockedRight: string,
+    [@bs.optional]
+    paperAnchorDockedBottom: string,
+    [@bs.optional]
+    modal: string,
+  };
+  let make = t;
+};
+
+module Component: {
+  type t;
+  let string: string => t;
+  let callback: (unit => React.element) => t;
+  let element: React.element => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let string = (v: string) => Any(v);
+  let callback = (v: unit => React.element) => Any(v);
+  let element = (v: React.element) => Any(v);
+};
 
 module BackdropProps = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
-    component: [
-      | `String(string)
-      | `Callback(unit => React.element)
-      | `Element(React.element)
-    ],
+    component: Component.t,
   };
   let make = t;
-
-  let unwrap = (obj: option(t)) => {
-    switch (obj) {
-    | Some(obj) =>
-      let unwrappedMap = Js.Dict.empty();
-
-      switch (
-        obj
-        ->componentGet
-        ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
-      ) {
-      | Some(v) =>
-        unwrappedMap->(
-                        Js.Dict.set(
-                          "component",
-                          v->MaterialUi_Helpers.toJsUnsafe,
-                        )
-                      )
-      | None => ()
-      };
-
-      Some(unwrappedMap);
-    | None => None
-    };
-  };
 };
 
 module ModalProps = {
@@ -51,222 +59,87 @@ module ModalProps = {
     _BackdropProps: BackdropProps.t,
   };
   let make = t;
-
-  let unwrap = (obj: option(t)) => {
-    switch (obj) {
-    | Some(obj) =>
-      let unwrappedMap = Js.Dict.empty();
-
-      switch (BackdropProps.unwrap(obj->_BackdropPropsGet)) {
-      | Some(v) =>
-        unwrappedMap->(
-                        Js.Dict.set(
-                          "BackdropProps",
-                          v->MaterialUi_Helpers.toJsUnsafe,
-                        )
-                      )
-      | None => ()
-      };
-
-      Some(unwrappedMap);
-    | None => None
-    };
-  };
 };
 
 module PaperProps = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
-    component: [
-      | `String(string)
-      | `Callback(unit => React.element)
-      | `Element(React.element)
-    ],
+    component: Component.t,
     [@bs.optional]
-    style: Js.Json.t,
+    style: Js.Dict.t(MaterialUi_Types.any),
   };
   let make = t;
-
-  let unwrap = (obj: option(t)) => {
-    switch (obj) {
-    | Some(obj) =>
-      let unwrappedMap = Js.Dict.empty();
-
-      switch (
-        obj
-        ->componentGet
-        ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
-      ) {
-      | Some(v) =>
-        unwrappedMap->(
-                        Js.Dict.set(
-                          "component",
-                          v->MaterialUi_Helpers.toJsUnsafe,
-                        )
-                      )
-      | None => ()
-      };
-
-      switch (obj->styleGet) {
-      | Some(v) =>
-        unwrappedMap->(Js.Dict.set("style", v->MaterialUi_Helpers.toJsUnsafe))
-      | None => ()
-      };
-
-      Some(unwrappedMap);
-    | None => None
-    };
-  };
 };
 
 module TransitionDuration_shape = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
-    enter: [ | `Int(int) | `Float(float)],
+    enter: MaterialUi_Types.Number.t,
     [@bs.optional]
-    exit: [ | `Int(int) | `Float(float)],
+    exit: MaterialUi_Types.Number.t,
   };
   let make = t;
-
-  let unwrap = (obj: t) => {
-    let unwrappedMap = Js.Dict.empty();
-
-    switch (
-      obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
-    ) {
-    | Some(v) =>
-      unwrappedMap->(Js.Dict.set("enter", v->MaterialUi_Helpers.toJsUnsafe))
-    | None => ()
-    };
-
-    switch (
-      obj->exitGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
-    ) {
-    | Some(v) =>
-      unwrappedMap->(Js.Dict.set("exit", v->MaterialUi_Helpers.toJsUnsafe))
-    | None => ()
-    };
-
-    unwrappedMap;
-  };
 };
 
-[@bs.deriving jsConverter]
-type variant = [
-  | [@bs.as "permanent"] `Permanent
-  | [@bs.as "persistent"] `Persistent
-  | [@bs.as "temporary"] `Temporary
-];
-[@bs.obj]
-external makePropsMui:
+module TransitionDuration: {
+  type t;
+  let int: int => t;
+  let float: float => t;
+  let shape: TransitionDuration_shape.t => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let int = (v: int) => Any(v);
+  let float = (v: float) => Any(v);
+  let shape = (v: TransitionDuration_shape.t) => Any(v);
+};
+
+[@react.component] [@bs.module "@material-ui/core"]
+external make:
   (
-    ~_BackdropProps: Js.t({..})=?,
-    ~className: string=?,
-    ~elevation: 'number_2=?,
-    ~_SlideProps: Js.t({..})=?,
-    ~id: string=?,
-    ~anchor: string=?,
-    ~children: 'children=?,
-    ~disableBackdropTransition: bool=?,
-    ~disableDiscovery: bool=?,
-    ~disableSwipeToOpen: bool=?,
-    ~hideBackdrop: bool=?,
-    ~hysteresis: 'number_6=?,
-    ~minFlingVelocity: 'number_m=?,
-    ~_ModalProps: 'any_rrni=?,
-    ~onClose: 'any_r10t,
-    ~onOpen: 'any_rasl,
+    ~_BackdropProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~classes: option(Classes.t)=?,
+    ~className: option(string)=?,
+    ~elevation: option(MaterialUi_Types.Number.t)=?,
+    ~_SlideProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~id: option(string)=?,
+    ~anchor: option(
+               [@bs.string] [
+                 | [@bs.as "left"] `Left
+                 | [@bs.as "top"] `Top
+                 | [@bs.as "right"] `Right
+                 | [@bs.as "bottom"] `Bottom
+               ],
+             )
+               =?,
+    ~children: option('children)=?,
+    ~disableBackdropTransition: option(bool)=?,
+    ~disableDiscovery: option(bool)=?,
+    ~disableSwipeToOpen: option(bool)=?,
+    ~hideBackdrop: option(bool)=?,
+    ~hysteresis: option(MaterialUi_Types.Number.t)=?,
+    ~minFlingVelocity: option(MaterialUi_Types.Number.t)=?,
+    ~_ModalProps: option(ModalProps.t)=?,
+    ~onClose: ReactEvent.Synthetic.t => unit,
+    ~onOpen: ReactEvent.Synthetic.t => unit,
     ~_open: bool,
-    ~_PaperProps: 'any_r97q=?,
-    ~_SwipeAreaProps: Js.t({..})=?,
-    ~swipeAreaWidth: 'number_v=?,
-    ~transitionDuration: 'union_rk2a=?,
-    ~variant: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    unit
+    ~_PaperProps: option(PaperProps.t)=?,
+    ~_SwipeAreaProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~swipeAreaWidth: option(MaterialUi_Types.Number.t)=?,
+    ~transitionDuration: option(TransitionDuration.t)=?,
+    ~variant: option(
+                [@bs.string] [
+                  | [@bs.as "permanent"] `Permanent
+                  | [@bs.as "persistent"] `Persistent
+                  | [@bs.as "temporary"] `Temporary
+                ],
+              )
+                =?,
+    ~key: option(string)=?,
+    ~ref: option(ReactDOMRe.domRef)=?
   ) =>
-  _;
-
-let makeProps =
-    (
-      ~_BackdropProps: option(Js.t({..}))=?,
-      ~className: option(string)=?,
-      ~elevation: option([ | `Int(int) | `Float(float)])=?,
-      ~_SlideProps: option(Js.t({..}))=?,
-      ~id: option(string)=?,
-      ~anchor: option(anchor)=?,
-      ~children: option('children)=?,
-      ~disableBackdropTransition: option(bool)=?,
-      ~disableDiscovery: option(bool)=?,
-      ~disableSwipeToOpen: option(bool)=?,
-      ~hideBackdrop: option(bool)=?,
-      ~hysteresis: option([ | `Int(int) | `Float(float)])=?,
-      ~minFlingVelocity: option([ | `Int(int) | `Float(float)])=?,
-      ~_ModalProps: option(ModalProps.t)=?,
-      ~onClose: ReactEvent.Synthetic.t => unit,
-      ~onOpen: ReactEvent.Synthetic.t => unit,
-      ~open_: bool,
-      ~_PaperProps: option(PaperProps.t)=?,
-      ~_SwipeAreaProps: option(Js.t({..}))=?,
-      ~swipeAreaWidth: option([ | `Int(int) | `Float(float)])=?,
-      ~transitionDuration:
-         option(
-           [
-             | `Int(int)
-             | `Float(float)
-             | `Object(TransitionDuration_shape.t)
-           ],
-         )=?,
-      ~variant: option(variant)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
-      (),
-    ) =>
-  makePropsMui(
-    ~_BackdropProps?,
-    ~className?,
-    ~elevation=?
-      elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~_SlideProps?,
-    ~id?,
-    ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
-    ~children?,
-    ~disableBackdropTransition?,
-    ~disableDiscovery?,
-    ~disableSwipeToOpen?,
-    ~hideBackdrop?,
-    ~hysteresis=?
-      hysteresis->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~minFlingVelocity=?
-      minFlingVelocity->(
-                          Belt.Option.map(v =>
-                            MaterialUi_Helpers.unwrapValue(v)
-                          )
-                        ),
-    ~_ModalProps=?ModalProps.unwrap(_ModalProps),
-    ~onClose,
-    ~onOpen,
-    ~_open=open_,
-    ~_PaperProps=?PaperProps.unwrap(_PaperProps),
-    ~_SwipeAreaProps?,
-    ~swipeAreaWidth=?
-      swipeAreaWidth->(
-                        Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))
-                      ),
-    ~transitionDuration=?
-      transitionDuration->(
-                            Belt.Option.map(v =>
-                              MaterialUi_Helpers.unwrapValue(v)
-                            )
-                          ),
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
-    ~key?,
-    ~ref?,
-    (),
-  );
-
-[@bs.module "@material-ui/core"]
-external make: React.component('a) = "SwipeableDrawer";
+  React.element =
+  "SwipeableDrawer";

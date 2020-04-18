@@ -1,56 +1,44 @@
-[@bs.obj]
-external makePropsMui:
+module Classes = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    root: string,
+    [@bs.optional]
+    row: string,
+  };
+  let make = t;
+};
+
+module DefaultValue: {
+  type t;
+  let arrayOf: array(string) => t;
+  let int: int => t;
+  let float: float => t;
+  let string: string => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let arrayOf = (v: array(string)) => Any(v);
+  let int = (v: int) => Any(v);
+  let float = (v: float) => Any(v);
+  let string = (v: string) => Any(v);
+};
+
+[@react.component] [@bs.module "@material-ui/core"]
+external make:
   (
-    ~className: string=?,
-    ~row: bool=?,
-    ~id: string=?,
-    ~children: 'children=?,
-    ~defaultValue: 'union_rg30=?,
-    ~name: string=?,
-    ~onChange: 'any_rjvt=?,
-    ~value: 'any_r58n=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    unit
+    ~classes: option(Classes.t)=?,
+    ~className: option(string)=?,
+    ~row: option(bool)=?,
+    ~id: option(string)=?,
+    ~children: option('children)=?,
+    ~defaultValue: option(DefaultValue.t)=?,
+    ~name: option(string)=?,
+    ~onChange: option(ReactEvent.Form.t => unit)=?,
+    ~value: option(MaterialUi_Types.any)=?,
+    ~key: option(string)=?,
+    ~ref: option(ReactDOMRe.domRef)=?
   ) =>
-  _;
-
-let makeProps =
-    (
-      ~className: option(string)=?,
-      ~row: option(bool)=?,
-      ~id: option(string)=?,
-      ~children: option('children)=?,
-      ~defaultValue:
-         option(
-           [
-             | `Array(array(string))
-             | `Int(int)
-             | `Float(float)
-             | `String(string)
-           ],
-         )=?,
-      ~name: option(string)=?,
-      ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~value: option('any_r58n)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
-      (),
-    ) =>
-  makePropsMui(
-    ~className?,
-    ~row?,
-    ~id?,
-    ~children?,
-    ~defaultValue=?
-      defaultValue->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~name?,
-    ~onChange?,
-    ~value?,
-    ~key?,
-    ~ref?,
-    (),
-  );
-
-[@bs.module "@material-ui/core"]
-external make: React.component('a) = "RadioGroup";
+  React.element =
+  "RadioGroup";

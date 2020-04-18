@@ -22,7 +22,7 @@ enum CallbackTypes {
   AnimationCallback = 'ReactEvent.Animation.t',
   TransitionCallback = 'ReactEvent.Transition.t',
   SyntheticCallback = 'ReactEvent.Synthetic.t',
-  GenericCallback = "'genericCallback",
+  GenericCallback = 'MaterialUi_Types.any',
 }
 
 // @ts-ignore
@@ -259,8 +259,6 @@ const factory = (propertyType: PropType$Func) => {
           parsedSig.parse();
 
           this._reasonType = parsedSig.reasonType;
-          this._jsType = parsedSig.jsType;
-          this._wrapJs = parsedSig.wrapJs;
           return;
         }
       } else {

@@ -11,7 +11,16 @@ export const isNumeric = (obj: any) => {
   );
 };
 
-export const reservedNames = ['type', 'open', 'in', 'to', 'for'];
+export const reservedNames = [
+  'type',
+  'open',
+  'in',
+  'to',
+  'for',
+  'inherit',
+  'false',
+  'true',
+];
 
 const GenerateReasonName = (str: string, toUpper: boolean = true) => {
   if (toUpper) {
@@ -30,7 +39,7 @@ const GenerateReasonName = (str: string, toUpper: boolean = true) => {
     str = str.replace('@', '');
   }
   if (reservedNames.indexOf(str) > -1) {
-    str = `${str}_`;
+    str = `_${str}`;
   }
 
   if (isNumeric(str)) {

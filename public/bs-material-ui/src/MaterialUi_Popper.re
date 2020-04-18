@@ -1,79 +1,71 @@
-[@bs.deriving jsConverter]
-type placement = [
-  | [@bs.as "bottom-end"] `Bottom_End
-  | [@bs.as "bottom-start"] `Bottom_Start
-  | [@bs.as "bottom"] `Bottom
-  | [@bs.as "left-end"] `Left_End
-  | [@bs.as "left-start"] `Left_Start
-  | [@bs.as "left"] `Left
-  | [@bs.as "right-end"] `Right_End
-  | [@bs.as "right-start"] `Right_Start
-  | [@bs.as "right"] `Right
-  | [@bs.as "top-end"] `Top_End
-  | [@bs.as "top-start"] `Top_Start
-  | [@bs.as "top"] `Top
-];
-[@bs.obj]
-external makePropsMui:
+module AnchorEl: {
+  type t;
+  let obj: Js.Dict.t(MaterialUi_Types.any) => t;
+  let anchorEl_func: MaterialUi_Types.any => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let obj = (v: Js.Dict.t(MaterialUi_Types.any)) => Any(v);
+  let anchorEl_func = (v: MaterialUi_Types.any) => Any(v);
+};
+
+module Children: {
+  type t;
+  let element: React.element => t;
+  let children_func: MaterialUi_Types.any => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let element = (v: React.element) => Any(v);
+  let children_func = (v: MaterialUi_Types.any) => Any(v);
+};
+
+module Container: {
+  type t;
+  let obj: Js.Dict.t(MaterialUi_Types.any) => t;
+  let container_func: MaterialUi_Types.any => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let obj = (v: Js.Dict.t(MaterialUi_Types.any)) => Any(v);
+  let container_func = (v: MaterialUi_Types.any) => Any(v);
+};
+
+[@react.component] [@bs.module "@material-ui/core"]
+external make:
   (
-    ~anchorEl: 'union_rl00=?,
-    ~children: 'children=?,
-    ~container: 'union_rnmw=?,
-    ~disablePortal: bool=?,
-    ~keepMounted: bool=?,
-    ~modifiers: Js.t({..})=?,
+    ~anchorEl: option(AnchorEl.t)=?,
+    ~children: option('children)=?,
+    ~container: option(Container.t)=?,
+    ~disablePortal: option(bool)=?,
+    ~keepMounted: option(bool)=?,
+    ~modifiers: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~_open: bool,
-    ~placement: string=?,
-    ~popperOptions: Js.t({..})=?,
-    ~transition: bool=?,
-    ~id: string=?,
-    ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?,
-    unit
+    ~placement: option(
+                  [@bs.string] [
+                    | [@bs.as "bottom-end"] `Bottom_End
+                    | [@bs.as "bottom-start"] `Bottom_Start
+                    | [@bs.as "bottom"] `Bottom
+                    | [@bs.as "left-end"] `Left_End
+                    | [@bs.as "left-start"] `Left_Start
+                    | [@bs.as "left"] `Left
+                    | [@bs.as "right-end"] `Right_End
+                    | [@bs.as "right-start"] `Right_Start
+                    | [@bs.as "right"] `Right
+                    | [@bs.as "top-end"] `Top_End
+                    | [@bs.as "top-start"] `Top_Start
+                    | [@bs.as "top"] `Top
+                  ],
+                )
+                  =?,
+    ~popperOptions: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~transition: option(bool)=?,
+    ~id: option(string)=?,
+    ~key: option(string)=?,
+    ~ref: option(ReactDOMRe.domRef)=?
   ) =>
-  _;
-
-let makeProps =
-    (
-      ~anchorEl:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
-      ~children: option('children)=?,
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
-      ~disablePortal: option(bool)=?,
-      ~keepMounted: option(bool)=?,
-      ~modifiers: option(Js.t({..}))=?,
-      ~open_: bool,
-      ~placement: option(placement)=?,
-      ~popperOptions: option(Js.t({..}))=?,
-      ~transition: option(bool)=?,
-      ~id: option(string)=?,
-      ~key: option(string)=?,
-      ~ref: option(ReactDOMRe.domRef)=?,
-      (),
-    ) =>
-  makePropsMui(
-    ~anchorEl=?
-      anchorEl->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~children?,
-    ~container=?
-      container->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~disablePortal?,
-    ~keepMounted?,
-    ~modifiers?,
-    ~_open=open_,
-    ~placement=?placement->(Belt.Option.map(v => placementToJs(v))),
-    ~popperOptions?,
-    ~transition?,
-    ~id?,
-    ~key?,
-    ~ref?,
-    (),
-  );
-
-[@bs.module "@material-ui/core"]
-external make: React.component('a) = "Popper";
+  React.element =
+  "Popper";

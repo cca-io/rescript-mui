@@ -1,5 +1,3 @@
-open Belt;
-
 external toDomElement: 'a => Dom.element = "%identity";
 
 let messages: array(string) = [%bs.raw {| [...'养绌聭'] |}];
@@ -27,11 +25,17 @@ let make = () => {
   MaterialUi.(
     <div>
       <Popover
-        open_={Option.isSome(state.anchorEl)}
+        _open={Belt.Option.isSome(state.anchorEl)}
         onClose={(_evt, _) => dispatch(ClosePopup)}
         anchorEl=?{
           state.anchorEl
-          ->(Option.map(el => `ObjectGeneric(el->ReactDOMRe.domElementToObj)))
+          ->(
+              Belt.Option.map(el =>
+                Popover.AnchorEl.obj(
+                  el->ReactDOMRe.domElementToObj->Obj.magic,
+                )
+              )
+            )
         }>
         <div
           style={ReactDOMRe.Style.make(
@@ -45,7 +49,7 @@ let make = () => {
       </Popover>
       <MaterialUi.List>
         messages->(
-                    Array.mapWithIndex((i, message) =>
+                    Belt.Array.mapWithIndex((i, message) =>
                       <ListItem
                         button=true
                         key={string_of_int(i)}
