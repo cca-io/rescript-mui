@@ -32,17 +32,6 @@ jobs:
       - name: Upload artifacts ${{ matrix.os }}
         uses: actions/upload-artifact@master
         with:
-          name: ${{ matrix.os }}-bsb6
-          path: public/bs-material-ui-ppx/_build/default/src/bin.exe
-      # OCaml 4.02 and BuckleScript 5
-      - name: install-build @402
-        run: |
-          cd public/bs-material-ui-ppx
-          esy @402 install
-          esy @402 b
-      - name: Upload artifacts ${{ matrix.os }}
-        uses: actions/upload-artifact@master
-        with:
           name: ${{ matrix.os }}
           path: public/bs-material-ui-ppx/_build/default/src/bin.exe
         env:
@@ -75,35 +64,11 @@ jobs:
 
       - name: Move artifacts
         run: |
-          mkdir -p public/bs-material-ui-ppx/bin/bsb6
+          mkdir -p public/bs-material-ui-ppx/bin
           mv public/bs-material-ui-ppx/binaries/darwin/bin.exe public/bs-material-ui-ppx/bin/bs_material_ui_ppx-darwin-x64.exe
           mv public/bs-material-ui-ppx/binaries/windows/bin.exe public/bs-material-ui-ppx/bin/bs_material_ui_ppx-win-x64.exe
           mv public/bs-material-ui-ppx/binaries/linux/bin.exe public/bs-material-ui-ppx/bin/bs_material_ui_ppx-linux-x64.exe
           rm -rf public/bs-material-ui-ppx/binaries
-
-      - name: Download bsb6 linux artifacts
-        uses: actions/download-artifact@master
-        with:
-          name: ubuntu-latest-bsb6
-          path: public/bs-material-ui-ppx/binaries/linux
-
-      - name: Download bsb6 macOS artifacts
-        uses: actions/download-artifact@master
-        with:
-          name: macOS-latest-bsb6
-          path: public/bs-material-ui-ppx/binaries/darwin
-
-      - name: Download bsb6 windows artifacts
-        uses: actions/download-artifact@master
-        with:
-          name: windows-latest-bsb6
-          path: public/bs-material-ui-ppx/binaries/windows
-
-      - name: Move artifacts
-        run: |
-          mv public/bs-material-ui-ppx/binaries/darwin/bin.exe public/bs-material-ui-ppx/bin/bsb6/bs_material_ui_ppx-darwin-x64.exe
-          mv public/bs-material-ui-ppx/binaries/windows/bin.exe public/bs-material-ui-ppx/bin/bsb6/bs_material_ui_ppx-win-x64.exe
-          mv public/bs-material-ui-ppx/binaries/linux/bin.exe public/bs-material-ui-ppx/bin/bsb6/bs_material_ui_ppx-linux-x64.exe
 
       - name: Publish
         uses: actions/setup-node@v1
@@ -113,6 +78,6 @@ jobs:
 
       - run: |
           cd public/bs-material-ui-ppx
-          yarn publish
+          yarn publish --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
