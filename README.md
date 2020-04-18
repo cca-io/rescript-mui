@@ -64,11 +64,9 @@ HOC do not translate well into Reason which is why we are using a [render prop](
 
 **Important: In order to use `theme => styles` you need to provide a `<MaterialUi_ThemeProvider theme={MaterialUi_Theme.create()}>` at the top of the tree!**
 
-The code extension allows you to write a typesafe styled component with ease. It follows the format `[%mui.withStyles "ComponentName"({ className: ReactDOMRe.Style.t })]`. The generated Component has a render function which passes on a `record` with the class keys. See the example below.
+The code extension allows you to write a typesafe styled component with ease. It follows the format `[%mui.withStyles "ComponentName"({ className: ReactDOMRe.Style.t })]`. The generated Component has a render function which passes on a `record` with the class keys. See the example below. There is also a hook available for the more recent API: `let classes = ComponentName.useStyles();`.
 
 ```reason
-let component = ReasonReact.statelessComponent("Example");
-
 [%mui.withStyles
   "StyledExample"({
     alignRight:
@@ -76,17 +74,27 @@ let component = ReasonReact.statelessComponent("Example");
   })
 ];
 
-let make = _children => {
-  ...component,
-  render: _self =>
-    <StyledExample>
+//--- Hooks
+[@react.component]
+let make = () => {
+  let classes = StyledExample.useStyles();
+
+  <div className={classes.alignRight}>
+    "Example text - aligned to the right"->ReasonReact.string
+  </div>
+};
+
+//--- Render Prop
+[@react.component]
+let make = () => {
+  <StyledExample>
       ...{
         classes =>
           <div className={classes.alignRight}>
             "Example text - aligned to the right"->ReasonReact.string
           </div>
       }
-    </StyledExample>,
+    </StyledExample>
 };
 ```
 
@@ -95,12 +103,9 @@ let make = _children => {
 You need to pass a `classes` prop of type `list( { name: string, styles: ReactDOMRe.Style.t } )` and a `render` function to the component. See the following example:
 
 ```reason
-let component = ReasonReact.statelessComponent("Example");
-
-let make = _children => {
-  ...component,
-  render: _self =>
-    <MaterialUi.WithStyles
+[@react.component]
+let make = () => {
+  <MaterialUi.WithStyles
       classes=[
         {
           name: "alignRight",
@@ -114,20 +119,20 @@ let make = _children => {
             "Example text - aligned to the right"->ReasonReact.string
           </div>
       }
-    />,
+    />
 };
 ```
 
 ## Colors
 
-All Colors are accessible in Submodules of the Module `Colors`. Color keys that are a pure number begin with a `c`. [(MUI Docs Reference).](https://material-ui-next.com/style/color/)
+All Colors are accessible in Submodules of the Module `Colors`. Color keys that are a pure number begin with a `c`. [(MUI Docs Reference).](https://material-ui.com/customization/color/)
 
 Example:
 
 ```reason
 [%mui.withStyles
   "ColorExample"({
-    bgColor: ReactDOMRe.Style.make(~backgroundColor=MaterialUi.Colors.Red.c300, ())
+    bgColor: ReactDOMRe.Style.make(~backgroundColor=MaterialUi.Colors.red.c300, ())
   })
 ];
 ```
@@ -136,13 +141,11 @@ Example:
 
 To take advantage of Reasons type system when overriding classes directly on components they have been converted into Variants and need to be passed as a `list` to the components `classes` prop. It is best used in combination with the `MaterialUi.WithStyles` component.
 
-[(MUI Docs Reference).](https://material-ui-1dab0.firebaseapp.com/customization/overrides/#overriding-with-classes)
+[(MUI Docs Reference).](https://material-ui.com/customization/components/#overriding-styles-with-classes)
 
 Example:
 
 ```reason
-let component = ReasonReact.statelessComponent("Example");
-
 [%mui.withStyles
   "OverrideExample"({
     fontSize: ReactDOMRe.Style.make(~fontSize="30px", ()),
@@ -154,22 +157,18 @@ let component = ReasonReact.statelessComponent("Example");
   })
 ];
 
-let make = _children => {
-  ...component,
-  render: _self =>
-    <OverrideExample>
-      ...{
-        classes =>
-          <MaterialUi.Button
-            color=`Primary
-            variant=`Contained
-            classes=[
-              Root(classes.fontSize),
-              RaisedPrimary(classes.bgColor),
-            ]>
-            "Example Button"
-          </MaterialUi.Button>
-      }
-    </OverrideExample>,
+[@react.component]
+let make = () => {
+  let classes = OverrideExample.useStyles();
+
+  <MaterialUi.Button
+    color=`Primary
+    variant=`Contained
+    classes=[
+      Root(classes.fontSize),
+      RaisedPrimary(classes.bgColor),
+    ]>
+    "Example Button"
+  </MaterialUi.Button>
 };
 ```
