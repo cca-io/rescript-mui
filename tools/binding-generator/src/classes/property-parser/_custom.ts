@@ -26,6 +26,15 @@ const factory = (propertyType: PropType$Custom) => {
 
   if (
     propertyType.raw != null &&
+    propertyType.raw.includes('PropTypes.number')
+  ) {
+    return PrimitiveFactory({
+      name: 'number',
+    });
+  }
+
+  if (
+    propertyType.raw != null &&
     (propertyType.raw.includes('componentPropType') ||
       propertyType.raw.includes('elementType'))
   ) {
