@@ -7,6 +7,8 @@ This library provides Reason bindings for
 
 There are some **breaking changes**, please make sure to check out the [changelog](https://github.com/jsiebern/bs-material-ui/blob/master/CHANGELOG.md).
 
+### New zero cost bindings
+
 I am also working on some optimized / improved bindings that make heavy use of the latest bucklescript features. The goal is to get the bindings as close to zero cost as possible. Some debt is unavoidable unfortunately, but code optimization should be able to compile a lot of that overhead away. I'd greatly appreciate some help in testing this new version. It contains many breaking changes though and is still prone to changes in the new API. You can install it by running this command:
 
 ```
