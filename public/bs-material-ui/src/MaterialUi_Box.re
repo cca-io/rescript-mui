@@ -4,7 +4,7 @@ external makePropsMui:
     ~className: string=?,
     ~clone: bool=?,
     ~children: 'children=?,
-    ~component: 'union_rcgr=?,
+    ~component: 'union_rmcf=?,
     ~alignContent: string=?,
     ~alignItems: string=?,
     ~alignSelf: string=?,

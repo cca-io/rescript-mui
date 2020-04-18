@@ -26,6 +26,9 @@
   - ```ml
     useMediaQuery(MaterialUi.Core.Breakpoint.get(theme,`up(`sm))) => bool
     ```
+  - ```ml
+    MaterialUi.Core.ServerStyleSheets.(make()->collect(<App />))
+    ```
 - :nail_care: Better definitions of `onChange` and `onChangeCommitted` on the `Slider` component
 - :nail_care: Better treatment of mixed enum values
 - :rocket: Added an `id` prop to all components

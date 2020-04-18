@@ -66,9 +66,9 @@ external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_r5ke=?,
-    ~thickness: 'number_k=?,
-    ~value: 'number_0=?,
+    ~size: 'union_rqab=?,
+    ~thickness: 'number_v=?,
+    ~value: 'number_h=?,
     ~variant: string=?,
     ~id: string=?,
     ~key: string=?,

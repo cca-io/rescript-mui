@@ -72,7 +72,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_r38j=?,
+    ~component: 'union_r4oc=?,
     ~filled: bool=?,
     ~id: string=?,
     ~children: 'children=?,

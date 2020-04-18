@@ -31,7 +31,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rjrc=?,
+    ~component: 'union_rggn=?,
     ~image: string=?,
     ~src: string=?,
     ~id: string=?,
