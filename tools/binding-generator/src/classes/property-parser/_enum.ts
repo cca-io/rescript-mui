@@ -46,13 +46,13 @@ const factory = (propertyType: PropType$Enum) => {
             this._hasString++;
             return e.value.substr(1, e.value.length - 2);
           }
-          if (!isNumeric(e.value)) {
-            this._hasString++;
-            return e.value;
-          }
           if (e.value === 'true' || e.value === 'false') {
             this._hasBool++;
             return e.value === 'true';
+          }
+          if (!isNumeric(e.value)) {
+            this._hasString++;
+            return e.value;
           }
           if (isNumeric(e.value)) {
             this._hasNumeric++;
