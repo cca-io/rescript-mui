@@ -1,123 +1,156 @@
 open Migrate_parsetree;
-open Ast_402;
+open Ast_410;
 open Asttypes;
 open Parsetree;
 
 let genTypeFromType = (name: string, typeName: string) =>
-  Ast_helper.Str.type_([
-    Ast_helper.Type.mk(
-      ~manifest={
-        ptyp_desc:
-          Ptyp_constr(Location.mknoloc(Longident.Lident(typeName)), []),
-        ptyp_loc: Location.none,
-        ptyp_attributes: [],
-      },
-      Location.mknoloc(name),
-    ),
-  ]);
+  Ast_helper.Str.type_(
+    Nonrecursive,
+    [
+      Ast_helper.Type.mk(
+        ~manifest={
+          ptyp_loc_stack: [],
+          ptyp_desc:
+            Ptyp_constr(Location.mknoloc(Longident.Lident(typeName)), []),
+          ptyp_loc: Location.none,
+          ptyp_attributes: [],
+        },
+        Location.mknoloc(name),
+      ),
+    ],
+  );
 
 let genRecordTypeWithCore =
     (name: string, entries: list((string, core_type)), attrs: list(string)) =>
-  Ast_helper.Str.type_([
-    Ast_helper.Type.mk(
-      ~kind=
-        Ptype_record(
-          List.map(
-            entry => {
-              let (name, typ) = entry;
-              {
-                pld_name: Location.mknoloc(name),
-                pld_mutable: Immutable,
-                pld_type: typ,
-                pld_loc: Location.none,
-                pld_attributes: [],
-              };
-            },
-            entries,
+  Ast_helper.Str.type_(
+    Nonrecursive,
+    [
+      Ast_helper.Type.mk(
+        ~kind=
+          Ptype_record(
+            List.map(
+              entry => {
+                let (name, typ) = entry;
+                {
+                  pld_name: Location.mknoloc(name),
+                  pld_mutable: Immutable,
+                  pld_type: typ,
+                  pld_loc: Location.none,
+                  pld_attributes: [],
+                };
+              },
+              entries,
+            ),
           ),
-        ),
-      ~attrs=List.map(a => (Location.mknoloc(a), PStr([])), attrs),
-      Location.mknoloc(name),
-    ),
-  ]);
+        ~attrs=
+          List.map(
+            a =>
+              {
+                attr_name: Location.mknoloc(a),
+                attr_payload: PStr([]),
+                attr_loc: Location.none,
+              },
+            attrs,
+          ),
+        Location.mknoloc(name),
+      ),
+    ],
+  );
 
 let genRecordType = (name: string, entries: list((string, string)), attrs) =>
-  Ast_helper.Str.type_([
-    Ast_helper.Type.mk(
-      ~kind=
-        Ptype_record(
-          List.map(
-            entry => {
-              let (name, typ) = entry;
-              {
-                pld_name: Location.mknoloc(name),
-                pld_mutable: Immutable,
-                pld_type: {
+  Ast_helper.Str.type_(
+    Nonrecursive,
+    [
+      Ast_helper.Type.mk(
+        ~kind=
+          Ptype_record(
+            List.map(
+              entry => {
+                let (name, typ) = entry;
+                {
+                  pld_name: Location.mknoloc(name),
+                  pld_mutable: Immutable,
+                  pld_type: {
+                    ptyp_loc_stack: [],
+                    ptyp_desc:
+                      Ptyp_constr(
+                        Location.mknoloc(Longident.parse(typ)),
+                        [],
+                      ),
+                    ptyp_loc: Location.none,
+                    ptyp_attributes: [],
+                  },
+                  pld_loc: Location.none,
+                  pld_attributes: [],
+                };
+              },
+              entries,
+            ),
+          ),
+        ~attrs,
+        Location.mknoloc(name),
+      ),
+    ],
+  );
+
+let genJsType = (name: string, entries: list((string, string))) =>
+  Ast_helper.Str.type_(
+    Nonrecursive,
+    [
+      Ast_helper.Type.mk(
+        ~kind=Ptype_abstract,
+        ~manifest={
+          ptyp_loc_stack: [],
+          ptyp_desc:
+            Ptyp_constr(
+              Location.mknoloc(Longident.parse("Js.t")),
+              [
+                {
+                  ptyp_loc_stack: [],
                   ptyp_desc:
-                    Ptyp_constr(Location.mknoloc(Longident.parse(typ)), []),
+                    Ptyp_object(
+                      List.map(
+                        entry => {
+                          let (name, typ) = entry;
+                          {
+                            pof_desc:
+                              Otag(
+                                Location.mknoloc(name),
+                                {
+                                  ptyp_loc_stack: [],
+                                  ptyp_desc:
+                                    Ptyp_constr(
+                                      Location.mknoloc(Longident.parse(typ)),
+                                      [],
+                                    ),
+                                  ptyp_loc: Location.none,
+                                  ptyp_attributes: [],
+                                },
+                              ),
+                            pof_loc: Location.none,
+                            pof_attributes: [],
+                          };
+                        },
+                        entries,
+                      ),
+                      Closed,
+                    ),
                   ptyp_loc: Location.none,
                   ptyp_attributes: [],
                 },
-                pld_loc: Location.none,
-                pld_attributes: [],
-              };
-            },
-            entries,
-          ),
-        ),
-      ~attrs,
-      Location.mknoloc(name),
-    ),
-  ]);
-
-let genJsType = (name: string, entries: list((string, string))) =>
-  Ast_helper.Str.type_([
-    Ast_helper.Type.mk(
-      ~kind=Ptype_abstract,
-      ~manifest={
-        ptyp_desc:
-          Ptyp_constr(
-            Location.mknoloc(Longident.parse("Js.t")),
-            [
-              {
-                ptyp_desc:
-                  Ptyp_object(
-                    List.map(
-                      entry => {
-                        let (name, typ) = entry;
-                        (
-                          name,
-                          [],
-                          {
-                            ptyp_desc:
-                              Ptyp_constr(
-                                Location.mknoloc(Longident.parse(typ)),
-                                [],
-                              ),
-                            ptyp_loc: Location.none,
-                            ptyp_attributes: [],
-                          },
-                        );
-                      },
-                      entries,
-                    ),
-                    Closed,
-                  ),
-                ptyp_loc: Location.none,
-                ptyp_attributes: [],
-              },
-            ],
-          ),
-        ptyp_loc: Location.none,
-        ptyp_attributes: [],
-      },
-      Location.mknoloc(name),
-    ),
-  ]);
+              ],
+            ),
+          ptyp_loc: Location.none,
+          ptyp_attributes: [],
+        },
+        Location.mknoloc(name),
+      ),
+    ],
+  );
 
 let genModule = (name: string, structure: Parsetree.structure) =>
   Ast_helper.Str.module_({
-    pmb_name: Location.mknoloc(name),
+    pmb_name: Location.mknoloc(Some(name)),
     pmb_expr: {
       pmod_desc: Pmod_structure(structure),
       pmod_loc: Location.none,
@@ -129,7 +162,7 @@ let genModule = (name: string, structure: Parsetree.structure) =>
 
 let genModuleApply = (name: string, applyTo: string) =>
   Ast_helper.Str.module_({
-    pmb_name: Location.mknoloc(name),
+    pmb_name: Location.mknoloc(Some(name)),
     pmb_expr: {
       pmod_desc:
         Pmod_apply(
@@ -164,7 +197,7 @@ let genModuleTemplate =
       structure: Parsetree.structure,
     ) =>
   Ast_helper.Str.module_({
-    pmb_name: Location.mknoloc(name),
+    pmb_name: Location.mknoloc(Some(name)),
     pmb_expr: {
       pmod_desc:
         Pmod_constraint(
@@ -199,6 +232,7 @@ let genModuleTemplate =
                       ptype_private: Public,
                       ptype_manifest:
                         Some({
+                          ptyp_loc_stack: [],
                           ptyp_desc:
                             Ptyp_constr(
                               Location.mknoloc(
@@ -236,7 +270,7 @@ let genJsRecordConverter = (name: string, entries: list(string)) =>
   genValueBinding(
     name,
     Ast_helper.Exp.fun_(
-      "",
+      Nolabel,
       None,
       Ast_helper.Pat.var(Location.mknoloc("arg")),
       Ast_helper.Exp.constraint_(
@@ -251,13 +285,13 @@ let genJsRecordConverter = (name: string, entries: list(string)) =>
                   ),
                   [
                     (
-                      "",
+                      Nolabel,
                       Ast_helper.Exp.ident(
                         Location.mknoloc(Longident.Lident("arg")),
                       ),
                     ),
                     (
-                      "",
+                      Nolabel,
                       Ast_helper.Exp.ident(
                         Location.mknoloc(Longident.Lident(entry)),
                       ),

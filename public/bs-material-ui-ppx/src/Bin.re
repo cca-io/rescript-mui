@@ -2,7 +2,7 @@ let () = {
   Migrate_parsetree.Driver.register(
     ~name="withStyles",
     ~args=[],
-    Migrate_parsetree.Versions.ocaml_402,
+    Migrate_parsetree.Versions.ocaml_410,
     Mapper.withStylesMapper
   );
 
