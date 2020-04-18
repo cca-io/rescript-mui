@@ -20,6 +20,7 @@ interface PropType$Primitive {
     | 'Element<any>'
     | 'Function'
     | 'Node'
+    | 'ReactNode'
     | 'ComponentType<object>';
 }
 

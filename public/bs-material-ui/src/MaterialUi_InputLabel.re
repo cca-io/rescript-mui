@@ -9,9 +9,9 @@ type margin = [ | [@bs.as "dense"] `Dense];
 
 [@bs.deriving jsConverter]
 type variant = [
-  | [@bs.as "standard"] `Standard
-  | [@bs.as "outlined"] `Outlined
   | [@bs.as "filled"] `Filled
+  | [@bs.as "outlined"] `Outlined
+  | [@bs.as "standard"] `Standard
 ];
 
 module Classes = {
@@ -72,7 +72,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_rbm8=?,
+    ~component: 'union_r38j=?,
     ~filled: bool=?,
     ~id: string=?,
     ~children: 'children=?,

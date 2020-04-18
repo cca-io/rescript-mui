@@ -1,22 +1,22 @@
 [@bs.deriving jsConverter]
 type horizontal_enum = [
-  | [@bs.as "left"] `Left
   | [@bs.as "center"] `Center
+  | [@bs.as "left"] `Left
   | [@bs.as "right"] `Right
 ];
 
 [@bs.deriving jsConverter]
 type vertical_enum = [
-  | [@bs.as "top"] `Top
-  | [@bs.as "center"] `Center
   | [@bs.as "bottom"] `Bottom
+  | [@bs.as "center"] `Center
+  | [@bs.as "top"] `Top
 ];
 
 module AnchorOrigin = {
   [@bs.deriving abstract]
   type t = {
-    horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
-    vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
+    horizontal: [ | `Enum(horizontal_enum) | `Int(int) | `Float(float)],
+    vertical: [ | `Enum(vertical_enum) | `Int(int) | `Float(float)],
   };
   let make = t;
 
@@ -150,8 +150,8 @@ module PaperProps = {
 module TransformOrigin = {
   [@bs.deriving abstract]
   type t = {
-    horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
-    vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
+    horizontal: [ | `Enum(horizontal_enum) | `Int(int) | `Float(float)],
+    vertical: [ | `Enum(vertical_enum) | `Int(int) | `Float(float)],
   };
   let make = t;
 
@@ -202,9 +202,14 @@ module TransformOrigin = {
   };
 };
 
+[@bs.deriving jsConverter]
+type transitionDuration_enum = [ | [@bs.as "auto"] `Auto];
+
 module TransitionDuration_shape = {
   [@bs.deriving abstract]
   type t = {
+    [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
     [@bs.optional]
     enter: [ | `Int(int) | `Float(float)],
     [@bs.optional]
@@ -214,6 +219,16 @@ module TransitionDuration_shape = {
 
   let unwrap = (obj: t) => {
     let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
 
     switch (
       obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
@@ -234,9 +249,6 @@ module TransitionDuration_shape = {
     unwrappedMap;
   };
 };
-
-[@bs.deriving jsConverter]
-type transitionDuration_enum = [ | [@bs.as "auto"] `Auto];
 
 module Classes = {
   type classesType =
@@ -266,7 +278,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~_BackdropComponent: 'union_rdjl=?,
+    ~_BackdropComponent: 'union_rabr=?,
     ~_BackdropProps: Js.t({..})=?,
     ~closeAfterTransition: bool=?,
     ~disableAutoFocus: bool=?,
@@ -283,17 +295,17 @@ external makePropsMui:
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~id: string=?,
-    ~anchorEl: 'union_rrs2=?,
-    ~anchorOrigin: 'any_rxyr=?,
-    ~anchorPosition: 'any_r92r=?,
+    ~anchorEl: 'union_rk1s=?,
+    ~anchorOrigin: 'any_re45=?,
+    ~anchorPosition: 'any_rqgd=?,
     ~anchorReference: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~container: 'union_rsa9=?,
+    ~container: 'union_r6va=?,
     ~elevation: 'number_6=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_a=?,
-    ~onClose: 'any_rj03=?,
+    ~marginThreshold: 'number_j=?,
+    ~onClose: ReactEvent.Synthetic.t => unit=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -301,10 +313,10 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperProps: 'any_rd8h=?,
-    ~transformOrigin: 'any_rmxb=?,
-    ~_TransitionComponent: 'union_ryun=?,
-    ~transitionDuration: 'union_rv8i=?,
+    ~_PaperProps: 'any_ro9j=?,
+    ~transformOrigin: 'any_rgke=?,
+    ~_TransitionComponent: 'union_r3c5=?,
+    ~transitionDuration: 'union_rr7f=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -349,14 +361,11 @@ let makeProps =
       ~anchorReference: option(anchorReference)=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
+      ~container: option([ | `Callback('genericCallback)])=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~getContentAnchorEl: option('genericCallback)=?,
       ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
-      ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
+      ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
       ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
       ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
@@ -377,10 +386,10 @@ let makeProps =
       ~transitionDuration:
          option(
            [
+             | `Enum(transitionDuration_enum)
              | `Int(int)
              | `Float(float)
              | `Object(TransitionDuration_shape.t)
-             | `Enum(transitionDuration_enum)
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,

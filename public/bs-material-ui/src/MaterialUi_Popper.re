@@ -16,9 +16,9 @@ type placement = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~anchorEl: 'union_rb3y=?,
+    ~anchorEl: 'union_r9y4=?,
     ~children: 'children=?,
-    ~container: 'union_rsye=?,
+    ~container: 'union_rb40=?,
     ~disablePortal: bool=?,
     ~keepMounted: bool=?,
     ~modifiers: Js.t({..})=?,
@@ -40,10 +40,7 @@ let makeProps =
            [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
          )=?,
       ~children: option('children)=?,
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
+      ~container: option([ | `Callback('genericCallback)])=?,
       ~disablePortal: option(bool)=?,
       ~keepMounted: option(bool)=?,
       ~modifiers: option(Js.t({..}))=?,

@@ -6,19 +6,19 @@ type color = [
 
 [@bs.deriving jsConverter]
 type margin = [
-  | [@bs.as "none"] `None
   | [@bs.as "dense"] `Dense
+  | [@bs.as "none"] `None
   | [@bs.as "normal"] `Normal
 ];
 
 [@bs.deriving jsConverter]
-type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+type size = [ | [@bs.as "medium"] `Medium | [@bs.as "small"] `Small];
 
 [@bs.deriving jsConverter]
 type variant = [
-  | [@bs.as "standard"] `Standard
-  | [@bs.as "outlined"] `Outlined
   | [@bs.as "filled"] `Filled
+  | [@bs.as "outlined"] `Outlined
+  | [@bs.as "standard"] `Standard
 ];
 
 module Classes = {
@@ -46,14 +46,14 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_rlii=?,
+    ~component: 'union_rz8s=?,
     ~focused: bool=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~defaultValue: 'union_rhkh=?,
+    ~defaultValue: 'union_rb8f=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~_FormHelperTextProps: Js.t({..})=?,
@@ -62,24 +62,24 @@ external makePropsMui:
     ~hiddenLabel: bool=?,
     ~id: string=?,
     ~_InputLabelProps: Js.t({..})=?,
-    ~_InputProps: Js.t({..})=?,
     ~inputProps: Js.t({..})=?,
+    ~_InputProps: Js.t({..})=?,
     ~label: React.element=?,
     ~margin: string=?,
     ~multiline: bool=?,
     ~name: string=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
-    ~onChange: 'any_ragm=?,
+    ~onChange: 'any_ru3q=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~placeholder: string=?,
     ~required: bool=?,
-    ~rows: 'union_rpze=?,
-    ~rowsMax: 'union_r30w=?,
+    ~rows: 'union_rdmh=?,
+    ~rowsMax: 'union_rgck=?,
     ~select: bool=?,
     ~_SelectProps: Js.t({..})=?,
     ~size: string=?,
     ~_type: string=?,
-    ~value: 'union_rfnq=?,
+    ~value: 'union_rkll=?,
     ~variant: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -115,8 +115,8 @@ let makeProps =
       ~hiddenLabel: option(bool)=?,
       ~id: option(string)=?,
       ~_InputLabelProps: option(Js.t({..}))=?,
-      ~_InputProps: option(Js.t({..}))=?,
       ~inputProps: option(Js.t({..}))=?,
+      ~_InputProps: option(Js.t({..}))=?,
       ~label: option(React.element)=?,
       ~margin: option(margin)=?,
       ~multiline: option(bool)=?,
@@ -126,8 +126,8 @@ let makeProps =
       ~onFocus: option(ReactEvent.Focus.t => unit)=?,
       ~placeholder: option(string)=?,
       ~required: option(bool)=?,
-      ~rows: option([ | `String(string) | `Int(int) | `Float(float)])=?,
-      ~rowsMax: option([ | `String(string) | `Int(int) | `Float(float)])=?,
+      ~rows: option([ | `Int(int) | `Float(float) | `String(string)])=?,
+      ~rowsMax: option([ | `Int(int) | `Float(float) | `String(string)])=?,
       ~select: option(bool)=?,
       ~_SelectProps: option(Js.t({..}))=?,
       ~size: option(size)=?,
@@ -159,8 +159,8 @@ let makeProps =
     ~hiddenLabel?,
     ~id?,
     ~_InputLabelProps?,
-    ~_InputProps?,
     ~inputProps?,
+    ~_InputProps?,
     ~label?,
     ~margin=?margin->Belt.Option.map(v => marginToJs(v)),
     ~multiline?,

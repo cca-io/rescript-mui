@@ -1,9 +1,9 @@
 [@bs.deriving jsConverter]
 type labelPlacement = [
+  | [@bs.as "bottom"] `Bottom
   | [@bs.as "end"] `End
   | [@bs.as "start"] `Start
   | [@bs.as "top"] `Top
-  | [@bs.as "bottom"] `Bottom
 ];
 
 module Classes = {
@@ -48,13 +48,13 @@ external makePropsMui:
   (
     ~checked: bool=?,
     ~className: string=?,
-    ~control: React.element=?,
+    ~control: React.element,
     ~disabled: bool=?,
     ~label: React.element=?,
     ~labelPlacement: string=?,
     ~name: string=?,
-    ~onChange: 'any_r9gf=?,
-    ~value: 'any_r00r=?,
+    ~onChange: 'any_rms0=?,
+    ~value: 'any_ryql=?,
     ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -68,13 +68,13 @@ let makeProps =
     (
       ~checked: option(bool)=?,
       ~className: option(string)=?,
-      ~control: option(React.element)=?,
+      ~control: React.element,
       ~disabled: option(bool)=?,
       ~label: option(React.element)=?,
       ~labelPlacement: option(labelPlacement)=?,
       ~name: option(string)=?,
       ~onChange: option(ReactEvent.Form.t => unit)=?,
-      ~value: option('any_r00r)=?,
+      ~value: option('any_ryql)=?,
       ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
@@ -85,7 +85,7 @@ let makeProps =
   makePropsMui(
     ~checked?,
     ~className?,
-    ~control?,
+    ~control,
     ~disabled?,
     ~label?,
     ~labelPlacement=?

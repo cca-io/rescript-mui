@@ -408,18 +408,18 @@ external makePropsMui:
     ~alignItems: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rzaw=?,
+    ~component: 'union_r7p5=?,
     ~container: bool=?,
     ~direction: string=?,
     ~item: bool=?,
     ~justify: string=?,
-    ~lg: 'any_r75g=?,
-    ~md: 'any_rn8f=?,
-    ~sm: 'any_ryi9=?,
-    ~spacing: 'number_ryzg=?,
+    ~lg: 'any_r3d8=?,
+    ~md: 'any_rtnw=?,
+    ~sm: 'any_ry3p=?,
+    ~spacing: 'number_r7b4=?,
     ~wrap: string=?,
-    ~xl: 'any_r3ga=?,
-    ~xs: 'any_rw9x=?,
+    ~xl: 'any_rvov=?,
+    ~xs: 'any_ridt=?,
     ~zeroMinWidth: bool=?,
     ~id: string=?,
     ~key: string=?,
@@ -457,11 +457,6 @@ let makeProps =
       ~xs: option(Xs.t)=?,
       ~zeroMinWidth: option(bool)=?,
       ~id: option(string)=?,
-      ~xsAuto: option(bool)=?,
-      ~smAuto: option(bool)=?,
-      ~mdAuto: option(bool)=?,
-      ~lgAuto: option(bool)=?,
-      ~xlAuto: option(bool)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -479,28 +474,13 @@ let makeProps =
     ~direction=?direction->Belt.Option.map(v => directionToJs(v)),
     ~item?,
     ~justify=?justify->Belt.Option.map(v => justifyToJs(v)),
-    ~lg=?
-      lgAuto
-      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-      ->Belt.Option.getWithDefault(lg->Belt.Option.map(v => Lg.tToJs(v))),
-    ~md=?
-      mdAuto
-      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-      ->Belt.Option.getWithDefault(md->Belt.Option.map(v => Md.tToJs(v))),
-    ~sm=?
-      smAuto
-      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-      ->Belt.Option.getWithDefault(sm->Belt.Option.map(v => Sm.tToJs(v))),
+    ~lg=?lg->Belt.Option.map(v => Lg.tToJs(v)),
+    ~md=?md->Belt.Option.map(v => Md.tToJs(v)),
+    ~sm=?sm->Belt.Option.map(v => Sm.tToJs(v)),
     ~spacing=?spacing->Belt.Option.map(v => spacingToJs(v)),
     ~wrap=?wrap->Belt.Option.map(v => wrapToJs(v)),
-    ~xl=?
-      xlAuto
-      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-      ->Belt.Option.getWithDefault(xl->Belt.Option.map(v => Xl.tToJs(v))),
-    ~xs=?
-      xsAuto
-      ->(Belt.Option.map(v => v->MaterialUi_Helpers.toJsUnsafe))
-      ->Belt.Option.getWithDefault(xs->Belt.Option.map(v => Xs.tToJs(v))),
+    ~xl=?xl->Belt.Option.map(v => Xl.tToJs(v)),
+    ~xs=?xs->Belt.Option.map(v => Xs.tToJs(v)),
     ~zeroMinWidth?,
     ~id?,
     ~key?,

@@ -16,13 +16,13 @@ module Edge = {
 
 [@bs.deriving jsConverter]
 type color = [
+  | [@bs.as "default"] `Default
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
-  | [@bs.as "default"] `Default
 ];
 
 [@bs.deriving jsConverter]
-type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
+type size = [ | [@bs.as "medium"] `Medium | [@bs.as "small"] `Small];
 
 module Classes = {
   type classesType =
@@ -62,7 +62,7 @@ module Classes = {
 external makePropsMui:
   (
     ~centerRipple: bool=?,
-    ~component: 'union_r4tg=?,
+    ~component: 'union_rv23=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -80,13 +80,13 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rrsa=?,
+    ~tabIndex: 'union_re4r=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~children: 'children=?,
     ~className: string=?,
     ~disableFocusRipple: bool=?,
-    ~edge: 'any_r00t=?,
+    ~edge: 'any_r3ek=?,
     ~checked: bool=?,
     ~checkedIcon: React.element=?,
     ~color: string=?,
@@ -96,10 +96,10 @@ external makePropsMui:
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
     ~name: string=?,
-    ~onChange: 'any_rswh=?,
+    ~onChange: 'any_rxhf=?,
     ~required: bool=?,
     ~size: string=?,
-    ~value: 'any_rkeq=?,
+    ~value: 'any_rqq5=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -155,7 +155,7 @@ let makeProps =
       ~onChange: option(ReactEvent.Form.t => unit)=?,
       ~required: option(bool)=?,
       ~size: option(size)=?,
-      ~value: option('any_rkeq)=?,
+      ~value: option('any_rqq5)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,

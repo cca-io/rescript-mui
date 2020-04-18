@@ -56,7 +56,7 @@ external makePropsMui:
   (
     ~absolute: bool=?,
     ~className: string=?,
-    ~component: 'union_rfny=?,
+    ~component: 'union_rb68=?,
     ~flexItem: bool=?,
     ~light: bool=?,
     ~orientation: string=?,

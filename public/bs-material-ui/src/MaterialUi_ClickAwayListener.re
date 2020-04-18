@@ -9,11 +9,11 @@ module MouseEvent = {
 };
 
 module TouchEvent = {
-  type t = [ | `OnTouchStart | `OnTouchEnd | `False];
+  type t = [ | `OnTouchEnd | `OnTouchStart | `False];
   let tToJs =
     fun
-    | `OnTouchStart => "onTouchStart"->Obj.magic
     | `OnTouchEnd => "onTouchEnd"->Obj.magic
+    | `OnTouchStart => "onTouchStart"->Obj.magic
     | `False => false->Obj.magic;
 };
 
@@ -21,9 +21,10 @@ module TouchEvent = {
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~mouseEvent: 'any_ru5l=?,
+    ~disableReactTree: bool=?,
+    ~mouseEvent: 'any_ryt0=?,
     ~onClickAway: ReactEvent.Mouse.t => unit,
-    ~touchEvent: 'any_r24b=?,
+    ~touchEvent: 'any_rpsn=?,
     ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -34,6 +35,7 @@ external makePropsMui:
 let makeProps =
     (
       ~children: option('children)=?,
+      ~disableReactTree: option(bool)=?,
       ~mouseEvent: option(MouseEvent.t)=?,
       ~onClickAway: ReactEvent.Mouse.t => unit,
       ~touchEvent: option(TouchEvent.t)=?,
@@ -44,6 +46,7 @@ let makeProps =
     ) =>
   makePropsMui(
     ~children?,
+    ~disableReactTree?,
     ~mouseEvent=?mouseEvent->Belt.Option.map(v => MouseEvent.tToJs(v)),
     ~onClickAway,
     ~touchEvent=?touchEvent->Belt.Option.map(v => TouchEvent.tToJs(v)),

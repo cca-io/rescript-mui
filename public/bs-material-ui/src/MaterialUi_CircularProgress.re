@@ -1,8 +1,8 @@
 [@bs.deriving jsConverter]
 type color = [
+  | [@bs.as "inherit"] `Inherit
   | [@bs.as "primary"] `Primary
   | [@bs.as "secondary"] `Secondary
-  | [@bs.as "inherit"] `Inherit
 ];
 
 [@bs.deriving jsConverter]
@@ -66,9 +66,9 @@ external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_r60w=?,
-    ~thickness: 'number_3=?,
-    ~value: 'number_f=?,
+    ~size: 'union_r5ke=?,
+    ~thickness: 'number_k=?,
+    ~value: 'number_0=?,
     ~variant: string=?,
     ~id: string=?,
     ~key: string=?,

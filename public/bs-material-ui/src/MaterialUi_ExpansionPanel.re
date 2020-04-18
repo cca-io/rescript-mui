@@ -38,17 +38,17 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_rh8r=?,
-    ~elevation: 'number_s=?,
+    ~component: 'union_r7ne=?,
+    ~elevation: 'number_x=?,
     ~variant: string=?,
     ~children: 'children=?,
     ~className: string=?,
     ~defaultExpanded: bool=?,
     ~disabled: bool=?,
     ~expanded: bool=?,
-    ~onChange: 'any_rjlu=?,
+    ~onChange: 'any_rdga=?,
     ~square: bool=?,
-    ~_TransitionComponent: 'union_ra02=?,
+    ~_TransitionComponent: 'union_rzrq=?,
     ~_TransitionProps: Js.t({..})=?,
     ~id: string=?,
     ~key: string=?,

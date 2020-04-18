@@ -1,22 +1,22 @@
 [@bs.deriving jsConverter]
 type horizontal_enum = [
-  | [@bs.as "left"] `Left
   | [@bs.as "center"] `Center
+  | [@bs.as "left"] `Left
   | [@bs.as "right"] `Right
 ];
 
 [@bs.deriving jsConverter]
 type vertical_enum = [
-  | [@bs.as "top"] `Top
-  | [@bs.as "center"] `Center
   | [@bs.as "bottom"] `Bottom
+  | [@bs.as "center"] `Center
+  | [@bs.as "top"] `Top
 ];
 
 module AnchorOrigin = {
   [@bs.deriving abstract]
   type t = {
-    horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
-    vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
+    horizontal: [ | `Enum(horizontal_enum) | `Int(int) | `Float(float)],
+    vertical: [ | `Enum(vertical_enum) | `Int(int) | `Float(float)],
   };
   let make = t;
 
@@ -112,8 +112,8 @@ type anchorReference = [
 module TransformOrigin = {
   [@bs.deriving abstract]
   type t = {
-    horizontal: [ | `Int(int) | `Float(float) | `Enum(horizontal_enum)],
-    vertical: [ | `Int(int) | `Float(float) | `Enum(vertical_enum)],
+    horizontal: [ | `Enum(horizontal_enum) | `Int(int) | `Float(float)],
+    vertical: [ | `Enum(vertical_enum) | `Int(int) | `Float(float)],
   };
   let make = t;
 
@@ -246,7 +246,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~_BackdropComponent: 'union_r4qg=?,
+    ~_BackdropComponent: 'union_rgkf=?,
     ~_BackdropProps: Js.t({..})=?,
     ~closeAfterTransition: bool=?,
     ~disableAutoFocus: bool=?,
@@ -262,23 +262,23 @@ external makePropsMui:
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
-    ~anchorOrigin: 'any_rkc7=?,
-    ~anchorPosition: 'any_rwjf=?,
+    ~anchorOrigin: 'any_r0q1=?,
+    ~anchorPosition: 'any_reci=?,
     ~anchorReference: string=?,
     ~className: string=?,
-    ~container: 'union_r45u=?,
-    ~elevation: 'number_a=?,
+    ~container: 'union_rqm2=?,
+    ~elevation: 'number_l=?,
     ~getContentAnchorEl: 'genericCallback=?,
-    ~marginThreshold: 'number_4=?,
-    ~transformOrigin: 'any_ramw=?,
-    ~_TransitionComponent: 'union_r2n9=?,
+    ~marginThreshold: 'number_2=?,
+    ~transformOrigin: 'any_rui7=?,
+    ~_TransitionComponent: 'union_rjfx=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~anchorEl: 'any_rl5q=?,
+    ~anchorEl: 'any_r7zn=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
     ~disableAutoFocusItem: bool=?,
     ~_MenuListProps: Js.t({..})=?,
-    ~onClose: 'any_robl=?,
+    ~onClose: 'any_rpn9=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -288,7 +288,7 @@ external makePropsMui:
     ~_open: bool,
     ~_PaperProps: Js.t({..})=?,
     ~_PopoverClasses: Js.t({..})=?,
-    ~transitionDuration: 'union_rgrc=?,
+    ~transitionDuration: 'union_rbej=?,
     ~variant: string=?,
     ~id: string=?,
     ~key: string=?,
@@ -328,10 +328,7 @@ let makeProps =
       ~anchorPosition: option(AnchorPosition.t)=?,
       ~anchorReference: option(anchorReference)=?,
       ~className: option(string)=?,
-      ~container:
-         option(
-           [ | `ObjectGeneric(Js.t({..})) | `Callback('genericCallback)],
-         )=?,
+      ~container: option([ | `Callback('genericCallback)])=?,
       ~elevation: option([ | `Int(int) | `Float(float)])=?,
       ~getContentAnchorEl: option('genericCallback)=?,
       ~marginThreshold: option([ | `Int(int) | `Float(float)])=?,
@@ -345,7 +342,7 @@ let makeProps =
            ],
          )=?,
       ~_TransitionProps: option(Js.t({..}))=?,
-      ~anchorEl: option('any_rl5q)=?,
+      ~anchorEl: option('any_r7zn)=?,
       ~autoFocus: option(bool)=?,
       ~children: option('children)=?,
       ~disableAutoFocusItem: option(bool)=?,

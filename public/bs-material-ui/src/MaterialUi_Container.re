@@ -58,10 +58,10 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r86m=?,
+    ~component: 'union_r5vz=?,
     ~disableGutters: bool=?,
     ~fixed: bool=?,
-    ~maxWidth: 'any_rdri=?,
+    ~maxWidth: 'any_rjp5=?,
     ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,

@@ -1,3 +1,48 @@
+module Timeout_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    appear: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    enter: [ | `Int(int) | `Float(float)],
+    [@bs.optional]
+    exit: [ | `Int(int) | `Float(float)],
+  };
+  let make = t;
+
+  let unwrap = (obj: t) => {
+    let unwrappedMap = Js.Dict.empty();
+
+    switch (
+      obj
+      ->appearGet
+      ->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("appear", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
+
+    switch (
+      obj->enterGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("enter", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
+
+    switch (
+      obj->exitGet->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v)))
+    ) {
+    | Some(v) =>
+      unwrappedMap->(Js.Dict.set("exit", v->MaterialUi_Helpers.toJsUnsafe))
+    | None => ()
+    };
+
+    unwrappedMap;
+  };
+};
+
 module TransitionDuration_shape = {
   [@bs.deriving abstract]
   type t = {
@@ -71,11 +116,15 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
+    ~_in: bool=?,
+    ~onEnter: ReactEvent.Synthetic.t => unit=?,
+    ~onExit: ReactEvent.Synthetic.t => unit=?,
+    ~timeout: 'union_r1qy=?,
     ~children: 'children=?,
     ~className: string=?,
     ~invisible: bool=?,
     ~_open: bool,
-    ~transitionDuration: 'union_rhfy=?,
+    ~transitionDuration: 'union_rwax=?,
     ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -87,6 +136,11 @@ external makePropsMui:
 
 let makeProps =
     (
+      ~in_: option(bool)=?,
+      ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
+      ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
+      ~timeout:
+         option([ | `Int(int) | `Float(float) | `Object(Timeout_shape.t)])=?,
       ~children: option('children)=?,
       ~className: option(string)=?,
       ~invisible: option(bool)=?,
@@ -107,6 +161,11 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
+    ~_in=?in_,
+    ~onEnter?,
+    ~onExit?,
+    ~timeout=?
+      timeout->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~children?,
     ~className?,
     ~invisible?,

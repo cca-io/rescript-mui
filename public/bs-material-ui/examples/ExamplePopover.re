@@ -28,7 +28,7 @@ let make = () => {
     <div>
       <Popover
         open_={Option.isSome(state.anchorEl)}
-        onClose={(_evt, _) => dispatch(ClosePopup)}
+        onClose={_evt => dispatch(ClosePopup)}
         anchorEl=?{
           state.anchorEl
           ->(Option.map(el => `ObjectGeneric(el->ReactDOMRe.domElementToObj)))

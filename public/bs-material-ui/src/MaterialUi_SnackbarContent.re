@@ -36,8 +36,8 @@ module Classes = {
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~component: 'union_rx9d=?,
-    ~elevation: 'number_u=?,
+    ~component: 'union_r5g6=?,
+    ~elevation: 'number_m=?,
     ~square: bool=?,
     ~variant: string=?,
     ~id: string=?,
