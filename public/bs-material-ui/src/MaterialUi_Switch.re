@@ -5,12 +5,14 @@ type color = [
   | [@bs.as "default"] `Default
 ];
 
-[@bs.deriving jsConverter]
-type edge = [
-  | [@bs.as "start"] `Start
-  | [@bs.as "end"] `End
-  | [@bs.as "false"] `False
-];
+module Edge = {
+  type t = [ | `Start | `End | `False];
+  let tToJs =
+    fun
+    | `Start => "start"->Obj.magic
+    | `End => "end"->Obj.magic
+    | `False => false->Obj.magic;
+};
 
 [@bs.deriving jsConverter]
 type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
@@ -74,7 +76,7 @@ module Classes = {
 external makePropsMui:
   (
     ~centerRipple: bool=?,
-    ~component: 'union_rbq2=?,
+    ~component: 'union_r07v=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -92,7 +94,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_r43r=?,
+    ~tabIndex: 'union_rihb=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~children: 'children=?,
     ~disableFocusRipple: bool=?,
@@ -103,15 +105,15 @@ external makePropsMui:
     ~defaultChecked: bool=?,
     ~disabled: bool=?,
     ~disableRipple: bool=?,
-    ~edge: string=?,
+    ~edge: 'any_r3y0=?,
     ~icon: React.element=?,
     ~id: string=?,
     ~inputProps: Js.t({..})=?,
-    ~onChange: 'any_rplm=?,
+    ~onChange: 'any_rbl4=?,
     ~required: bool=?,
     ~size: string=?,
     ~_type: string=?,
-    ~value: 'any_rqsv=?,
+    ~value: 'any_rqef=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
     ~classes: Js.Dict.t(string)=?,
@@ -159,7 +161,7 @@ let makeProps =
       ~defaultChecked: option(bool)=?,
       ~disabled: option(bool)=?,
       ~disableRipple: option(bool)=?,
-      ~edge: option(edge)=?,
+      ~edge: option(Edge.t)=?,
       ~icon: option(React.element)=?,
       ~id: option(string)=?,
       ~inputProps: option(Js.t({..}))=?,
@@ -167,7 +169,7 @@ let makeProps =
       ~required: option(bool)=?,
       ~size: option(size)=?,
       ~type_: option(string)=?,
-      ~value: option('any_rqsv)=?,
+      ~value: option('any_rqef)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
       ~classes: option(Classes.t)=?,
@@ -203,17 +205,17 @@ let makeProps =
     ~checked?,
     ~checkedIcon?,
     ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~color=?color->Belt.Option.map(v => colorToJs(v)),
     ~defaultChecked?,
     ~disabled?,
     ~disableRipple?,
-    ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
+    ~edge=?edge->Belt.Option.map(v => Edge.tToJs(v)),
     ~icon?,
     ~id?,
     ~inputProps?,
     ~onChange?,
     ~required?,
-    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~size=?size->Belt.Option.map(v => sizeToJs(v)),
     ~_type=?type_,
     ~value?,
     ~key?,

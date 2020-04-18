@@ -46,7 +46,7 @@ module Classes = {
 external makePropsMui:
   (
     ~centerRipple: bool=?,
-    ~component: 'union_rhcw=?,
+    ~component: 'union_r6t0=?,
     ~disableRipple: bool=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
@@ -65,7 +65,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_rh4d=?,
+    ~tabIndex: 'union_r2o1=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~id: string=?,
@@ -163,7 +163,7 @@ let makeProps =
     ~tabIndex=?
       tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_TouchRippleProps?,
-    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~_type=?type_->Belt.Option.map(v => type_ToJs(v)),
     ~id?,
     ~active?,
     ~alternativeLabel?,

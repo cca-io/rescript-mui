@@ -1,24 +1,29 @@
-[@bs.deriving jsConverter]
-type mouseEvent = [
-  | [@bs.as "onClick"] `OnClick
-  | [@bs.as "onMouseDown"] `OnMouseDown
-  | [@bs.as "onMouseUp"] `OnMouseUp
-  | [@bs.as "false"] `False
-];
+module MouseEvent = {
+  type t = [ | `OnClick | `OnMouseDown | `OnMouseUp | `False];
+  let tToJs =
+    fun
+    | `OnClick => "onClick"->Obj.magic
+    | `OnMouseDown => "onMouseDown"->Obj.magic
+    | `OnMouseUp => "onMouseUp"->Obj.magic
+    | `False => false->Obj.magic;
+};
 
-[@bs.deriving jsConverter]
-type touchEvent = [
-  | [@bs.as "onTouchStart"] `OnTouchStart
-  | [@bs.as "onTouchEnd"] `OnTouchEnd
-  | [@bs.as "false"] `False
-];
+module TouchEvent = {
+  type t = [ | `OnTouchStart | `OnTouchEnd | `False];
+  let tToJs =
+    fun
+    | `OnTouchStart => "onTouchStart"->Obj.magic
+    | `OnTouchEnd => "onTouchEnd"->Obj.magic
+    | `False => false->Obj.magic;
+};
+
 [@bs.obj]
 external makePropsMui:
   (
     ~children: 'children=?,
-    ~mouseEvent: string=?,
+    ~mouseEvent: 'any_ru5l=?,
     ~onClickAway: ReactEvent.Mouse.t => unit,
-    ~touchEvent: string=?,
+    ~touchEvent: 'any_r24b=?,
     ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -29,9 +34,9 @@ external makePropsMui:
 let makeProps =
     (
       ~children: option('children)=?,
-      ~mouseEvent: option(mouseEvent)=?,
+      ~mouseEvent: option(MouseEvent.t)=?,
       ~onClickAway: ReactEvent.Mouse.t => unit,
-      ~touchEvent: option(touchEvent)=?,
+      ~touchEvent: option(TouchEvent.t)=?,
       ~id: option(string)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
@@ -39,9 +44,9 @@ let makeProps =
     ) =>
   makePropsMui(
     ~children?,
-    ~mouseEvent=?mouseEvent->(Belt.Option.map(v => mouseEventToJs(v))),
+    ~mouseEvent=?mouseEvent->Belt.Option.map(v => MouseEvent.tToJs(v)),
     ~onClickAway,
-    ~touchEvent=?touchEvent->(Belt.Option.map(v => touchEventToJs(v))),
+    ~touchEvent=?touchEvent->Belt.Option.map(v => TouchEvent.tToJs(v)),
     ~id?,
     ~key?,
     ~ref?,

@@ -1,12 +1,14 @@
-[@bs.deriving jsConverter]
-type maxWidth = [
-  | [@bs.as "lg"] `Lg
-  | [@bs.as "md"] `Md
-  | [@bs.as "sm"] `Sm
-  | [@bs.as "xl"] `Xl
-  | [@bs.as "xs"] `Xs
-  | [@bs.as "false"] `False
-];
+module MaxWidth = {
+  type t = [ | `Lg | `Md | `Sm | `Xl | `Xs | `False];
+  let tToJs =
+    fun
+    | `Lg => "lg"->Obj.magic
+    | `Md => "md"->Obj.magic
+    | `Sm => "sm"->Obj.magic
+    | `Xl => "xl"->Obj.magic
+    | `Xs => "xs"->Obj.magic
+    | `False => false->Obj.magic;
+};
 
 [@bs.deriving jsConverter]
 type scroll = [ | [@bs.as "body"] `Body | [@bs.as "paper"] `Paper];
@@ -123,9 +125,9 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~_BackdropComponent: 'union_r8pz=?,
+    ~_BackdropComponent: 'union_r0ni=?,
     ~closeAfterTransition: bool=?,
-    ~container: 'union_rkpe=?,
+    ~container: 'union_rwlb=?,
     ~disableAutoFocus: bool=?,
     ~disableEnforceFocus: bool=?,
     ~disablePortal: bool=?,
@@ -144,9 +146,9 @@ external makePropsMui:
     ~disableEscapeKeyDown: bool=?,
     ~fullScreen: bool=?,
     ~fullWidth: bool=?,
-    ~maxWidth: string=?,
+    ~maxWidth: 'any_rwfr=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
-    ~onClose: 'any_rag2=?,
+    ~onClose: 'any_r0ia=?,
     ~onEnter: ReactEvent.Synthetic.t => unit=?,
     ~onEntered: ReactEvent.Synthetic.t => unit=?,
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
@@ -155,11 +157,11 @@ external makePropsMui:
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperComponent: 'union_r4wt=?,
+    ~_PaperComponent: 'union_r6pe=?,
     ~_PaperProps: Js.t({..})=?,
     ~scroll: string=?,
-    ~_TransitionComponent: 'union_rsk4=?,
-    ~transitionDuration: 'union_r4vp=?,
+    ~_TransitionComponent: 'union_ruxo=?,
+    ~transitionDuration: 'union_rgz3=?,
     ~_TransitionProps: Js.t({..})=?,
     ~id: string=?,
     ~key: string=?,
@@ -203,7 +205,7 @@ let makeProps =
       ~disableEscapeKeyDown: option(bool)=?,
       ~fullScreen: option(bool)=?,
       ~fullWidth: option(bool)=?,
-      ~maxWidth: option(maxWidth)=?,
+      ~maxWidth: option(MaxWidth.t)=?,
       ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
       ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
       ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
@@ -276,7 +278,7 @@ let makeProps =
     ~disableEscapeKeyDown?,
     ~fullScreen?,
     ~fullWidth?,
-    ~maxWidth=?maxWidth->(Belt.Option.map(v => maxWidthToJs(v))),
+    ~maxWidth=?maxWidth->Belt.Option.map(v => MaxWidth.tToJs(v)),
     ~onBackdropClick?,
     ~onClose?,
     ~onEnter?,
@@ -294,7 +296,7 @@ let makeProps =
                          )
                        ),
     ~_PaperProps?,
-    ~scroll=?scroll->(Belt.Option.map(v => scrollToJs(v))),
+    ~scroll=?scroll->Belt.Option.map(v => scrollToJs(v)),
     ~_TransitionComponent=?
       _TransitionComponent->(
                               Belt.Option.map(v =>

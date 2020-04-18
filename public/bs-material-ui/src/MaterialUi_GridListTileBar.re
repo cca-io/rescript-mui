@@ -92,12 +92,11 @@ let makeProps =
   makePropsMui(
     ~actionIcon?,
     ~actionPosition=?
-      actionPosition->(Belt.Option.map(v => actionPositionToJs(v))),
+      actionPosition->Belt.Option.map(v => actionPositionToJs(v)),
     ~className?,
     ~subtitle?,
     ~title?,
-    ~titlePosition=?
-      titlePosition->(Belt.Option.map(v => titlePositionToJs(v))),
+    ~titlePosition=?titlePosition->Belt.Option.map(v => titlePositionToJs(v)),
     ~id?,
     ~key?,
     ~ref?,

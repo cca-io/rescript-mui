@@ -66,9 +66,9 @@ external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~size: 'union_r18e=?,
-    ~thickness: 'number_v=?,
-    ~value: 'number_z=?,
+    ~size: 'union_r60w=?,
+    ~thickness: 'number_3=?,
+    ~value: 'number_f=?,
     ~variant: string=?,
     ~id: string=?,
     ~key: string=?,
@@ -96,12 +96,12 @@ let makeProps =
     ) =>
   makePropsMui(
     ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~color=?color->Belt.Option.map(v => colorToJs(v)),
     ~size=?size->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~thickness=?
       thickness->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~variant=?variant->Belt.Option.map(v => variantToJs(v)),
     ~id?,
     ~key?,
     ~ref?,

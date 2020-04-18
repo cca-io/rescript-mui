@@ -53,7 +53,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_r6x7=?,
+    ~component: 'union_rigq=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~filled: bool=?,
@@ -96,7 +96,7 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~color=?color->Belt.Option.map(v => colorToJs(v)),
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~disabled?,

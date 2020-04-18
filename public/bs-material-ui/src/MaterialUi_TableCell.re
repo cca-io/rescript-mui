@@ -17,13 +17,14 @@ type padding = [
 [@bs.deriving jsConverter]
 type size = [ | [@bs.as "medium"] `Medium | [@bs.as "small"] `Small];
 
-[@bs.deriving jsConverter]
-type sortDirection = [
-  | [@bs.as "asc"] `Asc
-  | [@bs.as "desc"] `Desc
-  | [@bs.as {json|false|json}] `False
-];
-Js.log(sortDirectionToJs(`False));
+module SortDirection = {
+  type t = [ | `Asc | `Desc | `False];
+  let tToJs =
+    fun
+    | `Asc => "asc"->Obj.magic
+    | `Desc => "desc"->Obj.magic
+    | `False => false->Obj.magic;
+};
 
 [@bs.deriving jsConverter]
 type variant = [
@@ -93,11 +94,11 @@ external makePropsMui:
     ~align: string=?,
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r0ll=?,
+    ~component: 'union_rvjx=?,
     ~padding: string=?,
     ~scope: string=?,
     ~size: string=?,
-    ~sortDirection: string=?,
+    ~sortDirection: 'any_r4ww=?,
     ~variant: string=?,
     ~id: string=?,
     ~colSpan: int=?,
@@ -125,7 +126,7 @@ let makeProps =
       ~padding: option(padding)=?,
       ~scope: option(string)=?,
       ~size: option(size)=?,
-      ~sortDirection: option(sortDirection)=?,
+      ~sortDirection: option(SortDirection.t)=?,
       ~variant: option(variant)=?,
       ~id: option(string)=?,
       ~colSpan: option(int)=?,
@@ -136,17 +137,17 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
-    ~align=?align->(Belt.Option.map(v => alignToJs(v))),
+    ~align=?align->Belt.Option.map(v => alignToJs(v)),
     ~children?,
     ~className?,
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~padding=?padding->(Belt.Option.map(v => paddingToJs(v))),
+    ~padding=?padding->Belt.Option.map(v => paddingToJs(v)),
     ~scope?,
-    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~size=?size->Belt.Option.map(v => sizeToJs(v)),
     ~sortDirection=?
-      sortDirection->(Belt.Option.map(v => sortDirectionToJs(v))),
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+      sortDirection->Belt.Option.map(v => SortDirection.tToJs(v)),
+    ~variant=?variant->Belt.Option.map(v => variantToJs(v)),
     ~id?,
     ~colSpan?,
     ~key?,

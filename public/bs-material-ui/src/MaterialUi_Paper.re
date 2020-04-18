@@ -112,8 +112,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_rx9w=?,
-    ~elevation: 'number_l=?,
+    ~component: 'union_ri8x=?,
+    ~elevation: 'number_6=?,
     ~square: bool=?,
     ~variant: string=?,
     ~id: string=?,
@@ -155,7 +155,7 @@ let makeProps =
     ~elevation=?
       elevation->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~square?,
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~variant=?variant->Belt.Option.map(v => variantToJs(v)),
     ~id?,
     ~key?,
     ~ref?,

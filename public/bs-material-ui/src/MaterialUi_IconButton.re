@@ -13,12 +13,14 @@ type color = [
   | [@bs.as "secondary"] `Secondary
 ];
 
-[@bs.deriving jsConverter]
-type edge = [
-  | [@bs.as "start"] `Start
-  | [@bs.as "end"] `End
-  | [@bs.as "false"] `False
-];
+module Edge = {
+  type t = [ | `Start | `End | `False];
+  let tToJs =
+    fun
+    | `Start => "start"->Obj.magic
+    | `End => "end"->Obj.magic
+    | `False => false->Obj.magic;
+};
 
 [@bs.deriving jsConverter]
 type size = [ | [@bs.as "small"] `Small | [@bs.as "medium"] `Medium];
@@ -73,7 +75,7 @@ module Classes = {
 external makePropsMui:
   (
     ~centerRipple: bool=?,
-    ~component: 'union_r6cl=?,
+    ~component: 'union_rtyr=?,
     ~disableTouchRipple: bool=?,
     ~focusRipple: bool=?,
     ~focusVisibleClassName: string=?,
@@ -91,7 +93,7 @@ external makePropsMui:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~role: string=?,
-    ~tabIndex: 'union_ri6w=?,
+    ~tabIndex: 'union_rdhq=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: string=?,
     ~id: string=?,
@@ -101,7 +103,7 @@ external makePropsMui:
     ~disabled: bool=?,
     ~disableFocusRipple: bool=?,
     ~disableRipple: bool=?,
-    ~edge: string=?,
+    ~edge: 'any_rg28=?,
     ~size: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -149,7 +151,7 @@ let makeProps =
       ~disabled: option(bool)=?,
       ~disableFocusRipple: option(bool)=?,
       ~disableRipple: option(bool)=?,
-      ~edge: option(edge)=?,
+      ~edge: option(Edge.t)=?,
       ~size: option(size)=?,
       ~key: option(string)=?,
       ~ref: option(ReactDOMRe.domRef)=?,
@@ -181,16 +183,16 @@ let makeProps =
     ~tabIndex=?
       tabIndex->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~_TouchRippleProps?,
-    ~_type=?type_->(Belt.Option.map(v => type_ToJs(v))),
+    ~_type=?type_->Belt.Option.map(v => type_ToJs(v)),
     ~id?,
     ~children?,
     ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~color=?color->Belt.Option.map(v => colorToJs(v)),
     ~disabled?,
     ~disableFocusRipple?,
     ~disableRipple?,
-    ~edge=?edge->(Belt.Option.map(v => edgeToJs(v))),
-    ~size=?size->(Belt.Option.map(v => sizeToJs(v))),
+    ~edge=?edge->Belt.Option.map(v => Edge.tToJs(v)),
+    ~size=?size->Belt.Option.map(v => sizeToJs(v)),
     ~key?,
     ~ref?,
     ~classes=?Belt.Option.map(classes, v => Classes.to_obj(v)),

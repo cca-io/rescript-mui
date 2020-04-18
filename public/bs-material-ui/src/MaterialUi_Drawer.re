@@ -122,11 +122,11 @@ external makePropsMui:
     ~className: string=?,
     ~elevation: 'number_a=?,
     ~_ModalProps: Js.t({..})=?,
-    ~onClose: 'any_rca7=?,
+    ~onClose: 'any_r18w=?,
     ~_open: bool=?,
     ~_PaperProps: Js.t({..})=?,
     ~_SlideProps: Js.t({..})=?,
-    ~transitionDuration: 'union_rz7s=?,
+    ~transitionDuration: 'union_rda8=?,
     ~variant: string=?,
     ~id: string=?,
     ~key: string=?,
@@ -166,7 +166,7 @@ let makeProps =
       (),
     ) =>
   makePropsMui(
-    ~anchor=?anchor->(Belt.Option.map(v => anchorToJs(v))),
+    ~anchor=?anchor->Belt.Option.map(v => anchorToJs(v)),
     ~_BackdropProps?,
     ~children?,
     ~className?,
@@ -183,7 +183,7 @@ let makeProps =
                               MaterialUi_Helpers.unwrapValue(v)
                             )
                           ),
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~variant=?variant->Belt.Option.map(v => variantToJs(v)),
     ~id?,
     ~key?,
     ~ref?,

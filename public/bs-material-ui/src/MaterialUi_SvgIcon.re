@@ -68,7 +68,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rrux=?,
+    ~component: 'union_rq5e=?,
     ~fontSize: string=?,
     ~htmlColor: string=?,
     ~shapeRendering: string=?,
@@ -111,10 +111,10 @@ let makeProps =
   makePropsMui(
     ~children?,
     ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~color=?color->Belt.Option.map(v => colorToJs(v)),
     ~component=?
       component->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~fontSize=?fontSize->(Belt.Option.map(v => fontSizeToJs(v))),
+    ~fontSize=?fontSize->Belt.Option.map(v => fontSizeToJs(v)),
     ~htmlColor?,
     ~shapeRendering?,
     ~titleAccess?,

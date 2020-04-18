@@ -6,7 +6,7 @@ type variant = [
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_rboy=?,
+    ~component: 'union_r37x=?,
     ~dense: bool=?,
     ~disablePadding: bool=?,
     ~subheader: React.element=?,
@@ -65,7 +65,7 @@ let makeProps =
     ~disabledItemsFocusable?,
     ~disableListWrap?,
     ~onKeyDown?,
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~variant=?variant->Belt.Option.map(v => variantToJs(v)),
     ~key?,
     ~ref?,
     (),

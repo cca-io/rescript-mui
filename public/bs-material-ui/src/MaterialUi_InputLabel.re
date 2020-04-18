@@ -72,7 +72,7 @@ module Classes = {
 [@bs.obj]
 external makePropsMui:
   (
-    ~component: 'union_rlxe=?,
+    ~component: 'union_rbm8=?,
     ~filled: bool=?,
     ~id: string=?,
     ~children: 'children=?,
@@ -132,15 +132,15 @@ let makeProps =
     ~id?,
     ~children?,
     ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~color=?color->Belt.Option.map(v => colorToJs(v)),
     ~disableAnimation?,
     ~disabled?,
     ~error?,
     ~focused?,
-    ~margin=?margin->(Belt.Option.map(v => marginToJs(v))),
+    ~margin=?margin->Belt.Option.map(v => marginToJs(v)),
     ~required?,
     ~shrink?,
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~variant=?variant->Belt.Option.map(v => variantToJs(v)),
     ~htmlFor,
     ~key?,
     ~ref?,

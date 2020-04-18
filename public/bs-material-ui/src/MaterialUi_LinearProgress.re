@@ -90,8 +90,8 @@ external makePropsMui:
   (
     ~className: string=?,
     ~color: string=?,
-    ~value: 'number_j=?,
-    ~valueBuffer: 'number_i=?,
+    ~value: 'number_n=?,
+    ~valueBuffer: 'number_s=?,
     ~variant: string=?,
     ~id: string=?,
     ~key: string=?,
@@ -118,11 +118,11 @@ let makeProps =
     ) =>
   makePropsMui(
     ~className?,
-    ~color=?color->(Belt.Option.map(v => colorToJs(v))),
+    ~color=?color->Belt.Option.map(v => colorToJs(v)),
     ~value=?value->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
     ~valueBuffer=?
       valueBuffer->(Belt.Option.map(v => MaterialUi_Helpers.unwrapValue(v))),
-    ~variant=?variant->(Belt.Option.map(v => variantToJs(v))),
+    ~variant=?variant->Belt.Option.map(v => variantToJs(v)),
     ~id?,
     ~key?,
     ~ref?,

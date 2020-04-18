@@ -49,7 +49,7 @@ external makePropsMui:
     ~onEntering: ReactEvent.Synthetic.t => unit=?,
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExited: ReactEvent.Synthetic.t => unit=?,
-    ~timeout: 'union_rve8=?,
+    ~timeout: 'union_rui6=?,
     ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,
@@ -75,7 +75,7 @@ let makeProps =
     ) =>
   makePropsMui(
     ~children?,
-    ~direction=?direction->(Belt.Option.map(v => directionToJs(v))),
+    ~direction=?direction->Belt.Option.map(v => directionToJs(v)),
     ~_in=?in_,
     ~onEnter?,
     ~onEntering?,
