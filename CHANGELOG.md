@@ -17,9 +17,15 @@
 - :rocket: Colors are now zero cost bindings
 - :rocket: Added the `<Box />` component
 - :rocket: Added the `MaterialUi.Core` module. Some examples:
-  - `useTheme() => MaterialUi.Theme.t`
-  - `useMediaQueryString("(min-width:600px)") => bool`
-  - `useMediaQuery(MaterialUi.Core.Breakpoint.get(theme, \`up(\`sm))) => bool`
+  - ```
+    useTheme() => MaterialUi.Theme.t
+    ```
+  - ```ml
+    useMediaQueryString("(min-width:600px)") => bool
+    ```
+  - ```ml
+    useMediaQuery(MaterialUi.Core.Breakpoint.get(theme,`up(`sm))) => bool
+    ```
 - :nail_care: Better definitions of `onChange` and `onChangeCommitted` on the `Slider` component
 - :nail_care: Better treatment of mixed enum values
 - :rocket: Added an `id` prop to all components
