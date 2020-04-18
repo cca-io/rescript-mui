@@ -1,3 +1,4 @@
+open Migrate_parsetree;
 open Ast_402;
 open Asttypes;
 open Parsetree;
