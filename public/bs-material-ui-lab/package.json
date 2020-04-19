@@ -1,0 +1,40 @@
+{
+  "name": "@jsiebern/bs-material-ui-lab",
+  "version": "1.0.0",
+  "description": "This library provides Reason bindings for material-ui-lab.",
+  "keywords": [
+    "bucklescript",
+    "reason",
+    "ocaml",
+    "material-ui"
+  ],
+  "homepage": "https://github.com/jsiebern/bs-material-ui",
+  "repository": "https://github.com/jsiebern/bs-material-ui",
+  "bugs": "https://github.com/jsiebern/bs-material-ui/issues",
+  "author": "Jonathan Siebern <jsiebern88@gmail.com>",
+  "main": "./src/MaterialUi_Lab.re",
+  "scripts": {
+    "bs:build": "bsb -make-world",
+    "bs:clean": "bsb -clean-world; rm -rf .cache",
+    "examples": "parcel examples/App/index.html",
+    "build": "./build.sh"
+  },
+  "files": [
+    "/src",
+    "/bsconfig.json"
+  ],
+  "peerDependencies": {
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/lab": "^4.0.0-alpha.50",
+    "reason-react": "^0.7.0"
+  },
+  "devDependencies": {
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/lab": "^4.0.0-alpha.50",
+    "parcel-bundler": "^1.12.4",
+    "reason-react": "^0.7.0"
+  },
+  "dependencies": {
+    "@jsiebern/bs-material-ui": "*"
+  }
+}

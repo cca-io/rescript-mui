@@ -199,6 +199,7 @@ export default {
         name: 'custom',
         reasonType:
           '({. "from": int, "to": int, "count": int, "page": int}) => React.element',
+        jsType: "'labelRowsPerPage",
       },
       required: false,
       description: '-',
@@ -207,6 +208,7 @@ export default {
       type: {
         name: 'custom',
         reasonType: '({. "from": int, "to": int, "count": int}) => string',
+        jsType: "'labelDisplayedRows",
       },
       required: false,
       description: '-',
@@ -252,6 +254,7 @@ export default {
       type: {
         name: 'custom',
         reasonType: 'MaterialUi_Theme.t',
+        jsType: 'MaterialUi_Theme.t',
       },
       required: true,
       description: '-',
@@ -364,6 +367,18 @@ export default {
           { value: 'search', computed: false },
           { value: 'tag', computed: false },
         ],
+      },
+      required: false,
+      description: '-',
+    },
+  },
+
+  // --------------------- Lab
+
+  Rating: {
+    name: {
+      type: {
+        name: 'string',
       },
       required: false,
       description: '-',
