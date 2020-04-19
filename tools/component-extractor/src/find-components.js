@@ -4,15 +4,21 @@ const path = require('path');
 const componentRegex = /^([A-Z][a-z]+)+\.js/;
 
 // Returns the component source in a flat array.
-// function findComponents(directory = path.resolve(__dirname, '../../../../src'), components = []) {
-export default function findComponents(directory = `./core`, components = []) {
+export default function findComponents(
+  directory = `./core`,
+  components = [],
+  level = 0,
+) {
   const items = fs.readdirSync(directory);
+  if (level > 1) {
+    // return;
+  }
 
   items.forEach((item) => {
     const itemPath = path.resolve(directory, item);
 
     if (fs.statSync(itemPath).isDirectory()) {
-      findComponents(itemPath, components);
+      findComponents(itemPath, components, level + 1);
       return;
     }
 

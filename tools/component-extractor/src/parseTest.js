@@ -16,9 +16,13 @@ function withExtension(filepath, extension) {
  * @param {string} filename
  * @param {string} configFilePath
  */
-async function parseWithConfig(filename, configFilePath) {
+async function parseWithConfig(filename, configFilePath, muiSrc) {
   const source = await readFile(
-    path.join(workspaceRoot, 'packages/material-ui/src', filename),
+    path.join(
+      workspaceRoot,
+      `packages/material-ui${muiSrc === 'lab' ? '-lab' : ''}/src`,
+      filename,
+    ),
     { encoding: 'utf8' },
   );
   const partialConfig = babel.loadPartialConfig({
@@ -93,9 +97,13 @@ function getInheritComponentName(valueNode) {
  * @param {string} componentFilename
  * @returns {ParseResult}
  */
-export default async function parseTest(componentFilename) {
+export default async function parseTest(componentFilename, muiSrc) {
   const testFilename = withExtension(componentFilename, '.test.js');
-  const babelParseResult = await parseWithConfig(testFilename, babelConfigPath);
+  const babelParseResult = await parseWithConfig(
+    testFilename,
+    babelConfigPath,
+    muiSrc,
+  );
   const descriptor = findConformanceDescriptor(babelParseResult);
 
   const result = {
@@ -104,7 +112,7 @@ export default async function parseTest(componentFilename) {
   };
 
   const { properties = [] } = descriptor;
-  properties.forEach(property => {
+  properties.forEach((property) => {
     const key = property.key.name;
 
     switch (key) {

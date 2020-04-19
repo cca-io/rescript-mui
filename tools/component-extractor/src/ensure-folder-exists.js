@@ -1,7 +1,7 @@
 import { mkdir } from 'fs';
 
 export default function ensureExists(pat, mask, cb) {
-  mkdir(pat, mask, err => {
+  mkdir(pat, { recursive: true, mode: mask }, (err) => {
     if (err) {
       if (err.code === 'EEXIST') {
         cb(null); // ignore the error if the folder already exists

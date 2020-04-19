@@ -1,5 +1,5 @@
+import * as yargs from 'yargs';
 import * as rimraf from 'rimraf';
-
 import path from 'path';
 import { mkdir, readFileSync, writeFileSync } from 'fs';
 import kebabCase from 'lodash/kebabCase';
@@ -13,12 +13,27 @@ import parseTest from './parseTest';
 import findComponents from './find-components';
 import ensureExists from './ensure-folder-exists';
 
-const MuiPath = path.resolve(__dirname, '../', 'core');
+const args = yargs
+  .option('src', {
+    describe: 'mui source',
+    choices: ['core', 'lab'],
+  })
+  .demandOption(['src'], 'Please provide src argument')
+  .help().argv;
+const muiSrc = args.src;
 
-const components = findComponents();
+const MuiPath = path.resolve(__dirname, '../', muiSrc);
+
+const components = findComponents(`./${muiSrc}`);
 const theme = createMuiTheme();
 const rootDirectory = MuiPath;
-const outputDirectory = path.join(__dirname, '../../../', 'output', 'json');
+const outputDirectory = path.join(
+  __dirname,
+  '../../../',
+  'output',
+  'json',
+  muiSrc,
+);
 
 rimraf.sync(path.join(outputDirectory, '*.json'));
 
@@ -58,10 +73,10 @@ components.forEach(async (componentPath) => {
   reactAPI.importName = path.parse(componentPath).name;
   reactAPI.styles = styles;
   reactAPI.filename = componentPath.replace(rootDirectory, '');
-  reactAPI.importPath = '@material-ui/core'; // `@material-ui/core/${componentPath.replace(`${rootDirectory}/`, '').replace('.js', '')}`;
+  reactAPI.importPath = `@material-ui/${muiSrc}`;
 
   // Inheritance
-  const testInfo = await parseTest(reactAPI.filename);
+  const testInfo = await parseTest(reactAPI.filename, muiSrc);
   const inheritance = getInheritance(testInfo, src);
   reactAPI.inheritsFrom = inheritance ? inheritance.component : '';
 
@@ -83,7 +98,6 @@ components.forEach(async (componentPath) => {
       path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.json`),
       JSON.stringify(reactAPI),
     );
-
     console.log('Extracted JSON for', componentPath);
   });
 });
@@ -94,10 +108,11 @@ ensureExists(outputDirectory, 0o744, (err) => {
     console.log(err);
     return;
   }
-
-  writeFileSync(
-    path.resolve(outputDirectory, `colors.json`),
-    JSON.stringify(colors),
-  );
-  console.log('Extracted JSON for Colors');
+  if (muiSrc === 'core') {
+    writeFileSync(
+      path.resolve(outputDirectory, `colors.json`),
+      JSON.stringify(colors),
+    );
+    console.log('Extracted JSON for Colors');
+  }
 });
