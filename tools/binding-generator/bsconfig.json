@@ -1,25 +1,26 @@
 {
-	"name": "reason-mui-binding-generator",
-	"reason": {
-		"react-jsx": 3
-	},
-	"sources": [
-		{
-			"dir": "../../output/reason"
-		}
-	],
-	"package-specs": [
-		{
-			"module": "commonjs",
-			"in-source": true
-		}
-	],
-	"suffix": ".bs.js",
-	"namespace": true,
-	"bs-dependencies": [ "reason-react" ],
-	"bsc-flags": [ "-bs-super-errors" ],
-	"warnings": {
-		"number": "-103"
-	},
-	"refmt": 3
+  "name": "reason-mui-binding-generator",
+  "reason": {
+    "react-jsx": 3
+  },
+  "sources": [
+    {
+      "dir": "../../output/reason",
+      "subdirs": true
+    }
+  ],
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "namespace": true,
+  "bs-dependencies": ["reason-react"],
+  "bsc-flags": ["-bs-super-errors"],
+  "warnings": {
+    "number": "-103"
+  },
+  "refmt": 3
 }

@@ -99,6 +99,21 @@ module ThumbComponent: {
   let element = (v: React.element) => Any(v);
 };
 
+module Track: {
+  type t;
+  let normal: t;
+  let _false: t;
+  let inverted: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let normal = Any("normal");
+  let _false = Any(false);
+  let inverted = Any("inverted");
+};
+
 module Value: {
   type t;
   let int: int => t;
@@ -174,14 +189,7 @@ external make:
     ~scale: option(MaterialUi_Types.any)=?,
     ~step: option(MaterialUi_Types.Number.t)=?,
     ~_ThumbComponent: option(ThumbComponent.t)=?,
-    ~track: option(
-              [@bs.string] [
-                | [@bs.as "normal"] `Normal
-                | [@bs.as "false"] `False
-                | [@bs.as "inverted"] `Inverted
-              ],
-            )
-              =?,
+    ~track: option(Track.t)=?,
     ~value: option(Value.t)=?,
     ~_ValueLabelComponent: option(ValueLabelComponent.t)=?,
     ~valueLabelDisplay: option(

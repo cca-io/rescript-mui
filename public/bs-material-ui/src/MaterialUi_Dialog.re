@@ -61,6 +61,27 @@ module Classes = {
   let make = t;
 };
 
+module MaxWidth: {
+  type t;
+  let lg: t;
+  let md: t;
+  let sm: t;
+  let xl: t;
+  let xs: t;
+  let _false: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let lg = Any("lg");
+  let md = Any("md");
+  let sm = Any("sm");
+  let xl = Any("xl");
+  let xs = Any("xs");
+  let _false = Any(false);
+};
+
 module PaperComponent: {
   type t;
   let string: string => t;
@@ -141,17 +162,7 @@ external make:
     ~disableEscapeKeyDown: option(bool)=?,
     ~fullScreen: option(bool)=?,
     ~fullWidth: option(bool)=?,
-    ~maxWidth: option(
-                 [@bs.string] [
-                   | [@bs.as "lg"] `Lg
-                   | [@bs.as "md"] `Md
-                   | [@bs.as "sm"] `Sm
-                   | [@bs.as "xl"] `Xl
-                   | [@bs.as "xs"] `Xs
-                   | [@bs.as "false"] `False
-                 ],
-               )
-                 =?,
+    ~maxWidth: option(MaxWidth.t)=?,
     ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
     ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
     ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,

@@ -51,6 +51,21 @@ module Classes = {
   let make = t;
 };
 
+module Edge: {
+  type t;
+  let start: t;
+  let _end: t;
+  let _false: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let start = Any("start");
+  let _end = Any("end");
+  let _false = Any(false);
+};
+
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
@@ -99,14 +114,7 @@ external make:
     ~disabled: option(bool)=?,
     ~disableFocusRipple: option(bool)=?,
     ~disableRipple: option(bool)=?,
-    ~edge: option(
-             [@bs.string] [
-               | [@bs.as "start"] `Start
-               | [@bs.as "end"] `End
-               | [@bs.as "false"] `False
-             ],
-           )
-             =?,
+    ~edge: option(Edge.t)=?,
     ~size: option(
              [@bs.string] [
                | [@bs.as "small"] `Small

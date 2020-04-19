@@ -22,7 +22,7 @@ external make:
     ~classes: option(Classes.t)=?,
     ~completed: option(bool)=?,
     ~error: option(bool)=?,
-    ~icon: React.element,
+    ~icon: option(React.element)=?,
     ~id: option(string)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?

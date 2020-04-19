@@ -1,15 +1,15 @@
 module RowsMin: {
   type t;
-  let string: string => t;
   let int: int => t;
   let float: float => t;
+  let string: string => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let string = (v: string) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
+  let string = (v: string) => Any(v);
 };
 
 module InputComponent: {
@@ -28,30 +28,30 @@ module InputComponent: {
 
 module Rows: {
   type t;
-  let string: string => t;
   let int: int => t;
   let float: float => t;
+  let string: string => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let string = (v: string) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
+  let string = (v: string) => Any(v);
 };
 
 module RowsMax: {
   type t;
-  let string: string => t;
   let int: int => t;
   let float: float => t;
+  let string: string => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let string = (v: string) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
+  let string = (v: string) => Any(v);
 };
 
 module Classes = {
@@ -115,6 +115,7 @@ module Value: {
 external make:
   (
     ~aria_describedby: option(string)=?,
+    ~className: option(string)=?,
     ~onBlur: option(ReactEvent.Focus.t => unit)=?,
     ~onClick: option(ReactEvent.Mouse.t => unit)=?,
     ~onFocus: option(ReactEvent.Focus.t => unit)=?,
@@ -124,7 +125,6 @@ external make:
     ~rowsMin: option(RowsMin.t)=?,
     ~autoComplete: option(string)=?,
     ~autoFocus: option(bool)=?,
-    ~className: option(string)=?,
     ~color: option(
               [@bs.string] [
                 | [@bs.as "primary"] `Primary

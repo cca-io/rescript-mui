@@ -2,6 +2,8 @@ module Timeout_shape = {
   [@bs.deriving abstract]
   type t = {
     [@bs.optional]
+    appear: MaterialUi_Types.Number.t,
+    [@bs.optional]
     enter: MaterialUi_Types.Number.t,
     [@bs.optional]
     exit: MaterialUi_Types.Number.t,
@@ -29,10 +31,10 @@ external make:
     ~children: option('children)=?,
     ~direction: option(
                   [@bs.string] [
+                    | [@bs.as "down"] `Down
                     | [@bs.as "left"] `Left
                     | [@bs.as "right"] `Right
                     | [@bs.as "up"] `Up
-                    | [@bs.as "down"] `Down
                   ],
                 )
                   =?,

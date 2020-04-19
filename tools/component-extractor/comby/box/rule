@@ -1,3 +1,0 @@
-where
-    rewrite :[props] { "'zIndex'" -> "\"zIndex\": { \"type\": { \"name\": \"int\", \"required\": false, \"description\": \"\" } }," },
-    rewrite :[props] { "':[v]'" -> "\":[v]\": { \"type\": { \"name\": \"string\", \"required\": false, \"description\": \"\" } }," }

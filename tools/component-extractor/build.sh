@@ -28,7 +28,7 @@ done
 git checkout $TAGNAME
 cd $pwd
 
-Copy source files
+# Copy source files
 rm -rf ./core
 cp -R ~/.mui-clone/packages/material-ui/src ./core
 rm -rf ./lab
@@ -65,6 +65,3 @@ echo "Extracted theme.json"
 "${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json ThemeOptions --topRef --ignoreErrors --excludePrivate --required -o "${pwd}/../../output/json/core/theme-options.json"
 echo "Extracted theme-options.json"
 cd $pwd
-
-# Extract box props
-./build-box.sh

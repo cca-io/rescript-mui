@@ -1,3 +1,5 @@
+declare type muiSrc = 'core' | 'lab';
+
 declare interface PropSignature {
   type?: PropType;
   raw?: string;

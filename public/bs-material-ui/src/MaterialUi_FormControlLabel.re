@@ -23,15 +23,15 @@ external make:
     ~checked: option(bool)=?,
     ~classes: option(Classes.t)=?,
     ~className: option(string)=?,
-    ~control: option(React.element)=?,
+    ~control: React.element,
     ~disabled: option(bool)=?,
     ~label: option(React.element)=?,
     ~labelPlacement: option(
                        [@bs.string] [
+                         | [@bs.as "bottom"] `Bottom
                          | [@bs.as "end"] `End
                          | [@bs.as "start"] `Start
                          | [@bs.as "top"] `Top
-                         | [@bs.as "bottom"] `Bottom
                        ],
                      )
                        =?,

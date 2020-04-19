@@ -26,7 +26,7 @@ let make = () => {
     <div>
       <Popover
         _open={Belt.Option.isSome(state.anchorEl)}
-        onClose={(_evt, _) => dispatch(ClosePopup)}
+        onClose={_evt => dispatch(ClosePopup)}
         anchorEl=?{
           state.anchorEl
           ->(

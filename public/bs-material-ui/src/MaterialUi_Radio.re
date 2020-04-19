@@ -26,6 +26,21 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+module Edge: {
+  type t;
+  let start: t;
+  let _end: t;
+  let _false: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let start = Any("start");
+  let _end = Any("end");
+  let _false = Any(false);
+};
+
 module Classes = {
   [@bs.deriving abstract]
   type t = {
@@ -78,22 +93,15 @@ external make:
     ~children: option('children)=?,
     ~className: option(string)=?,
     ~disableFocusRipple: option(bool)=?,
-    ~edge: option(
-             [@bs.string] [
-               | [@bs.as "start"] `Start
-               | [@bs.as "end"] `End
-               | [@bs.as "false"] `False
-             ],
-           )
-             =?,
+    ~edge: option(Edge.t)=?,
     ~checked: option(bool)=?,
     ~checkedIcon: option(React.element)=?,
     ~classes: option(Classes.t)=?,
     ~color: option(
               [@bs.string] [
+                | [@bs.as "default"] `Default
                 | [@bs.as "primary"] `Primary
                 | [@bs.as "secondary"] `Secondary
-                | [@bs.as "default"] `Default
               ],
             )
               =?,
@@ -107,8 +115,8 @@ external make:
     ~required: option(bool)=?,
     ~size: option(
              [@bs.string] [
-               | [@bs.as "small"] `Small
                | [@bs.as "medium"] `Medium
+               | [@bs.as "small"] `Small
              ],
            )
              =?,

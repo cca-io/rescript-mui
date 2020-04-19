@@ -24,13 +24,11 @@ module Children: {
 
 module Container: {
   type t;
-  let obj: Js.Dict.t(MaterialUi_Types.any) => t;
   let container_func: MaterialUi_Types.any => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let obj = (v: Js.Dict.t(MaterialUi_Types.any)) => Any(v);
   let container_func = (v: MaterialUi_Types.any) => Any(v);
 };
 

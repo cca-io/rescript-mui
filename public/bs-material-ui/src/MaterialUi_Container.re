@@ -35,6 +35,27 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
+module MaxWidth: {
+  type t;
+  let xs: t;
+  let sm: t;
+  let md: t;
+  let lg: t;
+  let xl: t;
+  let _false: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let xs = Any("xs");
+  let sm = Any("sm");
+  let md = Any("md");
+  let lg = Any("lg");
+  let xl = Any("xl");
+  let _false = Any(false);
+};
+
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
@@ -44,17 +65,7 @@ external make:
     ~component: option(Component.t)=?,
     ~disableGutters: option(bool)=?,
     ~fixed: option(bool)=?,
-    ~maxWidth: option(
-                 [@bs.string] [
-                   | [@bs.as "xs"] `Xs
-                   | [@bs.as "sm"] `Sm
-                   | [@bs.as "md"] `Md
-                   | [@bs.as "lg"] `Lg
-                   | [@bs.as "xl"] `Xl
-                   | [@bs.as "false"] `False
-                 ],
-               )
-                 =?,
+    ~maxWidth: option(MaxWidth.t)=?,
     ~id: option(string)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?

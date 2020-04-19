@@ -1,3 +1,18 @@
+module SortDirection: {
+  type t;
+  let asc: t;
+  let desc: t;
+  let _false: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let asc = Any("asc");
+  let desc = Any("desc");
+  let _false = Any(false);
+};
+
 module ActionsComponent: {
   type t;
   let string: string => t;
@@ -83,14 +98,7 @@ external make:
              ],
            )
              =?,
-    ~sortDirection: option(
-                      [@bs.string] [
-                        | [@bs.as "asc"] `Asc
-                        | [@bs.as "desc"] `Desc
-                        | [@bs.as "false"] `False
-                      ],
-                    )
-                      =?,
+    ~sortDirection: option(SortDirection.t)=?,
     ~variant: option(
                 [@bs.string] [
                   | [@bs.as "body"] `Body

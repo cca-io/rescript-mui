@@ -17,6 +17,7 @@ export const reservedNames = [
   'in',
   'to',
   'for',
+  'end',
   'inherit',
   'false',
   'true',

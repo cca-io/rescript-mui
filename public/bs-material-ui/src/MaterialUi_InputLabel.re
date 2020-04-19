@@ -68,9 +68,9 @@ external make:
     ~shrink: option(bool)=?,
     ~variant: option(
                 [@bs.string] [
-                  | [@bs.as "standard"] `Standard
-                  | [@bs.as "outlined"] `Outlined
                   | [@bs.as "filled"] `Filled
+                  | [@bs.as "outlined"] `Outlined
+                  | [@bs.as "standard"] `Standard
                 ],
               )
                 =?,

@@ -44,25 +44,13 @@ module StepIconComponent: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~active: option(bool)=?,
-    ~alternativeLabel: option(bool)=?,
     ~children: option('children)=?,
     ~classes: option(Classes.t)=?,
     ~className: option(string)=?,
-    ~completed: option(bool)=?,
     ~disabled: option(bool)=?,
     ~error: option(bool)=?,
-    ~expanded: option(bool)=?,
     ~icon: option(React.element)=?,
-    ~last: option(bool)=?,
     ~optional: option(React.element)=?,
-    ~orientation: option(
-                    [@bs.string] [
-                      | [@bs.as "horizontal"] `Horizontal
-                      | [@bs.as "vertical"] `Vertical
-                    ],
-                  )
-                    =?,
     ~_StepIconComponent: option(StepIconComponent.t)=?,
     ~_StepIconProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~id: option(string)=?,

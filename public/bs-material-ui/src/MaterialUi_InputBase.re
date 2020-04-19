@@ -59,44 +59,44 @@ module InputComponent: {
 
 module Rows: {
   type t;
-  let string: string => t;
   let int: int => t;
   let float: float => t;
+  let string: string => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let string = (v: string) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
+  let string = (v: string) => Any(v);
 };
 
 module RowsMax: {
   type t;
-  let string: string => t;
   let int: int => t;
   let float: float => t;
+  let string: string => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let string = (v: string) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
+  let string = (v: string) => Any(v);
 };
 
 module RowsMin: {
   type t;
-  let string: string => t;
   let int: int => t;
   let float: float => t;
+  let string: string => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let string = (v: string) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
+  let string = (v: string) => Any(v);
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

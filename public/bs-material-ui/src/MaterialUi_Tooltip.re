@@ -47,6 +47,7 @@ external make:
     ~arrow: option(bool)=?,
     ~children: option('children)=?,
     ~classes: option(Classes.t)=?,
+    ~className: option(string)=?,
     ~disableFocusListener: option(bool)=?,
     ~disableHoverListener: option(bool)=?,
     ~disableTouchListener: option(bool)=?,

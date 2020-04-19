@@ -57,6 +57,21 @@ module Classes = {
   let make = t;
 };
 
+module Edge: {
+  type t;
+  let _end: t;
+  let start: t;
+  let _false: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let _end = Any("end");
+  let start = Any("start");
+  let _false = Any(false);
+};
+
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
@@ -81,6 +96,14 @@ external make:
     ~role: option(string)=?,
     ~tabIndex: option(TabIndex.t)=?,
     ~_TouchRippleProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~_type: option(
+              [@bs.string] [
+                | [@bs.as "submit"] `Submit
+                | [@bs.as "reset"] `Reset
+                | [@bs.as "button"] `Button
+              ],
+            )
+              =?,
     ~children: option('children)=?,
     ~disableFocusRipple: option(bool)=?,
     ~checked: option(bool)=?,
@@ -89,23 +112,16 @@ external make:
     ~className: option(string)=?,
     ~color: option(
               [@bs.string] [
+                | [@bs.as "default"] `Default
                 | [@bs.as "primary"] `Primary
                 | [@bs.as "secondary"] `Secondary
-                | [@bs.as "default"] `Default
               ],
             )
               =?,
     ~defaultChecked: option(bool)=?,
     ~disabled: option(bool)=?,
     ~disableRipple: option(bool)=?,
-    ~edge: option(
-             [@bs.string] [
-               | [@bs.as "start"] `Start
-               | [@bs.as "end"] `End
-               | [@bs.as "false"] `False
-             ],
-           )
-             =?,
+    ~edge: option(Edge.t)=?,
     ~icon: option(React.element)=?,
     ~id: option(string)=?,
     ~inputProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
@@ -113,12 +129,11 @@ external make:
     ~required: option(bool)=?,
     ~size: option(
              [@bs.string] [
-               | [@bs.as "small"] `Small
                | [@bs.as "medium"] `Medium
+               | [@bs.as "small"] `Small
              ],
            )
              =?,
-    ~_type: option(string)=?,
     ~value: option(MaterialUi_Types.any)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?

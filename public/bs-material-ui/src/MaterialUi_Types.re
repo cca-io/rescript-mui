@@ -4,6 +4,7 @@ type any =
 let anyUnpack =
   fun
   | Any(v) => v->Obj.magic;
+
 module Number: {
   type t;
   let float: float => t;

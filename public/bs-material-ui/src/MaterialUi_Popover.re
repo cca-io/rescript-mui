@@ -26,60 +26,60 @@ module AnchorEl: {
 
 module Horizontal_enum: {
   type t;
-  let left: t;
   let center: t;
+  let left: t;
   let right: t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
 
-  let left = Any("left");
   let center = Any("center");
+  let left = Any("left");
   let right = Any("right");
 };
 
 module Horizontal: {
   type t;
+  let enum: Horizontal_enum.t => t;
   let int: int => t;
   let float: float => t;
-  let enum: Horizontal_enum.t => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
+  let enum = (v: Horizontal_enum.t) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
-  let enum = (v: Horizontal_enum.t) => Any(v);
 };
 
 module Vertical_enum: {
   type t;
-  let top: t;
-  let center: t;
   let bottom: t;
+  let center: t;
+  let top: t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
 
-  let top = Any("top");
-  let center = Any("center");
   let bottom = Any("bottom");
+  let center = Any("center");
+  let top = Any("top");
 };
 
 module Vertical: {
   type t;
+  let enum: Vertical_enum.t => t;
   let int: int => t;
   let float: float => t;
-  let enum: Vertical_enum.t => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
+  let enum = (v: Vertical_enum.t) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
-  let enum = (v: Vertical_enum.t) => Any(v);
 };
 
 module AnchorOrigin = {
@@ -113,13 +113,11 @@ module Classes = {
 
 module Container: {
   type t;
-  let obj: Js.Dict.t(MaterialUi_Types.any) => t;
   let container_func: MaterialUi_Types.any => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let obj = (v: Js.Dict.t(MaterialUi_Types.any)) => Any(v);
   let container_func = (v: MaterialUi_Types.any) => Any(v);
 };
 
@@ -169,17 +167,6 @@ module TransitionComponent: {
   let element = (v: React.element) => Any(v);
 };
 
-module TransitionDuration_shape = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional]
-    enter: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    exit: MaterialUi_Types.Number.t,
-  };
-  let make = t;
-};
-
 module TransitionDuration_enum: {
   type t;
   let auto: t;
@@ -191,20 +178,33 @@ module TransitionDuration_enum: {
   let auto = Any("auto");
 };
 
+module TransitionDuration_shape = {
+  [@bs.deriving abstract]
+  type t = {
+    [@bs.optional]
+    appear: MaterialUi_Types.Number.t,
+    [@bs.optional]
+    enter: MaterialUi_Types.Number.t,
+    [@bs.optional]
+    exit: MaterialUi_Types.Number.t,
+  };
+  let make = t;
+};
+
 module TransitionDuration: {
   type t;
+  let enum: TransitionDuration_enum.t => t;
   let int: int => t;
   let float: float => t;
   let shape: TransitionDuration_shape.t => t;
-  let enum: TransitionDuration_enum.t => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
+  let enum = (v: TransitionDuration_enum.t) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
   let shape = (v: TransitionDuration_shape.t) => Any(v);
-  let enum = (v: TransitionDuration_enum.t) => Any(v);
 };
 
 [@react.component] [@bs.module "@material-ui/core"]
@@ -245,7 +245,7 @@ external make:
     ~elevation: option(MaterialUi_Types.Number.t)=?,
     ~getContentAnchorEl: option(MaterialUi_Types.any)=?,
     ~marginThreshold: option(MaterialUi_Types.Number.t)=?,
-    ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
+    ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
     ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
     ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
     ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,

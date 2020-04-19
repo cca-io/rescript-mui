@@ -56,6 +56,8 @@ const parseInit = () => {
   Fs.writeFileSync(
     Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi.re'),
     `
+    include MaterialUi_Types;
+
         ${components
           .map((component) =>
             component != null
@@ -68,6 +70,7 @@ const parseInit = () => {
         module type WithStylesSafeTemplate = MaterialUi_WithStyles.WithStylesSafeTemplate;
         module WithStylesSafe = MaterialUi_WithStyles.WithStylesSafe;
         module Core = MaterialUi_Core;
+        module Box = MaterialUi_Box;
         module Theme = MaterialUi_Theme;
         module ThemeOptions = MaterialUi_ThemeOptions;
         module ThemeProvider = MaterialUi_ThemeProvider;

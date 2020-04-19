@@ -135,9 +135,9 @@ module Lg: {
   type t =
     | Any('a): t;
 
-  let _false = Any("false");
+  let _false = Any(false);
   let auto = Any("auto");
-  let _true = Any("true");
+  let _true = Any(true);
   let _1 = Any(1);
   let _2 = Any(2);
   let _3 = Any(3);
@@ -174,9 +174,9 @@ module Md: {
   type t =
     | Any('a): t;
 
-  let _false = Any("false");
+  let _false = Any(false);
   let auto = Any("auto");
-  let _true = Any("true");
+  let _true = Any(true);
   let _1 = Any(1);
   let _2 = Any(2);
   let _3 = Any(3);
@@ -213,9 +213,9 @@ module Sm: {
   type t =
     | Any('a): t;
 
-  let _false = Any("false");
+  let _false = Any(false);
   let auto = Any("auto");
-  let _true = Any("true");
+  let _true = Any(true);
   let _1 = Any(1);
   let _2 = Any(2);
   let _3 = Any(3);
@@ -252,9 +252,9 @@ module Xl: {
   type t =
     | Any('a): t;
 
-  let _false = Any("false");
+  let _false = Any(false);
   let auto = Any("auto");
-  let _true = Any("true");
+  let _true = Any(true);
   let _1 = Any(1);
   let _2 = Any(2);
   let _3 = Any(3);
@@ -291,9 +291,9 @@ module Xs: {
   type t =
     | Any('a): t;
 
-  let _false = Any("false");
+  let _false = Any(false);
   let auto = Any("auto");
-  let _true = Any("true");
+  let _true = Any(true);
   let _1 = Any(1);
   let _2 = Any(2);
   let _3 = Any(3);

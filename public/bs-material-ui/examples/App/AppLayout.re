@@ -235,6 +235,25 @@ let make = () =>
                </Grid>
                <br />
                <br />
+               <Divider />
+               <br />
+               <br />
+               <Grid container=true alignItems=`Center>
+                 <Grid item=true md=Grid.Md._6>
+                   <Typography variant=`H5>
+                     <a
+                       href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/styles/api/api.md#serverstylesheets"
+                       target="_blank">
+                       "ServerStyleSheets"->React.string
+                     </a>
+                   </Typography>
+                 </Grid>
+                 <Grid item=true md=Grid.Md._6>
+                   <ExampleServerStyleSheets />
+                 </Grid>
+               </Grid>
+               <br />
+               <br />
                <br />
                <br />
                <br />

@@ -37,30 +37,30 @@ module DefaultValue: {
 
 module Rows: {
   type t;
-  let string: string => t;
   let int: int => t;
   let float: float => t;
+  let string: string => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let string = (v: string) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
+  let string = (v: string) => Any(v);
 };
 
 module RowsMax: {
   type t;
-  let string: string => t;
   let int: int => t;
   let float: float => t;
+  let string: string => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let string = (v: string) => Any(v);
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
+  let string = (v: string) => Any(v);
 };
 
 module Value: {
@@ -103,13 +103,13 @@ external make:
     ~hiddenLabel: option(bool)=?,
     ~id: option(string)=?,
     ~_InputLabelProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~_InputProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~inputProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~_InputProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~label: option(React.element)=?,
     ~margin: option(
                [@bs.string] [
-                 | [@bs.as "none"] `None
                  | [@bs.as "dense"] `Dense
+                 | [@bs.as "none"] `None
                  | [@bs.as "normal"] `Normal
                ],
              )
@@ -127,8 +127,8 @@ external make:
     ~_SelectProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~size: option(
              [@bs.string] [
-               | [@bs.as "small"] `Small
                | [@bs.as "medium"] `Medium
+               | [@bs.as "small"] `Small
              ],
            )
              =?,
@@ -136,9 +136,9 @@ external make:
     ~value: option(Value.t)=?,
     ~variant: option(
                 [@bs.string] [
-                  | [@bs.as "standard"] `Standard
-                  | [@bs.as "outlined"] `Outlined
                   | [@bs.as "filled"] `Filled
+                  | [@bs.as "outlined"] `Outlined
+                  | [@bs.as "standard"] `Standard
                 ],
               )
                 =?,

@@ -46,9 +46,9 @@ external make:
     ~className: option(string)=?,
     ~color: option(
               [@bs.string] [
+                | [@bs.as "inherit"] `Inherit
                 | [@bs.as "primary"] `Primary
                 | [@bs.as "secondary"] `Secondary
-                | [@bs.as "inherit"] `Inherit
               ],
             )
               =?,
