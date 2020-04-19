@@ -11,7 +11,7 @@
   "dependencies": {
     "@babel/plugin-transform-exponentiation-operator": "^7.1.0",
     "@babel/runtime": "^7.1.2",
-    "@material-ui/core": "^4.9.8",
+    "@material-ui/core": "^4.9.11",
     "@material-ui/react-transition-group": "^4.2.0",
     "@material-ui/utils": "^4.9.6",
     "babel-node": "^0.0.1-security",
@@ -33,7 +33,8 @@
     "prop-types": "~15.7.2",
     "react": "^16.5.2",
     "react-docgen": "^3.0.0-rc.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "yargs": "^15.3.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -62,7 +63,7 @@
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-module-resolver": "^3.2.0",
-    "babel-plugin-optimize-clsx": "^2.5.0",
+    "babel-plugin-optimize-clsx": "^2.6.0",
     "babel-plugin-preval": "^3.0.1",
     "clsx": "^1.0.4",
     "convert-css-length": "^2.0.0",

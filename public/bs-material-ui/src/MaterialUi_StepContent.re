@@ -79,8 +79,8 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~_TransitionComponent: 'union_rftm=?,
-    ~transitionDuration: 'union_rc8s=?,
+    ~_TransitionComponent: 'union_rzy6=?,
+    ~transitionDuration: 'union_rohb=?,
     ~_TransitionProps: Js.t({..})=?,
     ~id: string=?,
     ~key: string=?,

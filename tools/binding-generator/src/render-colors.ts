@@ -15,7 +15,10 @@ interface ColorFile {
 
 const GetColors = (): ColorFile =>
   JSON.parse(
-    Fs.readFileSync(Path.join(outputDirectory, 'json', 'colors.json'), 'utf8'),
+    Fs.readFileSync(
+      Path.join(outputDirectory, 'json', 'core', 'colors.json'),
+      'utf8',
+    ),
   );
 
 const RenderColors = () => {

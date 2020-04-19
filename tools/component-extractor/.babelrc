@@ -15,9 +15,11 @@
       "module-resolver",
       {
         "alias": {
+          "@material-ui/core": "./core",
           "@material-ui/styles": "./styles",
           "@material-ui/utils": "./utils",
-          "@material-ui/system": "./system"
+          "@material-ui/system": "./system",
+          "@material-ui/lab": "./lab"
         }
       }
     ],

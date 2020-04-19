@@ -1,138 +1,22 @@
 import * as Fs from 'fs';
 import * as Path from 'path';
-import * as rimraf from 'rimraf';
 
 import outputDirectory from './output';
-import * as Console from './helpers/console';
-import GetComponents from './helpers/get-components';
-import Component from './classes/component';
 import RenderColors from './render-colors';
 import RenderTheme from './render-theme';
-import ComponentFromJson from './helpers/component-from-json';
+import ParseComponents from './parse-components';
+import PrepareOutput from './prepare-output';
 
-type componentSignatures = {
-  [name: string]: ComponentSignature;
-};
-const resolveInheritance = (
-  componentSignatures: componentSignatures,
-  signature: ComponentSignature,
-) => {
-  if (
-    signature.inheritsFrom &&
-    typeof componentSignatures[signature.inheritsFrom] !== 'undefined'
-  ) {
-    let mergeSignature = componentSignatures[signature.inheritsFrom];
-    mergeSignature = resolveInheritance(componentSignatures, mergeSignature);
-    const mergeProps = { ...mergeSignature.props };
-    const props = { ...signature.props };
-    let newProps = {};
-    const propKeys = Object.keys(props);
-    const filteredMergePropKeys = Object.keys(mergeProps).filter(
-      (mergePropKey) => propKeys.indexOf(mergePropKey) === -1,
-    );
-    filteredMergePropKeys.forEach((mergePropKey) => {
-      newProps[mergePropKey] = mergeProps[mergePropKey];
-    });
-    // const filteredPropKeys = propKeys.filter((propKey) => {
-    //   const prop = props[propKey];
-    //   if (prop.description !== '@ignore') {
-    //     return true;
-    //   }
-    //   const mergeProp =
-    //     typeof mergeProps[propKey] !== 'undefined' ? mergeProps[propKey] : null;
-    //   if (!mergeProp) {
-    //     return true;
-    //   }
-    //   if (mergeProp.description !== '@ignore') {
-    //     return false;
-    //   }
-    //   return true;
-    // });
-    propKeys.forEach((propKey) => {
-      newProps[propKey] = props[propKey];
-    });
-    return {
-      ...signature,
-      props: newProps,
-    };
-  }
-  return signature;
-};
+const muiSrc: muiSrc = 'core';
 
 const parseInit = () => {
-  const rawComponents = GetComponents();
-  const componentSignatures: componentSignatures = rawComponents.reduce(
-    (prev, jsonString) => {
-      const componentSignature = ComponentFromJson(jsonString);
-      return {
-        ...prev,
-        [componentSignature.name]: componentSignature,
-      };
-    },
-    {},
-  );
-
-  const components = Object.keys(componentSignatures).map((key) => {
-    let componentSignature = componentSignatures[key];
-    Console.info(
-      `Parsing ${Console.colors.yellow}${
-        componentSignature.name || componentSignature.displayName
-      }${Console.colors.reset}`,
-    );
-    try {
-      componentSignature = resolveInheritance(
-        componentSignatures,
-        componentSignature,
-      );
-      return new Component(componentSignature);
-    } catch (e) {
-      console.log(e);
-      Console.error(e);
-      process.exit();
-    }
-  });
-  //   const components = rawComponents.map((jsonString: string) => {
-  //     try {
-  //       const component = ComponentFromJson(jsonString);
-  //       Console.info(
-  //         `Parsing ${Console.colors.yellow}${component.name || component.displayName}${
-  //           Console.colors.reset
-  //         }`,
-  //       );
-  //       return new Component(component);
-  //     } catch (e) {
-  //       console.log(e);
-  //       Console.error(e);
-  //       Console.error(jsonString);
-  //       process.exit();
-  //       return null;
-  //     }
-  //   });
-
-  // Inheritance
-  //   components.forEach((c) => {
-  //     if (c != null && c.inheritsFrom) {
-  //       const cInherit = components.find(
-  //         (ci) => ci != null && ci.name === c.inheritsFrom,
-  //       );
-  //       if (cInherit != null) {
-  //         c.mergeProperties(cInherit.properties);
-  //       }
-  //     }
-  //   });
+  const components = ParseComponents(muiSrc);
 
   // Write component files
-  components.forEach((component) => {
-    if (component == null) {
-      return;
-    }
-    Console.info(
-      `Rendering ${Console.colors.yellow}${component.name}${Console.colors.reset}`,
-    );
-    const rendered = component.render();
+  components.forEach(({ name, src }) => {
     Fs.writeFileSync(
-      Path.join(outputDirectory, 'reason', `MaterialUi_${component.name}.re`),
-      rendered,
+      Path.join(outputDirectory, 'reason', muiSrc, `MaterialUi_${name}.re`),
+      src,
     );
   });
 
@@ -146,31 +30,31 @@ const parseInit = () => {
   itemsFiltered.forEach((item) => {
     Fs.copyFileSync(
       Path.join(__dirname, 'fixed-modules', item),
-      Path.join(outputDirectory, 'reason', item),
+      Path.join(outputDirectory, 'reason', muiSrc, item),
     );
   });
 
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', 'MaterialUi_Theme.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_Theme.re'),
     RenderTheme.theme,
   );
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', 'MaterialUi_ThemeOptions.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_ThemeOptions.re'),
     RenderTheme.themeOptions,
   );
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', 'MaterialUi_Colors.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_Colors.re'),
     RenderColors.colorModule,
   );
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', 'MaterialUi_ThemeOptions.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_ThemeOptions.re'),
     RenderTheme.themeOptions,
   );
 
   // Write global file
   // ${itemsFiltered.map(item => `module ${item.replace('MaterialUi_', '').replace('.re', '')} = ${item.replace('.re', '')};`).join('\n')}
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', 'MaterialUi.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi.re'),
     `
         ${components
           .map((component) =>
@@ -194,7 +78,12 @@ const parseInit = () => {
   );
 
   // Append create theme function
-  const themePath = Path.join(outputDirectory, 'reason', 'MaterialUi_Theme.re');
+  const themePath = Path.join(
+    outputDirectory,
+    'reason',
+    muiSrc,
+    'MaterialUi_Theme.re',
+  );
   const themeContents = Fs.readFileSync(themePath);
   Fs.writeFileSync(
     themePath,
@@ -208,15 +97,5 @@ const parseInit = () => {
   // Todo: Generate .rei files
 };
 
-if (Fs.existsSync(Path.join(outputDirectory, 'reason'))) {
-  rimraf.sync(Path.join(outputDirectory, 'reason'));
-}
-const requiredFolders = ['reason'];
-requiredFolders.forEach((folder) => {
-  const path = Path.join(outputDirectory, folder);
-  if (!Fs.existsSync(path)) {
-    Fs.mkdirSync(path);
-  }
-});
-
+PrepareOutput(muiSrc);
 parseInit();

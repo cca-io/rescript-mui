@@ -372,4 +372,16 @@ export default {
       description: '-',
     },
   },
+
+  // --------------------- Lab
+
+  Rating: {
+    name: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: '-',
+    },
+  },
 };

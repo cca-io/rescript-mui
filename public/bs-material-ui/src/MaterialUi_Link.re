@@ -98,7 +98,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rqn7=?,
+    ~component: 'union_rn0t=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~_TypographyClasses: Js.t({..})=?,

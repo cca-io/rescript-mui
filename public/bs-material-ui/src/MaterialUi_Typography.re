@@ -160,7 +160,7 @@ external makePropsMui:
     ~children: 'children=?,
     ~className: string=?,
     ~color: string=?,
-    ~component: 'union_rl4i=?,
+    ~component: 'union_r41k=?,
     ~display: string=?,
     ~gutterBottom: bool=?,
     ~noWrap: bool=?,

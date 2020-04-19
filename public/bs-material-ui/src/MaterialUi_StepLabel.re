@@ -59,7 +59,7 @@ external makePropsMui:
     ~error: bool=?,
     ~icon: React.element=?,
     ~optional: React.element=?,
-    ~_StepIconComponent: 'union_rtap=?,
+    ~_StepIconComponent: 'union_rn44=?,
     ~_StepIconProps: Js.t({..})=?,
     ~id: string=?,
     ~key: string=?,

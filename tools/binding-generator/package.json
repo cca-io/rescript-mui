@@ -12,11 +12,12 @@
   "dependencies": {
     "@jsiebern/json-schema-parser": "^0.0.11",
     "@jsiebern/mui-component-extractor": "1.0.0",
-    "@material-ui/core": "^4.0.2",
+    "@material-ui/core": "^4.9.11",
     "bs-platform": "7.3.1",
     "lodash": "~4.17.11",
     "react-dom": "^16.8.6",
-    "reason": "^3.3.4"
+    "reason": "^3.3.4",
+    "yargs": "^15.3.1"
   },
   "devDependencies": {
     "@types/doctrine": "^0.0.3",
@@ -25,6 +26,7 @@
     "@types/node": "~12.0.4",
     "@types/object-hash": "^1.2.0",
     "@types/rimraf": "^2.0.2",
+    "@types/yargs": "^15.0.4",
     "doctrine": "^3.0.0",
     "fs": "^0.0.1-security",
     "next": "~8.1.0",

@@ -9,6 +9,11 @@
       "required": false,
       "description": ""
     },
+    "style": {
+      "type": { "name": "object" },
+      "required": false,
+      "description": ""
+    },
     "clone": {
       "type": { "name": "bool" },
       "required": false,

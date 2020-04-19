@@ -22,9 +22,9 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~disableReactTree: bool=?,
-    ~mouseEvent: 'any_rsvr=?,
+    ~mouseEvent: 'any_rq5x=?,
     ~onClickAway: ReactEvent.Mouse.t => unit,
-    ~touchEvent: 'any_rvel=?,
+    ~touchEvent: 'any_rq7s=?,
     ~id: string=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?,

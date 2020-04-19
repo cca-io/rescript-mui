@@ -56,7 +56,7 @@ external makePropsMui:
   (
     ~children: 'children=?,
     ~className: string=?,
-    ~component: 'union_r9zq=?,
+    ~component: 'union_r0dq=?,
     ~disabled: bool=?,
     ~error: bool=?,
     ~filled: bool=?,

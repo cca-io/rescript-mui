@@ -1,10 +1,11 @@
 {
-	"private": true,
-	"workspaces": [
-		"public/bs-material-ui",
-		"public/bs-material-ui-ppx",
-		"tools/json-schema-parser",
-		"tools/component-extractor",
-		"tools/binding-generator"
-	]
+  "private": true,
+  "workspaces": [
+    "public/bs-material-ui",
+    "public/bs-material-ui-lab",
+    "public/bs-material-ui-ppx",
+    "tools/json-schema-parser",
+    "tools/component-extractor",
+    "tools/binding-generator"
+  ]
 }
