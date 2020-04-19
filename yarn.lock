@@ -2156,6 +2156,17 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
 
+"@material-ui/lab@^4.0.0-alpha.50":
+  version "4.0.0-alpha.50"
+  resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.50.tgz#a2d6c6c1b6cb53c64b5e4f2ae1e604ce7ecc633a"
+  integrity sha512-32ICWUeXmbwYfgDoaV7M9t8I7+3VkVdxM1/7+oxQIRQ9KRlXNZ5Qept46ofyMOKRwx6SwXCYKwO7yynLsnoL4Q==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    "@material-ui/utils" "^4.9.6"
+    clsx "^1.0.4"
+    prop-types "^15.7.2"
+    react-is "^16.8.0"
+
 "@material-ui/react-transition-group@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@material-ui/react-transition-group/-/react-transition-group-4.2.0.tgz#afec833bbcc79f05a9b4d4828b3e07965cc7e321"
@@ -7374,7 +7385,7 @@ parallel-transform@^1.1.0:
     inherits "^2.0.3"
     readable-stream "^2.1.5"
 
-parcel-bundler@^1.10.3:
+parcel-bundler@^1.10.3, parcel-bundler@^1.12.4:
   version "1.12.4"
   resolved "https://registry.yarnpkg.com/parcel-bundler/-/parcel-bundler-1.12.4.tgz#31223f4ab4d00323a109fce28d5e46775409a9ee"
   integrity sha512-G+iZGGiPEXcRzw0fiRxWYCKxdt/F7l9a0xkiU4XbcVRJCSlBnioWEwJMutOCCpoQmaQtjB4RBHDGIHN85AIhLQ==

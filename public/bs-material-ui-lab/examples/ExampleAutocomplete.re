@@ -112,13 +112,18 @@ let top100Films = [|
 let make = () => {
   <MaterialUi_Lab.Autocomplete
     id="combo-box-demo"
-    options=top100Films
-    getOptionLabel={option => option.title}
+    options={top100Films->Belt.Array.map(v => v->MaterialUi.Any)}
+    getOptionLabel={Any(option => option.title)}
     fullWidth=true
     renderInput={params =>
-      React.createElement(
-        MaterialUi.TextField.make,
-        Js.Obj.assign(params, {"label": "Combo box", "variant": "outlined"}),
+      Any(
+        React.createElement(
+          MaterialUi.TextField.make,
+          Js.Obj.assign(
+            params->Obj.magic,
+            {"label": "Combo box", "variant": "outlined"},
+          ),
+        ),
       )
     }
   />;

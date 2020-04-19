@@ -1,6 +1,6 @@
 {
   "name": "@jsiebern/bs-material-ui-lab",
-  "version": "1.0.0",
+  "version": "1.3.0-zero.1",
   "description": "This library provides Reason bindings for material-ui-lab.",
   "keywords": [
     "bucklescript",
@@ -31,10 +31,11 @@
   "devDependencies": {
     "@material-ui/core": "^4.9.11",
     "@material-ui/lab": "^4.0.0-alpha.50",
+    "bs-platform": "7.3.1",
     "parcel-bundler": "^1.12.4",
     "reason-react": "^0.7.0"
   },
   "dependencies": {
-    "@jsiebern/bs-material-ui": "*"
+    "@jsiebern/bs-material-ui": "1.3.0-zero.1"
   }
 }

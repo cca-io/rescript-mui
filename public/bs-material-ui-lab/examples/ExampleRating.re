@@ -6,38 +6,44 @@ let make = () => {
     MaterialUi_Lab.(
       <div>
         <Box
-          component={`String("fieldset")}
-          mb={3->Obj.magic}
-          borderColor="transparent">
-          <Typography component={`String("legend")}>
+          component={Box.Component.string("fieldset")}
+          mb={Box.Value.int(3)}
+          borderColor={Box.Value.string("transparent")}>
+          <Typography component={Typography.Component.string("legend")}>
             "Controlled"
           </Typography>
           <Rating
             name="simple-controlled"
-            value={`Int(value)}
+            value={Number.int(value)}
             onChange={(event, newValue) => {setValue(newValue)}}
           />
         </Box>
         <Box
-          component={`String("fieldset")}
-          mb={3->Obj.magic}
-          borderColor="transparent">
-          <Typography component={`String("legend")}> "Read only" </Typography>
-          <Rating name="read-only" value={`Int(value)} readOnly=true />
+          component={Box.Component.string("fieldset")}
+          mb={Box.Value.int(3)}
+          borderColor={Box.Value.string("transparent")}>
+          <Typography component={Typography.Component.string("legend")}>
+            "Read only"
+          </Typography>
+          <Rating name="read-only" value={Number.int(value)} readOnly=true />
         </Box>
         <Box
-          component={`String("fieldset")}
-          mb={3->Obj.magic}
-          borderColor="transparent">
-          <Typography component={`String("legend")}> "Disabled" </Typography>
-          <Rating name="disabled" value={`Int(value)} disabled=true />
+          component={Box.Component.string("fieldset")}
+          mb={Box.Value.int(3)}
+          borderColor={Box.Value.string("transparent")}>
+          <Typography component={Typography.Component.string("legend")}>
+            "Disabled"
+          </Typography>
+          <Rating name="disabled" value={Number.int(value)} disabled=true />
         </Box>
         <Box
-          component={`String("fieldset")}
-          mb={3->Obj.magic}
-          borderColor="transparent">
-          <Typography component={`String("legend")}> "Pristine" </Typography>
-          <Rating name="pristine" value={`Int(0)} />
+          component={Box.Component.string("fieldset")}
+          mb={Box.Value.int(3)}
+          borderColor={Box.Value.string("transparent")}>
+          <Typography component={Typography.Component.string("legend")}>
+            "Pristine"
+          </Typography>
+          <Rating name="pristine" value={Number.int(0)} />
         </Box>
       </div>
     )

@@ -2,10 +2,10 @@
 let make = () => {
   MaterialUi_Lab.(
     <div>
-      <Pagination count={`Int(10)} />
-      <Pagination count={`Int(10)} color=`Primary />
-      <Pagination count={`Int(10)} color=`Secondary />
-      <Pagination count={`Int(10)} disabled=true />
+      <Pagination count={MaterialUi.Number.int(10)} />
+      <Pagination count={MaterialUi.Number.int(10)} color=`Primary />
+      <Pagination count={MaterialUi.Number.int(10)} color=`Secondary />
+      <Pagination count={MaterialUi.Number.int(10)} disabled=true />
     </div>
   );
 };

@@ -3,8 +3,16 @@ let make = () => {
   MaterialUi_Lab.(
     <div>
       <Skeleton variant=`Text />
-      <Skeleton variant=`Circle width={`Int(40)} height={`Int(40)} />
-      <Skeleton variant=`Rect width={`Int(210)} height={`Int(118)} />
+      <Skeleton
+        variant=`Circle
+        width={Skeleton.Width.int(40)}
+        height={Skeleton.Height.int(40)}
+      />
+      <Skeleton
+        variant=`Rect
+        width={Skeleton.Width.int(210)}
+        height={Skeleton.Height.int(118)}
+      />
     </div>
   );
 };
