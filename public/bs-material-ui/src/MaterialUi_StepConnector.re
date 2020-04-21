@@ -1,28 +1,33 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    horizontal: string,
-    [@bs.optional]
-    vertical: string,
-    [@bs.optional]
-    alternativeLabel: string,
-    [@bs.optional]
-    active: string,
-    [@bs.optional]
-    completed: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    line: string,
-    [@bs.optional]
-    lineHorizontal: string,
-    [@bs.optional]
-    lineVertical: string,
+    .
+    "root": option(option(string)),
+    "horizontal": option(option(string)),
+    "vertical": option(option(string)),
+    "alternativeLabel": option(option(string)),
+    "active": option(option(string)),
+    "completed": option(option(string)),
+    "disabled": option(option(string)),
+    "line": option(option(string)),
+    "lineHorizontal": option(option(string)),
+    "lineVertical": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~horizontal: string=?,
+      ~vertical: string=?,
+      ~alternativeLabel: string=?,
+      ~active: string=?,
+      ~completed: string=?,
+      ~disabled: string=?,
+      ~line: string=?,
+      ~lineHorizontal: string=?,
+      ~lineVertical: string=?,
+      unit
+    ) =>
+    t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

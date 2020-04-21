@@ -26,20 +26,29 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+type _type = [ | `Submit | `Reset | `Button];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    horizontal: string,
-    [@bs.optional]
-    vertical: string,
-    [@bs.optional]
-    touchRipple: string,
+    .
+    "root": option(option(string)),
+    "horizontal": option(option(string)),
+    "vertical": option(option(string)),
+    "touchRipple": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~horizontal: string=?,
+      ~vertical: string=?,
+      ~touchRipple: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type orientation = [ | `Horizontal | `Vertical];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

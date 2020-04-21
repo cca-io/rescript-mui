@@ -12,17 +12,18 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
+type variant = [ | `Elevation | `Outlined];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    message: string,
-    [@bs.optional]
-    action: string,
+    .
+    "root": option(option(string)),
+    "message": option(option(string)),
+    "action": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (~root: string=?, ~message: string=?, ~action: string=?, unit) => t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

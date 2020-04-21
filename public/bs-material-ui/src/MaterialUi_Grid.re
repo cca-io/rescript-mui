@@ -1,102 +1,124 @@
+type alignContent = [
+  | `Stretch
+  | `Center
+  | `Flex_Start
+  | `Flex_End
+  | `Space_Between
+  | `Space_Around
+];
+
+type alignItems = [
+  | `Flex_Start
+  | `Center
+  | `Flex_End
+  | `Stretch
+  | `Baseline
+];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    container: string,
-    [@bs.optional]
-    item: string,
-    [@bs.optional]
-    zeroMinWidth: string,
-    [@bs.optional]
-    direction_xs_column: string,
-    [@bs.optional]
-    direction_xs_column_reverse: string,
-    [@bs.optional]
-    direction_xs_row_reverse: string,
-    [@bs.optional]
-    wrap_xs_nowrap: string,
-    [@bs.optional]
-    wrap_xs_wrap_reverse: string,
-    [@bs.optional]
-    align_items_xs_center: string,
-    [@bs.optional]
-    align_items_xs_flex_start: string,
-    [@bs.optional]
-    align_items_xs_flex_end: string,
-    [@bs.optional]
-    align_items_xs_baseline: string,
-    [@bs.optional]
-    align_content_xs_center: string,
-    [@bs.optional]
-    align_content_xs_flex_start: string,
-    [@bs.optional]
-    align_content_xs_flex_end: string,
-    [@bs.optional]
-    align_content_xs_space_between: string,
-    [@bs.optional]
-    align_content_xs_space_around: string,
-    [@bs.optional]
-    justify_xs_center: string,
-    [@bs.optional]
-    justify_xs_flex_end: string,
-    [@bs.optional]
-    justify_xs_space_between: string,
-    [@bs.optional]
-    justify_xs_space_around: string,
-    [@bs.optional]
-    justify_xs_space_evenly: string,
-    [@bs.optional]
-    spacing_xs_1: string,
-    [@bs.optional]
-    spacing_xs_2: string,
-    [@bs.optional]
-    spacing_xs_3: string,
-    [@bs.optional]
-    spacing_xs_4: string,
-    [@bs.optional]
-    spacing_xs_5: string,
-    [@bs.optional]
-    spacing_xs_6: string,
-    [@bs.optional]
-    spacing_xs_7: string,
-    [@bs.optional]
-    spacing_xs_8: string,
-    [@bs.optional]
-    spacing_xs_9: string,
-    [@bs.optional]
-    spacing_xs_10: string,
-    [@bs.optional]
-    grid_xs_auto: string,
-    [@bs.optional]
-    grid_xs_true: string,
-    [@bs.optional]
-    grid_xs_1: string,
-    [@bs.optional]
-    grid_xs_2: string,
-    [@bs.optional]
-    grid_xs_3: string,
-    [@bs.optional]
-    grid_xs_4: string,
-    [@bs.optional]
-    grid_xs_5: string,
-    [@bs.optional]
-    grid_xs_6: string,
-    [@bs.optional]
-    grid_xs_7: string,
-    [@bs.optional]
-    grid_xs_8: string,
-    [@bs.optional]
-    grid_xs_9: string,
-    [@bs.optional]
-    grid_xs_10: string,
-    [@bs.optional]
-    grid_xs_11: string,
-    [@bs.optional]
-    grid_xs_12: string,
+    .
+    "root": option(option(string)),
+    "container": option(option(string)),
+    "item": option(option(string)),
+    "zeroMinWidth": option(option(string)),
+    "direction_xs_column": option(option(string)),
+    "direction_xs_column_reverse": option(option(string)),
+    "direction_xs_row_reverse": option(option(string)),
+    "wrap_xs_nowrap": option(option(string)),
+    "wrap_xs_wrap_reverse": option(option(string)),
+    "align_items_xs_center": option(option(string)),
+    "align_items_xs_flex_start": option(option(string)),
+    "align_items_xs_flex_end": option(option(string)),
+    "align_items_xs_baseline": option(option(string)),
+    "align_content_xs_center": option(option(string)),
+    "align_content_xs_flex_start": option(option(string)),
+    "align_content_xs_flex_end": option(option(string)),
+    "align_content_xs_space_between": option(option(string)),
+    "align_content_xs_space_around": option(option(string)),
+    "justify_xs_center": option(option(string)),
+    "justify_xs_flex_end": option(option(string)),
+    "justify_xs_space_between": option(option(string)),
+    "justify_xs_space_around": option(option(string)),
+    "justify_xs_space_evenly": option(option(string)),
+    "spacing_xs_1": option(option(string)),
+    "spacing_xs_2": option(option(string)),
+    "spacing_xs_3": option(option(string)),
+    "spacing_xs_4": option(option(string)),
+    "spacing_xs_5": option(option(string)),
+    "spacing_xs_6": option(option(string)),
+    "spacing_xs_7": option(option(string)),
+    "spacing_xs_8": option(option(string)),
+    "spacing_xs_9": option(option(string)),
+    "spacing_xs_10": option(option(string)),
+    "grid_xs_auto": option(option(string)),
+    "grid_xs_true": option(option(string)),
+    "grid_xs_1": option(option(string)),
+    "grid_xs_2": option(option(string)),
+    "grid_xs_3": option(option(string)),
+    "grid_xs_4": option(option(string)),
+    "grid_xs_5": option(option(string)),
+    "grid_xs_6": option(option(string)),
+    "grid_xs_7": option(option(string)),
+    "grid_xs_8": option(option(string)),
+    "grid_xs_9": option(option(string)),
+    "grid_xs_10": option(option(string)),
+    "grid_xs_11": option(option(string)),
+    "grid_xs_12": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~container: string=?,
+      ~item: string=?,
+      ~zeroMinWidth: string=?,
+      ~direction_xs_column: string=?,
+      ~direction_xs_column_reverse: string=?,
+      ~direction_xs_row_reverse: string=?,
+      ~wrap_xs_nowrap: string=?,
+      ~wrap_xs_wrap_reverse: string=?,
+      ~align_items_xs_center: string=?,
+      ~align_items_xs_flex_start: string=?,
+      ~align_items_xs_flex_end: string=?,
+      ~align_items_xs_baseline: string=?,
+      ~align_content_xs_center: string=?,
+      ~align_content_xs_flex_start: string=?,
+      ~align_content_xs_flex_end: string=?,
+      ~align_content_xs_space_between: string=?,
+      ~align_content_xs_space_around: string=?,
+      ~justify_xs_center: string=?,
+      ~justify_xs_flex_end: string=?,
+      ~justify_xs_space_between: string=?,
+      ~justify_xs_space_around: string=?,
+      ~justify_xs_space_evenly: string=?,
+      ~spacing_xs_1: string=?,
+      ~spacing_xs_2: string=?,
+      ~spacing_xs_3: string=?,
+      ~spacing_xs_4: string=?,
+      ~spacing_xs_5: string=?,
+      ~spacing_xs_6: string=?,
+      ~spacing_xs_7: string=?,
+      ~spacing_xs_8: string=?,
+      ~spacing_xs_9: string=?,
+      ~spacing_xs_10: string=?,
+      ~grid_xs_auto: string=?,
+      ~grid_xs_true: string=?,
+      ~grid_xs_1: string=?,
+      ~grid_xs_2: string=?,
+      ~grid_xs_3: string=?,
+      ~grid_xs_4: string=?,
+      ~grid_xs_5: string=?,
+      ~grid_xs_6: string=?,
+      ~grid_xs_7: string=?,
+      ~grid_xs_8: string=?,
+      ~grid_xs_9: string=?,
+      ~grid_xs_10: string=?,
+      ~grid_xs_11: string=?,
+      ~grid_xs_12: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -112,6 +134,17 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type direction = [ | `Row | `Row_Reverse | `Column | `Column_Reverse];
+
+type justify = [
+  | `Flex_Start
+  | `Center
+  | `Flex_End
+  | `Space_Between
+  | `Space_Around
+  | `Space_Evenly
+];
 
 module Lg: {
   type t;
@@ -229,6 +262,22 @@ module Sm: {
   let _11 = Any(11);
   let _12 = Any(12);
 };
+
+type spacing = [
+  | `V0
+  | `V1
+  | `V2
+  | `V3
+  | `V4
+  | `V5
+  | `V6
+  | `V7
+  | `V8
+  | `V9
+  | `V10
+];
+
+type wrap = [ | `Nowrap | `Wrap | `Wrap_Reverse];
 
 module Xl: {
   type t;

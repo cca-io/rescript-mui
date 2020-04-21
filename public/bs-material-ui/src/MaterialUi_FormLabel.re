@@ -1,25 +1,32 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    focused: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    error: string,
-    [@bs.optional]
-    filled: string,
-    [@bs.optional]
-    required: string,
-    [@bs.optional]
-    asterisk: string,
+    .
+    "root": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "focused": option(option(string)),
+    "disabled": option(option(string)),
+    "error": option(option(string)),
+    "filled": option(option(string)),
+    "required": option(option(string)),
+    "asterisk": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~colorSecondary: string=?,
+      ~focused: string=?,
+      ~disabled: string=?,
+      ~error: string=?,
+      ~filled: string=?,
+      ~required: string=?,
+      ~asterisk: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Primary | `Secondary];
 
 module Component: {
   type t;

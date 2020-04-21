@@ -1,24 +1,29 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    error: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    marginDense: string,
-    [@bs.optional]
-    contained: string,
-    [@bs.optional]
-    focused: string,
-    [@bs.optional]
-    filled: string,
-    [@bs.optional]
-    required: string,
+    .
+    "root": option(option(string)),
+    "error": option(option(string)),
+    "disabled": option(option(string)),
+    "marginDense": option(option(string)),
+    "contained": option(option(string)),
+    "focused": option(option(string)),
+    "filled": option(option(string)),
+    "required": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~error: string=?,
+      ~disabled: string=?,
+      ~marginDense: string=?,
+      ~contained: string=?,
+      ~focused: string=?,
+      ~filled: string=?,
+      ~required: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -34,6 +39,10 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type margin = [ | `Dense];
+
+type variant = [ | `Standard | `Outlined | `Filled];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

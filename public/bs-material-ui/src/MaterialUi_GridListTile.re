@@ -1,16 +1,21 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    tile: string,
-    [@bs.optional]
-    imgFullHeight: string,
-    [@bs.optional]
-    imgFullWidth: string,
+    .
+    "root": option(option(string)),
+    "tile": option(option(string)),
+    "imgFullHeight": option(option(string)),
+    "imgFullWidth": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~tile: string=?,
+      ~imgFullHeight: string=?,
+      ~imgFullWidth: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {

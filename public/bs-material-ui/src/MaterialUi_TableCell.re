@@ -1,32 +1,39 @@
+type align = [ | `Center | `Inherit | `Justify | `Left | `Right];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    head: string,
-    [@bs.optional]
-    body: string,
-    [@bs.optional]
-    footer: string,
-    [@bs.optional]
-    sizeSmall: string,
-    [@bs.optional]
-    paddingCheckbox: string,
-    [@bs.optional]
-    paddingNone: string,
-    [@bs.optional]
-    alignLeft: string,
-    [@bs.optional]
-    alignCenter: string,
-    [@bs.optional]
-    alignRight: string,
-    [@bs.optional]
-    alignJustify: string,
-    [@bs.optional]
-    stickyHeader: string,
+    .
+    "root": option(option(string)),
+    "head": option(option(string)),
+    "body": option(option(string)),
+    "footer": option(option(string)),
+    "sizeSmall": option(option(string)),
+    "paddingCheckbox": option(option(string)),
+    "paddingNone": option(option(string)),
+    "alignLeft": option(option(string)),
+    "alignCenter": option(option(string)),
+    "alignRight": option(option(string)),
+    "alignJustify": option(option(string)),
+    "stickyHeader": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~head: string=?,
+      ~body: string=?,
+      ~footer: string=?,
+      ~sizeSmall: string=?,
+      ~paddingCheckbox: string=?,
+      ~paddingNone: string=?,
+      ~alignLeft: string=?,
+      ~alignCenter: string=?,
+      ~alignRight: string=?,
+      ~alignJustify: string=?,
+      ~stickyHeader: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -43,6 +50,10 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
+type padding = [ | `Checkbox | `Default | `None];
+
+type size = [ | `Medium | `Small];
+
 module SortDirection: {
   type t;
   let asc: t;
@@ -57,6 +68,8 @@ module SortDirection: {
   let desc = Any("desc");
   let _false = Any(false);
 };
+
+type variant = [ | `Body | `Footer | `Head];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

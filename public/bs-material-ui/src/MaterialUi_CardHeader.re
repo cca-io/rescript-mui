@@ -1,20 +1,25 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    avatar: string,
-    [@bs.optional]
-    action: string,
-    [@bs.optional]
-    content: string,
-    [@bs.optional]
-    title: string,
-    [@bs.optional]
-    subheader: string,
+    .
+    "root": option(option(string)),
+    "avatar": option(option(string)),
+    "action": option(option(string)),
+    "content": option(option(string)),
+    "title": option(option(string)),
+    "subheader": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~avatar: string=?,
+      ~action: string=?,
+      ~content: string=?,
+      ~title: string=?,
+      ~subheader: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {

@@ -1,21 +1,40 @@
+type align = [ | `Inherit | `Left | `Center | `Right | `Justify];
+
+type display = [ | `Initial | `Block | `Inline];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    underlineNone: string,
-    [@bs.optional]
-    underlineHover: string,
-    [@bs.optional]
-    underlineAlways: string,
-    [@bs.optional]
-    button: string,
-    [@bs.optional]
-    focusVisible: string,
+    .
+    "root": option(option(string)),
+    "underlineNone": option(option(string)),
+    "underlineHover": option(option(string)),
+    "underlineAlways": option(option(string)),
+    "button": option(option(string)),
+    "focusVisible": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~underlineNone: string=?,
+      ~underlineHover: string=?,
+      ~underlineAlways: string=?,
+      ~button: string=?,
+      ~focusVisible: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [
+  | `Initial
+  | `Inherit
+  | `Primary
+  | `Secondary
+  | `TextPrimary
+  | `TextSecondary
+  | `Error
+];
 
 module Component: {
   type t;
@@ -30,6 +49,24 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type underline = [ | `None | `Hover | `Always];
+
+type rel = [
+  | `Alternate
+  | `Author
+  | `Bookmark
+  | `External
+  | `Help
+  | `License
+  | `Next
+  | `Nofollow
+  | `Noreferrer
+  | `Noopener
+  | `Prev
+  | `Search
+  | `Tag
+];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

@@ -1,20 +1,25 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    icon: string,
-    [@bs.optional]
-    iconOpen: string,
-    [@bs.optional]
-    iconWithOpenIconOpen: string,
-    [@bs.optional]
-    openIcon: string,
-    [@bs.optional]
-    openIconOpen: string,
+    .
+    "root": option(option(string)),
+    "icon": option(option(string)),
+    "iconOpen": option(option(string)),
+    "iconWithOpenIconOpen": option(option(string)),
+    "openIcon": option(option(string)),
+    "openIconOpen": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~icon: string=?,
+      ~iconOpen: string=?,
+      ~iconWithOpenIconOpen: string=?,
+      ~openIcon: string=?,
+      ~openIconOpen: string=?,
+      unit
+    ) =>
+    t;
 };
 
 [@react.component] [@bs.module "@material-ui/lab"]

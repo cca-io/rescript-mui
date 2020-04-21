@@ -1,10 +1,6 @@
 module Classes = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional] [@bs.as "_global"]
-    __global: string,
-  };
-  let make = t;
+  type t = {. "_global": option(option(string))};
+  [@bs.obj] external make: (~__global: string=?, unit) => t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

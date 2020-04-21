@@ -106,11 +106,21 @@ const factory = (propertyType: PropType$Enum) => {
           this._reasonType = `${this._moduleName}.t`;
           break;
         case 'string':
+          this._module = `
+            type ${this._property.safeName} = [${enumValuesReason
+            .map((name, i) => `\`${name}`)
+            .join(' | ')}];
+          `;
           this._reasonType = `[@bs.string] [${enumValuesReason
             .map((name, i) => `[@bs.as "${this._enumValues[i]}"] \`${name}`)
             .join(' | ')}]`;
           break;
         case 'numeric':
+          this._module = `
+            type ${this._property.safeName} = [${enumValuesReason
+            .map((name, i) => `\`${name}`)
+            .join(' | ')}];
+          `;
           this._reasonType = `[@bs.int] [${enumValuesReason
             .map((name, i) => `[@bs.as ${this._enumValues[i]}] \`${name}`)
             .join(' | ')}]`;

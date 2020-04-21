@@ -13,39 +13,48 @@ module RowsMin: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    formControl: string,
-    [@bs.optional]
-    focused: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    underline: string,
-    [@bs.optional]
-    error: string,
-    [@bs.optional]
-    marginDense: string,
-    [@bs.optional]
-    multiline: string,
-    [@bs.optional]
-    fullWidth: string,
-    [@bs.optional]
-    input: string,
-    [@bs.optional]
-    inputMarginDense: string,
-    [@bs.optional]
-    inputMultiline: string,
-    [@bs.optional]
-    inputTypeSearch: string,
+    .
+    "root": option(option(string)),
+    "formControl": option(option(string)),
+    "focused": option(option(string)),
+    "disabled": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "underline": option(option(string)),
+    "error": option(option(string)),
+    "marginDense": option(option(string)),
+    "multiline": option(option(string)),
+    "fullWidth": option(option(string)),
+    "input": option(option(string)),
+    "inputMarginDense": option(option(string)),
+    "inputMultiline": option(option(string)),
+    "inputTypeSearch": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~formControl: string=?,
+      ~focused: string=?,
+      ~disabled: string=?,
+      ~colorSecondary: string=?,
+      ~underline: string=?,
+      ~error: string=?,
+      ~marginDense: string=?,
+      ~multiline: string=?,
+      ~fullWidth: string=?,
+      ~input: string=?,
+      ~inputMarginDense: string=?,
+      ~inputMultiline: string=?,
+      ~inputTypeSearch: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Primary | `Secondary];
+
+type margin = [ | `Dense | `None];
 
 module Rows: {
   type t;

@@ -1,12 +1,10 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    avatar: string,
+    .
+    "root": option(option(string)),
+    "avatar": option(option(string)),
   };
-  let make = t;
+  [@bs.obj] external make: (~root: string=?, ~avatar: string=?, unit) => t;
 };
 
 module Spacing_enum: {

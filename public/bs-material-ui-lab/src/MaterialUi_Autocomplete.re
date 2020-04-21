@@ -24,58 +24,63 @@ module BlurOnSelect: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    fullWidth: string,
-    [@bs.optional]
-    focused: string,
-    [@bs.optional]
-    tag: string,
-    [@bs.optional]
-    tagSizeSmall: string,
-    [@bs.optional]
-    hasPopupIcon: string,
-    [@bs.optional]
-    hasClearIcon: string,
-    [@bs.optional]
-    inputRoot: string,
-    [@bs.optional]
-    input: string,
-    [@bs.optional]
-    inputFocused: string,
-    [@bs.optional]
-    endAdornment: string,
-    [@bs.optional]
-    clearIndicator: string,
-    [@bs.optional]
-    clearIndicatorDirty: string,
-    [@bs.optional]
-    popupIndicator: string,
-    [@bs.optional]
-    popupIndicatorOpen: string,
-    [@bs.optional]
-    popper: string,
-    [@bs.optional]
-    popperDisablePortal: string,
-    [@bs.optional]
-    paper: string,
-    [@bs.optional]
-    listbox: string,
-    [@bs.optional]
-    loading: string,
-    [@bs.optional]
-    noOptions: string,
-    [@bs.optional]
-    option: string,
-    [@bs.optional]
-    groupLabel: string,
-    [@bs.optional]
-    groupUl: string,
+    .
+    "root": option(option(string)),
+    "fullWidth": option(option(string)),
+    "focused": option(option(string)),
+    "tag": option(option(string)),
+    "tagSizeSmall": option(option(string)),
+    "hasPopupIcon": option(option(string)),
+    "hasClearIcon": option(option(string)),
+    "inputRoot": option(option(string)),
+    "input": option(option(string)),
+    "inputFocused": option(option(string)),
+    "endAdornment": option(option(string)),
+    "clearIndicator": option(option(string)),
+    "clearIndicatorDirty": option(option(string)),
+    "popupIndicator": option(option(string)),
+    "popupIndicatorOpen": option(option(string)),
+    "popper": option(option(string)),
+    "popperDisablePortal": option(option(string)),
+    "paper": option(option(string)),
+    "listbox": option(option(string)),
+    "loading": option(option(string)),
+    "noOptions": option(option(string)),
+    "option": option(option(string)),
+    "groupLabel": option(option(string)),
+    "groupUl": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~fullWidth: string=?,
+      ~focused: string=?,
+      ~tag: string=?,
+      ~tagSizeSmall: string=?,
+      ~hasPopupIcon: string=?,
+      ~hasClearIcon: string=?,
+      ~inputRoot: string=?,
+      ~input: string=?,
+      ~inputFocused: string=?,
+      ~endAdornment: string=?,
+      ~clearIndicator: string=?,
+      ~clearIndicatorDirty: string=?,
+      ~popupIndicator: string=?,
+      ~popupIndicatorOpen: string=?,
+      ~popper: string=?,
+      ~popperDisablePortal: string=?,
+      ~paper: string=?,
+      ~listbox: string=?,
+      ~loading: string=?,
+      ~noOptions: string=?,
+      ~option: string=?,
+      ~groupLabel: string=?,
+      ~groupUl: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module DefaultValue: {
@@ -154,6 +159,8 @@ module PopperComponent: {
   let popperComponent_func = (v: MaterialUi_Types.any) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type size = [ | `Medium | `Small];
 
 module Value: {
   type t;

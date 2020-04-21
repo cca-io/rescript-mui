@@ -1,33 +1,40 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    docked: string,
-    [@bs.optional]
-    paper: string,
-    [@bs.optional]
-    paperAnchorLeft: string,
-    [@bs.optional]
-    paperAnchorRight: string,
-    [@bs.optional]
-    paperAnchorTop: string,
-    [@bs.optional]
-    paperAnchorBottom: string,
-    [@bs.optional]
-    paperAnchorDockedLeft: string,
-    [@bs.optional]
-    paperAnchorDockedTop: string,
-    [@bs.optional]
-    paperAnchorDockedRight: string,
-    [@bs.optional]
-    paperAnchorDockedBottom: string,
-    [@bs.optional]
-    modal: string,
+    .
+    "root": option(option(string)),
+    "docked": option(option(string)),
+    "paper": option(option(string)),
+    "paperAnchorLeft": option(option(string)),
+    "paperAnchorRight": option(option(string)),
+    "paperAnchorTop": option(option(string)),
+    "paperAnchorBottom": option(option(string)),
+    "paperAnchorDockedLeft": option(option(string)),
+    "paperAnchorDockedTop": option(option(string)),
+    "paperAnchorDockedRight": option(option(string)),
+    "paperAnchorDockedBottom": option(option(string)),
+    "modal": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~docked: string=?,
+      ~paper: string=?,
+      ~paperAnchorLeft: string=?,
+      ~paperAnchorRight: string=?,
+      ~paperAnchorTop: string=?,
+      ~paperAnchorBottom: string=?,
+      ~paperAnchorDockedLeft: string=?,
+      ~paperAnchorDockedTop: string=?,
+      ~paperAnchorDockedRight: string=?,
+      ~paperAnchorDockedBottom: string=?,
+      ~modal: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type anchor = [ | `Left | `Top | `Right | `Bottom];
 
 module Component: {
   type t;
@@ -44,43 +51,45 @@ module Component: {
 };
 
 module BackdropProps = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional]
-    component: Component.t,
-  };
-  let make = t;
+  type t = {. "component": option(option(Component.t))};
+  [@bs.obj] external make: (~component: Component.t=?, unit) => t;
 };
 
 module ModalProps = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional] [@bs.as "BackdropProps"]
-    _BackdropProps: BackdropProps.t,
-  };
-  let make = t;
+  type t = {. "BackdropProps": option(option(BackdropProps.t))};
+  [@bs.obj] external make: (~_BackdropProps: BackdropProps.t=?, unit) => t;
 };
 
 module PaperProps = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    component: Component.t,
-    [@bs.optional]
-    style: Js.Dict.t(MaterialUi_Types.any),
+    .
+    "component": option(option(Component.t)),
+    "style": option(option(Js.Dict.t(MaterialUi_Types.any))),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~component: Component.t=?,
+      ~style: Js.Dict.t(MaterialUi_Types.any)=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionDuration_shape = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    enter: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    exit: MaterialUi_Types.Number.t,
+    .
+    "enter": option(option(MaterialUi_Types.Number.t)),
+    "exit": option(option(MaterialUi_Types.Number.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~enter: MaterialUi_Types.Number.t=?,
+      ~exit: MaterialUi_Types.Number.t=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionDuration: {
@@ -96,6 +105,8 @@ module TransitionDuration: {
   let float = (v: float) => Any(v);
   let shape = (v: TransitionDuration_shape.t) => Any(v);
 };
+
+type variant = [ | `Permanent | `Persistent | `Temporary];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

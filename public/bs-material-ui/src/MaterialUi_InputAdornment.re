@@ -1,22 +1,27 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    filled: string,
-    [@bs.optional]
-    positionStart: string,
-    [@bs.optional]
-    positionEnd: string,
-    [@bs.optional]
-    disablePointerEvents: string,
-    [@bs.optional]
-    hiddenLabel: string,
-    [@bs.optional]
-    marginDense: string,
+    .
+    "root": option(option(string)),
+    "filled": option(option(string)),
+    "positionStart": option(option(string)),
+    "positionEnd": option(option(string)),
+    "disablePointerEvents": option(option(string)),
+    "hiddenLabel": option(option(string)),
+    "marginDense": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~filled: string=?,
+      ~positionStart: string=?,
+      ~positionEnd: string=?,
+      ~disablePointerEvents: string=?,
+      ~hiddenLabel: string=?,
+      ~marginDense: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -32,6 +37,10 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type position = [ | `Start | `End];
+
+type variant = [ | `Standard | `Outlined | `Filled];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

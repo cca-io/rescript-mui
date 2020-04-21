@@ -1,3 +1,5 @@
+type alignItems = [ | `Flex_Start | `Center];
+
 module ContainerComponent: {
   type t;
   let string: string => t;
@@ -13,18 +15,23 @@ module ContainerComponent: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    gutters: string,
-    [@bs.optional]
-    selected: string,
-    [@bs.optional]
-    dense: string,
+    .
+    "root": option(option(string)),
+    "gutters": option(option(string)),
+    "selected": option(option(string)),
+    "dense": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~gutters: string=?,
+      ~selected: string=?,
+      ~dense: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {

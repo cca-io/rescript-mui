@@ -1,16 +1,21 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    padding: string,
-    [@bs.optional]
-    dense: string,
-    [@bs.optional]
-    subheader: string,
+    .
+    "root": option(option(string)),
+    "padding": option(option(string)),
+    "dense": option(option(string)),
+    "subheader": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~padding: string=?,
+      ~dense: string=?,
+      ~subheader: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -26,6 +31,8 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type variant = [ | `Menu | `SelectedMenu];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

@@ -13,41 +13,48 @@ module RowsMin: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    focused: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    adornedStart: string,
-    [@bs.optional]
-    adornedEnd: string,
-    [@bs.optional]
-    error: string,
-    [@bs.optional]
-    marginDense: string,
-    [@bs.optional]
-    multiline: string,
-    [@bs.optional]
-    notchedOutline: string,
-    [@bs.optional]
-    input: string,
-    [@bs.optional]
-    inputMarginDense: string,
-    [@bs.optional]
-    inputMultiline: string,
-    [@bs.optional]
-    inputAdornedStart: string,
-    [@bs.optional]
-    inputAdornedEnd: string,
+    .
+    "root": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "focused": option(option(string)),
+    "disabled": option(option(string)),
+    "adornedStart": option(option(string)),
+    "adornedEnd": option(option(string)),
+    "error": option(option(string)),
+    "marginDense": option(option(string)),
+    "multiline": option(option(string)),
+    "notchedOutline": option(option(string)),
+    "input": option(option(string)),
+    "inputMarginDense": option(option(string)),
+    "inputMultiline": option(option(string)),
+    "inputAdornedStart": option(option(string)),
+    "inputAdornedEnd": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~colorSecondary: string=?,
+      ~focused: string=?,
+      ~disabled: string=?,
+      ~adornedStart: string=?,
+      ~adornedEnd: string=?,
+      ~error: string=?,
+      ~marginDense: string=?,
+      ~multiline: string=?,
+      ~notchedOutline: string=?,
+      ~input: string=?,
+      ~inputMarginDense: string=?,
+      ~inputMultiline: string=?,
+      ~inputAdornedStart: string=?,
+      ~inputAdornedEnd: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Primary | `Secondary];
 
 module InputComponent: {
   type t;
@@ -62,6 +69,8 @@ module InputComponent: {
   let inputComponent_func = (v: MaterialUi_Types.any) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type margin = [ | `Dense | `None];
 
 module Rows: {
   type t;

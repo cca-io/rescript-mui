@@ -1,29 +1,36 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    static: string,
-    [@bs.optional]
-    indeterminate: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    svg: string,
-    [@bs.optional]
-    circle: string,
-    [@bs.optional]
-    circleStatic: string,
-    [@bs.optional]
-    circleIndeterminate: string,
-    [@bs.optional]
-    circleDisableShrink: string,
+    .
+    "root": option(option(string)),
+    "static": option(option(string)),
+    "indeterminate": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "svg": option(option(string)),
+    "circle": option(option(string)),
+    "circleStatic": option(option(string)),
+    "circleIndeterminate": option(option(string)),
+    "circleDisableShrink": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~static: string=?,
+      ~indeterminate: string=?,
+      ~colorPrimary: string=?,
+      ~colorSecondary: string=?,
+      ~svg: string=?,
+      ~circle: string=?,
+      ~circleStatic: string=?,
+      ~circleIndeterminate: string=?,
+      ~circleDisableShrink: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Inherit | `Primary | `Secondary];
 
 module Size: {
   type t;
@@ -38,6 +45,8 @@ module Size: {
   let float = (v: float) => Any(v);
   let string = (v: string) => Any(v);
 };
+
+type variant = [ | `Determinate | `Indeterminate | `Static];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

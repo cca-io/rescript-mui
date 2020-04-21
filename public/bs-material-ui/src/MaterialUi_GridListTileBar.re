@@ -1,31 +1,40 @@
+type actionPosition = [ | `Left | `Right];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    titlePositionBottom: string,
-    [@bs.optional]
-    titlePositionTop: string,
-    [@bs.optional]
-    rootSubtitle: string,
-    [@bs.optional]
-    titleWrap: string,
-    [@bs.optional]
-    titleWrapActionPosLeft: string,
-    [@bs.optional]
-    titleWrapActionPosRight: string,
-    [@bs.optional]
-    title: string,
-    [@bs.optional]
-    subtitle: string,
-    [@bs.optional]
-    actionIcon: string,
-    [@bs.optional]
-    actionIconActionPosLeft: string,
+    .
+    "root": option(option(string)),
+    "titlePositionBottom": option(option(string)),
+    "titlePositionTop": option(option(string)),
+    "rootSubtitle": option(option(string)),
+    "titleWrap": option(option(string)),
+    "titleWrapActionPosLeft": option(option(string)),
+    "titleWrapActionPosRight": option(option(string)),
+    "title": option(option(string)),
+    "subtitle": option(option(string)),
+    "actionIcon": option(option(string)),
+    "actionIconActionPosLeft": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~titlePositionBottom: string=?,
+      ~titlePositionTop: string=?,
+      ~rootSubtitle: string=?,
+      ~titleWrap: string=?,
+      ~titleWrapActionPosLeft: string=?,
+      ~titleWrapActionPosRight: string=?,
+      ~title: string=?,
+      ~subtitle: string=?,
+      ~actionIcon: string=?,
+      ~actionIconActionPosLeft: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type titlePosition = [ | `Bottom | `Top];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

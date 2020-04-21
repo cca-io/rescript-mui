@@ -13,31 +13,38 @@ module TabIndex: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    label: string,
-    [@bs.optional]
-    primary: string,
-    [@bs.optional]
-    secondary: string,
-    [@bs.optional]
-    extended: string,
-    [@bs.optional]
-    focusVisible: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    colorInherit: string,
-    [@bs.optional]
-    sizeSmall: string,
-    [@bs.optional]
-    sizeMedium: string,
+    .
+    "root": option(option(string)),
+    "label": option(option(string)),
+    "primary": option(option(string)),
+    "secondary": option(option(string)),
+    "extended": option(option(string)),
+    "focusVisible": option(option(string)),
+    "disabled": option(option(string)),
+    "colorInherit": option(option(string)),
+    "sizeSmall": option(option(string)),
+    "sizeMedium": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~label: string=?,
+      ~primary: string=?,
+      ~secondary: string=?,
+      ~extended: string=?,
+      ~focusVisible: string=?,
+      ~disabled: string=?,
+      ~colorInherit: string=?,
+      ~sizeSmall: string=?,
+      ~sizeMedium: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Default | `Inherit | `Primary | `Secondary];
 
 module Component: {
   type t;
@@ -52,6 +59,10 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type size = [ | `Small | `Medium | `Large];
+
+type variant = [ | `Round | `Extended];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

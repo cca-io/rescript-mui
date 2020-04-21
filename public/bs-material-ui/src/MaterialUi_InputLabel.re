@@ -13,35 +13,46 @@ module Component: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    focused: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    error: string,
-    [@bs.optional]
-    required: string,
-    [@bs.optional]
-    asterisk: string,
-    [@bs.optional]
-    formControl: string,
-    [@bs.optional]
-    marginDense: string,
-    [@bs.optional]
-    shrink: string,
-    [@bs.optional]
-    animated: string,
-    [@bs.optional]
-    filled: string,
-    [@bs.optional]
-    outlined: string,
+    .
+    "root": option(option(string)),
+    "focused": option(option(string)),
+    "disabled": option(option(string)),
+    "error": option(option(string)),
+    "required": option(option(string)),
+    "asterisk": option(option(string)),
+    "formControl": option(option(string)),
+    "marginDense": option(option(string)),
+    "shrink": option(option(string)),
+    "animated": option(option(string)),
+    "filled": option(option(string)),
+    "outlined": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~focused: string=?,
+      ~disabled: string=?,
+      ~error: string=?,
+      ~required: string=?,
+      ~asterisk: string=?,
+      ~formControl: string=?,
+      ~marginDense: string=?,
+      ~shrink: string=?,
+      ~animated: string=?,
+      ~filled: string=?,
+      ~outlined: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Primary | `Secondary];
+
+type margin = [ | `Dense];
+
+type variant = [ | `Filled | `Outlined | `Standard];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

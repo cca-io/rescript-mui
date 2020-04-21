@@ -1,27 +1,41 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    colorAction: string,
-    [@bs.optional]
-    colorError: string,
-    [@bs.optional]
-    colorDisabled: string,
-    [@bs.optional]
-    fontSizeInherit: string,
-    [@bs.optional]
-    fontSizeSmall: string,
-    [@bs.optional]
-    fontSizeLarge: string,
+    .
+    "root": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "colorAction": option(option(string)),
+    "colorError": option(option(string)),
+    "colorDisabled": option(option(string)),
+    "fontSizeInherit": option(option(string)),
+    "fontSizeSmall": option(option(string)),
+    "fontSizeLarge": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~colorPrimary: string=?,
+      ~colorSecondary: string=?,
+      ~colorAction: string=?,
+      ~colorError: string=?,
+      ~colorDisabled: string=?,
+      ~fontSizeInherit: string=?,
+      ~fontSizeSmall: string=?,
+      ~fontSizeLarge: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [
+  | `Action
+  | `Disabled
+  | `Error
+  | `Inherit
+  | `Primary
+  | `Secondary
+];
 
 module Component: {
   type t;
@@ -36,6 +50,8 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type fontSize = [ | `Default | `Inherit | `Large | `Small];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

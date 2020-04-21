@@ -1,39 +1,46 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    page: string,
-    [@bs.optional]
-    sizeSmall: string,
-    [@bs.optional]
-    sizeLarge: string,
-    [@bs.optional]
-    textPrimary: string,
-    [@bs.optional]
-    textSecondary: string,
-    [@bs.optional]
-    outlined: string,
-    [@bs.optional]
-    outlinedPrimary: string,
-    [@bs.optional]
-    outlinedSecondary: string,
-    [@bs.optional]
-    rounded: string,
-    [@bs.optional]
-    ellipsis: string,
-    [@bs.optional]
-    focusVisible: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    selected: string,
-    [@bs.optional]
-    icon: string,
+    .
+    "root": option(option(string)),
+    "page": option(option(string)),
+    "sizeSmall": option(option(string)),
+    "sizeLarge": option(option(string)),
+    "textPrimary": option(option(string)),
+    "textSecondary": option(option(string)),
+    "outlined": option(option(string)),
+    "outlinedPrimary": option(option(string)),
+    "outlinedSecondary": option(option(string)),
+    "rounded": option(option(string)),
+    "ellipsis": option(option(string)),
+    "focusVisible": option(option(string)),
+    "disabled": option(option(string)),
+    "selected": option(option(string)),
+    "icon": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~page: string=?,
+      ~sizeSmall: string=?,
+      ~sizeLarge: string=?,
+      ~textPrimary: string=?,
+      ~textSecondary: string=?,
+      ~outlined: string=?,
+      ~outlinedPrimary: string=?,
+      ~outlinedSecondary: string=?,
+      ~rounded: string=?,
+      ~ellipsis: string=?,
+      ~focusVisible: string=?,
+      ~disabled: string=?,
+      ~selected: string=?,
+      ~icon: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Standard | `Primary | `Secondary];
 
 module Component: {
   type t;
@@ -48,6 +55,22 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type shape = [ | `Round | `Rounded];
+
+type size = [ | `Small | `Medium | `Large];
+
+type _type = [
+  | `Page
+  | `First
+  | `Last
+  | `Next
+  | `Previous
+  | `Start_Ellipsis
+  | `End_Ellipsis
+];
+
+type variant = [ | `Text | `Outlined];
 
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:

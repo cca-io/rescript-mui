@@ -26,32 +26,41 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+type _type = [ | `Submit | `Reset | `Button];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    labelIcon: string,
-    [@bs.optional]
-    textColorInherit: string,
-    [@bs.optional]
-    textColorPrimary: string,
-    [@bs.optional]
-    textColorSecondary: string,
-    [@bs.optional]
-    selected: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    fullWidth: string,
-    [@bs.optional]
-    wrapped: string,
-    [@bs.optional]
-    wrapper: string,
+    .
+    "root": option(option(string)),
+    "labelIcon": option(option(string)),
+    "textColorInherit": option(option(string)),
+    "textColorPrimary": option(option(string)),
+    "textColorSecondary": option(option(string)),
+    "selected": option(option(string)),
+    "disabled": option(option(string)),
+    "fullWidth": option(option(string)),
+    "wrapped": option(option(string)),
+    "wrapper": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~labelIcon: string=?,
+      ~textColorInherit: string=?,
+      ~textColorPrimary: string=?,
+      ~textColorSecondary: string=?,
+      ~selected: string=?,
+      ~disabled: string=?,
+      ~fullWidth: string=?,
+      ~wrapped: string=?,
+      ~wrapper: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type textColor = [ | `Secondary | `Primary | `Inherit];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

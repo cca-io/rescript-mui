@@ -12,34 +12,45 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
+type variant = [ | `Elevation | `Outlined];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    positionFixed: string,
-    [@bs.optional]
-    positionAbsolute: string,
-    [@bs.optional]
-    positionSticky: string,
-    [@bs.optional]
-    positionStatic: string,
-    [@bs.optional]
-    positionRelative: string,
-    [@bs.optional]
-    colorDefault: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    colorInherit: string,
-    [@bs.optional]
-    colorTransparent: string,
+    .
+    "root": option(option(string)),
+    "positionFixed": option(option(string)),
+    "positionAbsolute": option(option(string)),
+    "positionSticky": option(option(string)),
+    "positionStatic": option(option(string)),
+    "positionRelative": option(option(string)),
+    "colorDefault": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "colorInherit": option(option(string)),
+    "colorTransparent": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~positionFixed: string=?,
+      ~positionAbsolute: string=?,
+      ~positionSticky: string=?,
+      ~positionStatic: string=?,
+      ~positionRelative: string=?,
+      ~colorDefault: string=?,
+      ~colorPrimary: string=?,
+      ~colorSecondary: string=?,
+      ~colorInherit: string=?,
+      ~colorTransparent: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Default | `Inherit | `Primary | `Secondary | `Transparent];
+
+type position = [ | `Absolute | `Fixed | `Relative | `Static | `Sticky];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

@@ -1,14 +1,13 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    last: string,
-    [@bs.optional]
-    transition: string,
+    .
+    "root": option(option(string)),
+    "last": option(option(string)),
+    "transition": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (~root: string=?, ~last: string=?, ~transition: string=?, unit) => t;
 };
 
 module TransitionComponent: {
@@ -37,16 +36,21 @@ module TransitionDuration_enum: {
 };
 
 module TransitionDuration_shape = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    appear: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    enter: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    exit: MaterialUi_Types.Number.t,
+    .
+    "appear": option(option(MaterialUi_Types.Number.t)),
+    "enter": option(option(MaterialUi_Types.Number.t)),
+    "exit": option(option(MaterialUi_Types.Number.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~appear: MaterialUi_Types.Number.t=?,
+      ~enter: MaterialUi_Types.Number.t=?,
+      ~exit: MaterialUi_Types.Number.t=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionDuration: {

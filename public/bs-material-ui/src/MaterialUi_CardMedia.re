@@ -1,14 +1,13 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    media: string,
-    [@bs.optional]
-    img: string,
+    .
+    "root": option(option(string)),
+    "media": option(option(string)),
+    "img": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (~root: string=?, ~media: string=?, ~img: string=?, unit) => t;
 };
 
 module Component: {

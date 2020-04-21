@@ -25,50 +25,59 @@ module Vertical: {
 };
 
 module AnchorOrigin = {
-  [@bs.deriving abstract]
   type t = {
-    horizontal: Horizontal.t,
-    vertical: Vertical.t,
+    .
+    "horizontal": option(option(Horizontal.t)),
+    "vertical": option(option(Vertical.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (~horizontal: Horizontal.t=?, ~vertical: Vertical.t=?, unit) => t;
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    badge: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    colorError: string,
-    [@bs.optional]
-    dot: string,
-    [@bs.optional]
-    anchorOriginTopRightRectangle: string,
-    [@bs.optional]
-    anchorOriginBottomRightRectangle: string,
-    [@bs.optional]
-    anchorOriginTopLeftRectangle: string,
-    [@bs.optional]
-    anchorOriginBottomLeftRectangle: string,
-    [@bs.optional]
-    anchorOriginTopRightCircle: string,
-    [@bs.optional]
-    anchorOriginBottomRightCircle: string,
-    [@bs.optional]
-    anchorOriginTopLeftCircle: string,
-    [@bs.optional]
-    anchorOriginBottomLeftCircle: string,
-    [@bs.optional]
-    invisible: string,
+    .
+    "root": option(option(string)),
+    "badge": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "colorError": option(option(string)),
+    "dot": option(option(string)),
+    "anchorOriginTopRightRectangle": option(option(string)),
+    "anchorOriginBottomRightRectangle": option(option(string)),
+    "anchorOriginTopLeftRectangle": option(option(string)),
+    "anchorOriginBottomLeftRectangle": option(option(string)),
+    "anchorOriginTopRightCircle": option(option(string)),
+    "anchorOriginBottomRightCircle": option(option(string)),
+    "anchorOriginTopLeftCircle": option(option(string)),
+    "anchorOriginBottomLeftCircle": option(option(string)),
+    "invisible": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~badge: string=?,
+      ~colorPrimary: string=?,
+      ~colorSecondary: string=?,
+      ~colorError: string=?,
+      ~dot: string=?,
+      ~anchorOriginTopRightRectangle: string=?,
+      ~anchorOriginBottomRightRectangle: string=?,
+      ~anchorOriginTopLeftRectangle: string=?,
+      ~anchorOriginBottomLeftRectangle: string=?,
+      ~anchorOriginTopRightCircle: string=?,
+      ~anchorOriginBottomRightCircle: string=?,
+      ~anchorOriginTopLeftCircle: string=?,
+      ~anchorOriginBottomLeftCircle: string=?,
+      ~invisible: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Default | `Error | `Primary | `Secondary];
 
 module Component: {
   type t;
@@ -83,6 +92,10 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type overlap = [ | `Circle | `Rectangle];
+
+type variant = [ | `Dot | `Standard];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

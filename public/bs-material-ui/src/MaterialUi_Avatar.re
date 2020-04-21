@@ -1,22 +1,27 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    colorDefault: string,
-    [@bs.optional]
-    circle: string,
-    [@bs.optional]
-    rounded: string,
-    [@bs.optional]
-    square: string,
-    [@bs.optional]
-    img: string,
-    [@bs.optional]
-    fallback: string,
+    .
+    "root": option(option(string)),
+    "colorDefault": option(option(string)),
+    "circle": option(option(string)),
+    "rounded": option(option(string)),
+    "square": option(option(string)),
+    "img": option(option(string)),
+    "fallback": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~colorDefault: string=?,
+      ~circle: string=?,
+      ~rounded: string=?,
+      ~square: string=?,
+      ~img: string=?,
+      ~fallback: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -32,6 +37,8 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type variant = [ | `Circle | `Rounded | `Square];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

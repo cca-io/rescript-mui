@@ -1,45 +1,54 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    determinate: string,
-    [@bs.optional]
-    indeterminate: string,
-    [@bs.optional]
-    buffer: string,
-    [@bs.optional]
-    query: string,
-    [@bs.optional]
-    dashed: string,
-    [@bs.optional]
-    dashedColorPrimary: string,
-    [@bs.optional]
-    dashedColorSecondary: string,
-    [@bs.optional]
-    bar: string,
-    [@bs.optional]
-    barColorPrimary: string,
-    [@bs.optional]
-    barColorSecondary: string,
-    [@bs.optional]
-    bar1Indeterminate: string,
-    [@bs.optional]
-    bar1Determinate: string,
-    [@bs.optional]
-    bar1Buffer: string,
-    [@bs.optional]
-    bar2Indeterminate: string,
-    [@bs.optional]
-    bar2Buffer: string,
+    .
+    "root": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "determinate": option(option(string)),
+    "indeterminate": option(option(string)),
+    "buffer": option(option(string)),
+    "query": option(option(string)),
+    "dashed": option(option(string)),
+    "dashedColorPrimary": option(option(string)),
+    "dashedColorSecondary": option(option(string)),
+    "bar": option(option(string)),
+    "barColorPrimary": option(option(string)),
+    "barColorSecondary": option(option(string)),
+    "bar1Indeterminate": option(option(string)),
+    "bar1Determinate": option(option(string)),
+    "bar1Buffer": option(option(string)),
+    "bar2Indeterminate": option(option(string)),
+    "bar2Buffer": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~colorPrimary: string=?,
+      ~colorSecondary: string=?,
+      ~determinate: string=?,
+      ~indeterminate: string=?,
+      ~buffer: string=?,
+      ~query: string=?,
+      ~dashed: string=?,
+      ~dashedColorPrimary: string=?,
+      ~dashedColorSecondary: string=?,
+      ~bar: string=?,
+      ~barColorPrimary: string=?,
+      ~barColorSecondary: string=?,
+      ~bar1Indeterminate: string=?,
+      ~bar1Determinate: string=?,
+      ~bar1Buffer: string=?,
+      ~bar2Indeterminate: string=?,
+      ~bar2Buffer: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Primary | `Secondary];
+
+type variant = [ | `Buffer | `Determinate | `Indeterminate | `Query];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

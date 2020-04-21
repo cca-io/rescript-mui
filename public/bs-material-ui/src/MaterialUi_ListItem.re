@@ -1,30 +1,37 @@
+type alignItems = [ | `Flex_Start | `Center];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    container: string,
-    [@bs.optional]
-    focusVisible: string,
-    [@bs.optional]
-    dense: string,
-    [@bs.optional]
-    alignItemsFlexStart: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    divider: string,
-    [@bs.optional]
-    gutters: string,
-    [@bs.optional]
-    button: string,
-    [@bs.optional]
-    secondaryAction: string,
-    [@bs.optional]
-    selected: string,
+    .
+    "root": option(option(string)),
+    "container": option(option(string)),
+    "focusVisible": option(option(string)),
+    "dense": option(option(string)),
+    "alignItemsFlexStart": option(option(string)),
+    "disabled": option(option(string)),
+    "divider": option(option(string)),
+    "gutters": option(option(string)),
+    "button": option(option(string)),
+    "secondaryAction": option(option(string)),
+    "selected": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~container: string=?,
+      ~focusVisible: string=?,
+      ~dense: string=?,
+      ~alignItemsFlexStart: string=?,
+      ~disabled: string=?,
+      ~divider: string=?,
+      ~gutters: string=?,
+      ~button: string=?,
+      ~secondaryAction: string=?,
+      ~selected: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {

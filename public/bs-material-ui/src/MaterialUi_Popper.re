@@ -32,6 +32,21 @@ module Container: {
   let container_func = (v: MaterialUi_Types.any) => Any(v);
 };
 
+type placement = [
+  | `Bottom_End
+  | `Bottom_Start
+  | `Bottom
+  | `Left_End
+  | `Left_Start
+  | `Left
+  | `Right_End
+  | `Right_Start
+  | `Right
+  | `Top_End
+  | `Top_Start
+  | `Top
+];
+
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (

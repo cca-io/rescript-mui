@@ -13,13 +13,11 @@ module Component: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional]
-    root: string,
-  };
-  let make = t;
+  type t = {. "root": option(option(string))};
+  [@bs.obj] external make: (~root: string=?, unit) => t;
 };
+
+type color = [ | `Primary | `Secondary];
 
 module DefaultValue: {
   type t;
@@ -34,6 +32,8 @@ module DefaultValue: {
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
 };
+
+type margin = [ | `Dense | `None | `Normal];
 
 module Rows: {
   type t;
@@ -63,6 +63,8 @@ module RowsMax: {
   let string = (v: string) => Any(v);
 };
 
+type size = [ | `Medium | `Small];
+
 module Value: {
   type t;
   let string: string => t;
@@ -76,6 +78,8 @@ module Value: {
   let int = (v: int) => Any(v);
   let float = (v: float) => Any(v);
 };
+
+type variant = [ | `Filled | `Outlined | `Standard];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

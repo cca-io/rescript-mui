@@ -1,21 +1,28 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    selected: string,
-    [@bs.optional]
-    label: string,
-    [@bs.optional]
-    sizeSmall: string,
-    [@bs.optional]
-    sizeLarge: string,
+    .
+    "root": option(option(string)),
+    "disabled": option(option(string)),
+    "selected": option(option(string)),
+    "label": option(option(string)),
+    "sizeSmall": option(option(string)),
+    "sizeLarge": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~disabled: string=?,
+      ~selected: string=?,
+      ~label: string=?,
+      ~sizeSmall: string=?,
+      ~sizeLarge: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type size = [ | `Small | `Medium | `Large];
 
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:

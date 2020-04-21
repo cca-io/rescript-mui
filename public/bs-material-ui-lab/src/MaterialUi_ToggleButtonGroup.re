@@ -1,17 +1,24 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    grouped: string,
-    [@bs.optional]
-    groupedSizeSmall: string,
-    [@bs.optional]
-    groupedSizeLarge: string,
+    .
+    "root": option(option(string)),
+    "grouped": option(option(string)),
+    "groupedSizeSmall": option(option(string)),
+    "groupedSizeLarge": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~grouped: string=?,
+      ~groupedSizeSmall: string=?,
+      ~groupedSizeLarge: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type size = [ | `Large | `Medium | `Small];
 
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:

@@ -1,20 +1,25 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    multiline: string,
-    [@bs.optional]
-    dense: string,
-    [@bs.optional]
-    inset: string,
-    [@bs.optional]
-    primary: string,
-    [@bs.optional]
-    secondary: string,
+    .
+    "root": option(option(string)),
+    "multiline": option(option(string)),
+    "dense": option(option(string)),
+    "inset": option(option(string)),
+    "primary": option(option(string)),
+    "secondary": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~multiline: string=?,
+      ~dense: string=?,
+      ~inset: string=?,
+      ~primary: string=?,
+      ~secondary: string=?,
+      unit
+    ) =>
+    t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

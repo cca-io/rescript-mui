@@ -1,22 +1,27 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    absolute: string,
-    [@bs.optional]
-    inset: string,
-    [@bs.optional]
-    light: string,
-    [@bs.optional]
-    middle: string,
-    [@bs.optional]
-    vertical: string,
-    [@bs.optional]
-    flexItem: string,
+    .
+    "root": option(option(string)),
+    "absolute": option(option(string)),
+    "inset": option(option(string)),
+    "light": option(option(string)),
+    "middle": option(option(string)),
+    "vertical": option(option(string)),
+    "flexItem": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~absolute: string=?,
+      ~inset: string=?,
+      ~light: string=?,
+      ~middle: string=?,
+      ~vertical: string=?,
+      ~flexItem: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -32,6 +37,10 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type orientation = [ | `Horizontal | `Vertical];
+
+type variant = [ | `FullWidth | `Inset | `Middle];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

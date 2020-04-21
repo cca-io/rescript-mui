@@ -1,13 +1,19 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    ul: string,
+    .
+    "root": option(option(string)),
+    "ul": option(option(string)),
   };
-  let make = t;
+  [@bs.obj] external make: (~root: string=?, ~ul: string=?, unit) => t;
 };
+
+type color = [ | `Primary | `Secondary | `Standard];
+
+type shape = [ | `Round | `Rounded];
+
+type size = [ | `Large | `Medium | `Small];
+
+type variant = [ | `Outlined | `Text];
 
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:

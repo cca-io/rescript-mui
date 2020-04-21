@@ -1,3 +1,9 @@
+type align = [ | `Center | `Inherit | `Justify | `Left | `Right];
+
+type padding = [ | `Checkbox | `Default | `None];
+
+type size = [ | `Medium | `Small];
+
 module SortDirection: {
   type t;
   let asc: t;
@@ -12,6 +18,8 @@ module SortDirection: {
   let desc = Any("desc");
   let _false = Any(false);
 };
+
+type variant = [ | `Body | `Footer | `Head];
 
 module ActionsComponent: {
   type t;
@@ -28,30 +36,35 @@ module ActionsComponent: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    toolbar: string,
-    [@bs.optional]
-    spacer: string,
-    [@bs.optional]
-    caption: string,
-    [@bs.optional]
-    selectRoot: string,
-    [@bs.optional]
-    select: string,
-    [@bs.optional]
-    selectIcon: string,
-    [@bs.optional]
-    input: string,
-    [@bs.optional]
-    menuItem: string,
-    [@bs.optional]
-    actions: string,
+    .
+    "root": option(option(string)),
+    "toolbar": option(option(string)),
+    "spacer": option(option(string)),
+    "caption": option(option(string)),
+    "selectRoot": option(option(string)),
+    "select": option(option(string)),
+    "selectIcon": option(option(string)),
+    "input": option(option(string)),
+    "menuItem": option(option(string)),
+    "actions": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~toolbar: string=?,
+      ~spacer: string=?,
+      ~caption: string=?,
+      ~selectRoot: string=?,
+      ~select: string=?,
+      ~selectIcon: string=?,
+      ~input: string=?,
+      ~menuItem: string=?,
+      ~actions: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {

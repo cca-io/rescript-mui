@@ -1,55 +1,62 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    contained: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    fullWidth: string,
-    [@bs.optional]
-    vertical: string,
-    [@bs.optional]
-    grouped: string,
-    [@bs.optional]
-    groupedHorizontal: string,
-    [@bs.optional]
-    groupedVertical: string,
-    [@bs.optional]
-    groupedText: string,
-    [@bs.optional]
-    groupedTextHorizontal: string,
-    [@bs.optional]
-    groupedTextVertical: string,
-    [@bs.optional]
-    groupedTextPrimary: string,
-    [@bs.optional]
-    groupedTextSecondary: string,
-    [@bs.optional]
-    groupedOutlined: string,
-    [@bs.optional]
-    groupedOutlinedHorizontal: string,
-    [@bs.optional]
-    groupedOutlinedVertical: string,
-    [@bs.optional]
-    groupedOutlinedPrimary: string,
-    [@bs.optional]
-    groupedOutlinedSecondary: string,
-    [@bs.optional]
-    groupedContained: string,
-    [@bs.optional]
-    groupedContainedHorizontal: string,
-    [@bs.optional]
-    groupedContainedVertical: string,
-    [@bs.optional]
-    groupedContainedPrimary: string,
-    [@bs.optional]
-    groupedContainedSecondary: string,
+    .
+    "root": option(option(string)),
+    "contained": option(option(string)),
+    "disabled": option(option(string)),
+    "fullWidth": option(option(string)),
+    "vertical": option(option(string)),
+    "grouped": option(option(string)),
+    "groupedHorizontal": option(option(string)),
+    "groupedVertical": option(option(string)),
+    "groupedText": option(option(string)),
+    "groupedTextHorizontal": option(option(string)),
+    "groupedTextVertical": option(option(string)),
+    "groupedTextPrimary": option(option(string)),
+    "groupedTextSecondary": option(option(string)),
+    "groupedOutlined": option(option(string)),
+    "groupedOutlinedHorizontal": option(option(string)),
+    "groupedOutlinedVertical": option(option(string)),
+    "groupedOutlinedPrimary": option(option(string)),
+    "groupedOutlinedSecondary": option(option(string)),
+    "groupedContained": option(option(string)),
+    "groupedContainedHorizontal": option(option(string)),
+    "groupedContainedVertical": option(option(string)),
+    "groupedContainedPrimary": option(option(string)),
+    "groupedContainedSecondary": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~contained: string=?,
+      ~disabled: string=?,
+      ~fullWidth: string=?,
+      ~vertical: string=?,
+      ~grouped: string=?,
+      ~groupedHorizontal: string=?,
+      ~groupedVertical: string=?,
+      ~groupedText: string=?,
+      ~groupedTextHorizontal: string=?,
+      ~groupedTextVertical: string=?,
+      ~groupedTextPrimary: string=?,
+      ~groupedTextSecondary: string=?,
+      ~groupedOutlined: string=?,
+      ~groupedOutlinedHorizontal: string=?,
+      ~groupedOutlinedVertical: string=?,
+      ~groupedOutlinedPrimary: string=?,
+      ~groupedOutlinedSecondary: string=?,
+      ~groupedContained: string=?,
+      ~groupedContainedHorizontal: string=?,
+      ~groupedContainedVertical: string=?,
+      ~groupedContainedPrimary: string=?,
+      ~groupedContainedSecondary: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Default | `Inherit | `Primary | `Secondary];
 
 module Component: {
   type t;
@@ -64,6 +71,12 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type orientation = [ | `Vertical | `Horizontal];
+
+type size = [ | `Small | `Medium | `Large];
+
+type variant = [ | `Text | `Outlined | `Contained];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

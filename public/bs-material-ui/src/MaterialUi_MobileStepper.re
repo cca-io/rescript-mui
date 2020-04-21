@@ -13,27 +13,36 @@ module Component: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    positionBottom: string,
-    [@bs.optional]
-    positionTop: string,
-    [@bs.optional]
-    positionStatic: string,
-    [@bs.optional]
-    dots: string,
-    [@bs.optional]
-    dot: string,
-    [@bs.optional]
-    dotActive: string,
-    [@bs.optional]
-    progress: string,
+    .
+    "root": option(option(string)),
+    "positionBottom": option(option(string)),
+    "positionTop": option(option(string)),
+    "positionStatic": option(option(string)),
+    "dots": option(option(string)),
+    "dot": option(option(string)),
+    "dotActive": option(option(string)),
+    "progress": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~positionBottom: string=?,
+      ~positionTop: string=?,
+      ~positionStatic: string=?,
+      ~dots: string=?,
+      ~dot: string=?,
+      ~dotActive: string=?,
+      ~progress: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type position = [ | `Bottom | `Static | `Top];
+
+type variant = [ | `Dots | `Progress | `Text];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

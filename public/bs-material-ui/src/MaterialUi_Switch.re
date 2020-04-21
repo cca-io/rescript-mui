@@ -26,36 +26,45 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+type _type = [ | `Submit | `Reset | `Button];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    edgeStart: string,
-    [@bs.optional]
-    edgeEnd: string,
-    [@bs.optional]
-    switchBase: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    sizeSmall: string,
-    [@bs.optional]
-    checked: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    input: string,
-    [@bs.optional]
-    thumb: string,
-    [@bs.optional]
-    track: string,
+    .
+    "root": option(option(string)),
+    "edgeStart": option(option(string)),
+    "edgeEnd": option(option(string)),
+    "switchBase": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "sizeSmall": option(option(string)),
+    "checked": option(option(string)),
+    "disabled": option(option(string)),
+    "input": option(option(string)),
+    "thumb": option(option(string)),
+    "track": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~edgeStart: string=?,
+      ~edgeEnd: string=?,
+      ~switchBase: string=?,
+      ~colorPrimary: string=?,
+      ~colorSecondary: string=?,
+      ~sizeSmall: string=?,
+      ~checked: string=?,
+      ~disabled: string=?,
+      ~input: string=?,
+      ~thumb: string=?,
+      ~track: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Default | `Primary | `Secondary];
 
 module Edge: {
   type t;
@@ -71,6 +80,8 @@ module Edge: {
   let start = Any("start");
   let _false = Any(false);
 };
+
+type size = [ | `Medium | `Small];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

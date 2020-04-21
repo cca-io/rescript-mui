@@ -1,12 +1,10 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    row: string,
+    .
+    "root": option(option(string)),
+    "row": option(option(string)),
   };
-  let make = t;
+  [@bs.obj] external make: (~root: string=?, ~row: string=?, unit) => t;
 };
 
 module DefaultValue: {

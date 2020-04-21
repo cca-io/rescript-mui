@@ -1,40 +1,45 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    sizeSmall: string,
-    [@bs.optional]
-    sizeLarge: string,
-    [@bs.optional]
-    readOnly: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    focusVisible: string,
-    [@bs.optional]
-    visuallyhidden: string,
-    [@bs.optional]
-    pristine: string,
-    [@bs.optional]
-    label: string,
-    [@bs.optional]
-    icon: string,
-    [@bs.optional]
-    iconEmpty: string,
-    [@bs.optional]
-    iconFilled: string,
-    [@bs.optional]
-    iconHover: string,
-    [@bs.optional]
-    iconFocus: string,
-    [@bs.optional]
-    iconActive: string,
-    [@bs.optional]
-    decimal: string,
+    .
+    "root": option(option(string)),
+    "sizeSmall": option(option(string)),
+    "sizeLarge": option(option(string)),
+    "readOnly": option(option(string)),
+    "disabled": option(option(string)),
+    "focusVisible": option(option(string)),
+    "visuallyhidden": option(option(string)),
+    "pristine": option(option(string)),
+    "label": option(option(string)),
+    "icon": option(option(string)),
+    "iconEmpty": option(option(string)),
+    "iconFilled": option(option(string)),
+    "iconHover": option(option(string)),
+    "iconFocus": option(option(string)),
+    "iconActive": option(option(string)),
+    "decimal": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~sizeSmall: string=?,
+      ~sizeLarge: string=?,
+      ~readOnly: string=?,
+      ~disabled: string=?,
+      ~focusVisible: string=?,
+      ~visuallyhidden: string=?,
+      ~pristine: string=?,
+      ~label: string=?,
+      ~icon: string=?,
+      ~iconEmpty: string=?,
+      ~iconFilled: string=?,
+      ~iconHover: string=?,
+      ~iconFocus: string=?,
+      ~iconActive: string=?,
+      ~decimal: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module IconContainerComponent: {
@@ -50,6 +55,8 @@ module IconContainerComponent: {
   let iconContainerComponent_func = (v: MaterialUi_Types.any) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type size = [ | `Large | `Medium | `Small];
 
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:

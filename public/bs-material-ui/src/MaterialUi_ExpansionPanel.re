@@ -12,19 +12,26 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
+type variant = [ | `Elevation | `Outlined];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    rounded: string,
-    [@bs.optional]
-    expanded: string,
-    [@bs.optional]
-    disabled: string,
+    .
+    "root": option(option(string)),
+    "rounded": option(option(string)),
+    "expanded": option(option(string)),
+    "disabled": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~rounded: string=?,
+      ~expanded: string=?,
+      ~disabled: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionComponent: {

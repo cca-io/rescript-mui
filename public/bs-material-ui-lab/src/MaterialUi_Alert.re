@@ -1,56 +1,72 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    standardSuccess: string,
-    [@bs.optional]
-    standardInfo: string,
-    [@bs.optional]
-    standardWarning: string,
-    [@bs.optional]
-    standardError: string,
-    [@bs.optional]
-    outlinedSuccess: string,
-    [@bs.optional]
-    outlinedInfo: string,
-    [@bs.optional]
-    outlinedWarning: string,
-    [@bs.optional]
-    outlinedError: string,
-    [@bs.optional]
-    filledSuccess: string,
-    [@bs.optional]
-    filledInfo: string,
-    [@bs.optional]
-    filledWarning: string,
-    [@bs.optional]
-    filledError: string,
-    [@bs.optional]
-    icon: string,
-    [@bs.optional]
-    message: string,
-    [@bs.optional]
-    action: string,
+    .
+    "root": option(option(string)),
+    "standardSuccess": option(option(string)),
+    "standardInfo": option(option(string)),
+    "standardWarning": option(option(string)),
+    "standardError": option(option(string)),
+    "outlinedSuccess": option(option(string)),
+    "outlinedInfo": option(option(string)),
+    "outlinedWarning": option(option(string)),
+    "outlinedError": option(option(string)),
+    "filledSuccess": option(option(string)),
+    "filledInfo": option(option(string)),
+    "filledWarning": option(option(string)),
+    "filledError": option(option(string)),
+    "icon": option(option(string)),
+    "message": option(option(string)),
+    "action": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~standardSuccess: string=?,
+      ~standardInfo: string=?,
+      ~standardWarning: string=?,
+      ~standardError: string=?,
+      ~outlinedSuccess: string=?,
+      ~outlinedInfo: string=?,
+      ~outlinedWarning: string=?,
+      ~outlinedError: string=?,
+      ~filledSuccess: string=?,
+      ~filledInfo: string=?,
+      ~filledWarning: string=?,
+      ~filledError: string=?,
+      ~icon: string=?,
+      ~message: string=?,
+      ~action: string=?,
+      unit
+    ) =>
+    t;
 };
 
+type color = [ | `Error | `Info | `Success | `Warning];
+
 module IconMapping = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    error: React.element,
-    [@bs.optional]
-    info: React.element,
-    [@bs.optional]
-    success: React.element,
-    [@bs.optional]
-    warning: React.element,
+    .
+    "error": option(option(React.element)),
+    "info": option(option(React.element)),
+    "success": option(option(React.element)),
+    "warning": option(option(React.element)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~error: React.element=?,
+      ~info: React.element=?,
+      ~success: React.element=?,
+      ~warning: React.element=?,
+      unit
+    ) =>
+    t;
 };
+
+type severity = [ | `Error | `Info | `Success | `Warning];
+
+type variant = [ | `Filled | `Outlined | `Standard];
 
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:

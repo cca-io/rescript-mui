@@ -12,6 +12,8 @@ module RowsMin: {
   let string = (v: string) => Any(v);
 };
 
+type color = [ | `Primary | `Secondary];
+
 module InputComponent: {
   type t;
   let string: string => t;
@@ -25,6 +27,8 @@ module InputComponent: {
   let inputComponent_func = (v: MaterialUi_Types.any) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type margin = [ | `Dense | `None];
 
 module Rows: {
   type t;
@@ -55,30 +59,35 @@ module RowsMax: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    select: string,
-    [@bs.optional]
-    filled: string,
-    [@bs.optional]
-    outlined: string,
-    [@bs.optional]
-    selectMenu: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    icon: string,
-    [@bs.optional]
-    iconOpen: string,
-    [@bs.optional]
-    iconFilled: string,
-    [@bs.optional]
-    iconOutlined: string,
+    .
+    "root": option(option(string)),
+    "select": option(option(string)),
+    "filled": option(option(string)),
+    "outlined": option(option(string)),
+    "selectMenu": option(option(string)),
+    "disabled": option(option(string)),
+    "icon": option(option(string)),
+    "iconOpen": option(option(string)),
+    "iconFilled": option(option(string)),
+    "iconOutlined": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~select: string=?,
+      ~filled: string=?,
+      ~outlined: string=?,
+      ~selectMenu: string=?,
+      ~disabled: string=?,
+      ~icon: string=?,
+      ~iconOpen: string=?,
+      ~iconFilled: string=?,
+      ~iconOutlined: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module IconComponent: {
@@ -110,6 +119,8 @@ module Value: {
   let float = (v: float) => Any(v);
   let arrayOf = (v: array(string)) => Any(v);
 };
+
+type variant = [ | `Filled | `Outlined | `Standard];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

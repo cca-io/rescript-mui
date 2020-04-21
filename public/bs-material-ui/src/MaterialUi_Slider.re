@@ -1,49 +1,56 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    marked: string,
-    [@bs.optional]
-    vertical: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    rail: string,
-    [@bs.optional]
-    track: string,
-    [@bs.optional]
-    trackFalse: string,
-    [@bs.optional]
-    trackInverted: string,
-    [@bs.optional]
-    thumb: string,
-    [@bs.optional]
-    thumbColorPrimary: string,
-    [@bs.optional]
-    thumbColorSecondary: string,
-    [@bs.optional]
-    active: string,
-    [@bs.optional]
-    focusVisible: string,
-    [@bs.optional]
-    valueLabel: string,
-    [@bs.optional]
-    mark: string,
-    [@bs.optional]
-    markActive: string,
-    [@bs.optional]
-    markLabel: string,
-    [@bs.optional]
-    markLabelActive: string,
+    .
+    "root": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "marked": option(option(string)),
+    "vertical": option(option(string)),
+    "disabled": option(option(string)),
+    "rail": option(option(string)),
+    "track": option(option(string)),
+    "trackFalse": option(option(string)),
+    "trackInverted": option(option(string)),
+    "thumb": option(option(string)),
+    "thumbColorPrimary": option(option(string)),
+    "thumbColorSecondary": option(option(string)),
+    "active": option(option(string)),
+    "focusVisible": option(option(string)),
+    "valueLabel": option(option(string)),
+    "mark": option(option(string)),
+    "markActive": option(option(string)),
+    "markLabel": option(option(string)),
+    "markLabelActive": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~colorPrimary: string=?,
+      ~colorSecondary: string=?,
+      ~marked: string=?,
+      ~vertical: string=?,
+      ~disabled: string=?,
+      ~rail: string=?,
+      ~track: string=?,
+      ~trackFalse: string=?,
+      ~trackInverted: string=?,
+      ~thumb: string=?,
+      ~thumbColorPrimary: string=?,
+      ~thumbColorSecondary: string=?,
+      ~active: string=?,
+      ~focusVisible: string=?,
+      ~valueLabel: string=?,
+      ~mark: string=?,
+      ~markActive: string=?,
+      ~markLabel: string=?,
+      ~markLabelActive: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Primary | `Secondary];
 
 module Component: {
   type t;
@@ -84,6 +91,8 @@ module Marks: {
   let bool = (v: bool) => Any(v);
   let array = (v: array(MaterialUi_Types.any)) => Any(v);
 };
+
+type orientation = [ | `Horizontal | `Vertical];
 
 module ThumbComponent: {
   type t;
@@ -141,6 +150,8 @@ module ValueLabelComponent: {
   let valueLabelComponent_func = (v: MaterialUi_Types.any) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type valueLabelDisplay = [ | `On | `Auto | `Off];
 
 module ValueLabelFormat: {
   type t;

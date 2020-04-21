@@ -1,45 +1,57 @@
+type anchor = [ | `Bottom | `Left | `Right | `Top];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    docked: string,
-    [@bs.optional]
-    paper: string,
-    [@bs.optional]
-    paperAnchorLeft: string,
-    [@bs.optional]
-    paperAnchorRight: string,
-    [@bs.optional]
-    paperAnchorTop: string,
-    [@bs.optional]
-    paperAnchorBottom: string,
-    [@bs.optional]
-    paperAnchorDockedLeft: string,
-    [@bs.optional]
-    paperAnchorDockedTop: string,
-    [@bs.optional]
-    paperAnchorDockedRight: string,
-    [@bs.optional]
-    paperAnchorDockedBottom: string,
-    [@bs.optional]
-    modal: string,
+    .
+    "root": option(option(string)),
+    "docked": option(option(string)),
+    "paper": option(option(string)),
+    "paperAnchorLeft": option(option(string)),
+    "paperAnchorRight": option(option(string)),
+    "paperAnchorTop": option(option(string)),
+    "paperAnchorBottom": option(option(string)),
+    "paperAnchorDockedLeft": option(option(string)),
+    "paperAnchorDockedTop": option(option(string)),
+    "paperAnchorDockedRight": option(option(string)),
+    "paperAnchorDockedBottom": option(option(string)),
+    "modal": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~docked: string=?,
+      ~paper: string=?,
+      ~paperAnchorLeft: string=?,
+      ~paperAnchorRight: string=?,
+      ~paperAnchorTop: string=?,
+      ~paperAnchorBottom: string=?,
+      ~paperAnchorDockedLeft: string=?,
+      ~paperAnchorDockedTop: string=?,
+      ~paperAnchorDockedRight: string=?,
+      ~paperAnchorDockedBottom: string=?,
+      ~modal: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionDuration_shape = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    appear: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    enter: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    exit: MaterialUi_Types.Number.t,
+    .
+    "appear": option(option(MaterialUi_Types.Number.t)),
+    "enter": option(option(MaterialUi_Types.Number.t)),
+    "exit": option(option(MaterialUi_Types.Number.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~appear: MaterialUi_Types.Number.t=?,
+      ~enter: MaterialUi_Types.Number.t=?,
+      ~exit: MaterialUi_Types.Number.t=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionDuration: {
@@ -55,6 +67,8 @@ module TransitionDuration: {
   let float = (v: float) => Any(v);
   let shape = (v: TransitionDuration_shape.t) => Any(v);
 };
+
+type variant = [ | `Permanent | `Persistent | `Temporary];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

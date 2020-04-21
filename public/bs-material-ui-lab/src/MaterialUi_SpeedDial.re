@@ -1,25 +1,32 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    fab: string,
-    [@bs.optional]
-    directionUp: string,
-    [@bs.optional]
-    directionDown: string,
-    [@bs.optional]
-    directionLeft: string,
-    [@bs.optional]
-    directionRight: string,
-    [@bs.optional]
-    actions: string,
-    [@bs.optional]
-    actionsClosed: string,
+    .
+    "root": option(option(string)),
+    "fab": option(option(string)),
+    "directionUp": option(option(string)),
+    "directionDown": option(option(string)),
+    "directionLeft": option(option(string)),
+    "directionRight": option(option(string)),
+    "actions": option(option(string)),
+    "actionsClosed": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~fab: string=?,
+      ~directionUp: string=?,
+      ~directionDown: string=?,
+      ~directionLeft: string=?,
+      ~directionRight: string=?,
+      ~actions: string=?,
+      ~actionsClosed: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type direction = [ | `Down | `Left | `Right | `Up];
 
 module TransitionComponent: {
   type t;
@@ -36,16 +43,21 @@ module TransitionComponent: {
 };
 
 module TransitionDuration_shape = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    appear: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    enter: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    exit: MaterialUi_Types.Number.t,
+    .
+    "appear": option(option(MaterialUi_Types.Number.t)),
+    "enter": option(option(MaterialUi_Types.Number.t)),
+    "exit": option(option(MaterialUi_Types.Number.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~appear: MaterialUi_Types.Number.t=?,
+      ~enter: MaterialUi_Types.Number.t=?,
+      ~exit: MaterialUi_Types.Number.t=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionDuration: {

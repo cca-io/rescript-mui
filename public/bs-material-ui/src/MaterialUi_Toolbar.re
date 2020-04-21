@@ -1,16 +1,21 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    gutters: string,
-    [@bs.optional]
-    regular: string,
-    [@bs.optional]
-    dense: string,
+    .
+    "root": option(option(string)),
+    "gutters": option(option(string)),
+    "regular": option(option(string)),
+    "dense": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~gutters: string=?,
+      ~regular: string=?,
+      ~dense: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -26,6 +31,8 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type variant = [ | `Regular | `Dense];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

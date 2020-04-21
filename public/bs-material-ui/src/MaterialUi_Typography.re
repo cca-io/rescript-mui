@@ -1,69 +1,86 @@
+type align = [ | `Inherit | `Left | `Center | `Right | `Justify];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    body2: string,
-    [@bs.optional]
-    body1: string,
-    [@bs.optional]
-    caption: string,
-    [@bs.optional]
-    button: string,
-    [@bs.optional]
-    h1: string,
-    [@bs.optional]
-    h2: string,
-    [@bs.optional]
-    h3: string,
-    [@bs.optional]
-    h4: string,
-    [@bs.optional]
-    h5: string,
-    [@bs.optional]
-    h6: string,
-    [@bs.optional]
-    subtitle1: string,
-    [@bs.optional]
-    subtitle2: string,
-    [@bs.optional]
-    overline: string,
-    [@bs.optional]
-    srOnly: string,
-    [@bs.optional]
-    alignLeft: string,
-    [@bs.optional]
-    alignCenter: string,
-    [@bs.optional]
-    alignRight: string,
-    [@bs.optional]
-    alignJustify: string,
-    [@bs.optional]
-    noWrap: string,
-    [@bs.optional]
-    gutterBottom: string,
-    [@bs.optional]
-    paragraph: string,
-    [@bs.optional]
-    colorInherit: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    colorTextPrimary: string,
-    [@bs.optional]
-    colorTextSecondary: string,
-    [@bs.optional]
-    colorError: string,
-    [@bs.optional]
-    displayInline: string,
-    [@bs.optional]
-    displayBlock: string,
+    .
+    "root": option(option(string)),
+    "body2": option(option(string)),
+    "body1": option(option(string)),
+    "caption": option(option(string)),
+    "button": option(option(string)),
+    "h1": option(option(string)),
+    "h2": option(option(string)),
+    "h3": option(option(string)),
+    "h4": option(option(string)),
+    "h5": option(option(string)),
+    "h6": option(option(string)),
+    "subtitle1": option(option(string)),
+    "subtitle2": option(option(string)),
+    "overline": option(option(string)),
+    "srOnly": option(option(string)),
+    "alignLeft": option(option(string)),
+    "alignCenter": option(option(string)),
+    "alignRight": option(option(string)),
+    "alignJustify": option(option(string)),
+    "noWrap": option(option(string)),
+    "gutterBottom": option(option(string)),
+    "paragraph": option(option(string)),
+    "colorInherit": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "colorTextPrimary": option(option(string)),
+    "colorTextSecondary": option(option(string)),
+    "colorError": option(option(string)),
+    "displayInline": option(option(string)),
+    "displayBlock": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~body2: string=?,
+      ~body1: string=?,
+      ~caption: string=?,
+      ~button: string=?,
+      ~h1: string=?,
+      ~h2: string=?,
+      ~h3: string=?,
+      ~h4: string=?,
+      ~h5: string=?,
+      ~h6: string=?,
+      ~subtitle1: string=?,
+      ~subtitle2: string=?,
+      ~overline: string=?,
+      ~srOnly: string=?,
+      ~alignLeft: string=?,
+      ~alignCenter: string=?,
+      ~alignRight: string=?,
+      ~alignJustify: string=?,
+      ~noWrap: string=?,
+      ~gutterBottom: string=?,
+      ~paragraph: string=?,
+      ~colorInherit: string=?,
+      ~colorPrimary: string=?,
+      ~colorSecondary: string=?,
+      ~colorTextPrimary: string=?,
+      ~colorTextSecondary: string=?,
+      ~colorError: string=?,
+      ~displayInline: string=?,
+      ~displayBlock: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [
+  | `Initial
+  | `Inherit
+  | `Primary
+  | `Secondary
+  | `TextPrimary
+  | `TextSecondary
+  | `Error
+];
 
 module Component: {
   type t;
@@ -78,6 +95,26 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type display = [ | `Initial | `Block | `Inline];
+
+type variant = [
+  | `H1
+  | `H2
+  | `H3
+  | `H4
+  | `H5
+  | `H6
+  | `Subtitle1
+  | `Subtitle2
+  | `Body1
+  | `Body2
+  | `Caption
+  | `Button
+  | `Overline
+  | `SrOnly
+  | `Inherit
+];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

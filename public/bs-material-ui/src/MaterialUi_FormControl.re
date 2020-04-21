@@ -1,17 +1,24 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    marginNormal: string,
-    [@bs.optional]
-    marginDense: string,
-    [@bs.optional]
-    fullWidth: string,
+    .
+    "root": option(option(string)),
+    "marginNormal": option(option(string)),
+    "marginDense": option(option(string)),
+    "fullWidth": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~marginNormal: string=?,
+      ~marginDense: string=?,
+      ~fullWidth: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Primary | `Secondary];
 
 module Component: {
   type t;
@@ -26,6 +33,12 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type margin = [ | `None | `Dense | `Normal];
+
+type size = [ | `Small | `Medium];
+
+type variant = [ | `Standard | `Outlined | `Filled];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

@@ -1,21 +1,28 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    labelPlacementStart: string,
-    [@bs.optional]
-    labelPlacementTop: string,
-    [@bs.optional]
-    labelPlacementBottom: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    label: string,
+    .
+    "root": option(option(string)),
+    "labelPlacementStart": option(option(string)),
+    "labelPlacementTop": option(option(string)),
+    "labelPlacementBottom": option(option(string)),
+    "disabled": option(option(string)),
+    "label": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~labelPlacementStart: string=?,
+      ~labelPlacementTop: string=?,
+      ~labelPlacementBottom: string=?,
+      ~disabled: string=?,
+      ~label: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type labelPlacement = [ | `Bottom | `End | `Start | `Top];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

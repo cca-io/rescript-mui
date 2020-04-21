@@ -1,30 +1,35 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    horizontal: string,
-    [@bs.optional]
-    vertical: string,
-    [@bs.optional]
-    label: string,
-    [@bs.optional]
-    active: string,
-    [@bs.optional]
-    completed: string,
-    [@bs.optional]
-    error: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    iconContainer: string,
-    [@bs.optional]
-    alternativeLabel: string,
-    [@bs.optional]
-    labelContainer: string,
+    .
+    "root": option(option(string)),
+    "horizontal": option(option(string)),
+    "vertical": option(option(string)),
+    "label": option(option(string)),
+    "active": option(option(string)),
+    "completed": option(option(string)),
+    "error": option(option(string)),
+    "disabled": option(option(string)),
+    "iconContainer": option(option(string)),
+    "alternativeLabel": option(option(string)),
+    "labelContainer": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~horizontal: string=?,
+      ~vertical: string=?,
+      ~label: string=?,
+      ~active: string=?,
+      ~completed: string=?,
+      ~error: string=?,
+      ~disabled: string=?,
+      ~iconContainer: string=?,
+      ~alternativeLabel: string=?,
+      ~labelContainer: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module StepIconComponent: {

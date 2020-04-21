@@ -1,30 +1,35 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    vertical: string,
-    [@bs.optional]
-    flexContainer: string,
-    [@bs.optional]
-    flexContainerVertical: string,
-    [@bs.optional]
-    centered: string,
-    [@bs.optional]
-    scroller: string,
-    [@bs.optional]
-    fixed: string,
-    [@bs.optional]
-    scrollable: string,
-    [@bs.optional]
-    scrollButtons: string,
-    [@bs.optional]
-    scrollButtonsDesktop: string,
-    [@bs.optional]
-    indicator: string,
+    .
+    "root": option(option(string)),
+    "vertical": option(option(string)),
+    "flexContainer": option(option(string)),
+    "flexContainerVertical": option(option(string)),
+    "centered": option(option(string)),
+    "scroller": option(option(string)),
+    "fixed": option(option(string)),
+    "scrollable": option(option(string)),
+    "scrollButtons": option(option(string)),
+    "scrollButtonsDesktop": option(option(string)),
+    "indicator": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~vertical: string=?,
+      ~flexContainer: string=?,
+      ~flexContainerVertical: string=?,
+      ~centered: string=?,
+      ~scroller: string=?,
+      ~fixed: string=?,
+      ~scrollable: string=?,
+      ~scrollButtons: string=?,
+      ~scrollButtonsDesktop: string=?,
+      ~indicator: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -41,6 +46,10 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
+type indicatorColor = [ | `Secondary | `Primary];
+
+type orientation = [ | `Horizontal | `Vertical];
+
 module ScrollButtonComponent: {
   type t;
   let string: string => t;
@@ -54,6 +63,12 @@ module ScrollButtonComponent: {
   let scrollButtonComponent_func = (v: MaterialUi_Types.any) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type scrollButtons = [ | `Auto | `Desktop | `On | `Off];
+
+type textColor = [ | `Secondary | `Primary | `Inherit];
+
+type variant = [ | `Standard | `Scrollable | `FullWidth];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

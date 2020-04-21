@@ -1,16 +1,21 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    ol: string,
-    [@bs.optional]
-    li: string,
-    [@bs.optional]
-    separator: string,
+    .
+    "root": option(option(string)),
+    "ol": option(option(string)),
+    "li": option(option(string)),
+    "separator": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~ol: string=?,
+      ~li: string=?,
+      ~separator: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {

@@ -1,3 +1,15 @@
+type align = [ | `Inherit | `Left | `Center | `Right | `Justify];
+
+type color = [
+  | `Initial
+  | `Inherit
+  | `Primary
+  | `Secondary
+  | `TextPrimary
+  | `TextSecondary
+  | `Error
+];
+
 module Component: {
   type t;
   let string: string => t;
@@ -12,13 +24,29 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
+type display = [ | `Initial | `Block | `Inline];
+
+type variant = [
+  | `H1
+  | `H2
+  | `H3
+  | `H4
+  | `H5
+  | `H6
+  | `Subtitle1
+  | `Subtitle2
+  | `Body1
+  | `Body2
+  | `Caption
+  | `Button
+  | `Overline
+  | `SrOnly
+  | `Inherit
+];
+
 module Classes = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional]
-    root: string,
-  };
-  let make = t;
+  type t = {. "root": option(option(string))};
+  [@bs.obj] external make: (~root: string=?, unit) => t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

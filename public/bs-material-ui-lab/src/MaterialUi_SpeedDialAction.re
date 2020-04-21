@@ -1,23 +1,43 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    fab: string,
-    [@bs.optional]
-    fabClosed: string,
-    [@bs.optional]
-    staticTooltip: string,
-    [@bs.optional]
-    staticTooltipClosed: string,
-    [@bs.optional]
-    staticTooltipLabel: string,
-    [@bs.optional]
-    tooltipPlacementLeft: string,
-    [@bs.optional]
-    tooltipPlacementRight: string,
+    .
+    "fab": option(option(string)),
+    "fabClosed": option(option(string)),
+    "staticTooltip": option(option(string)),
+    "staticTooltipClosed": option(option(string)),
+    "staticTooltipLabel": option(option(string)),
+    "tooltipPlacementLeft": option(option(string)),
+    "tooltipPlacementRight": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~fab: string=?,
+      ~fabClosed: string=?,
+      ~staticTooltip: string=?,
+      ~staticTooltipClosed: string=?,
+      ~staticTooltipLabel: string=?,
+      ~tooltipPlacementLeft: string=?,
+      ~tooltipPlacementRight: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type tooltipPlacement = [
+  | `Bottom_End
+  | `Bottom_Start
+  | `Bottom
+  | `Left_End
+  | `Left_Start
+  | `Left
+  | `Right_End
+  | `Right_Start
+  | `Right
+  | `Top_End
+  | `Top_Start
+  | `Top
+];
 
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:

@@ -1,24 +1,29 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    disableGutters: string,
-    [@bs.optional]
-    fixed: string,
-    [@bs.optional]
-    maxWidthXs: string,
-    [@bs.optional]
-    maxWidthSm: string,
-    [@bs.optional]
-    maxWidthMd: string,
-    [@bs.optional]
-    maxWidthLg: string,
-    [@bs.optional]
-    maxWidthXl: string,
+    .
+    "root": option(option(string)),
+    "disableGutters": option(option(string)),
+    "fixed": option(option(string)),
+    "maxWidthXs": option(option(string)),
+    "maxWidthSm": option(option(string)),
+    "maxWidthMd": option(option(string)),
+    "maxWidthLg": option(option(string)),
+    "maxWidthXl": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~disableGutters: string=?,
+      ~fixed: string=?,
+      ~maxWidthXs: string=?,
+      ~maxWidthSm: string=?,
+      ~maxWidthMd: string=?,
+      ~maxWidthLg: string=?,
+      ~maxWidthXl: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {

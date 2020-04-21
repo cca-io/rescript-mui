@@ -14,22 +14,27 @@ module Animation: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    text: string,
-    [@bs.optional]
-    rect: string,
-    [@bs.optional]
-    circle: string,
-    [@bs.optional]
-    pulse: string,
-    [@bs.optional]
-    wave: string,
+    .
+    "root": option(option(string)),
+    "text": option(option(string)),
+    "rect": option(option(string)),
+    "circle": option(option(string)),
+    "pulse": option(option(string)),
+    "wave": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~text: string=?,
+      ~rect: string=?,
+      ~circle: string=?,
+      ~pulse: string=?,
+      ~wave: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -59,6 +64,8 @@ module Height: {
   let float = (v: float) => Any(v);
   let string = (v: string) => Any(v);
 };
+
+type variant = [ | `Text | `Rect | `Circle];
 
 module Width: {
   type t;

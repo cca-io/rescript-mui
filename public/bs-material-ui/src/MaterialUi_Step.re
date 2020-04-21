@@ -1,18 +1,23 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    horizontal: string,
-    [@bs.optional]
-    vertical: string,
-    [@bs.optional]
-    alternativeLabel: string,
-    [@bs.optional]
-    completed: string,
+    .
+    "root": option(option(string)),
+    "horizontal": option(option(string)),
+    "vertical": option(option(string)),
+    "alternativeLabel": option(option(string)),
+    "completed": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~horizontal: string=?,
+      ~vertical: string=?,
+      ~alternativeLabel: string=?,
+      ~completed: string=?,
+      unit
+    ) =>
+    t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

@@ -1,21 +1,28 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorInherit: string,
-    [@bs.optional]
-    gutters: string,
-    [@bs.optional]
-    inset: string,
-    [@bs.optional]
-    sticky: string,
+    .
+    "root": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorInherit": option(option(string)),
+    "gutters": option(option(string)),
+    "inset": option(option(string)),
+    "sticky": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~colorPrimary: string=?,
+      ~colorInherit: string=?,
+      ~gutters: string=?,
+      ~inset: string=?,
+      ~sticky: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Default | `Primary | `Inherit];
 
 module Component: {
   type t;

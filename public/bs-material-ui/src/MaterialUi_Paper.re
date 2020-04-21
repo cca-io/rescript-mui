@@ -1,64 +1,69 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    rounded: string,
-    [@bs.optional]
-    outlined: string,
-    [@bs.optional]
-    elevation0: string,
-    [@bs.optional]
-    elevation1: string,
-    [@bs.optional]
-    elevation2: string,
-    [@bs.optional]
-    elevation3: string,
-    [@bs.optional]
-    elevation4: string,
-    [@bs.optional]
-    elevation5: string,
-    [@bs.optional]
-    elevation6: string,
-    [@bs.optional]
-    elevation7: string,
-    [@bs.optional]
-    elevation8: string,
-    [@bs.optional]
-    elevation9: string,
-    [@bs.optional]
-    elevation10: string,
-    [@bs.optional]
-    elevation11: string,
-    [@bs.optional]
-    elevation12: string,
-    [@bs.optional]
-    elevation13: string,
-    [@bs.optional]
-    elevation14: string,
-    [@bs.optional]
-    elevation15: string,
-    [@bs.optional]
-    elevation16: string,
-    [@bs.optional]
-    elevation17: string,
-    [@bs.optional]
-    elevation18: string,
-    [@bs.optional]
-    elevation19: string,
-    [@bs.optional]
-    elevation20: string,
-    [@bs.optional]
-    elevation21: string,
-    [@bs.optional]
-    elevation22: string,
-    [@bs.optional]
-    elevation23: string,
-    [@bs.optional]
-    elevation24: string,
+    .
+    "root": option(option(string)),
+    "rounded": option(option(string)),
+    "outlined": option(option(string)),
+    "elevation0": option(option(string)),
+    "elevation1": option(option(string)),
+    "elevation2": option(option(string)),
+    "elevation3": option(option(string)),
+    "elevation4": option(option(string)),
+    "elevation5": option(option(string)),
+    "elevation6": option(option(string)),
+    "elevation7": option(option(string)),
+    "elevation8": option(option(string)),
+    "elevation9": option(option(string)),
+    "elevation10": option(option(string)),
+    "elevation11": option(option(string)),
+    "elevation12": option(option(string)),
+    "elevation13": option(option(string)),
+    "elevation14": option(option(string)),
+    "elevation15": option(option(string)),
+    "elevation16": option(option(string)),
+    "elevation17": option(option(string)),
+    "elevation18": option(option(string)),
+    "elevation19": option(option(string)),
+    "elevation20": option(option(string)),
+    "elevation21": option(option(string)),
+    "elevation22": option(option(string)),
+    "elevation23": option(option(string)),
+    "elevation24": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~rounded: string=?,
+      ~outlined: string=?,
+      ~elevation0: string=?,
+      ~elevation1: string=?,
+      ~elevation2: string=?,
+      ~elevation3: string=?,
+      ~elevation4: string=?,
+      ~elevation5: string=?,
+      ~elevation6: string=?,
+      ~elevation7: string=?,
+      ~elevation8: string=?,
+      ~elevation9: string=?,
+      ~elevation10: string=?,
+      ~elevation11: string=?,
+      ~elevation12: string=?,
+      ~elevation13: string=?,
+      ~elevation14: string=?,
+      ~elevation15: string=?,
+      ~elevation16: string=?,
+      ~elevation17: string=?,
+      ~elevation18: string=?,
+      ~elevation19: string=?,
+      ~elevation20: string=?,
+      ~elevation21: string=?,
+      ~elevation22: string=?,
+      ~elevation23: string=?,
+      ~elevation24: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module Component: {
@@ -74,6 +79,8 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type variant = [ | `Elevation | `Outlined];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

@@ -1,3 +1,7 @@
+type implementation = [ | `Js | `Css];
+
+type initialWidth = [ | `Xs | `Sm | `Md | `Lg | `Xl];
+
 module Only_enum: {
   type t;
   let xs: t;

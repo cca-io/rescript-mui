@@ -26,30 +26,39 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+type _type = [ | `Submit | `Reset | `Button];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    edgeStart: string,
-    [@bs.optional]
-    edgeEnd: string,
-    [@bs.optional]
-    colorInherit: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorSecondary: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    sizeSmall: string,
-    [@bs.optional]
-    label: string,
+    .
+    "root": option(option(string)),
+    "edgeStart": option(option(string)),
+    "edgeEnd": option(option(string)),
+    "colorInherit": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorSecondary": option(option(string)),
+    "disabled": option(option(string)),
+    "sizeSmall": option(option(string)),
+    "label": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~edgeStart: string=?,
+      ~edgeEnd: string=?,
+      ~colorInherit: string=?,
+      ~colorPrimary: string=?,
+      ~colorSecondary: string=?,
+      ~disabled: string=?,
+      ~sizeSmall: string=?,
+      ~label: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Default | `Inherit | `Primary | `Secondary];
 
 module Edge: {
   type t;
@@ -65,6 +74,8 @@ module Edge: {
   let _end = Any("end");
   let _false = Any(false);
 };
+
+type size = [ | `Small | `Medium];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

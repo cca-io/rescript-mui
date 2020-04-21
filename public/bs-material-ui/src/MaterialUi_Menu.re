@@ -71,22 +71,33 @@ module Vertical: {
 };
 
 module AnchorOrigin = {
-  [@bs.deriving abstract]
   type t = {
-    horizontal: Horizontal.t,
-    vertical: Vertical.t,
+    .
+    "horizontal": option(option(Horizontal.t)),
+    "vertical": option(option(Vertical.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (~horizontal: Horizontal.t=?, ~vertical: Vertical.t=?, unit) => t;
 };
 
 module AnchorPosition = {
-  [@bs.deriving abstract]
   type t = {
-    left: MaterialUi_Types.Number.t,
-    top: MaterialUi_Types.Number.t,
+    .
+    "left": option(option(MaterialUi_Types.Number.t)),
+    "top": option(option(MaterialUi_Types.Number.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~left: MaterialUi_Types.Number.t=?,
+      ~top: MaterialUi_Types.Number.t=?,
+      unit
+    ) =>
+    t;
 };
+
+type anchorReference = [ | `AnchorEl | `AnchorPosition | `None];
 
 module Container: {
   type t;
@@ -99,12 +110,14 @@ module Container: {
 };
 
 module TransformOrigin = {
-  [@bs.deriving abstract]
   type t = {
-    horizontal: Horizontal.t,
-    vertical: Vertical.t,
+    .
+    "horizontal": option(option(Horizontal.t)),
+    "vertical": option(option(Vertical.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (~horizontal: Horizontal.t=?, ~vertical: Vertical.t=?, unit) => t;
 };
 
 module TransitionComponent: {
@@ -122,14 +135,12 @@ module TransitionComponent: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    paper: string,
-    [@bs.optional]
-    list: string,
+    .
+    "paper": option(option(string)),
+    "list": option(option(string)),
   };
-  let make = t;
+  [@bs.obj] external make: (~paper: string=?, ~list: string=?, unit) => t;
 };
 
 module TransitionDuration_enum: {
@@ -144,16 +155,21 @@ module TransitionDuration_enum: {
 };
 
 module TransitionDuration_shape = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    appear: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    enter: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    exit: MaterialUi_Types.Number.t,
+    .
+    "appear": option(option(MaterialUi_Types.Number.t)),
+    "enter": option(option(MaterialUi_Types.Number.t)),
+    "exit": option(option(MaterialUi_Types.Number.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~appear: MaterialUi_Types.Number.t=?,
+      ~enter: MaterialUi_Types.Number.t=?,
+      ~exit: MaterialUi_Types.Number.t=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionDuration: {
@@ -171,6 +187,8 @@ module TransitionDuration: {
   let float = (v: float) => Any(v);
   let shape = (v: TransitionDuration_shape.t) => Any(v);
 };
+
+type variant = [ | `Menu | `SelectedMenu];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

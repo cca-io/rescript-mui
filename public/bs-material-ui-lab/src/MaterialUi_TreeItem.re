@@ -1,22 +1,27 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    expanded: string,
-    [@bs.optional]
-    selected: string,
-    [@bs.optional]
-    group: string,
-    [@bs.optional]
-    content: string,
-    [@bs.optional]
-    iconContainer: string,
-    [@bs.optional]
-    label: string,
+    .
+    "root": option(option(string)),
+    "expanded": option(option(string)),
+    "selected": option(option(string)),
+    "group": option(option(string)),
+    "content": option(option(string)),
+    "iconContainer": option(option(string)),
+    "label": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~expanded: string=?,
+      ~selected: string=?,
+      ~group: string=?,
+      ~content: string=?,
+      ~iconContainer: string=?,
+      ~label: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionComponent: {

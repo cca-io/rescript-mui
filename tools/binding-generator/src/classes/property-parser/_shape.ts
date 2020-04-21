@@ -10,26 +10,29 @@ const factory = (propertyType: PropType$Shape) => {
       const shapeArgs = this.resolveShape();
       if (shapeArgs.length) {
         this._module = `
-                    module ${this._moduleName} {
-                        [@bs.deriving abstract]
-                        type t = {
-                            ${shapeArgs
-                              .map(
-                                (arg) => `
-                                ${!arg.required ? '[@bs.optional]' : ''}
-                                ${
-                                  arg.key !== arg.keySafe
-                                    ? `[@bs.as "${arg.key}"]`
-                                    : ''
-                                }
-                                ${arg.keySafe}: ${arg.type}
-                            `,
-                              )
-                              .join(',')}
-                        };
-                        let make = t;
-                    };
+          module ${this._moduleName} {
+            type t = {
+              .
+              ${shapeArgs
+                .map((arg) => {
+                  return `
+                "${arg.key}":option(option(${arg.type}))
                 `;
+                })
+                .join(',')}
+            };
+            [@bs.obj] external make: (
+              ${shapeArgs
+                .map((arg) => {
+                  return `
+                  ~${arg.keySafe}:
+                  ${arg.type}=?
+                  `;
+                })
+                .join(',')}
+            , unit) => t = "";
+          };
+      `;
 
         this._reasonType = `${this._moduleName}.t`;
       } else {

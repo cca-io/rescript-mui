@@ -13,69 +13,76 @@ module TabIndex: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    label: string,
-    [@bs.optional]
-    text: string,
-    [@bs.optional]
-    textPrimary: string,
-    [@bs.optional]
-    textSecondary: string,
-    [@bs.optional]
-    outlined: string,
-    [@bs.optional]
-    outlinedPrimary: string,
-    [@bs.optional]
-    outlinedSecondary: string,
-    [@bs.optional]
-    contained: string,
-    [@bs.optional]
-    containedPrimary: string,
-    [@bs.optional]
-    containedSecondary: string,
-    [@bs.optional]
-    disableElevation: string,
-    [@bs.optional]
-    focusVisible: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    colorInherit: string,
-    [@bs.optional]
-    textSizeSmall: string,
-    [@bs.optional]
-    textSizeLarge: string,
-    [@bs.optional]
-    outlinedSizeSmall: string,
-    [@bs.optional]
-    outlinedSizeLarge: string,
-    [@bs.optional]
-    containedSizeSmall: string,
-    [@bs.optional]
-    containedSizeLarge: string,
-    [@bs.optional]
-    sizeSmall: string,
-    [@bs.optional]
-    sizeLarge: string,
-    [@bs.optional]
-    fullWidth: string,
-    [@bs.optional]
-    startIcon: string,
-    [@bs.optional]
-    endIcon: string,
-    [@bs.optional]
-    iconSizeSmall: string,
-    [@bs.optional]
-    iconSizeMedium: string,
-    [@bs.optional]
-    iconSizeLarge: string,
+    .
+    "root": option(option(string)),
+    "label": option(option(string)),
+    "text": option(option(string)),
+    "textPrimary": option(option(string)),
+    "textSecondary": option(option(string)),
+    "outlined": option(option(string)),
+    "outlinedPrimary": option(option(string)),
+    "outlinedSecondary": option(option(string)),
+    "contained": option(option(string)),
+    "containedPrimary": option(option(string)),
+    "containedSecondary": option(option(string)),
+    "disableElevation": option(option(string)),
+    "focusVisible": option(option(string)),
+    "disabled": option(option(string)),
+    "colorInherit": option(option(string)),
+    "textSizeSmall": option(option(string)),
+    "textSizeLarge": option(option(string)),
+    "outlinedSizeSmall": option(option(string)),
+    "outlinedSizeLarge": option(option(string)),
+    "containedSizeSmall": option(option(string)),
+    "containedSizeLarge": option(option(string)),
+    "sizeSmall": option(option(string)),
+    "sizeLarge": option(option(string)),
+    "fullWidth": option(option(string)),
+    "startIcon": option(option(string)),
+    "endIcon": option(option(string)),
+    "iconSizeSmall": option(option(string)),
+    "iconSizeMedium": option(option(string)),
+    "iconSizeLarge": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~label: string=?,
+      ~text: string=?,
+      ~textPrimary: string=?,
+      ~textSecondary: string=?,
+      ~outlined: string=?,
+      ~outlinedPrimary: string=?,
+      ~outlinedSecondary: string=?,
+      ~contained: string=?,
+      ~containedPrimary: string=?,
+      ~containedSecondary: string=?,
+      ~disableElevation: string=?,
+      ~focusVisible: string=?,
+      ~disabled: string=?,
+      ~colorInherit: string=?,
+      ~textSizeSmall: string=?,
+      ~textSizeLarge: string=?,
+      ~outlinedSizeSmall: string=?,
+      ~outlinedSizeLarge: string=?,
+      ~containedSizeSmall: string=?,
+      ~containedSizeLarge: string=?,
+      ~sizeSmall: string=?,
+      ~sizeLarge: string=?,
+      ~fullWidth: string=?,
+      ~startIcon: string=?,
+      ~endIcon: string=?,
+      ~iconSizeSmall: string=?,
+      ~iconSizeMedium: string=?,
+      ~iconSizeLarge: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Default | `Inherit | `Primary | `Secondary];
 
 module Component: {
   type t;
@@ -90,6 +97,10 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type size = [ | `Small | `Medium | `Large];
+
+type variant = [ | `Text | `Outlined | `Contained];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

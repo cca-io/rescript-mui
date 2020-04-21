@@ -1,31 +1,51 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    popper: string,
-    [@bs.optional]
-    popperInteractive: string,
-    [@bs.optional]
-    popperArrow: string,
-    [@bs.optional]
-    tooltip: string,
-    [@bs.optional]
-    tooltipArrow: string,
-    [@bs.optional]
-    arrow: string,
-    [@bs.optional]
-    touch: string,
-    [@bs.optional]
-    tooltipPlacementLeft: string,
-    [@bs.optional]
-    tooltipPlacementRight: string,
-    [@bs.optional]
-    tooltipPlacementTop: string,
-    [@bs.optional]
-    tooltipPlacementBottom: string,
+    .
+    "popper": option(option(string)),
+    "popperInteractive": option(option(string)),
+    "popperArrow": option(option(string)),
+    "tooltip": option(option(string)),
+    "tooltipArrow": option(option(string)),
+    "arrow": option(option(string)),
+    "touch": option(option(string)),
+    "tooltipPlacementLeft": option(option(string)),
+    "tooltipPlacementRight": option(option(string)),
+    "tooltipPlacementTop": option(option(string)),
+    "tooltipPlacementBottom": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~popper: string=?,
+      ~popperInteractive: string=?,
+      ~popperArrow: string=?,
+      ~tooltip: string=?,
+      ~tooltipArrow: string=?,
+      ~arrow: string=?,
+      ~touch: string=?,
+      ~tooltipPlacementLeft: string=?,
+      ~tooltipPlacementRight: string=?,
+      ~tooltipPlacementTop: string=?,
+      ~tooltipPlacementBottom: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type placement = [
+  | `Bottom_End
+  | `Bottom_Start
+  | `Bottom
+  | `Left_End
+  | `Left_Start
+  | `Left
+  | `Right_End
+  | `Right_Start
+  | `Right
+  | `Top_End
+  | `Top_Start
+  | `Top
+];
 
 module TransitionComponent: {
   type t;

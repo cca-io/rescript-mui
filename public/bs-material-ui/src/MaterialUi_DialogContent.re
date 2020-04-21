@@ -1,12 +1,10 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    dividers: string,
+    .
+    "root": option(option(string)),
+    "dividers": option(option(string)),
   };
-  let make = t;
+  [@bs.obj] external make: (~root: string=?, ~dividers: string=?, unit) => t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

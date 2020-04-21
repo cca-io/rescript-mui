@@ -12,20 +12,29 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
+type variant = [ | `Elevation | `Outlined];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    horizontal: string,
-    [@bs.optional]
-    vertical: string,
-    [@bs.optional]
-    alternativeLabel: string,
+    .
+    "root": option(option(string)),
+    "horizontal": option(option(string)),
+    "vertical": option(option(string)),
+    "alternativeLabel": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~horizontal: string=?,
+      ~vertical: string=?,
+      ~alternativeLabel: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type orientation = [ | `Horizontal | `Vertical];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

@@ -10,16 +10,21 @@ module Timeout_enum: {
 };
 
 module Timeout_shape = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    appear: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    enter: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    exit: MaterialUi_Types.Number.t,
+    .
+    "appear": option(option(MaterialUi_Types.Number.t)),
+    "enter": option(option(MaterialUi_Types.Number.t)),
+    "exit": option(option(MaterialUi_Types.Number.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~appear: MaterialUi_Types.Number.t=?,
+      ~enter: MaterialUi_Types.Number.t=?,
+      ~exit: MaterialUi_Types.Number.t=?,
+      unit
+    ) =>
+    t;
 };
 
 module Timeout: {

@@ -26,22 +26,31 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+type _type = [ | `Submit | `Reset | `Button];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    active: string,
-    [@bs.optional]
-    icon: string,
-    [@bs.optional]
-    iconDirectionDesc: string,
-    [@bs.optional]
-    iconDirectionAsc: string,
+    .
+    "root": option(option(string)),
+    "active": option(option(string)),
+    "icon": option(option(string)),
+    "iconDirectionDesc": option(option(string)),
+    "iconDirectionAsc": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~active: string=?,
+      ~icon: string=?,
+      ~iconDirectionDesc: string=?,
+      ~iconDirectionAsc: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type direction = [ | `Asc | `Desc];
 
 module IconComponent: {
   type t;

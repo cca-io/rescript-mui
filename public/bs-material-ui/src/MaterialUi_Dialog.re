@@ -25,40 +25,45 @@ module Container: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    scrollPaper: string,
-    [@bs.optional]
-    scrollBody: string,
-    [@bs.optional]
-    container: string,
-    [@bs.optional]
-    paper: string,
-    [@bs.optional]
-    paperScrollPaper: string,
-    [@bs.optional]
-    paperScrollBody: string,
-    [@bs.optional]
-    paperWidthFalse: string,
-    [@bs.optional]
-    paperWidthXs: string,
-    [@bs.optional]
-    paperWidthSm: string,
-    [@bs.optional]
-    paperWidthMd: string,
-    [@bs.optional]
-    paperWidthLg: string,
-    [@bs.optional]
-    paperWidthXl: string,
-    [@bs.optional]
-    paperFullWidth: string,
-    [@bs.optional]
-    paperFullScreen: string,
+    .
+    "root": option(option(string)),
+    "scrollPaper": option(option(string)),
+    "scrollBody": option(option(string)),
+    "container": option(option(string)),
+    "paper": option(option(string)),
+    "paperScrollPaper": option(option(string)),
+    "paperScrollBody": option(option(string)),
+    "paperWidthFalse": option(option(string)),
+    "paperWidthXs": option(option(string)),
+    "paperWidthSm": option(option(string)),
+    "paperWidthMd": option(option(string)),
+    "paperWidthLg": option(option(string)),
+    "paperWidthXl": option(option(string)),
+    "paperFullWidth": option(option(string)),
+    "paperFullScreen": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~scrollPaper: string=?,
+      ~scrollBody: string=?,
+      ~container: string=?,
+      ~paper: string=?,
+      ~paperScrollPaper: string=?,
+      ~paperScrollBody: string=?,
+      ~paperWidthFalse: string=?,
+      ~paperWidthXs: string=?,
+      ~paperWidthSm: string=?,
+      ~paperWidthMd: string=?,
+      ~paperWidthLg: string=?,
+      ~paperWidthXl: string=?,
+      ~paperFullWidth: string=?,
+      ~paperFullScreen: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module MaxWidth: {
@@ -96,6 +101,8 @@ module PaperComponent: {
   let element = (v: React.element) => Any(v);
 };
 
+type scroll = [ | `Body | `Paper];
+
 module TransitionComponent: {
   type t;
   let string: string => t;
@@ -111,16 +118,21 @@ module TransitionComponent: {
 };
 
 module TransitionDuration_shape = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    appear: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    enter: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    exit: MaterialUi_Types.Number.t,
+    .
+    "appear": option(option(MaterialUi_Types.Number.t)),
+    "enter": option(option(MaterialUi_Types.Number.t)),
+    "exit": option(option(MaterialUi_Types.Number.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~appear: MaterialUi_Types.Number.t=?,
+      ~enter: MaterialUi_Types.Number.t=?,
+      ~exit: MaterialUi_Types.Number.t=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionDuration: {

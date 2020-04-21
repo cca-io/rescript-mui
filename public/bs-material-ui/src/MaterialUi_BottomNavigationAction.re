@@ -26,21 +26,28 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+type _type = [ | `Submit | `Reset | `Button];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    selected: string,
-    [@bs.optional]
-    iconOnly: string,
-    [@bs.optional]
-    wrapper: string,
-    [@bs.optional]
-    label: string,
+    .
+    "root": option(option(string)),
+    "selected": option(option(string)),
+    "iconOnly": option(option(string)),
+    "wrapper": option(option(string)),
+    "label": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~selected: string=?,
+      ~iconOnly: string=?,
+      ~wrapper: string=?,
+      ~label: string=?,
+      unit
+    ) =>
+    t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

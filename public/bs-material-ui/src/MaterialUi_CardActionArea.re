@@ -26,17 +26,24 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+type _type = [ | `Submit | `Reset | `Button];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    focusVisible: string,
-    [@bs.optional]
-    focusHighlight: string,
+    .
+    "root": option(option(string)),
+    "focusVisible": option(option(string)),
+    "focusHighlight": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~focusVisible: string=?,
+      ~focusHighlight: string=?,
+      unit
+    ) =>
+    t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

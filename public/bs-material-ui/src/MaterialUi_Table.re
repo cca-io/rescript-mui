@@ -1,12 +1,11 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    stickyHeader: string,
+    .
+    "root": option(option(string)),
+    "stickyHeader": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make: (~root: string=?, ~stickyHeader: string=?, unit) => t;
 };
 
 module Component: {
@@ -22,6 +21,10 @@ module Component: {
   let callback = (v: unit => React.element) => Any(v);
   let element = (v: React.element) => Any(v);
 };
+
+type padding = [ | `Default | `Checkbox | `None];
+
+type size = [ | `Small | `Medium];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

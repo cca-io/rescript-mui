@@ -26,6 +26,8 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+type _type = [ | `Submit | `Reset | `Button];
+
 module Edge: {
   type t;
   let start: t;
@@ -42,23 +44,32 @@ module Edge: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    checked: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    indeterminate: string,
-    [@bs.optional]
-    colorPrimary: string,
-    [@bs.optional]
-    colorSecondary: string,
+    .
+    "root": option(option(string)),
+    "checked": option(option(string)),
+    "disabled": option(option(string)),
+    "indeterminate": option(option(string)),
+    "colorPrimary": option(option(string)),
+    "colorSecondary": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~checked: string=?,
+      ~disabled: string=?,
+      ~indeterminate: string=?,
+      ~colorPrimary: string=?,
+      ~colorSecondary: string=?,
+      unit
+    ) =>
+    t;
 };
+
+type color = [ | `Default | `Primary | `Secondary];
+
+type size = [ | `Medium | `Small];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

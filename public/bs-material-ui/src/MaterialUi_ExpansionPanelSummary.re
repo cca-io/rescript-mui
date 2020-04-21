@@ -26,23 +26,30 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+type _type = [ | `Submit | `Reset | `Button];
+
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    expanded: string,
-    [@bs.optional]
-    focused: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    content: string,
-    [@bs.optional]
-    expandIcon: string,
+    .
+    "root": option(option(string)),
+    "expanded": option(option(string)),
+    "focused": option(option(string)),
+    "disabled": option(option(string)),
+    "content": option(option(string)),
+    "expandIcon": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~expanded: string=?,
+      ~focused: string=?,
+      ~disabled: string=?,
+      ~content: string=?,
+      ~expandIcon: string=?,
+      unit
+    ) =>
+    t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]

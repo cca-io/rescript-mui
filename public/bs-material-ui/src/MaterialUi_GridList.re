@@ -24,12 +24,8 @@ module CellHeight: {
 };
 
 module Classes = {
-  [@bs.deriving abstract]
-  type t = {
-    [@bs.optional]
-    root: string,
-  };
-  let make = t;
+  type t = {. "root": option(option(string))};
+  [@bs.obj] external make: (~root: string=?, unit) => t;
 };
 
 module Component: {

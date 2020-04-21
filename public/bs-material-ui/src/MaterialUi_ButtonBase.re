@@ -1,14 +1,13 @@
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    disabled: string,
-    [@bs.optional]
-    focusVisible: string,
+    .
+    "root": option(option(string)),
+    "disabled": option(option(string)),
+    "focusVisible": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (~root: string=?, ~disabled: string=?, ~focusVisible: string=?, unit) => t;
 };
 
 module Component: {
@@ -38,6 +37,8 @@ module TabIndex: {
   let float = (v: float) => Any(v);
   let string = (v: string) => Any(v);
 };
+
+type _type = [ | `Submit | `Reset | `Button];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:

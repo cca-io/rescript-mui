@@ -27,33 +27,40 @@ module Vertical: {
 };
 
 module AnchorOrigin = {
-  [@bs.deriving abstract]
   type t = {
-    horizontal: Horizontal.t,
-    vertical: Vertical.t,
+    .
+    "horizontal": option(option(Horizontal.t)),
+    "vertical": option(option(Vertical.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (~horizontal: Horizontal.t=?, ~vertical: Vertical.t=?, unit) => t;
 };
 
 module Classes = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    root: string,
-    [@bs.optional]
-    anchorOriginTopCenter: string,
-    [@bs.optional]
-    anchorOriginBottomCenter: string,
-    [@bs.optional]
-    anchorOriginTopRight: string,
-    [@bs.optional]
-    anchorOriginBottomRight: string,
-    [@bs.optional]
-    anchorOriginTopLeft: string,
-    [@bs.optional]
-    anchorOriginBottomLeft: string,
+    .
+    "root": option(option(string)),
+    "anchorOriginTopCenter": option(option(string)),
+    "anchorOriginBottomCenter": option(option(string)),
+    "anchorOriginTopRight": option(option(string)),
+    "anchorOriginBottomRight": option(option(string)),
+    "anchorOriginTopLeft": option(option(string)),
+    "anchorOriginBottomLeft": option(option(string)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~root: string=?,
+      ~anchorOriginTopCenter: string=?,
+      ~anchorOriginBottomCenter: string=?,
+      ~anchorOriginTopRight: string=?,
+      ~anchorOriginBottomRight: string=?,
+      ~anchorOriginTopLeft: string=?,
+      ~anchorOriginBottomLeft: string=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionComponent: {
@@ -71,16 +78,21 @@ module TransitionComponent: {
 };
 
 module TransitionDuration_shape = {
-  [@bs.deriving abstract]
   type t = {
-    [@bs.optional]
-    appear: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    enter: MaterialUi_Types.Number.t,
-    [@bs.optional]
-    exit: MaterialUi_Types.Number.t,
+    .
+    "appear": option(option(MaterialUi_Types.Number.t)),
+    "enter": option(option(MaterialUi_Types.Number.t)),
+    "exit": option(option(MaterialUi_Types.Number.t)),
   };
-  let make = t;
+  [@bs.obj]
+  external make:
+    (
+      ~appear: MaterialUi_Types.Number.t=?,
+      ~enter: MaterialUi_Types.Number.t=?,
+      ~exit: MaterialUi_Types.Number.t=?,
+      unit
+    ) =>
+    t;
 };
 
 module TransitionDuration: {
