@@ -122,6 +122,7 @@ external make:
                   =?,
     ~variant: option(string)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~onClick: option(ReactEvent.Mouse.t => unit)=?,
     ~href: option(string)=?,
     ~target: option(string)=?,

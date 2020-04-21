@@ -52,6 +52,7 @@ external make:
     ~cols: option(MaterialUi_Types.Number.t)=?,
     ~component: option(Component.t)=?,
     ~spacing: option(MaterialUi_Types.Number.t)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~id: option(string)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?

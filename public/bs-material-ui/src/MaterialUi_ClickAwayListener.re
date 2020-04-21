@@ -39,6 +39,7 @@ external make:
     ~onClickAway: ReactEvent.Mouse.t => unit,
     ~touchEvent: option(TouchEvent.t)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

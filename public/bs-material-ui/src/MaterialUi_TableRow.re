@@ -44,6 +44,7 @@ external make:
     ~hover: option(bool)=?,
     ~selected: option(bool)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?

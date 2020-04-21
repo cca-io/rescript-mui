@@ -115,6 +115,7 @@ external make:
               ],
             )
               =?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~children: option('children)=?,
     ~disableFocusRipple: option(bool)=?,
     ~checked: option(bool)=?,

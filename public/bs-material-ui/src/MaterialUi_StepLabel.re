@@ -59,6 +59,7 @@ external make:
     ~_StepIconComponent: option(StepIconComponent.t)=?,
     ~_StepIconProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

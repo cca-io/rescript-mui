@@ -72,6 +72,7 @@ external make:
     ~fixed: option(bool)=?,
     ~maxWidth: option(MaxWidth.t)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

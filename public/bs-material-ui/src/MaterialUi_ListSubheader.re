@@ -57,6 +57,7 @@ external make:
     ~disableSticky: option(bool)=?,
     ~inset: option(bool)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

@@ -35,6 +35,7 @@ external make:
     ~secondary: option(React.element)=?,
     ~secondaryTypographyProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

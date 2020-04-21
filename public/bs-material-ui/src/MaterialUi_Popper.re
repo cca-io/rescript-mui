@@ -75,6 +75,7 @@ external make:
                 )
                   =?,
     ~popperOptions: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~transition: option(bool)=?,
     ~id: option(string)=?,
     ~key: option(string)=?,

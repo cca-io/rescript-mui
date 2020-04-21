@@ -81,6 +81,7 @@ external make:
     ~divider: option(bool)=?,
     ~focusVisibleClassName: option(string)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~children: option('children)=?,
     ~classes: option(Classes.t)=?,
     ~className: option(string)=?,

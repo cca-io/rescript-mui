@@ -112,6 +112,7 @@ external make:
     ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
     ~renderSuffix: option(MaterialUi_Types.any)=?,
     ~rowsMin: option(RowsMin.t)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~autoComplete: option(string)=?,
     ~autoFocus: option(bool)=?,
     ~classes: option(Classes.t)=?,

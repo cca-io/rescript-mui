@@ -239,6 +239,7 @@ external make:
     ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
     ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~anchorEl: option(AnchorEl.t)=?,
     ~anchorOrigin: option(AnchorOrigin.t)=?,
     ~anchorPosition: option(AnchorPosition.t)=?,

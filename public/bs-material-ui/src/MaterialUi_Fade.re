@@ -37,6 +37,7 @@ external make:
     ~_in: option(bool)=?,
     ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
     ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~timeout: option(Timeout.t)=?,
     ~id: option(string)=?,
     ~key: option(string)=?,

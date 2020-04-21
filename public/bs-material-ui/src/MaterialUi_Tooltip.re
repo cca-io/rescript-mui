@@ -102,6 +102,7 @@ external make:
     ~title: React.element,
     ~_TransitionComponent: option(TransitionComponent.t)=?,
     ~_TransitionProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

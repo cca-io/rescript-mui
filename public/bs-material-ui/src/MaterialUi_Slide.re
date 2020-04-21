@@ -50,6 +50,7 @@ external make:
     ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
     ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
     ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~timeout: option(Timeout.t)=?,
     ~id: option(string)=?,
     ~key: option(string)=?,

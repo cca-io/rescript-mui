@@ -114,6 +114,7 @@ external make:
               )
                 =?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~colSpan: option(int)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?

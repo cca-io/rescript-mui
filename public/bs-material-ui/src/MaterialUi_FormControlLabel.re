@@ -46,6 +46,7 @@ external make:
     ~onChange: option(ReactEvent.Form.t => unit)=?,
     ~value: option(MaterialUi_Types.any)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

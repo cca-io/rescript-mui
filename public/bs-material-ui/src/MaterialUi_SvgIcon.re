@@ -85,6 +85,7 @@ external make:
     ~titleAccess: option(string)=?,
     ~viewBox: option(string)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

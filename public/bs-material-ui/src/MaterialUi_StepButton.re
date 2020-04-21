@@ -84,6 +84,7 @@ external make:
             )
               =?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~active: option(bool)=?,
     ~alternativeLabel: option(bool)=?,
     ~children: option('children)=?,

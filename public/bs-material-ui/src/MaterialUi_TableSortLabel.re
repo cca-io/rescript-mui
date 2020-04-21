@@ -101,6 +101,7 @@ external make:
             )
               =?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~active: option(bool)=?,
     ~children: option('children)=?,
     ~classes: option(Classes.t)=?,

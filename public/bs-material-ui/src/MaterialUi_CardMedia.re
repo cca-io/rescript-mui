@@ -33,6 +33,7 @@ external make:
     ~component: option(Component.t)=?,
     ~image: option(string)=?,
     ~src: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~id: option(string)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?

@@ -16,6 +16,7 @@ external make:
     ~disablePortal: option(bool)=?,
     ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

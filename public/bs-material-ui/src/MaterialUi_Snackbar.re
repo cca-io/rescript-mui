@@ -138,6 +138,7 @@ external make:
     ~transitionDuration: option(TransitionDuration.t)=?,
     ~_TransitionProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>
   React.element =

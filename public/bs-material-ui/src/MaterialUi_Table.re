@@ -50,6 +50,7 @@ external make:
              =?,
     ~stickyHeader: option(bool)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

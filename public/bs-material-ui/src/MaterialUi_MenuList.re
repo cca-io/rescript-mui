@@ -43,6 +43,7 @@ external make:
     ~disablePadding: option(bool)=?,
     ~subheader: option(React.element)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~autoFocus: option(bool)=?,
     ~autoFocusItem: option(bool)=?,
     ~children: option('children)=?,

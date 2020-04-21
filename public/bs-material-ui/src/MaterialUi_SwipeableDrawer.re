@@ -117,6 +117,7 @@ external make:
     ~elevation: option(MaterialUi_Types.Number.t)=?,
     ~_SlideProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~anchor: option(
                [@bs.string] [
                  | [@bs.as "left"] `Left

@@ -62,6 +62,7 @@ external make:
     ~focused: option(bool)=?,
     ~required: option(bool)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

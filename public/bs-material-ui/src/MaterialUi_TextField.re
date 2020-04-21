@@ -86,6 +86,7 @@ external make:
   (
     ~component: option(Component.t)=?,
     ~focused: option(bool)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~autoComplete: option(string)=?,
     ~autoFocus: option(bool)=?,
     ~children: option('children)=?,

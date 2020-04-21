@@ -121,6 +121,7 @@ external make:
               )
                 =?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~_ActionsComponent: option(ActionsComponent.t)=?,
     ~backIconButtonProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~backIconButtonText: option(string)=?,

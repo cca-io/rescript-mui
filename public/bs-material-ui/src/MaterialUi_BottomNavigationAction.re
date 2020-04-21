@@ -94,6 +94,7 @@ external make:
     ~showLabel: option(bool)=?,
     ~value: option(MaterialUi_Types.any)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

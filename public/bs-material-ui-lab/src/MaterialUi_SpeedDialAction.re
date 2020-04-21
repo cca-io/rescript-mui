@@ -69,6 +69,7 @@ external make:
                        )
                          =?,
     ~tooltipTitle: option(React.element)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

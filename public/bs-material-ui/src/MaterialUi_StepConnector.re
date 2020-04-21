@@ -36,6 +36,7 @@ external make:
     ~classes: option(Classes.t)=?,
     ~className: option(string)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

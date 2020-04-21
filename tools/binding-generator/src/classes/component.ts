@@ -4,9 +4,6 @@ import GetCustomProps from './../helpers/get-custom-props';
 import Property from './property';
 
 class Component {
-  // Statics
-  static ignorePropNames = ['style'];
-
   // ComponentSignature
   readonly _component: ComponentSignature;
 
@@ -30,6 +27,16 @@ class Component {
         defaultValue: { computed: false, value: '' },
       };
     }
+    // Add style prop
+    this._component.props['style'] = {
+      type: {
+        name: 'custom',
+        reasonType: 'ReactDOMRe.Style.t',
+      },
+      required: false,
+      description: '@ignore',
+      defaultValue: { computed: false, value: '' },
+    };
     // Modify classes prop
     if (typeof this._component.props['classes'] !== 'undefined') {
       this._component.props['classes'] = {
@@ -95,15 +102,13 @@ class Component {
       };
 
       const propKeys = Object.keys(props);
-      this._properties = propKeys
-        .filter((propKey) => Component.ignorePropNames.indexOf(propKey) === -1)
-        .reduce(
-          (arr, propKey) =>
-            props != null
-              ? [...arr, new Property(propKey, props[propKey], this)]
-              : arr,
-          [],
-        );
+      this._properties = propKeys.reduce(
+        (arr, propKey) =>
+          props != null
+            ? [...arr, new Property(propKey, props[propKey], this)]
+            : arr,
+        [],
+      );
     }
   }
 

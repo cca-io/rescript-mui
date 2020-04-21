@@ -151,6 +151,7 @@ external make:
     ~startAdornment: option(React.element)=?,
     ~_type: option(string)=?,
     ~value: option(MaterialUi_Types.any)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

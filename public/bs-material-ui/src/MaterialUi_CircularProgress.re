@@ -62,6 +62,7 @@ external make:
             )
               =?,
     ~size: option(Size.t)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~thickness: option(MaterialUi_Types.Number.t)=?,
     ~value: option(MaterialUi_Types.Number.t)=?,
     ~variant: option(

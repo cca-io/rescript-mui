@@ -43,6 +43,7 @@ external make:
     ~max: option(MaterialUi_Types.Number.t)=?,
     ~spacing: option(Spacing.t)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

@@ -30,6 +30,7 @@ external make:
     ~className: option(string)=?,
     ~row: option(bool)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~children: option('children)=?,
     ~defaultValue: option(DefaultValue.t)=?,
     ~name: option(string)=?,

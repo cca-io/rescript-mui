@@ -66,6 +66,7 @@ external make:
                      =?,
     ~selected: option(Selected.t)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

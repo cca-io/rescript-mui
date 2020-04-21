@@ -48,6 +48,7 @@ external make:
     ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
     ~_open: bool,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

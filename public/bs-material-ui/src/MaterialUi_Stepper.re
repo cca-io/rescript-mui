@@ -50,6 +50,7 @@ external make:
               )
                 =?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~activeStep: option(MaterialUi_Types.Number.t)=?,
     ~alternativeLabel: option(bool)=?,
     ~children: option('children)=?,

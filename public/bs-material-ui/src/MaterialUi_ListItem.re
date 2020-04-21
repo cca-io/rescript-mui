@@ -103,6 +103,7 @@ external make:
     ~focusVisibleClassName: option(string)=?,
     ~selected: option(bool)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~value: option(Value.t)=?,
     ~onFocus: option(ReactEvent.Focus.t => unit)=?,
     ~onClick: option(ReactEvent.Mouse.t => unit)=?,

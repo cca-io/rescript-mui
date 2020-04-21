@@ -65,6 +65,7 @@ external make:
     ~rows: option(Rows.t)=?,
     ~rowsMax: option(RowsMax.t)=?,
     ~rowsMin: option(RowsMin.t)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~value: option(Value.t)=?,
     ~id: option(string)=?,
     ~key: option(string)=?,

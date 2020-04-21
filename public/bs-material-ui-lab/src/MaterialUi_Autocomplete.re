@@ -247,6 +247,7 @@ external make:
            )
              =?,
     ~value: option(Value.t)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>

@@ -99,6 +99,7 @@ external make:
                 =?,
     ~width: option(Width.t)=?,
     ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>
