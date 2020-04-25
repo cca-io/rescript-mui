@@ -1,4 +1,5 @@
-open Ast_402;
+open Migrate_parsetree;
+open Ast_410;
 open Asttypes;
 open Parsetree;
 
@@ -28,7 +29,7 @@ let analyse = tpl => {
       switch (expr) {
       | {pexp_desc: Pexp_apply(expr, args)} =>
         switch (expr) {
-        | {pexp_desc: Pexp_constant(Const_string(moduleName, None))} =>
+        | {pexp_desc: Pexp_constant(Pconst_string(moduleName, None))} =>
           switch (List.length(args), args) {
           | (1, [(_label, {pexp_desc: Pexp_record(entries, _)})]) =>
             Record(moduleName, entries)
@@ -77,7 +78,7 @@ let analyse = tpl => {
             "classRecord",
             keys |> List.map(k => (k, "ReactDOMRe.Style.t")),
             [
-              (
+              Ast_helper.Attr.mk(
                 Location.mknoloc("bs.deriving"),
                 PStr([
                   Ast_helper.Str.eval(
@@ -140,7 +141,7 @@ let analyse = tpl => {
             "classRecord",
             keys |> List.map(k => (k, "ReactDOMRe.Style.t")),
             [
-              (
+              Ast_helper.Attr.mk(
                 Location.mknoloc("bs.deriving"),
                 PStr([
                   Ast_helper.Str.eval(

@@ -4,4 +4,4 @@
  (libraries reason
             ocaml-migrate-parsetree)
  (ocamlopt_flags ( -linkall ))
- (preprocess (pps ppx_tools_versioned.metaquot_402)))
+ (preprocess (pps ppx_tools_versioned.metaquot_410)))
