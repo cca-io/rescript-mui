@@ -1,0 +1,20 @@
+{
+  "name": "dev_tests",
+  "sources": ["src"],
+  "reason": {
+    "react-jsx": 3
+  },
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "ppx-flags": ["../_build/default/src/bin.exe"],
+  "bs-dependencies": ["reason-react", "@jsiebern/bs-material-ui"],
+  "refmt": 3,
+  "bsc-flags": ["-bs-super-errors"],
+  "warnings": {
+    "number": "+A-48-30-42-40",
+    "error": "+A"
+  }
+}

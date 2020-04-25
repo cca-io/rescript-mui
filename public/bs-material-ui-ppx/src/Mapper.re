@@ -5,37 +5,42 @@ open Parsetree;
 
 let withStylesMapper = (_argv, _) => {
   ...Ast_mapper.default_mapper,
-  structure: (mapper, structure) => {
-    let rec loop = items =>
-      switch (items) {
-      | [] => []
-      | [
+  module_expr: (mapper, mexpr) => {
+    switch (mexpr) {
+    | {pmod_desc: Pmod_extension(({txt: "makeStyles", loc}, pstr)), _} =>
+      switch (pstr) {
+      | PStr([
+          {
+            pstr_desc:
+              Pstr_eval({pexp_desc: Pexp_record(fields, None), _}, _),
+            _,
+          },
+        ]) =>
+        NewImplementation.rewriteMakeStyles(fields)
+      | PStr([
           {
             pstr_desc:
               Pstr_eval(
                 {
                   pexp_desc:
-                    [@implicit_arity]
-                    Pexp_extension({txt: "mui.withStyles"}, pstr),
-                },
+                    Pexp_fun(
+                      _,
+                      _,
+                      _,
+                      {pexp_desc: Pexp_record(fields, None), _},
+                    ),
+                  _,
+                } as fn,
                 _,
               ),
-            pstr_loc,
+            _,
           },
-          ...rest,
-        ] =>
-        let converters =
-          switch (pstr) {
-          | PStr(pstr) => Replace.analyse((pstr, pstr_loc))
-          | _ => []
-          };
-        List.append(converters, loop(rest));
-      | [item, ...rest] => [
-          mapper.structure_item(mapper, item),
-          ...loop(rest),
-        ]
-      };
-    let items = loop(structure);
-    items;
+        ]) =>
+        NewImplementation.rewriteMakeStylesWithTheme(fields, fn)
+      | _ => Utils.raiseError(~loc, None)
+      }
+
+    | other => Ast_mapper.default_mapper.module_expr(mapper, other)
+    };
   },
 };
