@@ -14,3 +14,6 @@
 ./402.json
 ./dune-project
 ./dev_tests
+./ppx6
+./ppx.exe
+./ppx6.exe
