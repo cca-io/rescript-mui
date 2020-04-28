@@ -2,8 +2,7 @@ module T = MaterialUi.Theme;
 let getSpacing = (theme, num) =>
   theme->T.Theme.spacingGet(num)->string_of_int ++ "px";
 
-[%mui.withStyles
-  "ExampleStyles"(theme =>
+module ExampleStyles = [%makeStyles (theme =>
     {
       root: ReactDOMRe.Style.make(~display="flex", ~flexWrap="wrap", ()),
       formControl:

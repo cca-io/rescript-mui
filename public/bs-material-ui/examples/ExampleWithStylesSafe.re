@@ -1,46 +1,37 @@
-[%mui.withStyles
-  "StyledExample"({
-    alignRight: ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ()),
-  })
+module StyledExample = [%makeStyles
+  {alignRight: ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ())}
 ];
 
 module Theme = MaterialUi_Theme;
-[%mui.withStyles
-  "StyledExampleTheme"(theme =>
-    {
-      background:
-        ReactDOMRe.Style.make(
-          ~color=MaterialUi.Colors.common.white,
-          ~backgroundColor=
-            theme
-            ->Theme.Theme.paletteGet
-            ->Theme.Palette.primaryGet
-            ->Theme.PaletteColor.mainGet,
-          (),
-        ),
-    }
-  )
+module StyledExampleTheme = [%makeStyles
+  theme => {
+    background:
+      ReactDOMRe.Style.make(
+        ~color=MaterialUi.Colors.common.white,
+        ~backgroundColor=
+          theme
+          ->Theme.Theme.paletteGet
+          ->Theme.Palette.primaryGet
+          ->Theme.PaletteColor.mainGet,
+        (),
+      ),
+  }
 ];
 
 [@react.component]
-let make = () =>
+let make = () => {
+  let classesExample = StyledExample.useStyles();
+  let classesExampleTheme = StyledExampleTheme.useStyles();
+
   <div>
-    <StyledExample>
-      ...{classes =>
-        <div className={classes.alignRight}>
-          {ReasonReact.string("Example text - aligned to the right")}
-        </div>
-      }
-    </StyledExample>
+    <div className={classesExample.alignRight}>
+      "Example text - aligned to the right"->React.string
+    </div>
     <br />
     <br />
-    <StyledExampleTheme>
-      ...{classes =>
-        <div className={classes.background}>
-          {ReasonReact.string(
-             "Example text on a background coming from the Mui Theme object",
-           )}
-        </div>
-      }
-    </StyledExampleTheme>
+    <div className={classesExampleTheme.background}>
+      "Example text on a background coming from the Mui Theme object"
+      ->React.string
+    </div>
   </div>;
+};

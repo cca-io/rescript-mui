@@ -1,5 +1,4 @@
-[%mui.withStyles
-  "SliderStyles"({
+module SliderStyles = [%makeStyles ({
     root: ReactDOMRe.Style.make(~width="250px", ()),
     input: ReactDOMRe.Style.make(~width="250px", ()),
   })

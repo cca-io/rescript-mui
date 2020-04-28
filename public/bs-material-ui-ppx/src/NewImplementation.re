@@ -223,11 +223,20 @@ let rewriteMakeStyles = (fields: rawFields, options: option(rawFields)) => {
           | Some(options) => createOptionsWithTypeConstraint(options)
           },
           [
+            Str.module_(
+              Mb.mk(
+                Location.mknoloc(Some("Styles")),
+                Mod.mk(
+                  Pmod_structure([
+                    Str.type_(Nonrecursive, [styleTypeExpression]),
+                  ]),
+                ),
+              ),
+            ),
             Str.type_(
               Recursive,
               [
                 classTypeExpression,
-                styleTypeExpression,
                 Type.mk(
                   ~kind=Ptype_abstract,
                   ~manifest=useStylesTypeExpression,
@@ -254,7 +263,7 @@ let rewriteMakeStyles = (fields: rawFields, options: option(rawFields)) => {
                 Typ.arrow(
                   Nolabel,
                   Typ.constr(
-                    Location.mknoloc(Longident.parse("styles")),
+                    Location.mknoloc(Longident.parse("Styles.styles")),
                     [],
                   ),
                   switch (options) {
@@ -294,7 +303,9 @@ let rewriteMakeStyles = (fields: rawFields, options: option(rawFields)) => {
                         Exp.constraint_(
                           Exp.record(fields, None),
                           Typ.constr(
-                            Location.mknoloc(Longident.parse("styles")),
+                            Location.mknoloc(
+                              Longident.parse("Styles.styles"),
+                            ),
                             [],
                           ),
                         ),
@@ -350,7 +361,10 @@ let rewriteMakeStylesWithTheme =
             Location.mknoloc(Longident.parse("MaterialUi.Theme.t")),
             [],
           ),
-          Typ.constr(Location.mknoloc(Longident.parse("styles")), []),
+          Typ.constr(
+            Location.mknoloc(Longident.parse("Styles.styles")),
+            [],
+          ),
         ),
       Location.mknoloc("themeFunc"),
     );
@@ -364,11 +378,20 @@ let rewriteMakeStylesWithTheme =
           | Some(options) => createOptionsWithTypeConstraint(options)
           },
           [
+            Str.module_(
+              Mb.mk(
+                Location.mknoloc(Some("Styles")),
+                Mod.mk(
+                  Pmod_structure([
+                    Str.type_(Nonrecursive, [styleTypeExpression]),
+                  ]),
+                ),
+              ),
+            ),
             Str.type_(
               Recursive,
               [
                 classTypeExpression,
-                styleTypeExpression,
                 themeFuncTypeExpression,
                 Type.mk(
                   ~kind=Ptype_abstract,

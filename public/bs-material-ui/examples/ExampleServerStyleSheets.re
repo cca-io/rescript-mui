@@ -1,5 +1,4 @@
-[%mui.withStyles
-  "Styles"({
+module Styles = [%makeStyles ({
     code:
       ReactDOMRe.Style.make(
         ~fontFamily="SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace",
@@ -7,7 +6,7 @@
         (),
       ),
   })
-];
+]; 
 
 [@react.component]
 let make = () => {
