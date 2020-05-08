@@ -29,6 +29,9 @@ class SchemaParser {
     typeof this.modules[name] !== 'undefined';
 
   public getOptions = () => this._options;
+  public get entry() {
+    return this._entry;
+  }
   public get records() {
     return (
       typeof this._options.mode !== 'undefined' &&

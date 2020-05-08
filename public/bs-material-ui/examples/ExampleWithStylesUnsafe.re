@@ -24,12 +24,7 @@ let make = () =>
               ReactDOMRe.Style.make(
                 ~minHeight="50px",
                 ~backgroundColor=
-                  MaterialUi_Theme.(
-                    theme
-                    ->Theme.paletteGet
-                    ->Palette.secondaryGet
-                    ->PaletteColor.mainGet
-                  ),
+                  MaterialUi_Theme.(theme.palette.secondary.main),
                 (),
               ),
           },

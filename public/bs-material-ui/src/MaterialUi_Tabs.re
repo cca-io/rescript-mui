@@ -104,6 +104,7 @@ external make:
                     )
                       =?,
     ~_TabIndicatorProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~_TabScrollButtonProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~textColor: option(
                   [@bs.string] [
                     | [@bs.as "secondary"] `Secondary

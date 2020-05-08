@@ -94,6 +94,7 @@ module Stepper = MaterialUi_Stepper;
 module SvgIcon = MaterialUi_SvgIcon;
 module SwipeableDrawer = MaterialUi_SwipeableDrawer;
 module Switch = MaterialUi_Switch;
+module TabScrollButton = MaterialUi_TabScrollButton;
 module Tab = MaterialUi_Tab;
 module TableBody = MaterialUi_TableBody;
 module TableCell = MaterialUi_TableCell;

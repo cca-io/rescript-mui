@@ -26,8 +26,6 @@ export default function (
 
     if (parser.records) {
       reason += `type t = t_${generateAttributeName(extractType)};`;
-    } else {
-      reason += `type t = ${extractType}.t; let make = ${extractType}.make;`;
     }
 
     let refmt = '';

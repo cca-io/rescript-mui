@@ -1,23 +1,20 @@
 external jsonTopSpacingFunc: Js.Json.t => (. int) => int = "%identity";
 module T = MaterialUi.Theme;
-let getSpacing = (theme, num) =>
-  theme->T.Theme.spacingGet(num)->string_of_int ++ "px";
+let getSpacing = (theme, num) => theme.T.spacing(num)->string_of_int ++ "px";
 
-module ExampleStyles = [%makeStyles (theme =>
-    {
-      root: ReactDOMRe.Style.make(~width="90%", ()),
-      button:
-        ReactDOMRe.Style.make(
-          ~marginTop=theme->getSpacing(1),
-          ~marginRight=theme->getSpacing(1),
-          (),
-        ),
-      actionsContainer:
-        ReactDOMRe.Style.make(~marginBottom=theme->getSpacing(2), ()),
-      resetContainer:
-        ReactDOMRe.Style.make(~padding=theme->getSpacing(3), ()),
-    }
-  )
+module ExampleStyles = [%makeStyles
+  theme => {
+    root: ReactDOMRe.Style.make(~width="90%", ()),
+    button:
+      ReactDOMRe.Style.make(
+        ~marginTop=theme->getSpacing(1),
+        ~marginRight=theme->getSpacing(1),
+        (),
+      ),
+    actionsContainer:
+      ReactDOMRe.Style.make(~marginBottom=theme->getSpacing(2), ()),
+    resetContainer: ReactDOMRe.Style.make(~padding=theme->getSpacing(3), ()),
+  }
 ];
 
 let getSteps = () => [|

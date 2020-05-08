@@ -1,10 +1,4 @@
-module Theme = MaterialUi_Theme.Theme;
-module Mixins = MaterialUi_Theme.Mixins;
-module ZIndex = MaterialUi_Theme.ZIndex;
-module Breakpoints = MaterialUi_Theme.Breakpoints;
-module PaletteColor = MaterialUi_Theme.PaletteColor;
-module Palette = MaterialUi_Theme.Palette;
-module Transitions = MaterialUi_Theme.Transitions;
+open MaterialUi_Theme;
 
 type breakpoint;
 external stringToBreakpoint: string => breakpoint = "%identity";
@@ -27,9 +21,8 @@ let addBreakpoint = (sourceStyle, ~theme, ~breakpoint, ~style) => {
     };
 
   let breakpointSource =
-    theme
-    ->Theme.breakpointsGet
-    ->Breakpoints.upGet
+    theme.breakpoints.up
+    ->MaterialUi_Types.anyUnpack
     ->jsonToBreakpointFunc(breakpoint);
 
   ReactDOMRe.Style.unsafeAddProp(
@@ -47,7 +40,7 @@ type transitionCreateArgs = {
 
 [@bs.send]
 external transitionCreateRAW:
-  (Transitions.t, array(string), transitionCreateArgs) => string =
+  (t_transitions, array(string), transitionCreateArgs) => string =
   "create";
 
 let checkAffect = (affect, value) => affect ? [|value|] : [||];
@@ -61,7 +54,7 @@ let transitionCreate =
       ~duration: float,
       (),
     ) => {
-  let transitions = Theme.transitionsGet(theme);
+  let transitions = theme.transitions;
 
   let affects =
     Array.concat([

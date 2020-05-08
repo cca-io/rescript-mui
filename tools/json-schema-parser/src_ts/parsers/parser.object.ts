@@ -63,7 +63,7 @@ class ObjectParser extends BaseParser {
 
       return `${this.moduleName}.t`;
     } else {
-      return 'MaterialUi.any';
+      return 'MaterialUi_Types.any';
     }
   }
 
@@ -88,61 +88,35 @@ class ObjectParser extends BaseParser {
     `;
     }
 
-    return `
+    const content = `
+type t = {
+    .
+    ${this.module.properties
+      .map((property) => {
+        return `
+            "${property.name}": option(option(${property.reasonType}))
+          `;
+      })
+      .join(',')}
+};
+[@bs.obj] external make: (
+    ${this.module.properties
+      .map((property) => {
+        const attributeName = generateAttributeName(property.name);
+        return `
+                ~${attributeName}:
+                ${property.reasonType}=?
+            `;
+      })
+      .join(',')}
+, unit) => t = "";`;
+    return this.schema.entry === this.key
+      ? content
+      : `
         module ${this.moduleName} {
-            type t = {
-                .
-                ${this.module.properties
-                  .map((property) => {
-                    return `
-                        "${property.name}": option(option(${property.reasonType}))
-                      `;
-                  })
-                  .join(',')}
-            };
-            [@bs.obj] external make: (
-                ${this.module.properties
-                  .map((property) => {
-                    const attributeName = generateAttributeName(property.name);
-                    return `
-                            ~${attributeName}:
-                            ${property.reasonType}=?
-                        `;
-                  })
-                  .join(',')}
-            , unit) => t = "";
+            ${content}
         };
     `;
-
-    return `
-            module ${this.moduleName} {
-                [@bs.deriving abstract]
-                type t = {
-                    ${this.module.properties
-                      .map((property) => {
-                        const attributeName = generateAttributeName(
-                          property.name,
-                        );
-                        return `
-                            ${property.optional ? '[@bs.optional]' : ''}
-                            [@bs.as "${property.name}"]
-                            ${attributeName}: ${property.reasonType},
-                        `;
-                      })
-                      .join('\n')}
-                };
-                ${this.properties
-                  .map((property) =>
-                    property.getGetterFunc(
-                      this.module.properties.filter(
-                        (p) => p.name === property.key,
-                      )[0].optional,
-                    ),
-                  )
-                  .join('\n')}
-                let make = t;
-            }
-        `;
   }
 }
 

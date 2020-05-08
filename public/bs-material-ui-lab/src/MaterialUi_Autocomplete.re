@@ -184,6 +184,7 @@ external make:
     ~_ChipProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~classes: option(Classes.t)=?,
     ~className: option(string)=?,
+    ~clearOnBlur: option(bool)=?,
     ~clearOnEscape: option(bool)=?,
     ~clearText: option(string)=?,
     ~closeIcon: option(React.element)=?,
@@ -202,9 +203,9 @@ external make:
     ~freeSolo: option(bool)=?,
     ~fullWidth: option(bool)=?,
     ~getLimitTagsText: option(int => MaterialUi_Types.any)=?,
-    ~getOptionDisabled: option(MaterialUi_Types.any)=?,
-    ~getOptionLabel: option(MaterialUi_Types.any)=?,
-    ~getOptionSelected: option(MaterialUi_Types.any)=?,
+    ~getOptionDisabled: option(unit => bool)=?,
+    ~getOptionLabel: option(unit => string)=?,
+    ~getOptionSelected: option(unit => bool)=?,
     ~groupBy: option(unit => string)=?,
     ~id: option(string)=?,
     ~includeInputInList: option(bool)=?,
@@ -218,6 +219,10 @@ external make:
     ~noOptionsText: option(React.element)=?,
     ~onChange: option((ReactEvent.Form.t, string) => unit)=?,
     ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
+    ~onHighlightChange: option(
+                          (Js.Dict.t(MaterialUi_Types.any), string) => unit,
+                        )
+                          =?,
     ~onInputChange: option(
                       (Js.Dict.t(MaterialUi_Types.any), string, string) =>
                       unit,

@@ -3,6 +3,7 @@ module Classes = {
     .
     "root": option(option(string)),
     "contained": option(option(string)),
+    "disableElevation": option(option(string)),
     "disabled": option(option(string)),
     "fullWidth": option(option(string)),
     "vertical": option(option(string)),
@@ -30,6 +31,7 @@ module Classes = {
     (
       ~root: string=?,
       ~contained: string=?,
+      ~disableElevation: string=?,
       ~disabled: string=?,
       ~fullWidth: string=?,
       ~vertical: string=?,
@@ -95,6 +97,7 @@ external make:
               =?,
     ~component: option(Component.t)=?,
     ~disabled: option(bool)=?,
+    ~disableElevation: option(bool)=?,
     ~disableFocusRipple: option(bool)=?,
     ~disableRipple: option(bool)=?,
     ~fullWidth: option(bool)=?,

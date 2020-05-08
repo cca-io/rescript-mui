@@ -11,149 +11,111 @@ let px_of_float = x => x->int_of_float->string_of_int ++ "px";
 let px_of_int = x => x->string_of_int ++ "px";
 
 let style = ReactDOMRe.Style.make;
-module EnterpriseDashboardStyles = [%makeStyles (theme =>
-    {
-      wrapper:
+module EnterpriseDashboardStyles = [%makeStyles
+  theme => {
+    wrapper:
+      style(
+        ~position="fixed",
+        ~width="100vw",
+        ~height="100vh",
+        ~zIndex="999999",
+        ~left="0",
+        ~top="0",
+        ~background="#FFFFFF",
+        (),
+      ),
+    root: style(~display="flex", ()),
+    toolbar: style(~paddingRight="24px", ()), /* keep right padding when drawer closed */
+    toolbarIcon:
+      ReactDOMRe.Style.combine(
         style(
-          ~position="fixed",
-          ~width="100vw",
-          ~height="100vh",
-          ~zIndex="999999",
-          ~left="0",
-          ~top="0",
-          ~background="#FFFFFF",
+          ~display="flex",
+          ~alignItems="center",
+          ~justifyContent="flex-end",
+          ~padding="0 8px",
           (),
         ),
-      root: style(~display="flex", ()),
-      toolbar: style(~paddingRight="24px", ()), /* keep right padding when drawer closed */
-      toolbarIcon:
-        ReactDOMRe.Style.combine(
-          style(
-            ~display="flex",
-            ~alignItems="center",
-            ~justifyContent="flex-end",
-            ~padding="0 8px",
+        theme.mixins.toolbar,
+      ),
+    appBar:
+      style(
+        ~zIndex=(theme.zIndex.drawer +. 1.0)->int_of_float->string_of_int,
+        ~transition=
+          ThemeHelpers.transitionCreate(
+            ~theme,
+            ~affectWidth=true,
+            ~affectMargin=true,
+            ~easing=theme.transitions.easing.sharp,
+            ~duration=theme.transitions.duration.leavingScreen,
             (),
           ),
-          theme->Theme.Theme.mixinsGet->Theme.Mixins.toolbarGet,
-        ),
-      appBar:
-        style(
-          ~zIndex=
-            (theme->Theme.Theme.zIndexGet->Theme.ZIndex.drawerGet +. 1.0)
-            ->int_of_float
-            ->string_of_int,
-          ~transition=
-            ThemeHelpers.transitionCreate(
-              ~theme,
-              ~affectWidth=true,
-              ~affectMargin=true,
-              ~easing=
-                theme
-                ->Theme.Theme.transitionsGet
-                ->Theme.Transitions.easingGet
-                ->Theme.Easing.sharpGet,
-              ~duration=
-                theme
-                ->Theme.Theme.transitionsGet
-                ->Theme.Transitions.durationGet
-                ->Theme.Duration.leavingScreenGet,
-              (),
-            ),
-          (),
-        ),
-      appBarShift:
-        style(
-          ~marginLeft=drawerWidth->string_of_int ++ "px",
-          ~width={j|calc(100% - $(drawerWidth)px)|j},
-          ~transition=
-            ThemeHelpers.transitionCreate(
-              ~theme,
-              ~affectWidth=true,
-              ~affectMargin=true,
-              ~easing=
-                theme
-                ->Theme.Theme.transitionsGet
-                ->Theme.Transitions.easingGet
-                ->Theme.Easing.sharpGet,
-              ~duration=
-                theme
-                ->Theme.Theme.transitionsGet
-                ->Theme.Transitions.durationGet
-                ->Theme.Duration.enteringScreenGet,
-              (),
-            ),
-          (),
-        ),
-      menuButton: style(~marginLeft="12px", ~marginRight="36px", ()),
-      menuButtonHidden: style(~display="none", ()),
-      title: style(~flexGrow="1", ()),
-      drawerPaper:
-        style(
-          ~position="relative",
-          ~whiteSpace="nowrap",
-          ~width={j|$(drawerWidth)px|j},
-          ~transition=
-            ThemeHelpers.transitionCreate(
-              ~theme,
-              ~affectWidth=true,
-              ~easing=
-                theme
-                ->Theme.Theme.transitionsGet
-                ->Theme.Transitions.easingGet
-                ->Theme.Easing.sharpGet,
-              ~duration=
-                theme
-                ->Theme.Theme.transitionsGet
-                ->Theme.Transitions.durationGet
-                ->Theme.Duration.enteringScreenGet,
-              (),
-            ),
-          (),
-        ),
-
-      drawerPaperClose:
-        style(
-          ~overflowX="hidden",
-          ~transition=
-            ThemeHelpers.transitionCreate(
-              ~theme,
-              ~affectWidth=true,
-              ~affectMargin=true,
-              ~easing=
-                theme
-                ->Theme.Theme.transitionsGet
-                ->Theme.Transitions.easingGet
-                ->Theme.Easing.sharpGet,
-              ~duration=
-                theme
-                ->Theme.Theme.transitionsGet
-                ->Theme.Transitions.durationGet
-                ->Theme.Duration.leavingScreenGet,
-              (),
-            ),
-          ~width=theme->Theme.Theme.spacingGet(7)->px_of_int,
-          (),
-        )
-        ->ThemeHelpers.addBreakpoint(
+        (),
+      ),
+    appBarShift:
+      style(
+        ~marginLeft=drawerWidth->string_of_int ++ "px",
+        ~width={j|calc(100% - $(drawerWidth)px)|j},
+        ~transition=
+          ThemeHelpers.transitionCreate(
             ~theme,
-            ~breakpoint=`SM,
-            ~style=
-              style(~width=theme->Theme.Theme.spacingGet(9)->px_of_int, ()),
+            ~affectWidth=true,
+            ~affectMargin=true,
+            ~easing=theme.transitions.easing.sharp,
+            ~duration=theme.transitions.duration.enteringScreen,
+            (),
           ),
-      appBarSpacer: theme->Theme.Theme.mixinsGet->Theme.Mixins.toolbarGet,
-      content:
-        style(
-          ~flexGrow="1",
-          ~padding=theme->Theme.Theme.spacingGet(3)->px_of_int,
-          ~height="100vh",
-          ~overflow="auto",
-          (),
+        (),
+      ),
+    menuButton: style(~marginLeft="12px", ~marginRight="36px", ()),
+    menuButtonHidden: style(~display="none", ()),
+    title: style(~flexGrow="1", ()),
+    drawerPaper:
+      style(
+        ~position="relative",
+        ~whiteSpace="nowrap",
+        ~width={j|$(drawerWidth)px|j},
+        ~transition=
+          ThemeHelpers.transitionCreate(
+            ~theme,
+            ~affectWidth=true,
+            ~easing=theme.transitions.easing.sharp,
+            ~duration=theme.transitions.duration.enteringScreen,
+            (),
+          ),
+        (),
+      ),
+
+    drawerPaperClose:
+      style(
+        ~overflowX="hidden",
+        ~transition=
+          ThemeHelpers.transitionCreate(
+            ~theme,
+            ~affectWidth=true,
+            ~affectMargin=true,
+            ~easing=theme.transitions.easing.sharp,
+            ~duration=theme.transitions.duration.leavingScreen,
+            (),
+          ),
+        ~width=theme.spacing(7)->px_of_int,
+        (),
+      )
+      ->ThemeHelpers.addBreakpoint(
+          ~theme,
+          ~breakpoint=`SM,
+          ~style=style(~width=theme.spacing(9)->px_of_int, ()),
         ),
-      h5:
-        style(~marginBottom=theme->Theme.Theme.spacingGet(2)->px_of_int, ()),
-    }
-  )
+    appBarSpacer: theme.mixins.toolbar,
+    content:
+      style(
+        ~flexGrow="1",
+        ~padding=theme.spacing(3)->px_of_int,
+        ~height="100vh",
+        ~overflow="auto",
+        (),
+      ),
+    h5: style(~marginBottom=theme.spacing(2)->px_of_int, ()),
+  }
 ];
 
 type state = {isOpen: bool};

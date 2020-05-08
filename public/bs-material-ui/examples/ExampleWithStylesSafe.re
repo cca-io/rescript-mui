@@ -7,12 +7,8 @@ module StyledExampleTheme = [%makeStyles
   theme => {
     background:
       ReactDOMRe.Style.make(
-        ~color=MaterialUi.Colors.common.white,
-        ~backgroundColor=
-          theme
-          ->Theme.Theme.paletteGet
-          ->Theme.Palette.primaryGet
-          ->Theme.PaletteColor.mainGet,
+        ~color=theme.palette.common.white,
+        ~backgroundColor=theme.palette.primary.main,
         (),
       ),
   }

@@ -7,7 +7,8 @@
   "sources": [
     {
       "dir": "examples",
-      "subdirs": true
+      "subdirs": true,
+      "type": "dev"
     },
     "src"
   ],

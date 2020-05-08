@@ -19,8 +19,8 @@ module Breakpoint = {
   let getAsString = (theme: theme, breakpoint: breakpointDirection) => {
     let bpGet =
       switch (breakpoint) {
-      | `up(_) => MaterialUi_Theme.Breakpoints.upGet
-      | `down(_) => MaterialUi_Theme.Breakpoints.downGet
+      | `up(_) => (v => v.MaterialUi_Theme.up)
+      | `down(_) => (v => v.MaterialUi_Theme.down)
       };
     let bpValue =
       switch (breakpoint) {
@@ -37,9 +37,9 @@ module Breakpoint = {
       | `up(`int(x))
       | `down(`int(x)) => x->UNSAFE_INTERNAL.intToBreakpoint
       };
-    theme
-    ->MaterialUi_Theme.Theme.breakpointsGet
+    theme.breakpoints
     ->bpGet
+    ->MaterialUi_Types.anyUnpack
     ->UNSAFE_INTERNAL.jsonToBreakpointFunc(bpValue);
   };
 

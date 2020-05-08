@@ -24,15 +24,15 @@ const RenderTheme = () => {
       },
       {
         re: /Partial.*([a-zA-Z]*)Props>/m,
-        replaceWith: 'MaterialUi.any',
+        replaceWith: 'MaterialUi_Types.any',
       },
       {
         re: /React\.>/m,
-        replaceWith: 'MaterialUi.any',
+        replaceWith: 'MaterialUi_Types.any',
       },
       {
         re: /ComponentsProps/m,
-        replaceWith: 'MaterialUi.any',
+        replaceWith: 'MaterialUi_Types.any',
       },
       {
         re: /HTML.*Element/m,

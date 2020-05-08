@@ -1,21 +1,18 @@
 module T = MaterialUi.Theme;
-let getSpacing = (theme, num) =>
-  theme->T.Theme.spacingGet(num)->string_of_int ++ "px";
+let getSpacing = (theme, num) => theme.T.spacing(num)->string_of_int ++ "px";
 
-module ExampleStyles = [%makeStyles (theme =>
-    {
-      root: ReactDOMRe.Style.make(~display="flex", ~flexWrap="wrap", ()),
-      formControl:
-        ReactDOMRe.Style.make(
-          ~margin=theme->getSpacing(1),
-          ~minWidth="120px",
-          (),
-        ),
+module ExampleStyles = [%makeStyles
+  theme => {
+    root: ReactDOMRe.Style.make(~display="flex", ~flexWrap="wrap", ()),
+    formControl:
+      ReactDOMRe.Style.make(
+        ~margin=theme->getSpacing(1),
+        ~minWidth="120px",
+        (),
+      ),
 
-      selectEmpty:
-        ReactDOMRe.Style.make(~marginTop=theme->getSpacing(2), ()),
-    }
-  )
+    selectEmpty: ReactDOMRe.Style.make(~marginTop=theme->getSpacing(2), ()),
+  }
 ];
 
 type state = {
