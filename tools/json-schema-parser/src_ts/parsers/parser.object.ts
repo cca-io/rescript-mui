@@ -6,127 +6,144 @@ import { generateModuleName, generateAttributeName } from '../helpers';
 let i = 0;
 
 class ObjectParser extends BaseParser {
-    private properties: BaseParser[] = [];
-    private moduleName: string;
-    private module: moduleDefinition;
+  private properties: BaseParser[] = [];
+  private moduleName: string;
+  private module: moduleDefinition;
+  private typeName: string;
 
-    public parse() {
-        this.moduleName = generateModuleName(this.key);
+  public parse() {
+    this.moduleName = generateModuleName(this.key);
+    this.typeName = `t_${generateAttributeName(this.key)}`;
 
-        if (typeof this.def === 'boolean') {
-            return;
-        }
-        if (!this.def.properties) {
-            return;
-        }
-        // if (this.schema.hasModule(this.key)) {
-        //     return;
-        // }
-
-        const properties = this.def.properties;
-        Object.keys(properties).forEach(key => {
-            const parser = getParser(this.schema, properties[key], key);
-            if (!parser) {
-                return;
-            }
-            i = i + 1;
-            if (i > 10000) {
-                throw 'FUCK';
-            }
-            this.properties.push(new parser(this.schema, key, properties[key]));
-        });
-        this.properties.forEach(p => p.parse());
-
-        if (!this.properties.length) {
-            return;
-        }
-        const required = this.def.required ? this.def.required : [];
-
-        this.module = this.schema.modules[this.moduleName] = {
-            name: this.moduleName,
-            properties: this.properties.map(property => ({
-                name: property.key,
-                optional: !required.includes(property.key),
-                reasonType: property.getReasonType()
-            }))
-        };
-        this.schema.moduleParsers[this.moduleName] = this;
+    if (typeof this.def === 'boolean') {
+      return;
     }
-
-    public getReasonType() {
-        if (this.properties.length) {
-            const genericObjects = this.module.properties
-                .filter(p => p.reasonType === 'Js.t({..})')
-                .map(p => `'${generateAttributeName(p.name)}`)
-                .join(',');
-            return `${this.moduleName}.t${
-                genericObjects ? `(${genericObjects})` : ''
-            }`;
-        } else {
-            return 'Js.Json.t';
-        }
+    if (!this.def.properties) {
+      return;
     }
+    // if (this.schema.hasModule(this.key)) {
+    //     return;
+    // }
 
-    public getGenericObjectProperties() {
-        const genericObjectProperties = [
-            ...this.module.properties
-                .filter(p => p.reasonType === 'Js.t({..})')
-                .map(p => `'${generateAttributeName(p.name)}`),
-            ...this.module.properties
-                .filter(
-                    p =>
-                        p.reasonType.includes('.t(') &&
-                        !p.reasonType.includes('{..}')
-                )
-                .reduce((prev, p) => {
-                    const re = /.*\.t\((.*)\)/m;
-                    const match = re.exec(p.reasonType);
-                    if (match) {
-                        const parts = match[1].split(',');
-                        return [...prev, ...parts];
+    const properties = this.def.properties;
+    Object.keys(properties).forEach((key) => {
+      const parser = getParser(this.schema, properties[key], key);
+      if (!parser) {
+        return;
+      }
+      i = i + 1;
+      if (i > 10000) {
+        throw 'FUCK';
+      }
+      this.properties.push(new parser(this.schema, key, properties[key]));
+    });
+    this.properties.forEach((p) => p.parse());
+
+    if (!this.properties.length) {
+      return;
+    }
+    const required = this.def.required ? this.def.required : [];
+
+    this.module = this.schema.modules[this.moduleName] = {
+      name: this.moduleName,
+      properties: this.properties.map((property) => ({
+        name: property.key,
+        optional: !required.includes(property.key),
+        reasonType: property.getReasonType(),
+      })),
+    };
+    this.schema.moduleParsers[this.moduleName] = this;
+  }
+
+  public getReasonType() {
+    if (this.properties.length) {
+      if (this.schema.records) {
+        return `${this.typeName}`;
+      }
+
+      return `${this.moduleName}.t`;
+    } else {
+      return 'MaterialUi.any';
+    }
+  }
+
+  public render() {
+    if (this.schema.records) {
+      return `
+        type ${this.typeName} = {
+            ${this.module.properties
+              .map((property) => {
+                const attributeName = generateAttributeName(property.name);
+                return `
+                    ${
+                      attributeName !== property.name
+                        ? `[@bs.as "${property.name}"]`
+                        : ''
                     }
-                    return prev;
-                }, [])
-        ];
-        return genericObjectProperties.join(',');
+                    ${attributeName}: ${property.reasonType},
+                `;
+              })
+              .join('\n')}
+        };
+    `;
     }
 
-    public render() {
-        const genericObjects = this.getGenericObjectProperties();
+    return `
+        module ${this.moduleName} {
+            type t = {
+                .
+                ${this.module.properties
+                  .map((property) => {
+                    return `
+                        "${property.name}": option(option(${property.reasonType}))
+                      `;
+                  })
+                  .join(',')}
+            };
+            [@bs.obj] external make: (
+                ${this.module.properties
+                  .map((property) => {
+                    const attributeName = generateAttributeName(property.name);
+                    return `
+                            ~${attributeName}:
+                            ${property.reasonType}=?
+                        `;
+                  })
+                  .join(',')}
+            , unit) => t = "";
+        };
+    `;
 
-        return `
+    return `
             module ${this.moduleName} {
                 [@bs.deriving abstract]
-                type t${genericObjects ? `(${genericObjects})` : ''} = {
+                type t = {
                     ${this.module.properties
-                        .map(property => {
-                            const attributeName = generateAttributeName(
-                                property.name
-                            );
-                            return `
+                      .map((property) => {
+                        const attributeName = generateAttributeName(
+                          property.name,
+                        );
+                        return `
                             ${property.optional ? '[@bs.optional]' : ''}
                             [@bs.as "${property.name}"]
-                            ${attributeName}: ${property.reasonType.replace(
-                                'Js.t({..})',
-                                `Js.t('${attributeName})`
-                            )},
+                            ${attributeName}: ${property.reasonType},
                         `;
-                        })
-                        .join('\n')}
+                      })
+                      .join('\n')}
                 };
                 ${this.properties
-                    .map(property =>
-                        property.getGetterFunc(
-                            this.module.properties.filter(
-                                p => p.name === property.key
-                            )[0].optional
-                        )
-                    )
-                    .join('\n')}
+                  .map((property) =>
+                    property.getGetterFunc(
+                      this.module.properties.filter(
+                        (p) => p.name === property.key,
+                      )[0].optional,
+                    ),
+                  )
+                  .join('\n')}
                 let make = t;
             }
         `;
-    }
+  }
 }
 
 export default ObjectParser;

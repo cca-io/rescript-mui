@@ -94,11 +94,11 @@ export const generateAttributeName = (name: string) => {
   }
 
   if (reservedNames.indexOf(name) > -1) {
-    name = `${name}_`;
+    name = `_${name}`;
   }
 
   if (isNumeric(name)) {
-    name = `V${name}`;
+    name = `_${name}`;
   }
 
   return name;

@@ -24,15 +24,15 @@ const RenderTheme = () => {
       },
       {
         re: /Partial.*([a-zA-Z]*)Props>/m,
-        replaceWith: 'Js.Json.t',
+        replaceWith: 'MaterialUi.any',
       },
       {
         re: /React\.>/m,
-        replaceWith: 'Js.Json.t',
+        replaceWith: 'MaterialUi.any',
       },
       {
         re: /ComponentsProps/m,
-        replaceWith: 'Js.Json.t',
+        replaceWith: 'MaterialUi.any',
       },
       {
         re: /HTML.*Element/m,
@@ -101,7 +101,12 @@ const RenderTheme = () => {
     process.exit();
   };
 
-  const themeConvert = Convert(theme, 'Theme', options, onError);
+  const themeConvert = Convert(
+    theme,
+    'Theme',
+    { ...options, mode: 'records' },
+    onError,
+  );
   const themeOptionsConvert = Convert(
     themeOptions,
     'ThemeOptions',
