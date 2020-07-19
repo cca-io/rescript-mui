@@ -61,6 +61,7 @@ external make:
               ],
             )
               =?,
+    ~disableShrink: option(bool)=?,
     ~size: option(Size.t)=?,
     ~style: option(ReactDOMRe.Style.t)=?,
     ~thickness: option(MaterialUi_Types.Number.t)=?,

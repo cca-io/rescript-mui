@@ -33,6 +33,12 @@ const factory = (propertyType: PropType$Custom) => {
     });
   }
 
+  if (propertyType.raw != null && propertyType.raw.includes('PropTypes.bool')) {
+    return PrimitiveFactory({
+      name: 'boolean',
+    });
+  }
+
   if (
     propertyType.raw != null &&
     (propertyType.raw.includes('componentPropType') ||

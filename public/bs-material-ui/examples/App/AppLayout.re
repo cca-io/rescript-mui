@@ -241,6 +241,19 @@ let make = () => {
         </Grid>
         <br />
         <br />
+        <Divider />
+        <br />
+        <br />
+        <Grid container=true alignItems=`Center>
+          <Grid item=true md=Grid.Md._6>
+            <Typography variant=`H5>
+              "TextField size Prop"->React.string
+            </Typography>
+          </Grid>
+          <Grid item=true md=Grid.Md._6> <ExampleTextFieldSize /> </Grid>
+        </Grid>
+        <br />
+        <br />
         <br />
         <br />
         <br />

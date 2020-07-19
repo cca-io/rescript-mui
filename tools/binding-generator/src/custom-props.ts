@@ -239,6 +239,13 @@ export default {
       required: false,
       description: '-',
     },
+    rowSpan: {
+      type: {
+        name: 'int',
+      },
+      required: false,
+      description: '-',
+    },
   },
   TableRow: {
     onDoubleClick: {
@@ -367,6 +374,43 @@ export default {
           { value: 'search', computed: false },
           { value: 'tag', computed: false },
         ],
+      },
+      required: false,
+      description: '-',
+    },
+  },
+  Collapse: {
+    mountOnEnter: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: '-',
+    },
+    unmountOnExit: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: '-',
+    },
+    appear: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: '-',
+    },
+    enter: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: '-',
+    },
+    exit: {
+      type: {
+        name: 'boolean',
       },
       required: false,
       description: '-',

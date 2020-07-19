@@ -112,6 +112,11 @@ external make:
     ~style: option(ReactDOMRe.Style.t)=?,
     ~timeout: option(Timeout.t)=?,
     ~id: option(string)=?,
+    ~mountOnEnter: option(bool)=?,
+    ~unmountOnExit: option(bool)=?,
+    ~appear: option(bool)=?,
+    ~enter: option(bool)=?,
+    ~exit: option(bool)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>
