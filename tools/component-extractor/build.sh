@@ -37,6 +37,12 @@ rm -rf ./styles
 cp -R ~/.mui-clone/packages/material-ui-styles/src ./styles
 rm -rf ./utils
 cp -R ~/.mui-clone/packages/material-ui-utils/src ./utils
+cp -R ~/.mui-clone/packages/material-ui-utils/macros ./utils/macros
+cp -R ~/.mui-clone/packages/material-ui-utils/src ./utils/src
+rm -rf ./node_modules/@material-ui
+mkdir ./node_modules/@material-ui
+mkdir ./node_modules/@material-ui/utils
+cp -R ~/.mui-clone/packages/material-ui-utils/macros ./node_modules/@material-ui/utils
 rm -rf ./system
 cp -R ~/.mui-clone/packages/material-ui-system/src ./system
 
@@ -52,8 +58,8 @@ mv node_modules_tmp node_modules
 yarn
 cd $pwd
 rm -rf ./../../output/json
-yarn babel-node ./src/extract.js --src=core
-yarn babel-node ./src/extract.js --src=lab
+npx babel-node ./src/extract.js --src=core
+npx babel-node ./src/extract.js --src=lab
 cd ~/.mui-clone
 mv node_modules node_modules_tmp
 cd $pwd
