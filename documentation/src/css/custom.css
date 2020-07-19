@@ -1,0 +1,52 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #cb5747;
+  --ifm-color-primary-dark: #c04736;
+  --ifm-color-primary-darker: #b64333;
+  --ifm-color-primary-darkest: #96372a;
+  --ifm-color-primary-light: #d16b5c;
+  --ifm-color-primary-lighter: #d47467;
+  --ifm-color-primary-lightest: #dd9287;
+
+  --ifm-alert-color: rgba(0, 0, 0, 0.7);
+  --ifm-color-info: rgba(46, 204, 113, 0.1);
+  --ifm-color-success: rgba(52, 152, 219, 0.1);
+  --ifm-color-warning: rgba(241, 196, 15, 0.1);
+  --ifm-color-danger: rgba(230, 126, 34, 0.1);
+}
+
+.admonition-heading {
+  --ifm-heading-color: rgba(0, 0, 0, 1);
+  --ra-admonition-icon-color: rgba(0, 0, 0, 1);
+}
+
+html[data-theme="dark"]:root {
+  --ifm-alert-color: rgba(255, 255, 255, 0.7);
+}
+
+html[data-theme="dark"] .admonition-heading {
+  --ifm-heading-color: rgba(255, 255, 255, 1);
+  --ra-admonition-icon-color: rgba(255, 255, 255, 1);
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+html[data-theme="dark"] .docusaurus-highlight-code-line {
+  background-color: rgb(0, 0, 0, 0.3);
+}
+
+h5 {
+  text-transform: uppercase;
+  opacity: 0.7;
+}
