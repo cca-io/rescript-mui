@@ -12,6 +12,33 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
+module Type_enum: {
+  type t;
+  let button: t;
+  let reset: t;
+  let submit: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let button = Any("button");
+  let reset = Any("reset");
+  let submit = Any("submit");
+};
+
+module Type: {
+  type t;
+  let enum: Type_enum.t => t;
+  let string: string => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let enum = (v: Type_enum.t) => Any(v);
+  let string = (v: string) => Any(v);
+};
+
 module Classes = {
   type t = {
     .
@@ -60,9 +87,9 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
-type size = [ | `Small | `Medium | `Large];
+type size = [ | `Large | `Medium | `Small];
 
-type variant = [ | `Round | `Extended];
+type variant = [ | `Extended | `Round];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
@@ -83,9 +110,9 @@ external make:
     ~onTouchEnd: option(ReactEvent.Touch.t => unit)=?,
     ~onTouchMove: option(ReactEvent.Touch.t => unit)=?,
     ~onTouchStart: option(ReactEvent.Touch.t => unit)=?,
-    ~role: option(string)=?,
     ~tabIndex: option(TabIndex.t)=?,
     ~_TouchRippleProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~_type: option(Type.t)=?,
     ~id: option(string)=?,
     ~style: option(ReactDOMRe.Style.t)=?,
     ~children: option('children)=?,
@@ -108,17 +135,16 @@ external make:
     ~href: option(string)=?,
     ~size: option(
              [@bs.string] [
-               | [@bs.as "small"] `Small
-               | [@bs.as "medium"] `Medium
                | [@bs.as "large"] `Large
+               | [@bs.as "medium"] `Medium
+               | [@bs.as "small"] `Small
              ],
            )
              =?,
-    ~_type: option(string)=?,
     ~variant: option(
                 [@bs.string] [
-                  | [@bs.as "round"] `Round
                   | [@bs.as "extended"] `Extended
+                  | [@bs.as "round"] `Round
                 ],
               )
                 =?,

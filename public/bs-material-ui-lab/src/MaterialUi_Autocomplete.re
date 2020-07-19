@@ -83,18 +83,6 @@ module Classes = {
     t;
 };
 
-module DefaultValue: {
-  type t;
-  let any: MaterialUi_Types.any => t;
-  let array: array(MaterialUi_Types.any) => t;
-} = {
-  [@unboxed]
-  type t =
-    | Any('a): t;
-  let any = (v: MaterialUi_Types.any) => Any(v);
-  let array = (v: array(MaterialUi_Types.any)) => Any(v);
-};
-
 module ForcePopupIcon_enum: {
   type t;
   let auto: t;
@@ -132,6 +120,16 @@ module ListboxComponent: {
   let element = (v: React.element) => Any(v);
 };
 
+module Value: {
+  type t;
+  let arrayOf: array(MaterialUi_Types.any) => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let arrayOf = (v: array(MaterialUi_Types.any)) => Any(v);
+};
+
 module PaperComponent: {
   type t;
   let string: string => t;
@@ -162,18 +160,6 @@ module PopperComponent: {
 
 type size = [ | `Medium | `Small];
 
-module Value: {
-  type t;
-  let any: MaterialUi_Types.any => t;
-  let array: array(MaterialUi_Types.any) => t;
-} = {
-  [@unboxed]
-  type t =
-    | Any('a): t;
-  let any = (v: MaterialUi_Types.any) => Any(v);
-  let array = (v: array(MaterialUi_Types.any)) => Any(v);
-};
-
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
@@ -190,7 +176,7 @@ external make:
     ~closeIcon: option(React.element)=?,
     ~closeText: option(string)=?,
     ~debug: option(bool)=?,
-    ~defaultValue: option(DefaultValue.t)=?,
+    ~defaultValue: option(MaterialUi_Types.any)=?,
     ~disableClearable: option(bool)=?,
     ~disableCloseOnSelect: option(bool)=?,
     ~disabled: option(bool)=?,
@@ -207,6 +193,7 @@ external make:
     ~getOptionLabel: option(unit => string)=?,
     ~getOptionSelected: option(unit => bool)=?,
     ~groupBy: option(unit => string)=?,
+    ~handleHomeEndKeys: option(bool)=?,
     ~id: option(string)=?,
     ~includeInputInList: option(bool)=?,
     ~inputValue: option(string)=?,
@@ -217,7 +204,7 @@ external make:
     ~loadingText: option(React.element)=?,
     ~multiple: option(bool)=?,
     ~noOptionsText: option(React.element)=?,
-    ~onChange: option((ReactEvent.Form.t, string) => unit)=?,
+    ~onChange: option((ReactEvent.Form.t, Value.t, string) => unit)=?,
     ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
     ~onHighlightChange: option(
                           (Js.Dict.t(MaterialUi_Types.any), string) => unit,
@@ -251,7 +238,7 @@ external make:
              ],
            )
              =?,
-    ~value: option(Value.t)=?,
+    ~value: option(MaterialUi_Types.any)=?,
     ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?

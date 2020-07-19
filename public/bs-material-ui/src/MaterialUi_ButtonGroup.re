@@ -74,11 +74,11 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
-type orientation = [ | `Vertical | `Horizontal];
+type orientation = [ | `Horizontal | `Vertical];
 
-type size = [ | `Small | `Medium | `Large];
+type size = [ | `Large | `Medium | `Small];
 
-type variant = [ | `Text | `Outlined | `Contained];
+type variant = [ | `Contained | `Outlined | `Text];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
@@ -103,24 +103,24 @@ external make:
     ~fullWidth: option(bool)=?,
     ~orientation: option(
                     [@bs.string] [
-                      | [@bs.as "vertical"] `Vertical
                       | [@bs.as "horizontal"] `Horizontal
+                      | [@bs.as "vertical"] `Vertical
                     ],
                   )
                     =?,
     ~size: option(
              [@bs.string] [
-               | [@bs.as "small"] `Small
-               | [@bs.as "medium"] `Medium
                | [@bs.as "large"] `Large
+               | [@bs.as "medium"] `Medium
+               | [@bs.as "small"] `Small
              ],
            )
              =?,
     ~variant: option(
                 [@bs.string] [
-                  | [@bs.as "text"] `Text
-                  | [@bs.as "outlined"] `Outlined
                   | [@bs.as "contained"] `Contained
+                  | [@bs.as "outlined"] `Outlined
+                  | [@bs.as "text"] `Text
                 ],
               )
                 =?,

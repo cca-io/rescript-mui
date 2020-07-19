@@ -71,6 +71,7 @@ module Classes = {
     "iconOpen": option(option(string)),
     "iconFilled": option(option(string)),
     "iconOutlined": option(option(string)),
+    "nativeInput": option(option(string)),
   };
   [@bs.obj]
   external make:
@@ -85,6 +86,7 @@ module Classes = {
       ~iconOpen: string=?,
       ~iconFilled: string=?,
       ~iconOutlined: string=?,
+      ~nativeInput: string=?,
       unit
     ) =>
     t;

@@ -98,9 +98,36 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
-type size = [ | `Small | `Medium | `Large];
+type size = [ | `Large | `Medium | `Small];
 
-type variant = [ | `Text | `Outlined | `Contained];
+module Type_enum: {
+  type t;
+  let button: t;
+  let reset: t;
+  let submit: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let button = Any("button");
+  let reset = Any("reset");
+  let submit = Any("submit");
+};
+
+module Type: {
+  type t;
+  let enum: Type_enum.t => t;
+  let string: string => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let enum = (v: Type_enum.t) => Any(v);
+  let string = (v: string) => Any(v);
+};
+
+type variant = [ | `Contained | `Outlined | `Text];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
@@ -121,7 +148,6 @@ external make:
     ~onTouchEnd: option(ReactEvent.Touch.t => unit)=?,
     ~onTouchMove: option(ReactEvent.Touch.t => unit)=?,
     ~onTouchStart: option(ReactEvent.Touch.t => unit)=?,
-    ~role: option(string)=?,
     ~tabIndex: option(TabIndex.t)=?,
     ~_TouchRippleProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~id: option(string)=?,
@@ -149,19 +175,19 @@ external make:
     ~href: option(string)=?,
     ~size: option(
              [@bs.string] [
-               | [@bs.as "small"] `Small
-               | [@bs.as "medium"] `Medium
                | [@bs.as "large"] `Large
+               | [@bs.as "medium"] `Medium
+               | [@bs.as "small"] `Small
              ],
            )
              =?,
     ~startIcon: option(React.element)=?,
-    ~_type: option(string)=?,
+    ~_type: option(Type.t)=?,
     ~variant: option(
                 [@bs.string] [
-                  | [@bs.as "text"] `Text
-                  | [@bs.as "outlined"] `Outlined
                   | [@bs.as "contained"] `Contained
+                  | [@bs.as "outlined"] `Outlined
+                  | [@bs.as "text"] `Text
                 ],
               )
                 =?,

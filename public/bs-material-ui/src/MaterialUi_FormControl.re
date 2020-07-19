@@ -34,11 +34,11 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
-type margin = [ | `None | `Dense | `Normal];
+type margin = [ | `Dense | `None | `Normal];
 
-type size = [ | `Small | `Medium];
+type size = [ | `Medium | `Small];
 
-type variant = [ | `Standard | `Outlined | `Filled];
+type variant = [ | `Filled | `Outlined | `Standard];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
@@ -61,8 +61,8 @@ external make:
     ~hiddenLabel: option(bool)=?,
     ~margin: option(
                [@bs.string] [
-                 | [@bs.as "none"] `None
                  | [@bs.as "dense"] `Dense
+                 | [@bs.as "none"] `None
                  | [@bs.as "normal"] `Normal
                ],
              )
@@ -70,16 +70,16 @@ external make:
     ~required: option(bool)=?,
     ~size: option(
              [@bs.string] [
-               | [@bs.as "small"] `Small
                | [@bs.as "medium"] `Medium
+               | [@bs.as "small"] `Small
              ],
            )
              =?,
     ~variant: option(
                 [@bs.string] [
-                  | [@bs.as "standard"] `Standard
-                  | [@bs.as "outlined"] `Outlined
                   | [@bs.as "filled"] `Filled
+                  | [@bs.as "outlined"] `Outlined
+                  | [@bs.as "standard"] `Standard
                 ],
               )
                 =?,

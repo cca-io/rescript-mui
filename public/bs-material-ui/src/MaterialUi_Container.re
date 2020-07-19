@@ -42,22 +42,22 @@ module Component: {
 
 module MaxWidth: {
   type t;
-  let xs: t;
-  let sm: t;
-  let md: t;
   let lg: t;
+  let md: t;
+  let sm: t;
   let xl: t;
+  let xs: t;
   let _false: t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
 
-  let xs = Any("xs");
-  let sm = Any("sm");
-  let md = Any("md");
   let lg = Any("lg");
+  let md = Any("md");
+  let sm = Any("sm");
   let xl = Any("xl");
+  let xs = Any("xs");
   let _false = Any(false);
 };
 

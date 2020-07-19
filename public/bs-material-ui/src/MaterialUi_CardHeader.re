@@ -41,6 +41,7 @@ external make:
   (
     ~action: option(React.element)=?,
     ~avatar: option(React.element)=?,
+    ~children: option('children)=?,
     ~classes: option(Classes.t)=?,
     ~className: option(string)=?,
     ~component: option(Component.t)=?,

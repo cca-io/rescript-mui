@@ -86,7 +86,7 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
-type size = [ | `Small | `Medium];
+type size = [ | `Medium | `Small];
 
 type variant = [ | `Default | `Outlined];
 
@@ -117,8 +117,8 @@ external make:
     ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
     ~size: option(
              [@bs.string] [
-               | [@bs.as "small"] `Small
                | [@bs.as "medium"] `Medium
+               | [@bs.as "small"] `Small
              ],
            )
              =?,

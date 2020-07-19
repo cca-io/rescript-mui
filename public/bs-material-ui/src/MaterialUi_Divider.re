@@ -46,6 +46,7 @@ type variant = [ | `FullWidth | `Inset | `Middle];
 external make:
   (
     ~absolute: option(bool)=?,
+    ~children: option('children)=?,
     ~classes: option(Classes.t)=?,
     ~className: option(string)=?,
     ~component: option(Component.t)=?,

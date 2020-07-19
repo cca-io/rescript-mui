@@ -62,6 +62,66 @@ module MixinsOptions = {
     t;
 };
 
+module AccordionClassKey = {
+  type t = {
+    .
+    "disabled": option(option(ReactDOMRe.Style.t)),
+    "expanded": option(option(ReactDOMRe.Style.t)),
+    "root": option(option(ReactDOMRe.Style.t)),
+    "rounded": option(option(ReactDOMRe.Style.t)),
+  };
+  [@bs.obj]
+  external make:
+    (
+      ~disabled: ReactDOMRe.Style.t=?,
+      ~expanded: ReactDOMRe.Style.t=?,
+      ~root: ReactDOMRe.Style.t=?,
+      ~rounded: ReactDOMRe.Style.t=?,
+      unit
+    ) =>
+    t;
+};
+
+module AccordionActionsClassKey = {
+  type t = {
+    .
+    "root": option(option(ReactDOMRe.Style.t)),
+    "spacing": option(option(ReactDOMRe.Style.t)),
+  };
+  [@bs.obj]
+  external make:
+    (~root: ReactDOMRe.Style.t=?, ~spacing: ReactDOMRe.Style.t=?, unit) => t;
+};
+
+module MuiAccordionDetails = {
+  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+};
+
+module AccordionSummaryClassKey = {
+  type t = {
+    .
+    "content": option(option(ReactDOMRe.Style.t)),
+    "disabled": option(option(ReactDOMRe.Style.t)),
+    "expandIcon": option(option(ReactDOMRe.Style.t)),
+    "expanded": option(option(ReactDOMRe.Style.t)),
+    "focused": option(option(ReactDOMRe.Style.t)),
+    "root": option(option(ReactDOMRe.Style.t)),
+  };
+  [@bs.obj]
+  external make:
+    (
+      ~content: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOMRe.Style.t=?,
+      ~expandIcon: ReactDOMRe.Style.t=?,
+      ~expanded: ReactDOMRe.Style.t=?,
+      ~focused: ReactDOMRe.Style.t=?,
+      ~root: ReactDOMRe.Style.t=?,
+      unit
+    ) =>
+    t;
+};
+
 module AppBarClassKey = {
   type t = {
     .
@@ -385,17 +445,6 @@ module CardActionAreaClassKey = {
       unit
     ) =>
     t;
-};
-
-module CardActionsClassKey = {
-  type t = {
-    .
-    "root": option(option(ReactDOMRe.Style.t)),
-    "spacing": option(option(ReactDOMRe.Style.t)),
-  };
-  [@bs.obj]
-  external make:
-    (~root: ReactDOMRe.Style.t=?, ~spacing: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module MuiCardContent = {
@@ -751,53 +800,9 @@ module DrawerClassKey = {
     t;
 };
 
-module ExpansionPanelClassKey = {
-  type t = {
-    .
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "expanded": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "rounded": option(option(ReactDOMRe.Style.t)),
-  };
-  [@bs.obj]
-  external make:
-    (
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~expanded: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~rounded: ReactDOMRe.Style.t=?,
-      unit
-    ) =>
-    t;
-};
-
 module MuiExpansionPanelDetails = {
   type t = {. "root": option(option(ReactDOMRe.Style.t))};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
-};
-
-module ExpansionPanelSummaryClassKey = {
-  type t = {
-    .
-    "content": option(option(ReactDOMRe.Style.t)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "expandIcon": option(option(ReactDOMRe.Style.t)),
-    "expanded": option(option(ReactDOMRe.Style.t)),
-    "focused": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-  };
-  [@bs.obj]
-  external make:
-    (
-      ~content: ReactDOMRe.Style.t=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~expandIcon: ReactDOMRe.Style.t=?,
-      ~expanded: ReactDOMRe.Style.t=?,
-      ~focused: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      unit
-    ) =>
-    t;
 };
 
 module FabClassKey = {
@@ -1505,9 +1510,20 @@ module ListItemAvatarClassKey = {
     (~icon: ReactDOMRe.Style.t=?, ~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
-module MuiListItemIcon = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+module ListItemIconClassKey = {
+  type t = {
+    .
+    "alignItemsFlexStart": option(option(ReactDOMRe.Style.t)),
+    "root": option(option(ReactDOMRe.Style.t)),
+  };
+  [@bs.obj]
+  external make:
+    (
+      ~alignItemsFlexStart: ReactDOMRe.Style.t=?,
+      ~root: ReactDOMRe.Style.t=?,
+      unit
+    ) =>
+    t;
 };
 
 module MuiListItemSecondaryAction = {
@@ -1837,9 +1853,11 @@ module SelectClassKey = {
 module SliderClassKey = {
   type t = {
     .
+    "active": option(option(ReactDOMRe.Style.t)),
     "colorPrimary": option(option(string)),
     "colorSecondary": option(option(string)),
     "disabled": option(option(ReactDOMRe.Style.t)),
+    "focusVisible": option(option(ReactDOMRe.Style.t)),
     "mark": option(option(ReactDOMRe.Style.t)),
     "markActive": option(option(ReactDOMRe.Style.t)),
     "markLabel": option(option(ReactDOMRe.Style.t)),
@@ -1847,7 +1865,6 @@ module SliderClassKey = {
     "marked": option(option(ReactDOMRe.Style.t)),
     "rail": option(option(ReactDOMRe.Style.t)),
     "root": option(option(ReactDOMRe.Style.t)),
-    "rtl": option(option(ReactDOMRe.Style.t)),
     "thumb": option(option(ReactDOMRe.Style.t)),
     "thumbColorPrimary": option(option(ReactDOMRe.Style.t)),
     "thumbColorSecondary": option(option(ReactDOMRe.Style.t)),
@@ -1860,9 +1877,11 @@ module SliderClassKey = {
   [@bs.obj]
   external make:
     (
+      ~active: ReactDOMRe.Style.t=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
       ~disabled: ReactDOMRe.Style.t=?,
+      ~focusVisible: ReactDOMRe.Style.t=?,
       ~mark: ReactDOMRe.Style.t=?,
       ~markActive: ReactDOMRe.Style.t=?,
       ~markLabel: ReactDOMRe.Style.t=?,
@@ -1870,7 +1889,6 @@ module SliderClassKey = {
       ~marked: ReactDOMRe.Style.t=?,
       ~rail: ReactDOMRe.Style.t=?,
       ~root: ReactDOMRe.Style.t=?,
-      ~rtl: ReactDOMRe.Style.t=?,
       ~thumb: ReactDOMRe.Style.t=?,
       ~thumbColorPrimary: ReactDOMRe.Style.t=?,
       ~thumbColorSecondary: ReactDOMRe.Style.t=?,
@@ -2492,6 +2510,10 @@ module TypographyClassKey = {
 module Overrides = {
   type t = {
     .
+    "MuiAccordion": option(option(AccordionClassKey.t)),
+    "MuiAccordionActions": option(option(AccordionActionsClassKey.t)),
+    "MuiAccordionDetails": option(option(MuiAccordionDetails.t)),
+    "MuiAccordionSummary": option(option(AccordionSummaryClassKey.t)),
     "MuiAppBar": option(option(AppBarClassKey.t)),
     "MuiAvatar": option(option(AvatarClassKey.t)),
     "MuiBackdrop": option(option(BackdropClassKey.t)),
@@ -2505,7 +2527,7 @@ module Overrides = {
     "MuiButtonGroup": option(option(ButtonGroupClassKey.t)),
     "MuiCard": option(option(MuiCard.t)),
     "MuiCardActionArea": option(option(CardActionAreaClassKey.t)),
-    "MuiCardActions": option(option(CardActionsClassKey.t)),
+    "MuiCardActions": option(option(AccordionActionsClassKey.t)),
     "MuiCardContent": option(option(MuiCardContent.t)),
     "MuiCardHeader": option(option(CardHeaderClassKey.t)),
     "MuiCardMedia": option(option(CardMediaClassKey.t)),
@@ -2516,17 +2538,16 @@ module Overrides = {
     "MuiContainer": option(option(ContainerClassKey.t)),
     "MuiCssBaseline": option(option(MuiCssBaseline.t)),
     "MuiDialog": option(option(DialogClassKey.t)),
-    "MuiDialogActions": option(option(CardActionsClassKey.t)),
+    "MuiDialogActions": option(option(AccordionActionsClassKey.t)),
     "MuiDialogContent": option(option(DialogContentClassKey.t)),
     "MuiDialogContentText": option(option(MuiDialogContentText.t)),
     "MuiDialogTitle": option(option(MuiDialogTitle.t)),
     "MuiDivider": option(option(DividerClassKey.t)),
     "MuiDrawer": option(option(DrawerClassKey.t)),
-    "MuiExpansionPanel": option(option(ExpansionPanelClassKey.t)),
-    "MuiExpansionPanelActions": option(option(CardActionsClassKey.t)),
+    "MuiExpansionPanel": option(option(AccordionClassKey.t)),
+    "MuiExpansionPanelActions": option(option(AccordionActionsClassKey.t)),
     "MuiExpansionPanelDetails": option(option(MuiExpansionPanelDetails.t)),
-    "MuiExpansionPanelSummary":
-      option(option(ExpansionPanelSummaryClassKey.t)),
+    "MuiExpansionPanelSummary": option(option(AccordionSummaryClassKey.t)),
     "MuiFab": option(option(FabClassKey.t)),
     "MuiFilledInput": option(option(FilledInputClassKey.t)),
     "MuiFormControl": option(option(FormControlClassKey.t)),
@@ -2549,7 +2570,7 @@ module Overrides = {
     "MuiList": option(option(ListClassKey.t)),
     "MuiListItem": option(option(ListItemClassKey.t)),
     "MuiListItemAvatar": option(option(ListItemAvatarClassKey.t)),
-    "MuiListItemIcon": option(option(MuiListItemIcon.t)),
+    "MuiListItemIcon": option(option(ListItemIconClassKey.t)),
     "MuiListItemSecondaryAction":
       option(option(MuiListItemSecondaryAction.t)),
     "MuiListItemText": option(option(ListItemTextClassKey.t)),
@@ -2596,6 +2617,10 @@ module Overrides = {
   [@bs.obj]
   external make:
     (
+      ~muiAccordion: AccordionClassKey.t=?,
+      ~muiAccordionActions: AccordionActionsClassKey.t=?,
+      ~muiAccordionDetails: MuiAccordionDetails.t=?,
+      ~muiAccordionSummary: AccordionSummaryClassKey.t=?,
       ~muiAppBar: AppBarClassKey.t=?,
       ~muiAvatar: AvatarClassKey.t=?,
       ~muiBackdrop: BackdropClassKey.t=?,
@@ -2608,7 +2633,7 @@ module Overrides = {
       ~muiButtonGroup: ButtonGroupClassKey.t=?,
       ~muiCard: MuiCard.t=?,
       ~muiCardActionArea: CardActionAreaClassKey.t=?,
-      ~muiCardActions: CardActionsClassKey.t=?,
+      ~muiCardActions: AccordionActionsClassKey.t=?,
       ~muiCardContent: MuiCardContent.t=?,
       ~muiCardHeader: CardHeaderClassKey.t=?,
       ~muiCardMedia: CardMediaClassKey.t=?,
@@ -2619,16 +2644,16 @@ module Overrides = {
       ~muiContainer: ContainerClassKey.t=?,
       ~muiCssBaseline: MuiCssBaseline.t=?,
       ~muiDialog: DialogClassKey.t=?,
-      ~muiDialogActions: CardActionsClassKey.t=?,
+      ~muiDialogActions: AccordionActionsClassKey.t=?,
       ~muiDialogContent: DialogContentClassKey.t=?,
       ~muiDialogContentText: MuiDialogContentText.t=?,
       ~muiDialogTitle: MuiDialogTitle.t=?,
       ~muiDivider: DividerClassKey.t=?,
       ~muiDrawer: DrawerClassKey.t=?,
-      ~muiExpansionPanel: ExpansionPanelClassKey.t=?,
-      ~muiExpansionPanelActions: CardActionsClassKey.t=?,
+      ~muiExpansionPanel: AccordionClassKey.t=?,
+      ~muiExpansionPanelActions: AccordionActionsClassKey.t=?,
       ~muiExpansionPanelDetails: MuiExpansionPanelDetails.t=?,
-      ~muiExpansionPanelSummary: ExpansionPanelSummaryClassKey.t=?,
+      ~muiExpansionPanelSummary: AccordionSummaryClassKey.t=?,
       ~muiFab: FabClassKey.t=?,
       ~muiFilledInput: FilledInputClassKey.t=?,
       ~muiFormControl: FormControlClassKey.t=?,
@@ -2651,7 +2676,7 @@ module Overrides = {
       ~muiList: ListClassKey.t=?,
       ~muiListItem: ListItemClassKey.t=?,
       ~muiListItemAvatar: ListItemAvatarClassKey.t=?,
-      ~muiListItemIcon: MuiListItemIcon.t=?,
+      ~muiListItemIcon: ListItemIconClassKey.t=?,
       ~muiListItemSecondaryAction: MuiListItemSecondaryAction.t=?,
       ~muiListItemText: ListItemTextClassKey.t=?,
       ~muiListSubheader: ListSubheaderClassKey.t=?,
@@ -3318,6 +3343,7 @@ type t = {
   "spacing": option(option(MaterialUi_Types.any)),
   "transitions": option(option(TransitionsOptions.t)),
   "typography": option(option(Typography.t)),
+  "unstable_strictMode": option(option(bool)),
   "zIndex": option(option(ZIndex.t)),
 };
 [@bs.obj]
@@ -3334,6 +3360,7 @@ external make:
     ~spacing: MaterialUi_Types.any=?,
     ~transitions: TransitionsOptions.t=?,
     ~typography: Typography.t=?,
+    ~unstable_strictMode: bool=?,
     ~zIndex: ZIndex.t=?,
     unit
   ) =>

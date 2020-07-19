@@ -29,11 +29,12 @@
     "reason-react": "^0.7.0"
   },
   "devDependencies": {
-    "@jsiebern/bs-material-ui-ppx": "*",
+    "@babel/helper-call-delegate": "^7.10.4",
+    "@jsiebern/bs-material-ui-ppx": "link:../bs-material-ui-ppx",
     "@material-ui/core": "^4.8.1",
     "@material-ui/icons": "^4.1.0",
     "@mscharley/bs-material-ui-icons": "^1.0.1",
-    "bs-platform": "7.3.1",
+    "bs-platform": "^8.1.1",
     "bsb-js": "^1.1.7",
     "clsx": "^1.0.4",
     "reason-react": "^0.7.0"

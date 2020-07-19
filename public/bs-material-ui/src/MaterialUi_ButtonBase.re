@@ -38,7 +38,32 @@ module TabIndex: {
   let string = (v: string) => Any(v);
 };
 
-type _type = [ | `Submit | `Reset | `Button];
+module Type_enum: {
+  type t;
+  let button: t;
+  let reset: t;
+  let submit: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let button = Any("button");
+  let reset = Any("reset");
+  let submit = Any("submit");
+};
+
+module Type: {
+  type t;
+  let enum: Type_enum.t => t;
+  let string: string => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let enum = (v: Type_enum.t) => Any(v);
+  let string = (v: string) => Any(v);
+};
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
@@ -53,6 +78,7 @@ external make:
     ~disableTouchRipple: option(bool)=?,
     ~focusRipple: option(bool)=?,
     ~focusVisibleClassName: option(string)=?,
+    ~href: option(string)=?,
     ~onBlur: option(ReactEvent.Focus.t => unit)=?,
     ~onClick: option(ReactEvent.Mouse.t => unit)=?,
     ~onDragLeave: option(ReactEvent.Mouse.t => unit)=?,
@@ -66,17 +92,9 @@ external make:
     ~onTouchEnd: option(ReactEvent.Touch.t => unit)=?,
     ~onTouchMove: option(ReactEvent.Touch.t => unit)=?,
     ~onTouchStart: option(ReactEvent.Touch.t => unit)=?,
-    ~role: option(string)=?,
     ~tabIndex: option(TabIndex.t)=?,
     ~_TouchRippleProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~_type: option(
-              [@bs.string] [
-                | [@bs.as "submit"] `Submit
-                | [@bs.as "reset"] `Reset
-                | [@bs.as "button"] `Button
-              ],
-            )
-              =?,
+    ~_type: option(Type.t)=?,
     ~id: option(string)=?,
     ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,

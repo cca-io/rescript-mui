@@ -47,6 +47,20 @@ type placement = [
   | `Top
 ];
 
+module PopperComponent: {
+  type t;
+  let string: string => t;
+  let popperComponent_func: MaterialUi_Types.any => t;
+  let element: React.element => t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+  let string = (v: string) => Any(v);
+  let popperComponent_func = (v: MaterialUi_Types.any) => Any(v);
+  let element = (v: React.element) => Any(v);
+};
+
 module TransitionComponent: {
   type t;
   let string: string => t;
@@ -98,6 +112,7 @@ external make:
                   ],
                 )
                   =?,
+    ~_PopperComponent: option(PopperComponent.t)=?,
     ~_PopperProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~title: React.element,
     ~_TransitionComponent: option(TransitionComponent.t)=?,

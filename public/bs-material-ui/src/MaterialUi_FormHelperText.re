@@ -42,7 +42,7 @@ module Component: {
 
 type margin = [ | `Dense];
 
-type variant = [ | `Standard | `Outlined | `Filled];
+type variant = [ | `Filled | `Outlined | `Standard];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
@@ -59,9 +59,9 @@ external make:
     ~required: option(bool)=?,
     ~variant: option(
                 [@bs.string] [
-                  | [@bs.as "standard"] `Standard
-                  | [@bs.as "outlined"] `Outlined
                   | [@bs.as "filled"] `Filled
+                  | [@bs.as "outlined"] `Outlined
+                  | [@bs.as "standard"] `Standard
                 ],
               )
                 =?,

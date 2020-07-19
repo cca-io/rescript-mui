@@ -22,6 +22,9 @@ module Classes = {
     "circle": option(option(string)),
     "pulse": option(option(string)),
     "wave": option(option(string)),
+    "withChildren": option(option(string)),
+    "fitContent": option(option(string)),
+    "heightAuto": option(option(string)),
   };
   [@bs.obj]
   external make:
@@ -32,6 +35,9 @@ module Classes = {
       ~circle: string=?,
       ~pulse: string=?,
       ~wave: string=?,
+      ~withChildren: string=?,
+      ~fitContent: string=?,
+      ~heightAuto: string=?,
       unit
     ) =>
     t;
@@ -85,6 +91,7 @@ module Width: {
 external make:
   (
     ~animation: option(Animation.t)=?,
+    ~children: option('children)=?,
     ~classes: option(Classes.t)=?,
     ~className: option(string)=?,
     ~component: option(Component.t)=?,

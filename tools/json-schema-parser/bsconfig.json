@@ -1,28 +1,23 @@
 {
-    "name": "json-schema-to-reason",
-    "reason": {
-        "react-jsx": 2
-    },
-    "sources": [
-        {
-            "dir": "src",
-            "subdirs": true
-        }
-    ],
-    "package-specs": [
-        {
-            "module": "commonjs",
-            "in-source": true
-        }
-    ],
-    "suffix": ".bs.js",
-    "namespace": true,
-    "bs-dependencies": [
-        "reason-react",
-        "bs-decode"
-    ],
-    "bsc-flags": [
-        "-bs-g"
-    ],
-    "refmt": 3
+  "name": "json-schema-to-reason",
+  "reason": {
+    "react-jsx": 3
+  },
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "namespace": true,
+  "bs-dependencies": ["reason-react", "bs-decode"],
+  "bsc-flags": ["-bs-g"],
+  "refmt": 3
 }

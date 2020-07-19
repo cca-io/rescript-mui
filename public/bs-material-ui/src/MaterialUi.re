@@ -1,5 +1,9 @@
 include MaterialUi_Types;
 
+module AccordionActions = MaterialUi_AccordionActions;
+module AccordionDetails = MaterialUi_AccordionDetails;
+module AccordionSummary = MaterialUi_AccordionSummary;
+module Accordion = MaterialUi_Accordion;
 module AppBar = MaterialUi_AppBar;
 module Avatar = MaterialUi_Avatar;
 module Backdrop = MaterialUi_Backdrop;

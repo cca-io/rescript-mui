@@ -34,9 +34,14 @@ module Timeout: {
 external make:
   (
     ~children: option('children)=?,
+    ~disableStrictModeCompat: option(bool)=?,
     ~_in: option(bool)=?,
     ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
+    ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
+    ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
     ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
+    ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
+    ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
     ~style: option(ReactDOMRe.Style.t)=?,
     ~timeout: option(Timeout.t)=?,
     ~id: option(string)=?,

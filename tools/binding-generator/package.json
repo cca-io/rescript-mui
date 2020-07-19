@@ -13,7 +13,7 @@
     "@jsiebern/json-schema-parser": "^0.0.11",
     "@jsiebern/mui-component-extractor": "1.0.0",
     "@material-ui/core": "^4.0.2",
-    "bs-platform": "7.3.1",
+    "bs-platform": "^8.1.1",
     "lodash": "~4.17.11",
     "react-dom": "^16.8.6",
     "reason": "^3.3.4"

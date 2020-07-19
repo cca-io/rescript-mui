@@ -46,7 +46,7 @@ module Component: {
   let element = (v: React.element) => Any(v);
 };
 
-type indicatorColor = [ | `Secondary | `Primary];
+type indicatorColor = [ | `Primary | `Secondary];
 
 type orientation = [ | `Horizontal | `Vertical];
 
@@ -64,15 +64,17 @@ module ScrollButtonComponent: {
   let element = (v: React.element) => Any(v);
 };
 
-type scrollButtons = [ | `Auto | `Desktop | `On | `Off];
+type scrollButtons = [ | `Auto | `Desktop | `Off | `On];
 
-type textColor = [ | `Secondary | `Primary | `Inherit];
+type textColor = [ | `Inherit | `Primary | `Secondary];
 
-type variant = [ | `Standard | `Scrollable | `FullWidth];
+type variant = [ | `FullWidth | `Scrollable | `Standard];
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
+    ~aria_label: option(string)=?,
+    ~aria_labelledby: option(string)=?,
     ~centered: option(bool)=?,
     ~children: option('children)=?,
     ~classes: option(Classes.t)=?,
@@ -80,8 +82,8 @@ external make:
     ~component: option(Component.t)=?,
     ~indicatorColor: option(
                        [@bs.string] [
-                         | [@bs.as "secondary"] `Secondary
                          | [@bs.as "primary"] `Primary
+                         | [@bs.as "secondary"] `Secondary
                        ],
                      )
                        =?,
@@ -98,27 +100,28 @@ external make:
                       [@bs.string] [
                         | [@bs.as "auto"] `Auto
                         | [@bs.as "desktop"] `Desktop
-                        | [@bs.as "on"] `On
                         | [@bs.as "off"] `Off
+                        | [@bs.as "on"] `On
                       ],
                     )
                       =?,
+    ~selectionFollowsFocus: option(bool)=?,
     ~_TabIndicatorProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~_TabScrollButtonProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~textColor: option(
                   [@bs.string] [
-                    | [@bs.as "secondary"] `Secondary
-                    | [@bs.as "primary"] `Primary
                     | [@bs.as "inherit"] `Inherit
+                    | [@bs.as "primary"] `Primary
+                    | [@bs.as "secondary"] `Secondary
                   ],
                 )
                   =?,
     ~value: option(MaterialUi_Types.any)=?,
     ~variant: option(
                 [@bs.string] [
-                  | [@bs.as "standard"] `Standard
-                  | [@bs.as "scrollable"] `Scrollable
                   | [@bs.as "fullWidth"] `FullWidth
+                  | [@bs.as "scrollable"] `Scrollable
+                  | [@bs.as "standard"] `Standard
                 ],
               )
                 =?,

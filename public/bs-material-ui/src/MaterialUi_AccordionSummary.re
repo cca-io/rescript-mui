@@ -101,8 +101,6 @@ external make:
     ~tabIndex: option(TabIndex.t)=?,
     ~_TouchRippleProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
     ~_type: option(Type.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
     ~children: option('children)=?,
     ~classes: option(Classes.t)=?,
     ~className: option(string)=?,
@@ -111,8 +109,10 @@ external make:
     ~onBlur: option(ReactEvent.Focus.t => unit)=?,
     ~onClick: option(ReactEvent.Mouse.t => unit)=?,
     ~onFocusVisible: option(MaterialUi_Types.any)=?,
+    ~id: option(string)=?,
+    ~style: option(ReactDOMRe.Style.t)=?,
     ~key: option(string)=?,
     ~ref: option(ReactDOMRe.domRef)=?
   ) =>
   React.element =
-  "ExpansionPanelSummary";
+  "AccordionSummary";

@@ -21,6 +21,29 @@ type t_mixins = {
   toolbar: ReactDOMRe.Style.t,
 };
 
+type t_accordionClassKey = {
+  disabled: ReactDOMRe.Style.t,
+  expanded: ReactDOMRe.Style.t,
+  root: ReactDOMRe.Style.t,
+  rounded: ReactDOMRe.Style.t,
+};
+
+type t_accordionActionsClassKey = {
+  root: ReactDOMRe.Style.t,
+  spacing: ReactDOMRe.Style.t,
+};
+
+type t_muiAccordionDetails = {root: ReactDOMRe.Style.t};
+
+type t_accordionSummaryClassKey = {
+  content: ReactDOMRe.Style.t,
+  disabled: ReactDOMRe.Style.t,
+  expandIcon: ReactDOMRe.Style.t,
+  expanded: ReactDOMRe.Style.t,
+  focused: ReactDOMRe.Style.t,
+  root: ReactDOMRe.Style.t,
+};
+
 type t_appBarClassKey = {
   colorDefault: string,
   colorPrimary: string,
@@ -153,11 +176,6 @@ type t_cardActionAreaClassKey = {
   focusHighlight: ReactDOMRe.Style.t,
   focusVisible: ReactDOMRe.Style.t,
   root: ReactDOMRe.Style.t,
-};
-
-type t_cardActionsClassKey = {
-  root: ReactDOMRe.Style.t,
-  spacing: ReactDOMRe.Style.t,
 };
 
 type t_muiCardContent = {root: ReactDOMRe.Style.t};
@@ -312,23 +330,7 @@ type t_drawerClassKey = {
   root: ReactDOMRe.Style.t,
 };
 
-type t_expansionPanelClassKey = {
-  disabled: ReactDOMRe.Style.t,
-  expanded: ReactDOMRe.Style.t,
-  root: ReactDOMRe.Style.t,
-  rounded: ReactDOMRe.Style.t,
-};
-
 type t_muiExpansionPanelDetails = {root: ReactDOMRe.Style.t};
-
-type t_expansionPanelSummaryClassKey = {
-  content: ReactDOMRe.Style.t,
-  disabled: ReactDOMRe.Style.t,
-  expandIcon: ReactDOMRe.Style.t,
-  expanded: ReactDOMRe.Style.t,
-  focused: ReactDOMRe.Style.t,
-  root: ReactDOMRe.Style.t,
-};
 
 type t_fabClassKey = {
   colorInherit: string,
@@ -667,7 +669,10 @@ type t_listItemAvatarClassKey = {
   root: ReactDOMRe.Style.t,
 };
 
-type t_muiListItemIcon = {root: ReactDOMRe.Style.t};
+type t_listItemIconClassKey = {
+  alignItemsFlexStart: ReactDOMRe.Style.t,
+  root: ReactDOMRe.Style.t,
+};
 
 type t_muiListItemSecondaryAction = {root: ReactDOMRe.Style.t};
 
@@ -803,9 +808,11 @@ type t_selectClassKey = {
 };
 
 type t_sliderClassKey = {
+  active: ReactDOMRe.Style.t,
   colorPrimary: string,
   colorSecondary: string,
   disabled: ReactDOMRe.Style.t,
+  focusVisible: ReactDOMRe.Style.t,
   mark: ReactDOMRe.Style.t,
   markActive: ReactDOMRe.Style.t,
   markLabel: ReactDOMRe.Style.t,
@@ -813,7 +820,6 @@ type t_sliderClassKey = {
   marked: ReactDOMRe.Style.t,
   rail: ReactDOMRe.Style.t,
   root: ReactDOMRe.Style.t,
-  rtl: ReactDOMRe.Style.t,
   thumb: ReactDOMRe.Style.t,
   thumbColorPrimary: ReactDOMRe.Style.t,
   thumbColorSecondary: ReactDOMRe.Style.t,
@@ -1064,6 +1070,14 @@ type t_typographyClassKey = {
 };
 
 type t_overrides = {
+  [@bs.as "MuiAccordion"]
+  muiAccordion: t_accordionClassKey,
+  [@bs.as "MuiAccordionActions"]
+  muiAccordionActions: t_accordionActionsClassKey,
+  [@bs.as "MuiAccordionDetails"]
+  muiAccordionDetails: t_muiAccordionDetails,
+  [@bs.as "MuiAccordionSummary"]
+  muiAccordionSummary: t_accordionSummaryClassKey,
   [@bs.as "MuiAppBar"]
   muiAppBar: t_appBarClassKey,
   [@bs.as "MuiAvatar"]
@@ -1089,7 +1103,7 @@ type t_overrides = {
   [@bs.as "MuiCardActionArea"]
   muiCardActionArea: t_cardActionAreaClassKey,
   [@bs.as "MuiCardActions"]
-  muiCardActions: t_cardActionsClassKey,
+  muiCardActions: t_accordionActionsClassKey,
   [@bs.as "MuiCardContent"]
   muiCardContent: t_muiCardContent,
   [@bs.as "MuiCardHeader"]
@@ -1111,7 +1125,7 @@ type t_overrides = {
   [@bs.as "MuiDialog"]
   muiDialog: t_dialogClassKey,
   [@bs.as "MuiDialogActions"]
-  muiDialogActions: t_cardActionsClassKey,
+  muiDialogActions: t_accordionActionsClassKey,
   [@bs.as "MuiDialogContent"]
   muiDialogContent: t_dialogContentClassKey,
   [@bs.as "MuiDialogContentText"]
@@ -1123,13 +1137,13 @@ type t_overrides = {
   [@bs.as "MuiDrawer"]
   muiDrawer: t_drawerClassKey,
   [@bs.as "MuiExpansionPanel"]
-  muiExpansionPanel: t_expansionPanelClassKey,
+  muiExpansionPanel: t_accordionClassKey,
   [@bs.as "MuiExpansionPanelActions"]
-  muiExpansionPanelActions: t_cardActionsClassKey,
+  muiExpansionPanelActions: t_accordionActionsClassKey,
   [@bs.as "MuiExpansionPanelDetails"]
   muiExpansionPanelDetails: t_muiExpansionPanelDetails,
   [@bs.as "MuiExpansionPanelSummary"]
-  muiExpansionPanelSummary: t_expansionPanelSummaryClassKey,
+  muiExpansionPanelSummary: t_accordionSummaryClassKey,
   [@bs.as "MuiFab"]
   muiFab: t_fabClassKey,
   [@bs.as "MuiFilledInput"]
@@ -1175,7 +1189,7 @@ type t_overrides = {
   [@bs.as "MuiListItemAvatar"]
   muiListItemAvatar: t_listItemAvatarClassKey,
   [@bs.as "MuiListItemIcon"]
-  muiListItemIcon: t_muiListItemIcon,
+  muiListItemIcon: t_listItemIconClassKey,
   [@bs.as "MuiListItemSecondaryAction"]
   muiListItemSecondaryAction: t_muiListItemSecondaryAction,
   [@bs.as "MuiListItemText"]
@@ -1424,6 +1438,7 @@ type t_theme = {
   spacing: int => int,
   transitions: t_transitions,
   typography: t_typography,
+  unstable_strictMode: bool,
   zIndex: t_zIndex,
 };
 type t = t_theme;
