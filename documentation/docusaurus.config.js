@@ -21,6 +21,12 @@ module.exports = {
       },
       links: [
         { to: 'docs/introduction', label: 'Docs', position: 'left' },
+        { to: 'docs/changelog', label: 'Changelog', position: 'left' },
+        {
+          href: 'https://material-ui.com/versions/#latest-versions',
+          label: 'Currently on MUI version: v4.11.0',
+          position: 'right',
+        },
         {
           href: 'https://github.com/jsiebern/bs-material-ui',
           label: 'GitHub',
