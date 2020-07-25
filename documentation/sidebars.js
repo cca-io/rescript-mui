@@ -4,8 +4,9 @@ module.exports = {
     'Project Structure': [
       'project-structure/modules',
       'project-structure/union-values',
-      'project-structure/colors',
-      'project-structure/styling',
+      'project-structure/module-colors',
+      'project-structure/module-core',
+      'project-structure/module-box',
       'project-structure/theming',
       'project-structure/icons',
     ],

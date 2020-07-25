@@ -48,9 +48,9 @@ let make = () => {
 
 `MaterialUi.re` contains the following special modules:
 
-- [Colors](colors.md)
-- [Core](special-core.md)
-- [Box](special-box.md)
+- [Colors](module-colors.md)
+- [Core](module-core.md)
+- [Box](module-box.md)
 - [Theme](theming.md)
 - [ThemeOptions](theming.md)
 - [ThemeHelpers](theming.md)

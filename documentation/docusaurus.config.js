@@ -23,7 +23,7 @@ module.exports = {
         { to: 'docs/introduction', label: 'Docs', position: 'left' },
         { to: 'docs/changelog', label: 'Changelog', position: 'left' },
         {
-          href: 'https://material-ui.com/versions/#latest-versions',
+          href: 'https://material-ui.com/versions/#stable-versions',
           label: 'Currently on MUI version: v4.11.0',
           position: 'right',
         },
