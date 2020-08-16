@@ -2,7 +2,7 @@ type top100 = {
   title: string,
   year: int,
 };
-let top100Films = [|
+let top100Films = [
   {title: "The Shawshank Redemption", year: 1994},
   {title: "The Godfather", year: 1972},
   {title: "The Godfather: Part II", year: 1974},
@@ -106,25 +106,23 @@ let top100Films = [|
   {title: "Snatch", year: 2000},
   {title: "3 Idiots", year: 2009},
   {title: "Monty Python and the Holy Grail", year: 1975},
-|];
+];
 
-[@react.component]
+@react.component
 let make = () => {
   <MaterialUi_Lab.Autocomplete
     id="combo-box-demo"
     options={top100Films->Belt.Array.map(v => v->MaterialUi.Any)}
-    getOptionLabel={Any(option => option.title)}
+    getOptionLabel={option => option.title}
     fullWidth=true
     renderInput={params =>
-      Any(
         React.createElement(
           MaterialUi.TextField.make,
           Js.Obj.assign(
             params->Obj.magic,
             {"label": "Combo box", "variant": "outlined"},
           ),
-        ),
-      )
+        )
     }
   />;
 };

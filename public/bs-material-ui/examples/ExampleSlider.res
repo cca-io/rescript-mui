@@ -38,13 +38,13 @@ let make = () => {
             } else if value > 100 {
               setValue(100)
             }}
-          inputProps={Js.Dict.fromArray([
-            ("step", Any(10)),
-            ("min", Any(0)),
-            ("max", Any(100)),
-            ("type", Any("number")),
-            ("aria-labelledby", Any("input-slider")),
-          ])}
+          inputProps={
+            "step": 10,
+            "min": 0,
+            "max": 100,
+            "type": "number",
+            "aria-labelledby": "input-slider",
+          }
         />
       </Grid>
     </Grid>

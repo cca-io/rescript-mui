@@ -23,8 +23,7 @@
     "bs:build": "bsb -make-world",
     "bs:clean": "bsb -clean-world; rm -rf .cache",
     "examples": "parcel examples/App/index.html",
-    "build": "./build.sh",
-    "code-mods": "cd examples; comby .re -templates ../code-mods . -matcher .re"
+    "build": "./build.sh"
   },
   "files": [
     "/src",
@@ -41,9 +40,9 @@
     "@material-ui/core": "^4.8.1",
     "@material-ui/icons": "^4.1.0",
     "@mscharley/bs-material-ui-icons": "^1.0.1",
-    "bs-platform": "^8.1.1",
+    "bs-platform": "^8.2.0",
     "bsb-js": "^1.1.7",
     "clsx": "^1.0.4",
-    "reason-react": "^0.7.0"
+    "reason-react": "^0.9.1"
   }
 }

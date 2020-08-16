@@ -1,5 +1,5 @@
 module ExampleApp = {
-  [@react.component]
+  @react.component
   let make = _ => <LabLayout />;
 };
 

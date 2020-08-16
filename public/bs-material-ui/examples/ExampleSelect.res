@@ -46,7 +46,7 @@ let make = () => {
         <Select
           value={Select.Value.string(values.age)}
           onChange=handleChangeAge
-          inputProps={Js.Dict.fromArray([("id", Any("age-simple")), ("name", Any("age"))])}>
+          inputProps={"id": "age-simple", "name": "age"}>
           <MenuItem value={MenuItem.Value.string("")}> <em> {"None"->React.string} </em> </MenuItem>
           <MenuItem value={MenuItem.Value.string("10")}> {"Ten"->React.string} </MenuItem>
           <MenuItem value={MenuItem.Value.string("20")}> {"Twenty"->React.string} </MenuItem>
@@ -115,7 +115,7 @@ let make = () => {
           value={Select.Value.string(values.name)}
           onChange=handleChangeName
           name="name"
-          renderValue={value => Any(j`⚠️  - ${value->anyUnpack}`)}
+          renderValue={value => `⚠️  - ${value->anyUnpack}`->React.string}
           input={<Input id="name-error" />}>
           <MenuItem value={MenuItem.Value.string("")}> <em> {"None"->React.string} </em> </MenuItem>
           <MenuItem value={MenuItem.Value.string("hai")}> {"Hai"->React.string} </MenuItem>
@@ -171,7 +171,7 @@ let make = () => {
           value={Select.Value.string(values.age)}
           onChange=handleChangeAge
           name="age"
-          inputProps={Js.Dict.fromArray([("id", Any("age-required"))])}
+          inputProps={"id": "age-required"}
           className=classes.selectEmpty>
           <MenuItem value={MenuItem.Value.string("")}> <em> {"None"->React.string} </em> </MenuItem>
           <MenuItem value={MenuItem.Value.string("10")}> {"Ten"->React.string} </MenuItem>
