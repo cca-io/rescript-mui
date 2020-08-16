@@ -17,5 +17,6 @@ module.exports = {
       'styles-ppx/installation',
       'styles-ppx/usage',
     ],
+    'Lab Bindings': ['lab/introduction', 'lab/installation'],
   },
 };

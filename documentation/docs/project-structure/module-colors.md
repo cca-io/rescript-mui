@@ -9,8 +9,8 @@ accessible via `MaterialUi.Colors`.).
 
 All colors are available as their corresponding name from the
 [MUI Color Palette](https://material-ui.com/customization/color/#color-palette).
-They are typed as [records](https://reasonml.org/docs/manual/latest/record) and
-you can access the shades by the following rules:
+They are typed as [records](https://rescript-lang.org/docs/manual/latest/record)
+and you can access the shades by the following rules:
 
 - Numeric keys are prefixed with a `c`
 - Keys that are prefixed by a char are lowercased
@@ -22,7 +22,7 @@ shades:
 
 ## Available Shades
 
-| Javascript    | ReasonML                     |
+| Javascript    | ReScript                     |
 | ------------- | ---------------------------- |
 | `red['50']`   | `MaterialUi.Colors.red.c50`  |
 | `red['100']`  | `MaterialUi.Colors.red.c100` |

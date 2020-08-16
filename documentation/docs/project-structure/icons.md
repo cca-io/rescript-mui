@@ -5,7 +5,7 @@ title: Icons
 The MaterialUi icons **do not** have separate bindings. There is a good reason
 for this: Bindings result in thousands of files (or one extremely large one),
 which take a good while to recompile (easily upwards of one minute, this is
-unacceptable performance for a ReasonML project).
+unacceptable performance for a ReScript project).
 
 It is therefore recommended to bind to the icons you need manually. See the
 following example for how this could look like:

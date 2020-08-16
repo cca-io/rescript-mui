@@ -13,8 +13,8 @@ difference between 3 types of union values.
 Whenever a prop on a component consists of a selection of string only literals,
 the generator will use the
 [[@bs.string]](https://reasonml.org/docs/reason-compiler/latest/function#constrain-arguments-better)
-directive directly on the prop. This will ensure a direct application of the
-string without conversion cost.
+(will become obsolete with ReScript eventually) directive directly on the prop.
+This will ensure a direct application of the string without conversion cost.
 
 String only unions therefore need to get passed as a polymorphic variant. This
 is an example of the prop `variant`, taken from `MaterialUi_Accordion.re`:
