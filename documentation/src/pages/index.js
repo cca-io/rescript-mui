@@ -19,7 +19,7 @@ function Home() {
           <div className={styles.heroInner}>
             <h1 className={styles.heroProjectTagline}>
               <img
-                alt="Graphql-ppx"
+                alt="BS-MATERIAL-UI"
                 className={styles.heroLogo}
                 src={useBaseUrl('img/logo.svg')}
                 style={{ maxWidth: '250px' }}
