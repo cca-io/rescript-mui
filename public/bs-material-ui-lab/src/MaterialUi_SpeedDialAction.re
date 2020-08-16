@@ -45,11 +45,11 @@ external make:
     ~classes: Classes.t=?,
     ~className: string=?,
     ~delay: MaterialUi_Types.Number.t=?,
-    ~_FabProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_FabProps: Js.t({..})=?,
     ~icon: React.element=?,
     ~id: string=?,
     ~_open: bool=?,
-    ~_TooltipClasses: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TooltipClasses: Js.t({..})=?,
     ~tooltipOpen: bool=?,
     ~tooltipPlacement: [@bs.string] [
                          | [@bs.as "bottom-end"] `Bottom_End

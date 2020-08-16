@@ -88,7 +88,7 @@ external make:
                   | [@bs.as "up"] `Up
                 ]
                   =?,
-    ~_FabProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_FabProps: Js.t({..})=?,
     ~hidden: bool=?,
     ~icon: React.element=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
@@ -102,7 +102,7 @@ external make:
     ~openIcon: React.element=?,
     ~_TransitionComponent: TransitionComponent.t=?,
     ~transitionDuration: TransitionDuration.t=?,
-    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TransitionProps: Js.t({..})=?,
     ~id: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~key: string=?,

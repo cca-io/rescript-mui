@@ -9,6 +9,62 @@ module Classes = {
 
 type color = [ | `Primary | `Secondary | `Standard];
 
+module Color: {
+  type t;
+  let primary: t;
+  let secondary: t;
+  let standard: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let primary = Any("primary");
+  let secondary = Any("secondary");
+  let standard = Any("standard");
+};
+
+module Shape: {
+  type t;
+  let round: t;
+  let rounded: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let round = Any("round");
+  let rounded = Any("rounded");
+};
+
+module Size: {
+  type t;
+  let large: t;
+  let medium: t;
+  let small: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let large = Any("large");
+  let medium = Any("medium");
+  let small = Any("small");
+};
+
+module Variant: {
+  type t;
+  let outlined: t;
+  let text: t;
+} = {
+  [@unboxed]
+  type t =
+    | Any('a): t;
+
+  let outlined = Any("outlined");
+  let text = Any("text");
+};
+
 type shape = [ | `Round | `Rounded];
 
 type size = [ | `Large | `Medium | `Small];
@@ -35,7 +91,18 @@ external make:
     ~hidePrevButton: bool=?,
     ~onChange: (ReactEvent.Form.t, int) => unit=?,
     ~page: MaterialUi_Types.Number.t=?,
-    ~renderItem: unit => MaterialUi_Types.any=?,
+    ~renderItem: {
+                   .
+                   "color": Color.t,
+                   "shape": Shape.t,
+                   "size": Size.t,
+                   "variant": Variant.t,
+                   "page": int,
+                   "selected": bool,
+                   "disabled": bool,
+                 } =>
+                 React.element
+                   =?,
     ~shape: [@bs.string] [
               | [@bs.as "round"] `Round
               | [@bs.as "rounded"] `Rounded

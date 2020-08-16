@@ -32,6 +32,7 @@ export default function (
 
     return parser;
   } else {
+    console.log(type);
     Console.error(
       `resolveArgument: Could not find parser for argument ${Console.colors.green}${originalProperty.component.name}/${originalProperty.name}/${name}/${type.name}${Console.colors.reset}`,
     );

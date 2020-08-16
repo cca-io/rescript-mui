@@ -428,4 +428,141 @@ export default {
       description: '-',
     },
   },
+
+  Pagination: {
+    renderItem: {
+      type: {
+        name: 'signature',
+        type: 'function',
+        raw: '',
+        signature: {
+          arguments: [
+            {
+              name: 'params',
+              type: {
+                name: 'shape',
+                value: {
+                  color: {
+                    name: 'enum',
+                    value: [
+                      { value: "'primary'", computed: false },
+                      { value: "'secondary'", computed: false },
+                      { value: "'standard'", computed: false },
+                    ],
+                    required: true,
+                  },
+                  shape: {
+                    name: 'enum',
+                    value: [
+                      { value: "'round'", computed: false },
+                      { value: "'rounded'", computed: false },
+                    ],
+                    required: true,
+                  },
+                  size: {
+                    name: 'enum',
+                    value: [
+                      { value: "'large'", computed: false },
+                      { value: "'medium'", computed: false },
+                      { value: "'small'", computed: false },
+                    ],
+                    required: true,
+                  },
+                  variant: {
+                    name: 'enum',
+                    value: [
+                      { value: "'outlined'", computed: false },
+                      { value: "'text'", computed: false },
+                    ],
+                    required: true,
+                  },
+                  page: { name: 'int' },
+                  selected: { name: 'boolean' },
+                  disabled: { name: 'boolean' },
+                },
+              },
+              required: true,
+            },
+          ],
+          return: {
+            name: 'Node',
+          },
+        },
+      },
+      required: false,
+      description: '-',
+    },
+  },
+  Autocomplete: {
+    getOptionDisabled: {
+      type: {
+        name: 'custom',
+        reasonType: "'t => bool",
+        jsType: "'t => bool",
+      },
+      required: false,
+      description: '-',
+    },
+    getOptionLabel: {
+      type: {
+        name: 'custom',
+        reasonType: "'t => string",
+        jsType: "'t => string",
+      },
+      required: false,
+      description: '-',
+    },
+    getOptionSelected: {
+      type: {
+        name: 'custom',
+        reasonType: "('t, 't) => string",
+        jsType: "('t, 't) => string",
+      },
+      required: false,
+      description: '-',
+    },
+    groupBy: {
+      type: {
+        name: 'custom',
+        reasonType: "'t => string",
+        jsType: "'t => string",
+      },
+      required: false,
+      description: '-',
+    },
+    renderOption: {
+      type: {
+        name: 'custom',
+        reasonType: "('t, Js.t({..})) => React.element",
+        jsType: "('t, Js.t({..})) => React.element",
+      },
+      required: false,
+      description: '-',
+    },
+    renderTags: {
+      type: {
+        name: 'custom',
+        reasonType: `(array('t), {. "index": int} => unit) => React.element`,
+        jsType: `(array('t), {. "index": int} => unit) => React.element`,
+      },
+      required: false,
+      description: '-',
+    },
+    value: {
+      type: {
+        name: 'any',
+      },
+      required: false,
+      description: '-',
+    },
+    onHighlightChange: {
+      type: {
+        name: 'custom',
+        reasonType: "(Js.t({..}), 't, string) => unit",
+        jsType: "(Js.t({..}), 't, string) => unit",
+      },
+      required: false,
+      description: '-',
+    },
+  },
 };

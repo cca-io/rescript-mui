@@ -73,7 +73,7 @@ external make:
     ~max: MaterialUi_Types.Number.t=?,
     ~name: string=?,
     ~onChange: (ReactEvent.Form.t, int) => unit=?,
-    ~onChangeActive: (Js.Dict.t(MaterialUi_Types.any), int) => unit=?,
+    ~onChangeActive: (Js.t({..}), int) => unit=?,
     ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
     ~onMouseMove: ReactEvent.Mouse.t => unit=?,
     ~precision: MaterialUi_Types.Number.t=?,

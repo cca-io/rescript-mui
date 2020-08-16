@@ -57,7 +57,7 @@ external make:
     ~onLabelClick: MaterialUi_Types.any=?,
     ~onMouseDown: ReactEvent.Mouse.t => unit=?,
     ~_TransitionComponent: TransitionComponent.t=?,
-    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TransitionProps: Js.t({..})=?,
     ~id: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~key: string=?,

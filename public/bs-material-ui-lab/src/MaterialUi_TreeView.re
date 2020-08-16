@@ -54,13 +54,8 @@ external make:
     ~disableSelection: bool=?,
     ~expanded: array(string)=?,
     ~multiSelect: bool=?,
-    ~onNodeSelect: (Js.Dict.t(MaterialUi_Types.any), Value.t) => unit=?,
-    ~onNodeToggle: (
-                     Js.Dict.t(MaterialUi_Types.any),
-                     array(MaterialUi_Types.any)
-                   ) =>
-                   unit
-                     =?,
+    ~onNodeSelect: (Js.t({..}), Value.t) => unit=?,
+    ~onNodeToggle: (Js.t({..}), array(MaterialUi_Types.any)) => unit=?,
     ~selected: Selected.t=?,
     ~id: string=?,
     ~style: ReactDOMRe.Style.t=?,
