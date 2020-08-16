@@ -1,7 +1,7 @@
 module.exports = {
   title: 'BS-Material-UI',
   tagline: 'Material UI Bindings for ReasonML',
-  url: 'https://bs-material-ui.github.io/',
+  url: 'https://jsiebern.github.io/bs-material-ui',
   baseUrl: '/',
   favicon: 'img/favicon.png',
   organizationName: 'jsiebern', // Usually your GitHub org/user name.
