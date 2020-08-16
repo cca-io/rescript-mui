@@ -8,6 +8,9 @@ module.exports = {
   projectName: 'bs-material-ui', // Usually your repo name.
   themeConfig: {
     hideOnScroll: true,
+    colorMode: {
+      defaultMode: 'dark',
+    },
     prism: {
       theme: require('prism-react-renderer/themes/github'),
       darkTheme: require('prism-react-renderer/themes/oceanicNext'),
