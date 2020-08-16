@@ -1,10 +1,7 @@
 {
   "name": "@jsiebern/bs-material-ui-ppx",
   "version": "2.0.0",
-  "repository": {
-    "url": "jsiebern/reason-mui-withstyles-ppx",
-    "type": "git"
-  },
+  "repository": "https://github.com/jsiebern/bs-material-ui",
   "private": false,
   "homepage": "https://jsiebern.github.io/bs-material-ui",
   "bugs": "https://github.com/jsiebern/bs-material-ui/issues",
