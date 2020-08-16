@@ -14,7 +14,7 @@ Example for passing an `Any` value to a component:
   value={TextField.Value.string(value)}
   label={"Label"->React.string}
   fullWidth=true
-  variant=`Outlined
+  variant=#Outlined
 />
 ```
 

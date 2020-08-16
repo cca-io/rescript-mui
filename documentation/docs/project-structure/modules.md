@@ -15,7 +15,7 @@ this:
 ```reason
 <MaterialUi_Typography>
   {"Some example text"->React.string}
-<MaterialUi_Typography>
+</MaterialUi_Typography>
 ```
 
 The component names map one to one to the ones found in the `Component API`
@@ -33,7 +33,7 @@ the component modules each time. Example:
 let make = () => {
   open MaterialUi;
   <div>
-    <Typography variant=`H4 gutterBottom=true>
+    <Typography variant=#H4 gutterBottom=true>
       {"Headline"->React.string}
     </Typography>
     <Typography>

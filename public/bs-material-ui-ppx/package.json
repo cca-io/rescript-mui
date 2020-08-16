@@ -1,6 +1,6 @@
 {
   "name": "@jsiebern/bs-material-ui-ppx",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "repository": "https://github.com/jsiebern/bs-material-ui",
   "private": false,
   "homepage": "https://jsiebern.github.io/bs-material-ui",
@@ -18,7 +18,7 @@
     "@material-ui/core": "^4.9.11",
     "reason-react": "^0.9.1",
     "bs-platform": "^8.2.0",
-    "@jsiebern/bs-material-ui": "2.0.0"
+    "@jsiebern/bs-material-ui": "^2.0.0"
   },
   "publishConfig": {
     "access": "public"
