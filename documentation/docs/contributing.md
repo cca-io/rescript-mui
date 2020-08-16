@@ -33,3 +33,12 @@ with the according information. The object format is roughly as follows:
   },
 }
 ```
+
+## Documentation
+
+Contributions to the documentation page are more than welcome. It lives in the
+`documentation` folder in this repo. Simply run `yarn install` and after
+`yarn start` inside the folder to get it going locally.
+
+I'd be looking for some more / cleaner examples and maybe some clearer
+explanations (better tailored towards beginners for example).
