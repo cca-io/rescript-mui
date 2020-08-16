@@ -10,7 +10,7 @@ Example for passing an `Any` value to a component:
 
 ```reason
 <TextField
-  _InputProps={Js.Dict.fromArray([("readOnly", Any(true))])}
+  _InputProps={"readOnly": true}
   value={TextField.Value.string(value)}
   label={"Label"->React.string}
   fullWidth=true
