@@ -25,8 +25,13 @@ function Home() {
                 style={{ maxWidth: '250px' }}
               />
               Bindings for{' '}
-              <span className={styles.heroProjectKeywords}>Material UI</span>
-              <br /> in ReasonML
+              <a href="https://material-ui.com" target="_blank">
+                Material UI
+              </a>
+              <br /> in{' '}
+              <a href="https://rescript-lang.org/" target="_blank">
+                ReScript
+              </a>
               <br />
               <br />
             </h1>

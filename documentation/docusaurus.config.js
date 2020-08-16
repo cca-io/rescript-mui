@@ -9,7 +9,7 @@ module.exports = {
   themeConfig: {
     hideOnScroll: true,
     colorMode: {
-      defaultMode: 'dark',
+      defaultMode: 'light',
     },
     prism: {
       theme: require('prism-react-renderer/themes/github'),
@@ -20,7 +20,7 @@ module.exports = {
       logo: {
         alt: 'BS Material UI Logo',
         src: 'img/logo.svg',
-        srcDark: 'img/logo.svg',
+        srcDark: 'img/logo-inv.svg',
       },
       items: [
         { to: 'docs/introduction', label: 'Docs', position: 'left' },

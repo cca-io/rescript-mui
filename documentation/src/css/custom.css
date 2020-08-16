@@ -6,7 +6,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #cb5747;
+  --ifm-color-primary: #0a0d2f;
   --ifm-color-primary-dark: #c04736;
   --ifm-color-primary-darker: #b64333;
   --ifm-color-primary-darkest: #96372a;
@@ -19,20 +19,24 @@
   --ifm-color-success: rgba(52, 152, 219, 0.1);
   --ifm-color-warning: rgba(241, 196, 15, 0.1);
   --ifm-color-danger: rgba(230, 126, 34, 0.1);
+
+  --ifm-font-color-base: rgb(62, 64, 87);
 }
 
 .admonition-heading {
-  --ifm-heading-color: rgba(0, 0, 0, 1);
-  --ra-admonition-icon-color: rgba(0, 0, 0, 1);
+  --ifm-heading-color: rgb(62, 64, 87);
+  --ra-admonition-icon-color: rgb(121, 124, 165);
 }
 
-html[data-theme="dark"]:root {
-  --ifm-alert-color: rgba(255, 255, 255, 0.7);
+html[data-theme='dark']:root {
+  --ifm-alert-color: #ffffff;
+  --ifm-color-primary: #e2e8f0;
+  --ifm-font-color-base: #e2e8f0;
 }
 
-html[data-theme="dark"] .admonition-heading {
-  --ifm-heading-color: rgba(255, 255, 255, 1);
-  --ra-admonition-icon-color: rgba(255, 255, 255, 1);
+html[data-theme='dark'] .admonition-heading {
+  --ifm-heading-color: #e2e8f0;
+  --ra-admonition-icon-color: #e2e8f0;
 }
 
 .docusaurus-highlight-code-line {
@@ -42,7 +46,7 @@ html[data-theme="dark"] .admonition-heading {
   padding: 0 var(--ifm-pre-padding);
 }
 
-html[data-theme="dark"] .docusaurus-highlight-code-line {
+html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgb(0, 0, 0, 0.3);
 }
 
