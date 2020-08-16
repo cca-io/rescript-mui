@@ -180,7 +180,7 @@ external make:
     ~onClose: ReactEvent.Synthetic.t => unit=?,
     ~onOpen: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool=?,
-    ~renderValue: MaterialUi_Types.any => MaterialUi_Types.any=?,
+    ~renderValue: MaterialUi_Types.any => React.element=?,
     ~_SelectDisplayProps: Js.t({..})=?,
     ~value: Value.t=?,
     ~variant: [@bs.string] [
