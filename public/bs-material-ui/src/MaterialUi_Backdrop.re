@@ -1,9 +1,9 @@
 module Timeout_shape = {
   type t = {
     .
-    "appear": option(option(MaterialUi_Types.Number.t)),
-    "enter": option(option(MaterialUi_Types.Number.t)),
-    "exit": option(option(MaterialUi_Types.Number.t)),
+    "appear": option(MaterialUi_Types.Number.t),
+    "enter": option(MaterialUi_Types.Number.t),
+    "exit": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -33,8 +33,8 @@ module Timeout: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "invisible": option(option(string)),
+    "root": option(string),
+    "invisible": option(string),
   };
   [@bs.obj] external make: (~root: string=?, ~invisible: string=?, unit) => t;
 };
@@ -42,9 +42,9 @@ module Classes = {
 module TransitionDuration_shape = {
   type t = {
     .
-    "appear": option(option(MaterialUi_Types.Number.t)),
-    "enter": option(option(MaterialUi_Types.Number.t)),
-    "exit": option(option(MaterialUi_Types.Number.t)),
+    "appear": option(MaterialUi_Types.Number.t),
+    "enter": option(MaterialUi_Types.Number.t),
+    "exit": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -74,25 +74,25 @@ module TransitionDuration: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~disableStrictModeCompat: option(bool)=?,
-    ~_in: option(bool)=?,
-    ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~timeout: option(Timeout.t)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~invisible: option(bool)=?,
+    ~disableStrictModeCompat: bool=?,
+    ~_in: bool=?,
+    ~onEnter: ReactEvent.Synthetic.t => unit=?,
+    ~onEntered: ReactEvent.Synthetic.t => unit=?,
+    ~onEntering: ReactEvent.Synthetic.t => unit=?,
+    ~onExit: ReactEvent.Synthetic.t => unit=?,
+    ~onExited: ReactEvent.Synthetic.t => unit=?,
+    ~onExiting: ReactEvent.Synthetic.t => unit=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~timeout: Timeout.t=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~invisible: bool=?,
     ~_open: bool,
-    ~transitionDuration: option(TransitionDuration.t)=?,
-    ~id: option(string)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~transitionDuration: TransitionDuration.t=?,
+    ~id: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Backdrop";

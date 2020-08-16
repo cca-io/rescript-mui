@@ -1,34 +1,34 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "rounded": option(option(string)),
-    "outlined": option(option(string)),
-    "elevation0": option(option(string)),
-    "elevation1": option(option(string)),
-    "elevation2": option(option(string)),
-    "elevation3": option(option(string)),
-    "elevation4": option(option(string)),
-    "elevation5": option(option(string)),
-    "elevation6": option(option(string)),
-    "elevation7": option(option(string)),
-    "elevation8": option(option(string)),
-    "elevation9": option(option(string)),
-    "elevation10": option(option(string)),
-    "elevation11": option(option(string)),
-    "elevation12": option(option(string)),
-    "elevation13": option(option(string)),
-    "elevation14": option(option(string)),
-    "elevation15": option(option(string)),
-    "elevation16": option(option(string)),
-    "elevation17": option(option(string)),
-    "elevation18": option(option(string)),
-    "elevation19": option(option(string)),
-    "elevation20": option(option(string)),
-    "elevation21": option(option(string)),
-    "elevation22": option(option(string)),
-    "elevation23": option(option(string)),
-    "elevation24": option(option(string)),
+    "root": option(string),
+    "rounded": option(string),
+    "outlined": option(string),
+    "elevation0": option(string),
+    "elevation1": option(string),
+    "elevation2": option(string),
+    "elevation3": option(string),
+    "elevation4": option(string),
+    "elevation5": option(string),
+    "elevation6": option(string),
+    "elevation7": option(string),
+    "elevation8": option(string),
+    "elevation9": option(string),
+    "elevation10": option(string),
+    "elevation11": option(string),
+    "elevation12": option(string),
+    "elevation13": option(string),
+    "elevation14": option(string),
+    "elevation15": option(string),
+    "elevation16": option(string),
+    "elevation17": option(string),
+    "elevation18": option(string),
+    "elevation19": option(string),
+    "elevation20": option(string),
+    "elevation21": option(string),
+    "elevation22": option(string),
+    "elevation23": option(string),
+    "elevation24": option(string),
   };
   [@bs.obj]
   external make:
@@ -85,23 +85,21 @@ type variant = [ | `Elevation | `Outlined];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~elevation: option(MaterialUi_Types.Number.t)=?,
-    ~square: option(bool)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "elevation"] `Elevation
-                  | [@bs.as "outlined"] `Outlined
-                ],
-              )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~elevation: MaterialUi_Types.Number.t=?,
+    ~square: bool=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "elevation"] `Elevation
+                | [@bs.as "outlined"] `Outlined
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Paper";

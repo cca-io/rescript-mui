@@ -55,40 +55,33 @@ module Only: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~className: option(string)=?,
-    ~implementation: option(
-                       [@bs.string] [
-                         | [@bs.as "js"] `Js
-                         | [@bs.as "css"] `Css
-                       ],
-                     )
+    ~children: 'children=?,
+    ~className: string=?,
+    ~implementation: [@bs.string] [ | [@bs.as "js"] `Js | [@bs.as "css"] `Css]
                        =?,
-    ~initialWidth: option(
-                     [@bs.string] [
-                       | [@bs.as "xs"] `Xs
-                       | [@bs.as "sm"] `Sm
-                       | [@bs.as "md"] `Md
-                       | [@bs.as "lg"] `Lg
-                       | [@bs.as "xl"] `Xl
-                     ],
-                   )
+    ~initialWidth: [@bs.string] [
+                     | [@bs.as "xs"] `Xs
+                     | [@bs.as "sm"] `Sm
+                     | [@bs.as "md"] `Md
+                     | [@bs.as "lg"] `Lg
+                     | [@bs.as "xl"] `Xl
+                   ]
                      =?,
-    ~lgDown: option(bool)=?,
-    ~lgUp: option(bool)=?,
-    ~mdDown: option(bool)=?,
-    ~mdUp: option(bool)=?,
-    ~only: option(Only.t)=?,
-    ~smDown: option(bool)=?,
-    ~smUp: option(bool)=?,
-    ~xlDown: option(bool)=?,
-    ~xlUp: option(bool)=?,
-    ~xsDown: option(bool)=?,
-    ~xsUp: option(bool)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~lgDown: bool=?,
+    ~lgUp: bool=?,
+    ~mdDown: bool=?,
+    ~mdUp: bool=?,
+    ~only: Only.t=?,
+    ~smDown: bool=?,
+    ~smUp: bool=?,
+    ~xlDown: bool=?,
+    ~xlUp: bool=?,
+    ~xsDown: bool=?,
+    ~xsUp: bool=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Hidden";

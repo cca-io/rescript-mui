@@ -1,8 +1,8 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "alignItemsFlexStart": option(option(string)),
+    "root": option(string),
+    "alignItemsFlexStart": option(string),
   };
   [@bs.obj]
   external make: (~root: string=?, ~alignItemsFlexStart: string=?, unit) => t;
@@ -11,13 +11,13 @@ module Classes = {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "ListItemIcon";

@@ -59,17 +59,17 @@ module Value: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~className: option(string)=?,
-    ~onChange: option(ReactEvent.Form.t => unit)=?,
-    ~placeholder: option(string)=?,
-    ~rows: option(Rows.t)=?,
-    ~rowsMax: option(RowsMax.t)=?,
-    ~rowsMin: option(RowsMin.t)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~value: option(Value.t)=?,
-    ~id: option(string)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~className: string=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~placeholder: string=?,
+    ~rows: Rows.t=?,
+    ~rowsMax: RowsMax.t=?,
+    ~rowsMin: RowsMin.t=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~value: Value.t=?,
+    ~id: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "TextareaAutosize";

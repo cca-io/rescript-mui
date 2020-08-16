@@ -1,9 +1,9 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "media": option(option(string)),
-    "img": option(option(string)),
+    "root": option(string),
+    "media": option(string),
+    "img": option(string),
   };
   [@bs.obj]
   external make:
@@ -27,16 +27,16 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~image: option(string)=?,
-    ~src: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~id: option(string)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~image: string=?,
+    ~src: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~id: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "CardMedia";

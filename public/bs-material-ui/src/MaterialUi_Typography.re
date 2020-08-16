@@ -3,36 +3,36 @@ type align = [ | `Inherit | `Left | `Center | `Right | `Justify];
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "body2": option(option(string)),
-    "body1": option(option(string)),
-    "caption": option(option(string)),
-    "button": option(option(string)),
-    "h1": option(option(string)),
-    "h2": option(option(string)),
-    "h3": option(option(string)),
-    "h4": option(option(string)),
-    "h5": option(option(string)),
-    "h6": option(option(string)),
-    "subtitle1": option(option(string)),
-    "subtitle2": option(option(string)),
-    "overline": option(option(string)),
-    "srOnly": option(option(string)),
-    "alignLeft": option(option(string)),
-    "alignCenter": option(option(string)),
-    "alignRight": option(option(string)),
-    "alignJustify": option(option(string)),
-    "noWrap": option(option(string)),
-    "gutterBottom": option(option(string)),
-    "paragraph": option(option(string)),
-    "colorInherit": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "colorTextPrimary": option(option(string)),
-    "colorTextSecondary": option(option(string)),
-    "colorError": option(option(string)),
-    "displayInline": option(option(string)),
-    "displayBlock": option(option(string)),
+    "root": option(string),
+    "body2": option(string),
+    "body1": option(string),
+    "caption": option(string),
+    "button": option(string),
+    "h1": option(string),
+    "h2": option(string),
+    "h3": option(string),
+    "h4": option(string),
+    "h5": option(string),
+    "h6": option(string),
+    "subtitle1": option(string),
+    "subtitle2": option(string),
+    "overline": option(string),
+    "srOnly": option(string),
+    "alignLeft": option(string),
+    "alignCenter": option(string),
+    "alignRight": option(string),
+    "alignJustify": option(string),
+    "noWrap": option(string),
+    "gutterBottom": option(string),
+    "paragraph": option(string),
+    "colorInherit": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "colorTextPrimary": option(string),
+    "colorTextSecondary": option(string),
+    "colorError": option(string),
+    "displayInline": option(string),
+    "displayBlock": option(string),
   };
   [@bs.obj]
   external make:
@@ -119,68 +119,60 @@ type variant = [
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~align: option(
-              [@bs.string] [
-                | [@bs.as "inherit"] `Inherit
-                | [@bs.as "left"] `Left
-                | [@bs.as "center"] `Center
-                | [@bs.as "right"] `Right
-                | [@bs.as "justify"] `Justify
-              ],
-            )
+    ~align: [@bs.string] [
+              | [@bs.as "inherit"] `Inherit
+              | [@bs.as "left"] `Left
+              | [@bs.as "center"] `Center
+              | [@bs.as "right"] `Right
+              | [@bs.as "justify"] `Justify
+            ]
               =?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "initial"] `Initial
+              | [@bs.as "inherit"] `Inherit
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+              | [@bs.as "textPrimary"] `TextPrimary
+              | [@bs.as "textSecondary"] `TextSecondary
+              | [@bs.as "error"] `Error
+            ]
+              =?,
+    ~component: Component.t=?,
+    ~display: [@bs.string] [
                 | [@bs.as "initial"] `Initial
+                | [@bs.as "block"] `Block
+                | [@bs.as "inline"] `Inline
+              ]
+                =?,
+    ~gutterBottom: bool=?,
+    ~noWrap: bool=?,
+    ~paragraph: bool=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "h1"] `H1
+                | [@bs.as "h2"] `H2
+                | [@bs.as "h3"] `H3
+                | [@bs.as "h4"] `H4
+                | [@bs.as "h5"] `H5
+                | [@bs.as "h6"] `H6
+                | [@bs.as "subtitle1"] `Subtitle1
+                | [@bs.as "subtitle2"] `Subtitle2
+                | [@bs.as "body1"] `Body1
+                | [@bs.as "body2"] `Body2
+                | [@bs.as "caption"] `Caption
+                | [@bs.as "button"] `Button
+                | [@bs.as "overline"] `Overline
+                | [@bs.as "srOnly"] `SrOnly
                 | [@bs.as "inherit"] `Inherit
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-                | [@bs.as "textPrimary"] `TextPrimary
-                | [@bs.as "textSecondary"] `TextSecondary
-                | [@bs.as "error"] `Error
-              ],
-            )
-              =?,
-    ~component: option(Component.t)=?,
-    ~display: option(
-                [@bs.string] [
-                  | [@bs.as "initial"] `Initial
-                  | [@bs.as "block"] `Block
-                  | [@bs.as "inline"] `Inline
-                ],
-              )
+              ]
                 =?,
-    ~gutterBottom: option(bool)=?,
-    ~noWrap: option(bool)=?,
-    ~paragraph: option(bool)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "h1"] `H1
-                  | [@bs.as "h2"] `H2
-                  | [@bs.as "h3"] `H3
-                  | [@bs.as "h4"] `H4
-                  | [@bs.as "h5"] `H5
-                  | [@bs.as "h6"] `H6
-                  | [@bs.as "subtitle1"] `Subtitle1
-                  | [@bs.as "subtitle2"] `Subtitle2
-                  | [@bs.as "body1"] `Body1
-                  | [@bs.as "body2"] `Body2
-                  | [@bs.as "caption"] `Caption
-                  | [@bs.as "button"] `Button
-                  | [@bs.as "overline"] `Overline
-                  | [@bs.as "srOnly"] `SrOnly
-                  | [@bs.as "inherit"] `Inherit
-                ],
-              )
-                =?,
-    ~variantMapping: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~variantMapping: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Typography";

@@ -1,10 +1,10 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "marginNormal": option(option(string)),
-    "marginDense": option(option(string)),
-    "fullWidth": option(option(string)),
+    "root": option(string),
+    "marginNormal": option(string),
+    "marginDense": option(string),
+    "fullWidth": option(string),
   };
   [@bs.obj]
   external make:
@@ -43,50 +43,42 @@ type variant = [ | `Filled | `Outlined | `Standard];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~component: option(Component.t)=?,
-    ~disabled: option(bool)=?,
-    ~error: option(bool)=?,
-    ~focused: option(bool)=?,
-    ~fullWidth: option(bool)=?,
-    ~hiddenLabel: option(bool)=?,
-    ~margin: option(
-               [@bs.string] [
-                 | [@bs.as "dense"] `Dense
-                 | [@bs.as "none"] `None
-                 | [@bs.as "normal"] `Normal
-               ],
-             )
+    ~component: Component.t=?,
+    ~disabled: bool=?,
+    ~error: bool=?,
+    ~focused: bool=?,
+    ~fullWidth: bool=?,
+    ~hiddenLabel: bool=?,
+    ~margin: [@bs.string] [
+               | [@bs.as "dense"] `Dense
+               | [@bs.as "none"] `None
+               | [@bs.as "normal"] `Normal
+             ]
                =?,
-    ~required: option(bool)=?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~required: bool=?,
+    ~size: [@bs.string] [
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "filled"] `Filled
-                  | [@bs.as "outlined"] `Outlined
-                  | [@bs.as "standard"] `Standard
-                ],
-              )
+    ~variant: [@bs.string] [
+                | [@bs.as "filled"] `Filled
+                | [@bs.as "outlined"] `Outlined
+                | [@bs.as "standard"] `Standard
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "FormControl";

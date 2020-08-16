@@ -1,14 +1,14 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "error": option(option(string)),
-    "disabled": option(option(string)),
-    "marginDense": option(option(string)),
-    "contained": option(option(string)),
-    "focused": option(option(string)),
-    "filled": option(option(string)),
-    "required": option(option(string)),
+    "root": option(string),
+    "error": option(string),
+    "disabled": option(string),
+    "marginDense": option(string),
+    "contained": option(string),
+    "focused": option(string),
+    "filled": option(string),
+    "required": option(string),
   };
   [@bs.obj]
   external make:
@@ -47,28 +47,26 @@ type variant = [ | `Filled | `Outlined | `Standard];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~disabled: option(bool)=?,
-    ~error: option(bool)=?,
-    ~filled: option(bool)=?,
-    ~focused: option(bool)=?,
-    ~margin: option([@bs.string] [ | [@bs.as "dense"] `Dense])=?,
-    ~required: option(bool)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "filled"] `Filled
-                  | [@bs.as "outlined"] `Outlined
-                  | [@bs.as "standard"] `Standard
-                ],
-              )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~disabled: bool=?,
+    ~error: bool=?,
+    ~filled: bool=?,
+    ~focused: bool=?,
+    ~margin: [@bs.string] [ | [@bs.as "dense"] `Dense]=?,
+    ~required: bool=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "filled"] `Filled
+                | [@bs.as "outlined"] `Outlined
+                | [@bs.as "standard"] `Standard
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "FormHelperText";

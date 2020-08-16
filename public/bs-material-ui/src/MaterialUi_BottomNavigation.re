@@ -1,5 +1,5 @@
 module Classes = {
-  type t = {. "root": option(option(string))};
+  type t = {. "root": option(string)};
   [@bs.obj] external make: (~root: string=?, unit) => t;
 };
 
@@ -20,17 +20,17 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~onChange: option((ReactEvent.Form.t, MaterialUi_Types.any) => unit)=?,
-    ~showLabels: option(bool)=?,
-    ~value: option(MaterialUi_Types.any)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~onChange: (ReactEvent.Form.t, MaterialUi_Types.any) => unit=?,
+    ~showLabels: bool=?,
+    ~value: MaterialUi_Types.any=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "BottomNavigation";

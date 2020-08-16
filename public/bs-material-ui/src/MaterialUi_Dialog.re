@@ -25,21 +25,21 @@ module Container: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "scrollPaper": option(option(string)),
-    "scrollBody": option(option(string)),
-    "container": option(option(string)),
-    "paper": option(option(string)),
-    "paperScrollPaper": option(option(string)),
-    "paperScrollBody": option(option(string)),
-    "paperWidthFalse": option(option(string)),
-    "paperWidthXs": option(option(string)),
-    "paperWidthSm": option(option(string)),
-    "paperWidthMd": option(option(string)),
-    "paperWidthLg": option(option(string)),
-    "paperWidthXl": option(option(string)),
-    "paperFullWidth": option(option(string)),
-    "paperFullScreen": option(option(string)),
+    "root": option(string),
+    "scrollPaper": option(string),
+    "scrollBody": option(string),
+    "container": option(string),
+    "paper": option(string),
+    "paperScrollPaper": option(string),
+    "paperScrollBody": option(string),
+    "paperWidthFalse": option(string),
+    "paperWidthXs": option(string),
+    "paperWidthSm": option(string),
+    "paperWidthMd": option(string),
+    "paperWidthLg": option(string),
+    "paperWidthXl": option(string),
+    "paperFullWidth": option(string),
+    "paperFullScreen": option(string),
   };
   [@bs.obj]
   external make:
@@ -118,9 +118,9 @@ module TransitionComponent: {
 module TransitionDuration_shape = {
   type t = {
     .
-    "appear": option(option(MaterialUi_Types.Number.t)),
-    "enter": option(option(MaterialUi_Types.Number.t)),
-    "exit": option(option(MaterialUi_Types.Number.t)),
+    "appear": option(MaterialUi_Types.Number.t),
+    "enter": option(MaterialUi_Types.Number.t),
+    "exit": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -150,55 +150,50 @@ module TransitionDuration: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~_BackdropComponent: option(BackdropComponent.t)=?,
-    ~closeAfterTransition: option(bool)=?,
-    ~container: option(Container.t)=?,
-    ~disableAutoFocus: option(bool)=?,
-    ~disableEnforceFocus: option(bool)=?,
-    ~disablePortal: option(bool)=?,
-    ~disableRestoreFocus: option(bool)=?,
-    ~disableScrollLock: option(bool)=?,
-    ~hideBackdrop: option(bool)=?,
-    ~keepMounted: option(bool)=?,
-    ~manager: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
-    ~aria_describedby: option(string)=?,
-    ~aria_labelledby: option(string)=?,
-    ~_BackdropProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~disableBackdropClick: option(bool)=?,
-    ~disableEscapeKeyDown: option(bool)=?,
-    ~fullScreen: option(bool)=?,
-    ~fullWidth: option(bool)=?,
-    ~maxWidth: option(MaxWidth.t)=?,
-    ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
-    ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
+    ~_BackdropComponent: BackdropComponent.t=?,
+    ~closeAfterTransition: bool=?,
+    ~container: Container.t=?,
+    ~disableAutoFocus: bool=?,
+    ~disableEnforceFocus: bool=?,
+    ~disablePortal: bool=?,
+    ~disableRestoreFocus: bool=?,
+    ~disableScrollLock: bool=?,
+    ~hideBackdrop: bool=?,
+    ~keepMounted: bool=?,
+    ~manager: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~onRendered: ReactEvent.Synthetic.t => unit=?,
+    ~aria_describedby: string=?,
+    ~aria_labelledby: string=?,
+    ~_BackdropProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~disableBackdropClick: bool=?,
+    ~disableEscapeKeyDown: bool=?,
+    ~fullScreen: bool=?,
+    ~fullWidth: bool=?,
+    ~maxWidth: MaxWidth.t=?,
+    ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
+    ~onClose: (ReactEvent.Synthetic.t, string) => unit=?,
+    ~onEnter: ReactEvent.Synthetic.t => unit=?,
+    ~onEntered: ReactEvent.Synthetic.t => unit=?,
+    ~onEntering: ReactEvent.Synthetic.t => unit=?,
+    ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onExit: ReactEvent.Synthetic.t => unit=?,
+    ~onExited: ReactEvent.Synthetic.t => unit=?,
+    ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperComponent: option(PaperComponent.t)=?,
-    ~_PaperProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~scroll: option(
-               [@bs.string] [
-                 | [@bs.as "body"] `Body
-                 | [@bs.as "paper"] `Paper
-               ],
-             )
+    ~_PaperComponent: PaperComponent.t=?,
+    ~_PaperProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~scroll: [@bs.string] [ | [@bs.as "body"] `Body | [@bs.as "paper"] `Paper]
                =?,
-    ~_TransitionComponent: option(TransitionComponent.t)=?,
-    ~transitionDuration: option(TransitionDuration.t)=?,
-    ~_TransitionProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~_TransitionComponent: TransitionComponent.t=?,
+    ~transitionDuration: TransitionDuration.t=?,
+    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Dialog";

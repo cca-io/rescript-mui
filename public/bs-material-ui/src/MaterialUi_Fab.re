@@ -42,16 +42,16 @@ module Type: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "label": option(option(string)),
-    "primary": option(option(string)),
-    "secondary": option(option(string)),
-    "extended": option(option(string)),
-    "focusVisible": option(option(string)),
-    "disabled": option(option(string)),
-    "colorInherit": option(option(string)),
-    "sizeSmall": option(option(string)),
-    "sizeMedium": option(option(string)),
+    "root": option(string),
+    "label": option(string),
+    "primary": option(string),
+    "secondary": option(string),
+    "extended": option(string),
+    "focusVisible": option(string),
+    "disabled": option(string),
+    "colorInherit": option(string),
+    "sizeSmall": option(string),
+    "sizeMedium": option(string),
   };
   [@bs.obj]
   external make:
@@ -94,62 +94,56 @@ type variant = [ | `Extended | `Round];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~centerRipple: option(bool)=?,
-    ~disableTouchRipple: option(bool)=?,
-    ~focusRipple: option(bool)=?,
-    ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~onDragLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~onFocusVisible: option(MaterialUi_Types.any)=?,
-    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseUp: option(ReactEvent.Mouse.t => unit)=?,
-    ~onTouchEnd: option(ReactEvent.Touch.t => unit)=?,
-    ~onTouchMove: option(ReactEvent.Touch.t => unit)=?,
-    ~onTouchStart: option(ReactEvent.Touch.t => unit)=?,
-    ~tabIndex: option(TabIndex.t)=?,
-    ~_TouchRippleProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~_type: option(Type.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "default"] `Default
-                | [@bs.as "inherit"] `Inherit
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~centerRipple: bool=?,
+    ~disableTouchRipple: bool=?,
+    ~focusRipple: bool=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onDragLeave: ReactEvent.Mouse.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onFocusVisible: MaterialUi_Types.any=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+    ~onMouseDown: ReactEvent.Mouse.t => unit=?,
+    ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+    ~onMouseUp: ReactEvent.Mouse.t => unit=?,
+    ~onTouchEnd: ReactEvent.Touch.t => unit=?,
+    ~onTouchMove: ReactEvent.Touch.t => unit=?,
+    ~onTouchStart: ReactEvent.Touch.t => unit=?,
+    ~tabIndex: TabIndex.t=?,
+    ~_TouchRippleProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_type: Type.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "default"] `Default
+              | [@bs.as "inherit"] `Inherit
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~component: option(Component.t)=?,
-    ~disabled: option(bool)=?,
-    ~disableFocusRipple: option(bool)=?,
-    ~disableRipple: option(bool)=?,
-    ~focusVisibleClassName: option(string)=?,
-    ~href: option(string)=?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "large"] `Large
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~component: Component.t=?,
+    ~disabled: bool=?,
+    ~disableFocusRipple: bool=?,
+    ~disableRipple: bool=?,
+    ~focusVisibleClassName: string=?,
+    ~href: string=?,
+    ~size: [@bs.string] [
+             | [@bs.as "large"] `Large
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "extended"] `Extended
-                  | [@bs.as "round"] `Round
-                ],
-              )
+    ~variant: [@bs.string] [
+                | [@bs.as "extended"] `Extended
+                | [@bs.as "round"] `Round
+              ]
                 =?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Fab";

@@ -15,14 +15,14 @@ module Component: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "positionBottom": option(option(string)),
-    "positionTop": option(option(string)),
-    "positionStatic": option(option(string)),
-    "dots": option(option(string)),
-    "dot": option(option(string)),
-    "dotActive": option(option(string)),
-    "progress": option(option(string)),
+    "root": option(string),
+    "positionBottom": option(string),
+    "positionTop": option(string),
+    "positionStatic": option(string),
+    "dots": option(string),
+    "dot": option(string),
+    "dotActive": option(string),
+    "progress": option(string),
   };
   [@bs.obj]
   external make:
@@ -47,37 +47,33 @@ type variant = [ | `Dots | `Progress | `Text];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~component: option(Component.t)=?,
-    ~elevation: option(MaterialUi_Types.Number.t)=?,
-    ~square: option(bool)=?,
-    ~activeStep: option(MaterialUi_Types.Number.t)=?,
-    ~backButton: option(React.element)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~_LinearProgressProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~nextButton: option(React.element)=?,
-    ~position: option(
-                 [@bs.string] [
-                   | [@bs.as "bottom"] `Bottom
-                   | [@bs.as "static"] `Static
-                   | [@bs.as "top"] `Top
-                 ],
-               )
+    ~children: 'children=?,
+    ~component: Component.t=?,
+    ~elevation: MaterialUi_Types.Number.t=?,
+    ~square: bool=?,
+    ~activeStep: MaterialUi_Types.Number.t=?,
+    ~backButton: React.element=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~_LinearProgressProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~nextButton: React.element=?,
+    ~position: [@bs.string] [
+                 | [@bs.as "bottom"] `Bottom
+                 | [@bs.as "static"] `Static
+                 | [@bs.as "top"] `Top
+               ]
                  =?,
     ~steps: MaterialUi_Types.Number.t,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "dots"] `Dots
-                  | [@bs.as "progress"] `Progress
-                  | [@bs.as "text"] `Text
-                ],
-              )
+    ~variant: [@bs.string] [
+                | [@bs.as "dots"] `Dots
+                | [@bs.as "progress"] `Progress
+                | [@bs.as "text"] `Text
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "MobileStepper";

@@ -1,12 +1,12 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorInherit": option(option(string)),
-    "gutters": option(option(string)),
-    "inset": option(option(string)),
-    "sticky": option(option(string)),
+    "root": option(string),
+    "colorPrimary": option(string),
+    "colorInherit": option(string),
+    "gutters": option(string),
+    "inset": option(string),
+    "sticky": option(string),
   };
   [@bs.obj]
   external make:
@@ -41,25 +41,23 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "default"] `Default
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "inherit"] `Inherit
-              ],
-            )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "default"] `Default
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "inherit"] `Inherit
+            ]
               =?,
-    ~component: option(Component.t)=?,
-    ~disableGutters: option(bool)=?,
-    ~disableSticky: option(bool)=?,
-    ~inset: option(bool)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~component: Component.t=?,
+    ~disableGutters: bool=?,
+    ~disableSticky: bool=?,
+    ~inset: bool=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "ListSubheader";

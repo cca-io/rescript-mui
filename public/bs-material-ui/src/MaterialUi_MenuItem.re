@@ -17,10 +17,10 @@ module ContainerComponent: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "gutters": option(option(string)),
-    "selected": option(option(string)),
-    "dense": option(option(string)),
+    "root": option(string),
+    "gutters": option(string),
+    "selected": option(string),
+    "dense": option(string),
   };
   [@bs.obj]
   external make:
@@ -67,37 +67,35 @@ module Value: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~alignItems: option(
-                   [@bs.string] [
-                     | [@bs.as "flex-start"] `Flex_Start
-                     | [@bs.as "center"] `Center
-                   ],
-                 )
+    ~alignItems: [@bs.string] [
+                   | [@bs.as "flex-start"] `Flex_Start
+                   | [@bs.as "center"] `Center
+                 ]
                    =?,
-    ~autoFocus: option(bool)=?,
-    ~button: option(bool)=?,
-    ~_ContainerComponent: option(ContainerComponent.t)=?,
-    ~_ContainerProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~divider: option(bool)=?,
-    ~focusVisibleClassName: option(string)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~dense: option(bool)=?,
-    ~disabled: option(bool)=?,
-    ~disableGutters: option(bool)=?,
-    ~_ListItemClasses: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~role: option(string)=?,
-    ~selected: option(bool)=?,
-    ~tabIndex: option(MaterialUi_Types.Number.t)=?,
-    ~value: option(Value.t)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~autoFocus: bool=?,
+    ~button: bool=?,
+    ~_ContainerComponent: ContainerComponent.t=?,
+    ~_ContainerProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~divider: bool=?,
+    ~focusVisibleClassName: string=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~dense: bool=?,
+    ~disabled: bool=?,
+    ~disableGutters: bool=?,
+    ~_ListItemClasses: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~role: string=?,
+    ~selected: bool=?,
+    ~tabIndex: MaterialUi_Types.Number.t=?,
+    ~value: Value.t=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "MenuItem";

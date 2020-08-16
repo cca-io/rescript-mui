@@ -15,18 +15,18 @@ module Component: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "focused": option(option(string)),
-    "disabled": option(option(string)),
-    "error": option(option(string)),
-    "required": option(option(string)),
-    "asterisk": option(option(string)),
-    "formControl": option(option(string)),
-    "marginDense": option(option(string)),
-    "shrink": option(option(string)),
-    "animated": option(option(string)),
-    "filled": option(option(string)),
-    "outlined": option(option(string)),
+    "root": option(string),
+    "focused": option(string),
+    "disabled": option(string),
+    "error": option(string),
+    "required": option(string),
+    "asterisk": option(string),
+    "formControl": option(string),
+    "marginDense": option(string),
+    "shrink": option(string),
+    "animated": option(string),
+    "filled": option(string),
+    "outlined": option(string),
   };
   [@bs.obj]
   external make:
@@ -57,38 +57,34 @@ type variant = [ | `Filled | `Outlined | `Standard];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~component: option(Component.t)=?,
-    ~filled: option(bool)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~component: Component.t=?,
+    ~filled: bool=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~disableAnimation: option(bool)=?,
-    ~disabled: option(bool)=?,
-    ~error: option(bool)=?,
-    ~focused: option(bool)=?,
-    ~margin: option([@bs.string] [ | [@bs.as "dense"] `Dense])=?,
-    ~required: option(bool)=?,
-    ~shrink: option(bool)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "filled"] `Filled
-                  | [@bs.as "outlined"] `Outlined
-                  | [@bs.as "standard"] `Standard
-                ],
-              )
+    ~disableAnimation: bool=?,
+    ~disabled: bool=?,
+    ~error: bool=?,
+    ~focused: bool=?,
+    ~margin: [@bs.string] [ | [@bs.as "dense"] `Dense]=?,
+    ~required: bool=?,
+    ~shrink: bool=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "filled"] `Filled
+                | [@bs.as "outlined"] `Outlined
+                | [@bs.as "standard"] `Standard
+              ]
                 =?,
     ~htmlFor: string,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "InputLabel";

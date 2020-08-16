@@ -1,12 +1,12 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "avatar": option(option(string)),
-    "action": option(option(string)),
-    "content": option(option(string)),
-    "title": option(option(string)),
-    "subheader": option(option(string)),
+    "root": option(string),
+    "avatar": option(string),
+    "action": option(string),
+    "content": option(string),
+    "title": option(string),
+    "subheader": option(string),
   };
   [@bs.obj]
   external make:
@@ -39,21 +39,21 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~action: option(React.element)=?,
-    ~avatar: option(React.element)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~disableTypography: option(bool)=?,
-    ~subheader: option(React.element)=?,
-    ~subheaderTypographyProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~title: option(React.element)=?,
-    ~titleTypographyProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~action: React.element=?,
+    ~avatar: React.element=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~disableTypography: bool=?,
+    ~subheader: React.element=?,
+    ~subheaderTypographyProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~title: React.element=?,
+    ~titleTypographyProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "CardHeader";

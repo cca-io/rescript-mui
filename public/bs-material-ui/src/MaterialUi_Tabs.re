@@ -1,17 +1,17 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "vertical": option(option(string)),
-    "flexContainer": option(option(string)),
-    "flexContainerVertical": option(option(string)),
-    "centered": option(option(string)),
-    "scroller": option(option(string)),
-    "fixed": option(option(string)),
-    "scrollable": option(option(string)),
-    "scrollButtons": option(option(string)),
-    "scrollButtonsDesktop": option(option(string)),
-    "indicator": option(option(string)),
+    "root": option(string),
+    "vertical": option(string),
+    "flexContainer": option(string),
+    "flexContainerVertical": option(string),
+    "centered": option(string),
+    "scroller": option(string),
+    "fixed": option(string),
+    "scrollable": option(string),
+    "scrollButtons": option(string),
+    "scrollButtonsDesktop": option(string),
+    "indicator": option(string),
   };
   [@bs.obj]
   external make:
@@ -73,62 +73,52 @@ type variant = [ | `FullWidth | `Scrollable | `Standard];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~aria_label: option(string)=?,
-    ~aria_labelledby: option(string)=?,
-    ~centered: option(bool)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~indicatorColor: option(
-                       [@bs.string] [
-                         | [@bs.as "primary"] `Primary
-                         | [@bs.as "secondary"] `Secondary
-                       ],
-                     )
+    ~aria_label: string=?,
+    ~aria_labelledby: string=?,
+    ~centered: bool=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~indicatorColor: [@bs.string] [
+                       | [@bs.as "primary"] `Primary
+                       | [@bs.as "secondary"] `Secondary
+                     ]
                        =?,
-    ~onChange: option((ReactEvent.Form.t, MaterialUi_Types.any) => unit)=?,
-    ~orientation: option(
-                    [@bs.string] [
-                      | [@bs.as "horizontal"] `Horizontal
-                      | [@bs.as "vertical"] `Vertical
-                    ],
-                  )
+    ~onChange: (ReactEvent.Form.t, MaterialUi_Types.any) => unit=?,
+    ~orientation: [@bs.string] [
+                    | [@bs.as "horizontal"] `Horizontal
+                    | [@bs.as "vertical"] `Vertical
+                  ]
                     =?,
-    ~_ScrollButtonComponent: option(ScrollButtonComponent.t)=?,
-    ~scrollButtons: option(
-                      [@bs.string] [
-                        | [@bs.as "auto"] `Auto
-                        | [@bs.as "desktop"] `Desktop
-                        | [@bs.as "off"] `Off
-                        | [@bs.as "on"] `On
-                      ],
-                    )
+    ~_ScrollButtonComponent: ScrollButtonComponent.t=?,
+    ~scrollButtons: [@bs.string] [
+                      | [@bs.as "auto"] `Auto
+                      | [@bs.as "desktop"] `Desktop
+                      | [@bs.as "off"] `Off
+                      | [@bs.as "on"] `On
+                    ]
                       =?,
-    ~selectionFollowsFocus: option(bool)=?,
-    ~_TabIndicatorProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~_TabScrollButtonProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~textColor: option(
-                  [@bs.string] [
-                    | [@bs.as "inherit"] `Inherit
-                    | [@bs.as "primary"] `Primary
-                    | [@bs.as "secondary"] `Secondary
-                  ],
-                )
+    ~selectionFollowsFocus: bool=?,
+    ~_TabIndicatorProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TabScrollButtonProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~textColor: [@bs.string] [
+                  | [@bs.as "inherit"] `Inherit
+                  | [@bs.as "primary"] `Primary
+                  | [@bs.as "secondary"] `Secondary
+                ]
                   =?,
-    ~value: option(MaterialUi_Types.any)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "fullWidth"] `FullWidth
-                  | [@bs.as "scrollable"] `Scrollable
-                  | [@bs.as "standard"] `Standard
-                ],
-              )
+    ~value: MaterialUi_Types.any=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "fullWidth"] `FullWidth
+                | [@bs.as "scrollable"] `Scrollable
+                | [@bs.as "standard"] `Standard
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Tabs";

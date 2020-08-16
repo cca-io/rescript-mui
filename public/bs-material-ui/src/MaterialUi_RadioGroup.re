@@ -1,8 +1,8 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "row": option(option(string)),
+    "root": option(string),
+    "row": option(string),
   };
   [@bs.obj] external make: (~root: string=?, ~row: string=?, unit) => t;
 };
@@ -26,18 +26,18 @@ module DefaultValue: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~row: option(bool)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~children: option('children)=?,
-    ~defaultValue: option(DefaultValue.t)=?,
-    ~name: option(string)=?,
-    ~onChange: option(ReactEvent.Form.t => unit)=?,
-    ~value: option(MaterialUi_Types.any)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~row: bool=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: 'children=?,
+    ~defaultValue: DefaultValue.t=?,
+    ~name: string=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~value: MaterialUi_Types.any=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "RadioGroup";

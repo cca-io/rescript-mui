@@ -33,15 +33,15 @@ module TouchEvent: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~disableReactTree: option(bool)=?,
-    ~mouseEvent: option(MouseEvent.t)=?,
+    ~children: 'children=?,
+    ~disableReactTree: bool=?,
+    ~mouseEvent: MouseEvent.t=?,
     ~onClickAway: ReactEvent.Mouse.t => unit,
-    ~touchEvent: option(TouchEvent.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~touchEvent: TouchEvent.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "ClickAwayListener";

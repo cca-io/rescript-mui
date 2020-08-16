@@ -1,17 +1,17 @@
 module Classes = {
   type t = {
     .
-    "popper": option(option(string)),
-    "popperInteractive": option(option(string)),
-    "popperArrow": option(option(string)),
-    "tooltip": option(option(string)),
-    "tooltipArrow": option(option(string)),
-    "arrow": option(option(string)),
-    "touch": option(option(string)),
-    "tooltipPlacementLeft": option(option(string)),
-    "tooltipPlacementRight": option(option(string)),
-    "tooltipPlacementTop": option(option(string)),
-    "tooltipPlacementBottom": option(option(string)),
+    "popper": option(string),
+    "popperInteractive": option(string),
+    "popperArrow": option(string),
+    "tooltip": option(string),
+    "tooltipArrow": option(string),
+    "arrow": option(string),
+    "touch": option(string),
+    "tooltipPlacementLeft": option(string),
+    "tooltipPlacementRight": option(string),
+    "tooltipPlacementTop": option(string),
+    "tooltipPlacementBottom": option(string),
   };
   [@bs.obj]
   external make:
@@ -78,48 +78,46 @@ module TransitionComponent: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~arrow: option(bool)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~disableFocusListener: option(bool)=?,
-    ~disableHoverListener: option(bool)=?,
-    ~disableTouchListener: option(bool)=?,
-    ~enterDelay: option(MaterialUi_Types.Number.t)=?,
-    ~enterNextDelay: option(MaterialUi_Types.Number.t)=?,
-    ~enterTouchDelay: option(MaterialUi_Types.Number.t)=?,
-    ~id: option(string)=?,
-    ~interactive: option(bool)=?,
-    ~leaveDelay: option(MaterialUi_Types.Number.t)=?,
-    ~leaveTouchDelay: option(MaterialUi_Types.Number.t)=?,
-    ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onOpen: option(ReactEvent.Synthetic.t => unit)=?,
-    ~_open: option(bool)=?,
-    ~placement: option(
-                  [@bs.string] [
-                    | [@bs.as "bottom-end"] `Bottom_End
-                    | [@bs.as "bottom-start"] `Bottom_Start
-                    | [@bs.as "bottom"] `Bottom
-                    | [@bs.as "left-end"] `Left_End
-                    | [@bs.as "left-start"] `Left_Start
-                    | [@bs.as "left"] `Left
-                    | [@bs.as "right-end"] `Right_End
-                    | [@bs.as "right-start"] `Right_Start
-                    | [@bs.as "right"] `Right
-                    | [@bs.as "top-end"] `Top_End
-                    | [@bs.as "top-start"] `Top_Start
-                    | [@bs.as "top"] `Top
-                  ],
-                )
+    ~arrow: bool=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~disableFocusListener: bool=?,
+    ~disableHoverListener: bool=?,
+    ~disableTouchListener: bool=?,
+    ~enterDelay: MaterialUi_Types.Number.t=?,
+    ~enterNextDelay: MaterialUi_Types.Number.t=?,
+    ~enterTouchDelay: MaterialUi_Types.Number.t=?,
+    ~id: string=?,
+    ~interactive: bool=?,
+    ~leaveDelay: MaterialUi_Types.Number.t=?,
+    ~leaveTouchDelay: MaterialUi_Types.Number.t=?,
+    ~onClose: ReactEvent.Synthetic.t => unit=?,
+    ~onOpen: ReactEvent.Synthetic.t => unit=?,
+    ~_open: bool=?,
+    ~placement: [@bs.string] [
+                  | [@bs.as "bottom-end"] `Bottom_End
+                  | [@bs.as "bottom-start"] `Bottom_Start
+                  | [@bs.as "bottom"] `Bottom
+                  | [@bs.as "left-end"] `Left_End
+                  | [@bs.as "left-start"] `Left_Start
+                  | [@bs.as "left"] `Left
+                  | [@bs.as "right-end"] `Right_End
+                  | [@bs.as "right-start"] `Right_Start
+                  | [@bs.as "right"] `Right
+                  | [@bs.as "top-end"] `Top_End
+                  | [@bs.as "top-start"] `Top_Start
+                  | [@bs.as "top"] `Top
+                ]
                   =?,
-    ~_PopperComponent: option(PopperComponent.t)=?,
-    ~_PopperProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~_PopperComponent: PopperComponent.t=?,
+    ~_PopperProps: Js.Dict.t(MaterialUi_Types.any)=?,
     ~title: React.element,
-    ~_TransitionComponent: option(TransitionComponent.t)=?,
-    ~_TransitionProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~_TransitionComponent: TransitionComponent.t=?,
+    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Tooltip";

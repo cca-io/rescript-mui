@@ -1,14 +1,14 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "disableGutters": option(option(string)),
-    "fixed": option(option(string)),
-    "maxWidthXs": option(option(string)),
-    "maxWidthSm": option(option(string)),
-    "maxWidthMd": option(option(string)),
-    "maxWidthLg": option(option(string)),
-    "maxWidthXl": option(option(string)),
+    "root": option(string),
+    "disableGutters": option(string),
+    "fixed": option(string),
+    "maxWidthXs": option(string),
+    "maxWidthSm": option(string),
+    "maxWidthMd": option(string),
+    "maxWidthLg": option(string),
+    "maxWidthXl": option(string),
   };
   [@bs.obj]
   external make:
@@ -64,17 +64,17 @@ module MaxWidth: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~disableGutters: option(bool)=?,
-    ~fixed: option(bool)=?,
-    ~maxWidth: option(MaxWidth.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~disableGutters: bool=?,
+    ~fixed: bool=?,
+    ~maxWidth: MaxWidth.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Container";

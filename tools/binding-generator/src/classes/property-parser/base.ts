@@ -101,7 +101,7 @@ class PropertyParserBase {
 
         // Optional
         if (!this.property.signature.required) {
-          Make = `~${this.property.safeName}: option(${this._reasonType})=?,`;
+          Make = `~${this.property.safeName}: ${this._reasonType}=?,`;
         }
 
         if (this._emitToComponent !== 'moduleOnly') {

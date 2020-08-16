@@ -1,17 +1,17 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "horizontal": option(option(string)),
-    "vertical": option(option(string)),
-    "label": option(option(string)),
-    "active": option(option(string)),
-    "completed": option(option(string)),
-    "error": option(option(string)),
-    "disabled": option(option(string)),
-    "iconContainer": option(option(string)),
-    "alternativeLabel": option(option(string)),
-    "labelContainer": option(option(string)),
+    "root": option(string),
+    "horizontal": option(string),
+    "vertical": option(string),
+    "label": option(string),
+    "active": option(string),
+    "completed": option(string),
+    "error": option(string),
+    "disabled": option(string),
+    "iconContainer": option(string),
+    "alternativeLabel": option(string),
+    "labelContainer": option(string),
   };
   [@bs.obj]
   external make:
@@ -49,19 +49,19 @@ module StepIconComponent: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~disabled: option(bool)=?,
-    ~error: option(bool)=?,
-    ~icon: option(React.element)=?,
-    ~optional: option(React.element)=?,
-    ~_StepIconComponent: option(StepIconComponent.t)=?,
-    ~_StepIconProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~disabled: bool=?,
+    ~error: bool=?,
+    ~icon: React.element=?,
+    ~optional: React.element=?,
+    ~_StepIconComponent: StepIconComponent.t=?,
+    ~_StepIconProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "StepLabel";

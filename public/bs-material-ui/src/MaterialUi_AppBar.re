@@ -17,17 +17,17 @@ type variant = [ | `Elevation | `Outlined];
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "positionFixed": option(option(string)),
-    "positionAbsolute": option(option(string)),
-    "positionSticky": option(option(string)),
-    "positionStatic": option(option(string)),
-    "positionRelative": option(option(string)),
-    "colorDefault": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "colorInherit": option(option(string)),
-    "colorTransparent": option(option(string)),
+    "root": option(string),
+    "positionFixed": option(string),
+    "positionAbsolute": option(string),
+    "positionSticky": option(string),
+    "positionStatic": option(string),
+    "positionRelative": option(string),
+    "colorDefault": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "colorInherit": option(string),
+    "colorTransparent": option(string),
   };
   [@bs.obj]
   external make:
@@ -55,43 +55,37 @@ type position = [ | `Absolute | `Fixed | `Relative | `Static | `Sticky];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~component: option(Component.t)=?,
-    ~elevation: option(MaterialUi_Types.Number.t)=?,
-    ~square: option(bool)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "elevation"] `Elevation
-                  | [@bs.as "outlined"] `Outlined
-                ],
-              )
+    ~component: Component.t=?,
+    ~elevation: MaterialUi_Types.Number.t=?,
+    ~square: bool=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "elevation"] `Elevation
+                | [@bs.as "outlined"] `Outlined
+              ]
                 =?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "default"] `Default
-                | [@bs.as "inherit"] `Inherit
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-                | [@bs.as "transparent"] `Transparent
-              ],
-            )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "default"] `Default
+              | [@bs.as "inherit"] `Inherit
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+              | [@bs.as "transparent"] `Transparent
+            ]
               =?,
-    ~position: option(
-                 [@bs.string] [
-                   | [@bs.as "absolute"] `Absolute
-                   | [@bs.as "fixed"] `Fixed
-                   | [@bs.as "relative"] `Relative
-                   | [@bs.as "static"] `Static
-                   | [@bs.as "sticky"] `Sticky
-                 ],
-               )
+    ~position: [@bs.string] [
+                 | [@bs.as "absolute"] `Absolute
+                 | [@bs.as "fixed"] `Fixed
+                 | [@bs.as "relative"] `Relative
+                 | [@bs.as "static"] `Static
+                 | [@bs.as "sticky"] `Sticky
+               ]
                  =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "AppBar";

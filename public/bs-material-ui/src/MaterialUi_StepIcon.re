@@ -1,11 +1,11 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "text": option(option(string)),
-    "active": option(option(string)),
-    "completed": option(option(string)),
-    "error": option(option(string)),
+    "root": option(string),
+    "text": option(string),
+    "active": option(string),
+    "completed": option(string),
+    "error": option(string),
   };
   [@bs.obj]
   external make:
@@ -23,15 +23,15 @@ module Classes = {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~active: option(bool)=?,
-    ~classes: option(Classes.t)=?,
-    ~completed: option(bool)=?,
-    ~error: option(bool)=?,
-    ~icon: option(React.element)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~active: bool=?,
+    ~classes: Classes.t=?,
+    ~completed: bool=?,
+    ~error: bool=?,
+    ~icon: React.element=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "StepIcon";

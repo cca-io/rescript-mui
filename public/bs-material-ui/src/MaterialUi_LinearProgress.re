@@ -1,24 +1,24 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "determinate": option(option(string)),
-    "indeterminate": option(option(string)),
-    "buffer": option(option(string)),
-    "query": option(option(string)),
-    "dashed": option(option(string)),
-    "dashedColorPrimary": option(option(string)),
-    "dashedColorSecondary": option(option(string)),
-    "bar": option(option(string)),
-    "barColorPrimary": option(option(string)),
-    "barColorSecondary": option(option(string)),
-    "bar1Indeterminate": option(option(string)),
-    "bar1Determinate": option(option(string)),
-    "bar1Buffer": option(option(string)),
-    "bar2Indeterminate": option(option(string)),
-    "bar2Buffer": option(option(string)),
+    "root": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "determinate": option(string),
+    "indeterminate": option(string),
+    "buffer": option(string),
+    "query": option(string),
+    "dashed": option(string),
+    "dashedColorPrimary": option(string),
+    "dashedColorSecondary": option(string),
+    "bar": option(string),
+    "barColorPrimary": option(string),
+    "barColorSecondary": option(string),
+    "bar1Indeterminate": option(string),
+    "bar1Determinate": option(string),
+    "bar1Buffer": option(string),
+    "bar2Indeterminate": option(string),
+    "bar2Buffer": option(string),
   };
   [@bs.obj]
   external make:
@@ -53,30 +53,26 @@ type variant = [ | `Buffer | `Determinate | `Indeterminate | `Query];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~value: option(MaterialUi_Types.Number.t)=?,
-    ~valueBuffer: option(MaterialUi_Types.Number.t)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "buffer"] `Buffer
-                  | [@bs.as "determinate"] `Determinate
-                  | [@bs.as "indeterminate"] `Indeterminate
-                  | [@bs.as "query"] `Query
-                ],
-              )
+    ~value: MaterialUi_Types.Number.t=?,
+    ~valueBuffer: MaterialUi_Types.Number.t=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "buffer"] `Buffer
+                | [@bs.as "determinate"] `Determinate
+                | [@bs.as "indeterminate"] `Indeterminate
+                | [@bs.as "query"] `Query
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "LinearProgress";

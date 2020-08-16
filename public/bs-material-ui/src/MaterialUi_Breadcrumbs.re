@@ -1,10 +1,10 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "ol": option(option(string)),
-    "li": option(option(string)),
-    "separator": option(option(string)),
+    "root": option(string),
+    "ol": option(string),
+    "li": option(string),
+    "separator": option(string),
   };
   [@bs.obj]
   external make:
@@ -35,19 +35,19 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~expandText: option(string)=?,
-    ~itemsAfterCollapse: option(MaterialUi_Types.Number.t)=?,
-    ~itemsBeforeCollapse: option(MaterialUi_Types.Number.t)=?,
-    ~maxItems: option(MaterialUi_Types.Number.t)=?,
-    ~separator: option(React.element)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~expandText: string=?,
+    ~itemsAfterCollapse: MaterialUi_Types.Number.t=?,
+    ~itemsBeforeCollapse: MaterialUi_Types.Number.t=?,
+    ~maxItems: MaterialUi_Types.Number.t=?,
+    ~separator: React.element=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Breadcrumbs";

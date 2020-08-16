@@ -17,9 +17,9 @@ type variant = [ | `Elevation | `Outlined];
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "message": option(option(string)),
-    "action": option(option(string)),
+    "root": option(string),
+    "message": option(string),
+    "action": option(string),
   };
   [@bs.obj]
   external make:
@@ -29,26 +29,24 @@ module Classes = {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~component: option(Component.t)=?,
-    ~elevation: option(MaterialUi_Types.Number.t)=?,
-    ~square: option(bool)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "elevation"] `Elevation
-                  | [@bs.as "outlined"] `Outlined
-                ],
-              )
+    ~children: 'children=?,
+    ~component: Component.t=?,
+    ~elevation: MaterialUi_Types.Number.t=?,
+    ~square: bool=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "elevation"] `Elevation
+                | [@bs.as "outlined"] `Outlined
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~action: option(React.element)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~message: option(React.element)=?,
-    ~role: option(string)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~action: React.element=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~message: React.element=?,
+    ~role: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "SnackbarContent";

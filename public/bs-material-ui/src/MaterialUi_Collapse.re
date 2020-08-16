@@ -1,11 +1,11 @@
 module Classes = {
   type t = {
     .
-    "container": option(option(string)),
-    "entered": option(option(string)),
-    "hidden": option(option(string)),
-    "wrapper": option(option(string)),
-    "wrapperInner": option(option(string)),
+    "container": option(string),
+    "entered": option(string),
+    "hidden": option(string),
+    "wrapper": option(string),
+    "wrapperInner": option(string),
   };
   [@bs.obj]
   external make:
@@ -62,9 +62,9 @@ module Timeout_enum: {
 module Timeout_shape = {
   type t = {
     .
-    "appear": option(option(MaterialUi_Types.Number.t)),
-    "enter": option(option(MaterialUi_Types.Number.t)),
-    "exit": option(option(MaterialUi_Types.Number.t)),
+    "appear": option(MaterialUi_Types.Number.t),
+    "enter": option(MaterialUi_Types.Number.t),
+    "exit": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -96,29 +96,29 @@ module Timeout: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~collapsedHeight: option(CollapsedHeight.t)=?,
-    ~component: option(Component.t)=?,
-    ~disableStrictModeCompat: option(bool)=?,
-    ~_in: option(bool)=?,
-    ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~timeout: option(Timeout.t)=?,
-    ~id: option(string)=?,
-    ~mountOnEnter: option(bool)=?,
-    ~unmountOnExit: option(bool)=?,
-    ~appear: option(bool)=?,
-    ~enter: option(bool)=?,
-    ~exit: option(bool)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~collapsedHeight: CollapsedHeight.t=?,
+    ~component: Component.t=?,
+    ~disableStrictModeCompat: bool=?,
+    ~_in: bool=?,
+    ~onEnter: ReactEvent.Synthetic.t => unit=?,
+    ~onEntered: ReactEvent.Synthetic.t => unit=?,
+    ~onEntering: ReactEvent.Synthetic.t => unit=?,
+    ~onExit: ReactEvent.Synthetic.t => unit=?,
+    ~onExited: ReactEvent.Synthetic.t => unit=?,
+    ~onExiting: ReactEvent.Synthetic.t => unit=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~timeout: Timeout.t=?,
+    ~id: string=?,
+    ~mountOnEnter: bool=?,
+    ~unmountOnExit: bool=?,
+    ~appear: bool=?,
+    ~enter: bool=?,
+    ~exit: bool=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Collapse";

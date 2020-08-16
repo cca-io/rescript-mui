@@ -15,20 +15,20 @@ module RowsMin: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "formControl": option(option(string)),
-    "focused": option(option(string)),
-    "disabled": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "underline": option(option(string)),
-    "error": option(option(string)),
-    "marginDense": option(option(string)),
-    "multiline": option(option(string)),
-    "fullWidth": option(option(string)),
-    "input": option(option(string)),
-    "inputMarginDense": option(option(string)),
-    "inputMultiline": option(option(string)),
-    "inputTypeSearch": option(option(string)),
+    "root": option(string),
+    "formControl": option(string),
+    "focused": option(string),
+    "disabled": option(string),
+    "colorSecondary": option(string),
+    "underline": option(string),
+    "error": option(string),
+    "marginDense": option(string),
+    "multiline": option(string),
+    "fullWidth": option(string),
+    "input": option(string),
+    "inputMarginDense": option(string),
+    "inputMultiline": option(string),
+    "inputTypeSearch": option(string),
   };
   [@bs.obj]
   external make:
@@ -87,55 +87,48 @@ module RowsMax: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~aria_describedby: option(string)=?,
-    ~className: option(string)=?,
-    ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-    ~renderSuffix: option(MaterialUi_Types.any)=?,
-    ~rowsMin: option(RowsMin.t)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~autoComplete: option(string)=?,
-    ~autoFocus: option(bool)=?,
-    ~classes: option(Classes.t)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~aria_describedby: string=?,
+    ~className: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+    ~renderSuffix: MaterialUi_Types.any=?,
+    ~rowsMin: RowsMin.t=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~autoComplete: string=?,
+    ~autoFocus: bool=?,
+    ~classes: Classes.t=?,
+    ~color: [@bs.string] [
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~defaultValue: option(MaterialUi_Types.any)=?,
-    ~disabled: option(bool)=?,
-    ~disableUnderline: option(bool)=?,
-    ~endAdornment: option(React.element)=?,
-    ~error: option(bool)=?,
-    ~fullWidth: option(bool)=?,
-    ~id: option(string)=?,
-    ~inputComponent: option(MaterialUi_Types.any)=?,
-    ~inputProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~margin: option(
-               [@bs.string] [
-                 | [@bs.as "dense"] `Dense
-                 | [@bs.as "none"] `None
-               ],
-             )
+    ~defaultValue: MaterialUi_Types.any=?,
+    ~disabled: bool=?,
+    ~disableUnderline: bool=?,
+    ~endAdornment: React.element=?,
+    ~error: bool=?,
+    ~fullWidth: bool=?,
+    ~id: string=?,
+    ~inputComponent: MaterialUi_Types.any=?,
+    ~inputProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~margin: [@bs.string] [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None]
                =?,
-    ~multiline: option(bool)=?,
-    ~name: option(string)=?,
-    ~onChange: option(ReactEvent.Form.t => unit)=?,
-    ~placeholder: option(string)=?,
-    ~readOnly: option(bool)=?,
-    ~required: option(bool)=?,
-    ~rows: option(Rows.t)=?,
-    ~rowsMax: option(RowsMax.t)=?,
-    ~startAdornment: option(React.element)=?,
-    ~_type: option(string)=?,
-    ~value: option(MaterialUi_Types.any)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~multiline: bool=?,
+    ~name: string=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~placeholder: string=?,
+    ~readOnly: bool=?,
+    ~required: bool=?,
+    ~rows: Rows.t=?,
+    ~rowsMax: RowsMax.t=?,
+    ~startAdornment: React.element=?,
+    ~_type: string=?,
+    ~value: MaterialUi_Types.any=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Input";

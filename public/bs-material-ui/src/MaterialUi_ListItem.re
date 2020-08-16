@@ -3,17 +3,17 @@ type alignItems = [ | `Flex_Start | `Center];
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "container": option(option(string)),
-    "focusVisible": option(option(string)),
-    "dense": option(option(string)),
-    "alignItemsFlexStart": option(option(string)),
-    "disabled": option(option(string)),
-    "divider": option(option(string)),
-    "gutters": option(option(string)),
-    "button": option(option(string)),
-    "secondaryAction": option(option(string)),
-    "selected": option(option(string)),
+    "root": option(string),
+    "container": option(string),
+    "focusVisible": option(string),
+    "dense": option(string),
+    "alignItemsFlexStart": option(string),
+    "disabled": option(string),
+    "divider": option(string),
+    "gutters": option(string),
+    "button": option(string),
+    "secondaryAction": option(string),
+    "selected": option(string),
   };
   [@bs.obj]
   external make:
@@ -81,34 +81,32 @@ module Value: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~alignItems: option(
-                   [@bs.string] [
-                     | [@bs.as "flex-start"] `Flex_Start
-                     | [@bs.as "center"] `Center
-                   ],
-                 )
+    ~alignItems: [@bs.string] [
+                   | [@bs.as "flex-start"] `Flex_Start
+                   | [@bs.as "center"] `Center
+                 ]
                    =?,
-    ~autoFocus: option(bool)=?,
-    ~button: option(bool)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~_ContainerComponent: option(ContainerComponent.t)=?,
-    ~_ContainerProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~dense: option(bool)=?,
-    ~disabled: option(bool)=?,
-    ~disableGutters: option(bool)=?,
-    ~divider: option(bool)=?,
-    ~focusVisibleClassName: option(string)=?,
-    ~selected: option(bool)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~value: option(Value.t)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~autoFocus: bool=?,
+    ~button: bool=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~_ContainerComponent: ContainerComponent.t=?,
+    ~_ContainerProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~dense: bool=?,
+    ~disabled: bool=?,
+    ~disableGutters: bool=?,
+    ~divider: bool=?,
+    ~focusVisibleClassName: string=?,
+    ~selected: bool=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~value: Value.t=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "ListItem";

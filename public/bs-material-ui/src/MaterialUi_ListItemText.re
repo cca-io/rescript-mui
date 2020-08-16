@@ -1,12 +1,12 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "multiline": option(option(string)),
-    "dense": option(option(string)),
-    "inset": option(option(string)),
-    "primary": option(option(string)),
-    "secondary": option(option(string)),
+    "root": option(string),
+    "multiline": option(string),
+    "dense": option(string),
+    "inset": option(string),
+    "primary": option(string),
+    "secondary": option(string),
   };
   [@bs.obj]
   external make:
@@ -25,19 +25,19 @@ module Classes = {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~disableTypography: option(bool)=?,
-    ~inset: option(bool)=?,
-    ~primary: option(React.element)=?,
-    ~primaryTypographyProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~secondary: option(React.element)=?,
-    ~secondaryTypographyProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~disableTypography: bool=?,
+    ~inset: bool=?,
+    ~primary: React.element=?,
+    ~primaryTypographyProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~secondary: React.element=?,
+    ~secondaryTypographyProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "ListItemText";

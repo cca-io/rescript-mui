@@ -1,26 +1,26 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "marked": option(option(string)),
-    "vertical": option(option(string)),
-    "disabled": option(option(string)),
-    "rail": option(option(string)),
-    "track": option(option(string)),
-    "trackFalse": option(option(string)),
-    "trackInverted": option(option(string)),
-    "thumb": option(option(string)),
-    "thumbColorPrimary": option(option(string)),
-    "thumbColorSecondary": option(option(string)),
-    "active": option(option(string)),
-    "focusVisible": option(option(string)),
-    "valueLabel": option(option(string)),
-    "mark": option(option(string)),
-    "markActive": option(option(string)),
-    "markLabel": option(option(string)),
-    "markLabelActive": option(option(string)),
+    "root": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "marked": option(string),
+    "vertical": option(string),
+    "disabled": option(string),
+    "rail": option(string),
+    "track": option(string),
+    "trackFalse": option(string),
+    "trackInverted": option(string),
+    "thumb": option(string),
+    "thumbColorPrimary": option(string),
+    "thumbColorSecondary": option(string),
+    "active": option(string),
+    "focusVisible": option(string),
+    "valueLabel": option(string),
+    "mark": option(string),
+    "markActive": option(string),
+    "markLabel": option(string),
+    "markLabelActive": option(string),
   };
   [@bs.obj]
   external make:
@@ -168,54 +168,48 @@ module ValueLabelFormat: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~aria_labelledby: option(string)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~aria_labelledby: string=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~component: option(Component.t)=?,
-    ~defaultValue: option(DefaultValue.t)=?,
-    ~disabled: option(bool)=?,
-    ~getAriaLabel: option(int => string)=?,
-    ~getAriaValueText: option((int, int) => string)=?,
-    ~marks: option(Marks.t)=?,
-    ~max: option(MaterialUi_Types.Number.t)=?,
-    ~min: option(MaterialUi_Types.Number.t)=?,
-    ~name: option(string)=?,
-    ~onChange: option((ReactEvent.Form.t, int) => unit)=?,
-    ~onChangeCommitted: option((ReactEvent.Form.t, int) => unit)=?,
-    ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
-    ~orientation: option(
-                    [@bs.string] [
-                      | [@bs.as "horizontal"] `Horizontal
-                      | [@bs.as "vertical"] `Vertical
-                    ],
-                  )
+    ~component: Component.t=?,
+    ~defaultValue: DefaultValue.t=?,
+    ~disabled: bool=?,
+    ~getAriaLabel: int => string=?,
+    ~getAriaValueText: (int, int) => string=?,
+    ~marks: Marks.t=?,
+    ~max: MaterialUi_Types.Number.t=?,
+    ~min: MaterialUi_Types.Number.t=?,
+    ~name: string=?,
+    ~onChange: (ReactEvent.Form.t, int) => unit=?,
+    ~onChangeCommitted: (ReactEvent.Form.t, int) => unit=?,
+    ~onMouseDown: ReactEvent.Mouse.t => unit=?,
+    ~orientation: [@bs.string] [
+                    | [@bs.as "horizontal"] `Horizontal
+                    | [@bs.as "vertical"] `Vertical
+                  ]
                     =?,
-    ~scale: option(MaterialUi_Types.any)=?,
-    ~step: option(MaterialUi_Types.Number.t)=?,
-    ~_ThumbComponent: option(ThumbComponent.t)=?,
-    ~track: option(Track.t)=?,
-    ~value: option(Value.t)=?,
-    ~_ValueLabelComponent: option(ValueLabelComponent.t)=?,
-    ~valueLabelDisplay: option(
-                          [@bs.string] [
-                            | [@bs.as "on"] `On
-                            | [@bs.as "auto"] `Auto
-                            | [@bs.as "off"] `Off
-                          ],
-                        )
+    ~scale: MaterialUi_Types.any=?,
+    ~step: MaterialUi_Types.Number.t=?,
+    ~_ThumbComponent: ThumbComponent.t=?,
+    ~track: Track.t=?,
+    ~value: Value.t=?,
+    ~_ValueLabelComponent: ValueLabelComponent.t=?,
+    ~valueLabelDisplay: [@bs.string] [
+                          | [@bs.as "on"] `On
+                          | [@bs.as "auto"] `Auto
+                          | [@bs.as "off"] `Off
+                        ]
                           =?,
-    ~valueLabelFormat: option(ValueLabelFormat.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~valueLabelFormat: ValueLabelFormat.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Slider";

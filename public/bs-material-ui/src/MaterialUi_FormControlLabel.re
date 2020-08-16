@@ -1,12 +1,12 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "labelPlacementStart": option(option(string)),
-    "labelPlacementTop": option(option(string)),
-    "labelPlacementBottom": option(option(string)),
-    "disabled": option(option(string)),
-    "label": option(option(string)),
+    "root": option(string),
+    "labelPlacementStart": option(string),
+    "labelPlacementTop": option(string),
+    "labelPlacementBottom": option(string),
+    "disabled": option(string),
+    "label": option(string),
   };
   [@bs.obj]
   external make:
@@ -27,28 +27,26 @@ type labelPlacement = [ | `Bottom | `End | `Start | `Top];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~checked: option(bool)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
+    ~checked: bool=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
     ~control: React.element,
-    ~disabled: option(bool)=?,
-    ~label: option(React.element)=?,
-    ~labelPlacement: option(
-                       [@bs.string] [
-                         | [@bs.as "bottom"] `Bottom
-                         | [@bs.as "end"] `End
-                         | [@bs.as "start"] `Start
-                         | [@bs.as "top"] `Top
-                       ],
-                     )
+    ~disabled: bool=?,
+    ~label: React.element=?,
+    ~labelPlacement: [@bs.string] [
+                       | [@bs.as "bottom"] `Bottom
+                       | [@bs.as "end"] `End
+                       | [@bs.as "start"] `Start
+                       | [@bs.as "top"] `Top
+                     ]
                        =?,
-    ~name: option(string)=?,
-    ~onChange: option(ReactEvent.Form.t => unit)=?,
-    ~value: option(MaterialUi_Types.any)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~name: string=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~value: MaterialUi_Types.any=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "FormControlLabel";

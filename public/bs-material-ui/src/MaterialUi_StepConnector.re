@@ -1,16 +1,16 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "horizontal": option(option(string)),
-    "vertical": option(option(string)),
-    "alternativeLabel": option(option(string)),
-    "active": option(option(string)),
-    "completed": option(option(string)),
-    "disabled": option(option(string)),
-    "line": option(option(string)),
-    "lineHorizontal": option(option(string)),
-    "lineVertical": option(option(string)),
+    "root": option(string),
+    "horizontal": option(string),
+    "vertical": option(string),
+    "alternativeLabel": option(string),
+    "active": option(string),
+    "completed": option(string),
+    "disabled": option(string),
+    "line": option(string),
+    "lineHorizontal": option(string),
+    "lineVertical": option(string),
   };
   [@bs.obj]
   external make:
@@ -33,12 +33,12 @@ module Classes = {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "StepConnector";

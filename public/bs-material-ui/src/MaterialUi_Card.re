@@ -15,31 +15,29 @@ module Component: {
 type variant = [ | `Elevation | `Outlined];
 
 module Classes = {
-  type t = {. "root": option(option(string))};
+  type t = {. "root": option(string)};
   [@bs.obj] external make: (~root: string=?, unit) => t;
 };
 
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~component: option(Component.t)=?,
-    ~elevation: option(MaterialUi_Types.Number.t)=?,
-    ~square: option(bool)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "elevation"] `Elevation
-                  | [@bs.as "outlined"] `Outlined
-                ],
-              )
+    ~component: Component.t=?,
+    ~elevation: MaterialUi_Types.Number.t=?,
+    ~square: bool=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "elevation"] `Elevation
+                | [@bs.as "outlined"] `Outlined
+              ]
                 =?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~raised: option(bool)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~raised: bool=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Card";

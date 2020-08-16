@@ -3,18 +3,18 @@ type align = [ | `Center | `Inherit | `Justify | `Left | `Right];
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "head": option(option(string)),
-    "body": option(option(string)),
-    "footer": option(option(string)),
-    "sizeSmall": option(option(string)),
-    "paddingCheckbox": option(option(string)),
-    "paddingNone": option(option(string)),
-    "alignLeft": option(option(string)),
-    "alignCenter": option(option(string)),
-    "alignRight": option(option(string)),
-    "alignJustify": option(option(string)),
-    "stickyHeader": option(option(string)),
+    "root": option(string),
+    "head": option(string),
+    "body": option(string),
+    "footer": option(string),
+    "sizeSmall": option(string),
+    "paddingCheckbox": option(string),
+    "paddingNone": option(string),
+    "alignLeft": option(string),
+    "alignCenter": option(string),
+    "alignRight": option(string),
+    "alignJustify": option(string),
+    "stickyHeader": option(string),
   };
   [@bs.obj]
   external make:
@@ -74,51 +74,43 @@ type variant = [ | `Body | `Footer | `Head];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~align: option(
-              [@bs.string] [
-                | [@bs.as "center"] `Center
-                | [@bs.as "inherit"] `Inherit
-                | [@bs.as "justify"] `Justify
-                | [@bs.as "left"] `Left
-                | [@bs.as "right"] `Right
-              ],
-            )
+    ~align: [@bs.string] [
+              | [@bs.as "center"] `Center
+              | [@bs.as "inherit"] `Inherit
+              | [@bs.as "justify"] `Justify
+              | [@bs.as "left"] `Left
+              | [@bs.as "right"] `Right
+            ]
               =?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~padding: option(
-                [@bs.string] [
-                  | [@bs.as "checkbox"] `Checkbox
-                  | [@bs.as "default"] `Default
-                  | [@bs.as "none"] `None
-                ],
-              )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~padding: [@bs.string] [
+                | [@bs.as "checkbox"] `Checkbox
+                | [@bs.as "default"] `Default
+                | [@bs.as "none"] `None
+              ]
                 =?,
-    ~scope: option(string)=?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~scope: string=?,
+    ~size: [@bs.string] [
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~sortDirection: option(SortDirection.t)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "body"] `Body
-                  | [@bs.as "footer"] `Footer
-                  | [@bs.as "head"] `Head
-                ],
-              )
+    ~sortDirection: SortDirection.t=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "body"] `Body
+                | [@bs.as "footer"] `Footer
+                | [@bs.as "head"] `Head
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~colSpan: option(int)=?,
-    ~rowSpan: option(int)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~colSpan: int=?,
+    ~rowSpan: int=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "TableCell";

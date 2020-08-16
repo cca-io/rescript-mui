@@ -73,8 +73,8 @@ module Vertical: {
 module AnchorOrigin = {
   type t = {
     .
-    "horizontal": option(option(Horizontal.t)),
-    "vertical": option(option(Vertical.t)),
+    "horizontal": option(Horizontal.t),
+    "vertical": option(Vertical.t),
   };
   [@bs.obj]
   external make:
@@ -84,8 +84,8 @@ module AnchorOrigin = {
 module AnchorPosition = {
   type t = {
     .
-    "left": option(option(MaterialUi_Types.Number.t)),
-    "top": option(option(MaterialUi_Types.Number.t)),
+    "left": option(MaterialUi_Types.Number.t),
+    "top": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -112,8 +112,8 @@ module Container: {
 module TransformOrigin = {
   type t = {
     .
-    "horizontal": option(option(Horizontal.t)),
-    "vertical": option(option(Vertical.t)),
+    "horizontal": option(Horizontal.t),
+    "vertical": option(Vertical.t),
   };
   [@bs.obj]
   external make:
@@ -137,8 +137,8 @@ module TransitionComponent: {
 module Classes = {
   type t = {
     .
-    "paper": option(option(string)),
-    "list": option(option(string)),
+    "paper": option(string),
+    "list": option(string),
   };
   [@bs.obj] external make: (~paper: string=?, ~list: string=?, unit) => t;
 };
@@ -157,9 +157,9 @@ module TransitionDuration_enum: {
 module TransitionDuration_shape = {
   type t = {
     .
-    "appear": option(option(MaterialUi_Types.Number.t)),
-    "enter": option(option(MaterialUi_Types.Number.t)),
-    "exit": option(option(MaterialUi_Types.Number.t)),
+    "appear": option(MaterialUi_Types.Number.t),
+    "enter": option(MaterialUi_Types.Number.t),
+    "exit": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -193,68 +193,64 @@ type variant = [ | `Menu | `SelectedMenu];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~_BackdropComponent: option(BackdropComponent.t)=?,
-    ~_BackdropProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~closeAfterTransition: option(bool)=?,
-    ~disableAutoFocus: option(bool)=?,
-    ~disableBackdropClick: option(bool)=?,
-    ~disableEnforceFocus: option(bool)=?,
-    ~disableEscapeKeyDown: option(bool)=?,
-    ~disablePortal: option(bool)=?,
-    ~disableRestoreFocus: option(bool)=?,
-    ~disableScrollLock: option(bool)=?,
-    ~hideBackdrop: option(bool)=?,
-    ~keepMounted: option(bool)=?,
-    ~manager: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~onBackdropClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~onEscapeKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
-    ~anchorOrigin: option(AnchorOrigin.t)=?,
-    ~anchorPosition: option(AnchorPosition.t)=?,
-    ~anchorReference: option(
-                        [@bs.string] [
-                          | [@bs.as "anchorEl"] `AnchorEl
-                          | [@bs.as "anchorPosition"] `AnchorPosition
-                          | [@bs.as "none"] `None
-                        ],
-                      )
+    ~_BackdropComponent: BackdropComponent.t=?,
+    ~_BackdropProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~closeAfterTransition: bool=?,
+    ~disableAutoFocus: bool=?,
+    ~disableBackdropClick: bool=?,
+    ~disableEnforceFocus: bool=?,
+    ~disableEscapeKeyDown: bool=?,
+    ~disablePortal: bool=?,
+    ~disableRestoreFocus: bool=?,
+    ~disableScrollLock: bool=?,
+    ~hideBackdrop: bool=?,
+    ~keepMounted: bool=?,
+    ~manager: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
+    ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onRendered: ReactEvent.Synthetic.t => unit=?,
+    ~anchorOrigin: AnchorOrigin.t=?,
+    ~anchorPosition: AnchorPosition.t=?,
+    ~anchorReference: [@bs.string] [
+                        | [@bs.as "anchorEl"] `AnchorEl
+                        | [@bs.as "anchorPosition"] `AnchorPosition
+                        | [@bs.as "none"] `None
+                      ]
                         =?,
-    ~className: option(string)=?,
-    ~container: option(Container.t)=?,
-    ~elevation: option(MaterialUi_Types.Number.t)=?,
-    ~getContentAnchorEl: option(MaterialUi_Types.any)=?,
-    ~marginThreshold: option(MaterialUi_Types.Number.t)=?,
-    ~transformOrigin: option(TransformOrigin.t)=?,
-    ~_TransitionComponent: option(TransitionComponent.t)=?,
-    ~_TransitionProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~anchorEl: option(MaterialUi_Types.any)=?,
-    ~autoFocus: option(bool)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~disableAutoFocusItem: option(bool)=?,
-    ~_MenuListProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
-    ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
+    ~className: string=?,
+    ~container: Container.t=?,
+    ~elevation: MaterialUi_Types.Number.t=?,
+    ~getContentAnchorEl: MaterialUi_Types.any=?,
+    ~marginThreshold: MaterialUi_Types.Number.t=?,
+    ~transformOrigin: TransformOrigin.t=?,
+    ~_TransitionComponent: TransitionComponent.t=?,
+    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~anchorEl: MaterialUi_Types.any=?,
+    ~autoFocus: bool=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~disableAutoFocusItem: bool=?,
+    ~_MenuListProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~onClose: (ReactEvent.Synthetic.t, string) => unit=?,
+    ~onEnter: ReactEvent.Synthetic.t => unit=?,
+    ~onEntered: ReactEvent.Synthetic.t => unit=?,
+    ~onEntering: ReactEvent.Synthetic.t => unit=?,
+    ~onExit: ReactEvent.Synthetic.t => unit=?,
+    ~onExited: ReactEvent.Synthetic.t => unit=?,
+    ~onExiting: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
-    ~_PaperProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~_PopoverClasses: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~transitionDuration: option(TransitionDuration.t)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "menu"] `Menu
-                  | [@bs.as "selectedMenu"] `SelectedMenu
-                ],
-              )
+    ~_PaperProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_PopoverClasses: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~transitionDuration: TransitionDuration.t=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "menu"] `Menu
+                | [@bs.as "selectedMenu"] `SelectedMenu
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Menu";

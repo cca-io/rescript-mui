@@ -1,36 +1,36 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "sizeSmall": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(string)),
-    "clickable": option(option(string)),
-    "clickableColorPrimary": option(option(string)),
-    "clickableColorSecondary": option(option(string)),
-    "deletable": option(option(string)),
-    "deletableColorPrimary": option(option(string)),
-    "deletableColorSecondary": option(option(string)),
-    "outlined": option(option(string)),
-    "outlinedPrimary": option(option(string)),
-    "outlinedSecondary": option(option(string)),
-    "avatar": option(option(string)),
-    "avatarSmall": option(option(string)),
-    "avatarColorPrimary": option(option(string)),
-    "avatarColorSecondary": option(option(string)),
-    "icon": option(option(string)),
-    "iconSmall": option(option(string)),
-    "iconColorPrimary": option(option(string)),
-    "iconColorSecondary": option(option(string)),
-    "label": option(option(string)),
-    "labelSmall": option(option(string)),
-    "deleteIcon": option(option(string)),
-    "deleteIconSmall": option(option(string)),
-    "deleteIconColorPrimary": option(option(string)),
-    "deleteIconColorSecondary": option(option(string)),
-    "deleteIconOutlinedColorPrimary": option(option(string)),
-    "deleteIconOutlinedColorSecondary": option(option(string)),
+    "root": option(string),
+    "sizeSmall": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "disabled": option(string),
+    "clickable": option(string),
+    "clickableColorPrimary": option(string),
+    "clickableColorSecondary": option(string),
+    "deletable": option(string),
+    "deletableColorPrimary": option(string),
+    "deletableColorSecondary": option(string),
+    "outlined": option(string),
+    "outlinedPrimary": option(string),
+    "outlinedSecondary": option(string),
+    "avatar": option(string),
+    "avatarSmall": option(string),
+    "avatarColorPrimary": option(string),
+    "avatarColorSecondary": option(string),
+    "icon": option(string),
+    "iconSmall": option(string),
+    "iconColorPrimary": option(string),
+    "iconColorSecondary": option(string),
+    "label": option(string),
+    "labelSmall": option(string),
+    "deleteIcon": option(string),
+    "deleteIconSmall": option(string),
+    "deleteIconColorPrimary": option(string),
+    "deleteIconColorSecondary": option(string),
+    "deleteIconOutlinedColorPrimary": option(string),
+    "deleteIconOutlinedColorSecondary": option(string),
   };
   [@bs.obj]
   external make:
@@ -93,46 +93,40 @@ type variant = [ | `Default | `Outlined];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~avatar: option(React.element)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~clickable: option(bool)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "default"] `Default
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~avatar: React.element=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~clickable: bool=?,
+    ~color: [@bs.string] [
+              | [@bs.as "default"] `Default
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~component: option(Component.t)=?,
-    ~deleteIcon: option(React.element)=?,
-    ~disabled: option(bool)=?,
-    ~icon: option(React.element)=?,
-    ~label: option(React.element)=?,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~onDelete: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~component: Component.t=?,
+    ~deleteIcon: React.element=?,
+    ~disabled: bool=?,
+    ~icon: React.element=?,
+    ~label: React.element=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onDelete: ReactEvent.Synthetic.t => unit=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+    ~size: [@bs.string] [
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "default"] `Default
-                  | [@bs.as "outlined"] `Outlined
-                ],
-              )
+    ~variant: [@bs.string] [
+                | [@bs.as "default"] `Default
+                | [@bs.as "outlined"] `Outlined
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Chip";

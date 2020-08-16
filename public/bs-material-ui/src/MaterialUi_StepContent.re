@@ -1,9 +1,9 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "last": option(option(string)),
-    "transition": option(option(string)),
+    "root": option(string),
+    "last": option(string),
+    "transition": option(string),
   };
   [@bs.obj]
   external make:
@@ -38,9 +38,9 @@ module TransitionDuration_enum: {
 module TransitionDuration_shape = {
   type t = {
     .
-    "appear": option(option(MaterialUi_Types.Number.t)),
-    "enter": option(option(MaterialUi_Types.Number.t)),
-    "exit": option(option(MaterialUi_Types.Number.t)),
+    "appear": option(MaterialUi_Types.Number.t),
+    "enter": option(MaterialUi_Types.Number.t),
+    "exit": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -72,16 +72,16 @@ module TransitionDuration: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~_TransitionComponent: option(TransitionComponent.t)=?,
-    ~transitionDuration: option(TransitionDuration.t)=?,
-    ~_TransitionProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~_TransitionComponent: TransitionComponent.t=?,
+    ~transitionDuration: TransitionDuration.t=?,
+    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "StepContent";

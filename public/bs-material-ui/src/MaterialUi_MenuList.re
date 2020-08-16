@@ -1,10 +1,10 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "padding": option(option(string)),
-    "dense": option(option(string)),
-    "subheader": option(option(string)),
+    "root": option(string),
+    "padding": option(string),
+    "dense": option(string),
+    "subheader": option(string),
   };
   [@bs.obj]
   external make:
@@ -37,29 +37,27 @@ type variant = [ | `Menu | `SelectedMenu];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~classes: option(Classes.t)=?,
-    ~component: option(Component.t)=?,
-    ~dense: option(bool)=?,
-    ~disablePadding: option(bool)=?,
-    ~subheader: option(React.element)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~autoFocus: option(bool)=?,
-    ~autoFocusItem: option(bool)=?,
-    ~children: option('children)=?,
-    ~className: option(string)=?,
-    ~disabledItemsFocusable: option(bool)=?,
-    ~disableListWrap: option(bool)=?,
-    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "menu"] `Menu
-                  | [@bs.as "selectedMenu"] `SelectedMenu
-                ],
-              )
+    ~classes: Classes.t=?,
+    ~component: Component.t=?,
+    ~dense: bool=?,
+    ~disablePadding: bool=?,
+    ~subheader: React.element=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~autoFocus: bool=?,
+    ~autoFocusItem: bool=?,
+    ~children: 'children=?,
+    ~className: string=?,
+    ~disabledItemsFocusable: bool=?,
+    ~disableListWrap: bool=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "menu"] `Menu
+                | [@bs.as "selectedMenu"] `SelectedMenu
+              ]
                 =?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "MenuList";

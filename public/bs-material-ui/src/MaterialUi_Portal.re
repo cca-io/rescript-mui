@@ -11,14 +11,14 @@ module Container: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~container: option(Container.t)=?,
-    ~disablePortal: option(bool)=?,
-    ~onRendered: option(ReactEvent.Synthetic.t => unit)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~container: Container.t=?,
+    ~disablePortal: bool=?,
+    ~onRendered: ReactEvent.Synthetic.t => unit=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Portal";

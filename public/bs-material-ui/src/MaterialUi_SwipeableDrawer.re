@@ -1,18 +1,18 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "docked": option(option(string)),
-    "paper": option(option(string)),
-    "paperAnchorLeft": option(option(string)),
-    "paperAnchorRight": option(option(string)),
-    "paperAnchorTop": option(option(string)),
-    "paperAnchorBottom": option(option(string)),
-    "paperAnchorDockedLeft": option(option(string)),
-    "paperAnchorDockedTop": option(option(string)),
-    "paperAnchorDockedRight": option(option(string)),
-    "paperAnchorDockedBottom": option(option(string)),
-    "modal": option(option(string)),
+    "root": option(string),
+    "docked": option(string),
+    "paper": option(string),
+    "paperAnchorLeft": option(string),
+    "paperAnchorRight": option(string),
+    "paperAnchorTop": option(string),
+    "paperAnchorBottom": option(string),
+    "paperAnchorDockedLeft": option(string),
+    "paperAnchorDockedTop": option(string),
+    "paperAnchorDockedRight": option(string),
+    "paperAnchorDockedBottom": option(string),
+    "modal": option(string),
   };
   [@bs.obj]
   external make:
@@ -51,20 +51,20 @@ module Component: {
 };
 
 module BackdropProps = {
-  type t = {. "component": option(option(Component.t))};
+  type t = {. "component": option(Component.t)};
   [@bs.obj] external make: (~component: Component.t=?, unit) => t;
 };
 
 module ModalProps = {
-  type t = {. "BackdropProps": option(option(BackdropProps.t))};
+  type t = {. "BackdropProps": option(BackdropProps.t)};
   [@bs.obj] external make: (~_BackdropProps: BackdropProps.t=?, unit) => t;
 };
 
 module PaperProps = {
   type t = {
     .
-    "component": option(option(Component.t)),
-    "style": option(option(Js.Dict.t(MaterialUi_Types.any))),
+    "component": option(Component.t),
+    "style": option(Js.Dict.t(MaterialUi_Types.any)),
   };
   [@bs.obj]
   external make:
@@ -79,8 +79,8 @@ module PaperProps = {
 module TransitionDuration_shape = {
   type t = {
     .
-    "enter": option(option(MaterialUi_Types.Number.t)),
-    "exit": option(option(MaterialUi_Types.Number.t)),
+    "enter": option(MaterialUi_Types.Number.t),
+    "exit": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -111,47 +111,43 @@ type variant = [ | `Permanent | `Persistent | `Temporary];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~_BackdropProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~elevation: option(MaterialUi_Types.Number.t)=?,
-    ~_SlideProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~anchor: option(
-               [@bs.string] [
-                 | [@bs.as "left"] `Left
-                 | [@bs.as "top"] `Top
-                 | [@bs.as "right"] `Right
-                 | [@bs.as "bottom"] `Bottom
-               ],
-             )
+    ~_BackdropProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~elevation: MaterialUi_Types.Number.t=?,
+    ~_SlideProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~anchor: [@bs.string] [
+               | [@bs.as "left"] `Left
+               | [@bs.as "top"] `Top
+               | [@bs.as "right"] `Right
+               | [@bs.as "bottom"] `Bottom
+             ]
                =?,
-    ~children: option('children)=?,
-    ~disableBackdropTransition: option(bool)=?,
-    ~disableDiscovery: option(bool)=?,
-    ~disableSwipeToOpen: option(bool)=?,
-    ~hideBackdrop: option(bool)=?,
-    ~hysteresis: option(MaterialUi_Types.Number.t)=?,
-    ~minFlingVelocity: option(MaterialUi_Types.Number.t)=?,
-    ~_ModalProps: option(ModalProps.t)=?,
+    ~children: 'children=?,
+    ~disableBackdropTransition: bool=?,
+    ~disableDiscovery: bool=?,
+    ~disableSwipeToOpen: bool=?,
+    ~hideBackdrop: bool=?,
+    ~hysteresis: MaterialUi_Types.Number.t=?,
+    ~minFlingVelocity: MaterialUi_Types.Number.t=?,
+    ~_ModalProps: ModalProps.t=?,
     ~onClose: ReactEvent.Synthetic.t => unit,
     ~onOpen: ReactEvent.Synthetic.t => unit,
     ~_open: bool,
-    ~_PaperProps: option(PaperProps.t)=?,
-    ~_SwipeAreaProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~swipeAreaWidth: option(MaterialUi_Types.Number.t)=?,
-    ~transitionDuration: option(TransitionDuration.t)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "permanent"] `Permanent
-                  | [@bs.as "persistent"] `Persistent
-                  | [@bs.as "temporary"] `Temporary
-                ],
-              )
+    ~_PaperProps: PaperProps.t=?,
+    ~_SwipeAreaProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~swipeAreaWidth: MaterialUi_Types.Number.t=?,
+    ~transitionDuration: TransitionDuration.t=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "permanent"] `Permanent
+                | [@bs.as "persistent"] `Persistent
+                | [@bs.as "temporary"] `Temporary
+              ]
                 =?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "SwipeableDrawer";

@@ -38,16 +38,16 @@ module ActionsComponent: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "toolbar": option(option(string)),
-    "spacer": option(option(string)),
-    "caption": option(option(string)),
-    "selectRoot": option(option(string)),
-    "select": option(option(string)),
-    "selectIcon": option(option(string)),
-    "input": option(option(string)),
-    "menuItem": option(option(string)),
-    "actions": option(option(string)),
+    "root": option(string),
+    "toolbar": option(string),
+    "spacer": option(string),
+    "caption": option(string),
+    "selectRoot": option(string),
+    "select": option(string),
+    "selectIcon": option(string),
+    "input": option(string),
+    "menuItem": option(string),
+    "actions": option(string),
   };
   [@bs.obj]
   external make:
@@ -84,83 +84,71 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~align: option(
-              [@bs.string] [
-                | [@bs.as "center"] `Center
-                | [@bs.as "inherit"] `Inherit
-                | [@bs.as "justify"] `Justify
-                | [@bs.as "left"] `Left
-                | [@bs.as "right"] `Right
-              ],
-            )
+    ~align: [@bs.string] [
+              | [@bs.as "center"] `Center
+              | [@bs.as "inherit"] `Inherit
+              | [@bs.as "justify"] `Justify
+              | [@bs.as "left"] `Left
+              | [@bs.as "right"] `Right
+            ]
               =?,
-    ~children: option('children)=?,
-    ~padding: option(
-                [@bs.string] [
-                  | [@bs.as "checkbox"] `Checkbox
-                  | [@bs.as "default"] `Default
-                  | [@bs.as "none"] `None
-                ],
-              )
+    ~children: 'children=?,
+    ~padding: [@bs.string] [
+                | [@bs.as "checkbox"] `Checkbox
+                | [@bs.as "default"] `Default
+                | [@bs.as "none"] `None
+              ]
                 =?,
-    ~scope: option(string)=?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~scope: string=?,
+    ~size: [@bs.string] [
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~sortDirection: option(SortDirection.t)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "body"] `Body
-                  | [@bs.as "footer"] `Footer
-                  | [@bs.as "head"] `Head
-                ],
-              )
+    ~sortDirection: SortDirection.t=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "body"] `Body
+                | [@bs.as "footer"] `Footer
+                | [@bs.as "head"] `Head
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~_ActionsComponent: option(ActionsComponent.t)=?,
-    ~backIconButtonProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~backIconButtonText: option(string)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~colSpan: option(MaterialUi_Types.Number.t)=?,
-    ~component: option(Component.t)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~_ActionsComponent: ActionsComponent.t=?,
+    ~backIconButtonProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~backIconButtonText: string=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~colSpan: MaterialUi_Types.Number.t=?,
+    ~component: Component.t=?,
     ~count: MaterialUi_Types.Number.t,
-    ~labelDisplayedRows: option(
-                           {
-                             .
-                             "from": int,
-                             "to": int,
-                             "count": int,
-                           } =>
-                           string,
-                         )
-                           =?,
-    ~labelRowsPerPage: option(
-                         {
+    ~labelDisplayedRows: {
                            .
                            "from": int,
                            "to": int,
                            "count": int,
-                           "page": int,
                          } =>
-                         React.element,
-                       )
+                         string
+                           =?,
+    ~labelRowsPerPage: {
+                         .
+                         "from": int,
+                         "to": int,
+                         "count": int,
+                         "page": int,
+                       } =>
+                       React.element
                          =?,
-    ~nextIconButtonProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~nextIconButtonText: option(string)=?,
+    ~nextIconButtonProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~nextIconButtonText: string=?,
     ~onChangePage: (ReactEvent.Mouse.t, int) => unit,
-    ~onChangeRowsPerPage: option(ReactEvent.Form.t => unit)=?,
-    ~page: option(int)=?,
+    ~onChangeRowsPerPage: ReactEvent.Form.t => unit=?,
+    ~page: int=?,
     ~rowsPerPage: MaterialUi_Types.Number.t,
-    ~rowsPerPageOptions: option(array(int))=?,
-    ~_SelectProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~rowsPerPageOptions: array(int)=?,
+    ~_SelectProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "TablePagination";

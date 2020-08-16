@@ -1,10 +1,10 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "tile": option(option(string)),
-    "imgFullHeight": option(option(string)),
-    "imgFullWidth": option(option(string)),
+    "root": option(string),
+    "tile": option(string),
+    "imgFullHeight": option(string),
+    "imgFullWidth": option(string),
   };
   [@bs.obj]
   external make:
@@ -35,16 +35,16 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~cols: option(MaterialUi_Types.Number.t)=?,
-    ~component: option(Component.t)=?,
-    ~rows: option(MaterialUi_Types.Number.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~cols: MaterialUi_Types.Number.t=?,
+    ~component: Component.t=?,
+    ~rows: MaterialUi_Types.Number.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "GridListTile";

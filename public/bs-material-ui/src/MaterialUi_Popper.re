@@ -50,36 +50,34 @@ type placement = [
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~anchorEl: option(AnchorEl.t)=?,
-    ~children: option('children)=?,
-    ~container: option(Container.t)=?,
-    ~disablePortal: option(bool)=?,
-    ~keepMounted: option(bool)=?,
-    ~modifiers: option(Js.Dict.t(MaterialUi_Types.any))=?,
+    ~anchorEl: AnchorEl.t=?,
+    ~children: 'children=?,
+    ~container: Container.t=?,
+    ~disablePortal: bool=?,
+    ~keepMounted: bool=?,
+    ~modifiers: Js.Dict.t(MaterialUi_Types.any)=?,
     ~_open: bool,
-    ~placement: option(
-                  [@bs.string] [
-                    | [@bs.as "bottom-end"] `Bottom_End
-                    | [@bs.as "bottom-start"] `Bottom_Start
-                    | [@bs.as "bottom"] `Bottom
-                    | [@bs.as "left-end"] `Left_End
-                    | [@bs.as "left-start"] `Left_Start
-                    | [@bs.as "left"] `Left
-                    | [@bs.as "right-end"] `Right_End
-                    | [@bs.as "right-start"] `Right_Start
-                    | [@bs.as "right"] `Right
-                    | [@bs.as "top-end"] `Top_End
-                    | [@bs.as "top-start"] `Top_Start
-                    | [@bs.as "top"] `Top
-                  ],
-                )
+    ~placement: [@bs.string] [
+                  | [@bs.as "bottom-end"] `Bottom_End
+                  | [@bs.as "bottom-start"] `Bottom_Start
+                  | [@bs.as "bottom"] `Bottom
+                  | [@bs.as "left-end"] `Left_End
+                  | [@bs.as "left-start"] `Left_Start
+                  | [@bs.as "left"] `Left
+                  | [@bs.as "right-end"] `Right_End
+                  | [@bs.as "right-start"] `Right_Start
+                  | [@bs.as "right"] `Right
+                  | [@bs.as "top-end"] `Top_End
+                  | [@bs.as "top-start"] `Top_Start
+                  | [@bs.as "top"] `Top
+                ]
                   =?,
-    ~popperOptions: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~transition: option(bool)=?,
-    ~id: option(string)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~popperOptions: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~transition: bool=?,
+    ~id: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Popper";

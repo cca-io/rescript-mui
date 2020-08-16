@@ -3,9 +3,9 @@ type direction = [ | `Down | `Left | `Right | `Up];
 module Timeout_shape = {
   type t = {
     .
-    "appear": option(option(MaterialUi_Types.Number.t)),
-    "enter": option(option(MaterialUi_Types.Number.t)),
-    "exit": option(option(MaterialUi_Types.Number.t)),
+    "appear": option(MaterialUi_Types.Number.t),
+    "enter": option(MaterialUi_Types.Number.t),
+    "exit": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -35,28 +35,26 @@ module Timeout: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~direction: option(
-                  [@bs.string] [
-                    | [@bs.as "down"] `Down
-                    | [@bs.as "left"] `Left
-                    | [@bs.as "right"] `Right
-                    | [@bs.as "up"] `Up
-                  ],
-                )
+    ~children: 'children=?,
+    ~direction: [@bs.string] [
+                  | [@bs.as "down"] `Down
+                  | [@bs.as "left"] `Left
+                  | [@bs.as "right"] `Right
+                  | [@bs.as "up"] `Up
+                ]
                   =?,
-    ~_in: option(bool)=?,
-    ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~timeout: option(Timeout.t)=?,
-    ~id: option(string)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~_in: bool=?,
+    ~onEnter: ReactEvent.Synthetic.t => unit=?,
+    ~onEntered: ReactEvent.Synthetic.t => unit=?,
+    ~onEntering: ReactEvent.Synthetic.t => unit=?,
+    ~onExit: ReactEvent.Synthetic.t => unit=?,
+    ~onExited: ReactEvent.Synthetic.t => unit=?,
+    ~onExiting: ReactEvent.Synthetic.t => unit=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~timeout: Timeout.t=?,
+    ~id: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Slide";

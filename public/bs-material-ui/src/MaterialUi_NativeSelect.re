@@ -61,17 +61,17 @@ module RowsMax: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "select": option(option(string)),
-    "filled": option(option(string)),
-    "outlined": option(option(string)),
-    "selectMenu": option(option(string)),
-    "disabled": option(option(string)),
-    "icon": option(option(string)),
-    "iconOpen": option(option(string)),
-    "iconFilled": option(option(string)),
-    "iconOutlined": option(option(string)),
-    "nativeInput": option(option(string)),
+    "root": option(string),
+    "select": option(string),
+    "filled": option(string),
+    "outlined": option(string),
+    "selectMenu": option(string),
+    "disabled": option(string),
+    "icon": option(string),
+    "iconOpen": option(string),
+    "iconFilled": option(string),
+    "iconOutlined": option(string),
+    "nativeInput": option(string),
   };
   [@bs.obj]
   external make:
@@ -111,66 +111,57 @@ type variant = [ | `Filled | `Outlined | `Standard];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~aria_describedby: option(string)=?,
-    ~className: option(string)=?,
-    ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-    ~renderSuffix: option(MaterialUi_Types.any)=?,
-    ~rowsMin: option(RowsMin.t)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~autoComplete: option(string)=?,
-    ~autoFocus: option(bool)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~aria_describedby: string=?,
+    ~className: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+    ~renderSuffix: MaterialUi_Types.any=?,
+    ~rowsMin: RowsMin.t=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~autoComplete: string=?,
+    ~autoFocus: bool=?,
+    ~color: [@bs.string] [
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~defaultValue: option(MaterialUi_Types.any)=?,
-    ~disabled: option(bool)=?,
-    ~disableUnderline: option(bool)=?,
-    ~endAdornment: option(React.element)=?,
-    ~error: option(bool)=?,
-    ~fullWidth: option(bool)=?,
-    ~id: option(string)=?,
-    ~inputComponent: option(InputComponent.t)=?,
-    ~margin: option(
-               [@bs.string] [
-                 | [@bs.as "dense"] `Dense
-                 | [@bs.as "none"] `None
-               ],
-             )
+    ~defaultValue: MaterialUi_Types.any=?,
+    ~disabled: bool=?,
+    ~disableUnderline: bool=?,
+    ~endAdornment: React.element=?,
+    ~error: bool=?,
+    ~fullWidth: bool=?,
+    ~id: string=?,
+    ~inputComponent: InputComponent.t=?,
+    ~margin: [@bs.string] [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None]
                =?,
-    ~multiline: option(bool)=?,
-    ~name: option(string)=?,
-    ~placeholder: option(string)=?,
-    ~readOnly: option(bool)=?,
-    ~required: option(bool)=?,
-    ~rows: option(Rows.t)=?,
-    ~rowsMax: option(RowsMax.t)=?,
-    ~startAdornment: option(React.element)=?,
-    ~_type: option(string)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~_IconComponent: option(IconComponent.t)=?,
-    ~input: option(React.element)=?,
-    ~inputProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~onChange: option(ReactEvent.Form.t => unit)=?,
-    ~value: option(MaterialUi_Types.any)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "filled"] `Filled
-                  | [@bs.as "outlined"] `Outlined
-                  | [@bs.as "standard"] `Standard
-                ],
-              )
+    ~multiline: bool=?,
+    ~name: string=?,
+    ~placeholder: string=?,
+    ~readOnly: bool=?,
+    ~required: bool=?,
+    ~rows: Rows.t=?,
+    ~rowsMax: RowsMax.t=?,
+    ~startAdornment: React.element=?,
+    ~_type: string=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~_IconComponent: IconComponent.t=?,
+    ~input: React.element=?,
+    ~inputProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~value: MaterialUi_Types.any=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "filled"] `Filled
+                | [@bs.as "outlined"] `Outlined
+                | [@bs.as "standard"] `Standard
+              ]
                 =?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "NativeSelect";

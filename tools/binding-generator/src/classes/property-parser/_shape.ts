@@ -16,7 +16,7 @@ const factory = (propertyType: PropType$Shape) => {
               ${shapeArgs
                 .map((arg) => {
                   return `
-                "${arg.key}":option(option(${arg.type}))
+                "${arg.key}":option(${arg.type})
                 `;
                 })
                 .join(',')}

@@ -1,15 +1,15 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "colorAction": option(option(string)),
-    "colorError": option(option(string)),
-    "colorDisabled": option(option(string)),
-    "fontSizeInherit": option(option(string)),
-    "fontSizeSmall": option(option(string)),
-    "fontSizeLarge": option(option(string)),
+    "root": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "colorAction": option(string),
+    "colorError": option(string),
+    "colorDisabled": option(string),
+    "fontSizeInherit": option(string),
+    "fontSizeSmall": option(string),
+    "fontSizeLarge": option(string),
   };
   [@bs.obj]
   external make:
@@ -56,38 +56,34 @@ type fontSize = [ | `Default | `Inherit | `Large | `Small];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "action"] `Action
-                | [@bs.as "disabled"] `Disabled
-                | [@bs.as "error"] `Error
-                | [@bs.as "inherit"] `Inherit
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "action"] `Action
+              | [@bs.as "disabled"] `Disabled
+              | [@bs.as "error"] `Error
+              | [@bs.as "inherit"] `Inherit
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~component: option(Component.t)=?,
-    ~fontSize: option(
-                 [@bs.string] [
-                   | [@bs.as "default"] `Default
-                   | [@bs.as "inherit"] `Inherit
-                   | [@bs.as "large"] `Large
-                   | [@bs.as "small"] `Small
-                 ],
-               )
+    ~component: Component.t=?,
+    ~fontSize: [@bs.string] [
+                 | [@bs.as "default"] `Default
+                 | [@bs.as "inherit"] `Inherit
+                 | [@bs.as "large"] `Large
+                 | [@bs.as "small"] `Small
+               ]
                  =?,
-    ~htmlColor: option(string)=?,
-    ~shapeRendering: option(string)=?,
-    ~titleAccess: option(string)=?,
-    ~viewBox: option(string)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~htmlColor: string=?,
+    ~shapeRendering: string=?,
+    ~titleAccess: string=?,
+    ~viewBox: string=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "SvgIcon";

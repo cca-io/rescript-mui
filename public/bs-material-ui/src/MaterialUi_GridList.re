@@ -24,7 +24,7 @@ module CellHeight: {
 };
 
 module Classes = {
-  type t = {. "root": option(option(string))};
+  type t = {. "root": option(string)};
   [@bs.obj] external make: (~root: string=?, unit) => t;
 };
 
@@ -45,17 +45,17 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~cellHeight: option(CellHeight.t)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~cols: option(MaterialUi_Types.Number.t)=?,
-    ~component: option(Component.t)=?,
-    ~spacing: option(MaterialUi_Types.Number.t)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~id: option(string)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~cellHeight: CellHeight.t=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~cols: MaterialUi_Types.Number.t=?,
+    ~component: Component.t=?,
+    ~spacing: MaterialUi_Types.Number.t=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~id: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "GridList";

@@ -29,8 +29,8 @@ module Vertical: {
 module AnchorOrigin = {
   type t = {
     .
-    "horizontal": option(option(Horizontal.t)),
-    "vertical": option(option(Vertical.t)),
+    "horizontal": option(Horizontal.t),
+    "vertical": option(Vertical.t),
   };
   [@bs.obj]
   external make:
@@ -40,13 +40,13 @@ module AnchorOrigin = {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "anchorOriginTopCenter": option(option(string)),
-    "anchorOriginBottomCenter": option(option(string)),
-    "anchorOriginTopRight": option(option(string)),
-    "anchorOriginBottomRight": option(option(string)),
-    "anchorOriginTopLeft": option(option(string)),
-    "anchorOriginBottomLeft": option(option(string)),
+    "root": option(string),
+    "anchorOriginTopCenter": option(string),
+    "anchorOriginBottomCenter": option(string),
+    "anchorOriginTopRight": option(string),
+    "anchorOriginBottomRight": option(string),
+    "anchorOriginTopLeft": option(string),
+    "anchorOriginBottomLeft": option(string),
   };
   [@bs.obj]
   external make:
@@ -80,9 +80,9 @@ module TransitionComponent: {
 module TransitionDuration_shape = {
   type t = {
     .
-    "appear": option(option(MaterialUi_Types.Number.t)),
-    "enter": option(option(MaterialUi_Types.Number.t)),
-    "exit": option(option(MaterialUi_Types.Number.t)),
+    "appear": option(MaterialUi_Types.Number.t),
+    "enter": option(MaterialUi_Types.Number.t),
+    "exit": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -112,34 +112,34 @@ module TransitionDuration: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~action: option(React.element)=?,
-    ~anchorOrigin: option(AnchorOrigin.t)=?,
-    ~autoHideDuration: option(MaterialUi_Types.Number.t)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~_ClickAwayListenerProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~_ContentProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~disableWindowBlurListener: option(bool)=?,
-    ~key: option(string)=?,
-    ~message: option(React.element)=?,
-    ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
-    ~onEnter: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntered: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onEntering: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExit: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExited: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onExiting: option(ReactEvent.Synthetic.t => unit)=?,
-    ~onMouseEnter: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~_open: option(bool)=?,
-    ~resumeHideDuration: option(MaterialUi_Types.Number.t)=?,
-    ~_TransitionComponent: option(TransitionComponent.t)=?,
-    ~transitionDuration: option(TransitionDuration.t)=?,
-    ~_TransitionProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~action: React.element=?,
+    ~anchorOrigin: AnchorOrigin.t=?,
+    ~autoHideDuration: MaterialUi_Types.Number.t=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~_ClickAwayListenerProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_ContentProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~disableWindowBlurListener: bool=?,
+    ~key: string=?,
+    ~message: React.element=?,
+    ~onClose: (ReactEvent.Synthetic.t, string) => unit=?,
+    ~onEnter: ReactEvent.Synthetic.t => unit=?,
+    ~onEntered: ReactEvent.Synthetic.t => unit=?,
+    ~onEntering: ReactEvent.Synthetic.t => unit=?,
+    ~onExit: ReactEvent.Synthetic.t => unit=?,
+    ~onExited: ReactEvent.Synthetic.t => unit=?,
+    ~onExiting: ReactEvent.Synthetic.t => unit=?,
+    ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
+    ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+    ~_open: bool=?,
+    ~resumeHideDuration: MaterialUi_Types.Number.t=?,
+    ~_TransitionComponent: TransitionComponent.t=?,
+    ~transitionDuration: TransitionDuration.t=?,
+    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Snackbar";

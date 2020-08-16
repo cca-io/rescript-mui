@@ -1,13 +1,13 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "colorDefault": option(option(string)),
-    "circle": option(option(string)),
-    "rounded": option(option(string)),
-    "square": option(option(string)),
-    "img": option(option(string)),
-    "fallback": option(option(string)),
+    "root": option(string),
+    "colorDefault": option(string),
+    "circle": option(string),
+    "rounded": option(string),
+    "square": option(string),
+    "img": option(string),
+    "fallback": option(string),
   };
   [@bs.obj]
   external make:
@@ -43,27 +43,25 @@ type variant = [ | `Circle | `Rounded | `Square];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~alt: option(string)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~imgProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~sizes: option(string)=?,
-    ~src: option(string)=?,
-    ~srcSet: option(string)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "circle"] `Circle
-                  | [@bs.as "rounded"] `Rounded
-                  | [@bs.as "square"] `Square
-                ],
-              )
+    ~alt: string=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~imgProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~sizes: string=?,
+    ~src: string=?,
+    ~srcSet: string=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "circle"] `Circle
+                | [@bs.as "rounded"] `Rounded
+                | [@bs.as "square"] `Square
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Avatar";

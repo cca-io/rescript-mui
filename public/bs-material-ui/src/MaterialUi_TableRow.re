@@ -1,11 +1,11 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "selected": option(option(string)),
-    "hover": option(option(string)),
-    "head": option(option(string)),
-    "footer": option(option(string)),
+    "root": option(string),
+    "selected": option(string),
+    "hover": option(string),
+    "head": option(string),
+    "footer": option(string),
   };
   [@bs.obj]
   external make:
@@ -37,17 +37,17 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~hover: option(bool)=?,
-    ~selected: option(bool)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~onDoubleClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~hover: bool=?,
+    ~selected: bool=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "TableRow";

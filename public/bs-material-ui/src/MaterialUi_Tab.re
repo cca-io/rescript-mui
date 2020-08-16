@@ -56,16 +56,16 @@ module Type: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "labelIcon": option(option(string)),
-    "textColorInherit": option(option(string)),
-    "textColorPrimary": option(option(string)),
-    "textColorSecondary": option(option(string)),
-    "selected": option(option(string)),
-    "disabled": option(option(string)),
-    "fullWidth": option(option(string)),
-    "wrapped": option(option(string)),
-    "wrapper": option(option(string)),
+    "root": option(string),
+    "labelIcon": option(string),
+    "textColorInherit": option(string),
+    "textColorPrimary": option(string),
+    "textColorSecondary": option(string),
+    "selected": option(string),
+    "disabled": option(string),
+    "fullWidth": option(string),
+    "wrapped": option(string),
+    "wrapper": option(string),
   };
   [@bs.obj]
   external make:
@@ -90,55 +90,53 @@ type textColor = [ | `Secondary | `Primary | `Inherit];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~centerRipple: option(bool)=?,
-    ~component: option(Component.t)=?,
-    ~disableTouchRipple: option(bool)=?,
-    ~focusRipple: option(bool)=?,
-    ~focusVisibleClassName: option(string)=?,
-    ~href: option(string)=?,
-    ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-    ~onDragLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~onFocusVisible: option(MaterialUi_Types.any)=?,
-    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseUp: option(ReactEvent.Mouse.t => unit)=?,
-    ~onTouchEnd: option(ReactEvent.Touch.t => unit)=?,
-    ~onTouchMove: option(ReactEvent.Touch.t => unit)=?,
-    ~onTouchStart: option(ReactEvent.Touch.t => unit)=?,
-    ~tabIndex: option(TabIndex.t)=?,
-    ~_TouchRippleProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~_type: option(Type.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~disabled: option(bool)=?,
-    ~disableFocusRipple: option(bool)=?,
-    ~disableRipple: option(bool)=?,
-    ~fullWidth: option(bool)=?,
-    ~icon: option(React.element)=?,
-    ~indicator: option(React.element)=?,
-    ~label: option(React.element)=?,
-    ~onChange: option(ReactEvent.Form.t => unit)=?,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~selected: option(bool)=?,
-    ~selectionFollowsFocus: option(bool)=?,
-    ~textColor: option(
-                  [@bs.string] [
-                    | [@bs.as "secondary"] `Secondary
-                    | [@bs.as "primary"] `Primary
-                    | [@bs.as "inherit"] `Inherit
-                  ],
-                )
+    ~centerRipple: bool=?,
+    ~component: Component.t=?,
+    ~disableTouchRipple: bool=?,
+    ~focusRipple: bool=?,
+    ~focusVisibleClassName: string=?,
+    ~href: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onDragLeave: ReactEvent.Mouse.t => unit=?,
+    ~onFocusVisible: MaterialUi_Types.any=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+    ~onMouseDown: ReactEvent.Mouse.t => unit=?,
+    ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+    ~onMouseUp: ReactEvent.Mouse.t => unit=?,
+    ~onTouchEnd: ReactEvent.Touch.t => unit=?,
+    ~onTouchMove: ReactEvent.Touch.t => unit=?,
+    ~onTouchStart: ReactEvent.Touch.t => unit=?,
+    ~tabIndex: TabIndex.t=?,
+    ~_TouchRippleProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_type: Type.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~disabled: bool=?,
+    ~disableFocusRipple: bool=?,
+    ~disableRipple: bool=?,
+    ~fullWidth: bool=?,
+    ~icon: React.element=?,
+    ~indicator: React.element=?,
+    ~label: React.element=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~selected: bool=?,
+    ~selectionFollowsFocus: bool=?,
+    ~textColor: [@bs.string] [
+                  | [@bs.as "secondary"] `Secondary
+                  | [@bs.as "primary"] `Primary
+                  | [@bs.as "inherit"] `Inherit
+                ]
                   =?,
-    ~value: option(MaterialUi_Types.any)=?,
-    ~wrapped: option(bool)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~value: MaterialUi_Types.any=?,
+    ~wrapped: bool=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Tab";

@@ -18,53 +18,53 @@ type alignItems = [
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "container": option(option(string)),
-    "item": option(option(string)),
-    "zeroMinWidth": option(option(string)),
-    "direction_xs_column": option(option(string)),
-    "direction_xs_column_reverse": option(option(string)),
-    "direction_xs_row_reverse": option(option(string)),
-    "wrap_xs_nowrap": option(option(string)),
-    "wrap_xs_wrap_reverse": option(option(string)),
-    "align_items_xs_center": option(option(string)),
-    "align_items_xs_flex_start": option(option(string)),
-    "align_items_xs_flex_end": option(option(string)),
-    "align_items_xs_baseline": option(option(string)),
-    "align_content_xs_center": option(option(string)),
-    "align_content_xs_flex_start": option(option(string)),
-    "align_content_xs_flex_end": option(option(string)),
-    "align_content_xs_space_between": option(option(string)),
-    "align_content_xs_space_around": option(option(string)),
-    "justify_xs_center": option(option(string)),
-    "justify_xs_flex_end": option(option(string)),
-    "justify_xs_space_between": option(option(string)),
-    "justify_xs_space_around": option(option(string)),
-    "justify_xs_space_evenly": option(option(string)),
-    "spacing_xs_1": option(option(string)),
-    "spacing_xs_2": option(option(string)),
-    "spacing_xs_3": option(option(string)),
-    "spacing_xs_4": option(option(string)),
-    "spacing_xs_5": option(option(string)),
-    "spacing_xs_6": option(option(string)),
-    "spacing_xs_7": option(option(string)),
-    "spacing_xs_8": option(option(string)),
-    "spacing_xs_9": option(option(string)),
-    "spacing_xs_10": option(option(string)),
-    "grid_xs_auto": option(option(string)),
-    "grid_xs_true": option(option(string)),
-    "grid_xs_1": option(option(string)),
-    "grid_xs_2": option(option(string)),
-    "grid_xs_3": option(option(string)),
-    "grid_xs_4": option(option(string)),
-    "grid_xs_5": option(option(string)),
-    "grid_xs_6": option(option(string)),
-    "grid_xs_7": option(option(string)),
-    "grid_xs_8": option(option(string)),
-    "grid_xs_9": option(option(string)),
-    "grid_xs_10": option(option(string)),
-    "grid_xs_11": option(option(string)),
-    "grid_xs_12": option(option(string)),
+    "root": option(string),
+    "container": option(string),
+    "item": option(string),
+    "zeroMinWidth": option(string),
+    "direction_xs_column": option(string),
+    "direction_xs_column_reverse": option(string),
+    "direction_xs_row_reverse": option(string),
+    "wrap_xs_nowrap": option(string),
+    "wrap_xs_wrap_reverse": option(string),
+    "align_items_xs_center": option(string),
+    "align_items_xs_flex_start": option(string),
+    "align_items_xs_flex_end": option(string),
+    "align_items_xs_baseline": option(string),
+    "align_content_xs_center": option(string),
+    "align_content_xs_flex_start": option(string),
+    "align_content_xs_flex_end": option(string),
+    "align_content_xs_space_between": option(string),
+    "align_content_xs_space_around": option(string),
+    "justify_xs_center": option(string),
+    "justify_xs_flex_end": option(string),
+    "justify_xs_space_between": option(string),
+    "justify_xs_space_around": option(string),
+    "justify_xs_space_evenly": option(string),
+    "spacing_xs_1": option(string),
+    "spacing_xs_2": option(string),
+    "spacing_xs_3": option(string),
+    "spacing_xs_4": option(string),
+    "spacing_xs_5": option(string),
+    "spacing_xs_6": option(string),
+    "spacing_xs_7": option(string),
+    "spacing_xs_8": option(string),
+    "spacing_xs_9": option(string),
+    "spacing_xs_10": option(string),
+    "grid_xs_auto": option(string),
+    "grid_xs_true": option(string),
+    "grid_xs_1": option(string),
+    "grid_xs_2": option(string),
+    "grid_xs_3": option(string),
+    "grid_xs_4": option(string),
+    "grid_xs_5": option(string),
+    "grid_xs_6": option(string),
+    "grid_xs_7": option(string),
+    "grid_xs_8": option(string),
+    "grid_xs_9": option(string),
+    "grid_xs_10": option(string),
+    "grid_xs_11": option(string),
+    "grid_xs_12": option(string),
   };
   [@bs.obj]
   external make:
@@ -360,87 +360,75 @@ module Xs: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~alignContent: option(
-                     [@bs.string] [
-                       | [@bs.as "stretch"] `Stretch
-                       | [@bs.as "center"] `Center
-                       | [@bs.as "flex-start"] `Flex_Start
-                       | [@bs.as "flex-end"] `Flex_End
-                       | [@bs.as "space-between"] `Space_Between
-                       | [@bs.as "space-around"] `Space_Around
-                     ],
-                   )
-                     =?,
-    ~alignItems: option(
-                   [@bs.string] [
-                     | [@bs.as "flex-start"] `Flex_Start
-                     | [@bs.as "center"] `Center
-                     | [@bs.as "flex-end"] `Flex_End
+    ~alignContent: [@bs.string] [
                      | [@bs.as "stretch"] `Stretch
-                     | [@bs.as "baseline"] `Baseline
-                   ],
-                 )
+                     | [@bs.as "center"] `Center
+                     | [@bs.as "flex-start"] `Flex_Start
+                     | [@bs.as "flex-end"] `Flex_End
+                     | [@bs.as "space-between"] `Space_Between
+                     | [@bs.as "space-around"] `Space_Around
+                   ]
+                     =?,
+    ~alignItems: [@bs.string] [
+                   | [@bs.as "flex-start"] `Flex_Start
+                   | [@bs.as "center"] `Center
+                   | [@bs.as "flex-end"] `Flex_End
+                   | [@bs.as "stretch"] `Stretch
+                   | [@bs.as "baseline"] `Baseline
+                 ]
                    =?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~container: option(bool)=?,
-    ~direction: option(
-                  [@bs.string] [
-                    | [@bs.as "row"] `Row
-                    | [@bs.as "row-reverse"] `Row_Reverse
-                    | [@bs.as "column"] `Column
-                    | [@bs.as "column-reverse"] `Column_Reverse
-                  ],
-                )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~container: bool=?,
+    ~direction: [@bs.string] [
+                  | [@bs.as "row"] `Row
+                  | [@bs.as "row-reverse"] `Row_Reverse
+                  | [@bs.as "column"] `Column
+                  | [@bs.as "column-reverse"] `Column_Reverse
+                ]
                   =?,
-    ~item: option(bool)=?,
-    ~justify: option(
-                [@bs.string] [
-                  | [@bs.as "flex-start"] `Flex_Start
-                  | [@bs.as "center"] `Center
-                  | [@bs.as "flex-end"] `Flex_End
-                  | [@bs.as "space-between"] `Space_Between
-                  | [@bs.as "space-around"] `Space_Around
-                  | [@bs.as "space-evenly"] `Space_Evenly
-                ],
-              )
+    ~item: bool=?,
+    ~justify: [@bs.string] [
+                | [@bs.as "flex-start"] `Flex_Start
+                | [@bs.as "center"] `Center
+                | [@bs.as "flex-end"] `Flex_End
+                | [@bs.as "space-between"] `Space_Between
+                | [@bs.as "space-around"] `Space_Around
+                | [@bs.as "space-evenly"] `Space_Evenly
+              ]
                 =?,
-    ~lg: option(Lg.t)=?,
-    ~md: option(Md.t)=?,
-    ~sm: option(Sm.t)=?,
-    ~spacing: option(
-                [@bs.int] [
-                  | [@bs.as 0] `V0
-                  | [@bs.as 1] `V1
-                  | [@bs.as 2] `V2
-                  | [@bs.as 3] `V3
-                  | [@bs.as 4] `V4
-                  | [@bs.as 5] `V5
-                  | [@bs.as 6] `V6
-                  | [@bs.as 7] `V7
-                  | [@bs.as 8] `V8
-                  | [@bs.as 9] `V9
-                  | [@bs.as 10] `V10
-                ],
-              )
+    ~lg: Lg.t=?,
+    ~md: Md.t=?,
+    ~sm: Sm.t=?,
+    ~spacing: [@bs.int] [
+                | [@bs.as 0] `V0
+                | [@bs.as 1] `V1
+                | [@bs.as 2] `V2
+                | [@bs.as 3] `V3
+                | [@bs.as 4] `V4
+                | [@bs.as 5] `V5
+                | [@bs.as 6] `V6
+                | [@bs.as 7] `V7
+                | [@bs.as 8] `V8
+                | [@bs.as 9] `V9
+                | [@bs.as 10] `V10
+              ]
                 =?,
-    ~wrap: option(
-             [@bs.string] [
-               | [@bs.as "nowrap"] `Nowrap
-               | [@bs.as "wrap"] `Wrap
-               | [@bs.as "wrap-reverse"] `Wrap_Reverse
-             ],
-           )
+    ~wrap: [@bs.string] [
+             | [@bs.as "nowrap"] `Nowrap
+             | [@bs.as "wrap"] `Wrap
+             | [@bs.as "wrap-reverse"] `Wrap_Reverse
+           ]
              =?,
-    ~xl: option(Xl.t)=?,
-    ~xs: option(Xs.t)=?,
-    ~zeroMinWidth: option(bool)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~xl: Xl.t=?,
+    ~xs: Xs.t=?,
+    ~zeroMinWidth: bool=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Grid";

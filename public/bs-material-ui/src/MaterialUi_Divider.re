@@ -1,13 +1,13 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "absolute": option(option(string)),
-    "inset": option(option(string)),
-    "light": option(option(string)),
-    "middle": option(option(string)),
-    "vertical": option(option(string)),
-    "flexItem": option(option(string)),
+    "root": option(string),
+    "absolute": option(string),
+    "inset": option(string),
+    "light": option(string),
+    "middle": option(string),
+    "vertical": option(string),
+    "flexItem": option(string),
   };
   [@bs.obj]
   external make:
@@ -45,33 +45,29 @@ type variant = [ | `FullWidth | `Inset | `Middle];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~absolute: option(bool)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~flexItem: option(bool)=?,
-    ~light: option(bool)=?,
-    ~orientation: option(
-                    [@bs.string] [
-                      | [@bs.as "horizontal"] `Horizontal
-                      | [@bs.as "vertical"] `Vertical
-                    ],
-                  )
+    ~absolute: bool=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~flexItem: bool=?,
+    ~light: bool=?,
+    ~orientation: [@bs.string] [
+                    | [@bs.as "horizontal"] `Horizontal
+                    | [@bs.as "vertical"] `Vertical
+                  ]
                     =?,
-    ~role: option(string)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "fullWidth"] `FullWidth
-                  | [@bs.as "inset"] `Inset
-                  | [@bs.as "middle"] `Middle
-                ],
-              )
+    ~role: string=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "fullWidth"] `FullWidth
+                | [@bs.as "inset"] `Inset
+                | [@bs.as "middle"] `Middle
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Divider";

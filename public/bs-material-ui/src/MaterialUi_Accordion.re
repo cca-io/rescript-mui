@@ -17,10 +17,10 @@ type variant = [ | `Elevation | `Outlined];
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "rounded": option(option(string)),
-    "expanded": option(option(string)),
-    "disabled": option(option(string)),
+    "root": option(string),
+    "rounded": option(string),
+    "expanded": option(string),
+    "disabled": option(string),
   };
   [@bs.obj]
   external make:
@@ -51,29 +51,27 @@ module TransitionComponent: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~component: option(Component.t)=?,
-    ~elevation: option(MaterialUi_Types.Number.t)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "elevation"] `Elevation
-                  | [@bs.as "outlined"] `Outlined
-                ],
-              )
+    ~component: Component.t=?,
+    ~elevation: MaterialUi_Types.Number.t=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "elevation"] `Elevation
+                | [@bs.as "outlined"] `Outlined
+              ]
                 =?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~defaultExpanded: option(bool)=?,
-    ~disabled: option(bool)=?,
-    ~expanded: option(bool)=?,
-    ~onChange: option((ReactEvent.Form.t, bool) => unit)=?,
-    ~square: option(bool)=?,
-    ~_TransitionComponent: option(TransitionComponent.t)=?,
-    ~_TransitionProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~defaultExpanded: bool=?,
+    ~disabled: bool=?,
+    ~expanded: bool=?,
+    ~onChange: (ReactEvent.Form.t, bool) => unit=?,
+    ~square: bool=?,
+    ~_TransitionComponent: TransitionComponent.t=?,
+    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Accordion";

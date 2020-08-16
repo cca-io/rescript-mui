@@ -1,9 +1,9 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "disabled": option(option(string)),
-    "focusVisible": option(option(string)),
+    "root": option(string),
+    "disabled": option(string),
+    "focusVisible": option(string),
   };
   [@bs.obj]
   external make:
@@ -68,37 +68,37 @@ module Type: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~centerRipple: option(bool)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~disabled: option(bool)=?,
-    ~disableRipple: option(bool)=?,
-    ~disableTouchRipple: option(bool)=?,
-    ~focusRipple: option(bool)=?,
-    ~focusVisibleClassName: option(string)=?,
-    ~href: option(string)=?,
-    ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~onDragLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~onFocusVisible: option(MaterialUi_Types.any)=?,
-    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseUp: option(ReactEvent.Mouse.t => unit)=?,
-    ~onTouchEnd: option(ReactEvent.Touch.t => unit)=?,
-    ~onTouchMove: option(ReactEvent.Touch.t => unit)=?,
-    ~onTouchStart: option(ReactEvent.Touch.t => unit)=?,
-    ~tabIndex: option(TabIndex.t)=?,
-    ~_TouchRippleProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~_type: option(Type.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~centerRipple: bool=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~disabled: bool=?,
+    ~disableRipple: bool=?,
+    ~disableTouchRipple: bool=?,
+    ~focusRipple: bool=?,
+    ~focusVisibleClassName: string=?,
+    ~href: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onDragLeave: ReactEvent.Mouse.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onFocusVisible: MaterialUi_Types.any=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+    ~onMouseDown: ReactEvent.Mouse.t => unit=?,
+    ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+    ~onMouseUp: ReactEvent.Mouse.t => unit=?,
+    ~onTouchEnd: ReactEvent.Touch.t => unit=?,
+    ~onTouchMove: ReactEvent.Touch.t => unit=?,
+    ~onTouchStart: ReactEvent.Touch.t => unit=?,
+    ~tabIndex: TabIndex.t=?,
+    ~_TouchRippleProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_type: Type.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "ButtonBase";

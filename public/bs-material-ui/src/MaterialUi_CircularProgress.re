@@ -1,16 +1,16 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "static": option(option(string)),
-    "indeterminate": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "svg": option(option(string)),
-    "circle": option(option(string)),
-    "circleStatic": option(option(string)),
-    "circleIndeterminate": option(option(string)),
-    "circleDisableShrink": option(option(string)),
+    "root": option(string),
+    "static": option(string),
+    "indeterminate": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "svg": option(string),
+    "circle": option(string),
+    "circleStatic": option(string),
+    "circleIndeterminate": option(string),
+    "circleDisableShrink": option(string),
   };
   [@bs.obj]
   external make:
@@ -51,32 +51,28 @@ type variant = [ | `Determinate | `Indeterminate | `Static];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "inherit"] `Inherit
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "inherit"] `Inherit
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~disableShrink: option(bool)=?,
-    ~size: option(Size.t)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~thickness: option(MaterialUi_Types.Number.t)=?,
-    ~value: option(MaterialUi_Types.Number.t)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "determinate"] `Determinate
-                  | [@bs.as "indeterminate"] `Indeterminate
-                  | [@bs.as "static"] `Static
-                ],
-              )
+    ~disableShrink: bool=?,
+    ~size: Size.t=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~thickness: MaterialUi_Types.Number.t=?,
+    ~value: MaterialUi_Types.Number.t=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "determinate"] `Determinate
+                | [@bs.as "indeterminate"] `Indeterminate
+                | [@bs.as "static"] `Static
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "CircularProgress";

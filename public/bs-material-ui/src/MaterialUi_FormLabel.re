@@ -1,14 +1,14 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "focused": option(option(string)),
-    "disabled": option(option(string)),
-    "error": option(option(string)),
-    "filled": option(option(string)),
-    "required": option(option(string)),
-    "asterisk": option(option(string)),
+    "root": option(string),
+    "colorSecondary": option(string),
+    "focused": option(string),
+    "disabled": option(string),
+    "error": option(string),
+    "filled": option(string),
+    "required": option(string),
+    "asterisk": option(string),
   };
   [@bs.obj]
   external make:
@@ -45,26 +45,24 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~component: option(Component.t)=?,
-    ~disabled: option(bool)=?,
-    ~error: option(bool)=?,
-    ~filled: option(bool)=?,
-    ~focused: option(bool)=?,
-    ~required: option(bool)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~component: Component.t=?,
+    ~disabled: bool=?,
+    ~error: bool=?,
+    ~filled: bool=?,
+    ~focused: bool=?,
+    ~required: bool=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "FormLabel";

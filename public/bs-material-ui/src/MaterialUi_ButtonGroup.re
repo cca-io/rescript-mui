@@ -1,30 +1,30 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "contained": option(option(string)),
-    "disableElevation": option(option(string)),
-    "disabled": option(option(string)),
-    "fullWidth": option(option(string)),
-    "vertical": option(option(string)),
-    "grouped": option(option(string)),
-    "groupedHorizontal": option(option(string)),
-    "groupedVertical": option(option(string)),
-    "groupedText": option(option(string)),
-    "groupedTextHorizontal": option(option(string)),
-    "groupedTextVertical": option(option(string)),
-    "groupedTextPrimary": option(option(string)),
-    "groupedTextSecondary": option(option(string)),
-    "groupedOutlined": option(option(string)),
-    "groupedOutlinedHorizontal": option(option(string)),
-    "groupedOutlinedVertical": option(option(string)),
-    "groupedOutlinedPrimary": option(option(string)),
-    "groupedOutlinedSecondary": option(option(string)),
-    "groupedContained": option(option(string)),
-    "groupedContainedHorizontal": option(option(string)),
-    "groupedContainedVertical": option(option(string)),
-    "groupedContainedPrimary": option(option(string)),
-    "groupedContainedSecondary": option(option(string)),
+    "root": option(string),
+    "contained": option(string),
+    "disableElevation": option(string),
+    "disabled": option(string),
+    "fullWidth": option(string),
+    "vertical": option(string),
+    "grouped": option(string),
+    "groupedHorizontal": option(string),
+    "groupedVertical": option(string),
+    "groupedText": option(string),
+    "groupedTextHorizontal": option(string),
+    "groupedTextVertical": option(string),
+    "groupedTextPrimary": option(string),
+    "groupedTextSecondary": option(string),
+    "groupedOutlined": option(string),
+    "groupedOutlinedHorizontal": option(string),
+    "groupedOutlinedVertical": option(string),
+    "groupedOutlinedPrimary": option(string),
+    "groupedOutlinedSecondary": option(string),
+    "groupedContained": option(string),
+    "groupedContainedHorizontal": option(string),
+    "groupedContainedVertical": option(string),
+    "groupedContainedPrimary": option(string),
+    "groupedContainedSecondary": option(string),
   };
   [@bs.obj]
   external make:
@@ -83,51 +83,43 @@ type variant = [ | `Contained | `Outlined | `Text];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "default"] `Default
-                | [@bs.as "inherit"] `Inherit
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "default"] `Default
+              | [@bs.as "inherit"] `Inherit
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~component: option(Component.t)=?,
-    ~disabled: option(bool)=?,
-    ~disableElevation: option(bool)=?,
-    ~disableFocusRipple: option(bool)=?,
-    ~disableRipple: option(bool)=?,
-    ~fullWidth: option(bool)=?,
-    ~orientation: option(
-                    [@bs.string] [
-                      | [@bs.as "horizontal"] `Horizontal
-                      | [@bs.as "vertical"] `Vertical
-                    ],
-                  )
+    ~component: Component.t=?,
+    ~disabled: bool=?,
+    ~disableElevation: bool=?,
+    ~disableFocusRipple: bool=?,
+    ~disableRipple: bool=?,
+    ~fullWidth: bool=?,
+    ~orientation: [@bs.string] [
+                    | [@bs.as "horizontal"] `Horizontal
+                    | [@bs.as "vertical"] `Vertical
+                  ]
                     =?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "large"] `Large
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~size: [@bs.string] [
+             | [@bs.as "large"] `Large
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "contained"] `Contained
-                  | [@bs.as "outlined"] `Outlined
-                  | [@bs.as "text"] `Text
-                ],
-              )
+    ~variant: [@bs.string] [
+                | [@bs.as "contained"] `Contained
+                | [@bs.as "outlined"] `Outlined
+                | [@bs.as "text"] `Text
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "ButtonGroup";

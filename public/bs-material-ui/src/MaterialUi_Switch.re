@@ -56,18 +56,18 @@ module Type: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "edgeStart": option(option(string)),
-    "edgeEnd": option(option(string)),
-    "switchBase": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "sizeSmall": option(option(string)),
-    "checked": option(option(string)),
-    "disabled": option(option(string)),
-    "input": option(option(string)),
-    "thumb": option(option(string)),
-    "track": option(option(string)),
+    "root": option(string),
+    "edgeStart": option(string),
+    "edgeEnd": option(string),
+    "switchBase": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "sizeSmall": option(string),
+    "checked": option(string),
+    "disabled": option(string),
+    "input": option(string),
+    "thumb": option(string),
+    "track": option(string),
   };
   [@bs.obj]
   external make:
@@ -111,62 +111,58 @@ type size = [ | `Medium | `Small];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~centerRipple: option(bool)=?,
-    ~component: option(Component.t)=?,
-    ~disableTouchRipple: option(bool)=?,
-    ~focusRipple: option(bool)=?,
-    ~focusVisibleClassName: option(string)=?,
-    ~href: option(string)=?,
-    ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~onDragLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~onFocusVisible: option(MaterialUi_Types.any)=?,
-    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onKeyUp: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseUp: option(ReactEvent.Mouse.t => unit)=?,
-    ~onTouchEnd: option(ReactEvent.Touch.t => unit)=?,
-    ~onTouchMove: option(ReactEvent.Touch.t => unit)=?,
-    ~onTouchStart: option(ReactEvent.Touch.t => unit)=?,
-    ~tabIndex: option(TabIndex.t)=?,
-    ~_TouchRippleProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~_type: option(Type.t)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~children: option('children)=?,
-    ~disableFocusRipple: option(bool)=?,
-    ~checked: option(bool)=?,
-    ~checkedIcon: option(React.element)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "default"] `Default
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~centerRipple: bool=?,
+    ~component: Component.t=?,
+    ~disableTouchRipple: bool=?,
+    ~focusRipple: bool=?,
+    ~focusVisibleClassName: string=?,
+    ~href: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onDragLeave: ReactEvent.Mouse.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onFocusVisible: MaterialUi_Types.any=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+    ~onMouseDown: ReactEvent.Mouse.t => unit=?,
+    ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+    ~onMouseUp: ReactEvent.Mouse.t => unit=?,
+    ~onTouchEnd: ReactEvent.Touch.t => unit=?,
+    ~onTouchMove: ReactEvent.Touch.t => unit=?,
+    ~onTouchStart: ReactEvent.Touch.t => unit=?,
+    ~tabIndex: TabIndex.t=?,
+    ~_TouchRippleProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_type: Type.t=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~children: 'children=?,
+    ~disableFocusRipple: bool=?,
+    ~checked: bool=?,
+    ~checkedIcon: React.element=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "default"] `Default
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~defaultChecked: option(bool)=?,
-    ~disabled: option(bool)=?,
-    ~disableRipple: option(bool)=?,
-    ~edge: option(Edge.t)=?,
-    ~icon: option(React.element)=?,
-    ~id: option(string)=?,
-    ~inputProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~onChange: option(ReactEvent.Form.t => unit)=?,
-    ~required: option(bool)=?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~defaultChecked: bool=?,
+    ~disabled: bool=?,
+    ~disableRipple: bool=?,
+    ~edge: Edge.t=?,
+    ~icon: React.element=?,
+    ~id: string=?,
+    ~inputProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~required: bool=?,
+    ~size: [@bs.string] [
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~value: option(MaterialUi_Types.any)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~value: MaterialUi_Types.any=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Switch";

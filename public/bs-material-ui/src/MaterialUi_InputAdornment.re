@@ -1,13 +1,13 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "filled": option(option(string)),
-    "positionStart": option(option(string)),
-    "positionEnd": option(option(string)),
-    "disablePointerEvents": option(option(string)),
-    "hiddenLabel": option(option(string)),
-    "marginDense": option(option(string)),
+    "root": option(string),
+    "filled": option(string),
+    "positionStart": option(string),
+    "positionEnd": option(string),
+    "disablePointerEvents": option(string),
+    "hiddenLabel": option(string),
+    "marginDense": option(string),
   };
   [@bs.obj]
   external make:
@@ -45,32 +45,25 @@ type variant = [ | `Standard | `Outlined | `Filled];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~disablePointerEvents: option(bool)=?,
-    ~disableTypography: option(bool)=?,
-    ~muiFormControl: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~position: option(
-                 [@bs.string] [
-                   | [@bs.as "start"] `Start
-                   | [@bs.as "end"] `End
-                 ],
-               )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~disablePointerEvents: bool=?,
+    ~disableTypography: bool=?,
+    ~muiFormControl: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~position: [@bs.string] [ | [@bs.as "start"] `Start | [@bs.as "end"] `End]
                  =?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "standard"] `Standard
-                  | [@bs.as "outlined"] `Outlined
-                  | [@bs.as "filled"] `Filled
-                ],
-              )
+    ~variant: [@bs.string] [
+                | [@bs.as "standard"] `Standard
+                | [@bs.as "outlined"] `Outlined
+                | [@bs.as "filled"] `Filled
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "InputAdornment";

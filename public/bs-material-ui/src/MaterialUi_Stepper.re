@@ -17,10 +17,10 @@ type variant = [ | `Elevation | `Outlined];
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "horizontal": option(option(string)),
-    "vertical": option(option(string)),
-    "alternativeLabel": option(option(string)),
+    "root": option(string),
+    "horizontal": option(string),
+    "vertical": option(string),
+    "alternativeLabel": option(string),
   };
   [@bs.obj]
   external make:
@@ -39,34 +39,30 @@ type orientation = [ | `Horizontal | `Vertical];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~component: option(Component.t)=?,
-    ~elevation: option(MaterialUi_Types.Number.t)=?,
-    ~square: option(bool)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "elevation"] `Elevation
-                  | [@bs.as "outlined"] `Outlined
-                ],
-              )
+    ~component: Component.t=?,
+    ~elevation: MaterialUi_Types.Number.t=?,
+    ~square: bool=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "elevation"] `Elevation
+                | [@bs.as "outlined"] `Outlined
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~activeStep: option(MaterialUi_Types.Number.t)=?,
-    ~alternativeLabel: option(bool)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~connector: option(React.element)=?,
-    ~nonLinear: option(bool)=?,
-    ~orientation: option(
-                    [@bs.string] [
-                      | [@bs.as "horizontal"] `Horizontal
-                      | [@bs.as "vertical"] `Vertical
-                    ],
-                  )
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~activeStep: MaterialUi_Types.Number.t=?,
+    ~alternativeLabel: bool=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~connector: React.element=?,
+    ~nonLinear: bool=?,
+    ~orientation: [@bs.string] [
+                    | [@bs.as "horizontal"] `Horizontal
+                    | [@bs.as "vertical"] `Vertical
+                  ]
                     =?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Stepper";

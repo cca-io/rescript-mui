@@ -1,10 +1,10 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "padding": option(option(string)),
-    "dense": option(option(string)),
-    "subheader": option(option(string)),
+    "root": option(string),
+    "padding": option(string),
+    "dense": option(string),
+    "subheader": option(string),
   };
   [@bs.obj]
   external make:
@@ -35,17 +35,17 @@ module Component: {
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~dense: option(bool)=?,
-    ~disablePadding: option(bool)=?,
-    ~subheader: option(React.element)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~dense: bool=?,
+    ~disablePadding: bool=?,
+    ~subheader: React.element=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "List";

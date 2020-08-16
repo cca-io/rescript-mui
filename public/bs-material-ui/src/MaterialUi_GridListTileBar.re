@@ -3,17 +3,17 @@ type actionPosition = [ | `Left | `Right];
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "titlePositionBottom": option(option(string)),
-    "titlePositionTop": option(option(string)),
-    "rootSubtitle": option(option(string)),
-    "titleWrap": option(option(string)),
-    "titleWrapActionPosLeft": option(option(string)),
-    "titleWrapActionPosRight": option(option(string)),
-    "title": option(option(string)),
-    "subtitle": option(option(string)),
-    "actionIcon": option(option(string)),
-    "actionIconActionPosLeft": option(option(string)),
+    "root": option(string),
+    "titlePositionBottom": option(string),
+    "titlePositionTop": option(string),
+    "rootSubtitle": option(string),
+    "titleWrap": option(string),
+    "titleWrapActionPosLeft": option(string),
+    "titleWrapActionPosRight": option(string),
+    "title": option(string),
+    "subtitle": option(string),
+    "actionIcon": option(string),
+    "actionIconActionPosLeft": option(string),
   };
   [@bs.obj]
   external make:
@@ -39,29 +39,25 @@ type titlePosition = [ | `Bottom | `Top];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~actionIcon: option(React.element)=?,
-    ~actionPosition: option(
-                       [@bs.string] [
-                         | [@bs.as "left"] `Left
-                         | [@bs.as "right"] `Right
-                       ],
-                     )
+    ~actionIcon: React.element=?,
+    ~actionPosition: [@bs.string] [
+                       | [@bs.as "left"] `Left
+                       | [@bs.as "right"] `Right
+                     ]
                        =?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~subtitle: option(React.element)=?,
-    ~title: option(React.element)=?,
-    ~titlePosition: option(
-                      [@bs.string] [
-                        | [@bs.as "bottom"] `Bottom
-                        | [@bs.as "top"] `Top
-                      ],
-                    )
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~subtitle: React.element=?,
+    ~title: React.element=?,
+    ~titlePosition: [@bs.string] [
+                      | [@bs.as "bottom"] `Bottom
+                      | [@bs.as "top"] `Top
+                    ]
                       =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "GridListTileBar";

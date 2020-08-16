@@ -13,7 +13,7 @@ module Component: {
 };
 
 module Classes = {
-  type t = {. "root": option(option(string))};
+  type t = {. "root": option(string)};
   [@bs.obj] external make: (~root: string=?, unit) => t;
 };
 
@@ -84,71 +84,63 @@ type variant = [ | `Filled | `Outlined | `Standard];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~component: option(Component.t)=?,
-    ~focused: option(bool)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~autoComplete: option(string)=?,
-    ~autoFocus: option(bool)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~component: Component.t=?,
+    ~focused: bool=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~autoComplete: string=?,
+    ~autoFocus: bool=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~defaultValue: option(DefaultValue.t)=?,
-    ~disabled: option(bool)=?,
-    ~error: option(bool)=?,
-    ~_FormHelperTextProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~fullWidth: option(bool)=?,
-    ~helperText: option(React.element)=?,
-    ~hiddenLabel: option(bool)=?,
-    ~id: option(string)=?,
-    ~_InputLabelProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~inputProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~_InputProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~label: option(React.element)=?,
-    ~margin: option(
-               [@bs.string] [
-                 | [@bs.as "dense"] `Dense
-                 | [@bs.as "none"] `None
-                 | [@bs.as "normal"] `Normal
-               ],
-             )
+    ~defaultValue: DefaultValue.t=?,
+    ~disabled: bool=?,
+    ~error: bool=?,
+    ~_FormHelperTextProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~fullWidth: bool=?,
+    ~helperText: React.element=?,
+    ~hiddenLabel: bool=?,
+    ~id: string=?,
+    ~_InputLabelProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~inputProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_InputProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~label: React.element=?,
+    ~margin: [@bs.string] [
+               | [@bs.as "dense"] `Dense
+               | [@bs.as "none"] `None
+               | [@bs.as "normal"] `Normal
+             ]
                =?,
-    ~multiline: option(bool)=?,
-    ~name: option(string)=?,
-    ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-    ~onChange: option(ReactEvent.Form.t => unit)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~placeholder: option(string)=?,
-    ~required: option(bool)=?,
-    ~rows: option(Rows.t)=?,
-    ~rowsMax: option(RowsMax.t)=?,
-    ~select: option(bool)=?,
-    ~_SelectProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~multiline: bool=?,
+    ~name: string=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~placeholder: string=?,
+    ~required: bool=?,
+    ~rows: Rows.t=?,
+    ~rowsMax: RowsMax.t=?,
+    ~select: bool=?,
+    ~_SelectProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~size: [@bs.string] [
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~_type: option(string)=?,
-    ~value: option(Value.t)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "filled"] `Filled
-                  | [@bs.as "outlined"] `Outlined
-                  | [@bs.as "standard"] `Standard
-                ],
-              )
+    ~_type: string=?,
+    ~value: Value.t=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "filled"] `Filled
+                | [@bs.as "outlined"] `Outlined
+                | [@bs.as "standard"] `Standard
+              ]
                 =?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "TextField";

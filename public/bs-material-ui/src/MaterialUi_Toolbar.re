@@ -1,10 +1,10 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "gutters": option(option(string)),
-    "regular": option(option(string)),
-    "dense": option(option(string)),
+    "root": option(string),
+    "gutters": option(string),
+    "regular": option(string),
+    "dense": option(string),
   };
   [@bs.obj]
   external make:
@@ -37,22 +37,20 @@ type variant = [ | `Regular | `Dense];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~disableGutters: option(bool)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "regular"] `Regular
-                  | [@bs.as "dense"] `Dense
-                ],
-              )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~disableGutters: bool=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "regular"] `Regular
+                | [@bs.as "dense"] `Dense
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Toolbar";

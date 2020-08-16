@@ -27,8 +27,8 @@ module Vertical: {
 module AnchorOrigin = {
   type t = {
     .
-    "horizontal": option(option(Horizontal.t)),
-    "vertical": option(option(Vertical.t)),
+    "horizontal": option(Horizontal.t),
+    "vertical": option(Vertical.t),
   };
   [@bs.obj]
   external make:
@@ -38,21 +38,21 @@ module AnchorOrigin = {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "badge": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "colorError": option(option(string)),
-    "dot": option(option(string)),
-    "anchorOriginTopRightRectangle": option(option(string)),
-    "anchorOriginBottomRightRectangle": option(option(string)),
-    "anchorOriginTopLeftRectangle": option(option(string)),
-    "anchorOriginBottomLeftRectangle": option(option(string)),
-    "anchorOriginTopRightCircle": option(option(string)),
-    "anchorOriginBottomRightCircle": option(option(string)),
-    "anchorOriginTopLeftCircle": option(option(string)),
-    "anchorOriginBottomLeftCircle": option(option(string)),
-    "invisible": option(option(string)),
+    "root": option(string),
+    "badge": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "colorError": option(string),
+    "dot": option(string),
+    "anchorOriginTopRightRectangle": option(string),
+    "anchorOriginBottomRightRectangle": option(string),
+    "anchorOriginTopLeftRectangle": option(string),
+    "anchorOriginBottomLeftRectangle": option(string),
+    "anchorOriginTopRightCircle": option(string),
+    "anchorOriginBottomRightCircle": option(string),
+    "anchorOriginTopLeftCircle": option(string),
+    "anchorOriginBottomLeftCircle": option(string),
+    "invisible": option(string),
   };
   [@bs.obj]
   external make:
@@ -100,42 +100,36 @@ type variant = [ | `Dot | `Standard];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~anchorOrigin: option(AnchorOrigin.t)=?,
-    ~badgeContent: option(React.element)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "default"] `Default
-                | [@bs.as "error"] `Error
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~anchorOrigin: AnchorOrigin.t=?,
+    ~badgeContent: React.element=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "default"] `Default
+              | [@bs.as "error"] `Error
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~component: option(Component.t)=?,
-    ~invisible: option(bool)=?,
-    ~max: option(MaterialUi_Types.Number.t)=?,
-    ~overlap: option(
-                [@bs.string] [
-                  | [@bs.as "circle"] `Circle
-                  | [@bs.as "rectangle"] `Rectangle
-                ],
-              )
+    ~component: Component.t=?,
+    ~invisible: bool=?,
+    ~max: MaterialUi_Types.Number.t=?,
+    ~overlap: [@bs.string] [
+                | [@bs.as "circle"] `Circle
+                | [@bs.as "rectangle"] `Rectangle
+              ]
                 =?,
-    ~showZero: option(bool)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "dot"] `Dot
-                  | [@bs.as "standard"] `Standard
-                ],
-              )
+    ~showZero: bool=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "dot"] `Dot
+                | [@bs.as "standard"] `Standard
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Badge";

@@ -1,8 +1,8 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "stickyHeader": option(option(string)),
+    "root": option(string),
+    "stickyHeader": option(string),
   };
   [@bs.obj]
   external make: (~root: string=?, ~stickyHeader: string=?, unit) => t;
@@ -29,30 +29,26 @@ type size = [ | `Small | `Medium];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~padding: option(
-                [@bs.string] [
-                  | [@bs.as "default"] `Default
-                  | [@bs.as "checkbox"] `Checkbox
-                  | [@bs.as "none"] `None
-                ],
-              )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~padding: [@bs.string] [
+                | [@bs.as "default"] `Default
+                | [@bs.as "checkbox"] `Checkbox
+                | [@bs.as "none"] `None
+              ]
                 =?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "small"] `Small
-               | [@bs.as "medium"] `Medium
-             ],
-           )
+    ~size: [@bs.string] [
+             | [@bs.as "small"] `Small
+             | [@bs.as "medium"] `Medium
+           ]
              =?,
-    ~stickyHeader: option(bool)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~stickyHeader: bool=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Table";
