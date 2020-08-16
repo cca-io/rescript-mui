@@ -31,6 +31,11 @@ const factory = (propertyType: PropType$Primitive) => {
           this._reasonType = 'float';
           break;
 
+        // HTML Element
+        case 'HTMLElementType':
+          this._reasonType = 'Dom.element';
+          break;
+
         // React Element
         case 'node':
         case 'Node':

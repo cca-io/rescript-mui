@@ -15,7 +15,7 @@ const factory = (propertyType: PropType$Union) => {
 
       let defs: { [key: string]: string } = {};
       defs = unionProps.reduce((prev, unionProp) => {
-        const type = unionProp.property.signature.type;
+        const type = unionProp.property.signature.type as PropType;
 
         if (type == null) {
           return prev;
@@ -77,6 +77,16 @@ const factory = (propertyType: PropType$Union) => {
               [lowerFirst(unionProp.moduleName)]: unionProp.reasonType,
             };
           }
+        } else if (
+          type.name == 'custom' &&
+          type.raw != null &&
+          type.raw == 'HTMLElementType'
+        ) {
+          let key = generateReasonName(type.name, false);
+          return {
+            ...prev,
+            [key]: 'Dom.element',
+          };
         } else {
           console.log(unionProp);
           Console.error(

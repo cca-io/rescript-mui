@@ -12,6 +12,7 @@ export const isPrimitive = (
     'boolean',
     'bool',
     'any',
+    'HTMLElementType',
     'void',
     'Object',
     'String',

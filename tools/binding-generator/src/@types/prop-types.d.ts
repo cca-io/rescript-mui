@@ -21,6 +21,7 @@ interface PropType$Primitive {
     | 'Function'
     | 'Node'
     | 'ReactNode'
+    | 'HTMLElementType'
     | 'ComponentType<object>';
 }
 

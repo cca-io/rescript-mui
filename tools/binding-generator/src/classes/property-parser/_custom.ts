@@ -39,6 +39,12 @@ const factory = (propertyType: PropType$Custom) => {
     });
   }
 
+  if (propertyType.raw != null && propertyType.raw == 'HTMLElementType') {
+    return PrimitiveFactory({
+      name: 'HTMLElementType',
+    });
+  }
+
   if (
     propertyType.raw != null &&
     (propertyType.raw.includes('componentPropType') ||
