@@ -78,6 +78,6 @@ jobs:
 
       - run: |
           cd public/bs-material-ui-ppx
-          yarn publish --tag zero
+          yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
