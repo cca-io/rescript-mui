@@ -10,7 +10,7 @@ Example for passing an `Any` value to a component:
 
 ```reason
 <TextField
-  _InputProps={Js.Dict.fromArray([|("readOnly", Any(true))|])}
+  _InputProps={Js.Dict.fromArray([("readOnly", Any(true))])}
   value={TextField.Value.string(value)}
   label={"Label"->React.string}
   fullWidth=true
@@ -22,7 +22,7 @@ Example for receiving an `Any` argument in a callback (The function
 `MaterialUi.anyUnpack` will return an `Any` as `'a`):
 
 ```reason
-<ToggleButtonGroup
+<MaterialUi_ToggleButtonGroup
   value={Any(alignment)}
   exclusive=true
   onChange={(_event, value) => setAlignment(MaterialUi.anyUnpack(value))}

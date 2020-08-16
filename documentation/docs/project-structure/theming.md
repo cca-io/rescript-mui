@@ -50,24 +50,28 @@ convenience at : `MaterialUi.Theme.create`.
 The following is an example of constructing a theme object:
 
 ```reason
-let theme = MaterialUi_Theme.create({
-  open MaterialUi_ThemeOptions
-  make(
-    ~overrides=Overrides.make(
-      ~muiButton=ButtonClassKey.make(
-        ~outlined=ReactDOMRe.Style.make(
-          ~fontSize="12px",
-          ~fontWeight="300",
-          ~color="gray",
-          (),
-        ),
+let theme =
+  MaterialUi_Theme.create({
+    open MaterialUi_ThemeOptions;
+    make(
+    ~overrides=
+        Overrides.make(
+        ~muiButton=
+            ButtonClassKey.make(
+            ~outlined=
+                ReactDOMRe.Style.make(
+                ~fontSize="12px",
+                ~fontWeight="300",
+                ~color="gray",
+                (),
+                ),
+            (),
+            ),
         (),
-      ),
-      (),
-    ),
+        ),
     (),
-  )
-})
+    )
+  });
 ```
 
 You might have noticed that `ButtonClassKey` is not a straight forward and easy
@@ -91,25 +95,25 @@ Here are 2 examples of accessing fields in the theme object:
 let make = () => {
   let theme = MaterialUi.Core.useTheme();
 
-  <SomeContextThatNeedsAColor value={theme.palette.primary.main}>
-    <div />
-  </SomeContextThatNeedsAColor>
-};
+  <div style={ReactDOMRe.Style.make(~color=theme.palette.primary.main, ())}>
+    {"Some main colored text"->React.string}
+  </div>
+}
 ```
 
 ```reason
 module Styles = %makeStyles(
   theme => {
     toolbarIcon: ReactDOMRe.Style.combine(
-      style(
+      ReactDOMRe.Style.make(
         ~padding="0 8px",
         (),
       ),
       theme.mixins.toolbar,
     ),
-    appBar: style(
+    appBar: ReactDOMRe.Style.make(
       ~zIndex=(theme.zIndex.drawer +. 1.0)->int_of_float->string_of_int,
-      ~transition=ThemeHelpers.transitionCreate(
+      ~transition=MaterialUi.ThemeHelpers.transitionCreate(
         ~theme,
         ~affectWidth=true,
         ~affectMargin=true,
@@ -120,7 +124,7 @@ module Styles = %makeStyles(
       (),
     ),
   }
-);
+)
 ```
 
 (The above example makes mention of the user contributed
@@ -141,8 +145,8 @@ let theme = MaterialUi.Theme.create(MaterialUi.ThemeOptions.make());
 let make = () => {
   <div className="app root">
     <MaterialUi_ThemeProvider theme>
-      <AppComponent />
+      <div />
     </MaterialUi_ThemeProvider>
   </div>
-};
+}
 ```

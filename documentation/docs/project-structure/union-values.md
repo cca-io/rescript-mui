@@ -54,7 +54,7 @@ type variant = [ | #Elevation | #Outlined];
 
 Similar to the string only unions, a union consisting of only numbers will
 utilize the
-[[bs.int]](https://reasonml.org/docs/reason-compiler/latest/function#constrain-arguments-better)
+[[@bs.int]](https://reasonml.org/docs/reason-compiler/latest/function#constrain-arguments-better)
 directive. Therefore, numerical unions will accept a form of polymorphic variant
 as well.
 
@@ -64,16 +64,14 @@ These don't happen often - currently the only place where this applies is in the
 Example usage:
 
 ```reason
-MaterialUi.(
-  <Grid spacing=#V2 />
-);
+<MaterialUi_Grid spacing=#V2 />
 ```
 
 ### Rules for numeric unions
 
 - Always `@bs.string` in the external (you may ignore this if you're on
   `ReScript`)
-- Always `` `V[NUM] `` format
+- Always `#V[NUM]` format
 
 ## Mixed unions
 

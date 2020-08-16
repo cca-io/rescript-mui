@@ -26,8 +26,9 @@ An example of this would be:
 ```reason
 @react.component
 let make = () => {
-  open MaterialUi;
-
-  <Backdrop timeout=Backdrop.Timeout.int(3000) />
+  <MaterialUi_Backdrop
+    _open=true
+    timeout=MaterialUi_Backdrop.Timeout.int(3000)
+  />
 }
 ```

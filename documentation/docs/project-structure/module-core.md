@@ -27,11 +27,13 @@ You can construct a breakpoint like this:
 ```reason
 @react.component
 let make = () => {
-    let theme = MaterialUi.Core.useTheme();
-    let matches = MaterialUi.Core.(useMediaQuery(Breakpoint.get(theme, `up(`sm))));
+    open MaterialUi.Core;
+    let theme = useTheme();
+    let matches = useMediaQuery(Breakpoint.get(theme, #up(#sm)));
+    Js.log(matches);
 
     <div />
-};
+}
 ```
 
 ### useMediaQueryString(string) => bool
