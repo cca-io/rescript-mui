@@ -35,6 +35,10 @@ export default function (
       });
     }
     return PrimitiveFactory(propType);
+  } else if (Identify.isInstanceOf(propType)) {
+    return PrimitiveFactory({
+      name: 'Node',
+    });
   } else if (Identify.isFunctionSignature(propType)) {
     return FunctionFactory(propType);
   } else if (Identify.isShape(propType)) {

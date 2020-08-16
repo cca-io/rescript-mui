@@ -97,6 +97,11 @@ interface PropType$ArrayOf {
   value: PropType;
 }
 
+interface PropType$InstanceOf {
+  name: 'instanceOf';
+  value: string;
+}
+
 interface PropType$Callback {
   name: 'func';
 }
@@ -125,4 +130,5 @@ declare type PropType =
   | PropType$ArrayOf
   | PropType$Callback
   | PropType$Shape
-  | PropType$Custom;
+  | PropType$Custom
+  | PropType$InstanceOf;

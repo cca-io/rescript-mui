@@ -30,6 +30,9 @@ export const isPrimitive = (
     'ComponentType<object>',
   ].indexOf(prop.name) > -1;
 
+export const isInstanceOf = (prop: PropType): prop is PropType$InstanceOf =>
+  prop.name === 'instanceOf';
+
 export const isCustom = (prop: PropType): prop is PropType$Custom =>
   prop.name === 'custom';
 

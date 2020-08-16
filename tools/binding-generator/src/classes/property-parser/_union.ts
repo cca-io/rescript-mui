@@ -20,7 +20,7 @@ const factory = (propertyType: PropType$Union) => {
         if (type == null) {
           return prev;
         }
-        if (Identify.isPrimitive(type)) {
+        if (Identify.isPrimitive(type) || Identify.isInstanceOf(type)) {
           const pType = unionProp.reasonType;
           switch (pType) {
             case 'string':
