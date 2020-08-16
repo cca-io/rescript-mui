@@ -45,7 +45,7 @@ const factory = (propertyType: PropType$Primitive) => {
         // Generic Object
         case 'object':
         case 'Object':
-          this._reasonType = 'Js.Dict.t(MaterialUi_Types.any)';
+          this._reasonType = 'Js.Dict.t<MaterialUi_Types.any>';
           break;
 
         // Function without Signature / Any
@@ -55,7 +55,7 @@ const factory = (propertyType: PropType$Primitive) => {
 
         // Generic array
         case 'array':
-          this._reasonType = `array(MaterialUi_Types.any)`;
+          this._reasonType = `array<MaterialUi_Types.any>`;
           break;
 
         // Void return types

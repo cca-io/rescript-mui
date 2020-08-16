@@ -116,9 +116,9 @@ class Component {
     return `
             ${this.renderSection('Module')}
 
-            [@react.component] [@bs.module "${
+            @react.component @bs.module("${
               this._component.importPath
-            }"] external make : (${this.renderSection(
+            }") external make : (${this.renderSection(
       'Make',
     )}) => React.element = "${this._component.importName || 'default'}";
         `;

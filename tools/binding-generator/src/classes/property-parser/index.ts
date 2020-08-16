@@ -1,7 +1,6 @@
 import * as Identify from './../../helpers/identify-prop-type';
 
 import { convertUnionToEnum } from './helpers';
-import generateReasonName from '../../helpers/generate-reason-name';
 
 import BaseParser from './base';
 import PrimitiveFactory from './_primitive';
@@ -25,7 +24,7 @@ export default function (
         value: flowType.elements.reduce(
           (prev, key) => ({
             ...prev,
-            [generateReasonName(key, false)]: {
+            [key]: {
               name: 'string',
               required: false,
             },

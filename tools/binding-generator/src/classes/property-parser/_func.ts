@@ -150,7 +150,6 @@ const getCallbackType = (propName: string) => {
     case 'onChangeRowsPerPage':
       return CallbackTypes.FormCallback;
     default:
-      // Console.warn(`Warning: Unhandled callback type ${Console.colors.red}${propName}${Console.colors.yellow} in Callback.getCallbackType ${Console.colors.red}`);
       return CallbackTypes.GenericCallback;
   }
 };

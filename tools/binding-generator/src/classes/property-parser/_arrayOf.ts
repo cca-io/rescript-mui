@@ -17,19 +17,19 @@ const factory = (propertyType: PropType$ArrayOf) => {
         ['string', 'number', 'int', 'float'].indexOf(type.name) > -1
       ) {
         if (type.name === 'string') {
-          reasonType = 'array(string)';
+          reasonType = 'array<string>';
         } else if (type.name === 'int') {
-          reasonType = 'array(int)';
+          reasonType = 'array<int>';
         } else if (type.name === 'float') {
-          reasonType = 'array(float)';
+          reasonType = 'array<float>';
         } else if (type.name === 'number') {
-          reasonType = 'array(MaterialUi_Types.Number.t)';
+          reasonType = 'array<MaterialUi_Types.Number.t>';
         }
       } else {
         const resolvedType = this.resolveType(type);
         if (resolvedType) {
           if (resolvedType.valid) {
-            reasonType = `array(${resolvedType.reasonType})`;
+            reasonType = `array<${resolvedType.reasonType}>`;
           }
         }
       }
@@ -37,7 +37,7 @@ const factory = (propertyType: PropType$ArrayOf) => {
       if (typeof reasonType === 'string') {
         this._reasonType = reasonType;
       } else {
-        this._reasonType = 'array(MaterialUi_Types.any)';
+        this._reasonType = 'array<MaterialUi_Types.any>';
       }
     }
 

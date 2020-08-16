@@ -77,13 +77,27 @@ export const reservedNames = [
 ];
 
 const GenerateReasonName = (str: string, toUpper: boolean = true) => {
+  // Already parsed
+  if (str.substr(0, 2) === `\\"`) {
+    return str;
+  }
   if (toUpper) {
     str = capitalize(str);
   } else {
     const firstLetter = str.substr(0, 1);
     if (firstLetter === firstLetter.toUpperCase()) {
-      str = `_${str}`;
+      return `\\"${str}"`;
     }
+  }
+
+  if (
+    !toUpper &&
+    (str.indexOf('-') > -1 ||
+      str.indexOf('@') > -1 ||
+      reservedNames.indexOf(str) > -1 ||
+      isNumeric(str))
+  ) {
+    return `\\"${str}"`;
   }
 
   while (str.indexOf('-') > -1) {

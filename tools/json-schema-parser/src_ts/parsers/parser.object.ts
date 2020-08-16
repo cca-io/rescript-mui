@@ -1,7 +1,11 @@
 import BaseParser from './_base';
 import getParser from './_getParser';
 
-import { generateModuleName, generateAttributeName } from '../helpers';
+import {
+  generateModuleName,
+  generateAttributeName,
+  generateTypeName,
+} from '../helpers';
 
 let i = 0;
 
@@ -13,7 +17,7 @@ class ObjectParser extends BaseParser {
 
   public parse() {
     this.moduleName = generateModuleName(this.key);
-    this.typeName = `t_${generateAttributeName(this.key)}`;
+    this.typeName = generateTypeName(this.key);
 
     if (typeof this.def === 'boolean') {
       return;
@@ -75,11 +79,6 @@ class ObjectParser extends BaseParser {
               .map((property) => {
                 const attributeName = generateAttributeName(property.name);
                 return `
-                    ${
-                      attributeName !== property.name
-                        ? `[@bs.as "${property.name}"]`
-                        : ''
-                    }
                     ${attributeName}: ${property.reasonType},
                 `;
               })
@@ -94,12 +93,12 @@ type t = {
     ${this.module.properties
       .map((property) => {
         return `
-            "${property.name}": option(option(${property.reasonType}))
+            "${property.name}": option<option<${property.reasonType}>>
           `;
       })
       .join(',')}
 };
-[@bs.obj] external make: (
+@bs.obj external make: (
     ${this.module.properties
       .map((property) => {
         const attributeName = generateAttributeName(property.name);
@@ -113,7 +112,7 @@ type t = {
     return this.schema.entry === this.key
       ? content
       : `
-        module ${this.moduleName} {
+        module ${this.moduleName} = {
             ${content}
         };
     `;

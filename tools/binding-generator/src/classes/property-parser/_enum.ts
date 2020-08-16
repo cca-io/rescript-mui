@@ -75,7 +75,9 @@ const factory = (propertyType: PropType$Enum) => {
     }
 
     public executeParse() {
-      const enumValuesReason = this._enumKeys.map((e) => GenerateReasonName(e));
+      const enumValuesReason = this._enumKeys.map((e) =>
+        GenerateReasonName(e, false),
+      );
       switch (this._renderAs) {
         case 'mixed':
           const mixedKeys = this._enumKeys.map((e) =>
@@ -85,9 +87,9 @@ const factory = (propertyType: PropType$Enum) => {
                 module ${this._moduleName}: {
                     type t;
                     ${mixedKeys.map((key) => `let ${key}: t;`).join('\n')}
-                } {
-                    [@unboxed]
-                    type t =
+                } = {
+                    @unboxed
+                    type rec t =
                         | Any('a): t;
 
                     ${mixedKeys
@@ -107,22 +109,27 @@ const factory = (propertyType: PropType$Enum) => {
           break;
         case 'string':
           this._module = `
-            type ${this._property.safeName} = [${enumValuesReason
-            .map((name, i) => `\`${name}`)
+            type ${this._property.safeName} = [ | ${enumValuesReason
+            .map((name, i) => {
+              if (this._enumValues[i] === 'row') {
+                console.log(this._enumValues[i], name);
+              }
+              return this._enumValues[i] === name
+                ? `#${name}`
+                : `#\\"${this._enumValues[i]}"`;
+            })
             .join(' | ')}];
           `;
-          this._reasonType = `[@bs.string] [${enumValuesReason
-            .map((name, i) => `[@bs.as "${this._enumValues[i]}"] \`${name}`)
-            .join(' | ')}]`;
+          this._reasonType = this._property.safeName;
           break;
         case 'numeric':
           this._module = `
             type ${this._property.safeName} = [${enumValuesReason
-            .map((name, i) => `\`${name}`)
+            .map((name, i) => `#${name}`)
             .join(' | ')}];
           `;
-          this._reasonType = `[@bs.int] [${enumValuesReason
-            .map((name, i) => `[@bs.as ${this._enumValues[i]}] \`${name}`)
+          this._reasonType = `@bs.int [${enumValuesReason
+            .map((name, i) => `@bs.as(${this._enumValues[i]}) #${name}`)
             .join(' | ')}]`;
           break;
       }

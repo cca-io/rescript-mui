@@ -1,8 +1,9 @@
 import Property from './../property';
 import * as Plugins from './plugins';
 import PluginBase from './plugins/base';
-import { reservedNames } from '../../helpers/generate-reason-name';
-import { upperFirst } from 'lodash';
+import generateReasonName, {
+  reservedNames,
+} from '../../helpers/generate-reason-name';
 
 class PropertyParserBase {
   protected _property: Property;
@@ -21,11 +22,7 @@ class PropertyParserBase {
   ) {
     this._property = property;
     this._emitToComponent = emitToComponent;
-    this._moduleName = upperFirst(
-      property.safeName.startsWith('_')
-        ? property.safeName.substr(1)
-        : property.safeName,
-    );
+    this._moduleName = generateReasonName(property.name, true);
 
     this._plugins = Object.keys(Plugins).map(
       (pluginKey) => new Plugins[pluginKey](this),
@@ -95,13 +92,13 @@ class PropertyParserBase {
         let makeName = this.property.safeName;
         let index;
         if ((index = reservedNames.indexOf(makeName.replace('_', ''))) > -1) {
-          makeName = `_${reservedNames[index]}`;
+          makeName = `\"${reservedNames[index]}"`;
         }
         let Make = `~${this.property.safeName}: ${this._reasonType},`;
 
         // Optional
         if (!this.property.signature.required) {
-          Make = `~${this.property.safeName}: option(${this._reasonType})=?,`;
+          Make = `~${this.property.safeName}: option<${this._reasonType}>=?,`;
         }
 
         if (this._emitToComponent !== 'moduleOnly') {

@@ -10,18 +10,18 @@ const factory = (propertyType: PropType$Shape) => {
       const shapeArgs = this.resolveShape();
       if (shapeArgs.length) {
         this._module = `
-          module ${this._moduleName} {
+          module ${this._moduleName} = {
             type t = {
               .
               ${shapeArgs
                 .map((arg) => {
                   return `
-                "${arg.key}":option(option(${arg.type}))
+                "${arg.key}":option<option<${arg.type}>>
                 `;
                 })
                 .join(',')}
             };
-            [@bs.obj] external make: (
+            @bs.obj external make: (
               ${shapeArgs
                 .map((arg) => {
                   return `
