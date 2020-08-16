@@ -1,12 +1,12 @@
 module AnchorEl: {
   type t;
-  let obj: Js.Dict.t(MaterialUi_Types.any) => t;
+  let obj: Js.t({..}) => t;
   let anchorEl_func: MaterialUi_Types.any => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let obj = (v: Js.Dict.t(MaterialUi_Types.any)) => Any(v);
+  let obj = (v: Js.t({..})) => Any(v);
   let anchorEl_func = (v: MaterialUi_Types.any) => Any(v);
 };
 
@@ -55,7 +55,7 @@ external make:
     ~container: Container.t=?,
     ~disablePortal: bool=?,
     ~keepMounted: bool=?,
-    ~modifiers: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~modifiers: Js.t({..})=?,
     ~_open: bool,
     ~placement: [@bs.string] [
                   | [@bs.as "bottom-end"] `Bottom_End
@@ -72,7 +72,7 @@ external make:
                   | [@bs.as "top"] `Top
                 ]
                   =?,
-    ~popperOptions: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~popperOptions: Js.t({..})=?,
     ~style: ReactDOMRe.Style.t=?,
     ~transition: bool=?,
     ~id: string=?,

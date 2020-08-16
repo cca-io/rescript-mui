@@ -93,7 +93,7 @@ external make:
     ~className: string=?,
     ~component: Component.t=?,
     ~_ContainerComponent: ContainerComponent.t=?,
-    ~_ContainerProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_ContainerProps: Js.t({..})=?,
     ~dense: bool=?,
     ~disabled: bool=?,
     ~disableGutters: bool=?,

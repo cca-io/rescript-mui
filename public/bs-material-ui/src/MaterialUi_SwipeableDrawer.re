@@ -64,16 +64,11 @@ module PaperProps = {
   type t = {
     .
     "component": option(Component.t),
-    "style": option(Js.Dict.t(MaterialUi_Types.any)),
+    "style": option(MaterialUi_Types.any),
   };
   [@bs.obj]
   external make:
-    (
-      ~component: Component.t=?,
-      ~style: Js.Dict.t(MaterialUi_Types.any)=?,
-      unit
-    ) =>
-    t;
+    (~component: Component.t=?, ~style: MaterialUi_Types.any=?, unit) => t;
 };
 
 module TransitionDuration_shape = {
@@ -111,11 +106,11 @@ type variant = [ | `Permanent | `Persistent | `Temporary];
 [@react.component] [@bs.module "@material-ui/core"]
 external make:
   (
-    ~_BackdropProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_BackdropProps: Js.t({..})=?,
     ~classes: Classes.t=?,
     ~className: string=?,
     ~elevation: MaterialUi_Types.Number.t=?,
-    ~_SlideProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_SlideProps: Js.t({..})=?,
     ~id: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~anchor: [@bs.string] [
@@ -137,7 +132,7 @@ external make:
     ~onOpen: ReactEvent.Synthetic.t => unit,
     ~_open: bool,
     ~_PaperProps: PaperProps.t=?,
-    ~_SwipeAreaProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_SwipeAreaProps: Js.t({..})=?,
     ~swipeAreaWidth: MaterialUi_Types.Number.t=?,
     ~transitionDuration: TransitionDuration.t=?,
     ~variant: [@bs.string] [

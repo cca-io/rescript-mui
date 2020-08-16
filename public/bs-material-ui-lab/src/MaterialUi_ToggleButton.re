@@ -1,12 +1,12 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "disabled": option(option(string)),
-    "selected": option(option(string)),
-    "label": option(option(string)),
-    "sizeSmall": option(option(string)),
-    "sizeLarge": option(option(string)),
+    "root": option(string),
+    "disabled": option(string),
+    "selected": option(string),
+    "label": option(string),
+    "sizeSmall": option(string),
+    "sizeLarge": option(string),
   };
   [@bs.obj]
   external make:
@@ -27,28 +27,26 @@ type size = [ | `Small | `Medium | `Large];
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~disabled: option(bool)=?,
-    ~disableFocusRipple: option(bool)=?,
-    ~disableRipple: option(bool)=?,
-    ~onChange: option(ReactEvent.Form.t => unit)=?,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~selected: option(bool)=?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "small"] `Small
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "large"] `Large
-             ],
-           )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~disabled: bool=?,
+    ~disableFocusRipple: bool=?,
+    ~disableRipple: bool=?,
+    ~onChange: ReactEvent.Form.t => unit=?,
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~selected: bool=?,
+    ~size: [@bs.string] [
+             | [@bs.as "small"] `Small
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "large"] `Large
+           ]
              =?,
     ~value: MaterialUi_Types.any,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "ToggleButton";

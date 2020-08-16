@@ -1,8 +1,8 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "ul": option(option(string)),
+    "root": option(string),
+    "ul": option(string),
   };
   [@bs.obj] external make: (~root: string=?, ~ul: string=?, unit) => t;
 };
@@ -18,55 +18,47 @@ type variant = [ | `Outlined | `Text];
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~boundaryCount: option(MaterialUi_Types.Number.t)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-                | [@bs.as "standard"] `Standard
-              ],
-            )
+    ~boundaryCount: MaterialUi_Types.Number.t=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+              | [@bs.as "standard"] `Standard
+            ]
               =?,
-    ~count: option(MaterialUi_Types.Number.t)=?,
-    ~defaultPage: option(MaterialUi_Types.Number.t)=?,
-    ~disabled: option(bool)=?,
-    ~getItemAriaLabel: option((string, int, bool) => string)=?,
-    ~hideNextButton: option(bool)=?,
-    ~hidePrevButton: option(bool)=?,
-    ~onChange: option((ReactEvent.Form.t, int) => unit)=?,
-    ~page: option(MaterialUi_Types.Number.t)=?,
-    ~renderItem: option(unit => MaterialUi_Types.any)=?,
-    ~shape: option(
-              [@bs.string] [
-                | [@bs.as "round"] `Round
-                | [@bs.as "rounded"] `Rounded
-              ],
-            )
+    ~count: MaterialUi_Types.Number.t=?,
+    ~defaultPage: MaterialUi_Types.Number.t=?,
+    ~disabled: bool=?,
+    ~getItemAriaLabel: (string, int, bool) => string=?,
+    ~hideNextButton: bool=?,
+    ~hidePrevButton: bool=?,
+    ~onChange: (ReactEvent.Form.t, int) => unit=?,
+    ~page: MaterialUi_Types.Number.t=?,
+    ~renderItem: unit => MaterialUi_Types.any=?,
+    ~shape: [@bs.string] [
+              | [@bs.as "round"] `Round
+              | [@bs.as "rounded"] `Rounded
+            ]
               =?,
-    ~showFirstButton: option(bool)=?,
-    ~showLastButton: option(bool)=?,
-    ~siblingCount: option(MaterialUi_Types.Number.t)=?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "large"] `Large
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~showFirstButton: bool=?,
+    ~showLastButton: bool=?,
+    ~siblingCount: MaterialUi_Types.Number.t=?,
+    ~size: [@bs.string] [
+             | [@bs.as "large"] `Large
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "outlined"] `Outlined
-                  | [@bs.as "text"] `Text
-                ],
-              )
+    ~variant: [@bs.string] [
+                | [@bs.as "outlined"] `Outlined
+                | [@bs.as "text"] `Text
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Pagination";

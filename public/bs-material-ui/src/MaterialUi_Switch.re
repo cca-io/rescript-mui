@@ -131,7 +131,7 @@ external make:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~tabIndex: TabIndex.t=?,
-    ~_TouchRippleProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TouchRippleProps: Js.t({..})=?,
     ~_type: Type.t=?,
     ~style: ReactDOMRe.Style.t=?,
     ~children: 'children=?,
@@ -152,7 +152,7 @@ external make:
     ~edge: Edge.t=?,
     ~icon: React.element=?,
     ~id: string=?,
-    ~inputProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~inputProps: Js.t({..})=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~required: bool=?,
     ~size: [@bs.string] [

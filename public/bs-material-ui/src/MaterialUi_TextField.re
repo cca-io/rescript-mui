@@ -100,14 +100,14 @@ external make:
     ~defaultValue: DefaultValue.t=?,
     ~disabled: bool=?,
     ~error: bool=?,
-    ~_FormHelperTextProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_FormHelperTextProps: Js.t({..})=?,
     ~fullWidth: bool=?,
     ~helperText: React.element=?,
     ~hiddenLabel: bool=?,
     ~id: string=?,
-    ~_InputLabelProps: Js.Dict.t(MaterialUi_Types.any)=?,
-    ~inputProps: Js.Dict.t(MaterialUi_Types.any)=?,
-    ~_InputProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_InputLabelProps: Js.t({..})=?,
+    ~inputProps: Js.t({..})=?,
+    ~_InputProps: Js.t({..})=?,
     ~label: React.element=?,
     ~margin: [@bs.string] [
                | [@bs.as "dense"] `Dense
@@ -125,7 +125,7 @@ external make:
     ~rows: Rows.t=?,
     ~rowsMax: RowsMax.t=?,
     ~select: bool=?,
-    ~_SelectProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_SelectProps: Js.t({..})=?,
     ~size: [@bs.string] [
              | [@bs.as "medium"] `Medium
              | [@bs.as "small"] `Small

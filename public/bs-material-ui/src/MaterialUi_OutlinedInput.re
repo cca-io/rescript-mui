@@ -128,7 +128,7 @@ external make:
     ~fullWidth: bool=?,
     ~id: string=?,
     ~inputComponent: InputComponent.t=?,
-    ~inputProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~inputProps: Js.t({..})=?,
     ~label: React.element=?,
     ~labelWidth: MaterialUi_Types.Number.t=?,
     ~margin: [@bs.string] [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None]

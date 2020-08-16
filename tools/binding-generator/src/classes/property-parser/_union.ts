@@ -34,6 +34,7 @@ const factory = (propertyType: PropType$Union) => {
             case 'MaterialUi_Types.Number.t':
               return { ...prev, int: 'int', float: 'float' };
             case 'Js.Dict.t(MaterialUi_Types.any)':
+            case 'Js.t({..})':
               return { ...prev, obj: unionProp.reasonType };
             case 'React.element':
             case 'React.element':

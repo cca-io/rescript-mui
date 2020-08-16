@@ -100,8 +100,8 @@ external make:
                     ]
                       =?,
     ~selectionFollowsFocus: bool=?,
-    ~_TabIndicatorProps: Js.Dict.t(MaterialUi_Types.any)=?,
-    ~_TabScrollButtonProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TabIndicatorProps: Js.t({..})=?,
+    ~_TabScrollButtonProps: Js.t({..})=?,
     ~textColor: [@bs.string] [
                   | [@bs.as "inherit"] `Inherit
                   | [@bs.as "primary"] `Primary

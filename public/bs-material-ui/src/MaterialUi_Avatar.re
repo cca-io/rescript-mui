@@ -48,7 +48,7 @@ external make:
     ~classes: Classes.t=?,
     ~className: string=?,
     ~component: Component.t=?,
-    ~imgProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~imgProps: Js.t({..})=?,
     ~sizes: string=?,
     ~src: string=?,
     ~srcSet: string=?,

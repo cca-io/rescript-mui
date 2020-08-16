@@ -1,8 +1,8 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "avatar": option(option(string)),
+    "root": option(string),
+    "avatar": option(string),
   };
   [@bs.obj] external make: (~root: string=?, ~avatar: string=?, unit) => t;
 };
@@ -37,15 +37,15 @@ module Spacing: {
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~max: option(MaterialUi_Types.Number.t)=?,
-    ~spacing: option(Spacing.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~max: MaterialUi_Types.Number.t=?,
+    ~spacing: Spacing.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "AvatarGroup";

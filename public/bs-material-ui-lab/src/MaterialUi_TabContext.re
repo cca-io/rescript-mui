@@ -1,12 +1,12 @@
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~children: option('children)=?,
+    ~children: 'children=?,
     ~value: string,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "TabContext";

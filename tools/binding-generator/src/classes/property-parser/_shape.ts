@@ -1,12 +1,14 @@
 import Base from './base';
 import ResolveArgument from './resolve-argument';
 import GenerateReasonName from '../../helpers/generate-reason-name';
+import { inShape } from './helpers';
 
 const factory = (propertyType: PropType$Shape) => {
   return class ShapeParser extends Base {
     private _propertyType: PropType$Shape = propertyType;
 
     public executeParse() {
+      inShape.enter();
       const shapeArgs = this.resolveShape();
       if (shapeArgs.length) {
         this._module = `
@@ -38,6 +40,7 @@ const factory = (propertyType: PropType$Shape) => {
       } else {
         this._valid = false;
       }
+      inShape.exit();
     }
 
     private resolveShape() {

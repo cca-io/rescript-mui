@@ -1,5 +1,6 @@
 import * as Console from './../../helpers/console';
 import Base from './base';
+import { inShape } from './helpers';
 
 const factory = (propertyType: PropType$Primitive) => {
   return class PrimitiveParser extends Base {
@@ -45,7 +46,11 @@ const factory = (propertyType: PropType$Primitive) => {
         // Generic Object
         case 'object':
         case 'Object':
-          this._reasonType = 'Js.Dict.t(MaterialUi_Types.any)';
+          if (inShape.is()) {
+            this._reasonType = 'MaterialUi_Types.any';
+          } else {
+            this._reasonType = 'Js.t({..})';
+          }
           break;
 
         // Function without Signature / Any

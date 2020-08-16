@@ -111,10 +111,10 @@ external make:
                 ]
                   =?,
     ~_PopperComponent: PopperComponent.t=?,
-    ~_PopperProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_PopperProps: Js.t({..})=?,
     ~title: React.element,
     ~_TransitionComponent: TransitionComponent.t=?,
-    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TransitionProps: Js.t({..})=?,
     ~style: ReactDOMRe.Style.t=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?

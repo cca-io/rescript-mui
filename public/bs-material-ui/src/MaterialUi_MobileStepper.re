@@ -55,7 +55,7 @@ external make:
     ~backButton: React.element=?,
     ~classes: Classes.t=?,
     ~className: string=?,
-    ~_LinearProgressProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_LinearProgressProps: Js.t({..})=?,
     ~nextButton: React.element=?,
     ~position: [@bs.string] [
                  | [@bs.as "bottom"] `Bottom

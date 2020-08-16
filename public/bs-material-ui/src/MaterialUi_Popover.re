@@ -14,13 +14,13 @@ module BackdropComponent: {
 
 module AnchorEl: {
   type t;
-  let obj: Js.Dict.t(MaterialUi_Types.any) => t;
+  let obj: Js.t({..}) => t;
   let anchorEl_func: MaterialUi_Types.any => t;
 } = {
   [@unboxed]
   type t =
     | Any('a): t;
-  let obj = (v: Js.Dict.t(MaterialUi_Types.any)) => Any(v);
+  let obj = (v: Js.t({..})) => Any(v);
   let anchorEl_func = (v: MaterialUi_Types.any) => Any(v);
 };
 
@@ -223,7 +223,7 @@ module TransitionDuration: {
 external make:
   (
     ~_BackdropComponent: BackdropComponent.t=?,
-    ~_BackdropProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_BackdropProps: Js.t({..})=?,
     ~closeAfterTransition: bool=?,
     ~disableAutoFocus: bool=?,
     ~disableBackdropClick: bool=?,
@@ -234,7 +234,7 @@ external make:
     ~disableScrollLock: bool=?,
     ~hideBackdrop: bool=?,
     ~keepMounted: bool=?,
-    ~manager: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
@@ -268,7 +268,7 @@ external make:
     ~transformOrigin: TransformOrigin.t=?,
     ~_TransitionComponent: TransitionComponent.t=?,
     ~transitionDuration: TransitionDuration.t=?,
-    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?
   ) =>

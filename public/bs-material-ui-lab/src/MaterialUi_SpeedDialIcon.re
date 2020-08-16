@@ -1,12 +1,12 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "icon": option(option(string)),
-    "iconOpen": option(option(string)),
-    "iconWithOpenIconOpen": option(option(string)),
-    "openIcon": option(option(string)),
-    "openIconOpen": option(option(string)),
+    "root": option(string),
+    "icon": option(string),
+    "iconOpen": option(string),
+    "iconWithOpenIconOpen": option(string),
+    "openIcon": option(string),
+    "openIconOpen": option(string),
   };
   [@bs.obj]
   external make:
@@ -25,15 +25,15 @@ module Classes = {
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~icon: option(React.element)=?,
-    ~_open: option(bool)=?,
-    ~openIcon: option(React.element)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~icon: React.element=?,
+    ~_open: bool=?,
+    ~openIcon: React.element=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "SpeedDialIcon";

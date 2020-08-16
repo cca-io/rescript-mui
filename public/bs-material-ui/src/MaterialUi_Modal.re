@@ -26,7 +26,7 @@ module Container: {
 external make:
   (
     ~_BackdropComponent: BackdropComponent.t=?,
-    ~_BackdropProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~closeAfterTransition: bool=?,
     ~container: Container.t=?,
@@ -39,7 +39,7 @@ external make:
     ~disableScrollLock: bool=?,
     ~hideBackdrop: bool=?,
     ~keepMounted: bool=?,
-    ~manager: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~manager: Js.t({..})=?,
     ~onBackdropClick: ReactEvent.Mouse.t => unit=?,
     ~onClose: (ReactEvent.Synthetic.t, string) => unit=?,
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,

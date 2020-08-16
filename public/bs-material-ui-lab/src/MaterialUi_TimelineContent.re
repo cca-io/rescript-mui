@@ -1,8 +1,8 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "alignRight": option(option(string)),
+    "root": option(string),
+    "alignRight": option(string),
   };
   [@bs.obj] external make: (~root: string=?, ~alignRight: string=?, unit) => t;
 };
@@ -10,13 +10,13 @@ module Classes = {
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "TimelineContent";

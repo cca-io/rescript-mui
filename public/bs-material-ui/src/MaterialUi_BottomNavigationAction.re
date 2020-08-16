@@ -99,7 +99,7 @@ external make:
     ~onTouchMove: ReactEvent.Touch.t => unit=?,
     ~onTouchStart: ReactEvent.Touch.t => unit=?,
     ~tabIndex: TabIndex.t=?,
-    ~_TouchRippleProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TouchRippleProps: Js.t({..})=?,
     ~_type: Type.t=?,
     ~children: 'children=?,
     ~classes: Classes.t=?,

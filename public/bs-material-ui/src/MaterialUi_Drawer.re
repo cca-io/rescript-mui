@@ -80,16 +80,16 @@ external make:
                | [@bs.as "top"] `Top
              ]
                =?,
-    ~_BackdropProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_BackdropProps: Js.t({..})=?,
     ~children: 'children=?,
     ~classes: Classes.t=?,
     ~className: string=?,
     ~elevation: MaterialUi_Types.Number.t=?,
-    ~_ModalProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_ModalProps: Js.t({..})=?,
     ~onClose: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool=?,
-    ~_PaperProps: Js.Dict.t(MaterialUi_Types.any)=?,
-    ~_SlideProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_PaperProps: Js.t({..})=?,
+    ~_SlideProps: Js.t({..})=?,
     ~transitionDuration: TransitionDuration.t=?,
     ~variant: [@bs.string] [
                 | [@bs.as "permanent"] `Permanent

@@ -115,7 +115,7 @@ external make:
     ~id: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~_ActionsComponent: ActionsComponent.t=?,
-    ~backIconButtonProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~backIconButtonProps: Js.t({..})=?,
     ~backIconButtonText: string=?,
     ~classes: Classes.t=?,
     ~className: string=?,
@@ -139,14 +139,14 @@ external make:
                        } =>
                        React.element
                          =?,
-    ~nextIconButtonProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~nextIconButtonProps: Js.t({..})=?,
     ~nextIconButtonText: string=?,
     ~onChangePage: (ReactEvent.Mouse.t, int) => unit,
     ~onChangeRowsPerPage: ReactEvent.Form.t => unit=?,
     ~page: int=?,
     ~rowsPerPage: MaterialUi_Types.Number.t,
     ~rowsPerPageOptions: array(int)=?,
-    ~_SelectProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_SelectProps: Js.t({..})=?,
     ~key: string=?,
     ~ref: ReactDOMRe.domRef=?
   ) =>

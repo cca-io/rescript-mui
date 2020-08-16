@@ -1,21 +1,21 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "page": option(option(string)),
-    "sizeSmall": option(option(string)),
-    "sizeLarge": option(option(string)),
-    "textPrimary": option(option(string)),
-    "textSecondary": option(option(string)),
-    "outlined": option(option(string)),
-    "outlinedPrimary": option(option(string)),
-    "outlinedSecondary": option(option(string)),
-    "rounded": option(option(string)),
-    "ellipsis": option(option(string)),
-    "focusVisible": option(option(string)),
-    "disabled": option(option(string)),
-    "selected": option(option(string)),
-    "icon": option(option(string)),
+    "root": option(string),
+    "page": option(string),
+    "sizeSmall": option(string),
+    "sizeLarge": option(string),
+    "textPrimary": option(string),
+    "textSecondary": option(string),
+    "outlined": option(string),
+    "outlinedPrimary": option(string),
+    "outlinedSecondary": option(string),
+    "rounded": option(string),
+    "ellipsis": option(string),
+    "focusVisible": option(string),
+    "disabled": option(string),
+    "selected": option(string),
+    "icon": option(string),
   };
   [@bs.obj]
   external make:
@@ -75,58 +75,48 @@ type variant = [ | `Text | `Outlined];
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "standard"] `Standard
-                | [@bs.as "primary"] `Primary
-                | [@bs.as "secondary"] `Secondary
-              ],
-            )
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "standard"] `Standard
+              | [@bs.as "primary"] `Primary
+              | [@bs.as "secondary"] `Secondary
+            ]
               =?,
-    ~component: option(Component.t)=?,
-    ~disabled: option(bool)=?,
-    ~page: option(MaterialUi_Types.Number.t)=?,
-    ~selected: option(bool)=?,
-    ~shape: option(
-              [@bs.string] [
-                | [@bs.as "round"] `Round
-                | [@bs.as "rounded"] `Rounded
-              ],
-            )
+    ~component: Component.t=?,
+    ~disabled: bool=?,
+    ~page: MaterialUi_Types.Number.t=?,
+    ~selected: bool=?,
+    ~shape: [@bs.string] [
+              | [@bs.as "round"] `Round
+              | [@bs.as "rounded"] `Rounded
+            ]
               =?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "small"] `Small
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "large"] `Large
-             ],
-           )
+    ~size: [@bs.string] [
+             | [@bs.as "small"] `Small
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "large"] `Large
+           ]
              =?,
-    ~_type: option(
-              [@bs.string] [
-                | [@bs.as "page"] `Page
-                | [@bs.as "first"] `First
-                | [@bs.as "last"] `Last
-                | [@bs.as "next"] `Next
-                | [@bs.as "previous"] `Previous
-                | [@bs.as "start-ellipsis"] `Start_Ellipsis
-                | [@bs.as "end-ellipsis"] `End_Ellipsis
-              ],
-            )
+    ~_type: [@bs.string] [
+              | [@bs.as "page"] `Page
+              | [@bs.as "first"] `First
+              | [@bs.as "last"] `Last
+              | [@bs.as "next"] `Next
+              | [@bs.as "previous"] `Previous
+              | [@bs.as "start-ellipsis"] `Start_Ellipsis
+              | [@bs.as "end-ellipsis"] `End_Ellipsis
+            ]
               =?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "text"] `Text
-                  | [@bs.as "outlined"] `Outlined
-                ],
-              )
+    ~variant: [@bs.string] [
+                | [@bs.as "text"] `Text
+                | [@bs.as "outlined"] `Outlined
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "PaginationItem";

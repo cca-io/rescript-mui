@@ -16,15 +16,15 @@ module Animation: {
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "text": option(option(string)),
-    "rect": option(option(string)),
-    "circle": option(option(string)),
-    "pulse": option(option(string)),
-    "wave": option(option(string)),
-    "withChildren": option(option(string)),
-    "fitContent": option(option(string)),
-    "heightAuto": option(option(string)),
+    "root": option(string),
+    "text": option(string),
+    "rect": option(string),
+    "circle": option(string),
+    "pulse": option(string),
+    "wave": option(string),
+    "withChildren": option(string),
+    "fitContent": option(string),
+    "heightAuto": option(string),
   };
   [@bs.obj]
   external make:
@@ -90,25 +90,23 @@ module Width: {
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~animation: option(Animation.t)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~component: option(Component.t)=?,
-    ~height: option(Height.t)=?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "text"] `Text
-                  | [@bs.as "rect"] `Rect
-                  | [@bs.as "circle"] `Circle
-                ],
-              )
+    ~animation: Animation.t=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~component: Component.t=?,
+    ~height: Height.t=?,
+    ~variant: [@bs.string] [
+                | [@bs.as "text"] `Text
+                | [@bs.as "rect"] `Rect
+                | [@bs.as "circle"] `Circle
+              ]
                 =?,
-    ~width: option(Width.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~width: Width.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Skeleton";

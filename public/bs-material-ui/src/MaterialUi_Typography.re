@@ -168,7 +168,7 @@ external make:
                 | [@bs.as "inherit"] `Inherit
               ]
                 =?,
-    ~variantMapping: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~variantMapping: Js.t({..})=?,
     ~id: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~key: string=?,

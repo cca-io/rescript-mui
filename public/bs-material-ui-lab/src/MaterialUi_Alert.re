@@ -1,22 +1,22 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "standardSuccess": option(option(string)),
-    "standardInfo": option(option(string)),
-    "standardWarning": option(option(string)),
-    "standardError": option(option(string)),
-    "outlinedSuccess": option(option(string)),
-    "outlinedInfo": option(option(string)),
-    "outlinedWarning": option(option(string)),
-    "outlinedError": option(option(string)),
-    "filledSuccess": option(option(string)),
-    "filledInfo": option(option(string)),
-    "filledWarning": option(option(string)),
-    "filledError": option(option(string)),
-    "icon": option(option(string)),
-    "message": option(option(string)),
-    "action": option(option(string)),
+    "root": option(string),
+    "standardSuccess": option(string),
+    "standardInfo": option(string),
+    "standardWarning": option(string),
+    "standardError": option(string),
+    "outlinedSuccess": option(string),
+    "outlinedInfo": option(string),
+    "outlinedWarning": option(string),
+    "outlinedError": option(string),
+    "filledSuccess": option(string),
+    "filledInfo": option(string),
+    "filledWarning": option(string),
+    "filledError": option(string),
+    "icon": option(string),
+    "message": option(string),
+    "action": option(string),
   };
   [@bs.obj]
   external make:
@@ -47,10 +47,10 @@ type color = [ | `Error | `Info | `Success | `Warning];
 module IconMapping = {
   type t = {
     .
-    "error": option(option(React.element)),
-    "info": option(option(React.element)),
-    "success": option(option(React.element)),
-    "warning": option(option(React.element)),
+    "error": option(React.element),
+    "info": option(React.element),
+    "success": option(React.element),
+    "warning": option(React.element),
   };
   [@bs.obj]
   external make:
@@ -71,45 +71,39 @@ type variant = [ | `Filled | `Outlined | `Standard];
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~action: option(React.element)=?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~closeText: option(string)=?,
-    ~color: option(
-              [@bs.string] [
-                | [@bs.as "error"] `Error
-                | [@bs.as "info"] `Info
-                | [@bs.as "success"] `Success
-                | [@bs.as "warning"] `Warning
-              ],
-            )
+    ~action: React.element=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~closeText: string=?,
+    ~color: [@bs.string] [
+              | [@bs.as "error"] `Error
+              | [@bs.as "info"] `Info
+              | [@bs.as "success"] `Success
+              | [@bs.as "warning"] `Warning
+            ]
               =?,
-    ~icon: option(React.element)=?,
-    ~iconMapping: option(IconMapping.t)=?,
-    ~onClose: option(ReactEvent.Synthetic.t => unit)=?,
-    ~role: option(string)=?,
-    ~severity: option(
-                 [@bs.string] [
-                   | [@bs.as "error"] `Error
-                   | [@bs.as "info"] `Info
-                   | [@bs.as "success"] `Success
-                   | [@bs.as "warning"] `Warning
-                 ],
-               )
+    ~icon: React.element=?,
+    ~iconMapping: IconMapping.t=?,
+    ~onClose: ReactEvent.Synthetic.t => unit=?,
+    ~role: string=?,
+    ~severity: [@bs.string] [
+                 | [@bs.as "error"] `Error
+                 | [@bs.as "info"] `Info
+                 | [@bs.as "success"] `Success
+                 | [@bs.as "warning"] `Warning
+               ]
                  =?,
-    ~variant: option(
-                [@bs.string] [
-                  | [@bs.as "filled"] `Filled
-                  | [@bs.as "outlined"] `Outlined
-                  | [@bs.as "standard"] `Standard
-                ],
-              )
+    ~variant: [@bs.string] [
+                | [@bs.as "filled"] `Filled
+                | [@bs.as "outlined"] `Outlined
+                | [@bs.as "standard"] `Standard
+              ]
                 =?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Alert";

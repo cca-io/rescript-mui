@@ -57,7 +57,7 @@ external make:
     ~icon: React.element=?,
     ~optional: React.element=?,
     ~_StepIconComponent: StepIconComponent.t=?,
-    ~_StepIconProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_StepIconProps: Js.t({..})=?,
     ~id: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~key: string=?,

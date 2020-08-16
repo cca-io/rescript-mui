@@ -130,7 +130,7 @@ external make:
     ~fullWidth: bool=?,
     ~id: string=?,
     ~inputComponent: InputComponent.t=?,
-    ~inputProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~inputProps: Js.t({..})=?,
     ~margin: [@bs.string] [ | [@bs.as "dense"] `Dense | [@bs.as "none"] `None]
                =?,
     ~multiline: bool=?,

@@ -88,7 +88,7 @@ external make:
     ~gutterBottom: bool=?,
     ~noWrap: bool=?,
     ~paragraph: bool=?,
-    ~variantMapping: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~variantMapping: Js.t({..})=?,
     ~children: 'children=?,
     ~classes: Classes.t=?,
     ~className: string=?,
@@ -105,7 +105,7 @@ external make:
     ~component: Component.t=?,
     ~onBlur: ReactEvent.Focus.t => unit=?,
     ~onFocus: ReactEvent.Focus.t => unit=?,
-    ~_TypographyClasses: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TypographyClasses: Js.t({..})=?,
     ~underline: [@bs.string] [
                   | [@bs.as "none"] `None
                   | [@bs.as "hover"] `Hover

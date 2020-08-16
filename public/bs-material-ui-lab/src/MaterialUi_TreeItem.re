@@ -1,13 +1,13 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "expanded": option(option(string)),
-    "selected": option(option(string)),
-    "group": option(option(string)),
-    "content": option(option(string)),
-    "iconContainer": option(option(string)),
-    "label": option(option(string)),
+    "root": option(string),
+    "expanded": option(string),
+    "selected": option(string),
+    "group": option(string),
+    "content": option(string),
+    "iconContainer": option(string),
+    "label": option(string),
   };
   [@bs.obj]
   external make:
@@ -41,27 +41,27 @@ module TransitionComponent: {
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~collapseIcon: option(React.element)=?,
-    ~endIcon: option(React.element)=?,
-    ~expandIcon: option(React.element)=?,
-    ~icon: option(React.element)=?,
-    ~label: option(React.element)=?,
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~collapseIcon: React.element=?,
+    ~endIcon: React.element=?,
+    ~expandIcon: React.element=?,
+    ~icon: React.element=?,
+    ~label: React.element=?,
     ~nodeId: string,
-    ~onClick: option(ReactEvent.Mouse.t => unit)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~onIconClick: option(MaterialUi_Types.any)=?,
-    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onLabelClick: option(MaterialUi_Types.any)=?,
-    ~onMouseDown: option(ReactEvent.Mouse.t => unit)=?,
-    ~_TransitionComponent: option(TransitionComponent.t)=?,
-    ~_TransitionProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~onClick: ReactEvent.Mouse.t => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onIconClick: MaterialUi_Types.any=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onLabelClick: MaterialUi_Types.any=?,
+    ~onMouseDown: ReactEvent.Mouse.t => unit=?,
+    ~_TransitionComponent: TransitionComponent.t=?,
+    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "TreeItem";

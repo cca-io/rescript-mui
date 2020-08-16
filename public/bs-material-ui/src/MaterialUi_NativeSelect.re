@@ -151,7 +151,7 @@ external make:
     ~classes: Classes.t=?,
     ~_IconComponent: IconComponent.t=?,
     ~input: React.element=?,
-    ~inputProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~inputProps: Js.t({..})=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~value: MaterialUi_Types.any=?,
     ~variant: [@bs.string] [

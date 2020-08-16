@@ -3,10 +3,10 @@ type align = [ | `Alternate | `Left | `Right];
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "alignLeft": option(option(string)),
-    "alignRight": option(option(string)),
-    "alignAlternate": option(option(string)),
+    "root": option(string),
+    "alignLeft": option(string),
+    "alignRight": option(string),
+    "alignAlternate": option(string),
   };
   [@bs.obj]
   external make:
@@ -23,21 +23,19 @@ module Classes = {
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~align: option(
-              [@bs.string] [
-                | [@bs.as "alternate"] `Alternate
-                | [@bs.as "left"] `Left
-                | [@bs.as "right"] `Right
-              ],
-            )
+    ~align: [@bs.string] [
+              | [@bs.as "alternate"] `Alternate
+              | [@bs.as "left"] `Left
+              | [@bs.as "right"] `Right
+            ]
               =?,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Timeline";

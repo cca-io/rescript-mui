@@ -1,22 +1,22 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "sizeSmall": option(option(string)),
-    "sizeLarge": option(option(string)),
-    "readOnly": option(option(string)),
-    "disabled": option(option(string)),
-    "focusVisible": option(option(string)),
-    "visuallyhidden": option(option(string)),
-    "pristine": option(option(string)),
-    "label": option(option(string)),
-    "icon": option(option(string)),
-    "iconEmpty": option(option(string)),
-    "iconFilled": option(option(string)),
-    "iconHover": option(option(string)),
-    "iconFocus": option(option(string)),
-    "iconActive": option(option(string)),
-    "decimal": option(option(string)),
+    "root": option(string),
+    "sizeSmall": option(string),
+    "sizeLarge": option(string),
+    "readOnly": option(string),
+    "disabled": option(string),
+    "focusVisible": option(string),
+    "visuallyhidden": option(string),
+    "pristine": option(string),
+    "label": option(string),
+    "icon": option(string),
+    "iconEmpty": option(string),
+    "iconFilled": option(string),
+    "iconHover": option(string),
+    "iconFocus": option(string),
+    "iconActive": option(string),
+    "decimal": option(string),
   };
   [@bs.obj]
   external make:
@@ -61,36 +61,34 @@ type size = [ | `Large | `Medium | `Small];
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~defaultValue: option(MaterialUi_Types.Number.t)=?,
-    ~disabled: option(bool)=?,
-    ~emptyIcon: option(React.element)=?,
-    ~emptyLabelText: option(React.element)=?,
-    ~getLabelText: option(int => string)=?,
-    ~icon: option(React.element)=?,
-    ~_IconContainerComponent: option(IconContainerComponent.t)=?,
-    ~max: option(MaterialUi_Types.Number.t)=?,
-    ~name: option(string)=?,
-    ~onChange: option((ReactEvent.Form.t, int) => unit)=?,
-    ~onChangeActive: option((Js.Dict.t(MaterialUi_Types.any), int) => unit)=?,
-    ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseMove: option(ReactEvent.Mouse.t => unit)=?,
-    ~precision: option(MaterialUi_Types.Number.t)=?,
-    ~readOnly: option(bool)=?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "large"] `Large
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~defaultValue: MaterialUi_Types.Number.t=?,
+    ~disabled: bool=?,
+    ~emptyIcon: React.element=?,
+    ~emptyLabelText: React.element=?,
+    ~getLabelText: int => string=?,
+    ~icon: React.element=?,
+    ~_IconContainerComponent: IconContainerComponent.t=?,
+    ~max: MaterialUi_Types.Number.t=?,
+    ~name: string=?,
+    ~onChange: (ReactEvent.Form.t, int) => unit=?,
+    ~onChangeActive: (Js.Dict.t(MaterialUi_Types.any), int) => unit=?,
+    ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+    ~onMouseMove: ReactEvent.Mouse.t => unit=?,
+    ~precision: MaterialUi_Types.Number.t=?,
+    ~readOnly: bool=?,
+    ~size: [@bs.string] [
+             | [@bs.as "large"] `Large
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~value: option(MaterialUi_Types.Number.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~value: MaterialUi_Types.Number.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "Rating";

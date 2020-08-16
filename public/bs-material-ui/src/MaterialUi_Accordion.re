@@ -67,7 +67,7 @@ external make:
     ~onChange: (ReactEvent.Form.t, bool) => unit=?,
     ~square: bool=?,
     ~_TransitionComponent: TransitionComponent.t=?,
-    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TransitionProps: Js.t({..})=?,
     ~id: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~key: string=?,

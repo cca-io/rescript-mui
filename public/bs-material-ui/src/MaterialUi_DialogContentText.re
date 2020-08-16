@@ -99,7 +99,7 @@ external make:
                 | [@bs.as "inherit"] `Inherit
               ]
                 =?,
-    ~variantMapping: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~variantMapping: Js.t({..})=?,
     ~children: 'children=?,
     ~classes: Classes.t=?,
     ~id: string=?,

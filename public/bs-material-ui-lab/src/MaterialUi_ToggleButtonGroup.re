@@ -1,11 +1,11 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "vertical": option(option(string)),
-    "grouped": option(option(string)),
-    "groupedHorizontal": option(option(string)),
-    "groupedVertical": option(option(string)),
+    "root": option(string),
+    "vertical": option(string),
+    "grouped": option(string),
+    "groupedHorizontal": option(string),
+    "groupedVertical": option(string),
   };
   [@bs.obj]
   external make:
@@ -27,31 +27,27 @@ type size = [ | `Large | `Medium | `Small];
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~exclusive: option(bool)=?,
-    ~onChange: option((ReactEvent.Form.t, MaterialUi_Types.any) => unit)=?,
-    ~orientation: option(
-                    [@bs.string] [
-                      | [@bs.as "horizontal"] `Horizontal
-                      | [@bs.as "vertical"] `Vertical
-                    ],
-                  )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~exclusive: bool=?,
+    ~onChange: (ReactEvent.Form.t, MaterialUi_Types.any) => unit=?,
+    ~orientation: [@bs.string] [
+                    | [@bs.as "horizontal"] `Horizontal
+                    | [@bs.as "vertical"] `Vertical
+                  ]
                     =?,
-    ~size: option(
-             [@bs.string] [
-               | [@bs.as "large"] `Large
-               | [@bs.as "medium"] `Medium
-               | [@bs.as "small"] `Small
-             ],
-           )
+    ~size: [@bs.string] [
+             | [@bs.as "large"] `Large
+             | [@bs.as "medium"] `Medium
+             | [@bs.as "small"] `Small
+           ]
              =?,
-    ~value: option(MaterialUi_Types.any)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~value: MaterialUi_Types.any=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "ToggleButtonGroup";

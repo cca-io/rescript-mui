@@ -1,14 +1,14 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "fab": option(option(string)),
-    "directionUp": option(option(string)),
-    "directionDown": option(option(string)),
-    "directionLeft": option(option(string)),
-    "directionRight": option(option(string)),
-    "actions": option(option(string)),
-    "actionsClosed": option(option(string)),
+    "root": option(string),
+    "fab": option(string),
+    "directionUp": option(string),
+    "directionDown": option(string),
+    "directionLeft": option(string),
+    "directionRight": option(string),
+    "actions": option(string),
+    "actionsClosed": option(string),
   };
   [@bs.obj]
   external make:
@@ -45,9 +45,9 @@ module TransitionComponent: {
 module TransitionDuration_shape = {
   type t = {
     .
-    "appear": option(option(MaterialUi_Types.Number.t)),
-    "enter": option(option(MaterialUi_Types.Number.t)),
-    "exit": option(option(MaterialUi_Types.Number.t)),
+    "appear": option(MaterialUi_Types.Number.t),
+    "enter": option(MaterialUi_Types.Number.t),
+    "exit": option(MaterialUi_Types.Number.t),
   };
   [@bs.obj]
   external make:
@@ -78,37 +78,35 @@ module TransitionDuration: {
 external make:
   (
     ~ariaLabel: string,
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~direction: option(
-                  [@bs.string] [
-                    | [@bs.as "down"] `Down
-                    | [@bs.as "left"] `Left
-                    | [@bs.as "right"] `Right
-                    | [@bs.as "up"] `Up
-                  ],
-                )
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~direction: [@bs.string] [
+                  | [@bs.as "down"] `Down
+                  | [@bs.as "left"] `Left
+                  | [@bs.as "right"] `Right
+                  | [@bs.as "up"] `Up
+                ]
                   =?,
-    ~_FabProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~hidden: option(bool)=?,
-    ~icon: option(React.element)=?,
-    ~onBlur: option(ReactEvent.Focus.t => unit)=?,
-    ~onClose: option((ReactEvent.Synthetic.t, string) => unit)=?,
-    ~onFocus: option(ReactEvent.Focus.t => unit)=?,
-    ~onKeyDown: option(ReactEvent.Keyboard.t => unit)=?,
-    ~onMouseEnter: option(ReactEvent.Mouse.t => unit)=?,
-    ~onMouseLeave: option(ReactEvent.Mouse.t => unit)=?,
-    ~onOpen: option((ReactEvent.Synthetic.t, string) => unit)=?,
+    ~_FabProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~hidden: bool=?,
+    ~icon: React.element=?,
+    ~onBlur: ReactEvent.Focus.t => unit=?,
+    ~onClose: (ReactEvent.Synthetic.t, string) => unit=?,
+    ~onFocus: ReactEvent.Focus.t => unit=?,
+    ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+    ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
+    ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+    ~onOpen: (ReactEvent.Synthetic.t, string) => unit=?,
     ~_open: bool,
-    ~openIcon: option(React.element)=?,
-    ~_TransitionComponent: option(TransitionComponent.t)=?,
-    ~transitionDuration: option(TransitionDuration.t)=?,
-    ~_TransitionProps: option(Js.Dict.t(MaterialUi_Types.any))=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~openIcon: React.element=?,
+    ~_TransitionComponent: TransitionComponent.t=?,
+    ~transitionDuration: TransitionDuration.t=?,
+    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "SpeedDial";

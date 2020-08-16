@@ -51,7 +51,7 @@ external make:
     ~component: Component.t=?,
     ~disablePointerEvents: bool=?,
     ~disableTypography: bool=?,
-    ~muiFormControl: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~muiFormControl: Js.t({..})=?,
     ~position: [@bs.string] [ | [@bs.as "start"] `Start | [@bs.as "end"] `End]
                  =?,
     ~variant: [@bs.string] [

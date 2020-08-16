@@ -1,5 +1,5 @@
 module Classes = {
-  type t = {. "root": option(option(string))};
+  type t = {. "root": option(string)};
   [@bs.obj] external make: (~root: string=?, unit) => t;
 };
 
@@ -42,33 +42,30 @@ module Selected: {
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~defaultCollapseIcon: option(React.element)=?,
-    ~defaultEndIcon: option(React.element)=?,
-    ~defaultExpanded: option(array(string))=?,
-    ~defaultExpandIcon: option(React.element)=?,
-    ~defaultParentIcon: option(React.element)=?,
-    ~defaultSelected: option(DefaultSelected.t)=?,
-    ~disableSelection: option(bool)=?,
-    ~expanded: option(array(string))=?,
-    ~multiSelect: option(bool)=?,
-    ~onNodeSelect: option((Js.Dict.t(MaterialUi_Types.any), Value.t) => unit)
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~defaultCollapseIcon: React.element=?,
+    ~defaultEndIcon: React.element=?,
+    ~defaultExpanded: array(string)=?,
+    ~defaultExpandIcon: React.element=?,
+    ~defaultParentIcon: React.element=?,
+    ~defaultSelected: DefaultSelected.t=?,
+    ~disableSelection: bool=?,
+    ~expanded: array(string)=?,
+    ~multiSelect: bool=?,
+    ~onNodeSelect: (Js.Dict.t(MaterialUi_Types.any), Value.t) => unit=?,
+    ~onNodeToggle: (
+                     Js.Dict.t(MaterialUi_Types.any),
+                     array(MaterialUi_Types.any)
+                   ) =>
+                   unit
                      =?,
-    ~onNodeToggle: option(
-                     (
-                       Js.Dict.t(MaterialUi_Types.any),
-                       array(MaterialUi_Types.any)
-                     ) =>
-                     unit,
-                   )
-                     =?,
-    ~selected: option(Selected.t)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~selected: Selected.t=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "TreeView";

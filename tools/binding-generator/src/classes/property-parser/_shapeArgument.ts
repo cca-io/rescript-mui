@@ -1,12 +1,16 @@
 import Base from './base';
 import ResolveArgument from './resolve-argument';
 import GenerateReasonName from '../../helpers/generate-reason-name';
+import { inShape } from './helpers';
 
 const factory = (propertyType: PropType$Shape) => {
   return class ShapeArgumentParser extends Base {
     private _propertyType: PropType$Shape = propertyType;
+    private inShapeBefore: boolean;
 
     public executeParse() {
+      this.inShapeBefore = inShape.is();
+      inShape.enter();
       const shapeArgs = this.resolveShape();
       if (shapeArgs.length) {
         this._reasonType = `{.
@@ -17,6 +21,8 @@ const factory = (propertyType: PropType$Shape) => {
       } else {
         this._reasonType = 'MaterialUi_Helpers.any';
       }
+      inShape.exit();
+      inShape.set(this.inShapeBefore);
     }
 
     private resolveShape() {

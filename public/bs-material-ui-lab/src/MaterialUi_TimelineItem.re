@@ -1,13 +1,13 @@
 module Classes = {
   type t = {
     .
-    "root": option(option(string)),
-    "alignLeft": option(option(string)),
-    "alignRight": option(option(string)),
-    "alignAlternate": option(option(string)),
-    "missingOppositeContent": option(option(string)),
-    "content": option(option(string)),
-    "oppositeContent": option(option(string)),
+    "root": option(string),
+    "alignLeft": option(string),
+    "alignRight": option(string),
+    "alignAlternate": option(string),
+    "missingOppositeContent": option(string),
+    "content": option(string),
+    "oppositeContent": option(string),
   };
   [@bs.obj]
   external make:
@@ -27,13 +27,13 @@ module Classes = {
 [@react.component] [@bs.module "@material-ui/lab"]
 external make:
   (
-    ~children: option('children)=?,
-    ~classes: option(Classes.t)=?,
-    ~className: option(string)=?,
-    ~id: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
-    ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~children: 'children=?,
+    ~classes: Classes.t=?,
+    ~className: string=?,
+    ~id: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~key: string=?,
+    ~ref: ReactDOMRe.domRef=?
   ) =>
   React.element =
   "TimelineItem";

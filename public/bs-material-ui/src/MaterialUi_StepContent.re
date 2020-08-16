@@ -77,7 +77,7 @@ external make:
     ~className: string=?,
     ~_TransitionComponent: TransitionComponent.t=?,
     ~transitionDuration: TransitionDuration.t=?,
-    ~_TransitionProps: Js.Dict.t(MaterialUi_Types.any)=?,
+    ~_TransitionProps: Js.t({..})=?,
     ~id: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~key: string=?,
