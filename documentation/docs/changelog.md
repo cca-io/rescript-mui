@@ -19,6 +19,7 @@ title: Changelog
 - :boom: Deprecated the pre v2 bindings for the zero cost version (pre v2 is no
   longer supported)
 - :rocket: Updated to MaterialUi v4.11.0
+- :rocket: Added a documentation page
 
 ## 1.2.0
 

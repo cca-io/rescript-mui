@@ -29,18 +29,17 @@ This modules primary purpose is not having to type out the `MaterialUi_` part of
 the component modules each time. Example:
 
 ```reason
-[@react.component]
+@react.component
 let make = () => {
-  MaterialUi.(
-    <div>
-      <Typography variant=`H4 gutterBottom=true>
-        {"Headline"->React.string}
-      </Typography>
-      <Typography>
-        {"Some example text"->React.string}
-      </Typography>
-    </div>
-  )
+  open MaterialUi;
+  <div>
+    <Typography variant=`H4 gutterBottom=true>
+      {"Headline"->React.string}
+    </Typography>
+    <Typography>
+      {"Some example text"->React.string}
+    </Typography>
+  </div>
 };
 ```
 

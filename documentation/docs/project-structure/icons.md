@@ -12,12 +12,12 @@ following example for how this could look like:
 
 ```reason
 module SupervisedUserCircleOutlined = {
-    [@react.component] [@bs.module "@material-ui/icons/SupervisedUserCircle"]
+    @react.component @bs.module("@material-ui/icons/SupervisedUserCircle")
     external make: (
         ~color: string=?,
         ~className: string=?,
         ~fontSize: string=?,
-    ) => React.element = "default";
+    ) => React.element = "default"
 };
 
 <SupervisedUserCircleOutlined color={MaterialUi.Colors.red.c400} fontSize="26px" />

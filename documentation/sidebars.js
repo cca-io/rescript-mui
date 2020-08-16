@@ -5,6 +5,7 @@ module.exports = {
       'project-structure/modules',
       'project-structure/union-values',
       'project-structure/any-type',
+      'project-structure/number-type',
       'project-structure/module-colors',
       'project-structure/module-core',
       'project-structure/module-box',

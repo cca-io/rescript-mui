@@ -87,7 +87,7 @@ MaterialUi Shape.
 Here are 2 examples of accessing fields in the theme object:
 
 ```reason
-[@react.component]
+@react.component
 let make = () => {
   let theme = MaterialUi.Core.useTheme();
 

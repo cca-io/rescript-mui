@@ -25,7 +25,7 @@ for more information).
 You can construct a breakpoint like this:
 
 ```reason
-[@react.component]
+@react.component
 let make = () => {
     let theme = MaterialUi.Core.useTheme();
     let matches = MaterialUi.Core.(useMediaQuery(Breakpoint.get(theme, `up(`sm))));
