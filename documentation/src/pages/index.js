@@ -54,34 +54,21 @@ function Home() {
             <div className="row">
               <section className="col">
                 <h2 className={styles.featureHeading}>
-                  Language level GraphQL primitives
+                  Automatically Generated
                 </h2>
                 <p className="padding-horiz--md">
-                  graphql-ppx offers language level GraphQL primitives within
-                  ReasonML using a compiler preprocessor extension. This means
-                  you have a simple syntax to define queries, mutations and
-                  fragments in your ReasonML project.
+                  All bindings to the MaterialUi components are automatically
+                  generated from the original documentation. They are extracted
+                  & rendered by a combination of custom-built typescript tools.
                 </p>
               </section>
               <section className="col">
-                <h2 className={styles.featureHeading}>
-                  Building block for GraphQL clients
-                </h2>
+                <h2 className={styles.featureHeading}>Actively maintained</h2>
                 <p className="padding-horiz--md">
-                  graphql-ppx automatically generates types, and parse/serialize
-                  functions for converting GraphQL data and arguments to
-                  idiomatic ReasonML data structures. This provides a building
-                  block for GraphQL clients in the ReasonML ecosystem.
-                </p>
-              </section>
-              <section className="col">
-                <h2 className={styles.featureHeading}>100% type safe!</h2>
-                <p className="padding-horiz--md">
-                  With graphql-ppx your project is completely type safe. Types
-                  are generated from the GraphQL schema of your backend. This
-                  means that no runtime errors occur when working with server
-                  data. And if a schema change breaks your app, your app simply
-                  won't compile!
+                  I use these bindings daily in more than 10 production projects
+                  of various kinds. This incentivizes me to regularly update the
+                  bindings and to keep breaking changes to a minimum whereever
+                  possible.
                 </p>
               </section>
             </div>

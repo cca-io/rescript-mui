@@ -1,7 +1,7 @@
 module.exports = {
   title: 'BS-Material-UI',
   tagline: 'Material UI Bindings for ReasonML',
-  url: 'https://jsiebern.github.io/bs-material-ui/',
+  url: 'https://bs-material-ui.github.io/',
   baseUrl: '/',
   favicon: 'img/favicon.png',
   organizationName: 'jsiebern', // Usually your GitHub org/user name.
@@ -19,7 +19,7 @@ module.exports = {
         src: 'img/logo.svg',
         srcDark: 'img/logo.svg',
       },
-      links: [
+      items: [
         { to: 'docs/introduction', label: 'Docs', position: 'left' },
         { to: 'docs/changelog', label: 'Changelog', position: 'left' },
         { to: 'docs/examples', label: 'Examples', position: 'left' },
@@ -28,6 +28,7 @@ module.exports = {
           label: 'Currently on MUI version: v4.11.0',
           position: 'right',
         },
+        { to: 'docs/contributing', label: 'Contributing', position: 'right' },
         {
           href: 'https://github.com/jsiebern/bs-material-ui',
           label: 'GitHub',
@@ -39,11 +40,20 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: ' ',
           items: [
             {
-              label: 'Docs',
-              to: 'docs/introduction',
+              label: 'Privacy Policy',
+              to: 'docs/legal/privacy',
+            },
+          ],
+        },
+        {
+          title: ' ',
+          items: [
+            {
+              label: 'Legal Notice',
+              to: 'docs/legal/notice',
             },
           ],
         },

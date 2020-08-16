@@ -2,27 +2,34 @@
 title: Contributing
 ---
 
-## Developing
+The generator code is usually adapted to the current MUI version and prone to
+breaking on each new release (MaterialUi changes implementation details of their
+docs generation quite frequently.). It would be a lot of work to simply keep the
+code in a state where people could run it safely, so I won't do it. Thank you
+for understanding.
 
-```
-npm install -g esy@latest
-esy install
-esy build
-```
+## Component X is missing a prop
 
-## Running tests
+### Please read this first
 
-### BuckleScript
+In the header of this page you will find the currently supported MaterialUi
+Version (`Currently on MUI version xxx`). Please make sure that the prop you're
+missing wasn't added in a recent version which the bindings aren't updated to
+yet. If you have confirmed that it's simply missing, you can refer to the next
+paragraph.
 
-```
-cd tests_bucklescript
-npm test
-```
+### Contributing a missing prop
 
-### Native
+You can send a PR for
+[this file](https://github.com/jsiebern/bs-material-ui/blob/master/tools/binding-generator/src/custom-props.ts)
+with the according information. The object format is roughly as follows:
 
-For native run:
-
-```
-esy dune runtest -f
+```ts
+{
+  ComponentName: {
+    propName: {
+      // ... refer to existing props as examples
+    }
+  },
+}
 ```

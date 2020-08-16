@@ -14,6 +14,12 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 2.0.0
+
+- :boom: Deprecated the pre v2 bindings for the zero cost version (pre v2 is no
+  longer supported)
+- :rocket: Updated to MaterialUi v4.11.0
+
 ## 1.2.0
 
 - :rocket: Updated to MaterialUi v4.8.1
