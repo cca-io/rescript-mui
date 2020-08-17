@@ -1,11 +1,11 @@
 module BreakpointValues = {
   type t = {
     .
-    "lg": option(option(float)),
-    "md": option(option(float)),
-    "sm": option(option(float)),
-    "xl": option(option(float)),
-    "xs": option(option(float)),
+    "lg": option(float),
+    "md": option(float),
+    "sm": option(float),
+    "xl": option(float),
+    "xs": option(float),
   };
   [@bs.obj]
   external make:
@@ -23,15 +23,15 @@ module BreakpointValues = {
 module Breakpoints = {
   type t = {
     .
-    "between": option(option(MaterialUi_Types.any)),
-    "down": option(option(MaterialUi_Types.any)),
-    "keys": option(option(array(string))),
-    "only": option(option(MaterialUi_Types.any)),
-    "step": option(option(float)),
-    "unit": option(option(string)),
-    "up": option(option(MaterialUi_Types.any)),
-    "values": option(option(BreakpointValues.t)),
-    "width": option(option(MaterialUi_Types.any)),
+    "between": option(MaterialUi_Types.any),
+    "down": option(MaterialUi_Types.any),
+    "keys": option(array(string)),
+    "only": option(MaterialUi_Types.any),
+    "step": option(float),
+    "unit": option(string),
+    "up": option(MaterialUi_Types.any),
+    "values": option(BreakpointValues.t),
+    "width": option(MaterialUi_Types.any),
   };
   [@bs.obj]
   external make:
@@ -53,8 +53,8 @@ module Breakpoints = {
 module MixinsOptions = {
   type t = {
     .
-    "gutters": option(option(MaterialUi_Types.any)),
-    "toolbar": option(option(ReactDOMRe.Style.t)),
+    "gutters": option(MaterialUi_Types.any),
+    "toolbar": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -65,10 +65,10 @@ module MixinsOptions = {
 module AccordionClassKey = {
   type t = {
     .
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "expanded": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "rounded": option(option(ReactDOMRe.Style.t)),
+    "disabled": option(ReactDOMRe.Style.t),
+    "expanded": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "rounded": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -85,8 +85,8 @@ module AccordionClassKey = {
 module AccordionActionsClassKey = {
   type t = {
     .
-    "root": option(option(ReactDOMRe.Style.t)),
-    "spacing": option(option(ReactDOMRe.Style.t)),
+    "root": option(ReactDOMRe.Style.t),
+    "spacing": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -94,19 +94,19 @@ module AccordionActionsClassKey = {
 };
 
 module MuiAccordionDetails = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module AccordionSummaryClassKey = {
   type t = {
     .
-    "content": option(option(ReactDOMRe.Style.t)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "expandIcon": option(option(ReactDOMRe.Style.t)),
-    "expanded": option(option(ReactDOMRe.Style.t)),
-    "focused": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "content": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOMRe.Style.t),
+    "expandIcon": option(ReactDOMRe.Style.t),
+    "expanded": option(ReactDOMRe.Style.t),
+    "focused": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -125,15 +125,15 @@ module AccordionSummaryClassKey = {
 module AppBarClassKey = {
   type t = {
     .
-    "colorDefault": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "positionAbsolute": option(option(ReactDOMRe.Style.t)),
-    "positionFixed": option(option(ReactDOMRe.Style.t)),
-    "positionRelative": option(option(ReactDOMRe.Style.t)),
-    "positionStatic": option(option(ReactDOMRe.Style.t)),
-    "positionSticky": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "colorDefault": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "positionAbsolute": option(ReactDOMRe.Style.t),
+    "positionFixed": option(ReactDOMRe.Style.t),
+    "positionRelative": option(ReactDOMRe.Style.t),
+    "positionStatic": option(ReactDOMRe.Style.t),
+    "positionSticky": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -155,13 +155,13 @@ module AppBarClassKey = {
 module AvatarClassKey = {
   type t = {
     .
-    "circle": option(option(ReactDOMRe.Style.t)),
-    "colorDefault": option(option(string)),
-    "fallback": option(option(ReactDOMRe.Style.t)),
-    "img": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "rounded": option(option(ReactDOMRe.Style.t)),
-    "square": option(option(ReactDOMRe.Style.t)),
+    "circle": option(ReactDOMRe.Style.t),
+    "colorDefault": option(string),
+    "fallback": option(ReactDOMRe.Style.t),
+    "img": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "rounded": option(ReactDOMRe.Style.t),
+    "square": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -181,8 +181,8 @@ module AvatarClassKey = {
 module BackdropClassKey = {
   type t = {
     .
-    "invisible": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "invisible": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -192,20 +192,20 @@ module BackdropClassKey = {
 module BadgeClassKey = {
   type t = {
     .
-    "anchorOriginBottomLeftRectangle": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginBottomRightCircle": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginBottomRightRectangle": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginTopLeftCircle": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginTopLeftRectangle": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginTopRightCircle": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginTopRightRectangle": option(option(ReactDOMRe.Style.t)),
-    "badge": option(option(ReactDOMRe.Style.t)),
-    "colorError": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "dot": option(option(ReactDOMRe.Style.t)),
-    "invisible": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "anchorOriginBottomLeftRectangle": option(ReactDOMRe.Style.t),
+    "anchorOriginBottomRightCircle": option(ReactDOMRe.Style.t),
+    "anchorOriginBottomRightRectangle": option(ReactDOMRe.Style.t),
+    "anchorOriginTopLeftCircle": option(ReactDOMRe.Style.t),
+    "anchorOriginTopLeftRectangle": option(ReactDOMRe.Style.t),
+    "anchorOriginTopRightCircle": option(ReactDOMRe.Style.t),
+    "anchorOriginTopRightRectangle": option(ReactDOMRe.Style.t),
+    "badge": option(ReactDOMRe.Style.t),
+    "colorError": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "dot": option(ReactDOMRe.Style.t),
+    "invisible": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -230,18 +230,18 @@ module BadgeClassKey = {
 };
 
 module MuiBottomNavigation = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module BottomNavigationActionClassKey = {
   type t = {
     .
-    "iconOnly": option(option(ReactDOMRe.Style.t)),
-    "label": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "selected": option(option(ReactDOMRe.Style.t)),
-    "wrapper": option(option(ReactDOMRe.Style.t)),
+    "iconOnly": option(ReactDOMRe.Style.t),
+    "label": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "selected": option(ReactDOMRe.Style.t),
+    "wrapper": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -259,10 +259,10 @@ module BottomNavigationActionClassKey = {
 module BreadcrumbsClassKey = {
   type t = {
     .
-    "li": option(option(ReactDOMRe.Style.t)),
-    "ol": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "separator": option(option(ReactDOMRe.Style.t)),
+    "li": option(ReactDOMRe.Style.t),
+    "ol": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "separator": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -279,35 +279,35 @@ module BreadcrumbsClassKey = {
 module ButtonClassKey = {
   type t = {
     .
-    "colorInherit": option(option(string)),
-    "contained": option(option(ReactDOMRe.Style.t)),
-    "containedPrimary": option(option(ReactDOMRe.Style.t)),
-    "containedSecondary": option(option(ReactDOMRe.Style.t)),
-    "containedSizeLarge": option(option(ReactDOMRe.Style.t)),
-    "containedSizeSmall": option(option(ReactDOMRe.Style.t)),
-    "disableElevation": option(option(ReactDOMRe.Style.t)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "endIcon": option(option(ReactDOMRe.Style.t)),
-    "focusVisible": option(option(ReactDOMRe.Style.t)),
-    "fullWidth": option(option(ReactDOMRe.Style.t)),
-    "iconSizeLarge": option(option(ReactDOMRe.Style.t)),
-    "iconSizeMedium": option(option(ReactDOMRe.Style.t)),
-    "iconSizeSmall": option(option(ReactDOMRe.Style.t)),
-    "label": option(option(ReactDOMRe.Style.t)),
-    "outlined": option(option(ReactDOMRe.Style.t)),
-    "outlinedPrimary": option(option(ReactDOMRe.Style.t)),
-    "outlinedSecondary": option(option(ReactDOMRe.Style.t)),
-    "outlinedSizeLarge": option(option(ReactDOMRe.Style.t)),
-    "outlinedSizeSmall": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "sizeLarge": option(option(ReactDOMRe.Style.t)),
-    "sizeSmall": option(option(ReactDOMRe.Style.t)),
-    "startIcon": option(option(ReactDOMRe.Style.t)),
-    "text": option(option(ReactDOMRe.Style.t)),
-    "textPrimary": option(option(ReactDOMRe.Style.t)),
-    "textSecondary": option(option(ReactDOMRe.Style.t)),
-    "textSizeLarge": option(option(ReactDOMRe.Style.t)),
-    "textSizeSmall": option(option(ReactDOMRe.Style.t)),
+    "colorInherit": option(string),
+    "contained": option(ReactDOMRe.Style.t),
+    "containedPrimary": option(ReactDOMRe.Style.t),
+    "containedSecondary": option(ReactDOMRe.Style.t),
+    "containedSizeLarge": option(ReactDOMRe.Style.t),
+    "containedSizeSmall": option(ReactDOMRe.Style.t),
+    "disableElevation": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOMRe.Style.t),
+    "endIcon": option(ReactDOMRe.Style.t),
+    "focusVisible": option(ReactDOMRe.Style.t),
+    "fullWidth": option(ReactDOMRe.Style.t),
+    "iconSizeLarge": option(ReactDOMRe.Style.t),
+    "iconSizeMedium": option(ReactDOMRe.Style.t),
+    "iconSizeSmall": option(ReactDOMRe.Style.t),
+    "label": option(ReactDOMRe.Style.t),
+    "outlined": option(ReactDOMRe.Style.t),
+    "outlinedPrimary": option(ReactDOMRe.Style.t),
+    "outlinedSecondary": option(ReactDOMRe.Style.t),
+    "outlinedSizeLarge": option(ReactDOMRe.Style.t),
+    "outlinedSizeSmall": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "sizeLarge": option(ReactDOMRe.Style.t),
+    "sizeSmall": option(ReactDOMRe.Style.t),
+    "startIcon": option(ReactDOMRe.Style.t),
+    "text": option(ReactDOMRe.Style.t),
+    "textPrimary": option(ReactDOMRe.Style.t),
+    "textSecondary": option(ReactDOMRe.Style.t),
+    "textSizeLarge": option(ReactDOMRe.Style.t),
+    "textSizeSmall": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -349,9 +349,9 @@ module ButtonClassKey = {
 module ButtonBaseClassKey = {
   type t = {
     .
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "focusVisible": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "disabled": option(ReactDOMRe.Style.t),
+    "focusVisible": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -367,30 +367,30 @@ module ButtonBaseClassKey = {
 module ButtonGroupClassKey = {
   type t = {
     .
-    "contained": option(option(ReactDOMRe.Style.t)),
-    "disableElevation": option(option(ReactDOMRe.Style.t)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "fullWidth": option(option(ReactDOMRe.Style.t)),
-    "grouped": option(option(ReactDOMRe.Style.t)),
-    "groupedContained": option(option(ReactDOMRe.Style.t)),
-    "groupedContainedHorizontal": option(option(ReactDOMRe.Style.t)),
-    "groupedContainedPrimary": option(option(ReactDOMRe.Style.t)),
-    "groupedContainedSecondary": option(option(ReactDOMRe.Style.t)),
-    "groupedContainedVertical": option(option(ReactDOMRe.Style.t)),
-    "groupedHorizontal": option(option(ReactDOMRe.Style.t)),
-    "groupedOutlined": option(option(ReactDOMRe.Style.t)),
-    "groupedOutlinedHorizontal": option(option(ReactDOMRe.Style.t)),
-    "groupedOutlinedPrimary": option(option(ReactDOMRe.Style.t)),
-    "groupedOutlinedSecondary": option(option(ReactDOMRe.Style.t)),
-    "groupedOutlinedVertical": option(option(ReactDOMRe.Style.t)),
-    "groupedText": option(option(ReactDOMRe.Style.t)),
-    "groupedTextHorizontal": option(option(ReactDOMRe.Style.t)),
-    "groupedTextPrimary": option(option(ReactDOMRe.Style.t)),
-    "groupedTextSecondary": option(option(ReactDOMRe.Style.t)),
-    "groupedTextVertical": option(option(ReactDOMRe.Style.t)),
-    "groupedVertical": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "vertical": option(option(ReactDOMRe.Style.t)),
+    "contained": option(ReactDOMRe.Style.t),
+    "disableElevation": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOMRe.Style.t),
+    "fullWidth": option(ReactDOMRe.Style.t),
+    "grouped": option(ReactDOMRe.Style.t),
+    "groupedContained": option(ReactDOMRe.Style.t),
+    "groupedContainedHorizontal": option(ReactDOMRe.Style.t),
+    "groupedContainedPrimary": option(ReactDOMRe.Style.t),
+    "groupedContainedSecondary": option(ReactDOMRe.Style.t),
+    "groupedContainedVertical": option(ReactDOMRe.Style.t),
+    "groupedHorizontal": option(ReactDOMRe.Style.t),
+    "groupedOutlined": option(ReactDOMRe.Style.t),
+    "groupedOutlinedHorizontal": option(ReactDOMRe.Style.t),
+    "groupedOutlinedPrimary": option(ReactDOMRe.Style.t),
+    "groupedOutlinedSecondary": option(ReactDOMRe.Style.t),
+    "groupedOutlinedVertical": option(ReactDOMRe.Style.t),
+    "groupedText": option(ReactDOMRe.Style.t),
+    "groupedTextHorizontal": option(ReactDOMRe.Style.t),
+    "groupedTextPrimary": option(ReactDOMRe.Style.t),
+    "groupedTextSecondary": option(ReactDOMRe.Style.t),
+    "groupedTextVertical": option(ReactDOMRe.Style.t),
+    "groupedVertical": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "vertical": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -425,16 +425,16 @@ module ButtonGroupClassKey = {
 };
 
 module MuiCard = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module CardActionAreaClassKey = {
   type t = {
     .
-    "focusHighlight": option(option(ReactDOMRe.Style.t)),
-    "focusVisible": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "focusHighlight": option(ReactDOMRe.Style.t),
+    "focusVisible": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -448,19 +448,19 @@ module CardActionAreaClassKey = {
 };
 
 module MuiCardContent = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module CardHeaderClassKey = {
   type t = {
     .
-    "action": option(option(ReactDOMRe.Style.t)),
-    "avatar": option(option(ReactDOMRe.Style.t)),
-    "content": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "subheader": option(option(ReactDOMRe.Style.t)),
-    "title": option(option(ReactDOMRe.Style.t)),
+    "action": option(ReactDOMRe.Style.t),
+    "avatar": option(ReactDOMRe.Style.t),
+    "content": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "subheader": option(ReactDOMRe.Style.t),
+    "title": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -479,8 +479,8 @@ module CardHeaderClassKey = {
 module CardMediaClassKey = {
   type t = {
     .
-    "media": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "media": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -490,13 +490,13 @@ module CardMediaClassKey = {
 module CheckboxClassKey = {
   type t = {
     .
-    "checked": option(option(ReactDOMRe.Style.t)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "indeterminate": option(option(ReactDOMRe.Style.t)),
-    "input": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "checked": option(ReactDOMRe.Style.t),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "indeterminate": option(ReactDOMRe.Style.t),
+    "input": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -516,36 +516,36 @@ module CheckboxClassKey = {
 module ChipClassKey = {
   type t = {
     .
-    "avatar": option(option(ReactDOMRe.Style.t)),
-    "avatarColorPrimary": option(option(ReactDOMRe.Style.t)),
-    "avatarColorSecondary": option(option(ReactDOMRe.Style.t)),
-    "avatarSmall": option(option(ReactDOMRe.Style.t)),
-    "clickable": option(option(ReactDOMRe.Style.t)),
-    "clickableColorPrimary": option(option(ReactDOMRe.Style.t)),
-    "clickableColorSecondary": option(option(ReactDOMRe.Style.t)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "deletable": option(option(ReactDOMRe.Style.t)),
-    "deletableColorPrimary": option(option(ReactDOMRe.Style.t)),
-    "deletableColorSecondary": option(option(ReactDOMRe.Style.t)),
-    "deleteIcon": option(option(ReactDOMRe.Style.t)),
-    "deleteIconColorPrimary": option(option(ReactDOMRe.Style.t)),
-    "deleteIconColorSecondary": option(option(ReactDOMRe.Style.t)),
-    "deleteIconOutlinedColorPrimary": option(option(ReactDOMRe.Style.t)),
-    "deleteIconOutlinedColorSecondary": option(option(ReactDOMRe.Style.t)),
-    "deleteIconSmall": option(option(ReactDOMRe.Style.t)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "icon": option(option(ReactDOMRe.Style.t)),
-    "iconColorPrimary": option(option(ReactDOMRe.Style.t)),
-    "iconColorSecondary": option(option(ReactDOMRe.Style.t)),
-    "iconSmall": option(option(ReactDOMRe.Style.t)),
-    "label": option(option(ReactDOMRe.Style.t)),
-    "labelSmall": option(option(ReactDOMRe.Style.t)),
-    "outlined": option(option(ReactDOMRe.Style.t)),
-    "outlinedPrimary": option(option(ReactDOMRe.Style.t)),
-    "outlinedSecondary": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "sizeSmall": option(option(ReactDOMRe.Style.t)),
+    "avatar": option(ReactDOMRe.Style.t),
+    "avatarColorPrimary": option(ReactDOMRe.Style.t),
+    "avatarColorSecondary": option(ReactDOMRe.Style.t),
+    "avatarSmall": option(ReactDOMRe.Style.t),
+    "clickable": option(ReactDOMRe.Style.t),
+    "clickableColorPrimary": option(ReactDOMRe.Style.t),
+    "clickableColorSecondary": option(ReactDOMRe.Style.t),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "deletable": option(ReactDOMRe.Style.t),
+    "deletableColorPrimary": option(ReactDOMRe.Style.t),
+    "deletableColorSecondary": option(ReactDOMRe.Style.t),
+    "deleteIcon": option(ReactDOMRe.Style.t),
+    "deleteIconColorPrimary": option(ReactDOMRe.Style.t),
+    "deleteIconColorSecondary": option(ReactDOMRe.Style.t),
+    "deleteIconOutlinedColorPrimary": option(ReactDOMRe.Style.t),
+    "deleteIconOutlinedColorSecondary": option(ReactDOMRe.Style.t),
+    "deleteIconSmall": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOMRe.Style.t),
+    "icon": option(ReactDOMRe.Style.t),
+    "iconColorPrimary": option(ReactDOMRe.Style.t),
+    "iconColorSecondary": option(ReactDOMRe.Style.t),
+    "iconSmall": option(ReactDOMRe.Style.t),
+    "label": option(ReactDOMRe.Style.t),
+    "labelSmall": option(ReactDOMRe.Style.t),
+    "outlined": option(ReactDOMRe.Style.t),
+    "outlinedPrimary": option(ReactDOMRe.Style.t),
+    "outlinedSecondary": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "sizeSmall": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -588,16 +588,16 @@ module ChipClassKey = {
 module CircularProgressClassKey = {
   type t = {
     .
-    "circle": option(option(ReactDOMRe.Style.t)),
-    "circleDisableShrink": option(option(ReactDOMRe.Style.t)),
-    "circleIndeterminate": option(option(ReactDOMRe.Style.t)),
-    "circleStatic": option(option(ReactDOMRe.Style.t)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "indeterminate": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "static": option(option(ReactDOMRe.Style.t)),
-    "svg": option(option(ReactDOMRe.Style.t)),
+    "circle": option(ReactDOMRe.Style.t),
+    "circleDisableShrink": option(ReactDOMRe.Style.t),
+    "circleIndeterminate": option(ReactDOMRe.Style.t),
+    "circleStatic": option(ReactDOMRe.Style.t),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "indeterminate": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "static": option(ReactDOMRe.Style.t),
+    "svg": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -620,11 +620,11 @@ module CircularProgressClassKey = {
 module CollapseClassKey = {
   type t = {
     .
-    "container": option(option(ReactDOMRe.Style.t)),
-    "entered": option(option(ReactDOMRe.Style.t)),
-    "hidden": option(option(ReactDOMRe.Style.t)),
-    "wrapper": option(option(ReactDOMRe.Style.t)),
-    "wrapperInner": option(option(ReactDOMRe.Style.t)),
+    "container": option(ReactDOMRe.Style.t),
+    "entered": option(ReactDOMRe.Style.t),
+    "hidden": option(ReactDOMRe.Style.t),
+    "wrapper": option(ReactDOMRe.Style.t),
+    "wrapperInner": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -642,14 +642,14 @@ module CollapseClassKey = {
 module ContainerClassKey = {
   type t = {
     .
-    "disableGutters": option(option(ReactDOMRe.Style.t)),
-    "fixed": option(option(ReactDOMRe.Style.t)),
-    "maxWidthLg": option(option(ReactDOMRe.Style.t)),
-    "maxWidthMd": option(option(ReactDOMRe.Style.t)),
-    "maxWidthSm": option(option(ReactDOMRe.Style.t)),
-    "maxWidthXl": option(option(ReactDOMRe.Style.t)),
-    "maxWidthXs": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "disableGutters": option(ReactDOMRe.Style.t),
+    "fixed": option(ReactDOMRe.Style.t),
+    "maxWidthLg": option(ReactDOMRe.Style.t),
+    "maxWidthMd": option(ReactDOMRe.Style.t),
+    "maxWidthSm": option(ReactDOMRe.Style.t),
+    "maxWidthXl": option(ReactDOMRe.Style.t),
+    "maxWidthXs": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -668,33 +668,33 @@ module ContainerClassKey = {
 };
 
 module Global = {
-  type t = {. "@font-face": option(option(MaterialUi_Types.any))};
+  type t = {. "@font-face": option(MaterialUi_Types.any)};
   [@bs.obj] external make: (~fontFace: MaterialUi_Types.any=?, unit) => t;
 };
 
 module MuiCssBaseline = {
-  type t = {. "@global": option(option(Global.t))};
+  type t = {. "@global": option(Global.t)};
   [@bs.obj] external make: (~global: Global.t=?, unit) => t;
 };
 
 module DialogClassKey = {
   type t = {
     .
-    "container": option(option(ReactDOMRe.Style.t)),
-    "paper": option(option(ReactDOMRe.Style.t)),
-    "paperFullScreen": option(option(ReactDOMRe.Style.t)),
-    "paperFullWidth": option(option(ReactDOMRe.Style.t)),
-    "paperScrollBody": option(option(ReactDOMRe.Style.t)),
-    "paperScrollPaper": option(option(ReactDOMRe.Style.t)),
-    "paperWidthFalse": option(option(ReactDOMRe.Style.t)),
-    "paperWidthLg": option(option(ReactDOMRe.Style.t)),
-    "paperWidthMd": option(option(ReactDOMRe.Style.t)),
-    "paperWidthSm": option(option(ReactDOMRe.Style.t)),
-    "paperWidthXl": option(option(ReactDOMRe.Style.t)),
-    "paperWidthXs": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "scrollBody": option(option(ReactDOMRe.Style.t)),
-    "scrollPaper": option(option(ReactDOMRe.Style.t)),
+    "container": option(ReactDOMRe.Style.t),
+    "paper": option(ReactDOMRe.Style.t),
+    "paperFullScreen": option(ReactDOMRe.Style.t),
+    "paperFullWidth": option(ReactDOMRe.Style.t),
+    "paperScrollBody": option(ReactDOMRe.Style.t),
+    "paperScrollPaper": option(ReactDOMRe.Style.t),
+    "paperWidthFalse": option(ReactDOMRe.Style.t),
+    "paperWidthLg": option(ReactDOMRe.Style.t),
+    "paperWidthMd": option(ReactDOMRe.Style.t),
+    "paperWidthSm": option(ReactDOMRe.Style.t),
+    "paperWidthXl": option(ReactDOMRe.Style.t),
+    "paperWidthXs": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "scrollBody": option(ReactDOMRe.Style.t),
+    "scrollPaper": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -722,8 +722,8 @@ module DialogClassKey = {
 module DialogContentClassKey = {
   type t = {
     .
-    "dividers": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "dividers": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -731,24 +731,24 @@ module DialogContentClassKey = {
 };
 
 module MuiDialogContentText = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module MuiDialogTitle = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module DividerClassKey = {
   type t = {
     .
-    "absolute": option(option(ReactDOMRe.Style.t)),
-    "inset": option(option(ReactDOMRe.Style.t)),
-    "light": option(option(ReactDOMRe.Style.t)),
-    "middle": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "vertical": option(option(ReactDOMRe.Style.t)),
+    "absolute": option(ReactDOMRe.Style.t),
+    "inset": option(ReactDOMRe.Style.t),
+    "light": option(ReactDOMRe.Style.t),
+    "middle": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "vertical": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -767,18 +767,18 @@ module DividerClassKey = {
 module DrawerClassKey = {
   type t = {
     .
-    "docked": option(option(ReactDOMRe.Style.t)),
-    "modal": option(option(ReactDOMRe.Style.t)),
-    "paper": option(option(ReactDOMRe.Style.t)),
-    "paperAnchorBottom": option(option(ReactDOMRe.Style.t)),
-    "paperAnchorDockedBottom": option(option(ReactDOMRe.Style.t)),
-    "paperAnchorDockedLeft": option(option(ReactDOMRe.Style.t)),
-    "paperAnchorDockedRight": option(option(ReactDOMRe.Style.t)),
-    "paperAnchorDockedTop": option(option(ReactDOMRe.Style.t)),
-    "paperAnchorLeft": option(option(ReactDOMRe.Style.t)),
-    "paperAnchorRight": option(option(ReactDOMRe.Style.t)),
-    "paperAnchorTop": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "docked": option(ReactDOMRe.Style.t),
+    "modal": option(ReactDOMRe.Style.t),
+    "paper": option(ReactDOMRe.Style.t),
+    "paperAnchorBottom": option(ReactDOMRe.Style.t),
+    "paperAnchorDockedBottom": option(ReactDOMRe.Style.t),
+    "paperAnchorDockedLeft": option(ReactDOMRe.Style.t),
+    "paperAnchorDockedRight": option(ReactDOMRe.Style.t),
+    "paperAnchorDockedTop": option(ReactDOMRe.Style.t),
+    "paperAnchorLeft": option(ReactDOMRe.Style.t),
+    "paperAnchorRight": option(ReactDOMRe.Style.t),
+    "paperAnchorTop": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -801,23 +801,23 @@ module DrawerClassKey = {
 };
 
 module MuiExpansionPanelDetails = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module FabClassKey = {
   type t = {
     .
-    "colorInherit": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "extended": option(option(ReactDOMRe.Style.t)),
-    "focusVisible": option(option(ReactDOMRe.Style.t)),
-    "label": option(option(ReactDOMRe.Style.t)),
-    "primary": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "secondary": option(option(ReactDOMRe.Style.t)),
-    "sizeMedium": option(option(ReactDOMRe.Style.t)),
-    "sizeSmall": option(option(ReactDOMRe.Style.t)),
+    "colorInherit": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "extended": option(ReactDOMRe.Style.t),
+    "focusVisible": option(ReactDOMRe.Style.t),
+    "label": option(ReactDOMRe.Style.t),
+    "primary": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "secondary": option(ReactDOMRe.Style.t),
+    "sizeMedium": option(ReactDOMRe.Style.t),
+    "sizeSmall": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -840,25 +840,25 @@ module FabClassKey = {
 module FilledInputClassKey = {
   type t = {
     .
-    "adornedEnd": option(option(ReactDOMRe.Style.t)),
-    "adornedStart": option(option(ReactDOMRe.Style.t)),
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "error": option(option(ReactDOMRe.Style.t)),
-    "focused": option(option(ReactDOMRe.Style.t)),
-    "formControl": option(option(ReactDOMRe.Style.t)),
-    "fullWidth": option(option(ReactDOMRe.Style.t)),
-    "input": option(option(ReactDOMRe.Style.t)),
-    "inputAdornedEnd": option(option(ReactDOMRe.Style.t)),
-    "inputAdornedStart": option(option(ReactDOMRe.Style.t)),
-    "inputHiddenLabel": option(option(ReactDOMRe.Style.t)),
-    "inputMarginDense": option(option(ReactDOMRe.Style.t)),
-    "inputMultiline": option(option(ReactDOMRe.Style.t)),
-    "inputTypeSearch": option(option(ReactDOMRe.Style.t)),
-    "marginDense": option(option(ReactDOMRe.Style.t)),
-    "multiline": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "underline": option(option(ReactDOMRe.Style.t)),
+    "adornedEnd": option(ReactDOMRe.Style.t),
+    "adornedStart": option(ReactDOMRe.Style.t),
+    "colorSecondary": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "error": option(ReactDOMRe.Style.t),
+    "focused": option(ReactDOMRe.Style.t),
+    "formControl": option(ReactDOMRe.Style.t),
+    "fullWidth": option(ReactDOMRe.Style.t),
+    "input": option(ReactDOMRe.Style.t),
+    "inputAdornedEnd": option(ReactDOMRe.Style.t),
+    "inputAdornedStart": option(ReactDOMRe.Style.t),
+    "inputHiddenLabel": option(ReactDOMRe.Style.t),
+    "inputMarginDense": option(ReactDOMRe.Style.t),
+    "inputMultiline": option(ReactDOMRe.Style.t),
+    "inputTypeSearch": option(ReactDOMRe.Style.t),
+    "marginDense": option(ReactDOMRe.Style.t),
+    "multiline": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "underline": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -890,10 +890,10 @@ module FilledInputClassKey = {
 module FormControlClassKey = {
   type t = {
     .
-    "fullWidth": option(option(ReactDOMRe.Style.t)),
-    "marginDense": option(option(ReactDOMRe.Style.t)),
-    "marginNormal": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "fullWidth": option(ReactDOMRe.Style.t),
+    "marginDense": option(ReactDOMRe.Style.t),
+    "marginNormal": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -910,12 +910,12 @@ module FormControlClassKey = {
 module FormControlLabelClassKey = {
   type t = {
     .
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "label": option(option(ReactDOMRe.Style.t)),
-    "labelPlacementBottom": option(option(ReactDOMRe.Style.t)),
-    "labelPlacementStart": option(option(ReactDOMRe.Style.t)),
-    "labelPlacementTop": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "disabled": option(ReactDOMRe.Style.t),
+    "label": option(ReactDOMRe.Style.t),
+    "labelPlacementBottom": option(ReactDOMRe.Style.t),
+    "labelPlacementStart": option(ReactDOMRe.Style.t),
+    "labelPlacementTop": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -934,8 +934,8 @@ module FormControlLabelClassKey = {
 module FormGroupClassKey = {
   type t = {
     .
-    "root": option(option(ReactDOMRe.Style.t)),
-    "row": option(option(ReactDOMRe.Style.t)),
+    "root": option(ReactDOMRe.Style.t),
+    "row": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -945,14 +945,14 @@ module FormGroupClassKey = {
 module FormHelperTextClassKey = {
   type t = {
     .
-    "contained": option(option(ReactDOMRe.Style.t)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "error": option(option(ReactDOMRe.Style.t)),
-    "filled": option(option(ReactDOMRe.Style.t)),
-    "focused": option(option(ReactDOMRe.Style.t)),
-    "marginDense": option(option(ReactDOMRe.Style.t)),
-    "required": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "contained": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOMRe.Style.t),
+    "error": option(ReactDOMRe.Style.t),
+    "filled": option(ReactDOMRe.Style.t),
+    "focused": option(ReactDOMRe.Style.t),
+    "marginDense": option(ReactDOMRe.Style.t),
+    "required": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -973,14 +973,14 @@ module FormHelperTextClassKey = {
 module FormLabelClassKey = {
   type t = {
     .
-    "asterisk": option(option(ReactDOMRe.Style.t)),
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "error": option(option(ReactDOMRe.Style.t)),
-    "filled": option(option(ReactDOMRe.Style.t)),
-    "focused": option(option(ReactDOMRe.Style.t)),
-    "required": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "asterisk": option(ReactDOMRe.Style.t),
+    "colorSecondary": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "error": option(ReactDOMRe.Style.t),
+    "filled": option(ReactDOMRe.Style.t),
+    "focused": option(ReactDOMRe.Style.t),
+    "required": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1001,53 +1001,53 @@ module FormLabelClassKey = {
 module GridClassKey = {
   type t = {
     .
-    "align-content-xs-center": option(option(ReactDOMRe.Style.t)),
-    "align-content-xs-flex-end": option(option(ReactDOMRe.Style.t)),
-    "align-content-xs-flex-start": option(option(ReactDOMRe.Style.t)),
-    "align-content-xs-space-around": option(option(ReactDOMRe.Style.t)),
-    "align-content-xs-space-between": option(option(ReactDOMRe.Style.t)),
-    "align-items-xs-baseline": option(option(ReactDOMRe.Style.t)),
-    "align-items-xs-center": option(option(ReactDOMRe.Style.t)),
-    "align-items-xs-flex-end": option(option(ReactDOMRe.Style.t)),
-    "align-items-xs-flex-start": option(option(ReactDOMRe.Style.t)),
-    "container": option(option(ReactDOMRe.Style.t)),
-    "direction-xs-column": option(option(ReactDOMRe.Style.t)),
-    "direction-xs-column-reverse": option(option(ReactDOMRe.Style.t)),
-    "direction-xs-row-reverse": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-1": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-10": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-11": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-12": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-2": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-3": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-4": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-5": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-6": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-7": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-8": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-9": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-auto": option(option(ReactDOMRe.Style.t)),
-    "grid-xs-true": option(option(ReactDOMRe.Style.t)),
-    "item": option(option(ReactDOMRe.Style.t)),
-    "justify-xs-center": option(option(ReactDOMRe.Style.t)),
-    "justify-xs-flex-end": option(option(ReactDOMRe.Style.t)),
-    "justify-xs-space-around": option(option(ReactDOMRe.Style.t)),
-    "justify-xs-space-between": option(option(ReactDOMRe.Style.t)),
-    "justify-xs-space-evenly": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "spacing-xs-1": option(option(ReactDOMRe.Style.t)),
-    "spacing-xs-10": option(option(ReactDOMRe.Style.t)),
-    "spacing-xs-2": option(option(ReactDOMRe.Style.t)),
-    "spacing-xs-3": option(option(ReactDOMRe.Style.t)),
-    "spacing-xs-4": option(option(ReactDOMRe.Style.t)),
-    "spacing-xs-5": option(option(ReactDOMRe.Style.t)),
-    "spacing-xs-6": option(option(ReactDOMRe.Style.t)),
-    "spacing-xs-7": option(option(ReactDOMRe.Style.t)),
-    "spacing-xs-8": option(option(ReactDOMRe.Style.t)),
-    "spacing-xs-9": option(option(ReactDOMRe.Style.t)),
-    "wrap-xs-nowrap": option(option(ReactDOMRe.Style.t)),
-    "wrap-xs-wrap-reverse": option(option(ReactDOMRe.Style.t)),
-    "zeroMinWidth": option(option(ReactDOMRe.Style.t)),
+    "align-content-xs-center": option(ReactDOMRe.Style.t),
+    "align-content-xs-flex-end": option(ReactDOMRe.Style.t),
+    "align-content-xs-flex-start": option(ReactDOMRe.Style.t),
+    "align-content-xs-space-around": option(ReactDOMRe.Style.t),
+    "align-content-xs-space-between": option(ReactDOMRe.Style.t),
+    "align-items-xs-baseline": option(ReactDOMRe.Style.t),
+    "align-items-xs-center": option(ReactDOMRe.Style.t),
+    "align-items-xs-flex-end": option(ReactDOMRe.Style.t),
+    "align-items-xs-flex-start": option(ReactDOMRe.Style.t),
+    "container": option(ReactDOMRe.Style.t),
+    "direction-xs-column": option(ReactDOMRe.Style.t),
+    "direction-xs-column-reverse": option(ReactDOMRe.Style.t),
+    "direction-xs-row-reverse": option(ReactDOMRe.Style.t),
+    "grid-xs-1": option(ReactDOMRe.Style.t),
+    "grid-xs-10": option(ReactDOMRe.Style.t),
+    "grid-xs-11": option(ReactDOMRe.Style.t),
+    "grid-xs-12": option(ReactDOMRe.Style.t),
+    "grid-xs-2": option(ReactDOMRe.Style.t),
+    "grid-xs-3": option(ReactDOMRe.Style.t),
+    "grid-xs-4": option(ReactDOMRe.Style.t),
+    "grid-xs-5": option(ReactDOMRe.Style.t),
+    "grid-xs-6": option(ReactDOMRe.Style.t),
+    "grid-xs-7": option(ReactDOMRe.Style.t),
+    "grid-xs-8": option(ReactDOMRe.Style.t),
+    "grid-xs-9": option(ReactDOMRe.Style.t),
+    "grid-xs-auto": option(ReactDOMRe.Style.t),
+    "grid-xs-true": option(ReactDOMRe.Style.t),
+    "item": option(ReactDOMRe.Style.t),
+    "justify-xs-center": option(ReactDOMRe.Style.t),
+    "justify-xs-flex-end": option(ReactDOMRe.Style.t),
+    "justify-xs-space-around": option(ReactDOMRe.Style.t),
+    "justify-xs-space-between": option(ReactDOMRe.Style.t),
+    "justify-xs-space-evenly": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "spacing-xs-1": option(ReactDOMRe.Style.t),
+    "spacing-xs-10": option(ReactDOMRe.Style.t),
+    "spacing-xs-2": option(ReactDOMRe.Style.t),
+    "spacing-xs-3": option(ReactDOMRe.Style.t),
+    "spacing-xs-4": option(ReactDOMRe.Style.t),
+    "spacing-xs-5": option(ReactDOMRe.Style.t),
+    "spacing-xs-6": option(ReactDOMRe.Style.t),
+    "spacing-xs-7": option(ReactDOMRe.Style.t),
+    "spacing-xs-8": option(ReactDOMRe.Style.t),
+    "spacing-xs-9": option(ReactDOMRe.Style.t),
+    "wrap-xs-nowrap": option(ReactDOMRe.Style.t),
+    "wrap-xs-wrap-reverse": option(ReactDOMRe.Style.t),
+    "zeroMinWidth": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1105,17 +1105,17 @@ module GridClassKey = {
 };
 
 module MuiGridList = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module GridListTileClassKey = {
   type t = {
     .
-    "imgFullHeight": option(option(ReactDOMRe.Style.t)),
-    "imgFullWidth": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "tile": option(option(ReactDOMRe.Style.t)),
+    "imgFullHeight": option(ReactDOMRe.Style.t),
+    "imgFullWidth": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "tile": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1132,17 +1132,17 @@ module GridListTileClassKey = {
 module GridListTileBarClassKey = {
   type t = {
     .
-    "actionIcon": option(option(ReactDOMRe.Style.t)),
-    "actionIconActionPosLeft": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "rootSubtitle": option(option(ReactDOMRe.Style.t)),
-    "subtitle": option(option(ReactDOMRe.Style.t)),
-    "title": option(option(ReactDOMRe.Style.t)),
-    "titlePositionBottom": option(option(ReactDOMRe.Style.t)),
-    "titlePositionTop": option(option(ReactDOMRe.Style.t)),
-    "titleWrap": option(option(ReactDOMRe.Style.t)),
-    "titleWrapActionPosLeft": option(option(ReactDOMRe.Style.t)),
-    "titleWrapActionPosRight": option(option(ReactDOMRe.Style.t)),
+    "actionIcon": option(ReactDOMRe.Style.t),
+    "actionIconActionPosLeft": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "rootSubtitle": option(ReactDOMRe.Style.t),
+    "subtitle": option(ReactDOMRe.Style.t),
+    "title": option(ReactDOMRe.Style.t),
+    "titlePositionBottom": option(ReactDOMRe.Style.t),
+    "titlePositionTop": option(ReactDOMRe.Style.t),
+    "titleWrap": option(ReactDOMRe.Style.t),
+    "titleWrapActionPosLeft": option(ReactDOMRe.Style.t),
+    "titleWrapActionPosRight": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1166,15 +1166,15 @@ module GridListTileBarClassKey = {
 module SvgIconClassKey = {
   type t = {
     .
-    "colorAction": option(option(string)),
-    "colorDisabled": option(option(string)),
-    "colorError": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "fontSizeInherit": option(option(float)),
-    "fontSizeLarge": option(option(float)),
-    "fontSizeSmall": option(option(float)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "colorAction": option(string),
+    "colorDisabled": option(string),
+    "colorError": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "fontSizeInherit": option(float),
+    "fontSizeLarge": option(float),
+    "fontSizeSmall": option(float),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1196,15 +1196,15 @@ module SvgIconClassKey = {
 module IconButtonClassKey = {
   type t = {
     .
-    "colorInherit": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "edgeEnd": option(option(ReactDOMRe.Style.t)),
-    "edgeStart": option(option(ReactDOMRe.Style.t)),
-    "label": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "sizeSmall": option(option(ReactDOMRe.Style.t)),
+    "colorInherit": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "edgeEnd": option(ReactDOMRe.Style.t),
+    "edgeStart": option(ReactDOMRe.Style.t),
+    "label": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "sizeSmall": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1226,20 +1226,20 @@ module IconButtonClassKey = {
 module InputClassKey = {
   type t = {
     .
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "error": option(option(ReactDOMRe.Style.t)),
-    "focused": option(option(ReactDOMRe.Style.t)),
-    "formControl": option(option(ReactDOMRe.Style.t)),
-    "fullWidth": option(option(ReactDOMRe.Style.t)),
-    "input": option(option(ReactDOMRe.Style.t)),
-    "inputMarginDense": option(option(ReactDOMRe.Style.t)),
-    "inputMultiline": option(option(ReactDOMRe.Style.t)),
-    "inputTypeSearch": option(option(ReactDOMRe.Style.t)),
-    "marginDense": option(option(ReactDOMRe.Style.t)),
-    "multiline": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "underline": option(option(ReactDOMRe.Style.t)),
+    "colorSecondary": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "error": option(ReactDOMRe.Style.t),
+    "focused": option(ReactDOMRe.Style.t),
+    "formControl": option(ReactDOMRe.Style.t),
+    "fullWidth": option(ReactDOMRe.Style.t),
+    "input": option(ReactDOMRe.Style.t),
+    "inputMarginDense": option(ReactDOMRe.Style.t),
+    "inputMultiline": option(ReactDOMRe.Style.t),
+    "inputTypeSearch": option(ReactDOMRe.Style.t),
+    "marginDense": option(ReactDOMRe.Style.t),
+    "multiline": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "underline": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1266,13 +1266,13 @@ module InputClassKey = {
 module InputAdornmentClassKey = {
   type t = {
     .
-    "disablePointerEvents": option(option(ReactDOMRe.Style.t)),
-    "filled": option(option(ReactDOMRe.Style.t)),
-    "hiddenLabel": option(option(ReactDOMRe.Style.t)),
-    "marginDense": option(option(ReactDOMRe.Style.t)),
-    "positionEnd": option(option(ReactDOMRe.Style.t)),
-    "positionStart": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "disablePointerEvents": option(ReactDOMRe.Style.t),
+    "filled": option(ReactDOMRe.Style.t),
+    "hiddenLabel": option(ReactDOMRe.Style.t),
+    "marginDense": option(ReactDOMRe.Style.t),
+    "positionEnd": option(ReactDOMRe.Style.t),
+    "positionStart": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1292,24 +1292,24 @@ module InputAdornmentClassKey = {
 module InputBaseClassKey = {
   type t = {
     .
-    "adornedEnd": option(option(ReactDOMRe.Style.t)),
-    "adornedStart": option(option(ReactDOMRe.Style.t)),
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "error": option(option(ReactDOMRe.Style.t)),
-    "focused": option(option(ReactDOMRe.Style.t)),
-    "formControl": option(option(ReactDOMRe.Style.t)),
-    "fullWidth": option(option(ReactDOMRe.Style.t)),
-    "input": option(option(ReactDOMRe.Style.t)),
-    "inputAdornedEnd": option(option(ReactDOMRe.Style.t)),
-    "inputAdornedStart": option(option(ReactDOMRe.Style.t)),
-    "inputHiddenLabel": option(option(ReactDOMRe.Style.t)),
-    "inputMarginDense": option(option(ReactDOMRe.Style.t)),
-    "inputMultiline": option(option(ReactDOMRe.Style.t)),
-    "inputTypeSearch": option(option(ReactDOMRe.Style.t)),
-    "marginDense": option(option(ReactDOMRe.Style.t)),
-    "multiline": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "adornedEnd": option(ReactDOMRe.Style.t),
+    "adornedStart": option(ReactDOMRe.Style.t),
+    "colorSecondary": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "error": option(ReactDOMRe.Style.t),
+    "focused": option(ReactDOMRe.Style.t),
+    "formControl": option(ReactDOMRe.Style.t),
+    "fullWidth": option(ReactDOMRe.Style.t),
+    "input": option(ReactDOMRe.Style.t),
+    "inputAdornedEnd": option(ReactDOMRe.Style.t),
+    "inputAdornedStart": option(ReactDOMRe.Style.t),
+    "inputHiddenLabel": option(ReactDOMRe.Style.t),
+    "inputMarginDense": option(ReactDOMRe.Style.t),
+    "inputMultiline": option(ReactDOMRe.Style.t),
+    "inputTypeSearch": option(ReactDOMRe.Style.t),
+    "marginDense": option(ReactDOMRe.Style.t),
+    "multiline": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1340,18 +1340,18 @@ module InputBaseClassKey = {
 module InputLabelClassKey = {
   type t = {
     .
-    "animated": option(option(ReactDOMRe.Style.t)),
-    "asterisk": option(option(ReactDOMRe.Style.t)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "error": option(option(ReactDOMRe.Style.t)),
-    "filled": option(option(ReactDOMRe.Style.t)),
-    "focused": option(option(ReactDOMRe.Style.t)),
-    "formControl": option(option(ReactDOMRe.Style.t)),
-    "marginDense": option(option(ReactDOMRe.Style.t)),
-    "outlined": option(option(ReactDOMRe.Style.t)),
-    "required": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "shrink": option(option(ReactDOMRe.Style.t)),
+    "animated": option(ReactDOMRe.Style.t),
+    "asterisk": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOMRe.Style.t),
+    "error": option(ReactDOMRe.Style.t),
+    "filled": option(ReactDOMRe.Style.t),
+    "focused": option(ReactDOMRe.Style.t),
+    "formControl": option(ReactDOMRe.Style.t),
+    "marginDense": option(ReactDOMRe.Style.t),
+    "outlined": option(ReactDOMRe.Style.t),
+    "required": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "shrink": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1376,24 +1376,24 @@ module InputLabelClassKey = {
 module LinearProgressClassKey = {
   type t = {
     .
-    "bar": option(option(ReactDOMRe.Style.t)),
-    "bar1Buffer": option(option(ReactDOMRe.Style.t)),
-    "bar1Determinate": option(option(ReactDOMRe.Style.t)),
-    "bar1Indeterminate": option(option(ReactDOMRe.Style.t)),
-    "bar2Buffer": option(option(ReactDOMRe.Style.t)),
-    "bar2Indeterminate": option(option(ReactDOMRe.Style.t)),
-    "barColorPrimary": option(option(ReactDOMRe.Style.t)),
-    "barColorSecondary": option(option(ReactDOMRe.Style.t)),
-    "buffer": option(option(ReactDOMRe.Style.t)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "dashed": option(option(ReactDOMRe.Style.t)),
-    "dashedColorPrimary": option(option(ReactDOMRe.Style.t)),
-    "dashedColorSecondary": option(option(ReactDOMRe.Style.t)),
-    "determinate": option(option(ReactDOMRe.Style.t)),
-    "indeterminate": option(option(ReactDOMRe.Style.t)),
-    "query": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "bar": option(ReactDOMRe.Style.t),
+    "bar1Buffer": option(ReactDOMRe.Style.t),
+    "bar1Determinate": option(ReactDOMRe.Style.t),
+    "bar1Indeterminate": option(ReactDOMRe.Style.t),
+    "bar2Buffer": option(ReactDOMRe.Style.t),
+    "bar2Indeterminate": option(ReactDOMRe.Style.t),
+    "barColorPrimary": option(ReactDOMRe.Style.t),
+    "barColorSecondary": option(ReactDOMRe.Style.t),
+    "buffer": option(ReactDOMRe.Style.t),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "dashed": option(ReactDOMRe.Style.t),
+    "dashedColorPrimary": option(ReactDOMRe.Style.t),
+    "dashedColorSecondary": option(ReactDOMRe.Style.t),
+    "determinate": option(ReactDOMRe.Style.t),
+    "indeterminate": option(ReactDOMRe.Style.t),
+    "query": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1424,12 +1424,12 @@ module LinearProgressClassKey = {
 module LinkClassKey = {
   type t = {
     .
-    "button": option(option(ReactDOMRe.Style.t)),
-    "focusVisible": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "underlineAlways": option(option(ReactDOMRe.Style.t)),
-    "underlineHover": option(option(ReactDOMRe.Style.t)),
-    "underlineNone": option(option(ReactDOMRe.Style.t)),
+    "button": option(ReactDOMRe.Style.t),
+    "focusVisible": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "underlineAlways": option(ReactDOMRe.Style.t),
+    "underlineHover": option(ReactDOMRe.Style.t),
+    "underlineNone": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1448,10 +1448,10 @@ module LinkClassKey = {
 module ListClassKey = {
   type t = {
     .
-    "dense": option(option(ReactDOMRe.Style.t)),
-    "padding": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "subheader": option(option(ReactDOMRe.Style.t)),
+    "dense": option(ReactDOMRe.Style.t),
+    "padding": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "subheader": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1468,17 +1468,17 @@ module ListClassKey = {
 module ListItemClassKey = {
   type t = {
     .
-    "button": option(option(ReactDOMRe.Style.t)),
-    "container": option(option(ReactDOMRe.Style.t)),
-    "default": option(option(ReactDOMRe.Style.t)),
-    "dense": option(option(ReactDOMRe.Style.t)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "divider": option(option(ReactDOMRe.Style.t)),
-    "focusVisible": option(option(ReactDOMRe.Style.t)),
-    "gutters": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "secondaryAction": option(option(ReactDOMRe.Style.t)),
-    "selected": option(option(ReactDOMRe.Style.t)),
+    "button": option(ReactDOMRe.Style.t),
+    "container": option(ReactDOMRe.Style.t),
+    "default": option(ReactDOMRe.Style.t),
+    "dense": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOMRe.Style.t),
+    "divider": option(ReactDOMRe.Style.t),
+    "focusVisible": option(ReactDOMRe.Style.t),
+    "gutters": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "secondaryAction": option(ReactDOMRe.Style.t),
+    "selected": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1502,8 +1502,8 @@ module ListItemClassKey = {
 module ListItemAvatarClassKey = {
   type t = {
     .
-    "icon": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "icon": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1513,8 +1513,8 @@ module ListItemAvatarClassKey = {
 module ListItemIconClassKey = {
   type t = {
     .
-    "alignItemsFlexStart": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "alignItemsFlexStart": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1527,19 +1527,19 @@ module ListItemIconClassKey = {
 };
 
 module MuiListItemSecondaryAction = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module ListItemTextClassKey = {
   type t = {
     .
-    "dense": option(option(ReactDOMRe.Style.t)),
-    "inset": option(option(ReactDOMRe.Style.t)),
-    "multiline": option(option(ReactDOMRe.Style.t)),
-    "primary": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "secondary": option(option(ReactDOMRe.Style.t)),
+    "dense": option(ReactDOMRe.Style.t),
+    "inset": option(ReactDOMRe.Style.t),
+    "multiline": option(ReactDOMRe.Style.t),
+    "primary": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "secondary": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1558,12 +1558,12 @@ module ListItemTextClassKey = {
 module ListSubheaderClassKey = {
   type t = {
     .
-    "colorInherit": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "gutters": option(option(ReactDOMRe.Style.t)),
-    "inset": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "sticky": option(option(ReactDOMRe.Style.t)),
+    "colorInherit": option(string),
+    "colorPrimary": option(string),
+    "gutters": option(ReactDOMRe.Style.t),
+    "inset": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "sticky": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1582,8 +1582,8 @@ module ListSubheaderClassKey = {
 module MenuClassKey = {
   type t = {
     .
-    "list": option(option(ReactDOMRe.Style.t)),
-    "paper": option(option(ReactDOMRe.Style.t)),
+    "list": option(ReactDOMRe.Style.t),
+    "paper": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1593,10 +1593,10 @@ module MenuClassKey = {
 module MenuItemClassKey = {
   type t = {
     .
-    "dense": option(option(ReactDOMRe.Style.t)),
-    "gutters": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "selected": option(option(ReactDOMRe.Style.t)),
+    "dense": option(ReactDOMRe.Style.t),
+    "gutters": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "selected": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1613,14 +1613,14 @@ module MenuItemClassKey = {
 module MobileStepperClassKey = {
   type t = {
     .
-    "dot": option(option(ReactDOMRe.Style.t)),
-    "dotActive": option(option(ReactDOMRe.Style.t)),
-    "dots": option(option(ReactDOMRe.Style.t)),
-    "positionBottom": option(option(ReactDOMRe.Style.t)),
-    "positionStatic": option(option(ReactDOMRe.Style.t)),
-    "positionTop": option(option(ReactDOMRe.Style.t)),
-    "progress": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "dot": option(ReactDOMRe.Style.t),
+    "dotActive": option(ReactDOMRe.Style.t),
+    "dots": option(ReactDOMRe.Style.t),
+    "positionBottom": option(ReactDOMRe.Style.t),
+    "positionStatic": option(ReactDOMRe.Style.t),
+    "positionTop": option(ReactDOMRe.Style.t),
+    "progress": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1641,15 +1641,15 @@ module MobileStepperClassKey = {
 module NativeSelectClassKey = {
   type t = {
     .
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "filled": option(option(ReactDOMRe.Style.t)),
-    "icon": option(option(ReactDOMRe.Style.t)),
-    "iconFilled": option(option(ReactDOMRe.Style.t)),
-    "iconOutlined": option(option(ReactDOMRe.Style.t)),
-    "outlined": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "select": option(option(ReactDOMRe.Style.t)),
-    "selectMenu": option(option(ReactDOMRe.Style.t)),
+    "disabled": option(ReactDOMRe.Style.t),
+    "filled": option(ReactDOMRe.Style.t),
+    "icon": option(ReactDOMRe.Style.t),
+    "iconFilled": option(ReactDOMRe.Style.t),
+    "iconOutlined": option(ReactDOMRe.Style.t),
+    "outlined": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "select": option(ReactDOMRe.Style.t),
+    "selectMenu": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1671,21 +1671,21 @@ module NativeSelectClassKey = {
 module OutlinedInputClassKey = {
   type t = {
     .
-    "adornedEnd": option(option(ReactDOMRe.Style.t)),
-    "adornedStart": option(option(ReactDOMRe.Style.t)),
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "error": option(option(ReactDOMRe.Style.t)),
-    "focused": option(option(ReactDOMRe.Style.t)),
-    "input": option(option(ReactDOMRe.Style.t)),
-    "inputAdornedEnd": option(option(ReactDOMRe.Style.t)),
-    "inputAdornedStart": option(option(ReactDOMRe.Style.t)),
-    "inputMarginDense": option(option(ReactDOMRe.Style.t)),
-    "inputMultiline": option(option(ReactDOMRe.Style.t)),
-    "marginDense": option(option(ReactDOMRe.Style.t)),
-    "multiline": option(option(ReactDOMRe.Style.t)),
-    "notchedOutline": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "adornedEnd": option(ReactDOMRe.Style.t),
+    "adornedStart": option(ReactDOMRe.Style.t),
+    "colorSecondary": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "error": option(ReactDOMRe.Style.t),
+    "focused": option(ReactDOMRe.Style.t),
+    "input": option(ReactDOMRe.Style.t),
+    "inputAdornedEnd": option(ReactDOMRe.Style.t),
+    "inputAdornedStart": option(ReactDOMRe.Style.t),
+    "inputMarginDense": option(ReactDOMRe.Style.t),
+    "inputMultiline": option(ReactDOMRe.Style.t),
+    "marginDense": option(ReactDOMRe.Style.t),
+    "multiline": option(ReactDOMRe.Style.t),
+    "notchedOutline": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1713,34 +1713,34 @@ module OutlinedInputClassKey = {
 module PaperClassKey = {
   type t = {
     .
-    "elevation0": option(option(ReactDOMRe.Style.t)),
-    "elevation1": option(option(ReactDOMRe.Style.t)),
-    "elevation10": option(option(ReactDOMRe.Style.t)),
-    "elevation11": option(option(ReactDOMRe.Style.t)),
-    "elevation12": option(option(ReactDOMRe.Style.t)),
-    "elevation13": option(option(ReactDOMRe.Style.t)),
-    "elevation14": option(option(ReactDOMRe.Style.t)),
-    "elevation15": option(option(ReactDOMRe.Style.t)),
-    "elevation16": option(option(ReactDOMRe.Style.t)),
-    "elevation17": option(option(ReactDOMRe.Style.t)),
-    "elevation18": option(option(ReactDOMRe.Style.t)),
-    "elevation19": option(option(ReactDOMRe.Style.t)),
-    "elevation2": option(option(ReactDOMRe.Style.t)),
-    "elevation20": option(option(ReactDOMRe.Style.t)),
-    "elevation21": option(option(ReactDOMRe.Style.t)),
-    "elevation22": option(option(ReactDOMRe.Style.t)),
-    "elevation23": option(option(ReactDOMRe.Style.t)),
-    "elevation24": option(option(ReactDOMRe.Style.t)),
-    "elevation3": option(option(ReactDOMRe.Style.t)),
-    "elevation4": option(option(ReactDOMRe.Style.t)),
-    "elevation5": option(option(ReactDOMRe.Style.t)),
-    "elevation6": option(option(ReactDOMRe.Style.t)),
-    "elevation7": option(option(ReactDOMRe.Style.t)),
-    "elevation8": option(option(ReactDOMRe.Style.t)),
-    "elevation9": option(option(ReactDOMRe.Style.t)),
-    "outlined": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "rounded": option(option(ReactDOMRe.Style.t)),
+    "elevation0": option(ReactDOMRe.Style.t),
+    "elevation1": option(ReactDOMRe.Style.t),
+    "elevation10": option(ReactDOMRe.Style.t),
+    "elevation11": option(ReactDOMRe.Style.t),
+    "elevation12": option(ReactDOMRe.Style.t),
+    "elevation13": option(ReactDOMRe.Style.t),
+    "elevation14": option(ReactDOMRe.Style.t),
+    "elevation15": option(ReactDOMRe.Style.t),
+    "elevation16": option(ReactDOMRe.Style.t),
+    "elevation17": option(ReactDOMRe.Style.t),
+    "elevation18": option(ReactDOMRe.Style.t),
+    "elevation19": option(ReactDOMRe.Style.t),
+    "elevation2": option(ReactDOMRe.Style.t),
+    "elevation20": option(ReactDOMRe.Style.t),
+    "elevation21": option(ReactDOMRe.Style.t),
+    "elevation22": option(ReactDOMRe.Style.t),
+    "elevation23": option(ReactDOMRe.Style.t),
+    "elevation24": option(ReactDOMRe.Style.t),
+    "elevation3": option(ReactDOMRe.Style.t),
+    "elevation4": option(ReactDOMRe.Style.t),
+    "elevation5": option(ReactDOMRe.Style.t),
+    "elevation6": option(ReactDOMRe.Style.t),
+    "elevation7": option(ReactDOMRe.Style.t),
+    "elevation8": option(ReactDOMRe.Style.t),
+    "elevation9": option(ReactDOMRe.Style.t),
+    "outlined": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "rounded": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1781,8 +1781,8 @@ module PaperClassKey = {
 module PopoverClassKey = {
   type t = {
     .
-    "paper": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "paper": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1792,12 +1792,12 @@ module PopoverClassKey = {
 module RadioClassKey = {
   type t = {
     .
-    "checked": option(option(ReactDOMRe.Style.t)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "input": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "checked": option(ReactDOMRe.Style.t),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "input": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1814,23 +1814,23 @@ module RadioClassKey = {
 };
 
 module MuiScopedCssBaseline = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module SelectClassKey = {
   type t = {
     .
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "filled": option(option(ReactDOMRe.Style.t)),
-    "icon": option(option(ReactDOMRe.Style.t)),
-    "iconFilled": option(option(ReactDOMRe.Style.t)),
-    "iconOpen": option(option(ReactDOMRe.Style.t)),
-    "iconOutlined": option(option(ReactDOMRe.Style.t)),
-    "outlined": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "select": option(option(ReactDOMRe.Style.t)),
-    "selectMenu": option(option(ReactDOMRe.Style.t)),
+    "disabled": option(ReactDOMRe.Style.t),
+    "filled": option(ReactDOMRe.Style.t),
+    "icon": option(ReactDOMRe.Style.t),
+    "iconFilled": option(ReactDOMRe.Style.t),
+    "iconOpen": option(ReactDOMRe.Style.t),
+    "iconOutlined": option(ReactDOMRe.Style.t),
+    "outlined": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "select": option(ReactDOMRe.Style.t),
+    "selectMenu": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1853,26 +1853,26 @@ module SelectClassKey = {
 module SliderClassKey = {
   type t = {
     .
-    "active": option(option(ReactDOMRe.Style.t)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "focusVisible": option(option(ReactDOMRe.Style.t)),
-    "mark": option(option(ReactDOMRe.Style.t)),
-    "markActive": option(option(ReactDOMRe.Style.t)),
-    "markLabel": option(option(ReactDOMRe.Style.t)),
-    "markLabelActive": option(option(ReactDOMRe.Style.t)),
-    "marked": option(option(ReactDOMRe.Style.t)),
-    "rail": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "thumb": option(option(ReactDOMRe.Style.t)),
-    "thumbColorPrimary": option(option(ReactDOMRe.Style.t)),
-    "thumbColorSecondary": option(option(ReactDOMRe.Style.t)),
-    "track": option(option(ReactDOMRe.Style.t)),
-    "trackFalse": option(option(ReactDOMRe.Style.t)),
-    "trackInverted": option(option(ReactDOMRe.Style.t)),
-    "valueLabel": option(option(ReactDOMRe.Style.t)),
-    "vertical": option(option(ReactDOMRe.Style.t)),
+    "active": option(ReactDOMRe.Style.t),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "focusVisible": option(ReactDOMRe.Style.t),
+    "mark": option(ReactDOMRe.Style.t),
+    "markActive": option(ReactDOMRe.Style.t),
+    "markLabel": option(ReactDOMRe.Style.t),
+    "markLabelActive": option(ReactDOMRe.Style.t),
+    "marked": option(ReactDOMRe.Style.t),
+    "rail": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "thumb": option(ReactDOMRe.Style.t),
+    "thumbColorPrimary": option(ReactDOMRe.Style.t),
+    "thumbColorSecondary": option(ReactDOMRe.Style.t),
+    "track": option(ReactDOMRe.Style.t),
+    "trackFalse": option(ReactDOMRe.Style.t),
+    "trackInverted": option(ReactDOMRe.Style.t),
+    "valueLabel": option(ReactDOMRe.Style.t),
+    "vertical": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1905,13 +1905,13 @@ module SliderClassKey = {
 module SnackbarClassKey = {
   type t = {
     .
-    "anchorOriginBottomCenter": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginBottomLeft": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginBottomRight": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginTopCenter": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginTopLeft": option(option(ReactDOMRe.Style.t)),
-    "anchorOriginTopRight": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "anchorOriginBottomCenter": option(ReactDOMRe.Style.t),
+    "anchorOriginBottomLeft": option(ReactDOMRe.Style.t),
+    "anchorOriginBottomRight": option(ReactDOMRe.Style.t),
+    "anchorOriginTopCenter": option(ReactDOMRe.Style.t),
+    "anchorOriginTopLeft": option(ReactDOMRe.Style.t),
+    "anchorOriginTopRight": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1931,9 +1931,9 @@ module SnackbarClassKey = {
 module SnackbarContentClassKey = {
   type t = {
     .
-    "action": option(option(ReactDOMRe.Style.t)),
-    "message": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "action": option(ReactDOMRe.Style.t),
+    "message": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1949,11 +1949,11 @@ module SnackbarContentClassKey = {
 module StepClasskey = {
   type t = {
     .
-    "alternativeLabel": option(option(ReactDOMRe.Style.t)),
-    "completed": option(option(ReactDOMRe.Style.t)),
-    "horizontal": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "vertical": option(option(ReactDOMRe.Style.t)),
+    "alternativeLabel": option(ReactDOMRe.Style.t),
+    "completed": option(ReactDOMRe.Style.t),
+    "horizontal": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "vertical": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1971,9 +1971,9 @@ module StepClasskey = {
 module StepButtonClasskey = {
   type t = {
     .
-    "root": option(option(ReactDOMRe.Style.t)),
-    "touchRipple": option(option(ReactDOMRe.Style.t)),
-    "vertical": option(option(ReactDOMRe.Style.t)),
+    "root": option(ReactDOMRe.Style.t),
+    "touchRipple": option(ReactDOMRe.Style.t),
+    "vertical": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1989,16 +1989,16 @@ module StepButtonClasskey = {
 module StepConnectorClasskey = {
   type t = {
     .
-    "active": option(option(ReactDOMRe.Style.t)),
-    "alternativeLabel": option(option(ReactDOMRe.Style.t)),
-    "completed": option(option(ReactDOMRe.Style.t)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "horizontal": option(option(ReactDOMRe.Style.t)),
-    "line": option(option(ReactDOMRe.Style.t)),
-    "lineHorizontal": option(option(ReactDOMRe.Style.t)),
-    "lineVertical": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "vertical": option(option(ReactDOMRe.Style.t)),
+    "active": option(ReactDOMRe.Style.t),
+    "alternativeLabel": option(ReactDOMRe.Style.t),
+    "completed": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOMRe.Style.t),
+    "horizontal": option(ReactDOMRe.Style.t),
+    "line": option(ReactDOMRe.Style.t),
+    "lineHorizontal": option(ReactDOMRe.Style.t),
+    "lineVertical": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "vertical": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2021,9 +2021,9 @@ module StepConnectorClasskey = {
 module StepContentClasskey = {
   type t = {
     .
-    "last": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "transition": option(option(ReactDOMRe.Style.t)),
+    "last": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "transition": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2039,11 +2039,11 @@ module StepContentClasskey = {
 module StepIconClasskey = {
   type t = {
     .
-    "active": option(option(ReactDOMRe.Style.t)),
-    "completed": option(option(ReactDOMRe.Style.t)),
-    "error": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "text": option(option(ReactDOMRe.Style.t)),
+    "active": option(ReactDOMRe.Style.t),
+    "completed": option(ReactDOMRe.Style.t),
+    "error": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "text": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2061,17 +2061,17 @@ module StepIconClasskey = {
 module StepLabelClasskey = {
   type t = {
     .
-    "active": option(option(ReactDOMRe.Style.t)),
-    "alternativeLabel": option(option(ReactDOMRe.Style.t)),
-    "completed": option(option(ReactDOMRe.Style.t)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "error": option(option(ReactDOMRe.Style.t)),
-    "horizontal": option(option(ReactDOMRe.Style.t)),
-    "iconContainer": option(option(ReactDOMRe.Style.t)),
-    "label": option(option(ReactDOMRe.Style.t)),
-    "labelContainer": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "vertical": option(option(ReactDOMRe.Style.t)),
+    "active": option(ReactDOMRe.Style.t),
+    "alternativeLabel": option(ReactDOMRe.Style.t),
+    "completed": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOMRe.Style.t),
+    "error": option(ReactDOMRe.Style.t),
+    "horizontal": option(ReactDOMRe.Style.t),
+    "iconContainer": option(ReactDOMRe.Style.t),
+    "label": option(ReactDOMRe.Style.t),
+    "labelContainer": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "vertical": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2095,10 +2095,10 @@ module StepLabelClasskey = {
 module StepperClasskey = {
   type t = {
     .
-    "alternativeLabel": option(option(ReactDOMRe.Style.t)),
-    "horizontal": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "vertical": option(option(ReactDOMRe.Style.t)),
+    "alternativeLabel": option(ReactDOMRe.Style.t),
+    "horizontal": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "vertical": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2115,16 +2115,16 @@ module StepperClasskey = {
 module SwitchClassKey = {
   type t = {
     .
-    "checked": option(option(ReactDOMRe.Style.t)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "input": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "sizeSmall": option(option(ReactDOMRe.Style.t)),
-    "switchBase": option(option(ReactDOMRe.Style.t)),
-    "thumb": option(option(ReactDOMRe.Style.t)),
-    "track": option(option(ReactDOMRe.Style.t)),
+    "checked": option(ReactDOMRe.Style.t),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "disabled": option(ReactDOMRe.Style.t),
+    "input": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "sizeSmall": option(ReactDOMRe.Style.t),
+    "switchBase": option(ReactDOMRe.Style.t),
+    "thumb": option(ReactDOMRe.Style.t),
+    "track": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2147,16 +2147,16 @@ module SwitchClassKey = {
 module TabClassKey = {
   type t = {
     .
-    "disabled": option(option(ReactDOMRe.Style.t)),
-    "fullWidth": option(option(ReactDOMRe.Style.t)),
-    "labelIcon": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "selected": option(option(ReactDOMRe.Style.t)),
-    "textColorInherit": option(option(ReactDOMRe.Style.t)),
-    "textColorPrimary": option(option(ReactDOMRe.Style.t)),
-    "textColorSecondary": option(option(ReactDOMRe.Style.t)),
-    "wrapped": option(option(ReactDOMRe.Style.t)),
-    "wrapper": option(option(ReactDOMRe.Style.t)),
+    "disabled": option(ReactDOMRe.Style.t),
+    "fullWidth": option(ReactDOMRe.Style.t),
+    "labelIcon": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "selected": option(ReactDOMRe.Style.t),
+    "textColorInherit": option(ReactDOMRe.Style.t),
+    "textColorPrimary": option(ReactDOMRe.Style.t),
+    "textColorSecondary": option(ReactDOMRe.Style.t),
+    "wrapped": option(ReactDOMRe.Style.t),
+    "wrapper": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2179,8 +2179,8 @@ module TabClassKey = {
 module TableClassKey = {
   type t = {
     .
-    "root": option(option(ReactDOMRe.Style.t)),
-    "stickyHeader": option(option(ReactDOMRe.Style.t)),
+    "root": option(ReactDOMRe.Style.t),
+    "stickyHeader": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2189,25 +2189,25 @@ module TableClassKey = {
 };
 
 module MuiTableBody = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module TableCellClassKey = {
   type t = {
     .
-    "alignCenter": option(option(ReactDOMRe.Style.t)),
-    "alignJustify": option(option(ReactDOMRe.Style.t)),
-    "alignLeft": option(option(ReactDOMRe.Style.t)),
-    "alignRight": option(option(ReactDOMRe.Style.t)),
-    "body": option(option(ReactDOMRe.Style.t)),
-    "footer": option(option(ReactDOMRe.Style.t)),
-    "head": option(option(ReactDOMRe.Style.t)),
-    "paddingCheckbox": option(option(ReactDOMRe.Style.t)),
-    "paddingNone": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "sizeSmall": option(option(ReactDOMRe.Style.t)),
-    "stickyHeader": option(option(ReactDOMRe.Style.t)),
+    "alignCenter": option(ReactDOMRe.Style.t),
+    "alignJustify": option(ReactDOMRe.Style.t),
+    "alignLeft": option(ReactDOMRe.Style.t),
+    "alignRight": option(ReactDOMRe.Style.t),
+    "body": option(ReactDOMRe.Style.t),
+    "footer": option(ReactDOMRe.Style.t),
+    "head": option(ReactDOMRe.Style.t),
+    "paddingCheckbox": option(ReactDOMRe.Style.t),
+    "paddingNone": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "sizeSmall": option(ReactDOMRe.Style.t),
+    "stickyHeader": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2230,33 +2230,33 @@ module TableCellClassKey = {
 };
 
 module MuiTableContainer = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module MuiTableFooter = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module MuiTableHead = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module TablePaginationClassKey = {
   type t = {
     .
-    "actions": option(option(ReactDOMRe.Style.t)),
-    "caption": option(option(ReactDOMRe.Style.t)),
-    "input": option(option(ReactDOMRe.Style.t)),
-    "menuItem": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "select": option(option(ReactDOMRe.Style.t)),
-    "selectIcon": option(option(ReactDOMRe.Style.t)),
-    "selectRoot": option(option(ReactDOMRe.Style.t)),
-    "spacer": option(option(ReactDOMRe.Style.t)),
-    "toolbar": option(option(ReactDOMRe.Style.t)),
+    "actions": option(ReactDOMRe.Style.t),
+    "caption": option(ReactDOMRe.Style.t),
+    "input": option(ReactDOMRe.Style.t),
+    "menuItem": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "select": option(ReactDOMRe.Style.t),
+    "selectIcon": option(ReactDOMRe.Style.t),
+    "selectRoot": option(ReactDOMRe.Style.t),
+    "spacer": option(ReactDOMRe.Style.t),
+    "toolbar": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2279,11 +2279,11 @@ module TablePaginationClassKey = {
 module TableRowClassKey = {
   type t = {
     .
-    "footer": option(option(ReactDOMRe.Style.t)),
-    "head": option(option(ReactDOMRe.Style.t)),
-    "hover": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "selected": option(option(ReactDOMRe.Style.t)),
+    "footer": option(ReactDOMRe.Style.t),
+    "head": option(ReactDOMRe.Style.t),
+    "hover": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "selected": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2301,11 +2301,11 @@ module TableRowClassKey = {
 module TableSortLabelClassKey = {
   type t = {
     .
-    "active": option(option(ReactDOMRe.Style.t)),
-    "icon": option(option(ReactDOMRe.Style.t)),
-    "iconDirectionAsc": option(option(ReactDOMRe.Style.t)),
-    "iconDirectionDesc": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "active": option(ReactDOMRe.Style.t),
+    "icon": option(ReactDOMRe.Style.t),
+    "iconDirectionAsc": option(ReactDOMRe.Style.t),
+    "iconDirectionDesc": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2323,15 +2323,15 @@ module TableSortLabelClassKey = {
 module TabsClassKey = {
   type t = {
     .
-    "centered": option(option(ReactDOMRe.Style.t)),
-    "fixed": option(option(ReactDOMRe.Style.t)),
-    "flexContainer": option(option(ReactDOMRe.Style.t)),
-    "indicator": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "scrollButtons": option(option(ReactDOMRe.Style.t)),
-    "scrollButtonsDesktop": option(option(ReactDOMRe.Style.t)),
-    "scrollable": option(option(ReactDOMRe.Style.t)),
-    "scroller": option(option(ReactDOMRe.Style.t)),
+    "centered": option(ReactDOMRe.Style.t),
+    "fixed": option(ReactDOMRe.Style.t),
+    "flexContainer": option(ReactDOMRe.Style.t),
+    "indicator": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "scrollButtons": option(ReactDOMRe.Style.t),
+    "scrollButtonsDesktop": option(ReactDOMRe.Style.t),
+    "scrollable": option(ReactDOMRe.Style.t),
+    "scroller": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2351,17 +2351,17 @@ module TabsClassKey = {
 };
 
 module MuiTextField = {
-  type t = {. "root": option(option(ReactDOMRe.Style.t))};
+  type t = {. "root": option(ReactDOMRe.Style.t)};
   [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
 };
 
 module ToolbarClassKey = {
   type t = {
     .
-    "dense": option(option(ReactDOMRe.Style.t)),
-    "gutters": option(option(ReactDOMRe.Style.t)),
-    "regular": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "dense": option(ReactDOMRe.Style.t),
+    "gutters": option(ReactDOMRe.Style.t),
+    "regular": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2378,17 +2378,17 @@ module ToolbarClassKey = {
 module TooltipClassKey = {
   type t = {
     .
-    "arrow": option(option(ReactDOMRe.Style.t)),
-    "popper": option(option(ReactDOMRe.Style.t)),
-    "popperArrow": option(option(ReactDOMRe.Style.t)),
-    "popperInteractive": option(option(ReactDOMRe.Style.t)),
-    "tooltip": option(option(ReactDOMRe.Style.t)),
-    "tooltipArrow": option(option(ReactDOMRe.Style.t)),
-    "tooltipPlacementBottom": option(option(ReactDOMRe.Style.t)),
-    "tooltipPlacementLeft": option(option(ReactDOMRe.Style.t)),
-    "tooltipPlacementRight": option(option(ReactDOMRe.Style.t)),
-    "tooltipPlacementTop": option(option(ReactDOMRe.Style.t)),
-    "touch": option(option(ReactDOMRe.Style.t)),
+    "arrow": option(ReactDOMRe.Style.t),
+    "popper": option(ReactDOMRe.Style.t),
+    "popperArrow": option(ReactDOMRe.Style.t),
+    "popperInteractive": option(ReactDOMRe.Style.t),
+    "tooltip": option(ReactDOMRe.Style.t),
+    "tooltipArrow": option(ReactDOMRe.Style.t),
+    "tooltipPlacementBottom": option(ReactDOMRe.Style.t),
+    "tooltipPlacementLeft": option(ReactDOMRe.Style.t),
+    "tooltipPlacementRight": option(ReactDOMRe.Style.t),
+    "tooltipPlacementTop": option(ReactDOMRe.Style.t),
+    "touch": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2412,13 +2412,13 @@ module TooltipClassKey = {
 module TouchRippleClassKey = {
   type t = {
     .
-    "child": option(option(ReactDOMRe.Style.t)),
-    "childLeaving": option(option(ReactDOMRe.Style.t)),
-    "childPulsate": option(option(ReactDOMRe.Style.t)),
-    "ripple": option(option(ReactDOMRe.Style.t)),
-    "ripplePulsate": option(option(ReactDOMRe.Style.t)),
-    "rippleVisible": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
+    "child": option(ReactDOMRe.Style.t),
+    "childLeaving": option(ReactDOMRe.Style.t),
+    "childPulsate": option(ReactDOMRe.Style.t),
+    "ripple": option(ReactDOMRe.Style.t),
+    "ripplePulsate": option(ReactDOMRe.Style.t),
+    "rippleVisible": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2438,36 +2438,36 @@ module TouchRippleClassKey = {
 module TypographyClassKey = {
   type t = {
     .
-    "alignCenter": option(option(ReactDOMRe.Style.t)),
-    "alignJustify": option(option(ReactDOMRe.Style.t)),
-    "alignLeft": option(option(ReactDOMRe.Style.t)),
-    "alignRight": option(option(ReactDOMRe.Style.t)),
-    "body1": option(option(ReactDOMRe.Style.t)),
-    "body2": option(option(ReactDOMRe.Style.t)),
-    "button": option(option(ReactDOMRe.Style.t)),
-    "caption": option(option(ReactDOMRe.Style.t)),
-    "colorError": option(option(string)),
-    "colorInherit": option(option(string)),
-    "colorPrimary": option(option(string)),
-    "colorSecondary": option(option(string)),
-    "colorTextPrimary": option(option(string)),
-    "colorTextSecondary": option(option(string)),
-    "displayBlock": option(option(ReactDOMRe.Style.t)),
-    "displayInline": option(option(ReactDOMRe.Style.t)),
-    "gutterBottom": option(option(ReactDOMRe.Style.t)),
-    "h1": option(option(ReactDOMRe.Style.t)),
-    "h2": option(option(ReactDOMRe.Style.t)),
-    "h3": option(option(ReactDOMRe.Style.t)),
-    "h4": option(option(ReactDOMRe.Style.t)),
-    "h5": option(option(ReactDOMRe.Style.t)),
-    "h6": option(option(ReactDOMRe.Style.t)),
-    "noWrap": option(option(ReactDOMRe.Style.t)),
-    "overline": option(option(ReactDOMRe.Style.t)),
-    "paragraph": option(option(ReactDOMRe.Style.t)),
-    "root": option(option(ReactDOMRe.Style.t)),
-    "srOnly": option(option(ReactDOMRe.Style.t)),
-    "subtitle1": option(option(ReactDOMRe.Style.t)),
-    "subtitle2": option(option(ReactDOMRe.Style.t)),
+    "alignCenter": option(ReactDOMRe.Style.t),
+    "alignJustify": option(ReactDOMRe.Style.t),
+    "alignLeft": option(ReactDOMRe.Style.t),
+    "alignRight": option(ReactDOMRe.Style.t),
+    "body1": option(ReactDOMRe.Style.t),
+    "body2": option(ReactDOMRe.Style.t),
+    "button": option(ReactDOMRe.Style.t),
+    "caption": option(ReactDOMRe.Style.t),
+    "colorError": option(string),
+    "colorInherit": option(string),
+    "colorPrimary": option(string),
+    "colorSecondary": option(string),
+    "colorTextPrimary": option(string),
+    "colorTextSecondary": option(string),
+    "displayBlock": option(ReactDOMRe.Style.t),
+    "displayInline": option(ReactDOMRe.Style.t),
+    "gutterBottom": option(ReactDOMRe.Style.t),
+    "h1": option(ReactDOMRe.Style.t),
+    "h2": option(ReactDOMRe.Style.t),
+    "h3": option(ReactDOMRe.Style.t),
+    "h4": option(ReactDOMRe.Style.t),
+    "h5": option(ReactDOMRe.Style.t),
+    "h6": option(ReactDOMRe.Style.t),
+    "noWrap": option(ReactDOMRe.Style.t),
+    "overline": option(ReactDOMRe.Style.t),
+    "paragraph": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOMRe.Style.t),
+    "srOnly": option(ReactDOMRe.Style.t),
+    "subtitle1": option(ReactDOMRe.Style.t),
+    "subtitle2": option(ReactDOMRe.Style.t),
   };
   [@bs.obj]
   external make:
@@ -2510,109 +2510,107 @@ module TypographyClassKey = {
 module Overrides = {
   type t = {
     .
-    "MuiAccordion": option(option(AccordionClassKey.t)),
-    "MuiAccordionActions": option(option(AccordionActionsClassKey.t)),
-    "MuiAccordionDetails": option(option(MuiAccordionDetails.t)),
-    "MuiAccordionSummary": option(option(AccordionSummaryClassKey.t)),
-    "MuiAppBar": option(option(AppBarClassKey.t)),
-    "MuiAvatar": option(option(AvatarClassKey.t)),
-    "MuiBackdrop": option(option(BackdropClassKey.t)),
-    "MuiBadge": option(option(BadgeClassKey.t)),
-    "MuiBottomNavigation": option(option(MuiBottomNavigation.t)),
-    "MuiBottomNavigationAction":
-      option(option(BottomNavigationActionClassKey.t)),
-    "MuiBreadcrumbs": option(option(BreadcrumbsClassKey.t)),
-    "MuiButton": option(option(ButtonClassKey.t)),
-    "MuiButtonBase": option(option(ButtonBaseClassKey.t)),
-    "MuiButtonGroup": option(option(ButtonGroupClassKey.t)),
-    "MuiCard": option(option(MuiCard.t)),
-    "MuiCardActionArea": option(option(CardActionAreaClassKey.t)),
-    "MuiCardActions": option(option(AccordionActionsClassKey.t)),
-    "MuiCardContent": option(option(MuiCardContent.t)),
-    "MuiCardHeader": option(option(CardHeaderClassKey.t)),
-    "MuiCardMedia": option(option(CardMediaClassKey.t)),
-    "MuiCheckbox": option(option(CheckboxClassKey.t)),
-    "MuiChip": option(option(ChipClassKey.t)),
-    "MuiCircularProgress": option(option(CircularProgressClassKey.t)),
-    "MuiCollapse": option(option(CollapseClassKey.t)),
-    "MuiContainer": option(option(ContainerClassKey.t)),
-    "MuiCssBaseline": option(option(MuiCssBaseline.t)),
-    "MuiDialog": option(option(DialogClassKey.t)),
-    "MuiDialogActions": option(option(AccordionActionsClassKey.t)),
-    "MuiDialogContent": option(option(DialogContentClassKey.t)),
-    "MuiDialogContentText": option(option(MuiDialogContentText.t)),
-    "MuiDialogTitle": option(option(MuiDialogTitle.t)),
-    "MuiDivider": option(option(DividerClassKey.t)),
-    "MuiDrawer": option(option(DrawerClassKey.t)),
-    "MuiExpansionPanel": option(option(AccordionClassKey.t)),
-    "MuiExpansionPanelActions": option(option(AccordionActionsClassKey.t)),
-    "MuiExpansionPanelDetails": option(option(MuiExpansionPanelDetails.t)),
-    "MuiExpansionPanelSummary": option(option(AccordionSummaryClassKey.t)),
-    "MuiFab": option(option(FabClassKey.t)),
-    "MuiFilledInput": option(option(FilledInputClassKey.t)),
-    "MuiFormControl": option(option(FormControlClassKey.t)),
-    "MuiFormControlLabel": option(option(FormControlLabelClassKey.t)),
-    "MuiFormGroup": option(option(FormGroupClassKey.t)),
-    "MuiFormHelperText": option(option(FormHelperTextClassKey.t)),
-    "MuiFormLabel": option(option(FormLabelClassKey.t)),
-    "MuiGrid": option(option(GridClassKey.t)),
-    "MuiGridList": option(option(MuiGridList.t)),
-    "MuiGridListTile": option(option(GridListTileClassKey.t)),
-    "MuiGridListTileBar": option(option(GridListTileBarClassKey.t)),
-    "MuiIcon": option(option(SvgIconClassKey.t)),
-    "MuiIconButton": option(option(IconButtonClassKey.t)),
-    "MuiInput": option(option(InputClassKey.t)),
-    "MuiInputAdornment": option(option(InputAdornmentClassKey.t)),
-    "MuiInputBase": option(option(InputBaseClassKey.t)),
-    "MuiInputLabel": option(option(InputLabelClassKey.t)),
-    "MuiLinearProgress": option(option(LinearProgressClassKey.t)),
-    "MuiLink": option(option(LinkClassKey.t)),
-    "MuiList": option(option(ListClassKey.t)),
-    "MuiListItem": option(option(ListItemClassKey.t)),
-    "MuiListItemAvatar": option(option(ListItemAvatarClassKey.t)),
-    "MuiListItemIcon": option(option(ListItemIconClassKey.t)),
-    "MuiListItemSecondaryAction":
-      option(option(MuiListItemSecondaryAction.t)),
-    "MuiListItemText": option(option(ListItemTextClassKey.t)),
-    "MuiListSubheader": option(option(ListSubheaderClassKey.t)),
-    "MuiMenu": option(option(MenuClassKey.t)),
-    "MuiMenuItem": option(option(MenuItemClassKey.t)),
-    "MuiMobileStepper": option(option(MobileStepperClassKey.t)),
-    "MuiNativeSelect": option(option(NativeSelectClassKey.t)),
-    "MuiOutlinedInput": option(option(OutlinedInputClassKey.t)),
-    "MuiPaper": option(option(PaperClassKey.t)),
-    "MuiPopover": option(option(PopoverClassKey.t)),
-    "MuiRadio": option(option(RadioClassKey.t)),
-    "MuiScopedCssBaseline": option(option(MuiScopedCssBaseline.t)),
-    "MuiSelect": option(option(SelectClassKey.t)),
-    "MuiSlider": option(option(SliderClassKey.t)),
-    "MuiSnackbar": option(option(SnackbarClassKey.t)),
-    "MuiSnackbarContent": option(option(SnackbarContentClassKey.t)),
-    "MuiStep": option(option(StepClasskey.t)),
-    "MuiStepButton": option(option(StepButtonClasskey.t)),
-    "MuiStepConnector": option(option(StepConnectorClasskey.t)),
-    "MuiStepContent": option(option(StepContentClasskey.t)),
-    "MuiStepIcon": option(option(StepIconClasskey.t)),
-    "MuiStepLabel": option(option(StepLabelClasskey.t)),
-    "MuiStepper": option(option(StepperClasskey.t)),
-    "MuiSvgIcon": option(option(SvgIconClassKey.t)),
-    "MuiSwitch": option(option(SwitchClassKey.t)),
-    "MuiTab": option(option(TabClassKey.t)),
-    "MuiTable": option(option(TableClassKey.t)),
-    "MuiTableBody": option(option(MuiTableBody.t)),
-    "MuiTableCell": option(option(TableCellClassKey.t)),
-    "MuiTableContainer": option(option(MuiTableContainer.t)),
-    "MuiTableFooter": option(option(MuiTableFooter.t)),
-    "MuiTableHead": option(option(MuiTableHead.t)),
-    "MuiTablePagination": option(option(TablePaginationClassKey.t)),
-    "MuiTableRow": option(option(TableRowClassKey.t)),
-    "MuiTableSortLabel": option(option(TableSortLabelClassKey.t)),
-    "MuiTabs": option(option(TabsClassKey.t)),
-    "MuiTextField": option(option(MuiTextField.t)),
-    "MuiToolbar": option(option(ToolbarClassKey.t)),
-    "MuiTooltip": option(option(TooltipClassKey.t)),
-    "MuiTouchRipple": option(option(TouchRippleClassKey.t)),
-    "MuiTypography": option(option(TypographyClassKey.t)),
+    "MuiAccordion": option(AccordionClassKey.t),
+    "MuiAccordionActions": option(AccordionActionsClassKey.t),
+    "MuiAccordionDetails": option(MuiAccordionDetails.t),
+    "MuiAccordionSummary": option(AccordionSummaryClassKey.t),
+    "MuiAppBar": option(AppBarClassKey.t),
+    "MuiAvatar": option(AvatarClassKey.t),
+    "MuiBackdrop": option(BackdropClassKey.t),
+    "MuiBadge": option(BadgeClassKey.t),
+    "MuiBottomNavigation": option(MuiBottomNavigation.t),
+    "MuiBottomNavigationAction": option(BottomNavigationActionClassKey.t),
+    "MuiBreadcrumbs": option(BreadcrumbsClassKey.t),
+    "MuiButton": option(ButtonClassKey.t),
+    "MuiButtonBase": option(ButtonBaseClassKey.t),
+    "MuiButtonGroup": option(ButtonGroupClassKey.t),
+    "MuiCard": option(MuiCard.t),
+    "MuiCardActionArea": option(CardActionAreaClassKey.t),
+    "MuiCardActions": option(AccordionActionsClassKey.t),
+    "MuiCardContent": option(MuiCardContent.t),
+    "MuiCardHeader": option(CardHeaderClassKey.t),
+    "MuiCardMedia": option(CardMediaClassKey.t),
+    "MuiCheckbox": option(CheckboxClassKey.t),
+    "MuiChip": option(ChipClassKey.t),
+    "MuiCircularProgress": option(CircularProgressClassKey.t),
+    "MuiCollapse": option(CollapseClassKey.t),
+    "MuiContainer": option(ContainerClassKey.t),
+    "MuiCssBaseline": option(MuiCssBaseline.t),
+    "MuiDialog": option(DialogClassKey.t),
+    "MuiDialogActions": option(AccordionActionsClassKey.t),
+    "MuiDialogContent": option(DialogContentClassKey.t),
+    "MuiDialogContentText": option(MuiDialogContentText.t),
+    "MuiDialogTitle": option(MuiDialogTitle.t),
+    "MuiDivider": option(DividerClassKey.t),
+    "MuiDrawer": option(DrawerClassKey.t),
+    "MuiExpansionPanel": option(AccordionClassKey.t),
+    "MuiExpansionPanelActions": option(AccordionActionsClassKey.t),
+    "MuiExpansionPanelDetails": option(MuiExpansionPanelDetails.t),
+    "MuiExpansionPanelSummary": option(AccordionSummaryClassKey.t),
+    "MuiFab": option(FabClassKey.t),
+    "MuiFilledInput": option(FilledInputClassKey.t),
+    "MuiFormControl": option(FormControlClassKey.t),
+    "MuiFormControlLabel": option(FormControlLabelClassKey.t),
+    "MuiFormGroup": option(FormGroupClassKey.t),
+    "MuiFormHelperText": option(FormHelperTextClassKey.t),
+    "MuiFormLabel": option(FormLabelClassKey.t),
+    "MuiGrid": option(GridClassKey.t),
+    "MuiGridList": option(MuiGridList.t),
+    "MuiGridListTile": option(GridListTileClassKey.t),
+    "MuiGridListTileBar": option(GridListTileBarClassKey.t),
+    "MuiIcon": option(SvgIconClassKey.t),
+    "MuiIconButton": option(IconButtonClassKey.t),
+    "MuiInput": option(InputClassKey.t),
+    "MuiInputAdornment": option(InputAdornmentClassKey.t),
+    "MuiInputBase": option(InputBaseClassKey.t),
+    "MuiInputLabel": option(InputLabelClassKey.t),
+    "MuiLinearProgress": option(LinearProgressClassKey.t),
+    "MuiLink": option(LinkClassKey.t),
+    "MuiList": option(ListClassKey.t),
+    "MuiListItem": option(ListItemClassKey.t),
+    "MuiListItemAvatar": option(ListItemAvatarClassKey.t),
+    "MuiListItemIcon": option(ListItemIconClassKey.t),
+    "MuiListItemSecondaryAction": option(MuiListItemSecondaryAction.t),
+    "MuiListItemText": option(ListItemTextClassKey.t),
+    "MuiListSubheader": option(ListSubheaderClassKey.t),
+    "MuiMenu": option(MenuClassKey.t),
+    "MuiMenuItem": option(MenuItemClassKey.t),
+    "MuiMobileStepper": option(MobileStepperClassKey.t),
+    "MuiNativeSelect": option(NativeSelectClassKey.t),
+    "MuiOutlinedInput": option(OutlinedInputClassKey.t),
+    "MuiPaper": option(PaperClassKey.t),
+    "MuiPopover": option(PopoverClassKey.t),
+    "MuiRadio": option(RadioClassKey.t),
+    "MuiScopedCssBaseline": option(MuiScopedCssBaseline.t),
+    "MuiSelect": option(SelectClassKey.t),
+    "MuiSlider": option(SliderClassKey.t),
+    "MuiSnackbar": option(SnackbarClassKey.t),
+    "MuiSnackbarContent": option(SnackbarContentClassKey.t),
+    "MuiStep": option(StepClasskey.t),
+    "MuiStepButton": option(StepButtonClasskey.t),
+    "MuiStepConnector": option(StepConnectorClasskey.t),
+    "MuiStepContent": option(StepContentClasskey.t),
+    "MuiStepIcon": option(StepIconClasskey.t),
+    "MuiStepLabel": option(StepLabelClasskey.t),
+    "MuiStepper": option(StepperClasskey.t),
+    "MuiSvgIcon": option(SvgIconClassKey.t),
+    "MuiSwitch": option(SwitchClassKey.t),
+    "MuiTab": option(TabClassKey.t),
+    "MuiTable": option(TableClassKey.t),
+    "MuiTableBody": option(MuiTableBody.t),
+    "MuiTableCell": option(TableCellClassKey.t),
+    "MuiTableContainer": option(MuiTableContainer.t),
+    "MuiTableFooter": option(MuiTableFooter.t),
+    "MuiTableHead": option(MuiTableHead.t),
+    "MuiTablePagination": option(TablePaginationClassKey.t),
+    "MuiTableRow": option(TableRowClassKey.t),
+    "MuiTableSortLabel": option(TableSortLabelClassKey.t),
+    "MuiTabs": option(TabsClassKey.t),
+    "MuiTextField": option(MuiTextField.t),
+    "MuiToolbar": option(ToolbarClassKey.t),
+    "MuiTooltip": option(TooltipClassKey.t),
+    "MuiTouchRipple": option(TouchRippleClassKey.t),
+    "MuiTypography": option(TypographyClassKey.t),
   };
   [@bs.obj]
   external make:
@@ -2726,17 +2724,17 @@ module Overrides = {
 module TypeAction = {
   type t = {
     .
-    "activatedOpacity": option(option(float)),
-    "active": option(option(string)),
-    "disabled": option(option(string)),
-    "disabledBackground": option(option(string)),
-    "disabledOpacity": option(option(float)),
-    "focus": option(option(string)),
-    "focusOpacity": option(option(float)),
-    "hover": option(option(string)),
-    "hoverOpacity": option(option(float)),
-    "selected": option(option(string)),
-    "selectedOpacity": option(option(float)),
+    "activatedOpacity": option(float),
+    "active": option(string),
+    "disabled": option(string),
+    "disabledBackground": option(string),
+    "disabledOpacity": option(float),
+    "focus": option(string),
+    "focusOpacity": option(float),
+    "hover": option(string),
+    "hoverOpacity": option(float),
+    "selected": option(string),
+    "selectedOpacity": option(float),
   };
   [@bs.obj]
   external make:
@@ -2760,8 +2758,8 @@ module TypeAction = {
 module TypeBackground = {
   type t = {
     .
-    "default": option(option(string)),
-    "paper": option(option(string)),
+    "default": option(string),
+    "paper": option(string),
   };
   [@bs.obj] external make: (~default: string=?, ~paper: string=?, unit) => t;
 };
@@ -2769,8 +2767,8 @@ module TypeBackground = {
 module CommonColors = {
   type t = {
     .
-    "black": option(option(string)),
-    "white": option(option(string)),
+    "black": option(string),
+    "white": option(string),
   };
   [@bs.obj] external make: (~black: string=?, ~white: string=?, unit) => t;
 };
@@ -2778,24 +2776,24 @@ module CommonColors = {
 module Error = {
   type t = {
     .
-    "50": option(option(string)),
-    "100": option(option(string)),
-    "200": option(option(string)),
-    "300": option(option(string)),
-    "400": option(option(string)),
-    "500": option(option(string)),
-    "600": option(option(string)),
-    "700": option(option(string)),
-    "800": option(option(string)),
-    "900": option(option(string)),
-    "A100": option(option(string)),
-    "A200": option(option(string)),
-    "A400": option(option(string)),
-    "A700": option(option(string)),
-    "contrastText": option(option(string)),
-    "dark": option(option(string)),
-    "light": option(option(string)),
-    "main": option(option(string)),
+    "50": option(string),
+    "100": option(string),
+    "200": option(string),
+    "300": option(string),
+    "400": option(string),
+    "500": option(string),
+    "600": option(string),
+    "700": option(string),
+    "800": option(string),
+    "900": option(string),
+    "A100": option(string),
+    "A200": option(string),
+    "A400": option(string),
+    "A700": option(string),
+    "contrastText": option(string),
+    "dark": option(string),
+    "light": option(string),
+    "main": option(string),
   };
   [@bs.obj]
   external make:
@@ -2826,20 +2824,20 @@ module Error = {
 module Color = {
   type t = {
     .
-    "50": option(option(string)),
-    "100": option(option(string)),
-    "200": option(option(string)),
-    "300": option(option(string)),
-    "400": option(option(string)),
-    "500": option(option(string)),
-    "600": option(option(string)),
-    "700": option(option(string)),
-    "800": option(option(string)),
-    "900": option(option(string)),
-    "A100": option(option(string)),
-    "A200": option(option(string)),
-    "A400": option(option(string)),
-    "A700": option(option(string)),
+    "50": option(string),
+    "100": option(string),
+    "200": option(string),
+    "300": option(string),
+    "400": option(string),
+    "500": option(string),
+    "600": option(string),
+    "700": option(string),
+    "800": option(string),
+    "900": option(string),
+    "A100": option(string),
+    "A200": option(string),
+    "A400": option(string),
+    "A700": option(string),
   };
   [@bs.obj]
   external make:
@@ -2866,24 +2864,24 @@ module Color = {
 module Info = {
   type t = {
     .
-    "50": option(option(string)),
-    "100": option(option(string)),
-    "200": option(option(string)),
-    "300": option(option(string)),
-    "400": option(option(string)),
-    "500": option(option(string)),
-    "600": option(option(string)),
-    "700": option(option(string)),
-    "800": option(option(string)),
-    "900": option(option(string)),
-    "A100": option(option(string)),
-    "A200": option(option(string)),
-    "A400": option(option(string)),
-    "A700": option(option(string)),
-    "contrastText": option(option(string)),
-    "dark": option(option(string)),
-    "light": option(option(string)),
-    "main": option(option(string)),
+    "50": option(string),
+    "100": option(string),
+    "200": option(string),
+    "300": option(string),
+    "400": option(string),
+    "500": option(string),
+    "600": option(string),
+    "700": option(string),
+    "800": option(string),
+    "900": option(string),
+    "A100": option(string),
+    "A200": option(string),
+    "A400": option(string),
+    "A700": option(string),
+    "contrastText": option(string),
+    "dark": option(string),
+    "light": option(string),
+    "main": option(string),
   };
   [@bs.obj]
   external make:
@@ -2914,24 +2912,24 @@ module Info = {
 module Primary = {
   type t = {
     .
-    "50": option(option(string)),
-    "100": option(option(string)),
-    "200": option(option(string)),
-    "300": option(option(string)),
-    "400": option(option(string)),
-    "500": option(option(string)),
-    "600": option(option(string)),
-    "700": option(option(string)),
-    "800": option(option(string)),
-    "900": option(option(string)),
-    "A100": option(option(string)),
-    "A200": option(option(string)),
-    "A400": option(option(string)),
-    "A700": option(option(string)),
-    "contrastText": option(option(string)),
-    "dark": option(option(string)),
-    "light": option(option(string)),
-    "main": option(option(string)),
+    "50": option(string),
+    "100": option(string),
+    "200": option(string),
+    "300": option(string),
+    "400": option(string),
+    "500": option(string),
+    "600": option(string),
+    "700": option(string),
+    "800": option(string),
+    "900": option(string),
+    "A100": option(string),
+    "A200": option(string),
+    "A400": option(string),
+    "A700": option(string),
+    "contrastText": option(string),
+    "dark": option(string),
+    "light": option(string),
+    "main": option(string),
   };
   [@bs.obj]
   external make:
@@ -2962,24 +2960,24 @@ module Primary = {
 module Secondary = {
   type t = {
     .
-    "50": option(option(string)),
-    "100": option(option(string)),
-    "200": option(option(string)),
-    "300": option(option(string)),
-    "400": option(option(string)),
-    "500": option(option(string)),
-    "600": option(option(string)),
-    "700": option(option(string)),
-    "800": option(option(string)),
-    "900": option(option(string)),
-    "A100": option(option(string)),
-    "A200": option(option(string)),
-    "A400": option(option(string)),
-    "A700": option(option(string)),
-    "contrastText": option(option(string)),
-    "dark": option(option(string)),
-    "light": option(option(string)),
-    "main": option(option(string)),
+    "50": option(string),
+    "100": option(string),
+    "200": option(string),
+    "300": option(string),
+    "400": option(string),
+    "500": option(string),
+    "600": option(string),
+    "700": option(string),
+    "800": option(string),
+    "900": option(string),
+    "A100": option(string),
+    "A200": option(string),
+    "A400": option(string),
+    "A700": option(string),
+    "contrastText": option(string),
+    "dark": option(string),
+    "light": option(string),
+    "main": option(string),
   };
   [@bs.obj]
   external make:
@@ -3010,24 +3008,24 @@ module Secondary = {
 module Success = {
   type t = {
     .
-    "50": option(option(string)),
-    "100": option(option(string)),
-    "200": option(option(string)),
-    "300": option(option(string)),
-    "400": option(option(string)),
-    "500": option(option(string)),
-    "600": option(option(string)),
-    "700": option(option(string)),
-    "800": option(option(string)),
-    "900": option(option(string)),
-    "A100": option(option(string)),
-    "A200": option(option(string)),
-    "A400": option(option(string)),
-    "A700": option(option(string)),
-    "contrastText": option(option(string)),
-    "dark": option(option(string)),
-    "light": option(option(string)),
-    "main": option(option(string)),
+    "50": option(string),
+    "100": option(string),
+    "200": option(string),
+    "300": option(string),
+    "400": option(string),
+    "500": option(string),
+    "600": option(string),
+    "700": option(string),
+    "800": option(string),
+    "900": option(string),
+    "A100": option(string),
+    "A200": option(string),
+    "A400": option(string),
+    "A700": option(string),
+    "contrastText": option(string),
+    "dark": option(string),
+    "light": option(string),
+    "main": option(string),
   };
   [@bs.obj]
   external make:
@@ -3058,10 +3056,10 @@ module Success = {
 module TypeText = {
   type t = {
     .
-    "disabled": option(option(string)),
-    "hint": option(option(string)),
-    "primary": option(option(string)),
-    "secondary": option(option(string)),
+    "disabled": option(string),
+    "hint": option(string),
+    "primary": option(string),
+    "secondary": option(string),
   };
   [@bs.obj]
   external make:
@@ -3078,8 +3076,8 @@ module TypeText = {
 module TonalOffset = {
   type t = {
     .
-    "dark": option(option(float)),
-    "light": option(option(float)),
+    "dark": option(float),
+    "light": option(float),
   };
   [@bs.obj] external make: (~dark: float=?, ~light: float=?, unit) => t;
 };
@@ -3087,24 +3085,24 @@ module TonalOffset = {
 module Warning = {
   type t = {
     .
-    "50": option(option(string)),
-    "100": option(option(string)),
-    "200": option(option(string)),
-    "300": option(option(string)),
-    "400": option(option(string)),
-    "500": option(option(string)),
-    "600": option(option(string)),
-    "700": option(option(string)),
-    "800": option(option(string)),
-    "900": option(option(string)),
-    "A100": option(option(string)),
-    "A200": option(option(string)),
-    "A400": option(option(string)),
-    "A700": option(option(string)),
-    "contrastText": option(option(string)),
-    "dark": option(option(string)),
-    "light": option(option(string)),
-    "main": option(option(string)),
+    "50": option(string),
+    "100": option(string),
+    "200": option(string),
+    "300": option(string),
+    "400": option(string),
+    "500": option(string),
+    "600": option(string),
+    "700": option(string),
+    "800": option(string),
+    "900": option(string),
+    "A100": option(string),
+    "A200": option(string),
+    "A400": option(string),
+    "A700": option(string),
+    "contrastText": option(string),
+    "dark": option(string),
+    "light": option(string),
+    "main": option(string),
   };
   [@bs.obj]
   external make:
@@ -3135,22 +3133,22 @@ module Warning = {
 module PaletteOptions = {
   type t = {
     .
-    "action": option(option(TypeAction.t)),
-    "background": option(option(TypeBackground.t)),
-    "common": option(option(CommonColors.t)),
-    "contrastThreshold": option(option(float)),
-    "divider": option(option(string)),
-    "error": option(option(Error.t)),
-    "getContrastText": option(option(MaterialUi_Types.any)),
-    "grey": option(option(Color.t)),
-    "info": option(option(Info.t)),
-    "primary": option(option(Primary.t)),
-    "secondary": option(option(Secondary.t)),
-    "success": option(option(Success.t)),
-    "text": option(option(TypeText.t)),
-    "tonalOffset": option(option(TonalOffset.t)),
-    "type": option(option(string)),
-    "warning": option(option(Warning.t)),
+    "action": option(TypeAction.t),
+    "background": option(TypeBackground.t),
+    "common": option(CommonColors.t),
+    "contrastThreshold": option(float),
+    "divider": option(string),
+    "error": option(Error.t),
+    "getContrastText": option(MaterialUi_Types.any),
+    "grey": option(Color.t),
+    "info": option(Info.t),
+    "primary": option(Primary.t),
+    "secondary": option(Secondary.t),
+    "success": option(Success.t),
+    "text": option(TypeText.t),
+    "tonalOffset": option(TonalOffset.t),
+    "type": option(string),
+    "warning": option(Warning.t),
   };
   [@bs.obj]
   external make:
@@ -3177,20 +3175,20 @@ module PaletteOptions = {
 };
 
 module Shape = {
-  type t = {. "borderRadius": option(option(float))};
+  type t = {. "borderRadius": option(float)};
   [@bs.obj] external make: (~borderRadius: float=?, unit) => t;
 };
 
 module Duration = {
   type t = {
     .
-    "complex": option(option(float)),
-    "enteringScreen": option(option(float)),
-    "leavingScreen": option(option(float)),
-    "short": option(option(float)),
-    "shorter": option(option(float)),
-    "shortest": option(option(float)),
-    "standard": option(option(float)),
+    "complex": option(float),
+    "enteringScreen": option(float),
+    "leavingScreen": option(float),
+    "short": option(float),
+    "shorter": option(float),
+    "shortest": option(float),
+    "standard": option(float),
   };
   [@bs.obj]
   external make:
@@ -3210,10 +3208,10 @@ module Duration = {
 module Easing = {
   type t = {
     .
-    "easeIn": option(option(string)),
-    "easeInOut": option(option(string)),
-    "easeOut": option(option(string)),
-    "sharp": option(option(string)),
+    "easeIn": option(string),
+    "easeInOut": option(string),
+    "easeOut": option(string),
+    "sharp": option(string),
   };
   [@bs.obj]
   external make:
@@ -3230,10 +3228,10 @@ module Easing = {
 module TransitionsOptions = {
   type t = {
     .
-    "create": option(option(MaterialUi_Types.any)),
-    "duration": option(option(Duration.t)),
-    "easing": option(option(Easing.t)),
-    "getAutoHeightDuration": option(option(MaterialUi_Types.any)),
+    "create": option(MaterialUi_Types.any),
+    "duration": option(Duration.t),
+    "easing": option(Easing.t),
+    "getAutoHeightDuration": option(MaterialUi_Types.any),
   };
   [@bs.obj]
   external make:
@@ -3248,33 +3246,33 @@ module TransitionsOptions = {
 };
 
 module TypographyStyleOptions = {
-  type t = {. "@font-face": option(option(MaterialUi_Types.any))};
+  type t = {. "@font-face": option(MaterialUi_Types.any)};
   [@bs.obj] external make: (~fontFace: MaterialUi_Types.any=?, unit) => t;
 };
 
 module Typography = {
   type t = {
     .
-    "body1": option(option(TypographyStyleOptions.t)),
-    "body2": option(option(TypographyStyleOptions.t)),
-    "button": option(option(TypographyStyleOptions.t)),
-    "caption": option(option(TypographyStyleOptions.t)),
-    "fontFamily": option(option(string)),
-    "fontSize": option(option(float)),
-    "fontWeightBold": option(option(string)),
-    "fontWeightLight": option(option(string)),
-    "fontWeightMedium": option(option(string)),
-    "fontWeightRegular": option(option(string)),
-    "h1": option(option(TypographyStyleOptions.t)),
-    "h2": option(option(TypographyStyleOptions.t)),
-    "h3": option(option(TypographyStyleOptions.t)),
-    "h4": option(option(TypographyStyleOptions.t)),
-    "h5": option(option(TypographyStyleOptions.t)),
-    "h6": option(option(TypographyStyleOptions.t)),
-    "htmlFontSize": option(option(float)),
-    "overline": option(option(TypographyStyleOptions.t)),
-    "subtitle1": option(option(TypographyStyleOptions.t)),
-    "subtitle2": option(option(TypographyStyleOptions.t)),
+    "body1": option(TypographyStyleOptions.t),
+    "body2": option(TypographyStyleOptions.t),
+    "button": option(TypographyStyleOptions.t),
+    "caption": option(TypographyStyleOptions.t),
+    "fontFamily": option(string),
+    "fontSize": option(float),
+    "fontWeightBold": option(string),
+    "fontWeightLight": option(string),
+    "fontWeightMedium": option(string),
+    "fontWeightRegular": option(string),
+    "h1": option(TypographyStyleOptions.t),
+    "h2": option(TypographyStyleOptions.t),
+    "h3": option(TypographyStyleOptions.t),
+    "h4": option(TypographyStyleOptions.t),
+    "h5": option(TypographyStyleOptions.t),
+    "h6": option(TypographyStyleOptions.t),
+    "htmlFontSize": option(float),
+    "overline": option(TypographyStyleOptions.t),
+    "subtitle1": option(TypographyStyleOptions.t),
+    "subtitle2": option(TypographyStyleOptions.t),
   };
   [@bs.obj]
   external make:
@@ -3307,13 +3305,13 @@ module Typography = {
 module ZIndex = {
   type t = {
     .
-    "appBar": option(option(float)),
-    "drawer": option(option(float)),
-    "mobileStepper": option(option(float)),
-    "modal": option(option(float)),
-    "snackbar": option(option(float)),
-    "speedDial": option(option(float)),
-    "tooltip": option(option(float)),
+    "appBar": option(float),
+    "drawer": option(float),
+    "mobileStepper": option(float),
+    "modal": option(float),
+    "snackbar": option(float),
+    "speedDial": option(float),
+    "tooltip": option(float),
   };
   [@bs.obj]
   external make:
@@ -3332,19 +3330,19 @@ module ZIndex = {
 
 type t = {
   .
-  "breakpoints": option(option(Breakpoints.t)),
-  "direction": option(option(string)),
-  "mixins": option(option(MixinsOptions.t)),
-  "overrides": option(option(Overrides.t)),
-  "palette": option(option(PaletteOptions.t)),
-  "props": option(option(MaterialUi_Types.any)),
-  "shadows": option(option(array(string))),
-  "shape": option(option(Shape.t)),
-  "spacing": option(option(MaterialUi_Types.any)),
-  "transitions": option(option(TransitionsOptions.t)),
-  "typography": option(option(Typography.t)),
-  "unstable_strictMode": option(option(bool)),
-  "zIndex": option(option(ZIndex.t)),
+  "breakpoints": option(Breakpoints.t),
+  "direction": option(string),
+  "mixins": option(MixinsOptions.t),
+  "overrides": option(Overrides.t),
+  "palette": option(PaletteOptions.t),
+  "props": option(MaterialUi_Types.any),
+  "shadows": option(array(string)),
+  "shape": option(Shape.t),
+  "spacing": option(MaterialUi_Types.any),
+  "transitions": option(TransitionsOptions.t),
+  "typography": option(Typography.t),
+  "unstable_strictMode": option(bool),
+  "zIndex": option(ZIndex.t),
 };
 [@bs.obj]
 external make:

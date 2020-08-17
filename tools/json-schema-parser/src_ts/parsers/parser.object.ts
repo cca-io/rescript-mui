@@ -94,7 +94,7 @@ type t = {
     ${this.module.properties
       .map((property) => {
         return `
-            "${property.name}": option(option(${property.reasonType}))
+            "${property.name}": option(${property.reasonType})
           `;
       })
       .join(',')}
