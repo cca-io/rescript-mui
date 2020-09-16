@@ -22,8 +22,7 @@
   "scripts": {
     "bs:build": "bsb -make-world",
     "bs:clean": "bsb -clean-world; rm -rf .cache",
-    "examples": "parcel examples/App/index.html",
-    "build": "./build.sh"
+    "examples": "parcel examples/App/index.html"
   },
   "files": [
     "/src",
@@ -31,18 +30,23 @@
   ],
   "peerDependencies": {
     "@material-ui/core": "^4.9.11",
-    "reason-react": "^0.9.1",
-    "bs-platform": "^8.2.0"
+    "bs-platform": "^8.2.0",
+    "reason-react": "^0.9.1"
   },
   "devDependencies": {
     "@babel/helper-call-delegate": "^7.10.4",
-    "@jsiebern/bs-material-ui-ppx": "link:../bs-material-ui-ppx",
-    "@material-ui/core": "^4.8.1",
-    "@material-ui/icons": "^4.1.0",
-    "@mscharley/bs-material-ui-icons": "^1.0.1",
+    "@jsiebern/bs-material-ui-ppx": "^2.0.1",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@mscharley/bs-material-ui-icons": "^1.0.3",
     "bs-platform": "^8.2.0",
     "bsb-js": "^1.1.7",
     "clsx": "^1.0.4",
     "reason-react": "^0.9.1"
+  },
+  "dependencies": {
+    "@jsiebern/bs-material-ui": "^2.0.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
