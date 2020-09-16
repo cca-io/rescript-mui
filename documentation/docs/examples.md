@@ -9,7 +9,7 @@ for more information.
 ## Installing and trying the examples
 
 ```bash
-git checkout https://github.com/jsiebern/bs-material-ui.git
+git clone https://github.com/jsiebern/bs-material-ui.git
 cd bs-material-ui/public/bs-material-ui
 yarn install
 yarn examples
