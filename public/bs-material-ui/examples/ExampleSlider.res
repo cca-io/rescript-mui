@@ -6,7 +6,7 @@ module SliderStyles = %makeStyles(
 )
 
 module VolumeUp = ExampleIcons.SupervisedUserCircle.Make({
-  @bs.module("@material-ui/icons/VolumeUP") external reactClass: React.component<'a> = "default"
+  @bs.module("@material-ui/icons/VolumeUp") external reactClass: React.component<'a> = "default"
 })
 
 @react.component
