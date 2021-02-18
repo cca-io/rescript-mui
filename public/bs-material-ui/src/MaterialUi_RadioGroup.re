@@ -30,14 +30,14 @@ external make:
     ~className: string=?,
     ~row: bool=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~children: 'children=?,
     ~defaultValue: DefaultValue.t=?,
     ~name: string=?,
     ~onChange: ReactEvent.Form.t => unit=?,
     ~value: MaterialUi_Types.any=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "RadioGroup";

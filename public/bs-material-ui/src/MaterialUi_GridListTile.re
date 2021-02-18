@@ -42,9 +42,9 @@ external make:
     ~component: Component.t=?,
     ~rows: MaterialUi_Types.Number.t=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "GridListTile";

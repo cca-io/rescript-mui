@@ -238,7 +238,7 @@ external make:
   (
     ~component: option(Component.t)=?,
     ~className: option(string)=?,
-    ~style: option(ReactDOMRe.Style.t)=?,
+    ~style: option(ReactDOM.Style.t)=?,
     ~clone: option(bool)=?,
     ~children: option('children)=?,
     ~alignContent: option(Value.t)=?,
@@ -329,7 +329,7 @@ external make:
     ~zIndex: option(int)=?,
     ~id: option(string)=?,
     ~key: option(string)=?,
-    ~ref: option(ReactDOMRe.domRef)=?
+    ~ref: option(ReactDOM.domRef)=?
   ) =>
   React.element =
   "Box";

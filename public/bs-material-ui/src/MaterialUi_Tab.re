@@ -111,7 +111,7 @@ external make:
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: Type.t=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~children: 'children=?,
     ~classes: Classes.t=?,
     ~className: string=?,
@@ -136,7 +136,7 @@ external make:
     ~value: MaterialUi_Types.any=?,
     ~wrapped: bool=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Tab";

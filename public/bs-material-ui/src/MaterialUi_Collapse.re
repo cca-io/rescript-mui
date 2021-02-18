@@ -109,7 +109,7 @@ external make:
     ~onExit: ReactEvent.Synthetic.t => unit=?,
     ~onExited: ReactEvent.Synthetic.t => unit=?,
     ~onExiting: ReactEvent.Synthetic.t => unit=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~timeout: Timeout.t=?,
     ~id: string=?,
     ~mountOnEnter: bool=?,
@@ -118,7 +118,7 @@ external make:
     ~enter: bool=?,
     ~exit: bool=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Collapse";

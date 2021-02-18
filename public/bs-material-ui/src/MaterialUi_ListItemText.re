@@ -35,9 +35,9 @@ external make:
     ~secondary: React.element=?,
     ~secondaryTypographyProps: Js.t({..})=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "ListItemText";

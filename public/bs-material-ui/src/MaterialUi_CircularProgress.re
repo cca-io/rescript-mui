@@ -4,12 +4,14 @@ module Classes = {
     "root": option(string),
     "static": option(string),
     "indeterminate": option(string),
+    "determinate": option(string),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
     "svg": option(string),
     "circle": option(string),
     "circleStatic": option(string),
     "circleIndeterminate": option(string),
+    "circleDeterminate": option(string),
     "circleDisableShrink": option(string),
   };
   [@bs.obj]
@@ -18,12 +20,14 @@ module Classes = {
       ~root: string=?,
       ~static: string=?,
       ~indeterminate: string=?,
+      ~determinate: string=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
       ~svg: string=?,
       ~circle: string=?,
       ~circleStatic: string=?,
       ~circleIndeterminate: string=?,
+      ~circleDeterminate: string=?,
       ~circleDisableShrink: string=?,
       unit
     ) =>
@@ -61,7 +65,7 @@ external make:
               =?,
     ~disableShrink: bool=?,
     ~size: Size.t=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~thickness: MaterialUi_Types.Number.t=?,
     ~value: MaterialUi_Types.Number.t=?,
     ~variant: [@bs.string] [
@@ -72,7 +76,7 @@ external make:
                 =?,
     ~id: string=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "CircularProgress";

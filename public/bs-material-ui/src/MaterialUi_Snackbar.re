@@ -138,8 +138,8 @@ external make:
     ~transitionDuration: TransitionDuration.t=?,
     ~_TransitionProps: Js.t({..})=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~style: ReactDOM.Style.t=?,
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Snackbar";

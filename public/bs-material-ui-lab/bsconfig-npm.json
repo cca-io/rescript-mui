@@ -10,7 +10,7 @@
     "in-source": true
   },
   "ppx-flags": [],
-  "bs-dependencies": ["reason-react", "@jsiebern/bs-material-ui"],
+  "bs-dependencies": ["@rescript/react", "@jsiebern/bs-material-ui"],
   "bsc-flags": ["-bs-super-errors"],
   "warnings": {
     "number": "-103"

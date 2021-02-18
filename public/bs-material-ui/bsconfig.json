@@ -17,7 +17,7 @@
     "in-source": true
   },
   "ppx-flags": ["@jsiebern/bs-material-ui-ppx/ppx"],
-  "bs-dependencies": ["reason-react", "@mscharley/bs-material-ui-icons"],
+  "bs-dependencies": ["@rescript/react", "@mscharley/bs-material-ui-icons"],
   "bsc-flags": ["-bs-super-errors"],
   "warnings": {
     "number": "-103"

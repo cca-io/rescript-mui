@@ -31,7 +31,7 @@ class Component {
     this._component.props['style'] = {
       type: {
         name: 'custom',
-        reasonType: 'ReactDOMRe.Style.t',
+        reasonType: 'ReactDOM.Style.t',
       },
       required: false,
       description: '@ignore',

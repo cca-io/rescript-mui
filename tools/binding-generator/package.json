@@ -13,7 +13,7 @@
     "@jsiebern/json-schema-parser": "^0.0.11",
     "@jsiebern/mui-component-extractor": "1.0.0",
     "@material-ui/core": "^4.0.2",
-    "bs-platform": "^8.1.1",
+    "bs-platform": "^8.3",
     "lodash": "~4.17.11",
     "react-dom": "^16.8.6",
     "reason": "^3.3.4"
@@ -31,7 +31,7 @@
     "object-hash": "^1.3.1",
     "path": "^0.12.7",
     "react": "^16.8.6",
-    "reason-react": "^0.7.0",
+    "@rescript/react": "^0.10.0",
     "ts-node": "~8.2.0",
     "typescript": "^3.5.1"
   }

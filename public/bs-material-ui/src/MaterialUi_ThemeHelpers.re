@@ -6,7 +6,7 @@ external intToBreakpoint: int => breakpoint = "%identity";
 
 type breakpointFunc = breakpoint => string;
 external jsonToBreakpointFunc: Js.Json.t => breakpointFunc = "%identity";
-external styleToString: ReactDOMRe.Style.t => string = "%identity";
+external styleToString: ReactDOM.Style.t => string = "%identity";
 
 /* see material-ui.com/layout/breakpoints/#breakpoints for details */
 let addBreakpoint = (sourceStyle, ~theme, ~breakpoint, ~style) => {
@@ -25,7 +25,7 @@ let addBreakpoint = (sourceStyle, ~theme, ~breakpoint, ~style) => {
     ->MaterialUi_Types.anyUnpack
     ->jsonToBreakpointFunc(breakpoint);
 
-  ReactDOMRe.Style.unsafeAddProp(
+  ReactDOM.Style.unsafeAddProp(
     sourceStyle,
     breakpointSource,
     styleToString(style),

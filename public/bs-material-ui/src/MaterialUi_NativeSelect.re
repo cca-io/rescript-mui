@@ -120,7 +120,7 @@ external make:
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
     ~renderSuffix: MaterialUi_Types.any=?,
     ~rowsMin: RowsMin.t=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~color: [@bs.string] [
@@ -161,7 +161,7 @@ external make:
               ]
                 =?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "NativeSelect";

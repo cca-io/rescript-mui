@@ -227,9 +227,9 @@ external make:
            ]
              =?,
     ~value: MaterialUi_Types.any=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Autocomplete";

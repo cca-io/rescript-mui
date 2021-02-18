@@ -58,9 +58,9 @@ external make:
     ~onNodeToggle: (Js.t({..}), array(MaterialUi_Types.any)) => unit=?,
     ~selected: Selected.t=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "TreeView";

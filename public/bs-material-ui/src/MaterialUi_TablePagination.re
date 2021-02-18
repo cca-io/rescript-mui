@@ -113,7 +113,7 @@ external make:
               ]
                 =?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~_ActionsComponent: ActionsComponent.t=?,
     ~backIconButtonProps: Js.t({..})=?,
     ~backIconButtonText: string=?,
@@ -148,7 +148,7 @@ external make:
     ~rowsPerPageOptions: array(int)=?,
     ~_SelectProps: Js.t({..})=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "TablePagination";

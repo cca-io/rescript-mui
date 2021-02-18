@@ -65,11 +65,11 @@ external make:
     ~rows: Rows.t=?,
     ~rowsMax: RowsMax.t=?,
     ~rowsMin: RowsMin.t=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~value: Value.t=?,
     ~id: string=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "TextareaAutosize";

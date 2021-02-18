@@ -31,7 +31,7 @@
   "peerDependencies": {
     "@material-ui/core": "^4.9.11",
     "bs-platform": "^8.2.0",
-    "reason-react": "^0.9.1"
+    "@rescript/react": "^0.10"
   },
   "devDependencies": {
     "@babel/helper-call-delegate": "^7.10.4",
@@ -42,7 +42,7 @@
     "bs-platform": "^8.2.0",
     "bsb-js": "^1.1.7",
     "clsx": "^1.0.4",
-    "reason-react": "^0.9.1"
+    "@rescript/react": "^0.10"
   },
   "dependencies": {
     "@jsiebern/bs-material-ui": "^2.0.2",

@@ -119,7 +119,7 @@ external make:
     ~tabIndex: TabIndex.t=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: Type.t=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~children: 'children=?,
     ~className: string=?,
     ~disableFocusRipple: bool=?,
@@ -148,7 +148,7 @@ external make:
              =?,
     ~value: MaterialUi_Types.any=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Radio";

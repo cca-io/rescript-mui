@@ -16,11 +16,11 @@ const RenderTheme = () => {
     replaceRefs: [
       {
         re: /CSSProperties$/m,
-        replaceWith: 'ReactDOMRe.Style.t',
+        replaceWith: 'ReactDOM.Style.t',
       },
       {
         re: /CreateCSSProperties<{}>$/m,
-        replaceWith: 'ReactDOMRe.Style.t',
+        replaceWith: 'ReactDOM.Style.t',
       },
       {
         re: /Partial.*([a-zA-Z]*)Props>/m,

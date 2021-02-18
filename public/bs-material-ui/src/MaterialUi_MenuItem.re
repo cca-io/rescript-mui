@@ -79,7 +79,7 @@ external make:
     ~divider: bool=?,
     ~focusVisibleClassName: string=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~children: 'children=?,
     ~classes: Classes.t=?,
     ~className: string=?,
@@ -95,7 +95,7 @@ external make:
     ~onFocus: ReactEvent.Focus.t => unit=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "MenuItem";

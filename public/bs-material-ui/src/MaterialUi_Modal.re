@@ -50,9 +50,9 @@ external make:
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~_open: bool,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Modal";

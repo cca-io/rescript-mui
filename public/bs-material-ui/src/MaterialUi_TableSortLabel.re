@@ -119,7 +119,7 @@ external make:
     ~_TouchRippleProps: Js.t({..})=?,
     ~_type: Type.t=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~active: bool=?,
     ~children: 'children=?,
     ~classes: Classes.t=?,
@@ -128,7 +128,7 @@ external make:
     ~hideSortIcon: bool=?,
     ~_IconComponent: IconComponent.t=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "TableSortLabel";

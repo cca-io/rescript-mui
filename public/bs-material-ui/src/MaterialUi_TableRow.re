@@ -44,10 +44,10 @@ external make:
     ~hover: bool=?,
     ~selected: bool=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "TableRow";

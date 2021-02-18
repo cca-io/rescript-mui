@@ -10,7 +10,7 @@
   },
   "suffix": ".bs.js",
   "ppx-flags": ["../_build/default/src/bin.exe"],
-  "bs-dependencies": ["reason-react", "@jsiebern/bs-material-ui"],
+  "bs-dependencies": ["@rescript/react", "@jsiebern/bs-material-ui"],
   "refmt": 3,
   "bsc-flags": ["-bs-super-errors"],
   "warnings": {

@@ -114,7 +114,7 @@ external make:
                   =?,
     ~variant: string=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~onClick: ReactEvent.Mouse.t => unit=?,
     ~href: string=?,
     ~target: string=?,
@@ -135,7 +135,7 @@ external make:
           ]
             =?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Link";
