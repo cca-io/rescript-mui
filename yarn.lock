@@ -1987,10 +1987,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@mscharley/bs-material-ui-icons@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@mscharley/bs-material-ui-icons/-/bs-material-ui-icons-1.0.3.tgz#2633fd88b6fbc38dd07830573e3b43be4de23cc6"
-  integrity sha512-FypDpNFA7yjFBs2UlUiLr4vCCJnlQzaBcyimNMDA7nzkOlhm6q1554hSRlmMP/VLDuWDi5ZW+WRFh8CDhNB84Q==
+"@mscharley/bs-material-ui-icons@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@mscharley/bs-material-ui-icons/-/bs-material-ui-icons-2.0.0.tgz#07fc3f92f00779a09c1edda5dcb7c96e889294a3"
+  integrity sha512-bUZ6Op83pEMjQHSIFUzIBJuKZtjXnk0AAluMUUZJ87SA1pSeY/XE5JTFxSB/tXEpFIGXymXXGBwohEGaz/OHRg==
 
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
@@ -3321,12 +3321,12 @@ bs-nonempty@^1.3.0:
   dependencies:
     bs-abstract "^0.16.0"
 
-bs-platform@^8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-8.2.0.tgz#f3f4c06d5710a4c782f0ed030b1fe11e74a0a6d7"
-  integrity sha512-quvmUac/ZxGDsT7L5+6RNXrLPvLHkWFownacaqlwVoyAm770bPyupTRU49ALPGk3HpjfD5eE+lpGdOSPtuwJiA==
+bs-platform@8.3:
+  version "8.3.3"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-8.3.3.tgz#68e3796ad0607c55da0f45fe14c0ce0aaf69682c"
+  integrity sha512-ayS5wdvrOX6PxU2wX7O2rLllzsQDzmGq582NNDFwfM6b9HQu7ki242Pc46o2/CnGHHumKVarpX0IZzjC2Llgcg==
 
-bs-platform@^8.3:
+bs-platform@^8.3, bs-platform@^8.3.0:
   version "8.4.2"
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-8.4.2.tgz#778dabd1dfb3bc95e0086c58dabae74e4ebdee8a"
   integrity sha512-9q7S4/LLV/a68CweN382NJdCCr/lOSsJR3oQYnmPK98ChfO/AdiA3lYQkQTp6T+U0I5Z5RypUAUprNstwDtMDQ==

@@ -17,7 +17,7 @@
   "peerDependencies": {
     "@material-ui/core": "^4.9.11",
     "@rescript/react": "^0.10",
-    "bs-platform": "^8.2.0",
+    "bs-platform": "^8.3.0",
     "@jsiebern/bs-material-ui": "^2.0.0"
   },
   "publishConfig": {
