@@ -8,7 +8,7 @@ let make = () => {
   open MaterialUi
   <div>
     <Button color=#Primary variant=#Outlined> {"Default Primary Color"->React.string} </Button>
-    {" "->ReasonReact.string}
+    {" "->React.string}
     <MuiThemeProvider theme>
       <Button color=#Primary variant=#Outlined> {"Themed Primary Color"->React.string} </Button>
     </MuiThemeProvider>

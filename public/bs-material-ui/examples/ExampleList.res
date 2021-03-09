@@ -1,6 +1,6 @@
 module ExampleStyles = %makeStyles(
   {
-    root: ReactDOMRe.Style.make(
+    root: ReactDOM.Style.make(
       ~width="100%",
       ~maxWidth="360px",
       ~position="relative",
@@ -9,8 +9,8 @@ module ExampleStyles = %makeStyles(
       ~backgroundColor="#FFFFFF",
       (),
     ),
-    listSection: ReactDOMRe.Style.make(~backgroundColor="inherit", ()),
-    ul: ReactDOMRe.Style.make(~backgroundColor="inherit", ~padding="0", ()),
+    listSection: ReactDOM.Style.make(~backgroundColor="inherit", ()),
+    ul: ReactDOM.Style.make(~backgroundColor="inherit", ~padding="0", ()),
   }
 )
 

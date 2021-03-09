@@ -1,7 +1,7 @@
 module SliderStyles = %makeStyles(
   {
-    root: ReactDOMRe.Style.make(~width="250px", ()),
-    input: ReactDOMRe.Style.make(~width="250px", ()),
+    root: ReactDOM.Style.make(~width="250px", ()),
+    input: ReactDOM.Style.make(~width="250px", ()),
   }
 )
 

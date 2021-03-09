@@ -1,6 +1,6 @@
 module Styles = %makeStyles(
   {
-    container: ReactDOMRe.Style.make(
+    container: ReactDOM.Style.make(
       ~width="100%",
       ~height="100%",
       ~maxWidth="970px",

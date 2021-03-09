@@ -1,18 +1,18 @@
-external styleToString: ReactDOMRe.Style.t => string = "%identity"
+external styleToString: ReactDOM.Style.t => string = "%identity"
 
 let theme = MaterialUi_Theme.create({
   open MaterialUi_ThemeOptions
   make(
     ~overrides=Overrides.make(
       ~muiButton=ButtonClassKey.make(
-        ~outlined=ReactDOMRe.Style.make(
+        ~outlined=ReactDOM.Style.make(
           ~fontSize="12px",
           ~fontWeight="300",
           ~color="gray",
           (),
-        )->ReactDOMRe.Style.unsafeAddProp(
+        )->ReactDOM.Style.unsafeAddProp(
           "& svg",
-          ReactDOMRe.Style.make(~marginRight="15px", ~fontSize="16px", ())->styleToString,
+          ReactDOM.Style.make(~marginRight="15px", ~fontSize="16px", ())->styleToString,
         ),
         (),
       ),

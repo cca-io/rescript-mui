@@ -3,9 +3,9 @@ let getSpacing = (theme, num) => theme.T.spacing(num)->string_of_int ++ "px"
 
 module ExampleStyles = %makeStyles(
   theme => {
-    root: ReactDOMRe.Style.make(~display="flex", ~flexWrap="wrap", ()),
-    formControl: ReactDOMRe.Style.make(~margin=theme->getSpacing(1), ~minWidth="120px", ()),
-    selectEmpty: ReactDOMRe.Style.make(~marginTop=theme->getSpacing(2), ()),
+    root: ReactDOM.Style.make(~display="flex", ~flexWrap="wrap", ()),
+    formControl: ReactDOM.Style.make(~margin=theme->getSpacing(1), ~minWidth="120px", ()),
+    selectEmpty: ReactDOM.Style.make(~marginTop=theme->getSpacing(2), ()),
   }
 )
 
@@ -181,7 +181,7 @@ let make = () => {
         <FormHelperText> {"Required"->React.string} </FormHelperText>
       </FormControl>
       <FormControl variant=#Outlined className=classes.formControl>
-        <InputLabel htmlFor="outlined-age-simple" ref={ReactDOMRe.Ref.callbackDomRef(inputLabel)}>
+        <InputLabel htmlFor="outlined-age-simple" ref={ReactDOM.Ref.callbackDomRef(inputLabel)}>
           {"Age"->React.string}
         </InputLabel>
         <Select

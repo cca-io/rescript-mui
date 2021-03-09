@@ -1,11 +1,11 @@
 module StyledExample = %makeStyles(
-  {alignRight: ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ())}
+  {alignRight: ReactDOM.Style.make(~width="100%", ~textAlign="right", ())}
 )
 
 module Theme = MaterialUi_Theme
 module StyledExampleTheme = %makeStyles(
   theme => {
-    background: ReactDOMRe.Style.make(
+    background: ReactDOM.Style.make(
       ~color=theme.palette.common.white,
       ~backgroundColor=theme.palette.primary.main,
       (),
