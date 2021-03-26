@@ -29,24 +29,23 @@
     "/bsconfig.json"
   ],
   "peerDependencies": {
-    "@material-ui/core": "^4.9.11",
+    "@material-ui/core": "4.11.3",
     "@rescript/react": "^0.10",
-    "bs-platform": "^8.3.0"
+    "bs-platform": "^9.0.2"
   },
   "devDependencies": {
     "@babel/helper-call-delegate": "^7.10.4",
     "@jsiebern/bs-material-ui-ppx": "^2.0.1",
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
+    "@material-ui/core": "4.11.3",
+    "@material-ui/icons": "4.11.2",
     "@mscharley/bs-material-ui-icons": "^2.0.0",
     "@rescript/react": "^0.10",
-    "bs-platform": "^8.3.0",
+    "bs-platform": "^9.0.2",
     "bsb-js": "^1.1.7",
     "clsx": "^1.0.4"
   },
   "dependencies": {
     "@jsiebern/bs-material-ui": "^2.0.2",
-    "bs-platform": "8.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
