@@ -14,6 +14,12 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 2.1.0
+
+- :rocket: Updated to MaterialUi v4.11.3
+- :boom: Switched to the new `@rescript/react` package (keep on `2.0.0` if you
+  need legacy support)
+
 ## 2.0.0
 
 - :boom: Deprecated the pre v2 bindings for the zero cost version (pre v2 is no
