@@ -151,7 +151,7 @@ external make:
     ~tabIndex: TabIndex.t=?,
     ~_TouchRippleProps: Js.t({..})=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~children: 'children=?,
     ~classes: Classes.t=?,
     ~className: string=?,
@@ -186,7 +186,7 @@ external make:
               ]
                 =?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Button";

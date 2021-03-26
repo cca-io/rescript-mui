@@ -27,16 +27,16 @@ let make = () => {
       _open={Belt.Option.isSome(state.anchorEl)}
       onClose={_evt => dispatch(ClosePopup)}
       anchorEl=?{state.anchorEl->Belt.Option.map(el =>
-        Popover.AnchorEl.obj(el->ReactDOMRe.domElementToObj->Obj.magic)
+        Popover.AnchorEl.obj(el->ReactDOM.domElementToObj->Obj.magic)
       )}>
       <div
-        style={ReactDOMRe.Style.make(
+        style={ReactDOM.Style.make(
           ~fontSize="6rem",
           ~margin="1rem",
           ~backgroundColor="salmon",
           (),
         )}>
-        {ReasonReact.string(state.popupMessage)}
+        {React.string(state.popupMessage)}
       </div>
     </Popover>
     <MaterialUi.List>

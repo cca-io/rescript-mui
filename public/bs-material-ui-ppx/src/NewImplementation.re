@@ -201,7 +201,7 @@ let getTypeExpressions = (fields: rawFields) => {
   let keys = fields |> parseFields;
   (
     createRecordTypeExpression(~keys, ~mapTo="string", "classes"),
-    createRecordTypeExpression(~keys, ~mapTo="ReactDOMRe.Style.t", "styles"),
+    createRecordTypeExpression(~keys, ~mapTo="ReactDOM.Style.t", "styles"),
     Typ.arrow(
       Nolabel,
       Typ.constr(Location.mknoloc(Longident.parse("unit")), []),

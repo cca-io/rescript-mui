@@ -52,10 +52,10 @@ external make:
     ~cols: MaterialUi_Types.Number.t=?,
     ~component: Component.t=?,
     ~spacing: MaterialUi_Types.Number.t=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~id: string=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "GridList";

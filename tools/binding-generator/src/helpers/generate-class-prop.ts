@@ -29,9 +29,9 @@ const GenerateClassProp = (component: ComponentSignature) => {
                     );
                 };
             `;
-        toMakeProps = '~classes: Js.Dict.t(string)=?,~style: ReactDOMRe.Style.t=?,';
+        toMakeProps = '~classes: Js.Dict.t(string)=?,~style: ReactDOM.Style.t=?,';
         toWrapJs = '~classes=?Belt.Option.map(classes, (v) => Classes.to_obj(v)),~style?,';
-        toMake = '~classes: option(Classes.t)=?,~style: option(ReactDOMRe.Style.t)=?,';
+        toMake = '~classes: option(Classes.t)=?,~style: option(ReactDOM.Style.t)=?,';
     }
 
     return {

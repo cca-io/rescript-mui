@@ -14,7 +14,7 @@
 		"in-source": true
 	},
 	"ppx-flags": [],
-	"bs-dependencies": [ "reason-react" ],
+	"bs-dependencies": [ "@rescript/react" ],
 	"bsc-flags": [ "-bs-super-errors" ],
 	"warnings": {
 		"number": "-103"

@@ -20,4 +20,4 @@ module App = {
     </>;
   };
 };
-ReactDOMRe.renderToElementWithId(<App />, "app");
+ReactDOM.renderToElementWithId(<App />, "app");

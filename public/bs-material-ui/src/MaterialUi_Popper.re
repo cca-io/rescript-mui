@@ -77,11 +77,11 @@ external make:
                 ]
                   =?,
     ~popperOptions: Js.t({..})=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~transition: bool=?,
     ~id: string=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Popper";

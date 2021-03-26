@@ -56,15 +56,15 @@ module WithStylesSafe = (S: WithStylesSafeTemplate) => {
     </Styled>;
 };
 
-let createStyled: Js.Dict.t(ReactDOMRe.Style.t) => React.component('a) = MaterialUi_WithStyles_Helper.createStyled;
+let createStyled: Js.Dict.t(ReactDOM.Style.t) => React.component('a) = MaterialUi_WithStyles_Helper.createStyled;
 let createStyledWithTheme:
-  (MaterialUi_Theme.t => Js.Dict.t(ReactDOMRe.Style.t)) =>
+  (MaterialUi_Theme.t => Js.Dict.t(ReactDOM.Style.t)) =>
   React.component('a) = MaterialUi_WithStyles_Helper.createStyled;
 external renderFunctionToChildren: 'b => 'a = "%identity";
 
 type style = {
   name: string,
-  styles: ReactDOMRe.Style.t,
+  styles: ReactDOM.Style.t,
 };
 
 [@react.component]
@@ -75,7 +75,7 @@ let make =
       ~render: Js.t({..}) => React.element,
     ) => {
   let generateDict = (lst: list(style)) => {
-    let classDict: Js.Dict.t(ReactDOMRe.Style.t) = Js.Dict.empty();
+    let classDict: Js.Dict.t(ReactDOM.Style.t) = Js.Dict.empty();
     lst->Belt.List.forEach(style =>
       Js.Dict.set(classDict, style.name, style.styles)
     );

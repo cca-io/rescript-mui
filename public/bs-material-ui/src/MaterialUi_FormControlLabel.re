@@ -44,9 +44,9 @@ external make:
     ~onChange: ReactEvent.Form.t => unit=?,
     ~value: MaterialUi_Types.any=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "FormControlLabel";

@@ -243,7 +243,7 @@ external make:
     ~onEscapeKeyDown: ReactEvent.Keyboard.t => unit=?,
     ~onRendered: ReactEvent.Synthetic.t => unit=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~anchorEl: AnchorEl.t=?,
     ~anchorOrigin: AnchorOrigin.t=?,
     ~anchorPosition: AnchorPosition.t=?,
@@ -274,7 +274,7 @@ external make:
     ~transitionDuration: TransitionDuration.t=?,
     ~_TransitionProps: Js.t({..})=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Popover";

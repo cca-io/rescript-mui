@@ -9,12 +9,12 @@
     "start": "parcel public/index.html"
   },
   "devDependencies": {
-    "bs-platform": "^8.1.1",
+    "bs-platform": "^8.3",
     "parcel": "^2.0.0-alpha.3.2"
   },
   "dependencies": {
-    "@jsiebern/bs-material-ui": "^1.3.0-zero.3",
+    "@jsiebern/bs-material-ui": "file:../../bs-material-ui/",
     "@material-ui/core": "^4.9.11",
-    "reason-react": "^0.7.1"
+    "@rescript/react": "^0.10"
   }
 }

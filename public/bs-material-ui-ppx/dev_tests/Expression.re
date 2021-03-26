@@ -1,6 +1,6 @@
 [%mui.withStyles
   "ModuleName"({
-    some: ReactDOMRe.Style.make(~backgroundColor="red", ()),
-    other: ReactDOMRe.Style.make(~backgroundColor="blue", ())
+    some: ReactDOM.Style.make(~backgroundColor="red", ()),
+    other: ReactDOM.Style.make(~backgroundColor="blue", ())
   })
 ];

@@ -45,9 +45,9 @@ external make:
     ~maxItems: MaterialUi_Types.Number.t=?,
     ~separator: React.element=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Breadcrumbs";

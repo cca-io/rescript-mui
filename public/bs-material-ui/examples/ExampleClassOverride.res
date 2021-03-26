@@ -1,7 +1,7 @@
 module OverrideExample = %makeStyles(
   {
-    fontSize: ReactDOMRe.Style.make(~fontSize="30px", ()),
-    bgColor: ReactDOMRe.Style.make(~backgroundColor=MaterialUi.Colors.red.c300, ()),
+    fontSize: ReactDOM.Style.make(~fontSize="30px", ()),
+    bgColor: ReactDOM.Style.make(~backgroundColor=MaterialUi.Colors.red.c300, ()),
   }
 )
 
@@ -14,6 +14,6 @@ let make = () => {
     color=#Primary
     variant=#Contained
     classes={Button.Classes.make(~root=classes.fontSize, ~containedPrimary=classes.bgColor, ())}>
-    {ReasonReact.string("Example Button")}
+    {React.string("Example Button")}
   </Button>
 }

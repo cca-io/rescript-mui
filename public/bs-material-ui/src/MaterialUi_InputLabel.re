@@ -60,7 +60,7 @@ external make:
     ~component: Component.t=?,
     ~filled: bool=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~children: 'children=?,
     ~classes: Classes.t=?,
     ~className: string=?,
@@ -84,7 +84,7 @@ external make:
                 =?,
     ~htmlFor: string,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "InputLabel";

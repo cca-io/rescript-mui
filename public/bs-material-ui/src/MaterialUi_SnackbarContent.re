@@ -39,14 +39,14 @@ external make:
               ]
                 =?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~action: React.element=?,
     ~classes: Classes.t=?,
     ~className: string=?,
     ~message: React.element=?,
     ~role: string=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "SnackbarContent";

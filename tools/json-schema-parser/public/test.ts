@@ -6,7 +6,7 @@ const res = Converter(JSON.stringify(json), 'Theme', {
 	replaceRefs: [
 		{
 			re: /CSSProperties$/m,
-			replaceWith: 'ReactDOMRe.Style.t',
+			replaceWith: 'ReactDOM.Style.t',
 		},
 		{
 			re: /Partial.*([a-zA-Z]*)Props/m,

@@ -33,10 +33,10 @@ external make:
     ~component: Component.t=?,
     ~image: string=?,
     ~src: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~id: string=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "CardMedia";

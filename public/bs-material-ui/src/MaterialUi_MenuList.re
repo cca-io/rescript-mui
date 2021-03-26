@@ -43,7 +43,7 @@ external make:
     ~disablePadding: bool=?,
     ~subheader: React.element=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~autoFocus: bool=?,
     ~autoFocusItem: bool=?,
     ~children: 'children=?,
@@ -57,7 +57,7 @@ external make:
               ]
                 =?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "MenuList";

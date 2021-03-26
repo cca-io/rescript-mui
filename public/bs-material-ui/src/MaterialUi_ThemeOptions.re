@@ -54,29 +54,28 @@ module MixinsOptions = {
   type t = {
     .
     "gutters": option(MaterialUi_Types.any),
-    "toolbar": option(ReactDOMRe.Style.t),
+    "toolbar": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
-    (~gutters: MaterialUi_Types.any=?, ~toolbar: ReactDOMRe.Style.t=?, unit) =>
-    t;
+    (~gutters: MaterialUi_Types.any=?, ~toolbar: ReactDOM.Style.t=?, unit) => t;
 };
 
 module AccordionClassKey = {
   type t = {
     .
-    "disabled": option(ReactDOMRe.Style.t),
-    "expanded": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "rounded": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "expanded": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "rounded": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~expanded: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~rounded: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~expanded: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~rounded: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -85,38 +84,38 @@ module AccordionClassKey = {
 module AccordionActionsClassKey = {
   type t = {
     .
-    "root": option(ReactDOMRe.Style.t),
-    "spacing": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "spacing": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
-    (~root: ReactDOMRe.Style.t=?, ~spacing: ReactDOMRe.Style.t=?, unit) => t;
+    (~root: ReactDOM.Style.t=?, ~spacing: ReactDOM.Style.t=?, unit) => t;
 };
 
 module MuiAccordionDetails = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module AccordionSummaryClassKey = {
   type t = {
     .
-    "content": option(ReactDOMRe.Style.t),
-    "disabled": option(ReactDOMRe.Style.t),
-    "expandIcon": option(ReactDOMRe.Style.t),
-    "expanded": option(ReactDOMRe.Style.t),
-    "focused": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "content": option(ReactDOM.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "expandIcon": option(ReactDOM.Style.t),
+    "expanded": option(ReactDOM.Style.t),
+    "focused": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~content: ReactDOMRe.Style.t=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~expandIcon: ReactDOMRe.Style.t=?,
-      ~expanded: ReactDOMRe.Style.t=?,
-      ~focused: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~content: ReactDOM.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~expandIcon: ReactDOM.Style.t=?,
+      ~expanded: ReactDOM.Style.t=?,
+      ~focused: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -128,12 +127,12 @@ module AppBarClassKey = {
     "colorDefault": option(string),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
-    "positionAbsolute": option(ReactDOMRe.Style.t),
-    "positionFixed": option(ReactDOMRe.Style.t),
-    "positionRelative": option(ReactDOMRe.Style.t),
-    "positionStatic": option(ReactDOMRe.Style.t),
-    "positionSticky": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "positionAbsolute": option(ReactDOM.Style.t),
+    "positionFixed": option(ReactDOM.Style.t),
+    "positionRelative": option(ReactDOM.Style.t),
+    "positionStatic": option(ReactDOM.Style.t),
+    "positionSticky": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
@@ -141,12 +140,12 @@ module AppBarClassKey = {
       ~colorDefault: string=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
-      ~positionAbsolute: ReactDOMRe.Style.t=?,
-      ~positionFixed: ReactDOMRe.Style.t=?,
-      ~positionRelative: ReactDOMRe.Style.t=?,
-      ~positionStatic: ReactDOMRe.Style.t=?,
-      ~positionSticky: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~positionAbsolute: ReactDOM.Style.t=?,
+      ~positionFixed: ReactDOM.Style.t=?,
+      ~positionRelative: ReactDOM.Style.t=?,
+      ~positionStatic: ReactDOM.Style.t=?,
+      ~positionSticky: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -155,24 +154,26 @@ module AppBarClassKey = {
 module AvatarClassKey = {
   type t = {
     .
-    "circle": option(ReactDOMRe.Style.t),
+    "circle": option(ReactDOM.Style.t),
+    "circular": option(ReactDOM.Style.t),
     "colorDefault": option(string),
-    "fallback": option(ReactDOMRe.Style.t),
-    "img": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "rounded": option(ReactDOMRe.Style.t),
-    "square": option(ReactDOMRe.Style.t),
+    "fallback": option(ReactDOM.Style.t),
+    "img": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "rounded": option(ReactDOM.Style.t),
+    "square": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~circle: ReactDOMRe.Style.t=?,
+      ~circle: ReactDOM.Style.t=?,
+      ~circular: ReactDOM.Style.t=?,
       ~colorDefault: string=?,
-      ~fallback: ReactDOMRe.Style.t=?,
-      ~img: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~rounded: ReactDOMRe.Style.t=?,
-      ~square: ReactDOMRe.Style.t=?,
+      ~fallback: ReactDOM.Style.t=?,
+      ~img: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~rounded: ReactDOM.Style.t=?,
+      ~square: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -181,76 +182,76 @@ module AvatarClassKey = {
 module BackdropClassKey = {
   type t = {
     .
-    "invisible": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "invisible": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
-    (~invisible: ReactDOMRe.Style.t=?, ~root: ReactDOMRe.Style.t=?, unit) => t;
+    (~invisible: ReactDOM.Style.t=?, ~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module BadgeClassKey = {
   type t = {
     .
-    "anchorOriginBottomLeftRectangle": option(ReactDOMRe.Style.t),
-    "anchorOriginBottomRightCircle": option(ReactDOMRe.Style.t),
-    "anchorOriginBottomRightRectangle": option(ReactDOMRe.Style.t),
-    "anchorOriginTopLeftCircle": option(ReactDOMRe.Style.t),
-    "anchorOriginTopLeftRectangle": option(ReactDOMRe.Style.t),
-    "anchorOriginTopRightCircle": option(ReactDOMRe.Style.t),
-    "anchorOriginTopRightRectangle": option(ReactDOMRe.Style.t),
-    "badge": option(ReactDOMRe.Style.t),
+    "anchorOriginBottomLeftRectangle": option(ReactDOM.Style.t),
+    "anchorOriginBottomRightCircle": option(ReactDOM.Style.t),
+    "anchorOriginBottomRightRectangle": option(ReactDOM.Style.t),
+    "anchorOriginTopLeftCircle": option(ReactDOM.Style.t),
+    "anchorOriginTopLeftRectangle": option(ReactDOM.Style.t),
+    "anchorOriginTopRightCircle": option(ReactDOM.Style.t),
+    "anchorOriginTopRightRectangle": option(ReactDOM.Style.t),
+    "badge": option(ReactDOM.Style.t),
     "colorError": option(string),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
-    "dot": option(ReactDOMRe.Style.t),
-    "invisible": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "dot": option(ReactDOM.Style.t),
+    "invisible": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~anchorOriginBottomLeftRectangle: ReactDOMRe.Style.t=?,
-      ~anchorOriginBottomRightCircle: ReactDOMRe.Style.t=?,
-      ~anchorOriginBottomRightRectangle: ReactDOMRe.Style.t=?,
-      ~anchorOriginTopLeftCircle: ReactDOMRe.Style.t=?,
-      ~anchorOriginTopLeftRectangle: ReactDOMRe.Style.t=?,
-      ~anchorOriginTopRightCircle: ReactDOMRe.Style.t=?,
-      ~anchorOriginTopRightRectangle: ReactDOMRe.Style.t=?,
-      ~badge: ReactDOMRe.Style.t=?,
+      ~anchorOriginBottomLeftRectangle: ReactDOM.Style.t=?,
+      ~anchorOriginBottomRightCircle: ReactDOM.Style.t=?,
+      ~anchorOriginBottomRightRectangle: ReactDOM.Style.t=?,
+      ~anchorOriginTopLeftCircle: ReactDOM.Style.t=?,
+      ~anchorOriginTopLeftRectangle: ReactDOM.Style.t=?,
+      ~anchorOriginTopRightCircle: ReactDOM.Style.t=?,
+      ~anchorOriginTopRightRectangle: ReactDOM.Style.t=?,
+      ~badge: ReactDOM.Style.t=?,
       ~colorError: string=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
-      ~dot: ReactDOMRe.Style.t=?,
-      ~invisible: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~dot: ReactDOM.Style.t=?,
+      ~invisible: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
 };
 
 module MuiBottomNavigation = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module BottomNavigationActionClassKey = {
   type t = {
     .
-    "iconOnly": option(ReactDOMRe.Style.t),
-    "label": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "selected": option(ReactDOMRe.Style.t),
-    "wrapper": option(ReactDOMRe.Style.t),
+    "iconOnly": option(ReactDOM.Style.t),
+    "label": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "selected": option(ReactDOM.Style.t),
+    "wrapper": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~iconOnly: ReactDOMRe.Style.t=?,
-      ~label: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~selected: ReactDOMRe.Style.t=?,
-      ~wrapper: ReactDOMRe.Style.t=?,
+      ~iconOnly: ReactDOM.Style.t=?,
+      ~label: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~selected: ReactDOM.Style.t=?,
+      ~wrapper: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -259,18 +260,18 @@ module BottomNavigationActionClassKey = {
 module BreadcrumbsClassKey = {
   type t = {
     .
-    "li": option(ReactDOMRe.Style.t),
-    "ol": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "separator": option(ReactDOMRe.Style.t),
+    "li": option(ReactDOM.Style.t),
+    "ol": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "separator": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~li: ReactDOMRe.Style.t=?,
-      ~ol: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~separator: ReactDOMRe.Style.t=?,
+      ~li: ReactDOM.Style.t=?,
+      ~ol: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~separator: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -280,67 +281,67 @@ module ButtonClassKey = {
   type t = {
     .
     "colorInherit": option(string),
-    "contained": option(ReactDOMRe.Style.t),
-    "containedPrimary": option(ReactDOMRe.Style.t),
-    "containedSecondary": option(ReactDOMRe.Style.t),
-    "containedSizeLarge": option(ReactDOMRe.Style.t),
-    "containedSizeSmall": option(ReactDOMRe.Style.t),
-    "disableElevation": option(ReactDOMRe.Style.t),
-    "disabled": option(ReactDOMRe.Style.t),
-    "endIcon": option(ReactDOMRe.Style.t),
-    "focusVisible": option(ReactDOMRe.Style.t),
-    "fullWidth": option(ReactDOMRe.Style.t),
-    "iconSizeLarge": option(ReactDOMRe.Style.t),
-    "iconSizeMedium": option(ReactDOMRe.Style.t),
-    "iconSizeSmall": option(ReactDOMRe.Style.t),
-    "label": option(ReactDOMRe.Style.t),
-    "outlined": option(ReactDOMRe.Style.t),
-    "outlinedPrimary": option(ReactDOMRe.Style.t),
-    "outlinedSecondary": option(ReactDOMRe.Style.t),
-    "outlinedSizeLarge": option(ReactDOMRe.Style.t),
-    "outlinedSizeSmall": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "sizeLarge": option(ReactDOMRe.Style.t),
-    "sizeSmall": option(ReactDOMRe.Style.t),
-    "startIcon": option(ReactDOMRe.Style.t),
-    "text": option(ReactDOMRe.Style.t),
-    "textPrimary": option(ReactDOMRe.Style.t),
-    "textSecondary": option(ReactDOMRe.Style.t),
-    "textSizeLarge": option(ReactDOMRe.Style.t),
-    "textSizeSmall": option(ReactDOMRe.Style.t),
+    "contained": option(ReactDOM.Style.t),
+    "containedPrimary": option(ReactDOM.Style.t),
+    "containedSecondary": option(ReactDOM.Style.t),
+    "containedSizeLarge": option(ReactDOM.Style.t),
+    "containedSizeSmall": option(ReactDOM.Style.t),
+    "disableElevation": option(ReactDOM.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "endIcon": option(ReactDOM.Style.t),
+    "focusVisible": option(ReactDOM.Style.t),
+    "fullWidth": option(ReactDOM.Style.t),
+    "iconSizeLarge": option(ReactDOM.Style.t),
+    "iconSizeMedium": option(ReactDOM.Style.t),
+    "iconSizeSmall": option(ReactDOM.Style.t),
+    "label": option(ReactDOM.Style.t),
+    "outlined": option(ReactDOM.Style.t),
+    "outlinedPrimary": option(ReactDOM.Style.t),
+    "outlinedSecondary": option(ReactDOM.Style.t),
+    "outlinedSizeLarge": option(ReactDOM.Style.t),
+    "outlinedSizeSmall": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "sizeLarge": option(ReactDOM.Style.t),
+    "sizeSmall": option(ReactDOM.Style.t),
+    "startIcon": option(ReactDOM.Style.t),
+    "text": option(ReactDOM.Style.t),
+    "textPrimary": option(ReactDOM.Style.t),
+    "textSecondary": option(ReactDOM.Style.t),
+    "textSizeLarge": option(ReactDOM.Style.t),
+    "textSizeSmall": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
       ~colorInherit: string=?,
-      ~contained: ReactDOMRe.Style.t=?,
-      ~containedPrimary: ReactDOMRe.Style.t=?,
-      ~containedSecondary: ReactDOMRe.Style.t=?,
-      ~containedSizeLarge: ReactDOMRe.Style.t=?,
-      ~containedSizeSmall: ReactDOMRe.Style.t=?,
-      ~disableElevation: ReactDOMRe.Style.t=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~endIcon: ReactDOMRe.Style.t=?,
-      ~focusVisible: ReactDOMRe.Style.t=?,
-      ~fullWidth: ReactDOMRe.Style.t=?,
-      ~iconSizeLarge: ReactDOMRe.Style.t=?,
-      ~iconSizeMedium: ReactDOMRe.Style.t=?,
-      ~iconSizeSmall: ReactDOMRe.Style.t=?,
-      ~label: ReactDOMRe.Style.t=?,
-      ~outlined: ReactDOMRe.Style.t=?,
-      ~outlinedPrimary: ReactDOMRe.Style.t=?,
-      ~outlinedSecondary: ReactDOMRe.Style.t=?,
-      ~outlinedSizeLarge: ReactDOMRe.Style.t=?,
-      ~outlinedSizeSmall: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~sizeLarge: ReactDOMRe.Style.t=?,
-      ~sizeSmall: ReactDOMRe.Style.t=?,
-      ~startIcon: ReactDOMRe.Style.t=?,
-      ~text: ReactDOMRe.Style.t=?,
-      ~textPrimary: ReactDOMRe.Style.t=?,
-      ~textSecondary: ReactDOMRe.Style.t=?,
-      ~textSizeLarge: ReactDOMRe.Style.t=?,
-      ~textSizeSmall: ReactDOMRe.Style.t=?,
+      ~contained: ReactDOM.Style.t=?,
+      ~containedPrimary: ReactDOM.Style.t=?,
+      ~containedSecondary: ReactDOM.Style.t=?,
+      ~containedSizeLarge: ReactDOM.Style.t=?,
+      ~containedSizeSmall: ReactDOM.Style.t=?,
+      ~disableElevation: ReactDOM.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~endIcon: ReactDOM.Style.t=?,
+      ~focusVisible: ReactDOM.Style.t=?,
+      ~fullWidth: ReactDOM.Style.t=?,
+      ~iconSizeLarge: ReactDOM.Style.t=?,
+      ~iconSizeMedium: ReactDOM.Style.t=?,
+      ~iconSizeSmall: ReactDOM.Style.t=?,
+      ~label: ReactDOM.Style.t=?,
+      ~outlined: ReactDOM.Style.t=?,
+      ~outlinedPrimary: ReactDOM.Style.t=?,
+      ~outlinedSecondary: ReactDOM.Style.t=?,
+      ~outlinedSizeLarge: ReactDOM.Style.t=?,
+      ~outlinedSizeSmall: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~sizeLarge: ReactDOM.Style.t=?,
+      ~sizeSmall: ReactDOM.Style.t=?,
+      ~startIcon: ReactDOM.Style.t=?,
+      ~text: ReactDOM.Style.t=?,
+      ~textPrimary: ReactDOM.Style.t=?,
+      ~textSecondary: ReactDOM.Style.t=?,
+      ~textSizeLarge: ReactDOM.Style.t=?,
+      ~textSizeSmall: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -349,16 +350,16 @@ module ButtonClassKey = {
 module ButtonBaseClassKey = {
   type t = {
     .
-    "disabled": option(ReactDOMRe.Style.t),
-    "focusVisible": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "focusVisible": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~focusVisible: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~focusVisible: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -367,110 +368,110 @@ module ButtonBaseClassKey = {
 module ButtonGroupClassKey = {
   type t = {
     .
-    "contained": option(ReactDOMRe.Style.t),
-    "disableElevation": option(ReactDOMRe.Style.t),
-    "disabled": option(ReactDOMRe.Style.t),
-    "fullWidth": option(ReactDOMRe.Style.t),
-    "grouped": option(ReactDOMRe.Style.t),
-    "groupedContained": option(ReactDOMRe.Style.t),
-    "groupedContainedHorizontal": option(ReactDOMRe.Style.t),
-    "groupedContainedPrimary": option(ReactDOMRe.Style.t),
-    "groupedContainedSecondary": option(ReactDOMRe.Style.t),
-    "groupedContainedVertical": option(ReactDOMRe.Style.t),
-    "groupedHorizontal": option(ReactDOMRe.Style.t),
-    "groupedOutlined": option(ReactDOMRe.Style.t),
-    "groupedOutlinedHorizontal": option(ReactDOMRe.Style.t),
-    "groupedOutlinedPrimary": option(ReactDOMRe.Style.t),
-    "groupedOutlinedSecondary": option(ReactDOMRe.Style.t),
-    "groupedOutlinedVertical": option(ReactDOMRe.Style.t),
-    "groupedText": option(ReactDOMRe.Style.t),
-    "groupedTextHorizontal": option(ReactDOMRe.Style.t),
-    "groupedTextPrimary": option(ReactDOMRe.Style.t),
-    "groupedTextSecondary": option(ReactDOMRe.Style.t),
-    "groupedTextVertical": option(ReactDOMRe.Style.t),
-    "groupedVertical": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "vertical": option(ReactDOMRe.Style.t),
+    "contained": option(ReactDOM.Style.t),
+    "disableElevation": option(ReactDOM.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "fullWidth": option(ReactDOM.Style.t),
+    "grouped": option(ReactDOM.Style.t),
+    "groupedContained": option(ReactDOM.Style.t),
+    "groupedContainedHorizontal": option(ReactDOM.Style.t),
+    "groupedContainedPrimary": option(ReactDOM.Style.t),
+    "groupedContainedSecondary": option(ReactDOM.Style.t),
+    "groupedContainedVertical": option(ReactDOM.Style.t),
+    "groupedHorizontal": option(ReactDOM.Style.t),
+    "groupedOutlined": option(ReactDOM.Style.t),
+    "groupedOutlinedHorizontal": option(ReactDOM.Style.t),
+    "groupedOutlinedPrimary": option(ReactDOM.Style.t),
+    "groupedOutlinedSecondary": option(ReactDOM.Style.t),
+    "groupedOutlinedVertical": option(ReactDOM.Style.t),
+    "groupedText": option(ReactDOM.Style.t),
+    "groupedTextHorizontal": option(ReactDOM.Style.t),
+    "groupedTextPrimary": option(ReactDOM.Style.t),
+    "groupedTextSecondary": option(ReactDOM.Style.t),
+    "groupedTextVertical": option(ReactDOM.Style.t),
+    "groupedVertical": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "vertical": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~contained: ReactDOMRe.Style.t=?,
-      ~disableElevation: ReactDOMRe.Style.t=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~fullWidth: ReactDOMRe.Style.t=?,
-      ~grouped: ReactDOMRe.Style.t=?,
-      ~groupedContained: ReactDOMRe.Style.t=?,
-      ~groupedContainedHorizontal: ReactDOMRe.Style.t=?,
-      ~groupedContainedPrimary: ReactDOMRe.Style.t=?,
-      ~groupedContainedSecondary: ReactDOMRe.Style.t=?,
-      ~groupedContainedVertical: ReactDOMRe.Style.t=?,
-      ~groupedHorizontal: ReactDOMRe.Style.t=?,
-      ~groupedOutlined: ReactDOMRe.Style.t=?,
-      ~groupedOutlinedHorizontal: ReactDOMRe.Style.t=?,
-      ~groupedOutlinedPrimary: ReactDOMRe.Style.t=?,
-      ~groupedOutlinedSecondary: ReactDOMRe.Style.t=?,
-      ~groupedOutlinedVertical: ReactDOMRe.Style.t=?,
-      ~groupedText: ReactDOMRe.Style.t=?,
-      ~groupedTextHorizontal: ReactDOMRe.Style.t=?,
-      ~groupedTextPrimary: ReactDOMRe.Style.t=?,
-      ~groupedTextSecondary: ReactDOMRe.Style.t=?,
-      ~groupedTextVertical: ReactDOMRe.Style.t=?,
-      ~groupedVertical: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~vertical: ReactDOMRe.Style.t=?,
+      ~contained: ReactDOM.Style.t=?,
+      ~disableElevation: ReactDOM.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~fullWidth: ReactDOM.Style.t=?,
+      ~grouped: ReactDOM.Style.t=?,
+      ~groupedContained: ReactDOM.Style.t=?,
+      ~groupedContainedHorizontal: ReactDOM.Style.t=?,
+      ~groupedContainedPrimary: ReactDOM.Style.t=?,
+      ~groupedContainedSecondary: ReactDOM.Style.t=?,
+      ~groupedContainedVertical: ReactDOM.Style.t=?,
+      ~groupedHorizontal: ReactDOM.Style.t=?,
+      ~groupedOutlined: ReactDOM.Style.t=?,
+      ~groupedOutlinedHorizontal: ReactDOM.Style.t=?,
+      ~groupedOutlinedPrimary: ReactDOM.Style.t=?,
+      ~groupedOutlinedSecondary: ReactDOM.Style.t=?,
+      ~groupedOutlinedVertical: ReactDOM.Style.t=?,
+      ~groupedText: ReactDOM.Style.t=?,
+      ~groupedTextHorizontal: ReactDOM.Style.t=?,
+      ~groupedTextPrimary: ReactDOM.Style.t=?,
+      ~groupedTextSecondary: ReactDOM.Style.t=?,
+      ~groupedTextVertical: ReactDOM.Style.t=?,
+      ~groupedVertical: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~vertical: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
 };
 
 module MuiCard = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module CardActionAreaClassKey = {
   type t = {
     .
-    "focusHighlight": option(ReactDOMRe.Style.t),
-    "focusVisible": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "focusHighlight": option(ReactDOM.Style.t),
+    "focusVisible": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~focusHighlight: ReactDOMRe.Style.t=?,
-      ~focusVisible: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~focusHighlight: ReactDOM.Style.t=?,
+      ~focusVisible: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
 };
 
 module MuiCardContent = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module CardHeaderClassKey = {
   type t = {
     .
-    "action": option(ReactDOMRe.Style.t),
-    "avatar": option(ReactDOMRe.Style.t),
-    "content": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "subheader": option(ReactDOMRe.Style.t),
-    "title": option(ReactDOMRe.Style.t),
+    "action": option(ReactDOM.Style.t),
+    "avatar": option(ReactDOM.Style.t),
+    "content": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "subheader": option(ReactDOM.Style.t),
+    "title": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~action: ReactDOMRe.Style.t=?,
-      ~avatar: ReactDOMRe.Style.t=?,
-      ~content: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~subheader: ReactDOMRe.Style.t=?,
-      ~title: ReactDOMRe.Style.t=?,
+      ~action: ReactDOM.Style.t=?,
+      ~avatar: ReactDOM.Style.t=?,
+      ~content: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~subheader: ReactDOM.Style.t=?,
+      ~title: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -479,35 +480,35 @@ module CardHeaderClassKey = {
 module CardMediaClassKey = {
   type t = {
     .
-    "media": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "media": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
-    (~media: ReactDOMRe.Style.t=?, ~root: ReactDOMRe.Style.t=?, unit) => t;
+    (~media: ReactDOM.Style.t=?, ~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module CheckboxClassKey = {
   type t = {
     .
-    "checked": option(ReactDOMRe.Style.t),
+    "checked": option(ReactDOM.Style.t),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "indeterminate": option(ReactDOMRe.Style.t),
-    "input": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "indeterminate": option(ReactDOM.Style.t),
+    "input": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~checked: ReactDOMRe.Style.t=?,
+      ~checked: ReactDOM.Style.t=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~indeterminate: ReactDOMRe.Style.t=?,
-      ~input: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~indeterminate: ReactDOM.Style.t=?,
+      ~input: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -516,70 +517,70 @@ module CheckboxClassKey = {
 module ChipClassKey = {
   type t = {
     .
-    "avatar": option(ReactDOMRe.Style.t),
-    "avatarColorPrimary": option(ReactDOMRe.Style.t),
-    "avatarColorSecondary": option(ReactDOMRe.Style.t),
-    "avatarSmall": option(ReactDOMRe.Style.t),
-    "clickable": option(ReactDOMRe.Style.t),
-    "clickableColorPrimary": option(ReactDOMRe.Style.t),
-    "clickableColorSecondary": option(ReactDOMRe.Style.t),
+    "avatar": option(ReactDOM.Style.t),
+    "avatarColorPrimary": option(ReactDOM.Style.t),
+    "avatarColorSecondary": option(ReactDOM.Style.t),
+    "avatarSmall": option(ReactDOM.Style.t),
+    "clickable": option(ReactDOM.Style.t),
+    "clickableColorPrimary": option(ReactDOM.Style.t),
+    "clickableColorSecondary": option(ReactDOM.Style.t),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
-    "deletable": option(ReactDOMRe.Style.t),
-    "deletableColorPrimary": option(ReactDOMRe.Style.t),
-    "deletableColorSecondary": option(ReactDOMRe.Style.t),
-    "deleteIcon": option(ReactDOMRe.Style.t),
-    "deleteIconColorPrimary": option(ReactDOMRe.Style.t),
-    "deleteIconColorSecondary": option(ReactDOMRe.Style.t),
-    "deleteIconOutlinedColorPrimary": option(ReactDOMRe.Style.t),
-    "deleteIconOutlinedColorSecondary": option(ReactDOMRe.Style.t),
-    "deleteIconSmall": option(ReactDOMRe.Style.t),
-    "disabled": option(ReactDOMRe.Style.t),
-    "icon": option(ReactDOMRe.Style.t),
-    "iconColorPrimary": option(ReactDOMRe.Style.t),
-    "iconColorSecondary": option(ReactDOMRe.Style.t),
-    "iconSmall": option(ReactDOMRe.Style.t),
-    "label": option(ReactDOMRe.Style.t),
-    "labelSmall": option(ReactDOMRe.Style.t),
-    "outlined": option(ReactDOMRe.Style.t),
-    "outlinedPrimary": option(ReactDOMRe.Style.t),
-    "outlinedSecondary": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "sizeSmall": option(ReactDOMRe.Style.t),
+    "deletable": option(ReactDOM.Style.t),
+    "deletableColorPrimary": option(ReactDOM.Style.t),
+    "deletableColorSecondary": option(ReactDOM.Style.t),
+    "deleteIcon": option(ReactDOM.Style.t),
+    "deleteIconColorPrimary": option(ReactDOM.Style.t),
+    "deleteIconColorSecondary": option(ReactDOM.Style.t),
+    "deleteIconOutlinedColorPrimary": option(ReactDOM.Style.t),
+    "deleteIconOutlinedColorSecondary": option(ReactDOM.Style.t),
+    "deleteIconSmall": option(ReactDOM.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "icon": option(ReactDOM.Style.t),
+    "iconColorPrimary": option(ReactDOM.Style.t),
+    "iconColorSecondary": option(ReactDOM.Style.t),
+    "iconSmall": option(ReactDOM.Style.t),
+    "label": option(ReactDOM.Style.t),
+    "labelSmall": option(ReactDOM.Style.t),
+    "outlined": option(ReactDOM.Style.t),
+    "outlinedPrimary": option(ReactDOM.Style.t),
+    "outlinedSecondary": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "sizeSmall": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~avatar: ReactDOMRe.Style.t=?,
-      ~avatarColorPrimary: ReactDOMRe.Style.t=?,
-      ~avatarColorSecondary: ReactDOMRe.Style.t=?,
-      ~avatarSmall: ReactDOMRe.Style.t=?,
-      ~clickable: ReactDOMRe.Style.t=?,
-      ~clickableColorPrimary: ReactDOMRe.Style.t=?,
-      ~clickableColorSecondary: ReactDOMRe.Style.t=?,
+      ~avatar: ReactDOM.Style.t=?,
+      ~avatarColorPrimary: ReactDOM.Style.t=?,
+      ~avatarColorSecondary: ReactDOM.Style.t=?,
+      ~avatarSmall: ReactDOM.Style.t=?,
+      ~clickable: ReactDOM.Style.t=?,
+      ~clickableColorPrimary: ReactDOM.Style.t=?,
+      ~clickableColorSecondary: ReactDOM.Style.t=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
-      ~deletable: ReactDOMRe.Style.t=?,
-      ~deletableColorPrimary: ReactDOMRe.Style.t=?,
-      ~deletableColorSecondary: ReactDOMRe.Style.t=?,
-      ~deleteIcon: ReactDOMRe.Style.t=?,
-      ~deleteIconColorPrimary: ReactDOMRe.Style.t=?,
-      ~deleteIconColorSecondary: ReactDOMRe.Style.t=?,
-      ~deleteIconOutlinedColorPrimary: ReactDOMRe.Style.t=?,
-      ~deleteIconOutlinedColorSecondary: ReactDOMRe.Style.t=?,
-      ~deleteIconSmall: ReactDOMRe.Style.t=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~icon: ReactDOMRe.Style.t=?,
-      ~iconColorPrimary: ReactDOMRe.Style.t=?,
-      ~iconColorSecondary: ReactDOMRe.Style.t=?,
-      ~iconSmall: ReactDOMRe.Style.t=?,
-      ~label: ReactDOMRe.Style.t=?,
-      ~labelSmall: ReactDOMRe.Style.t=?,
-      ~outlined: ReactDOMRe.Style.t=?,
-      ~outlinedPrimary: ReactDOMRe.Style.t=?,
-      ~outlinedSecondary: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~sizeSmall: ReactDOMRe.Style.t=?,
+      ~deletable: ReactDOM.Style.t=?,
+      ~deletableColorPrimary: ReactDOM.Style.t=?,
+      ~deletableColorSecondary: ReactDOM.Style.t=?,
+      ~deleteIcon: ReactDOM.Style.t=?,
+      ~deleteIconColorPrimary: ReactDOM.Style.t=?,
+      ~deleteIconColorSecondary: ReactDOM.Style.t=?,
+      ~deleteIconOutlinedColorPrimary: ReactDOM.Style.t=?,
+      ~deleteIconOutlinedColorSecondary: ReactDOM.Style.t=?,
+      ~deleteIconSmall: ReactDOM.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~icon: ReactDOM.Style.t=?,
+      ~iconColorPrimary: ReactDOM.Style.t=?,
+      ~iconColorSecondary: ReactDOM.Style.t=?,
+      ~iconSmall: ReactDOM.Style.t=?,
+      ~label: ReactDOM.Style.t=?,
+      ~labelSmall: ReactDOM.Style.t=?,
+      ~outlined: ReactDOM.Style.t=?,
+      ~outlinedPrimary: ReactDOM.Style.t=?,
+      ~outlinedSecondary: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~sizeSmall: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -588,30 +589,34 @@ module ChipClassKey = {
 module CircularProgressClassKey = {
   type t = {
     .
-    "circle": option(ReactDOMRe.Style.t),
-    "circleDisableShrink": option(ReactDOMRe.Style.t),
-    "circleIndeterminate": option(ReactDOMRe.Style.t),
-    "circleStatic": option(ReactDOMRe.Style.t),
+    "circle": option(ReactDOM.Style.t),
+    "circleDeterminate": option(ReactDOM.Style.t),
+    "circleDisableShrink": option(ReactDOM.Style.t),
+    "circleIndeterminate": option(ReactDOM.Style.t),
+    "circleStatic": option(ReactDOM.Style.t),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
-    "indeterminate": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "static": option(ReactDOMRe.Style.t),
-    "svg": option(ReactDOMRe.Style.t),
+    "determinate": option(ReactDOM.Style.t),
+    "indeterminate": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "static": option(ReactDOM.Style.t),
+    "svg": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~circle: ReactDOMRe.Style.t=?,
-      ~circleDisableShrink: ReactDOMRe.Style.t=?,
-      ~circleIndeterminate: ReactDOMRe.Style.t=?,
-      ~circleStatic: ReactDOMRe.Style.t=?,
+      ~circle: ReactDOM.Style.t=?,
+      ~circleDeterminate: ReactDOM.Style.t=?,
+      ~circleDisableShrink: ReactDOM.Style.t=?,
+      ~circleIndeterminate: ReactDOM.Style.t=?,
+      ~circleStatic: ReactDOM.Style.t=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
-      ~indeterminate: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~static: ReactDOMRe.Style.t=?,
-      ~svg: ReactDOMRe.Style.t=?,
+      ~determinate: ReactDOM.Style.t=?,
+      ~indeterminate: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~static: ReactDOM.Style.t=?,
+      ~svg: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -620,20 +625,20 @@ module CircularProgressClassKey = {
 module CollapseClassKey = {
   type t = {
     .
-    "container": option(ReactDOMRe.Style.t),
-    "entered": option(ReactDOMRe.Style.t),
-    "hidden": option(ReactDOMRe.Style.t),
-    "wrapper": option(ReactDOMRe.Style.t),
-    "wrapperInner": option(ReactDOMRe.Style.t),
+    "container": option(ReactDOM.Style.t),
+    "entered": option(ReactDOM.Style.t),
+    "hidden": option(ReactDOM.Style.t),
+    "wrapper": option(ReactDOM.Style.t),
+    "wrapperInner": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~container: ReactDOMRe.Style.t=?,
-      ~entered: ReactDOMRe.Style.t=?,
-      ~hidden: ReactDOMRe.Style.t=?,
-      ~wrapper: ReactDOMRe.Style.t=?,
-      ~wrapperInner: ReactDOMRe.Style.t=?,
+      ~container: ReactDOM.Style.t=?,
+      ~entered: ReactDOM.Style.t=?,
+      ~hidden: ReactDOM.Style.t=?,
+      ~wrapper: ReactDOM.Style.t=?,
+      ~wrapperInner: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -642,26 +647,26 @@ module CollapseClassKey = {
 module ContainerClassKey = {
   type t = {
     .
-    "disableGutters": option(ReactDOMRe.Style.t),
-    "fixed": option(ReactDOMRe.Style.t),
-    "maxWidthLg": option(ReactDOMRe.Style.t),
-    "maxWidthMd": option(ReactDOMRe.Style.t),
-    "maxWidthSm": option(ReactDOMRe.Style.t),
-    "maxWidthXl": option(ReactDOMRe.Style.t),
-    "maxWidthXs": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "disableGutters": option(ReactDOM.Style.t),
+    "fixed": option(ReactDOM.Style.t),
+    "maxWidthLg": option(ReactDOM.Style.t),
+    "maxWidthMd": option(ReactDOM.Style.t),
+    "maxWidthSm": option(ReactDOM.Style.t),
+    "maxWidthXl": option(ReactDOM.Style.t),
+    "maxWidthXs": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~disableGutters: ReactDOMRe.Style.t=?,
-      ~fixed: ReactDOMRe.Style.t=?,
-      ~maxWidthLg: ReactDOMRe.Style.t=?,
-      ~maxWidthMd: ReactDOMRe.Style.t=?,
-      ~maxWidthSm: ReactDOMRe.Style.t=?,
-      ~maxWidthXl: ReactDOMRe.Style.t=?,
-      ~maxWidthXs: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~disableGutters: ReactDOM.Style.t=?,
+      ~fixed: ReactDOM.Style.t=?,
+      ~maxWidthLg: ReactDOM.Style.t=?,
+      ~maxWidthMd: ReactDOM.Style.t=?,
+      ~maxWidthSm: ReactDOM.Style.t=?,
+      ~maxWidthXl: ReactDOM.Style.t=?,
+      ~maxWidthXs: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -680,40 +685,40 @@ module MuiCssBaseline = {
 module DialogClassKey = {
   type t = {
     .
-    "container": option(ReactDOMRe.Style.t),
-    "paper": option(ReactDOMRe.Style.t),
-    "paperFullScreen": option(ReactDOMRe.Style.t),
-    "paperFullWidth": option(ReactDOMRe.Style.t),
-    "paperScrollBody": option(ReactDOMRe.Style.t),
-    "paperScrollPaper": option(ReactDOMRe.Style.t),
-    "paperWidthFalse": option(ReactDOMRe.Style.t),
-    "paperWidthLg": option(ReactDOMRe.Style.t),
-    "paperWidthMd": option(ReactDOMRe.Style.t),
-    "paperWidthSm": option(ReactDOMRe.Style.t),
-    "paperWidthXl": option(ReactDOMRe.Style.t),
-    "paperWidthXs": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "scrollBody": option(ReactDOMRe.Style.t),
-    "scrollPaper": option(ReactDOMRe.Style.t),
+    "container": option(ReactDOM.Style.t),
+    "paper": option(ReactDOM.Style.t),
+    "paperFullScreen": option(ReactDOM.Style.t),
+    "paperFullWidth": option(ReactDOM.Style.t),
+    "paperScrollBody": option(ReactDOM.Style.t),
+    "paperScrollPaper": option(ReactDOM.Style.t),
+    "paperWidthFalse": option(ReactDOM.Style.t),
+    "paperWidthLg": option(ReactDOM.Style.t),
+    "paperWidthMd": option(ReactDOM.Style.t),
+    "paperWidthSm": option(ReactDOM.Style.t),
+    "paperWidthXl": option(ReactDOM.Style.t),
+    "paperWidthXs": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "scrollBody": option(ReactDOM.Style.t),
+    "scrollPaper": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~container: ReactDOMRe.Style.t=?,
-      ~paper: ReactDOMRe.Style.t=?,
-      ~paperFullScreen: ReactDOMRe.Style.t=?,
-      ~paperFullWidth: ReactDOMRe.Style.t=?,
-      ~paperScrollBody: ReactDOMRe.Style.t=?,
-      ~paperScrollPaper: ReactDOMRe.Style.t=?,
-      ~paperWidthFalse: ReactDOMRe.Style.t=?,
-      ~paperWidthLg: ReactDOMRe.Style.t=?,
-      ~paperWidthMd: ReactDOMRe.Style.t=?,
-      ~paperWidthSm: ReactDOMRe.Style.t=?,
-      ~paperWidthXl: ReactDOMRe.Style.t=?,
-      ~paperWidthXs: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~scrollBody: ReactDOMRe.Style.t=?,
-      ~scrollPaper: ReactDOMRe.Style.t=?,
+      ~container: ReactDOM.Style.t=?,
+      ~paper: ReactDOM.Style.t=?,
+      ~paperFullScreen: ReactDOM.Style.t=?,
+      ~paperFullWidth: ReactDOM.Style.t=?,
+      ~paperScrollBody: ReactDOM.Style.t=?,
+      ~paperScrollPaper: ReactDOM.Style.t=?,
+      ~paperWidthFalse: ReactDOM.Style.t=?,
+      ~paperWidthLg: ReactDOM.Style.t=?,
+      ~paperWidthMd: ReactDOM.Style.t=?,
+      ~paperWidthSm: ReactDOM.Style.t=?,
+      ~paperWidthXl: ReactDOM.Style.t=?,
+      ~paperWidthXs: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~scrollBody: ReactDOM.Style.t=?,
+      ~scrollPaper: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -722,43 +727,43 @@ module DialogClassKey = {
 module DialogContentClassKey = {
   type t = {
     .
-    "dividers": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "dividers": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
-    (~dividers: ReactDOMRe.Style.t=?, ~root: ReactDOMRe.Style.t=?, unit) => t;
+    (~dividers: ReactDOM.Style.t=?, ~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module MuiDialogContentText = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module MuiDialogTitle = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module DividerClassKey = {
   type t = {
     .
-    "absolute": option(ReactDOMRe.Style.t),
-    "inset": option(ReactDOMRe.Style.t),
-    "light": option(ReactDOMRe.Style.t),
-    "middle": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "vertical": option(ReactDOMRe.Style.t),
+    "absolute": option(ReactDOM.Style.t),
+    "inset": option(ReactDOM.Style.t),
+    "light": option(ReactDOM.Style.t),
+    "middle": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "vertical": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~absolute: ReactDOMRe.Style.t=?,
-      ~inset: ReactDOMRe.Style.t=?,
-      ~light: ReactDOMRe.Style.t=?,
-      ~middle: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~vertical: ReactDOMRe.Style.t=?,
+      ~absolute: ReactDOM.Style.t=?,
+      ~inset: ReactDOM.Style.t=?,
+      ~light: ReactDOM.Style.t=?,
+      ~middle: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~vertical: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -767,71 +772,71 @@ module DividerClassKey = {
 module DrawerClassKey = {
   type t = {
     .
-    "docked": option(ReactDOMRe.Style.t),
-    "modal": option(ReactDOMRe.Style.t),
-    "paper": option(ReactDOMRe.Style.t),
-    "paperAnchorBottom": option(ReactDOMRe.Style.t),
-    "paperAnchorDockedBottom": option(ReactDOMRe.Style.t),
-    "paperAnchorDockedLeft": option(ReactDOMRe.Style.t),
-    "paperAnchorDockedRight": option(ReactDOMRe.Style.t),
-    "paperAnchorDockedTop": option(ReactDOMRe.Style.t),
-    "paperAnchorLeft": option(ReactDOMRe.Style.t),
-    "paperAnchorRight": option(ReactDOMRe.Style.t),
-    "paperAnchorTop": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "docked": option(ReactDOM.Style.t),
+    "modal": option(ReactDOM.Style.t),
+    "paper": option(ReactDOM.Style.t),
+    "paperAnchorBottom": option(ReactDOM.Style.t),
+    "paperAnchorDockedBottom": option(ReactDOM.Style.t),
+    "paperAnchorDockedLeft": option(ReactDOM.Style.t),
+    "paperAnchorDockedRight": option(ReactDOM.Style.t),
+    "paperAnchorDockedTop": option(ReactDOM.Style.t),
+    "paperAnchorLeft": option(ReactDOM.Style.t),
+    "paperAnchorRight": option(ReactDOM.Style.t),
+    "paperAnchorTop": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~docked: ReactDOMRe.Style.t=?,
-      ~modal: ReactDOMRe.Style.t=?,
-      ~paper: ReactDOMRe.Style.t=?,
-      ~paperAnchorBottom: ReactDOMRe.Style.t=?,
-      ~paperAnchorDockedBottom: ReactDOMRe.Style.t=?,
-      ~paperAnchorDockedLeft: ReactDOMRe.Style.t=?,
-      ~paperAnchorDockedRight: ReactDOMRe.Style.t=?,
-      ~paperAnchorDockedTop: ReactDOMRe.Style.t=?,
-      ~paperAnchorLeft: ReactDOMRe.Style.t=?,
-      ~paperAnchorRight: ReactDOMRe.Style.t=?,
-      ~paperAnchorTop: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~docked: ReactDOM.Style.t=?,
+      ~modal: ReactDOM.Style.t=?,
+      ~paper: ReactDOM.Style.t=?,
+      ~paperAnchorBottom: ReactDOM.Style.t=?,
+      ~paperAnchorDockedBottom: ReactDOM.Style.t=?,
+      ~paperAnchorDockedLeft: ReactDOM.Style.t=?,
+      ~paperAnchorDockedRight: ReactDOM.Style.t=?,
+      ~paperAnchorDockedTop: ReactDOM.Style.t=?,
+      ~paperAnchorLeft: ReactDOM.Style.t=?,
+      ~paperAnchorRight: ReactDOM.Style.t=?,
+      ~paperAnchorTop: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
 };
 
 module MuiExpansionPanelDetails = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module FabClassKey = {
   type t = {
     .
     "colorInherit": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "extended": option(ReactDOMRe.Style.t),
-    "focusVisible": option(ReactDOMRe.Style.t),
-    "label": option(ReactDOMRe.Style.t),
-    "primary": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "secondary": option(ReactDOMRe.Style.t),
-    "sizeMedium": option(ReactDOMRe.Style.t),
-    "sizeSmall": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "extended": option(ReactDOM.Style.t),
+    "focusVisible": option(ReactDOM.Style.t),
+    "label": option(ReactDOM.Style.t),
+    "primary": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "secondary": option(ReactDOM.Style.t),
+    "sizeMedium": option(ReactDOM.Style.t),
+    "sizeSmall": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
       ~colorInherit: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~extended: ReactDOMRe.Style.t=?,
-      ~focusVisible: ReactDOMRe.Style.t=?,
-      ~label: ReactDOMRe.Style.t=?,
-      ~primary: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~secondary: ReactDOMRe.Style.t=?,
-      ~sizeMedium: ReactDOMRe.Style.t=?,
-      ~sizeSmall: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~extended: ReactDOM.Style.t=?,
+      ~focusVisible: ReactDOM.Style.t=?,
+      ~label: ReactDOM.Style.t=?,
+      ~primary: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~secondary: ReactDOM.Style.t=?,
+      ~sizeMedium: ReactDOM.Style.t=?,
+      ~sizeSmall: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -840,48 +845,48 @@ module FabClassKey = {
 module FilledInputClassKey = {
   type t = {
     .
-    "adornedEnd": option(ReactDOMRe.Style.t),
-    "adornedStart": option(ReactDOMRe.Style.t),
+    "adornedEnd": option(ReactDOM.Style.t),
+    "adornedStart": option(ReactDOM.Style.t),
     "colorSecondary": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "error": option(ReactDOMRe.Style.t),
-    "focused": option(ReactDOMRe.Style.t),
-    "formControl": option(ReactDOMRe.Style.t),
-    "fullWidth": option(ReactDOMRe.Style.t),
-    "input": option(ReactDOMRe.Style.t),
-    "inputAdornedEnd": option(ReactDOMRe.Style.t),
-    "inputAdornedStart": option(ReactDOMRe.Style.t),
-    "inputHiddenLabel": option(ReactDOMRe.Style.t),
-    "inputMarginDense": option(ReactDOMRe.Style.t),
-    "inputMultiline": option(ReactDOMRe.Style.t),
-    "inputTypeSearch": option(ReactDOMRe.Style.t),
-    "marginDense": option(ReactDOMRe.Style.t),
-    "multiline": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "underline": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "error": option(ReactDOM.Style.t),
+    "focused": option(ReactDOM.Style.t),
+    "formControl": option(ReactDOM.Style.t),
+    "fullWidth": option(ReactDOM.Style.t),
+    "input": option(ReactDOM.Style.t),
+    "inputAdornedEnd": option(ReactDOM.Style.t),
+    "inputAdornedStart": option(ReactDOM.Style.t),
+    "inputHiddenLabel": option(ReactDOM.Style.t),
+    "inputMarginDense": option(ReactDOM.Style.t),
+    "inputMultiline": option(ReactDOM.Style.t),
+    "inputTypeSearch": option(ReactDOM.Style.t),
+    "marginDense": option(ReactDOM.Style.t),
+    "multiline": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "underline": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~adornedEnd: ReactDOMRe.Style.t=?,
-      ~adornedStart: ReactDOMRe.Style.t=?,
+      ~adornedEnd: ReactDOM.Style.t=?,
+      ~adornedStart: ReactDOM.Style.t=?,
       ~colorSecondary: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~error: ReactDOMRe.Style.t=?,
-      ~focused: ReactDOMRe.Style.t=?,
-      ~formControl: ReactDOMRe.Style.t=?,
-      ~fullWidth: ReactDOMRe.Style.t=?,
-      ~input: ReactDOMRe.Style.t=?,
-      ~inputAdornedEnd: ReactDOMRe.Style.t=?,
-      ~inputAdornedStart: ReactDOMRe.Style.t=?,
-      ~inputHiddenLabel: ReactDOMRe.Style.t=?,
-      ~inputMarginDense: ReactDOMRe.Style.t=?,
-      ~inputMultiline: ReactDOMRe.Style.t=?,
-      ~inputTypeSearch: ReactDOMRe.Style.t=?,
-      ~marginDense: ReactDOMRe.Style.t=?,
-      ~multiline: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~underline: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~error: ReactDOM.Style.t=?,
+      ~focused: ReactDOM.Style.t=?,
+      ~formControl: ReactDOM.Style.t=?,
+      ~fullWidth: ReactDOM.Style.t=?,
+      ~input: ReactDOM.Style.t=?,
+      ~inputAdornedEnd: ReactDOM.Style.t=?,
+      ~inputAdornedStart: ReactDOM.Style.t=?,
+      ~inputHiddenLabel: ReactDOM.Style.t=?,
+      ~inputMarginDense: ReactDOM.Style.t=?,
+      ~inputMultiline: ReactDOM.Style.t=?,
+      ~inputTypeSearch: ReactDOM.Style.t=?,
+      ~marginDense: ReactDOM.Style.t=?,
+      ~multiline: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~underline: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -890,18 +895,18 @@ module FilledInputClassKey = {
 module FormControlClassKey = {
   type t = {
     .
-    "fullWidth": option(ReactDOMRe.Style.t),
-    "marginDense": option(ReactDOMRe.Style.t),
-    "marginNormal": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "fullWidth": option(ReactDOM.Style.t),
+    "marginDense": option(ReactDOM.Style.t),
+    "marginNormal": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~fullWidth: ReactDOMRe.Style.t=?,
-      ~marginDense: ReactDOMRe.Style.t=?,
-      ~marginNormal: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~fullWidth: ReactDOM.Style.t=?,
+      ~marginDense: ReactDOM.Style.t=?,
+      ~marginNormal: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -910,22 +915,22 @@ module FormControlClassKey = {
 module FormControlLabelClassKey = {
   type t = {
     .
-    "disabled": option(ReactDOMRe.Style.t),
-    "label": option(ReactDOMRe.Style.t),
-    "labelPlacementBottom": option(ReactDOMRe.Style.t),
-    "labelPlacementStart": option(ReactDOMRe.Style.t),
-    "labelPlacementTop": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "label": option(ReactDOM.Style.t),
+    "labelPlacementBottom": option(ReactDOM.Style.t),
+    "labelPlacementStart": option(ReactDOM.Style.t),
+    "labelPlacementTop": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~label: ReactDOMRe.Style.t=?,
-      ~labelPlacementBottom: ReactDOMRe.Style.t=?,
-      ~labelPlacementStart: ReactDOMRe.Style.t=?,
-      ~labelPlacementTop: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~label: ReactDOM.Style.t=?,
+      ~labelPlacementBottom: ReactDOM.Style.t=?,
+      ~labelPlacementStart: ReactDOM.Style.t=?,
+      ~labelPlacementTop: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -934,37 +939,37 @@ module FormControlLabelClassKey = {
 module FormGroupClassKey = {
   type t = {
     .
-    "root": option(ReactDOMRe.Style.t),
-    "row": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "row": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
-    (~root: ReactDOMRe.Style.t=?, ~row: ReactDOMRe.Style.t=?, unit) => t;
+    (~root: ReactDOM.Style.t=?, ~row: ReactDOM.Style.t=?, unit) => t;
 };
 
 module FormHelperTextClassKey = {
   type t = {
     .
-    "contained": option(ReactDOMRe.Style.t),
-    "disabled": option(ReactDOMRe.Style.t),
-    "error": option(ReactDOMRe.Style.t),
-    "filled": option(ReactDOMRe.Style.t),
-    "focused": option(ReactDOMRe.Style.t),
-    "marginDense": option(ReactDOMRe.Style.t),
-    "required": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "contained": option(ReactDOM.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "error": option(ReactDOM.Style.t),
+    "filled": option(ReactDOM.Style.t),
+    "focused": option(ReactDOM.Style.t),
+    "marginDense": option(ReactDOM.Style.t),
+    "required": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~contained: ReactDOMRe.Style.t=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~error: ReactDOMRe.Style.t=?,
-      ~filled: ReactDOMRe.Style.t=?,
-      ~focused: ReactDOMRe.Style.t=?,
-      ~marginDense: ReactDOMRe.Style.t=?,
-      ~required: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~contained: ReactDOM.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~error: ReactDOM.Style.t=?,
+      ~filled: ReactDOM.Style.t=?,
+      ~focused: ReactDOM.Style.t=?,
+      ~marginDense: ReactDOM.Style.t=?,
+      ~required: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -973,26 +978,26 @@ module FormHelperTextClassKey = {
 module FormLabelClassKey = {
   type t = {
     .
-    "asterisk": option(ReactDOMRe.Style.t),
+    "asterisk": option(ReactDOM.Style.t),
     "colorSecondary": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "error": option(ReactDOMRe.Style.t),
-    "filled": option(ReactDOMRe.Style.t),
-    "focused": option(ReactDOMRe.Style.t),
-    "required": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "error": option(ReactDOM.Style.t),
+    "filled": option(ReactDOM.Style.t),
+    "focused": option(ReactDOM.Style.t),
+    "required": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~asterisk: ReactDOMRe.Style.t=?,
+      ~asterisk: ReactDOM.Style.t=?,
       ~colorSecondary: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~error: ReactDOMRe.Style.t=?,
-      ~filled: ReactDOMRe.Style.t=?,
-      ~focused: ReactDOMRe.Style.t=?,
-      ~required: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~error: ReactDOM.Style.t=?,
+      ~filled: ReactDOM.Style.t=?,
+      ~focused: ReactDOM.Style.t=?,
+      ~required: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1001,129 +1006,129 @@ module FormLabelClassKey = {
 module GridClassKey = {
   type t = {
     .
-    "align-content-xs-center": option(ReactDOMRe.Style.t),
-    "align-content-xs-flex-end": option(ReactDOMRe.Style.t),
-    "align-content-xs-flex-start": option(ReactDOMRe.Style.t),
-    "align-content-xs-space-around": option(ReactDOMRe.Style.t),
-    "align-content-xs-space-between": option(ReactDOMRe.Style.t),
-    "align-items-xs-baseline": option(ReactDOMRe.Style.t),
-    "align-items-xs-center": option(ReactDOMRe.Style.t),
-    "align-items-xs-flex-end": option(ReactDOMRe.Style.t),
-    "align-items-xs-flex-start": option(ReactDOMRe.Style.t),
-    "container": option(ReactDOMRe.Style.t),
-    "direction-xs-column": option(ReactDOMRe.Style.t),
-    "direction-xs-column-reverse": option(ReactDOMRe.Style.t),
-    "direction-xs-row-reverse": option(ReactDOMRe.Style.t),
-    "grid-xs-1": option(ReactDOMRe.Style.t),
-    "grid-xs-10": option(ReactDOMRe.Style.t),
-    "grid-xs-11": option(ReactDOMRe.Style.t),
-    "grid-xs-12": option(ReactDOMRe.Style.t),
-    "grid-xs-2": option(ReactDOMRe.Style.t),
-    "grid-xs-3": option(ReactDOMRe.Style.t),
-    "grid-xs-4": option(ReactDOMRe.Style.t),
-    "grid-xs-5": option(ReactDOMRe.Style.t),
-    "grid-xs-6": option(ReactDOMRe.Style.t),
-    "grid-xs-7": option(ReactDOMRe.Style.t),
-    "grid-xs-8": option(ReactDOMRe.Style.t),
-    "grid-xs-9": option(ReactDOMRe.Style.t),
-    "grid-xs-auto": option(ReactDOMRe.Style.t),
-    "grid-xs-true": option(ReactDOMRe.Style.t),
-    "item": option(ReactDOMRe.Style.t),
-    "justify-xs-center": option(ReactDOMRe.Style.t),
-    "justify-xs-flex-end": option(ReactDOMRe.Style.t),
-    "justify-xs-space-around": option(ReactDOMRe.Style.t),
-    "justify-xs-space-between": option(ReactDOMRe.Style.t),
-    "justify-xs-space-evenly": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "spacing-xs-1": option(ReactDOMRe.Style.t),
-    "spacing-xs-10": option(ReactDOMRe.Style.t),
-    "spacing-xs-2": option(ReactDOMRe.Style.t),
-    "spacing-xs-3": option(ReactDOMRe.Style.t),
-    "spacing-xs-4": option(ReactDOMRe.Style.t),
-    "spacing-xs-5": option(ReactDOMRe.Style.t),
-    "spacing-xs-6": option(ReactDOMRe.Style.t),
-    "spacing-xs-7": option(ReactDOMRe.Style.t),
-    "spacing-xs-8": option(ReactDOMRe.Style.t),
-    "spacing-xs-9": option(ReactDOMRe.Style.t),
-    "wrap-xs-nowrap": option(ReactDOMRe.Style.t),
-    "wrap-xs-wrap-reverse": option(ReactDOMRe.Style.t),
-    "zeroMinWidth": option(ReactDOMRe.Style.t),
+    "align-content-xs-center": option(ReactDOM.Style.t),
+    "align-content-xs-flex-end": option(ReactDOM.Style.t),
+    "align-content-xs-flex-start": option(ReactDOM.Style.t),
+    "align-content-xs-space-around": option(ReactDOM.Style.t),
+    "align-content-xs-space-between": option(ReactDOM.Style.t),
+    "align-items-xs-baseline": option(ReactDOM.Style.t),
+    "align-items-xs-center": option(ReactDOM.Style.t),
+    "align-items-xs-flex-end": option(ReactDOM.Style.t),
+    "align-items-xs-flex-start": option(ReactDOM.Style.t),
+    "container": option(ReactDOM.Style.t),
+    "direction-xs-column": option(ReactDOM.Style.t),
+    "direction-xs-column-reverse": option(ReactDOM.Style.t),
+    "direction-xs-row-reverse": option(ReactDOM.Style.t),
+    "grid-xs-1": option(ReactDOM.Style.t),
+    "grid-xs-10": option(ReactDOM.Style.t),
+    "grid-xs-11": option(ReactDOM.Style.t),
+    "grid-xs-12": option(ReactDOM.Style.t),
+    "grid-xs-2": option(ReactDOM.Style.t),
+    "grid-xs-3": option(ReactDOM.Style.t),
+    "grid-xs-4": option(ReactDOM.Style.t),
+    "grid-xs-5": option(ReactDOM.Style.t),
+    "grid-xs-6": option(ReactDOM.Style.t),
+    "grid-xs-7": option(ReactDOM.Style.t),
+    "grid-xs-8": option(ReactDOM.Style.t),
+    "grid-xs-9": option(ReactDOM.Style.t),
+    "grid-xs-auto": option(ReactDOM.Style.t),
+    "grid-xs-true": option(ReactDOM.Style.t),
+    "item": option(ReactDOM.Style.t),
+    "justify-xs-center": option(ReactDOM.Style.t),
+    "justify-xs-flex-end": option(ReactDOM.Style.t),
+    "justify-xs-space-around": option(ReactDOM.Style.t),
+    "justify-xs-space-between": option(ReactDOM.Style.t),
+    "justify-xs-space-evenly": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "spacing-xs-1": option(ReactDOM.Style.t),
+    "spacing-xs-10": option(ReactDOM.Style.t),
+    "spacing-xs-2": option(ReactDOM.Style.t),
+    "spacing-xs-3": option(ReactDOM.Style.t),
+    "spacing-xs-4": option(ReactDOM.Style.t),
+    "spacing-xs-5": option(ReactDOM.Style.t),
+    "spacing-xs-6": option(ReactDOM.Style.t),
+    "spacing-xs-7": option(ReactDOM.Style.t),
+    "spacing-xs-8": option(ReactDOM.Style.t),
+    "spacing-xs-9": option(ReactDOM.Style.t),
+    "wrap-xs-nowrap": option(ReactDOM.Style.t),
+    "wrap-xs-wrap-reverse": option(ReactDOM.Style.t),
+    "zeroMinWidth": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~alignContentXsCenter: ReactDOMRe.Style.t=?,
-      ~alignContentXsFlexEnd: ReactDOMRe.Style.t=?,
-      ~alignContentXsFlexStart: ReactDOMRe.Style.t=?,
-      ~alignContentXsSpaceAround: ReactDOMRe.Style.t=?,
-      ~alignContentXsSpaceBetween: ReactDOMRe.Style.t=?,
-      ~alignItemsXsBaseline: ReactDOMRe.Style.t=?,
-      ~alignItemsXsCenter: ReactDOMRe.Style.t=?,
-      ~alignItemsXsFlexEnd: ReactDOMRe.Style.t=?,
-      ~alignItemsXsFlexStart: ReactDOMRe.Style.t=?,
-      ~container: ReactDOMRe.Style.t=?,
-      ~directionXsColumn: ReactDOMRe.Style.t=?,
-      ~directionXsColumnReverse: ReactDOMRe.Style.t=?,
-      ~directionXsRowReverse: ReactDOMRe.Style.t=?,
-      ~gridXs1: ReactDOMRe.Style.t=?,
-      ~gridXs10: ReactDOMRe.Style.t=?,
-      ~gridXs11: ReactDOMRe.Style.t=?,
-      ~gridXs12: ReactDOMRe.Style.t=?,
-      ~gridXs2: ReactDOMRe.Style.t=?,
-      ~gridXs3: ReactDOMRe.Style.t=?,
-      ~gridXs4: ReactDOMRe.Style.t=?,
-      ~gridXs5: ReactDOMRe.Style.t=?,
-      ~gridXs6: ReactDOMRe.Style.t=?,
-      ~gridXs7: ReactDOMRe.Style.t=?,
-      ~gridXs8: ReactDOMRe.Style.t=?,
-      ~gridXs9: ReactDOMRe.Style.t=?,
-      ~gridXsAuto: ReactDOMRe.Style.t=?,
-      ~gridXsTrue: ReactDOMRe.Style.t=?,
-      ~item: ReactDOMRe.Style.t=?,
-      ~justifyXsCenter: ReactDOMRe.Style.t=?,
-      ~justifyXsFlexEnd: ReactDOMRe.Style.t=?,
-      ~justifyXsSpaceAround: ReactDOMRe.Style.t=?,
-      ~justifyXsSpaceBetween: ReactDOMRe.Style.t=?,
-      ~justifyXsSpaceEvenly: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~spacingXs1: ReactDOMRe.Style.t=?,
-      ~spacingXs10: ReactDOMRe.Style.t=?,
-      ~spacingXs2: ReactDOMRe.Style.t=?,
-      ~spacingXs3: ReactDOMRe.Style.t=?,
-      ~spacingXs4: ReactDOMRe.Style.t=?,
-      ~spacingXs5: ReactDOMRe.Style.t=?,
-      ~spacingXs6: ReactDOMRe.Style.t=?,
-      ~spacingXs7: ReactDOMRe.Style.t=?,
-      ~spacingXs8: ReactDOMRe.Style.t=?,
-      ~spacingXs9: ReactDOMRe.Style.t=?,
-      ~wrapXsNowrap: ReactDOMRe.Style.t=?,
-      ~wrapXsWrapReverse: ReactDOMRe.Style.t=?,
-      ~zeroMinWidth: ReactDOMRe.Style.t=?,
+      ~alignContentXsCenter: ReactDOM.Style.t=?,
+      ~alignContentXsFlexEnd: ReactDOM.Style.t=?,
+      ~alignContentXsFlexStart: ReactDOM.Style.t=?,
+      ~alignContentXsSpaceAround: ReactDOM.Style.t=?,
+      ~alignContentXsSpaceBetween: ReactDOM.Style.t=?,
+      ~alignItemsXsBaseline: ReactDOM.Style.t=?,
+      ~alignItemsXsCenter: ReactDOM.Style.t=?,
+      ~alignItemsXsFlexEnd: ReactDOM.Style.t=?,
+      ~alignItemsXsFlexStart: ReactDOM.Style.t=?,
+      ~container: ReactDOM.Style.t=?,
+      ~directionXsColumn: ReactDOM.Style.t=?,
+      ~directionXsColumnReverse: ReactDOM.Style.t=?,
+      ~directionXsRowReverse: ReactDOM.Style.t=?,
+      ~gridXs1: ReactDOM.Style.t=?,
+      ~gridXs10: ReactDOM.Style.t=?,
+      ~gridXs11: ReactDOM.Style.t=?,
+      ~gridXs12: ReactDOM.Style.t=?,
+      ~gridXs2: ReactDOM.Style.t=?,
+      ~gridXs3: ReactDOM.Style.t=?,
+      ~gridXs4: ReactDOM.Style.t=?,
+      ~gridXs5: ReactDOM.Style.t=?,
+      ~gridXs6: ReactDOM.Style.t=?,
+      ~gridXs7: ReactDOM.Style.t=?,
+      ~gridXs8: ReactDOM.Style.t=?,
+      ~gridXs9: ReactDOM.Style.t=?,
+      ~gridXsAuto: ReactDOM.Style.t=?,
+      ~gridXsTrue: ReactDOM.Style.t=?,
+      ~item: ReactDOM.Style.t=?,
+      ~justifyXsCenter: ReactDOM.Style.t=?,
+      ~justifyXsFlexEnd: ReactDOM.Style.t=?,
+      ~justifyXsSpaceAround: ReactDOM.Style.t=?,
+      ~justifyXsSpaceBetween: ReactDOM.Style.t=?,
+      ~justifyXsSpaceEvenly: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~spacingXs1: ReactDOM.Style.t=?,
+      ~spacingXs10: ReactDOM.Style.t=?,
+      ~spacingXs2: ReactDOM.Style.t=?,
+      ~spacingXs3: ReactDOM.Style.t=?,
+      ~spacingXs4: ReactDOM.Style.t=?,
+      ~spacingXs5: ReactDOM.Style.t=?,
+      ~spacingXs6: ReactDOM.Style.t=?,
+      ~spacingXs7: ReactDOM.Style.t=?,
+      ~spacingXs8: ReactDOM.Style.t=?,
+      ~spacingXs9: ReactDOM.Style.t=?,
+      ~wrapXsNowrap: ReactDOM.Style.t=?,
+      ~wrapXsWrapReverse: ReactDOM.Style.t=?,
+      ~zeroMinWidth: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
 };
 
 module MuiGridList = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module GridListTileClassKey = {
   type t = {
     .
-    "imgFullHeight": option(ReactDOMRe.Style.t),
-    "imgFullWidth": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "tile": option(ReactDOMRe.Style.t),
+    "imgFullHeight": option(ReactDOM.Style.t),
+    "imgFullWidth": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "tile": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~imgFullHeight: ReactDOMRe.Style.t=?,
-      ~imgFullWidth: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~tile: ReactDOMRe.Style.t=?,
+      ~imgFullHeight: ReactDOM.Style.t=?,
+      ~imgFullWidth: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~tile: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1132,32 +1137,32 @@ module GridListTileClassKey = {
 module GridListTileBarClassKey = {
   type t = {
     .
-    "actionIcon": option(ReactDOMRe.Style.t),
-    "actionIconActionPosLeft": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "rootSubtitle": option(ReactDOMRe.Style.t),
-    "subtitle": option(ReactDOMRe.Style.t),
-    "title": option(ReactDOMRe.Style.t),
-    "titlePositionBottom": option(ReactDOMRe.Style.t),
-    "titlePositionTop": option(ReactDOMRe.Style.t),
-    "titleWrap": option(ReactDOMRe.Style.t),
-    "titleWrapActionPosLeft": option(ReactDOMRe.Style.t),
-    "titleWrapActionPosRight": option(ReactDOMRe.Style.t),
+    "actionIcon": option(ReactDOM.Style.t),
+    "actionIconActionPosLeft": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "rootSubtitle": option(ReactDOM.Style.t),
+    "subtitle": option(ReactDOM.Style.t),
+    "title": option(ReactDOM.Style.t),
+    "titlePositionBottom": option(ReactDOM.Style.t),
+    "titlePositionTop": option(ReactDOM.Style.t),
+    "titleWrap": option(ReactDOM.Style.t),
+    "titleWrapActionPosLeft": option(ReactDOM.Style.t),
+    "titleWrapActionPosRight": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~actionIcon: ReactDOMRe.Style.t=?,
-      ~actionIconActionPosLeft: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~rootSubtitle: ReactDOMRe.Style.t=?,
-      ~subtitle: ReactDOMRe.Style.t=?,
-      ~title: ReactDOMRe.Style.t=?,
-      ~titlePositionBottom: ReactDOMRe.Style.t=?,
-      ~titlePositionTop: ReactDOMRe.Style.t=?,
-      ~titleWrap: ReactDOMRe.Style.t=?,
-      ~titleWrapActionPosLeft: ReactDOMRe.Style.t=?,
-      ~titleWrapActionPosRight: ReactDOMRe.Style.t=?,
+      ~actionIcon: ReactDOM.Style.t=?,
+      ~actionIconActionPosLeft: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~rootSubtitle: ReactDOM.Style.t=?,
+      ~subtitle: ReactDOM.Style.t=?,
+      ~title: ReactDOM.Style.t=?,
+      ~titlePositionBottom: ReactDOM.Style.t=?,
+      ~titlePositionTop: ReactDOM.Style.t=?,
+      ~titleWrap: ReactDOM.Style.t=?,
+      ~titleWrapActionPosLeft: ReactDOM.Style.t=?,
+      ~titleWrapActionPosRight: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1174,7 +1179,7 @@ module SvgIconClassKey = {
     "fontSizeInherit": option(float),
     "fontSizeLarge": option(float),
     "fontSizeSmall": option(float),
-    "root": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1187,7 +1192,7 @@ module SvgIconClassKey = {
       ~fontSizeInherit: float=?,
       ~fontSizeLarge: float=?,
       ~fontSizeSmall: float=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1199,12 +1204,12 @@ module IconButtonClassKey = {
     "colorInherit": option(string),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "edgeEnd": option(ReactDOMRe.Style.t),
-    "edgeStart": option(ReactDOMRe.Style.t),
-    "label": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "sizeSmall": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "edgeEnd": option(ReactDOM.Style.t),
+    "edgeStart": option(ReactDOM.Style.t),
+    "label": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "sizeSmall": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
@@ -1212,12 +1217,12 @@ module IconButtonClassKey = {
       ~colorInherit: string=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~edgeEnd: ReactDOMRe.Style.t=?,
-      ~edgeStart: ReactDOMRe.Style.t=?,
-      ~label: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~sizeSmall: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~edgeEnd: ReactDOM.Style.t=?,
+      ~edgeStart: ReactDOM.Style.t=?,
+      ~label: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~sizeSmall: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1227,37 +1232,37 @@ module InputClassKey = {
   type t = {
     .
     "colorSecondary": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "error": option(ReactDOMRe.Style.t),
-    "focused": option(ReactDOMRe.Style.t),
-    "formControl": option(ReactDOMRe.Style.t),
-    "fullWidth": option(ReactDOMRe.Style.t),
-    "input": option(ReactDOMRe.Style.t),
-    "inputMarginDense": option(ReactDOMRe.Style.t),
-    "inputMultiline": option(ReactDOMRe.Style.t),
-    "inputTypeSearch": option(ReactDOMRe.Style.t),
-    "marginDense": option(ReactDOMRe.Style.t),
-    "multiline": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "underline": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "error": option(ReactDOM.Style.t),
+    "focused": option(ReactDOM.Style.t),
+    "formControl": option(ReactDOM.Style.t),
+    "fullWidth": option(ReactDOM.Style.t),
+    "input": option(ReactDOM.Style.t),
+    "inputMarginDense": option(ReactDOM.Style.t),
+    "inputMultiline": option(ReactDOM.Style.t),
+    "inputTypeSearch": option(ReactDOM.Style.t),
+    "marginDense": option(ReactDOM.Style.t),
+    "multiline": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "underline": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
       ~colorSecondary: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~error: ReactDOMRe.Style.t=?,
-      ~focused: ReactDOMRe.Style.t=?,
-      ~formControl: ReactDOMRe.Style.t=?,
-      ~fullWidth: ReactDOMRe.Style.t=?,
-      ~input: ReactDOMRe.Style.t=?,
-      ~inputMarginDense: ReactDOMRe.Style.t=?,
-      ~inputMultiline: ReactDOMRe.Style.t=?,
-      ~inputTypeSearch: ReactDOMRe.Style.t=?,
-      ~marginDense: ReactDOMRe.Style.t=?,
-      ~multiline: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~underline: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~error: ReactDOM.Style.t=?,
+      ~focused: ReactDOM.Style.t=?,
+      ~formControl: ReactDOM.Style.t=?,
+      ~fullWidth: ReactDOM.Style.t=?,
+      ~input: ReactDOM.Style.t=?,
+      ~inputMarginDense: ReactDOM.Style.t=?,
+      ~inputMultiline: ReactDOM.Style.t=?,
+      ~inputTypeSearch: ReactDOM.Style.t=?,
+      ~marginDense: ReactDOM.Style.t=?,
+      ~multiline: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~underline: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1266,24 +1271,24 @@ module InputClassKey = {
 module InputAdornmentClassKey = {
   type t = {
     .
-    "disablePointerEvents": option(ReactDOMRe.Style.t),
-    "filled": option(ReactDOMRe.Style.t),
-    "hiddenLabel": option(ReactDOMRe.Style.t),
-    "marginDense": option(ReactDOMRe.Style.t),
-    "positionEnd": option(ReactDOMRe.Style.t),
-    "positionStart": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "disablePointerEvents": option(ReactDOM.Style.t),
+    "filled": option(ReactDOM.Style.t),
+    "hiddenLabel": option(ReactDOM.Style.t),
+    "marginDense": option(ReactDOM.Style.t),
+    "positionEnd": option(ReactDOM.Style.t),
+    "positionStart": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~disablePointerEvents: ReactDOMRe.Style.t=?,
-      ~filled: ReactDOMRe.Style.t=?,
-      ~hiddenLabel: ReactDOMRe.Style.t=?,
-      ~marginDense: ReactDOMRe.Style.t=?,
-      ~positionEnd: ReactDOMRe.Style.t=?,
-      ~positionStart: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~disablePointerEvents: ReactDOM.Style.t=?,
+      ~filled: ReactDOM.Style.t=?,
+      ~hiddenLabel: ReactDOM.Style.t=?,
+      ~marginDense: ReactDOM.Style.t=?,
+      ~positionEnd: ReactDOM.Style.t=?,
+      ~positionStart: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1292,46 +1297,46 @@ module InputAdornmentClassKey = {
 module InputBaseClassKey = {
   type t = {
     .
-    "adornedEnd": option(ReactDOMRe.Style.t),
-    "adornedStart": option(ReactDOMRe.Style.t),
+    "adornedEnd": option(ReactDOM.Style.t),
+    "adornedStart": option(ReactDOM.Style.t),
     "colorSecondary": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "error": option(ReactDOMRe.Style.t),
-    "focused": option(ReactDOMRe.Style.t),
-    "formControl": option(ReactDOMRe.Style.t),
-    "fullWidth": option(ReactDOMRe.Style.t),
-    "input": option(ReactDOMRe.Style.t),
-    "inputAdornedEnd": option(ReactDOMRe.Style.t),
-    "inputAdornedStart": option(ReactDOMRe.Style.t),
-    "inputHiddenLabel": option(ReactDOMRe.Style.t),
-    "inputMarginDense": option(ReactDOMRe.Style.t),
-    "inputMultiline": option(ReactDOMRe.Style.t),
-    "inputTypeSearch": option(ReactDOMRe.Style.t),
-    "marginDense": option(ReactDOMRe.Style.t),
-    "multiline": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "error": option(ReactDOM.Style.t),
+    "focused": option(ReactDOM.Style.t),
+    "formControl": option(ReactDOM.Style.t),
+    "fullWidth": option(ReactDOM.Style.t),
+    "input": option(ReactDOM.Style.t),
+    "inputAdornedEnd": option(ReactDOM.Style.t),
+    "inputAdornedStart": option(ReactDOM.Style.t),
+    "inputHiddenLabel": option(ReactDOM.Style.t),
+    "inputMarginDense": option(ReactDOM.Style.t),
+    "inputMultiline": option(ReactDOM.Style.t),
+    "inputTypeSearch": option(ReactDOM.Style.t),
+    "marginDense": option(ReactDOM.Style.t),
+    "multiline": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~adornedEnd: ReactDOMRe.Style.t=?,
-      ~adornedStart: ReactDOMRe.Style.t=?,
+      ~adornedEnd: ReactDOM.Style.t=?,
+      ~adornedStart: ReactDOM.Style.t=?,
       ~colorSecondary: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~error: ReactDOMRe.Style.t=?,
-      ~focused: ReactDOMRe.Style.t=?,
-      ~formControl: ReactDOMRe.Style.t=?,
-      ~fullWidth: ReactDOMRe.Style.t=?,
-      ~input: ReactDOMRe.Style.t=?,
-      ~inputAdornedEnd: ReactDOMRe.Style.t=?,
-      ~inputAdornedStart: ReactDOMRe.Style.t=?,
-      ~inputHiddenLabel: ReactDOMRe.Style.t=?,
-      ~inputMarginDense: ReactDOMRe.Style.t=?,
-      ~inputMultiline: ReactDOMRe.Style.t=?,
-      ~inputTypeSearch: ReactDOMRe.Style.t=?,
-      ~marginDense: ReactDOMRe.Style.t=?,
-      ~multiline: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~error: ReactDOM.Style.t=?,
+      ~focused: ReactDOM.Style.t=?,
+      ~formControl: ReactDOM.Style.t=?,
+      ~fullWidth: ReactDOM.Style.t=?,
+      ~input: ReactDOM.Style.t=?,
+      ~inputAdornedEnd: ReactDOM.Style.t=?,
+      ~inputAdornedStart: ReactDOM.Style.t=?,
+      ~inputHiddenLabel: ReactDOM.Style.t=?,
+      ~inputMarginDense: ReactDOM.Style.t=?,
+      ~inputMultiline: ReactDOM.Style.t=?,
+      ~inputTypeSearch: ReactDOM.Style.t=?,
+      ~marginDense: ReactDOM.Style.t=?,
+      ~multiline: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1340,34 +1345,34 @@ module InputBaseClassKey = {
 module InputLabelClassKey = {
   type t = {
     .
-    "animated": option(ReactDOMRe.Style.t),
-    "asterisk": option(ReactDOMRe.Style.t),
-    "disabled": option(ReactDOMRe.Style.t),
-    "error": option(ReactDOMRe.Style.t),
-    "filled": option(ReactDOMRe.Style.t),
-    "focused": option(ReactDOMRe.Style.t),
-    "formControl": option(ReactDOMRe.Style.t),
-    "marginDense": option(ReactDOMRe.Style.t),
-    "outlined": option(ReactDOMRe.Style.t),
-    "required": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "shrink": option(ReactDOMRe.Style.t),
+    "animated": option(ReactDOM.Style.t),
+    "asterisk": option(ReactDOM.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "error": option(ReactDOM.Style.t),
+    "filled": option(ReactDOM.Style.t),
+    "focused": option(ReactDOM.Style.t),
+    "formControl": option(ReactDOM.Style.t),
+    "marginDense": option(ReactDOM.Style.t),
+    "outlined": option(ReactDOM.Style.t),
+    "required": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "shrink": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~animated: ReactDOMRe.Style.t=?,
-      ~asterisk: ReactDOMRe.Style.t=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~error: ReactDOMRe.Style.t=?,
-      ~filled: ReactDOMRe.Style.t=?,
-      ~focused: ReactDOMRe.Style.t=?,
-      ~formControl: ReactDOMRe.Style.t=?,
-      ~marginDense: ReactDOMRe.Style.t=?,
-      ~outlined: ReactDOMRe.Style.t=?,
-      ~required: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~shrink: ReactDOMRe.Style.t=?,
+      ~animated: ReactDOM.Style.t=?,
+      ~asterisk: ReactDOM.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~error: ReactDOM.Style.t=?,
+      ~filled: ReactDOM.Style.t=?,
+      ~focused: ReactDOM.Style.t=?,
+      ~formControl: ReactDOM.Style.t=?,
+      ~marginDense: ReactDOM.Style.t=?,
+      ~outlined: ReactDOM.Style.t=?,
+      ~required: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~shrink: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1376,46 +1381,46 @@ module InputLabelClassKey = {
 module LinearProgressClassKey = {
   type t = {
     .
-    "bar": option(ReactDOMRe.Style.t),
-    "bar1Buffer": option(ReactDOMRe.Style.t),
-    "bar1Determinate": option(ReactDOMRe.Style.t),
-    "bar1Indeterminate": option(ReactDOMRe.Style.t),
-    "bar2Buffer": option(ReactDOMRe.Style.t),
-    "bar2Indeterminate": option(ReactDOMRe.Style.t),
-    "barColorPrimary": option(ReactDOMRe.Style.t),
-    "barColorSecondary": option(ReactDOMRe.Style.t),
-    "buffer": option(ReactDOMRe.Style.t),
+    "bar": option(ReactDOM.Style.t),
+    "bar1Buffer": option(ReactDOM.Style.t),
+    "bar1Determinate": option(ReactDOM.Style.t),
+    "bar1Indeterminate": option(ReactDOM.Style.t),
+    "bar2Buffer": option(ReactDOM.Style.t),
+    "bar2Indeterminate": option(ReactDOM.Style.t),
+    "barColorPrimary": option(ReactDOM.Style.t),
+    "barColorSecondary": option(ReactDOM.Style.t),
+    "buffer": option(ReactDOM.Style.t),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
-    "dashed": option(ReactDOMRe.Style.t),
-    "dashedColorPrimary": option(ReactDOMRe.Style.t),
-    "dashedColorSecondary": option(ReactDOMRe.Style.t),
-    "determinate": option(ReactDOMRe.Style.t),
-    "indeterminate": option(ReactDOMRe.Style.t),
-    "query": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "dashed": option(ReactDOM.Style.t),
+    "dashedColorPrimary": option(ReactDOM.Style.t),
+    "dashedColorSecondary": option(ReactDOM.Style.t),
+    "determinate": option(ReactDOM.Style.t),
+    "indeterminate": option(ReactDOM.Style.t),
+    "query": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~bar: ReactDOMRe.Style.t=?,
-      ~bar1Buffer: ReactDOMRe.Style.t=?,
-      ~bar1Determinate: ReactDOMRe.Style.t=?,
-      ~bar1Indeterminate: ReactDOMRe.Style.t=?,
-      ~bar2Buffer: ReactDOMRe.Style.t=?,
-      ~bar2Indeterminate: ReactDOMRe.Style.t=?,
-      ~barColorPrimary: ReactDOMRe.Style.t=?,
-      ~barColorSecondary: ReactDOMRe.Style.t=?,
-      ~buffer: ReactDOMRe.Style.t=?,
+      ~bar: ReactDOM.Style.t=?,
+      ~bar1Buffer: ReactDOM.Style.t=?,
+      ~bar1Determinate: ReactDOM.Style.t=?,
+      ~bar1Indeterminate: ReactDOM.Style.t=?,
+      ~bar2Buffer: ReactDOM.Style.t=?,
+      ~bar2Indeterminate: ReactDOM.Style.t=?,
+      ~barColorPrimary: ReactDOM.Style.t=?,
+      ~barColorSecondary: ReactDOM.Style.t=?,
+      ~buffer: ReactDOM.Style.t=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
-      ~dashed: ReactDOMRe.Style.t=?,
-      ~dashedColorPrimary: ReactDOMRe.Style.t=?,
-      ~dashedColorSecondary: ReactDOMRe.Style.t=?,
-      ~determinate: ReactDOMRe.Style.t=?,
-      ~indeterminate: ReactDOMRe.Style.t=?,
-      ~query: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~dashed: ReactDOM.Style.t=?,
+      ~dashedColorPrimary: ReactDOM.Style.t=?,
+      ~dashedColorSecondary: ReactDOM.Style.t=?,
+      ~determinate: ReactDOM.Style.t=?,
+      ~indeterminate: ReactDOM.Style.t=?,
+      ~query: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1424,22 +1429,22 @@ module LinearProgressClassKey = {
 module LinkClassKey = {
   type t = {
     .
-    "button": option(ReactDOMRe.Style.t),
-    "focusVisible": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "underlineAlways": option(ReactDOMRe.Style.t),
-    "underlineHover": option(ReactDOMRe.Style.t),
-    "underlineNone": option(ReactDOMRe.Style.t),
+    "button": option(ReactDOM.Style.t),
+    "focusVisible": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "underlineAlways": option(ReactDOM.Style.t),
+    "underlineHover": option(ReactDOM.Style.t),
+    "underlineNone": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~button: ReactDOMRe.Style.t=?,
-      ~focusVisible: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~underlineAlways: ReactDOMRe.Style.t=?,
-      ~underlineHover: ReactDOMRe.Style.t=?,
-      ~underlineNone: ReactDOMRe.Style.t=?,
+      ~button: ReactDOM.Style.t=?,
+      ~focusVisible: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~underlineAlways: ReactDOM.Style.t=?,
+      ~underlineHover: ReactDOM.Style.t=?,
+      ~underlineNone: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1448,18 +1453,18 @@ module LinkClassKey = {
 module ListClassKey = {
   type t = {
     .
-    "dense": option(ReactDOMRe.Style.t),
-    "padding": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "subheader": option(ReactDOMRe.Style.t),
+    "dense": option(ReactDOM.Style.t),
+    "padding": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "subheader": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~dense: ReactDOMRe.Style.t=?,
-      ~padding: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~subheader: ReactDOMRe.Style.t=?,
+      ~dense: ReactDOM.Style.t=?,
+      ~padding: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~subheader: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1468,32 +1473,32 @@ module ListClassKey = {
 module ListItemClassKey = {
   type t = {
     .
-    "button": option(ReactDOMRe.Style.t),
-    "container": option(ReactDOMRe.Style.t),
-    "default": option(ReactDOMRe.Style.t),
-    "dense": option(ReactDOMRe.Style.t),
-    "disabled": option(ReactDOMRe.Style.t),
-    "divider": option(ReactDOMRe.Style.t),
-    "focusVisible": option(ReactDOMRe.Style.t),
-    "gutters": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "secondaryAction": option(ReactDOMRe.Style.t),
-    "selected": option(ReactDOMRe.Style.t),
+    "button": option(ReactDOM.Style.t),
+    "container": option(ReactDOM.Style.t),
+    "default": option(ReactDOM.Style.t),
+    "dense": option(ReactDOM.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "divider": option(ReactDOM.Style.t),
+    "focusVisible": option(ReactDOM.Style.t),
+    "gutters": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "secondaryAction": option(ReactDOM.Style.t),
+    "selected": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~button: ReactDOMRe.Style.t=?,
-      ~container: ReactDOMRe.Style.t=?,
-      ~default: ReactDOMRe.Style.t=?,
-      ~dense: ReactDOMRe.Style.t=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~divider: ReactDOMRe.Style.t=?,
-      ~focusVisible: ReactDOMRe.Style.t=?,
-      ~gutters: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~secondaryAction: ReactDOMRe.Style.t=?,
-      ~selected: ReactDOMRe.Style.t=?,
+      ~button: ReactDOM.Style.t=?,
+      ~container: ReactDOM.Style.t=?,
+      ~default: ReactDOM.Style.t=?,
+      ~dense: ReactDOM.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~divider: ReactDOM.Style.t=?,
+      ~focusVisible: ReactDOM.Style.t=?,
+      ~gutters: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~secondaryAction: ReactDOM.Style.t=?,
+      ~selected: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1502,54 +1507,54 @@ module ListItemClassKey = {
 module ListItemAvatarClassKey = {
   type t = {
     .
-    "icon": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "icon": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
-    (~icon: ReactDOMRe.Style.t=?, ~root: ReactDOMRe.Style.t=?, unit) => t;
+    (~icon: ReactDOM.Style.t=?, ~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module ListItemIconClassKey = {
   type t = {
     .
-    "alignItemsFlexStart": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "alignItemsFlexStart": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~alignItemsFlexStart: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~alignItemsFlexStart: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
 };
 
 module MuiListItemSecondaryAction = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module ListItemTextClassKey = {
   type t = {
     .
-    "dense": option(ReactDOMRe.Style.t),
-    "inset": option(ReactDOMRe.Style.t),
-    "multiline": option(ReactDOMRe.Style.t),
-    "primary": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "secondary": option(ReactDOMRe.Style.t),
+    "dense": option(ReactDOM.Style.t),
+    "inset": option(ReactDOM.Style.t),
+    "multiline": option(ReactDOM.Style.t),
+    "primary": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "secondary": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~dense: ReactDOMRe.Style.t=?,
-      ~inset: ReactDOMRe.Style.t=?,
-      ~multiline: ReactDOMRe.Style.t=?,
-      ~primary: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~secondary: ReactDOMRe.Style.t=?,
+      ~dense: ReactDOM.Style.t=?,
+      ~inset: ReactDOM.Style.t=?,
+      ~multiline: ReactDOM.Style.t=?,
+      ~primary: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~secondary: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1560,20 +1565,20 @@ module ListSubheaderClassKey = {
     .
     "colorInherit": option(string),
     "colorPrimary": option(string),
-    "gutters": option(ReactDOMRe.Style.t),
-    "inset": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "sticky": option(ReactDOMRe.Style.t),
+    "gutters": option(ReactDOM.Style.t),
+    "inset": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "sticky": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
       ~colorInherit: string=?,
       ~colorPrimary: string=?,
-      ~gutters: ReactDOMRe.Style.t=?,
-      ~inset: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~sticky: ReactDOMRe.Style.t=?,
+      ~gutters: ReactDOM.Style.t=?,
+      ~inset: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~sticky: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1582,29 +1587,29 @@ module ListSubheaderClassKey = {
 module MenuClassKey = {
   type t = {
     .
-    "list": option(ReactDOMRe.Style.t),
-    "paper": option(ReactDOMRe.Style.t),
+    "list": option(ReactDOM.Style.t),
+    "paper": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
-    (~list: ReactDOMRe.Style.t=?, ~paper: ReactDOMRe.Style.t=?, unit) => t;
+    (~list: ReactDOM.Style.t=?, ~paper: ReactDOM.Style.t=?, unit) => t;
 };
 
 module MenuItemClassKey = {
   type t = {
     .
-    "dense": option(ReactDOMRe.Style.t),
-    "gutters": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "selected": option(ReactDOMRe.Style.t),
+    "dense": option(ReactDOM.Style.t),
+    "gutters": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "selected": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~dense: ReactDOMRe.Style.t=?,
-      ~gutters: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~selected: ReactDOMRe.Style.t=?,
+      ~dense: ReactDOM.Style.t=?,
+      ~gutters: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~selected: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1613,26 +1618,26 @@ module MenuItemClassKey = {
 module MobileStepperClassKey = {
   type t = {
     .
-    "dot": option(ReactDOMRe.Style.t),
-    "dotActive": option(ReactDOMRe.Style.t),
-    "dots": option(ReactDOMRe.Style.t),
-    "positionBottom": option(ReactDOMRe.Style.t),
-    "positionStatic": option(ReactDOMRe.Style.t),
-    "positionTop": option(ReactDOMRe.Style.t),
-    "progress": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "dot": option(ReactDOM.Style.t),
+    "dotActive": option(ReactDOM.Style.t),
+    "dots": option(ReactDOM.Style.t),
+    "positionBottom": option(ReactDOM.Style.t),
+    "positionStatic": option(ReactDOM.Style.t),
+    "positionTop": option(ReactDOM.Style.t),
+    "progress": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~dot: ReactDOMRe.Style.t=?,
-      ~dotActive: ReactDOMRe.Style.t=?,
-      ~dots: ReactDOMRe.Style.t=?,
-      ~positionBottom: ReactDOMRe.Style.t=?,
-      ~positionStatic: ReactDOMRe.Style.t=?,
-      ~positionTop: ReactDOMRe.Style.t=?,
-      ~progress: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~dot: ReactDOM.Style.t=?,
+      ~dotActive: ReactDOM.Style.t=?,
+      ~dots: ReactDOM.Style.t=?,
+      ~positionBottom: ReactDOM.Style.t=?,
+      ~positionStatic: ReactDOM.Style.t=?,
+      ~positionTop: ReactDOM.Style.t=?,
+      ~progress: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1641,28 +1646,28 @@ module MobileStepperClassKey = {
 module NativeSelectClassKey = {
   type t = {
     .
-    "disabled": option(ReactDOMRe.Style.t),
-    "filled": option(ReactDOMRe.Style.t),
-    "icon": option(ReactDOMRe.Style.t),
-    "iconFilled": option(ReactDOMRe.Style.t),
-    "iconOutlined": option(ReactDOMRe.Style.t),
-    "outlined": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "select": option(ReactDOMRe.Style.t),
-    "selectMenu": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "filled": option(ReactDOM.Style.t),
+    "icon": option(ReactDOM.Style.t),
+    "iconFilled": option(ReactDOM.Style.t),
+    "iconOutlined": option(ReactDOM.Style.t),
+    "outlined": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "select": option(ReactDOM.Style.t),
+    "selectMenu": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~filled: ReactDOMRe.Style.t=?,
-      ~icon: ReactDOMRe.Style.t=?,
-      ~iconFilled: ReactDOMRe.Style.t=?,
-      ~iconOutlined: ReactDOMRe.Style.t=?,
-      ~outlined: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~select: ReactDOMRe.Style.t=?,
-      ~selectMenu: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~filled: ReactDOM.Style.t=?,
+      ~icon: ReactDOM.Style.t=?,
+      ~iconFilled: ReactDOM.Style.t=?,
+      ~iconOutlined: ReactDOM.Style.t=?,
+      ~outlined: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~select: ReactDOM.Style.t=?,
+      ~selectMenu: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1671,40 +1676,40 @@ module NativeSelectClassKey = {
 module OutlinedInputClassKey = {
   type t = {
     .
-    "adornedEnd": option(ReactDOMRe.Style.t),
-    "adornedStart": option(ReactDOMRe.Style.t),
+    "adornedEnd": option(ReactDOM.Style.t),
+    "adornedStart": option(ReactDOM.Style.t),
     "colorSecondary": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "error": option(ReactDOMRe.Style.t),
-    "focused": option(ReactDOMRe.Style.t),
-    "input": option(ReactDOMRe.Style.t),
-    "inputAdornedEnd": option(ReactDOMRe.Style.t),
-    "inputAdornedStart": option(ReactDOMRe.Style.t),
-    "inputMarginDense": option(ReactDOMRe.Style.t),
-    "inputMultiline": option(ReactDOMRe.Style.t),
-    "marginDense": option(ReactDOMRe.Style.t),
-    "multiline": option(ReactDOMRe.Style.t),
-    "notchedOutline": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "error": option(ReactDOM.Style.t),
+    "focused": option(ReactDOM.Style.t),
+    "input": option(ReactDOM.Style.t),
+    "inputAdornedEnd": option(ReactDOM.Style.t),
+    "inputAdornedStart": option(ReactDOM.Style.t),
+    "inputMarginDense": option(ReactDOM.Style.t),
+    "inputMultiline": option(ReactDOM.Style.t),
+    "marginDense": option(ReactDOM.Style.t),
+    "multiline": option(ReactDOM.Style.t),
+    "notchedOutline": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~adornedEnd: ReactDOMRe.Style.t=?,
-      ~adornedStart: ReactDOMRe.Style.t=?,
+      ~adornedEnd: ReactDOM.Style.t=?,
+      ~adornedStart: ReactDOM.Style.t=?,
       ~colorSecondary: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~error: ReactDOMRe.Style.t=?,
-      ~focused: ReactDOMRe.Style.t=?,
-      ~input: ReactDOMRe.Style.t=?,
-      ~inputAdornedEnd: ReactDOMRe.Style.t=?,
-      ~inputAdornedStart: ReactDOMRe.Style.t=?,
-      ~inputMarginDense: ReactDOMRe.Style.t=?,
-      ~inputMultiline: ReactDOMRe.Style.t=?,
-      ~marginDense: ReactDOMRe.Style.t=?,
-      ~multiline: ReactDOMRe.Style.t=?,
-      ~notchedOutline: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~error: ReactDOM.Style.t=?,
+      ~focused: ReactDOM.Style.t=?,
+      ~input: ReactDOM.Style.t=?,
+      ~inputAdornedEnd: ReactDOM.Style.t=?,
+      ~inputAdornedStart: ReactDOM.Style.t=?,
+      ~inputMarginDense: ReactDOM.Style.t=?,
+      ~inputMultiline: ReactDOM.Style.t=?,
+      ~marginDense: ReactDOM.Style.t=?,
+      ~multiline: ReactDOM.Style.t=?,
+      ~notchedOutline: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1713,66 +1718,66 @@ module OutlinedInputClassKey = {
 module PaperClassKey = {
   type t = {
     .
-    "elevation0": option(ReactDOMRe.Style.t),
-    "elevation1": option(ReactDOMRe.Style.t),
-    "elevation10": option(ReactDOMRe.Style.t),
-    "elevation11": option(ReactDOMRe.Style.t),
-    "elevation12": option(ReactDOMRe.Style.t),
-    "elevation13": option(ReactDOMRe.Style.t),
-    "elevation14": option(ReactDOMRe.Style.t),
-    "elevation15": option(ReactDOMRe.Style.t),
-    "elevation16": option(ReactDOMRe.Style.t),
-    "elevation17": option(ReactDOMRe.Style.t),
-    "elevation18": option(ReactDOMRe.Style.t),
-    "elevation19": option(ReactDOMRe.Style.t),
-    "elevation2": option(ReactDOMRe.Style.t),
-    "elevation20": option(ReactDOMRe.Style.t),
-    "elevation21": option(ReactDOMRe.Style.t),
-    "elevation22": option(ReactDOMRe.Style.t),
-    "elevation23": option(ReactDOMRe.Style.t),
-    "elevation24": option(ReactDOMRe.Style.t),
-    "elevation3": option(ReactDOMRe.Style.t),
-    "elevation4": option(ReactDOMRe.Style.t),
-    "elevation5": option(ReactDOMRe.Style.t),
-    "elevation6": option(ReactDOMRe.Style.t),
-    "elevation7": option(ReactDOMRe.Style.t),
-    "elevation8": option(ReactDOMRe.Style.t),
-    "elevation9": option(ReactDOMRe.Style.t),
-    "outlined": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "rounded": option(ReactDOMRe.Style.t),
+    "elevation0": option(ReactDOM.Style.t),
+    "elevation1": option(ReactDOM.Style.t),
+    "elevation10": option(ReactDOM.Style.t),
+    "elevation11": option(ReactDOM.Style.t),
+    "elevation12": option(ReactDOM.Style.t),
+    "elevation13": option(ReactDOM.Style.t),
+    "elevation14": option(ReactDOM.Style.t),
+    "elevation15": option(ReactDOM.Style.t),
+    "elevation16": option(ReactDOM.Style.t),
+    "elevation17": option(ReactDOM.Style.t),
+    "elevation18": option(ReactDOM.Style.t),
+    "elevation19": option(ReactDOM.Style.t),
+    "elevation2": option(ReactDOM.Style.t),
+    "elevation20": option(ReactDOM.Style.t),
+    "elevation21": option(ReactDOM.Style.t),
+    "elevation22": option(ReactDOM.Style.t),
+    "elevation23": option(ReactDOM.Style.t),
+    "elevation24": option(ReactDOM.Style.t),
+    "elevation3": option(ReactDOM.Style.t),
+    "elevation4": option(ReactDOM.Style.t),
+    "elevation5": option(ReactDOM.Style.t),
+    "elevation6": option(ReactDOM.Style.t),
+    "elevation7": option(ReactDOM.Style.t),
+    "elevation8": option(ReactDOM.Style.t),
+    "elevation9": option(ReactDOM.Style.t),
+    "outlined": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "rounded": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~elevation0: ReactDOMRe.Style.t=?,
-      ~elevation1: ReactDOMRe.Style.t=?,
-      ~elevation10: ReactDOMRe.Style.t=?,
-      ~elevation11: ReactDOMRe.Style.t=?,
-      ~elevation12: ReactDOMRe.Style.t=?,
-      ~elevation13: ReactDOMRe.Style.t=?,
-      ~elevation14: ReactDOMRe.Style.t=?,
-      ~elevation15: ReactDOMRe.Style.t=?,
-      ~elevation16: ReactDOMRe.Style.t=?,
-      ~elevation17: ReactDOMRe.Style.t=?,
-      ~elevation18: ReactDOMRe.Style.t=?,
-      ~elevation19: ReactDOMRe.Style.t=?,
-      ~elevation2: ReactDOMRe.Style.t=?,
-      ~elevation20: ReactDOMRe.Style.t=?,
-      ~elevation21: ReactDOMRe.Style.t=?,
-      ~elevation22: ReactDOMRe.Style.t=?,
-      ~elevation23: ReactDOMRe.Style.t=?,
-      ~elevation24: ReactDOMRe.Style.t=?,
-      ~elevation3: ReactDOMRe.Style.t=?,
-      ~elevation4: ReactDOMRe.Style.t=?,
-      ~elevation5: ReactDOMRe.Style.t=?,
-      ~elevation6: ReactDOMRe.Style.t=?,
-      ~elevation7: ReactDOMRe.Style.t=?,
-      ~elevation8: ReactDOMRe.Style.t=?,
-      ~elevation9: ReactDOMRe.Style.t=?,
-      ~outlined: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~rounded: ReactDOMRe.Style.t=?,
+      ~elevation0: ReactDOM.Style.t=?,
+      ~elevation1: ReactDOM.Style.t=?,
+      ~elevation10: ReactDOM.Style.t=?,
+      ~elevation11: ReactDOM.Style.t=?,
+      ~elevation12: ReactDOM.Style.t=?,
+      ~elevation13: ReactDOM.Style.t=?,
+      ~elevation14: ReactDOM.Style.t=?,
+      ~elevation15: ReactDOM.Style.t=?,
+      ~elevation16: ReactDOM.Style.t=?,
+      ~elevation17: ReactDOM.Style.t=?,
+      ~elevation18: ReactDOM.Style.t=?,
+      ~elevation19: ReactDOM.Style.t=?,
+      ~elevation2: ReactDOM.Style.t=?,
+      ~elevation20: ReactDOM.Style.t=?,
+      ~elevation21: ReactDOM.Style.t=?,
+      ~elevation22: ReactDOM.Style.t=?,
+      ~elevation23: ReactDOM.Style.t=?,
+      ~elevation24: ReactDOM.Style.t=?,
+      ~elevation3: ReactDOM.Style.t=?,
+      ~elevation4: ReactDOM.Style.t=?,
+      ~elevation5: ReactDOM.Style.t=?,
+      ~elevation6: ReactDOM.Style.t=?,
+      ~elevation7: ReactDOM.Style.t=?,
+      ~elevation8: ReactDOM.Style.t=?,
+      ~elevation9: ReactDOM.Style.t=?,
+      ~outlined: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~rounded: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1781,70 +1786,70 @@ module PaperClassKey = {
 module PopoverClassKey = {
   type t = {
     .
-    "paper": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "paper": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
-    (~paper: ReactDOMRe.Style.t=?, ~root: ReactDOMRe.Style.t=?, unit) => t;
+    (~paper: ReactDOM.Style.t=?, ~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module RadioClassKey = {
   type t = {
     .
-    "checked": option(ReactDOMRe.Style.t),
+    "checked": option(ReactDOM.Style.t),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "input": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "input": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~checked: ReactDOMRe.Style.t=?,
+      ~checked: ReactDOM.Style.t=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~input: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~input: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
 };
 
 module MuiScopedCssBaseline = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module SelectClassKey = {
   type t = {
     .
-    "disabled": option(ReactDOMRe.Style.t),
-    "filled": option(ReactDOMRe.Style.t),
-    "icon": option(ReactDOMRe.Style.t),
-    "iconFilled": option(ReactDOMRe.Style.t),
-    "iconOpen": option(ReactDOMRe.Style.t),
-    "iconOutlined": option(ReactDOMRe.Style.t),
-    "outlined": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "select": option(ReactDOMRe.Style.t),
-    "selectMenu": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "filled": option(ReactDOM.Style.t),
+    "icon": option(ReactDOM.Style.t),
+    "iconFilled": option(ReactDOM.Style.t),
+    "iconOpen": option(ReactDOM.Style.t),
+    "iconOutlined": option(ReactDOM.Style.t),
+    "outlined": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "select": option(ReactDOM.Style.t),
+    "selectMenu": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~filled: ReactDOMRe.Style.t=?,
-      ~icon: ReactDOMRe.Style.t=?,
-      ~iconFilled: ReactDOMRe.Style.t=?,
-      ~iconOpen: ReactDOMRe.Style.t=?,
-      ~iconOutlined: ReactDOMRe.Style.t=?,
-      ~outlined: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~select: ReactDOMRe.Style.t=?,
-      ~selectMenu: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~filled: ReactDOM.Style.t=?,
+      ~icon: ReactDOM.Style.t=?,
+      ~iconFilled: ReactDOM.Style.t=?,
+      ~iconOpen: ReactDOM.Style.t=?,
+      ~iconOutlined: ReactDOM.Style.t=?,
+      ~outlined: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~select: ReactDOM.Style.t=?,
+      ~selectMenu: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1853,50 +1858,50 @@ module SelectClassKey = {
 module SliderClassKey = {
   type t = {
     .
-    "active": option(ReactDOMRe.Style.t),
+    "active": option(ReactDOM.Style.t),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "focusVisible": option(ReactDOMRe.Style.t),
-    "mark": option(ReactDOMRe.Style.t),
-    "markActive": option(ReactDOMRe.Style.t),
-    "markLabel": option(ReactDOMRe.Style.t),
-    "markLabelActive": option(ReactDOMRe.Style.t),
-    "marked": option(ReactDOMRe.Style.t),
-    "rail": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "thumb": option(ReactDOMRe.Style.t),
-    "thumbColorPrimary": option(ReactDOMRe.Style.t),
-    "thumbColorSecondary": option(ReactDOMRe.Style.t),
-    "track": option(ReactDOMRe.Style.t),
-    "trackFalse": option(ReactDOMRe.Style.t),
-    "trackInverted": option(ReactDOMRe.Style.t),
-    "valueLabel": option(ReactDOMRe.Style.t),
-    "vertical": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "focusVisible": option(ReactDOM.Style.t),
+    "mark": option(ReactDOM.Style.t),
+    "markActive": option(ReactDOM.Style.t),
+    "markLabel": option(ReactDOM.Style.t),
+    "markLabelActive": option(ReactDOM.Style.t),
+    "marked": option(ReactDOM.Style.t),
+    "rail": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "thumb": option(ReactDOM.Style.t),
+    "thumbColorPrimary": option(ReactDOM.Style.t),
+    "thumbColorSecondary": option(ReactDOM.Style.t),
+    "track": option(ReactDOM.Style.t),
+    "trackFalse": option(ReactDOM.Style.t),
+    "trackInverted": option(ReactDOM.Style.t),
+    "valueLabel": option(ReactDOM.Style.t),
+    "vertical": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~active: ReactDOMRe.Style.t=?,
+      ~active: ReactDOM.Style.t=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~focusVisible: ReactDOMRe.Style.t=?,
-      ~mark: ReactDOMRe.Style.t=?,
-      ~markActive: ReactDOMRe.Style.t=?,
-      ~markLabel: ReactDOMRe.Style.t=?,
-      ~markLabelActive: ReactDOMRe.Style.t=?,
-      ~marked: ReactDOMRe.Style.t=?,
-      ~rail: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~thumb: ReactDOMRe.Style.t=?,
-      ~thumbColorPrimary: ReactDOMRe.Style.t=?,
-      ~thumbColorSecondary: ReactDOMRe.Style.t=?,
-      ~track: ReactDOMRe.Style.t=?,
-      ~trackFalse: ReactDOMRe.Style.t=?,
-      ~trackInverted: ReactDOMRe.Style.t=?,
-      ~valueLabel: ReactDOMRe.Style.t=?,
-      ~vertical: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~focusVisible: ReactDOM.Style.t=?,
+      ~mark: ReactDOM.Style.t=?,
+      ~markActive: ReactDOM.Style.t=?,
+      ~markLabel: ReactDOM.Style.t=?,
+      ~markLabelActive: ReactDOM.Style.t=?,
+      ~marked: ReactDOM.Style.t=?,
+      ~rail: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~thumb: ReactDOM.Style.t=?,
+      ~thumbColorPrimary: ReactDOM.Style.t=?,
+      ~thumbColorSecondary: ReactDOM.Style.t=?,
+      ~track: ReactDOM.Style.t=?,
+      ~trackFalse: ReactDOM.Style.t=?,
+      ~trackInverted: ReactDOM.Style.t=?,
+      ~valueLabel: ReactDOM.Style.t=?,
+      ~vertical: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1905,24 +1910,24 @@ module SliderClassKey = {
 module SnackbarClassKey = {
   type t = {
     .
-    "anchorOriginBottomCenter": option(ReactDOMRe.Style.t),
-    "anchorOriginBottomLeft": option(ReactDOMRe.Style.t),
-    "anchorOriginBottomRight": option(ReactDOMRe.Style.t),
-    "anchorOriginTopCenter": option(ReactDOMRe.Style.t),
-    "anchorOriginTopLeft": option(ReactDOMRe.Style.t),
-    "anchorOriginTopRight": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "anchorOriginBottomCenter": option(ReactDOM.Style.t),
+    "anchorOriginBottomLeft": option(ReactDOM.Style.t),
+    "anchorOriginBottomRight": option(ReactDOM.Style.t),
+    "anchorOriginTopCenter": option(ReactDOM.Style.t),
+    "anchorOriginTopLeft": option(ReactDOM.Style.t),
+    "anchorOriginTopRight": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~anchorOriginBottomCenter: ReactDOMRe.Style.t=?,
-      ~anchorOriginBottomLeft: ReactDOMRe.Style.t=?,
-      ~anchorOriginBottomRight: ReactDOMRe.Style.t=?,
-      ~anchorOriginTopCenter: ReactDOMRe.Style.t=?,
-      ~anchorOriginTopLeft: ReactDOMRe.Style.t=?,
-      ~anchorOriginTopRight: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~anchorOriginBottomCenter: ReactDOM.Style.t=?,
+      ~anchorOriginBottomLeft: ReactDOM.Style.t=?,
+      ~anchorOriginBottomRight: ReactDOM.Style.t=?,
+      ~anchorOriginTopCenter: ReactDOM.Style.t=?,
+      ~anchorOriginTopLeft: ReactDOM.Style.t=?,
+      ~anchorOriginTopRight: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1931,16 +1936,16 @@ module SnackbarClassKey = {
 module SnackbarContentClassKey = {
   type t = {
     .
-    "action": option(ReactDOMRe.Style.t),
-    "message": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "action": option(ReactDOM.Style.t),
+    "message": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~action: ReactDOMRe.Style.t=?,
-      ~message: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~action: ReactDOM.Style.t=?,
+      ~message: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1949,20 +1954,20 @@ module SnackbarContentClassKey = {
 module StepClasskey = {
   type t = {
     .
-    "alternativeLabel": option(ReactDOMRe.Style.t),
-    "completed": option(ReactDOMRe.Style.t),
-    "horizontal": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "vertical": option(ReactDOMRe.Style.t),
+    "alternativeLabel": option(ReactDOM.Style.t),
+    "completed": option(ReactDOM.Style.t),
+    "horizontal": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "vertical": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~alternativeLabel: ReactDOMRe.Style.t=?,
-      ~completed: ReactDOMRe.Style.t=?,
-      ~horizontal: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~vertical: ReactDOMRe.Style.t=?,
+      ~alternativeLabel: ReactDOM.Style.t=?,
+      ~completed: ReactDOM.Style.t=?,
+      ~horizontal: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~vertical: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1971,16 +1976,16 @@ module StepClasskey = {
 module StepButtonClasskey = {
   type t = {
     .
-    "root": option(ReactDOMRe.Style.t),
-    "touchRipple": option(ReactDOMRe.Style.t),
-    "vertical": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "touchRipple": option(ReactDOM.Style.t),
+    "vertical": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~root: ReactDOMRe.Style.t=?,
-      ~touchRipple: ReactDOMRe.Style.t=?,
-      ~vertical: ReactDOMRe.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~touchRipple: ReactDOM.Style.t=?,
+      ~vertical: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -1989,30 +1994,30 @@ module StepButtonClasskey = {
 module StepConnectorClasskey = {
   type t = {
     .
-    "active": option(ReactDOMRe.Style.t),
-    "alternativeLabel": option(ReactDOMRe.Style.t),
-    "completed": option(ReactDOMRe.Style.t),
-    "disabled": option(ReactDOMRe.Style.t),
-    "horizontal": option(ReactDOMRe.Style.t),
-    "line": option(ReactDOMRe.Style.t),
-    "lineHorizontal": option(ReactDOMRe.Style.t),
-    "lineVertical": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "vertical": option(ReactDOMRe.Style.t),
+    "active": option(ReactDOM.Style.t),
+    "alternativeLabel": option(ReactDOM.Style.t),
+    "completed": option(ReactDOM.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "horizontal": option(ReactDOM.Style.t),
+    "line": option(ReactDOM.Style.t),
+    "lineHorizontal": option(ReactDOM.Style.t),
+    "lineVertical": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "vertical": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~active: ReactDOMRe.Style.t=?,
-      ~alternativeLabel: ReactDOMRe.Style.t=?,
-      ~completed: ReactDOMRe.Style.t=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~horizontal: ReactDOMRe.Style.t=?,
-      ~line: ReactDOMRe.Style.t=?,
-      ~lineHorizontal: ReactDOMRe.Style.t=?,
-      ~lineVertical: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~vertical: ReactDOMRe.Style.t=?,
+      ~active: ReactDOM.Style.t=?,
+      ~alternativeLabel: ReactDOM.Style.t=?,
+      ~completed: ReactDOM.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~horizontal: ReactDOM.Style.t=?,
+      ~line: ReactDOM.Style.t=?,
+      ~lineHorizontal: ReactDOM.Style.t=?,
+      ~lineVertical: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~vertical: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2021,16 +2026,16 @@ module StepConnectorClasskey = {
 module StepContentClasskey = {
   type t = {
     .
-    "last": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "transition": option(ReactDOMRe.Style.t),
+    "last": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "transition": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~last: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~transition: ReactDOMRe.Style.t=?,
+      ~last: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~transition: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2039,20 +2044,20 @@ module StepContentClasskey = {
 module StepIconClasskey = {
   type t = {
     .
-    "active": option(ReactDOMRe.Style.t),
-    "completed": option(ReactDOMRe.Style.t),
-    "error": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "text": option(ReactDOMRe.Style.t),
+    "active": option(ReactDOM.Style.t),
+    "completed": option(ReactDOM.Style.t),
+    "error": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "text": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~active: ReactDOMRe.Style.t=?,
-      ~completed: ReactDOMRe.Style.t=?,
-      ~error: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~text: ReactDOMRe.Style.t=?,
+      ~active: ReactDOM.Style.t=?,
+      ~completed: ReactDOM.Style.t=?,
+      ~error: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~text: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2061,32 +2066,32 @@ module StepIconClasskey = {
 module StepLabelClasskey = {
   type t = {
     .
-    "active": option(ReactDOMRe.Style.t),
-    "alternativeLabel": option(ReactDOMRe.Style.t),
-    "completed": option(ReactDOMRe.Style.t),
-    "disabled": option(ReactDOMRe.Style.t),
-    "error": option(ReactDOMRe.Style.t),
-    "horizontal": option(ReactDOMRe.Style.t),
-    "iconContainer": option(ReactDOMRe.Style.t),
-    "label": option(ReactDOMRe.Style.t),
-    "labelContainer": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "vertical": option(ReactDOMRe.Style.t),
+    "active": option(ReactDOM.Style.t),
+    "alternativeLabel": option(ReactDOM.Style.t),
+    "completed": option(ReactDOM.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "error": option(ReactDOM.Style.t),
+    "horizontal": option(ReactDOM.Style.t),
+    "iconContainer": option(ReactDOM.Style.t),
+    "label": option(ReactDOM.Style.t),
+    "labelContainer": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "vertical": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~active: ReactDOMRe.Style.t=?,
-      ~alternativeLabel: ReactDOMRe.Style.t=?,
-      ~completed: ReactDOMRe.Style.t=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~error: ReactDOMRe.Style.t=?,
-      ~horizontal: ReactDOMRe.Style.t=?,
-      ~iconContainer: ReactDOMRe.Style.t=?,
-      ~label: ReactDOMRe.Style.t=?,
-      ~labelContainer: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~vertical: ReactDOMRe.Style.t=?,
+      ~active: ReactDOM.Style.t=?,
+      ~alternativeLabel: ReactDOM.Style.t=?,
+      ~completed: ReactDOM.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~error: ReactDOM.Style.t=?,
+      ~horizontal: ReactDOM.Style.t=?,
+      ~iconContainer: ReactDOM.Style.t=?,
+      ~label: ReactDOM.Style.t=?,
+      ~labelContainer: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~vertical: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2095,18 +2100,18 @@ module StepLabelClasskey = {
 module StepperClasskey = {
   type t = {
     .
-    "alternativeLabel": option(ReactDOMRe.Style.t),
-    "horizontal": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "vertical": option(ReactDOMRe.Style.t),
+    "alternativeLabel": option(ReactDOM.Style.t),
+    "horizontal": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "vertical": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~alternativeLabel: ReactDOMRe.Style.t=?,
-      ~horizontal: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~vertical: ReactDOMRe.Style.t=?,
+      ~alternativeLabel: ReactDOM.Style.t=?,
+      ~horizontal: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~vertical: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2115,30 +2120,30 @@ module StepperClasskey = {
 module SwitchClassKey = {
   type t = {
     .
-    "checked": option(ReactDOMRe.Style.t),
+    "checked": option(ReactDOM.Style.t),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
-    "disabled": option(ReactDOMRe.Style.t),
-    "input": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "sizeSmall": option(ReactDOMRe.Style.t),
-    "switchBase": option(ReactDOMRe.Style.t),
-    "thumb": option(ReactDOMRe.Style.t),
-    "track": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "input": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "sizeSmall": option(ReactDOM.Style.t),
+    "switchBase": option(ReactDOM.Style.t),
+    "thumb": option(ReactDOM.Style.t),
+    "track": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~checked: ReactDOMRe.Style.t=?,
+      ~checked: ReactDOM.Style.t=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~input: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~sizeSmall: ReactDOMRe.Style.t=?,
-      ~switchBase: ReactDOMRe.Style.t=?,
-      ~thumb: ReactDOMRe.Style.t=?,
-      ~track: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~input: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~sizeSmall: ReactDOM.Style.t=?,
+      ~switchBase: ReactDOM.Style.t=?,
+      ~thumb: ReactDOM.Style.t=?,
+      ~track: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2147,30 +2152,30 @@ module SwitchClassKey = {
 module TabClassKey = {
   type t = {
     .
-    "disabled": option(ReactDOMRe.Style.t),
-    "fullWidth": option(ReactDOMRe.Style.t),
-    "labelIcon": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "selected": option(ReactDOMRe.Style.t),
-    "textColorInherit": option(ReactDOMRe.Style.t),
-    "textColorPrimary": option(ReactDOMRe.Style.t),
-    "textColorSecondary": option(ReactDOMRe.Style.t),
-    "wrapped": option(ReactDOMRe.Style.t),
-    "wrapper": option(ReactDOMRe.Style.t),
+    "disabled": option(ReactDOM.Style.t),
+    "fullWidth": option(ReactDOM.Style.t),
+    "labelIcon": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "selected": option(ReactDOM.Style.t),
+    "textColorInherit": option(ReactDOM.Style.t),
+    "textColorPrimary": option(ReactDOM.Style.t),
+    "textColorSecondary": option(ReactDOM.Style.t),
+    "wrapped": option(ReactDOM.Style.t),
+    "wrapper": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~disabled: ReactDOMRe.Style.t=?,
-      ~fullWidth: ReactDOMRe.Style.t=?,
-      ~labelIcon: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~selected: ReactDOMRe.Style.t=?,
-      ~textColorInherit: ReactDOMRe.Style.t=?,
-      ~textColorPrimary: ReactDOMRe.Style.t=?,
-      ~textColorSecondary: ReactDOMRe.Style.t=?,
-      ~wrapped: ReactDOMRe.Style.t=?,
-      ~wrapper: ReactDOMRe.Style.t=?,
+      ~disabled: ReactDOM.Style.t=?,
+      ~fullWidth: ReactDOM.Style.t=?,
+      ~labelIcon: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~selected: ReactDOM.Style.t=?,
+      ~textColorInherit: ReactDOM.Style.t=?,
+      ~textColorPrimary: ReactDOM.Style.t=?,
+      ~textColorSecondary: ReactDOM.Style.t=?,
+      ~wrapped: ReactDOM.Style.t=?,
+      ~wrapper: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2179,98 +2184,97 @@ module TabClassKey = {
 module TableClassKey = {
   type t = {
     .
-    "root": option(ReactDOMRe.Style.t),
-    "stickyHeader": option(ReactDOMRe.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "stickyHeader": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
-    (~root: ReactDOMRe.Style.t=?, ~stickyHeader: ReactDOMRe.Style.t=?, unit) =>
-    t;
+    (~root: ReactDOM.Style.t=?, ~stickyHeader: ReactDOM.Style.t=?, unit) => t;
 };
 
 module MuiTableBody = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module TableCellClassKey = {
   type t = {
     .
-    "alignCenter": option(ReactDOMRe.Style.t),
-    "alignJustify": option(ReactDOMRe.Style.t),
-    "alignLeft": option(ReactDOMRe.Style.t),
-    "alignRight": option(ReactDOMRe.Style.t),
-    "body": option(ReactDOMRe.Style.t),
-    "footer": option(ReactDOMRe.Style.t),
-    "head": option(ReactDOMRe.Style.t),
-    "paddingCheckbox": option(ReactDOMRe.Style.t),
-    "paddingNone": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "sizeSmall": option(ReactDOMRe.Style.t),
-    "stickyHeader": option(ReactDOMRe.Style.t),
+    "alignCenter": option(ReactDOM.Style.t),
+    "alignJustify": option(ReactDOM.Style.t),
+    "alignLeft": option(ReactDOM.Style.t),
+    "alignRight": option(ReactDOM.Style.t),
+    "body": option(ReactDOM.Style.t),
+    "footer": option(ReactDOM.Style.t),
+    "head": option(ReactDOM.Style.t),
+    "paddingCheckbox": option(ReactDOM.Style.t),
+    "paddingNone": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "sizeSmall": option(ReactDOM.Style.t),
+    "stickyHeader": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~alignCenter: ReactDOMRe.Style.t=?,
-      ~alignJustify: ReactDOMRe.Style.t=?,
-      ~alignLeft: ReactDOMRe.Style.t=?,
-      ~alignRight: ReactDOMRe.Style.t=?,
-      ~body: ReactDOMRe.Style.t=?,
-      ~footer: ReactDOMRe.Style.t=?,
-      ~head: ReactDOMRe.Style.t=?,
-      ~paddingCheckbox: ReactDOMRe.Style.t=?,
-      ~paddingNone: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~sizeSmall: ReactDOMRe.Style.t=?,
-      ~stickyHeader: ReactDOMRe.Style.t=?,
+      ~alignCenter: ReactDOM.Style.t=?,
+      ~alignJustify: ReactDOM.Style.t=?,
+      ~alignLeft: ReactDOM.Style.t=?,
+      ~alignRight: ReactDOM.Style.t=?,
+      ~body: ReactDOM.Style.t=?,
+      ~footer: ReactDOM.Style.t=?,
+      ~head: ReactDOM.Style.t=?,
+      ~paddingCheckbox: ReactDOM.Style.t=?,
+      ~paddingNone: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~sizeSmall: ReactDOM.Style.t=?,
+      ~stickyHeader: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
 };
 
 module MuiTableContainer = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module MuiTableFooter = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module MuiTableHead = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module TablePaginationClassKey = {
   type t = {
     .
-    "actions": option(ReactDOMRe.Style.t),
-    "caption": option(ReactDOMRe.Style.t),
-    "input": option(ReactDOMRe.Style.t),
-    "menuItem": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "select": option(ReactDOMRe.Style.t),
-    "selectIcon": option(ReactDOMRe.Style.t),
-    "selectRoot": option(ReactDOMRe.Style.t),
-    "spacer": option(ReactDOMRe.Style.t),
-    "toolbar": option(ReactDOMRe.Style.t),
+    "actions": option(ReactDOM.Style.t),
+    "caption": option(ReactDOM.Style.t),
+    "input": option(ReactDOM.Style.t),
+    "menuItem": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "select": option(ReactDOM.Style.t),
+    "selectIcon": option(ReactDOM.Style.t),
+    "selectRoot": option(ReactDOM.Style.t),
+    "spacer": option(ReactDOM.Style.t),
+    "toolbar": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~actions: ReactDOMRe.Style.t=?,
-      ~caption: ReactDOMRe.Style.t=?,
-      ~input: ReactDOMRe.Style.t=?,
-      ~menuItem: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~select: ReactDOMRe.Style.t=?,
-      ~selectIcon: ReactDOMRe.Style.t=?,
-      ~selectRoot: ReactDOMRe.Style.t=?,
-      ~spacer: ReactDOMRe.Style.t=?,
-      ~toolbar: ReactDOMRe.Style.t=?,
+      ~actions: ReactDOM.Style.t=?,
+      ~caption: ReactDOM.Style.t=?,
+      ~input: ReactDOM.Style.t=?,
+      ~menuItem: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~select: ReactDOM.Style.t=?,
+      ~selectIcon: ReactDOM.Style.t=?,
+      ~selectRoot: ReactDOM.Style.t=?,
+      ~spacer: ReactDOM.Style.t=?,
+      ~toolbar: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2279,20 +2283,20 @@ module TablePaginationClassKey = {
 module TableRowClassKey = {
   type t = {
     .
-    "footer": option(ReactDOMRe.Style.t),
-    "head": option(ReactDOMRe.Style.t),
-    "hover": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "selected": option(ReactDOMRe.Style.t),
+    "footer": option(ReactDOM.Style.t),
+    "head": option(ReactDOM.Style.t),
+    "hover": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "selected": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~footer: ReactDOMRe.Style.t=?,
-      ~head: ReactDOMRe.Style.t=?,
-      ~hover: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~selected: ReactDOMRe.Style.t=?,
+      ~footer: ReactDOM.Style.t=?,
+      ~head: ReactDOM.Style.t=?,
+      ~hover: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~selected: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2301,20 +2305,20 @@ module TableRowClassKey = {
 module TableSortLabelClassKey = {
   type t = {
     .
-    "active": option(ReactDOMRe.Style.t),
-    "icon": option(ReactDOMRe.Style.t),
-    "iconDirectionAsc": option(ReactDOMRe.Style.t),
-    "iconDirectionDesc": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "active": option(ReactDOM.Style.t),
+    "icon": option(ReactDOM.Style.t),
+    "iconDirectionAsc": option(ReactDOM.Style.t),
+    "iconDirectionDesc": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~active: ReactDOMRe.Style.t=?,
-      ~icon: ReactDOMRe.Style.t=?,
-      ~iconDirectionAsc: ReactDOMRe.Style.t=?,
-      ~iconDirectionDesc: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~active: ReactDOM.Style.t=?,
+      ~icon: ReactDOM.Style.t=?,
+      ~iconDirectionAsc: ReactDOM.Style.t=?,
+      ~iconDirectionDesc: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2323,53 +2327,53 @@ module TableSortLabelClassKey = {
 module TabsClassKey = {
   type t = {
     .
-    "centered": option(ReactDOMRe.Style.t),
-    "fixed": option(ReactDOMRe.Style.t),
-    "flexContainer": option(ReactDOMRe.Style.t),
-    "indicator": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "scrollButtons": option(ReactDOMRe.Style.t),
-    "scrollButtonsDesktop": option(ReactDOMRe.Style.t),
-    "scrollable": option(ReactDOMRe.Style.t),
-    "scroller": option(ReactDOMRe.Style.t),
+    "centered": option(ReactDOM.Style.t),
+    "fixed": option(ReactDOM.Style.t),
+    "flexContainer": option(ReactDOM.Style.t),
+    "indicator": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "scrollButtons": option(ReactDOM.Style.t),
+    "scrollButtonsDesktop": option(ReactDOM.Style.t),
+    "scrollable": option(ReactDOM.Style.t),
+    "scroller": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~centered: ReactDOMRe.Style.t=?,
-      ~fixed: ReactDOMRe.Style.t=?,
-      ~flexContainer: ReactDOMRe.Style.t=?,
-      ~indicator: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~scrollButtons: ReactDOMRe.Style.t=?,
-      ~scrollButtonsDesktop: ReactDOMRe.Style.t=?,
-      ~scrollable: ReactDOMRe.Style.t=?,
-      ~scroller: ReactDOMRe.Style.t=?,
+      ~centered: ReactDOM.Style.t=?,
+      ~fixed: ReactDOM.Style.t=?,
+      ~flexContainer: ReactDOM.Style.t=?,
+      ~indicator: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~scrollButtons: ReactDOM.Style.t=?,
+      ~scrollButtonsDesktop: ReactDOM.Style.t=?,
+      ~scrollable: ReactDOM.Style.t=?,
+      ~scroller: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
 };
 
 module MuiTextField = {
-  type t = {. "root": option(ReactDOMRe.Style.t)};
-  [@bs.obj] external make: (~root: ReactDOMRe.Style.t=?, unit) => t;
+  type t = {. "root": option(ReactDOM.Style.t)};
+  [@bs.obj] external make: (~root: ReactDOM.Style.t=?, unit) => t;
 };
 
 module ToolbarClassKey = {
   type t = {
     .
-    "dense": option(ReactDOMRe.Style.t),
-    "gutters": option(ReactDOMRe.Style.t),
-    "regular": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "dense": option(ReactDOM.Style.t),
+    "gutters": option(ReactDOM.Style.t),
+    "regular": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~dense: ReactDOMRe.Style.t=?,
-      ~gutters: ReactDOMRe.Style.t=?,
-      ~regular: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~dense: ReactDOM.Style.t=?,
+      ~gutters: ReactDOM.Style.t=?,
+      ~regular: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2378,32 +2382,32 @@ module ToolbarClassKey = {
 module TooltipClassKey = {
   type t = {
     .
-    "arrow": option(ReactDOMRe.Style.t),
-    "popper": option(ReactDOMRe.Style.t),
-    "popperArrow": option(ReactDOMRe.Style.t),
-    "popperInteractive": option(ReactDOMRe.Style.t),
-    "tooltip": option(ReactDOMRe.Style.t),
-    "tooltipArrow": option(ReactDOMRe.Style.t),
-    "tooltipPlacementBottom": option(ReactDOMRe.Style.t),
-    "tooltipPlacementLeft": option(ReactDOMRe.Style.t),
-    "tooltipPlacementRight": option(ReactDOMRe.Style.t),
-    "tooltipPlacementTop": option(ReactDOMRe.Style.t),
-    "touch": option(ReactDOMRe.Style.t),
+    "arrow": option(ReactDOM.Style.t),
+    "popper": option(ReactDOM.Style.t),
+    "popperArrow": option(ReactDOM.Style.t),
+    "popperInteractive": option(ReactDOM.Style.t),
+    "tooltip": option(ReactDOM.Style.t),
+    "tooltipArrow": option(ReactDOM.Style.t),
+    "tooltipPlacementBottom": option(ReactDOM.Style.t),
+    "tooltipPlacementLeft": option(ReactDOM.Style.t),
+    "tooltipPlacementRight": option(ReactDOM.Style.t),
+    "tooltipPlacementTop": option(ReactDOM.Style.t),
+    "touch": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~arrow: ReactDOMRe.Style.t=?,
-      ~popper: ReactDOMRe.Style.t=?,
-      ~popperArrow: ReactDOMRe.Style.t=?,
-      ~popperInteractive: ReactDOMRe.Style.t=?,
-      ~tooltip: ReactDOMRe.Style.t=?,
-      ~tooltipArrow: ReactDOMRe.Style.t=?,
-      ~tooltipPlacementBottom: ReactDOMRe.Style.t=?,
-      ~tooltipPlacementLeft: ReactDOMRe.Style.t=?,
-      ~tooltipPlacementRight: ReactDOMRe.Style.t=?,
-      ~tooltipPlacementTop: ReactDOMRe.Style.t=?,
-      ~touch: ReactDOMRe.Style.t=?,
+      ~arrow: ReactDOM.Style.t=?,
+      ~popper: ReactDOM.Style.t=?,
+      ~popperArrow: ReactDOM.Style.t=?,
+      ~popperInteractive: ReactDOM.Style.t=?,
+      ~tooltip: ReactDOM.Style.t=?,
+      ~tooltipArrow: ReactDOM.Style.t=?,
+      ~tooltipPlacementBottom: ReactDOM.Style.t=?,
+      ~tooltipPlacementLeft: ReactDOM.Style.t=?,
+      ~tooltipPlacementRight: ReactDOM.Style.t=?,
+      ~tooltipPlacementTop: ReactDOM.Style.t=?,
+      ~touch: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2412,24 +2416,24 @@ module TooltipClassKey = {
 module TouchRippleClassKey = {
   type t = {
     .
-    "child": option(ReactDOMRe.Style.t),
-    "childLeaving": option(ReactDOMRe.Style.t),
-    "childPulsate": option(ReactDOMRe.Style.t),
-    "ripple": option(ReactDOMRe.Style.t),
-    "ripplePulsate": option(ReactDOMRe.Style.t),
-    "rippleVisible": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
+    "child": option(ReactDOM.Style.t),
+    "childLeaving": option(ReactDOM.Style.t),
+    "childPulsate": option(ReactDOM.Style.t),
+    "ripple": option(ReactDOM.Style.t),
+    "ripplePulsate": option(ReactDOM.Style.t),
+    "rippleVisible": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~child: ReactDOMRe.Style.t=?,
-      ~childLeaving: ReactDOMRe.Style.t=?,
-      ~childPulsate: ReactDOMRe.Style.t=?,
-      ~ripple: ReactDOMRe.Style.t=?,
-      ~ripplePulsate: ReactDOMRe.Style.t=?,
-      ~rippleVisible: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
+      ~child: ReactDOM.Style.t=?,
+      ~childLeaving: ReactDOM.Style.t=?,
+      ~childPulsate: ReactDOM.Style.t=?,
+      ~ripple: ReactDOM.Style.t=?,
+      ~ripplePulsate: ReactDOM.Style.t=?,
+      ~rippleVisible: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
       unit
     ) =>
     t;
@@ -2438,70 +2442,70 @@ module TouchRippleClassKey = {
 module TypographyClassKey = {
   type t = {
     .
-    "alignCenter": option(ReactDOMRe.Style.t),
-    "alignJustify": option(ReactDOMRe.Style.t),
-    "alignLeft": option(ReactDOMRe.Style.t),
-    "alignRight": option(ReactDOMRe.Style.t),
-    "body1": option(ReactDOMRe.Style.t),
-    "body2": option(ReactDOMRe.Style.t),
-    "button": option(ReactDOMRe.Style.t),
-    "caption": option(ReactDOMRe.Style.t),
+    "alignCenter": option(ReactDOM.Style.t),
+    "alignJustify": option(ReactDOM.Style.t),
+    "alignLeft": option(ReactDOM.Style.t),
+    "alignRight": option(ReactDOM.Style.t),
+    "body1": option(ReactDOM.Style.t),
+    "body2": option(ReactDOM.Style.t),
+    "button": option(ReactDOM.Style.t),
+    "caption": option(ReactDOM.Style.t),
     "colorError": option(string),
     "colorInherit": option(string),
     "colorPrimary": option(string),
     "colorSecondary": option(string),
     "colorTextPrimary": option(string),
     "colorTextSecondary": option(string),
-    "displayBlock": option(ReactDOMRe.Style.t),
-    "displayInline": option(ReactDOMRe.Style.t),
-    "gutterBottom": option(ReactDOMRe.Style.t),
-    "h1": option(ReactDOMRe.Style.t),
-    "h2": option(ReactDOMRe.Style.t),
-    "h3": option(ReactDOMRe.Style.t),
-    "h4": option(ReactDOMRe.Style.t),
-    "h5": option(ReactDOMRe.Style.t),
-    "h6": option(ReactDOMRe.Style.t),
-    "noWrap": option(ReactDOMRe.Style.t),
-    "overline": option(ReactDOMRe.Style.t),
-    "paragraph": option(ReactDOMRe.Style.t),
-    "root": option(ReactDOMRe.Style.t),
-    "srOnly": option(ReactDOMRe.Style.t),
-    "subtitle1": option(ReactDOMRe.Style.t),
-    "subtitle2": option(ReactDOMRe.Style.t),
+    "displayBlock": option(ReactDOM.Style.t),
+    "displayInline": option(ReactDOM.Style.t),
+    "gutterBottom": option(ReactDOM.Style.t),
+    "h1": option(ReactDOM.Style.t),
+    "h2": option(ReactDOM.Style.t),
+    "h3": option(ReactDOM.Style.t),
+    "h4": option(ReactDOM.Style.t),
+    "h5": option(ReactDOM.Style.t),
+    "h6": option(ReactDOM.Style.t),
+    "noWrap": option(ReactDOM.Style.t),
+    "overline": option(ReactDOM.Style.t),
+    "paragraph": option(ReactDOM.Style.t),
+    "root": option(ReactDOM.Style.t),
+    "srOnly": option(ReactDOM.Style.t),
+    "subtitle1": option(ReactDOM.Style.t),
+    "subtitle2": option(ReactDOM.Style.t),
   };
   [@bs.obj]
   external make:
     (
-      ~alignCenter: ReactDOMRe.Style.t=?,
-      ~alignJustify: ReactDOMRe.Style.t=?,
-      ~alignLeft: ReactDOMRe.Style.t=?,
-      ~alignRight: ReactDOMRe.Style.t=?,
-      ~body1: ReactDOMRe.Style.t=?,
-      ~body2: ReactDOMRe.Style.t=?,
-      ~button: ReactDOMRe.Style.t=?,
-      ~caption: ReactDOMRe.Style.t=?,
+      ~alignCenter: ReactDOM.Style.t=?,
+      ~alignJustify: ReactDOM.Style.t=?,
+      ~alignLeft: ReactDOM.Style.t=?,
+      ~alignRight: ReactDOM.Style.t=?,
+      ~body1: ReactDOM.Style.t=?,
+      ~body2: ReactDOM.Style.t=?,
+      ~button: ReactDOM.Style.t=?,
+      ~caption: ReactDOM.Style.t=?,
       ~colorError: string=?,
       ~colorInherit: string=?,
       ~colorPrimary: string=?,
       ~colorSecondary: string=?,
       ~colorTextPrimary: string=?,
       ~colorTextSecondary: string=?,
-      ~displayBlock: ReactDOMRe.Style.t=?,
-      ~displayInline: ReactDOMRe.Style.t=?,
-      ~gutterBottom: ReactDOMRe.Style.t=?,
-      ~h1: ReactDOMRe.Style.t=?,
-      ~h2: ReactDOMRe.Style.t=?,
-      ~h3: ReactDOMRe.Style.t=?,
-      ~h4: ReactDOMRe.Style.t=?,
-      ~h5: ReactDOMRe.Style.t=?,
-      ~h6: ReactDOMRe.Style.t=?,
-      ~noWrap: ReactDOMRe.Style.t=?,
-      ~overline: ReactDOMRe.Style.t=?,
-      ~paragraph: ReactDOMRe.Style.t=?,
-      ~root: ReactDOMRe.Style.t=?,
-      ~srOnly: ReactDOMRe.Style.t=?,
-      ~subtitle1: ReactDOMRe.Style.t=?,
-      ~subtitle2: ReactDOMRe.Style.t=?,
+      ~displayBlock: ReactDOM.Style.t=?,
+      ~displayInline: ReactDOM.Style.t=?,
+      ~gutterBottom: ReactDOM.Style.t=?,
+      ~h1: ReactDOM.Style.t=?,
+      ~h2: ReactDOM.Style.t=?,
+      ~h3: ReactDOM.Style.t=?,
+      ~h4: ReactDOM.Style.t=?,
+      ~h5: ReactDOM.Style.t=?,
+      ~h6: ReactDOM.Style.t=?,
+      ~noWrap: ReactDOM.Style.t=?,
+      ~overline: ReactDOM.Style.t=?,
+      ~paragraph: ReactDOM.Style.t=?,
+      ~root: ReactDOM.Style.t=?,
+      ~srOnly: ReactDOM.Style.t=?,
+      ~subtitle1: ReactDOM.Style.t=?,
+      ~subtitle2: ReactDOM.Style.t=?,
       unit
     ) =>
     t;

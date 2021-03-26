@@ -6,8 +6,8 @@ module Styles: {
   let useStyles: unit => classes;
 } = {
   type styles = {
-    root: ReactDOMRe.Style.t,
-    rounded: ReactDOMRe.Style.t,
+    root: ReactDOM.Style.t,
+    rounded: ReactDOM.Style.t,
   };
   type classes = {
     root: string,
@@ -21,14 +21,14 @@ module Styles: {
     makeStyles(. theme =>
       {
         root:
-          ReactDOMRe.Style.make(
+          ReactDOM.Style.make(
             ~width="100%",
             ~maxWidth="970px",
             ~margin="0 auto",
             (),
           ),
         rounded:
-          ReactDOMRe.Style.make(
+          ReactDOM.Style.make(
             ~backgroundColor=
               MaterialUi.Theme.(
                 theme

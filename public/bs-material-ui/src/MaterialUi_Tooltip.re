@@ -115,9 +115,9 @@ external make:
     ~title: React.element,
     ~_TransitionComponent: TransitionComponent.t=?,
     ~_TransitionProps: Js.t({..})=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "Tooltip";

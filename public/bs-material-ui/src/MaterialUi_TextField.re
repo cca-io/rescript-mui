@@ -86,7 +86,7 @@ external make:
   (
     ~component: Component.t=?,
     ~focused: bool=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~children: 'children=?,
@@ -140,7 +140,7 @@ external make:
               ]
                 =?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "TextField";

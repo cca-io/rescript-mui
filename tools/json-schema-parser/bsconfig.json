@@ -17,7 +17,7 @@
   ],
   "suffix": ".bs.js",
   "namespace": true,
-  "bs-dependencies": ["reason-react", "bs-decode"],
+  "bs-dependencies": ["@rescript/react", "bs-decode"],
   "bsc-flags": ["-bs-g"],
   "refmt": 3
 }

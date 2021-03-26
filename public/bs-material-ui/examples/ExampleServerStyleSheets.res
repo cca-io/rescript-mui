@@ -1,6 +1,6 @@
 module Styles = %makeStyles(
   {
-    code: ReactDOMRe.Style.make(
+    code: ReactDOM.Style.make(
       ~fontFamily="SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace",
       ~marginTop="15px",
       (),
@@ -13,7 +13,7 @@ let make = () => {
   let classes = Styles.useStyles()
   let (html, css) = React.useMemo0(() => {
     let sheets = MaterialUi.Core.ServerStyleSheets.make()
-    let html = ReactDOMServerRe.renderToString(
+    let html = ReactDOMServer.renderToString(
       sheets->MaterialUi.Core.ServerStyleSheets.collect(<ExampleBox />),
     )
     let css = sheets->MaterialUi.Core.ServerStyleSheets.toString

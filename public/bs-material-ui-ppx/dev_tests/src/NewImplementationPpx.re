@@ -2,14 +2,14 @@ module Styles = [%makeStyles
   (
     {
       root:
-        ReactDOMRe.Style.make(
+        ReactDOM.Style.make(
           ~width="100%",
           ~maxWidth="970px",
           ~margin="0 auto",
           (),
         ),
       rounded:
-        ReactDOMRe.Style.make(
+        ReactDOM.Style.make(
           ~backgroundColor="grey",
           ~color="white",
           ~padding="15px",

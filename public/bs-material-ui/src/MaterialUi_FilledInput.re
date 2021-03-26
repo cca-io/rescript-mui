@@ -144,9 +144,9 @@ external make:
     ~startAdornment: React.element=?,
     ~_type: string=?,
     ~value: MaterialUi_Types.any=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "FilledInput";

@@ -112,7 +112,7 @@ external make:
     ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
     ~renderSuffix: MaterialUi_Types.any=?,
     ~rowsMin: RowsMin.t=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~autoComplete: string=?,
     ~autoFocus: bool=?,
     ~classes: Classes.t=?,
@@ -146,7 +146,7 @@ external make:
     ~_type: string=?,
     ~value: MaterialUi_Types.any=?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "OutlinedInput";

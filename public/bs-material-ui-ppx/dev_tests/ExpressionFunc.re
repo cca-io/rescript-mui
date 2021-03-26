@@ -4,7 +4,7 @@
     let x = "hellooo";
     Js.log(x);
     {
-      alignRight: ReactDOMRe.Style.make(~width="100%", ~textAlign="right", ()),
+      alignRight: ReactDOM.Style.make(~width="100%", ~textAlign="right", ()),
     };
   })
 ];

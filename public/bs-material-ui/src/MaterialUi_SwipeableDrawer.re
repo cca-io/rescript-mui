@@ -112,7 +112,7 @@ external make:
     ~elevation: MaterialUi_Types.Number.t=?,
     ~_SlideProps: Js.t({..})=?,
     ~id: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~anchor: [@bs.string] [
                | [@bs.as "left"] `Left
                | [@bs.as "top"] `Top
@@ -142,7 +142,7 @@ external make:
               ]
                 =?,
     ~key: string=?,
-    ~ref: ReactDOMRe.domRef=?
+    ~ref: ReactDOM.domRef=?
   ) =>
   React.element =
   "SwipeableDrawer";

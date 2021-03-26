@@ -10,7 +10,7 @@ let drawerWidth = 240
 let px_of_float = x => x->int_of_float->string_of_int ++ "px"
 let px_of_int = x => x->string_of_int ++ "px"
 
-let style = ReactDOMRe.Style.make
+let style = ReactDOM.Style.make
 module EnterpriseDashboardStyles = %makeStyles(
   theme => {
     wrapper: style(
@@ -25,7 +25,7 @@ module EnterpriseDashboardStyles = %makeStyles(
     ),
     root: style(~display="flex", ()),
     toolbar: style(~paddingRight="24px", ()) /* keep right padding when drawer closed */,
-    toolbarIcon: ReactDOMRe.Style.combine(
+    toolbarIcon: ReactDOM.Style.combine(
       style(
         ~display="flex",
         ~alignItems="center",
@@ -150,7 +150,7 @@ let make = (~sidebar, ~children) => {
                   color=#Inherit
                   noWrap=true
                   className=classes.title>
-                  {"Dashboard"->ReasonReact.string}
+                  {"Dashboard"->React.string}
                 </Typography>
                 <Link
                   href="#"
@@ -162,7 +162,7 @@ let make = (~sidebar, ~children) => {
                   "Close Dashboard"
                 </Link>
                 <IconButton color=#Inherit>
-                  <Badge badgeContent={"4"->ReasonReact.string} color=#Secondary>
+                  <Badge badgeContent={"4"->React.string} color=#Secondary>
                     <MscharleyBsMaterialUiIcons.Notifications.Filled />
                   </Badge>
                 </IconButton>

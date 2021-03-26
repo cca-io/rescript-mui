@@ -4,14 +4,14 @@ let getSpacing = (theme, num) => theme.T.spacing(num)->string_of_int ++ "px"
 
 module ExampleStyles = %makeStyles(
   theme => {
-    root: ReactDOMRe.Style.make(~width="90%", ()),
-    button: ReactDOMRe.Style.make(
+    root: ReactDOM.Style.make(~width="90%", ()),
+    button: ReactDOM.Style.make(
       ~marginTop=theme->getSpacing(1),
       ~marginRight=theme->getSpacing(1),
       (),
     ),
-    actionsContainer: ReactDOMRe.Style.make(~marginBottom=theme->getSpacing(2), ()),
-    resetContainer: ReactDOMRe.Style.make(~padding=theme->getSpacing(3), ()),
+    actionsContainer: ReactDOM.Style.make(~marginBottom=theme->getSpacing(2), ()),
+    resetContainer: ReactDOM.Style.make(~padding=theme->getSpacing(3), ()),
   }
 )
 
