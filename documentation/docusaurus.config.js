@@ -1,11 +1,11 @@
 module.exports = {
-  title: 'BS-Material-UI',
-  tagline: 'Material UI Bindings for ReasonML',
-  url: 'https://jsiebern.github.io/bs-material-ui',
-  baseUrl: '/bs-material-ui/',
+  title: 'ReScript-Material-UI',
+  tagline: 'Material-UI Bindings for ReScript',
+  url: 'https://cca-io.github.io/rescript-material-ui',
+  baseUrl: '/rescript-material-ui/',
   favicon: 'img/favicon.png',
-  organizationName: 'jsiebern', // Usually your GitHub org/user name.
-  projectName: 'bs-material-ui', // Usually your repo name.
+  organizationName: 'cca-io', // Usually your GitHub org/user name.
+  projectName: 'rescript-material-ui', // Usually your repo name.
   themeConfig: {
     hideOnScroll: true,
     colorMode: {
@@ -16,9 +16,9 @@ module.exports = {
       darkTheme: require('prism-react-renderer/themes/oceanicNext'),
     },
     navbar: {
-      title: 'BS Material UI',
+      title: 'ReScript Material-UI',
       logo: {
-        alt: 'BS Material UI Logo',
+        alt: 'ReScript Material-UI Logo',
         src: 'img/logo.svg',
         srcDark: 'img/logo-inv.svg',
       },
@@ -33,7 +33,7 @@ module.exports = {
         },
         { to: 'docs/contributing', label: 'Contributing', position: 'right' },
         {
-          href: 'https://github.com/jsiebern/bs-material-ui',
+          href: 'https://github.com/cca-io/rescript-material-ui',
           label: 'GitHub',
           position: 'right',
         },
