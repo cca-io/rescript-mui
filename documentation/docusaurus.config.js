@@ -1,8 +1,8 @@
 module.exports = {
   title: 'ReScript-Material-UI',
   tagline: 'Material-UI Bindings for ReScript',
-  url: 'https://cca-io.github.io/rescript-material-ui',
-  baseUrl: '/rescript-material-ui/',
+  url: 'http://rescript-material-ui.cca.io/',
+  baseUrl: '/',
   favicon: 'img/favicon.png',
   organizationName: 'cca-io', // Usually your GitHub org/user name.
   projectName: 'rescript-material-ui', // Usually your repo name.

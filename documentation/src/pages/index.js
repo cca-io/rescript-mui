@@ -19,7 +19,7 @@ function Home() {
           <div className={styles.heroInner}>
             <h1 className={styles.heroProjectTagline}>
               <img
-                alt="BS-MATERIAL-UI"
+                alt="ReScript Material-UI"
                 className={styles.heroLogo}
                 src={useBaseUrl('img/logo.svg')}
                 style={{ maxWidth: '250px' }}
@@ -45,7 +45,7 @@ function Home() {
               <span className={styles.indexCtasGitHubButtonWrapper}>
                 <iframe
                   className={styles.indexCtasGitHubButton}
-                  src="https://ghbtns.com/github-btn.html?user=jsiebern&amp;repo=bs-material-ui&amp;type=star&amp;count=true&amp;size=large"
+                  src="https://ghbtns.com/github-btn.html?user=cca-io&amp;repo=rescript-material-ui&amp;type=star&amp;count=true&amp;size=large"
                   width={160}
                   height={30}
                   title="GitHub Stars"
@@ -62,7 +62,7 @@ function Home() {
                   Automatically Generated
                 </h2>
                 <p className="padding-horiz--md">
-                  All bindings to the MaterialUi components are automatically
+                  All bindings to the Material-UI components are automatically
                   generated from the original documentation. They are extracted
                   & rendered by a combination of custom-built typescript tools.
                 </p>
