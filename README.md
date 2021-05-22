@@ -5,4 +5,14 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 
 # Documentation
 
-Check out the documentation here: http://rescript-material-ui.cca.io/
+Check out our documentation site at http://rescript-material-ui.cca.io/.
+
+# Roadmap
+
+This repo is currently undergoing a transition in terms of maintainership, NPM package names and Reason -> ReScript migration.
+
+The following next steps are planned:
+
+1. Release `@jsiebern/bs-material-ui@2.1.0`
+2. Transition package name to `rescript-material-ui` and release `rescript-material-ui@2.1.0`
+3. Complete Reason -> ReScript transition and release `rescript-material-ui@3.0.0` with breaking changes
