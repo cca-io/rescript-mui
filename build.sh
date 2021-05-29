@@ -1,26 +1,18 @@
 #!/bin/bash
-pwd=$(pwd)
 
-git pull
-rm -rf output
-
-cd tools/json-schema-parser
+pushd tools/json-schema-parser
 yarn build
+popd
 
-cd $pwd
-
-cd tools/component-extractor
+pushd tools/component-extractor
 yarn build
+popd
 
-cd $pwd
-
-cd tools/binding-generator
+pushd tools/binding-generator
 yarn build
-
-cd $pwd
+popd
 
 # Usually the PPX stays compatible and does not need to be rebuilt.
-# cd public/bs-material-ui-ppx
+# pushd public/bs-material-ui-ppx
 # esy build
-
-cd $pwd
+# popd
