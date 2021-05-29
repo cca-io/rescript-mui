@@ -15,6 +15,6 @@
   "dependencies": {
     "@jsiebern/bs-material-ui": "file:../../bs-material-ui/",
     "@material-ui/core": "4.11.4",
-    "@rescript/react": "^0.10"
+    "@rescript/react": "^0.10.3"
   }
 }

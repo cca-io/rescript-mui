@@ -15,7 +15,7 @@
     "bsb-js": "^1.1.7",
     "clsx": "^1.0.4",
     "reason": "^3.3.4",
-    "@rescript/react": "^0.10",
+    "@rescript/react": "^0.10.3",
     "typescript": "^3.2.1"
   }
 }
