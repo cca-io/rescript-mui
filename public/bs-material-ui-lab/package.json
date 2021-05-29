@@ -42,8 +42,5 @@
     "bs-platform": "^9.0.2",
     "parcel-bundler": "^1.12.4",
     "@rescript/react": "^0.10"
-  },
-  "dependencies": {
-    "@jsiebern/bs-material-ui": "^2.1.0"
   }
 }
