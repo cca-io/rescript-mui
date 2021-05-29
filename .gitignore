@@ -68,3 +68,6 @@ output
 _esy
 
 .DS_Store
+
+# ReScript
+.bsb.lock
