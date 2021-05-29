@@ -1,9 +1,12 @@
-name: bs_material_ui_ppx pipeline
+name: CI
 
 on:
   push:
     tags:
       - v*
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -15,22 +18,46 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: setup
+
+      - name: Yarn install
+        run: yarn
+        env:
+          IS_BS_MATERIAL_UI_PPX_CI: true
+
+      - name: JSON schema parser
+        working-directory: tools/json-schema-parser
+        shell: bash
+        run: yarn build
+
+      - name: Component extractor
+        working-directory: tools/component-extractor
+        shell: bash
+        run: ./build.sh
+
+      - name: Binding generator
+        working-directory: tools/binding-generator
+        shell: bash
+        run: ./build.sh
+
+      # Build PPX
+      - name: Install esy
         run: |
           npm install -g esy@latest cross-env
-      # OCaml 4.06 and BuckleScript 6
-      - name: install-build
+
+      - name: Build PPX
         run: |
           cd public/bs-material-ui-ppx
-          esy install
-          esy b
+          esy
+
       - name: Upload artifacts ${{ matrix.os }}
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }}
           path: public/bs-material-ui-ppx/_build/default/src/bin.exe
@@ -38,6 +65,7 @@ jobs:
           CI: true
 
   publish:
+    if: github.event_name != 'pull_request'
     needs: build
     name: Publish
     runs-on: ubuntu-latest

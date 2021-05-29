@@ -1,32 +1,11 @@
 #!/bin/bash
 pwd=$(pwd)
 
-# https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
-get_releases() {
-  curl --silent "https://api.github.com/repos/$1/releases" |
-  grep '"tag_name":' |
-  sed -E 's/.*"([^"]+)".*/\1/'
-}
+MUI_VERSION_TAG=v4.11.4
+OUTPUT_FOLDER=${pwd}/../../output
 
-# Update git repo
-if [ ! -d "~/.mui-clone" ]; then
-  git clone https://github.com/mui-org/material-ui ~/.mui-clone
-fi
-cd ~/.mui-clone
-git checkout master
-git reset --hard
-git pull
-releases=$(get_releases mui-org/material-ui)
-select TAGNAME in $releases;
-do
-  case $TAGNAME in
-        *)
-          break
-          ;;
-  esac
-done
-git checkout $TAGNAME
-cd $pwd
+rm -rf ~/.mui-clone
+git clone --depth 1 --branch $MUI_VERSION_TAG https://github.com/mui-org/material-ui ~/.mui-clone
 
 # Copy source files
 rm -rf ./core
@@ -46,28 +25,23 @@ cp -R ~/.mui-clone/packages/material-ui-utils/macros ./node_modules/@material-ui
 rm -rf ./system
 cp -R ~/.mui-clone/packages/material-ui-system/src ./system
 
-# Ensure output folder
-if [ ! -d "./../../output" ]; then
-  mkdir ./../../output
-fi
-
 # Extract components
-
-cd ~/.mui-clone
-mv node_modules_tmp node_modules
+pushd ~/.mui-clone
 yarn
-cd $pwd
-rm -rf ./../../output/json
+popd
+
+rm -rf $OUTPUT_FOLDER
+mkdir $OUTPUT_FOLDER
 npx babel-node ./src/extract.js --src=core
 npx babel-node ./src/extract.js --src=lab
-cd ~/.mui-clone
-mv node_modules node_modules_tmp
-cd $pwd
+
+# This is necessary, otherwise we get "Maximum call stack size exceeded"
+rm -rf ~/.mui-clone/node_modules
 
 # Extract json schemas
-cd ~/.mui-clone/packages/material-ui;
-"${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json Theme --topRef --ignoreErrors --excludePrivate --required -o "${pwd}/../../output/json/core/theme.json"
+pushd ~/.mui-clone/packages/material-ui;
+"${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json Theme --topRef --ignoreErrors --excludePrivate --required -o "$OUTPUT_FOLDER/json/core/theme.json"
 echo "Extracted theme.json"
-"${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json ThemeOptions --topRef --ignoreErrors --excludePrivate --required -o "${pwd}/../../output/json/core/theme-options.json"
+"${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json ThemeOptions --topRef --ignoreErrors --excludePrivate --required -o "$OUTPUT_FOLDER/json/core/theme-options.json"
 echo "Extracted theme-options.json"
-cd $pwd
+popd
