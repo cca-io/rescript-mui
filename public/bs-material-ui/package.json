@@ -18,6 +18,9 @@
   "repository": "https://github.com/jsiebern/bs-material-ui",
   "bugs": "https://github.com/jsiebern/bs-material-ui/issues",
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
+  "contributors": [
+    "Christoph Knittel <ck@cca.io>"
+  ],
   "main": "./src/MaterialUi.re",
   "scripts": {
     "bs:build": "bsb -make-world",

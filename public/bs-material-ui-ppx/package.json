@@ -6,6 +6,9 @@
   "homepage": "https://jsiebern.github.io/bs-material-ui",
   "bugs": "https://github.com/jsiebern/bs-material-ui/issues",
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
+  "contributors": [
+    "Christoph Knittel <ck@cca.io>"
+  ],
   "license": "MIT",
   "scripts": {
     "postinstall": "node ./copyPlatformBinaryInPlace.js"

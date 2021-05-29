@@ -8,6 +8,9 @@
     "build": "./build.sh"
   },
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
+  "contributors": [
+    "Christoph Knittel <ck@cca.io>"
+  ],
   "license": "MIT",
   "dependencies": {
     "@material-ui/core": "4.11.4",
