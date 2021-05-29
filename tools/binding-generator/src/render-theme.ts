@@ -97,7 +97,7 @@ const RenderTheme = () => {
 
   const onError = (e: any, code: string) => {
     console.log(e);
-    Fs.writeFileSync(`${__dirname}/Error.re`, code, 'utf-8');
+    Fs.writeFileSync(`${__dirname}/Error.res`, code, 'utf-8');
     process.exit();
   };
 

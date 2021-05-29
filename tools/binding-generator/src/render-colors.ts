@@ -1,10 +1,6 @@
 import * as Fs from 'fs';
 import * as Path from 'path';
-import {
-  capitalize,
-  isNumeric,
-  uncapitalize,
-} from './helpers/generate-reason-name';
+import { capitalize } from './helpers/generate-reason-name';
 import outputDirectory from './output';
 
 interface ColorFile {
@@ -30,14 +26,12 @@ const RenderColors = () => {
                 ${Object.keys(colors[colorName])
                   .map(
                     (key) => `
-                      [@bs.as "${key}"] ${
-                      isNumeric(key) ? 'c' : ''
-                    }${uncapitalize(key)}: string,
+                      \"${key}": string,
                   `,
                   )
                   .join('\n')}
             };
-            [@bs.module "@material-ui/core/colors"] external ${colorName}: t${capitalize(
+            @module("@material-ui/core/colors") external ${colorName}: t${capitalize(
         colorName,
       )} = "${colorName}";
         `,

@@ -13,13 +13,13 @@ const parseInit = () => {
   // Write component files
   components.forEach(({ name, src }) => {
     Fs.writeFileSync(
-      Path.join(outputDirectory, 'reason', muiSrc, `MaterialUi_${name}.re`),
+      Path.join(outputDirectory, 'reason', muiSrc, `MaterialUi_${name}.res`),
       src,
     );
   });
 
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_Lab.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_Lab.res'),
     components
       .map((component) =>
         component != null

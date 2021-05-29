@@ -533,8 +533,8 @@ export default {
     renderOption: {
       type: {
         name: 'custom',
-        reasonType: "('t, Js.t({..})) => React.element",
-        jsType: "('t, Js.t({..})) => React.element",
+        reasonType: "('t, {..}) => React.element",
+        jsType: "('t, {..}) => React.element",
       },
       required: false,
       description: '-',
@@ -542,8 +542,8 @@ export default {
     renderTags: {
       type: {
         name: 'custom',
-        reasonType: `(array('t), {. "index": int} => unit) => React.element`,
-        jsType: `(array('t), {. "index": int} => unit) => React.element`,
+        reasonType: `(array<'t>, {. "index": int} => unit) => React.element`,
+        jsType: `(array<'t>, {. "index": int} => unit) => React.element`,
       },
       required: false,
       description: '-',
@@ -558,8 +558,8 @@ export default {
     onHighlightChange: {
       type: {
         name: 'custom',
-        reasonType: "(Js.t({..}), 't, string) => unit",
-        jsType: "(Js.t({..}), 't, string) => unit",
+        reasonType: "({..}, 't, string) => unit",
+        jsType: "({..}, 't, string) => unit",
       },
       required: false,
       description: '-',
