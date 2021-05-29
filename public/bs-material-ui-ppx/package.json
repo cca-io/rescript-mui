@@ -18,10 +18,10 @@
   ],
   "description": "This is a ppx for using the withStyles component in @jsiebern/bs-material-ui",
   "peerDependencies": {
+    "@jsiebern/bs-material-ui": "^2.1.0",
     "@material-ui/core": "4.11.4",
     "@rescript/react": "^0.10",
-    "bs-platform": "^9.0.2",
-    "@jsiebern/bs-material-ui": "^2.1.0"
+    "rescript": "^9.1.2"
   },
   "publishConfig": {
     "access": "public"
