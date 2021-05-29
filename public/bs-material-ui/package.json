@@ -21,6 +21,7 @@
   "contributors": [
     "Christoph Knittel <ck@cca.io>"
   ],
+  "license": "MIT",
   "main": "./src/MaterialUi.re",
   "scripts": {
     "bs:build": "bsb -make-world",
