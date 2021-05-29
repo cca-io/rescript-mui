@@ -2,12 +2,12 @@
 let make = () => {
   open MaterialUi
   <div>
-    <TextField variant=#Outlined fullWidth=true placeholder="None" />
+    <TextField variant=#outlined fullWidth=true placeholder="None" />
     <br />
     <br />
-    <TextField size=#Medium variant=#Outlined fullWidth=true placeholder="Medium" />
+    <TextField size=#medium variant=#outlined fullWidth=true placeholder="Medium" />
     <br />
     <br />
-    <TextField size=#Small variant=#Outlined fullWidth=true placeholder="Small" />
+    <TextField size=#small variant=#outlined fullWidth=true placeholder="Small" />
   </div>
 }

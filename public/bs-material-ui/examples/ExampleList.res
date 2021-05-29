@@ -1,18 +1,16 @@
-module ExampleStyles = %makeStyles(
-  {
-    root: ReactDOM.Style.make(
-      ~width="100%",
-      ~maxWidth="360px",
-      ~position="relative",
-      ~overflow="auto",
-      ~maxHeight="300px",
-      ~backgroundColor="#FFFFFF",
-      (),
-    ),
-    listSection: ReactDOM.Style.make(~backgroundColor="inherit", ()),
-    ul: ReactDOM.Style.make(~backgroundColor="inherit", ~padding="0", ()),
-  }
-)
+module ExampleStyles = %makeStyles({
+  root: ReactDOM.Style.make(
+    ~width="100%",
+    ~maxWidth="360px",
+    ~position="relative",
+    ~overflow="auto",
+    ~maxHeight="300px",
+    ~backgroundColor="#FFFFFF",
+    (),
+  ),
+  listSection: ReactDOM.Style.make(~backgroundColor="inherit", ()),
+  ul: ReactDOM.Style.make(~backgroundColor="inherit", ~padding="0", ()),
+})
 
 @react.component
 let make = () => {
@@ -54,7 +52,7 @@ let make = () => {
         </List>
       </CardContent>
       <CardActions>
-        <Button color=#Primary variant=#Contained href="#/example/route">
+        <Button color=#primary variant=#contained href="#/example/route">
           {React.string("Go to example")}
         </Button>
       </CardActions>

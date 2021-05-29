@@ -180,7 +180,7 @@ let make = () => {
         </Select>
         <FormHelperText> {"Required"->React.string} </FormHelperText>
       </FormControl>
-      <FormControl variant=#Outlined className=classes.formControl>
+      <FormControl variant=#outlined className=classes.formControl>
         <InputLabel htmlFor="outlined-age-simple" ref={ReactDOM.Ref.callbackDomRef(inputLabel)}>
           {"Age"->React.string}
         </InputLabel>
@@ -196,7 +196,7 @@ let make = () => {
           <MenuItem value={MenuItem.Value.string("30")}> {"Thirty"->React.string} </MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant=#Filled className=classes.formControl>
+      <FormControl variant=#filled className=classes.formControl>
         <InputLabel htmlFor="filled-age-simple"> {"Age"->React.string} </InputLabel>
         <Select
           value={Select.Value.string(values.age)}

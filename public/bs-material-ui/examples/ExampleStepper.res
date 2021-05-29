@@ -48,7 +48,7 @@ let make = () => {
 
   open MaterialUi
   <div className=classes.root>
-    <Stepper activeStep={Number.int(activeStep)} orientation=#Vertical>
+    <Stepper activeStep={Number.int(activeStep)} orientation=#vertical>
       {steps->Belt.Array.mapWithIndex((index, label) =>
         <Step key=label>
           <StepLabel> {label->React.string} </StepLabel>
@@ -60,7 +60,7 @@ let make = () => {
                   {"Back"->React.string}
                 </Button>
                 <Button
-                  variant=#Contained color=#Primary onClick=handleNext className=classes.button>
+                  variant=#contained color=#primary onClick=handleNext className=classes.button>
                   {(activeStep === steps->Belt.Array.length - 1 ? "Finish" : "Next")->React.string}
                 </Button>
               </div>
@@ -72,7 +72,7 @@ let make = () => {
     {activeStep === steps->Belt.Array.length
       ? <Paper square=true elevation={Number.int(0)} className=classes.resetContainer>
           <Typography> {j`All steps completed - you're finished`->React.string} </Typography>
-          <Button onClick=handleReset className=classes.button color=#Secondary>
+          <Button onClick=handleReset className=classes.button color=#secondary>
             {"Reset"->React.string}
           </Button>
         </Paper>

@@ -4,7 +4,7 @@ let theme = MaterialUi_Theme.create({
   open MaterialUi_ThemeOptions
   make(
     ~overrides=Overrides.make(
-      ~muiButton=ButtonClassKey.make(
+      ~\"MuiButton"=ButtonClassKey.make(
         ~outlined=ReactDOM.Style.make(
           ~fontSize="12px",
           ~fontWeight="300",
@@ -27,7 +27,7 @@ let make = () => {
   open MaterialUi
   <div>
     <MuiThemeProvider theme>
-      <Button color=#Secondary variant=#Outlined>
+      <Button color=#secondary variant=#outlined>
         <ExampleIcons.SupervisedUserCircle.Filled /> {"Overriden Outline Styles"->React.string}
       </Button>
     </MuiThemeProvider>

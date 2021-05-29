@@ -1,6 +1,6 @@
 external toDomElement: 'a => Dom.element = "%identity"
 
-let messages: array<string> = %bs.raw(` [...'养绌聭'] `)
+let messages: array<string> = %raw(` [...'养绌聭'] `)
 
 type state = {
   anchorEl: option<Dom.element>,
@@ -24,7 +24,7 @@ let make = () => {
   open MaterialUi
   <div>
     <Popover
-      _open={Belt.Option.isSome(state.anchorEl)}
+      \"open"={Belt.Option.isSome(state.anchorEl)}
       onClose={_evt => dispatch(ClosePopup)}
       anchorEl=?{state.anchorEl->Belt.Option.map(el =>
         Popover.AnchorEl.obj(el->ReactDOM.domElementToObj->Obj.magic)

@@ -6,7 +6,7 @@ let make = () => {
 
   open MaterialUi
   <Paper square=true>
-    <Tabs value=Any(value) indicatorColor=#Primary textColor=#Primary onChange=handleChange>
+    <Tabs value=Any(value) indicatorColor=#primary textColor=#primary onChange=handleChange>
       <Tab label={"Active"->React.string} />
       <Tab label={"Disabled"->React.string} disabled=true />
       <Tab label={"Active"->React.string} />
