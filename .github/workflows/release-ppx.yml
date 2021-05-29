@@ -2,8 +2,8 @@ name: bs_material_ui_ppx pipeline
 
 on:
   push:
-    paths:
-      - 'public/bs-material-ui-ppx/package.json'
+    tags:
+      - v*
 
 jobs:
   build:

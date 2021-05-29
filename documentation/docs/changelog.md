@@ -16,7 +16,8 @@ title: Changelog
 
 ## 2.1.0
 
-- :rocket: Updated to MaterialUi v4.11.3
+- :rocket: Updated to MaterialUi v4.11.4
+- :rocket: Added StylesProvider
 - :boom: Switched to the new `@rescript/react` package (keep on `2.0.0` if you
   need legacy support)
 

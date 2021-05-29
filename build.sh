@@ -5,25 +5,22 @@ git pull
 rm -rf output
 
 cd tools/json-schema-parser
-yarn
 yarn build
 
 cd $pwd
 
 cd tools/component-extractor
-yarn
 yarn build
 
 cd $pwd
 
 cd tools/binding-generator
-yarn
 yarn build
 
 cd $pwd
 
-cd public/bs-material-ui-ppx
-yarn
-yarn build
+# Usually the PPX stays compatible and does not need to be rebuilt.
+# cd public/bs-material-ui-ppx
+# esy build
 
 cd $pwd
