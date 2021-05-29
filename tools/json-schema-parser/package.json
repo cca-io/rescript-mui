@@ -1,15 +1,12 @@
 {
   "name": "@jsiebern/json-schema-parser",
   "version": "0.0.11",
-  "main": "./dist/index.js",
-  "types": "./index.d.ts",
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
   "contributors": [
     "Christoph Knittel <ck@cca.io>"
   ],
   "license": "MIT",
   "scripts": {
-    "start": "parcel public/index.html",
     "build": "tsc --project ./tsconfig.json"
   },
   "devDependencies": {
@@ -17,7 +14,6 @@
     "bs-decode": "^0.3.3",
     "bsb-js": "^1.1.7",
     "clsx": "^1.0.4",
-    "parcel-bundler": "^1.10.3",
     "reason": "^3.3.4",
     "@rescript/react": "^0.10",
     "typescript": "^3.2.1"
