@@ -82,24 +82,31 @@ export const generateModuleName = (name: string) => {
   return capitalize(name).replace(/-/gm, '');
 };
 
-export const generateAttributeName = (name: string) => {
+export const generateTypeName = (name: string) => {
   name = name.replace(/@/g, '');
   name = uncapitalize(name);
 
   name = name.replace(/-(.{1})/g, (g) => g[1].toUpperCase());
 
+  return `t_${name}`;
+};
+
+export const generateAttributeName = (name: string) => {
   const firstLetter = name.substr(0, 1);
-  if (firstLetter === firstLetter.toUpperCase()) {
-    name = `_${name}`;
+  if (
+    reservedNames.indexOf(name) > -1 ||
+    name.indexOf('-') > -1 ||
+    name.indexOf('@') > -1 ||
+    isNumeric(name) ||
+    firstLetter === firstLetter.toUpperCase()
+  ) {
+    return `\\"${name}"`;
   }
 
-  if (reservedNames.indexOf(name) > -1) {
-    name = `_${name}`;
-  }
+  name = name.replace(/@/g, '');
+  name = uncapitalize(name);
 
-  if (isNumeric(name)) {
-    name = `_${name}`;
-  }
+  name = name.replace(/-(.{1})/g, (g) => g[1].toUpperCase());
 
   return name;
 };
