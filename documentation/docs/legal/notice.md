@@ -2,13 +2,13 @@
 title: Legal Notice
 ---
 
-**Jonathan Siebern**  
-Burgstr. 6  
-48301 Nottuln  
-Germany
+**Control Center Apps GmbH**  
+Kaiserstraße 113-115/11  
+1070 Wien  
+Austria
 
 **Contact**  
-jsiebern88@gmail.com
+christoph.knittel@cca.io
 
 **Legal disclaimer**  
 The contents of these pages were prepared with utmost care. Nonetheless, we
