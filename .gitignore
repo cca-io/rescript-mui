@@ -57,6 +57,7 @@ jspm_packages/
 
 # Common toolchain intermediate files
 temp
+.parcel-cache
 
 # Rush files
 common/temp/**

@@ -24,9 +24,9 @@
   "license": "MIT",
   "main": "./src/MaterialUi.re",
   "scripts": {
-    "bs:build": "bsb -make-world",
-    "bs:clean": "bsb -clean-world; rm -rf .cache",
-    "examples": "parcel examples/App/index.html"
+    "re:build": "rescript",
+    "re:clean": "rescript clean; rm -rf .cache",
+    "examples": "parcel serve examples/App/index.html"
   },
   "files": [
     "/src",
@@ -34,19 +34,20 @@
   ],
   "peerDependencies": {
     "@material-ui/core": "4.11.4",
-    "@rescript/react": "^0.10",
-    "bs-platform": "^9.0.2"
+    "@rescript/react": "^0.10.3"
   },
   "devDependencies": {
-    "@babel/helper-call-delegate": "^7.10.4",
+    "@babel/core": "^7.14.3",
     "@jsiebern/bs-material-ui-ppx": "^2.0.1",
     "@material-ui/core": "4.11.4",
     "@material-ui/icons": "4.11.2",
     "@mscharley/bs-material-ui-icons": "^2.0.0",
-    "@rescript/react": "^0.10",
-    "bs-platform": "^9.0.2",
-    "bsb-js": "^1.1.7",
-    "clsx": "^1.0.4"
+    "@rescript/react": "^0.10.3",
+    "clsx": "^1.0.4",
+    "parcel": "^2.0.0-beta.3.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "rescript": "^9.1.2"
   },
   "dependencies": {
     "react": "^17.0.2",
