@@ -8,7 +8,7 @@ manual binding to the
 
 The bindings are not complete and therefore do not offer the full functionality
 that the original does. Feel free to
-[open an issue](https://github.com/jsiebern/bs-material-ui/issues) if you're
+[open an issue](https://github.com/cca-io/rescript-material-ui/issues) if you're
 missing a vital use case with this component.
 
 It makes heavy use of several mixed unions. Please refer to

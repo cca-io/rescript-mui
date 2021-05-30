@@ -16,7 +16,7 @@ and you can access the shades by the following rules:
 - Keys that are prefixed by a char are lowercased
 
 Let's take the color
-[red](https://github.com/jsiebern/bs-material-ui/blob/4ceab30b4e63e6ca639c9cc5ad3a9a1adf52a970/public/bs-material-ui/src/MaterialUi_Colors.re#L582-L612)
+[red](https://github.com/cca-io/rescript-material-ui/blob/4ceab30b4e63e6ca639c9cc5ad3a9a1adf52a970/public/rescript-material-ui/src/MaterialUi_Colors.re#L582-L612)
 as an example. The following table shows the equivalent keys for accessing its
 shades:
 

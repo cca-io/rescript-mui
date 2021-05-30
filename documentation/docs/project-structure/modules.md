@@ -4,8 +4,8 @@ title: Modules
 
 ### Naming
 
-`bs-material-ui` provides all components in individual files. The file pattern
-is:
+`rescript-material-ui` provides all components in individual files. The file
+pattern is:
 
     MaterialUi_[COMPONENT_NAME].re
 
@@ -23,10 +23,10 @@ section of the MUI documentation.
 
 ### Global module
 
-For convenience, `bs-material-ui` offers the `MaterialUi` module as well. It
-includes all components and a few special ones, which will be discussed later.
-This modules primary purpose is not having to type out the `MaterialUi_` part of
-the component modules each time. Example:
+For convenience, `rescript-material-ui` offers the `MaterialUi` module as well.
+It includes all components and a few special ones, which will be discussed
+later. This modules primary purpose is not having to type out the `MaterialUi_`
+part of the component modules each time. Example:
 
 ```reason
 @react.component

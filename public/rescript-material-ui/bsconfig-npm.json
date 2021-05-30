@@ -1,15 +1,19 @@
 {
-  "name": "@jsiebern/bs-material-ui-lab",
+  "name": "rescript-material-ui",
   "reason": {
     "react-jsx": 3
   },
   "namespace": false,
-  "sources": ["src"],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ],
   "package-specs": {
     "module": "commonjs",
     "in-source": true
   },
-  "bs-dependencies": ["@rescript/react", "@jsiebern/bs-material-ui"],
+  "bs-dependencies": ["@rescript/react"],
   "warnings": {
     "number": "-103"
   },

@@ -1,5 +1,5 @@
 {
-  "name": "@jsiebern/bs-material-ui-lab",
+  "name": "rescript-material-ui",
   "reason": {
     "react-jsx": 3
   },
@@ -7,7 +7,8 @@
   "sources": [
     {
       "dir": "examples",
-      "subdirs": true
+      "subdirs": true,
+      "type": "dev"
     },
     "src"
   ],
@@ -15,7 +16,8 @@
     "module": "es6",
     "in-source": true
   },
-  "bs-dependencies": ["@rescript/react", "@jsiebern/bs-material-ui"],
+  "ppx-flags": ["rescript-material-ui-ppx/ppx"],
+  "bs-dependencies": ["@rescript/react", "@mscharley/bs-material-ui-icons"],
   "warnings": {
     "number": "-103"
   },
