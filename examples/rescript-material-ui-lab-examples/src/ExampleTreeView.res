@@ -1,16 +1,14 @@
-open MaterialUi;
-open MaterialUi_Lab;
+open MaterialUi
+open MaterialUi_Lab
 
-module ExpandMoreIcon =
-  ExampleIcons.SupervisedUserCircle.Make({
-    @bs.module("@material-ui/icons/ExpandMore")
-    external reactClass: React.component<'a> = "default";
-  });
-module ChevronRightIcon =
-  ExampleIcons.SupervisedUserCircle.Make({
-    @bs.module("@material-ui/icons/ChevronRight")
-    external reactClass: React.component<'a> = "default";
-  });
+module ExpandMoreIcon = ExampleIcons.SupervisedUserCircle.Make({
+  @module("@material-ui/icons/ExpandMore")
+  external reactClass: React.component<'a> = "default"
+})
+module ChevronRightIcon = ExampleIcons.SupervisedUserCircle.Make({
+  @module("@material-ui/icons/ChevronRight")
+  external reactClass: React.component<'a> = "default"
+})
 
 @react.component
 let make = () => {
@@ -19,9 +17,7 @@ let make = () => {
     flexGrow={Box.Value.int(1)}
     maxWidth={Box.Value.string("400px")}
     clone=true>
-    <TreeView
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}>
+    <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
       <TreeItem nodeId="1" label={"Applications"->React.string}>
         <TreeItem nodeId="2" label={"Calendar"->React.string} />
         <TreeItem nodeId="3" label={"Chrome"->React.string} />
@@ -38,4 +34,4 @@ let make = () => {
       </TreeItem>
     </TreeView>
   </Box>
-};
+}

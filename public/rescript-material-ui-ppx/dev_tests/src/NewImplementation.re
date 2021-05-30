@@ -14,7 +14,7 @@ module Styles: {
     rounded: string,
   };
   type useStyles = unit => classes;
-  [@bs.module "@material-ui/core/styles"]
+  [@module "@material-ui/core/styles"]
   external makeStyles: (. styles) => useStyles = "makeStyles";
   let useStyles =
     makeStyles(. {

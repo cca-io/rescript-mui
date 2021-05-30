@@ -1,6 +1,6 @@
-module StyledExample = %makeStyles(
-  {alignRight: ReactDOM.Style.make(~width="100%", ~textAlign="right", ())}
-)
+module StyledExample = %makeStyles({
+  alignRight: ReactDOM.Style.make(~width="100%", ~textAlign="right", ()),
+})
 
 module Theme = MaterialUi_Theme
 module StyledExampleTheme = %makeStyles(

@@ -6,18 +6,14 @@
   "namespace": false,
   "sources": [
     {
-      "dir": "examples",
-      "subdirs": true,
-      "type": "dev"
-    },
-    "src"
+      "dir": "src"
+    }
   ],
   "package-specs": {
-    "module": "es6",
+    "module": "commonjs",
     "in-source": true
   },
-  "ppx-flags": ["rescript-material-ui-ppx/ppx"],
-  "bs-dependencies": ["@rescript/react", "@mscharley/bs-material-ui-icons"],
+  "bs-dependencies": ["@rescript/react"],
   "warnings": {
     "number": "-103"
   },

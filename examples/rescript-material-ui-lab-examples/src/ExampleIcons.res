@@ -1,37 +1,26 @@
 module SupervisedUserCircle = {
   open Belt.Option
 
-  @bs.deriving(jsConverter)
+  @deriving(jsConverter)
   type color = [
-  | @bs.as("default")
-  #Default
-  | @bs.as("error")
-  #Error
-  | @bs.as("inherit")
-  #Inherit
-  | @bs.as("primary")
-  #Primary
-  | @bs.as("secondary")
-  #Secondary
-  | @bs.as("textPrimary")
-  #TextPrimary
-  | @bs.as("textSecondary")
-  #TextSecondary
+    | @as("default") #Default
+    | @as("error") #Error
+    | @as("inherit") #Inherit
+    | @as("primary") #Primary
+    | @as("secondary") #Secondary
+    | @as("textPrimary") #TextPrimary
+    | @as("textSecondary") #TextSecondary
   ]
 
-  @bs.deriving(jsConverter)
+  @deriving(jsConverter)
   type fontSize = [
-  | @bs.as("default")
-  #Default
-  | @bs.as("inherit")
-  #Inherit
-  | @bs.as("small")
-  #Small
-  | @bs.as("large")
-  #Large
+    | @as("default") #Default
+    | @as("inherit") #Inherit
+    | @as("small") #Small
+    | @as("large") #Large
   ]
 
-  @bs.obj
+  @obj
   external makePropsIcon: (
     ~className: string=?,
     ~color: string=?,
@@ -73,27 +62,27 @@ module SupervisedUserCircle = {
   }
 
   module Filled = Make({
-    @bs.module("@material-ui/icons/SupervisedUserCircle")
+    @module("@material-ui/icons/SupervisedUserCircle")
     external reactClass: React.component<'a> = "default"
   })
 
   module Outlined = Make({
-    @bs.module("@material-ui/icons/SupervisedUserCircleOutlined")
+    @module("@material-ui/icons/SupervisedUserCircleOutlined")
     external reactClass: React.component<'a> = "default"
   })
 
   module Rounded = Make({
-    @bs.module("@material-ui/icons/SupervisedUserCircleRounded")
+    @module("@material-ui/icons/SupervisedUserCircleRounded")
     external reactClass: React.component<'a> = "default"
   })
 
   module Sharp = Make({
-    @bs.module("@material-ui/icons/SupervisedUserCircleSharp")
+    @module("@material-ui/icons/SupervisedUserCircleSharp")
     external reactClass: React.component<'a> = "default"
   })
 
   module TwoTone = Make({
-    @bs.module("@material-ui/icons/SupervisedUserCircleTwoTone")
+    @module("@material-ui/icons/SupervisedUserCircleTwoTone")
     external reactClass: React.component<'a> = "default"
   })
 }

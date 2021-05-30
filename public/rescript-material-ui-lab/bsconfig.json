@@ -4,15 +4,9 @@
     "react-jsx": 3
   },
   "namespace": false,
-  "sources": [
-    {
-      "dir": "examples",
-      "subdirs": true
-    },
-    "src"
-  ],
+  "sources": ["src"],
   "package-specs": {
-    "module": "es6",
+    "module": "commonjs",
     "in-source": true
   },
   "bs-dependencies": ["@rescript/react", "rescript-material-ui"],

@@ -1,0 +1,26 @@
+{
+  "name": "rescript-material-ui-lab-examples",
+  "reason": {
+    "react-jsx": 3
+  },
+  "namespace": false,
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "bs-dependencies": [
+    "@rescript/react",
+    "rescript-material-ui",
+    "rescript-material-ui-lab"
+  ],
+  "warnings": {
+    "number": "-103"
+  },
+  "suffix": ".bs.js"
+}
