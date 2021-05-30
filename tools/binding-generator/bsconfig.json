@@ -18,9 +18,7 @@
   "suffix": ".bs.js",
   "namespace": true,
   "bs-dependencies": ["@rescript/react"],
-  "bsc-flags": ["-bs-super-errors"],
   "warnings": {
     "number": "-103"
-  },
-  "refmt": 3
+  }
 }

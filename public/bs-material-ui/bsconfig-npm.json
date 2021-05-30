@@ -13,9 +13,7 @@
     "module": "commonjs",
     "in-source": true
   },
-  "ppx-flags": [],
   "bs-dependencies": ["@rescript/react"],
-  "bsc-flags": ["-bs-super-errors"],
   "warnings": {
     "number": "-103"
   },

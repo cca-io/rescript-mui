@@ -18,7 +18,6 @@
   },
   "ppx-flags": ["@jsiebern/bs-material-ui-ppx/ppx"],
   "bs-dependencies": ["@rescript/react", "@mscharley/bs-material-ui-icons"],
-  "bsc-flags": ["-bs-super-errors"],
   "warnings": {
     "number": "-103"
   },

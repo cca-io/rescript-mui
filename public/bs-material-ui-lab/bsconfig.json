@@ -15,12 +15,9 @@
     "module": "es6",
     "in-source": true
   },
-  "ppx-flags": [],
   "bs-dependencies": ["@rescript/react", "@jsiebern/bs-material-ui"],
-  "bsc-flags": ["-bs-super-errors"],
   "warnings": {
     "number": "-103"
   },
-  "refmt": 3,
   "suffix": ".bs.js"
 }
