@@ -3,16 +3,9 @@
   "version": "2.1.0",
   "description": "This library provides ReScript bindings for material-ui-lab.",
   "keywords": [
-    "bucklescript",
-    "bucklescript-bindings",
-    "reason",
-    "reasonml",
-    "reasonml-bindings",
-    "ocaml",
-    "material-ui",
     "rescript",
-    "rescript-bindings",
-    "reason-react"
+    "bindings",
+    "material-ui"
   ],
   "homepage": "https://jsiebern.github.io/bs-material-ui",
   "repository": "https://github.com/jsiebern/bs-material-ui",
