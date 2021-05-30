@@ -14,7 +14,13 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 2.1.2
+
+- :boom: Republished 2.1.0 with the new package name `rescript-material-ui`.
+
 ## 2.1.0
+
+This is the last version with the old package name `@jsiebern/bs-material-ui`.
 
 - :rocket: Updated to MaterialUi v4.11.4
 - :rocket: Added StylesProvider
