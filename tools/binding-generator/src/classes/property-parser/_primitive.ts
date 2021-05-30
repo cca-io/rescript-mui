@@ -54,7 +54,7 @@ const factory = (propertyType: PropType$Primitive) => {
           if (inShape.is()) {
             this._reasonType = 'MaterialUi_Types.any';
           } else {
-            this._reasonType = 'Js.t({..})';
+            this._reasonType = '{..}';
           }
           break;
 
@@ -65,7 +65,7 @@ const factory = (propertyType: PropType$Primitive) => {
 
         // Generic array
         case 'array':
-          this._reasonType = `array(MaterialUi_Types.any)`;
+          this._reasonType = `array<MaterialUi_Types.any>`;
           break;
 
         // Void return types

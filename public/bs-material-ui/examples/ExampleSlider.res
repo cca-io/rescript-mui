@@ -1,12 +1,10 @@
-module SliderStyles = %makeStyles(
-  {
-    root: ReactDOM.Style.make(~width="250px", ()),
-    input: ReactDOM.Style.make(~width="250px", ()),
-  }
-)
+module SliderStyles = %makeStyles({
+  root: ReactDOM.Style.make(~width="250px", ()),
+  input: ReactDOM.Style.make(~width="250px", ()),
+})
 
 module VolumeUp = ExampleIcons.SupervisedUserCircle.Make({
-  @bs.module("@material-ui/icons/VolumeUp") external reactClass: React.component<'a> = "default"
+  @module("@material-ui/icons/VolumeUp") external reactClass: React.component<'a> = "default"
 })
 
 @react.component
@@ -17,20 +15,20 @@ let make = () => {
   open MaterialUi
   <div className=classes.root>
     <Typography gutterBottom=true> "Volume" </Typography>
-    <Grid container=true spacing=#V2 alignItems=#Center>
+    <Grid container=true spacing=#2 alignItems=#center>
       <Grid item=true> <VolumeUp /> </Grid>
-      <Grid item=true xs=Grid.Xs._true>
+      <Grid item=true xs=Grid.Xs.\"true">
         <Slider
           value={Slider.Value.int(value)}
           onChange={(_, v) => setValue(v)}
-          aria_labelledby="input-slider"
+          \"aria-labelledby"="input-slider"
         />
       </Grid>
       <Grid item=true>
         <Input
           className=classes.input
           value=Any(value)
-          margin=#Dense
+          margin=#dense
           onChange={e => setValue((e->ReactEvent.Form.target)["value"]->int_of_string)}
           onBlur={_ =>
             if value < 0 {

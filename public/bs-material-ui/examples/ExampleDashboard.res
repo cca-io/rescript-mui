@@ -129,14 +129,14 @@ let make = (~sidebar, ~children) => {
           <div className=classes.root>
             <CssBaseline />
             <AppBar
-              position=#Absolute
+              position=#absolute
               className={[
                 classes.appBar,
                 state.isOpen ? classes.appBarShift : "",
               ] |> Js.Array.joinWith(" ")}>
               <Toolbar disableGutters={!state.isOpen} className=classes.toolbar>
                 <IconButton
-                  color=#Inherit
+                  color=#inherit
                   onClick={_event => setState(Open)}
                   className={[
                     classes.menuButton,
@@ -146,8 +146,8 @@ let make = (~sidebar, ~children) => {
                 </IconButton>
                 <Typography
                   component={Typography.Component.string("h1")}
-                  variant=#H6
-                  color=#Inherit
+                  variant=#h6
+                  color=#inherit
                   noWrap=true
                   className=classes.title>
                   {"Dashboard"->React.string}
@@ -158,18 +158,18 @@ let make = (~sidebar, ~children) => {
                     e->ReactEvent.Mouse.preventDefault
                     setShow(false)
                   }}
-                  color=#Secondary>
+                  color=#secondary>
                   "Close Dashboard"
                 </Link>
-                <IconButton color=#Inherit>
-                  <Badge badgeContent={"4"->React.string} color=#Secondary>
+                <IconButton color=#inherit>
+                  <Badge badgeContent={"4"->React.string} color=#secondary>
                     <MscharleyBsMaterialUiIcons.Notifications.Filled />
                   </Badge>
                 </IconButton>
               </Toolbar>
             </AppBar>
             <Drawer
-              variant=#Permanent
+              variant=#permanent
               classes={Drawer.Classes.make(
                 ~paper=[
                   classes.drawerPaper,
@@ -177,7 +177,7 @@ let make = (~sidebar, ~children) => {
                 ] |> Js.Array.joinWith(" "),
                 (),
               )}
-              _open=state.isOpen>
+              \"open"=state.isOpen>
               <div className=classes.toolbarIcon>
                 <IconButton onClick={_event => setState(Close)}>
                   <MscharleyBsMaterialUiIcons.ChevronLeft.Filled />
@@ -191,7 +191,7 @@ let make = (~sidebar, ~children) => {
             </main>
           </div>
         </div>
-      : <MaterialUi_Button variant=#Outlined color=#Primary onClick={_ => setShow(true)}>
+      : <MaterialUi_Button variant=#outlined color=#primary onClick={_ => setShow(true)}>
           "Open Dashboard"
         </MaterialUi_Button>}
   </div>

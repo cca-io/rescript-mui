@@ -1,8 +1,7 @@
 // @ts-ignore
-import { parseRE, printRE } from 'reason';
 import { JSONSchema7 } from 'json-schema';
 import SchemaParser, { options } from './parsers/schema';
-import { generateAttributeName } from './helpers';
+import { generateTypeName } from './helpers';
 
 type onError = (e: any, code: string) => void;
 export default function (
@@ -25,12 +24,12 @@ export default function (
       .join('\n');
 
     if (parser.records) {
-      reason += `type t = t_${generateAttributeName(extractType)};`;
+      reason += `type t = ${generateTypeName(extractType)};`;
     }
 
     let refmt = '';
     try {
-      refmt = printRE(parseRE(reason));
+      refmt = reason;
     } catch (e) {
       if (onError) {
         onError(e, reason);

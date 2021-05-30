@@ -1,12 +1,10 @@
-module Styles = %makeStyles(
-  {
-    code: ReactDOM.Style.make(
-      ~fontFamily="SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace",
-      ~marginTop="15px",
-      (),
-    ),
-  }
-)
+module Styles = %makeStyles({
+  code: ReactDOM.Style.make(
+    ~fontFamily="SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace",
+    ~marginTop="15px",
+    (),
+  ),
+})
 
 @react.component
 let make = () => {
@@ -22,14 +20,14 @@ let make = () => {
 
   open MaterialUi
   <div>
-    <Typography variant=#H5> "ServerSide render of <ExampleBox />" </Typography>
+    <Typography variant=#h5> "ServerSide render of <ExampleBox />" </Typography>
     <TextField
       className=classes.code
       rows={TextField.Rows.int(5)}
       label={"HTML"->React.string}
       multiline=true
       fullWidth=true
-      variant=#Outlined
+      variant=#outlined
       defaultValue={TextField.DefaultValue.string(html)}
     />
     <TextField
@@ -38,7 +36,7 @@ let make = () => {
       label={"CSS"->React.string}
       multiline=true
       fullWidth=true
-      variant=#Outlined
+      variant=#outlined
       defaultValue={TextField.DefaultValue.string(css)}
     />
   </div>

@@ -7,10 +7,10 @@ let theme = MaterialUi_Theme.create({
 let make = () => {
   open MaterialUi
   <div>
-    <Button color=#Primary variant=#Outlined> {"Default Primary Color"->React.string} </Button>
+    <Button color=#primary variant=#outlined> {"Default Primary Color"->React.string} </Button>
     {" "->React.string}
     <MuiThemeProvider theme>
-      <Button color=#Primary variant=#Outlined> {"Themed Primary Color"->React.string} </Button>
+      <Button color=#primary variant=#outlined> {"Themed Primary Color"->React.string} </Button>
     </MuiThemeProvider>
   </div>
 }

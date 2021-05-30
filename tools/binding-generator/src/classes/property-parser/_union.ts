@@ -29,12 +29,12 @@ const factory = (propertyType: PropType$Union) => {
               return { ...prev, [pType]: unionProp.reasonType };
             case 'MaterialUi_Types.any':
               return { ...prev, any: 'MaterialUi_Types.any' };
-            case 'array(MaterialUi_Types.any)':
-              return { ...prev, array: 'array(MaterialUi_Types.any)' };
+            case 'array<MaterialUi_Types.any>':
+              return { ...prev, array: 'array<MaterialUi_Types.any>' };
             case 'MaterialUi_Types.Number.t':
               return { ...prev, int: 'int', float: 'float' };
-            case 'Js.Dict.t(MaterialUi_Types.any)':
-            case 'Js.t({..})':
+            case 'Js.Dict.t<MaterialUi_Types.any>':
+            case '{..}':
               return { ...prev, obj: unionProp.reasonType };
             case 'React.element':
             case 'React.element':
@@ -104,8 +104,8 @@ const factory = (propertyType: PropType$Union) => {
           .map(([key, value]) => `let ${key}: (${value}) => t;`)
           .join('\n')}
       } = {
-        [@unboxed]
-        type t =
+        @unboxed
+        type rec t =
           | Any('a): t;
           ${Object.entries(defs)
             .map(([key, value]) => `let ${key} = (v: ${value}) => Any(v);`)

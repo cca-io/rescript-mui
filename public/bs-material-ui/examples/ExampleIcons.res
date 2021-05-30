@@ -1,37 +1,26 @@
 module SupervisedUserCircle = {
   open Belt.Option
 
-  @bs.deriving(jsConverter)
+  @deriving(jsConverter)
   type color = [
-  | @bs.as("default")
-  #Default
-  | @bs.as("error")
-  #Error
-  | @bs.as("inherit")
-  #Inherit
-  | @bs.as("primary")
-  #Primary
-  | @bs.as("secondary")
-  #Secondary
-  | @bs.as("textPrimary")
-  #TextPrimary
-  | @bs.as("textSecondary")
-  #TextSecondary
+    | #default
+    | #error
+    | #inherit
+    | #primary
+    | #secondary
+    | #textPrimary
+    | #textSecondary
   ]
 
-  @bs.deriving(jsConverter)
+  @deriving(jsConverter)
   type fontSize = [
-  | @bs.as("default")
-  #Default
-  | @bs.as("inherit")
-  #Inherit
-  | @bs.as("small")
-  #Small
-  | @bs.as("large")
-  #Large
+    | #default
+    | #inherit
+    | #small
+    | #large
   ]
 
-  @bs.obj
+  @obj
   external makePropsIcon: (
     ~className: string=?,
     ~color: string=?,
@@ -73,27 +62,27 @@ module SupervisedUserCircle = {
   }
 
   module Filled = Make({
-    @bs.module("@material-ui/icons/SupervisedUserCircle")
+    @module("@material-ui/icons/SupervisedUserCircle")
     external reactClass: React.component<'a> = "default"
   })
 
   module Outlined = Make({
-    @bs.module("@material-ui/icons/SupervisedUserCircleOutlined")
+    @module("@material-ui/icons/SupervisedUserCircleOutlined")
     external reactClass: React.component<'a> = "default"
   })
 
   module Rounded = Make({
-    @bs.module("@material-ui/icons/SupervisedUserCircleRounded")
+    @module("@material-ui/icons/SupervisedUserCircleRounded")
     external reactClass: React.component<'a> = "default"
   })
 
   module Sharp = Make({
-    @bs.module("@material-ui/icons/SupervisedUserCircleSharp")
+    @module("@material-ui/icons/SupervisedUserCircleSharp")
     external reactClass: React.component<'a> = "default"
   })
 
   module TwoTone = Make({
-    @bs.module("@material-ui/icons/SupervisedUserCircleTwoTone")
+    @module("@material-ui/icons/SupervisedUserCircleTwoTone")
     external reactClass: React.component<'a> = "default"
   })
 }
@@ -105,44 +94,44 @@ let makeProps = () => ()
 @reason.component
 let make = () => <>
   <div>
-    <MaterialUi_Typography variant=#H6> {"Icon Types:"->rs} </MaterialUi_Typography>
-    <MaterialUi_Tooltip title={"Default"->rs} arrow=true placement=#Top>
+    <MaterialUi_Typography variant=#h6> {"Icon Types:"->rs} </MaterialUi_Typography>
+    <MaterialUi_Tooltip title={"Default"->rs} arrow=true placement=#top>
       <span> <SupervisedUserCircle.Filled /> </span>
     </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"Outlined"->rs} arrow=true placement=#Left>
+    <MaterialUi_Tooltip title={"Outlined"->rs} arrow=true placement=#left>
       <span> <SupervisedUserCircle.Outlined /> </span>
     </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"Rounded"->rs} arrow=true placement=#Top_End>
+    <MaterialUi_Tooltip title={"Rounded"->rs} arrow=true placement=#"top-end">
       <span> <SupervisedUserCircle.Rounded /> </span>
     </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"TwoTone"->rs} arrow=true placement=#Bottom>
+    <MaterialUi_Tooltip title={"TwoTone"->rs} arrow=true placement=#bottom>
       <span> <SupervisedUserCircle.TwoTone /> </span>
     </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"Sharp"->rs} arrow=true placement=#Right>
+    <MaterialUi_Tooltip title={"Sharp"->rs} arrow=true placement=#right>
       <span> <SupervisedUserCircle.Sharp /> </span>
     </MaterialUi_Tooltip>
   </div>
   <hr />
   <div>
-    <MaterialUi_Typography variant=#H6> {"Icon Colors:"->rs} </MaterialUi_Typography>
+    <MaterialUi_Typography variant=#h6> {"Icon Colors:"->rs} </MaterialUi_Typography>
     <MaterialUi_Tooltip title={"Primary"->rs}>
-      <span> <SupervisedUserCircle.Filled color=#Primary /> </span>
+      <span> <SupervisedUserCircle.Filled color=#primary /> </span>
     </MaterialUi_Tooltip>
     <MaterialUi_Tooltip title={"Secondary"->rs}>
-      <span> <SupervisedUserCircle.Filled color=#Secondary /> </span>
+      <span> <SupervisedUserCircle.Filled color=#secondary /> </span>
     </MaterialUi_Tooltip>
   </div>
   <hr />
   <div>
-    <MaterialUi_Typography variant=#H6> {"Icon Sizes:"->rs} </MaterialUi_Typography>
+    <MaterialUi_Typography variant=#h6> {"Icon Sizes:"->rs} </MaterialUi_Typography>
     <MaterialUi_Tooltip title={"Large"->rs}>
-      <span> <SupervisedUserCircle.Filled fontSize=#Large /> </span>
+      <span> <SupervisedUserCircle.Filled fontSize=#large /> </span>
     </MaterialUi_Tooltip>
     <MaterialUi_Tooltip title={"Default"->rs}>
-      <span> <SupervisedUserCircle.Filled fontSize=#Default /> </span>
+      <span> <SupervisedUserCircle.Filled fontSize=#default /> </span>
     </MaterialUi_Tooltip>
     <MaterialUi_Tooltip title={"Small"->rs}>
-      <span> <SupervisedUserCircle.Filled fontSize=#Small /> </span>
+      <span> <SupervisedUserCircle.Filled fontSize=#small /> </span>
     </MaterialUi_Tooltip>
   </div>
 </>

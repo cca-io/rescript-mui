@@ -15,7 +15,7 @@ const parseInit = () => {
   // Write component files
   components.forEach(({ name, src }) => {
     Fs.writeFileSync(
-      Path.join(outputDirectory, 'reason', muiSrc, `MaterialUi_${name}.re`),
+      Path.join(outputDirectory, 'reason', muiSrc, `MaterialUi_${name}.res`),
       src,
     );
   });
@@ -24,7 +24,7 @@ const parseInit = () => {
   const items = Fs.readdirSync(Path.join(__dirname, 'fixed-modules'));
   const itemsFiltered = items.filter(
     (item) =>
-      item.lastIndexOf('.re') === item.length - 3 ||
+      item.lastIndexOf('.res') === item.length - 4 ||
       item.lastIndexOf('.js') === item.length - 3,
   );
   itemsFiltered.forEach((item) => {
@@ -35,26 +35,26 @@ const parseInit = () => {
   });
 
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_Theme.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_Theme.res'),
     RenderTheme.theme,
   );
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_ThemeOptions.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_ThemeOptions.res'),
     RenderTheme.themeOptions,
   );
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_Colors.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_Colors.res'),
     RenderColors.colorModule,
   );
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_ThemeOptions.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_ThemeOptions.res'),
     RenderTheme.themeOptions,
   );
 
   // Write global file
   // ${itemsFiltered.map(item => `module ${item.replace('MaterialUi_', '').replace('.re', '')} = ${item.replace('.re', '')};`).join('\n')}
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi.re'),
+    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi.res'),
     `
     include MaterialUi_Types;
 
@@ -86,7 +86,7 @@ const parseInit = () => {
     outputDirectory,
     'reason',
     muiSrc,
-    'MaterialUi_Theme.re',
+    'MaterialUi_Theme.res',
   );
   const themeContents = Fs.readFileSync(themePath);
   Fs.writeFileSync(
@@ -94,11 +94,9 @@ const parseInit = () => {
     `
         ${themeContents}
 
-        [@bs.module "@material-ui/core/styles"] external create: MaterialUi_ThemeOptions.t => t = "createMuiTheme";
+        @module("@material-ui/core/styles") external create: MaterialUi_ThemeOptions.t => t = "createMuiTheme";
     `,
   );
-
-  // Todo: Generate .rei files
 };
 
 PrepareOutput(muiSrc);
