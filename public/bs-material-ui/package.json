@@ -1,7 +1,7 @@
 {
   "name": "@jsiebern/bs-material-ui",
   "version": "2.1.0",
-  "description": "This library provides Reason bindings for material-ui.",
+  "description": "This library provides ReScript bindings for material-ui.",
   "keywords": [
     "bucklescript",
     "bucklescript-bindings",
