@@ -1,14 +1,15 @@
 open MaterialUi
 open MaterialUi_Lab
 
-module ExpandMoreIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/ExpandMore")
-  external reactClass: React.component<'a> = "default"
-})
-module ChevronRightIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/ChevronRight")
-  external reactClass: React.component<'a> = "default"
-})
+module ExpandMoreIcon = {
+  @react.component @module("@material-ui/icons/ExpandMore")
+  external make: unit => React.element = "default"
+}
+
+module ChevronRightIcon = {
+  @react.component @module("@material-ui/icons/ChevronRight")
+  external make: unit => React.element = "default"
+}
 
 @react.component
 let make = () => {

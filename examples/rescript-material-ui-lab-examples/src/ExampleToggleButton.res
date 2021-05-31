@@ -1,47 +1,42 @@
 open MaterialUi
 open MaterialUi_Lab
 
-module FormatAlignLeftIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/FormatAlignLeft")
-  external reactClass: React.component<'a> = "default"
-})
-module FormatAlignCenterIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/FormatAlignCenter")
-  external reactClass: React.component<'a> = "default"
-})
-module FormatAlignRightIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/FormatAlignRight")
-  external reactClass: React.component<'a> = "default"
-})
-module FormatAlignJustifyIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/FormatAlignJustify")
-  external reactClass: React.component<'a> = "default"
-})
-module FormatBoldIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/FormatBold")
-  external reactClass: React.component<'a> = "default"
-})
-module FormatItalicIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/FormatItalic")
-  external reactClass: React.component<'a> = "default"
-})
-module FormatUnderlinedIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/FormatUnderlined")
-  external reactClass: React.component<'a> = "default"
-})
-module FormatColorFillIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/FormatColorFill")
-  external reactClass: React.component<'a> = "default"
-})
-module ArrowDropDownIcon = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/ArrowDropDown")
-  external reactClass: React.component<'a> = "default"
-})
-
-module Filled = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/SupervisedUserCircle")
-  external reactClass: React.component<'a> = "default"
-})
+module FormatAlignLeftIcon = {
+  @react.component @module("@material-ui/icons/FormatAlignLeft")
+  external make: unit => React.element = "default"
+}
+module FormatAlignCenterIcon = {
+  @react.component @module("@material-ui/icons/FormatAlignCenter")
+  external make: unit => React.element = "default"
+}
+module FormatAlignRightIcon = {
+  @react.component @module("@material-ui/icons/FormatAlignRight")
+  external make: unit => React.element = "default"
+}
+module FormatAlignJustifyIcon = {
+  @react.component @module("@material-ui/icons/FormatAlignJustify")
+  external make: unit => React.element = "default"
+}
+module FormatBoldIcon = {
+  @react.component @module("@material-ui/icons/FormatBold")
+  external make: unit => React.element = "default"
+}
+module FormatItalicIcon = {
+  @react.component @module("@material-ui/icons/FormatItalic")
+  external make: unit => React.element = "default"
+}
+module FormatUnderlinedIcon = {
+  @react.component @module("@material-ui/icons/FormatUnderlined")
+  external make: unit => React.element = "default"
+}
+module FormatColorFillIcon = {
+  @react.component @module("@material-ui/icons/FormatColorFill")
+  external make: unit => React.element = "default"
+}
+module ArrowDropDownIcon = {
+  @react.component @module("@material-ui/icons/ArrowDropDown")
+  external make: unit => React.element = "default"
+}
 
 @react.component
 let make = () => {

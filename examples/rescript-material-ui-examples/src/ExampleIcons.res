@@ -1,97 +1,33 @@
 module SupervisedUserCircle = {
-  open Belt.Option
-
-  @deriving(jsConverter)
-  type color = [
-    | #default
-    | #error
-    | #inherit
-    | #primary
-    | #secondary
-    | #textPrimary
-    | #textSecondary
-  ]
-
-  @deriving(jsConverter)
-  type fontSize = [
-    | #default
-    | #inherit
-    | #small
-    | #large
-  ]
-
-  @obj
-  external makePropsIcon: (
-    ~className: string=?,
-    ~color: string=?,
-    ~fontSize: string=?,
-    ~nativeColor: string=?,
-    ~titleAccess: string=?,
-    ~viewBox: string=?,
-    unit,
-  ) => _ = ""
-
-  module type IconClass = {
-    let reactClass: React.component<'a>
+  module Filled = {
+    @react.component @module("@material-ui/icons/SupervisedUserCircle")
+    external make: (~color: string=?, ~fontSize: string=?) => React.element = "default"
   }
 
-  module Make = (Icon: IconClass) => {
-    include Icon
-
-    @react.component
-    let make = (
-      ~color: option<color>=?,
-      ~className: option<string>=?,
-      ~fontSize: option<fontSize>=?,
-      ~nativeColor: option<string>=?,
-      ~titleAccess: option<string>=?,
-      ~viewBox: option<string>=?,
-    ) =>
-      React.createElement(
-        reactClass,
-        makePropsIcon(
-          ~className?,
-          ~color=?color->map(colorToJs),
-          ~fontSize=?fontSize->map(fontSizeToJs),
-          ~nativeColor?,
-          ~titleAccess?,
-          ~viewBox?,
-          (),
-        ),
-      )
+  module Outlined = {
+    @react.component @module("@material-ui/icons/SupervisedUserCircleOutlined")
+    external make: unit => React.element = "default"
   }
 
-  module Filled = Make({
-    @module("@material-ui/icons/SupervisedUserCircle")
-    external reactClass: React.component<'a> = "default"
-  })
+  module Rounded = {
+    @react.component @module("@material-ui/icons/SupervisedUserCircleRounded")
+    external make: unit => React.element = "default"
+  }
 
-  module Outlined = Make({
-    @module("@material-ui/icons/SupervisedUserCircleOutlined")
-    external reactClass: React.component<'a> = "default"
-  })
+  module Sharp = {
+    @react.component @module("@material-ui/icons/SupervisedUserCircleSharp")
+    external make: unit => React.element = "default"
+  }
 
-  module Rounded = Make({
-    @module("@material-ui/icons/SupervisedUserCircleRounded")
-    external reactClass: React.component<'a> = "default"
-  })
-
-  module Sharp = Make({
-    @module("@material-ui/icons/SupervisedUserCircleSharp")
-    external reactClass: React.component<'a> = "default"
-  })
-
-  module TwoTone = Make({
-    @module("@material-ui/icons/SupervisedUserCircleTwoTone")
-    external reactClass: React.component<'a> = "default"
-  })
+  module TwoTone = {
+    @react.component @module("@material-ui/icons/SupervisedUserCircleTwoTone")
+    external make: unit => React.element = "default"
+  }
 }
 
 let rs = React.string
 
-let makeProps = () => ()
-
-@reason.component
+@react.component
 let make = () => <>
   <div>
     <MaterialUi_Typography variant=#h6> {"Icon Types:"->rs} </MaterialUi_Typography>
@@ -115,23 +51,23 @@ let make = () => <>
   <div>
     <MaterialUi_Typography variant=#h6> {"Icon Colors:"->rs} </MaterialUi_Typography>
     <MaterialUi_Tooltip title={"Primary"->rs}>
-      <span> <SupervisedUserCircle.Filled color=#primary /> </span>
+      <span> <SupervisedUserCircle.Filled color="primary" /> </span>
     </MaterialUi_Tooltip>
     <MaterialUi_Tooltip title={"Secondary"->rs}>
-      <span> <SupervisedUserCircle.Filled color=#secondary /> </span>
+      <span> <SupervisedUserCircle.Filled color="secondary" /> </span>
     </MaterialUi_Tooltip>
   </div>
   <hr />
   <div>
     <MaterialUi_Typography variant=#h6> {"Icon Sizes:"->rs} </MaterialUi_Typography>
     <MaterialUi_Tooltip title={"Large"->rs}>
-      <span> <SupervisedUserCircle.Filled fontSize=#large /> </span>
+      <span> <SupervisedUserCircle.Filled fontSize="large" /> </span>
     </MaterialUi_Tooltip>
     <MaterialUi_Tooltip title={"Default"->rs}>
-      <span> <SupervisedUserCircle.Filled fontSize=#default /> </span>
+      <span> <SupervisedUserCircle.Filled fontSize="default" /> </span>
     </MaterialUi_Tooltip>
     <MaterialUi_Tooltip title={"Small"->rs}>
-      <span> <SupervisedUserCircle.Filled fontSize=#small /> </span>
+      <span> <SupervisedUserCircle.Filled fontSize="small" /> </span>
     </MaterialUi_Tooltip>
   </div>
 </>

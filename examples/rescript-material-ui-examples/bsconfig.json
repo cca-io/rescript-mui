@@ -17,8 +17,7 @@
   "ppx-flags": ["rescript-material-ui-ppx/ppx"],
   "bs-dependencies": [
     "@rescript/react",
-    "rescript-material-ui",
-    "@mscharley/bs-material-ui-icons"
+    "rescript-material-ui"
   ],
   "warnings": {
     "number": "-103"
