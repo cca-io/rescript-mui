@@ -13,8 +13,8 @@
     "rescript": "^9.1.2"
   },
   "dependencies": {
-    "@jsiebern/bs-material-ui": "file:../../bs-material-ui/",
     "@material-ui/core": "4.11.4",
-    "@rescript/react": "^0.10.3"
+    "@rescript/react": "^0.10.3",
+    "rescript-material-ui": "file:../../rescript-material-ui/"
   }
 }

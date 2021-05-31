@@ -7,10 +7,10 @@
 
 # Core
 rm ./../../output/reason/core/*.js;
-rm ./../../public/bs-material-ui/src/*;
-mv ./../../output/reason/core/*.res ./../../public/bs-material-ui/src;
+rm ./../../public/rescript-material-ui/src/*;
+mv ./../../output/reason/core/*.res ./../../public/rescript-material-ui/src;
 
 # Lab
 rm ./../../output/reason/lab/*.js;
-rm ./../../public/bs-material-ui-lab/src/*;
-mv ./../../output/reason/lab/*.res ./../../public/bs-material-ui-lab/src;
+rm ./../../public/rescript-material-ui-lab/src/*;
+mv ./../../output/reason/lab/*.res ./../../public/rescript-material-ui-lab/src;

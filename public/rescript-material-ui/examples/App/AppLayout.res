@@ -18,7 +18,7 @@ let make = () => {
         <CssBaseline />
         <Grid container=true>
           <Grid item=true md=Grid.Md.\"12">
-            <Typography variant=#h4> "@jsiebern/bs-material-ui Examples" </Typography>
+            <Typography variant=#h4> "ReScript Material-UI Examples" </Typography>
           </Grid>
         </Grid>
         <br />

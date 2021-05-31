@@ -1,5 +1,5 @@
 {
-  "name": "@jsiebern/bs-material-ui-lab",
+  "name": "rescript-material-ui-lab",
   "version": "2.1.0",
   "description": "This library provides ReScript bindings for material-ui-lab.",
   "keywords": [
@@ -7,9 +7,9 @@
     "bindings",
     "material-ui"
   ],
-  "homepage": "https://jsiebern.github.io/bs-material-ui",
-  "repository": "https://github.com/jsiebern/bs-material-ui",
-  "bugs": "https://github.com/jsiebern/bs-material-ui/issues",
+  "homepage": "https://rescript-material-ui.cca.io/",
+  "repository": "https://github.com/cca-io/rescript-material-ui",
+  "bugs": "https://github.com/cca-io/rescript-material-ui/issues",
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
   "contributors": [
     "Christoph Knittel <ck@cca.io>"
@@ -27,11 +27,11 @@
     "/bsconfig.json"
   ],
   "peerDependencies": {
-    "@jsiebern/bs-material-ui": "^2.1.0",
     "@material-ui/core": "4.11.4",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "@rescript/react": "^0.10.3",
-    "rescript": "^9.1.2"
+    "rescript": "^9.1.2",
+    "rescript-material-ui": "^2.1.0"
   },
   "devDependencies": {
     "@material-ui/core": "4.11.4",

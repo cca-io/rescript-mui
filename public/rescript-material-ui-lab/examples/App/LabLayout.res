@@ -13,7 +13,7 @@ let make = () =>
       <Grid container=true>
         <Grid item=true md=Grid.Md._12>
           <Typography variant=#H4>
-            "@jsiebern/bs-material-ui-lab Examples"
+            "ReScript Material-UI Lab Examples"
           </Typography>
         </Grid>
       </Grid>

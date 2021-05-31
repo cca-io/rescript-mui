@@ -1,9 +1,9 @@
 {
   "private": true,
   "workspaces": [
-    "public/bs-material-ui",
-    "public/bs-material-ui-lab",
-    "public/bs-material-ui-ppx",
+    "public/rescript-material-ui",
+    "public/rescript-material-ui-lab",
+    "public/rescript-material-ui-ppx",
     "tools/json-schema-parser",
     "tools/component-extractor",
     "tools/binding-generator"

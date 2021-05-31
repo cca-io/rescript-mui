@@ -13,6 +13,6 @@ yarn build
 popd
 
 # Usually the PPX stays compatible and does not need to be rebuilt.
-# pushd public/bs-material-ui-ppx
+# pushd public/rescript-material-ui-ppx
 # esy build
 # popd

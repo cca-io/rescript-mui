@@ -9,7 +9,7 @@ by [@dylanirlbeck](https://twitter.com/dylanirlbeck) that I'd recommed if you're
 interested in the nuts and bolts of these extensions:
 [Link to the article](https://dev.to/dylanirlbeck/intro-to-ppxs-for-reason-newcomers-2829).
 
-## Why do we need one for bs-material-ui?
+## Why do we need one for rescript-material-ui?
 
 When you create some
 [styles in MaterialUi](https://material-ui.com/guides/typescript/#usage-of-withstyles),

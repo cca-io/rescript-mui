@@ -44,8 +44,8 @@ This is the last version with the old package name `@jsiebern/bs-material-ui`.
 - :rocket: Updated to MaterialUi v3.9.2
 - :house: Moved all related repos into this one
 - :boom: Removed the icons from this repo, see the
-  [README](https://github.com/jsiebern/bs-material-ui/blob/master/README.md) for
-  more information
+  [README](https://github.com/cca-io/rescript-material-ui/blob/master/README.md)
+  for more information
 
 ## 1.0.0
 

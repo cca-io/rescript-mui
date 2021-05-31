@@ -21,7 +21,7 @@ paragraph.
 ### Contributing a missing prop
 
 You can send a PR for
-[this file](https://github.com/jsiebern/bs-material-ui/blob/master/tools/binding-generator/src/custom-props.ts)
+[this file](https://github.com/cca-io/rescript-material-ui/blob/master/tools/binding-generator/src/custom-props.ts)
 with the according information. The object format is roughly as follows:
 
 ```ts
