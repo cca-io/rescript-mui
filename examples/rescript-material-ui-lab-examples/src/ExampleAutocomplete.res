@@ -1,7 +1,7 @@
 type top100 = {
   title: string,
   year: int,
-};
+}
 let top100Films = [
   {title: "The Shawshank Redemption", year: 1994},
   {title: "The Godfather", year: 1972},
@@ -106,7 +106,7 @@ let top100Films = [
   {title: "Snatch", year: 2000},
   {title: "3 Idiots", year: 2009},
   {title: "Monty Python and the Holy Grail", year: 1975},
-];
+]
 
 @react.component
 let make = () => {
@@ -116,13 +116,9 @@ let make = () => {
     getOptionLabel={option => option.title}
     fullWidth=true
     renderInput={params =>
-        React.createElement(
-          MaterialUi.TextField.make,
-          Js.Obj.assign(
-            params->Obj.magic,
-            {"label": "Combo box", "variant": "outlined"},
-          ),
-        )
-    }
-  />;
-};
+      React.createElement(
+        MaterialUi.TextField.make,
+        Js.Obj.assign(params->Obj.magic, {"label": "Combo box", "variant": "outlined"}),
+      )}
+  />
+}

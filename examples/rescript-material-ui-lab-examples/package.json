@@ -1,7 +1,7 @@
 {
-  "name": "rescript-material-ui",
-  "version": "2.1.0",
-  "description": "This library provides ReScript bindings for material-ui.",
+  "name": "rescript-material-ui-lab-examples",
+  "version": "1.0.0",
+  "description": "This library provides ReScript bindings for material-ui-lab.",
   "keywords": [
     "rescript",
     "bindings",
@@ -15,27 +15,25 @@
     "Christoph Knittel <ck@cca.io>"
   ],
   "license": "MIT",
-  "main": "./src/MaterialUi.re",
+  "main": "./src/MaterialUi_Lab.re",
   "scripts": {
     "build": "rescript build -with-deps",
-    "clean": "rescript clean -with-deps"
+    "watch": "rescript build -with-deps -w",
+    "clean": "rescript clean -with-deps",
+    "format": "rescript format -all",
+    "start": "parcel serve src/App/index.html"
   },
   "files": [
     "/src",
     "/bsconfig.json"
   ],
-  "peerDependencies": {
+  "dependencies": {
     "@material-ui/core": "4.11.4",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "@rescript/react": "^0.10.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "rescript": "^9.1.2"
   },
   "devDependencies": {
-    "@material-ui/core": "4.11.4",
-    "@rescript/react": "^0.10.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "rescript": "^9.1.2"
+    "parcel": "^2.0.0-beta.3.1"
   }
 }
