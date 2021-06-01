@@ -105,6 +105,21 @@ module EnterpriseDashboardStyles = %makeStyles(
   }
 )
 
+module MenuIcon = {
+  @react.component @module("@material-ui/icons/Menu")
+  external make: unit => React.element = "default"
+}
+
+module NotificationsIcon = {
+  @react.component @module("@material-ui/icons/Notifications")
+  external make: unit => React.element = "default"
+}
+
+module ChevronLeftIcon = {
+  @react.component @module("@material-ui/icons/ChevronLeft")
+  external make: unit => React.element = "default"
+}
+
 type state = {isOpen: bool}
 
 type action =
@@ -142,7 +157,7 @@ let make = (~sidebar, ~children) => {
                     classes.menuButton,
                     state.isOpen ? classes.menuButtonHidden : "",
                   ] |> Js.Array.joinWith(" ")}>
-                  <MscharleyBsMaterialUiIcons.Menu.Filled />
+                  <MenuIcon />
                 </IconButton>
                 <Typography
                   component={Typography.Component.string("h1")}
@@ -163,7 +178,7 @@ let make = (~sidebar, ~children) => {
                 </Link>
                 <IconButton color=#inherit>
                   <Badge badgeContent={"4"->React.string} color=#secondary>
-                    <MscharleyBsMaterialUiIcons.Notifications.Filled />
+                    <NotificationsIcon />
                   </Badge>
                 </IconButton>
               </Toolbar>
@@ -179,9 +194,7 @@ let make = (~sidebar, ~children) => {
               )}
               \"open"=state.isOpen>
               <div className=classes.toolbarIcon>
-                <IconButton onClick={_event => setState(Close)}>
-                  <MscharleyBsMaterialUiIcons.ChevronLeft.Filled />
-                </IconButton>
+                <IconButton onClick={_event => setState(Close)}> <ChevronLeftIcon /> </IconButton>
               </div>
               <Divider />
               <div> sidebar </div>

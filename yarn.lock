@@ -1979,11 +1979,6 @@
     prop-types "^15.7.2"
     react-is "^16.8.0 || ^17.0.0"
 
-"@mscharley/bs-material-ui-icons@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@mscharley/bs-material-ui-icons/-/bs-material-ui-icons-2.0.0.tgz#07fc3f92f00779a09c1edda5dcb7c96e889294a3"
-  integrity sha512-bUZ6Op83pEMjQHSIFUzIBJuKZtjXnk0AAluMUUZJ87SA1pSeY/XE5JTFxSB/tXEpFIGXymXXGBwohEGaz/OHRg==
-
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.4.tgz#d4b3549a5db5de2683e0c1071ab4f140904bbf69"

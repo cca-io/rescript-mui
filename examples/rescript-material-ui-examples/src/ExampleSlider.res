@@ -3,9 +3,10 @@ module SliderStyles = %makeStyles({
   input: ReactDOM.Style.make(~width="250px", ()),
 })
 
-module VolumeUp = ExampleIcons.SupervisedUserCircle.Make({
-  @module("@material-ui/icons/VolumeUp") external reactClass: React.component<'a> = "default"
-})
+module VolumeUpIcon = {
+  @react.component @module("@material-ui/icons/VolumeUp")
+  external make: unit => React.element = "default"
+}
 
 @react.component
 let make = () => {
@@ -16,7 +17,7 @@ let make = () => {
   <div className=classes.root>
     <Typography gutterBottom=true> "Volume" </Typography>
     <Grid container=true spacing=#2 alignItems=#center>
-      <Grid item=true> <VolumeUp /> </Grid>
+      <Grid item=true> <VolumeUpIcon /> </Grid>
       <Grid item=true xs=Grid.Xs.\"true">
         <Slider
           value={Slider.Value.int(value)}

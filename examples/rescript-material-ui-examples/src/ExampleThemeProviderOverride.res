@@ -22,13 +22,18 @@ let theme = MaterialUi_Theme.create({
   )
 })
 
+module SupervisedUserCircleIcon = {
+  @react.component @module("@material-ui/icons/SupervisedUserCircle")
+  external make: (~color: string=?, ~fontSize: string=?) => React.element = "default"
+}
+
 @react.component
 let make = () => {
   open MaterialUi
   <div>
     <MuiThemeProvider theme>
       <Button color=#secondary variant=#outlined>
-        <ExampleIcons.SupervisedUserCircle.Filled /> {"Overriden Outline Styles"->React.string}
+        <SupervisedUserCircleIcon /> {"Overriden Outline Styles"->React.string}
       </Button>
     </MuiThemeProvider>
   </div>
