@@ -1,5 +1,5 @@
 {
-  "name": "rescript-material-ui-lab-examples",
+  "name": "rescript-material-ui-examples",
   "reason": {
     "react-jsx": 3
   },
@@ -14,6 +14,7 @@
     "module": "es6",
     "in-source": true
   },
+  "ppx-flags": ["rescript-material-ui-ppx/ppx"],
   "bs-dependencies": [
     "@rescript/react",
     "rescript-material-ui",
