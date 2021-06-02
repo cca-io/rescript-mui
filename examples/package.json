@@ -13,7 +13,7 @@
     "watch": "rescript build -with-deps -w",
     "clean": "rescript clean -with-deps",
     "format": "rescript format -all",
-    "start": "parcel serve src/App/index.html"
+    "start": "parcel serve src/index.html"
   },
   "files": [
     "/src",
@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "@material-ui/core": "4.11.4",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "@material-ui/icons": "4.11.2",
     "@rescript/react": "^0.10.3",
     "react": "^17.0.2",
