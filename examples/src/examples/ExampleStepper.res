@@ -1,17 +1,18 @@
-external jsonTopSpacingFunc: (Js.Json.t, . int) => int = "%identity"
-module T = MaterialUi.Theme
-let getSpacing = (theme, num) => theme.T.spacing(num)->string_of_int ++ "px"
+open MaterialUi
 
-module ExampleStyles = %makeStyles(
-  theme => {
-    root: ReactDOM.Style.make(~width="90%", ()),
-    button: ReactDOM.Style.make(
+external jsonTopSpacingFunc: (Js.Json.t, . int) => int = "%identity"
+let getSpacing = (theme: Theme.t, num) => theme.spacing(num)->string_of_int ++ "px"
+
+let useStyles = Styles.makeStylesWithTheme(theme =>
+  {
+    "root": ReactDOM.Style.make(~width="90%", ()),
+    "button": ReactDOM.Style.make(
       ~marginTop=theme->getSpacing(1),
       ~marginRight=theme->getSpacing(1),
       (),
     ),
-    actionsContainer: ReactDOM.Style.make(~marginBottom=theme->getSpacing(2), ()),
-    resetContainer: ReactDOM.Style.make(~padding=theme->getSpacing(3), ()),
+    "actionsContainer": ReactDOM.Style.make(~marginBottom=theme->getSpacing(2), ()),
+    "resetContainer": ReactDOM.Style.make(~padding=theme->getSpacing(3), ()),
   }
 )
 
@@ -36,7 +37,7 @@ let getStepContent = (step: int) => {
 
 @react.component
 let make = () => {
-  let classes = ExampleStyles.useStyles()
+  let classes = useStyles(.)
   let (activeStep, setActiveStep) = React.useReducer((_, step) => step, 0)
   let steps = getSteps()
 
@@ -46,21 +47,24 @@ let make = () => {
 
   let handleReset = _ => setActiveStep(0)
 
-  open MaterialUi
-  <div className=classes.root>
+  <div className={classes["root"]}>
     <Stepper activeStep={Number.int(activeStep)} orientation=#vertical>
       {steps->Belt.Array.mapWithIndex((index, label) =>
         <Step key=label>
           <StepLabel> {label->React.string} </StepLabel>
           <StepContent>
             <Typography> {getStepContent(index)->React.string} </Typography>
-            <div className=classes.actionsContainer>
+            <div className={classes["actionsContainer"]}>
               <div>
-                <Button disabled={activeStep === 0} onClick=handleBack className=classes.button>
+                <Button
+                  disabled={activeStep === 0} onClick=handleBack className={classes["button"]}>
                   {"Back"->React.string}
                 </Button>
                 <Button
-                  variant=#contained color=#primary onClick=handleNext className=classes.button>
+                  variant=#contained
+                  color=#primary
+                  onClick=handleNext
+                  className={classes["button"]}>
                   {(activeStep === steps->Belt.Array.length - 1 ? "Finish" : "Next")->React.string}
                 </Button>
               </div>
@@ -70,9 +74,9 @@ let make = () => {
       )}
     </Stepper>
     {activeStep === steps->Belt.Array.length
-      ? <Paper square=true elevation={Number.int(0)} className=classes.resetContainer>
+      ? <Paper square=true elevation={Number.int(0)} className={classes["resetContainer"]}>
           <Typography> {j`All steps completed - you're finished`->React.string} </Typography>
-          <Button onClick=handleReset className=classes.button color=#secondary>
+          <Button onClick=handleReset className={classes["button"]} color=#secondary>
             {"Reset"->React.string}
           </Button>
         </Paper>

@@ -1,11 +1,12 @@
-module T = MaterialUi.Theme
-let getSpacing = (theme, num) => theme.T.spacing(num)->string_of_int ++ "px"
+open MaterialUi
 
-module ExampleStyles = %makeStyles(
-  theme => {
-    root: ReactDOM.Style.make(~display="flex", ~flexWrap="wrap", ()),
-    formControl: ReactDOM.Style.make(~margin=theme->getSpacing(1), ~minWidth="120px", ()),
-    selectEmpty: ReactDOM.Style.make(~marginTop=theme->getSpacing(2), ()),
+let getSpacing = (theme: Theme.t, num) => theme.spacing(num)->string_of_int ++ "px"
+
+let useStyles = Styles.makeStylesWithTheme(theme =>
+  {
+    "root": ReactDOM.Style.make(~display="flex", ~flexWrap="wrap", ()),
+    "formControl": ReactDOM.Style.make(~margin=theme->getSpacing(1), ~minWidth="120px", ()),
+    "selectEmpty": ReactDOM.Style.make(~marginTop=theme->getSpacing(2), ()),
   }
 )
 
@@ -16,7 +17,7 @@ type state = {
 
 @react.component
 let make = () => {
-  let classes = ExampleStyles.useStyles()
+  let classes = useStyles(.)
 
   let (values, setValues) = React.useReducer((_, v) => v, {age: "", name: "hai"})
 
@@ -38,10 +39,9 @@ let make = () => {
   let handleChangeName = (e: ReactEvent.Form.t, _) =>
     setValues({...values, name: (e->ReactEvent.Form.target)["value"]})
 
-  open MaterialUi
   <form autoComplete="off">
-    <div className=classes.root>
-      <FormControl className=classes.formControl>
+    <div className={classes["root"]}>
+      <FormControl className={classes["formControl"]}>
         <InputLabel htmlFor="age-simple"> {"Age"->React.string} </InputLabel>
         <Select
           value={Select.Value.string(values.age)}
@@ -53,7 +53,7 @@ let make = () => {
           <MenuItem value={MenuItem.Value.string("30")}> {"Thirty"->React.string} </MenuItem>
         </Select>
       </FormControl>
-      <FormControl className=classes.formControl>
+      <FormControl className={classes["formControl"]}>
         <InputLabel htmlFor="age-helper"> {"Age"->React.string} </InputLabel>
         <Select
           value={Select.Value.string(values.age)}
@@ -66,13 +66,13 @@ let make = () => {
         </Select>
         <FormHelperText> {"Some important helper text"->React.string} </FormHelperText>
       </FormControl>
-      <FormControl className=classes.formControl>
+      <FormControl className={classes["formControl"]}>
         <Select
           value={Select.Value.string(values.age)}
           onChange=handleChangeAge
           displayEmpty=true
           name="age"
-          className=classes.selectEmpty>
+          className={classes["selectEmpty"]}>
           <MenuItem value={MenuItem.Value.string("")}> <em> {"None"->React.string} </em> </MenuItem>
           <MenuItem value={MenuItem.Value.string("10")}> {"Ten"->React.string} </MenuItem>
           <MenuItem value={MenuItem.Value.string("20")}> {"Twenty"->React.string} </MenuItem>
@@ -80,7 +80,7 @@ let make = () => {
         </Select>
         <FormHelperText> {"Without label"->React.string} </FormHelperText>
       </FormControl>
-      <FormControl className=classes.formControl>
+      <FormControl className={classes["formControl"]}>
         <InputLabel shrink=true htmlFor="age-label-placeholder"> {"Age"->React.string} </InputLabel>
         <Select
           value={Select.Value.string(values.age)}
@@ -88,7 +88,7 @@ let make = () => {
           input={<Input name="age" id="age-label-placeholder" />}
           displayEmpty=true
           name="age"
-          className=classes.selectEmpty>
+          className={classes["selectEmpty"]}>
           <MenuItem value={MenuItem.Value.string("")}> <em> {"None"->React.string} </em> </MenuItem>
           <MenuItem value={MenuItem.Value.string("10")}> {"Ten"->React.string} </MenuItem>
           <MenuItem value={MenuItem.Value.string("20")}> {"Twenty"->React.string} </MenuItem>
@@ -96,7 +96,7 @@ let make = () => {
         </Select>
         <FormHelperText> {"Label + placeholder"->React.string} </FormHelperText>
       </FormControl>
-      <FormControl className=classes.formControl disabled=true>
+      <FormControl className={classes["formControl"]} disabled=true>
         <InputLabel htmlFor="name-disabled"> "Name" </InputLabel>
         <Select
           value={Select.Value.string(values.name)}
@@ -109,7 +109,7 @@ let make = () => {
         </Select>
         <FormHelperText> {"Disabled"->React.string} </FormHelperText>
       </FormControl>
-      <FormControl className=classes.formControl error=true>
+      <FormControl className={classes["formControl"]} error=true>
         <InputLabel htmlFor="name-error"> "Name" </InputLabel>
         <Select
           value={Select.Value.string(values.name)}
@@ -124,7 +124,7 @@ let make = () => {
         </Select>
         <FormHelperText> {"Error"->React.string} </FormHelperText>
       </FormControl>
-      <FormControl className=classes.formControl>
+      <FormControl className={classes["formControl"]}>
         <InputLabel htmlFor="name-readonly"> "Name" </InputLabel>
         <Select
           value={Select.Value.string(values.name)}
@@ -137,7 +137,7 @@ let make = () => {
         </Select>
         <FormHelperText> {"Read only"->React.string} </FormHelperText>
       </FormControl>
-      <FormControl className=classes.formControl>
+      <FormControl className={classes["formControl"]}>
         <InputLabel htmlFor="age-auto-width"> {"Age"->React.string} </InputLabel>
         <Select
           value={Select.Value.string(values.age)}
@@ -151,13 +151,13 @@ let make = () => {
         </Select>
         <FormHelperText> {"Auto width"->React.string} </FormHelperText>
       </FormControl>
-      <FormControl className=classes.formControl>
+      <FormControl className={classes["formControl"]}>
         <Select
           value={Select.Value.string(values.age)}
           onChange=handleChangeAge
           name="age"
           displayEmpty=true
-          className=classes.selectEmpty>
+          className={classes["selectEmpty"]}>
           <MenuItem value={MenuItem.Value.string("")} disabled=true> "Placeholder" </MenuItem>
           <MenuItem value={MenuItem.Value.string("10")}> {"Ten"->React.string} </MenuItem>
           <MenuItem value={MenuItem.Value.string("20")}> {"Twenty"->React.string} </MenuItem>
@@ -165,14 +165,14 @@ let make = () => {
         </Select>
         <FormHelperText> {"Placeholder"->React.string} </FormHelperText>
       </FormControl>
-      <FormControl required=true className=classes.formControl>
+      <FormControl required=true className={classes["formControl"]}>
         <InputLabel htmlFor="age-required"> {"Age"->React.string} </InputLabel>
         <Select
           value={Select.Value.string(values.age)}
           onChange=handleChangeAge
           name="age"
           inputProps={"id": "age-required"}
-          className=classes.selectEmpty>
+          className={classes["selectEmpty"]}>
           <MenuItem value={MenuItem.Value.string("")}> <em> {"None"->React.string} </em> </MenuItem>
           <MenuItem value={MenuItem.Value.string("10")}> {"Ten"->React.string} </MenuItem>
           <MenuItem value={MenuItem.Value.string("20")}> {"Twenty"->React.string} </MenuItem>
@@ -180,7 +180,7 @@ let make = () => {
         </Select>
         <FormHelperText> {"Required"->React.string} </FormHelperText>
       </FormControl>
-      <FormControl variant=#outlined className=classes.formControl>
+      <FormControl variant=#outlined className={classes["formControl"]}>
         <InputLabel htmlFor="outlined-age-simple" ref={ReactDOM.Ref.callbackDomRef(inputLabel)}>
           {"Age"->React.string}
         </InputLabel>
@@ -196,7 +196,7 @@ let make = () => {
           <MenuItem value={MenuItem.Value.string("30")}> {"Thirty"->React.string} </MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant=#filled className=classes.formControl>
+      <FormControl variant=#filled className={classes["formControl"]}>
         <InputLabel htmlFor="filled-age-simple"> {"Age"->React.string} </InputLabel>
         <Select
           value={Select.Value.string(values.age)}

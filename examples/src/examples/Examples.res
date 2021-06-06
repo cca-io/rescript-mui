@@ -40,19 +40,8 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=#center>
-    <Grid item=true md=Grid.Md.\"6"> <Typography variant=#h5> "WithStylesSafe" </Typography> </Grid>
-    <Grid item=true md=Grid.Md.\"6"> <ExampleWithStylesSafe /> </Grid>
-  </Grid>
-  <br />
-  <br />
-  <Divider />
-  <br />
-  <br />
-  <Grid container=true alignItems=#center>
-    <Grid item=true md=Grid.Md.\"6">
-      <Typography variant=#h5> "WithStylesUnsafe" </Typography>
-    </Grid>
-    <Grid item=true md=Grid.Md.\"6"> <ExampleWithStylesUnsafe /> </Grid>
+    <Grid item=true md=Grid.Md.\"6"> <Typography variant=#h5> "Styles" </Typography> </Grid>
+    <Grid item=true md=Grid.Md.\"6"> <ExampleStyles /> </Grid>
   </Grid>
   <br />
   <br />
