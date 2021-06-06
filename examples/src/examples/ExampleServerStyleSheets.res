@@ -1,5 +1,7 @@
-module Styles = %makeStyles({
-  code: ReactDOM.Style.make(
+open MaterialUi
+
+let useStyles = Styles.makeStyles({
+  "code": ReactDOM.Style.make(
     ~fontFamily="SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace",
     ~marginTop="15px",
     (),
@@ -8,7 +10,7 @@ module Styles = %makeStyles({
 
 @react.component
 let make = () => {
-  let classes = Styles.useStyles()
+  let classes = useStyles(.)
   let (html, css) = React.useMemo0(() => {
     let sheets = MaterialUi.Core.ServerStyleSheets.make()
     let html = ReactDOMServer.renderToString(
@@ -18,11 +20,10 @@ let make = () => {
     (html, css)
   })
 
-  open MaterialUi
   <div>
     <Typography variant=#h5> "ServerSide render of <ExampleBox />" </Typography>
     <TextField
-      className=classes.code
+      className={classes["code"]}
       rows={TextField.Rows.int(5)}
       label={"HTML"->React.string}
       multiline=true
@@ -31,7 +32,7 @@ let make = () => {
       defaultValue={TextField.DefaultValue.string(html)}
     />
     <TextField
-      className=classes.code
+      className={classes["code"]}
       rows={TextField.Rows.int(5)}
       label={"CSS"->React.string}
       multiline=true

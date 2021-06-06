@@ -1,5 +1,7 @@
-module ExampleStyles = %makeStyles({
-  root: ReactDOM.Style.make(
+open MaterialUi
+
+let useStyles = Styles.makeStyles({
+  "root": ReactDOM.Style.make(
     ~width="100%",
     ~maxWidth="360px",
     ~position="relative",
@@ -8,24 +10,24 @@ module ExampleStyles = %makeStyles({
     ~backgroundColor="#FFFFFF",
     (),
   ),
-  listSection: ReactDOM.Style.make(~backgroundColor="inherit", ()),
-  ul: ReactDOM.Style.make(~backgroundColor="inherit", ~padding="0", ()),
+  "listSection": ReactDOM.Style.make(~backgroundColor="inherit", ()),
+  "ul": ReactDOM.Style.make(~backgroundColor="inherit", ~padding="0", ()),
 })
 
 @react.component
 let make = () => {
-  let classes = ExampleStyles.useStyles()
+  let classes = useStyles(.)
   let subheader = <li />
-  open MaterialUi
+
   <Card>
     <Card>
       <CardHeader title={React.string("Example Title")} subheader={React.string("A Subtitle")} />
       <CardContent>
-        <List className=classes.root subheader>
+        <List className={classes["root"]} subheader>
           {React.array(
             [0, 1, 2, 3, 4] |> Array.map(sectionId =>
-              <li key={"section-" ++ string_of_int(sectionId)} className=classes.listSection>
-                <ul className=classes.ul>
+              <li key={"section-" ++ string_of_int(sectionId)} className={classes["listSection"]}>
+                <ul className={classes["ul"]}>
                   {React.array(
                     Array.append(
                       [

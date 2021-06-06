@@ -118,13 +118,11 @@ module Typography = MaterialUi_Typography
 module Zoom = MaterialUi_Zoom
 
 module Colors = MaterialUi_Colors
-module type WithStylesSafeTemplate = MaterialUi_WithStyles.WithStylesSafeTemplate
-module WithStylesSafe = MaterialUi_WithStyles.WithStylesSafe
 module Core = MaterialUi_Core
 module Box = MaterialUi_Box
 module Theme = MaterialUi_Theme
 module ThemeOptions = MaterialUi_ThemeOptions
 module ThemeProvider = MaterialUi_ThemeProvider
 module ThemeHelpers = MaterialUi_ThemeHelpers
+module Styles = MaterialUi_Styles
 module StylesProvider = MaterialUi_StylesProvider
-module WithStyles = MaterialUi_WithStyles

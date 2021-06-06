@@ -10,10 +10,9 @@ let drawerWidth = 240
 let px_of_float = x => x->int_of_float->string_of_int ++ "px"
 let px_of_int = x => x->string_of_int ++ "px"
 
-let style = ReactDOM.Style.make
-module EnterpriseDashboardStyles = %makeStyles(
-  theme => {
-    wrapper: style(
+let useStyles = Styles.makeStylesWithTheme(theme =>
+  {
+    "wrapper": ReactDOM.Style.make(
       ~position="fixed",
       ~width="100vw",
       ~height="100vh",
@@ -23,10 +22,11 @@ module EnterpriseDashboardStyles = %makeStyles(
       ~background="#FFFFFF",
       (),
     ),
-    root: style(~display="flex", ()),
-    toolbar: style(~paddingRight="24px", ()) /* keep right padding when drawer closed */,
-    toolbarIcon: ReactDOM.Style.combine(
-      style(
+    "root": ReactDOM.Style.make(~display="flex", ()),
+    "toolbar": ReactDOM.Style.make(~paddingRight="24px", ()),
+    // keep right padding when drawer closed
+    "toolbarIcon": ReactDOM.Style.combine(
+      ReactDOM.Style.make(
         ~display="flex",
         ~alignItems="center",
         ~justifyContent="flex-end",
@@ -35,7 +35,7 @@ module EnterpriseDashboardStyles = %makeStyles(
       ),
       theme.mixins.toolbar,
     ),
-    appBar: style(
+    "appBar": ReactDOM.Style.make(
       ~zIndex=(theme.zIndex.drawer +. 1.0)->int_of_float->string_of_int,
       ~transition=ThemeHelpers.transitionCreate(
         ~theme,
@@ -47,7 +47,7 @@ module EnterpriseDashboardStyles = %makeStyles(
       ),
       (),
     ),
-    appBarShift: style(
+    "appBarShift": ReactDOM.Style.make(
       ~marginLeft=drawerWidth->string_of_int ++ "px",
       ~width=j`calc(100% - $(drawerWidth)px)`,
       ~transition=ThemeHelpers.transitionCreate(
@@ -60,10 +60,10 @@ module EnterpriseDashboardStyles = %makeStyles(
       ),
       (),
     ),
-    menuButton: style(~marginLeft="12px", ~marginRight="36px", ()),
-    menuButtonHidden: style(~display="none", ()),
-    title: style(~flexGrow="1", ()),
-    drawerPaper: style(
+    "menuButton": ReactDOM.Style.make(~marginLeft="12px", ~marginRight="36px", ()),
+    "menuButtonHidden": ReactDOM.Style.make(~display="none", ()),
+    "title": ReactDOM.Style.make(~flexGrow="1", ()),
+    "drawerPaper": ReactDOM.Style.make(
       ~position="relative",
       ~whiteSpace="nowrap",
       ~width=j`$(drawerWidth)px`,
@@ -76,7 +76,7 @@ module EnterpriseDashboardStyles = %makeStyles(
       ),
       (),
     ),
-    drawerPaperClose: style(
+    "drawerPaperClose": ReactDOM.Style.make(
       ~overflowX="hidden",
       ~transition=ThemeHelpers.transitionCreate(
         ~theme,
@@ -91,17 +91,17 @@ module EnterpriseDashboardStyles = %makeStyles(
     )->ThemeHelpers.addBreakpoint(
       ~theme,
       ~breakpoint=#SM,
-      ~style=style(~width=theme.spacing(9)->px_of_int, ()),
+      ~style=ReactDOM.Style.make(~width=theme.spacing(9)->px_of_int, ()),
     ),
-    appBarSpacer: theme.mixins.toolbar,
-    content: style(
+    "appBarSpacer": theme.mixins.toolbar,
+    "content": ReactDOM.Style.make(
       ~flexGrow="1",
       ~padding=theme.spacing(3)->px_of_int,
       ~height="100vh",
       ~overflow="auto",
       (),
     ),
-    h5: style(~marginBottom=theme.spacing(2)->px_of_int, ()),
+    "h5": ReactDOM.Style.make(~marginBottom=theme.spacing(2)->px_of_int, ()),
   }
 )
 
@@ -136,26 +136,26 @@ let make = (~sidebar, ~children) => {
   , {isOpen: true})
   let (show, setShow) = React.useReducer((_, v) => v, false)
 
-  let classes = EnterpriseDashboardStyles.useStyles()
+  let classes = useStyles(.)
 
   <div>
     {show
-      ? <div className=classes.wrapper>
-          <div className=classes.root>
+      ? <div className={classes["wrapper"]}>
+          <div className={classes["root"]}>
             <CssBaseline />
             <AppBar
               position=#absolute
               className={[
-                classes.appBar,
-                state.isOpen ? classes.appBarShift : "",
+                classes["appBar"],
+                state.isOpen ? classes["appBarShift"] : "",
               ] |> Js.Array.joinWith(" ")}>
-              <Toolbar disableGutters={!state.isOpen} className=classes.toolbar>
+              <Toolbar disableGutters={!state.isOpen} className={classes["toolbar"]}>
                 <IconButton
                   color=#inherit
                   onClick={_event => setState(Open)}
                   className={[
-                    classes.menuButton,
-                    state.isOpen ? classes.menuButtonHidden : "",
+                    classes["menuButton"],
+                    state.isOpen ? classes["menuButtonHidden"] : "",
                   ] |> Js.Array.joinWith(" ")}>
                   <MenuIcon />
                 </IconButton>
@@ -164,7 +164,7 @@ let make = (~sidebar, ~children) => {
                   variant=#h6
                   color=#inherit
                   noWrap=true
-                  className=classes.title>
+                  className={classes["title"]}>
                   {"Dashboard"->React.string}
                 </Typography>
                 <Link
@@ -187,20 +187,20 @@ let make = (~sidebar, ~children) => {
               variant=#permanent
               classes={Drawer.Classes.make(
                 ~paper=[
-                  classes.drawerPaper,
-                  state.isOpen ? "" : classes.drawerPaperClose,
+                  classes["drawerPaper"],
+                  state.isOpen ? "" : classes["drawerPaperClose"],
                 ] |> Js.Array.joinWith(" "),
                 (),
               )}
               \"open"=state.isOpen>
-              <div className=classes.toolbarIcon>
+              <div className={classes["toolbarIcon"]}>
                 <IconButton onClick={_event => setState(Close)}> <ChevronLeftIcon /> </IconButton>
               </div>
               <Divider />
               <div> sidebar </div>
             </Drawer>
-            <main className=classes.content>
-              <div className=classes.appBarSpacer /> <div> children </div>
+            <main className={classes["content"]}>
+              <div className={classes["appBarSpacer"]} /> <div> children </div>
             </main>
           </div>
         </div>

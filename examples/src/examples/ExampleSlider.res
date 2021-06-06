@@ -1,6 +1,8 @@
-module SliderStyles = %makeStyles({
-  root: ReactDOM.Style.make(~width="250px", ()),
-  input: ReactDOM.Style.make(~width="250px", ()),
+open MaterialUi
+
+let useStyles = Styles.makeStyles({
+  "root": ReactDOM.Style.make(~width="250px", ()),
+  "input": ReactDOM.Style.make(~width="250px", ()),
 })
 
 module VolumeUpIcon = {
@@ -10,11 +12,10 @@ module VolumeUpIcon = {
 
 @react.component
 let make = () => {
-  let classes = SliderStyles.useStyles()
+  let classes = useStyles(.)
   let (value, setValue) = React.useReducer((_, v) => v, 0)
 
-  open MaterialUi
-  <div className=classes.root>
+  <div className={classes["root"]}>
     <Typography gutterBottom=true> "Volume" </Typography>
     <Grid container=true spacing=#2 alignItems=#center>
       <Grid item=true> <VolumeUpIcon /> </Grid>
@@ -27,7 +28,7 @@ let make = () => {
       </Grid>
       <Grid item=true>
         <Input
-          className=classes.input
+          className={classes["input"]}
           value=Any(value)
           margin=#dense
           onChange={e => setValue((e->ReactEvent.Form.target)["value"]->int_of_string)}
