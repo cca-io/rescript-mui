@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "rescript build -with-deps",
+    "build": "rescript build -with-deps && parcel build src/index.html",
     "watch": "rescript build -with-deps -w",
     "clean": "rescript clean -with-deps",
     "format": "rescript format -all",
