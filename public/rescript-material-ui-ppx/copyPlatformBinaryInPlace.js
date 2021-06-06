@@ -17,13 +17,6 @@ copyBinary('bin/bs_material_ui_ppx-' + platform + '-' + arch + '.exe', 'ppx');
 copyBinary('bin/bs_material_ui_ppx-' + platform + '-' + arch + '.exe', 'ppx6');
 
 function copyBinary(filename, destFilename) {
-  if (process.env.IS_BS_MATERIAL_UI_PPX_CI) {
-    console.log(
-      'bs_material_ui_ppx: IS_BS_MATERIAL_UI_PPX_CI has been set, skipping moving binary in place',
-    );
-    process.exit(0);
-  }
-
   var supported = fs.existsSync(filename);
 
   if (!supported) {
@@ -40,9 +33,7 @@ function copyBinary(filename, destFilename) {
       ].join('\n'),
     );
 
-    if (!process.env.IS_BS_MATERIAL_UI_PPX_CI) {
-      process.exit(1);
-    }
+    process.exit(1);
   }
 
   if (!fs.existsSync(destFilename)) {
