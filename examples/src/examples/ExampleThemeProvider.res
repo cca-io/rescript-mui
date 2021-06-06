@@ -9,8 +9,8 @@ let make = () => {
   <div>
     <Button color=#primary variant=#outlined> {"Default Primary Color"->React.string} </Button>
     {" "->React.string}
-    <MuiThemeProvider theme>
+    <ThemeProvider theme>
       <Button color=#primary variant=#outlined> {"Themed Primary Color"->React.string} </Button>
-    </MuiThemeProvider>
+    </ThemeProvider>
   </div>
 }
