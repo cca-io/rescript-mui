@@ -126,6 +126,5 @@ module Theme = MaterialUi_Theme
 module ThemeOptions = MaterialUi_ThemeOptions
 module ThemeProvider = MaterialUi_ThemeProvider
 module ThemeHelpers = MaterialUi_ThemeHelpers
-module MuiThemeProvider = MaterialUi_ThemeProvider
 module StylesProvider = MaterialUi_StylesProvider
 module WithStyles = MaterialUi_WithStyles

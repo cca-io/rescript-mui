@@ -31,10 +31,10 @@ module SupervisedUserCircleIcon = {
 let make = () => {
   open MaterialUi
   <div>
-    <MuiThemeProvider theme>
+    <ThemeProvider theme>
       <Button color=#secondary variant=#outlined>
         <SupervisedUserCircleIcon /> {"Overriden Outline Styles"->React.string}
       </Button>
-    </MuiThemeProvider>
+    </ThemeProvider>
   </div>
 }
