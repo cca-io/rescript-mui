@@ -1,7 +1,7 @@
 import * as Console from './../../helpers/console';
 import { lowerFirst } from 'lodash';
 import { convertUnionToEnum } from './helpers';
-import generateReasonName from '../../helpers/generate-reason-name';
+import generateReasonName from '../../helpers/generate-rescript-name';
 import Base from './base';
 import * as Identify from './../../helpers/identify-prop-type';
 import ResolveArgument from './resolve-argument';

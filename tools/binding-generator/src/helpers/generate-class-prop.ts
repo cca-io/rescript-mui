@@ -1,4 +1,4 @@
-import GenerateReasonName from './generate-reason-name';
+import GenerateRescriptName from './generate-rescript-name';
 
 const GenerateClassProp = (component: ComponentSignature) => {
   const classes = component.styles.classes;
@@ -8,13 +8,13 @@ const GenerateClassProp = (component: ComponentSignature) => {
   let toWrapJs = '';
   if (classes.length) {
     const classesTypeDefs = classes
-      .map((c) => `| ${GenerateReasonName(c)}(string)`)
+      .map((c) => `| ${GenerateRescriptName(c)}(string)`)
       .join('\n');
     const toString = classes
-      .map((c) => `| ${GenerateReasonName(c)}(_) => "${c}"`)
+      .map((c) => `| ${GenerateRescriptName(c)}(_) => "${c}"`)
       .join('\n');
     const toClassname = classes
-      .map((c) => `| ${GenerateReasonName(c)}(className)`)
+      .map((c) => `| ${GenerateRescriptName(c)}(className)`)
       .join('\n');
     toModule = `
                 module Classes = {

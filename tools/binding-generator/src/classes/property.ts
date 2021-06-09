@@ -1,5 +1,5 @@
 import Component from './component';
-import GenerateReasonName from './../helpers/generate-reason-name';
+import GenerateRescriptName from './../helpers/generate-rescript-name';
 import * as Console from './../helpers/console';
 import GetPropertyParser from './property-parser';
 
@@ -33,7 +33,7 @@ class Property {
   }
 
   public get safeName() {
-    return GenerateReasonName(this.name, false);
+    return GenerateRescriptName(this.name, false);
   }
 
   public get component() {

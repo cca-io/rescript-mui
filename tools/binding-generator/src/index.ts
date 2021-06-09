@@ -15,7 +15,7 @@ const parseInit = () => {
   // Write component files
   components.forEach(({ name, src }) => {
     Fs.writeFileSync(
-      Path.join(outputDirectory, 'reason', muiSrc, `MaterialUi_${name}.res`),
+      Path.join(outputDirectory, 'rescript', muiSrc, `MaterialUi_${name}.res`),
       src,
     );
   });
@@ -30,31 +30,41 @@ const parseInit = () => {
   itemsFiltered.forEach((item) => {
     Fs.copyFileSync(
       Path.join(__dirname, 'fixed-modules', item),
-      Path.join(outputDirectory, 'reason', muiSrc, item),
+      Path.join(outputDirectory, 'rescript', muiSrc, item),
     );
   });
 
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_Theme.res'),
+    Path.join(outputDirectory, 'rescript', muiSrc, 'MaterialUi_Theme.res'),
     RenderTheme.theme,
   );
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_ThemeOptions.res'),
+    Path.join(
+      outputDirectory,
+      'rescript',
+      muiSrc,
+      'MaterialUi_ThemeOptions.res',
+    ),
     RenderTheme.themeOptions,
   );
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_Colors.res'),
+    Path.join(outputDirectory, 'rescript', muiSrc, 'MaterialUi_Colors.res'),
     RenderColors.colorModule,
   );
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi_ThemeOptions.res'),
+    Path.join(
+      outputDirectory,
+      'rescript',
+      muiSrc,
+      'MaterialUi_ThemeOptions.res',
+    ),
     RenderTheme.themeOptions,
   );
 
   // Write global file
   // ${itemsFiltered.map(item => `module ${item.replace('MaterialUi_', '').replace('.re', '')} = ${item.replace('.re', '')};`).join('\n')}
   Fs.writeFileSync(
-    Path.join(outputDirectory, 'reason', muiSrc, 'MaterialUi.res'),
+    Path.join(outputDirectory, 'rescript', muiSrc, 'MaterialUi.res'),
     `
     include MaterialUi_Types;
 
@@ -81,7 +91,7 @@ const parseInit = () => {
   // Append create theme function
   const themePath = Path.join(
     outputDirectory,
-    'reason',
+    'rescript',
     muiSrc,
     'MaterialUi_Theme.res',
   );

@@ -1,11 +1,11 @@
 {
-  "name": "reason-mui-binding-generator",
+  "name": "binding-generator",
   "reason": {
     "react-jsx": 3
   },
   "sources": [
     {
-      "dir": "../../output/reason",
+      "dir": "../../output/rescript",
       "subdirs": true
     }
   ],

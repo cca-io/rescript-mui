@@ -26,7 +26,7 @@ Make sure the `material-ui` directory is a clone, **not** the NPM version!!.
 
        yarn ppx
 
-The generated bindings can be found in output/reason
+The generated bindings can be found in output/rescript
 
 ## Todo
 - [ ] Implement the whole `Theme` structure & create a converter for it

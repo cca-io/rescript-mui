@@ -76,7 +76,7 @@ export const reservedNames = [
   'with',
 ];
 
-const GenerateReasonName = (str: string, toUpper: boolean = true) => {
+const GenerateRescriptName = (str: string, toUpper: boolean = true) => {
   // Already parsed
   if (str.substr(0, 2) === `\\"`) {
     return str;
@@ -118,4 +118,4 @@ const GenerateReasonName = (str: string, toUpper: boolean = true) => {
   return str;
 };
 
-export default GenerateReasonName;
+export default GenerateRescriptName;

@@ -1,6 +1,6 @@
 import Base from './base';
 import ResolveArgument from './resolve-argument';
-import GenerateReasonName from '../../helpers/generate-reason-name';
+import GenerateRescriptName from '../../helpers/generate-rescript-name';
 import { inShape } from './helpers';
 
 const factory = (propertyType: PropType$Shape) => {
@@ -47,7 +47,7 @@ const factory = (propertyType: PropType$Shape) => {
         if (argumentParser) {
           shapes.push({
             key,
-            keySafe: GenerateReasonName(key, false),
+            keySafe: GenerateRescriptName(key, false),
             type: argumentParser.reasonType,
             required: type.required,
           });
