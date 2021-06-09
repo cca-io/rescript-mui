@@ -1,7 +1,7 @@
 import * as Console from './../../helpers/console';
 import Base from './base';
 import ResolveArgument from './resolve-argument';
-import GenerateReasonName from '../../helpers/generate-reason-name';
+import GenerateRescriptName from '../../helpers/generate-rescript-name';
 
 const factory = (propertyType: PropType$FunctionSignature) => {
   return class FunctionParser extends Base {
@@ -41,7 +41,7 @@ const factory = (propertyType: PropType$FunctionSignature) => {
       const argumentSignatures = this._signature.arguments;
       const args: { name: string; type: string; required: boolean }[] = [];
       argumentSignatures.forEach((arg) => {
-        const name = GenerateReasonName(arg.name, false);
+        const name = GenerateRescriptName(arg.name, false);
 
         if (arg.type.name === 'shape') {
           arg.type.name = 'shapeArgument';

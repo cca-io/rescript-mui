@@ -5,10 +5,10 @@ import * as rimraf from 'rimraf';
 import outputDirectory from './output';
 
 export default (muiSrc: muiSrc) => {
-  if (Fs.existsSync(Path.join(outputDirectory, 'reason', muiSrc))) {
-    rimraf.sync(Path.join(outputDirectory, 'reason', muiSrc));
+  if (Fs.existsSync(Path.join(outputDirectory, 'rescript', muiSrc))) {
+    rimraf.sync(Path.join(outputDirectory, 'rescript', muiSrc));
   }
-  const requiredFolders = ['reason', Path.join('reason', muiSrc)];
+  const requiredFolders = ['rescript', Path.join('rescript', muiSrc)];
   requiredFolders.forEach((folder) => {
     const path = Path.join(outputDirectory, folder);
     if (!Fs.existsSync(path)) {

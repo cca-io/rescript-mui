@@ -1,6 +1,6 @@
-import GenerateReasonName, {
+import GenerateRescriptName, {
   isNumeric,
-} from './../../helpers/generate-reason-name';
+} from './../../helpers/generate-rescript-name';
 import Base from './base';
 import Property from '../property';
 
@@ -76,12 +76,12 @@ const factory = (propertyType: PropType$Enum) => {
 
     public executeParse() {
       const enumValuesReason = this._enumKeys.map((e) =>
-        GenerateReasonName(e, false),
+        GenerateRescriptName(e, false),
       );
       switch (this._renderAs) {
         case 'mixed':
           const mixedKeys = this._enumKeys.map((e) =>
-            GenerateReasonName(e, false),
+            GenerateRescriptName(e, false),
           );
           this._module = `
                 module ${this._moduleName}: {

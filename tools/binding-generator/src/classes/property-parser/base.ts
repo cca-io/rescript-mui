@@ -3,7 +3,7 @@ import * as Plugins from './plugins';
 import PluginBase from './plugins/base';
 import generateReasonName, {
   reservedNames,
-} from '../../helpers/generate-reason-name';
+} from '../../helpers/generate-rescript-name';
 
 class PropertyParserBase {
   protected _property: Property;

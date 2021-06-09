@@ -1,6 +1,6 @@
 import * as Fs from 'fs';
 import * as Path from 'path';
-import { capitalize } from './helpers/generate-reason-name';
+import { capitalize } from './helpers/generate-rescript-name';
 import outputDirectory from './output';
 
 interface ColorFile {
