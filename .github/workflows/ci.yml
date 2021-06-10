@@ -48,13 +48,17 @@ jobs:
         working-directory: examples
         run: yarn build
 
-      # Build PPX
+      # PPX
       - name: Install esy
         run: npm install -g esy@latest
 
       - name: Build PPX
         working-directory: public/rescript-material-ui-ppx
         run: esy
+
+      - name: Build PPX test project
+        working-directory: ppx-test
+        run: yarn build
 
       - name: Upload artifacts ${{ matrix.os }}
         uses: actions/upload-artifact@v2
