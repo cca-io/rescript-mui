@@ -9,7 +9,9 @@
     "in-source": true
   },
   "suffix": ".bs.js",
-  "ppx-flags": ["../_build/default/src/bin.exe"],
+  "ppx-flags": [
+    "../public/rescript-material-ui-ppx/_build/default/src/bin.exe"
+  ],
   "bs-dependencies": ["@rescript/react", "rescript-material-ui"],
   "warnings": {
     "number": "+A-48-30-42-40",
