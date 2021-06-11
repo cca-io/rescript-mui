@@ -3,7 +3,7 @@
 ./.vscode
 ./node_modules
 ./ppx
-./bs_material_ui_ppx.*
+./rescript_material_ui_ppx.*
 ./.ci
 ./src
 ./tests

@@ -15,7 +15,7 @@
     "ocaml": ">= 4.08.100"
   },
   "esy": {
-    "build": "refmterr dune build -p bs_material_ui_ppx",
+    "build": "refmterr dune build -p rescript_material_ui_ppx",
     "buildsInSource": "_build"
   }
 }

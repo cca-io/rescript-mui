@@ -98,9 +98,9 @@ jobs:
       - name: Move artifacts
         run: |
           mkdir -p public/rescript-material-ui-ppx/bin
-          mv public/rescript-material-ui-ppx/binaries/darwin/bin.exe public/rescript-material-ui-ppx/bin/bs_material_ui_ppx-darwin-x64.exe
-          mv public/rescript-material-ui-ppx/binaries/windows/bin.exe public/rescript-material-ui-ppx/bin/bs_material_ui_ppx-win-x64.exe
-          mv public/rescript-material-ui-ppx/binaries/linux/bin.exe public/rescript-material-ui-ppx/bin/bs_material_ui_ppx-linux-x64.exe
+          mv public/rescript-material-ui-ppx/binaries/darwin/bin.exe public/rescript-material-ui-ppx/bin/rescript_material_ui_ppx-darwin-x64.exe
+          mv public/rescript-material-ui-ppx/binaries/windows/bin.exe public/rescript-material-ui-ppx/bin/rescript_material_ui_ppx-win-x64.exe
+          mv public/rescript-material-ui-ppx/binaries/linux/bin.exe public/rescript-material-ui-ppx/bin/rescript_material_ui_ppx-linux-x64.exe
           rm -rf public/rescript-material-ui-ppx/binaries
 
       - name: Use Node.js
