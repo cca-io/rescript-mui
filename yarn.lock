@@ -3848,31 +3848,6 @@ browserslist@^4.8.5:
     node-releases "^1.1.53"
     pkg-up "^2.0.0"
 
-bs-abstract@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/bs-abstract/-/bs-abstract-0.16.0.tgz#cb214e0b45710c28562ddb671a736b084b8aaf86"
-  integrity sha512-b1/qOWNBqL44lFciqEs73UxOwxAfnXeQgJtXGlfVwKYMZ6qNKgNrQe3Wokg8awQHs2EkmAJgtxku2zrGlwd/Jw==
-
-bs-decode@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/bs-decode/-/bs-decode-0.3.3.tgz#e96a7e73a9f1faf6ae9ab7dce4f268542321b1c9"
-  integrity sha512-fi53uOjI24mus+QY6r7abRegOZPznK3Ib9OtJAri5SSRpOYbU2k+2Bv7McpAyUPSWFGtBJxmqKBYoI1g3SgSRQ==
-  dependencies:
-    bs-abstract "^0.16.0"
-    bs-nonempty "^1.3.0"
-
-bs-nonempty@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/bs-nonempty/-/bs-nonempty-1.3.0.tgz#a46feecbe85acbcef605b155b690038ff9a38688"
-  integrity sha512-nNXw8RubW7rlY+t0NTy5pJsnb9/YKvkZhsIbHO/JeM4u1cZfCe0M3sLesxzX2qVXXWdR/GV2ctaGxWYCMQOkbA==
-  dependencies:
-    bs-abstract "^0.16.0"
-
-bsb-js@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/bsb-js/-/bsb-js-1.1.7.tgz#12cc91e974f5896b3a2aa8358419d24e56f552c3"
-  integrity sha512-FSR7d5Kb6KfVI5sLz9bEeD9pbA9F4Zbkk1xa6R9CJtyd+dJ7mIkxoXqv7cw7HWcuee+VpIhmjYzrplnFd/5Qgg==
-
 buffer-from@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
