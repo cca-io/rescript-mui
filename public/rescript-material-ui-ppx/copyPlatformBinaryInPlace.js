@@ -13,8 +13,14 @@ if (platform === 'win32') {
   platform = 'win';
 }
 
-copyBinary('bin/bs_material_ui_ppx-' + platform + '-' + arch + '.exe', 'ppx');
-copyBinary('bin/bs_material_ui_ppx-' + platform + '-' + arch + '.exe', 'ppx6');
+copyBinary(
+  'bin/rescript_material_ui_ppx-' + platform + '-' + arch + '.exe',
+  'ppx',
+);
+copyBinary(
+  'bin/rescript_material_ui_ppx-' + platform + '-' + arch + '.exe',
+  'ppx6',
+);
 
 function copyBinary(filename, destFilename) {
   var supported = fs.existsSync(filename);
@@ -22,11 +28,11 @@ function copyBinary(filename, destFilename) {
   if (!supported) {
     console.error(
       [
-        'bs_material_ui_ppx does not support this platform :(',
+        'rescript_material_ui_ppx does not support this platform :(',
         '',
-        'bs_material_ui_ppx comes prepacked as built binaries to avoid large dependencies at build-time.',
+        'rescript_material_ui_ppx comes prepacked as built binaries to avoid large dependencies at build-time.',
         '',
-        'If you want bs_material_ui_ppx to support this platform natively,',
+        'If you want rescript_material_ui_ppx to support this platform natively,',
         'please open an issue at our repository, linked above. Please',
         'specify that you are on the ' + platform + ' platform,',
         'on the ' + arch + ' architecture.',
