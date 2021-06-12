@@ -1,15 +1,6 @@
-lib
-/ppx
-.bsb.lock
 _esy
-.merlin
-node_modules
 _build
 _release
 *.byte
 *.native
 *.install
-.graphql_ppx_cache
-graphql_ppx.exe
-yarn-error.log
-/bin
