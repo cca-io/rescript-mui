@@ -3,37 +3,22 @@ module Classes = {
   @obj external make: (~root: string=?, unit) => t = ""
 }
 
-module DefaultSelected: {
+module DefaultSelected = {
   type t
-  let arrayOf: array<string> => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let arrayOf = (v: array<string>) => Any(v)
-  let string = (v: string) => Any(v)
+  external arrayOf: array<string> => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-module Value: {
+module Value = {
   type t
-  let array: array<MaterialUi_Types.any> => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let array = (v: array<MaterialUi_Types.any>) => Any(v)
-  let string = (v: string) => Any(v)
+  external array: array<MaterialUi_Types.any> => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-module Selected: {
+module Selected = {
   type t
-  let arrayOf: array<string> => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let arrayOf = (v: array<string>) => Any(v)
-  let string = (v: string) => Any(v)
+  external arrayOf: array<string> => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 @react.component @module("@material-ui/lab")

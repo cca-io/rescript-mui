@@ -3,23 +3,7 @@
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
-
-function transitionComponent_func(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var TransitionComponent = {
-  string: string,
-  transitionComponent_func: transitionComponent_func,
-  element: element
-};
+var TransitionComponent = {};
 
 export {
   Classes ,

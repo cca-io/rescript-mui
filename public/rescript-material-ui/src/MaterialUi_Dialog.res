@@ -1,27 +1,15 @@
-module BackdropComponent: {
+module BackdropComponent = {
   type t
-  let string: string => t
-  let backdropComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let backdropComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external backdropComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
-module Container: {
+module Container = {
   type t
-  let custom: Dom.element => t
-  let element: React.element => t
-  let container_func: MaterialUi_Types.any => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let custom = (v: Dom.element) => Any(v)
-  let element = (v: React.element) => Any(v)
-  let container_func = (v: MaterialUi_Types.any) => Any(v)
+  external custom: Dom.element => t = "%identity"
+  external element: React.element => t = "%identity"
+  external container_func: MaterialUi_Types.any => t = "%identity"
 }
 
 module Classes = {
@@ -83,32 +71,20 @@ module MaxWidth: {
   let \"false" = Any(false)
 }
 
-module PaperComponent: {
+module PaperComponent = {
   type t
-  let string: string => t
-  let paperComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let paperComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external paperComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 type scroll = [#body | #paper]
 
-module TransitionComponent: {
+module TransitionComponent = {
   type t
-  let string: string => t
-  let transitionComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let transitionComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external transitionComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 module TransitionDuration_shape = {
@@ -126,17 +102,11 @@ module TransitionDuration_shape = {
   ) => t = ""
 }
 
-module TransitionDuration: {
+module TransitionDuration = {
   type t
-  let int: int => t
-  let float: float => t
-  let shape: TransitionDuration_shape.t => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let shape = (v: TransitionDuration_shape.t) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external shape: TransitionDuration_shape.t => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

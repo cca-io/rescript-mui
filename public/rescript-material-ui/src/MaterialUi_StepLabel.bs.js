@@ -3,23 +3,7 @@
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
-
-function stepIconComponent_func(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var StepIconComponent = {
-  string: string,
-  stepIconComponent_func: stepIconComponent_func,
-  element: element
-};
+var StepIconComponent = {};
 
 export {
   Classes ,

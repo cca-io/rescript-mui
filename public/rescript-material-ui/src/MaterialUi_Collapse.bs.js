@@ -3,41 +3,9 @@
 
 var Classes = {};
 
-function $$int(v) {
-  return v;
-}
+var CollapsedHeight = {};
 
-function $$float(v) {
-  return v;
-}
-
-function string(v) {
-  return v;
-}
-
-var CollapsedHeight = {
-  $$int: $$int,
-  $$float: $$float,
-  string: string
-};
-
-function string$1(v) {
-  return v;
-}
-
-function callback(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var Component = {
-  string: string$1,
-  callback: callback,
-  element: element
-};
+var Component = {};
 
 var Timeout_enum = {
   auto: "auto"
@@ -45,28 +13,7 @@ var Timeout_enum = {
 
 var Timeout_shape = {};
 
-function $$enum(v) {
-  return v;
-}
-
-function $$int$1(v) {
-  return v;
-}
-
-function $$float$1(v) {
-  return v;
-}
-
-function shape(v) {
-  return v;
-}
-
-var Timeout = {
-  $$enum: $$enum,
-  $$int: $$int$1,
-  $$float: $$float$1,
-  shape: shape
-};
+var Timeout = {};
 
 export {
   Classes ,

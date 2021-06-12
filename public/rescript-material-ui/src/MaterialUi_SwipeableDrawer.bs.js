@@ -3,23 +3,7 @@
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
-
-function callback(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var Component = {
-  string: string,
-  callback: callback,
-  element: element
-};
+var Component = {};
 
 var BackdropProps = {};
 
@@ -29,23 +13,7 @@ var PaperProps = {};
 
 var TransitionDuration_shape = {};
 
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function shape(v) {
-  return v;
-}
-
-var TransitionDuration = {
-  $$int: $$int,
-  $$float: $$float,
-  shape: shape
-};
+var TransitionDuration = {};
 
 export {
   Classes ,

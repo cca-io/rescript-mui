@@ -3,45 +3,13 @@
 
 var Timeout_shape = {};
 
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function shape(v) {
-  return v;
-}
-
-var Timeout = {
-  $$int: $$int,
-  $$float: $$float,
-  shape: shape
-};
+var Timeout = {};
 
 var Classes = {};
 
 var TransitionDuration_shape = {};
 
-function $$int$1(v) {
-  return v;
-}
-
-function $$float$1(v) {
-  return v;
-}
-
-function shape$1(v) {
-  return v;
-}
-
-var TransitionDuration = {
-  $$int: $$int$1,
-  $$float: $$float$1,
-  shape: shape$1
-};
+var TransitionDuration = {};
 
 export {
   Timeout_shape ,

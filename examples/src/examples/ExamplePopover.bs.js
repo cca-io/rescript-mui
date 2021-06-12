@@ -6,7 +6,6 @@ import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Belt_Option from "rescript/lib/es6/belt_Option.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Core from "@material-ui/core";
-import * as MaterialUi_Popover from "rescript-material-ui/src/MaterialUi_Popover.bs.js";
 
 var messages = ([...'养绌聭']);
 
@@ -45,7 +44,7 @@ function ExamplePopover(Props) {
     open: Belt_Option.isSome(state.anchorEl)
   };
   var tmp$1 = Belt_Option.map(state.anchorEl, (function (el) {
-          return MaterialUi_Popover.AnchorEl.obj(el);
+          return el;
         }));
   if (tmp$1 !== undefined) {
     tmp.anchorEl = Caml_option.valFromOption(tmp$1);

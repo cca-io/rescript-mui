@@ -33,17 +33,11 @@ module Classes = {
 
 type anchor = [#left | #top | #right | #bottom]
 
-module Component: {
+module Component = {
   type t
-  let string: string => t
-  let callback: (unit => React.element) => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let callback = (v: unit => React.element) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external callback: (unit => React.element) => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 module BackdropProps = {
@@ -71,17 +65,11 @@ module TransitionDuration_shape = {
   ) => t = ""
 }
 
-module TransitionDuration: {
+module TransitionDuration = {
   type t
-  let int: int => t
-  let float: float => t
-  let shape: TransitionDuration_shape.t => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let shape = (v: TransitionDuration_shape.t) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external shape: TransitionDuration_shape.t => t = "%identity"
 }
 
 type variant = [#permanent | #persistent | #temporary]

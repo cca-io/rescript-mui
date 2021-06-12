@@ -3,41 +3,9 @@
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
+var Component = {};
 
-function callback(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var Component = {
-  string: string,
-  callback: callback,
-  element: element
-};
-
-function string$1(v) {
-  return v;
-}
-
-function scrollButtonComponent_func(v) {
-  return v;
-}
-
-function element$1(v) {
-  return v;
-}
-
-var ScrollButtonComponent = {
-  string: string$1,
-  scrollButtonComponent_func: scrollButtonComponent_func,
-  element: element$1
-};
+var ScrollButtonComponent = {};
 
 export {
   Classes ,

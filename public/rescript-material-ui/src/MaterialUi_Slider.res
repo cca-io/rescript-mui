@@ -49,56 +49,33 @@ module Classes = {
 
 type color = [#primary | #secondary]
 
-module Component: {
+module Component = {
   type t
-  let string: string => t
-  let callback: (unit => React.element) => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let callback = (v: unit => React.element) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external callback: (unit => React.element) => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
-module DefaultValue: {
+module DefaultValue = {
   type t
-  let int: int => t
-  let float: float => t
-  let arrayOf: array<MaterialUi_Types.Number.t> => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let arrayOf = (v: array<MaterialUi_Types.Number.t>) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external arrayOf: array<MaterialUi_Types.Number.t> => t = "%identity"
 }
 
-module Marks: {
+module Marks = {
   type t
-  let bool: bool => t
-  let array: array<MaterialUi_Types.any> => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let bool = (v: bool) => Any(v)
-  let array = (v: array<MaterialUi_Types.any>) => Any(v)
+  external bool: bool => t = "%identity"
+  external array: array<MaterialUi_Types.any> => t = "%identity"
 }
 
 type orientation = [#horizontal | #vertical]
 
-module ThumbComponent: {
+module ThumbComponent = {
   type t
-  let string: string => t
-  let thumbComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let thumbComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external thumbComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 module Track: {
@@ -115,43 +92,26 @@ module Track: {
   let inverted = Any("inverted")
 }
 
-module Value: {
+module Value = {
   type t
-  let int: int => t
-  let float: float => t
-  let arrayOf: array<MaterialUi_Types.Number.t> => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let arrayOf = (v: array<MaterialUi_Types.Number.t>) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external arrayOf: array<MaterialUi_Types.Number.t> => t = "%identity"
 }
 
-module ValueLabelComponent: {
+module ValueLabelComponent = {
   type t
-  let string: string => t
-  let valueLabelComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let valueLabelComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external valueLabelComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 type valueLabelDisplay = [#on | #auto | #off]
 
-module ValueLabelFormat: {
+module ValueLabelFormat = {
   type t
-  let string: string => t
-  let valueLabelFormat_func: MaterialUi_Types.any => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let valueLabelFormat_func = (v: MaterialUi_Types.any) => Any(v)
+  external string: string => t = "%identity"
+  external valueLabelFormat_func: MaterialUi_Types.any => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

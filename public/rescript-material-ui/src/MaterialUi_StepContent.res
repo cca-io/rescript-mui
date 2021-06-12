@@ -3,17 +3,11 @@ module Classes = {
   @obj external make: (~root: string=?, ~last: string=?, ~transition: string=?, unit) => t = ""
 }
 
-module TransitionComponent: {
+module TransitionComponent = {
   type t
-  let string: string => t
-  let transitionComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let transitionComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external transitionComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 module TransitionDuration_enum: {
@@ -41,19 +35,12 @@ module TransitionDuration_shape = {
   ) => t = ""
 }
 
-module TransitionDuration: {
+module TransitionDuration = {
   type t
-  let enum: TransitionDuration_enum.t => t
-  let int: int => t
-  let float: float => t
-  let shape: TransitionDuration_shape.t => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: TransitionDuration_enum.t) => Any(v)
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let shape = (v: TransitionDuration_shape.t) => Any(v)
+  external enum: TransitionDuration_enum.t => t = "%identity"
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external shape: TransitionDuration_shape.t => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

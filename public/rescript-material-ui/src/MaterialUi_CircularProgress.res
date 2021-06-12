@@ -33,17 +33,11 @@ module Classes = {
 
 type color = [#inherit | #primary | #secondary]
 
-module Size: {
+module Size = {
   type t
-  let int: int => t
-  let float: float => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let string = (v: string) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 type variant = [#determinate | #indeterminate | #static]

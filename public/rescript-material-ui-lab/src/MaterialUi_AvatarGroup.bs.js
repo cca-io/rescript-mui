@@ -8,23 +8,7 @@ var Spacing_enum = {
   small: "small"
 };
 
-function $$enum(v) {
-  return v;
-}
-
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-var Spacing = {
-  $$enum: $$enum,
-  $$int: $$int,
-  $$float: $$float
-};
+var Spacing = {};
 
 export {
   Classes ,

@@ -1,27 +1,15 @@
-module Component: {
+module Component = {
   type t
-  let string: string => t
-  let callback: (unit => React.element) => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let callback = (v: unit => React.element) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external callback: (unit => React.element) => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
-module TabIndex: {
+module TabIndex = {
   type t
-  let int: int => t
-  let float: float => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let string = (v: string) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 module Type_enum: {
@@ -38,15 +26,10 @@ module Type_enum: {
   let submit = Any("submit")
 }
 
-module Type: {
+module Type = {
   type t
-  let enum: Type_enum.t => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: Type_enum.t) => Any(v)
-  let string = (v: string) => Any(v)
+  external enum: Type_enum.t => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 module Classes = {

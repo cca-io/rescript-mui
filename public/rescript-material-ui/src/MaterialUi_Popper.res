@@ -1,36 +1,20 @@
-module AnchorEl: {
+module AnchorEl = {
   type t
-  let obj: {..} => t
-  let anchorEl_func: MaterialUi_Types.any => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let obj = (v: {..}) => Any(v)
-  let anchorEl_func = (v: MaterialUi_Types.any) => Any(v)
+  external obj: {..} => t = "%identity"
+  external anchorEl_func: MaterialUi_Types.any => t = "%identity"
 }
 
-module Children: {
+module Children = {
   type t
-  let element: React.element => t
-  let children_func: MaterialUi_Types.any => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let element = (v: React.element) => Any(v)
-  let children_func = (v: MaterialUi_Types.any) => Any(v)
+  external element: React.element => t = "%identity"
+  external children_func: MaterialUi_Types.any => t = "%identity"
 }
 
-module Container: {
+module Container = {
   type t
-  let custom: Dom.element => t
-  let element: React.element => t
-  let container_func: MaterialUi_Types.any => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let custom = (v: Dom.element) => Any(v)
-  let element = (v: React.element) => Any(v)
-  let container_func = (v: MaterialUi_Types.any) => Any(v)
+  external custom: Dom.element => t = "%identity"
+  external element: React.element => t = "%identity"
+  external container_func: MaterialUi_Types.any => t = "%identity"
 }
 
 type placement = [

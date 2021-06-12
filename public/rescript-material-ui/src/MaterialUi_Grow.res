@@ -23,19 +23,12 @@ module Timeout_shape = {
   ) => t = ""
 }
 
-module Timeout: {
+module Timeout = {
   type t
-  let enum: Timeout_enum.t => t
-  let int: int => t
-  let float: float => t
-  let shape: Timeout_shape.t => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: Timeout_enum.t) => Any(v)
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let shape = (v: Timeout_shape.t) => Any(v)
+  external enum: Timeout_enum.t => t = "%identity"
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external shape: Timeout_shape.t => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

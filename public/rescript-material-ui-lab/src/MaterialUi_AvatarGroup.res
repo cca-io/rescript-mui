@@ -15,17 +15,11 @@ module Spacing_enum: {
   let small = Any("small")
 }
 
-module Spacing: {
+module Spacing = {
   type t
-  let enum: Spacing_enum.t => t
-  let int: int => t
-  let float: float => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: Spacing_enum.t) => Any(v)
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
+  external enum: Spacing_enum.t => t = "%identity"
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
 }
 
 @react.component @module("@material-ui/lab")

@@ -2,19 +2,18 @@
 
 import * as React from "react";
 import * as Lab from "@material-ui/lab";
-import * as MaterialUi_Skeleton from "rescript-material-ui-lab/src/MaterialUi_Skeleton.bs.js";
 
 function ExampleSkeleton(Props) {
   return React.createElement("div", undefined, React.createElement(Lab.Skeleton, {
                   variant: "text"
                 }), React.createElement(Lab.Skeleton, {
-                  height: MaterialUi_Skeleton.Height.$$int(40),
+                  height: 40,
                   variant: "circle",
-                  width: MaterialUi_Skeleton.Width.$$int(40)
+                  width: 40
                 }), React.createElement(Lab.Skeleton, {
-                  height: MaterialUi_Skeleton.Height.$$int(118),
+                  height: 118,
                   variant: "rect",
-                  width: MaterialUi_Skeleton.Width.$$int(210)
+                  width: 210
                 }));
 }
 

@@ -5,23 +5,7 @@ var Classes = {};
 
 var TransitionDuration_shape = {};
 
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function shape(v) {
-  return v;
-}
-
-var TransitionDuration = {
-  $$int: $$int,
-  $$float: $$float,
-  shape: shape
-};
+var TransitionDuration = {};
 
 export {
   Classes ,

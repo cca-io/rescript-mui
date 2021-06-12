@@ -3,28 +3,7 @@
 
 var Classes = {};
 
-function arrayOf(v) {
-  return v;
-}
-
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function string(v) {
-  return v;
-}
-
-var DefaultValue = {
-  arrayOf: arrayOf,
-  $$int: $$int,
-  $$float: $$float,
-  string: string
-};
+var DefaultValue = {};
 
 export {
   Classes ,

@@ -7,43 +7,11 @@ var SortDirection = {
   $$false: false
 };
 
-function string(v) {
-  return v;
-}
-
-function actionsComponent_func(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var ActionsComponent = {
-  string: string,
-  actionsComponent_func: actionsComponent_func,
-  element: element
-};
+var ActionsComponent = {};
 
 var Classes = {};
 
-function string$1(v) {
-  return v;
-}
-
-function callback(v) {
-  return v;
-}
-
-function element$1(v) {
-  return v;
-}
-
-var Component = {
-  string: string$1,
-  callback: callback,
-  element: element$1
-};
+var Component = {};
 
 export {
   SortDirection ,

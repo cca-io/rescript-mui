@@ -1,14 +1,8 @@
-module RowsMin: {
+module RowsMin = {
   type t
-  let int: int => t
-  let float: float => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let string = (v: string) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 module Classes = {
@@ -52,30 +46,18 @@ type color = [#primary | #secondary]
 
 type margin = [#dense | #none]
 
-module Rows: {
+module Rows = {
   type t
-  let int: int => t
-  let float: float => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let string = (v: string) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-module RowsMax: {
+module RowsMax = {
   type t
-  let int: int => t
-  let float: float => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let string = (v: string) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

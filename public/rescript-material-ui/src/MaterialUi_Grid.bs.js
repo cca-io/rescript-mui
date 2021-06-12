@@ -3,23 +3,7 @@
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
-
-function callback(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var Component = {
-  string: string,
-  callback: callback,
-  element: element
-};
+var Component = {};
 
 var Lg = {
   $$false: false,

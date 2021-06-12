@@ -7,28 +7,7 @@ var Timeout_enum = {
 
 var Timeout_shape = {};
 
-function $$enum(v) {
-  return v;
-}
-
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function shape(v) {
-  return v;
-}
-
-var Timeout = {
-  $$enum: $$enum,
-  $$int: $$int,
-  $$float: $$float,
-  shape: shape
-};
+var Timeout = {};
 
 export {
   Timeout_enum ,

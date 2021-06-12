@@ -3,23 +3,7 @@
 
 var Classes = {};
 
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function string(v) {
-  return v;
-}
-
-var Size = {
-  $$int: $$int,
-  $$float: $$float,
-  string: string
-};
+var Size = {};
 
 export {
   Classes ,

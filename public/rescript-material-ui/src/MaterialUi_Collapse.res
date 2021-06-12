@@ -17,30 +17,18 @@ module Classes = {
   ) => t = ""
 }
 
-module CollapsedHeight: {
+module CollapsedHeight = {
   type t
-  let int: int => t
-  let float: float => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let string = (v: string) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-module Component: {
+module Component = {
   type t
-  let string: string => t
-  let callback: (unit => React.element) => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let callback = (v: unit => React.element) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external callback: (unit => React.element) => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 module Timeout_enum: {
@@ -68,19 +56,12 @@ module Timeout_shape = {
   ) => t = ""
 }
 
-module Timeout: {
+module Timeout = {
   type t
-  let enum: Timeout_enum.t => t
-  let int: int => t
-  let float: float => t
-  let shape: Timeout_shape.t => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: Timeout_enum.t) => Any(v)
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let shape = (v: Timeout_shape.t) => Any(v)
+  external enum: Timeout_enum.t => t = "%identity"
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external shape: Timeout_shape.t => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

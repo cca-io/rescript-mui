@@ -3,41 +3,9 @@
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
+var PopperComponent = {};
 
-function popperComponent_func(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var PopperComponent = {
-  string: string,
-  popperComponent_func: popperComponent_func,
-  element: element
-};
-
-function string$1(v) {
-  return v;
-}
-
-function transitionComponent_func(v) {
-  return v;
-}
-
-function element$1(v) {
-  return v;
-}
-
-var TransitionComponent = {
-  string: string$1,
-  transitionComponent_func: transitionComponent_func,
-  element: element$1
-};
+var TransitionComponent = {};
 
 export {
   Classes ,
