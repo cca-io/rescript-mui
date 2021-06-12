@@ -24,7 +24,7 @@ let make = () => {
 
     <Box
       component={Box.Component.string("span")}
-      style={ReactDOMRe.Style.make(~boxSizing="border-box", ())}
+      style={ReactDOM.Style.make(~boxSizing="border-box", ())}
       p={Box.Value.breakpointObj(
         Box.BreakpointObj.make(~sm=Box.Value.int(2), ~md=Box.Value.int(5), ()),
       )}
