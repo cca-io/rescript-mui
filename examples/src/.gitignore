@@ -1,6 +1,0 @@
-lib
-.merlin
-node_modules
-.cache
-*.bs.js
-dist
