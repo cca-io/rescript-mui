@@ -59,7 +59,7 @@ let theme =
         ~muiButton=
             ButtonClassKey.make(
             ~outlined=
-                ReactDOMRe.Style.make(
+                ReactDOM.Style.make(
                 ~fontSize="12px",
                 ~fontWeight="300",
                 ~color="gray",
@@ -95,7 +95,7 @@ Here are 2 examples of accessing fields in the theme object:
 let make = () => {
   let theme = MaterialUi.Core.useTheme();
 
-  <div style={ReactDOMRe.Style.make(~color=theme.palette.primary.main, ())}>
+  <div style={ReactDOM.Style.make(~color=theme.palette.primary.main, ())}>
     {"Some main colored text"->React.string}
   </div>
 }
@@ -104,14 +104,14 @@ let make = () => {
 ```reason
 module Styles = %makeStyles(
   theme => {
-    toolbarIcon: ReactDOMRe.Style.combine(
-      ReactDOMRe.Style.make(
+    toolbarIcon: ReactDOM.Style.combine(
+      ReactDOM.Style.make(
         ~padding="0 8px",
         (),
       ),
       theme.mixins.toolbar,
     ),
-    appBar: ReactDOMRe.Style.make(
+    appBar: ReactDOM.Style.make(
       ~zIndex=(theme.zIndex.drawer +. 1.0)->int_of_float->string_of_int,
       ~transition=MaterialUi.ThemeHelpers.transitionCreate(
         ~theme,
