@@ -20,5 +20,4 @@ output
 # ReScript
 lib/
 .merlin
-*.bs.js
 .bsb.lock

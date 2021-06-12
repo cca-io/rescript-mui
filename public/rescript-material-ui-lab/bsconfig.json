@@ -6,7 +6,7 @@
   "namespace": false,
   "sources": ["src"],
   "package-specs": {
-    "module": "commonjs",
+    "module": "es6",
     "in-source": true
   },
   "bs-dependencies": ["@rescript/react", "rescript-material-ui"],

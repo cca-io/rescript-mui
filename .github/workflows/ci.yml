@@ -44,6 +44,14 @@ jobs:
         shell: bash
         run: ./build.sh
 
+      - name: Compile rescript-material-ui
+        working-directory: public/rescript-material-ui
+        run: yarn build
+
+      - name: Compile rescript-material-ui-lab
+        working-directory: public/rescript-material-ui-lab
+        run: yarn build
+
       - name: Examples
         working-directory: examples
         run: yarn build
