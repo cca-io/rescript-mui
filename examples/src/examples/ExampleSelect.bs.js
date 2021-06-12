@@ -4,7 +4,6 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as MaterialUi from "rescript-material-ui/src/MaterialUi.bs.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as MaterialUi_Types from "rescript-material-ui/src/MaterialUi_Types.bs.js";
 import * as Core from "@material-ui/core";
 import * as MaterialUi_Select from "rescript-material-ui/src/MaterialUi_Select.bs.js";
 import * as Styles from "@material-ui/styles";
@@ -370,7 +369,7 @@ function ExampleSelect(Props) {
                           children: null,
                           input: React.createElement(Core.OutlinedInput, {
                                 id: "outlined-age-simple",
-                                labelWidth: MaterialUi_Types.$$Number.$$int(match$2[0]),
+                                labelWidth: match$2[0],
                                 name: "age"
                               }),
                           onChange: handleChangeAge,

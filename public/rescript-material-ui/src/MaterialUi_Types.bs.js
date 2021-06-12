@@ -5,18 +5,7 @@ function anyUnpack(x) {
   return x;
 }
 
-function $$float(v) {
-  return v;
-}
-
-function $$int(v) {
-  return v;
-}
-
-var $$Number = {
-  $$float: $$float,
-  $$int: $$int
-};
+var $$Number = {};
 
 export {
   anyUnpack ,

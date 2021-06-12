@@ -2,9 +2,7 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
-import * as MaterialUi_Box from "rescript-material-ui/src/MaterialUi_Box.bs.js";
 import * as Lab from "@material-ui/lab";
-import * as MaterialUi_Types from "rescript-material-ui/src/MaterialUi_Types.bs.js";
 import * as Core from "@material-ui/core";
 import * as MaterialUi_Typography from "rescript-material-ui/src/MaterialUi_Typography.bs.js";
 
@@ -15,10 +13,10 @@ function ExampleRating(Props) {
   var setValue = match[1];
   var value = match[0];
   return React.createElement("div", undefined, React.createElement(Core.Box, {
-                  component: MaterialUi_Box.Component.string("fieldset"),
+                  component: "fieldset",
                   children: null,
-                  borderColor: MaterialUi_Box.Value.string("transparent"),
-                  mb: MaterialUi_Box.Value.$$int(3)
+                  borderColor: "transparent",
+                  mb: 3
                 }, React.createElement(Core.Typography, {
                       children: "Controlled",
                       component: MaterialUi_Typography.Component.string("legend")
@@ -27,42 +25,42 @@ function ExampleRating(Props) {
                       onChange: (function (param, newValue) {
                           return Curry._1(setValue, newValue);
                         }),
-                      value: MaterialUi_Types.$$Number.$$int(value)
+                      value: value
                     })), React.createElement(Core.Box, {
-                  component: MaterialUi_Box.Component.string("fieldset"),
+                  component: "fieldset",
                   children: null,
-                  borderColor: MaterialUi_Box.Value.string("transparent"),
-                  mb: MaterialUi_Box.Value.$$int(3)
+                  borderColor: "transparent",
+                  mb: 3
                 }, React.createElement(Core.Typography, {
                       children: "Read only",
                       component: MaterialUi_Typography.Component.string("legend")
                     }), React.createElement(Lab.Rating, {
                       name: "read-only",
                       readOnly: true,
-                      value: MaterialUi_Types.$$Number.$$int(value)
+                      value: value
                     })), React.createElement(Core.Box, {
-                  component: MaterialUi_Box.Component.string("fieldset"),
+                  component: "fieldset",
                   children: null,
-                  borderColor: MaterialUi_Box.Value.string("transparent"),
-                  mb: MaterialUi_Box.Value.$$int(3)
+                  borderColor: "transparent",
+                  mb: 3
                 }, React.createElement(Core.Typography, {
                       children: "Disabled",
                       component: MaterialUi_Typography.Component.string("legend")
                     }), React.createElement(Lab.Rating, {
                       disabled: true,
                       name: "disabled",
-                      value: MaterialUi_Types.$$Number.$$int(value)
+                      value: value
                     })), React.createElement(Core.Box, {
-                  component: MaterialUi_Box.Component.string("fieldset"),
+                  component: "fieldset",
                   children: null,
-                  borderColor: MaterialUi_Box.Value.string("transparent"),
-                  mb: MaterialUi_Box.Value.$$int(3)
+                  borderColor: "transparent",
+                  mb: 3
                 }, React.createElement(Core.Typography, {
                       children: "Pristine",
                       component: MaterialUi_Typography.Component.string("legend")
                     }), React.createElement(Lab.Rating, {
                       name: "pristine",
-                      value: MaterialUi_Types.$$Number.$$int(0)
+                      value: 0
                     })));
 }
 
