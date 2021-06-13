@@ -3,23 +3,7 @@
 
 var Timeout_shape = {};
 
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function shape(v) {
-  return v;
-}
-
-var Timeout = {
-  $$int: $$int,
-  $$float: $$float,
-  shape: shape
-};
+var Timeout = {};
 
 export {
   Timeout_shape ,

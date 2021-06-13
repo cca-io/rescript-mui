@@ -3,72 +3,13 @@
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
+var Component = {};
 
-function callback(v) {
-  return v;
-}
+var DefaultValue = {};
 
-function element(v) {
-  return v;
-}
+var Marks = {};
 
-var Component = {
-  string: string,
-  callback: callback,
-  element: element
-};
-
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function arrayOf(v) {
-  return v;
-}
-
-var DefaultValue = {
-  $$int: $$int,
-  $$float: $$float,
-  arrayOf: arrayOf
-};
-
-function bool(v) {
-  return v;
-}
-
-function array(v) {
-  return v;
-}
-
-var Marks = {
-  bool: bool,
-  array: array
-};
-
-function string$1(v) {
-  return v;
-}
-
-function thumbComponent_func(v) {
-  return v;
-}
-
-function element$1(v) {
-  return v;
-}
-
-var ThumbComponent = {
-  string: string$1,
-  thumbComponent_func: thumbComponent_func,
-  element: element$1
-};
+var ThumbComponent = {};
 
 var Track = {
   normal: "normal",
@@ -76,54 +17,11 @@ var Track = {
   inverted: "inverted"
 };
 
-function $$int$1(v) {
-  return v;
-}
+var Value = {};
 
-function $$float$1(v) {
-  return v;
-}
+var ValueLabelComponent = {};
 
-function arrayOf$1(v) {
-  return v;
-}
-
-var Value = {
-  $$int: $$int$1,
-  $$float: $$float$1,
-  arrayOf: arrayOf$1
-};
-
-function string$2(v) {
-  return v;
-}
-
-function valueLabelComponent_func(v) {
-  return v;
-}
-
-function element$2(v) {
-  return v;
-}
-
-var ValueLabelComponent = {
-  string: string$2,
-  valueLabelComponent_func: valueLabelComponent_func,
-  element: element$2
-};
-
-function string$3(v) {
-  return v;
-}
-
-function valueLabelFormat_func(v) {
-  return v;
-}
-
-var ValueLabelFormat = {
-  string: string$3,
-  valueLabelFormat_func: valueLabelFormat_func
-};
+var ValueLabelFormat = {};
 
 export {
   Classes ,

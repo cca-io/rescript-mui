@@ -4,7 +4,6 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Lab from "@material-ui/lab";
 import * as Core from "@material-ui/core";
-import * as MaterialUi_Typography from "rescript-material-ui/src/MaterialUi_Typography.bs.js";
 
 function ExampleRating(Props) {
   var match = React.useReducer((function (param, v) {
@@ -19,7 +18,7 @@ function ExampleRating(Props) {
                   mb: 3
                 }, React.createElement(Core.Typography, {
                       children: "Controlled",
-                      component: MaterialUi_Typography.Component.string("legend")
+                      component: "legend"
                     }), React.createElement(Lab.Rating, {
                       name: "simple-controlled",
                       onChange: (function (param, newValue) {
@@ -33,7 +32,7 @@ function ExampleRating(Props) {
                   mb: 3
                 }, React.createElement(Core.Typography, {
                       children: "Read only",
-                      component: MaterialUi_Typography.Component.string("legend")
+                      component: "legend"
                     }), React.createElement(Lab.Rating, {
                       name: "read-only",
                       readOnly: true,
@@ -45,7 +44,7 @@ function ExampleRating(Props) {
                   mb: 3
                 }, React.createElement(Core.Typography, {
                       children: "Disabled",
-                      component: MaterialUi_Typography.Component.string("legend")
+                      component: "legend"
                     }), React.createElement(Lab.Rating, {
                       disabled: true,
                       name: "disabled",
@@ -57,7 +56,7 @@ function ExampleRating(Props) {
                   mb: 3
                 }, React.createElement(Core.Typography, {
                       children: "Pristine",
-                      component: MaterialUi_Typography.Component.string("legend")
+                      component: "legend"
                     }), React.createElement(Lab.Rating, {
                       name: "pristine",
                       value: 0

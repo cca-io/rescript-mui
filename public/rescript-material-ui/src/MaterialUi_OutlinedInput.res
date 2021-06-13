@@ -1,14 +1,8 @@
-module RowsMin: {
+module RowsMin = {
   type t
-  let int: int => t
-  let float: float => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let string = (v: string) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 module Classes = {
@@ -52,45 +46,27 @@ module Classes = {
 
 type color = [#primary | #secondary]
 
-module InputComponent: {
+module InputComponent = {
   type t
-  let string: string => t
-  let inputComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let inputComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external inputComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 type margin = [#dense | #none]
 
-module Rows: {
+module Rows = {
   type t
-  let int: int => t
-  let float: float => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let string = (v: string) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-module RowsMax: {
+module RowsMax = {
   type t
-  let int: int => t
-  let float: float => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let string = (v: string) => Any(v)
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

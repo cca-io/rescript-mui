@@ -16,43 +16,11 @@ var AnchorOrigin = {};
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
-
-function transitionComponent_func(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var TransitionComponent = {
-  string: string,
-  transitionComponent_func: transitionComponent_func,
-  element: element
-};
+var TransitionComponent = {};
 
 var TransitionDuration_shape = {};
 
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function shape(v) {
-  return v;
-}
-
-var TransitionDuration = {
-  $$int: $$int,
-  $$float: $$float,
-  shape: shape
-};
+var TransitionDuration = {};
 
 export {
   Horizontal ,

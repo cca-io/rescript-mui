@@ -4,7 +4,6 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/styles";
-import * as MaterialUi_Typography from "rescript-material-ui/src/MaterialUi_Typography.bs.js";
 import Menu from "@material-ui/icons/Menu";
 import * as MaterialUi_ThemeHelpers from "rescript-material-ui/src/MaterialUi_ThemeHelpers.bs.js";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
@@ -142,7 +141,7 @@ function ExampleDashboard(Props) {
                                       children: "Dashboard",
                                       className: classes.title,
                                       color: "inherit",
-                                      component: MaterialUi_Typography.Component.string("h1"),
+                                      component: "h1",
                                       noWrap: true,
                                       variant: "h6"
                                     }), React.createElement(Core.Link, {

@@ -39,17 +39,11 @@ module Classes = {
   ) => t = ""
 }
 
-module IconContainerComponent: {
+module IconContainerComponent = {
   type t
-  let string: string => t
-  let iconContainerComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let iconContainerComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external iconContainerComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 type size = [#large | #medium | #small]

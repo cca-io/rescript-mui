@@ -3,77 +3,13 @@
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
+var InputComponent = {};
 
-function inputComponent_func(v) {
-  return v;
-}
+var Rows = {};
 
-function element(v) {
-  return v;
-}
+var RowsMax = {};
 
-var InputComponent = {
-  string: string,
-  inputComponent_func: inputComponent_func,
-  element: element
-};
-
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function string$1(v) {
-  return v;
-}
-
-var Rows = {
-  $$int: $$int,
-  $$float: $$float,
-  string: string$1
-};
-
-function $$int$1(v) {
-  return v;
-}
-
-function $$float$1(v) {
-  return v;
-}
-
-function string$2(v) {
-  return v;
-}
-
-var RowsMax = {
-  $$int: $$int$1,
-  $$float: $$float$1,
-  string: string$2
-};
-
-function $$int$2(v) {
-  return v;
-}
-
-function $$float$2(v) {
-  return v;
-}
-
-function string$3(v) {
-  return v;
-}
-
-var RowsMin = {
-  $$int: $$int$2,
-  $$float: $$float$2,
-  string: string$3
-};
+var RowsMin = {};
 
 export {
   Classes ,

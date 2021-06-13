@@ -3,41 +3,9 @@
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
+var Component = {};
 
-function callback(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var Component = {
-  string: string,
-  callback: callback,
-  element: element
-};
-
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function string$1(v) {
-  return v;
-}
-
-var TabIndex = {
-  $$int: $$int,
-  $$float: $$float,
-  string: string$1
-};
+var TabIndex = {};
 
 var Type_enum = {
   button: "button",
@@ -45,18 +13,7 @@ var Type_enum = {
   submit: "submit"
 };
 
-function $$enum(v) {
-  return v;
-}
-
-function string$2(v) {
-  return v;
-}
-
-var Type = {
-  $$enum: $$enum,
-  string: string$2
-};
+var Type = {};
 
 export {
   Classes ,

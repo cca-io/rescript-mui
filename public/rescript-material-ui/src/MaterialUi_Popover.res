@@ -1,25 +1,14 @@
-module BackdropComponent: {
+module BackdropComponent = {
   type t
-  let string: string => t
-  let backdropComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let backdropComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external backdropComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
-module AnchorEl: {
+module AnchorEl = {
   type t
-  let obj: {..} => t
-  let anchorEl_func: MaterialUi_Types.any => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let obj = (v: {..}) => Any(v)
-  let anchorEl_func = (v: MaterialUi_Types.any) => Any(v)
+  external obj: {..} => t = "%identity"
+  external anchorEl_func: MaterialUi_Types.any => t = "%identity"
 }
 
 module Horizontal_enum: {
@@ -36,17 +25,11 @@ module Horizontal_enum: {
   let right = Any("right")
 }
 
-module Horizontal: {
+module Horizontal = {
   type t
-  let enum: Horizontal_enum.t => t
-  let int: int => t
-  let float: float => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: Horizontal_enum.t) => Any(v)
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
+  external enum: Horizontal_enum.t => t = "%identity"
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
 }
 
 module Vertical_enum: {
@@ -63,17 +46,11 @@ module Vertical_enum: {
   let top = Any("top")
 }
 
-module Vertical: {
+module Vertical = {
   type t
-  let enum: Vertical_enum.t => t
-  let int: int => t
-  let float: float => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: Vertical_enum.t) => Any(v)
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
+  external enum: Vertical_enum.t => t = "%identity"
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
 }
 
 module AnchorOrigin = {
@@ -98,30 +75,18 @@ module Classes = {
   @obj external make: (~root: string=?, ~paper: string=?, unit) => t = ""
 }
 
-module Container: {
+module Container = {
   type t
-  let custom: Dom.element => t
-  let element: React.element => t
-  let container_func: MaterialUi_Types.any => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let custom = (v: Dom.element) => Any(v)
-  let element = (v: React.element) => Any(v)
-  let container_func = (v: MaterialUi_Types.any) => Any(v)
+  external custom: Dom.element => t = "%identity"
+  external element: React.element => t = "%identity"
+  external container_func: MaterialUi_Types.any => t = "%identity"
 }
 
-module Component: {
+module Component = {
   type t
-  let string: string => t
-  let callback: (unit => React.element) => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let callback = (v: unit => React.element) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external callback: (unit => React.element) => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 module PaperProps = {
@@ -134,17 +99,11 @@ module TransformOrigin = {
   @obj external make: (~horizontal: Horizontal.t=?, ~vertical: Vertical.t=?, unit) => t = ""
 }
 
-module TransitionComponent: {
+module TransitionComponent = {
   type t
-  let string: string => t
-  let transitionComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let transitionComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external transitionComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 module TransitionDuration_enum: {
@@ -172,19 +131,12 @@ module TransitionDuration_shape = {
   ) => t = ""
 }
 
-module TransitionDuration: {
+module TransitionDuration = {
   type t
-  let enum: TransitionDuration_enum.t => t
-  let int: int => t
-  let float: float => t
-  let shape: TransitionDuration_shape.t => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: TransitionDuration_enum.t) => Any(v)
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let shape = (v: TransitionDuration_shape.t) => Any(v)
+  external enum: TransitionDuration_enum.t => t = "%identity"
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external shape: TransitionDuration_shape.t => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

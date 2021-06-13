@@ -5,9 +5,7 @@ import * as React from "react";
 import * as MaterialUi from "rescript-material-ui/src/MaterialUi.bs.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Core from "@material-ui/core";
-import * as MaterialUi_Select from "rescript-material-ui/src/MaterialUi_Select.bs.js";
 import * as Styles from "@material-ui/styles";
-import * as MaterialUi_MenuItem from "rescript-material-ui/src/MaterialUi_MenuItem.bs.js";
 
 function getSpacing(theme, num) {
   return String(Curry._1(theme.spacing, num)) + "px";
@@ -86,19 +84,19 @@ function ExampleSelect(Props) {
                             name: "age"
                           },
                           onChange: handleChangeAge,
-                          value: MaterialUi_Select.Value.string(values.age)
+                          value: values.age
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Ten",
-                              value: MaterialUi_MenuItem.Value.string("10")
+                              value: "10"
                             }), React.createElement(Core.MenuItem, {
                               children: "Twenty",
-                              value: MaterialUi_MenuItem.Value.string("20")
+                              value: "20"
                             }), React.createElement(Core.MenuItem, {
                               children: "Thirty",
-                              value: MaterialUi_MenuItem.Value.string("30")
+                              value: "30"
                             }))), React.createElement(Core.FormControl, {
                       children: null,
                       className: classes.formControl
@@ -112,19 +110,19 @@ function ExampleSelect(Props) {
                                 name: "age"
                               }),
                           onChange: handleChangeAge,
-                          value: MaterialUi_Select.Value.string(values.age)
+                          value: values.age
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Ten",
-                              value: MaterialUi_MenuItem.Value.string("10")
+                              value: "10"
                             }), React.createElement(Core.MenuItem, {
                               children: "Twenty",
-                              value: MaterialUi_MenuItem.Value.string("20")
+                              value: "20"
                             }), React.createElement(Core.MenuItem, {
                               children: "Thirty",
-                              value: MaterialUi_MenuItem.Value.string("30")
+                              value: "30"
                             })), React.createElement(Core.FormHelperText, {
                           children: "Some important helper text"
                         })), React.createElement(Core.FormControl, {
@@ -136,19 +134,19 @@ function ExampleSelect(Props) {
                           children: null,
                           displayEmpty: true,
                           onChange: handleChangeAge,
-                          value: MaterialUi_Select.Value.string(values.age)
+                          value: values.age
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Ten",
-                              value: MaterialUi_MenuItem.Value.string("10")
+                              value: "10"
                             }), React.createElement(Core.MenuItem, {
                               children: "Twenty",
-                              value: MaterialUi_MenuItem.Value.string("20")
+                              value: "20"
                             }), React.createElement(Core.MenuItem, {
                               children: "Thirty",
-                              value: MaterialUi_MenuItem.Value.string("30")
+                              value: "30"
                             })), React.createElement(Core.FormHelperText, {
                           children: "Without label"
                         })), React.createElement(Core.FormControl, {
@@ -168,19 +166,19 @@ function ExampleSelect(Props) {
                                 name: "age"
                               }),
                           onChange: handleChangeAge,
-                          value: MaterialUi_Select.Value.string(values.age)
+                          value: values.age
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Ten",
-                              value: MaterialUi_MenuItem.Value.string("10")
+                              value: "10"
                             }), React.createElement(Core.MenuItem, {
                               children: "Twenty",
-                              value: MaterialUi_MenuItem.Value.string("20")
+                              value: "20"
                             }), React.createElement(Core.MenuItem, {
                               children: "Thirty",
-                              value: MaterialUi_MenuItem.Value.string("30")
+                              value: "30"
                             })), React.createElement(Core.FormHelperText, {
                           children: "Label + placeholder"
                         })), React.createElement(Core.FormControl, {
@@ -197,19 +195,19 @@ function ExampleSelect(Props) {
                                 name: "name"
                               }),
                           onChange: handleChangeName,
-                          value: MaterialUi_Select.Value.string(values.name)
+                          value: values.name
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Hai",
-                              value: MaterialUi_MenuItem.Value.string("hai")
+                              value: "hai"
                             }), React.createElement(Core.MenuItem, {
                               children: "Olivier",
-                              value: MaterialUi_MenuItem.Value.string("olivier")
+                              value: "olivier"
                             }), React.createElement(Core.MenuItem, {
                               children: "Kevin",
-                              value: MaterialUi_MenuItem.Value.string("kevin")
+                              value: "kevin"
                             })), React.createElement(Core.FormHelperText, {
                           children: "Disabled"
                         })), React.createElement(Core.FormControl, {
@@ -229,19 +227,19 @@ function ExampleSelect(Props) {
                           renderValue: (function (value) {
                               return "⚠️  - " + MaterialUi.anyUnpack(value);
                             }),
-                          value: MaterialUi_Select.Value.string(values.name)
+                          value: values.name
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Hai",
-                              value: MaterialUi_MenuItem.Value.string("hai")
+                              value: "hai"
                             }), React.createElement(Core.MenuItem, {
                               children: "Olivier",
-                              value: MaterialUi_MenuItem.Value.string("olivier")
+                              value: "olivier"
                             }), React.createElement(Core.MenuItem, {
                               children: "Kevin",
-                              value: MaterialUi_MenuItem.Value.string("kevin")
+                              value: "kevin"
                             })), React.createElement(Core.FormHelperText, {
                           children: "Error"
                         })), React.createElement(Core.FormControl, {
@@ -258,19 +256,19 @@ function ExampleSelect(Props) {
                                 readOnly: true
                               }),
                           onChange: handleChangeName,
-                          value: MaterialUi_Select.Value.string(values.name)
+                          value: values.name
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Hai",
-                              value: MaterialUi_MenuItem.Value.string("hai")
+                              value: "hai"
                             }), React.createElement(Core.MenuItem, {
                               children: "Olivier",
-                              value: MaterialUi_MenuItem.Value.string("olivier")
+                              value: "olivier"
                             }), React.createElement(Core.MenuItem, {
                               children: "Kevin",
-                              value: MaterialUi_MenuItem.Value.string("kevin")
+                              value: "kevin"
                             })), React.createElement(Core.FormHelperText, {
                           children: "Read only"
                         })), React.createElement(Core.FormControl, {
@@ -287,19 +285,19 @@ function ExampleSelect(Props) {
                                 name: "age"
                               }),
                           onChange: handleChangeAge,
-                          value: MaterialUi_Select.Value.string(values.age)
+                          value: values.age
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Ten",
-                              value: MaterialUi_MenuItem.Value.string("10")
+                              value: "10"
                             }), React.createElement(Core.MenuItem, {
                               children: "Twenty",
-                              value: MaterialUi_MenuItem.Value.string("20")
+                              value: "20"
                             }), React.createElement(Core.MenuItem, {
                               children: "Thirty",
-                              value: MaterialUi_MenuItem.Value.string("30")
+                              value: "30"
                             })), React.createElement(Core.FormHelperText, {
                           children: "Auto width"
                         })), React.createElement(Core.FormControl, {
@@ -311,20 +309,20 @@ function ExampleSelect(Props) {
                           children: null,
                           displayEmpty: true,
                           onChange: handleChangeAge,
-                          value: MaterialUi_Select.Value.string(values.age)
+                          value: values.age
                         }, React.createElement(Core.MenuItem, {
                               children: "Placeholder",
                               disabled: true,
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Ten",
-                              value: MaterialUi_MenuItem.Value.string("10")
+                              value: "10"
                             }), React.createElement(Core.MenuItem, {
                               children: "Twenty",
-                              value: MaterialUi_MenuItem.Value.string("20")
+                              value: "20"
                             }), React.createElement(Core.MenuItem, {
                               children: "Thirty",
-                              value: MaterialUi_MenuItem.Value.string("30")
+                              value: "30"
                             })), React.createElement(Core.FormHelperText, {
                           children: "Placeholder"
                         })), React.createElement(Core.FormControl, {
@@ -342,19 +340,19 @@ function ExampleSelect(Props) {
                             id: "age-required"
                           },
                           onChange: handleChangeAge,
-                          value: MaterialUi_Select.Value.string(values.age)
+                          value: values.age
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Ten",
-                              value: MaterialUi_MenuItem.Value.string("10")
+                              value: "10"
                             }), React.createElement(Core.MenuItem, {
                               children: "Twenty",
-                              value: MaterialUi_MenuItem.Value.string("20")
+                              value: "20"
                             }), React.createElement(Core.MenuItem, {
                               children: "Thirty",
-                              value: MaterialUi_MenuItem.Value.string("30")
+                              value: "30"
                             })), React.createElement(Core.FormHelperText, {
                           children: "Required"
                         })), React.createElement(Core.FormControl, {
@@ -373,19 +371,19 @@ function ExampleSelect(Props) {
                                 name: "age"
                               }),
                           onChange: handleChangeAge,
-                          value: MaterialUi_Select.Value.string(values.age)
+                          value: values.age
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Ten",
-                              value: MaterialUi_MenuItem.Value.string("10")
+                              value: "10"
                             }), React.createElement(Core.MenuItem, {
                               children: "Twenty",
-                              value: MaterialUi_MenuItem.Value.string("20")
+                              value: "20"
                             }), React.createElement(Core.MenuItem, {
                               children: "Thirty",
-                              value: MaterialUi_MenuItem.Value.string("30")
+                              value: "30"
                             }))), React.createElement(Core.FormControl, {
                       children: null,
                       className: classes.formControl,
@@ -400,19 +398,19 @@ function ExampleSelect(Props) {
                                 name: "age"
                               }),
                           onChange: handleChangeAge,
-                          value: MaterialUi_Select.Value.string(values.age)
+                          value: values.age
                         }, React.createElement(Core.MenuItem, {
                               children: React.createElement("em", undefined, "None"),
-                              value: MaterialUi_MenuItem.Value.string("")
+                              value: ""
                             }), React.createElement(Core.MenuItem, {
                               children: "Ten",
-                              value: MaterialUi_MenuItem.Value.string("10")
+                              value: "10"
                             }), React.createElement(Core.MenuItem, {
                               children: "Twenty",
-                              value: MaterialUi_MenuItem.Value.string("20")
+                              value: "20"
                             }), React.createElement(Core.MenuItem, {
                               children: "Thirty",
-                              value: MaterialUi_MenuItem.Value.string("30")
+                              value: "30"
                             })))));
 }
 

@@ -98,19 +98,14 @@ const factory = (propertyType: PropType$Union) => {
       }, defs);
 
       this._module = `
-      module ${this.moduleName}: {
+      module ${this.moduleName} = {
         type t;
         ${Object.entries(defs)
-          .map(([key, value]) => `let ${key}: (${value}) => t;`)
+          .map(
+            ([key, value]) => `external ${key}: (${value}) => t = "%identity"`,
+          )
           .join('\n')}
-      } = {
-        @unboxed
-        type rec t =
-          | Any('a): t;
-          ${Object.entries(defs)
-            .map(([key, value]) => `let ${key} = (v: ${value}) => Any(v);`)
-            .join('\n')}
-      };
+      }
       `;
 
       this._reasonType = `${this.moduleName}.t`;

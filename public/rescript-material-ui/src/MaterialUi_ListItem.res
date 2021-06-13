@@ -31,45 +31,26 @@ module Classes = {
   ) => t = ""
 }
 
-module Component: {
+module Component = {
   type t
-  let string: string => t
-  let callback: (unit => React.element) => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let callback = (v: unit => React.element) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external callback: (unit => React.element) => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
-module ContainerComponent: {
+module ContainerComponent = {
   type t
-  let string: string => t
-  let containerComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let containerComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external containerComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
-module Value: {
+module Value = {
   type t
-  let string: string => t
-  let int: int => t
-  let float: float => t
-  let arrayOf: array<string> => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let arrayOf = (v: array<string>) => Any(v)
+  external string: string => t = "%identity"
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external arrayOf: array<string> => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

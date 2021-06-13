@@ -5,7 +5,6 @@ import * as ExampleBox from "./ExampleBox.bs.js";
 import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/styles";
 import * as ServerJs from "react-dom/server.js";
-import * as MaterialUi_TextField from "rescript-material-ui/src/MaterialUi_TextField.bs.js";
 import * as Styles$1 from "@material-ui/core/styles";
 
 var useStyles = Styles.makeStyles({
@@ -31,19 +30,19 @@ function ExampleServerStyleSheets(Props) {
                   variant: "h5"
                 }), React.createElement(Core.TextField, {
                   className: classes.code,
-                  defaultValue: MaterialUi_TextField.DefaultValue.string(match[0]),
+                  defaultValue: match[0],
                   fullWidth: true,
                   label: "HTML",
                   multiline: true,
-                  rows: MaterialUi_TextField.Rows.$$int(5),
+                  rows: 5,
                   variant: "outlined"
                 }), React.createElement(Core.TextField, {
                   className: classes.code,
-                  defaultValue: MaterialUi_TextField.DefaultValue.string(match[1]),
+                  defaultValue: match[1],
                   fullWidth: true,
                   label: "CSS",
                   multiline: true,
-                  rows: MaterialUi_TextField.Rows.$$int(5),
+                  rows: 5,
                   variant: "outlined"
                 }));
 }

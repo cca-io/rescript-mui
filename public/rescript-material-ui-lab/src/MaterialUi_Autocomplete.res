@@ -10,15 +10,10 @@ module BlurOnSelect_enum: {
   let touch = Any("touch")
 }
 
-module BlurOnSelect: {
+module BlurOnSelect = {
   type t
-  let enum: BlurOnSelect_enum.t => t
-  let bool: bool => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: BlurOnSelect_enum.t) => Any(v)
-  let bool = (v: bool) => Any(v)
+  external enum: BlurOnSelect_enum.t => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
 module Classes = {
@@ -88,63 +83,36 @@ module ForcePopupIcon_enum: {
   let auto = Any("auto")
 }
 
-module ForcePopupIcon: {
+module ForcePopupIcon = {
   type t
-  let enum: ForcePopupIcon_enum.t => t
-  let bool: bool => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: ForcePopupIcon_enum.t) => Any(v)
-  let bool = (v: bool) => Any(v)
+  external enum: ForcePopupIcon_enum.t => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-module ListboxComponent: {
+module ListboxComponent = {
   type t
-  let string: string => t
-  let listboxComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let listboxComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external listboxComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
-module Value: {
+module Value = {
   type t
-  let arrayOf: array<MaterialUi_Types.any> => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let arrayOf = (v: array<MaterialUi_Types.any>) => Any(v)
+  external arrayOf: array<MaterialUi_Types.any> => t = "%identity"
 }
 
-module PaperComponent: {
+module PaperComponent = {
   type t
-  let string: string => t
-  let paperComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let paperComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external paperComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
-module PopperComponent: {
+module PopperComponent = {
   type t
-  let string: string => t
-  let popperComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let popperComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external popperComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 type size = [#medium | #small]

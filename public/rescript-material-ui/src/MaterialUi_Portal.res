@@ -1,14 +1,8 @@
-module Container: {
+module Container = {
   type t
-  let custom: Dom.element => t
-  let element: React.element => t
-  let container_func: MaterialUi_Types.any => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let custom = (v: Dom.element) => Any(v)
-  let element = (v: React.element) => Any(v)
-  let container_func = (v: MaterialUi_Types.any) => Any(v)
+  external custom: Dom.element => t = "%identity"
+  external element: React.element => t = "%identity"
+  external container_func: MaterialUi_Types.any => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

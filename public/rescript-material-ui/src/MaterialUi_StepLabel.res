@@ -29,17 +29,11 @@ module Classes = {
   ) => t = ""
 }
 
-module StepIconComponent: {
+module StepIconComponent = {
   type t
-  let string: string => t
-  let stepIconComponent_func: MaterialUi_Types.any => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let stepIconComponent_func = (v: MaterialUi_Types.any) => Any(v)
-  let element = (v: React.element) => Any(v)
+  external string: string => t = "%identity"
+  external stepIconComponent_func: MaterialUi_Types.any => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

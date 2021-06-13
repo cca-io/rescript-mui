@@ -3,44 +3,11 @@
 
 var Classes = {};
 
-function arrayOf(v) {
-  return v;
-}
+var DefaultSelected = {};
 
-function string(v) {
-  return v;
-}
+var Value = {};
 
-var DefaultSelected = {
-  arrayOf: arrayOf,
-  string: string
-};
-
-function array(v) {
-  return v;
-}
-
-function string$1(v) {
-  return v;
-}
-
-var Value = {
-  array: array,
-  string: string$1
-};
-
-function arrayOf$1(v) {
-  return v;
-}
-
-function string$2(v) {
-  return v;
-}
-
-var Selected = {
-  arrayOf: arrayOf$1,
-  string: string$2
-};
+var Selected = {};
 
 export {
   Classes ,

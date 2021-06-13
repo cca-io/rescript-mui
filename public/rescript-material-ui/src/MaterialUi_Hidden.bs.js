@@ -17,18 +17,7 @@ var Only_arrayOf = {
   xl: "xl"
 };
 
-function $$enum(v) {
-  return v;
-}
-
-function arrayOf(v) {
-  return v;
-}
-
-var Only = {
-  $$enum: $$enum,
-  arrayOf: arrayOf
-};
+var Only = {};
 
 export {
   Only_enum ,

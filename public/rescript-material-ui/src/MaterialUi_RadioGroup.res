@@ -3,19 +3,12 @@ module Classes = {
   @obj external make: (~root: string=?, ~row: string=?, unit) => t = ""
 }
 
-module DefaultValue: {
+module DefaultValue = {
   type t
-  let arrayOf: array<string> => t
-  let int: int => t
-  let float: float => t
-  let string: string => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let arrayOf = (v: array<string>) => Any(v)
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let string = (v: string) => Any(v)
+  external arrayOf: array<string> => t = "%identity"
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

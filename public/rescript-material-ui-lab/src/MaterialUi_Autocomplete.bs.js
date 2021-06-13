@@ -6,18 +6,7 @@ var BlurOnSelect_enum = {
   touch: "touch"
 };
 
-function $$enum(v) {
-  return v;
-}
-
-function bool(v) {
-  return v;
-}
-
-var BlurOnSelect = {
-  $$enum: $$enum,
-  bool: bool
-};
+var BlurOnSelect = {};
 
 var Classes = {};
 
@@ -25,80 +14,15 @@ var ForcePopupIcon_enum = {
   auto: "auto"
 };
 
-function $$enum$1(v) {
-  return v;
-}
+var ForcePopupIcon = {};
 
-function bool$1(v) {
-  return v;
-}
+var ListboxComponent = {};
 
-var ForcePopupIcon = {
-  $$enum: $$enum$1,
-  bool: bool$1
-};
+var Value = {};
 
-function string(v) {
-  return v;
-}
+var PaperComponent = {};
 
-function listboxComponent_func(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var ListboxComponent = {
-  string: string,
-  listboxComponent_func: listboxComponent_func,
-  element: element
-};
-
-function arrayOf(v) {
-  return v;
-}
-
-var Value = {
-  arrayOf: arrayOf
-};
-
-function string$1(v) {
-  return v;
-}
-
-function paperComponent_func(v) {
-  return v;
-}
-
-function element$1(v) {
-  return v;
-}
-
-var PaperComponent = {
-  string: string$1,
-  paperComponent_func: paperComponent_func,
-  element: element$1
-};
-
-function string$2(v) {
-  return v;
-}
-
-function popperComponent_func(v) {
-  return v;
-}
-
-function element$2(v) {
-  return v;
-}
-
-var PopperComponent = {
-  string: string$2,
-  popperComponent_func: popperComponent_func,
-  element: element$2
-};
+var PopperComponent = {};
 
 export {
   BlurOnSelect_enum ,

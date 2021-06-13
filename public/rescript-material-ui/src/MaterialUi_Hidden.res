@@ -38,15 +38,10 @@ module Only_arrayOf: {
   let xl = Any("xl")
 }
 
-module Only: {
+module Only = {
   type t
-  let enum: Only_enum.t => t
-  let arrayOf: array<Only_arrayOf.t> => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let enum = (v: Only_enum.t) => Any(v)
-  let arrayOf = (v: array<Only_arrayOf.t>) => Any(v)
+  external enum: Only_enum.t => t = "%identity"
+  external arrayOf: array<Only_arrayOf.t> => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

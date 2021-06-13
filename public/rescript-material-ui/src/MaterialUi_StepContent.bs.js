@@ -3,23 +3,7 @@
 
 var Classes = {};
 
-function string(v) {
-  return v;
-}
-
-function transitionComponent_func(v) {
-  return v;
-}
-
-function element(v) {
-  return v;
-}
-
-var TransitionComponent = {
-  string: string,
-  transitionComponent_func: transitionComponent_func,
-  element: element
-};
+var TransitionComponent = {};
 
 var TransitionDuration_enum = {
   auto: "auto"
@@ -27,28 +11,7 @@ var TransitionDuration_enum = {
 
 var TransitionDuration_shape = {};
 
-function $$enum(v) {
-  return v;
-}
-
-function $$int(v) {
-  return v;
-}
-
-function $$float(v) {
-  return v;
-}
-
-function shape(v) {
-  return v;
-}
-
-var TransitionDuration = {
-  $$enum: $$enum,
-  $$int: $$int,
-  $$float: $$float,
-  shape: shape
-};
+var TransitionDuration = {};
 
 export {
   Classes ,
