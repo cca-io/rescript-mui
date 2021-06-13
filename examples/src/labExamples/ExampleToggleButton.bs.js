@@ -3,7 +3,6 @@
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as MaterialUi from "rescript-material-ui/src/MaterialUi.bs.js";
-import * as MaterialUi_Box from "rescript-material-ui/src/MaterialUi_Box.bs.js";
 import * as MaterialUi_Grid from "rescript-material-ui/src/MaterialUi_Grid.bs.js";
 import * as Lab from "@material-ui/lab";
 import * as Core from "@material-ui/core";
@@ -105,8 +104,8 @@ function ExampleToggleButton(Props) {
                                 disabled: true,
                                 value: "justify"
                               })),
-                      mb: MaterialUi_Box.Value.$$int(2),
-                      mt: MaterialUi_Box.Value.$$int(2)
+                      mb: 2,
+                      mt: 2
                     }), React.createElement(Core.Typography, {
                       children: "Exclusive Selection",
                       gutterBottom: true
@@ -136,8 +135,8 @@ function ExampleToggleButton(Props) {
                                 disabled: true,
                                 value: "color"
                               }, React.createElement(FormatColorFill, {}), React.createElement(ArrowDropDown, {}))),
-                      mb: MaterialUi_Box.Value.$$int(2),
-                      mt: MaterialUi_Box.Value.$$int(2)
+                      mb: 2,
+                      mt: 2
                     }), React.createElement(Core.Typography, {
                       children: "Multiple Selection",
                       gutterBottom: true

@@ -1,234 +1,80 @@
-module Component: {
+module Component = {
   type t
-  let string: string => t
-  let callback: (unit => React.element) => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let callback = (v: unit => React.element) => Any(v)
-  let element = (v: React.element) => Any(v)
+
+  external string: string => t = "%identity"
+  external callback: (unit => React.element) => t = "%identity"
+  external element: React.element => t = "%identity"
 }
 
-module PaletteColor: {
-  type t = private string
-
-  @inline("common.black")
-  let common_black: t
-  @inline("common.white")
-  let common_white: t
-  @inline("primary.light")
-  let primary_light: t
-  @inline("primary.main")
-  let primary_main: t
-  @inline("primary.dark")
-  let primary_dark: t
-  @inline("primary.contrastText")
-  let primary_contrastText: t
-  @inline("secondary.light")
-  let secondary_light: t
-  @inline("secondary.main")
-  let secondary_main: t
-  @inline("secondary.dark")
-  let secondary_dark: t
-  @inline("secondary.contrastText")
-  let secondary_contrastText: t
-  @inline("error.light")
-  let error_light: t
-  @inline("error.main")
-  let error_main: t
-  @inline("error.dark")
-  let error_dark: t
-  @inline("error.contrastText")
-  let error_contrastText: t
-  @inline("warning.light")
-  let warning_light: t
-  @inline("warning.main")
-  let warning_main: t
-  @inline("warning.dark")
-  let warning_dark: t
-  @inline("warning.contrastText")
-  let warning_contrastText: t
-  @inline("info.light")
-  let info_light: t
-  @inline("info.main")
-  let info_main: t
-  @inline("info.dark")
-  let info_dark: t
-  @inline("info.contrastText")
-  let info_contrastText: t
-  @inline("success.light")
-  let success_light: t
-  @inline("success.main")
-  let success_main: t
-  @inline("success.dark")
-  let success_dark: t
-  @inline("success.contrastText")
-  let success_contrastText: t
-  @inline("text.primary")
-  let text_primary: t
-  @inline("text.secondary")
-  let text_secondary: t
-  @inline("text.disabled")
-  let text_disabled: t
-  @inline("text.hint")
-  let text_hint: t
-  @inline("divider")
-  let divider: t
-  @inline("action.active")
-  let action_active: t
-  @inline("action.hover")
-  let action_hover: t
-  @inline("action.hoverOpacity")
-  let action_hoverOpacity: t
-  @inline("action.selected")
-  let action_selected: t
-  @inline("action.selectedOpacity")
-  let action_selectedOpacity: t
-  @inline("action.disabled")
-  let action_disabled: t
-  @inline("action.disabledOpacity")
-  let action_disabledOpacity: t
-  @inline("action.disabledBackground")
-  let action_disabledBackground: t
-  @inline("action.focus")
-  let action_focus: t
-  @inline("action.focusOpacity")
-  let action_focusOpacity: t
-  @inline("action.activatedOpacity")
-  let action_activatedOpacity: t
-  @inline("background.default")
-  let background_default: t
-  @inline("background.paper")
-  let background_paper: t
-} = {
-  type t = string
-
-  @inline
-  let common_black = "common.black"
-  @inline
-  let common_white = "common.white"
-  @inline
-  let primary_light = "primary.light"
-  @inline
-  let primary_main = "primary.main"
-  @inline
-  let primary_dark = "primary.dark"
-  @inline
-  let primary_contrastText = "primary.contrastText"
-  @inline
-  let secondary_light = "secondary.light"
-  @inline
-  let secondary_main = "secondary.main"
-  @inline
-  let secondary_dark = "secondary.dark"
-  @inline
-  let secondary_contrastText = "secondary.contrastText"
-  @inline
-  let error_light = "error.light"
-  @inline
-  let error_main = "error.main"
-  @inline
-  let error_dark = "error.dark"
-  @inline
-  let error_contrastText = "error.contrastText"
-  @inline
-  let warning_light = "warning.light"
-  @inline
-  let warning_main = "warning.main"
-  @inline
-  let warning_dark = "warning.dark"
-  @inline
-  let warning_contrastText = "warning.contrastText"
-  @inline
-  let info_light = "info.light"
-  @inline
-  let info_main = "info.main"
-  @inline
-  let info_dark = "info.dark"
-  @inline
-  let info_contrastText = "info.contrastText"
-  @inline
-  let success_light = "success.light"
-  @inline
-  let success_main = "success.main"
-  @inline
-  let success_dark = "success.dark"
-  @inline
-  let success_contrastText = "success.contrastText"
-  @inline
-  let text_primary = "text.primary"
-  @inline
-  let text_secondary = "text.secondary"
-  @inline
-  let text_disabled = "text.disabled"
-  @inline
-  let text_hint = "text.hint"
-  @inline
-  let divider = "divider"
-  @inline
-  let action_active = "action.active"
-  @inline
-  let action_hover = "action.hover"
-  @inline
-  let action_hoverOpacity = "action.hoverOpacity"
-  @inline
-  let action_selected = "action.selected"
-  @inline
-  let action_selectedOpacity = "action.selectedOpacity"
-  @inline
-  let action_disabled = "action.disabled"
-  @inline
-  let action_disabledOpacity = "action.disabledOpacity"
-  @inline
-  let action_disabledBackground = "action.disabledBackground"
-  @inline
-  let action_focus = "action.focus"
-  @inline
-  let action_focusOpacity = "action.focusOpacity"
-  @inline
-  let action_activatedOpacity = "action.activatedOpacity"
-  @inline
-  let background_default = "background.default"
-  @inline
-  let background_paper = "background.paper"
+module PaletteColor = {
+  type t = [
+    | #"common.black"
+    | #"common.white"
+    | #"primary.light"
+    | #"primary.main"
+    | #"primary.dark"
+    | #"primary.contrastText"
+    | #"secondary.light"
+    | #"secondary.main"
+    | #"secondary.dark"
+    | #"secondary.contrastText"
+    | #"error.light"
+    | #"error.main"
+    | #"error.dark"
+    | #"error.contrastText"
+    | #"warning.light"
+    | #"warning.main"
+    | #"warning.dark"
+    | #"warning.contrastText"
+    | #"info.light"
+    | #"info.main"
+    | #"info.dark"
+    | #"info.contrastText"
+    | #"success.light"
+    | #"success.main"
+    | #"success.dark"
+    | #"success.contrastText"
+    | #"text.primary"
+    | #"text.secondary"
+    | #"text.disabled"
+    | #"text.hint"
+    | #divider
+    | #"action.active"
+    | #"action.hover"
+    | #"action.hoverOpacity"
+    | #"action.selected"
+    | #"action.selectedOpacity"
+    | #"action.disabled"
+    | #"action.disabledOpacity"
+    | #"action.disabledBackground"
+    | #"action.focus"
+    | #"action.focusOpacity"
+    | #"action.activatedOpacity"
+    | #"background.default"
+    | #"background.paper"
+  ]
 }
 
 module BreakpointObj = {
-  @deriving(abstract)
   type t<'a> = {
-    @optional
-    xs: 'a,
-    @optional
-    sm: 'a,
-    @optional
-    md: 'a,
-    @optional
-    lg: 'a,
-    @optional
-    xl: 'a,
+    "xs": option<'a>,
+    "sm": option<'a>,
+    "md": option<'a>,
+    "lg": option<'a>,
+    "xl": option<'a>,
   }
-  let make = t
+  @obj external make: (~xs: 'a=?, ~sm: 'a=?, ~md: 'a=?, ~lg: 'a=?, ~xl: 'a=?, unit) => t<'a> = ""
 }
 
-module Value: {
+module Value = {
   type t
-  let string: string => t
-  let int: int => t
-  let float: float => t
-  let paletteColor: PaletteColor.t => t
-  let array: array<t> => t
-  let breakpointObj: BreakpointObj.t<t> => t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-  let string = (v: string) => Any(v)
-  let int = (v: int) => Any(v)
-  let float = (v: float) => Any(v)
-  let paletteColor = (v: PaletteColor.t) => Any(v)
-  let array = (v: array<t>) => Any(v)
-  let breakpointObj = (v: BreakpointObj.t<t>) => Any(v)
+
+  external string: string => t = "%identity"
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external paletteColor: PaletteColor.t => t = "%identity"
+  external array: array<t> => t = "%identity"
+  external breakpointObj: BreakpointObj.t<t> => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

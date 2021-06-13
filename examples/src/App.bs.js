@@ -3,7 +3,6 @@
 import * as React from "react";
 import * as Examples from "./examples/Examples.bs.js";
 import * as ExamplesLab from "./labExamples/ExamplesLab.bs.js";
-import * as MaterialUi_Box from "rescript-material-ui/src/MaterialUi_Box.bs.js";
 import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/core/styles";
 
@@ -11,10 +10,10 @@ function App(Props) {
   return React.createElement(Styles.ThemeProvider, {
               children: React.createElement(Core.Box, {
                     children: null,
-                    height: MaterialUi_Box.Value.string("100%"),
-                    margin: MaterialUi_Box.Value.string("30px auto"),
-                    maxWidth: MaterialUi_Box.Value.string("970px"),
-                    width: MaterialUi_Box.Value.string("100%")
+                    height: "100%",
+                    margin: "30px auto",
+                    maxWidth: "970px",
+                    width: "100%"
                   }, React.createElement(Core.CssBaseline, {}), React.createElement(Examples.make, {}), React.createElement(ExamplesLab.make, {})),
               theme: Styles.createMuiTheme({})
             });

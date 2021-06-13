@@ -12,9 +12,9 @@ let make = () => {
       [int(2), int(5)]
     })}
     borderTop={Box.Value.int(1)}
-    borderColor={Box.Value.paletteColor(Box.PaletteColor.error_main)}
-    color={Box.Value.paletteColor(Box.PaletteColor.text_secondary)}
-    bgcolor={Box.Value.paletteColor(Box.PaletteColor.background_paper)}
+    borderColor={Box.Value.paletteColor(#"error.main")}
+    color={Box.Value.paletteColor(#"text.secondary")}
+    bgcolor={Box.Value.paletteColor(#"background.paper")}
     fontSize={Box.Value.string("30px")}>
     {"Testbox"->React.string}
   </Box>
