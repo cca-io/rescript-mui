@@ -10,15 +10,7 @@ module TransitionComponent = {
   external element: React.element => t = "%identity"
 }
 
-module TransitionDuration_enum: {
-  type t
-  let auto: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let auto = Any("auto")
-}
+type transitionDuration_enum = [#auto]
 
 module TransitionDuration_shape = {
   type t = {
@@ -37,7 +29,7 @@ module TransitionDuration_shape = {
 
 module TransitionDuration = {
   type t
-  external enum: TransitionDuration_enum.t => t = "%identity"
+  external enum: transitionDuration_enum => t = "%identity"
   external int: int => t = "%identity"
   external float: float => t = "%identity"
   external shape: TransitionDuration_shape.t => t = "%identity"

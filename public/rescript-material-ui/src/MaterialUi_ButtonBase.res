@@ -18,23 +18,11 @@ module TabIndex = {
   external string: string => t = "%identity"
 }
 
-module Type_enum: {
-  type t
-  let button: t
-  let reset: t
-  let submit: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let button = Any("button")
-  let reset = Any("reset")
-  let submit = Any("submit")
-}
+type type_enum = [#button | #reset | #submit]
 
 module Type = {
   type t
-  external enum: Type_enum.t => t = "%identity"
+  external enum: type_enum => t = "%identity"
   external string: string => t = "%identity"
 }
 

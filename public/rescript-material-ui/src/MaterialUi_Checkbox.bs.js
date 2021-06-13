@@ -5,12 +5,6 @@ var Component = {};
 
 var TabIndex = {};
 
-var Type_enum = {
-  button: "button",
-  reset: "reset",
-  submit: "submit"
-};
-
 var Type = {};
 
 var Edge = {
@@ -24,7 +18,6 @@ var Classes = {};
 export {
   Component ,
   TabIndex ,
-  Type_enum ,
   Type ,
   Edge ,
   Classes ,

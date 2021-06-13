@@ -1,32 +1,10 @@
-module Horizontal: {
-  type t
-  let center: t
-  let left: t
-  let right: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
+type horizontal = [#center | #left | #right]
 
-  let center = Any("center")
-  let left = Any("left")
-  let right = Any("right")
-}
-
-module Vertical: {
-  type t
-  let bottom: t
-  let top: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let bottom = Any("bottom")
-  let top = Any("top")
-}
+type vertical = [#bottom | #top]
 
 module AnchorOrigin = {
-  type t = {"horizontal": option<Horizontal.t>, "vertical": option<Vertical.t>}
-  @obj external make: (~horizontal: Horizontal.t=?, ~vertical: Vertical.t=?, unit) => t = ""
+  type t = {"horizontal": option<horizontal>, "vertical": option<vertical>}
+  @obj external make: (~horizontal: horizontal=?, ~vertical: vertical=?, unit) => t = ""
 }
 
 module Classes = {

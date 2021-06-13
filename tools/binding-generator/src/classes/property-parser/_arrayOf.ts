@@ -49,11 +49,6 @@ const factory = (propertyType: PropType$ArrayOf) => {
         this._property,
       );
       if (argumentParser) {
-        // Ensure mixed enum in union
-        if (argumentParser.constructor.name === 'EnumParser') {
-          // @ts-ignore
-          argumentParser.enumType = 'mixed';
-        }
         return argumentParser;
       }
 

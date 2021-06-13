@@ -130,11 +130,6 @@ const factory = (propertyType: PropType$Union) => {
               }
               const resolved = this.resolveType(pType);
               if (resolved) {
-                // Ensure mixed enum in union
-                if (resolved.constructor.name === 'EnumParser') {
-                  // @ts-ignore
-                  resolved.enumType = 'mixed';
-                }
                 return [...arr, resolved];
               }
               return arr;

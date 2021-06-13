@@ -1,18 +1,10 @@
-module CellHeight_enum: {
-  type t
-  let auto: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let auto = Any("auto")
-}
+type cellHeight_enum = [#auto]
 
 module CellHeight = {
   type t
   external int: int => t = "%identity"
   external float: float => t = "%identity"
-  external enum: CellHeight_enum.t => t = "%identity"
+  external enum: cellHeight_enum => t = "%identity"
 }
 
 module Classes = {
