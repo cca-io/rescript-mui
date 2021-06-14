@@ -5,19 +5,7 @@ var BackdropComponent = {};
 
 var AnchorEl = {};
 
-var Horizontal_enum = {
-  center: "center",
-  left: "left",
-  right: "right"
-};
-
 var Horizontal = {};
-
-var Vertical_enum = {
-  bottom: "bottom",
-  center: "center",
-  top: "top"
-};
 
 var Vertical = {};
 
@@ -37,10 +25,6 @@ var TransformOrigin = {};
 
 var TransitionComponent = {};
 
-var TransitionDuration_enum = {
-  auto: "auto"
-};
-
 var TransitionDuration_shape = {};
 
 var TransitionDuration = {};
@@ -48,9 +32,7 @@ var TransitionDuration = {};
 export {
   BackdropComponent ,
   AnchorEl ,
-  Horizontal_enum ,
   Horizontal ,
-  Vertical_enum ,
   Vertical ,
   AnchorOrigin ,
   AnchorPosition ,
@@ -60,7 +42,6 @@ export {
   PaperProps ,
   TransformOrigin ,
   TransitionComponent ,
-  TransitionDuration_enum ,
   TransitionDuration_shape ,
   TransitionDuration ,
   

@@ -1,18 +1,8 @@
-module BlurOnSelect_enum: {
-  type t
-  let mouse: t
-  let touch: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let mouse = Any("mouse")
-  let touch = Any("touch")
-}
+type blurOnSelect_enum = [#mouse | #touch]
 
 module BlurOnSelect = {
   type t
-  external enum: BlurOnSelect_enum.t => t = "%identity"
+  external enum: blurOnSelect_enum => t = "%identity"
   external bool: bool => t = "%identity"
 }
 
@@ -73,19 +63,11 @@ module Classes = {
   ) => t = ""
 }
 
-module ForcePopupIcon_enum: {
-  type t
-  let auto: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let auto = Any("auto")
-}
+type forcePopupIcon_enum = [#auto]
 
 module ForcePopupIcon = {
   type t
-  external enum: ForcePopupIcon_enum.t => t = "%identity"
+  external enum: forcePopupIcon_enum => t = "%identity"
   external bool: bool => t = "%identity"
 }
 

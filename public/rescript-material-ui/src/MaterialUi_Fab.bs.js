@@ -3,12 +3,6 @@
 
 var TabIndex = {};
 
-var Type_enum = {
-  button: "button",
-  reset: "reset",
-  submit: "submit"
-};
-
 var Type = {};
 
 var Classes = {};
@@ -17,7 +11,6 @@ var Component = {};
 
 export {
   TabIndex ,
-  Type_enum ,
   Type ,
   Classes ,
   Component ,

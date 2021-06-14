@@ -3,21 +3,11 @@ module Classes = {
   @obj external make: (~root: string=?, ~avatar: string=?, unit) => t = ""
 }
 
-module Spacing_enum: {
-  type t
-  let medium: t
-  let small: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let medium = Any("medium")
-  let small = Any("small")
-}
+type spacing_enum = [#medium | #small]
 
 module Spacing = {
   type t
-  external enum: Spacing_enum.t => t = "%identity"
+  external enum: spacing_enum => t = "%identity"
   external int: int => t = "%identity"
   external float: float => t = "%identity"
 }

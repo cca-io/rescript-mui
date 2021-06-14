@@ -3,34 +3,8 @@
 
 var Classes = {};
 
-var Color = {
-  primary: "primary",
-  secondary: "secondary",
-  standard: "standard"
-};
-
-var Shape = {
-  round: "round",
-  rounded: "rounded"
-};
-
-var Size = {
-  large: "large",
-  medium: "medium",
-  small: "small"
-};
-
-var Variant = {
-  outlined: "outlined",
-  text: "text"
-};
-
 export {
   Classes ,
-  Color ,
-  Shape ,
-  Size ,
-  Variant ,
   
 }
 /* No side effect */

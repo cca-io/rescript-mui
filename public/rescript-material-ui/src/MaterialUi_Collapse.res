@@ -31,15 +31,7 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
-module Timeout_enum: {
-  type t
-  let auto: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let auto = Any("auto")
-}
+type timeout_enum = [#auto]
 
 module Timeout_shape = {
   type t = {
@@ -58,7 +50,7 @@ module Timeout_shape = {
 
 module Timeout = {
   type t
-  external enum: Timeout_enum.t => t = "%identity"
+  external enum: timeout_enum => t = "%identity"
   external int: int => t = "%identity"
   external float: float => t = "%identity"
   external shape: Timeout_shape.t => t = "%identity"

@@ -2,46 +2,14 @@ type implementation = [#js | #css]
 
 type initialWidth = [#xs | #sm | #md | #lg | #xl]
 
-module Only_enum: {
-  type t
-  let xs: t
-  let sm: t
-  let md: t
-  let lg: t
-  let xl: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
+type only_enum = [#xs | #sm | #md | #lg | #xl]
 
-  let xs = Any("xs")
-  let sm = Any("sm")
-  let md = Any("md")
-  let lg = Any("lg")
-  let xl = Any("xl")
-}
-
-module Only_arrayOf: {
-  type t
-  let xs: t
-  let sm: t
-  let md: t
-  let lg: t
-  let xl: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let xs = Any("xs")
-  let sm = Any("sm")
-  let md = Any("md")
-  let lg = Any("lg")
-  let xl = Any("xl")
-}
+type only_arrayOf = [#xs | #sm | #md | #lg | #xl]
 
 module Only = {
   type t
-  external enum: Only_enum.t => t = "%identity"
-  external arrayOf: array<Only_arrayOf.t> => t = "%identity"
+  external enum: only_enum => t = "%identity"
+  external arrayOf: array<only_arrayOf> => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

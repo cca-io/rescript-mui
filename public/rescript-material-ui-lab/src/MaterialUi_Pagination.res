@@ -5,58 +5,6 @@ module Classes = {
 
 type color = [#primary | #secondary | #standard]
 
-module Color: {
-  type t
-  let primary: t
-  let secondary: t
-  let standard: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let primary = Any("primary")
-  let secondary = Any("secondary")
-  let standard = Any("standard")
-}
-
-module Shape: {
-  type t
-  let round: t
-  let rounded: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let round = Any("round")
-  let rounded = Any("rounded")
-}
-
-module Size: {
-  type t
-  let large: t
-  let medium: t
-  let small: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let large = Any("large")
-  let medium = Any("medium")
-  let small = Any("small")
-}
-
-module Variant: {
-  type t
-  let outlined: t
-  let text: t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let outlined = Any("outlined")
-  let text = Any("text")
-}
-
 type shape = [#round | #rounded]
 
 type size = [#large | #medium | #small]
@@ -78,10 +26,10 @@ external make: (
   ~onChange: (ReactEvent.Form.t, int) => unit=?,
   ~page: MaterialUi_Types.Number.t=?,
   ~renderItem: {
-    "color": Color.t,
-    "shape": Shape.t,
-    "size": Size.t,
-    "variant": Variant.t,
+    "color": color,
+    "shape": shape,
+    "size": size,
+    "variant": variant,
     "page": int,
     "selected": bool,
     "disabled": bool,

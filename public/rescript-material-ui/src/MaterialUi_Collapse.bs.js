@@ -7,10 +7,6 @@ var CollapsedHeight = {};
 
 var Component = {};
 
-var Timeout_enum = {
-  auto: "auto"
-};
-
 var Timeout_shape = {};
 
 var Timeout = {};
@@ -19,7 +15,6 @@ export {
   Classes ,
   CollapsedHeight ,
   Component ,
-  Timeout_enum ,
   Timeout_shape ,
   Timeout ,
   

@@ -5,10 +5,6 @@ var Classes = {};
 
 var TransitionComponent = {};
 
-var TransitionDuration_enum = {
-  auto: "auto"
-};
-
 var TransitionDuration_shape = {};
 
 var TransitionDuration = {};
@@ -16,7 +12,6 @@ var TransitionDuration = {};
 export {
   Classes ,
   TransitionComponent ,
-  TransitionDuration_enum ,
   TransitionDuration_shape ,
   TransitionDuration ,
   

@@ -3,16 +3,10 @@
 
 var Classes = {};
 
-var Spacing_enum = {
-  medium: "medium",
-  small: "small"
-};
-
 var Spacing = {};
 
 export {
   Classes ,
-  Spacing_enum ,
   Spacing ,
   
 }
