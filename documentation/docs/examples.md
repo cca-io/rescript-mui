@@ -3,7 +3,7 @@ title: Examples
 ---
 
 See the
-[examples folder](https://github.com/cca-io/rescript-material-ui/tree/master/public/rescript-material-ui/examples)
+[examples folder](https://github.com/cca-io/rescript-material-ui/tree/rescript-material-ui/examples)
 for more information.
 
 ## Installing and trying the examples
