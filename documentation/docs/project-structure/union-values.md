@@ -11,33 +11,27 @@ difference between 3 types of union values.
 ## String only unions
 
 Whenever a prop on a component consists of a selection of string only literals,
-the generator will use the
-[[@bs.string]](https://reasonml.org/docs/reason-compiler/latest/function#constrain-arguments-better)
-(will become obsolete with ReScript eventually) directive directly on the prop.
-This will ensure a direct application of the string without conversion cost.
+the generator will create polymorphic variants which just happen to compile to
+JS strings anyway.
 
-String only unions therefore need to get passed as a polymorphic variant. This
-is an example of the prop `variant`, taken from `MaterialUi_Accordion.re`:
+This is an example of the prop `variant`, taken from `MaterialUi.Accordion.re`:
 
-```reason
-~variant: option<[
-  | @bs.as("elevation") #Elevation
-  | @bs.as("outlined") #Outlined
->=?,
+```rescript
+type variant = [#elevation | #outlined]
 ```
 
 You can use it like so:
 
-```reason
-<MaterialUi_Accordion variant=#Outlined />
+```rescript
+<MaterialUi.Accordion variant=#outlined />
 ```
 
 ### Rules for string only unions
 
-- Always `[@bs.string]` in the external (you may ignore this if you're on
-  `ReScript`)
-- Always **uppercased** polymorphic variant of the original string value
-- Invalid chars (like spaces) will be replaced by `_`
+- All polymorphic variants have the same case as the original string value now
+  (mostly lowercase)
+- Some values include invalid characters (like `-`), which makes it necessary to
+  use quotes, e.g.: `#"flex-end"`
 
 ### Additional types
 
