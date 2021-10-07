@@ -44,7 +44,7 @@ You can use it like so:
 In case that you need to pass around the type of a string union prop, the
 generator creates a helper type for you in the module. To continue the example
 from earlier, the following helper type will be added to
-`MaterialUi_Accordion.re`:
+`MaterialUi.Accordion.re`:
 
 ```reason
 type variant = [ | #Elevation | #Outlined];
@@ -59,12 +59,12 @@ directive. Therefore, numerical unions will accept a form of polymorphic variant
 as well.
 
 These don't happen often - currently the only place where this applies is in the
-`MaterialUi_Grid.re` component.
+`MaterialUi.Grid.re` component.
 
 Example usage:
 
 ```reason
-<MaterialUi_Grid spacing=#V2 />
+<MaterialUi.Grid spacing=#V2 />
 ```
 
 ### Rules for numeric unions

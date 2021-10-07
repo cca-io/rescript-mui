@@ -4,8 +4,7 @@ title: Module - Colors
 
 ## Concept
 
-All colors are available in the special module `MaterialUi_Colors` (also
-accessible via `MaterialUi.Colors`.).
+All colors are available in the special module `MaterialUi.Colors`.
 
 All colors are available as their corresponding name from the
 [MUI Color Palette](https://material-ui.com/customization/color/#color-palette).

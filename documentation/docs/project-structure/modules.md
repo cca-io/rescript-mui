@@ -7,15 +7,15 @@ title: Modules
 `rescript-material-ui` provides all components in individual files. The file
 pattern is:
 
-    MaterialUi_[COMPONENT_NAME].re
+    MaterialUi.[COMPONENT_NAME].re
 
 If you wish to use the `Typography` component for example, it would look like
 this:
 
 ```reason
-<MaterialUi_Typography>
+<MaterialUi.Typography>
   {"Some example text"->React.string}
-</MaterialUi_Typography>
+</MaterialUi.Typography>
 ```
 
 The component names map one to one to the ones found in the `Component API`

@@ -2,8 +2,7 @@
 title: Module - Box
 ---
 
-The `MaterialUi_Box` module (also accessible via `MaterialUi.Box`) contains a
-manual binding to the
+The `MaterialUi.Box` module contains a manual binding to the
 [box component](https://material-ui.com/components/box/#box);
 
 The bindings are not complete and therefore do not offer the full functionality

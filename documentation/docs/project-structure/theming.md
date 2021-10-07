@@ -36,8 +36,8 @@ problem to solve unfortunately).
 
 Theming is split into two modules:
 
-- `MaterialUi_Theme` (reading)
-- `MaterialUi_ThemeOptions` (constructing)
+- `MaterialUi.Theme` (reading)
+- `MaterialUi.ThemeOptions` (constructing)
 
 Theme definitions are likely to undergo breaking changes in future versions.
 
@@ -51,8 +51,8 @@ The following is an example of constructing a theme object:
 
 ```reason
 let theme =
-  MaterialUi_Theme.create({
-    open MaterialUi_ThemeOptions;
+  MaterialUi.Theme.create({
+    open MaterialUi.ThemeOptions;
     make(
     ~overrides=
         Overrides.make(
@@ -76,7 +76,7 @@ let theme =
 
 You might have noticed that `ButtonClassKey` is not a straight forward and easy
 to guess sub module name. This is due to how the type information is presented
-by typescript. When in doubt, just open the `MaterialUi_ThemeOptions.re` module
+by typescript. When in doubt, just open the `MaterialUi.ThemeOptions.re` module
 and follow the module names.
 
 ## Reading from a theme
@@ -84,7 +84,7 @@ and follow the module names.
 Reading from a theme object has become a lot more straight forward in the latest
 ReScript versions (as records are now equivalent to JavaScript objects).
 
-All (sub-)types are in a flat hierarchy inside the `MaterialUi_Theme` module.
+All (sub-)types are in a flat hierarchy inside the `MaterialUi.Theme` module.
 Accessing them is very straight forward and corresponds to the original
 MaterialUi Shape.
 
@@ -134,7 +134,7 @@ information.)
 ## Theme Provider
 
 For providing a theme at root level or further down the tree, you should use the
-`MaterialUi_ThemeProvider` component.
+`MaterialUi.ThemeProvider` component.
 
 Example:
 
@@ -144,9 +144,9 @@ let theme = MaterialUi.Theme.create(MaterialUi.ThemeOptions.make());
 @react.component
 let make = () => {
   <div className="app root">
-    <MaterialUi_ThemeProvider theme>
+    <MaterialUi.ThemeProvider theme>
       <div />
-    </MaterialUi_ThemeProvider>
+    </MaterialUi.ThemeProvider>
   </div>
 }
 ```

@@ -2,8 +2,8 @@
 title: Module - Core
 ---
 
-The `MaterialUi_Core` module (also accessible via `MaterialUi.Core`) contains a
-few manual bindings to potentially useful functions.
+The `MaterialUi.Core` module contains a few manual bindings to potentially
+useful functions.
 
 ### useTheme() => MaterialUi.Theme.t
 
