@@ -19,20 +19,3 @@ The automatic nature of the bindings make some parts of it seem a little clunky.
 This cannot be avoided, as some things just need to be generalized. Please refer
 to the individual sections in `Project Structure` to to see what patterns are
 used.
-
-## A word on ReScript vs. ReasonML
-
-Even though the examples folder is already rewritten in `ReScript`, the bindings
-source will stay in the `ReasonML` syntax for the foreseeable future. This is
-for 2 rather practical reasons:
-
-1. It's a library, so you won't be looking at the code much anyway.
-2. The generation process uses plain text generation rather than an AST based
-   approach, so it would take some effort to change it.
-
-The documentation will refer to `ReScript` interchangeably for both at this
-time.
-
-**Expect breaking changes once `ReScript` is established/stable and the library
-code switches to it eventually. Esp. reserved names will change to the
-`\"reserved"` syntax all over the place.**

@@ -70,8 +70,8 @@ function Home() {
               <section className="col">
                 <h2 className={styles.featureHeading}>Actively maintained</h2>
                 <p className="padding-horiz--md">
-                  I use these bindings daily in more than 10 production projects
-                  of various kinds. This incentivizes me to regularly update the
+                  We (cca.io) use these bindings daily in various production
+                  projects. This incentivizes us to regularly update the
                   bindings and to keep breaking changes to a minimum whereever
                   possible.
                 </p>

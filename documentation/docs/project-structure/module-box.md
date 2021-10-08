@@ -2,9 +2,8 @@
 title: Module - Box
 ---
 
-The `MaterialUi_Box` module (also accessible via `MaterialUi.Box`) contains a
-manual binding to the
-[box component](https://material-ui.com/components/box/#box);
+The `MaterialUi.Box` module contains a manual binding to the
+[box component](https://material-ui.com/components/box/#box).
 
 The bindings are not complete and therefore do not offer the full functionality
 that the original does. Feel free to
@@ -17,10 +16,10 @@ used.
 
 Example:
 
-```reason
+```rescript
 @react.component
 let make = () => {
-    open MaterialUi;
+    open MaterialUi
 
     <Box
       component={Box.Component.string("span")}
@@ -29,7 +28,7 @@ let make = () => {
         Box.BreakpointObj.make(~sm=Box.Value.int(2), ~md=Box.Value.int(5), ()),
       )}
       m={Box.Value.array({
-        open Box.Value;
+        open Box.Value
         [int(2), int(5)]
       })}
       borderTop={Box.Value.int(1)}
@@ -40,5 +39,5 @@ let make = () => {
     >
       {"Testbox"->React.string}
   </Box>
-};
+}
 ```

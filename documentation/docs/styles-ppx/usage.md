@@ -9,12 +9,12 @@ module body. Think of `%makeStyles()` as a function, that accepts either
 - a function with a theme argument that returns above record
 
 The resulting module contains a function called `useStyles()` which you can use
-as a hook inside of your `ReasonReact` component. That hook will return all
-record keys with class names as their values.
+as a hook inside of your `React` component. That hook will return all record
+keys with class names as their values.
 
 ## Simple usage
 
-```reason
+```rescript
 module Styles = %makeStyles({
   root: ReactDOM.Style.make(~padding="20px", ()),
   inner: ReactDOM.Style.make(~lineHeight="1.3em", ()),
@@ -22,7 +22,7 @@ module Styles = %makeStyles({
 
 @react.component
 let make = () => {
-  let classes = Styles.useStyles();
+  let classes = Styles.useStyles()
 
   <div className=classes.root>
     <div className=classes.inner>
@@ -34,7 +34,7 @@ let make = () => {
 
 ## Working with a theme
 
-```reason
+```rescript
 module Styles = %makeStyles(
   theme => {
     root: ReactDOM.Style.make(~padding=`${theme.spacing(3)->string_of_int}px`, ()),
@@ -44,7 +44,7 @@ module Styles = %makeStyles(
 
 @react.component
 let make = () => {
-  let classes = Styles.useStyles();
+  let classes = Styles.useStyles()
 
   <div className=classes.root>
     <div className=classes.inner>

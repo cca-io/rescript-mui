@@ -3,15 +3,15 @@ title: Number Type
 ---
 
 The bindings will provide both `float` and `int` types as numbers. Generally the
-the type of `MaterialUi_Types.Number.t` will be re-used whereever possible (The
+the type of `MaterialUi.Types.Number.t` will be re-used whereever possible (The
 `Number` module is also accessible via `MaterialUi.Number`).
 
 An example of this would be:
 
-```reason
+```rescript
 @react.component
 let make = () => {
-  open MaterialUi;
+  open MaterialUi
 
   <AppBar elevation=Number.int(3) />
 }
@@ -23,12 +23,12 @@ is part of a broader union type.
 
 An example of this would be:
 
-```reason
+```rescript
 @react.component
 let make = () => {
-  <MaterialUi_Backdrop
+  <MaterialUi.Backdrop
     _open=true
-    timeout=MaterialUi_Backdrop.Timeout.int(3000)
+    timeout=MaterialUi.Backdrop.Timeout.int(3000)
   />
 }
 ```
