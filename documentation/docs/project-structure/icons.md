@@ -10,7 +10,7 @@ unacceptable performance for a ReScript project).
 It is therefore recommended to bind to the icons you need manually. See the
 following example for how this could look like:
 
-```reason
+```rescript
 module SupervisedUserCircleOutlined = {
     @react.component @module("@material-ui/icons/SupervisedUserCircle")
     external make: (
@@ -18,10 +18,10 @@ module SupervisedUserCircleOutlined = {
         ~className: string=?,
         ~fontSize: string=?,
     ) => React.element = "default"
-};
+}
 
 @react.component
 let make = () => {
     <SupervisedUserCircleOutlined color={MaterialUi.Colors.red.c400} fontSize="26px" />
-};
+}
 ```

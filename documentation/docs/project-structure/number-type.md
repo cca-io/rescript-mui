@@ -8,10 +8,10 @@ the type of `MaterialUi.Types.Number.t` will be re-used whereever possible (The
 
 An example of this would be:
 
-```reason
+```rescript
 @react.component
 let make = () => {
-  open MaterialUi;
+  open MaterialUi
 
   <AppBar elevation=Number.int(3) />
 }
@@ -23,7 +23,7 @@ is part of a broader union type.
 
 An example of this would be:
 
-```reason
+```rescript
 @react.component
 let make = () => {
   <MaterialUi.Backdrop

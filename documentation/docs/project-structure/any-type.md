@@ -8,20 +8,20 @@ module also includes it directly.
 
 Example for passing an `Any` value to a component:
 
-```reason
+```rescript
 <TextField
   _InputProps={"readOnly": true}
   value={TextField.Value.string(value)}
   label={"Label"->React.string}
   fullWidth=true
-  variant=#Outlined
+  variant=#outlined
 />
 ```
 
 Example for receiving an `Any` argument in a callback (The function
 `MaterialUi.anyUnpack` will return an `Any` as `'a`):
 
-```reason
+```rescript
 <MaterialUi.ToggleButtonGroup
   value={Any(alignment)}
   exclusive=true

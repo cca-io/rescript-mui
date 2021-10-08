@@ -11,9 +11,9 @@ prop and an according generator function for it. It is accessible via
 
 Example:
 
-```reason
-open MaterialUi;
-let classes = Styles.useStyles();
+```rescript
+open MaterialUi
+let classes = Styles.useStyles()
 <Paper
   classes={Paper.Classes.make(
     ~root=classes.root,
@@ -49,10 +49,10 @@ convenience at : `MaterialUi.Theme.create`.
 
 The following is an example of constructing a theme object:
 
-```reason
+```rescript
 let theme =
   MaterialUi.Theme.create({
-    open MaterialUi.ThemeOptions;
+    open MaterialUi.ThemeOptions
     make(
     ~overrides=
         Overrides.make(
@@ -71,7 +71,7 @@ let theme =
         ),
     (),
     )
-  });
+  })
 ```
 
 You might have noticed that `ButtonClassKey` is not a straight forward and easy
@@ -90,10 +90,10 @@ MaterialUi Shape.
 
 Here are 2 examples of accessing fields in the theme object:
 
-```reason
+```rescript
 @react.component
 let make = () => {
-  let theme = MaterialUi.Core.useTheme();
+  let theme = MaterialUi.Core.useTheme()
 
   <div style={ReactDOM.Style.make(~color=theme.palette.primary.main, ())}>
     {"Some main colored text"->React.string}
@@ -101,7 +101,7 @@ let make = () => {
 }
 ```
 
-```reason
+```rescript
 module Styles = %makeStyles(
   theme => {
     toolbarIcon: ReactDOM.Style.combine(
@@ -138,8 +138,8 @@ For providing a theme at root level or further down the tree, you should use the
 
 Example:
 
-```reason
-let theme = MaterialUi.Theme.create(MaterialUi.ThemeOptions.make());
+```rescript
+let theme = MaterialUi.Theme.create(MaterialUi.ThemeOptions.make())
 
 @react.component
 let make = () => {

@@ -12,7 +12,7 @@ pattern is:
 If you wish to use the `Typography` component for example, it would look like
 this:
 
-```reason
+```rescript
 <MaterialUi.Typography>
   {"Some example text"->React.string}
 </MaterialUi.Typography>
@@ -28,19 +28,19 @@ It includes all components and a few special ones, which will be discussed
 later. This modules primary purpose is not having to type out the `MaterialUi_`
 part of the component modules each time. Example:
 
-```reason
+```rescript
 @react.component
 let make = () => {
-  open MaterialUi;
+  open MaterialUi
   <div>
-    <Typography variant=#H4 gutterBottom=true>
+    <Typography variant=#h4 gutterBottom=true>
       {"Headline"->React.string}
     </Typography>
     <Typography>
       {"Some example text"->React.string}
     </Typography>
   </div>
-};
+}
 ```
 
 ### Special modules

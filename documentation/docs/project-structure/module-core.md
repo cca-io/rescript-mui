@@ -7,16 +7,16 @@ useful functions.
 
 ### useTheme() => MaterialUi.Theme.t
 
-A [react](https://rescript-lang.org/docs/reason-react/latest/introduction) hook
-to get the current theme. See
+A [react](https://rescript-lang.org/docs/react/latest/introduction) hook to get
+the current theme. See
 [this page](https://material-ui.com/styles/api/#usetheme-theme) for more
 details.
 
 ### useMediaQuery(Breakpoint.t) => bool
 
-A [react](https://rescript-lang.org/docs/reason-react/latest/introduction) hook
-to execute a programmatic media query. It returns a boolean for wether the query
-is true or not.
+A [react](https://rescript-lang.org/docs/react/latest/introduction) hook to
+execute a programmatic media query. It returns a boolean for wether the query is
+true or not.
 
 The `useMediaQuery` uses a type of `MaterialUi.Core.Breakpoint.t`. (See
 [this page](https://material-ui.com/components/use-media-query/#using-material-uis-breakpoint-helpers)
@@ -24,13 +24,13 @@ for more information).
 
 You can construct a breakpoint like this:
 
-```reason
+```rescript
 @react.component
 let make = () => {
-    open MaterialUi.Core;
-    let theme = useTheme();
-    let matches = useMediaQuery(Breakpoint.get(theme, #up(#sm)));
-    Js.log(matches);
+    open MaterialUi.Core
+    let theme = useTheme()
+    let matches = useMediaQuery(Breakpoint.get(theme, #up(#sm)))
+    Js.log(matches)
 
     <div />
 }

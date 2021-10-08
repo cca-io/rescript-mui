@@ -40,15 +40,14 @@ generator creates a helper type for you in the module. To continue the example
 from earlier, the following helper type will be added to
 `MaterialUi.Accordion.re`:
 
-```reason
-type variant = [ | #Elevation | #Outlined];
+```rescript
+type variant = [#elevation | #outlined]
 ```
 
 ## Numeric unions
 
-Similar to the string only unions, a union consisting of only numbers will
-utilize the
-[[@bs.int]](https://reasonml.org/docs/reason-compiler/latest/function#constrain-arguments-better)
+A union consisting of only numbers will utilize the
+[[@int]](https://rescript-lang.org/docs/manual/latest/bind-to-js-function#constrain-arguments-better)
 directive. Therefore, numerical unions will accept a form of polymorphic variant
 as well.
 
@@ -57,24 +56,18 @@ These don't happen often - currently the only place where this applies is in the
 
 Example usage:
 
-```reason
-<MaterialUi.Grid spacing=#V2 />
+```rescript
+<MaterialUi.Grid spacing=#2 />
 ```
-
-### Rules for numeric unions
-
-- Always `@bs.string` in the external (you may ignore this if you're on
-  `ReScript`)
-- Always `#V[NUM]` format
 
 ## Mixed unions
 
-Mixed unions make use of one of the newer features that bucklescript offers:
-[[unboxed]](https://reasonml.org/blog/union-types-in-bucklescript). The nice
-thing about unboxed is, that there is no conversion cost, just as with the above
-ones. Some of the helper functions will leave a function in the generated js,
-that just returns the one argument it gets passed. These can be stripped easily
-with an optimization build step (e.g. with webpack).
+Mixed unions make use of the ReScript's `unboxed` decorator:
+[[unboxed]](https://rescript-lang.org/blog/union-types-in-bucklescript). The
+nice thing about unboxed is, that there is no conversion cost, just as with the
+above ones. Some of the helper functions will leave a function in the generated
+js, that just returns the one argument it gets passed. These can be stripped
+easily with an optimization build step (e.g. with webpack).
 
 Whenever a prop value can be a literal of multiple types, this way of typing it
 is used. A module inside of the component is created, that is simply named after
@@ -84,26 +77,26 @@ Let's use the `component` prop of the `Grid` component as an example. We can
 pass either a string, callback or element as the `component` prop. This will
 generate the following module inside the `Grid` component file:
 
-```reason
+```rescript
 module Component: {
-  type t;
-  let string: string => t;
-  let callback: (unit => React.element) => t;
-  let element: React.element => t;
+  type t
+  let string: string => t
+  let callback: (unit => React.element) => t
+  let element: React.element => t
 } = {
   @unboxed
   type rec t =
-    | Any('a): t;
-  let string = (v: string) => Any(v);
-  let callback = (v: unit => React.element) => Any(v);
-  let element = (v: React.element) => Any(v);
-};
+    | Any('a): t
+  let string = (v: string) => Any(v)
+  let callback = (v: unit => React.element) => Any(v)
+  let element = (v: React.element) => Any(v)
+}
 ```
 
 You can use it in the following way:
 
-```reason
-open MaterialUi;
+```rescript
+open MaterialUi
 <div>
   <Grid component=Grid.Component.string("div") />
   <Grid component=Grid.Component.element(<div />) />
