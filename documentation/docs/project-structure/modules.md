@@ -7,7 +7,7 @@ title: Modules
 `rescript-material-ui` provides all components in individual files. The file
 pattern is:
 
-    MaterialUi.[COMPONENT_NAME].re
+    MaterialUi.[COMPONENT_NAME].res
 
 If you wish to use the `Typography` component for example, it would look like
 this:
@@ -45,7 +45,7 @@ let make = () => {
 
 ### Special modules
 
-`MaterialUi.re` contains the following special modules:
+`MaterialUi.res` contains the following special modules:
 
 - [Colors](module-colors.md)
 - [Core](module-core.md)

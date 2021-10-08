@@ -76,7 +76,7 @@ let theme =
 
 You might have noticed that `ButtonClassKey` is not a straight forward and easy
 to guess sub module name. This is due to how the type information is presented
-by typescript. When in doubt, just open the `MaterialUi.ThemeOptions.re` module
+by typescript. When in doubt, just open the `MaterialUi.ThemeOptions.res` module
 and follow the module names.
 
 ## Reading from a theme
