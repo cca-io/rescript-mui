@@ -132,6 +132,23 @@ let make = () => <>
     <Grid item=true md=Grid.Md.\"6">
       <Typography variant=#h5>
         <a
+          href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/radio-buttons/RadioButtonsGroup.tsx"
+          target="_blank">
+          {"RadioGroup"->React.string}
+        </a>
+      </Typography>
+    </Grid>
+    <Grid item=true md=Grid.Md.\"6"> <ExampleRadioGroup /> </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
+  <Grid container=true alignItems=#center>
+    <Grid item=true md=Grid.Md.\"6">
+      <Typography variant=#h5>
+        <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/slider/InputSlider.tsx"
           target="_blank">
           {"Slider"->React.string}

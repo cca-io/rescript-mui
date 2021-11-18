@@ -13,6 +13,7 @@ import * as ExampleStepper from "./ExampleStepper.bs.js";
 import * as Grid$MaterialUi from "rescript-material-ui/src/Grid.bs.js";
 import * as ExampleDashboard from "./ExampleDashboard.bs.js";
 import * as Core from "@material-ui/core";
+import * as ExampleRadioGroup from "./ExampleRadioGroup.bs.js";
 import * as ExampleClassOverride from "./ExampleClassOverride.bs.js";
 import * as ExampleTextFieldSize from "./ExampleTextFieldSize.bs.js";
 import * as ExampleThemeProvider from "./ExampleThemeProvider.bs.js";
@@ -187,6 +188,24 @@ function Examples(Props) {
                       md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleSelect.make, {}),
+                      item: true,
+                      md: Grid$MaterialUi.Md[6]
+                    })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
+                  alignItems: "center",
+                  children: null,
+                  container: true
+                }, React.createElement(Core.Grid, {
+                      children: React.createElement(Core.Typography, {
+                            children: React.createElement("a", {
+                                  href: "https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/radio-buttons/RadioButtonsGroup.tsx",
+                                  target: "_blank"
+                                }, "RadioGroup"),
+                            variant: "h5"
+                          }),
+                      item: true,
+                      md: Grid$MaterialUi.Md[6]
+                    }), React.createElement(Core.Grid, {
+                      children: React.createElement(ExampleRadioGroup.make, {}),
                       item: true,
                       md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
