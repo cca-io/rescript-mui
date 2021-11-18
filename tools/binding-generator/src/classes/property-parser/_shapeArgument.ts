@@ -19,7 +19,7 @@ const factory = (propertyType: PropType$Shape) => {
                       .join(',')}
                 }`;
       } else {
-        this._reasonType = 'MaterialUi_Helpers.any';
+        this._reasonType = 'Helpers.any';
       }
       inShape.exit();
       inShape.set(this.inShapeBefore);

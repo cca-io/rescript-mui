@@ -1,5 +1,5 @@
 module Breakpoint = {
-  type theme = MaterialUi_Theme.t
+  type theme = Theme.t
   type breakpoint
   type t
   type breakpointDefinition = [#xs | #sm | #md | #lg | #xl | #int(int)]
@@ -18,8 +18,8 @@ module Breakpoint = {
 
   let getAsString = (theme: theme, breakpoint: breakpointDirection) => {
     let bpGet = switch breakpoint {
-    | #up(_) => v => v.MaterialUi_Theme.up
-    | #down(_) => v => v.MaterialUi_Theme.down
+    | #up(_) => v => v.Theme.up
+    | #down(_) => v => v.Theme.down
     }
     let bpValue = switch breakpoint {
     | #up(#xs)
@@ -41,10 +41,7 @@ module Breakpoint = {
     | #down(#int(x)) =>
       x->UNSAFE_INTERNAL.intToBreakpoint
     }
-    theme.breakpoints
-    ->bpGet
-    ->MaterialUi_Types.anyUnpack
-    ->UNSAFE_INTERNAL.jsonToBreakpointFunc(bpValue)
+    theme.breakpoints->bpGet->Types.anyUnpack->UNSAFE_INTERNAL.jsonToBreakpointFunc(bpValue)
   }
 
   let get = (theme: theme, breakpoint: breakpointDirection) =>
@@ -52,7 +49,7 @@ module Breakpoint = {
 }
 
 @module("@material-ui/core/styles")
-external useTheme: unit => MaterialUi_Theme.t = "useTheme"
+external useTheme: unit => Theme.t = "useTheme"
 
 @module("@material-ui/core")
 external useMediaQueryString: string => bool = "useMediaQuery"

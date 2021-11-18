@@ -1,4 +1,4 @@
-open MaterialUi_Theme
+open Theme
 
 type breakpoint
 external stringToBreakpoint: string => breakpoint = "%identity"
@@ -19,8 +19,7 @@ let addBreakpoint = (sourceStyle, ~theme, ~breakpoint, ~style) => {
   | #Int(x) => x->intToBreakpoint
   }
 
-  let breakpointSource =
-    theme.breakpoints.up->MaterialUi_Types.anyUnpack->jsonToBreakpointFunc(breakpoint)
+  let breakpointSource = theme.breakpoints.up->Types.anyUnpack->jsonToBreakpointFunc(breakpoint)
 
   ReactDOM.Style.unsafeAddProp(sourceStyle, breakpointSource, styleToString(style))
 }
