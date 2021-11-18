@@ -2,9 +2,9 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
-import * as MaterialUi from "rescript-material-ui/src/MaterialUi.bs.js";
-import * as MaterialUi_Grid from "rescript-material-ui/src/MaterialUi_Grid.bs.js";
+import * as Grid$MaterialUi from "rescript-material-ui/src/Grid.bs.js";
 import * as Lab from "@material-ui/lab";
+import * as Types$MaterialUi from "rescript-material-ui/src/Types.bs.js";
 import * as Core from "@material-ui/core";
 import FormatBold from "@material-ui/icons/FormatBold";
 import FormatItalic from "@material-ui/icons/FormatItalic";
@@ -44,10 +44,10 @@ function ExampleToggleButton(Props) {
         }), ["bold"]);
   var setFormats = match$1[1];
   var handleAlignment = function (param, v) {
-    return Curry._1(setAlignment, MaterialUi.anyUnpack(v));
+    return Curry._1(setAlignment, Types$MaterialUi.anyUnpack(v));
   };
   var handleFormats = function (param, v) {
-    return Curry._1(setFormats, MaterialUi.anyUnpack(v));
+    return Curry._1(setFormats, Types$MaterialUi.anyUnpack(v));
   };
   return React.createElement(Core.Grid, {
               children: null,
@@ -82,8 +82,8 @@ function ExampleToggleButton(Props) {
             }, React.createElement(Core.Grid, {
                   children: null,
                   item: true,
-                  md: MaterialUi_Grid.Md[6],
-                  sm: MaterialUi_Grid.Sm[12]
+                  md: Grid$MaterialUi.Md[6],
+                  sm: Grid$MaterialUi.Sm[12]
                 }, React.createElement(Core.Box, {
                       children: React.createElement(Lab.ToggleButtonGroup, {
                             children: null,
@@ -114,8 +114,8 @@ function ExampleToggleButton(Props) {
                     })), React.createElement(Core.Grid, {
                   children: null,
                   item: true,
-                  md: MaterialUi_Grid.Md[6],
-                  sm: MaterialUi_Grid.Sm[12]
+                  md: Grid$MaterialUi.Md[6],
+                  sm: Grid$MaterialUi.Sm[12]
                 }, React.createElement(Core.Box, {
                       children: React.createElement(Lab.ToggleButtonGroup, {
                             children: null,

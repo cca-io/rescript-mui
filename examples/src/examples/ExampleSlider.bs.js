@@ -3,7 +3,7 @@
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Caml_format from "rescript/lib/es6/caml_format.js";
-import * as MaterialUi_Grid from "rescript-material-ui/src/MaterialUi_Grid.bs.js";
+import * as Grid$MaterialUi from "rescript-material-ui/src/Grid.bs.js";
 import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/styles";
 import VolumeUp from "@material-ui/icons/VolumeUp";
@@ -74,7 +74,7 @@ function ExampleSlider(Props) {
                             value: value
                           }),
                       item: true,
-                      xs: MaterialUi_Grid.Xs.$$true
+                      xs: Grid$MaterialUi.Xs.$$true
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(Core.Input, {
                             className: classes.input,

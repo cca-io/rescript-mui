@@ -1,5 +1,5 @@
 open MaterialUi
-open MaterialUi_Lab
+open MaterialUiLab
 
 module FormatAlignLeftIcon = {
   @react.component @module("@material-ui/icons/FormatAlignLeft")
@@ -44,10 +44,10 @@ let make = () => {
   let (formats, setFormats) = React.useReducer((_, v) => v, ["bold"])
 
   let handleAlignment = (_, v) => {
-    setAlignment(v->MaterialUi.anyUnpack)
+    setAlignment(v->MaterialUi.Types.anyUnpack)
   }
   let handleFormats = (_, v) => {
-    setFormats(v->MaterialUi.anyUnpack)
+    setFormats(v->MaterialUi.Types.anyUnpack)
   }
 
   <Grid container=true spacing=#2>

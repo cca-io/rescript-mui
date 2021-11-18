@@ -2,8 +2,8 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
-import * as MaterialUi from "rescript-material-ui/src/MaterialUi.bs.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
+import * as Types$MaterialUi from "rescript-material-ui/src/Types.bs.js";
 import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/styles";
 
@@ -225,7 +225,7 @@ function ExampleSelect(Props) {
                               }),
                           onChange: handleChangeName,
                           renderValue: (function (value) {
-                              return "⚠️  - " + MaterialUi.anyUnpack(value);
+                              return "⚠️  - " + Types$MaterialUi.anyUnpack(value);
                             }),
                           value: values.name
                         }, React.createElement(Core.MenuItem, {

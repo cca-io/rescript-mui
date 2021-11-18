@@ -110,9 +110,9 @@ let top100Films = [
 
 @react.component
 let make = () => {
-  <MaterialUi_Lab.Autocomplete
+  <MaterialUiLab.Autocomplete
     id="combo-box-demo"
-    options={top100Films->Belt.Array.map(v => v->MaterialUi.Any)}
+    options={top100Films->Belt.Array.map(v => v->MaterialUi.Types.Any)}
     getOptionLabel={option => option.title}
     fullWidth=true
     renderInput={params =>
