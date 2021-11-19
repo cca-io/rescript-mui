@@ -5,8 +5,11 @@ function anyUnpack(x) {
   return x;
 }
 
+var $$Number = {};
+
 export {
   anyUnpack ,
+  $$Number ,
   
 }
 /* No side effect */
