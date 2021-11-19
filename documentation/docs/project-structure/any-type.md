@@ -3,8 +3,14 @@ title: Any Type
 ---
 
 If the type you need to pass cannot be determined you can usually insert the
-`Any` type. It lives under `MaterialUi.Types`, but the global `MaterialUi`
-module also includes it directly.
+`Any` type. It lives under `MaterialUi.Types`.
+
+:::info
+
+In previous versions it also lived in the global `MaterialUi` module directly,
+but this is no longer the case in version 3.0.0 and above
+
+:::
 
 Example for passing an `Any` value to a component:
 
