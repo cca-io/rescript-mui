@@ -2,7 +2,7 @@
 let make = () => {
   let (value, setValue) = React.useReducer((_, v) => v, 2)
 
-  let handleChange = (_, newValue) => setValue(newValue->MaterialUi.anyUnpack)
+  let handleChange = (_, newValue) => setValue(newValue->MaterialUi.Types.anyUnpack)
 
   open MaterialUi
   <Paper square=true>

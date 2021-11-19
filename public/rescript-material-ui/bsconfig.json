@@ -3,7 +3,7 @@
   "reason": {
     "react-jsx": 3
   },
-  "namespace": false,
+  "namespace": "material-ui",
   "sources": [
     {
       "dir": "src"

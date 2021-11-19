@@ -23,7 +23,7 @@ const factory = (propertyType: PropType$ArrayOf) => {
         } else if (type.name === 'float') {
           reasonType = 'array<float>';
         } else if (type.name === 'number') {
-          reasonType = 'array<MaterialUi_Types.Number.t>';
+          reasonType = 'array<Number.t>';
         }
       } else {
         const resolvedType = this.resolveType(type);
@@ -37,7 +37,7 @@ const factory = (propertyType: PropType$ArrayOf) => {
       if (typeof reasonType === 'string') {
         this._reasonType = reasonType;
       } else {
-        this._reasonType = 'array<MaterialUi_Types.any>';
+        this._reasonType = 'array<Types.any>';
       }
     }
 

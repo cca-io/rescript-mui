@@ -204,8 +204,8 @@ let make = (~sidebar, ~children) => {
             </main>
           </div>
         </div>
-      : <MaterialUi_Button variant=#outlined color=#primary onClick={_ => setShow(true)}>
+      : <MaterialUi.Button variant=#outlined color=#primary onClick={_ => setShow(true)}>
           "Open Dashboard"
-        </MaterialUi_Button>}
+        </MaterialUi.Button>}
   </div>
 }

@@ -30,44 +30,44 @@ let rs = React.string
 @react.component
 let make = () => <>
   <div>
-    <MaterialUi_Typography variant=#h6> {"Icon Types:"->rs} </MaterialUi_Typography>
-    <MaterialUi_Tooltip title={"Default"->rs} arrow=true placement=#top>
+    <MaterialUi.Typography variant=#h6> {"Icon Types:"->rs} </MaterialUi.Typography>
+    <MaterialUi.Tooltip title={"Default"->rs} arrow=true placement=#top>
       <span> <SupervisedUserCircle.Filled /> </span>
-    </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"Outlined"->rs} arrow=true placement=#left>
+    </MaterialUi.Tooltip>
+    <MaterialUi.Tooltip title={"Outlined"->rs} arrow=true placement=#left>
       <span> <SupervisedUserCircle.Outlined /> </span>
-    </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"Rounded"->rs} arrow=true placement=#"top-end">
+    </MaterialUi.Tooltip>
+    <MaterialUi.Tooltip title={"Rounded"->rs} arrow=true placement=#"top-end">
       <span> <SupervisedUserCircle.Rounded /> </span>
-    </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"TwoTone"->rs} arrow=true placement=#bottom>
+    </MaterialUi.Tooltip>
+    <MaterialUi.Tooltip title={"TwoTone"->rs} arrow=true placement=#bottom>
       <span> <SupervisedUserCircle.TwoTone /> </span>
-    </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"Sharp"->rs} arrow=true placement=#right>
+    </MaterialUi.Tooltip>
+    <MaterialUi.Tooltip title={"Sharp"->rs} arrow=true placement=#right>
       <span> <SupervisedUserCircle.Sharp /> </span>
-    </MaterialUi_Tooltip>
+    </MaterialUi.Tooltip>
   </div>
   <hr />
   <div>
-    <MaterialUi_Typography variant=#h6> {"Icon Colors:"->rs} </MaterialUi_Typography>
-    <MaterialUi_Tooltip title={"Primary"->rs}>
+    <MaterialUi.Typography variant=#h6> {"Icon Colors:"->rs} </MaterialUi.Typography>
+    <MaterialUi.Tooltip title={"Primary"->rs}>
       <span> <SupervisedUserCircle.Filled color="primary" /> </span>
-    </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"Secondary"->rs}>
+    </MaterialUi.Tooltip>
+    <MaterialUi.Tooltip title={"Secondary"->rs}>
       <span> <SupervisedUserCircle.Filled color="secondary" /> </span>
-    </MaterialUi_Tooltip>
+    </MaterialUi.Tooltip>
   </div>
   <hr />
   <div>
-    <MaterialUi_Typography variant=#h6> {"Icon Sizes:"->rs} </MaterialUi_Typography>
-    <MaterialUi_Tooltip title={"Large"->rs}>
+    <MaterialUi.Typography variant=#h6> {"Icon Sizes:"->rs} </MaterialUi.Typography>
+    <MaterialUi.Tooltip title={"Large"->rs}>
       <span> <SupervisedUserCircle.Filled fontSize="large" /> </span>
-    </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"Default"->rs}>
+    </MaterialUi.Tooltip>
+    <MaterialUi.Tooltip title={"Default"->rs}>
       <span> <SupervisedUserCircle.Filled fontSize="default" /> </span>
-    </MaterialUi_Tooltip>
-    <MaterialUi_Tooltip title={"Small"->rs}>
+    </MaterialUi.Tooltip>
+    <MaterialUi.Tooltip title={"Small"->rs}>
       <span> <SupervisedUserCircle.Filled fontSize="small" /> </span>
-    </MaterialUi_Tooltip>
+    </MaterialUi.Tooltip>
   </div>
 </>

@@ -1,7 +1,7 @@
 external styleToString: ReactDOM.Style.t => string = "%identity"
 
-let theme = MaterialUi_Theme.create({
-  open MaterialUi_ThemeOptions
+let theme = MaterialUi.Theme.create({
+  open MaterialUi.ThemeOptions
   make(
     ~overrides=Overrides.make(
       ~\"MuiButton"=ButtonClassKey.make(

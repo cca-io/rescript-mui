@@ -260,8 +260,8 @@ export default {
     theme: {
       type: {
         name: 'custom',
-        reasonType: 'MaterialUi_Theme.t',
-        jsType: 'MaterialUi_Theme.t',
+        reasonType: 'Theme.t',
+        jsType: 'Theme.t',
       },
       required: true,
       description: '-',

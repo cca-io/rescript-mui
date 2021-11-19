@@ -5,7 +5,7 @@ import * as React from "react";
 import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/styles";
 import Menu from "@material-ui/icons/Menu";
-import * as MaterialUi_ThemeHelpers from "rescript-material-ui/src/MaterialUi_ThemeHelpers.bs.js";
+import * as ThemeHelpers$MaterialUi from "rescript-material-ui/src/ThemeHelpers.bs.js";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import Notifications from "@material-ui/icons/Notifications";
 
@@ -46,12 +46,12 @@ var useStyles = Styles.makeStyles(function (theme) {
                   }, theme.mixins.toolbar),
               appBar: {
                 zIndex: String(theme.zIndex.drawer + 1.0 | 0),
-                transition: MaterialUi_ThemeHelpers.transitionCreate(theme, true, true, theme.transitions.easing.sharp, theme.transitions.duration.leavingScreen, undefined)
+                transition: ThemeHelpers$MaterialUi.transitionCreate(theme, true, true, theme.transitions.easing.sharp, theme.transitions.duration.leavingScreen, undefined)
               },
               appBarShift: {
                 marginLeft: String(240) + "px",
                 width: "calc(100% - " + 240 + "px)",
-                transition: MaterialUi_ThemeHelpers.transitionCreate(theme, true, true, theme.transitions.easing.sharp, theme.transitions.duration.enteringScreen, undefined)
+                transition: ThemeHelpers$MaterialUi.transitionCreate(theme, true, true, theme.transitions.easing.sharp, theme.transitions.duration.enteringScreen, undefined)
               },
               menuButton: {
                 marginRight: "36px",
@@ -67,12 +67,12 @@ var useStyles = Styles.makeStyles(function (theme) {
                 position: "relative",
                 whiteSpace: "nowrap",
                 width: "" + 240 + "px",
-                transition: MaterialUi_ThemeHelpers.transitionCreate(theme, true, undefined, theme.transitions.easing.sharp, theme.transitions.duration.enteringScreen, undefined)
+                transition: ThemeHelpers$MaterialUi.transitionCreate(theme, true, undefined, theme.transitions.easing.sharp, theme.transitions.duration.enteringScreen, undefined)
               },
-              drawerPaperClose: MaterialUi_ThemeHelpers.addBreakpoint({
+              drawerPaperClose: ThemeHelpers$MaterialUi.addBreakpoint({
                     overflowX: "hidden",
                     width: String(x) + "px",
-                    transition: MaterialUi_ThemeHelpers.transitionCreate(theme, true, true, theme.transitions.easing.sharp, theme.transitions.duration.leavingScreen, undefined)
+                    transition: ThemeHelpers$MaterialUi.transitionCreate(theme, true, true, theme.transitions.easing.sharp, theme.transitions.duration.leavingScreen, undefined)
                   }, theme, "SM", {
                     width: String(x$1) + "px"
                   }),

@@ -13,21 +13,10 @@ const parseInit = () => {
   // Write component files
   components.forEach(({ name, src }) => {
     Fs.writeFileSync(
-      Path.join(outputDirectory, 'rescript', muiSrc, `MaterialUi_${name}.res`),
-      src,
+      Path.join(outputDirectory, 'rescript', muiSrc, `${name}.res`),
+      src.replace(/(\W*)(Types|Number)\./g, '$1MaterialUi.$2.'),
     );
   });
-
-  Fs.writeFileSync(
-    Path.join(outputDirectory, 'rescript', muiSrc, 'MaterialUi_Lab.res'),
-    components
-      .map((component) =>
-        component != null
-          ? `module ${component.name} = MaterialUi_${component.name};`
-          : '',
-      )
-      .join('\n'),
-  );
 };
 
 PrepareOutput(muiSrc);

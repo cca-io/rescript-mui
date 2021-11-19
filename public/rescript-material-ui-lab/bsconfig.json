@@ -3,7 +3,7 @@
   "reason": {
     "react-jsx": 3
   },
-  "namespace": false,
+  "namespace": "material-ui-lab",
   "sources": ["src"],
   "package-specs": {
     "module": "es6",

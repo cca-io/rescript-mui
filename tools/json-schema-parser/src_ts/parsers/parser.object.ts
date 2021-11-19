@@ -67,7 +67,7 @@ class ObjectParser extends BaseParser {
 
       return `${this.moduleName}.t`;
     } else {
-      return 'MaterialUi_Types.any';
+      return 'Types.any';
     }
   }
 

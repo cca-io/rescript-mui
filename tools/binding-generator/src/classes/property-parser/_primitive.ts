@@ -22,7 +22,7 @@ const factory = (propertyType: PropType$Primitive) => {
 
         // -- Number
         case 'number':
-          this._reasonType = 'MaterialUi_Types.Number.t';
+          this._reasonType = 'Number.t';
           break;
         case 'int':
           this._reasonType = 'int';
@@ -52,7 +52,7 @@ const factory = (propertyType: PropType$Primitive) => {
         case 'object':
         case 'Object':
           if (inShape.is()) {
-            this._reasonType = 'MaterialUi_Types.any';
+            this._reasonType = 'Types.any';
           } else {
             this._reasonType = '{..}';
           }
@@ -60,12 +60,12 @@ const factory = (propertyType: PropType$Primitive) => {
 
         // Function without Signature / Any
         case 'any':
-          this._reasonType = 'MaterialUi_Types.any';
+          this._reasonType = 'Types.any';
           break;
 
         // Generic array
         case 'array':
-          this._reasonType = `array<MaterialUi_Types.any>`;
+          this._reasonType = 'array<Types.any>';
           break;
 
         // Void return types

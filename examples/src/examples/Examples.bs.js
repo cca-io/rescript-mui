@@ -10,7 +10,7 @@ import * as ExampleSlider from "./ExampleSlider.bs.js";
 import * as ExampleStyles from "./ExampleStyles.bs.js";
 import * as ExamplePopover from "./ExamplePopover.bs.js";
 import * as ExampleStepper from "./ExampleStepper.bs.js";
-import * as MaterialUi_Grid from "rescript-material-ui/src/MaterialUi_Grid.bs.js";
+import * as Grid$MaterialUi from "rescript-material-ui/src/Grid.bs.js";
 import * as ExampleDashboard from "./ExampleDashboard.bs.js";
 import * as Core from "@material-ui/core";
 import * as ExampleClassOverride from "./ExampleClassOverride.bs.js";
@@ -27,7 +27,7 @@ function Examples(Props) {
                               variant: "h4"
                             }),
                         item: true,
-                        md: MaterialUi_Grid.Md[12]
+                        md: Grid$MaterialUi.Md[12]
                       }),
                   container: true
                 }), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
@@ -40,11 +40,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleClassOverride.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -55,11 +55,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleIcons.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -70,11 +70,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExamplePopover.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -85,11 +85,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleStyles.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -100,11 +100,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleThemeProvider.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -115,11 +115,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleThemeProviderOverride.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -130,11 +130,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleList.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -148,11 +148,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleTabs.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -166,11 +166,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleStepper.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -184,11 +184,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleSelect.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -202,11 +202,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleSlider.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -220,14 +220,14 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleDashboard.make, {
                             sidebar: "Sidebar",
                             children: "Content"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -241,11 +241,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleBox.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -259,11 +259,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleServerStyleSheets.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Divider, {}), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement(Core.Grid, {
                   alignItems: "center",
                   children: null,
@@ -274,11 +274,11 @@ function Examples(Props) {
                             variant: "h5"
                           }),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(ExampleTextFieldSize.make, {}),
                       item: true,
-                      md: MaterialUi_Grid.Md[6]
+                      md: Grid$MaterialUi.Md[6]
                     })), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement("br", undefined), React.createElement("br", undefined));
 }
 
