@@ -112,7 +112,7 @@ let top100Films = [
 let make = () => {
   <MaterialUiLab.Autocomplete
     id="combo-box-demo"
-    options={top100Films->Belt.Array.map(v => v->MaterialUi.Types.Any)}
+    options={top100Films->Belt.Array.map(v => v->MaterialUi.Any.make)}
     getOptionLabel={option => option.title}
     fullWidth=true
     renderInput={params =>

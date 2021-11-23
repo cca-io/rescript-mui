@@ -4,6 +4,7 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Core from "@material-ui/core";
+import * as Number$MaterialUi from "rescript-material-ui/src/Number.bs.js";
 import * as Styles from "@material-ui/styles";
 
 function getSpacing(theme, num) {
@@ -74,7 +75,7 @@ function ExampleStepper(Props) {
   return React.createElement("div", {
               className: classes.root
             }, React.createElement(Core.Stepper, {
-                  activeStep: activeStep,
+                  activeStep: Number$MaterialUi.$$int(activeStep),
                   children: Belt_Array.mapWithIndex(steps, (function (index, label) {
                           return React.createElement(Core.Step, {
                                       children: null,
@@ -104,7 +105,7 @@ function ExampleStepper(Props) {
                 }), activeStep === steps.length ? React.createElement(Core.Paper, {
                     children: null,
                     className: classes.resetContainer,
-                    elevation: 0,
+                    elevation: Number$MaterialUi.$$int(0),
                     square: true
                   }, React.createElement(Core.Typography, {
                         children: "All steps completed - you're finished"

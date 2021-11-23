@@ -2,7 +2,6 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
-import * as Types$MaterialUi from "rescript-material-ui/src/Types.bs.js";
 import * as Core from "@material-ui/core";
 
 function ExampleTabs(Props) {
@@ -11,7 +10,7 @@ function ExampleTabs(Props) {
         }), 2);
   var setValue = match[1];
   var handleChange = function (param, newValue) {
-    return Curry._1(setValue, Types$MaterialUi.anyUnpack(newValue));
+    return Curry._1(setValue, newValue);
   };
   return React.createElement(Core.Paper, {
               children: React.createElement(Core.Tabs, {

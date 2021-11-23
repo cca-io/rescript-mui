@@ -4,7 +4,6 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Grid$MaterialUi from "rescript-material-ui/src/Grid.bs.js";
 import * as Lab from "@material-ui/lab";
-import * as Types$MaterialUi from "rescript-material-ui/src/Types.bs.js";
 import * as Core from "@material-ui/core";
 import FormatBold from "@material-ui/icons/FormatBold";
 import FormatItalic from "@material-ui/icons/FormatItalic";
@@ -44,10 +43,10 @@ function ExampleToggleButton(Props) {
         }), ["bold"]);
   var setFormats = match$1[1];
   var handleAlignment = function (param, v) {
-    return Curry._1(setAlignment, Types$MaterialUi.anyUnpack(v));
+    return Curry._1(setAlignment, v);
   };
   var handleFormats = function (param, v) {
-    return Curry._1(setFormats, Types$MaterialUi.anyUnpack(v));
+    return Curry._1(setFormats, v);
   };
   return React.createElement(Core.Grid, {
               children: null,

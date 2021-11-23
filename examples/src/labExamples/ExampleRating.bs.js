@@ -4,6 +4,7 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Lab from "@material-ui/lab";
 import * as Core from "@material-ui/core";
+import * as Number$MaterialUi from "rescript-material-ui/src/Number.bs.js";
 
 function ExampleRating(Props) {
   var match = React.useReducer((function (param, v) {
@@ -24,7 +25,7 @@ function ExampleRating(Props) {
                       onChange: (function (param, newValue) {
                           return Curry._1(setValue, newValue);
                         }),
-                      value: value
+                      value: Number$MaterialUi.$$int(value)
                     })), React.createElement(Core.Box, {
                   component: "fieldset",
                   children: null,
@@ -36,7 +37,7 @@ function ExampleRating(Props) {
                     }), React.createElement(Lab.Rating, {
                       name: "read-only",
                       readOnly: true,
-                      value: value
+                      value: Number$MaterialUi.$$int(value)
                     })), React.createElement(Core.Box, {
                   component: "fieldset",
                   children: null,
@@ -48,7 +49,7 @@ function ExampleRating(Props) {
                     }), React.createElement(Lab.Rating, {
                       disabled: true,
                       name: "disabled",
-                      value: value
+                      value: Number$MaterialUi.$$int(value)
                     })), React.createElement(Core.Box, {
                   component: "fieldset",
                   children: null,
@@ -59,7 +60,7 @@ function ExampleRating(Props) {
                       component: "legend"
                     }), React.createElement(Lab.Rating, {
                       name: "pristine",
-                      value: 0
+                      value: Number$MaterialUi.$$int(0)
                     })));
 }
 

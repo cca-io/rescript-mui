@@ -2,18 +2,19 @@
 
 import * as React from "react";
 import * as Lab from "@material-ui/lab";
+import * as Number$MaterialUi from "rescript-material-ui/src/Number.bs.js";
 
 function ExamplePagination(Props) {
   return React.createElement("div", undefined, React.createElement(Lab.Pagination, {
-                  count: 10
+                  count: Number$MaterialUi.$$int(10)
                 }), React.createElement(Lab.Pagination, {
                   color: "primary",
-                  count: 10
+                  count: Number$MaterialUi.$$int(10)
                 }), React.createElement(Lab.Pagination, {
                   color: "secondary",
-                  count: 10
+                  count: Number$MaterialUi.$$int(10)
                 }), React.createElement(Lab.Pagination, {
-                  count: 10,
+                  count: Number$MaterialUi.$$int(10),
                   disabled: true
                 }));
 }

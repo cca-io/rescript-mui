@@ -25,13 +25,13 @@ Example for passing an `Any` value to a component:
 ```
 
 Example for receiving an `Any` argument in a callback (The function
-`MaterialUi.anyUnpack` will return an `Any` as `'a`):
+`MaterialUi.Any.unsafeGetValue` will return an `Any` as `'a`):
 
 ```rescript
 <MaterialUi.ToggleButtonGroup
   value={Any(alignment)}
   exclusive=true
-  onChange={(_event, value) => setAlignment(MaterialUi.anyUnpack(value))}
+  onChange={(_event, value) => setAlignment(MaterialUi.Any.unsafeGetValue(value))}
 />
 ```
 
@@ -45,14 +45,14 @@ let make = () => {
   open MaterialUi
   <RadioGroup
     name="answer"
-    value=Any(state)
+    value={Any.make(state)}
     onChange={e => {
       let value = (e->ReactEvent.Form.target)["value"]
-      setState(_ => value->Types.anyUnpack)
+      setState(_ => value->Any.unsafeGetValue)
     }}>
-    <FormControlLabel value=Any(#Yes) control={<Radio />} label={React.string("Yes")} />
-    <FormControlLabel value=Any(#No) control={<Radio />} label={React.string("No")} />
-    <FormControlLabel value=Any(#Maybe) control={<Radio />} label={React.string("Maybe")} />
+    <FormControlLabel value={Any.make(#Yes)} control={<Radio />} label={React.string("Yes")} />
+    <FormControlLabel value={Any.make(#No)} control={<Radio />} label={React.string("No")} />
+    <FormControlLabel value={Any.make(#Maybe)} control={<Radio />} label={React.string("Maybe")} />
   </RadioGroup>
 }
 ```
