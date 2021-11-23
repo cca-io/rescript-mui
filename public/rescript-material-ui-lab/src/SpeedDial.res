@@ -28,7 +28,7 @@ type direction = [#down | #left | #right | #up]
 module TransitionComponent = {
   type t
   external string: string => t = "%identity"
-  external transitionComponent_func: MaterialUi.Types.any => t = "%identity"
+  external transitionComponent_func: MaterialUi.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 

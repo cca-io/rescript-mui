@@ -51,8 +51,8 @@ module ModalProps = {
 }
 
 module PaperProps = {
-  type t = {"component": option<Component.t>, "style": option<Types.any>}
-  @obj external make: (~component: Component.t=?, ~style: Types.any=?, unit) => t = ""
+  type t = {"component": option<Component.t>, "style": option<Any.t>}
+  @obj external make: (~component: Component.t=?, ~style: Any.t=?, unit) => t = ""
 }
 
 module TransitionDuration_shape = {

@@ -50,7 +50,7 @@ type color = [#primary | #secondary]
 module InputComponent = {
   type t
   external string: string => t = "%identity"
-  external inputComponent_func: Types.any => t = "%identity"
+  external inputComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -85,7 +85,7 @@ external make: (
   ~classes: Classes.t=?,
   ~className: string=?,
   ~color: color=?,
-  ~defaultValue: Types.any=?,
+  ~defaultValue: Any.t=?,
   ~disabled: bool=?,
   ~endAdornment: React.element=?,
   ~error: bool=?,
@@ -104,14 +104,14 @@ external make: (
   ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
   ~placeholder: string=?,
   ~readOnly: bool=?,
-  ~renderSuffix: Types.any=?,
+  ~renderSuffix: Any.t=?,
   ~required: bool=?,
   ~rows: Rows.t=?,
   ~rowsMax: RowsMax.t=?,
   ~rowsMin: RowsMin.t=?,
   ~startAdornment: React.element=?,
   ~\"type": string=?,
-  ~value: Types.any=?,
+  ~value: Any.t=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,

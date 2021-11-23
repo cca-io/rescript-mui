@@ -7,17 +7,17 @@ type t_breakpointValues = {
 }
 
 type t_breakpoints = {
-  between: Types.any,
-  down: Types.any,
+  between: Any.t,
+  down: Any.t,
   keys: array<string>,
-  only: Types.any,
-  up: Types.any,
+  only: Any.t,
+  up: Any.t,
   values: t_breakpointValues,
-  width: Types.any,
+  width: Any.t,
 }
 
 type t_mixins = {
-  gutters: Types.any,
+  gutters: Any.t,
   toolbar: ReactDOM.Style.t,
 }
 
@@ -272,7 +272,7 @@ type t_containerClassKey = {
   root: ReactDOM.Style.t,
 }
 
-type t_global = {\"@font-face": Types.any}
+type t_global = {\"@font-face": Any.t}
 
 type t_muiCssBaseline = {\"@global": t_global}
 
@@ -1189,13 +1189,13 @@ type t_tonalOffset = {
 
 type t_palette = {
   action: t_typeAction,
-  augmentColor: Types.any,
+  augmentColor: Any.t,
   background: t_typeBackground,
   common: t_commonColors,
   contrastThreshold: float,
   divider: string,
   error: t_paletteColor,
-  getContrastText: Types.any,
+  getContrastText: Any.t,
   grey: t_color,
   info: t_paletteColor,
   primary: t_paletteColor,
@@ -1249,7 +1249,7 @@ type t_typography = {
   h5: ReactDOM.Style.t,
   h6: ReactDOM.Style.t,
   overline: ReactDOM.Style.t,
-  pxToRem: Types.any,
+  pxToRem: Any.t,
   subtitle1: ReactDOM.Style.t,
   subtitle2: ReactDOM.Style.t,
 }
@@ -1270,7 +1270,7 @@ type t_theme = {
   mixins: t_mixins,
   overrides: t_overrides,
   palette: t_palette,
-  props: Types.any,
+  props: Any.t,
   shadows: array<string>,
   shape: t_shape,
   spacing: int => int,

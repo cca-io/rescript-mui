@@ -32,7 +32,7 @@ external make: (
   ~labelPlacement: labelPlacement=?,
   ~name: string=?,
   ~onChange: ReactEvent.Form.t => unit=?,
-  ~value: Types.any=?,
+  ~value: Any.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

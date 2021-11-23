@@ -32,7 +32,7 @@ module Classes = {
 module StepIconComponent = {
   type t
   external string: string => t = "%identity"
-  external stepIconComponent_func: Types.any => t = "%identity"
+  external stepIconComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 

@@ -33,7 +33,7 @@ external make: (
   ~onClick: ReactEvent.Mouse.t => unit=?,
   ~selected: bool=?,
   ~size: size=?,
-  ~value: MaterialUi.Types.any,
+  ~value: MaterialUi.Any.t,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

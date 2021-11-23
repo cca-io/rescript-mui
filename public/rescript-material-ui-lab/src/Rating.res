@@ -42,7 +42,7 @@ module Classes = {
 module IconContainerComponent = {
   type t
   external string: string => t = "%identity"
-  external iconContainerComponent_func: MaterialUi.Types.any => t = "%identity"
+  external iconContainerComponent_func: MaterialUi.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 

@@ -1,10 +1,6 @@
-@unboxed
-type rec any = Any('a): any
+type any = Any.t
 
-let anyUnpack = x =>
-  switch x {
-  | Any(v) => v->Obj.magic
-  }
+let anyUnpack = x => Any.unsafeGetValue(x)
 
 module Number = {
   type t

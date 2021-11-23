@@ -64,7 +64,7 @@ external make: (
   ~onClick: ReactEvent.Mouse.t => unit=?,
   ~onDragLeave: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onFocusVisible: Types.any=?,
+  ~onFocusVisible: Any.t=?,
   ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
   ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
   ~onMouseDown: ReactEvent.Mouse.t => unit=?,

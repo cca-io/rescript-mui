@@ -41,7 +41,7 @@ module Component = {
 module ContainerComponent = {
   type t
   external string: string => t = "%identity"
-  external containerComponent_func: Types.any => t = "%identity"
+  external containerComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
