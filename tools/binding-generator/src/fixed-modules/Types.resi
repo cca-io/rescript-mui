@@ -1,4 +1,3 @@
-@unboxed
 type any = Any.t
 
 @deprecated("Use Any.unsafeGetValue or a more type-specific helper from the Any module instead.")
