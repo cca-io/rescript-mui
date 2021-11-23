@@ -27,13 +27,13 @@ const factory = (propertyType: PropType$Union) => {
             case 'bool':
             case 'int':
               return { ...prev, [pType]: unionProp.reasonType };
-            case 'Types.any':
-              return { ...prev, any: 'Types.any' };
-            case 'array<Types.any>':
-              return { ...prev, array: 'array<Types.any>' };
+            case 'Any.t':
+              return { ...prev, any: 'Any.t' };
+            case 'array<Any.t>':
+              return { ...prev, array: 'array<Any.t>' };
             case 'Number.t':
               return { ...prev, int: 'int', float: 'float' };
-            case 'Js.Dict.t<Types.any>':
+            case 'Js.Dict.t<Any.t>':
             case '{..}':
               return { ...prev, obj: unionProp.reasonType };
             case 'React.element':

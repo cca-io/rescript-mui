@@ -77,10 +77,10 @@ const factory = (propertyType: PropType$FunctionSignature) => {
           Console.error(
             `_function: Parser returned false for argument ${Console.colors.green}${this.property.component.name}/${this.property.name}/${this._property.name}Return/${this._signature.return.name}${Console.colors.reset}`,
           );
-          return 'Types.any';
+          return 'Any.t';
         }
       } else {
-        return 'Types.any';
+        return 'Any.t';
       }
     }
   };

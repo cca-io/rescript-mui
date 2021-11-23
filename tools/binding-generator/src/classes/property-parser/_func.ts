@@ -22,7 +22,7 @@ enum CallbackTypes {
   AnimationCallback = 'ReactEvent.Animation.t',
   TransitionCallback = 'ReactEvent.Transition.t',
   SyntheticCallback = 'ReactEvent.Synthetic.t',
-  GenericCallback = 'Types.any',
+  GenericCallback = 'Any.t',
 }
 
 // @ts-ignore
