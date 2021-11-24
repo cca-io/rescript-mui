@@ -3,13 +3,10 @@
 
 var AnchorOrigin = {};
 
-var Classes = {};
-
 var Component = {};
 
 export {
   AnchorOrigin ,
-  Classes ,
   Component ,
   
 }

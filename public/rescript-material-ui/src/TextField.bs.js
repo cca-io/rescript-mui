@@ -7,6 +7,10 @@ var Classes = {};
 
 var DefaultValue = {};
 
+var MaxRows = {};
+
+var MinRows = {};
+
 var Rows = {};
 
 var RowsMax = {};
@@ -17,6 +21,8 @@ export {
   Component ,
   Classes ,
   DefaultValue ,
+  MaxRows ,
+  MinRows ,
   Rows ,
   RowsMax ,
   Value ,

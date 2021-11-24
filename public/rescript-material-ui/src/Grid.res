@@ -29,11 +29,11 @@ module Classes = {
     "align-content-xs-flex-end": option<string>,
     "align-content-xs-space-between": option<string>,
     "align-content-xs-space-around": option<string>,
-    "justify-xs-center": option<string>,
-    "justify-xs-flex-end": option<string>,
-    "justify-xs-space-between": option<string>,
-    "justify-xs-space-around": option<string>,
-    "justify-xs-space-evenly": option<string>,
+    "justify-content-xs-center": option<string>,
+    "justify-content-xs-flex-end": option<string>,
+    "justify-content-xs-space-between": option<string>,
+    "justify-content-xs-space-around": option<string>,
+    "justify-content-xs-space-evenly": option<string>,
     "spacing-xs-1": option<string>,
     "spacing-xs-2": option<string>,
     "spacing-xs-3": option<string>,
@@ -79,11 +79,11 @@ module Classes = {
     ~\"align-content-xs-flex-end": string=?,
     ~\"align-content-xs-space-between": string=?,
     ~\"align-content-xs-space-around": string=?,
-    ~\"justify-xs-center": string=?,
-    ~\"justify-xs-flex-end": string=?,
-    ~\"justify-xs-space-between": string=?,
-    ~\"justify-xs-space-around": string=?,
-    ~\"justify-xs-space-evenly": string=?,
+    ~\"justify-content-xs-center": string=?,
+    ~\"justify-content-xs-flex-end": string=?,
+    ~\"justify-content-xs-space-between": string=?,
+    ~\"justify-content-xs-space-around": string=?,
+    ~\"justify-content-xs-space-evenly": string=?,
     ~\"spacing-xs-1": string=?,
     ~\"spacing-xs-2": string=?,
     ~\"spacing-xs-3": string=?,
@@ -122,6 +122,15 @@ module Component = {
 type direction = [#row | #"row-reverse" | #column | #"column-reverse"]
 
 type justify = [
+  | #"flex-start"
+  | #center
+  | #"flex-end"
+  | #"space-between"
+  | #"space-around"
+  | #"space-evenly"
+]
+
+type justifyContent = [
   | #"flex-start"
   | #center
   | #"flex-end"
@@ -336,6 +345,7 @@ external make: (
   ~direction: direction=?,
   ~item: bool=?,
   ~justify: justify=?,
+  ~justifyContent: justifyContent=?,
   ~lg: Lg.t=?,
   ~md: Md.t=?,
   ~sm: Sm.t=?,

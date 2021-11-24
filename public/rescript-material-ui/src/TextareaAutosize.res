@@ -1,18 +1,11 @@
-module Rows = {
+module MaxRows = {
   type t
   external int: int => t = "%identity"
   external float: float => t = "%identity"
   external string: string => t = "%identity"
 }
 
-module RowsMax = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module RowsMin = {
+module MinRows = {
   type t
   external int: int => t = "%identity"
   external float: float => t = "%identity"
@@ -30,11 +23,13 @@ module Value = {
 @react.component @module("@material-ui/core")
 external make: (
   ~className: string=?,
+  ~maxRows: MaxRows.t=?,
+  ~minRows: MinRows.t=?,
   ~onChange: ReactEvent.Form.t => unit=?,
   ~placeholder: string=?,
-  ~rows: Rows.t=?,
-  ~rowsMax: RowsMax.t=?,
-  ~rowsMin: RowsMin.t=?,
+  ~rows: Number.t=?,
+  ~rowsMax: Number.t=?,
+  ~rowsMin: Number.t=?,
   ~style: ReactDOM.Style.t=?,
   ~value: Value.t=?,
   ~id: string=?,

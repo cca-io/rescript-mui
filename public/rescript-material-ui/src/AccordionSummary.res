@@ -20,27 +20,6 @@ module Type = {
   external string: string => t = "%identity"
 }
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "expanded": option<string>,
-    "focused": option<string>,
-    "disabled": option<string>,
-    "content": option<string>,
-    "expandIcon": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~expanded: string=?,
-    ~focused: string=?,
-    ~disabled: string=?,
-    ~content: string=?,
-    ~expandIcon: string=?,
-    unit,
-  ) => t = ""
-}
-
 @react.component @module("@material-ui/core")
 external make: (
   ~centerRipple: bool=?,
@@ -49,10 +28,11 @@ external make: (
   ~disableRipple: bool=?,
   ~disableTouchRipple: bool=?,
   ~focusRipple: bool=?,
-  ~focusVisibleClassName: string=?,
   ~href: string=?,
+  ~onBlur: ReactEvent.Focus.t => unit=?,
   ~onDragLeave: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
+  ~onFocusVisible: Any.t=?,
   ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
   ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
   ~onMouseDown: ReactEvent.Mouse.t => unit=?,
@@ -65,13 +45,11 @@ external make: (
   ~\"TouchRippleProps": {..}=?,
   ~\"type": Type.t=?,
   ~children: 'children=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
   ~expandIcon: React.element=?,
+  ~focusVisibleClassName: string=?,
   ~\"IconButtonProps": {..}=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onFocusVisible: Any.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

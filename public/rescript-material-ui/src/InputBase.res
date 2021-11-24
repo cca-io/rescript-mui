@@ -56,6 +56,20 @@ module InputComponent = {
 
 type margin = [#dense | #none]
 
+module MaxRows = {
+  type t
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module MinRows = {
+  type t
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module Rows = {
   type t
   external int: int => t = "%identity"
@@ -94,6 +108,8 @@ external make: (
   ~inputComponent: InputComponent.t=?,
   ~inputProps: {..}=?,
   ~margin: margin=?,
+  ~maxRows: MaxRows.t=?,
+  ~minRows: MinRows.t=?,
   ~multiline: bool=?,
   ~name: string=?,
   ~onBlur: ReactEvent.Focus.t => unit=?,

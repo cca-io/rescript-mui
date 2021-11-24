@@ -40,7 +40,7 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
-type padding = [#checkbox | #default | #none]
+type padding = [#normal | #checkbox | #none | #default]
 
 type size = [#medium | #small]
 

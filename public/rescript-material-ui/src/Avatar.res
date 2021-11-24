@@ -1,28 +1,3 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "colorDefault": option<string>,
-    "circle": option<string>,
-    "circular": option<string>,
-    "rounded": option<string>,
-    "square": option<string>,
-    "img": option<string>,
-    "fallback": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~colorDefault: string=?,
-    ~circle: string=?,
-    ~circular: string=?,
-    ~rounded: string=?,
-    ~square: string=?,
-    ~img: string=?,
-    ~fallback: string=?,
-    unit,
-  ) => t = ""
-}
-
 module Component = {
   type t
   external string: string => t = "%identity"
@@ -36,7 +11,6 @@ type variant = [#circle | #circular | #rounded | #square]
 external make: (
   ~alt: string=?,
   ~children: 'children=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
   ~component: Component.t=?,
   ~imgProps: {..}=?,

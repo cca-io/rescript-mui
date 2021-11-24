@@ -10,7 +10,6 @@ external make: (
   ~children: 'children=?,
   ~container: Container.t=?,
   ~disablePortal: bool=?,
-  ~onRendered: ReactEvent.Synthetic.t => unit=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

@@ -76,6 +76,7 @@ module AccordionSummaryClassKey = {
     "disabled": option<ReactDOM.Style.t>,
     "expandIcon": option<ReactDOM.Style.t>,
     "expanded": option<ReactDOM.Style.t>,
+    "focusVisible": option<ReactDOM.Style.t>,
     "focused": option<ReactDOM.Style.t>,
     "root": option<ReactDOM.Style.t>,
   }
@@ -85,6 +86,7 @@ module AccordionSummaryClassKey = {
     ~disabled: ReactDOM.Style.t=?,
     ~expandIcon: ReactDOM.Style.t=?,
     ~expanded: ReactDOM.Style.t=?,
+    ~focusVisible: ReactDOM.Style.t=?,
     ~focused: ReactDOM.Style.t=?,
     ~root: ReactDOM.Style.t=?,
     unit,
@@ -151,12 +153,19 @@ module BackdropClassKey = {
 module BadgeClassKey = {
   type t = {
     "anchorOriginBottomLeftRectangle": option<ReactDOM.Style.t>,
+    "anchorOriginBottomLeftRectangular": option<ReactDOM.Style.t>,
     "anchorOriginBottomRightCircle": option<ReactDOM.Style.t>,
+    "anchorOriginBottomRightCircular": option<ReactDOM.Style.t>,
     "anchorOriginBottomRightRectangle": option<ReactDOM.Style.t>,
+    "anchorOriginBottomRightRectangular": option<ReactDOM.Style.t>,
     "anchorOriginTopLeftCircle": option<ReactDOM.Style.t>,
+    "anchorOriginTopLeftCircular": option<ReactDOM.Style.t>,
     "anchorOriginTopLeftRectangle": option<ReactDOM.Style.t>,
+    "anchorOriginTopLeftRectangular": option<ReactDOM.Style.t>,
     "anchorOriginTopRightCircle": option<ReactDOM.Style.t>,
+    "anchorOriginTopRightCircular": option<ReactDOM.Style.t>,
     "anchorOriginTopRightRectangle": option<ReactDOM.Style.t>,
+    "anchorOriginTopRightRectangular": option<ReactDOM.Style.t>,
     "badge": option<ReactDOM.Style.t>,
     "colorError": option<string>,
     "colorPrimary": option<string>,
@@ -168,12 +177,19 @@ module BadgeClassKey = {
   @obj
   external make: (
     ~anchorOriginBottomLeftRectangle: ReactDOM.Style.t=?,
+    ~anchorOriginBottomLeftRectangular: ReactDOM.Style.t=?,
     ~anchorOriginBottomRightCircle: ReactDOM.Style.t=?,
+    ~anchorOriginBottomRightCircular: ReactDOM.Style.t=?,
     ~anchorOriginBottomRightRectangle: ReactDOM.Style.t=?,
+    ~anchorOriginBottomRightRectangular: ReactDOM.Style.t=?,
     ~anchorOriginTopLeftCircle: ReactDOM.Style.t=?,
+    ~anchorOriginTopLeftCircular: ReactDOM.Style.t=?,
     ~anchorOriginTopLeftRectangle: ReactDOM.Style.t=?,
+    ~anchorOriginTopLeftRectangular: ReactDOM.Style.t=?,
     ~anchorOriginTopRightCircle: ReactDOM.Style.t=?,
+    ~anchorOriginTopRightCircular: ReactDOM.Style.t=?,
     ~anchorOriginTopRightRectangle: ReactDOM.Style.t=?,
+    ~anchorOriginTopRightRectangular: ReactDOM.Style.t=?,
     ~badge: ReactDOM.Style.t=?,
     ~colorError: string=?,
     ~colorPrimary: string=?,
@@ -543,17 +559,17 @@ module CircularProgressClassKey = {
 
 module CollapseClassKey = {
   type t = {
-    "container": option<ReactDOM.Style.t>,
     "entered": option<ReactDOM.Style.t>,
     "hidden": option<ReactDOM.Style.t>,
+    "root": option<ReactDOM.Style.t>,
     "wrapper": option<ReactDOM.Style.t>,
     "wrapperInner": option<ReactDOM.Style.t>,
   }
   @obj
   external make: (
-    ~container: ReactDOM.Style.t=?,
     ~entered: ReactDOM.Style.t=?,
     ~hidden: ReactDOM.Style.t=?,
+    ~root: ReactDOM.Style.t=?,
     ~wrapper: ReactDOM.Style.t=?,
     ~wrapperInner: ReactDOM.Style.t=?,
     unit,
@@ -706,6 +722,27 @@ module DrawerClassKey = {
 module MuiExpansionPanelDetails = {
   type t = {"root": option<ReactDOM.Style.t>}
   @obj external make: (~root: ReactDOM.Style.t=?, unit) => t = ""
+}
+
+module ExpansionPanelSummaryClassKey = {
+  type t = {
+    "content": option<ReactDOM.Style.t>,
+    "disabled": option<ReactDOM.Style.t>,
+    "expandIcon": option<ReactDOM.Style.t>,
+    "expanded": option<ReactDOM.Style.t>,
+    "focused": option<ReactDOM.Style.t>,
+    "root": option<ReactDOM.Style.t>,
+  }
+  @obj
+  external make: (
+    ~content: ReactDOM.Style.t=?,
+    ~disabled: ReactDOM.Style.t=?,
+    ~expandIcon: ReactDOM.Style.t=?,
+    ~expanded: ReactDOM.Style.t=?,
+    ~focused: ReactDOM.Style.t=?,
+    ~root: ReactDOM.Style.t=?,
+    unit,
+  ) => t = ""
 }
 
 module FabClassKey = {
@@ -907,11 +944,11 @@ module GridClassKey = {
     "grid-xs-auto": option<ReactDOM.Style.t>,
     "grid-xs-true": option<ReactDOM.Style.t>,
     "item": option<ReactDOM.Style.t>,
-    "justify-xs-center": option<ReactDOM.Style.t>,
-    "justify-xs-flex-end": option<ReactDOM.Style.t>,
-    "justify-xs-space-around": option<ReactDOM.Style.t>,
-    "justify-xs-space-between": option<ReactDOM.Style.t>,
-    "justify-xs-space-evenly": option<ReactDOM.Style.t>,
+    "justify-content-xs-center": option<ReactDOM.Style.t>,
+    "justify-content-xs-flex-end": option<ReactDOM.Style.t>,
+    "justify-content-xs-space-around": option<ReactDOM.Style.t>,
+    "justify-content-xs-space-between": option<ReactDOM.Style.t>,
+    "justify-content-xs-space-evenly": option<ReactDOM.Style.t>,
     "root": option<ReactDOM.Style.t>,
     "spacing-xs-1": option<ReactDOM.Style.t>,
     "spacing-xs-10": option<ReactDOM.Style.t>,
@@ -957,11 +994,11 @@ module GridClassKey = {
     ~\"grid-xs-auto": ReactDOM.Style.t=?,
     ~\"grid-xs-true": ReactDOM.Style.t=?,
     ~item: ReactDOM.Style.t=?,
-    ~\"justify-xs-center": ReactDOM.Style.t=?,
-    ~\"justify-xs-flex-end": ReactDOM.Style.t=?,
-    ~\"justify-xs-space-around": ReactDOM.Style.t=?,
-    ~\"justify-xs-space-between": ReactDOM.Style.t=?,
-    ~\"justify-xs-space-evenly": ReactDOM.Style.t=?,
+    ~\"justify-content-xs-center": ReactDOM.Style.t=?,
+    ~\"justify-content-xs-flex-end": ReactDOM.Style.t=?,
+    ~\"justify-content-xs-space-around": ReactDOM.Style.t=?,
+    ~\"justify-content-xs-space-between": ReactDOM.Style.t=?,
+    ~\"justify-content-xs-space-evenly": ReactDOM.Style.t=?,
     ~root: ReactDOM.Style.t=?,
     ~\"spacing-xs-1": ReactDOM.Style.t=?,
     ~\"spacing-xs-10": ReactDOM.Style.t=?,
@@ -976,59 +1013,6 @@ module GridClassKey = {
     ~\"wrap-xs-nowrap": ReactDOM.Style.t=?,
     ~\"wrap-xs-wrap-reverse": ReactDOM.Style.t=?,
     ~zeroMinWidth: ReactDOM.Style.t=?,
-    unit,
-  ) => t = ""
-}
-
-module MuiGridList = {
-  type t = {"root": option<ReactDOM.Style.t>}
-  @obj external make: (~root: ReactDOM.Style.t=?, unit) => t = ""
-}
-
-module GridListTileClassKey = {
-  type t = {
-    "imgFullHeight": option<ReactDOM.Style.t>,
-    "imgFullWidth": option<ReactDOM.Style.t>,
-    "root": option<ReactDOM.Style.t>,
-    "tile": option<ReactDOM.Style.t>,
-  }
-  @obj
-  external make: (
-    ~imgFullHeight: ReactDOM.Style.t=?,
-    ~imgFullWidth: ReactDOM.Style.t=?,
-    ~root: ReactDOM.Style.t=?,
-    ~tile: ReactDOM.Style.t=?,
-    unit,
-  ) => t = ""
-}
-
-module GridListTileBarClassKey = {
-  type t = {
-    "actionIcon": option<ReactDOM.Style.t>,
-    "actionIconActionPosLeft": option<ReactDOM.Style.t>,
-    "root": option<ReactDOM.Style.t>,
-    "rootSubtitle": option<ReactDOM.Style.t>,
-    "subtitle": option<ReactDOM.Style.t>,
-    "title": option<ReactDOM.Style.t>,
-    "titlePositionBottom": option<ReactDOM.Style.t>,
-    "titlePositionTop": option<ReactDOM.Style.t>,
-    "titleWrap": option<ReactDOM.Style.t>,
-    "titleWrapActionPosLeft": option<ReactDOM.Style.t>,
-    "titleWrapActionPosRight": option<ReactDOM.Style.t>,
-  }
-  @obj
-  external make: (
-    ~actionIcon: ReactDOM.Style.t=?,
-    ~actionIconActionPosLeft: ReactDOM.Style.t=?,
-    ~root: ReactDOM.Style.t=?,
-    ~rootSubtitle: ReactDOM.Style.t=?,
-    ~subtitle: ReactDOM.Style.t=?,
-    ~title: ReactDOM.Style.t=?,
-    ~titlePositionBottom: ReactDOM.Style.t=?,
-    ~titlePositionTop: ReactDOM.Style.t=?,
-    ~titleWrap: ReactDOM.Style.t=?,
-    ~titleWrapActionPosLeft: ReactDOM.Style.t=?,
-    ~titleWrapActionPosRight: ReactDOM.Style.t=?,
     unit,
   ) => t = ""
 }
@@ -1083,6 +1067,59 @@ module IconButtonClassKey = {
     ~label: ReactDOM.Style.t=?,
     ~root: ReactDOM.Style.t=?,
     ~sizeSmall: ReactDOM.Style.t=?,
+    unit,
+  ) => t = ""
+}
+
+module MuiImageList = {
+  type t = {"root": option<ReactDOM.Style.t>}
+  @obj external make: (~root: ReactDOM.Style.t=?, unit) => t = ""
+}
+
+module ImageListItemClassKey = {
+  type t = {
+    "imgFullHeight": option<ReactDOM.Style.t>,
+    "imgFullWidth": option<ReactDOM.Style.t>,
+    "item": option<ReactDOM.Style.t>,
+    "root": option<ReactDOM.Style.t>,
+  }
+  @obj
+  external make: (
+    ~imgFullHeight: ReactDOM.Style.t=?,
+    ~imgFullWidth: ReactDOM.Style.t=?,
+    ~item: ReactDOM.Style.t=?,
+    ~root: ReactDOM.Style.t=?,
+    unit,
+  ) => t = ""
+}
+
+module ImageListItemBarClassKey = {
+  type t = {
+    "actionIcon": option<ReactDOM.Style.t>,
+    "actionIconActionPosLeft": option<ReactDOM.Style.t>,
+    "positionBottom": option<ReactDOM.Style.t>,
+    "positionTop": option<ReactDOM.Style.t>,
+    "root": option<ReactDOM.Style.t>,
+    "rootSubtitle": option<ReactDOM.Style.t>,
+    "subtitle": option<ReactDOM.Style.t>,
+    "title": option<ReactDOM.Style.t>,
+    "titleWrap": option<ReactDOM.Style.t>,
+    "titleWrapActionPosLeft": option<ReactDOM.Style.t>,
+    "titleWrapActionPosRight": option<ReactDOM.Style.t>,
+  }
+  @obj
+  external make: (
+    ~actionIcon: ReactDOM.Style.t=?,
+    ~actionIconActionPosLeft: ReactDOM.Style.t=?,
+    ~positionBottom: ReactDOM.Style.t=?,
+    ~positionTop: ReactDOM.Style.t=?,
+    ~root: ReactDOM.Style.t=?,
+    ~rootSubtitle: ReactDOM.Style.t=?,
+    ~subtitle: ReactDOM.Style.t=?,
+    ~title: ReactDOM.Style.t=?,
+    ~titleWrap: ReactDOM.Style.t=?,
+    ~titleWrapActionPosLeft: ReactDOM.Style.t=?,
+    ~titleWrapActionPosRight: ReactDOM.Style.t=?,
     unit,
   ) => t = ""
 }
@@ -2261,7 +2298,7 @@ module Overrides = {
     "MuiExpansionPanel": option<AccordionClassKey.t>,
     "MuiExpansionPanelActions": option<AccordionActionsClassKey.t>,
     "MuiExpansionPanelDetails": option<MuiExpansionPanelDetails.t>,
-    "MuiExpansionPanelSummary": option<AccordionSummaryClassKey.t>,
+    "MuiExpansionPanelSummary": option<ExpansionPanelSummaryClassKey.t>,
     "MuiFab": option<FabClassKey.t>,
     "MuiFilledInput": option<FilledInputClassKey.t>,
     "MuiFormControl": option<FormControlClassKey.t>,
@@ -2270,11 +2307,11 @@ module Overrides = {
     "MuiFormHelperText": option<FormHelperTextClassKey.t>,
     "MuiFormLabel": option<FormLabelClassKey.t>,
     "MuiGrid": option<GridClassKey.t>,
-    "MuiGridList": option<MuiGridList.t>,
-    "MuiGridListTile": option<GridListTileClassKey.t>,
-    "MuiGridListTileBar": option<GridListTileBarClassKey.t>,
     "MuiIcon": option<SvgIconClassKey.t>,
     "MuiIconButton": option<IconButtonClassKey.t>,
+    "MuiImageList": option<MuiImageList.t>,
+    "MuiImageListItem": option<ImageListItemClassKey.t>,
+    "MuiImageListItemBar": option<ImageListItemBarClassKey.t>,
     "MuiInput": option<InputClassKey.t>,
     "MuiInputAdornment": option<InputAdornmentClassKey.t>,
     "MuiInputBase": option<InputBaseClassKey.t>,
@@ -2365,7 +2402,7 @@ module Overrides = {
     ~\"MuiExpansionPanel": AccordionClassKey.t=?,
     ~\"MuiExpansionPanelActions": AccordionActionsClassKey.t=?,
     ~\"MuiExpansionPanelDetails": MuiExpansionPanelDetails.t=?,
-    ~\"MuiExpansionPanelSummary": AccordionSummaryClassKey.t=?,
+    ~\"MuiExpansionPanelSummary": ExpansionPanelSummaryClassKey.t=?,
     ~\"MuiFab": FabClassKey.t=?,
     ~\"MuiFilledInput": FilledInputClassKey.t=?,
     ~\"MuiFormControl": FormControlClassKey.t=?,
@@ -2374,11 +2411,11 @@ module Overrides = {
     ~\"MuiFormHelperText": FormHelperTextClassKey.t=?,
     ~\"MuiFormLabel": FormLabelClassKey.t=?,
     ~\"MuiGrid": GridClassKey.t=?,
-    ~\"MuiGridList": MuiGridList.t=?,
-    ~\"MuiGridListTile": GridListTileClassKey.t=?,
-    ~\"MuiGridListTileBar": GridListTileBarClassKey.t=?,
     ~\"MuiIcon": SvgIconClassKey.t=?,
     ~\"MuiIconButton": IconButtonClassKey.t=?,
+    ~\"MuiImageList": MuiImageList.t=?,
+    ~\"MuiImageListItem": ImageListItemClassKey.t=?,
+    ~\"MuiImageListItemBar": ImageListItemBarClassKey.t=?,
     ~\"MuiInput": InputClassKey.t=?,
     ~\"MuiInputAdornment": InputAdornmentClassKey.t=?,
     ~\"MuiInputBase": InputBaseClassKey.t=?,
