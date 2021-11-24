@@ -24,7 +24,7 @@ module Classes = {
 module TransitionComponent = {
   type t
   external string: string => t = "%identity"
-  external transitionComponent_func: MaterialUi.Types.any => t = "%identity"
+  external transitionComponent_func: MaterialUi.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -41,9 +41,9 @@ external make: (
   ~nodeId: string,
   ~onClick: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onIconClick: MaterialUi.Types.any=?,
+  ~onIconClick: MaterialUi.Any.t=?,
   ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onLabelClick: MaterialUi.Types.any=?,
+  ~onLabelClick: MaterialUi.Any.t=?,
   ~onMouseDown: ReactEvent.Mouse.t => unit=?,
   ~\"TransitionComponent": TransitionComponent.t=?,
   ~\"TransitionProps": {..}=?,

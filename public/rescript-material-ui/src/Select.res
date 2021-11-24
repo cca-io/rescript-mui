@@ -10,7 +10,7 @@ type color = [#primary | #secondary]
 module InputComponent = {
   type t
   external string: string => t = "%identity"
-  external inputComponent_func: Types.any => t = "%identity"
+  external inputComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -64,7 +64,7 @@ module Classes = {
 module IconComponent = {
   type t
   external string: string => t = "%identity"
-  external iconComponent_func: Types.any => t = "%identity"
+  external iconComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -87,7 +87,7 @@ external make: (
   ~onFocus: ReactEvent.Focus.t => unit=?,
   ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
   ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~renderSuffix: Types.any=?,
+  ~renderSuffix: Any.t=?,
   ~rowsMin: RowsMin.t=?,
   ~style: ReactDOM.Style.t=?,
   ~autoComplete: string=?,
@@ -112,7 +112,7 @@ external make: (
   ~autoWidth: bool=?,
   ~children: 'children=?,
   ~classes: Classes.t=?,
-  ~defaultValue: Types.any=?,
+  ~defaultValue: Any.t=?,
   ~displayEmpty: bool=?,
   ~\"IconComponent": IconComponent.t=?,
   ~id: string=?,
@@ -128,7 +128,7 @@ external make: (
   ~onClose: ReactEvent.Synthetic.t => unit=?,
   ~onOpen: ReactEvent.Synthetic.t => unit=?,
   ~\"open": bool=?,
-  ~renderValue: Types.any => React.element=?,
+  ~renderValue: Any.t => React.element=?,
   ~\"SelectDisplayProps": {..}=?,
   ~value: Value.t=?,
   ~variant: variant=?,

@@ -1,7 +1,7 @@
 module BackdropComponent = {
   type t
   external string: string => t = "%identity"
-  external backdropComponent_func: Types.any => t = "%identity"
+  external backdropComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -9,7 +9,7 @@ module Container = {
   type t
   external custom: Dom.element => t = "%identity"
   external element: React.element => t = "%identity"
-  external container_func: Types.any => t = "%identity"
+  external container_func: Any.t => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")

@@ -83,7 +83,7 @@ external make: (
   ~onClick: ReactEvent.Mouse.t => unit=?,
   ~onDragLeave: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onFocusVisible: Types.any=?,
+  ~onFocusVisible: Any.t=?,
   ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
   ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
   ~onMouseDown: ReactEvent.Mouse.t => unit=?,
@@ -113,7 +113,7 @@ external make: (
   ~onChange: ReactEvent.Form.t => unit=?,
   ~required: bool=?,
   ~size: size=?,
-  ~value: Types.any=?,
+  ~value: Any.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "Switch"

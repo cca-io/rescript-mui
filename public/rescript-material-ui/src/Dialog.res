@@ -1,7 +1,7 @@
 module BackdropComponent = {
   type t
   external string: string => t = "%identity"
-  external backdropComponent_func: Types.any => t = "%identity"
+  external backdropComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -9,7 +9,7 @@ module Container = {
   type t
   external custom: Dom.element => t = "%identity"
   external element: React.element => t = "%identity"
-  external container_func: Types.any => t = "%identity"
+  external container_func: Any.t => t = "%identity"
 }
 
 module Classes = {
@@ -74,7 +74,7 @@ module MaxWidth: {
 module PaperComponent = {
   type t
   external string: string => t = "%identity"
-  external paperComponent_func: Types.any => t = "%identity"
+  external paperComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -83,7 +83,7 @@ type scroll = [#body | #paper]
 module TransitionComponent = {
   type t
   external string: string => t = "%identity"
-  external transitionComponent_func: Types.any => t = "%identity"
+  external transitionComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 

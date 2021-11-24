@@ -44,7 +44,7 @@ type direction = [#asc | #desc]
 module IconComponent = {
   type t
   external string: string => t = "%identity"
-  external iconComponent_func: Types.any => t = "%identity"
+  external iconComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -62,7 +62,7 @@ external make: (
   ~onClick: ReactEvent.Mouse.t => unit=?,
   ~onDragLeave: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onFocusVisible: Types.any=?,
+  ~onFocusVisible: Any.t=?,
   ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
   ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
   ~onMouseDown: ReactEvent.Mouse.t => unit=?,

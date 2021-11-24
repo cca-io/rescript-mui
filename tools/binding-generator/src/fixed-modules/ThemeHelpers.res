@@ -19,7 +19,7 @@ let addBreakpoint = (sourceStyle, ~theme, ~breakpoint, ~style) => {
   | #Int(x) => x->intToBreakpoint
   }
 
-  let breakpointSource = theme.breakpoints.up->Types.anyUnpack->jsonToBreakpointFunc(breakpoint)
+  let breakpointSource = theme.breakpoints.up->Any.unsafeGetValue->jsonToBreakpointFunc(breakpoint)
 
   ReactDOM.Style.unsafeAddProp(sourceStyle, breakpointSource, styleToString(style))
 }

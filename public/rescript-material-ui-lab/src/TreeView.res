@@ -11,7 +11,7 @@ module DefaultSelected = {
 
 module Value = {
   type t
-  external array: array<MaterialUi.Types.any> => t = "%identity"
+  external array: array<MaterialUi.Any.t> => t = "%identity"
   external string: string => t = "%identity"
 }
 
@@ -36,7 +36,7 @@ external make: (
   ~expanded: array<string>=?,
   ~multiSelect: bool=?,
   ~onNodeSelect: ({..}, Value.t) => unit=?,
-  ~onNodeToggle: ({..}, array<MaterialUi.Types.any>) => unit=?,
+  ~onNodeToggle: ({..}, array<MaterialUi.Any.t>) => unit=?,
   ~selected: Selected.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

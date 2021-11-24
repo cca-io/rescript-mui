@@ -29,7 +29,7 @@ let make = () => {
       <Grid item=true>
         <Input
           className={classes["input"]}
-          value=Any(value)
+          value={Any.fromInt(value)}
           margin=#dense
           onChange={e => setValue((e->ReactEvent.Form.target)["value"]->int_of_string)}
           onBlur={_ =>

@@ -22,7 +22,7 @@ external make: (
   ~defaultValue: DefaultValue.t=?,
   ~name: string=?,
   ~onChange: ReactEvent.Form.t => unit=?,
-  ~value: Types.any=?,
+  ~value: Any.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "RadioGroup"

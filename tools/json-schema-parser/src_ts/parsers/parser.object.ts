@@ -67,7 +67,7 @@ class ObjectParser extends BaseParser {
 
       return `${this.moduleName}.t`;
     } else {
-      return 'Types.any';
+      return 'Any.t';
     }
   }
 

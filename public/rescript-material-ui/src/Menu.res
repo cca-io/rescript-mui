@@ -1,7 +1,7 @@
 module BackdropComponent = {
   type t
   external string: string => t = "%identity"
-  external backdropComponent_func: Types.any => t = "%identity"
+  external backdropComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -39,7 +39,7 @@ module Container = {
   type t
   external custom: Dom.element => t = "%identity"
   external element: React.element => t = "%identity"
-  external container_func: Types.any => t = "%identity"
+  external container_func: Any.t => t = "%identity"
 }
 
 module TransformOrigin = {
@@ -50,7 +50,7 @@ module TransformOrigin = {
 module TransitionComponent = {
   type t
   external string: string => t = "%identity"
-  external transitionComponent_func: Types.any => t = "%identity"
+  external transitionComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -100,12 +100,12 @@ external make: (
   ~className: string=?,
   ~container: Container.t=?,
   ~elevation: Number.t=?,
-  ~getContentAnchorEl: Types.any=?,
+  ~getContentAnchorEl: Any.t=?,
   ~marginThreshold: Number.t=?,
   ~transformOrigin: TransformOrigin.t=?,
   ~\"TransitionComponent": TransitionComponent.t=?,
   ~\"TransitionProps": {..}=?,
-  ~anchorEl: Types.any=?,
+  ~anchorEl: Any.t=?,
   ~autoFocus: bool=?,
   ~children: 'children=?,
   ~classes: Classes.t=?,

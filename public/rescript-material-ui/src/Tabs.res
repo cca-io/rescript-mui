@@ -43,7 +43,7 @@ type orientation = [#horizontal | #vertical]
 module ScrollButtonComponent = {
   type t
   external string: string => t = "%identity"
-  external scrollButtonComponent_func: Types.any => t = "%identity"
+  external scrollButtonComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -63,7 +63,7 @@ external make: (
   ~className: string=?,
   ~component: Component.t=?,
   ~indicatorColor: indicatorColor=?,
-  ~onChange: (ReactEvent.Form.t, Types.any) => unit=?,
+  ~onChange: (ReactEvent.Form.t, Any.t) => unit=?,
   ~orientation: orientation=?,
   ~\"ScrollButtonComponent": ScrollButtonComponent.t=?,
   ~scrollButtons: scrollButtons=?,
@@ -71,7 +71,7 @@ external make: (
   ~\"TabIndicatorProps": {..}=?,
   ~\"TabScrollButtonProps": {..}=?,
   ~textColor: textColor=?,
-  ~value: Types.any=?,
+  ~value: Any.t=?,
   ~variant: variant=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

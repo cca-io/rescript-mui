@@ -7,13 +7,13 @@ let make = () => {
   open MaterialUi
   <RadioGroup
     name="answer"
-    value=Any(state)
+    value={Any.make(state)}
     onChange={e => {
       let value = (e->ReactEvent.Form.target)["value"]
-      setState(_ => value->Types.anyUnpack)
+      setState(_ => value->Any.unsafeGetValue)
     }}>
-    <FormControlLabel value=Any(#Yes) control={<Radio />} label={React.string("Yes")} />
-    <FormControlLabel value=Any(#No) control={<Radio />} label={React.string("No")} />
-    <FormControlLabel value=Any(#Maybe) control={<Radio />} label={React.string("Maybe")} />
+    <FormControlLabel value={Any.make(#Yes)} control={<Radio />} label={React.string("Yes")} />
+    <FormControlLabel value={Any.make(#No)} control={<Radio />} label={React.string("No")} />
+    <FormControlLabel value={Any.make(#Maybe)} control={<Radio />} label={React.string("Maybe")} />
   </RadioGroup>
 }

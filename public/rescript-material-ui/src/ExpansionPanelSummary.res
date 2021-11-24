@@ -73,7 +73,7 @@ external make: (
   ~\"IconButtonProps": {..}=?,
   ~onBlur: ReactEvent.Focus.t => unit=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onFocusVisible: Types.any=?,
+  ~onFocusVisible: Any.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "ExpansionPanelSummary"

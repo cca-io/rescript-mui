@@ -23,7 +23,7 @@ type variant = [#body | #footer | #head]
 module ActionsComponent = {
   type t
   external string: string => t = "%identity"
-  external actionsComponent_func: Types.any => t = "%identity"
+  external actionsComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 

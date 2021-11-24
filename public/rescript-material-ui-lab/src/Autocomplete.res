@@ -74,26 +74,26 @@ module ForcePopupIcon = {
 module ListboxComponent = {
   type t
   external string: string => t = "%identity"
-  external listboxComponent_func: MaterialUi.Types.any => t = "%identity"
+  external listboxComponent_func: MaterialUi.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
 module Value = {
   type t
-  external arrayOf: array<MaterialUi.Types.any> => t = "%identity"
+  external arrayOf: array<MaterialUi.Any.t> => t = "%identity"
 }
 
 module PaperComponent = {
   type t
   external string: string => t = "%identity"
-  external paperComponent_func: MaterialUi.Types.any => t = "%identity"
+  external paperComponent_func: MaterialUi.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
 module PopperComponent = {
   type t
   external string: string => t = "%identity"
-  external popperComponent_func: MaterialUi.Types.any => t = "%identity"
+  external popperComponent_func: MaterialUi.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -114,14 +114,14 @@ external make: (
   ~closeIcon: React.element=?,
   ~closeText: string=?,
   ~debug: bool=?,
-  ~defaultValue: MaterialUi.Types.any=?,
+  ~defaultValue: MaterialUi.Any.t=?,
   ~disableClearable: bool=?,
   ~disableCloseOnSelect: bool=?,
   ~disabled: bool=?,
   ~disabledItemsFocusable: bool=?,
   ~disableListWrap: bool=?,
   ~disablePortal: bool=?,
-  ~filterOptions: MaterialUi.Types.any=?,
+  ~filterOptions: MaterialUi.Any.t=?,
   ~filterSelectedOptions: bool=?,
   ~forcePopupIcon: ForcePopupIcon.t=?,
   ~freeSolo: bool=?,
@@ -150,17 +150,17 @@ external make: (
   ~\"open": bool=?,
   ~openOnFocus: bool=?,
   ~openText: string=?,
-  ~options: array<MaterialUi.Types.any>,
+  ~options: array<MaterialUi.Any.t>,
   ~\"PaperComponent": PaperComponent.t=?,
   ~\"PopperComponent": PopperComponent.t=?,
   ~popupIcon: React.element=?,
-  ~renderGroup: MaterialUi.Types.any => React.element=?,
+  ~renderGroup: MaterialUi.Any.t => React.element=?,
   ~renderInput: {..} => React.element,
   ~renderOption: ('t, {..}) => React.element=?,
   ~renderTags: (array<'t>, {"index": int} => unit) => React.element=?,
   ~selectOnFocus: bool=?,
   ~size: size=?,
-  ~value: MaterialUi.Types.any=?,
+  ~value: MaterialUi.Any.t=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,

@@ -71,7 +71,7 @@ external make: (
   ~\"IconButtonProps": {..}=?,
   ~onBlur: ReactEvent.Focus.t => unit=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onFocusVisible: Types.any=?,
+  ~onFocusVisible: Any.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

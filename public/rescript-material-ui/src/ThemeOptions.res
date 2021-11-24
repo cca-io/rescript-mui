@@ -13,34 +13,34 @@ module BreakpointValues = {
 
 module Breakpoints = {
   type t = {
-    "between": option<Types.any>,
-    "down": option<Types.any>,
+    "between": option<Any.t>,
+    "down": option<Any.t>,
     "keys": option<array<string>>,
-    "only": option<Types.any>,
+    "only": option<Any.t>,
     "step": option<float>,
     "unit": option<string>,
-    "up": option<Types.any>,
+    "up": option<Any.t>,
     "values": option<BreakpointValues.t>,
-    "width": option<Types.any>,
+    "width": option<Any.t>,
   }
   @obj
   external make: (
-    ~between: Types.any=?,
-    ~down: Types.any=?,
+    ~between: Any.t=?,
+    ~down: Any.t=?,
     ~keys: array<string>=?,
-    ~only: Types.any=?,
+    ~only: Any.t=?,
     ~step: float=?,
     ~unit: string=?,
-    ~up: Types.any=?,
+    ~up: Any.t=?,
     ~values: BreakpointValues.t=?,
-    ~width: Types.any=?,
+    ~width: Any.t=?,
     unit,
   ) => t = ""
 }
 
 module MixinsOptions = {
-  type t = {"gutters": option<Types.any>, "toolbar": option<ReactDOM.Style.t>}
-  @obj external make: (~gutters: Types.any=?, ~toolbar: ReactDOM.Style.t=?, unit) => t = ""
+  type t = {"gutters": option<Any.t>, "toolbar": option<ReactDOM.Style.t>}
+  @obj external make: (~gutters: Any.t=?, ~toolbar: ReactDOM.Style.t=?, unit) => t = ""
 }
 
 module AccordionClassKey = {
@@ -586,8 +586,8 @@ module ContainerClassKey = {
 }
 
 module Global = {
-  type t = {"@font-face": option<Types.any>}
-  @obj external make: (~\"@font-face": Types.any=?, unit) => t = ""
+  type t = {"@font-face": option<Any.t>}
+  @obj external make: (~\"@font-face": Any.t=?, unit) => t = ""
 }
 
 module MuiCssBaseline = {
@@ -2812,7 +2812,7 @@ module PaletteOptions = {
     "contrastThreshold": option<float>,
     "divider": option<string>,
     "error": option<Error.t>,
-    "getContrastText": option<Types.any>,
+    "getContrastText": option<Any.t>,
     "grey": option<Color.t>,
     "info": option<Info.t>,
     "primary": option<Primary.t>,
@@ -2831,7 +2831,7 @@ module PaletteOptions = {
     ~contrastThreshold: float=?,
     ~divider: string=?,
     ~error: Error.t=?,
-    ~getContrastText: Types.any=?,
+    ~getContrastText: Any.t=?,
     ~grey: Color.t=?,
     ~info: Info.t=?,
     ~primary: Primary.t=?,
@@ -2892,24 +2892,24 @@ module Easing = {
 
 module TransitionsOptions = {
   type t = {
-    "create": option<Types.any>,
+    "create": option<Any.t>,
     "duration": option<Duration.t>,
     "easing": option<Easing.t>,
-    "getAutoHeightDuration": option<Types.any>,
+    "getAutoHeightDuration": option<Any.t>,
   }
   @obj
   external make: (
-    ~create: Types.any=?,
+    ~create: Any.t=?,
     ~duration: Duration.t=?,
     ~easing: Easing.t=?,
-    ~getAutoHeightDuration: Types.any=?,
+    ~getAutoHeightDuration: Any.t=?,
     unit,
   ) => t = ""
 }
 
 module TypographyStyleOptions = {
-  type t = {"@font-face": option<Types.any>}
-  @obj external make: (~\"@font-face": Types.any=?, unit) => t = ""
+  type t = {"@font-face": option<Any.t>}
+  @obj external make: (~\"@font-face": Any.t=?, unit) => t = ""
 }
 
 module Typography = {
@@ -2990,10 +2990,10 @@ type t = {
   "mixins": option<MixinsOptions.t>,
   "overrides": option<Overrides.t>,
   "palette": option<PaletteOptions.t>,
-  "props": option<Types.any>,
+  "props": option<Any.t>,
   "shadows": option<array<string>>,
   "shape": option<Shape.t>,
-  "spacing": option<Types.any>,
+  "spacing": option<Any.t>,
   "transitions": option<TransitionsOptions.t>,
   "typography": option<Typography.t>,
   "unstable_strictMode": option<bool>,
@@ -3006,10 +3006,10 @@ external make: (
   ~mixins: MixinsOptions.t=?,
   ~overrides: Overrides.t=?,
   ~palette: PaletteOptions.t=?,
-  ~props: Types.any=?,
+  ~props: Any.t=?,
   ~shadows: array<string>=?,
   ~shape: Shape.t=?,
-  ~spacing: Types.any=?,
+  ~spacing: Any.t=?,
   ~transitions: TransitionsOptions.t=?,
   ~typography: Typography.t=?,
   ~unstable_strictMode: bool=?,

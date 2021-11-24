@@ -3,7 +3,6 @@
 import * as $$Array from "rescript/lib/es6/array.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as ReactDOMStyle from "@rescript/react/src/ReactDOMStyle.bs.js";
-import * as Types$MaterialUi from "./Types.bs.js";
 
 function addBreakpoint(sourceStyle, theme, breakpoint, style) {
   var breakpoint$1 = typeof breakpoint === "object" ? breakpoint.VAL : (
@@ -15,7 +14,7 @@ function addBreakpoint(sourceStyle, theme, breakpoint, style) {
             )
         )
     );
-  var breakpointSource = Curry._1(Types$MaterialUi.anyUnpack(theme.breakpoints.up), breakpoint$1);
+  var breakpointSource = Curry._1(theme.breakpoints.up, breakpoint$1);
   return ReactDOMStyle.unsafeAddProp(sourceStyle, breakpointSource, style);
 }
 

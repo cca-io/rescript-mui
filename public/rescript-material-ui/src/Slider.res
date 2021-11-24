@@ -66,7 +66,7 @@ module DefaultValue = {
 module Marks = {
   type t
   external bool: bool => t = "%identity"
-  external array: array<Types.any> => t = "%identity"
+  external array: array<Any.t> => t = "%identity"
 }
 
 type orientation = [#horizontal | #vertical]
@@ -74,7 +74,7 @@ type orientation = [#horizontal | #vertical]
 module ThumbComponent = {
   type t
   external string: string => t = "%identity"
-  external thumbComponent_func: Types.any => t = "%identity"
+  external thumbComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -102,7 +102,7 @@ module Value = {
 module ValueLabelComponent = {
   type t
   external string: string => t = "%identity"
-  external valueLabelComponent_func: Types.any => t = "%identity"
+  external valueLabelComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -111,7 +111,7 @@ type valueLabelDisplay = [#on | #auto | #off]
 module ValueLabelFormat = {
   type t
   external string: string => t = "%identity"
-  external valueLabelFormat_func: Types.any => t = "%identity"
+  external valueLabelFormat_func: Any.t => t = "%identity"
 }
 
 @react.component @module("@material-ui/core")
@@ -133,7 +133,7 @@ external make: (
   ~onChangeCommitted: (ReactEvent.Form.t, int) => unit=?,
   ~onMouseDown: ReactEvent.Mouse.t => unit=?,
   ~orientation: orientation=?,
-  ~scale: Types.any=?,
+  ~scale: Any.t=?,
   ~step: Number.t=?,
   ~\"ThumbComponent": ThumbComponent.t=?,
   ~track: Track.t=?,

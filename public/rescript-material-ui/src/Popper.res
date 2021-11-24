@@ -1,20 +1,20 @@
 module AnchorEl = {
   type t
   external obj: {..} => t = "%identity"
-  external anchorEl_func: Types.any => t = "%identity"
+  external anchorEl_func: Any.t => t = "%identity"
 }
 
 module Children = {
   type t
   external element: React.element => t = "%identity"
-  external children_func: Types.any => t = "%identity"
+  external children_func: Any.t => t = "%identity"
 }
 
 module Container = {
   type t
   external custom: Dom.element => t = "%identity"
   external element: React.element => t = "%identity"
-  external container_func: Types.any => t = "%identity"
+  external container_func: Any.t => t = "%identity"
 }
 
 type placement = [

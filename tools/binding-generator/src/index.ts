@@ -25,6 +25,7 @@ const parseInit = () => {
   const itemsFiltered = items.filter(
     (item) =>
       item.lastIndexOf('.res') === item.length - 4 ||
+      item.lastIndexOf('.resi') === item.length - 5 ||
       item.lastIndexOf('.js') === item.length - 3,
   );
   itemsFiltered.forEach((item) => {

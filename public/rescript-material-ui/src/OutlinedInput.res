@@ -49,7 +49,7 @@ type color = [#primary | #secondary]
 module InputComponent = {
   type t
   external string: string => t = "%identity"
-  external inputComponent_func: Types.any => t = "%identity"
+  external inputComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -78,14 +78,14 @@ external make: (
   ~onFocus: ReactEvent.Focus.t => unit=?,
   ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
   ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~renderSuffix: Types.any=?,
+  ~renderSuffix: Any.t=?,
   ~rowsMin: RowsMin.t=?,
   ~style: ReactDOM.Style.t=?,
   ~autoComplete: string=?,
   ~autoFocus: bool=?,
   ~classes: Classes.t=?,
   ~color: color=?,
-  ~defaultValue: Types.any=?,
+  ~defaultValue: Any.t=?,
   ~disabled: bool=?,
   ~endAdornment: React.element=?,
   ~error: bool=?,
@@ -107,7 +107,7 @@ external make: (
   ~rowsMax: RowsMax.t=?,
   ~startAdornment: React.element=?,
   ~\"type": string=?,
-  ~value: Types.any=?,
+  ~value: Any.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "OutlinedInput"

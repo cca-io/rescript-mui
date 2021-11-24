@@ -24,15 +24,15 @@ const RenderTheme = () => {
       },
       {
         re: /Partial.*([a-zA-Z]*)Props>/m,
-        replaceWith: 'Types.any',
+        replaceWith: 'Any.t',
       },
       {
         re: /React\.>/m,
-        replaceWith: 'Types.any',
+        replaceWith: 'Any.t',
       },
       {
         re: /ComponentsProps/m,
-        replaceWith: 'Types.any',
+        replaceWith: 'Any.t',
       },
       {
         re: /HTML.*Element/m,

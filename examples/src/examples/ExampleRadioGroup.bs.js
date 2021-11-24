@@ -2,7 +2,6 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
-import * as Types$MaterialUi from "rescript-material-ui/src/Types.bs.js";
 import * as Core from "@material-ui/core";
 
 function ExampleRadioGroup(Props) {
@@ -16,7 +15,7 @@ function ExampleRadioGroup(Props) {
               onChange: (function (e) {
                   var value = e.target.value;
                   return Curry._1(setState, (function (param) {
-                                return Types$MaterialUi.anyUnpack(value);
+                                return value;
                               }));
                 }),
               value: match[0]

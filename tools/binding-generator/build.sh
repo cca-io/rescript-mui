@@ -7,6 +7,7 @@
 # Core
 rm ../../public/rescript-material-ui/src/*
 mv ../../output/rescript/core/*.res ../../public/rescript-material-ui/src
+mv ../../output/rescript/core/*.resi ../../public/rescript-material-ui/src
 
 # Lab
 rm ../../public/rescript-material-ui-lab/src/*

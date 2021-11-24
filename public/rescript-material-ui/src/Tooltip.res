@@ -47,14 +47,14 @@ type placement = [
 module PopperComponent = {
   type t
   external string: string => t = "%identity"
-  external popperComponent_func: Types.any => t = "%identity"
+  external popperComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
 module TransitionComponent = {
   type t
   external string: string => t = "%identity"
-  external transitionComponent_func: Types.any => t = "%identity"
+  external transitionComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 

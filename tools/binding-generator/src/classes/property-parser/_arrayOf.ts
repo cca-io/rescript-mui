@@ -37,7 +37,7 @@ const factory = (propertyType: PropType$ArrayOf) => {
       if (typeof reasonType === 'string') {
         this._reasonType = reasonType;
       } else {
-        this._reasonType = 'array<Types.any>';
+        this._reasonType = 'array<Any.t>';
       }
     }
 
