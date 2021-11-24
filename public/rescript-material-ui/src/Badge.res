@@ -7,6 +7,61 @@ module AnchorOrigin = {
   @obj external make: (~horizontal: horizontal=?, ~vertical: vertical=?, unit) => t = ""
 }
 
+module Classes = {
+  type t = {
+    "root": option<string>,
+    "badge": option<string>,
+    "colorPrimary": option<string>,
+    "colorSecondary": option<string>,
+    "colorError": option<string>,
+    "dot": option<string>,
+    "anchorOriginTopRightRectangle": option<string>,
+    "anchorOriginTopRightRectangular": option<string>,
+    "anchorOriginBottomRightRectangle": option<string>,
+    "anchorOriginBottomRightRectangular": option<string>,
+    "anchorOriginTopLeftRectangle": option<string>,
+    "anchorOriginTopLeftRectangular": option<string>,
+    "anchorOriginBottomLeftRectangle": option<string>,
+    "anchorOriginBottomLeftRectangular": option<string>,
+    "anchorOriginTopRightCircle": option<string>,
+    "anchorOriginTopRightCircular": option<string>,
+    "anchorOriginBottomRightCircle": option<string>,
+    "anchorOriginBottomRightCircular": option<string>,
+    "anchorOriginTopLeftCircle": option<string>,
+    "anchorOriginTopLeftCircular": option<string>,
+    "anchorOriginBottomLeftCircle": option<string>,
+    "anchorOriginBottomLeftCircular": option<string>,
+    "invisible": option<string>,
+  }
+  @obj
+  external make: (
+    ~root: string=?,
+    ~badge: string=?,
+    ~colorPrimary: string=?,
+    ~colorSecondary: string=?,
+    ~colorError: string=?,
+    ~dot: string=?,
+    ~anchorOriginTopRightRectangle: string=?,
+    ~anchorOriginTopRightRectangular: string=?,
+    ~anchorOriginBottomRightRectangle: string=?,
+    ~anchorOriginBottomRightRectangular: string=?,
+    ~anchorOriginTopLeftRectangle: string=?,
+    ~anchorOriginTopLeftRectangular: string=?,
+    ~anchorOriginBottomLeftRectangle: string=?,
+    ~anchorOriginBottomLeftRectangular: string=?,
+    ~anchorOriginTopRightCircle: string=?,
+    ~anchorOriginTopRightCircular: string=?,
+    ~anchorOriginBottomRightCircle: string=?,
+    ~anchorOriginBottomRightCircular: string=?,
+    ~anchorOriginTopLeftCircle: string=?,
+    ~anchorOriginTopLeftCircular: string=?,
+    ~anchorOriginBottomLeftCircle: string=?,
+    ~anchorOriginBottomLeftCircular: string=?,
+    ~invisible: string=?,
+    unit,
+  ) => t = ""
+}
+
 type color = [#default | #error | #primary | #secondary]
 
 module Component = {
@@ -25,6 +80,7 @@ external make: (
   ~anchorOrigin: AnchorOrigin.t=?,
   ~badgeContent: React.element=?,
   ~children: 'children=?,
+  ~classes: Classes.t=?,
   ~className: string=?,
   ~color: color=?,
   ~component: Component.t=?,

@@ -20,6 +20,29 @@ module Type = {
   external string: string => t = "%identity"
 }
 
+module Classes = {
+  type t = {
+    "root": option<string>,
+    "expanded": option<string>,
+    "focused": option<string>,
+    "focusVisible": option<string>,
+    "disabled": option<string>,
+    "content": option<string>,
+    "expandIcon": option<string>,
+  }
+  @obj
+  external make: (
+    ~root: string=?,
+    ~expanded: string=?,
+    ~focused: string=?,
+    ~focusVisible: string=?,
+    ~disabled: string=?,
+    ~content: string=?,
+    ~expandIcon: string=?,
+    unit,
+  ) => t = ""
+}
+
 @react.component @module("@material-ui/core")
 external make: (
   ~centerRipple: bool=?,
@@ -45,6 +68,7 @@ external make: (
   ~\"TouchRippleProps": {..}=?,
   ~\"type": Type.t=?,
   ~children: 'children=?,
+  ~classes: Classes.t=?,
   ~className: string=?,
   ~expandIcon: React.element=?,
   ~focusVisibleClassName: string=?,

@@ -1,3 +1,22 @@
+module Classes = {
+  type t = {
+    "root": option<string>,
+    "entered": option<string>,
+    "hidden": option<string>,
+    "wrapper": option<string>,
+    "wrapperInner": option<string>,
+  }
+  @obj
+  external make: (
+    ~root: string=?,
+    ~entered: string=?,
+    ~hidden: string=?,
+    ~wrapper: string=?,
+    ~wrapperInner: string=?,
+    unit,
+  ) => t = ""
+}
+
 module CollapsedSize = {
   type t
   external int: int => t = "%identity"
@@ -30,6 +49,7 @@ module Timeout = {
 @react.component @module("@material-ui/core")
 external make: (
   ~children: 'children=?,
+  ~classes: Classes.t=?,
   ~className: string=?,
   ~collapsedHeight: Number.t=?,
   ~collapsedSize: CollapsedSize.t=?,

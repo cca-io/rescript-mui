@@ -7,10 +7,13 @@ var TabIndex = {};
 
 var Type = {};
 
+var Classes = {};
+
 export {
   Component ,
   TabIndex ,
   Type ,
+  Classes ,
   
 }
 /* No side effect */
