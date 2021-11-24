@@ -68,6 +68,7 @@ external make: (
   ~\"InputLabelProps": {..}=?,
   ~inputProps: {..}=?,
   ~\"InputProps": {..}=?,
+  ~inputRef: ReactDOM.domRef=?,
   ~label: React.element=?,
   ~margin: margin=?,
   ~multiline: bool=?,
@@ -85,6 +86,8 @@ external make: (
   ~\"type": string=?,
   ~value: Value.t=?,
   ~variant: variant=?,
+  ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
+  ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "TextField"

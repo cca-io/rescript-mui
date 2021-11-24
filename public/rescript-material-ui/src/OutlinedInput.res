@@ -93,6 +93,7 @@ external make: (
   ~id: string=?,
   ~inputComponent: InputComponent.t=?,
   ~inputProps: {..}=?,
+  ~inputRef: ReactDOM.domRef=?,
   ~label: React.element=?,
   ~labelWidth: Number.t=?,
   ~margin: margin=?,

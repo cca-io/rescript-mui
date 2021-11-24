@@ -1,3 +1,44 @@
+const target = {
+  type: {
+    name: 'string',
+  },
+  required: false,
+  description: '-',
+};
+
+const rel = {
+  type: {
+    name: 'enum',
+    value: [
+      { value: 'alternate', computed: false },
+      { value: 'author', computed: false },
+      { value: 'bookmark', computed: false },
+      { value: 'external', computed: false },
+      { value: 'help', computed: false },
+      { value: 'license', computed: false },
+      { value: 'next', computed: false },
+      { value: 'nofollow', computed: false },
+      { value: 'noreferrer', computed: false },
+      { value: 'noopener', computed: false },
+      { value: 'prev', computed: false },
+      { value: 'search', computed: false },
+      { value: 'tag', computed: false },
+    ],
+  },
+  required: false,
+  description: '-',
+};
+
+const inputRef = {
+  type: {
+    name: 'custom',
+    reasonType: 'ReactDOM.domRef',
+    jsType: 'ReactDOM.domRef',
+  },
+  required: false,
+  description: '-',
+};
+
 export default {
   Input: {
     inputComponent: {
@@ -99,6 +140,44 @@ export default {
       required: false,
       description: '-',
     },
+    onMouseEnter: {
+      type: {
+        name: 'func',
+      },
+      required: false,
+      description: '-',
+    },
+    onMouseLeave: {
+      type: {
+        name: 'func',
+      },
+      required: false,
+      description: '-',
+    },
+    inputRef: inputRef,
+  },
+  FormControlLabel: {
+    inputRef: {
+      type: {
+        name: 'custom',
+        reasonType: 'ReactDOM.domRef',
+        jsType: 'ReactDOM.domRef',
+      },
+      required: false,
+      description: '-',
+    },
+  },
+  Checkbox: {
+    inputRef,
+  },
+  Radio: {
+    inputRef,
+  },
+  Switch: {
+    inputRef,
+  },
+  OutlinedInput: {
+    inputRef,
   },
   CardContent: {
     children: {
@@ -248,6 +327,13 @@ export default {
     },
   },
   TableRow: {
+    onClick: {
+      type: {
+        name: 'func',
+      },
+      required: false,
+      description: '-',
+    },
     onDoubleClick: {
       type: {
         name: 'func',
@@ -349,35 +435,16 @@ export default {
       required: false,
       description: '-',
     },
-    target: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description: '-',
-    },
-    rel: {
-      type: {
-        name: 'enum',
-        value: [
-          { value: 'alternate', computed: false },
-          { value: 'author', computed: false },
-          { value: 'bookmark', computed: false },
-          { value: 'external', computed: false },
-          { value: 'help', computed: false },
-          { value: 'license', computed: false },
-          { value: 'next', computed: false },
-          { value: 'nofollow', computed: false },
-          { value: 'noreferrer', computed: false },
-          { value: 'noopener', computed: false },
-          { value: 'prev', computed: false },
-          { value: 'search', computed: false },
-          { value: 'tag', computed: false },
-        ],
-      },
-      required: false,
-      description: '-',
-    },
+    target,
+    rel,
+  },
+  ButtonBase: {
+    target,
+    rel,
+  },
+  Button: {
+    target,
+    rel,
   },
   Collapse: {
     mountOnEnter: {
