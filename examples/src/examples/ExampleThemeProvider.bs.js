@@ -4,7 +4,7 @@ import * as React from "react";
 import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/core/styles";
 
-var theme = Styles.createMuiTheme({
+var theme = Styles.createTheme({
       palette: {
         primary: {
           main: "#8fe830"

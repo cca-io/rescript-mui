@@ -6,7 +6,7 @@ import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/core/styles";
 import SupervisedUserCircle from "@material-ui/icons/SupervisedUserCircle";
 
-var theme = Styles.createMuiTheme({
+var theme = Styles.createTheme({
       overrides: {
         MuiButton: {
           outlined: ReactDOMStyle.unsafeAddProp({
