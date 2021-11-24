@@ -3,8 +3,7 @@ title: Number Type
 ---
 
 The bindings will provide both `float` and `int` types as numbers. Generally the
-the type of `MaterialUi.Types.Number.t` will be re-used whereever possible (The
-`Number` module is also accessible via `MaterialUi.Number`).
+type of `MaterialUi.Number.t` will be re-used whereever possible.
 
 An example of this would be:
 

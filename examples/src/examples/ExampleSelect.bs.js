@@ -4,7 +4,6 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Core from "@material-ui/core";
-import * as Number$MaterialUi from "rescript-material-ui/src/Number.bs.js";
 import * as Styles from "@material-ui/styles";
 
 function getSpacing(theme, num) {
@@ -367,7 +366,7 @@ function ExampleSelect(Props) {
                           children: null,
                           input: React.createElement(Core.OutlinedInput, {
                                 id: "outlined-age-simple",
-                                labelWidth: Number$MaterialUi.$$int(match$2[0]),
+                                labelWidth: match$2[0],
                                 name: "age"
                               }),
                           onChange: handleChangeAge,
