@@ -93,6 +93,22 @@ module Type = {
 
 type variant = [#contained | #outlined | #text]
 
+type rel = [
+  | #alternate
+  | #author
+  | #bookmark
+  | #"external"
+  | #help
+  | #license
+  | #next
+  | #nofollow
+  | #noreferrer
+  | #noopener
+  | #prev
+  | #search
+  | #tag
+]
+
 @react.component @module("@material-ui/core")
 external make: (
   ~centerRipple: bool=?,
@@ -132,6 +148,8 @@ external make: (
   ~startIcon: React.element=?,
   ~\"type": Type.t=?,
   ~variant: variant=?,
+  ~target: string=?,
+  ~rel: rel=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "Button"

@@ -99,6 +99,7 @@ external make: (
   ~indeterminate: bool=?,
   ~indeterminateIcon: React.element=?,
   ~inputProps: {..}=?,
+  ~inputRef: ReactDOM.domRef=?,
   ~onChange: ReactEvent.Form.t => unit=?,
   ~required: bool=?,
   ~size: size=?,

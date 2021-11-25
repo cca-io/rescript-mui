@@ -26,6 +26,22 @@ module Type = {
   external string: string => t = "%identity"
 }
 
+type rel = [
+  | #alternate
+  | #author
+  | #bookmark
+  | #"external"
+  | #help
+  | #license
+  | #next
+  | #nofollow
+  | #noreferrer
+  | #noopener
+  | #prev
+  | #search
+  | #tag
+]
+
 @react.component @module("@material-ui/core")
 external make: (
   ~centerRipple: bool=?,
@@ -57,6 +73,8 @@ external make: (
   ~\"type": Type.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
+  ~target: string=?,
+  ~rel: rel=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "ButtonBase"

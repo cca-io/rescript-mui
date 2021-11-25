@@ -95,6 +95,7 @@ external make: (
   ~icon: React.element=?,
   ~id: string=?,
   ~inputProps: {..}=?,
+  ~inputRef: ReactDOM.domRef=?,
   ~name: string=?,
   ~onChange: ReactEvent.Form.t => unit=?,
   ~required: bool=?,

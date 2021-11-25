@@ -34,6 +34,7 @@ external make: (
   ~selected: bool=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
+  ~onClick: ReactEvent.Mouse.t => unit=?,
   ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,

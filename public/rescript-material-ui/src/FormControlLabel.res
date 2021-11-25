@@ -28,6 +28,7 @@ external make: (
   ~className: string=?,
   ~control: React.element,
   ~disabled: bool=?,
+  ~inputRef: ReactDOM.domRef=?,
   ~label: React.element=?,
   ~labelPlacement: labelPlacement=?,
   ~name: string=?,
