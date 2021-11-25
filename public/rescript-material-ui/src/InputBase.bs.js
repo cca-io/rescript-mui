@@ -5,6 +5,10 @@ var Classes = {};
 
 var InputComponent = {};
 
+var MaxRows = {};
+
+var MinRows = {};
+
 var Rows = {};
 
 var RowsMax = {};
@@ -14,6 +18,8 @@ var RowsMin = {};
 export {
   Classes ,
   InputComponent ,
+  MaxRows ,
+  MinRows ,
   Rows ,
   RowsMax ,
   RowsMin ,

@@ -1,7 +1,7 @@
 #!/bin/bash
 pwd=$(pwd)
 
-MUI_VERSION_TAG=v4.11.4
+MUI_VERSION_TAG=v4.12.3
 OUTPUT_FOLDER=${pwd}/../../output
 
 rm -rf ~/.mui-clone

@@ -44,7 +44,7 @@ Theme definitions are likely to undergo breaking changes in future versions.
 ## Constructing a theme
 
 You can construct a theme object by calling `MaterialUi.ThemeOptions.make`. You
-would usually pass it to the `createMuiTheme` function, which has a binding for
+would usually pass it to the `createTheme` function, which has a binding for
 convenience at : `MaterialUi.Theme.create`.
 
 The following is an example of constructing a theme object:

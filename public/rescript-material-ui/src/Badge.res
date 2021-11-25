@@ -16,13 +16,21 @@ module Classes = {
     "colorError": option<string>,
     "dot": option<string>,
     "anchorOriginTopRightRectangle": option<string>,
+    "anchorOriginTopRightRectangular": option<string>,
     "anchorOriginBottomRightRectangle": option<string>,
+    "anchorOriginBottomRightRectangular": option<string>,
     "anchorOriginTopLeftRectangle": option<string>,
+    "anchorOriginTopLeftRectangular": option<string>,
     "anchorOriginBottomLeftRectangle": option<string>,
+    "anchorOriginBottomLeftRectangular": option<string>,
     "anchorOriginTopRightCircle": option<string>,
+    "anchorOriginTopRightCircular": option<string>,
     "anchorOriginBottomRightCircle": option<string>,
+    "anchorOriginBottomRightCircular": option<string>,
     "anchorOriginTopLeftCircle": option<string>,
+    "anchorOriginTopLeftCircular": option<string>,
     "anchorOriginBottomLeftCircle": option<string>,
+    "anchorOriginBottomLeftCircular": option<string>,
     "invisible": option<string>,
   }
   @obj
@@ -34,13 +42,21 @@ module Classes = {
     ~colorError: string=?,
     ~dot: string=?,
     ~anchorOriginTopRightRectangle: string=?,
+    ~anchorOriginTopRightRectangular: string=?,
     ~anchorOriginBottomRightRectangle: string=?,
+    ~anchorOriginBottomRightRectangular: string=?,
     ~anchorOriginTopLeftRectangle: string=?,
+    ~anchorOriginTopLeftRectangular: string=?,
     ~anchorOriginBottomLeftRectangle: string=?,
+    ~anchorOriginBottomLeftRectangular: string=?,
     ~anchorOriginTopRightCircle: string=?,
+    ~anchorOriginTopRightCircular: string=?,
     ~anchorOriginBottomRightCircle: string=?,
+    ~anchorOriginBottomRightCircular: string=?,
     ~anchorOriginTopLeftCircle: string=?,
+    ~anchorOriginTopLeftCircular: string=?,
     ~anchorOriginBottomLeftCircle: string=?,
+    ~anchorOriginBottomLeftCircular: string=?,
     ~invisible: string=?,
     unit,
   ) => t = ""
@@ -55,7 +71,7 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
-type overlap = [#circle | #rectangle]
+type overlap = [#circle | #rectangle | #circular | #rectangular]
 
 type variant = [#dot | #standard]
 

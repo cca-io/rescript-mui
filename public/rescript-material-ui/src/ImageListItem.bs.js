@@ -3,20 +3,11 @@
 
 var Classes = {};
 
-var CollapsedSize = {};
-
 var Component = {};
-
-var Timeout_shape = {};
-
-var Timeout = {};
 
 export {
   Classes ,
-  CollapsedSize ,
   Component ,
-  Timeout_shape ,
-  Timeout ,
   
 }
 /* No side effect */

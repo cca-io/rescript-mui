@@ -28,7 +28,7 @@ module.exports = {
         { to: 'docs/examples', label: 'Examples', position: 'left' },
         {
           href: 'https://material-ui.com/versions/#stable-versions',
-          label: 'Currently on MUI version: v4.11.4',
+          label: 'Currently on MUI version: v4.12.3',
           position: 'right',
         },
         { to: 'docs/contributing', label: 'Contributing', position: 'right' },

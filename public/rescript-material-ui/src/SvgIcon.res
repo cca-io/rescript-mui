@@ -34,7 +34,7 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
-type fontSize = [#default | #inherit | #large | #small]
+type fontSize = [#default | #inherit | #large | #medium | #small]
 
 @react.component @module("@material-ui/core")
 external make: (

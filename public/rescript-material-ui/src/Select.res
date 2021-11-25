@@ -1,3 +1,17 @@
+module MinRows = {
+  type t
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module RowsMax = {
+  type t
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 module RowsMin = {
   type t
   external int: int => t = "%identity"
@@ -16,14 +30,14 @@ module InputComponent = {
 
 type margin = [#dense | #none]
 
-module Rows = {
+module MaxRows = {
   type t
   external int: int => t = "%identity"
   external float: float => t = "%identity"
   external string: string => t = "%identity"
 }
 
-module RowsMax = {
+module Rows = {
   type t
   external int: int => t = "%identity"
   external float: float => t = "%identity"
@@ -82,12 +96,14 @@ type variant = [#filled | #outlined | #standard]
 external make: (
   ~\"aria-describedby": string=?,
   ~className: string=?,
+  ~minRows: MinRows.t=?,
   ~onBlur: ReactEvent.Focus.t => unit=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
   ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
   ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
   ~renderSuffix: Any.t=?,
+  ~rowsMax: RowsMax.t=?,
   ~rowsMin: RowsMin.t=?,
   ~style: ReactDOM.Style.t=?,
   ~autoComplete: string=?,
@@ -100,13 +116,13 @@ external make: (
   ~fullWidth: bool=?,
   ~inputComponent: InputComponent.t=?,
   ~margin: margin=?,
+  ~maxRows: MaxRows.t=?,
   ~multiline: bool=?,
   ~name: string=?,
   ~placeholder: string=?,
   ~readOnly: bool=?,
   ~required: bool=?,
   ~rows: Rows.t=?,
-  ~rowsMax: RowsMax.t=?,
   ~startAdornment: React.element=?,
   ~\"type": string=?,
   ~autoWidth: bool=?,

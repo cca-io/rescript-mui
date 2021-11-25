@@ -41,7 +41,7 @@ external make: (
   ~disablePointerEvents: bool=?,
   ~disableTypography: bool=?,
   ~muiFormControl: {..}=?,
-  ~position: position=?,
+  ~position: position,
   ~variant: variant=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

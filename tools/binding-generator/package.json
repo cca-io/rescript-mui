@@ -1,7 +1,7 @@
 {
   "name": "@jsiebern/mui-binding-generator",
   "version": "0.0.1",
-  "description": "Reason binding generator for material-ui v1",
+  "description": "ReScript binding generator for material-ui",
   "scripts": {
     "bs:build": "bsb -make-world",
     "bs:clean": "bsb -clean-world",
@@ -13,7 +13,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@material-ui/core": "4.11.4",
+    "@material-ui/core": "4.12.3",
     "lodash": "~4.17.11",
     "react-dom": "^17.0.2",
     "reason": "^3.3.4",

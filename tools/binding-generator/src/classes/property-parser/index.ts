@@ -13,6 +13,18 @@ import EnumFactory from './_enum';
 import FuncFactory from './_func';
 import CustomFactory from './_custom';
 
+const createElementsMap = (elements: Array<string>) =>
+  elements.reduce(
+    (prev, key) => ({
+      ...prev,
+      [key]: {
+        name: 'string',
+        required: false,
+      },
+    }),
+    {},
+  );
+
 export default function (
   propType: PropType,
   flowType: PropSignature['flowType'] = undefined,
@@ -21,16 +33,7 @@ export default function (
     if (propType.name === 'object' && typeof flowType !== 'undefined') {
       return ShapeFactory({
         name: 'shape',
-        value: flowType.elements.reduce(
-          (prev, key) => ({
-            ...prev,
-            [key]: {
-              name: 'string',
-              required: false,
-            },
-          }),
-          {},
-        ),
+        value: createElementsMap(flowType.elements),
       });
     }
     return PrimitiveFactory(propType);
@@ -55,6 +58,16 @@ export default function (
   } else if (Identify.isFunc(propType)) {
     return FuncFactory(propType);
   } else if (Identify.isCustom(propType)) {
+    if (
+      propType.raw != null &&
+      propType.raw.includes('PropTypes.object') &&
+      typeof flowType !== 'undefined'
+    ) {
+      return ShapeFactory({
+        name: 'shape',
+        value: createElementsMap(flowType.elements),
+      });
+    }
     return CustomFactory(propType);
   } else {
     return false;

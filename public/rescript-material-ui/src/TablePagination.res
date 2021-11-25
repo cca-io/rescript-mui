@@ -1,6 +1,6 @@
 type align = [#center | #inherit | #justify | #left | #right]
 
-type padding = [#checkbox | #default | #none]
+type padding = [#normal | #checkbox | #none | #default]
 
 type size = [#medium | #small]
 
@@ -86,8 +86,8 @@ external make: (
   ~labelRowsPerPage: {"from": int, "to": int, "count": int, "page": int} => React.element=?,
   ~nextIconButtonProps: {..}=?,
   ~nextIconButtonText: string=?,
-  ~onChangePage: (ReactEvent.Mouse.t, int) => unit,
-  ~onChangeRowsPerPage: ReactEvent.Form.t => unit=?,
+  ~onPageChange: ({..}, int) => unit,
+  ~onRowsPerPageChange: {..} => unit=?,
   ~page: int=?,
   ~rowsPerPage: Number.t,
   ~rowsPerPageOptions: array<int>=?,

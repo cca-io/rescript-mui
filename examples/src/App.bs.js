@@ -15,7 +15,7 @@ function App(Props) {
                     maxWidth: "970px",
                     width: "100%"
                   }, React.createElement(Core.CssBaseline, {}), React.createElement(Examples.make, {}), React.createElement(ExamplesLab.make, {})),
-              theme: Styles.createMuiTheme({})
+              theme: Styles.createTheme({})
             });
 }
 

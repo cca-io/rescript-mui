@@ -1,6 +1,6 @@
 module Classes = {
   type t = {
-    "container": option<string>,
+    "root": option<string>,
     "entered": option<string>,
     "hidden": option<string>,
     "wrapper": option<string>,
@@ -8,7 +8,7 @@ module Classes = {
   }
   @obj
   external make: (
-    ~container: string=?,
+    ~root: string=?,
     ~entered: string=?,
     ~hidden: string=?,
     ~wrapper: string=?,
@@ -17,7 +17,7 @@ module Classes = {
   ) => t = ""
 }
 
-module CollapsedHeight = {
+module CollapsedSize = {
   type t
   external int: int => t = "%identity"
   external float: float => t = "%identity"
@@ -51,7 +51,8 @@ external make: (
   ~children: 'children=?,
   ~classes: Classes.t=?,
   ~className: string=?,
-  ~collapsedHeight: CollapsedHeight.t=?,
+  ~collapsedHeight: Number.t=?,
+  ~collapsedSize: CollapsedSize.t=?,
   ~component: Component.t=?,
   ~disableStrictModeCompat: bool=?,
   ~\"in": bool=?,

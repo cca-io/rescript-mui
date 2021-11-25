@@ -5,7 +5,7 @@ import { mkdir, readFileSync, writeFileSync } from 'fs';
 import kebabCase from 'lodash/kebabCase';
 import * as reactDocgen from 'react-docgen';
 import getStylesCreator from './../styles/getStylesCreator';
-import createMuiTheme from './../core/styles/createMuiTheme';
+import createTheme from './../core/styles/createTheme';
 import * as colors from './../core/colors';
 import getInheritance from './inheritance';
 import parseTest from './parseTest';
@@ -25,7 +25,7 @@ const muiSrc = args.src;
 const MuiPath = path.resolve(__dirname, '../', muiSrc);
 
 const components = findComponents(`./${muiSrc}`);
-const theme = createMuiTheme();
+const theme = createTheme();
 const rootDirectory = MuiPath;
 const outputDirectory = path.join(
   __dirname,

@@ -73,6 +73,8 @@ var DrawerClassKey = {};
 
 var MuiExpansionPanelDetails = {};
 
+var ExpansionPanelSummaryClassKey = {};
+
 var FabClassKey = {};
 
 var FilledInputClassKey = {};
@@ -89,15 +91,15 @@ var FormLabelClassKey = {};
 
 var GridClassKey = {};
 
-var MuiGridList = {};
-
-var GridListTileClassKey = {};
-
-var GridListTileBarClassKey = {};
-
 var SvgIconClassKey = {};
 
 var IconButtonClassKey = {};
+
+var MuiImageList = {};
+
+var ImageListItemClassKey = {};
+
+var ImageListItemBarClassKey = {};
 
 var InputClassKey = {};
 
@@ -278,6 +280,7 @@ export {
   DividerClassKey ,
   DrawerClassKey ,
   MuiExpansionPanelDetails ,
+  ExpansionPanelSummaryClassKey ,
   FabClassKey ,
   FilledInputClassKey ,
   FormControlClassKey ,
@@ -286,11 +289,11 @@ export {
   FormHelperTextClassKey ,
   FormLabelClassKey ,
   GridClassKey ,
-  MuiGridList ,
-  GridListTileClassKey ,
-  GridListTileBarClassKey ,
   SvgIconClassKey ,
   IconButtonClassKey ,
+  MuiImageList ,
+  ImageListItemClassKey ,
+  ImageListItemBarClassKey ,
   InputClassKey ,
   InputAdornmentClassKey ,
   InputBaseClassKey ,

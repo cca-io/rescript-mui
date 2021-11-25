@@ -40,6 +40,7 @@ type t_accordionSummaryClassKey = {
   disabled: ReactDOM.Style.t,
   expandIcon: ReactDOM.Style.t,
   expanded: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
   focused: ReactDOM.Style.t,
   root: ReactDOM.Style.t,
 }
@@ -74,12 +75,19 @@ type t_backdropClassKey = {
 
 type t_badgeClassKey = {
   anchorOriginBottomLeftRectangle: ReactDOM.Style.t,
+  anchorOriginBottomLeftRectangular: ReactDOM.Style.t,
   anchorOriginBottomRightCircle: ReactDOM.Style.t,
+  anchorOriginBottomRightCircular: ReactDOM.Style.t,
   anchorOriginBottomRightRectangle: ReactDOM.Style.t,
+  anchorOriginBottomRightRectangular: ReactDOM.Style.t,
   anchorOriginTopLeftCircle: ReactDOM.Style.t,
+  anchorOriginTopLeftCircular: ReactDOM.Style.t,
   anchorOriginTopLeftRectangle: ReactDOM.Style.t,
+  anchorOriginTopLeftRectangular: ReactDOM.Style.t,
   anchorOriginTopRightCircle: ReactDOM.Style.t,
+  anchorOriginTopRightCircular: ReactDOM.Style.t,
   anchorOriginTopRightRectangle: ReactDOM.Style.t,
+  anchorOriginTopRightRectangular: ReactDOM.Style.t,
   badge: ReactDOM.Style.t,
   colorError: string,
   colorPrimary: string,
@@ -254,9 +262,9 @@ type t_circularProgressClassKey = {
 }
 
 type t_collapseClassKey = {
-  container: ReactDOM.Style.t,
   entered: ReactDOM.Style.t,
   hidden: ReactDOM.Style.t,
+  root: ReactDOM.Style.t,
   wrapper: ReactDOM.Style.t,
   wrapperInner: ReactDOM.Style.t,
 }
@@ -328,6 +336,15 @@ type t_drawerClassKey = {
 }
 
 type t_muiExpansionPanelDetails = {root: ReactDOM.Style.t}
+
+type t_expansionPanelSummaryClassKey = {
+  content: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  expandIcon: ReactDOM.Style.t,
+  expanded: ReactDOM.Style.t,
+  focused: ReactDOM.Style.t,
+  root: ReactDOM.Style.t,
+}
 
 type t_fabClassKey = {
   colorInherit: string,
@@ -436,11 +453,11 @@ type t_gridClassKey = {
   \"grid-xs-auto": ReactDOM.Style.t,
   \"grid-xs-true": ReactDOM.Style.t,
   item: ReactDOM.Style.t,
-  \"justify-xs-center": ReactDOM.Style.t,
-  \"justify-xs-flex-end": ReactDOM.Style.t,
-  \"justify-xs-space-around": ReactDOM.Style.t,
-  \"justify-xs-space-between": ReactDOM.Style.t,
-  \"justify-xs-space-evenly": ReactDOM.Style.t,
+  \"justify-content-xs-center": ReactDOM.Style.t,
+  \"justify-content-xs-flex-end": ReactDOM.Style.t,
+  \"justify-content-xs-space-around": ReactDOM.Style.t,
+  \"justify-content-xs-space-between": ReactDOM.Style.t,
+  \"justify-content-xs-space-evenly": ReactDOM.Style.t,
   root: ReactDOM.Style.t,
   \"spacing-xs-1": ReactDOM.Style.t,
   \"spacing-xs-10": ReactDOM.Style.t,
@@ -455,29 +472,6 @@ type t_gridClassKey = {
   \"wrap-xs-nowrap": ReactDOM.Style.t,
   \"wrap-xs-wrap-reverse": ReactDOM.Style.t,
   zeroMinWidth: ReactDOM.Style.t,
-}
-
-type t_muiGridList = {root: ReactDOM.Style.t}
-
-type t_gridListTileClassKey = {
-  imgFullHeight: ReactDOM.Style.t,
-  imgFullWidth: ReactDOM.Style.t,
-  root: ReactDOM.Style.t,
-  tile: ReactDOM.Style.t,
-}
-
-type t_gridListTileBarClassKey = {
-  actionIcon: ReactDOM.Style.t,
-  actionIconActionPosLeft: ReactDOM.Style.t,
-  root: ReactDOM.Style.t,
-  rootSubtitle: ReactDOM.Style.t,
-  subtitle: ReactDOM.Style.t,
-  title: ReactDOM.Style.t,
-  titlePositionBottom: ReactDOM.Style.t,
-  titlePositionTop: ReactDOM.Style.t,
-  titleWrap: ReactDOM.Style.t,
-  titleWrapActionPosLeft: ReactDOM.Style.t,
-  titleWrapActionPosRight: ReactDOM.Style.t,
 }
 
 type t_svgIconClassKey = {
@@ -502,6 +496,29 @@ type t_iconButtonClassKey = {
   label: ReactDOM.Style.t,
   root: ReactDOM.Style.t,
   sizeSmall: ReactDOM.Style.t,
+}
+
+type t_muiImageList = {root: ReactDOM.Style.t}
+
+type t_imageListItemClassKey = {
+  imgFullHeight: ReactDOM.Style.t,
+  imgFullWidth: ReactDOM.Style.t,
+  item: ReactDOM.Style.t,
+  root: ReactDOM.Style.t,
+}
+
+type t_imageListItemBarClassKey = {
+  actionIcon: ReactDOM.Style.t,
+  actionIconActionPosLeft: ReactDOM.Style.t,
+  positionBottom: ReactDOM.Style.t,
+  positionTop: ReactDOM.Style.t,
+  root: ReactDOM.Style.t,
+  rootSubtitle: ReactDOM.Style.t,
+  subtitle: ReactDOM.Style.t,
+  title: ReactDOM.Style.t,
+  titleWrap: ReactDOM.Style.t,
+  titleWrapActionPosLeft: ReactDOM.Style.t,
+  titleWrapActionPosRight: ReactDOM.Style.t,
 }
 
 type t_inputClassKey = {
@@ -1060,7 +1077,7 @@ type t_overrides = {
   \"MuiExpansionPanel": t_accordionClassKey,
   \"MuiExpansionPanelActions": t_accordionActionsClassKey,
   \"MuiExpansionPanelDetails": t_muiExpansionPanelDetails,
-  \"MuiExpansionPanelSummary": t_accordionSummaryClassKey,
+  \"MuiExpansionPanelSummary": t_expansionPanelSummaryClassKey,
   \"MuiFab": t_fabClassKey,
   \"MuiFilledInput": t_filledInputClassKey,
   \"MuiFormControl": t_formControlClassKey,
@@ -1069,11 +1086,11 @@ type t_overrides = {
   \"MuiFormHelperText": t_formHelperTextClassKey,
   \"MuiFormLabel": t_formLabelClassKey,
   \"MuiGrid": t_gridClassKey,
-  \"MuiGridList": t_muiGridList,
-  \"MuiGridListTile": t_gridListTileClassKey,
-  \"MuiGridListTileBar": t_gridListTileBarClassKey,
   \"MuiIcon": t_svgIconClassKey,
   \"MuiIconButton": t_iconButtonClassKey,
+  \"MuiImageList": t_muiImageList,
+  \"MuiImageListItem": t_imageListItemClassKey,
+  \"MuiImageListItemBar": t_imageListItemBarClassKey,
   \"MuiInput": t_inputClassKey,
   \"MuiInputAdornment": t_inputAdornmentClassKey,
   \"MuiInputBase": t_inputBaseClassKey,
@@ -1281,4 +1298,4 @@ type t_theme = {
 }
 type t = t_theme
 
-@module("@material-ui/core/styles") external create: ThemeOptions.t => t = "createMuiTheme"
+@module("@material-ui/core/styles") external create: ThemeOptions.t => t = "createTheme"

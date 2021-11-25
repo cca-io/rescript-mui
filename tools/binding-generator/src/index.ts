@@ -60,7 +60,7 @@ const parseInit = () => {
     `
         ${themeContents}
 
-        @module("@material-ui/core/styles") external create: ThemeOptions.t => t = "createMuiTheme";
+        @module("@material-ui/core/styles") external create: ThemeOptions.t => t = "createTheme";
     `,
   );
 };

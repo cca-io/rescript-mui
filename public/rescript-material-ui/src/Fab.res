@@ -53,7 +53,7 @@ module Component = {
 
 type size = [#large | #medium | #small]
 
-type variant = [#extended | #round]
+type variant = [#extended | #circular | #round]
 
 @react.component @module("@material-ui/core")
 external make: (

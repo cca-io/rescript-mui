@@ -1,6 +1,18 @@
 module Classes = {
-  type t = {"root": option<string>, "stickyHeader": option<string>}
-  @obj external make: (~root: string=?, ~stickyHeader: string=?, unit) => t = ""
+  type t = {
+    "root": option<string>,
+    "item": option<string>,
+    "imgFullHeight": option<string>,
+    "imgFullWidth": option<string>,
+  }
+  @obj
+  external make: (
+    ~root: string=?,
+    ~item: string=?,
+    ~imgFullHeight: string=?,
+    ~imgFullWidth: string=?,
+    unit,
+  ) => t = ""
 }
 
 module Component = {
@@ -10,21 +22,16 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
-type padding = [#normal | #checkbox | #none | #default]
-
-type size = [#small | #medium]
-
 @react.component @module("@material-ui/core")
 external make: (
   ~children: 'children=?,
   ~classes: Classes.t=?,
   ~className: string=?,
+  ~cols: Number.t=?,
   ~component: Component.t=?,
-  ~padding: padding=?,
-  ~size: size=?,
-  ~stickyHeader: bool=?,
+  ~rows: Number.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
-) => React.element = "Table"
+) => React.element = "ImageListItem"
