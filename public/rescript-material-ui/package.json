@@ -1,6 +1,6 @@
 {
   "name": "rescript-material-ui",
-  "version": "2.1.0",
+  "version": "3.0.0-rc.0",
   "description": "This library provides ReScript bindings for material-ui.",
   "keywords": [
     "rescript",
