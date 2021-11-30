@@ -14,7 +14,7 @@ Whenever a prop on a component consists of a selection of string only literals,
 the generator will create polymorphic variants which just happen to compile to
 JS strings anyway.
 
-This is an example of the prop `variant`, taken from `MaterialUi.Accordion.res`:
+This is an example of the prop `variant`, taken from `Mui.Accordion.res`:
 
 ```rescript
 type variant = [#elevation | #outlined]
@@ -23,7 +23,7 @@ type variant = [#elevation | #outlined]
 You can use it like so:
 
 ```rescript
-<MaterialUi.Accordion variant=#outlined />
+<Mui.Accordion variant=#outlined />
 ```
 
 ### Rules for string only unions
@@ -37,8 +37,7 @@ You can use it like so:
 
 In case that you need to pass around the type of a string union prop, the
 generator creates a helper type for you in the module. To continue the example
-from earlier, the following helper type will be added to
-`MaterialUi.Accordion.res`:
+from earlier, the following helper type will be added to `Mui.Accordion.res`:
 
 ```rescript
 type variant = [#elevation | #outlined]
@@ -52,12 +51,12 @@ directive. Therefore, numerical unions will accept a form of polymorphic variant
 as well.
 
 These don't happen often - currently the only place where this applies is in the
-`MaterialUi.Grid.res` component.
+`Mui.Grid.res` component.
 
 Example usage:
 
 ```rescript
-<MaterialUi.Grid spacing=#2 />
+<Mui.Grid spacing=#2 />
 ```
 
 ## Mixed unions
@@ -96,7 +95,7 @@ module Component: {
 You can use it in the following way:
 
 ```rescript
-open MaterialUi
+open Mui
 <div>
   <Grid component=Grid.Component.string("div") />
   <Grid component=Grid.Component.element(<div />) />

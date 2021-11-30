@@ -3,14 +3,14 @@ title: Number Type
 ---
 
 The bindings will provide both `float` and `int` types as numbers. Generally the
-type of `MaterialUi.Number.t` will be re-used whereever possible.
+type of `Mui.Number.t` will be re-used whereever possible.
 
 An example of this would be:
 
 ```rescript
 @react.component
 let make = () => {
-  open MaterialUi
+  open Mui
 
   <AppBar elevation=Number.int(3) />
 }
@@ -25,9 +25,9 @@ An example of this would be:
 ```rescript
 @react.component
 let make = () => {
-  <MaterialUi.Backdrop
+  <Mui.Backdrop
     _open=true
-    timeout=MaterialUi.Backdrop.Timeout.int(3000)
+    timeout=Mui.Backdrop.Timeout.int(3000)
   />
 }
 ```

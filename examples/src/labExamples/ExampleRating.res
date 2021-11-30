@@ -1,5 +1,5 @@
-open MaterialUi
-open MaterialUiLab
+open Mui
+open MuiLab
 
 @react.component
 let make = () => {

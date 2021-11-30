@@ -1,4 +1,4 @@
-open MaterialUi
+open Mui
 
 let useStyles = Styles.makeStylesWithTheme(theme =>
   {

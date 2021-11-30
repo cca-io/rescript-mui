@@ -1,4 +1,4 @@
-open MaterialUi
+open Mui
 
 let useStyles = Styles.makeStyles({
   "code": ReactDOM.Style.make(
@@ -12,11 +12,11 @@ let useStyles = Styles.makeStyles({
 let make = () => {
   let classes = useStyles(.)
   let (html, css) = React.useMemo0(() => {
-    let sheets = MaterialUi.Core.ServerStyleSheets.make()
+    let sheets = Mui.Core.ServerStyleSheets.make()
     let html = ReactDOMServer.renderToString(
-      sheets->MaterialUi.Core.ServerStyleSheets.collect(<ExampleBox />),
+      sheets->Mui.Core.ServerStyleSheets.collect(<ExampleBox />),
     )
-    let css = sheets->MaterialUi.Core.ServerStyleSheets.toString
+    let css = sheets->Mui.Core.ServerStyleSheets.toString
     (html, css)
   })
 

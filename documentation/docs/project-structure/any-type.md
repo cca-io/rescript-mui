@@ -3,7 +3,7 @@ title: Any Type
 ---
 
 If the type you need to pass cannot be determined you can usually insert the
-`Any` type. It lives under `MaterialUi.Types`.
+`Any` type. It lives under `Mui.Types`.
 
 :::info
 
@@ -25,13 +25,13 @@ Example for passing an `Any` value to a component:
 ```
 
 Example for receiving an `Any` argument in a callback (The function
-`MaterialUi.Any.unsafeGetValue` will return an `Any` as `'a`):
+`Mui.Any.unsafeGetValue` will return an `Any` as `'a`):
 
 ```rescript
-<MaterialUi.ToggleButtonGroup
+<Mui.ToggleButtonGroup
   value={Any(alignment)}
   exclusive=true
-  onChange={(_event, value) => setAlignment(MaterialUi.Any.unsafeGetValue(value))}
+  onChange={(_event, value) => setAlignment(Mui.Any.unsafeGetValue(value))}
 />
 ```
 
@@ -42,7 +42,7 @@ More fleshed out example utilizing polymorphic variants:
 let make = () => {
   let (state, setState) = React.useState(() => #Yes)
 
-  open MaterialUi
+  open Mui
   <RadioGroup
     name="answer"
     value={Any.make(state)}

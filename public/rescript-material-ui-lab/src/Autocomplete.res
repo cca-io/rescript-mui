@@ -74,26 +74,26 @@ module ForcePopupIcon = {
 module ListboxComponent = {
   type t
   external string: string => t = "%identity"
-  external listboxComponent_func: MaterialUi.Any.t => t = "%identity"
+  external listboxComponent_func: Mui.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
 module Value = {
   type t
-  external arrayOf: array<MaterialUi.Any.t> => t = "%identity"
+  external arrayOf: array<Mui.Any.t> => t = "%identity"
 }
 
 module PaperComponent = {
   type t
   external string: string => t = "%identity"
-  external paperComponent_func: MaterialUi.Any.t => t = "%identity"
+  external paperComponent_func: Mui.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
 module PopperComponent = {
   type t
   external string: string => t = "%identity"
-  external popperComponent_func: MaterialUi.Any.t => t = "%identity"
+  external popperComponent_func: Mui.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -114,14 +114,14 @@ external make: (
   ~closeIcon: React.element=?,
   ~closeText: string=?,
   ~debug: bool=?,
-  ~defaultValue: MaterialUi.Any.t=?,
+  ~defaultValue: Mui.Any.t=?,
   ~disableClearable: bool=?,
   ~disableCloseOnSelect: bool=?,
   ~disabled: bool=?,
   ~disabledItemsFocusable: bool=?,
   ~disableListWrap: bool=?,
   ~disablePortal: bool=?,
-  ~filterOptions: MaterialUi.Any.t=?,
+  ~filterOptions: Mui.Any.t=?,
   ~filterSelectedOptions: bool=?,
   ~forcePopupIcon: ForcePopupIcon.t=?,
   ~freeSolo: bool=?,
@@ -135,7 +135,7 @@ external make: (
   ~id: string=?,
   ~includeInputInList: bool=?,
   ~inputValue: string=?,
-  ~limitTags: MaterialUi.Number.t=?,
+  ~limitTags: Mui.Number.t=?,
   ~\"ListboxComponent": ListboxComponent.t=?,
   ~\"ListboxProps": {..}=?,
   ~loading: bool=?,
@@ -150,17 +150,17 @@ external make: (
   ~\"open": bool=?,
   ~openOnFocus: bool=?,
   ~openText: string=?,
-  ~options: array<MaterialUi.Any.t>,
+  ~options: array<Mui.Any.t>,
   ~\"PaperComponent": PaperComponent.t=?,
   ~\"PopperComponent": PopperComponent.t=?,
   ~popupIcon: React.element=?,
-  ~renderGroup: MaterialUi.Any.t => React.element=?,
+  ~renderGroup: Mui.Any.t => React.element=?,
   ~renderInput: {..} => React.element,
   ~renderOption: ('t, {..}) => React.element=?,
   ~renderTags: (array<'t>, {"index": int} => unit) => React.element=?,
   ~selectOnFocus: bool=?,
   ~size: size=?,
-  ~value: MaterialUi.Any.t=?,
+  ~value: Mui.Any.t=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,

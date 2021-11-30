@@ -7,15 +7,15 @@ title: Modules
 `rescript-material-ui` provides all components in individual files. The file
 pattern is:
 
-    MaterialUi.[COMPONENT_NAME].res
+    Mui.[COMPONENT_NAME].res
 
 If you wish to use the `Typography` component for example, it would look like
 this:
 
 ```rescript
-<MaterialUi.Typography>
+<Mui.Typography>
   {"Some example text"->React.string}
-</MaterialUi.Typography>
+</Mui.Typography>
 ```
 
 The component names map one to one to the ones found in the `Component API`
@@ -31,7 +31,7 @@ part of the component modules each time. Example:
 ```rescript
 @react.component
 let make = () => {
-  open MaterialUi
+  open Mui
   <div>
     <Typography variant=#h4 gutterBottom=true>
       {"Headline"->React.string}
@@ -45,7 +45,7 @@ let make = () => {
 
 ### Special modules
 
-`MaterialUi.res` contains the following special modules:
+`Mui.res` contains the following special modules:
 
 - [Colors](module-colors.md)
 - [Core](module-core.md)

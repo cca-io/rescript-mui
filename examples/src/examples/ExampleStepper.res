@@ -1,4 +1,4 @@
-open MaterialUi
+open Mui
 
 external jsonTopSpacingFunc: (Js.Json.t, . int) => int = "%identity"
 let getSpacing = (theme: Theme.t, num) => theme.spacing(num)->string_of_int ++ "px"

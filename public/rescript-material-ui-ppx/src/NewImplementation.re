@@ -42,7 +42,7 @@ let createOptionsWithTypeConstraint = (fields: rawFields) => {
                            Location.mkloc(name, loc),
                            Typ.constr(
                              Location.mknoloc(
-                               Longident.parse("MaterialUi.ThemeOptions.t"),
+                               Longident.parse("Mui.ThemeOptions.t"),
                              ),
                              [],
                            ),
@@ -357,10 +357,7 @@ let rewriteMakeStylesWithTheme =
       ~manifest=
         Typ.arrow(
           Nolabel,
-          Typ.constr(
-            Location.mknoloc(Longident.parse("MaterialUi.Theme.t")),
-            [],
-          ),
+          Typ.constr(Location.mknoloc(Longident.parse("Mui.Theme.t")), []),
           Typ.constr(
             Location.mknoloc(Longident.parse("Styles.styles")),
             [],

@@ -1,7 +1,7 @@
 external styleToString: ReactDOM.Style.t => string = "%identity"
 
-let theme = MaterialUi.Theme.create({
-  open MaterialUi.ThemeOptions
+let theme = Mui.Theme.create({
+  open Mui.ThemeOptions
   make(
     ~overrides=Overrides.make(
       ~\"MuiButton"=ButtonClassKey.make(
@@ -29,7 +29,7 @@ module SupervisedUserCircleIcon = {
 
 @react.component
 let make = () => {
-  open MaterialUi
+  open Mui
   <div>
     <ThemeProvider theme>
       <Button color=#secondary variant=#outlined>

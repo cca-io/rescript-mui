@@ -2,10 +2,10 @@
 title: Module - Core
 ---
 
-The `MaterialUi.Core` module contains a few manual bindings to potentially
-useful functions.
+The `Mui.Core` module contains a few manual bindings to potentially useful
+functions.
 
-### useTheme() => MaterialUi.Theme.t
+### useTheme() => Mui.Theme.t
 
 A [react](https://rescript-lang.org/docs/react/latest/introduction) hook to get
 the current theme. See
@@ -18,7 +18,7 @@ A [react](https://rescript-lang.org/docs/react/latest/introduction) hook to
 execute a programmatic media query. It returns a boolean for wether the query is
 true or not.
 
-The `useMediaQuery` uses a type of `MaterialUi.Core.Breakpoint.t`. (See
+The `useMediaQuery` uses a type of `Mui.Core.Breakpoint.t`. (See
 [this page](https://material-ui.com/components/use-media-query/#using-material-uis-breakpoint-helpers)
 for more information).
 
@@ -27,7 +27,7 @@ You can construct a breakpoint like this:
 ```rescript
 @react.component
 let make = () => {
-    open MaterialUi.Core
+    open Mui.Core
     let theme = useTheme()
     let matches = useMediaQuery(Breakpoint.get(theme, #up(#sm)))
     Js.log(matches)

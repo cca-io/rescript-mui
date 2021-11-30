@@ -3,7 +3,7 @@
      converted from github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/dashboard
  */
 
-open MaterialUi
+open Mui
 
 let drawerWidth = 240
 
@@ -204,8 +204,8 @@ let make = (~sidebar, ~children) => {
             </main>
           </div>
         </div>
-      : <MaterialUi.Button variant=#outlined color=#primary onClick={_ => setShow(true)}>
+      : <Mui.Button variant=#outlined color=#primary onClick={_ => setShow(true)}>
           {"Open Dashboard"->React.string}
-        </MaterialUi.Button>}
+        </Mui.Button>}
   </div>
 }

@@ -1,4 +1,4 @@
-open MaterialUi
+open Mui
 
 @react.component
 let make = () =>

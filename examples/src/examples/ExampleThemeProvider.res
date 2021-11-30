@@ -1,11 +1,11 @@
-let theme = MaterialUi.Theme.create({
-  open MaterialUi.ThemeOptions
+let theme = Mui.Theme.create({
+  open Mui.ThemeOptions
   make(~palette=PaletteOptions.make(~primary=Primary.make(~main="#8fe830", ()), ()), ())
 })
 
 @react.component
 let make = () => {
-  open MaterialUi
+  open Mui
   <div>
     <Button color=#primary variant=#outlined> {"Default Primary Color"->React.string} </Button>
     {" "->React.string}

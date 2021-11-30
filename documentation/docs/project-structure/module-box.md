@@ -2,7 +2,7 @@
 title: Module - Box
 ---
 
-The `MaterialUi.Box` module contains a manual binding to the
+The `Mui.Box` module contains a manual binding to the
 [box component](https://material-ui.com/components/box/#box).
 
 The bindings are not complete and therefore do not offer the full functionality
@@ -19,7 +19,7 @@ Example:
 ```rescript
 @react.component
 let make = () => {
-    open MaterialUi
+    open Mui
 
     <Box
       component={Box.Component.string("span")}

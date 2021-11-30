@@ -13,18 +13,18 @@ type variant = [#outlined | #text]
 
 @react.component @module("@material-ui/lab")
 external make: (
-  ~boundaryCount: MaterialUi.Number.t=?,
+  ~boundaryCount: Mui.Number.t=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~color: color=?,
-  ~count: MaterialUi.Number.t=?,
-  ~defaultPage: MaterialUi.Number.t=?,
+  ~count: Mui.Number.t=?,
+  ~defaultPage: Mui.Number.t=?,
   ~disabled: bool=?,
   ~getItemAriaLabel: (string, int, bool) => string=?,
   ~hideNextButton: bool=?,
   ~hidePrevButton: bool=?,
   ~onChange: (ReactEvent.Form.t, int) => unit=?,
-  ~page: MaterialUi.Number.t=?,
+  ~page: Mui.Number.t=?,
   ~renderItem: {
     "color": color,
     "shape": shape,
@@ -37,7 +37,7 @@ external make: (
   ~shape: shape=?,
   ~showFirstButton: bool=?,
   ~showLastButton: bool=?,
-  ~siblingCount: MaterialUi.Number.t=?,
+  ~siblingCount: Mui.Number.t=?,
   ~size: size=?,
   ~variant: variant=?,
   ~id: string=?,

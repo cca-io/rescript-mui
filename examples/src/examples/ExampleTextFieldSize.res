@@ -1,6 +1,6 @@
 @react.component
 let make = () => {
-  open MaterialUi
+  open Mui
   <div>
     <TextField variant=#outlined fullWidth=true placeholder="None" />
     <br />

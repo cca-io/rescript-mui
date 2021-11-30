@@ -22,6 +22,6 @@ module SupervisedUserCircleOutlined = {
 
 @react.component
 let make = () => {
-    <SupervisedUserCircleOutlined color={MaterialUi.Colors.red.c400} fontSize="26px" />
+    <SupervisedUserCircleOutlined color={Mui.Colors.red.c400} fontSize="26px" />
 }
 ```

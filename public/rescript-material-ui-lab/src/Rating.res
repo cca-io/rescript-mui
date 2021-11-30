@@ -42,7 +42,7 @@ module Classes = {
 module IconContainerComponent = {
   type t
   external string: string => t = "%identity"
-  external iconContainerComponent_func: MaterialUi.Any.t => t = "%identity"
+  external iconContainerComponent_func: Mui.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
@@ -52,23 +52,23 @@ type size = [#large | #medium | #small]
 external make: (
   ~classes: Classes.t=?,
   ~className: string=?,
-  ~defaultValue: MaterialUi.Number.t=?,
+  ~defaultValue: Mui.Number.t=?,
   ~disabled: bool=?,
   ~emptyIcon: React.element=?,
   ~emptyLabelText: React.element=?,
   ~getLabelText: int => string=?,
   ~icon: React.element=?,
   ~\"IconContainerComponent": IconContainerComponent.t=?,
-  ~max: MaterialUi.Number.t=?,
+  ~max: Mui.Number.t=?,
   ~name: string=?,
   ~onChange: (ReactEvent.Form.t, int) => unit=?,
   ~onChangeActive: ({..}, int) => unit=?,
   ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
   ~onMouseMove: ReactEvent.Mouse.t => unit=?,
-  ~precision: MaterialUi.Number.t=?,
+  ~precision: Mui.Number.t=?,
   ~readOnly: bool=?,
   ~size: size=?,
-  ~value: MaterialUi.Number.t=?,
+  ~value: Mui.Number.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

@@ -1,4 +1,4 @@
-open MaterialUi
+open Mui
 
 let useStyles = Styles.makeStyles({
   "root": ReactDOM.Style.make(

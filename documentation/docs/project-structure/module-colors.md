@@ -4,7 +4,7 @@ title: Module - Colors
 
 ## Concept
 
-All colors are available in the special module `MaterialUi.Colors`.
+All colors are available in the special module `Mui.Colors`.
 
 All colors are available as their corresponding name from the
 [MUI Color Palette](https://material-ui.com/customization/color/#color-palette).
@@ -21,22 +21,22 @@ shades:
 
 ## Available Shades
 
-| Javascript    | ReScript                     |
-| ------------- | ---------------------------- |
-| `red['50']`   | `MaterialUi.Colors.red.c50`  |
-| `red['100']`  | `MaterialUi.Colors.red.c100` |
-| `red['200']`  | `MaterialUi.Colors.red.c200` |
-| `red['300']`  | `MaterialUi.Colors.red.c300` |
-| `red['400']`  | `MaterialUi.Colors.red.c400` |
-| `red['500']`  | `MaterialUi.Colors.red.c500` |
-| `red['600']`  | `MaterialUi.Colors.red.c600` |
-| `red['700']`  | `MaterialUi.Colors.red.c700` |
-| `red['800']`  | `MaterialUi.Colors.red.c800` |
-| `red['900']`  | `MaterialUi.Colors.red.c900` |
-| `red['A100']` | `MaterialUi.Colors.red.a100` |
-| `red['A200']` | `MaterialUi.Colors.red.a200` |
-| `red['A400']` | `MaterialUi.Colors.red.a400` |
-| `red['A700']` | `MaterialUi.Colors.red.a700` |
+| Javascript    | ReScript              |
+| ------------- | --------------------- |
+| `red['50']`   | `Mui.Colors.red.c50`  |
+| `red['100']`  | `Mui.Colors.red.c100` |
+| `red['200']`  | `Mui.Colors.red.c200` |
+| `red['300']`  | `Mui.Colors.red.c300` |
+| `red['400']`  | `Mui.Colors.red.c400` |
+| `red['500']`  | `Mui.Colors.red.c500` |
+| `red['600']`  | `Mui.Colors.red.c600` |
+| `red['700']`  | `Mui.Colors.red.c700` |
+| `red['800']`  | `Mui.Colors.red.c800` |
+| `red['900']`  | `Mui.Colors.red.c900` |
+| `red['A100']` | `Mui.Colors.red.a100` |
+| `red['A200']` | `Mui.Colors.red.a200` |
+| `red['A400']` | `Mui.Colors.red.a400` |
+| `red['A700']` | `Mui.Colors.red.a700` |
 
 ## Available colors
 

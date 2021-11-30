@@ -1,4 +1,4 @@
-open MaterialUiLab
+open MuiLab
 
 @react.component
 let make = () => {

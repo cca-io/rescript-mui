@@ -7,12 +7,12 @@ title: Theming
 Overriding styles locally is usually done via the `classes` prop that exists on
 virtually every component. Likewise, each component of the bindings has this
 prop and an according generator function for it. It is accessible via
-`MaterialUi.Component.Classes.make`.
+`Mui.Component.Classes.make`.
 
 Example:
 
 ```rescript
-open MaterialUi
+open Mui
 let classes = Styles.useStyles()
 <Paper
   classes={Paper.Classes.make(
@@ -36,23 +36,23 @@ problem to solve unfortunately).
 
 Theming is split into two modules:
 
-- `MaterialUi.Theme` (reading)
-- `MaterialUi.ThemeOptions` (constructing)
+- `Mui.Theme` (reading)
+- `Mui.ThemeOptions` (constructing)
 
 Theme definitions are likely to undergo breaking changes in future versions.
 
 ## Constructing a theme
 
-You can construct a theme object by calling `MaterialUi.ThemeOptions.make`. You
-would usually pass it to the `createTheme` function, which has a binding for
-convenience at : `MaterialUi.Theme.create`.
+You can construct a theme object by calling `Mui.ThemeOptions.make`. You would
+usually pass it to the `createTheme` function, which has a binding for
+convenience at : `Mui.Theme.create`.
 
 The following is an example of constructing a theme object:
 
 ```rescript
 let theme =
-  MaterialUi.Theme.create({
-    open MaterialUi.ThemeOptions
+  Mui.Theme.create({
+    open Mui.ThemeOptions
     make(
     ~overrides=
         Overrides.make(
@@ -76,24 +76,23 @@ let theme =
 
 You might have noticed that `ButtonClassKey` is not a straight forward and easy
 to guess sub module name. This is due to how the type information is presented
-by typescript. When in doubt, just open the `MaterialUi.ThemeOptions.res` module
-and follow the module names.
+by typescript. When in doubt, just open the `Mui.ThemeOptions.res` module and
+follow the module names.
 
 ## Reading from a theme
 
 Reading from a theme object has become a lot more straight forward in the latest
 ReScript versions (as records are now equivalent to JavaScript objects).
 
-All (sub-)types are in a flat hierarchy inside the `MaterialUi.Theme` module.
-Accessing them is very straight forward and corresponds to the original
-MaterialUi Shape.
+All (sub-)types are in a flat hierarchy inside the `Mui.Theme` module. Accessing
+them is very straight forward and corresponds to the original MaterialUi Shape.
 
 Here are 2 examples of accessing fields in the theme object:
 
 ```rescript
 @react.component
 let make = () => {
-  let theme = MaterialUi.Core.useTheme()
+  let theme = Mui.Core.useTheme()
 
   <div style={ReactDOM.Style.make(~color=theme.palette.primary.main, ())}>
     {"Some main colored text"->React.string}
@@ -113,7 +112,7 @@ module Styles = %makeStyles(
     ),
     appBar: ReactDOM.Style.make(
       ~zIndex=(theme.zIndex.drawer +. 1.0)->int_of_float->string_of_int,
-      ~transition=MaterialUi.ThemeHelpers.transitionCreate(
+      ~transition=Mui.ThemeHelpers.transitionCreate(
         ~theme,
         ~affectWidth=true,
         ~affectMargin=true,
@@ -127,26 +126,25 @@ module Styles = %makeStyles(
 )
 ```
 
-(The above example makes mention of the user contributed
-`MaterialUi.ThemeHelpers` module. Please refer to the source code for more
-information.)
+(The above example makes mention of the user contributed `Mui.ThemeHelpers`
+module. Please refer to the source code for more information.)
 
 ## Theme Provider
 
 For providing a theme at root level or further down the tree, you should use the
-`MaterialUi.ThemeProvider` component.
+`Mui.ThemeProvider` component.
 
 Example:
 
 ```rescript
-let theme = MaterialUi.Theme.create(MaterialUi.ThemeOptions.make())
+let theme = Mui.Theme.create(Mui.ThemeOptions.make())
 
 @react.component
 let make = () => {
   <div className="app root">
-    <MaterialUi.ThemeProvider theme>
+    <Mui.ThemeProvider theme>
       <div />
-    </MaterialUi.ThemeProvider>
+    </Mui.ThemeProvider>
   </div>
 }
 ```

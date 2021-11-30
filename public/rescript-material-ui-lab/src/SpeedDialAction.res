@@ -40,7 +40,7 @@ type tooltipPlacement = [
 external make: (
   ~classes: Classes.t=?,
   ~className: string=?,
-  ~delay: MaterialUi.Number.t=?,
+  ~delay: Mui.Number.t=?,
   ~\"FabProps": {..}=?,
   ~icon: React.element=?,
   ~id: string=?,

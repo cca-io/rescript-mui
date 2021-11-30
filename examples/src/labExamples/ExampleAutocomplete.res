@@ -110,14 +110,14 @@ let top100Films = [
 
 @react.component
 let make = () => {
-  <MaterialUiLab.Autocomplete
+  <MuiLab.Autocomplete
     id="combo-box-demo"
-    options={top100Films->Belt.Array.map(v => v->MaterialUi.Any.make)}
+    options={top100Films->Belt.Array.map(v => v->Mui.Any.make)}
     getOptionLabel={option => option.title}
     fullWidth=true
     renderInput={params =>
       React.createElement(
-        MaterialUi.TextField.make,
+        Mui.TextField.make,
         Js.Obj.assign(params->Obj.magic, {"label": "Combo box", "variant": "outlined"}),
       )}
   />

@@ -2,7 +2,7 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
-import * as Grid$MaterialUi from "rescript-material-ui/src/Grid.bs.js";
+import * as Grid$Mui from "rescript-material-ui/src/Grid.bs.js";
 import * as Lab from "@material-ui/lab";
 import * as Core from "@material-ui/core";
 import FormatBold from "@material-ui/icons/FormatBold";
@@ -81,8 +81,8 @@ function ExampleToggleButton(Props) {
             }, React.createElement(Core.Grid, {
                   children: null,
                   item: true,
-                  md: Grid$MaterialUi.Md[6],
-                  sm: Grid$MaterialUi.Sm[12]
+                  md: Grid$Mui.Md[6],
+                  sm: Grid$Mui.Sm[12]
                 }, React.createElement(Core.Box, {
                       children: React.createElement(Lab.ToggleButtonGroup, {
                             children: null,
@@ -113,8 +113,8 @@ function ExampleToggleButton(Props) {
                     })), React.createElement(Core.Grid, {
                   children: null,
                   item: true,
-                  md: Grid$MaterialUi.Md[6],
-                  sm: Grid$MaterialUi.Sm[12]
+                  md: Grid$Mui.Md[6],
+                  sm: Grid$Mui.Sm[12]
                 }, React.createElement(Core.Box, {
                       children: React.createElement(Lab.ToggleButtonGroup, {
                             children: null,

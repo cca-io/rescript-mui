@@ -28,21 +28,21 @@ type direction = [#down | #left | #right | #up]
 module TransitionComponent = {
   type t
   external string: string => t = "%identity"
-  external transitionComponent_func: MaterialUi.Any.t => t = "%identity"
+  external transitionComponent_func: Mui.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
 module TransitionDuration_shape = {
   type t = {
-    "appear": option<MaterialUi.Number.t>,
-    "enter": option<MaterialUi.Number.t>,
-    "exit": option<MaterialUi.Number.t>,
+    "appear": option<Mui.Number.t>,
+    "enter": option<Mui.Number.t>,
+    "exit": option<Mui.Number.t>,
   }
   @obj
   external make: (
-    ~appear: MaterialUi.Number.t=?,
-    ~enter: MaterialUi.Number.t=?,
-    ~exit: MaterialUi.Number.t=?,
+    ~appear: Mui.Number.t=?,
+    ~enter: Mui.Number.t=?,
+    ~exit: Mui.Number.t=?,
     unit,
   ) => t = ""
 }

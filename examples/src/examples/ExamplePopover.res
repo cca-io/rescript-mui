@@ -21,7 +21,7 @@ let reducer = (state: state, action: action) =>
 let make = () => {
   let (state, dispatch) = React.useReducer(reducer, {anchorEl: None, popupMessage: ""})
 
-  open MaterialUi
+  open Mui
   <div>
     <Popover
       \"open"={Belt.Option.isSome(state.anchorEl)}
@@ -39,7 +39,7 @@ let make = () => {
         {React.string(state.popupMessage)}
       </div>
     </Popover>
-    <MaterialUi.List>
+    <Mui.List>
       {messages
       ->Belt.Array.mapWithIndex((i, message) =>
         <ListItem
@@ -51,6 +51,6 @@ let make = () => {
         </ListItem>
       )
       ->React.array}
-    </MaterialUi.List>
+    </Mui.List>
   </div>
 }

@@ -1,6 +1,6 @@
 @react.component
 let make = () => {
-  open MaterialUi
+  open Mui
   <Box
     component={Box.Component.string("span")}
     style={ReactDOM.Style.make(~boxSizing="border-box", ())}

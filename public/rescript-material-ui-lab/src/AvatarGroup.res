@@ -17,7 +17,7 @@ external make: (
   ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
-  ~max: MaterialUi.Number.t=?,
+  ~max: Mui.Number.t=?,
   ~spacing: Spacing.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

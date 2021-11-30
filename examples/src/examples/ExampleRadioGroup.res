@@ -4,7 +4,7 @@ type answer = [#Yes | #No | #Maybe]
 let make = () => {
   let (state, setState) = React.useState(() => #Yes)
 
-  open MaterialUi
+  open Mui
   <RadioGroup
     name="answer"
     value={Any.make(state)}

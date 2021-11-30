@@ -2,8 +2,8 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
+import * as Grid$Mui from "rescript-material-ui/src/Grid.bs.js";
 import * as Caml_format from "rescript/lib/es6/caml_format.js";
-import * as Grid$MaterialUi from "rescript-material-ui/src/Grid.bs.js";
 import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/styles";
 import VolumeUp from "@material-ui/icons/VolumeUp";
@@ -74,7 +74,7 @@ function ExampleSlider(Props) {
                             value: value
                           }),
                       item: true,
-                      xs: Grid$MaterialUi.Xs.$$true
+                      xs: Grid$Mui.Xs.$$true
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(Core.Input, {
                             className: classes.input,

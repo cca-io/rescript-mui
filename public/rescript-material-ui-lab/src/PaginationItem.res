@@ -61,7 +61,7 @@ external make: (
   ~color: color=?,
   ~component: Component.t=?,
   ~disabled: bool=?,
-  ~page: MaterialUi.Number.t=?,
+  ~page: Mui.Number.t=?,
   ~selected: bool=?,
   ~shape: shape=?,
   ~size: size=?,

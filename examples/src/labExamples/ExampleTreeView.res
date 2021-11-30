@@ -1,5 +1,5 @@
-open MaterialUi
-open MaterialUiLab
+open Mui
+open MuiLab
 
 module ExpandMoreIcon = {
   @react.component @module("@material-ui/icons/ExpandMore")

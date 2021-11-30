@@ -14,7 +14,7 @@ const parseInit = () => {
   components.forEach(({ name, src }) => {
     Fs.writeFileSync(
       Path.join(outputDirectory, 'rescript', muiSrc, `${name}.res`),
-      src.replace(/(\W*)(Number|Any)\./g, '$1MaterialUi.$2.'),
+      src.replace(/(\W*)(Number|Any)\./g, '$1Mui.$2.'),
     );
   });
 };
