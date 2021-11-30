@@ -83,7 +83,7 @@ external make: (
   ~className: option<string>=?,
   ~style: option<ReactDOM.Style.t>=?,
   ~clone: option<bool>=?,
-  ~children: option<'children>=?,
+  ~children: option<React.element>=?,
   ~alignContent: option<Value.t>=?,
   ~alignItems: option<Value.t>=?,
   ~alignSelf: option<Value.t>=?,

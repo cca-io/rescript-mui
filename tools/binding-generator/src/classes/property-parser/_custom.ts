@@ -71,7 +71,7 @@ const factory = (propertyType: PropType$Custom) => {
     public executeParse() {
       // Custom children
       if (this._property.name === 'children') {
-        this._reasonType = `'children`;
+        this._reasonType = `React.element`;
         return;
       }
 
