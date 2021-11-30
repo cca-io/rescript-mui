@@ -12,7 +12,7 @@ module Component = {
 
 @react.component @module("@material-ui/core")
 external make: (
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~component: Component.t=?,

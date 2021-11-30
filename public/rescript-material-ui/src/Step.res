@@ -20,7 +20,7 @@ module Classes = {
 @react.component @module("@material-ui/core")
 external make: (
   ~active: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~completed: bool=?,

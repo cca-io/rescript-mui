@@ -14,7 +14,7 @@ module Spacing = {
 
 @react.component @module("@material-ui/lab")
 external make: (
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~max: MaterialUi.Number.t=?,

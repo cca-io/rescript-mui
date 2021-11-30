@@ -65,7 +65,7 @@ module Width = {
 @react.component @module("@material-ui/lab")
 external make: (
   ~animation: Animation.t=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~component: Component.t=?,

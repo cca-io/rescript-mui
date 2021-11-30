@@ -68,7 +68,7 @@ external make: (
   ~style: ReactDOM.Style.t=?,
   ~active: bool=?,
   ~alternativeLabel: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~completed: bool=?,

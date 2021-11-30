@@ -64,7 +64,7 @@ external make: (
   ~tabIndex: TabIndex.t=?,
   ~\"TouchRippleProps": {..}=?,
   ~\"type": Type.t=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~icon: React.element=?,

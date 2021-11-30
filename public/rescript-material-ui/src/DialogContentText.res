@@ -46,7 +46,7 @@ external make: (
   ~paragraph: bool=?,
   ~variant: variant=?,
   ~variantMapping: {..}=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

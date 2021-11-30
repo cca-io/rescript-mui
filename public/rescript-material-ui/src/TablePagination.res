@@ -66,7 +66,7 @@ module Component = {
 @react.component @module("@material-ui/core")
 external make: (
   ~align: align=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~padding: padding=?,
   ~scope: string=?,
   ~size: size=?,

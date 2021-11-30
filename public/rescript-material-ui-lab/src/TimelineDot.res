@@ -27,7 +27,7 @@ type variant = [#default | #outlined]
 
 @react.component @module("@material-ui/lab")
 external make: (
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~color: color=?,

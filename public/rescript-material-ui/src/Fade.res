@@ -12,7 +12,7 @@ module Timeout = {
 
 @react.component @module("@material-ui/core")
 external make: (
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~disableStrictModeCompat: bool=?,
   ~\"in": bool=?,
   ~onEnter: ReactEvent.Synthetic.t => unit=?,

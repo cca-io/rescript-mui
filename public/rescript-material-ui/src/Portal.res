@@ -7,7 +7,7 @@ module Container = {
 
 @react.component @module("@material-ui/core")
 external make: (
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~container: Container.t=?,
   ~disablePortal: bool=?,
   ~id: string=?,

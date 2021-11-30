@@ -48,7 +48,7 @@ external make: (
   ~elevation: Number.t=?,
   ~square: bool=?,
   ~variant: variant=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~color: color=?,

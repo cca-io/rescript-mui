@@ -113,7 +113,7 @@ external make: (
   ~anchorOrigin: AnchorOrigin.t=?,
   ~anchorPosition: AnchorPosition.t=?,
   ~anchorReference: anchorReference=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~container: Container.t=?,

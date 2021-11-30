@@ -83,7 +83,7 @@ type variant = [#default | #outlined]
 @react.component @module("@material-ui/core")
 external make: (
   ~avatar: React.element=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~clickable: bool=?,

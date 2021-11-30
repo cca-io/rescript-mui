@@ -57,7 +57,7 @@ module TransitionDuration = {
 @react.component @module("@material-ui/lab")
 external make: (
   ~ariaLabel: string,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~direction: direction=?,

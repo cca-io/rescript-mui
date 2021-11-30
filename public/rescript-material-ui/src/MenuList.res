@@ -35,7 +35,7 @@ external make: (
   ~style: ReactDOM.Style.t=?,
   ~autoFocus: bool=?,
   ~autoFocusItem: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~className: string=?,
   ~disabledItemsFocusable: bool=?,
   ~disableListWrap: bool=?,

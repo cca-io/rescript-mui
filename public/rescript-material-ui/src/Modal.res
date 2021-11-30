@@ -16,7 +16,7 @@ module Container = {
 external make: (
   ~\"BackdropComponent": BackdropComponent.t=?,
   ~\"BackdropProps": {..}=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~closeAfterTransition: bool=?,
   ~container: Container.t=?,
   ~disableAutoFocus: bool=?,

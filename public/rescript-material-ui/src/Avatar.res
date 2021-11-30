@@ -35,7 +35,7 @@ type variant = [#circle | #circular | #rounded | #square]
 @react.component @module("@material-ui/core")
 external make: (
   ~alt: string=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~component: Component.t=?,

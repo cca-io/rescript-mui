@@ -65,7 +65,7 @@ type variant = [#filled | #outlined | #standard]
 @react.component @module("@material-ui/lab")
 external make: (
   ~action: React.element=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~closeText: string=?,
