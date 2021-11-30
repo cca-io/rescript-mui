@@ -79,7 +79,7 @@ type variant = [#dot | #standard]
 external make: (
   ~anchorOrigin: AnchorOrigin.t=?,
   ~badgeContent: React.element=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~color: color=?,

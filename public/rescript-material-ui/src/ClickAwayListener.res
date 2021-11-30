@@ -30,7 +30,7 @@ module TouchEvent: {
 
 @react.component @module("@material-ui/core")
 external make: (
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~disableReactTree: bool=?,
   ~mouseEvent: MouseEvent.t=?,
   ~onClickAway: ReactEvent.Mouse.t => unit,

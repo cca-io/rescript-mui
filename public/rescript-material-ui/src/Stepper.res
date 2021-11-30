@@ -36,7 +36,7 @@ external make: (
   ~style: ReactDOM.Style.t=?,
   ~activeStep: Number.t=?,
   ~alternativeLabel: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~connector: React.element=?,

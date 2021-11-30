@@ -45,7 +45,7 @@ type rel = [
 @react.component @module("@material-ui/core")
 external make: (
   ~centerRipple: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~component: Component.t=?,

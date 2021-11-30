@@ -1,6 +1,6 @@
 @react.component @module("@material-ui/core")
 external make: (
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~defer: bool=?,
   ~fallback: React.element=?,
   ~id: string=?,

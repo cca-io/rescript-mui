@@ -115,7 +115,7 @@ external make: (
   ~\"aria-describedby": string=?,
   ~\"aria-labelledby": string=?,
   ~\"BackdropProps": {..}=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~disableBackdropClick: bool=?,

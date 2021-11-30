@@ -36,7 +36,7 @@ type variant = [#dots | #progress | #text]
 
 @react.component @module("@material-ui/core")
 external make: (
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~component: Component.t=?,
   ~elevation: Number.t=?,
   ~square: bool=?,

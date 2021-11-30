@@ -96,7 +96,7 @@ external make: (
   ~\"TouchRippleProps": {..}=?,
   ~\"type": Type.t=?,
   ~style: ReactDOM.Style.t=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~disableFocusRipple: bool=?,
   ~checked: bool=?,
   ~checkedIcon: React.element=?,

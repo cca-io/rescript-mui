@@ -24,7 +24,7 @@ module RowHeight = {
 @react.component @module("@material-ui/core")
 external make: (
   ~cellHeight: cellHeight=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~cols: Number.t=?,

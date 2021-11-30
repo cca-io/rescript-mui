@@ -61,7 +61,7 @@ module TransitionComponent = {
 @react.component @module("@material-ui/core")
 external make: (
   ~arrow: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~disableFocusListener: bool=?,

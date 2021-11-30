@@ -14,7 +14,7 @@ module Only = {
 
 @react.component @module("@material-ui/core")
 external make: (
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~className: string=?,
   ~implementation: implementation=?,
   ~initialWidth: initialWidth=?,

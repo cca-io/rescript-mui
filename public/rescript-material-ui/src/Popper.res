@@ -35,7 +35,7 @@ type placement = [
 @react.component @module("@material-ui/core")
 external make: (
   ~anchorEl: AnchorEl.t=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~container: Container.t=?,
   ~disablePortal: bool=?,
   ~keepMounted: bool=?,

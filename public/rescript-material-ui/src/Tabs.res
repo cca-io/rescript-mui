@@ -58,7 +58,7 @@ external make: (
   ~\"aria-label": string=?,
   ~\"aria-labelledby": string=?,
   ~centered: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~component: Component.t=?,

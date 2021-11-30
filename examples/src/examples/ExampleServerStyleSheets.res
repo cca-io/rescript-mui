@@ -21,7 +21,7 @@ let make = () => {
   })
 
   <div>
-    <Typography variant=#h5> "ServerSide render of <ExampleBox />" </Typography>
+    <Typography variant=#h5> {"ServerSide render of <ExampleBox />"->React.string} </Typography>
     <TextField
       className={classes["code"]}
       rows={TextField.Rows.int(5)}

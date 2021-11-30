@@ -103,7 +103,7 @@ external make: (
   ~\"TransitionComponent": TransitionComponent.t=?,
   ~anchorEl: Any.t=?,
   ~autoFocus: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~disableAutoFocusItem: bool=?,
   ~\"MenuListProps": {..}=?,

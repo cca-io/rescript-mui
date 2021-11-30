@@ -97,7 +97,7 @@ let make = () => {
         <FormHelperText> {"Label + placeholder"->React.string} </FormHelperText>
       </FormControl>
       <FormControl className={classes["formControl"]} disabled=true>
-        <InputLabel htmlFor="name-disabled"> "Name" </InputLabel>
+        <InputLabel htmlFor="name-disabled"> {"Name"->React.string} </InputLabel>
         <Select
           value={Select.Value.string(values.name)}
           onChange=handleChangeName
@@ -110,7 +110,7 @@ let make = () => {
         <FormHelperText> {"Disabled"->React.string} </FormHelperText>
       </FormControl>
       <FormControl className={classes["formControl"]} error=true>
-        <InputLabel htmlFor="name-error"> "Name" </InputLabel>
+        <InputLabel htmlFor="name-error"> {"Name"->React.string} </InputLabel>
         <Select
           value={Select.Value.string(values.name)}
           onChange=handleChangeName
@@ -125,7 +125,7 @@ let make = () => {
         <FormHelperText> {"Error"->React.string} </FormHelperText>
       </FormControl>
       <FormControl className={classes["formControl"]}>
-        <InputLabel htmlFor="name-readonly"> "Name" </InputLabel>
+        <InputLabel htmlFor="name-readonly"> {"Name"->React.string} </InputLabel>
         <Select
           value={Select.Value.string(values.name)}
           onChange=handleChangeName
@@ -158,7 +158,9 @@ let make = () => {
           name="age"
           displayEmpty=true
           className={classes["selectEmpty"]}>
-          <MenuItem value={MenuItem.Value.string("")} disabled=true> "Placeholder" </MenuItem>
+          <MenuItem value={MenuItem.Value.string("")} disabled=true>
+            {"Placeholder"->React.string}
+          </MenuItem>
           <MenuItem value={MenuItem.Value.string("10")}> {"Ten"->React.string} </MenuItem>
           <MenuItem value={MenuItem.Value.string("20")}> {"Twenty"->React.string} </MenuItem>
           <MenuItem value={MenuItem.Value.string("30")}> {"Thirty"->React.string} </MenuItem>

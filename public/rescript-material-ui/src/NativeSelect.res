@@ -119,7 +119,7 @@ external make: (
   ~rows: Rows.t=?,
   ~startAdornment: React.element=?,
   ~\"type": string=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~\"IconComponent": IconComponent.t=?,
   ~input: React.element=?,

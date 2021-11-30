@@ -30,7 +30,7 @@ module Component = {
 external make: (
   ~action: React.element=?,
   ~avatar: React.element=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~component: Component.t=?,

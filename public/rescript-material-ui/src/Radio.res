@@ -82,7 +82,7 @@ external make: (
   ~\"TouchRippleProps": {..}=?,
   ~\"type": Type.t=?,
   ~style: ReactDOM.Style.t=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~className: string=?,
   ~disableFocusRipple: bool=?,
   ~edge: Edge.t=?,

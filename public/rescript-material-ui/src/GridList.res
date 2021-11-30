@@ -22,7 +22,7 @@ module Component = {
 @react.component @module("@material-ui/core")
 external make: (
   ~cellHeight: CellHeight.t=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~cols: Number.t=?,

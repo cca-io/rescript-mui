@@ -79,7 +79,7 @@ external make: (
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~anchor: anchor=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~disableBackdropTransition: bool=?,
   ~disableDiscovery: bool=?,
   ~disableSwipeToOpen: bool=?,

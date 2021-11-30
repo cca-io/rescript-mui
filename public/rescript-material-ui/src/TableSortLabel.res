@@ -77,7 +77,7 @@ external make: (
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~active: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~direction: direction=?,

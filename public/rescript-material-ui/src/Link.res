@@ -58,7 +58,7 @@ external make: (
   ~noWrap: bool=?,
   ~paragraph: bool=?,
   ~variantMapping: {..}=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~color: color=?,

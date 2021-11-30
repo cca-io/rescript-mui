@@ -39,7 +39,7 @@ external make: (
   ~onExiting: ReactEvent.Synthetic.t => unit=?,
   ~style: ReactDOM.Style.t=?,
   ~timeout: Timeout.t=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~invisible: bool=?,

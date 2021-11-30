@@ -20,7 +20,7 @@ module Classes = {
 @react.component @module("@material-ui/lab")
 external make: (
   ~align: align=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~id: string=?,

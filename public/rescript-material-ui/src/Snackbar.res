@@ -54,7 +54,7 @@ external make: (
   ~action: React.element=?,
   ~anchorOrigin: AnchorOrigin.t=?,
   ~autoHideDuration: Number.t=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~\"ClickAwayListenerProps": {..}=?,

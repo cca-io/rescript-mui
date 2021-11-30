@@ -49,7 +49,8 @@ let make = () => {
 
   <div className={classes["root"]}>
     <Stepper activeStep={Number.int(activeStep)} orientation=#vertical>
-      {steps->Belt.Array.mapWithIndex((index, label) =>
+      {steps
+      ->Belt.Array.mapWithIndex((index, label) =>
         <Step key=label>
           <StepLabel> {label->React.string} </StepLabel>
           <StepContent>
@@ -71,7 +72,8 @@ let make = () => {
             </div>
           </StepContent>
         </Step>
-      )}
+      )
+      ->React.array}
     </Stepper>
     {activeStep === steps->Belt.Array.length
       ? <Paper square=true elevation={Number.int(0)} className={classes["resetContainer"]}>

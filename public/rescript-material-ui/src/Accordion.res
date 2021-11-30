@@ -36,7 +36,7 @@ external make: (
   ~component: Component.t=?,
   ~elevation: Number.t=?,
   ~variant: variant=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~defaultExpanded: bool=?,

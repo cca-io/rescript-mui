@@ -4,5 +4,5 @@ external make: (
   ~generateClassName: unit => string=?,
   ~injectFirst: bool=?,
   ~jss: {..}=?,
-  ~children: 'children,
+  ~children: React.element,
 ) => React.element = "StylesProvider"

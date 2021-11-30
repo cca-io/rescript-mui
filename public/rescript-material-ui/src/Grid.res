@@ -337,7 +337,7 @@ module Xs: {
 external make: (
   ~alignContent: alignContent=?,
   ~alignItems: alignItems=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~component: Component.t=?,

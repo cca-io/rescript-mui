@@ -18,7 +18,7 @@ external make: (
   ~row: bool=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~defaultValue: DefaultValue.t=?,
   ~name: string=?,
   ~onChange: ReactEvent.Form.t => unit=?,

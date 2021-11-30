@@ -126,7 +126,7 @@ external make: (
   ~startAdornment: React.element=?,
   ~\"type": string=?,
   ~autoWidth: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~defaultValue: Any.t=?,
   ~displayEmpty: bool=?,

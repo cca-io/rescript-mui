@@ -67,7 +67,7 @@ external make: (
   ~style: ReactDOM.Style.t=?,
   ~autoComplete: string=?,
   ~autoFocus: bool=?,
-  ~children: 'children=?,
+  ~children: React.element=?,
   ~classes: Classes.t=?,
   ~className: string=?,
   ~color: color=?,
