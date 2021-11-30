@@ -63,7 +63,7 @@ let make = () => {
           </ToggleButton>
         </ToggleButtonGroup>
       </Box>
-      <Typography gutterBottom=true> "Exclusive Selection" </Typography>
+      <Typography gutterBottom=true> {"Exclusive Selection"->React.string} </Typography>
       <Typography>
         {`Text justification toggle buttons present options for left, right, center, full, and
       justified text with only one item available for selection at a time. Selecting one option
@@ -83,10 +83,10 @@ let make = () => {
           </ToggleButton>
         </ToggleButtonGroup>
       </Box>
-      <Typography gutterBottom=true> "Multiple Selection" </Typography>
+      <Typography gutterBottom=true> {"Multiple Selection"->React.string} </Typography>
       <Typography>
-        "Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to be
-      selected."
+        {"Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to be
+      selected."->React.string}
       </Typography>
     </Grid>
   </Grid>

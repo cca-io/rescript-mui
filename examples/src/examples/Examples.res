@@ -4,7 +4,7 @@ open MaterialUi
 let make = () => <>
   <Grid container=true>
     <Grid item=true md=Grid.Md.\"12">
-      <Typography variant=#h4> "ReScript Material-UI Examples" </Typography>
+      <Typography variant=#h4> {"ReScript Material-UI Examples"->React.string} </Typography>
     </Grid>
   </Grid>
   <br />
@@ -13,7 +13,9 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=#center>
-    <Grid item=true md=Grid.Md.\"6"> <Typography variant=#h5> "Class Override" </Typography> </Grid>
+    <Grid item=true md=Grid.Md.\"6">
+      <Typography variant=#h5> {"Class Override"->React.string} </Typography>
+    </Grid>
     <Grid item=true md=Grid.Md.\"6"> <ExampleClassOverride /> </Grid>
   </Grid>
   <br />
@@ -22,7 +24,9 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=#center>
-    <Grid item=true md=Grid.Md.\"6"> <Typography variant=#h5> "Icons" </Typography> </Grid>
+    <Grid item=true md=Grid.Md.\"6">
+      <Typography variant=#h5> {"Icons"->React.string} </Typography>
+    </Grid>
     <Grid item=true md=Grid.Md.\"6"> <ExampleIcons /> </Grid>
   </Grid>
   <br />
@@ -31,7 +35,9 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=#center>
-    <Grid item=true md=Grid.Md.\"6"> <Typography variant=#h5> "Popover" </Typography> </Grid>
+    <Grid item=true md=Grid.Md.\"6">
+      <Typography variant=#h5> {"Popover"->React.string} </Typography>
+    </Grid>
     <Grid item=true md=Grid.Md.\"6"> <ExamplePopover /> </Grid>
   </Grid>
   <br />
@@ -40,7 +46,9 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=#center>
-    <Grid item=true md=Grid.Md.\"6"> <Typography variant=#h5> "Styles" </Typography> </Grid>
+    <Grid item=true md=Grid.Md.\"6">
+      <Typography variant=#h5> {"Styles"->React.string} </Typography>
+    </Grid>
     <Grid item=true md=Grid.Md.\"6"> <ExampleStyles /> </Grid>
   </Grid>
   <br />
@@ -49,7 +57,9 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=#center>
-    <Grid item=true md=Grid.Md.\"6"> <Typography variant=#h5> "Theme Provider" </Typography> </Grid>
+    <Grid item=true md=Grid.Md.\"6">
+      <Typography variant=#h5> {"Theme Provider"->React.string} </Typography>
+    </Grid>
     <Grid item=true md=Grid.Md.\"6"> <ExampleThemeProvider /> </Grid>
   </Grid>
   <br />
@@ -59,7 +69,7 @@ let make = () => <>
   <br />
   <Grid container=true alignItems=#center>
     <Grid item=true md=Grid.Md.\"6">
-      <Typography variant=#h5> "Theme Provider Override" </Typography>
+      <Typography variant=#h5> {"Theme Provider Override"->React.string} </Typography>
     </Grid>
     <Grid item=true md=Grid.Md.\"6"> <ExampleThemeProviderOverride /> </Grid>
   </Grid>
@@ -69,7 +79,9 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=#center>
-    <Grid item=true md=Grid.Md.\"6"> <Typography variant=#h5> "List" </Typography> </Grid>
+    <Grid item=true md=Grid.Md.\"6">
+      <Typography variant=#h5> {"List"->React.string} </Typography>
+    </Grid>
     <Grid item=true md=Grid.Md.\"6"> <ExampleList /> </Grid>
   </Grid>
   <br />

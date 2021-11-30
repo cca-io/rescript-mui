@@ -16,7 +16,7 @@ let make = () => {
   let (value, setValue) = React.useReducer((_, v) => v, 0)
 
   <div className={classes["root"]}>
-    <Typography gutterBottom=true> "Volume" </Typography>
+    <Typography gutterBottom=true> {"Volume"->React.string} </Typography>
     <Grid container=true spacing=#2 alignItems=#center>
       <Grid item=true> <VolumeUpIcon /> </Grid>
       <Grid item=true xs=Grid.Xs.\"true">

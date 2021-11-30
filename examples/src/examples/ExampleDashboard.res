@@ -174,7 +174,7 @@ let make = (~sidebar, ~children) => {
                     setShow(false)
                   }}
                   color=#secondary>
-                  "Close Dashboard"
+                  {"Close Dashboard"->React.string}
                 </Link>
                 <IconButton color=#inherit>
                   <Badge badgeContent={"4"->React.string} color=#secondary>
@@ -205,7 +205,7 @@ let make = (~sidebar, ~children) => {
           </div>
         </div>
       : <MaterialUi.Button variant=#outlined color=#primary onClick={_ => setShow(true)}>
-          "Open Dashboard"
+          {"Open Dashboard"->React.string}
         </MaterialUi.Button>}
   </div>
 }

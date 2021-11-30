@@ -40,7 +40,8 @@ let make = () => {
       </div>
     </Popover>
     <MaterialUi.List>
-      {messages->Belt.Array.mapWithIndex((i, message) =>
+      {messages
+      ->Belt.Array.mapWithIndex((i, message) =>
         <ListItem
           button=true
           key={string_of_int(i)}
@@ -48,7 +49,8 @@ let make = () => {
             dispatch(OpenPopup((evt->ReactEvent.Mouse.target->toDomElement, message)))}>
           <ListItemText> {React.string(message)} </ListItemText>
         </ListItem>
-      )}
+      )
+      ->React.array}
     </MaterialUi.List>
   </div>
 }
