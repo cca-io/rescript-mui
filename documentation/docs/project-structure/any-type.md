@@ -3,7 +3,7 @@ title: Any Type
 ---
 
 If the type you need to pass cannot be determined you can usually insert the
-`Any` type. It lives under `Mui.Types`.
+`Any` type. It lives under `Mui.Any`.
 
 :::info
 
