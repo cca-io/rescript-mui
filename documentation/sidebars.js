@@ -12,11 +12,8 @@ module.exports = {
       'project-structure/theming',
       'project-structure/icons',
     ],
-    'Styles PPX': [
-      'styles-ppx/introduction',
-      'styles-ppx/installation',
-      'styles-ppx/usage',
-    ],
+    Styles: ['styles/introduction', 'styles/installation', 'styles/usage'],
     'Lab Bindings': ['lab/introduction', 'lab/installation'],
+    Migration: ['migration/2x-to-3'],
   },
 };

@@ -1,8 +1,8 @@
 ---
-title: Installation
+title: Styles PPX Installation
 ---
 
-First, add it to you dependencies using `npm` or `yarn`:
+First, add it to your dependencies using `npm` or `yarn`:
 
 ```bash
 yarn add rescript-material-ui-ppx

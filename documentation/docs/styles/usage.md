@@ -1,5 +1,5 @@
 ---
-title: Usage
+title: Styles PPX Usage
 ---
 
 The extension is used by defining a module and passing `%makeStyles()` as the

@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Styles PPX Introduction
 ---
 
 ## What is a PPX?
