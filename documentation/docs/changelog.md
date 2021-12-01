@@ -14,6 +14,28 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 3.0.0
+
+- :boom: Converted the main entry point `MaterialUi` to the `Mui` namespace.
+- :boom: Added `Any` module as a replacement for `MaterialUi.Types` and
+  `MaterialUi.any`.
+- :boom: Use stricter `React.element` type for children.
+- :boom: Simplified ThemeProvider and removed MuiThemeProvider.
+- :boom: `createTheme` replaces `createMuiTheme`.
+- :boom: Removed `WithStyles` HOC and added a simple `useStyles` binding
+  instead.
+- :rocket: Added some custom props for `Button`, `ButtonBase`,
+  `FormControlLabel`, `OutlinedInput`, `Radio`, `Switch`, `TableRow`,
+  `TextField`.
+- :rocket: Updated to material-ui 4.12.3 and material-ui-lab 4.0.0-alpha.60.
+- :memo: Updated all Documentation to current changes.
+- :memo: Added a migration guide for the transition to this version.
+- :memo: Added a bunch of examples.
+- :memo: ReScript syntax highlighting.
+- :house: Made most bindings zero cost
+- :house: Restructured the monorepo.
+- :nail_care: Finished Reason -> ReScript transition.
+
 ## 2.1.2
 
 - :boom: Republished 2.1.0 with the new package name `rescript-material-ui`.
