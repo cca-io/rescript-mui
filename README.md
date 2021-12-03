@@ -19,4 +19,4 @@ Transition steps:
 
 1. ✅ Release `@jsiebern/bs-material-ui@2.1.0`
 2. ✅ Transition package name to `rescript-material-ui`
-3. Complete Reason -> ReScript transition and release `rescript-material-ui@3.0.0` with breaking changes
+3. ✅ Complete Reason -> ReScript transition and release `rescript-material-ui@3.0.0` with breaking changes

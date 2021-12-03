@@ -77,6 +77,20 @@ function Home() {
                 </p>
               </section>
             </div>
+            <div className="row">
+              <section className="col">
+                <h2 className={styles.featureHeading}>
+                  Version 3.0.0 now available
+                </h2>
+                <p className="padding-horiz--md">
+                  Read the{' '}
+                  <Link to={useBaseUrl('docs/migration/2x-to-3')}>
+                    migration guide
+                  </Link>
+                  .
+                </p>
+              </section>
+            </div>
           </div>
         </div>
       </main>
