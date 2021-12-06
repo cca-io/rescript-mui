@@ -16,6 +16,7 @@
   },
   "bs-dependencies": [
     "@rescript/react",
+    "bs-css-emotion",
     "rescript-material-ui",
     "rescript-material-ui-lab"
   ],
