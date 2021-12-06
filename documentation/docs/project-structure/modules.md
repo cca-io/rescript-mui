@@ -23,30 +23,32 @@ section of the MUI documentation.
 
 ### Global module
 
-For convenience, `rescript-material-ui` offers the `MaterialUi` module as well.
-It includes all components and a few special ones, which will be discussed
-later. This modules primary purpose is not having to type out the `MaterialUi_`
-part of the component modules each time. Example:
+With version 3.0.0, this library switched to the
+[ReScript namespace](https://rescript-lang.org/docs/manual/latest/build-configuration#name-namespace)
+`Mui` which replaces the previous `MaterialUi` module.
+
+For convenience, the `Mui` module includes a few special modules, which will be
+discussed later. To avoid name clashes, we suggest you stick to typing out
+`Mui.[COMPONENT_NAME]` instead of using `open`.
 
 ```rescript
 @react.component
-let make = () => {
-  open Mui
+let make = () =>
   <div>
-    <Typography variant=#h4 gutterBottom=true>
+    <Mui.Typography variant=#h4 gutterBottom=true>
       {"Headline"->React.string}
-    </Typography>
-    <Typography>
+    </Mui.Typography>
+    <Mui.Typography>
       {"Some example text"->React.string}
-    </Typography>
+    </Mui.Typography>
   </div>
-}
 ```
 
 ### Special modules
 
-`Mui.res` contains the following special modules:
+The `Mui` namespace contains the following special modules:
 
+- [Any](any-type.md)
 - [Colors](module-colors.md)
 - [Core](module-core.md)
 - [Box](module-box.md)

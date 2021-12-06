@@ -12,11 +12,15 @@ module.exports = {
       'project-structure/theming',
       'project-structure/icons',
     ],
-    'Styles PPX': [
-      'styles-ppx/introduction',
-      'styles-ppx/installation',
-      'styles-ppx/usage',
+    Styling: [
+      'styling/introduction',
+      'styling/use-styles',
+      'styling/css',
+      'styling/tailwind',
+      'styling/bs-css',
+      'styling/styles-ppx',
     ],
     'Lab Bindings': ['lab/introduction', 'lab/installation'],
+    Migration: ['migration/2x-to-3'],
   },
 };
