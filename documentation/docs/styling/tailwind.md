@@ -1,5 +1,5 @@
 ---
-title: Tailwind
+title: Tailwind CSS
 ---
 
 It is important to change the style precedence order with the help of the

@@ -1,5 +1,5 @@
 ---
-title: CSS
+title: Plain CSS
 ---
 
 ## Usage with plain CSS

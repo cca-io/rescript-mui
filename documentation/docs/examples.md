@@ -10,7 +10,8 @@ for more information.
 
 ```bash
 git clone https://github.com/cca-io/rescript-material-ui.git
-cd rescript-material-ui/public/rescript-material-ui
+cd rescript-material-ui/examples
 yarn install
-yarn examples
+yarn build
+yarn start
 ```
