@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 3.0.1
+
+- :house: Fixed outdated peer dependencies.
+
 ## 3.0.0
 
 - :boom: Converted the main entry point `MaterialUi` to the `Mui` namespace.
