@@ -1,6 +1,6 @@
 {
   "name": "rescript-material-ui",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "This library provides ReScript bindings for material-ui.",
   "keywords": [
     "rescript",
@@ -12,7 +12,8 @@
   "bugs": "https://github.com/cca-io/rescript-material-ui/issues",
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
   "contributors": [
-    "Christoph Knittel <ck@cca.io>"
+    "Christoph Knittel <ck@cca.io>",
+    "Florian Hammerschmidt <fh@cca.io>"
   ],
   "license": "MIT",
   "main": "./src/MaterialUi.re",
