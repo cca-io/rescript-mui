@@ -125,8 +125,8 @@ const factory = (propertyType: PropType$Enum) => {
             .map((name, i) => `#${name}`)
             .join(' | ')}];
           `;
-          this._reasonType = `@int [${enumValuesReason
-            .map((name, i) => `@as(${this._enumValues[i]}) #${name}`)
+          this._reasonType = `[${enumValuesReason
+            .map((name) => `#${name}`)
             .join(' | ')}]`;
           break;
       }

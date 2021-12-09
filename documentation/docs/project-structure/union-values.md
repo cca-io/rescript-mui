@@ -45,10 +45,8 @@ type variant = [#elevation | #outlined]
 
 ## Numeric unions
 
-A union consisting of only numbers will utilize the
-[[@int]](https://rescript-lang.org/docs/manual/latest/bind-to-js-function#constrain-arguments-better)
-directive. Therefore, numerical unions will accept a form of polymorphic variant
-as well.
+Numeric unions now work the same way as string only unions now and don't utilize
+the `@int` directive anymore.
 
 These don't happen often - currently the only place where this applies is in the
 `Mui.Grid.res` component.

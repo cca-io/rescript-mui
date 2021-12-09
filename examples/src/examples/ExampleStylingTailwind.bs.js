@@ -11,7 +11,7 @@ function ExampleStylingTailwind(Props) {
                     onClick: (function (prim) {
                         
                       }),
-                    children: "Hello, BS-CSS & MUI!",
+                    children: "Hello, Tailwind & MUI!",
                     classes: {
                       root: "normal-case justify-start"
                     },

@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 3.0.2
+
+- :bug: Fixed the binding generator's handling of `int` enums.
+
 ## 3.0.1
 
 - :house: Fixed outdated peer dependencies.
