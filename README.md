@@ -11,12 +11,3 @@ Check out our documentation site at https://rescript-material-ui.cca.io/.
 
 See https://rescript-material-ui.cca.io/docs/changelog.
 
-# Roadmap
-
-This repo is currently undergoing a transition in terms of maintainership, NPM package names and Reason -> ReScript migration.
-
-Transition steps:
-
-1. ✅ Release `@jsiebern/bs-material-ui@2.1.0`
-2. ✅ Transition package name to `rescript-material-ui`
-3. ✅ Complete Reason -> ReScript transition and release `rescript-material-ui@3.0.0` with breaking changes
