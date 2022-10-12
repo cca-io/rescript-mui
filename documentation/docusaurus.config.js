@@ -14,6 +14,7 @@ module.exports = {
     prism: {
       theme: require('prism-react-renderer/themes/github'),
       darkTheme: require('prism-react-renderer/themes/oceanicNext'),
+      additionalLanguages: ['rescript'],
     },
     navbar: {
       title: 'ReScript Material-UI',
