@@ -1,6 +1,10 @@
 .mui-clone
+base
 core
-styles
-utils
-system
 lab
+material
+private-theming
+styles
+styled-engine
+system
+utils

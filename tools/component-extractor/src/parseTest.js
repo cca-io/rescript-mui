@@ -1,7 +1,7 @@
 import * as babel from '@babel/core';
-import {readFile} from 'fs-extra';
+import { readFile } from 'fs/promises';
 import * as path from 'path';
-import {homedir} from 'os';
+import { homedir } from 'os';
 
 const workspaceRoot = path.join(homedir(), '.mui-clone');
 const babelConfigPath = path.join(workspaceRoot, 'babel.config.js');

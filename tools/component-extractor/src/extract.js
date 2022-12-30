@@ -1,12 +1,12 @@
 import * as yargs from 'yargs';
 import * as rimraf from 'rimraf';
 import path from 'path';
-import { mkdir, readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import kebabCase from 'lodash/kebabCase';
 import * as reactDocgen from 'react-docgen';
-import getStylesCreator from './../styles/getStylesCreator';
-import createTheme from './../core/styles/createTheme';
-import * as colors from './../core/colors';
+import getStylesCreator from '../styles/getStylesCreator';
+import createTheme from '../core/styles/createTheme';
+import * as colors from '../core/colors';
 import getInheritance from './inheritance';
 import parseTest from './parseTest';
 
@@ -16,7 +16,7 @@ import ensureExists from './ensure-folder-exists';
 const args = yargs
   .option('src', {
     describe: 'mui source',
-    choices: ['core', 'lab'],
+    choices: ['material', 'lab'],
   })
   .demandOption(['src'], 'Please provide src argument')
   .help().argv;
