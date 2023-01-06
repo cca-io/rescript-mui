@@ -63,7 +63,12 @@ components.forEach(async (componentPath) => {
 
   let reactAPI;
   try {
-    reactAPI = reactDocgen.parse(src);
+    reactAPI = reactDocgen.parse(
+      Buffer.from(src, 'utf8'),
+      undefined,
+      undefined,
+      { filename: path.parse(componentPath).base },
+    );
   } catch (err) {
     console.log('Error parsing src for', componentPath);
     throw err;
