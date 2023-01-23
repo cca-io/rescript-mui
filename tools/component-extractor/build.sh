@@ -4,6 +4,7 @@ pwd=$(pwd)
 MUI_VERSION_TAG=v5.11.2
 OUTPUT_FOLDER=${pwd}/../../output
 
+# if changing the MUI_VERSION_TAG, delete the repo directory and clone again
 # rm -rf ~/.mui-clone
 if [ ! -d ~/.mui-clone ]; then
   git clone --depth 1 --branch $MUI_VERSION_TAG https://github.com/mui/material-ui ~/.mui-clone
@@ -86,13 +87,13 @@ done
 rm -rf ./lab
 cp -R ~/.mui-clone/packages/mui-lab/src ./lab
 
-rm -rf ./core2
-cp -R ~/.mui-clone/packages/mui-lab/build/node ./core2
-cp ./core2/Timeline/TimelineContext.js ./lab/Timeline
+rm -rf ./dist-lab
+cp -R ~/.mui-clone/packages/mui-lab/build/node ./dist-lab
+cp ./dist-lab/Timeline/TimelineContext.js ./lab/Timeline
 
 ## Copy over missing JS files
-for dir in `find ./core2 -name \*Classes.js`; do
-  removePrefix=${dir#"./core2"}
+for dir in `find ./dist-lab -name \*Classes.js`; do
+  removePrefix=${dir#"./dist-lab"}
   removeSuffix=${removePrefix%/*}
   target="./lab"$removeSuffix"/"
   cp -R $dir $target
