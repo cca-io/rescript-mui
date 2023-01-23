@@ -25,6 +25,26 @@ const muiSrc = args.src;
 const MuiPath = path.resolve(__dirname, '../', muiSrc);
 
 const components = findComponents(`./${muiSrc}`);
+
+const IGNORED_COMPONENTS = [
+  // createX pattern
+  '/Box.js',
+  '/Container.js',
+  '/FormControl.js',
+  // Typescript
+  '/Popper.js', // Popper.tsx
+  '/CssVarsProvider.js', // also createX pattern
+  '/ThemeProvider.js',
+  '/DialogContext.js',
+  '/StepContext.js',
+  '/StepperContext.js',
+  // moved to @mui/x-date-pickers
+  '/AdapterDateFns.js',
+  '/AdapterDayjs.js',
+  '/AdapterLuxon.js',
+  '/AdapterMoment.js',
+];
+
 const theme = createTheme();
 const rootDirectory = MuiPath;
 const outputDirectory = path.join(
@@ -37,75 +57,94 @@ const outputDirectory = path.join(
 
 rimraf.sync(path.join(outputDirectory, '*.json'));
 
-components.forEach(async (componentPath) => {
-  const src = readFileSync(componentPath, 'utf8');
-
-  if (
-    src.match(/@ignore - internal component\./) ||
-    src.match(/@ignore - do not document\./)
-  ) {
-    return;
-  }
-
-  const component = require(componentPath);
-  const styles = {
-    classes: [],
-    name: null,
-  };
-
-  if (component.styles && component.default.options) {
-    // Collect the customization points of the `classes` property.
-    styles.classes = Object.keys(
-      getStylesCreator(component.styles).create(theme),
-    ).filter((className) => !className.match(/^(@media|@keyframes)/));
-    styles.name = component.default.options.name;
-  }
-
-  let reactAPI;
-  try {
-    reactAPI = reactDocgen.parse(
-      Buffer.from(src, 'utf8'),
-      undefined,
-      undefined,
-      { filename: path.parse(componentPath).base },
+components
+  .filter((componentPath) => {
+    const shouldIgnore = IGNORED_COMPONENTS.every(
+      (ignored) => !componentPath.endsWith(ignored),
     );
-  } catch (err) {
-    console.log('Error parsing src for', componentPath);
-    throw err;
-  }
 
-  reactAPI.name = path.parse(componentPath).name;
-  reactAPI.importName = path.parse(componentPath).name;
-  reactAPI.styles = styles;
-  reactAPI.filename = componentPath.replace(rootDirectory, '');
-  reactAPI.importPath = `@material-ui/${muiSrc}`;
+    if (!shouldIgnore) {
+      console.warn(`Ignoring ${componentPath}`);
+    }
+    return shouldIgnore;
+  })
+  .forEach(async (componentPath) => {
+    let component;
+    let src;
+    try {
+      src = readFileSync(componentPath, 'utf8');
 
-  // Inheritance
-  const testInfo = await parseTest(reactAPI.filename, muiSrc);
-  const inheritance = getInheritance(testInfo, src);
-  reactAPI.inheritsFrom = inheritance ? inheritance.component : '';
-
-  if (typeof reactAPI.props.classes !== 'undefined') {
-    reactAPI.props.classes.flowType = {
-      name: 'classes',
-      elements: reactAPI.styles.classes,
-    };
-  }
-
-  ensureExists(outputDirectory, 0o744, (err) => {
-    if (err) {
-      console.log('Error creating directory', outputDirectory);
-      console.log(err);
+      if (
+        src.match(/@ignore - internal component\./) ||
+        src.match(/@ignore - do not document\./)
+      ) {
+        return;
+      }
+      component = await import(componentPath);
+    } catch (err) {
+      console.error(err.message);
       return;
     }
+    const styles = {
+      classes: [],
+      name: null,
+    };
 
-    writeFileSync(
-      path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.json`),
-      JSON.stringify(reactAPI),
-    );
-    console.log('Extracted JSON for', componentPath);
+    if (component.styles && component.default.options) {
+      // Collect the customization points of the `classes` property.
+      styles.classes = Object.keys(
+        getStylesCreator(component.styles).create(theme),
+      ).filter((className) => !className.match(/^(@media|@keyframes)/));
+      styles.name = component.default.options.name;
+    }
+
+    let reactAPI;
+    const parsedPath = path.parse(componentPath);
+    try {
+      reactAPI = reactDocgen.parse(
+        Buffer.from(src, 'utf8'),
+        undefined,
+        undefined,
+        { filename: parsedPath.base },
+      );
+    } catch (err) {
+      console.error('Error parsing src for', componentPath);
+      console.error(err.message);
+      throw err;
+    }
+
+    reactAPI.name = parsedPath.name;
+    reactAPI.importName = parsedPath.name;
+    reactAPI.styles = styles;
+    reactAPI.filename = componentPath.replace(rootDirectory, '');
+    reactAPI.importPath = `@mui/${muiSrc}`;
+
+    // Inheritance
+    const testInfo = await parseTest(reactAPI.filename, muiSrc);
+    const inheritance = getInheritance(testInfo, src);
+    reactAPI.inheritsFrom = inheritance ? inheritance.component : '';
+
+    if (typeof reactAPI.props.classes !== 'undefined') {
+      reactAPI.props.classes.flowType = {
+        name: 'classes',
+        elements: reactAPI.styles.classes,
+      };
+    }
+
+    ensureExists(outputDirectory, 0o744, (err) => {
+      if (err) {
+        console.log('Error creating directory', outputDirectory);
+        console.log(err);
+        return;
+      }
+
+      writeFileSync(
+        path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.json`),
+        JSON.stringify(reactAPI),
+      );
+      console.log('Extracted JSON for', componentPath);
+    });
   });
-});
 
 ensureExists(outputDirectory, 0o744, (err) => {
   if (err) {

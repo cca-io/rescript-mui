@@ -44,6 +44,7 @@ module.exports = {
       'next/babel',
       { 'transform-runtime': { corejs: 2, version: transformRuntimeVersion } },
     ],
+    '@babel/preset-typescript',
   ],
   plugins: [
     // [
