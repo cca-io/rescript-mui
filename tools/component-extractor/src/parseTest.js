@@ -6,6 +6,14 @@ import { homedir } from 'os';
 const workspaceRoot = path.join(homedir(), '.mui-clone');
 const babelConfigPath = path.join(workspaceRoot, 'babel.config.js');
 
+const typescriptTestFiles = [
+  // material
+  '/Card.js',
+  '/Stepper.js',
+  // lab
+  '/TabPanel.js',
+];
+
 function withExtension(filepath, extension) {
   return path.join(
     path.dirname(filepath),
@@ -21,7 +29,7 @@ async function parseWithConfig(filename, configFilePath, muiSrc) {
   const source = await readFile(
     path.join(
       workspaceRoot,
-      `packages/material-ui${muiSrc === 'lab' ? '-lab' : ''}/src`,
+      `packages/mui-${muiSrc === 'lab' ? 'lab' : 'material'}/src`,
       filename,
     ),
     { encoding: 'utf8' },
@@ -99,34 +107,47 @@ function getInheritComponentName(valueNode) {
  * @returns {ParseResult}
  */
 export default async function parseTest(componentFilename, muiSrc) {
-  const testFilename = withExtension(componentFilename, '.test.js');
-  const babelParseResult = await parseWithConfig(
-    testFilename,
-    babelConfigPath,
-    muiSrc,
-  );
-  const descriptor = findConformanceDescriptor(babelParseResult);
-
-  const result = {
-    forwardsRefTo: undefined,
-    inheritComponent: undefined,
-  };
-
-  const { properties = [] } = descriptor;
-  properties.forEach((property) => {
-    const key = property.key.name;
-
-    switch (key) {
-      case 'refInstanceof':
-        result.forwardsRefTo = getRefInstance(property.value);
-        break;
-      case 'inheritComponent':
-        result.inheritComponent = getInheritComponentName(property.value);
-        break;
-      default:
-        break;
+  try {
+    let testFilename = withExtension(componentFilename, '.test.js');
+    if (
+      typescriptTestFiles.some((tsFile) => componentFilename.endsWith(tsFile))
+    ) {
+      testFilename = withExtension(
+        componentFilename.replace('.js', '.tsx'),
+        '.test.tsx',
+      );
     }
-  });
+    const babelParseResult = await parseWithConfig(
+      testFilename,
+      babelConfigPath,
+      muiSrc,
+    );
+    const descriptor = findConformanceDescriptor(babelParseResult);
 
-  return result;
+    const result = {
+      forwardsRefTo: undefined,
+      inheritComponent: undefined,
+    };
+
+    const { properties = [] } = descriptor;
+    properties.forEach((property) => {
+      const key = property.key.name;
+
+      switch (key) {
+        case 'refInstanceof':
+          result.forwardsRefTo = getRefInstance(property.value);
+          break;
+        case 'inheritComponent':
+          result.inheritComponent = getInheritComponentName(property.value);
+          break;
+        default:
+          break;
+      }
+    });
+
+    return result;
+  } catch (e) {
+    console.error(e.message);
+    return { forwardsRefTo: undefined, inheritComponent: undefined };
+  }
 }
