@@ -21,6 +21,5 @@ export {
   Type ,
   Edge ,
   Classes ,
-  
 }
 /* No side effect */

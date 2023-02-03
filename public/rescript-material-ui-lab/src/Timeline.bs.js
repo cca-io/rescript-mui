@@ -5,6 +5,5 @@ var Classes = {};
 
 export {
   Classes ,
-  
 }
 /* No side effect */

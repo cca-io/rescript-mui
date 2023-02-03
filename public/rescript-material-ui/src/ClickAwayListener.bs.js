@@ -17,6 +17,5 @@ var $$TouchEvent = {
 export {
   $$MouseEvent ,
   $$TouchEvent ,
-  
 }
 /* No side effect */

@@ -24,6 +24,5 @@ var make = ExampleStylingTailwind;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

@@ -26,6 +26,5 @@ export {
   Rows ,
   RowsMax ,
   Value ,
-  
 }
 /* No side effect */

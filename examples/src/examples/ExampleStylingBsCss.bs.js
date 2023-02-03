@@ -35,6 +35,5 @@ var make = ExampleStylingBsCss;
 export {
   Styles$1 as Styles,
   make ,
-  
 }
 /* categoryButton Not a pure module */

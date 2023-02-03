@@ -23,6 +23,5 @@ var make = App;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

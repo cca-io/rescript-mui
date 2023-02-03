@@ -134,6 +134,5 @@ var make = ExamplesLab;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

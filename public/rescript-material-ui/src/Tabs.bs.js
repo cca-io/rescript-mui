@@ -11,6 +11,5 @@ export {
   Classes ,
   Component ,
   ScrollButtonComponent ,
-  
 }
 /* No side effect */

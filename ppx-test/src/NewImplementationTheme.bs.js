@@ -42,6 +42,5 @@ var make = NewImplementationTheme;
 export {
   Styles$1 as Styles,
   make ,
-  
 }
 /* useStyles Not a pure module */

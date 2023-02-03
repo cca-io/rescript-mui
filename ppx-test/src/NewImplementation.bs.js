@@ -40,6 +40,5 @@ var make = NewImplementation;
 export {
   Styles$1 as Styles,
   make ,
-  
 }
 /* useStyles Not a pure module */

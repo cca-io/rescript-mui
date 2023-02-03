@@ -32,6 +32,5 @@ var make = ExampleThemeProvider;
 export {
   theme ,
   make ,
-  
 }
 /* theme Not a pure module */

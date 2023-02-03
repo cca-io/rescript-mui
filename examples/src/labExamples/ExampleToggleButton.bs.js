@@ -43,10 +43,10 @@ function ExampleToggleButton(Props) {
         }), ["bold"]);
   var setFormats = match$1[1];
   var handleAlignment = function (param, v) {
-    return Curry._1(setAlignment, v);
+    Curry._1(setAlignment, v);
   };
   var handleFormats = function (param, v) {
-    return Curry._1(setFormats, v);
+    Curry._1(setFormats, v);
   };
   return React.createElement(Core.Grid, {
               children: null,
@@ -131,6 +131,5 @@ export {
   FormatColorFillIcon ,
   ArrowDropDownIcon ,
   make ,
-  
 }
 /* react Not a pure module */

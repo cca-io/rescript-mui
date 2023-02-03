@@ -8,6 +8,5 @@ var Container = {};
 export {
   BackdropComponent ,
   Container ,
-  
 }
 /* No side effect */

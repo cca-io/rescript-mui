@@ -48,6 +48,5 @@ export {
   addBreakpoint ,
   checkAffect ,
   transitionCreate ,
-  
 }
 /* No side effect */

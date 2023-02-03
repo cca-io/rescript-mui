@@ -23,6 +23,5 @@ export {
   InputComponent ,
   MaxRows ,
   Rows ,
-  
 }
 /* No side effect */

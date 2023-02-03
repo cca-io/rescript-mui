@@ -14,6 +14,5 @@ export {
   Component ,
   TabIndex ,
   Type ,
-  
 }
 /* No side effect */

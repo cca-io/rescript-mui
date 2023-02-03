@@ -30,6 +30,5 @@ var make = ExampleStyles;
 export {
   useStyles ,
   make ,
-  
 }
 /* useStyles Not a pure module */

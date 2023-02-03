@@ -40,6 +40,5 @@ export {
   theme ,
   SupervisedUserCircleIcon ,
   make ,
-  
 }
 /* theme Not a pure module */

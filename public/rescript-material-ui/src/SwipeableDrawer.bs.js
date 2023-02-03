@@ -23,6 +23,5 @@ export {
   PaperProps ,
   TransitionDuration_shape ,
   TransitionDuration ,
-  
 }
 /* No side effect */

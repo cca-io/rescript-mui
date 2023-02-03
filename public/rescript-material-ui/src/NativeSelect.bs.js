@@ -26,6 +26,5 @@ export {
   Rows ,
   Classes ,
   IconComponent ,
-  
 }
 /* No side effect */

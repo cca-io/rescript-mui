@@ -23,6 +23,5 @@ export {
   Rows ,
   RowsMax ,
   RowsMin ,
-  
 }
 /* No side effect */

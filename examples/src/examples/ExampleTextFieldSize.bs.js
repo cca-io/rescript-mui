@@ -25,6 +25,5 @@ var make = ExampleTextFieldSize;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

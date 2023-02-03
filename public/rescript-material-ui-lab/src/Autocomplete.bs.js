@@ -23,6 +23,5 @@ export {
   Value ,
   PaperComponent ,
   PopperComponent ,
-  
 }
 /* No side effect */

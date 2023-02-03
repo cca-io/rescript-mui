@@ -15,6 +15,5 @@ export {
   Classes ,
   Component ,
   SortDirection ,
-  
 }
 /* No side effect */

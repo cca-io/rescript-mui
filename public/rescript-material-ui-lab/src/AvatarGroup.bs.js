@@ -8,6 +8,5 @@ var Spacing = {};
 export {
   Classes ,
   Spacing ,
-  
 }
 /* No side effect */

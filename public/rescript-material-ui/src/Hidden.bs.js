@@ -5,6 +5,5 @@ var Only = {};
 
 export {
   Only ,
-  
 }
 /* No side effect */

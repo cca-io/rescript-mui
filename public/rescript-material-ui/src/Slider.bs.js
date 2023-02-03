@@ -33,6 +33,5 @@ export {
   Value ,
   ValueLabelComponent ,
   ValueLabelFormat ,
-  
 }
 /* No side effect */

@@ -14,9 +14,9 @@ function ExampleRadioGroup(Props) {
               name: "answer",
               onChange: (function (e) {
                   var value = e.target.value;
-                  return Curry._1(setState, (function (param) {
-                                return value;
-                              }));
+                  Curry._1(setState, (function (param) {
+                          return value;
+                        }));
                 }),
               value: match[0]
             }, React.createElement(Core.FormControlLabel, {
@@ -38,6 +38,5 @@ var make = ExampleRadioGroup;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

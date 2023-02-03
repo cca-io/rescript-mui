@@ -21,6 +21,5 @@ export {
   Component ,
   Height ,
   Width ,
-  
 }
 /* No side effect */

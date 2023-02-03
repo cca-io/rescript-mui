@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import * as ExampleBox from "./ExampleBox.bs.js";
+import * as Server from "react-dom/server";
 import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/styles";
-import * as ServerJs from "react-dom/server.js";
 import * as Styles$1 from "@material-ui/core/styles";
 
 var useStyles = Styles.makeStyles({
@@ -18,7 +18,7 @@ function ExampleServerStyleSheets(Props) {
   var classes = useStyles();
   var match = React.useMemo((function () {
           var sheets = new Styles$1.ServerStyleSheets();
-          var html = ServerJs.renderToString(sheets.collect(React.createElement(ExampleBox.make, {})));
+          var html = Server.renderToString(sheets.collect(React.createElement(ExampleBox.make, {})));
           var css = sheets.toString();
           return [
                   html,
@@ -52,6 +52,5 @@ var make = ExampleServerStyleSheets;
 export {
   useStyles ,
   make ,
-  
 }
 /* useStyles Not a pure module */

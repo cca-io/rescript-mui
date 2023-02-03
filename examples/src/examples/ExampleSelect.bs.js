@@ -42,7 +42,7 @@ function ExampleSelect(Props) {
   var setInputLabelEl = match$1[1];
   var inputLabelEl = match$1[0];
   var inputLabel = React.useCallback((function (el) {
-          return Curry._1(setInputLabelEl, (el == null) ? undefined : Caml_option.some(el));
+          Curry._1(setInputLabelEl, (el == null) ? undefined : Caml_option.some(el));
         }), []);
   var match$2 = React.useReducer((function (param, l) {
           return l;
@@ -55,16 +55,16 @@ function ExampleSelect(Props) {
           
         }), [inputLabelEl]);
   var handleChangeAge = function (e, param) {
-    return Curry._1(setValues, {
-                age: e.target.value,
-                name: values.name
-              });
+    Curry._1(setValues, {
+          age: e.target.value,
+          name: values.name
+        });
   };
   var handleChangeName = function (e, param) {
-    return Curry._1(setValues, {
-                age: values.age,
-                name: e.target.value
-              });
+    Curry._1(setValues, {
+          age: values.age,
+          name: e.target.value
+        });
   };
   return React.createElement("form", {
               autoComplete: "off"
@@ -224,7 +224,7 @@ function ExampleSelect(Props) {
                               }),
                           onChange: handleChangeName,
                           renderValue: (function (value) {
-                              return "⚠️  - " + value;
+                              return "⚠️  - " + value + "";
                             }),
                           value: values.name
                         }, React.createElement(Core.MenuItem, {
@@ -419,6 +419,5 @@ export {
   getSpacing ,
   useStyles ,
   make ,
-  
 }
 /* useStyles Not a pure module */

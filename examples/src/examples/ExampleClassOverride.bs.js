@@ -32,6 +32,5 @@ var make = ExampleClassOverride;
 export {
   useStyles ,
   make ,
-  
 }
 /* useStyles Not a pure module */

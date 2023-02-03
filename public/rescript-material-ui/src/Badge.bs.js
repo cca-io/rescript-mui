@@ -11,6 +11,5 @@ export {
   AnchorOrigin ,
   Classes ,
   Component ,
-  
 }
 /* No side effect */

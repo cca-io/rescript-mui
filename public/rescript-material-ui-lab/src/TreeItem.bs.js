@@ -8,6 +8,5 @@ var TransitionComponent = {};
 export {
   Classes ,
   TransitionComponent ,
-  
 }
 /* No side effect */

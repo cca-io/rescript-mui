@@ -11,6 +11,5 @@ export {
   Classes ,
   TransitionDuration_shape ,
   TransitionDuration ,
-  
 }
 /* No side effect */

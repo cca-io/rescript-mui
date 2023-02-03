@@ -14,6 +14,5 @@ export {
   PaletteColor ,
   BreakpointObj ,
   Value ,
-  
 }
 /* No side effect */

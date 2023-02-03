@@ -39,7 +39,7 @@ function ExamplePopover(Props) {
           }
         }, state.popupMessage),
     onClose: (function (_evt) {
-        return Curry._1(dispatch, /* ClosePopup */0);
+        Curry._1(dispatch, /* ClosePopup */0);
       }),
     open: Belt_Option.isSome(state.anchorEl)
   };
@@ -57,12 +57,12 @@ function ExamplePopover(Props) {
                                             children: message
                                           }),
                                       onClick: (function (evt) {
-                                          return Curry._1(dispatch, /* OpenPopup */{
-                                                      _0: [
-                                                        evt.target,
-                                                        message
-                                                      ]
-                                                    });
+                                          Curry._1(dispatch, /* OpenPopup */{
+                                                _0: [
+                                                  evt.target,
+                                                  message
+                                                ]
+                                              });
                                         }),
                                       key: String(i)
                                     });
@@ -76,6 +76,5 @@ export {
   messages ,
   reducer ,
   make ,
-  
 }
 /* messages Not a pure module */

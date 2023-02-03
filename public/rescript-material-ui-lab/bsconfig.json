@@ -1,5 +1,6 @@
 {
   "name": "rescript-material-ui-lab",
+  "jsx": { "version": 3, "mode": "classic" },
   "reason": {
     "react-jsx": 3
   },

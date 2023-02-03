@@ -11,6 +11,5 @@ export {
   CellHeight ,
   Classes ,
   Component ,
-  
 }
 /* No side effect */

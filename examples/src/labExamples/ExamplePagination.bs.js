@@ -22,6 +22,5 @@ var make = ExamplePagination;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

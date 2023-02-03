@@ -22,6 +22,5 @@ var make = ExampleStylingCss;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

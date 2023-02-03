@@ -2,6 +2,7 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
+import * as Js_array from "rescript/lib/es6/js_array.js";
 import * as ThemeHelpers$Mui from "rescript-material-ui/src/ThemeHelpers.bs.js";
 import * as Core from "@material-ui/core";
 import * as Styles from "@material-ui/styles";
@@ -129,13 +130,13 @@ function ExampleDashboard(Props) {
                                   disableGutters: !state.isOpen
                                 }, React.createElement(Core.IconButton, {
                                       onClick: (function (_event) {
-                                          return Curry._1(setState, /* Open */0);
+                                          Curry._1(setState, /* Open */0);
                                         }),
                                       children: React.createElement(Menu, {}),
-                                      className: [
-                                          classes.menuButton,
-                                          state.isOpen ? classes.menuButtonHidden : ""
-                                        ].join(" "),
+                                      className: Js_array.joinWith(" ", [
+                                            classes.menuButton,
+                                            state.isOpen ? classes.menuButtonHidden : ""
+                                          ]),
                                       color: "inherit"
                                     }), React.createElement(Core.Typography, {
                                       children: "Dashboard",
@@ -149,7 +150,7 @@ function ExampleDashboard(Props) {
                                       color: "secondary",
                                       onClick: (function (e) {
                                           e.preventDefault();
-                                          return Curry._1(setShow, false);
+                                          Curry._1(setShow, false);
                                         }),
                                       href: "#"
                                     }), React.createElement(Core.IconButton, {
@@ -160,18 +161,18 @@ function ExampleDashboard(Props) {
                                           }),
                                       color: "inherit"
                                     })),
-                            className: [
-                                classes.appBar,
-                                state.isOpen ? classes.appBarShift : ""
-                              ].join(" "),
+                            className: Js_array.joinWith(" ", [
+                                  classes.appBar,
+                                  state.isOpen ? classes.appBarShift : ""
+                                ]),
                             position: "absolute"
                           }), React.createElement(Core.Drawer, {
                             children: null,
                             classes: {
-                              paper: [
-                                  classes.drawerPaper,
-                                  state.isOpen ? "" : classes.drawerPaperClose
-                                ].join(" ")
+                              paper: Js_array.joinWith(" ", [
+                                    classes.drawerPaper,
+                                    state.isOpen ? "" : classes.drawerPaperClose
+                                  ])
                             },
                             open: state.isOpen,
                             variant: "permanent"
@@ -179,7 +180,7 @@ function ExampleDashboard(Props) {
                                 className: classes.toolbarIcon
                               }, React.createElement(Core.IconButton, {
                                     onClick: (function (_event) {
-                                        return Curry._1(setState, /* Close */1);
+                                        Curry._1(setState, /* Close */1);
                                       }),
                                     children: React.createElement(ChevronLeft, {})
                                   })), React.createElement(Core.Divider, {}), React.createElement("div", undefined, sidebar)), React.createElement("main", {
@@ -188,7 +189,7 @@ function ExampleDashboard(Props) {
                                 className: classes.appBarSpacer
                               }), React.createElement("div", undefined, children)))) : React.createElement(Core.Button, {
                     onClick: (function (param) {
-                        return Curry._1(setShow, true);
+                        Curry._1(setShow, true);
                       }),
                     children: "Open Dashboard",
                     color: "primary",
@@ -209,6 +210,5 @@ export {
   NotificationsIcon ,
   ChevronLeftIcon ,
   make ,
-  
 }
 /* useStyles Not a pure module */

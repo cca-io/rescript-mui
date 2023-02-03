@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "ReScript binding generator for material-ui",
   "scripts": {
-    "bs:build": "bsb -make-world",
-    "bs:clean": "bsb -clean-world",
+    "bs:build": "rescript build -with-deps",
+    "bs:clean": "rescript clean",
     "build": "./build.sh"
   },
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
@@ -17,10 +17,10 @@
     "lodash": "~4.17.11",
     "react-dom": "^17.0.2",
     "reason": "^3.3.4",
-    "rescript": "^9.1.2"
+    "rescript": "^10.1.2"
   },
   "devDependencies": {
-    "@rescript/react": "^0.10.3",
+    "@rescript/react": "~0.10.3",
     "@types/doctrine": "^0.0.3",
     "@types/json-schema": "^7.0.3",
     "@types/lodash": "^4.14.133",

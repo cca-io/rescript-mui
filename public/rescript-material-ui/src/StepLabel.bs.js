@@ -8,6 +8,5 @@ var StepIconComponent = {};
 export {
   Classes ,
   StepIconComponent ,
-  
 }
 /* No side effect */

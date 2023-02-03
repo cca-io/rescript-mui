@@ -43,7 +43,7 @@ function ExampleSlider(Props) {
                       children: React.createElement(Core.Slider, {
                             "aria-labelledby": "input-slider",
                             onChange: (function (param, v) {
-                                return Curry._1(setValue, v);
+                                Curry._1(setValue, v);
                               }),
                             value: value
                           }),
@@ -70,7 +70,7 @@ function ExampleSlider(Props) {
                             },
                             margin: "dense",
                             onChange: (function (e) {
-                                return Curry._1(setValue, Caml_format.caml_int_of_string(e.target.value));
+                                Curry._1(setValue, Caml_format.int_of_string(e.target.value));
                               }),
                             value: value
                           }),
@@ -84,6 +84,5 @@ export {
   useStyles ,
   VolumeUpIcon ,
   make ,
-  
 }
 /* useStyles Not a pure module */

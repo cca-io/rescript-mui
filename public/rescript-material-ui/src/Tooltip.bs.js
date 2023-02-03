@@ -11,6 +11,5 @@ export {
   Classes ,
   PopperComponent ,
   TransitionComponent ,
-  
 }
 /* No side effect */

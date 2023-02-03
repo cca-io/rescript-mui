@@ -27,6 +27,5 @@ if (!(domElement == null)) {
 
 export {
   App ,
-  
 }
 /* domElement Not a pure module */

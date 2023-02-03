@@ -63,13 +63,13 @@ function ExampleStepper(Props) {
     "Create an ad"
   ];
   var handleNext = function (param) {
-    return Curry._1(setActiveStep, activeStep + 1 | 0);
+    Curry._1(setActiveStep, activeStep + 1 | 0);
   };
   var handleBack = function (param) {
-    return Curry._1(setActiveStep, activeStep - 1 | 0);
+    Curry._1(setActiveStep, activeStep - 1 | 0);
   };
   var handleReset = function (param) {
-    return Curry._1(setActiveStep, 0);
+    Curry._1(setActiveStep, 0);
   };
   return React.createElement("div", {
               className: classes.root
@@ -124,6 +124,5 @@ export {
   getSteps ,
   getStepContent ,
   make ,
-  
 }
 /* useStyles Not a pure module */

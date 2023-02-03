@@ -8,6 +8,5 @@ var Timeout = {};
 export {
   Timeout_shape ,
   Timeout ,
-  
 }
 /* No side effect */

@@ -30,6 +30,5 @@ var make = ExampleBox;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

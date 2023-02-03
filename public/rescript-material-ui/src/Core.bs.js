@@ -50,6 +50,5 @@ var ServerStyleSheets = {};
 export {
   Breakpoint ,
   ServerStyleSheets ,
-  
 }
 /* No side effect */

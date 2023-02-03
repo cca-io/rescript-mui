@@ -111,7 +111,7 @@ var top100Films = [
     year: 1995
   },
   {
-    title: "L\xc3\xa9on: The Professional",
+    title: "Léon: The Professional",
     year: 1994
   },
   {
@@ -247,7 +247,7 @@ var top100Films = [
     year: 1980
   },
   {
-    title: "WALL\xc2\xb7E",
+    title: "WALL·E",
     year: 2008
   },
   {
@@ -315,7 +315,7 @@ var top100Films = [
     year: 2000
   },
   {
-    title: "Am\xc3\xa9lie",
+    title: "Amélie",
     year: 2001
   },
   {
@@ -432,6 +432,5 @@ var make = ExampleAutocomplete;
 export {
   top100Films ,
   make ,
-  
 }
 /* react Not a pure module */

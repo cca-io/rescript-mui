@@ -64,6 +64,5 @@ export {
   ExpandMoreIcon ,
   ChevronRightIcon ,
   make ,
-  
 }
 /* react Not a pure module */

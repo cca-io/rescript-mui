@@ -22,7 +22,7 @@ function ExampleRating(Props) {
                     }), React.createElement(Lab.Rating, {
                       name: "simple-controlled",
                       onChange: (function (param, newValue) {
-                          return Curry._1(setValue, newValue);
+                          Curry._1(setValue, newValue);
                         }),
                       value: value
                     })), React.createElement(Core.Box, {
@@ -67,6 +67,5 @@ var make = ExampleRating;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

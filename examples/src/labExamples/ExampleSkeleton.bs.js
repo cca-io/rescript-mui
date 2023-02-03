@@ -21,6 +21,5 @@ var make = ExampleSkeleton;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

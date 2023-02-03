@@ -8,6 +8,5 @@ var Component = {};
 export {
   Classes ,
   Component ,
-  
 }
 /* No side effect */

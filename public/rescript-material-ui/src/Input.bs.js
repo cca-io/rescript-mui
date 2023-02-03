@@ -20,6 +20,5 @@ export {
   Classes ,
   MaxRows ,
   Rows ,
-  
 }
 /* No side effect */

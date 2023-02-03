@@ -8,6 +8,5 @@ var IconContainerComponent = {};
 export {
   Classes ,
   IconContainerComponent ,
-  
 }
 /* No side effect */

@@ -23,6 +23,5 @@ var make = ExampleAlert;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

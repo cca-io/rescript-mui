@@ -81,6 +81,5 @@ var make = ExampleList;
 export {
   useStyles ,
   make ,
-  
 }
 /* useStyles Not a pure module */

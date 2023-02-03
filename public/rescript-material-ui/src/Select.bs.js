@@ -29,6 +29,5 @@ export {
   Classes ,
   IconComponent ,
   Value ,
-  
 }
 /* No side effect */

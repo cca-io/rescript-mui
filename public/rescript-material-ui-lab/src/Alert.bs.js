@@ -8,6 +8,5 @@ var IconMapping = {};
 export {
   Classes ,
   IconMapping ,
-  
 }
 /* No side effect */

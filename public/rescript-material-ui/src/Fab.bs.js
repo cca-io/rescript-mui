@@ -14,6 +14,5 @@ export {
   Type ,
   Classes ,
   Component ,
-  
 }
 /* No side effect */

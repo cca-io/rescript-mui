@@ -17,6 +17,5 @@ export {
   Type ,
   Classes ,
   IconComponent ,
-  
 }
 /* No side effect */

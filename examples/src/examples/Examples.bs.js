@@ -305,6 +305,5 @@ var make = Examples;
 
 export {
   make ,
-  
 }
 /* react Not a pure module */

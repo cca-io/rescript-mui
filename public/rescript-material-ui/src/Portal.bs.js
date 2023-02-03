@@ -5,6 +5,5 @@ var Container = {};
 
 export {
   Container ,
-  
 }
 /* No side effect */

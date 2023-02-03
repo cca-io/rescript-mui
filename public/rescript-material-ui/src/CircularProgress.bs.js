@@ -8,6 +8,5 @@ var Size = {};
 export {
   Classes ,
   Size ,
-  
 }
 /* No side effect */
