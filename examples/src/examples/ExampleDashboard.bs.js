@@ -3,8 +3,10 @@
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Js_array from "rescript/lib/es6/js_array.js";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as ThemeHelpers$Mui from "rescript-material-ui/src/ThemeHelpers.bs.js";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 import * as Styles from "@material-ui/styles";
 import Menu from "@material-ui/icons/Menu";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
@@ -96,9 +98,7 @@ var NotificationsIcon = {};
 
 var ChevronLeftIcon = {};
 
-function ExampleDashboard(Props) {
-  var sidebar = Props.sidebar;
-  var children = Props.children;
+function ExampleDashboard(props) {
   var match = React.useReducer((function (param, action) {
           if (action) {
             return {
@@ -119,82 +119,109 @@ function ExampleDashboard(Props) {
         }), false);
   var setShow = match$1[1];
   var classes = useStyles();
-  return React.createElement("div", undefined, match$1[0] ? React.createElement("div", {
-                    className: classes.wrapper
-                  }, React.createElement("div", {
-                        className: classes.root
-                      }, React.createElement(Core.CssBaseline, {}), React.createElement(Core.AppBar, {
-                            children: React.createElement(Core.Toolbar, {
-                                  children: null,
-                                  className: classes.toolbar,
-                                  disableGutters: !state.isOpen
-                                }, React.createElement(Core.IconButton, {
-                                      onClick: (function (_event) {
-                                          Curry._1(setState, /* Open */0);
-                                        }),
-                                      children: React.createElement(Menu, {}),
-                                      className: Js_array.joinWith(" ", [
-                                            classes.menuButton,
-                                            state.isOpen ? classes.menuButtonHidden : ""
-                                          ]),
-                                      color: "inherit"
-                                    }), React.createElement(Core.Typography, {
-                                      children: "Dashboard",
-                                      className: classes.title,
-                                      color: "inherit",
-                                      component: "h1",
-                                      noWrap: true,
-                                      variant: "h6"
-                                    }), React.createElement(Core.Link, {
-                                      children: "Close Dashboard",
-                                      color: "secondary",
-                                      onClick: (function (e) {
-                                          e.preventDefault();
-                                          Curry._1(setShow, false);
-                                        }),
-                                      href: "#"
-                                    }), React.createElement(Core.IconButton, {
-                                      children: React.createElement(Core.Badge, {
-                                            badgeContent: "4",
-                                            children: React.createElement(Notifications, {}),
-                                            color: "secondary"
+  return JsxRuntime.jsx("div", {
+              children: match$1[0] ? JsxRuntime.jsx("div", {
+                      children: JsxRuntime.jsxs("div", {
+                            children: [
+                              JsxRuntime.jsx(Core.CssBaseline, {}),
+                              JsxRuntime.jsx(Core.AppBar, {
+                                    children: Caml_option.some(JsxRuntime.jsxs(Core.Toolbar, {
+                                              children: [
+                                                JsxRuntime.jsx(Core.IconButton, {
+                                                      onClick: (function (_event) {
+                                                          Curry._1(setState, /* Open */0);
+                                                        }),
+                                                      children: Caml_option.some(JsxRuntime.jsx(Menu, {})),
+                                                      className: Js_array.joinWith(" ", [
+                                                            classes.menuButton,
+                                                            state.isOpen ? classes.menuButtonHidden : ""
+                                                          ]),
+                                                      color: "inherit"
+                                                    }),
+                                                JsxRuntime.jsx(Core.Typography, {
+                                                      children: "Dashboard",
+                                                      className: classes.title,
+                                                      color: "inherit",
+                                                      component: "h1",
+                                                      noWrap: true,
+                                                      variant: "h6"
+                                                    }),
+                                                JsxRuntime.jsx(Core.Link, {
+                                                      children: "Close Dashboard",
+                                                      color: "secondary",
+                                                      onClick: (function (e) {
+                                                          e.preventDefault();
+                                                          Curry._1(setShow, false);
+                                                        }),
+                                                      href: "#"
+                                                    }),
+                                                JsxRuntime.jsx(Core.IconButton, {
+                                                      children: Caml_option.some(JsxRuntime.jsx(Core.Badge, {
+                                                                badgeContent: "4",
+                                                                children: Caml_option.some(JsxRuntime.jsx(Notifications, {})),
+                                                                color: "secondary"
+                                                              })),
+                                                      color: "inherit"
+                                                    })
+                                              ],
+                                              className: classes.toolbar,
+                                              disableGutters: !state.isOpen
+                                            })),
+                                    className: Js_array.joinWith(" ", [
+                                          classes.appBar,
+                                          state.isOpen ? classes.appBarShift : ""
+                                        ]),
+                                    position: "absolute"
+                                  }),
+                              JsxRuntime.jsxs(Core.Drawer, {
+                                    children: [
+                                      JsxRuntime.jsx("div", {
+                                            children: JsxRuntime.jsx(Core.IconButton, {
+                                                  onClick: (function (_event) {
+                                                      Curry._1(setState, /* Close */1);
+                                                    }),
+                                                  children: Caml_option.some(JsxRuntime.jsx(ChevronLeft, {}))
+                                                }),
+                                            className: classes.toolbarIcon
                                           }),
-                                      color: "inherit"
-                                    })),
-                            className: Js_array.joinWith(" ", [
-                                  classes.appBar,
-                                  state.isOpen ? classes.appBarShift : ""
-                                ]),
-                            position: "absolute"
-                          }), React.createElement(Core.Drawer, {
-                            children: null,
-                            classes: {
-                              paper: Js_array.joinWith(" ", [
-                                    classes.drawerPaper,
-                                    state.isOpen ? "" : classes.drawerPaperClose
-                                  ])
-                            },
-                            open: state.isOpen,
-                            variant: "permanent"
-                          }, React.createElement("div", {
-                                className: classes.toolbarIcon
-                              }, React.createElement(Core.IconButton, {
-                                    onClick: (function (_event) {
-                                        Curry._1(setState, /* Close */1);
-                                      }),
-                                    children: React.createElement(ChevronLeft, {})
-                                  })), React.createElement(Core.Divider, {}), React.createElement("div", undefined, sidebar)), React.createElement("main", {
-                            className: classes.content
-                          }, React.createElement("div", {
-                                className: classes.appBarSpacer
-                              }), React.createElement("div", undefined, children)))) : React.createElement(Core.Button, {
-                    onClick: (function (param) {
-                        Curry._1(setShow, true);
-                      }),
-                    children: "Open Dashboard",
-                    color: "primary",
-                    variant: "outlined"
-                  }));
+                                      JsxRuntime.jsx(Core.Divider, {}),
+                                      JsxRuntime.jsx("div", {
+                                            children: props.sidebar
+                                          })
+                                    ],
+                                    classes: {
+                                      paper: Js_array.joinWith(" ", [
+                                            classes.drawerPaper,
+                                            state.isOpen ? "" : classes.drawerPaperClose
+                                          ])
+                                    },
+                                    open: state.isOpen,
+                                    variant: "permanent"
+                                  }),
+                              JsxRuntime.jsxs("main", {
+                                    children: [
+                                      JsxRuntime.jsx("div", {
+                                            className: classes.appBarSpacer
+                                          }),
+                                      JsxRuntime.jsx("div", {
+                                            children: props.children
+                                          })
+                                    ],
+                                    className: classes.content
+                                  })
+                            ],
+                            className: classes.root
+                          }),
+                      className: classes.wrapper
+                    }) : JsxRuntime.jsx(Core.Button, {
+                      onClick: (function (param) {
+                          Curry._1(setShow, true);
+                        }),
+                      children: "Open Dashboard",
+                      color: "primary",
+                      variant: "outlined"
+                    })
+            });
 }
 
 var drawerWidth = 240;

@@ -118,7 +118,7 @@ let make = () => {
     renderInput={params =>
       React.createElement(
         Mui.TextField.make,
-        Js.Obj.assign(params->Obj.magic, {"label": "Combo box", "variant": "outlined"}),
+        Obj.magic(Js.Obj.assign(params->Obj.magic, {"label": "Combo box", "variant": "outlined"})),
       )}
   />
 }

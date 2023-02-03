@@ -4,6 +4,7 @@ import * as React from "react";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Lab from "@material-ui/lab";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 
 var top100Films = [
   {
@@ -408,8 +409,8 @@ var top100Films = [
   }
 ];
 
-function ExampleAutocomplete(Props) {
-  return React.createElement(Lab.Autocomplete, {
+function ExampleAutocomplete(props) {
+  return JsxRuntime.jsx(Lab.Autocomplete, {
               fullWidth: true,
               getOptionLabel: (function (option) {
                   return option.title;

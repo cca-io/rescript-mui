@@ -9,7 +9,9 @@ module App = {
     <NewImplementationTheme />
     <br />
     <br />
-    <center> <Typography variant=#h4> {React.string("PPX Result")} </Typography> </center>
+    <center>
+      <Typography variant=#h4> {React.string("PPX Result")} </Typography>
+    </center>
     <br />
     <br />
     <NewImplementationPpx />
@@ -20,6 +22,6 @@ module App = {
 }
 
 switch ReactDOM.querySelector("#app") {
-| Some(domElement) => ReactDOM.render(<App />, domElement)
+| Some(domElement) => ReactDOM.Client.createRoot(domElement)->ReactDOM.Client.Root.render(<App />)
 | None => ()
 }

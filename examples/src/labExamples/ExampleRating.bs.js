@@ -2,65 +2,86 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Lab from "@material-ui/lab";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 
-function ExampleRating(Props) {
+function ExampleRating(props) {
   var match = React.useReducer((function (param, v) {
           return v;
         }), 2);
   var setValue = match[1];
   var value = match[0];
-  return React.createElement("div", undefined, React.createElement(Core.Box, {
-                  component: "fieldset",
-                  children: null,
-                  borderColor: "transparent",
-                  mb: 3
-                }, React.createElement(Core.Typography, {
-                      children: "Controlled",
-                      component: "legend"
-                    }), React.createElement(Lab.Rating, {
-                      name: "simple-controlled",
-                      onChange: (function (param, newValue) {
-                          Curry._1(setValue, newValue);
-                        }),
-                      value: value
-                    })), React.createElement(Core.Box, {
-                  component: "fieldset",
-                  children: null,
-                  borderColor: "transparent",
-                  mb: 3
-                }, React.createElement(Core.Typography, {
-                      children: "Read only",
-                      component: "legend"
-                    }), React.createElement(Lab.Rating, {
-                      name: "read-only",
-                      readOnly: true,
-                      value: value
-                    })), React.createElement(Core.Box, {
-                  component: "fieldset",
-                  children: null,
-                  borderColor: "transparent",
-                  mb: 3
-                }, React.createElement(Core.Typography, {
-                      children: "Disabled",
-                      component: "legend"
-                    }), React.createElement(Lab.Rating, {
-                      disabled: true,
-                      name: "disabled",
-                      value: value
-                    })), React.createElement(Core.Box, {
-                  component: "fieldset",
-                  children: null,
-                  borderColor: "transparent",
-                  mb: 3
-                }, React.createElement(Core.Typography, {
-                      children: "Pristine",
-                      component: "legend"
-                    }), React.createElement(Lab.Rating, {
-                      name: "pristine",
-                      value: 0
-                    })));
+  return JsxRuntime.jsxs("div", {
+              children: [
+                JsxRuntime.jsxs(Core.Box, {
+                      component: "fieldset",
+                      children: [
+                        JsxRuntime.jsx(Core.Typography, {
+                              children: "Controlled",
+                              component: "legend"
+                            }),
+                        JsxRuntime.jsx(Lab.Rating, {
+                              name: "simple-controlled",
+                              onChange: (function (param, newValue) {
+                                  Curry._1(setValue, newValue);
+                                }),
+                              value: Caml_option.some(value)
+                            })
+                      ],
+                      borderColor: "transparent",
+                      mb: 3
+                    }),
+                JsxRuntime.jsxs(Core.Box, {
+                      component: "fieldset",
+                      children: [
+                        JsxRuntime.jsx(Core.Typography, {
+                              children: "Read only",
+                              component: "legend"
+                            }),
+                        JsxRuntime.jsx(Lab.Rating, {
+                              name: "read-only",
+                              readOnly: true,
+                              value: Caml_option.some(value)
+                            })
+                      ],
+                      borderColor: "transparent",
+                      mb: 3
+                    }),
+                JsxRuntime.jsxs(Core.Box, {
+                      component: "fieldset",
+                      children: [
+                        JsxRuntime.jsx(Core.Typography, {
+                              children: "Disabled",
+                              component: "legend"
+                            }),
+                        JsxRuntime.jsx(Lab.Rating, {
+                              disabled: true,
+                              name: "disabled",
+                              value: Caml_option.some(value)
+                            })
+                      ],
+                      borderColor: "transparent",
+                      mb: 3
+                    }),
+                JsxRuntime.jsxs(Core.Box, {
+                      component: "fieldset",
+                      children: [
+                        JsxRuntime.jsx(Core.Typography, {
+                              children: "Pristine",
+                              component: "legend"
+                            }),
+                        JsxRuntime.jsx(Lab.Rating, {
+                              name: "pristine",
+                              value: 0
+                            })
+                      ],
+                      borderColor: "transparent",
+                      mb: 3
+                    })
+              ]
+            });
 }
 
 var make = ExampleRating;

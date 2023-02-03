@@ -2,15 +2,33 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 
-function ExampleRadioGroup(Props) {
+function ExampleRadioGroup(props) {
   var match = React.useState(function () {
         return "Yes";
       });
   var setState = match[1];
-  return React.createElement(Core.RadioGroup, {
-              children: null,
+  return JsxRuntime.jsxs(Core.RadioGroup, {
+              children: [
+                JsxRuntime.jsx(Core.FormControlLabel, {
+                      control: JsxRuntime.jsx(Core.Radio, {}),
+                      label: "Yes",
+                      value: "Yes"
+                    }),
+                JsxRuntime.jsx(Core.FormControlLabel, {
+                      control: JsxRuntime.jsx(Core.Radio, {}),
+                      label: "No",
+                      value: "No"
+                    }),
+                JsxRuntime.jsx(Core.FormControlLabel, {
+                      control: JsxRuntime.jsx(Core.Radio, {}),
+                      label: "Maybe",
+                      value: "Maybe"
+                    })
+              ],
               name: "answer",
               onChange: (function (e) {
                   var value = e.target.value;
@@ -18,20 +36,8 @@ function ExampleRadioGroup(Props) {
                           return value;
                         }));
                 }),
-              value: match[0]
-            }, React.createElement(Core.FormControlLabel, {
-                  control: React.createElement(Core.Radio, {}),
-                  label: "Yes",
-                  value: "Yes"
-                }), React.createElement(Core.FormControlLabel, {
-                  control: React.createElement(Core.Radio, {}),
-                  label: "No",
-                  value: "No"
-                }), React.createElement(Core.FormControlLabel, {
-                  control: React.createElement(Core.Radio, {}),
-                  label: "Maybe",
-                  value: "Maybe"
-                }));
+              value: Caml_option.some(match[0])
+            });
 }
 
 var make = ExampleRadioGroup;

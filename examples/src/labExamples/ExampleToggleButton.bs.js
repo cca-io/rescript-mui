@@ -3,8 +3,10 @@
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Grid$Mui from "rescript-material-ui/src/Grid.bs.js";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Lab from "@material-ui/lab";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 import FormatBold from "@material-ui/icons/FormatBold";
 import FormatItalic from "@material-ui/icons/FormatItalic";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
@@ -33,7 +35,7 @@ var FormatColorFillIcon = {};
 
 var ArrowDropDownIcon = {};
 
-function ExampleToggleButton(Props) {
+function ExampleToggleButton(props) {
   var match = React.useReducer((function (param, v) {
           return v;
         }), "left");
@@ -48,74 +50,98 @@ function ExampleToggleButton(Props) {
   var handleFormats = function (param, v) {
     Curry._1(setFormats, v);
   };
-  return React.createElement(Core.Grid, {
-              children: null,
+  return JsxRuntime.jsxs(Core.Grid, {
+              children: [
+                JsxRuntime.jsxs(Core.Grid, {
+                      children: [
+                        JsxRuntime.jsx(Core.Box, {
+                              children: Caml_option.some(JsxRuntime.jsxs(Lab.ToggleButtonGroup, {
+                                        children: [
+                                          JsxRuntime.jsx(Lab.ToggleButton, {
+                                                children: Caml_option.some(JsxRuntime.jsx(FormatAlignLeft, {})),
+                                                value: "left"
+                                              }),
+                                          JsxRuntime.jsx(Lab.ToggleButton, {
+                                                children: Caml_option.some(JsxRuntime.jsx(FormatAlignCenter, {})),
+                                                value: "center"
+                                              }),
+                                          JsxRuntime.jsx(Lab.ToggleButton, {
+                                                children: Caml_option.some(JsxRuntime.jsx(FormatAlignRight, {})),
+                                                value: "right"
+                                              }),
+                                          JsxRuntime.jsx(Lab.ToggleButton, {
+                                                children: Caml_option.some(JsxRuntime.jsx(FormatAlignJustify, {})),
+                                                disabled: true,
+                                                value: "justify"
+                                              })
+                                        ],
+                                        exclusive: true,
+                                        onChange: handleAlignment,
+                                        value: Caml_option.some(match[0])
+                                      })),
+                              mb: 2,
+                              mt: 2
+                            }),
+                        JsxRuntime.jsx(Core.Typography, {
+                              children: "Exclusive Selection",
+                              gutterBottom: true
+                            }),
+                        JsxRuntime.jsx(Core.Typography, {
+                              children: "Text justification toggle buttons present options for left, right, center, full, and\n      justified text with only one item available for selection at a time. Selecting one option\n      deselects any other."
+                            })
+                      ],
+                      item: true,
+                      md: Caml_option.some(Grid$Mui.Md[6]),
+                      sm: Caml_option.some(Grid$Mui.Sm[12])
+                    }),
+                JsxRuntime.jsxs(Core.Grid, {
+                      children: [
+                        JsxRuntime.jsx(Core.Box, {
+                              children: Caml_option.some(JsxRuntime.jsxs(Lab.ToggleButtonGroup, {
+                                        children: [
+                                          JsxRuntime.jsx(Lab.ToggleButton, {
+                                                children: Caml_option.some(JsxRuntime.jsx(FormatBold, {})),
+                                                value: "bold"
+                                              }),
+                                          JsxRuntime.jsx(Lab.ToggleButton, {
+                                                children: Caml_option.some(JsxRuntime.jsx(FormatItalic, {})),
+                                                value: "italic"
+                                              }),
+                                          JsxRuntime.jsx(Lab.ToggleButton, {
+                                                children: Caml_option.some(JsxRuntime.jsx(FormatUnderlined, {})),
+                                                value: "underlined"
+                                              }),
+                                          JsxRuntime.jsxs(Lab.ToggleButton, {
+                                                children: [
+                                                  JsxRuntime.jsx(FormatColorFill, {}),
+                                                  JsxRuntime.jsx(ArrowDropDown, {})
+                                                ],
+                                                disabled: true,
+                                                value: "color"
+                                              })
+                                        ],
+                                        onChange: handleFormats,
+                                        value: Caml_option.some(match$1[0])
+                                      })),
+                              mb: 2,
+                              mt: 2
+                            }),
+                        JsxRuntime.jsx(Core.Typography, {
+                              children: "Multiple Selection",
+                              gutterBottom: true
+                            }),
+                        JsxRuntime.jsx(Core.Typography, {
+                              children: "Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to be\n      selected."
+                            })
+                      ],
+                      item: true,
+                      md: Caml_option.some(Grid$Mui.Md[6]),
+                      sm: Caml_option.some(Grid$Mui.Sm[12])
+                    })
+              ],
               container: true,
               spacing: 2
-            }, React.createElement(Core.Grid, {
-                  children: null,
-                  item: true,
-                  md: Grid$Mui.Md[6],
-                  sm: Grid$Mui.Sm[12]
-                }, React.createElement(Core.Box, {
-                      children: React.createElement(Lab.ToggleButtonGroup, {
-                            children: null,
-                            exclusive: true,
-                            onChange: handleAlignment,
-                            value: match[0]
-                          }, React.createElement(Lab.ToggleButton, {
-                                children: React.createElement(FormatAlignLeft, {}),
-                                value: "left"
-                              }), React.createElement(Lab.ToggleButton, {
-                                children: React.createElement(FormatAlignCenter, {}),
-                                value: "center"
-                              }), React.createElement(Lab.ToggleButton, {
-                                children: React.createElement(FormatAlignRight, {}),
-                                value: "right"
-                              }), React.createElement(Lab.ToggleButton, {
-                                children: React.createElement(FormatAlignJustify, {}),
-                                disabled: true,
-                                value: "justify"
-                              })),
-                      mb: 2,
-                      mt: 2
-                    }), React.createElement(Core.Typography, {
-                      children: "Exclusive Selection",
-                      gutterBottom: true
-                    }), React.createElement(Core.Typography, {
-                      children: "Text justification toggle buttons present options for left, right, center, full, and\n      justified text with only one item available for selection at a time. Selecting one option\n      deselects any other."
-                    })), React.createElement(Core.Grid, {
-                  children: null,
-                  item: true,
-                  md: Grid$Mui.Md[6],
-                  sm: Grid$Mui.Sm[12]
-                }, React.createElement(Core.Box, {
-                      children: React.createElement(Lab.ToggleButtonGroup, {
-                            children: null,
-                            onChange: handleFormats,
-                            value: match$1[0]
-                          }, React.createElement(Lab.ToggleButton, {
-                                children: React.createElement(FormatBold, {}),
-                                value: "bold"
-                              }), React.createElement(Lab.ToggleButton, {
-                                children: React.createElement(FormatItalic, {}),
-                                value: "italic"
-                              }), React.createElement(Lab.ToggleButton, {
-                                children: React.createElement(FormatUnderlined, {}),
-                                value: "underlined"
-                              }), React.createElement(Lab.ToggleButton, {
-                                children: null,
-                                disabled: true,
-                                value: "color"
-                              }, React.createElement(FormatColorFill, {}), React.createElement(ArrowDropDown, {}))),
-                      mb: 2,
-                      mt: 2
-                    }), React.createElement(Core.Typography, {
-                      children: "Multiple Selection",
-                      gutterBottom: true
-                    }), React.createElement(Core.Typography, {
-                      children: "Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to be\n      selected."
-                    })));
+            });
 }
 
 var make = ExampleToggleButton;

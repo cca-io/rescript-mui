@@ -22,7 +22,7 @@
   "description": "This is a ppx for using the withStyles component in ReScript Material-UI",
   "peerDependencies": {
     "@material-ui/core": "4.12.3",
-    "@rescript/react": "~0.10.3",
+    "@rescript/react": "~0.10.3 || ~0.11.0",
     "rescript-material-ui": "^3.0.0",
     "rescript": "^9.1.2 || ^10.0.0"
   },

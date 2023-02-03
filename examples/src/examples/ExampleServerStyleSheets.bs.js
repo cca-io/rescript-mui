@@ -2,8 +2,10 @@
 
 import * as React from "react";
 import * as ExampleBox from "./ExampleBox.bs.js";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Server from "react-dom/server";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 import * as Styles from "@material-ui/styles";
 import * as Styles$1 from "@material-ui/core/styles";
 
@@ -14,37 +16,43 @@ var useStyles = Styles.makeStyles({
       }
     });
 
-function ExampleServerStyleSheets(Props) {
+function ExampleServerStyleSheets(props) {
   var classes = useStyles();
   var match = React.useMemo((function () {
           var sheets = new Styles$1.ServerStyleSheets();
-          var html = Server.renderToString(sheets.collect(React.createElement(ExampleBox.make, {})));
+          var html = Server.renderToString(sheets.collect(JsxRuntime.jsx(ExampleBox.make, {})));
           var css = sheets.toString();
           return [
                   html,
                   css
                 ];
         }), []);
-  return React.createElement("div", undefined, React.createElement(Core.Typography, {
-                  children: "ServerSide render of <ExampleBox />",
-                  variant: "h5"
-                }), React.createElement(Core.TextField, {
-                  className: classes.code,
-                  defaultValue: match[0],
-                  fullWidth: true,
-                  label: "HTML",
-                  multiline: true,
-                  rows: 5,
-                  variant: "outlined"
-                }), React.createElement(Core.TextField, {
-                  className: classes.code,
-                  defaultValue: match[1],
-                  fullWidth: true,
-                  label: "CSS",
-                  multiline: true,
-                  rows: 5,
-                  variant: "outlined"
-                }));
+  return JsxRuntime.jsxs("div", {
+              children: [
+                JsxRuntime.jsx(Core.Typography, {
+                      children: "ServerSide render of <ExampleBox />",
+                      variant: "h5"
+                    }),
+                JsxRuntime.jsx(Core.TextField, {
+                      className: classes.code,
+                      defaultValue: Caml_option.some(match[0]),
+                      fullWidth: true,
+                      label: "HTML",
+                      multiline: true,
+                      rows: 5,
+                      variant: "outlined"
+                    }),
+                JsxRuntime.jsx(Core.TextField, {
+                      className: classes.code,
+                      defaultValue: Caml_option.some(match[1]),
+                      fullWidth: true,
+                      label: "CSS",
+                      multiline: true,
+                      rows: 5,
+                      variant: "outlined"
+                    })
+              ]
+            });
 }
 
 var make = ExampleServerStyleSheets;

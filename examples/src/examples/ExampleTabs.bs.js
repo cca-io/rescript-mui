@@ -2,9 +2,11 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 
-function ExampleTabs(Props) {
+function ExampleTabs(props) {
   var match = React.useReducer((function (param, v) {
           return v;
         }), 2);
@@ -12,20 +14,24 @@ function ExampleTabs(Props) {
   var handleChange = function (param, newValue) {
     Curry._1(setValue, newValue);
   };
-  return React.createElement(Core.Paper, {
-              children: React.createElement(Core.Tabs, {
-                    children: null,
-                    indicatorColor: "primary",
-                    onChange: handleChange,
-                    textColor: "primary",
-                    value: match[0]
-                  }, React.createElement(Core.Tab, {
-                        label: "Active"
-                      }), React.createElement(Core.Tab, {
-                        disabled: true,
-                        label: "Disabled"
-                      }), React.createElement(Core.Tab, {
-                        label: "Active"
+  return JsxRuntime.jsx(Core.Paper, {
+              children: Caml_option.some(JsxRuntime.jsxs(Core.Tabs, {
+                        children: [
+                          JsxRuntime.jsx(Core.Tab, {
+                                label: "Active"
+                              }),
+                          JsxRuntime.jsx(Core.Tab, {
+                                disabled: true,
+                                label: "Disabled"
+                              }),
+                          JsxRuntime.jsx(Core.Tab, {
+                                label: "Active"
+                              })
+                        ],
+                        indicatorColor: "primary",
+                        onChange: handleChange,
+                        textColor: "primary",
+                        value: Caml_option.some(match[0])
                       })),
               square: true
             });

@@ -1,7 +1,7 @@
 {
   "name": "dev_tests",
   "sources": ["src"],
-  "jsx": { "mode": "classic", "version": 3 },
+  "jsx": { "version": 4, "mode": "automatic" },
   "reason": {
     "react-jsx": 3
   },

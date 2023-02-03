@@ -6,6 +6,7 @@ import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Belt_Option from "rescript/lib/es6/belt_Option.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 
 var messages = ([...'养绌聭']);
 
@@ -23,51 +24,52 @@ function reducer(state, action) {
         };
 }
 
-function ExamplePopover(Props) {
+function ExamplePopover(props) {
   var match = React.useReducer(reducer, {
         anchorEl: undefined,
         popupMessage: ""
       });
   var dispatch = match[1];
   var state = match[0];
-  var tmp = {
-    children: React.createElement("div", {
-          style: {
-            backgroundColor: "salmon",
-            fontSize: "6rem",
-            margin: "1rem"
-          }
-        }, state.popupMessage),
-    onClose: (function (_evt) {
-        Curry._1(dispatch, /* ClosePopup */0);
-      }),
-    open: Belt_Option.isSome(state.anchorEl)
-  };
-  var tmp$1 = Belt_Option.map(state.anchorEl, (function (el) {
-          return el;
-        }));
-  if (tmp$1 !== undefined) {
-    tmp.anchorEl = Caml_option.valFromOption(tmp$1);
-  }
-  return React.createElement("div", undefined, React.createElement(Core.Popover, tmp), React.createElement(Core.List, {
-                  children: Belt_Array.mapWithIndex(messages, (function (i, message) {
-                          return React.createElement(Core.ListItem, {
-                                      button: true,
-                                      children: React.createElement(Core.ListItemText, {
-                                            children: message
-                                          }),
-                                      onClick: (function (evt) {
-                                          Curry._1(dispatch, /* OpenPopup */{
-                                                _0: [
-                                                  evt.target,
-                                                  message
-                                                ]
-                                              });
-                                        }),
-                                      key: String(i)
-                                    });
-                        }))
-                }));
+  return JsxRuntime.jsxs("div", {
+              children: [
+                JsxRuntime.jsx(Core.Popover, {
+                      anchorEl: Belt_Option.map(state.anchorEl, (function (el) {
+                              return el;
+                            })),
+                      children: Caml_option.some(JsxRuntime.jsx("div", {
+                                children: state.popupMessage,
+                                style: {
+                                  backgroundColor: "salmon",
+                                  fontSize: "6rem",
+                                  margin: "1rem"
+                                }
+                              })),
+                      onClose: (function (_evt) {
+                          Curry._1(dispatch, /* ClosePopup */0);
+                        }),
+                      open: Belt_Option.isSome(state.anchorEl)
+                    }),
+                JsxRuntime.jsx(Core.List, {
+                      children: Caml_option.some(Belt_Array.mapWithIndex(messages, (function (i, message) {
+                                  return JsxRuntime.jsx(Core.ListItem, {
+                                              button: true,
+                                              children: Caml_option.some(JsxRuntime.jsx(Core.ListItemText, {
+                                                        children: Caml_option.some(message)
+                                                      })),
+                                              onClick: (function (evt) {
+                                                  Curry._1(dispatch, /* OpenPopup */{
+                                                        _0: [
+                                                          evt.target,
+                                                          message
+                                                        ]
+                                                      });
+                                                })
+                                            }, String(i));
+                                })))
+                    })
+              ]
+            });
 }
 
 var make = ExamplePopover;

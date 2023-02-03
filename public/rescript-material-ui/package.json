@@ -27,14 +27,14 @@
   ],
   "peerDependencies": {
     "@material-ui/core": "4.12.3",
-    "@rescript/react": "~0.10.3",
+    "@rescript/react": "~0.10.3 || ~0.11.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rescript": "^9.1.2 || ^10.0.0"
   },
   "devDependencies": {
     "@material-ui/core": "4.12.3",
-    "@rescript/react": "~0.10.3",
+    "@rescript/react": "~0.11.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "rescript": "^10.1.2"

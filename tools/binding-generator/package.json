@@ -20,7 +20,7 @@
     "rescript": "^10.1.2"
   },
   "devDependencies": {
-    "@rescript/react": "~0.10.3",
+    "@rescript/react": "~0.11.0",
     "@types/doctrine": "^0.0.3",
     "@types/json-schema": "^7.0.3",
     "@types/lodash": "^4.14.133",

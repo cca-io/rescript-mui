@@ -3,7 +3,9 @@
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 import * as Styles from "@material-ui/styles";
 
 function getSpacing(theme, num) {
@@ -50,7 +52,7 @@ function getStepContent(step) {
   }
 }
 
-function ExampleStepper(Props) {
+function ExampleStepper(props) {
   var classes = useStyles();
   var match = React.useReducer((function (param, step) {
           return step;
@@ -71,49 +73,67 @@ function ExampleStepper(Props) {
   var handleReset = function (param) {
     Curry._1(setActiveStep, 0);
   };
-  return React.createElement("div", {
+  return JsxRuntime.jsxs("div", {
+              children: [
+                JsxRuntime.jsx(Core.Stepper, {
+                      activeStep: Caml_option.some(activeStep),
+                      children: Caml_option.some(Belt_Array.mapWithIndex(steps, (function (index, label) {
+                                  return JsxRuntime.jsxs(Core.Step, {
+                                              children: [
+                                                JsxRuntime.jsx(Core.StepLabel, {
+                                                      children: Caml_option.some(label)
+                                                    }),
+                                                JsxRuntime.jsxs(Core.StepContent, {
+                                                      children: [
+                                                        JsxRuntime.jsx(Core.Typography, {
+                                                              children: Caml_option.some(getStepContent(index))
+                                                            }),
+                                                        JsxRuntime.jsx("div", {
+                                                              children: JsxRuntime.jsxs("div", {
+                                                                    children: [
+                                                                      JsxRuntime.jsx(Core.Button, {
+                                                                            onClick: handleBack,
+                                                                            children: "Back",
+                                                                            className: classes.button,
+                                                                            disabled: activeStep === 0
+                                                                          }),
+                                                                      JsxRuntime.jsx(Core.Button, {
+                                                                            onClick: handleNext,
+                                                                            children: Caml_option.some(activeStep === (steps.length - 1 | 0) ? "Finish" : "Next"),
+                                                                            className: classes.button,
+                                                                            color: "primary",
+                                                                            variant: "contained"
+                                                                          })
+                                                                    ]
+                                                                  }),
+                                                              className: classes.actionsContainer
+                                                            })
+                                                      ]
+                                                    })
+                                              ]
+                                            }, label);
+                                }))),
+                      orientation: "vertical"
+                    }),
+                activeStep === steps.length ? JsxRuntime.jsxs(Core.Paper, {
+                        children: [
+                          JsxRuntime.jsx(Core.Typography, {
+                                children: "All steps completed - you're finished"
+                              }),
+                          JsxRuntime.jsx(Core.Button, {
+                                onClick: handleReset,
+                                children: "Reset",
+                                className: classes.button,
+                                color: "secondary"
+                              })
+                        ],
+                        className: classes.resetContainer,
+                        elevation: 0,
+                        square: true
+                      }) : null
+              ],
               className: classes.root
-            }, React.createElement(Core.Stepper, {
-                  activeStep: activeStep,
-                  children: Belt_Array.mapWithIndex(steps, (function (index, label) {
-                          return React.createElement(Core.Step, {
-                                      children: null,
-                                      key: label
-                                    }, React.createElement(Core.StepLabel, {
-                                          children: label
-                                        }), React.createElement(Core.StepContent, {
-                                          children: null
-                                        }, React.createElement(Core.Typography, {
-                                              children: getStepContent(index)
-                                            }), React.createElement("div", {
-                                              className: classes.actionsContainer
-                                            }, React.createElement("div", undefined, React.createElement(Core.Button, {
-                                                      onClick: handleBack,
-                                                      children: "Back",
-                                                      className: classes.button,
-                                                      disabled: activeStep === 0
-                                                    }), React.createElement(Core.Button, {
-                                                      onClick: handleNext,
-                                                      children: activeStep === (steps.length - 1 | 0) ? "Finish" : "Next",
-                                                      className: classes.button,
-                                                      color: "primary",
-                                                      variant: "contained"
-                                                    })))));
-                        })),
-                  orientation: "vertical"
-                }), activeStep === steps.length ? React.createElement(Core.Paper, {
-                    children: null,
-                    className: classes.resetContainer,
-                    elevation: 0,
-                    square: true
-                  }, React.createElement(Core.Typography, {
-                        children: "All steps completed - you're finished"
-                      }), React.createElement(Core.Button, {
-                        onClick: handleReset,
-                        children: "Reset",
-                        className: classes.button,
-                        color: "secondary"
-                      })) : null);
+            });
 }
 
 var make = ExampleStepper;

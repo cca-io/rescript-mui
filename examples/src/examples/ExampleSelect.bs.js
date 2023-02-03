@@ -4,6 +4,7 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 import * as Styles from "@material-ui/styles";
 
 function getSpacing(theme, num) {
@@ -26,7 +27,7 @@ var useStyles = Styles.makeStyles(function (theme) {
             };
     });
 
-function ExampleSelect(Props) {
+function ExampleSelect(props) {
   var classes = useStyles();
   var match = React.useReducer((function (param, v) {
           return v;
@@ -66,351 +67,491 @@ function ExampleSelect(Props) {
           name: e.target.value
         });
   };
-  return React.createElement("form", {
+  return JsxRuntime.jsx("form", {
+              children: JsxRuntime.jsxs("div", {
+                    children: [
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsx(Core.InputLabel, {
+                                    children: "Age",
+                                    htmlFor: "age-simple"
+                                  }),
+                              JsxRuntime.jsxs(Core.Select, {
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Ten",
+                                            value: "10"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Twenty",
+                                            value: "20"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Thirty",
+                                            value: "30"
+                                          })
+                                    ],
+                                    inputProps: {
+                                      id: "age-simple",
+                                      name: "age"
+                                    },
+                                    onChange: handleChangeAge,
+                                    value: Caml_option.some(values.age)
+                                  })
+                            ],
+                            className: classes.formControl
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsx(Core.InputLabel, {
+                                    children: "Age",
+                                    htmlFor: "age-helper"
+                                  }),
+                              JsxRuntime.jsxs(Core.Select, {
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Ten",
+                                            value: "10"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Twenty",
+                                            value: "20"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Thirty",
+                                            value: "30"
+                                          })
+                                    ],
+                                    input: Caml_option.some(JsxRuntime.jsx(Core.Input, {
+                                              id: "age-helper",
+                                              name: "age"
+                                            })),
+                                    onChange: handleChangeAge,
+                                    value: Caml_option.some(values.age)
+                                  }),
+                              JsxRuntime.jsx(Core.FormHelperText, {
+                                    children: "Some important helper text"
+                                  })
+                            ],
+                            className: classes.formControl
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsxs(Core.Select, {
+                                    className: classes.selectEmpty,
+                                    name: "age",
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Ten",
+                                            value: "10"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Twenty",
+                                            value: "20"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Thirty",
+                                            value: "30"
+                                          })
+                                    ],
+                                    displayEmpty: true,
+                                    onChange: handleChangeAge,
+                                    value: Caml_option.some(values.age)
+                                  }),
+                              JsxRuntime.jsx(Core.FormHelperText, {
+                                    children: "Without label"
+                                  })
+                            ],
+                            className: classes.formControl
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsx(Core.InputLabel, {
+                                    children: "Age",
+                                    shrink: true,
+                                    htmlFor: "age-label-placeholder"
+                                  }),
+                              JsxRuntime.jsxs(Core.Select, {
+                                    className: classes.selectEmpty,
+                                    name: "age",
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Ten",
+                                            value: "10"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Twenty",
+                                            value: "20"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Thirty",
+                                            value: "30"
+                                          })
+                                    ],
+                                    displayEmpty: true,
+                                    input: Caml_option.some(JsxRuntime.jsx(Core.Input, {
+                                              id: "age-label-placeholder",
+                                              name: "age"
+                                            })),
+                                    onChange: handleChangeAge,
+                                    value: Caml_option.some(values.age)
+                                  }),
+                              JsxRuntime.jsx(Core.FormHelperText, {
+                                    children: "Label + placeholder"
+                                  })
+                            ],
+                            className: classes.formControl
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsx(Core.InputLabel, {
+                                    children: "Name",
+                                    htmlFor: "name-disabled"
+                                  }),
+                              JsxRuntime.jsxs(Core.Select, {
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Hai",
+                                            value: "hai"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Olivier",
+                                            value: "olivier"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Kevin",
+                                            value: "kevin"
+                                          })
+                                    ],
+                                    input: Caml_option.some(JsxRuntime.jsx(Core.Input, {
+                                              id: "name-disabled",
+                                              name: "name"
+                                            })),
+                                    onChange: handleChangeName,
+                                    value: Caml_option.some(values.name)
+                                  }),
+                              JsxRuntime.jsx(Core.FormHelperText, {
+                                    children: "Disabled"
+                                  })
+                            ],
+                            className: classes.formControl,
+                            disabled: true
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsx(Core.InputLabel, {
+                                    children: "Name",
+                                    htmlFor: "name-error"
+                                  }),
+                              JsxRuntime.jsxs(Core.Select, {
+                                    name: "name",
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Hai",
+                                            value: "hai"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Olivier",
+                                            value: "olivier"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Kevin",
+                                            value: "kevin"
+                                          })
+                                    ],
+                                    input: Caml_option.some(JsxRuntime.jsx(Core.Input, {
+                                              id: "name-error"
+                                            })),
+                                    onChange: handleChangeName,
+                                    renderValue: (function (value) {
+                                        return "⚠️  - " + value + "";
+                                      }),
+                                    value: Caml_option.some(values.name)
+                                  }),
+                              JsxRuntime.jsx(Core.FormHelperText, {
+                                    children: "Error"
+                                  })
+                            ],
+                            className: classes.formControl,
+                            error: true
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsx(Core.InputLabel, {
+                                    children: "Name",
+                                    htmlFor: "name-readonly"
+                                  }),
+                              JsxRuntime.jsxs(Core.Select, {
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Hai",
+                                            value: "hai"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Olivier",
+                                            value: "olivier"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Kevin",
+                                            value: "kevin"
+                                          })
+                                    ],
+                                    input: Caml_option.some(JsxRuntime.jsx(Core.Input, {
+                                              id: "name-readonly",
+                                              name: "name",
+                                              readOnly: true
+                                            })),
+                                    onChange: handleChangeName,
+                                    value: Caml_option.some(values.name)
+                                  }),
+                              JsxRuntime.jsx(Core.FormHelperText, {
+                                    children: "Read only"
+                                  })
+                            ],
+                            className: classes.formControl
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsx(Core.InputLabel, {
+                                    children: "Age",
+                                    htmlFor: "age-auto-width"
+                                  }),
+                              JsxRuntime.jsxs(Core.Select, {
+                                    autoWidth: true,
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Ten",
+                                            value: "10"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Twenty",
+                                            value: "20"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Thirty",
+                                            value: "30"
+                                          })
+                                    ],
+                                    input: Caml_option.some(JsxRuntime.jsx(Core.Input, {
+                                              id: "age-auto-width",
+                                              name: "age"
+                                            })),
+                                    onChange: handleChangeAge,
+                                    value: Caml_option.some(values.age)
+                                  }),
+                              JsxRuntime.jsx(Core.FormHelperText, {
+                                    children: "Auto width"
+                                  })
+                            ],
+                            className: classes.formControl
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsxs(Core.Select, {
+                                    className: classes.selectEmpty,
+                                    name: "age",
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Placeholder",
+                                            disabled: true,
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Ten",
+                                            value: "10"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Twenty",
+                                            value: "20"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Thirty",
+                                            value: "30"
+                                          })
+                                    ],
+                                    displayEmpty: true,
+                                    onChange: handleChangeAge,
+                                    value: Caml_option.some(values.age)
+                                  }),
+                              JsxRuntime.jsx(Core.FormHelperText, {
+                                    children: "Placeholder"
+                                  })
+                            ],
+                            className: classes.formControl
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsx(Core.InputLabel, {
+                                    children: "Age",
+                                    htmlFor: "age-required"
+                                  }),
+                              JsxRuntime.jsxs(Core.Select, {
+                                    className: classes.selectEmpty,
+                                    name: "age",
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Ten",
+                                            value: "10"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Twenty",
+                                            value: "20"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Thirty",
+                                            value: "30"
+                                          })
+                                    ],
+                                    inputProps: {
+                                      id: "age-required"
+                                    },
+                                    onChange: handleChangeAge,
+                                    value: Caml_option.some(values.age)
+                                  }),
+                              JsxRuntime.jsx(Core.FormHelperText, {
+                                    children: "Required"
+                                  })
+                            ],
+                            className: classes.formControl,
+                            required: true
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsx(Core.InputLabel, {
+                                    children: "Age",
+                                    htmlFor: "outlined-age-simple",
+                                    ref: Caml_option.some(inputLabel)
+                                  }),
+                              JsxRuntime.jsxs(Core.Select, {
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Ten",
+                                            value: "10"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Twenty",
+                                            value: "20"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Thirty",
+                                            value: "30"
+                                          })
+                                    ],
+                                    input: Caml_option.some(JsxRuntime.jsx(Core.OutlinedInput, {
+                                              id: "outlined-age-simple",
+                                              labelWidth: Caml_option.some(match$2[0]),
+                                              name: "age"
+                                            })),
+                                    onChange: handleChangeAge,
+                                    value: Caml_option.some(values.age)
+                                  })
+                            ],
+                            className: classes.formControl,
+                            variant: "outlined"
+                          }),
+                      JsxRuntime.jsxs(Core.FormControl, {
+                            children: [
+                              JsxRuntime.jsx(Core.InputLabel, {
+                                    children: "Age",
+                                    htmlFor: "filled-age-simple"
+                                  }),
+                              JsxRuntime.jsxs(Core.Select, {
+                                    children: [
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: Caml_option.some(JsxRuntime.jsx("em", {
+                                                      children: "None"
+                                                    })),
+                                            value: ""
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Ten",
+                                            value: "10"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Twenty",
+                                            value: "20"
+                                          }),
+                                      JsxRuntime.jsx(Core.MenuItem, {
+                                            children: "Thirty",
+                                            value: "30"
+                                          })
+                                    ],
+                                    input: Caml_option.some(JsxRuntime.jsx(Core.FilledInput, {
+                                              id: "filled-age-simple",
+                                              name: "age"
+                                            })),
+                                    onChange: handleChangeAge,
+                                    value: Caml_option.some(values.age)
+                                  })
+                            ],
+                            className: classes.formControl,
+                            variant: "filled"
+                          })
+                    ],
+                    className: classes.root
+                  }),
               autoComplete: "off"
-            }, React.createElement("div", {
-                  className: classes.root
-                }, React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl
-                    }, React.createElement(Core.InputLabel, {
-                          children: "Age",
-                          htmlFor: "age-simple"
-                        }), React.createElement(Core.Select, {
-                          children: null,
-                          inputProps: {
-                            id: "age-simple",
-                            name: "age"
-                          },
-                          onChange: handleChangeAge,
-                          value: values.age
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Ten",
-                              value: "10"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Twenty",
-                              value: "20"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Thirty",
-                              value: "30"
-                            }))), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl
-                    }, React.createElement(Core.InputLabel, {
-                          children: "Age",
-                          htmlFor: "age-helper"
-                        }), React.createElement(Core.Select, {
-                          children: null,
-                          input: React.createElement(Core.Input, {
-                                id: "age-helper",
-                                name: "age"
-                              }),
-                          onChange: handleChangeAge,
-                          value: values.age
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Ten",
-                              value: "10"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Twenty",
-                              value: "20"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Thirty",
-                              value: "30"
-                            })), React.createElement(Core.FormHelperText, {
-                          children: "Some important helper text"
-                        })), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl
-                    }, React.createElement(Core.Select, {
-                          className: classes.selectEmpty,
-                          name: "age",
-                          children: null,
-                          displayEmpty: true,
-                          onChange: handleChangeAge,
-                          value: values.age
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Ten",
-                              value: "10"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Twenty",
-                              value: "20"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Thirty",
-                              value: "30"
-                            })), React.createElement(Core.FormHelperText, {
-                          children: "Without label"
-                        })), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl
-                    }, React.createElement(Core.InputLabel, {
-                          children: "Age",
-                          shrink: true,
-                          htmlFor: "age-label-placeholder"
-                        }), React.createElement(Core.Select, {
-                          className: classes.selectEmpty,
-                          name: "age",
-                          children: null,
-                          displayEmpty: true,
-                          input: React.createElement(Core.Input, {
-                                id: "age-label-placeholder",
-                                name: "age"
-                              }),
-                          onChange: handleChangeAge,
-                          value: values.age
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Ten",
-                              value: "10"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Twenty",
-                              value: "20"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Thirty",
-                              value: "30"
-                            })), React.createElement(Core.FormHelperText, {
-                          children: "Label + placeholder"
-                        })), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl,
-                      disabled: true
-                    }, React.createElement(Core.InputLabel, {
-                          children: "Name",
-                          htmlFor: "name-disabled"
-                        }), React.createElement(Core.Select, {
-                          children: null,
-                          input: React.createElement(Core.Input, {
-                                id: "name-disabled",
-                                name: "name"
-                              }),
-                          onChange: handleChangeName,
-                          value: values.name
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Hai",
-                              value: "hai"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Olivier",
-                              value: "olivier"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Kevin",
-                              value: "kevin"
-                            })), React.createElement(Core.FormHelperText, {
-                          children: "Disabled"
-                        })), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl,
-                      error: true
-                    }, React.createElement(Core.InputLabel, {
-                          children: "Name",
-                          htmlFor: "name-error"
-                        }), React.createElement(Core.Select, {
-                          name: "name",
-                          children: null,
-                          input: React.createElement(Core.Input, {
-                                id: "name-error"
-                              }),
-                          onChange: handleChangeName,
-                          renderValue: (function (value) {
-                              return "⚠️  - " + value + "";
-                            }),
-                          value: values.name
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Hai",
-                              value: "hai"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Olivier",
-                              value: "olivier"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Kevin",
-                              value: "kevin"
-                            })), React.createElement(Core.FormHelperText, {
-                          children: "Error"
-                        })), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl
-                    }, React.createElement(Core.InputLabel, {
-                          children: "Name",
-                          htmlFor: "name-readonly"
-                        }), React.createElement(Core.Select, {
-                          children: null,
-                          input: React.createElement(Core.Input, {
-                                id: "name-readonly",
-                                name: "name",
-                                readOnly: true
-                              }),
-                          onChange: handleChangeName,
-                          value: values.name
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Hai",
-                              value: "hai"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Olivier",
-                              value: "olivier"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Kevin",
-                              value: "kevin"
-                            })), React.createElement(Core.FormHelperText, {
-                          children: "Read only"
-                        })), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl
-                    }, React.createElement(Core.InputLabel, {
-                          children: "Age",
-                          htmlFor: "age-auto-width"
-                        }), React.createElement(Core.Select, {
-                          autoWidth: true,
-                          children: null,
-                          input: React.createElement(Core.Input, {
-                                id: "age-auto-width",
-                                name: "age"
-                              }),
-                          onChange: handleChangeAge,
-                          value: values.age
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Ten",
-                              value: "10"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Twenty",
-                              value: "20"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Thirty",
-                              value: "30"
-                            })), React.createElement(Core.FormHelperText, {
-                          children: "Auto width"
-                        })), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl
-                    }, React.createElement(Core.Select, {
-                          className: classes.selectEmpty,
-                          name: "age",
-                          children: null,
-                          displayEmpty: true,
-                          onChange: handleChangeAge,
-                          value: values.age
-                        }, React.createElement(Core.MenuItem, {
-                              children: "Placeholder",
-                              disabled: true,
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Ten",
-                              value: "10"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Twenty",
-                              value: "20"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Thirty",
-                              value: "30"
-                            })), React.createElement(Core.FormHelperText, {
-                          children: "Placeholder"
-                        })), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl,
-                      required: true
-                    }, React.createElement(Core.InputLabel, {
-                          children: "Age",
-                          htmlFor: "age-required"
-                        }), React.createElement(Core.Select, {
-                          className: classes.selectEmpty,
-                          name: "age",
-                          children: null,
-                          inputProps: {
-                            id: "age-required"
-                          },
-                          onChange: handleChangeAge,
-                          value: values.age
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Ten",
-                              value: "10"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Twenty",
-                              value: "20"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Thirty",
-                              value: "30"
-                            })), React.createElement(Core.FormHelperText, {
-                          children: "Required"
-                        })), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl,
-                      variant: "outlined"
-                    }, React.createElement(Core.InputLabel, {
-                          children: "Age",
-                          htmlFor: "outlined-age-simple",
-                          ref: inputLabel
-                        }), React.createElement(Core.Select, {
-                          children: null,
-                          input: React.createElement(Core.OutlinedInput, {
-                                id: "outlined-age-simple",
-                                labelWidth: match$2[0],
-                                name: "age"
-                              }),
-                          onChange: handleChangeAge,
-                          value: values.age
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Ten",
-                              value: "10"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Twenty",
-                              value: "20"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Thirty",
-                              value: "30"
-                            }))), React.createElement(Core.FormControl, {
-                      children: null,
-                      className: classes.formControl,
-                      variant: "filled"
-                    }, React.createElement(Core.InputLabel, {
-                          children: "Age",
-                          htmlFor: "filled-age-simple"
-                        }), React.createElement(Core.Select, {
-                          children: null,
-                          input: React.createElement(Core.FilledInput, {
-                                id: "filled-age-simple",
-                                name: "age"
-                              }),
-                          onChange: handleChangeAge,
-                          value: values.age
-                        }, React.createElement(Core.MenuItem, {
-                              children: React.createElement("em", undefined, "None"),
-                              value: ""
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Ten",
-                              value: "10"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Twenty",
-                              value: "20"
-                            }), React.createElement(Core.MenuItem, {
-                              children: "Thirty",
-                              value: "30"
-                            })))));
+            });
 }
 
 var make = ExampleSelect;

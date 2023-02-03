@@ -4,7 +4,9 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Grid$Mui from "rescript-material-ui/src/Grid.bs.js";
 import * as Caml_format from "rescript/lib/es6/caml_format.js";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Core from "@material-ui/core";
+import * as JsxRuntime from "react/jsx-runtime";
 import * as Styles from "@material-ui/styles";
 import VolumeUp from "@material-ui/icons/VolumeUp";
 
@@ -19,63 +21,71 @@ var useStyles = Styles.makeStyles({
 
 var VolumeUpIcon = {};
 
-function ExampleSlider(Props) {
+function ExampleSlider(props) {
   var classes = useStyles();
   var match = React.useReducer((function (param, v) {
           return v;
         }), 0);
   var setValue = match[1];
   var value = match[0];
-  return React.createElement("div", {
+  return JsxRuntime.jsxs("div", {
+              children: [
+                JsxRuntime.jsx(Core.Typography, {
+                      children: "Volume",
+                      gutterBottom: true
+                    }),
+                JsxRuntime.jsxs(Core.Grid, {
+                      alignItems: "center",
+                      children: [
+                        JsxRuntime.jsx(Core.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(VolumeUp, {})),
+                              item: true
+                            }),
+                        JsxRuntime.jsx(Core.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Core.Slider, {
+                                        "aria-labelledby": "input-slider",
+                                        onChange: (function (param, v) {
+                                            Curry._1(setValue, v);
+                                          }),
+                                        value: Caml_option.some(value)
+                                      })),
+                              item: true,
+                              xs: Caml_option.some(Grid$Mui.Xs.$$true)
+                            }),
+                        JsxRuntime.jsx(Core.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Core.Input, {
+                                        className: classes.input,
+                                        onBlur: (function (param) {
+                                            if (value < 0) {
+                                              return Curry._1(setValue, 0);
+                                            } else if (value > 100) {
+                                              return Curry._1(setValue, 100);
+                                            } else {
+                                              return ;
+                                            }
+                                          }),
+                                        inputProps: {
+                                          step: 10,
+                                          min: 0,
+                                          max: 100,
+                                          type: "number",
+                                          "aria-labelledby": "input-slider"
+                                        },
+                                        margin: "dense",
+                                        onChange: (function (e) {
+                                            Curry._1(setValue, Caml_format.int_of_string(e.target.value));
+                                          }),
+                                        value: Caml_option.some(value)
+                                      })),
+                              item: true
+                            })
+                      ],
+                      container: true,
+                      spacing: 2
+                    })
+              ],
               className: classes.root
-            }, React.createElement(Core.Typography, {
-                  children: "Volume",
-                  gutterBottom: true
-                }), React.createElement(Core.Grid, {
-                  alignItems: "center",
-                  children: null,
-                  container: true,
-                  spacing: 2
-                }, React.createElement(Core.Grid, {
-                      children: React.createElement(VolumeUp, {}),
-                      item: true
-                    }), React.createElement(Core.Grid, {
-                      children: React.createElement(Core.Slider, {
-                            "aria-labelledby": "input-slider",
-                            onChange: (function (param, v) {
-                                Curry._1(setValue, v);
-                              }),
-                            value: value
-                          }),
-                      item: true,
-                      xs: Grid$Mui.Xs.$$true
-                    }), React.createElement(Core.Grid, {
-                      children: React.createElement(Core.Input, {
-                            className: classes.input,
-                            onBlur: (function (param) {
-                                if (value < 0) {
-                                  return Curry._1(setValue, 0);
-                                } else if (value > 100) {
-                                  return Curry._1(setValue, 100);
-                                } else {
-                                  return ;
-                                }
-                              }),
-                            inputProps: {
-                              step: 10,
-                              min: 0,
-                              max: 100,
-                              type: "number",
-                              "aria-labelledby": "input-slider"
-                            },
-                            margin: "dense",
-                            onChange: (function (e) {
-                                Curry._1(setValue, Caml_format.int_of_string(e.target.value));
-                              }),
-                            value: value
-                          }),
-                      item: true
-                    })));
+            });
 }
 
 var make = ExampleSlider;
