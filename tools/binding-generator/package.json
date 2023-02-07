@@ -27,6 +27,7 @@
     "@types/node": "~12.0.4",
     "@types/object-hash": "^1.2.0",
     "@types/rimraf": "^2.0.2",
+    "@types/yargs": "^15",
     "doctrine": "^3.0.0",
     "fs": "^0.0.1-security",
     "next": "~8.1.0",
@@ -34,6 +35,7 @@
     "path": "^0.12.7",
     "react": "^17.0.2",
     "ts-node": "~8.2.0",
-    "typescript": "^3.5.1"
+    "typescript": "4.9.5",
+    "yargs": "15.3.1"
   }
 }

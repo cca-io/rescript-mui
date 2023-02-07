@@ -40,7 +40,7 @@ class AllOfParser extends BaseParser {
             }
             return prev && typeof prev !== 'boolean' ? {
                 properties: { ...prev.properties, ...def.properties },
-                required: [...prev.required, ...(def.required ? def.required : [])]
+                required: [...(prev.required ?? []), ...(def.required ? def.required : [])]
             } : {
                     properties: { ...def.properties },
                     required: [...(def.required ? def.required : [])]
