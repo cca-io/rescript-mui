@@ -1,12 +1,6 @@
 {
   "name": "rescript-material-ui-examples",
-  "jsx": {
-    "version": 4,
-    "mode": "automatic"
-  },
-  "reason": {
-    "react-jsx": 3
-  },
+  "jsx": { "version": 4, "mode": "automatic" },
   "namespace": false,
   "sources": [
     {
@@ -18,6 +12,7 @@
     "module": "es6",
     "in-source": true
   },
+  "pinned-dependencies": ["rescript-material-ui", "rescript-material-ui-lab"],
   "bs-dependencies": [
     "@rescript/react",
     "bs-css-emotion",
