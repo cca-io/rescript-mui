@@ -1,4 +1,4 @@
-declare type muiSrc = 'core' | 'lab';
+declare type muiSrc = 'material' | 'lab';
 
 declare interface PropSignature {
   type?: PropType;

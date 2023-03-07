@@ -5,8 +5,8 @@ import { readFileSync, writeFileSync } from 'fs';
 import kebabCase from 'lodash/kebabCase';
 import * as reactDocgen from 'react-docgen';
 import getStylesCreator from '../styles/getStylesCreator';
-import createTheme from '../core/styles/createTheme';
-import * as colors from '../core/colors';
+import createTheme from '../material/styles/createTheme';
+import * as colors from '../material/colors';
 import getInheritance from './inheritance';
 import parseTest from './parseTest';
 
@@ -152,7 +152,7 @@ ensureExists(outputDirectory, 0o744, (err) => {
     console.log(err);
     return;
   }
-  if (muiSrc === 'core') {
+  if (muiSrc === 'material') {
     writeFileSync(
       path.resolve(outputDirectory, `colors.json`),
       JSON.stringify(colors),

@@ -7,7 +7,7 @@ import RenderTheme from './render-theme';
 import ParseComponents from './parse-components';
 import PrepareOutput from './prepare-output';
 
-const muiSrc: muiSrc = 'core';
+const muiSrc: muiSrc = 'material';
 
 const parseInit = () => {
   const components = ParseComponents(muiSrc);
@@ -60,7 +60,7 @@ const parseInit = () => {
     `
         ${themeContents}
 
-        @module("@material-ui/core/styles") external create: ThemeOptions.t => t = "createTheme";
+        @module("@mui/material/styles") external create: ThemeOptions.t => t = "createTheme";
     `,
   );
 };
