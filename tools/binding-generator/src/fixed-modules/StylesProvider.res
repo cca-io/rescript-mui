@@ -1,4 +1,4 @@
-@react.component @module("@material-ui/core/styles")
+@react.component @module("@mui/styles")
 external make: (
   ~disableGeneration: bool=?,
   ~generateClassName: unit => string=?,

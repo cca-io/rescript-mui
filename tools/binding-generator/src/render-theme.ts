@@ -5,7 +5,7 @@ import Convert from '../../json-schema-parser/src_ts';
 import outputDirectory from './output';
 
 const RenderTheme = () => {
-  const path = Path.resolve(outputDirectory, 'json', 'core');
+  const path = Path.resolve(outputDirectory, 'json', 'material');
   const themePath = Path.join(path, 'theme.json');
   const themeOptionsPath = Path.join(path, 'theme-options.json');
 

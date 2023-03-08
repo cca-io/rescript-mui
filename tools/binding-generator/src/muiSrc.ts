@@ -3,7 +3,7 @@ import * as yargs from 'yargs';
 const args = yargs
   .option('src', {
     describe: 'mui source',
-    choices: ['core', 'lab'],
+    choices: ['material', 'lab'],
   })
   .demandOption(['src'], 'Please provide src argument')
   .help().argv;

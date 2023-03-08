@@ -12,7 +12,7 @@ interface ColorFile {
 const GetColors = (): ColorFile =>
   JSON.parse(
     Fs.readFileSync(
-      Path.join(outputDirectory, 'json', 'core', 'colors.json'),
+      Path.join(outputDirectory, 'json', 'material', 'colors.json'),
       'utf8',
     ),
   );
@@ -31,7 +31,7 @@ const RenderColors = () => {
                   )
                   .join('\n')}
             };
-            @module("@material-ui/core/colors") external ${colorName}: t${capitalize(
+            @module("@mui/material/colors") external ${colorName}: t${capitalize(
         colorName,
       )} = "${colorName}";
         `,

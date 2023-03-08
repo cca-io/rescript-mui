@@ -123,10 +123,10 @@ npx babel-node ./src/extract.js --src=lab
 # This is necessary, otherwise we get "Maximum call stack size exceeded"
 rm -rf ~/.mui-clone/node_modules
 
-# Extract json schemas (comment in again when the "Extract components" step is fixed)
+# Extract json schemas
 pushd ~/.mui-clone/packages/mui-material;
-"${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json Theme --topRef --ignoreErrors --excludePrivate --required -o "$OUTPUT_FOLDER/json/core/theme.json"
+"${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json Theme --topRef --ignoreErrors --excludePrivate --required -o "$OUTPUT_FOLDER/json/material/theme.json"
 echo "Extracted theme.json"
-"${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json ThemeOptions --topRef --ignoreErrors --excludePrivate --required -o "$OUTPUT_FOLDER/json/core/theme-options.json"
+"${pwd}/node_modules/.bin/typescript-json-schema" ./tsconfig.json ThemeOptions --topRef --ignoreErrors --excludePrivate --required -o "$OUTPUT_FOLDER/json/material/theme-options.json"
 echo "Extracted theme-options.json"
 popd
