@@ -1,4 +1,4 @@
-type implementation = [#js | #css]
+type implementation = [#css | #js]
 
 type initialWidth = [#xs | #sm | #md | #lg | #xl]
 
@@ -12,10 +12,9 @@ module Only = {
   external arrayOf: array<only_arrayOf> => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~children: React.element=?,
-  ~className: string=?,
   ~implementation: implementation=?,
   ~initialWidth: initialWidth=?,
   ~lgDown: bool=?,

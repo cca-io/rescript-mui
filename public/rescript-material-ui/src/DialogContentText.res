@@ -1,53 +1,54 @@
-type align = [#inherit | #left | #center | #right | #justify]
+type align = [#center | #inherit | #justify | #left | #right]
 
-type color = [#initial | #inherit | #primary | #secondary | #textPrimary | #textSecondary | #error]
-
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
-}
-
-type display = [#initial | #block | #inline]
-
-type variant = [
+type variant_enum = [
+  | #body1
+  | #body2
+  | #button
+  | #caption
   | #h1
   | #h2
   | #h3
   | #h4
   | #h5
   | #h6
+  | #inherit
+  | #overline
   | #subtitle1
   | #subtitle2
-  | #body1
-  | #body2
-  | #caption
-  | #button
-  | #overline
-  | #srOnly
-  | #inherit
 ]
 
-module Classes = {
-  type t = {"root": option<string>}
-  @obj external make: (~root: string=?, unit) => t = ""
+module Variant = {
+  type t
+  external enum: variant_enum => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~align: align=?,
-  ~className: string=?,
-  ~color: color=?,
-  ~component: Component.t=?,
-  ~display: display=?,
+  ~component: React.element=?,
   ~gutterBottom: bool=?,
   ~noWrap: bool=?,
   ~paragraph: bool=?,
-  ~variant: variant=?,
+  ~variant: Variant.t=?,
   ~variantMapping: {..}=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
+  ~className: string=?,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

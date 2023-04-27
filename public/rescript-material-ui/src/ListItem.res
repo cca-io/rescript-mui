@@ -1,41 +1,13 @@
-type alignItems = [#"flex-start" | #center]
+type alignItems = [#center | #"flex-start"]
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "container": option<string>,
-    "focusVisible": option<string>,
-    "dense": option<string>,
-    "alignItemsFlexStart": option<string>,
-    "disabled": option<string>,
-    "divider": option<string>,
-    "gutters": option<string>,
-    "button": option<string>,
-    "secondaryAction": option<string>,
-    "selected": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~container: string=?,
-    ~focusVisible: string=?,
-    ~dense: string=?,
-    ~alignItemsFlexStart: string=?,
-    ~disabled: string=?,
-    ~divider: string=?,
-    ~gutters: string=?,
-    ~button: string=?,
-    ~secondaryAction: string=?,
-    ~selected: string=?,
-    unit,
-  ) => t = ""
+module Components = {
+  type t = {"Root": option<React.element>}
+  @obj external make: (~\"Root": React.element=?, unit) => t = ""
 }
 
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+module ComponentsProps = {
+  type t = {"root": option<Any.t>}
+  @obj external make: (~root: Any.t=?, unit) => t = ""
 }
 
 module ContainerComponent = {
@@ -43,6 +15,30 @@ module ContainerComponent = {
   external string: string => t = "%identity"
   external containerComponent_func: Any.t => t = "%identity"
   external element: React.element => t = "%identity"
+}
+
+module SlotProps = {
+  type t = {"root": option<Any.t>}
+  @obj external make: (~root: Any.t=?, unit) => t = ""
+}
+
+module Slots = {
+  type t = {"root": option<React.element>}
+  @obj external make: (~root: React.element=?, unit) => t = ""
+}
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
 }
 
 module Value = {
@@ -53,23 +49,29 @@ module Value = {
   external arrayOf: array<string> => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~alignItems: alignItems=?,
   ~autoFocus: bool=?,
   ~button: bool=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~component: Component.t=?,
+  ~component: React.element=?,
+  ~components: Components.t=?,
+  ~componentsProps: ComponentsProps.t=?,
   ~\"ContainerComponent": ContainerComponent.t=?,
   ~\"ContainerProps": {..}=?,
   ~dense: bool=?,
   ~disabled: bool=?,
   ~disableGutters: bool=?,
+  ~disablePadding: bool=?,
   ~divider: bool=?,
   ~focusVisibleClassName: string=?,
+  ~secondaryAction: React.element=?,
   ~selected: bool=?,
+  ~slotProps: SlotProps.t=?,
+  ~slots: Slots.t=?,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~value: Value.t=?,

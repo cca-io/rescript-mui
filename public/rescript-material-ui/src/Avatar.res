@@ -1,49 +1,37 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "colorDefault": option<string>,
-    "circle": option<string>,
-    "circular": option<string>,
-    "rounded": option<string>,
-    "square": option<string>,
-    "img": option<string>,
-    "fallback": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~colorDefault: string=?,
-    ~circle: string=?,
-    ~circular: string=?,
-    ~rounded: string=?,
-    ~square: string=?,
-    ~img: string=?,
-    ~fallback: string=?,
-    unit,
-  ) => t = ""
-}
-
-module Component = {
+module Sx_arrayOf = {
   type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-type variant = [#circle | #circular | #rounded | #square]
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
 
-@react.component @module("@material-ui/core")
+type variant_enum = [#circular | #rounded | #square]
+
+module Variant = {
+  type t
+  external enum: variant_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~alt: string=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~component: Component.t=?,
+  ~component: React.element=?,
   ~imgProps: {..}=?,
   ~sizes: string=?,
   ~src: string=?,
   ~srcSet: string=?,
-  ~variant: variant=?,
+  ~sx: Sx.t=?,
+  ~variant: Variant.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

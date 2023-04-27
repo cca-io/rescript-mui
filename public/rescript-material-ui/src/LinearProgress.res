@@ -1,57 +1,32 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "colorPrimary": option<string>,
-    "colorSecondary": option<string>,
-    "determinate": option<string>,
-    "indeterminate": option<string>,
-    "buffer": option<string>,
-    "query": option<string>,
-    "dashed": option<string>,
-    "dashedColorPrimary": option<string>,
-    "dashedColorSecondary": option<string>,
-    "bar": option<string>,
-    "barColorPrimary": option<string>,
-    "barColorSecondary": option<string>,
-    "bar1Indeterminate": option<string>,
-    "bar1Determinate": option<string>,
-    "bar1Buffer": option<string>,
-    "bar2Indeterminate": option<string>,
-    "bar2Buffer": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~colorPrimary: string=?,
-    ~colorSecondary: string=?,
-    ~determinate: string=?,
-    ~indeterminate: string=?,
-    ~buffer: string=?,
-    ~query: string=?,
-    ~dashed: string=?,
-    ~dashedColorPrimary: string=?,
-    ~dashedColorSecondary: string=?,
-    ~bar: string=?,
-    ~barColorPrimary: string=?,
-    ~barColorSecondary: string=?,
-    ~bar1Indeterminate: string=?,
-    ~bar1Determinate: string=?,
-    ~bar1Buffer: string=?,
-    ~bar2Indeterminate: string=?,
-    ~bar2Buffer: string=?,
-    unit,
-  ) => t = ""
+type color_enum = [#inherit | #primary | #secondary]
+
+module Color = {
+  type t
+  external enum: color_enum => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-type color = [#primary | #secondary]
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
 
 type variant = [#buffer | #determinate | #indeterminate | #query]
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
+  ~color: Color.t=?,
+  ~sx: Sx.t=?,
   ~value: Number.t=?,
   ~valueBuffer: Number.t=?,
   ~variant: variant=?,

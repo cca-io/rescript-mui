@@ -1,29 +1,4 @@
-type align = [#inherit | #left | #center | #right | #justify]
-
-type display = [#initial | #block | #inline]
-
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "underlineNone": option<string>,
-    "underlineHover": option<string>,
-    "underlineAlways": option<string>,
-    "button": option<string>,
-    "focusVisible": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~underlineNone: string=?,
-    ~underlineHover: string=?,
-    ~underlineAlways: string=?,
-    ~button: string=?,
-    ~focusVisible: string=?,
-    unit,
-  ) => t = ""
-}
-
-type color = [#initial | #inherit | #primary | #secondary | #textPrimary | #textSecondary | #error]
+type align = [#center | #inherit | #justify | #left | #right]
 
 module Component = {
   type t
@@ -32,7 +7,44 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
-type underline = [#none | #hover | #always]
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+type underline = [#always | #hover | #none]
+
+type variant_enum = [
+  | #body1
+  | #body2
+  | #button
+  | #caption
+  | #h1
+  | #h2
+  | #h3
+  | #h4
+  | #h5
+  | #h6
+  | #inherit
+  | #overline
+  | #subtitle1
+  | #subtitle2
+]
+
+module Variant = {
+  type t
+  external enum: variant_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
 
 type rel = [
   | #alternate
@@ -50,24 +62,23 @@ type rel = [
   | #tag
 ]
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~align: align=?,
-  ~display: display=?,
   ~gutterBottom: bool=?,
   ~noWrap: bool=?,
   ~paragraph: bool=?,
   ~variantMapping: {..}=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
+  ~color: Any.t=?,
   ~component: Component.t=?,
   ~onBlur: ReactEvent.Focus.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
+  ~sx: Sx.t=?,
   ~\"TypographyClasses": {..}=?,
   ~underline: underline=?,
-  ~variant: string=?,
+  ~variant: Variant.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,

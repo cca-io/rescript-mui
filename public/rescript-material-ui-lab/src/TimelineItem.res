@@ -1,31 +1,25 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "alignLeft": option<string>,
-    "alignRight": option<string>,
-    "alignAlternate": option<string>,
-    "missingOppositeContent": option<string>,
-    "content": option<string>,
-    "oppositeContent": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~alignLeft: string=?,
-    ~alignRight: string=?,
-    ~alignAlternate: string=?,
-    ~missingOppositeContent: string=?,
-    ~content: string=?,
-    ~oppositeContent: string=?,
-    unit,
-  ) => t = ""
+type position = [#left | #right]
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Mui.Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-@react.component @module("@material-ui/lab")
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Mui.Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/lab")
 external make: (
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
+  ~position: position=?,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

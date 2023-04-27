@@ -1,58 +1,46 @@
-module Component = {
+type variant_enum = [#elevation | #outlined]
+
+module Variant = {
   type t
+  external enum: variant_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
 
-type variant = [#elevation | #outlined]
+type color_enum = [#default | #inherit | #primary | #secondary | #transparent]
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "positionFixed": option<string>,
-    "positionAbsolute": option<string>,
-    "positionSticky": option<string>,
-    "positionStatic": option<string>,
-    "positionRelative": option<string>,
-    "colorDefault": option<string>,
-    "colorPrimary": option<string>,
-    "colorSecondary": option<string>,
-    "colorInherit": option<string>,
-    "colorTransparent": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~positionFixed: string=?,
-    ~positionAbsolute: string=?,
-    ~positionSticky: string=?,
-    ~positionStatic: string=?,
-    ~positionRelative: string=?,
-    ~colorDefault: string=?,
-    ~colorPrimary: string=?,
-    ~colorSecondary: string=?,
-    ~colorInherit: string=?,
-    ~colorTransparent: string=?,
-    unit,
-  ) => t = ""
+module Color = {
+  type t
+  external enum: color_enum => t = "%identity"
+  external string: string => t = "%identity"
 }
-
-type color = [#default | #inherit | #primary | #secondary | #transparent]
 
 type position = [#absolute | #fixed | #relative | #static | #sticky]
 
-@react.component @module("@material-ui/core")
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
-  ~component: Component.t=?,
-  ~elevation: Number.t=?,
+  ~component: React.element=?,
   ~square: bool=?,
-  ~variant: variant=?,
+  ~variant: Variant.t=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
+  ~color: Color.t=?,
+  ~enableColorOnDark: bool=?,
   ~position: position=?,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

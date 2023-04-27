@@ -1,37 +1,25 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "item": option<string>,
-    "imgFullHeight": option<string>,
-    "imgFullWidth": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~item: string=?,
-    ~imgFullHeight: string=?,
-    ~imgFullWidth: string=?,
-    unit,
-  ) => t = ""
-}
-
-module Component = {
+module Sx_arrayOf = {
   type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~cols: Number.t=?,
-  ~component: Component.t=?,
-  ~rows: Number.t=?,
-  ~id: string=?,
+  ~component: React.element=?,
   ~style: ReactDOM.Style.t=?,
+  ~sx: Sx.t=?,
+  ~id: string=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "ImageListItem"

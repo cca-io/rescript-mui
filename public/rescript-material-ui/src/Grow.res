@@ -1,3 +1,14 @@
+module Easing_shape = {
+  type t = {"enter": option<string>, "exit": option<string>}
+  @obj external make: (~enter: string=?, ~exit: string=?, unit) => t = ""
+}
+
+module Easing = {
+  type t
+  external shape: Easing_shape.t => t = "%identity"
+  external string: string => t = "%identity"
+}
+
 type timeout_enum = [#auto]
 
 module Timeout_shape = {
@@ -13,10 +24,12 @@ module Timeout = {
   external shape: Timeout_shape.t => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
+  ~addEndListener: Any.t=?,
+  ~appear: bool=?,
   ~children: React.element=?,
-  ~disableStrictModeCompat: bool=?,
+  ~easing: Easing.t=?,
   ~\"in": bool=?,
   ~onEnter: ReactEvent.Synthetic.t => unit=?,
   ~onEntered: ReactEvent.Synthetic.t => unit=?,

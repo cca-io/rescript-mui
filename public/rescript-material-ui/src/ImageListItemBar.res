@@ -1,50 +1,31 @@
 type actionPosition = [#left | #right]
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "positionBottom": option<string>,
-    "positionTop": option<string>,
-    "rootSubtitle": option<string>,
-    "titleWrap": option<string>,
-    "titleWrapActionPosLeft": option<string>,
-    "titleWrapActionPosRight": option<string>,
-    "title": option<string>,
-    "subtitle": option<string>,
-    "actionIcon": option<string>,
-    "actionIconActionPosLeft": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~positionBottom: string=?,
-    ~positionTop: string=?,
-    ~rootSubtitle: string=?,
-    ~titleWrap: string=?,
-    ~titleWrapActionPosLeft: string=?,
-    ~titleWrapActionPosRight: string=?,
-    ~title: string=?,
-    ~subtitle: string=?,
-    ~actionIcon: string=?,
-    ~actionIconActionPosLeft: string=?,
-    unit,
-  ) => t = ""
+type position = [#below | #bottom | #top]
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-type position = [#bottom | #top]
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
 
-type titlePosition = [#bottom | #top]
-
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~actionIcon: React.element=?,
   ~actionPosition: actionPosition=?,
-  ~classes: Classes.t=?,
+  ~children: React.element=?,
   ~className: string=?,
   ~position: position=?,
   ~subtitle: React.element=?,
+  ~sx: Sx.t=?,
   ~title: React.element=?,
-  ~titlePosition: titlePosition=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

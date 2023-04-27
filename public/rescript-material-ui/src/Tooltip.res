@@ -1,30 +1,33 @@
-module Classes = {
+module Components = {
   type t = {
-    "popper": option<string>,
-    "popperInteractive": option<string>,
-    "popperArrow": option<string>,
-    "tooltip": option<string>,
-    "tooltipArrow": option<string>,
-    "arrow": option<string>,
-    "touch": option<string>,
-    "tooltipPlacementLeft": option<string>,
-    "tooltipPlacementRight": option<string>,
-    "tooltipPlacementTop": option<string>,
-    "tooltipPlacementBottom": option<string>,
+    "Arrow": option<React.element>,
+    "Popper": option<React.element>,
+    "Tooltip": option<React.element>,
+    "Transition": option<React.element>,
   }
   @obj
   external make: (
-    ~popper: string=?,
-    ~popperInteractive: string=?,
-    ~popperArrow: string=?,
-    ~tooltip: string=?,
-    ~tooltipArrow: string=?,
-    ~arrow: string=?,
-    ~touch: string=?,
-    ~tooltipPlacementLeft: string=?,
-    ~tooltipPlacementRight: string=?,
-    ~tooltipPlacementTop: string=?,
-    ~tooltipPlacementBottom: string=?,
+    ~\"Arrow": React.element=?,
+    ~\"Popper": React.element=?,
+    ~\"Tooltip": React.element=?,
+    ~\"Transition": React.element=?,
+    unit,
+  ) => t = ""
+}
+
+module ComponentsProps = {
+  type t = {
+    "arrow": option<Any.t>,
+    "popper": option<Any.t>,
+    "tooltip": option<Any.t>,
+    "transition": option<Any.t>,
+  }
+  @obj
+  external make: (
+    ~arrow: Any.t=?,
+    ~popper: Any.t=?,
+    ~tooltip: Any.t=?,
+    ~transition: Any.t=?,
     unit,
   ) => t = ""
 }
@@ -44,44 +47,84 @@ type placement = [
   | #top
 ]
 
-module PopperComponent = {
-  type t
-  external string: string => t = "%identity"
-  external popperComponent_func: Any.t => t = "%identity"
-  external element: React.element => t = "%identity"
+module SlotProps = {
+  type t = {
+    "arrow": option<Any.t>,
+    "popper": option<Any.t>,
+    "tooltip": option<Any.t>,
+    "transition": option<Any.t>,
+  }
+  @obj
+  external make: (
+    ~arrow: Any.t=?,
+    ~popper: Any.t=?,
+    ~tooltip: Any.t=?,
+    ~transition: Any.t=?,
+    unit,
+  ) => t = ""
 }
 
-module TransitionComponent = {
-  type t
-  external string: string => t = "%identity"
-  external transitionComponent_func: Any.t => t = "%identity"
-  external element: React.element => t = "%identity"
+module Slots = {
+  type t = {
+    "arrow": option<React.element>,
+    "popper": option<React.element>,
+    "tooltip": option<React.element>,
+    "transition": option<React.element>,
+  }
+  @obj
+  external make: (
+    ~arrow: React.element=?,
+    ~popper: React.element=?,
+    ~tooltip: React.element=?,
+    ~transition: React.element=?,
+    unit,
+  ) => t = ""
 }
 
-@react.component @module("@material-ui/core")
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~arrow: bool=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
+  ~components: Components.t=?,
+  ~componentsProps: ComponentsProps.t=?,
+  ~describeChild: bool=?,
   ~disableFocusListener: bool=?,
   ~disableHoverListener: bool=?,
+  ~disableInteractive: bool=?,
   ~disableTouchListener: bool=?,
   ~enterDelay: Number.t=?,
   ~enterNextDelay: Number.t=?,
   ~enterTouchDelay: Number.t=?,
+  ~followCursor: bool=?,
   ~id: string=?,
-  ~interactive: bool=?,
   ~leaveDelay: Number.t=?,
   ~leaveTouchDelay: Number.t=?,
   ~onClose: ReactEvent.Synthetic.t => unit=?,
   ~onOpen: ReactEvent.Synthetic.t => unit=?,
   ~\"open": bool=?,
   ~placement: placement=?,
-  ~\"PopperComponent": PopperComponent.t=?,
+  ~\"PopperComponent": React.element=?,
   ~\"PopperProps": {..}=?,
-  ~title: React.element,
-  ~\"TransitionComponent": TransitionComponent.t=?,
+  ~slotProps: SlotProps.t=?,
+  ~slots: Slots.t=?,
+  ~sx: Sx.t=?,
+  ~title: React.element=?,
+  ~\"TransitionComponent": React.element=?,
   ~\"TransitionProps": {..}=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

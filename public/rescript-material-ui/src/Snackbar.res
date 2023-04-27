@@ -7,34 +7,22 @@ module AnchorOrigin = {
   @obj external make: (~horizontal: horizontal=?, ~vertical: vertical=?, unit) => t = ""
 }
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "anchorOriginTopCenter": option<string>,
-    "anchorOriginBottomCenter": option<string>,
-    "anchorOriginTopRight": option<string>,
-    "anchorOriginBottomRight": option<string>,
-    "anchorOriginTopLeft": option<string>,
-    "anchorOriginBottomLeft": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~anchorOriginTopCenter: string=?,
-    ~anchorOriginBottomCenter: string=?,
-    ~anchorOriginTopRight: string=?,
-    ~anchorOriginBottomRight: string=?,
-    ~anchorOriginTopLeft: string=?,
-    ~anchorOriginBottomLeft: string=?,
-    unit,
-  ) => t = ""
+module Event = {
+  type t
 }
 
-module TransitionComponent = {
+module Sx_arrayOf = {
   type t
-  external string: string => t = "%identity"
-  external transitionComponent_func: Any.t => t = "%identity"
-  external element: React.element => t = "%identity"
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
 }
 
 module TransitionDuration_shape = {
@@ -49,25 +37,27 @@ module TransitionDuration = {
   external shape: TransitionDuration_shape.t => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~action: React.element=?,
   ~anchorOrigin: AnchorOrigin.t=?,
   ~autoHideDuration: Number.t=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
   ~\"ClickAwayListenerProps": {..}=?,
   ~\"ContentProps": {..}=?,
   ~disableWindowBlurListener: bool=?,
   ~key: string=?,
   ~message: React.element=?,
-  ~onClose: (ReactEvent.Synthetic.t, string) => unit=?,
+  ~onBlur: ReactEvent.Focus.t => unit=?,
+  ~onClose: (Event.t, string) => unit=?,
+  ~onFocus: ReactEvent.Focus.t => unit=?,
   ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
   ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
   ~\"open": bool=?,
   ~resumeHideDuration: Number.t=?,
-  ~\"TransitionComponent": TransitionComponent.t=?,
+  ~sx: Sx.t=?,
+  ~\"TransitionComponent": React.element=?,
   ~transitionDuration: TransitionDuration.t=?,
   ~\"TransitionProps": {..}=?,
   ~id: string=?,

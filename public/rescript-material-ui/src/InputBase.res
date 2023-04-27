@@ -1,51 +1,20 @@
-module Classes = {
-  type t = {
-    "@global": option<string>,
-    "root": option<string>,
-    "formControl": option<string>,
-    "focused": option<string>,
-    "disabled": option<string>,
-    "adornedStart": option<string>,
-    "adornedEnd": option<string>,
-    "error": option<string>,
-    "marginDense": option<string>,
-    "multiline": option<string>,
-    "colorSecondary": option<string>,
-    "fullWidth": option<string>,
-    "input": option<string>,
-    "inputMarginDense": option<string>,
-    "inputMultiline": option<string>,
-    "inputTypeSearch": option<string>,
-    "inputAdornedStart": option<string>,
-    "inputAdornedEnd": option<string>,
-    "inputHiddenLabel": option<string>,
-  }
-  @obj
-  external make: (
-    ~\"@global": string=?,
-    ~root: string=?,
-    ~formControl: string=?,
-    ~focused: string=?,
-    ~disabled: string=?,
-    ~adornedStart: string=?,
-    ~adornedEnd: string=?,
-    ~error: string=?,
-    ~marginDense: string=?,
-    ~multiline: string=?,
-    ~colorSecondary: string=?,
-    ~fullWidth: string=?,
-    ~input: string=?,
-    ~inputMarginDense: string=?,
-    ~inputMultiline: string=?,
-    ~inputTypeSearch: string=?,
-    ~inputAdornedStart: string=?,
-    ~inputAdornedEnd: string=?,
-    ~inputHiddenLabel: string=?,
-    unit,
-  ) => t = ""
+type color_enum = [#primary | #secondary | #error | #info | #success | #warning]
+
+module Color = {
+  type t
+  external enum: color_enum => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-type color = [#primary | #secondary]
+module Components = {
+  type t = {"Input": option<React.element>, "Root": option<React.element>}
+  @obj external make: (~\"Input": React.element=?, ~\"Root": React.element=?, unit) => t = ""
+}
+
+module ComponentsProps = {
+  type t = {"input": option<Any.t>, "root": option<Any.t>}
+  @obj external make: (~input: Any.t=?, ~root: Any.t=?, unit) => t = ""
+}
 
 module InputComponent = {
   type t
@@ -77,30 +46,50 @@ module Rows = {
   external string: string => t = "%identity"
 }
 
-module RowsMax = {
+type size_enum = [#medium | #small]
+
+module Size = {
   type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
+  external enum: size_enum => t = "%identity"
   external string: string => t = "%identity"
 }
 
-module RowsMin = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
+module SlotProps = {
+  type t = {"input": option<Any.t>, "root": option<Any.t>}
+  @obj external make: (~input: Any.t=?, ~root: Any.t=?, unit) => t = ""
 }
 
-@react.component @module("@material-ui/core")
+module Slots = {
+  type t = {"input": option<React.element>, "root": option<React.element>}
+  @obj external make: (~input: React.element=?, ~root: React.element=?, unit) => t = ""
+}
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~\"aria-describedby": string=?,
   ~autoComplete: string=?,
   ~autoFocus: bool=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
+  ~color: Color.t=?,
+  ~components: Components.t=?,
+  ~componentsProps: ComponentsProps.t=?,
   ~defaultValue: Any.t=?,
   ~disabled: bool=?,
+  ~disableInjectingGlobalStyles: bool=?,
   ~endAdornment: React.element=?,
   ~error: bool=?,
   ~fullWidth: bool=?,
@@ -116,6 +105,7 @@ external make: (
   ~onChange: ReactEvent.Form.t => unit=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
+  ~onInvalid: Any.t=?,
   ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
   ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
   ~placeholder: string=?,
@@ -123,9 +113,11 @@ external make: (
   ~renderSuffix: Any.t=?,
   ~required: bool=?,
   ~rows: Rows.t=?,
-  ~rowsMax: RowsMax.t=?,
-  ~rowsMin: RowsMin.t=?,
+  ~size: Size.t=?,
+  ~slotProps: SlotProps.t=?,
+  ~slots: Slots.t=?,
   ~startAdornment: React.element=?,
+  ~sx: Sx.t=?,
   ~\"type": string=?,
   ~value: Any.t=?,
   ~style: ReactDOM.Style.t=?,

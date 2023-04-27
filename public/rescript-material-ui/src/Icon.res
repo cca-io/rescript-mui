@@ -1,49 +1,52 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "colorPrimary": option<string>,
-    "colorSecondary": option<string>,
-    "colorAction": option<string>,
-    "colorError": option<string>,
-    "colorDisabled": option<string>,
-    "fontSizeInherit": option<string>,
-    "fontSizeSmall": option<string>,
-    "fontSizeLarge": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~colorPrimary: string=?,
-    ~colorSecondary: string=?,
-    ~colorAction: string=?,
-    ~colorError: string=?,
-    ~colorDisabled: string=?,
-    ~fontSizeInherit: string=?,
-    ~fontSizeSmall: string=?,
-    ~fontSizeLarge: string=?,
-    unit,
-  ) => t = ""
-}
+type color_enum = [
+  | #inherit
+  | #action
+  | #disabled
+  | #primary
+  | #secondary
+  | #error
+  | #info
+  | #success
+  | #warning
+]
 
-type color = [#inherit | #primary | #secondary | #action | #error | #disabled]
-
-module Component = {
+module Color = {
   type t
+  external enum: color_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
 
-type fontSize = [#default | #inherit | #large | #medium | #small]
+type fontSize_enum = [#inherit | #large | #medium | #small]
 
-@react.component @module("@material-ui/core")
+module FontSize = {
+  type t
+  external enum: fontSize_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
+  ~baseClassName: string=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
-  ~component: Component.t=?,
-  ~fontSize: fontSize=?,
+  ~color: Color.t=?,
+  ~component: React.element=?,
+  ~fontSize: FontSize.t=?,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

@@ -1,20 +1,29 @@
-module Classes = {
-  type t = {"root": option<string>, "vertical": option<string>, "disabled": option<string>}
-  @obj external make: (~root: string=?, ~vertical: string=?, ~disabled: string=?, unit) => t = ""
-}
-
 type direction = [#left | #right]
 
 type orientation = [#horizontal | #vertical]
 
-@react.component @module("@material-ui/core")
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
   ~direction: direction,
   ~disabled: bool=?,
   ~orientation: orientation,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

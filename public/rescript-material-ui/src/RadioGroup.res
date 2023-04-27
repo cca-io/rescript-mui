@@ -1,27 +1,28 @@
-module Classes = {
-  type t = {"root": option<string>, "row": option<string>}
-  @obj external make: (~root: string=?, ~row: string=?, unit) => t = ""
-}
-
-module DefaultValue = {
+module Sx_arrayOf = {
   type t
-  external arrayOf: array<string> => t = "%identity"
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
-  ~classes: Classes.t=?,
   ~className: string=?,
   ~row: bool=?,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~children: React.element=?,
-  ~defaultValue: DefaultValue.t=?,
+  ~defaultValue: Any.t=?,
   ~name: string=?,
-  ~onChange: ReactEvent.Form.t => unit=?,
+  ~onChange: (ReactEvent.Form.t, string) => unit=?,
   ~value: Any.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,

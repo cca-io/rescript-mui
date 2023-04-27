@@ -1,36 +1,17 @@
 type anchor = [#bottom | #left | #right | #top]
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "docked": option<string>,
-    "paper": option<string>,
-    "paperAnchorLeft": option<string>,
-    "paperAnchorRight": option<string>,
-    "paperAnchorTop": option<string>,
-    "paperAnchorBottom": option<string>,
-    "paperAnchorDockedLeft": option<string>,
-    "paperAnchorDockedTop": option<string>,
-    "paperAnchorDockedRight": option<string>,
-    "paperAnchorDockedBottom": option<string>,
-    "modal": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~docked: string=?,
-    ~paper: string=?,
-    ~paperAnchorLeft: string=?,
-    ~paperAnchorRight: string=?,
-    ~paperAnchorTop: string=?,
-    ~paperAnchorBottom: string=?,
-    ~paperAnchorDockedLeft: string=?,
-    ~paperAnchorDockedTop: string=?,
-    ~paperAnchorDockedRight: string=?,
-    ~paperAnchorDockedBottom: string=?,
-    ~modal: string=?,
-    unit,
-  ) => t = ""
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
 }
 
 module TransitionDuration_shape = {
@@ -47,19 +28,19 @@ module TransitionDuration = {
 
 type variant = [#permanent | #persistent | #temporary]
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~anchor: anchor=?,
   ~\"BackdropProps": {..}=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~elevation: Number.t=?,
+  ~hideBackdrop: bool=?,
   ~\"ModalProps": {..}=?,
   ~onClose: ReactEvent.Synthetic.t => unit=?,
   ~\"open": bool=?,
   ~\"PaperProps": {..}=?,
   ~\"SlideProps": {..}=?,
+  ~sx: Sx.t=?,
   ~transitionDuration: TransitionDuration.t=?,
   ~variant: variant=?,
   ~id: string=?,

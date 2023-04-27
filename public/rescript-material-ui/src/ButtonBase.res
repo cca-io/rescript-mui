@@ -1,9 +1,3 @@
-module Classes = {
-  type t = {"root": option<string>, "disabled": option<string>, "focusVisible": option<string>}
-  @obj
-  external make: (~root: string=?, ~disabled: string=?, ~focusVisible: string=?, unit) => t = ""
-}
-
 module Component = {
   type t
   external string: string => t = "%identity"
@@ -11,11 +5,34 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
-module TabIndex = {
+module Sx_arrayOf = {
   type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+module Current = {
+  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
+  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
+}
+
+module TouchRippleRef_shape = {
+  type t = {"current": option<Current.t>}
+  @obj external make: (~current: Current.t=?, unit) => t = ""
+}
+
+module TouchRippleRef = {
+  type t
+  external touchRippleRef_func: Any.t => t = "%identity"
+  external shape: TouchRippleRef_shape.t => t = "%identity"
 }
 
 type type_enum = [#button | #reset | #submit]
@@ -42,11 +59,10 @@ type rel = [
   | #tag
 ]
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~centerRipple: bool=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
   ~component: Component.t=?,
   ~disabled: bool=?,
@@ -54,9 +70,11 @@ external make: (
   ~disableTouchRipple: bool=?,
   ~focusRipple: bool=?,
   ~focusVisibleClassName: string=?,
-  ~href: string=?,
+  ~href: Any.t=?,
+  ~\"LinkComponent": React.element=?,
   ~onBlur: ReactEvent.Focus.t => unit=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,
+  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
   ~onDragLeave: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
   ~onFocusVisible: Any.t=?,
@@ -68,8 +86,10 @@ external make: (
   ~onTouchEnd: ReactEvent.Touch.t => unit=?,
   ~onTouchMove: ReactEvent.Touch.t => unit=?,
   ~onTouchStart: ReactEvent.Touch.t => unit=?,
-  ~tabIndex: TabIndex.t=?,
+  ~sx: Sx.t=?,
+  ~tabIndex: Number.t=?,
   ~\"TouchRippleProps": {..}=?,
+  ~touchRippleRef: TouchRippleRef.t=?,
   ~\"type": Type.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

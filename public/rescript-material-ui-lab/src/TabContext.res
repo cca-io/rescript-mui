@@ -1,4 +1,4 @@
-@react.component @module("@material-ui/lab")
+@react.component @module("@mui/lab")
 external make: (
   ~children: React.element=?,
   ~value: string,

@@ -1,37 +1,18 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "docked": option<string>,
-    "paper": option<string>,
-    "paperAnchorLeft": option<string>,
-    "paperAnchorRight": option<string>,
-    "paperAnchorTop": option<string>,
-    "paperAnchorBottom": option<string>,
-    "paperAnchorDockedLeft": option<string>,
-    "paperAnchorDockedTop": option<string>,
-    "paperAnchorDockedRight": option<string>,
-    "paperAnchorDockedBottom": option<string>,
-    "modal": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~docked: string=?,
-    ~paper: string=?,
-    ~paperAnchorLeft: string=?,
-    ~paperAnchorRight: string=?,
-    ~paperAnchorTop: string=?,
-    ~paperAnchorBottom: string=?,
-    ~paperAnchorDockedLeft: string=?,
-    ~paperAnchorDockedTop: string=?,
-    ~paperAnchorDockedRight: string=?,
-    ~paperAnchorDockedBottom: string=?,
-    ~modal: string=?,
-    unit,
-  ) => t = ""
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-type anchor = [#left | #top | #right | #bottom]
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+type anchor = [#bottom | #left | #right | #top]
 
 module Component = {
   type t
@@ -56,8 +37,8 @@ module PaperProps = {
 }
 
 module TransitionDuration_shape = {
-  type t = {"enter": option<Number.t>, "exit": option<Number.t>}
-  @obj external make: (~enter: Number.t=?, ~exit: Number.t=?, unit) => t = ""
+  type t = {"appear": option<Number.t>, "enter": option<Number.t>, "exit": option<Number.t>}
+  @obj external make: (~appear: Number.t=?, ~enter: Number.t=?, ~exit: Number.t=?, unit) => t = ""
 }
 
 module TransitionDuration = {
@@ -69,13 +50,12 @@ module TransitionDuration = {
 
 type variant = [#permanent | #persistent | #temporary]
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~\"BackdropProps": {..}=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~elevation: Number.t=?,
   ~\"SlideProps": {..}=?,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~anchor: anchor=?,

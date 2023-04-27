@@ -1,34 +1,39 @@
-type alignItems = [#"flex-start" | #center]
-
-module ContainerComponent = {
-  type t
-  external string: string => t = "%identity"
-  external containerComponent_func: Any.t => t = "%identity"
-  external element: React.element => t = "%identity"
+module Current = {
+  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
+  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
 }
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "gutters": option<string>,
-    "selected": option<string>,
-    "dense": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~gutters: string=?,
-    ~selected: string=?,
-    ~dense: string=?,
-    unit,
-  ) => t = ""
+module TouchRippleRef_shape = {
+  type t = {"current": option<Current.t>}
+  @obj external make: (~current: Current.t=?, unit) => t = ""
 }
 
-module Component = {
+module TouchRippleRef = {
   type t
+  external touchRippleRef_func: Any.t => t = "%identity"
+  external shape: TouchRippleRef_shape.t => t = "%identity"
+}
+
+type type_enum = [#button | #reset | #submit]
+
+module Type = {
+  type t
+  external enum: type_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+}
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
 }
 
 module Value = {
@@ -39,31 +44,47 @@ module Value = {
   external arrayOf: array<string> => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
-  ~alignItems: alignItems=?,
-  ~autoFocus: bool=?,
-  ~button: bool=?,
-  ~\"ContainerComponent": ContainerComponent.t=?,
-  ~\"ContainerProps": {..}=?,
-  ~divider: bool=?,
-  ~focusVisibleClassName: string=?,
+  ~centerRipple: bool=?,
+  ~disableRipple: bool=?,
+  ~disableTouchRipple: bool=?,
+  ~focusRipple: bool=?,
+  ~href: Any.t=?,
+  ~\"LinkComponent": React.element=?,
+  ~onBlur: ReactEvent.Focus.t => unit=?,
+  ~onClick: ReactEvent.Mouse.t => unit=?,
+  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
+  ~onDragLeave: ReactEvent.Mouse.t => unit=?,
+  ~onFocus: ReactEvent.Focus.t => unit=?,
+  ~onFocusVisible: Any.t=?,
+  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
+  ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
+  ~onMouseDown: ReactEvent.Mouse.t => unit=?,
+  ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
+  ~onMouseUp: ReactEvent.Mouse.t => unit=?,
+  ~onTouchEnd: ReactEvent.Touch.t => unit=?,
+  ~onTouchMove: ReactEvent.Touch.t => unit=?,
+  ~onTouchStart: ReactEvent.Touch.t => unit=?,
+  ~\"TouchRippleProps": {..}=?,
+  ~touchRippleRef: TouchRippleRef.t=?,
+  ~\"type": Type.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
+  ~autoFocus: bool=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~component: Component.t=?,
+  ~component: React.element=?,
   ~dense: bool=?,
   ~disabled: bool=?,
   ~disableGutters: bool=?,
-  ~\"ListItemClasses": {..}=?,
+  ~divider: bool=?,
+  ~focusVisibleClassName: string=?,
   ~role: string=?,
   ~selected: bool=?,
+  ~sx: Sx.t=?,
   ~tabIndex: Number.t=?,
   ~value: Value.t=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "MenuItem"

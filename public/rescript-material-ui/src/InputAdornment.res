@@ -1,47 +1,30 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "filled": option<string>,
-    "positionStart": option<string>,
-    "positionEnd": option<string>,
-    "disablePointerEvents": option<string>,
-    "hiddenLabel": option<string>,
-    "marginDense": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~filled: string=?,
-    ~positionStart: string=?,
-    ~positionEnd: string=?,
-    ~disablePointerEvents: string=?,
-    ~hiddenLabel: string=?,
-    ~marginDense: string=?,
-    unit,
-  ) => t = ""
-}
+type position = [#end | #start]
 
-module Component = {
+module Sx_arrayOf = {
   type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-type position = [#start | #end]
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
 
-type variant = [#standard | #outlined | #filled]
+type variant = [#filled | #outlined | #standard]
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~component: Component.t=?,
+  ~component: React.element=?,
   ~disablePointerEvents: bool=?,
   ~disableTypography: bool=?,
-  ~muiFormControl: {..}=?,
   ~position: position,
+  ~sx: Sx.t=?,
   ~variant: variant=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

@@ -1,53 +1,32 @@
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
-}
-
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "positionBottom": option<string>,
-    "positionTop": option<string>,
-    "positionStatic": option<string>,
-    "dots": option<string>,
-    "dot": option<string>,
-    "dotActive": option<string>,
-    "progress": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~positionBottom: string=?,
-    ~positionTop: string=?,
-    ~positionStatic: string=?,
-    ~dots: string=?,
-    ~dot: string=?,
-    ~dotActive: string=?,
-    ~progress: string=?,
-    unit,
-  ) => t = ""
-}
-
 type position = [#bottom | #static | #top]
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
 
 type variant = [#dots | #progress | #text]
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~children: React.element=?,
-  ~component: Component.t=?,
-  ~elevation: Number.t=?,
+  ~component: React.element=?,
   ~square: bool=?,
-  ~activeStep: Number.t=?,
   ~backButton: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
   ~\"LinearProgressProps": {..}=?,
   ~nextButton: React.element=?,
   ~position: position=?,
-  ~steps: Number.t,
+  ~sx: Sx.t=?,
   ~variant: variant=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

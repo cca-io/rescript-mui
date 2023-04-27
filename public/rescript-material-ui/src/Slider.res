@@ -1,128 +1,261 @@
-module Classes = {
+type color_enum = [#primary | #secondary]
+
+module Color = {
+  type t
+  external enum: color_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Components = {
   type t = {
-    "root": option<string>,
-    "colorPrimary": option<string>,
-    "colorSecondary": option<string>,
-    "marked": option<string>,
-    "vertical": option<string>,
-    "disabled": option<string>,
-    "rail": option<string>,
-    "track": option<string>,
-    "trackFalse": option<string>,
-    "trackInverted": option<string>,
-    "thumb": option<string>,
-    "thumbColorPrimary": option<string>,
-    "thumbColorSecondary": option<string>,
-    "active": option<string>,
-    "focusVisible": option<string>,
-    "valueLabel": option<string>,
-    "mark": option<string>,
-    "markActive": option<string>,
-    "markLabel": option<string>,
-    "markLabelActive": option<string>,
+    "Input": option<React.element>,
+    "Mark": option<React.element>,
+    "MarkLabel": option<React.element>,
+    "Rail": option<React.element>,
+    "Root": option<React.element>,
+    "Thumb": option<React.element>,
+    "Track": option<React.element>,
+    "ValueLabel": option<React.element>,
   }
   @obj
   external make: (
-    ~root: string=?,
-    ~colorPrimary: string=?,
-    ~colorSecondary: string=?,
-    ~marked: string=?,
-    ~vertical: string=?,
-    ~disabled: string=?,
-    ~rail: string=?,
-    ~track: string=?,
-    ~trackFalse: string=?,
-    ~trackInverted: string=?,
-    ~thumb: string=?,
-    ~thumbColorPrimary: string=?,
-    ~thumbColorSecondary: string=?,
-    ~active: string=?,
-    ~focusVisible: string=?,
-    ~valueLabel: string=?,
-    ~mark: string=?,
-    ~markActive: string=?,
-    ~markLabel: string=?,
-    ~markLabelActive: string=?,
+    ~\"Input": React.element=?,
+    ~\"Mark": React.element=?,
+    ~\"MarkLabel": React.element=?,
+    ~\"Rail": React.element=?,
+    ~\"Root": React.element=?,
+    ~\"Thumb": React.element=?,
+    ~\"Track": React.element=?,
+    ~\"ValueLabel": React.element=?,
     unit,
   ) => t = ""
 }
 
-type color = [#primary | #secondary]
-
-module Component = {
+module Input = {
   type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+  external input_func: Any.t => t = "%identity"
+  external any: Any.t => t = "%identity"
+}
+
+module Mark = {
+  type t
+  external mark_func: Any.t => t = "%identity"
+  external any: Any.t => t = "%identity"
+}
+
+module MarkLabel = {
+  type t
+  external markLabel_func: Any.t => t = "%identity"
+  external any: Any.t => t = "%identity"
+}
+
+module Rail = {
+  type t
+  external rail_func: Any.t => t = "%identity"
+  external any: Any.t => t = "%identity"
+}
+
+module Root = {
+  type t
+  external root_func: Any.t => t = "%identity"
+  external any: Any.t => t = "%identity"
+}
+
+module Thumb = {
+  type t
+  external thumb_func: Any.t => t = "%identity"
+  external any: Any.t => t = "%identity"
+}
+
+module Track = {
+  type t
+  external track_func: Any.t => t = "%identity"
+  external any: Any.t => t = "%identity"
+}
+
+type valueLabelDisplay = [#auto | #off | #on]
+
+module ValueLabel_shape = {
+  type t = {
+    "children": option<React.element>,
+    "className": option<string>,
+    "open": option<bool>,
+    "style": option<Any.t>,
+    "value": option<Number.t>,
+    "valueLabelDisplay": option<valueLabelDisplay>,
+  }
+  @obj
+  external make: (
+    ~children: React.element=?,
+    ~className: string=?,
+    ~\"open": bool=?,
+    ~style: Any.t=?,
+    ~value: Number.t=?,
+    ~valueLabelDisplay: valueLabelDisplay=?,
+    unit,
+  ) => t = ""
+}
+
+module ValueLabel = {
+  type t
+  external valueLabel_func: Any.t => t = "%identity"
+  external shape: ValueLabel_shape.t => t = "%identity"
+}
+
+module ComponentsProps = {
+  type t = {
+    "input": option<Input.t>,
+    "mark": option<Mark.t>,
+    "markLabel": option<MarkLabel.t>,
+    "rail": option<Rail.t>,
+    "root": option<Root.t>,
+    "thumb": option<Thumb.t>,
+    "track": option<Track.t>,
+    "valueLabel": option<ValueLabel.t>,
+  }
+  @obj
+  external make: (
+    ~input: Input.t=?,
+    ~mark: Mark.t=?,
+    ~markLabel: MarkLabel.t=?,
+    ~rail: Rail.t=?,
+    ~root: Root.t=?,
+    ~thumb: Thumb.t=?,
+    ~track: Track.t=?,
+    ~valueLabel: ValueLabel.t=?,
+    unit,
+  ) => t = ""
 }
 
 module DefaultValue = {
   type t
+  external arrayOf: array<Number.t> => t = "%identity"
   external int: int => t = "%identity"
   external float: float => t = "%identity"
-  external arrayOf: array<Number.t> => t = "%identity"
+}
+
+module Marks_arrayOf = {
+  type t = {"label": option<React.element>, "value": option<Number.t>}
+  @obj external make: (~label: React.element=?, ~value: Number.t=?, unit) => t = ""
 }
 
 module Marks = {
   type t
+  external arrayOf: array<Marks_arrayOf.t> => t = "%identity"
   external bool: bool => t = "%identity"
-  external array: array<Any.t> => t = "%identity"
 }
 
 type orientation = [#horizontal | #vertical]
 
-module ThumbComponent = {
+type size_enum = [#small | #medium]
+
+module Size = {
   type t
+  external enum: size_enum => t = "%identity"
   external string: string => t = "%identity"
-  external thumbComponent_func: Any.t => t = "%identity"
-  external element: React.element => t = "%identity"
+}
+
+module SlotProps = {
+  type t = {
+    "input": option<Input.t>,
+    "mark": option<Mark.t>,
+    "markLabel": option<MarkLabel.t>,
+    "rail": option<Rail.t>,
+    "root": option<Root.t>,
+    "thumb": option<Thumb.t>,
+    "track": option<Track.t>,
+    "valueLabel": option<ValueLabel.t>,
+  }
+  @obj
+  external make: (
+    ~input: Input.t=?,
+    ~mark: Mark.t=?,
+    ~markLabel: MarkLabel.t=?,
+    ~rail: Rail.t=?,
+    ~root: Root.t=?,
+    ~thumb: Thumb.t=?,
+    ~track: Track.t=?,
+    ~valueLabel: ValueLabel.t=?,
+    unit,
+  ) => t = ""
+}
+
+module Slots = {
+  type t = {
+    "input": option<React.element>,
+    "mark": option<React.element>,
+    "markLabel": option<React.element>,
+    "rail": option<React.element>,
+    "root": option<React.element>,
+    "thumb": option<React.element>,
+    "track": option<React.element>,
+    "valueLabel": option<React.element>,
+  }
+  @obj
+  external make: (
+    ~input: React.element=?,
+    ~mark: React.element=?,
+    ~markLabel: React.element=?,
+    ~rail: React.element=?,
+    ~root: React.element=?,
+    ~thumb: React.element=?,
+    ~track: React.element=?,
+    ~valueLabel: React.element=?,
+    unit,
+  ) => t = ""
+}
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
 }
 
 module Track: {
   type t
+  let inverted: t
   let normal: t
   let \"false": t
-  let inverted: t
 } = {
   @unboxed
   type rec t = Any('a): t
 
+  let inverted = Any("inverted")
   let normal = Any("normal")
   let \"false" = Any(false)
-  let inverted = Any("inverted")
 }
 
 module Value = {
   type t
+  external arrayOf: array<Number.t> => t = "%identity"
   external int: int => t = "%identity"
   external float: float => t = "%identity"
-  external arrayOf: array<Number.t> => t = "%identity"
 }
-
-module ValueLabelComponent = {
-  type t
-  external string: string => t = "%identity"
-  external valueLabelComponent_func: Any.t => t = "%identity"
-  external element: React.element => t = "%identity"
-}
-
-type valueLabelDisplay = [#on | #auto | #off]
 
 module ValueLabelFormat = {
   type t
-  external string: string => t = "%identity"
   external valueLabelFormat_func: Any.t => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~\"aria-labelledby": string=?,
-  ~classes: Classes.t=?,
-  ~className: string=?,
-  ~color: color=?,
-  ~component: Component.t=?,
+  ~children: React.element=?,
+  ~color: Color.t=?,
+  ~components: Components.t=?,
+  ~componentsProps: ComponentsProps.t=?,
   ~defaultValue: DefaultValue.t=?,
   ~disabled: bool=?,
+  ~disableSwap: bool=?,
   ~getAriaLabel: int => string=?,
   ~getAriaValueText: (int, int) => string=?,
   ~marks: Marks.t=?,
@@ -131,14 +264,16 @@ external make: (
   ~name: string=?,
   ~onChange: (ReactEvent.Form.t, int) => unit=?,
   ~onChangeCommitted: (ReactEvent.Form.t, int) => unit=?,
-  ~onMouseDown: ReactEvent.Mouse.t => unit=?,
   ~orientation: orientation=?,
   ~scale: Any.t=?,
+  ~size: Size.t=?,
+  ~slotProps: SlotProps.t=?,
+  ~slots: Slots.t=?,
   ~step: Number.t=?,
-  ~\"ThumbComponent": ThumbComponent.t=?,
+  ~sx: Sx.t=?,
+  ~tabIndex: Number.t=?,
   ~track: Track.t=?,
   ~value: Value.t=?,
-  ~\"ValueLabelComponent": ValueLabelComponent.t=?,
   ~valueLabelDisplay: valueLabelDisplay=?,
   ~valueLabelFormat: ValueLabelFormat.t=?,
   ~id: string=?,

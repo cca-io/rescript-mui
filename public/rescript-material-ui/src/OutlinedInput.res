@@ -1,75 +1,44 @@
-module MinRows = {
+module ComponentsProps = {
+  type t = {"input": option<Any.t>, "root": option<Any.t>}
+  @obj external make: (~input: Any.t=?, ~root: Any.t=?, unit) => t = ""
+}
+
+type size_enum = [#medium | #small]
+
+module Size = {
   type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
+  external enum: size_enum => t = "%identity"
   external string: string => t = "%identity"
 }
 
-module RowsMax = {
+module SlotProps = {
+  type t = {"input": option<Any.t>, "root": option<Any.t>}
+  @obj external make: (~input: Any.t=?, ~root: Any.t=?, unit) => t = ""
+}
+
+type color_enum = [#primary | #secondary]
+
+module Color = {
   type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
+  external enum: color_enum => t = "%identity"
   external string: string => t = "%identity"
 }
 
-module RowsMin = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "colorSecondary": option<string>,
-    "focused": option<string>,
-    "disabled": option<string>,
-    "adornedStart": option<string>,
-    "adornedEnd": option<string>,
-    "error": option<string>,
-    "marginDense": option<string>,
-    "multiline": option<string>,
-    "notchedOutline": option<string>,
-    "input": option<string>,
-    "inputMarginDense": option<string>,
-    "inputMultiline": option<string>,
-    "inputAdornedStart": option<string>,
-    "inputAdornedEnd": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~colorSecondary: string=?,
-    ~focused: string=?,
-    ~disabled: string=?,
-    ~adornedStart: string=?,
-    ~adornedEnd: string=?,
-    ~error: string=?,
-    ~marginDense: string=?,
-    ~multiline: string=?,
-    ~notchedOutline: string=?,
-    ~input: string=?,
-    ~inputMarginDense: string=?,
-    ~inputMultiline: string=?,
-    ~inputAdornedStart: string=?,
-    ~inputAdornedEnd: string=?,
-    unit,
-  ) => t = ""
-}
-
-type color = [#primary | #secondary]
-
-module InputComponent = {
-  type t
-  external string: string => t = "%identity"
-  external inputComponent_func: Any.t => t = "%identity"
-  external element: React.element => t = "%identity"
+module Components = {
+  type t = {"Input": option<React.element>, "Root": option<React.element>}
+  @obj external make: (~\"Input": React.element=?, ~\"Root": React.element=?, unit) => t = ""
 }
 
 type margin = [#dense | #none]
 
 module MaxRows = {
+  type t
+  external int: int => t = "%identity"
+  external float: float => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module MinRows = {
   type t
   external int: int => t = "%identity"
   external float: float => t = "%identity"
@@ -83,37 +52,58 @@ module Rows = {
   external string: string => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+module Slots = {
+  type t = {"input": option<React.element>, "root": option<React.element>}
+  @obj external make: (~input: React.element=?, ~root: React.element=?, unit) => t = ""
+}
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~\"aria-describedby": string=?,
   ~className: string=?,
-  ~minRows: MinRows.t=?,
+  ~componentsProps: ComponentsProps.t=?,
+  ~disableInjectingGlobalStyles: bool=?,
   ~onBlur: ReactEvent.Focus.t => unit=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
+  ~onInvalid: Any.t=?,
   ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
   ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
   ~renderSuffix: Any.t=?,
-  ~rowsMax: RowsMax.t=?,
-  ~rowsMin: RowsMin.t=?,
+  ~size: Size.t=?,
+  ~slotProps: SlotProps.t=?,
   ~style: ReactDOM.Style.t=?,
   ~autoComplete: string=?,
   ~autoFocus: bool=?,
-  ~classes: Classes.t=?,
-  ~color: color=?,
+  ~color: Color.t=?,
+  ~components: Components.t=?,
   ~defaultValue: Any.t=?,
   ~disabled: bool=?,
   ~endAdornment: React.element=?,
   ~error: bool=?,
   ~fullWidth: bool=?,
   ~id: string=?,
-  ~inputComponent: InputComponent.t=?,
+  ~inputComponent: React.element=?,
   ~inputProps: {..}=?,
   ~inputRef: ReactDOM.domRef=?,
   ~label: React.element=?,
-  ~labelWidth: Number.t=?,
   ~margin: margin=?,
   ~maxRows: MaxRows.t=?,
+  ~minRows: MinRows.t=?,
   ~multiline: bool=?,
   ~name: string=?,
   ~notched: bool=?,
@@ -122,7 +112,9 @@ external make: (
   ~readOnly: bool=?,
   ~required: bool=?,
   ~rows: Rows.t=?,
+  ~slots: Slots.t=?,
   ~startAdornment: React.element=?,
+  ~sx: Sx.t=?,
   ~\"type": string=?,
   ~value: Any.t=?,
   ~key: string=?,

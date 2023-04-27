@@ -1,90 +1,58 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "contained": option<string>,
-    "disableElevation": option<string>,
-    "disabled": option<string>,
-    "fullWidth": option<string>,
-    "vertical": option<string>,
-    "grouped": option<string>,
-    "groupedHorizontal": option<string>,
-    "groupedVertical": option<string>,
-    "groupedText": option<string>,
-    "groupedTextHorizontal": option<string>,
-    "groupedTextVertical": option<string>,
-    "groupedTextPrimary": option<string>,
-    "groupedTextSecondary": option<string>,
-    "groupedOutlined": option<string>,
-    "groupedOutlinedHorizontal": option<string>,
-    "groupedOutlinedVertical": option<string>,
-    "groupedOutlinedPrimary": option<string>,
-    "groupedOutlinedSecondary": option<string>,
-    "groupedContained": option<string>,
-    "groupedContainedHorizontal": option<string>,
-    "groupedContainedVertical": option<string>,
-    "groupedContainedPrimary": option<string>,
-    "groupedContainedSecondary": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~contained: string=?,
-    ~disableElevation: string=?,
-    ~disabled: string=?,
-    ~fullWidth: string=?,
-    ~vertical: string=?,
-    ~grouped: string=?,
-    ~groupedHorizontal: string=?,
-    ~groupedVertical: string=?,
-    ~groupedText: string=?,
-    ~groupedTextHorizontal: string=?,
-    ~groupedTextVertical: string=?,
-    ~groupedTextPrimary: string=?,
-    ~groupedTextSecondary: string=?,
-    ~groupedOutlined: string=?,
-    ~groupedOutlinedHorizontal: string=?,
-    ~groupedOutlinedVertical: string=?,
-    ~groupedOutlinedPrimary: string=?,
-    ~groupedOutlinedSecondary: string=?,
-    ~groupedContained: string=?,
-    ~groupedContainedHorizontal: string=?,
-    ~groupedContainedVertical: string=?,
-    ~groupedContainedPrimary: string=?,
-    ~groupedContainedSecondary: string=?,
-    unit,
-  ) => t = ""
-}
+type color_enum = [#inherit | #primary | #secondary | #error | #info | #success | #warning]
 
-type color = [#default | #inherit | #primary | #secondary]
-
-module Component = {
+module Color = {
   type t
+  external enum: color_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
 
 type orientation = [#horizontal | #vertical]
 
-type size = [#large | #medium | #small]
+type size_enum = [#small | #medium | #large]
 
-type variant = [#contained | #outlined | #text]
+module Size = {
+  type t
+  external enum: size_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
 
-@react.component @module("@material-ui/core")
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+type variant_enum = [#contained | #outlined | #text]
+
+module Variant = {
+  type t
+  external enum: variant_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
-  ~component: Component.t=?,
+  ~color: Color.t=?,
+  ~component: React.element=?,
   ~disabled: bool=?,
   ~disableElevation: bool=?,
   ~disableFocusRipple: bool=?,
   ~disableRipple: bool=?,
   ~fullWidth: bool=?,
   ~orientation: orientation=?,
-  ~size: size=?,
-  ~variant: variant=?,
+  ~size: Size.t=?,
+  ~sx: Sx.t=?,
+  ~variant: Variant.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

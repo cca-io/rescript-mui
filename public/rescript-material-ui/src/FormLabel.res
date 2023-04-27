@@ -1,49 +1,37 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "colorSecondary": option<string>,
-    "focused": option<string>,
-    "disabled": option<string>,
-    "error": option<string>,
-    "filled": option<string>,
-    "required": option<string>,
-    "asterisk": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~colorSecondary: string=?,
-    ~focused: string=?,
-    ~disabled: string=?,
-    ~error: string=?,
-    ~filled: string=?,
-    ~required: string=?,
-    ~asterisk: string=?,
-    unit,
-  ) => t = ""
-}
+type color_enum = [#error | #info | #primary | #secondary | #success | #warning]
 
-type color = [#primary | #secondary]
-
-module Component = {
+module Color = {
   type t
+  external enum: color_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
-  ~component: Component.t=?,
+  ~color: Color.t=?,
+  ~component: React.element=?,
   ~disabled: bool=?,
   ~error: bool=?,
   ~filled: bool=?,
   ~focused: bool=?,
   ~required: bool=?,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

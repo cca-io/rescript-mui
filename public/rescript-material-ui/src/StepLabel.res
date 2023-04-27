@@ -1,52 +1,39 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "horizontal": option<string>,
-    "vertical": option<string>,
-    "label": option<string>,
-    "active": option<string>,
-    "completed": option<string>,
-    "error": option<string>,
-    "disabled": option<string>,
-    "iconContainer": option<string>,
-    "alternativeLabel": option<string>,
-    "labelContainer": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~horizontal: string=?,
-    ~vertical: string=?,
-    ~label: string=?,
-    ~active: string=?,
-    ~completed: string=?,
-    ~error: string=?,
-    ~disabled: string=?,
-    ~iconContainer: string=?,
-    ~alternativeLabel: string=?,
-    ~labelContainer: string=?,
-    unit,
-  ) => t = ""
+module ComponentsProps = {
+  type t = {"label": option<Any.t>}
+  @obj external make: (~label: Any.t=?, unit) => t = ""
 }
 
-module StepIconComponent = {
+module SlotProps = {
+  type t = {"label": option<Any.t>}
+  @obj external make: (~label: Any.t=?, unit) => t = ""
+}
+
+module Sx_arrayOf = {
   type t
-  external string: string => t = "%identity"
-  external stepIconComponent_func: Any.t => t = "%identity"
-  external element: React.element => t = "%identity"
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~disabled: bool=?,
+  ~componentsProps: ComponentsProps.t=?,
   ~error: bool=?,
   ~icon: React.element=?,
   ~optional: React.element=?,
-  ~\"StepIconComponent": StepIconComponent.t=?,
+  ~slotProps: SlotProps.t=?,
+  ~\"StepIconComponent": React.element=?,
   ~\"StepIconProps": {..}=?,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

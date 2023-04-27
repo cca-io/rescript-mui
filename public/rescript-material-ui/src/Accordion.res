@@ -1,50 +1,39 @@
-module Component = {
+type variant_enum = [#elevation | #outlined]
+
+module Variant = {
   type t
+  external enum: variant_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
 
-type variant = [#elevation | #outlined]
-
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "rounded": option<string>,
-    "expanded": option<string>,
-    "disabled": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~rounded: string=?,
-    ~expanded: string=?,
-    ~disabled: string=?,
-    unit,
-  ) => t = ""
-}
-
-module TransitionComponent = {
+module Sx_arrayOf = {
   type t
-  external string: string => t = "%identity"
-  external transitionComponent_func: Any.t => t = "%identity"
-  external element: React.element => t = "%identity"
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
-  ~component: Component.t=?,
-  ~elevation: Number.t=?,
-  ~variant: variant=?,
+  ~component: React.element=?,
+  ~variant: Variant.t=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
   ~defaultExpanded: bool=?,
   ~disabled: bool=?,
+  ~disableGutters: bool=?,
   ~expanded: bool=?,
   ~onChange: (ReactEvent.Form.t, bool) => unit=?,
   ~square: bool=?,
-  ~\"TransitionComponent": TransitionComponent.t=?,
+  ~sx: Sx.t=?,
+  ~\"TransitionComponent": React.element=?,
   ~\"TransitionProps": {..}=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

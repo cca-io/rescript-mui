@@ -7,88 +7,88 @@ module AnchorOrigin = {
   @obj external make: (~horizontal: horizontal=?, ~vertical: vertical=?, unit) => t = ""
 }
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "badge": option<string>,
-    "colorPrimary": option<string>,
-    "colorSecondary": option<string>,
-    "colorError": option<string>,
-    "dot": option<string>,
-    "anchorOriginTopRightRectangle": option<string>,
-    "anchorOriginTopRightRectangular": option<string>,
-    "anchorOriginBottomRightRectangle": option<string>,
-    "anchorOriginBottomRightRectangular": option<string>,
-    "anchorOriginTopLeftRectangle": option<string>,
-    "anchorOriginTopLeftRectangular": option<string>,
-    "anchorOriginBottomLeftRectangle": option<string>,
-    "anchorOriginBottomLeftRectangular": option<string>,
-    "anchorOriginTopRightCircle": option<string>,
-    "anchorOriginTopRightCircular": option<string>,
-    "anchorOriginBottomRightCircle": option<string>,
-    "anchorOriginBottomRightCircular": option<string>,
-    "anchorOriginTopLeftCircle": option<string>,
-    "anchorOriginTopLeftCircular": option<string>,
-    "anchorOriginBottomLeftCircle": option<string>,
-    "anchorOriginBottomLeftCircular": option<string>,
-    "invisible": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~badge: string=?,
-    ~colorPrimary: string=?,
-    ~colorSecondary: string=?,
-    ~colorError: string=?,
-    ~dot: string=?,
-    ~anchorOriginTopRightRectangle: string=?,
-    ~anchorOriginTopRightRectangular: string=?,
-    ~anchorOriginBottomRightRectangle: string=?,
-    ~anchorOriginBottomRightRectangular: string=?,
-    ~anchorOriginTopLeftRectangle: string=?,
-    ~anchorOriginTopLeftRectangular: string=?,
-    ~anchorOriginBottomLeftRectangle: string=?,
-    ~anchorOriginBottomLeftRectangular: string=?,
-    ~anchorOriginTopRightCircle: string=?,
-    ~anchorOriginTopRightCircular: string=?,
-    ~anchorOriginBottomRightCircle: string=?,
-    ~anchorOriginBottomRightCircular: string=?,
-    ~anchorOriginTopLeftCircle: string=?,
-    ~anchorOriginTopLeftCircular: string=?,
-    ~anchorOriginBottomLeftCircle: string=?,
-    ~anchorOriginBottomLeftCircular: string=?,
-    ~invisible: string=?,
-    unit,
-  ) => t = ""
-}
+type color_enum = [#default | #primary | #secondary | #error | #info | #success | #warning]
 
-type color = [#default | #error | #primary | #secondary]
-
-module Component = {
+module Color = {
   type t
+  external enum: color_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
 
-type overlap = [#circle | #rectangle | #circular | #rectangular]
+module Components = {
+  type t = {"Badge": option<React.element>, "Root": option<React.element>}
+  @obj external make: (~\"Badge": React.element=?, ~\"Root": React.element=?, unit) => t = ""
+}
 
-type variant = [#dot | #standard]
+module Badge = {
+  type t
+  external badge_func: Any.t => t = "%identity"
+  external any: Any.t => t = "%identity"
+}
 
-@react.component @module("@material-ui/core")
+module Root = {
+  type t
+  external root_func: Any.t => t = "%identity"
+  external any: Any.t => t = "%identity"
+}
+
+module ComponentsProps = {
+  type t = {"badge": option<Badge.t>, "root": option<Root.t>}
+  @obj external make: (~badge: Badge.t=?, ~root: Root.t=?, unit) => t = ""
+}
+
+type overlap = [#circular | #rectangular]
+
+module SlotProps = {
+  type t = {"badge": option<Badge.t>, "root": option<Root.t>}
+  @obj external make: (~badge: Badge.t=?, ~root: Root.t=?, unit) => t = ""
+}
+
+module Slots = {
+  type t = {"badge": option<React.element>, "root": option<React.element>}
+  @obj external make: (~badge: React.element=?, ~root: React.element=?, unit) => t = ""
+}
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+type variant_enum = [#dot | #standard]
+
+module Variant = {
+  type t
+  external enum: variant_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~anchorOrigin: AnchorOrigin.t=?,
   ~badgeContent: React.element=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
-  ~component: Component.t=?,
+  ~color: Color.t=?,
+  ~component: React.element=?,
+  ~components: Components.t=?,
+  ~componentsProps: ComponentsProps.t=?,
   ~invisible: bool=?,
   ~max: Number.t=?,
   ~overlap: overlap=?,
   ~showZero: bool=?,
-  ~variant: variant=?,
+  ~slotProps: SlotProps.t=?,
+  ~slots: Slots.t=?,
+  ~sx: Sx.t=?,
+  ~variant: Variant.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

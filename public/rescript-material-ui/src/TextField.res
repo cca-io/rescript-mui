@@ -1,16 +1,10 @@
-module Component = {
+type color_enum = [#primary | #secondary | #error | #info | #success | #warning]
+
+module Color = {
   type t
+  external enum: color_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
-
-module Classes = {
-  type t = {"root": option<string>}
-  @obj external make: (~root: string=?, unit) => t = ""
-}
-
-type color = [#primary | #secondary]
 
 module DefaultValue = {
   type t
@@ -42,14 +36,27 @@ module Rows = {
   external string: string => t = "%identity"
 }
 
-module RowsMax = {
+type size_enum = [#medium | #small]
+
+module Size = {
   type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
+  external enum: size_enum => t = "%identity"
   external string: string => t = "%identity"
 }
 
-type size = [#medium | #small]
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
 
 module Value = {
   type t
@@ -60,24 +67,19 @@ module Value = {
 
 type variant = [#filled | #outlined | #standard]
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
-  ~component: Component.t=?,
-  ~focused: bool=?,
-  ~style: ReactDOM.Style.t=?,
   ~autoComplete: string=?,
   ~autoFocus: bool=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
+  ~color: Color.t=?,
   ~defaultValue: DefaultValue.t=?,
   ~disabled: bool=?,
   ~error: bool=?,
   ~\"FormHelperTextProps": {..}=?,
   ~fullWidth: bool=?,
   ~helperText: React.element=?,
-  ~hiddenLabel: bool=?,
   ~id: string=?,
   ~\"InputLabelProps": {..}=?,
   ~inputProps: {..}=?,
@@ -95,13 +97,14 @@ external make: (
   ~placeholder: string=?,
   ~required: bool=?,
   ~rows: Rows.t=?,
-  ~rowsMax: RowsMax.t=?,
   ~select: bool=?,
   ~\"SelectProps": {..}=?,
-  ~size: size=?,
+  ~size: Size.t=?,
+  ~sx: Sx.t=?,
   ~\"type": string=?,
   ~value: Value.t=?,
   ~variant: variant=?,
+  ~style: ReactDOM.Style.t=?,
   ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
   ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
   ~key: string=?,

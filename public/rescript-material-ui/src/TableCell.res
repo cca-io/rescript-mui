@@ -1,48 +1,14 @@
 type align = [#center | #inherit | #justify | #left | #right]
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "head": option<string>,
-    "body": option<string>,
-    "footer": option<string>,
-    "sizeSmall": option<string>,
-    "paddingCheckbox": option<string>,
-    "paddingNone": option<string>,
-    "alignLeft": option<string>,
-    "alignCenter": option<string>,
-    "alignRight": option<string>,
-    "alignJustify": option<string>,
-    "stickyHeader": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~head: string=?,
-    ~body: string=?,
-    ~footer: string=?,
-    ~sizeSmall: string=?,
-    ~paddingCheckbox: string=?,
-    ~paddingNone: string=?,
-    ~alignLeft: string=?,
-    ~alignCenter: string=?,
-    ~alignRight: string=?,
-    ~alignJustify: string=?,
-    ~stickyHeader: string=?,
-    unit,
-  ) => t = ""
-}
+type padding = [#checkbox | #none | #normal]
 
-module Component = {
+type size_enum = [#medium | #small]
+
+module Size = {
   type t
+  external enum: size_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
-
-type padding = [#normal | #checkbox | #none | #default]
-
-type size = [#medium | #small]
 
 module SortDirection: {
   type t
@@ -58,20 +24,40 @@ module SortDirection: {
   let \"false" = Any(false)
 }
 
-type variant = [#body | #footer | #head]
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
 
-@react.component @module("@material-ui/core")
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+type variant_enum = [#body | #footer | #head]
+
+module Variant = {
+  type t
+  external enum: variant_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~align: align=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~component: Component.t=?,
+  ~component: React.element=?,
   ~padding: padding=?,
   ~scope: string=?,
-  ~size: size=?,
+  ~size: Size.t=?,
   ~sortDirection: SortDirection.t=?,
-  ~variant: variant=?,
+  ~sx: Sx.t=?,
+  ~variant: Variant.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~colSpan: int=?,

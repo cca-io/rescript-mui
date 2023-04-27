@@ -1,31 +1,38 @@
-module Component = {
+type variant_enum = [#elevation | #outlined]
+
+module Variant = {
   type t
+  external enum: variant_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
 
-type variant = [#elevation | #outlined]
-
-module Classes = {
-  type t = {"root": option<string>, "message": option<string>, "action": option<string>}
-  @obj external make: (~root: string=?, ~message: string=?, ~action: string=?, unit) => t = ""
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~children: React.element=?,
-  ~component: Component.t=?,
-  ~elevation: Number.t=?,
+  ~component: React.element=?,
   ~square: bool=?,
-  ~variant: variant=?,
+  ~variant: Variant.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~action: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
   ~message: React.element=?,
   ~role: string=?,
+  ~sx: Sx.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "SnackbarContent"

@@ -1,37 +1,10 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "static": option<string>,
-    "indeterminate": option<string>,
-    "determinate": option<string>,
-    "colorPrimary": option<string>,
-    "colorSecondary": option<string>,
-    "svg": option<string>,
-    "circle": option<string>,
-    "circleStatic": option<string>,
-    "circleIndeterminate": option<string>,
-    "circleDeterminate": option<string>,
-    "circleDisableShrink": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~static: string=?,
-    ~indeterminate: string=?,
-    ~determinate: string=?,
-    ~colorPrimary: string=?,
-    ~colorSecondary: string=?,
-    ~svg: string=?,
-    ~circle: string=?,
-    ~circleStatic: string=?,
-    ~circleIndeterminate: string=?,
-    ~circleDeterminate: string=?,
-    ~circleDisableShrink: string=?,
-    unit,
-  ) => t = ""
-}
+type color_enum = [#inherit | #primary | #secondary | #error | #info | #success | #warning]
 
-type color = [#inherit | #primary | #secondary]
+module Color = {
+  type t
+  external enum: color_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
 
 module Size = {
   type t
@@ -40,16 +13,30 @@ module Size = {
   external string: string => t = "%identity"
 }
 
-type variant = [#determinate | #indeterminate | #static]
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
 
-@react.component @module("@material-ui/core")
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+type variant = [#determinate | #indeterminate]
+
+@react.component @module("@mui/material")
 external make: (
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
+  ~color: Color.t=?,
   ~disableShrink: bool=?,
   ~size: Size.t=?,
   ~style: ReactDOM.Style.t=?,
+  ~sx: Sx.t=?,
   ~thickness: Number.t=?,
   ~value: Number.t=?,
   ~variant: variant=?,

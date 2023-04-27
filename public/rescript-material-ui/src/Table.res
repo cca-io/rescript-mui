@@ -1,28 +1,36 @@
-module Classes = {
-  type t = {"root": option<string>, "stickyHeader": option<string>}
-  @obj external make: (~root: string=?, ~stickyHeader: string=?, unit) => t = ""
-}
+type padding = [#checkbox | #none | #normal]
 
-module Component = {
+type size_enum = [#medium | #small]
+
+module Size = {
   type t
+  external enum: size_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
 
-type padding = [#normal | #checkbox | #none | #default]
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
 
-type size = [#small | #medium]
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~component: Component.t=?,
+  ~component: React.element=?,
   ~padding: padding=?,
-  ~size: size=?,
+  ~size: Size.t=?,
   ~stickyHeader: bool=?,
+  ~sx: Sx.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

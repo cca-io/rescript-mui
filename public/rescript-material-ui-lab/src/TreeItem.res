@@ -1,53 +1,43 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "expanded": option<string>,
-    "selected": option<string>,
-    "group": option<string>,
-    "content": option<string>,
-    "iconContainer": option<string>,
-    "label": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~expanded: string=?,
-    ~selected: string=?,
-    ~group: string=?,
-    ~content: string=?,
-    ~iconContainer: string=?,
-    ~label: string=?,
-    unit,
-  ) => t = ""
-}
-
-module TransitionComponent = {
+module ContentComponent = {
   type t
   external string: string => t = "%identity"
-  external transitionComponent_func: Mui.Any.t => t = "%identity"
+  external contentComponent_func: Mui.Any.t => t = "%identity"
   external element: React.element => t = "%identity"
 }
 
-@react.component @module("@material-ui/lab")
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Mui.Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Mui.Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/lab")
 external make: (
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
   ~collapseIcon: React.element=?,
+  ~\"ContentComponent": ContentComponent.t=?,
+  ~\"ContentProps": {..}=?,
+  ~disabled: bool=?,
   ~endIcon: React.element=?,
   ~expandIcon: React.element=?,
   ~icon: React.element=?,
+  ~id: string=?,
   ~label: React.element=?,
   ~nodeId: string,
   ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onIconClick: Mui.Any.t=?,
-  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onLabelClick: Mui.Any.t=?,
   ~onMouseDown: ReactEvent.Mouse.t => unit=?,
-  ~\"TransitionComponent": TransitionComponent.t=?,
+  ~sx: Sx.t=?,
+  ~\"TransitionComponent": React.element=?,
   ~\"TransitionProps": {..}=?,
-  ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,

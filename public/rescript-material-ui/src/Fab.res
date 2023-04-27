@@ -1,8 +1,17 @@
-module TabIndex = {
+module Current = {
+  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
+  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
+}
+
+module TouchRippleRef_shape = {
+  type t = {"current": option<Current.t>}
+  @obj external make: (~current: Current.t=?, unit) => t = ""
+}
+
+module TouchRippleRef = {
   type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
+  external touchRippleRef_func: Any.t => t = "%identity"
+  external shape: TouchRippleRef_shape.t => t = "%identity"
 }
 
 type type_enum = [#button | #reset | #submit]
@@ -13,55 +22,62 @@ module Type = {
   external string: string => t = "%identity"
 }
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "label": option<string>,
-    "primary": option<string>,
-    "secondary": option<string>,
-    "extended": option<string>,
-    "focusVisible": option<string>,
-    "disabled": option<string>,
-    "colorInherit": option<string>,
-    "sizeSmall": option<string>,
-    "sizeMedium": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~label: string=?,
-    ~primary: string=?,
-    ~secondary: string=?,
-    ~extended: string=?,
-    ~focusVisible: string=?,
-    ~disabled: string=?,
-    ~colorInherit: string=?,
-    ~sizeSmall: string=?,
-    ~sizeMedium: string=?,
-    unit,
-  ) => t = ""
-}
+type color_enum = [
+  | #default
+  | #error
+  | #info
+  | #inherit
+  | #primary
+  | #secondary
+  | #success
+  | #warning
+]
 
-type color = [#default | #inherit | #primary | #secondary]
-
-module Component = {
+module Color = {
   type t
+  external enum: color_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
 
-type size = [#large | #medium | #small]
+type size_enum = [#small | #medium | #large]
 
-type variant = [#extended | #circular | #round]
+module Size = {
+  type t
+  external enum: size_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
 
-@react.component @module("@material-ui/core")
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+type variant_enum = [#circular | #extended]
+
+module Variant = {
+  type t
+  external enum: variant_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~centerRipple: bool=?,
   ~disableTouchRipple: bool=?,
   ~focusRipple: bool=?,
+  ~\"LinkComponent": React.element=?,
   ~onBlur: ReactEvent.Focus.t => unit=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,
+  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
   ~onDragLeave: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
   ~onFocusVisible: Any.t=?,
@@ -73,23 +89,24 @@ external make: (
   ~onTouchEnd: ReactEvent.Touch.t => unit=?,
   ~onTouchMove: ReactEvent.Touch.t => unit=?,
   ~onTouchStart: ReactEvent.Touch.t => unit=?,
-  ~tabIndex: TabIndex.t=?,
+  ~tabIndex: Number.t=?,
   ~\"TouchRippleProps": {..}=?,
+  ~touchRippleRef: TouchRippleRef.t=?,
   ~\"type": Type.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
-  ~component: Component.t=?,
+  ~color: Color.t=?,
+  ~component: React.element=?,
   ~disabled: bool=?,
   ~disableFocusRipple: bool=?,
   ~disableRipple: bool=?,
   ~focusVisibleClassName: string=?,
   ~href: string=?,
-  ~size: size=?,
-  ~variant: variant=?,
+  ~size: Size.t=?,
+  ~sx: Sx.t=?,
+  ~variant: Variant.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,
 ) => React.element = "Fab"

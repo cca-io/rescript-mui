@@ -1,13 +1,22 @@
-module Classes = {
-  type t = {"root": option<string>}
-  @obj external make: (~root: string=?, unit) => t = ""
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Mui.Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-@react.component @module("@material-ui/lab")
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Mui.Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/lab")
 external make: (
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
+  ~sx: Sx.t=?,
   ~value: string,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

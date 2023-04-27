@@ -5,11 +5,20 @@ module Component = {
   external element: React.element => t = "%identity"
 }
 
-module TabIndex = {
+module Current = {
+  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
+  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
+}
+
+module TouchRippleRef_shape = {
+  type t = {"current": option<Current.t>}
+  @obj external make: (~current: Current.t=?, unit) => t = ""
+}
+
+module TouchRippleRef = {
   type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
+  external touchRippleRef_func: Any.t => t = "%identity"
+  external shape: TouchRippleRef_shape.t => t = "%identity"
 }
 
 type type_enum = [#button | #reset | #submit]
@@ -20,55 +29,49 @@ module Type = {
   external string: string => t = "%identity"
 }
 
-module Edge: {
+type color_enum = [#default | #primary | #secondary | #error | #info | #success | #warning]
+
+module Color = {
   type t
-  let start: t
-  let end: t
-  let \"false": t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let start = Any("start")
-  let end = Any("end")
-  let \"false" = Any(false)
+  external enum: color_enum => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "checked": option<string>,
-    "disabled": option<string>,
-    "indeterminate": option<string>,
-    "colorPrimary": option<string>,
-    "colorSecondary": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~checked: string=?,
-    ~disabled: string=?,
-    ~indeterminate: string=?,
-    ~colorPrimary: string=?,
-    ~colorSecondary: string=?,
-    unit,
-  ) => t = ""
+type size_enum = [#medium | #small]
+
+module Size = {
+  type t
+  external enum: size_enum => t = "%identity"
+  external string: string => t = "%identity"
 }
 
-type color = [#default | #primary | #secondary]
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
 
-type size = [#medium | #small]
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
   ~centerRipple: bool=?,
+  ~children: React.element=?,
   ~component: Component.t=?,
   ~disableTouchRipple: bool=?,
   ~focusRipple: bool=?,
   ~focusVisibleClassName: string=?,
-  ~href: string=?,
+  ~href: Any.t=?,
+  ~\"LinkComponent": React.element=?,
   ~onBlur: ReactEvent.Focus.t => unit=?,
   ~onClick: ReactEvent.Mouse.t => unit=?,
+  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
   ~onDragLeave: ReactEvent.Mouse.t => unit=?,
   ~onFocus: ReactEvent.Focus.t => unit=?,
   ~onFocusVisible: Any.t=?,
@@ -80,18 +83,16 @@ external make: (
   ~onTouchEnd: ReactEvent.Touch.t => unit=?,
   ~onTouchMove: ReactEvent.Touch.t => unit=?,
   ~onTouchStart: ReactEvent.Touch.t => unit=?,
-  ~tabIndex: TabIndex.t=?,
+  ~tabIndex: Number.t=?,
   ~\"TouchRippleProps": {..}=?,
+  ~touchRippleRef: TouchRippleRef.t=?,
   ~\"type": Type.t=?,
   ~style: ReactDOM.Style.t=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~disableFocusRipple: bool=?,
-  ~edge: Edge.t=?,
   ~checked: bool=?,
   ~checkedIcon: React.element=?,
-  ~classes: Classes.t=?,
-  ~color: color=?,
+  ~className: string=?,
+  ~color: Color.t=?,
+  ~defaultChecked: bool=?,
   ~disabled: bool=?,
   ~disableRipple: bool=?,
   ~icon: React.element=?,
@@ -102,7 +103,8 @@ external make: (
   ~inputRef: ReactDOM.domRef=?,
   ~onChange: ReactEvent.Form.t => unit=?,
   ~required: bool=?,
-  ~size: size=?,
+  ~size: Size.t=?,
+  ~sx: Sx.t=?,
   ~value: Any.t=?,
   ~key: string=?,
   ~ref: ReactDOM.domRef=?,

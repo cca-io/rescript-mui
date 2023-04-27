@@ -1,22 +1,3 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "entered": option<string>,
-    "hidden": option<string>,
-    "wrapper": option<string>,
-    "wrapperInner": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~entered: string=?,
-    ~hidden: string=?,
-    ~wrapper: string=?,
-    ~wrapperInner: string=?,
-    unit,
-  ) => t = ""
-}
-
 module CollapsedSize = {
   type t
   external int: int => t = "%identity"
@@ -29,6 +10,33 @@ module Component = {
   external string: string => t = "%identity"
   external callback: (unit => React.element) => t = "%identity"
   external element: React.element => t = "%identity"
+}
+
+module Easing_shape = {
+  type t = {"enter": option<string>, "exit": option<string>}
+  @obj external make: (~enter: string=?, ~exit: string=?, unit) => t = ""
+}
+
+module Easing = {
+  type t
+  external shape: Easing_shape.t => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+type orientation = [#horizontal | #vertical]
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
 }
 
 type timeout_enum = [#auto]
@@ -46,15 +54,14 @@ module Timeout = {
   external shape: Timeout_shape.t => t = "%identity"
 }
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
+  ~addEndListener: Any.t=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~collapsedHeight: Number.t=?,
   ~collapsedSize: CollapsedSize.t=?,
   ~component: Component.t=?,
-  ~disableStrictModeCompat: bool=?,
+  ~easing: Easing.t=?,
   ~\"in": bool=?,
   ~onEnter: ReactEvent.Synthetic.t => unit=?,
   ~onEntered: ReactEvent.Synthetic.t => unit=?,
@@ -62,7 +69,9 @@ external make: (
   ~onExit: ReactEvent.Synthetic.t => unit=?,
   ~onExited: ReactEvent.Synthetic.t => unit=?,
   ~onExiting: ReactEvent.Synthetic.t => unit=?,
+  ~orientation: orientation=?,
   ~style: ReactDOM.Style.t=?,
+  ~sx: Sx.t=?,
   ~timeout: Timeout.t=?,
   ~id: string=?,
   ~mountOnEnter: bool=?,

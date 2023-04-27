@@ -1,7 +1,7 @@
 type useStyles<'a> = (. unit) => 'a
 
-@module("@material-ui/styles")
+@module("@mui/styles")
 external makeStyles: {..} => useStyles<'a> = "makeStyles"
 
-@module("@material-ui/styles")
+@module("@mui/styles")
 external makeStylesWithTheme: (Theme.t => {..}) => useStyles<'a> = "makeStyles"

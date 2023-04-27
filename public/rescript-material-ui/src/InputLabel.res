@@ -1,59 +1,46 @@
-module Component = {
+type color_enum = [#error | #info | #primary | #secondary | #success | #warning]
+
+module Color = {
   type t
+  external enum: color_enum => t = "%identity"
   external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
 }
-
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "focused": option<string>,
-    "disabled": option<string>,
-    "error": option<string>,
-    "required": option<string>,
-    "asterisk": option<string>,
-    "formControl": option<string>,
-    "marginDense": option<string>,
-    "shrink": option<string>,
-    "animated": option<string>,
-    "filled": option<string>,
-    "outlined": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~focused: string=?,
-    ~disabled: string=?,
-    ~error: string=?,
-    ~required: string=?,
-    ~asterisk: string=?,
-    ~formControl: string=?,
-    ~marginDense: string=?,
-    ~shrink: string=?,
-    ~animated: string=?,
-    ~filled: string=?,
-    ~outlined: string=?,
-    unit,
-  ) => t = ""
-}
-
-type color = [#primary | #secondary]
 
 type margin = [#dense]
 
+type size_enum = [#normal | #small]
+
+module Size = {
+  type t
+  external enum: size_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
 type variant = [#filled | #outlined | #standard]
 
-@react.component @module("@material-ui/core")
+@react.component @module("@mui/material")
 external make: (
-  ~component: Component.t=?,
+  ~component: React.element=?,
   ~filled: bool=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
+  ~color: Color.t=?,
   ~disableAnimation: bool=?,
   ~disabled: bool=?,
   ~error: bool=?,
@@ -61,6 +48,8 @@ external make: (
   ~margin: margin=?,
   ~required: bool=?,
   ~shrink: bool=?,
+  ~size: Size.t=?,
+  ~sx: Sx.t=?,
   ~variant: variant=?,
   ~htmlFor: string,
   ~key: string=?,

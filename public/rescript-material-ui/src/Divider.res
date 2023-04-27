@@ -1,49 +1,42 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "absolute": option<string>,
-    "inset": option<string>,
-    "light": option<string>,
-    "middle": option<string>,
-    "vertical": option<string>,
-    "flexItem": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~absolute: string=?,
-    ~inset: string=?,
-    ~light: string=?,
-    ~middle: string=?,
-    ~vertical: string=?,
-    ~flexItem: string=?,
-    unit,
-  ) => t = ""
-}
-
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
-}
-
 type orientation = [#horizontal | #vertical]
 
-type variant = [#fullWidth | #inset | #middle]
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
 
-@react.component @module("@material-ui/core")
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+type textAlign = [#center | #left | #right]
+
+type variant_enum = [#fullWidth | #inset | #middle]
+
+module Variant = {
+  type t
+  external enum: variant_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~absolute: bool=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~component: Component.t=?,
+  ~component: React.element=?,
   ~flexItem: bool=?,
   ~light: bool=?,
   ~orientation: orientation=?,
   ~role: string=?,
-  ~variant: variant=?,
+  ~sx: Sx.t=?,
+  ~textAlign: textAlign=?,
+  ~variant: Variant.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
   ~key: string=?,

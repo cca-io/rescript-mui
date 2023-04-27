@@ -1,116 +1,53 @@
-type align = [#inherit | #left | #center | #right | #justify]
+type align = [#center | #inherit | #justify | #left | #right]
 
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "body2": option<string>,
-    "body1": option<string>,
-    "caption": option<string>,
-    "button": option<string>,
-    "h1": option<string>,
-    "h2": option<string>,
-    "h3": option<string>,
-    "h4": option<string>,
-    "h5": option<string>,
-    "h6": option<string>,
-    "subtitle1": option<string>,
-    "subtitle2": option<string>,
-    "overline": option<string>,
-    "srOnly": option<string>,
-    "alignLeft": option<string>,
-    "alignCenter": option<string>,
-    "alignRight": option<string>,
-    "alignJustify": option<string>,
-    "noWrap": option<string>,
-    "gutterBottom": option<string>,
-    "paragraph": option<string>,
-    "colorInherit": option<string>,
-    "colorPrimary": option<string>,
-    "colorSecondary": option<string>,
-    "colorTextPrimary": option<string>,
-    "colorTextSecondary": option<string>,
-    "colorError": option<string>,
-    "displayInline": option<string>,
-    "displayBlock": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~body2: string=?,
-    ~body1: string=?,
-    ~caption: string=?,
-    ~button: string=?,
-    ~h1: string=?,
-    ~h2: string=?,
-    ~h3: string=?,
-    ~h4: string=?,
-    ~h5: string=?,
-    ~h6: string=?,
-    ~subtitle1: string=?,
-    ~subtitle2: string=?,
-    ~overline: string=?,
-    ~srOnly: string=?,
-    ~alignLeft: string=?,
-    ~alignCenter: string=?,
-    ~alignRight: string=?,
-    ~alignJustify: string=?,
-    ~noWrap: string=?,
-    ~gutterBottom: string=?,
-    ~paragraph: string=?,
-    ~colorInherit: string=?,
-    ~colorPrimary: string=?,
-    ~colorSecondary: string=?,
-    ~colorTextPrimary: string=?,
-    ~colorTextSecondary: string=?,
-    ~colorError: string=?,
-    ~displayInline: string=?,
-    ~displayBlock: string=?,
-    unit,
-  ) => t = ""
-}
-
-type color = [#initial | #inherit | #primary | #secondary | #textPrimary | #textSecondary | #error]
-
-module Component = {
+module Sx_arrayOf = {
   type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
 }
 
-type display = [#initial | #block | #inline]
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
 
-type variant = [
+type variant_enum = [
+  | #body1
+  | #body2
+  | #button
+  | #caption
   | #h1
   | #h2
   | #h3
   | #h4
   | #h5
   | #h6
+  | #inherit
+  | #overline
   | #subtitle1
   | #subtitle2
-  | #body1
-  | #body2
-  | #caption
-  | #button
-  | #overline
-  | #srOnly
-  | #inherit
 ]
 
-@react.component @module("@material-ui/core")
+module Variant = {
+  type t
+  external enum: variant_enum => t = "%identity"
+  external string: string => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~align: align=?,
   ~children: React.element=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
-  ~color: color=?,
-  ~component: Component.t=?,
-  ~display: display=?,
+  ~component: React.element=?,
   ~gutterBottom: bool=?,
   ~noWrap: bool=?,
   ~paragraph: bool=?,
-  ~variant: variant=?,
+  ~sx: Sx.t=?,
+  ~variant: Variant.t=?,
   ~variantMapping: {..}=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,

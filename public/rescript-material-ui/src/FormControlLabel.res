@@ -1,38 +1,44 @@
-module Classes = {
-  type t = {
-    "root": option<string>,
-    "labelPlacementStart": option<string>,
-    "labelPlacementTop": option<string>,
-    "labelPlacementBottom": option<string>,
-    "disabled": option<string>,
-    "label": option<string>,
-  }
-  @obj
-  external make: (
-    ~root: string=?,
-    ~labelPlacementStart: string=?,
-    ~labelPlacementTop: string=?,
-    ~labelPlacementBottom: string=?,
-    ~disabled: string=?,
-    ~label: string=?,
-    unit,
-  ) => t = ""
+module ComponentsProps = {
+  type t = {"typography": option<Any.t>}
+  @obj external make: (~typography: Any.t=?, unit) => t = ""
 }
 
 type labelPlacement = [#bottom | #end | #start | #top]
 
-@react.component @module("@material-ui/core")
+module SlotProps = {
+  type t = {"typography": option<Any.t>}
+  @obj external make: (~typography: Any.t=?, unit) => t = ""
+}
+
+module Sx_arrayOf = {
+  type t
+  external sx_arrayOf_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+  external bool: bool => t = "%identity"
+}
+
+module Sx = {
+  type t
+  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
+  external sx_func: Any.t => t = "%identity"
+  external obj: {..} => t = "%identity"
+}
+
+@react.component @module("@mui/material")
 external make: (
   ~checked: bool=?,
-  ~classes: Classes.t=?,
   ~className: string=?,
+  ~componentsProps: ComponentsProps.t=?,
   ~control: React.element,
   ~disabled: bool=?,
+  ~disableTypography: bool=?,
   ~inputRef: ReactDOM.domRef=?,
   ~label: React.element=?,
   ~labelPlacement: labelPlacement=?,
   ~name: string=?,
   ~onChange: ReactEvent.Form.t => unit=?,
+  ~slotProps: SlotProps.t=?,
+  ~sx: Sx.t=?,
   ~value: Any.t=?,
   ~id: string=?,
   ~style: ReactDOM.Style.t=?,
