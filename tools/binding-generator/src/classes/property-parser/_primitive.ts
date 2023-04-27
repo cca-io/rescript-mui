@@ -41,8 +41,8 @@ const factory = (propertyType: PropType$Primitive) => {
         case 'Node':
         case 'ReactNode':
         case 'element':
+        case 'elementType':
         case 'Element':
-        case 'element':
         case 'ComponentType<object>':
         case 'Element<any>':
           this._reasonType = 'React.element';

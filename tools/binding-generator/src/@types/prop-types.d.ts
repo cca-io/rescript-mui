@@ -17,6 +17,7 @@ interface PropType$Primitive {
     | 'array'
     | 'Element'
     | 'element'
+    | 'elementType'
     | 'Element<any>'
     | 'Function'
     | 'Node'

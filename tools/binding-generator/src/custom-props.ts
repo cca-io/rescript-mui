@@ -292,6 +292,15 @@ export default {
       required: false,
       description: '-',
     },
+    onRowsPerPageChange: {
+      type: {
+        name: 'custom',
+        reasonType: '{..} => unit',
+        jsType: '{..} => unit',
+      },
+      required: false,
+      description: '-',
+    },
     rowsPerPageOptions: {
       type: {
         name: 'arrayOf',
@@ -483,6 +492,35 @@ export default {
       description: '-',
     },
   },
+  TreeView: {
+    onNodeFocus: {
+      type: {
+        name: 'custom',
+        reasonType: '({..}, string) => unit',
+        jsType: '({..}, string) => unit',
+      },
+      required: false,
+      description: '-',
+    },
+    onNodeSelect: {
+      type: {
+        name: 'custom',
+        reasonType: '({..}, array<string>) => unit',
+        jsType: '({..}, array<string>) => unit',
+      },
+      required: false,
+      description: '-',
+    },
+    onNodeToggle: {
+      type: {
+        name: 'custom',
+        reasonType: '({..}, array<string>) => unit',
+        jsType: '({..}, array<string>) => unit',
+      },
+      required: false,
+      description: '-',
+    },
+  },
 
   // --------------------- Lab
 
@@ -490,6 +528,15 @@ export default {
     name: {
       type: {
         name: 'string',
+      },
+      required: false,
+      description: '-',
+    },
+    onChangeActive: {
+      type: {
+        name: 'custom',
+        reasonType: '({..}, int) => unit',
+        jsType: '({..}, int) => unit',
       },
       required: false,
       description: '-',
@@ -597,11 +644,29 @@ export default {
       required: false,
       description: '-',
     },
+    isOptionEqualToValue: {
+      type: {
+        name: 'custom',
+        reasonType: "('t, 't) => bool",
+        jsType: "('t, 't) => bool",
+      },
+      required: false,
+      description: '-',
+    },
     renderOption: {
       type: {
         name: 'custom',
         reasonType: "('t, {..}) => React.element",
         jsType: "('t, {..}) => React.element",
+      },
+      required: false,
+      description: '-',
+    },
+    renderGroup: {
+      type: {
+        name: 'custom',
+        reasonType: `{..} => React.element`,
+        jsType: `{..} => React.element`,
       },
       required: false,
       description: '-',
@@ -627,6 +692,15 @@ export default {
         name: 'custom',
         reasonType: "({..}, 't, string) => unit",
         jsType: "({..}, 't, string) => unit",
+      },
+      required: false,
+      description: '-',
+    },
+    onInputChange: {
+      type: {
+        name: 'custom',
+        reasonType: '({..}, string, string) => unit',
+        jsType: '({..}, string, string) => unit',
       },
       required: false,
       description: '-',

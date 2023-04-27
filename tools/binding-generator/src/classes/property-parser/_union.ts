@@ -37,7 +37,6 @@ const factory = (propertyType: PropType$Union) => {
             case '{..}':
               return { ...prev, obj: unionProp.reasonType };
             case 'React.element':
-            case 'React.element':
             case 'Element<any>':
             case 'element':
             case 'Node':

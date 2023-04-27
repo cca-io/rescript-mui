@@ -21,11 +21,11 @@ export const isPrimitive = (
     'ReactNode',
     'object',
     'element',
+    'elementType',
     'any',
     'array',
     'Array',
     'Element',
-    'element',
     'Element<any>',
     'ComponentType<object>',
   ].indexOf(prop.name) > -1;

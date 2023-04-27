@@ -22,8 +22,8 @@ const factory = (propertyType: PropType$Shape) => {
                 `;
                 })
                 .join(',')}
-            };
-            @bs.obj external make: (
+            }
+            @obj external make: (
               ${shapeArgs
                 .map((arg) => {
                   return `
@@ -32,7 +32,7 @@ const factory = (propertyType: PropType$Shape) => {
                   `;
                 })
                 .join(',')}
-            , unit) => t = "";
+            , unit) => t = ""
           };
       `;
 

@@ -83,7 +83,7 @@ class ObjectParser extends BaseParser {
                 `;
               })
               .join('\n')}
-        };
+        }
     `;
     }
 
@@ -98,7 +98,7 @@ type t = {
       })
       .join(',')}
 };
-@bs.obj external make: (
+@obj external make: (
     ${this.module.properties
       .map((property) => {
         const attributeName = generateAttributeName(property.name);
@@ -108,7 +108,7 @@ type t = {
             `;
       })
       .join(',')}
-, unit) => t = "";`;
+, unit) => t = ""`;
     return this.schema.entry === this.key
       ? content
       : `
