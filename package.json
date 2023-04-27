@@ -3,9 +3,6 @@
   "workspaces": [
     "examples",
     "public/rescript-material-ui",
-    "public/rescript-material-ui-lab",
-    "tools/json-schema-parser",
-    "tools/component-extractor",
-    "tools/binding-generator"
+    "public/rescript-material-ui-lab"
   ]
 }
