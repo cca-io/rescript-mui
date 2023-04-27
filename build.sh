@@ -23,11 +23,3 @@ popd
 pushd examples
 yarn build
 popd
-
-pushd public/rescript-material-ui-ppx
-esy
-popd
-
-pushd ppx-test
-yarn build
-popd

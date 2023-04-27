@@ -1,3 +1,0 @@
-(lang dune 1.0)
-
-(name "rescript_material_ui_ppx")
