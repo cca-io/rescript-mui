@@ -5,7 +5,9 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 
 # Progress
 
-## material-ui
+## MUI-Material
+
+### Components
 
 - [ ] Accordion
 - [ ] AccordionActions
@@ -13,7 +15,6 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 - [ ] AccordionSummary
 - [ ] Alert
 - [ ] AlertTitle
-- [ ] Any
 - [ ] AppBar
 - [ ] Autocomplete
 - [ ] Avatar
@@ -37,8 +38,7 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 - [ ] Chip
 - [ ] CircularProgress
 - [ ] Collapse
-- [ ] Colors
-- [ ] Core
+- [ ] Container
 - [ ] CssBaseline
 - [ ] Dialog
 - [ ] DialogActions
@@ -50,6 +50,7 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 - [ ] Fab
 - [ ] Fade
 - [ ] FilledInput
+- [ ] FormControl
 - [ ] FormControlLabel
 - [ ] FormGroup
 - [ ] FormHelperText
@@ -83,12 +84,12 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 - [ ] MobileStepper
 - [ ] Modal
 - [ ] NativeSelect
-- [ ] Number
 - [ ] OutlinedInput
 - [ ] Pagination
 - [ ] PaginationItem
 - [ ] Paper
 - [ ] Popover
+- [ ] Popper
 - [ ] Radio
 - [ ] RadioGroup
 - [ ] Rating
@@ -110,13 +111,11 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 - [ ] StepIcon
 - [ ] StepLabel
 - [ ] Stepper
-- [ ] Styles
 - [ ] StylesProvider
 - [ ] SvgIcon
 - [ ] SwipeableDrawer
 - [ ] Switch
 - [ ] Tab
-- [ ] TabScrollButton
 - [ ] Table
 - [ ] TableBody
 - [ ] TableCell
@@ -127,11 +126,8 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 - [ ] TableRow
 - [ ] TableSortLabel
 - [ ] Tabs
+- [ ] TabScrollButton
 - [ ] TextField
-- [ ] Theme
-- [ ] ThemeHelpers
-- [ ] ThemeOptions
-- [ ] ThemeProvider
 - [ ] ToggleButton
 - [ ] ToggleButtonGroup
 - [ ] Toolbar
@@ -139,13 +135,21 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 - [ ] Typography
 - [ ] Zoom
 
-## material-ui-lab
+### Theming
+
+- [ ] Theme
+- [ ] ThemeHelpers
+- [ ] ThemeOptions
+- [ ] ThemeProvider
+
+## MUI-LAB
 
 - [ ] LoadingButton
 - [ ] Masonry
 - [ ] TabContext
 - [ ] TabList
 - [ ] TabPanel
+- [ ] Timeline
 - [ ] TimelineConnector
 - [ ] TimelineContent
 - [ ] TimelineDot
