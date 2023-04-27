@@ -19,6 +19,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rescript build -with-deps",
+    "watch": "rescript build -with-deps -w",
     "clean": "rescript clean -with-deps"
   },
   "files": [

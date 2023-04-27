@@ -1,8 +1,8 @@
-type color_enum = [#primary | #secondary]
+type color = [#primary | #secondary]
 
 module Color = {
   type t
-  external enum: color_enum => t = "%identity"
+  external enum: color => t = "%identity"
   external string: string => t = "%identity"
 }
 
@@ -219,7 +219,7 @@ module Sx = {
   external obj: {..} => t = "%identity"
 }
 
-module Track: {
+module TrackPresentation: {
   type t
   let inverted: t
   let normal: t
@@ -272,7 +272,7 @@ external make: (
   ~step: Number.t=?,
   ~sx: Sx.t=?,
   ~tabIndex: Number.t=?,
-  ~track: Track.t=?,
+  ~track: TrackPresentation.t=?,
   ~value: Value.t=?,
   ~valueLabelDisplay: valueLabelDisplay=?,
   ~valueLabelFormat: ValueLabelFormat.t=?,

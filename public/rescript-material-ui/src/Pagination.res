@@ -1,14 +1,10 @@
-type color_enum = [#primary | #secondary | #standard]
+type color = [#primary | #secondary | #standard]
 
 module Color = {
   type t
-  external enum: color_enum => t = "%identity"
+  external enum: color => t = "%identity"
   external string: string => t = "%identity"
 }
-
-type color = [#primary | #secondary | #standard]
-
-type shape = [#round | #rounded]
 
 type size = [#large | #medium | #small]
 
@@ -16,11 +12,9 @@ type variant = [#outlined | #text]
 
 type shape = [#circular | #rounded]
 
-type size_enum = [#small | #medium | #large]
-
 module Size = {
   type t
-  external enum: size_enum => t = "%identity"
+  external enum: size => t = "%identity"
   external string: string => t = "%identity"
 }
 
