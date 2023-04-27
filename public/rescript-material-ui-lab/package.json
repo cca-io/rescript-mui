@@ -1,11 +1,12 @@
 {
   "name": "rescript-material-ui-lab",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "This library provides ReScript bindings for material-ui-lab.",
   "keywords": [
     "rescript",
     "bindings",
-    "material-ui"
+    "material-ui",
+    "mui"
   ],
   "homepage": "https://rescript-material-ui.cca.io/",
   "repository": "https://github.com/cca-io/rescript-material-ui",
@@ -16,7 +17,6 @@
     "Florian Hammerschmidt <fh@cca.io>"
   ],
   "license": "MIT",
-  "main": "./src/MaterialUi_Lab.re",
   "scripts": {
     "build": "rescript build -with-deps",
     "clean": "rescript clean -with-deps"
@@ -26,16 +26,16 @@
     "/bsconfig.json"
   ],
   "peerDependencies": {
-    "@material-ui/core": "4.12.3",
-    "@material-ui/lab": "^4.0.0-alpha.60",
-    "@rescript/react": "^0.10.3",
-    "rescript": "^9.1.2",
-    "rescript-material-ui": "^3.0.0"
+    "@mui/lab": "^5.0.0-alpha.128",
+    "@mui/material": "5.12.2",
+    "@rescript/react": "^0.11.0",
+    "rescript": "^10.1.0",
+    "rescript-material-ui": "^4.0.0"
   },
   "devDependencies": {
-    "@material-ui/core": "4.12.3",
-    "@material-ui/lab": "^4.0.0-alpha.60",
-    "@rescript/react": "^0.10.3",
-    "rescript": "^9.1.2"
+    "@mui/lab": "^5.0.0-alpha.128",
+    "@mui/material": "5.12.2",
+    "@rescript/react": "^0.11.0",
+    "rescript": "*"
   }
 }
