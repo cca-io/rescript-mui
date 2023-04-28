@@ -23,5 +23,9 @@
   "warnings": {
     "number": "-103"
   },
-  "suffix": ".bs.js"
+  "suffix": ".bs.js",
+  "jsx": {
+    "version": 4,
+    "mode": "automatic"
+  }
 }

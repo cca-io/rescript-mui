@@ -1979,15 +1979,10 @@ regenerator-runtime@^0.13.7:
   resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz"
   integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
 
-rescript@*:
-  version "10.1.4"
-  resolved "https://nexus.cca.io/repository/npm-group/rescript/-/rescript-10.1.4.tgz#0f37710d371f32a704f17b4e804f66ce3c79a305"
-  integrity sha512-FFKlS9AG/XrLepWsyw7B+A9DtQBPWEPDPDKghV831Y2KGbie+eeFBOS0xtRHp0xbt7S0N2Dm6hhX+kTZQ/3Ybg==
-
-rescript@^9.1.2:
-  version "9.1.2"
-  resolved "https://registry.npmjs.org/rescript/-/rescript-9.1.2.tgz"
-  integrity sha512-4wHvTDv3nyYnAPJHcg1RGG8z7u3HDiBf6RN3P/dITDv859Qo35aKOzJWQtfBzbAs0EKNafLqei3TnUqiAv6BwQ==
+rescript@^11.0.0-alpha.5:
+  version "11.0.0-alpha.5"
+  resolved "https://nexus.cca.io/repository/npm-group/rescript/-/rescript-11.0.0-alpha.5.tgz#b615a0f7b578d23c3440c9d6314a1ba2a995cdde"
+  integrity sha512-RNy7HGAMI+3n0Urm3aHGxFNOMNAFg/SY6h1tU1/1ULm5DKgUR9qoh5iniBbEyWu/fve4bVO1E6cZhGQL696k9A==
 
 resolve-from@^4.0.0:
   version "4.0.0"

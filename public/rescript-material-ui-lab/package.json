@@ -30,13 +30,13 @@
     "@mui/lab": "^5.0.0-alpha.128",
     "@mui/material": "5.12.2",
     "@rescript/react": "^0.11.0",
-    "rescript": "^10.1.0",
+    "rescript": "^11.0.0-alpha.5",
     "rescript-material-ui": "^4.0.0"
   },
   "devDependencies": {
     "@mui/lab": "^5.0.0-alpha.128",
     "@mui/material": "5.12.2",
     "@rescript/react": "^0.11.0",
-    "rescript": "*"
+    "rescript": "^11.0.0-alpha.5"
   }
 }
