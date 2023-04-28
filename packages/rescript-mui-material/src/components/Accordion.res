@@ -1,7 +1,30 @@
 type transitionProps
 
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
+  /** Styles applied to the root element unless `square={true}`. */
+  rounded?: string,
+  /** State class applied to the root element if `expanded={true}`. */
+  expanded?: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled?: string,
+  /** Styles applied to the root element unless `disableGutters={true}`. */
+  gutters?: string,
+  /** Styles applied to the region element, the container of the children. */
+  region?: string,
+}
+
 type props = {
   ...Paper.props,
+  /**
+   * The content of the component.
+   */
+  children: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
   /**
    * If `true`, expands the accordion by default.
    * @default false
@@ -29,8 +52,19 @@ type props = {
    * @param {boolean} expanded The `expanded` state of the accordion.
    */
   onChange?: (ReactEvent.Form.t, bool) => unit,
-  @as("TransitionComponent") transitionComponent?: React.component<transitionProps>,
-  @as("TransitionProps") transitionProps?: transitionProps,
+  /**
+   * The component used for the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Collapse
+   */
+  @as("TransitionComponent")
+  transitionComponent?: React.component<transitionProps>,
+  /**
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   */
+  @as("TransitionProps")
+  transitionProps?: transitionProps,
 }
 
 @module("@mui/material")

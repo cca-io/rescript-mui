@@ -3,13 +3,15 @@
 This library provides [ReScript](https://rescript-lang.org/) bindings for
 [MUI](https://mui.com/). From now on, bindings are hand-written and manually maintained.
 
+These bindings will only work with ReScript 11 and JSX mode version 4, as it enables us to utilize [untagged variants](https://rescript-lang.org/blog/improving-interop#untagged-variants), optional record fields, or record props spread. The latter is especially important, as we are finally able to inherit props from one component to another more easily.
+
 # Progress
 
 ## MUI-Material
 
 ### Components
 
-- [ ] Accordion
+- [x] Accordion
 - [ ] AccordionActions
 - [ ] AccordionDetails
 - [ ] AccordionSummary
@@ -87,7 +89,7 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 - [ ] OutlinedInput
 - [ ] Pagination
 - [ ] PaginationItem
-- [ ] Paper
+- [x] Paper
 - [ ] Popover
 - [ ] Popper
 - [ ] Radio
