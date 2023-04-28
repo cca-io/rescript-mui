@@ -2,7 +2,7 @@
   "private": true,
   "workspaces": [
     "examples",
-    "public/rescript-material-ui",
-    "public/rescript-material-ui-lab"
+    "packages/rescript-mui-material",
+    "packages/rescript-mui-lab"
   ]
 }

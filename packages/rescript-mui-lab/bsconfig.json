@@ -1,5 +1,5 @@
 {
-  "name": "rescript-material-ui-lab",
+  "name": "@rescript-mui/lab",
   "reason": {
     "react-jsx": 3
   },
@@ -9,7 +9,7 @@
     "module": "es6",
     "in-source": true
   },
-  "bs-dependencies": ["@rescript/react", "rescript-material-ui"],
+  "bs-dependencies": ["@rescript/react", "@rescript-mui/material"],
   "warnings": {
     "number": "-103"
   },

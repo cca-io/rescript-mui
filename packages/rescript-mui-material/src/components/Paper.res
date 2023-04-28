@@ -1,6 +1,5 @@
 type classes = {
   root?: string,
-  //etc
   elevation1?: string,
   elevation2?: string,
   elevation3?: string,
@@ -14,7 +13,13 @@ type variant =
 
 type props = {
   ...CommonProps.t,
+  /**
+   * The content of the component.
+   */
   children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes?: classes,
   component?: OverridableComponent.t<unknown>,
   elevation?: float,

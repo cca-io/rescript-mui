@@ -1,5 +1,5 @@
 {
-  "name": "rescript-material-ui",
+  "name": "@rescript-mui/material",
   "reason": {
     "react-jsx": 3
   },
