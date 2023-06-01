@@ -12,7 +12,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 ### Components
 
 - [x] Accordion
-- [ ] AccordionActions
+- [x] AccordionActions
 - [ ] AccordionDetails
 - [ ] AccordionSummary
 - [ ] Alert
@@ -25,7 +25,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] Badge
 - [ ] BottomNavigation
 - [ ] BottomNavigationAction
-- [ ] Box
+- [x] Box
 - [ ] Breadcrumbs
 - [ ] Button
 - [ ] ButtonBase
