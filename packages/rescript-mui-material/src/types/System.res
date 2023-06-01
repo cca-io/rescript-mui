@@ -1,4 +1,4 @@
-module BreakpointObj = {
+module Breakpoint = {
   @unboxed
   type breakpoint =
     | String(string)
@@ -12,11 +12,10 @@ module BreakpointObj = {
     md?: breakpoint,
     lg?: breakpoint,
     xl?: breakpoint,
-    mobile?: breakpoint,
-    tablet?: breakpoint,
-    laptop?: breakpoint,
-    desktop?: breakpoint,
   }
+
+  external fromObj: {..} => t = "%identity"
+  external toObj: t => {..} = "%identity"
 }
 
 module Value = {
@@ -70,7 +69,7 @@ module Value = {
     | @as(true) True
     | @as(false) False
     | Number(float)
-    | Breakpoint(BreakpointObj.t)
+    | Breakpoint(Breakpoint.t)
     | Array(array<t>)
 }
 
