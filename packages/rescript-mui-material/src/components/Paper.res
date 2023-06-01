@@ -40,16 +40,7 @@ type variant =
   | @as("outlined") Outlined
   | String(string)
 
-type props = {
-  ...CommonProps.t,
-  /**
-   * The content of the component.
-   */
-  children?: React.element,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: classes,
+type publicProps = {
   /**
     * Shadow depth, corresponds to `dp` in the spec.
     * It accepts values between 0 and 24 inclusive.
@@ -62,11 +53,28 @@ type props = {
   */
   square?: bool,
   /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
+  /**
     * The variant to use.
     * @default 'elevation'
   */
   variant?: variant,
   component?: OverridableComponent.t<unknown>,
+}
+
+type props = {
+  ...CommonProps.t,
+  /**
+   * The content of the component.
+   */
+  children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  ...publicProps,
 }
 
 @module("@mui/material")

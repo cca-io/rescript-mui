@@ -17,8 +17,8 @@
   "bs-dependencies": [
     "@rescript/react",
     "bs-css-emotion",
-    "rescript-material-ui",
-    "rescript-material-ui-lab"
+    "@rescript-mui/lab",
+    "@rescript-mui/material"
   ],
   "warnings": {
     "number": "-103"
@@ -27,5 +27,6 @@
   "jsx": {
     "version": 4,
     "mode": "automatic"
-  }
+  },
+  "uncurried": false
 }

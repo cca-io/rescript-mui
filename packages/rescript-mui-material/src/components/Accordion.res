@@ -16,7 +16,7 @@ type classes = {
 }
 
 type props = {
-  ...Paper.props,
+  ...Paper.publicProps,
   /**
    * The content of the component.
    */
