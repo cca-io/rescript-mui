@@ -4,3 +4,5 @@ type t = {
   style?: ReactDOM.Style.t,
   ref?: ReactDOM.domRef,
 }
+
+type clickableProps = {onClick?: ReactEvent.Synthetic.t => unit}

@@ -1,6 +1,5 @@
 open Mui
 
-external jsonTopSpacingFunc: (Js.Json.t, . int) => int = "%identity"
 let getSpacing = (theme: Theme.t, num) => theme.spacing(num)->string_of_int ++ "px"
 
 let useStyles = Styles.makeStylesWithTheme(theme =>
@@ -37,7 +36,7 @@ let getStepContent = (step: int) => {
 
 @react.component
 let make = () => {
-  let classes = useStyles(.)
+  let classes = useStyles()
   let (activeStep, setActiveStep) = React.useReducer((_, step) => step, 0)
   let steps = getSteps()
 
@@ -77,7 +76,7 @@ let make = () => {
     </Stepper>
     {activeStep === steps->Belt.Array.length
       ? <Paper square=true elevation={Number.int(0)} className={classes["resetContainer"]}>
-          <Typography> {j`All steps completed - you're finished`->React.string} </Typography>
+          <Typography> {`All steps completed - you're finished`->React.string} </Typography>
           <Button onClick=handleReset className={classes["button"]} color=#secondary>
             {"Reset"->React.string}
           </Button>

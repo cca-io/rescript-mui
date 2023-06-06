@@ -1,8 +1,5 @@
 {
   "name": "@rescript-mui/material",
-  "reason": {
-    "react-jsx": 3
-  },
   "namespace": "mui",
   "sources": [
     {
@@ -18,7 +15,6 @@
   "warnings": {
     "number": "-103"
   },
-  "suffix": ".bs.js",
   "jsx": {
     "version": 4,
     "mode": "automatic"

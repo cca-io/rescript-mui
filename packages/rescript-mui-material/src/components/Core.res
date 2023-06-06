@@ -41,7 +41,10 @@ module Breakpoint = {
     | #down(#int(x)) =>
       x->UNSAFE_INTERNAL.intToBreakpoint
     }
-    theme.breakpoints->bpGet->Any.unsafeGetValue->UNSAFE_INTERNAL.jsonToBreakpointFunc(bpValue)
+    let breakpointFunc =
+      theme.breakpoints->bpGet->Any.unsafeGetValue->UNSAFE_INTERNAL.jsonToBreakpointFunc
+
+    breakpointFunc(bpValue)
   }
 
   let get = (theme: theme, breakpoint: breakpointDirection) =>

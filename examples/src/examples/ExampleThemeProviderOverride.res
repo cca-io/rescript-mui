@@ -5,14 +5,13 @@ let theme = Mui.Theme.create({
   make(
     ~overrides=Overrides.make(
       ~\"MuiButton"=ButtonClassKey.make(
-        ~outlined=ReactDOM.Style.make(
-          ~fontSize="12px",
-          ~fontWeight="300",
-          ~color="gray",
-          (),
-        )->ReactDOM.Style.unsafeAddProp(
+        ~outlined={
+          fontSize: "12px",
+          fontWeight: "300",
+          color: "gray",
+        }->ReactDOM.Style.unsafeAddProp(
           "& svg",
-          ReactDOM.Style.make(~marginRight="15px", ~fontSize="16px", ())->styleToString,
+          {marginRight: "15px", fontSize: "16px"}->styleToString,
         ),
         (),
       ),
@@ -28,13 +27,12 @@ module SupervisedUserCircleIcon = {
 }
 
 @react.component
-let make = () => {
-  open Mui
+let make = () =>
   <div>
-    <ThemeProvider theme>
-      <Button color=#secondary variant=#outlined>
-        <SupervisedUserCircleIcon /> {"Overriden Outline Styles"->React.string}
-      </Button>
-    </ThemeProvider>
+    <Mui.ThemeProvider theme>
+      <Mui.Button color=#secondary variant=#outlined>
+        <SupervisedUserCircleIcon />
+        {"Overriden Outline Styles"->React.string}
+      </Mui.Button>
+    </Mui.ThemeProvider>
   </div>
-}

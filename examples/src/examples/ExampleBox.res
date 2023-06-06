@@ -2,7 +2,7 @@
 let make = () =>
   <Mui.Box
     component={Mui.OverridableComponent.string("span")}
-    style={ReactDOM.Style.make(~boxSizing="border-box", ())}
+    style={{boxSizing: "border-box"}}
     p={Breakpoint({sm: Number(2.), md: Number(5.)})}
     m={Array([Number(2.), Number(5.)])}
     borderTop={Number(1.)}

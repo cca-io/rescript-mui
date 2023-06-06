@@ -1,10 +1,12 @@
 {
   "name": "@rescript-mui/lab",
-  "reason": {
-    "react-jsx": 3
-  },
   "namespace": "mui-lab",
-  "sources": ["src"],
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
   "package-specs": {
     "module": "es6",
     "in-source": true
@@ -13,7 +15,6 @@
   "warnings": {
     "number": "-103"
   },
-  "suffix": ".bs.js",
   "jsx": {
     "version": 4,
     "mode": "automatic"

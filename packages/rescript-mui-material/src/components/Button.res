@@ -1,125 +1,191 @@
-module Current = {
-  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
-  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `variant="text"`. */
+  text: string,
+  /** Styles applied to the root element if `variant="text"` and `color="inherit"`. */
+  textInherit: string,
+  /** Styles applied to the root element if `variant="text"` and `color="primary"`. */
+  textPrimary: string,
+  /** Styles applied to the root element if `variant="text"` and `color="secondary"`. */
+  textSecondary: string,
+  /** Styles applied to the root element if `variant="text"` and `color="success"`. */
+  textSuccess: string,
+  /** Styles applied to the root element if `variant="text"` and `color="error"`. */
+  textError: string,
+  /** Styles applied to the root element if `variant="text"` and `color="info"`. */
+  textInfo: string,
+  /** Styles applied to the root element if `variant="text"` and `color="warning"`. */
+  textWarning: string,
+  /** Styles applied to the root element if `variant="outlined"`. */
+  outlined: string,
+  /** Styles applied to the root element if `variant="outlined"` and `color="inherit"`. */
+  outlinedInherit: string,
+  /** Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+  outlinedPrimary: string,
+  /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+  outlinedSecondary: string,
+  /** Styles applied to the root element if `variant="outlined"` and `color="success"`. */
+  outlinedSuccess: string,
+  /** Styles applied to the root element if `variant="outlined"` and `color="error"`. */
+  outlinedError: string,
+  /** Styles applied to the root element if `variant="outlined"` and `color="info"`. */
+  outlinedInfo: string,
+  /** Styles applied to the root element if `variant="outlined"` and `color="warning"`. */
+  outlinedWarning: string,
+  /** Styles applied to the root element if `variant="contained"`. */
+  contained: string,
+  /** Styles applied to the root element if `variant="contained"` and `color="inherit"`. */
+  containedInherit: string,
+  /** Styles applied to the root element if `variant="contained"` and `color="primary"`. */
+  containedPrimary: string,
+  /** Styles applied to the root element if `variant="contained"` and `color="secondary"`. */
+  containedSecondary: string,
+  /** Styles applied to the root element if `variant="contained"` and `color="success"`. */
+  containedSuccess: string,
+  /** Styles applied to the root element if `variant="contained"` and `color="info"`. */
+  containedInfo: string,
+  /** Styles applied to the root element if `variant="contained"` and `color="error"`. */
+  containedError: string,
+  /** Styles applied to the root element if `variant="contained"` and `color="warning"`. */
+  containedWarning: string,
+  /** Styles applied to the root element if `disableElevation={true}`. */
+  disableElevation: string,
+  /** State class applied to the ButtonBase root element if the button is keyboard focused. */
+  focusVisible: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string,
+  /** Styles applied to the root element if `color="inherit"`. */
+  colorInherit: string,
+  /** Styles applied to the root element if `size="small"` and `variant="text"`. */
+  textSizeSmall: string,
+  /** Styles applied to the root element if `size="medium"` and `variant="text"`. */
+  textSizeMedium: string,
+  /** Styles applied to the root element if `size="large"` and `variant="text"`. */
+  textSizeLarge: string,
+  /** Styles applied to the root element if `size="small"` and `variant="outlined"`. */
+  outlinedSizeSmall: string,
+  /** Styles applied to the root element if `size="medium"` and `variant="outlined"`. */
+  outlinedSizeMedium: string,
+  /** Styles applied to the root element if `size="large"` and `variant="outlined"`. */
+  outlinedSizeLarge: string,
+  /** Styles applied to the root element if `size="small"` and `variant="contained"`. */
+  containedSizeSmall: string,
+  /** Styles applied to the root element if `size="medium"` and `variant="contained"`. */
+  containedSizeMedium: string,
+  /** Styles applied to the root element if `size="large"` and `variant="contained"`. */
+  containedSizeLarge: string,
+  /** Styles applied to the root element if `size="small"`. */
+  sizeSmall: string,
+  /** Styles applied to the root element if `size="medium"`. */
+  sizeMedium: string,
+  /** Styles applied to the root element if `size="large"`. */
+  sizeLarge: string,
+  /** Styles applied to the root element if `fullWidth={true}`. */
+  fullWidth: string,
+  /** Styles applied to the startIcon element if supplied. */
+  startIcon: string,
+  /** Styles applied to the endIcon element if supplied. */
+  endIcon: string,
+  /** Styles applied to the icon element if supplied and `size="small"`. */
+  iconSizeSmall: string,
+  /** Styles applied to the icon element if supplied and `size="medium"`. */
+  iconSizeMedium: string,
+  /** Styles applied to the icon element if supplied and `size="large"`. */
+  iconSizeLarge: string,
 }
 
-module TouchRippleRef_shape = {
-  type t = {"current": option<Current.t>}
-  @obj external make: (~current: Current.t=?, unit) => t = ""
+@unboxed
+type color =
+  | @as("inherit") Inherit
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | @as("success") Success
+  | @as("error") Error
+  | @as("info") Info
+  | @as("warning") Warning
+  | String(string)
+
+@unboxed
+type size =
+  | @as("small") Small
+  | @as("medium") Medium
+  | @as("large") Large
+  | String(string)
+
+@unboxed
+type variant =
+  | @as("contained") Contained
+  | @as("outlined") Outlined
+  | @as("text") Text
+  | String(string)
+
+type props = {
+  ...ButtonBase.publicProps,
+  /**
+     * The content of the component.
+     */
+  children?: React.element,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+     * @default 'primary'
+     */
+  color?: color,
+  /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+  disabled?: bool,
+  /**
+     * If `true`, no elevation is used.
+     * @default false
+     */
+  disableElevation?: bool,
+  /**
+     * If `true`, the  keyboard focus ripple is disabled.
+     * @default false
+     */
+  disableFocusRipple?: bool,
+  /**
+     * Element placed after the children.
+     */
+  endIcon?: React.element,
+  /**
+     * If `true`, the button will take up the full width of its container.
+     * @default false
+     */
+  fullWidth?: bool,
+  /**
+     * The URL to link to when the button is clicked.
+     * If defined, an `a` element will be used as the root node.
+     */
+  href?: string,
+  /**
+     * The size of the component.
+     * `small` is equivalent to the dense button styling.
+     * @default 'medium'
+     */
+  size?: size,
+  /**
+     * Element placed before the children.
+     */
+  startIcon?: React.element,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
+  /**
+     * The variant to use.
+     * @default 'text'
+     */
+  variant?: variant,
 }
 
-module TouchRippleRef = {
-  type t
-  external touchRippleRef_func: Any.t => t = "%identity"
-  external shape: TouchRippleRef_shape.t => t = "%identity"
-}
-
-type color_enum = [#inherit | #primary | #secondary | #success | #error | #info | #warning]
-
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type size_enum = [#small | #medium | #large]
-
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type type_enum = [#button | #reset | #submit]
-
-module Type = {
-  type t
-  external enum: type_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type variant_enum = [#contained | #outlined | #text]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type rel = [
-  | #alternate
-  | #author
-  | #bookmark
-  | #"external"
-  | #help
-  | #license
-  | #next
-  | #nofollow
-  | #noreferrer
-  | #noopener
-  | #prev
-  | #search
-  | #tag
-]
-
-@react.component @module("@mui/material")
-external make: (
-  ~centerRipple: bool=?,
-  ~disableTouchRipple: bool=?,
-  ~focusRipple: bool=?,
-  ~\"LinkComponent": React.element=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
-  ~onDragLeave: ReactEvent.Mouse.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onFocusVisible: Any.t=?,
-  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~onMouseDown: ReactEvent.Mouse.t => unit=?,
-  ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
-  ~onMouseUp: ReactEvent.Mouse.t => unit=?,
-  ~onTouchEnd: ReactEvent.Touch.t => unit=?,
-  ~onTouchMove: ReactEvent.Touch.t => unit=?,
-  ~onTouchStart: ReactEvent.Touch.t => unit=?,
-  ~tabIndex: Number.t=?,
-  ~\"TouchRippleProps": {..}=?,
-  ~touchRippleRef: TouchRippleRef.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~color: Color.t=?,
-  ~component: React.element=?,
-  ~disabled: bool=?,
-  ~disableElevation: bool=?,
-  ~disableFocusRipple: bool=?,
-  ~disableRipple: bool=?,
-  ~endIcon: React.element=?,
-  ~focusVisibleClassName: string=?,
-  ~fullWidth: bool=?,
-  ~href: string=?,
-  ~size: Size.t=?,
-  ~startIcon: React.element=?,
-  ~sx: Sx.t=?,
-  ~\"type": Type.t=?,
-  ~variant: Variant.t=?,
-  ~target: string=?,
-  ~rel: rel=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Button"
+@module("@mui/material")
+external make: props => React.element = "Button"

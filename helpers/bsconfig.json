@@ -1,0 +1,10 @@
+{
+    "name": "helpers",
+    "namespace": false,
+    "sources": [
+      {
+        "dir": "src",
+        "subdirs": true
+      }
+    ]
+  }

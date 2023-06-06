@@ -7,37 +7,34 @@ open Mui
 
 let drawerWidth = 240
 
-let px_of_float = x => x->int_of_float->string_of_int ++ "px"
 let px_of_int = x => x->string_of_int ++ "px"
 
 let useStyles = Styles.makeStylesWithTheme(theme =>
   {
-    "wrapper": ReactDOM.Style.make(
-      ~position="fixed",
-      ~width="100vw",
-      ~height="100vh",
-      ~zIndex="999999",
-      ~left="0",
-      ~top="0",
-      ~background="#FFFFFF",
-      (),
-    ),
-    "root": ReactDOM.Style.make(~display="flex", ()),
-    "toolbar": ReactDOM.Style.make(~paddingRight="24px", ()),
+    "wrapper": {
+      JsxDom.position: "fixed",
+      width: "100vw",
+      height: "100vh",
+      zIndex: "999999",
+      left: "0",
+      top: "0",
+      background: "#FFFFFF",
+    },
+    "root": {display: "flex"},
+    "toolbar": {paddingRight: "24px"},
     // keep right padding when drawer closed
     "toolbarIcon": ReactDOM.Style.combine(
-      ReactDOM.Style.make(
-        ~display="flex",
-        ~alignItems="center",
-        ~justifyContent="flex-end",
-        ~padding="0 8px",
-        (),
-      ),
+      {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        padding: "0 8px",
+      },
       theme.mixins.toolbar,
     ),
-    "appBar": ReactDOM.Style.make(
-      ~zIndex=(theme.zIndex.drawer +. 1.0)->int_of_float->string_of_int,
-      ~transition=ThemeHelpers.transitionCreate(
+    "appBar": {
+      zIndex: (theme.zIndex.drawer +. 1.0)->Belt.Float.toString,
+      transition: ThemeHelpers.transitionCreate(
         ~theme,
         ~affectWidth=true,
         ~affectMargin=true,
@@ -45,12 +42,11 @@ let useStyles = Styles.makeStylesWithTheme(theme =>
         ~duration=theme.transitions.duration.leavingScreen,
         (),
       ),
-      (),
-    ),
-    "appBarShift": ReactDOM.Style.make(
-      ~marginLeft=drawerWidth->string_of_int ++ "px",
-      ~width=j`calc(100% - $(drawerWidth)px)`,
-      ~transition=ThemeHelpers.transitionCreate(
+    },
+    "appBarShift": {
+      marginLeft: drawerWidth->string_of_int ++ "px",
+      width: `calc(100% - $(drawerWidth)px)`,
+      transition: ThemeHelpers.transitionCreate(
         ~theme,
         ~affectWidth=true,
         ~affectMargin=true,
@@ -58,24 +54,22 @@ let useStyles = Styles.makeStylesWithTheme(theme =>
         ~duration=theme.transitions.duration.enteringScreen,
         (),
       ),
-      (),
-    ),
-    "menuButton": ReactDOM.Style.make(~marginLeft="12px", ~marginRight="36px", ()),
-    "menuButtonHidden": ReactDOM.Style.make(~display="none", ()),
-    "title": ReactDOM.Style.make(~flexGrow="1", ()),
-    "drawerPaper": ReactDOM.Style.make(
-      ~position="relative",
-      ~whiteSpace="nowrap",
-      ~width=j`$(drawerWidth)px`,
-      ~transition=ThemeHelpers.transitionCreate(
+    },
+    "menuButton": {marginLeft: "12px", marginRight: "36px"},
+    "menuButtonHidden": {display: "none"},
+    "title": {flexGrow: "1"},
+    "drawerPaper": {
+      position: "relative",
+      whiteSpace: "nowrap",
+      width: `$(drawerWidth)px`,
+      transition: ThemeHelpers.transitionCreate(
         ~theme,
         ~affectWidth=true,
         ~easing=theme.transitions.easing.sharp,
         ~duration=theme.transitions.duration.enteringScreen,
         (),
       ),
-      (),
-    ),
+    },
     "drawerPaperClose": ReactDOM.Style.make(
       ~overflowX="hidden",
       ~transition=ThemeHelpers.transitionCreate(
@@ -136,7 +130,7 @@ let make = (~sidebar, ~children) => {
   , {isOpen: true})
   let (show, setShow) = React.useReducer((_, v) => v, false)
 
-  let classes = useStyles(.)
+  let classes = useStyles()
 
   <div>
     {show
@@ -145,18 +139,18 @@ let make = (~sidebar, ~children) => {
             <CssBaseline />
             <AppBar
               position=#absolute
-              className={[
-                classes["appBar"],
-                state.isOpen ? classes["appBarShift"] : "",
-              ] |> Js.Array.joinWith(" ")}>
+              className={Js.Array.joinWith(
+                " ",
+                [classes["appBar"], state.isOpen ? classes["appBarShift"] : ""],
+              )}>
               <Toolbar disableGutters={!state.isOpen} className={classes["toolbar"]}>
                 <IconButton
                   color=#inherit
                   onClick={_event => setState(Open)}
-                  className={[
-                    classes["menuButton"],
-                    state.isOpen ? classes["menuButtonHidden"] : "",
-                  ] |> Js.Array.joinWith(" ")}>
+                  className={Js.Array.joinWith(
+                    " ",
+                    [classes["menuButton"], state.isOpen ? classes["menuButtonHidden"] : ""],
+                  )}>
                   <MenuIcon />
                 </IconButton>
                 <Typography
@@ -186,21 +180,24 @@ let make = (~sidebar, ~children) => {
             <Drawer
               variant=#permanent
               classes={Drawer.Classes.make(
-                ~paper=[
-                  classes["drawerPaper"],
-                  state.isOpen ? "" : classes["drawerPaperClose"],
-                ] |> Js.Array.joinWith(" "),
+                ~paper=Js.Array.joinWith(
+                  " ",
+                  [classes["drawerPaper"], state.isOpen ? "" : classes["drawerPaperClose"]],
+                ),
                 (),
               )}
               \"open"=state.isOpen>
               <div className={classes["toolbarIcon"]}>
-                <IconButton onClick={_event => setState(Close)}> <ChevronLeftIcon /> </IconButton>
+                <IconButton onClick={_event => setState(Close)}>
+                  <ChevronLeftIcon />
+                </IconButton>
               </div>
               <Divider />
               <div> sidebar </div>
             </Drawer>
             <main className={classes["content"]}>
-              <div className={classes["appBarSpacer"]} /> <div> children </div>
+              <div className={classes["appBarSpacer"]} />
+              <div> children </div>
             </main>
           </div>
         </div>

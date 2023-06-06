@@ -1,4 +1,4 @@
-type useStyles<'a> = (. unit) => 'a
+type useStyles<'a> = unit => 'a
 
 @module("@mui/styles")
 external makeStyles: {..} => useStyles<'a> = "makeStyles"

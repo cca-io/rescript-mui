@@ -1,0 +1,12 @@
+{
+    "name": "helpers",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Helper scripts for ReScript-MUI.",
+    "author": "Florian Hammerschmidt <fh@cca.io>",
+    "contributors": [
+      "Christoph Knittel <ck@cca.io>"
+    ],
+    "type": "module"
+  }
+  

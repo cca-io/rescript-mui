@@ -43,6 +43,11 @@ type t_transitions = {
   easing: t_easing,
 }
 
+type mixins = {
+  toolbar: string,
+  gutters: string,
+}
+
 type t_theme = {
   breakpoints: t_breakpoints,
   components: Any.t,
@@ -53,6 +58,7 @@ type t_theme = {
   transitions: t_transitions,
   unstable_sx: Any.t,
   unstable_sxConfig: Any.t,
+  mixins: mixins,
 }
 
 type t = t_theme

@@ -1,100 +1,135 @@
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string,
+  /** State class applied to the root element if keyboard focused. */
+  focusVisible: string,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type buttonBaseActions = {focusVisible: unit => unit}
+
+type startActionOptions = {
+  pulsate?: bool,
+  center?: bool,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
+type touchRippleActions = {
+  start: (ReactEvent.Synthetic.t, startActionOptions, unit => unit) => unit,
+  // pulsate: (event?: React.SyntheticEvent) => void;
+  // stop: (event?: React.SyntheticEvent, callback?: () => void) => void;
 }
 
-module Current = {
-  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
-  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
+type touchRippleClasses = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the internal `Ripple` components `ripple` class. */
+  ripple: string,
+  /** Styles applied to the internal `Ripple` components `rippleVisible` class. */
+  rippleVisible: string,
+  /** Styles applied to the internal `Ripple` components `ripplePulsate` class. */
+  ripplePulsate: string,
+  /** Styles applied to the internal `Ripple` components `child` class. */
+  child: string,
+  /** Styles applied to the internal `Ripple` components `childLeaving` class. */
+  childLeaving: string,
+  /** Styles applied to the internal `Ripple` components `childPulsate` class. */
+  childPulsate: string,
 }
 
-module TouchRippleRef_shape = {
-  type t = {"current": option<Current.t>}
-  @obj external make: (~current: Current.t=?, unit) => t = ""
+type touchRippleProps = {
+  center?: bool,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: touchRippleClasses,
 }
 
-module TouchRippleRef = {
-  type t
-  external touchRippleRef_func: Any.t => t = "%identity"
-  external shape: TouchRippleRef_shape.t => t = "%identity"
+type publicProps = {
+  ...CommonProps.t,
+  ...CommonProps.clickableProps,
+  /**
+     * A ref for imperative actions.
+     * It currently only supports `focusVisible()` action.
+     */
+  action?: React.ref<buttonBaseActions>,
+  /**
+     * If `true`, the ripples are centered.
+     * They won't start at the cursor interaction position.
+     * @default false
+     */
+  centerRipple?: bool,
+  /**
+     * If `true`, the ripple effect is disabled.
+     *
+     * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+     * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
+     * @default false
+     */
+  disableRipple?: bool,
+  /**
+     * If `true`, the touch ripple effect is disabled.
+     * @default false
+     */
+  disableTouchRipple?: bool,
+  /**
+     * If `true`, the base button will have a keyboard focus ripple.
+     * @default false
+     */
+  focusRipple?: bool,
+  /**
+     * This prop can help identify which element has keyboard focus.
+     * The class name will be applied when the element gains the focus through keyboard interaction.
+     * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+     * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
+     * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+     * if needed.
+     */
+  focusVisibleClassName?: string,
+  /**
+     * The component used to render a link when the `href` prop is provided.
+     * @default 'a'
+     */
+  \"LinkComponent"?: React.element,
+  /**
+     * Callback fired when the component is focused with a keyboard.
+     * We trigger a `onFocus` callback too.
+     */
+  onFocusVisible?: ReactEvent.Focus.t => unit,
+  /**
+     * @default 0
+     */
+  tabIndex?: int,
+  /**
+     * Props applied to the `TouchRipple` element.
+     */
+  \"TouchRippleProps"?: touchRippleProps,
+  /**
+     * A ref that points to the `TouchRipple` element.
+     */
+  touchRippleRef?: React.ref<touchRippleActions>,
 }
 
-type type_enum = [#button | #reset | #submit]
-
-module Type = {
-  type t
-  external enum: type_enum => t = "%identity"
-  external string: string => t = "%identity"
+type props = {
+  ...publicProps,
+  /**
+     * The content of the component.
+     */
+  children?: React.element,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+  disabled?: bool,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
 }
 
-type rel = [
-  | #alternate
-  | #author
-  | #bookmark
-  | #"external"
-  | #help
-  | #license
-  | #next
-  | #nofollow
-  | #noreferrer
-  | #noopener
-  | #prev
-  | #search
-  | #tag
-]
-
-@react.component @module("@mui/material")
-external make: (
-  ~centerRipple: bool=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: Component.t=?,
-  ~disabled: bool=?,
-  ~disableRipple: bool=?,
-  ~disableTouchRipple: bool=?,
-  ~focusRipple: bool=?,
-  ~focusVisibleClassName: string=?,
-  ~href: Any.t=?,
-  ~\"LinkComponent": React.element=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
-  ~onDragLeave: ReactEvent.Mouse.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onFocusVisible: Any.t=?,
-  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~onMouseDown: ReactEvent.Mouse.t => unit=?,
-  ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
-  ~onMouseUp: ReactEvent.Mouse.t => unit=?,
-  ~onTouchEnd: ReactEvent.Touch.t => unit=?,
-  ~onTouchMove: ReactEvent.Touch.t => unit=?,
-  ~onTouchStart: ReactEvent.Touch.t => unit=?,
-  ~sx: Sx.t=?,
-  ~tabIndex: Number.t=?,
-  ~\"TouchRippleProps": {..}=?,
-  ~touchRippleRef: TouchRippleRef.t=?,
-  ~\"type": Type.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~target: string=?,
-  ~rel: rel=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "ButtonBase"
+@module("@mui/material")
+external make: props => React.element = "ButtonBase"

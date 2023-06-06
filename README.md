@@ -27,8 +27,8 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] BottomNavigationAction
 - [x] Box
 - [ ] Breadcrumbs
-- [ ] Button
-- [ ] ButtonBase
+- [x] Button
+- [x] ButtonBase
 - [ ] ButtonGroup
 - [ ] Card
 - [ ] CardActionArea
