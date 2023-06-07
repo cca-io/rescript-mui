@@ -161,6 +161,43 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] TreeItem
 - [ ] TreeView
 
+## MUI-X Date Pickers
+
+- [ ] AdapterDateFns
+- [ ] AdapterDateFnsJalali
+- [ ] AdapterDayjs
+- [ ] AdapterLuxon
+- [ ] AdapterMoment
+- [ ] AdapterMomentHijri
+- [ ] AdapterMomentJalaali
+- [ ] DateCalendar
+- [ ] DateField
+- [ ] DatePicker
+- [ ] DateTimeField
+- [ ] DateTimePicker
+- [ ] DayCalendarSkeleton
+- [ ] DesktopDatePicker
+- [ ] DesktopDateTimePicker
+- [ ] DesktopTimePicker
+- [ ] DigitalClock
+- [ ] LocalizationProvider
+- [ ] MobileDatePicker
+- [ ] MobileDateTimePicker
+- [ ] MobileTimePicker
+- [ ] MonthCalendar
+- [ ] MultiSectionDigitalClock
+- [ ] PickersActionBar
+- [ ] PickersDay
+- [ ] PickersLayout
+- [ ] PickersShortcuts
+- [ ] StaticDatePicker
+- [ ] StaticDateTimePicker
+- [ ] StaticTimePicker
+- [ ] TimeClock
+- [ ] TimeField
+- [ ] TimePicker
+- [ ] YearCalendar
+
 # Documentation
 
 Check out our documentation site at https://rescript-material-ui.cca.io/.
