@@ -87,7 +87,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] Modal
 - [ ] NativeSelect
 - [ ] OutlinedInput
-- [ ] Pagination
+- [x] Pagination
 - [ ] PaginationItem
 - [x] Paper
 - [ ] Popover

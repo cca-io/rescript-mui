@@ -7,16 +7,18 @@
       "in-source": true
     }
   ],
-  "bs-dev-dependencies": [
+  "bs-dependencies": [
     "@rescript-mui/lab",
     "@rescript-mui/material",
     "@rescript/react",
-    "helpers"
+    "helpers",
+    "rescript-material-ui-examples"
   ],
   "pinned-dependencies": [
     "@rescript-mui/lab",
     "@rescript-mui/material",
-    "helpers"
+    "helpers",
+    "rescript-material-ui-examples"
   ],
   "suffix": ".bs.js",
   "jsx": {
