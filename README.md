@@ -29,7 +29,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] Breadcrumbs
 - [x] Button
 - [x] ButtonBase
-- [ ] ButtonGroup
+- [x] ButtonGroup
 - [ ] Card
 - [ ] CardActionArea
 - [ ] CardActions
