@@ -1,98 +1,98 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `variant="text"`. */
-  text: string,
+  text?: string,
   /** Styles applied to the root element if `variant="text"` and `color="inherit"`. */
-  textInherit: string,
+  textInherit?: string,
   /** Styles applied to the root element if `variant="text"` and `color="primary"`. */
-  textPrimary: string,
+  textPrimary?: string,
   /** Styles applied to the root element if `variant="text"` and `color="secondary"`. */
-  textSecondary: string,
+  textSecondary?: string,
   /** Styles applied to the root element if `variant="text"` and `color="success"`. */
-  textSuccess: string,
+  textSuccess?: string,
   /** Styles applied to the root element if `variant="text"` and `color="error"`. */
-  textError: string,
+  textError?: string,
   /** Styles applied to the root element if `variant="text"` and `color="info"`. */
-  textInfo: string,
+  textInfo?: string,
   /** Styles applied to the root element if `variant="text"` and `color="warning"`. */
-  textWarning: string,
+  textWarning?: string,
   /** Styles applied to the root element if `variant="outlined"`. */
-  outlined: string,
+  outlined?: string,
   /** Styles applied to the root element if `variant="outlined"` and `color="inherit"`. */
-  outlinedInherit: string,
+  outlinedInherit?: string,
   /** Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
-  outlinedPrimary: string,
+  outlinedPrimary?: string,
   /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
-  outlinedSecondary: string,
+  outlinedSecondary?: string,
   /** Styles applied to the root element if `variant="outlined"` and `color="success"`. */
-  outlinedSuccess: string,
+  outlinedSuccess?: string,
   /** Styles applied to the root element if `variant="outlined"` and `color="error"`. */
-  outlinedError: string,
+  outlinedError?: string,
   /** Styles applied to the root element if `variant="outlined"` and `color="info"`. */
-  outlinedInfo: string,
+  outlinedInfo?: string,
   /** Styles applied to the root element if `variant="outlined"` and `color="warning"`. */
-  outlinedWarning: string,
+  outlinedWarning?: string,
   /** Styles applied to the root element if `variant="contained"`. */
-  contained: string,
+  contained?: string,
   /** Styles applied to the root element if `variant="contained"` and `color="inherit"`. */
-  containedInherit: string,
+  containedInherit?: string,
   /** Styles applied to the root element if `variant="contained"` and `color="primary"`. */
-  containedPrimary: string,
+  containedPrimary?: string,
   /** Styles applied to the root element if `variant="contained"` and `color="secondary"`. */
-  containedSecondary: string,
+  containedSecondary?: string,
   /** Styles applied to the root element if `variant="contained"` and `color="success"`. */
-  containedSuccess: string,
+  containedSuccess?: string,
   /** Styles applied to the root element if `variant="contained"` and `color="info"`. */
-  containedInfo: string,
+  containedInfo?: string,
   /** Styles applied to the root element if `variant="contained"` and `color="error"`. */
-  containedError: string,
+  containedError?: string,
   /** Styles applied to the root element if `variant="contained"` and `color="warning"`. */
-  containedWarning: string,
+  containedWarning?: string,
   /** Styles applied to the root element if `disableElevation={true}`. */
-  disableElevation: string,
+  disableElevation?: string,
   /** State class applied to the ButtonBase root element if the button is keyboard focused. */
-  focusVisible: string,
+  focusVisible?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element if `color="inherit"`. */
-  colorInherit: string,
+  colorInherit?: string,
   /** Styles applied to the root element if `size="small"` and `variant="text"`. */
-  textSizeSmall: string,
+  textSizeSmall?: string,
   /** Styles applied to the root element if `size="medium"` and `variant="text"`. */
-  textSizeMedium: string,
+  textSizeMedium?: string,
   /** Styles applied to the root element if `size="large"` and `variant="text"`. */
-  textSizeLarge: string,
+  textSizeLarge?: string,
   /** Styles applied to the root element if `size="small"` and `variant="outlined"`. */
-  outlinedSizeSmall: string,
+  outlinedSizeSmall?: string,
   /** Styles applied to the root element if `size="medium"` and `variant="outlined"`. */
-  outlinedSizeMedium: string,
+  outlinedSizeMedium?: string,
   /** Styles applied to the root element if `size="large"` and `variant="outlined"`. */
-  outlinedSizeLarge: string,
+  outlinedSizeLarge?: string,
   /** Styles applied to the root element if `size="small"` and `variant="contained"`. */
-  containedSizeSmall: string,
+  containedSizeSmall?: string,
   /** Styles applied to the root element if `size="medium"` and `variant="contained"`. */
-  containedSizeMedium: string,
+  containedSizeMedium?: string,
   /** Styles applied to the root element if `size="large"` and `variant="contained"`. */
-  containedSizeLarge: string,
+  containedSizeLarge?: string,
   /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `size="medium"`. */
-  sizeMedium: string,
+  sizeMedium?: string,
   /** Styles applied to the root element if `size="large"`. */
-  sizeLarge: string,
+  sizeLarge?: string,
   /** Styles applied to the root element if `fullWidth={true}`. */
-  fullWidth: string,
+  fullWidth?: string,
   /** Styles applied to the startIcon element if supplied. */
-  startIcon: string,
+  startIcon?: string,
   /** Styles applied to the endIcon element if supplied. */
-  endIcon: string,
+  endIcon?: string,
   /** Styles applied to the icon element if supplied and `size="small"`. */
-  iconSizeSmall: string,
+  iconSizeSmall?: string,
   /** Styles applied to the icon element if supplied and `size="medium"`. */
-  iconSizeMedium: string,
+  iconSizeMedium?: string,
   /** Styles applied to the icon element if supplied and `size="large"`. */
-  iconSizeLarge: string,
+  iconSizeLarge?: string,
 }
 
 @unboxed

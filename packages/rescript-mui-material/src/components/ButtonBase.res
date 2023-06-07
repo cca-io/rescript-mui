@@ -1,10 +1,10 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** State class applied to the root element if keyboard focused. */
-  focusVisible: string,
+  focusVisible?: string,
 }
 
 type buttonBaseActions = {focusVisible: unit => unit}
