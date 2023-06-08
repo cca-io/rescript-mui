@@ -94,7 +94,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] Popper
 - [ ] Radio
 - [ ] RadioGroup
-- [ ] Rating
+- [x] Rating
 - [ ] ScopedCssBaseline
 - [ ] Select
 - [ ] Skeleton
@@ -127,14 +127,14 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] TablePagination
 - [ ] TableRow
 - [ ] TableSortLabel
-- [ ] Tabs
+- [x] Tabs
 - [ ] TabScrollButton
 - [ ] TextField
 - [ ] ToggleButton
 - [ ] ToggleButtonGroup
 - [ ] Toolbar
 - [ ] Tooltip
-- [ ] Typography
+- [x] Typography
 - [ ] Zoom
 
 ### Theming

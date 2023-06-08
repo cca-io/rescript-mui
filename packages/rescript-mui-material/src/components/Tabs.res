@@ -37,9 +37,9 @@ type slots = {
   @as("EndScrollButtonIcon") endScrollButtonIcon?: React.element,
 }
 
-type slotProps = {
-  startScrollButtonIcon?: {..},
-  endScrollButtonIcon?: {..},
+type slotProps<'a> = {
+  startScrollButtonIcon?: 'a,
+  endScrollButtonIcon?: 'a,
 }
 
 @unboxed
@@ -58,9 +58,9 @@ type scrollButtons =
   | @as(true) True
   | @as(false) False
 
-type tabIndicatorProps = {..}
+type tabIndicatorProps<'a> = 'a
 
-type tabScrollButtonProps = {..}
+type tabScrollButtonProps<'a> = 'a
 
 type textColor =
   | @as("secondary") Secondary
@@ -73,6 +73,7 @@ type variant =
   | @as("fullWidth") FullWidth
 
 type props = {
+  ...CommonProps.t,
   /**
      * Callback fired when the component mounts.
      * This is useful when you want to trigger an action programmatically.
@@ -122,7 +123,7 @@ type props = {
      * You can override the existing props or add new ones.
      * @default {}
      */
-  slotProps?: slotProps,
+  slotProps?: slotProps<unknown>,
   /**
      * Determines the color of the indicator.
      * @default 'primary'
@@ -168,13 +169,13 @@ type props = {
      * @default  {}
      */
   @as("TabIndicatorProps")
-  tabIndicatorProps?: tabIndicatorProps,
+  tabIndicatorProps?: tabIndicatorProps<unknown>,
   /**
      * Props applied to the [`TabScrollButton`](/material-ui/api/tab-scroll-button/) element.
      * @default {}
      */
   @as("TabScrollButtonProps")
-  tabScrollButtonProps?: tabScrollButtonProps,
+  tabScrollButtonProps?: tabScrollButtonProps<unknown>,
   /**
      * Determines the color of the `Tab`.
      * @default 'primary'
