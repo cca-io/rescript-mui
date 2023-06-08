@@ -17,7 +17,77 @@ type t_breakpoints = {
   values: t_size,
 }
 
-type t_palette = {mode: string}
+type color = {
+  \"50": string,
+  \"100": string,
+  \"200": string,
+  \"300": string,
+  \"400": string,
+  \"500": string,
+  \"600": string,
+  \"700": string,
+  \"800": string,
+  \"900": string,
+  \"A100": string,
+  \"A200": string,
+  \"A400": string,
+  \"A700": string,
+}
+
+type colorWithVariants = {
+  ...color,
+  contrastText: string,
+  dark: string,
+  light: string,
+  main: string,
+}
+
+type t_typeAction = {
+  activatedOpacity: float,
+  active: string,
+  disabled: string,
+  disabledBackground: string,
+  disabledOpacity: float,
+  focus: string,
+  focusOpacity: float,
+  hover: string,
+  hoverOpacity: float,
+  selected: string,
+  selectedOpacity: float,
+}
+
+type t_typeBackground = {default: string, paper: string}
+
+type t_commonColors = {black: string, white: string}
+
+type t_typeText = {
+  disabled: string,
+  hint: string,
+  primary: string,
+  secondary: string,
+}
+
+type t_tonalOffset = {dark: float, light: float}
+
+type t_palette = {
+  mode: string,
+  action: t_typeAction,
+  background: t_typeBackground,
+  common: t_commonColors,
+  contrastThreshold: float,
+  divider: string,
+  error: colorWithVariants,
+  getContrastText: Any.t,
+  grey: color,
+  info: colorWithVariants,
+  primary: colorWithVariants,
+  secondary: colorWithVariants,
+  success: colorWithVariants,
+  text: t_typeText,
+  tonalOffset: t_tonalOffset,
+  \"type": string,
+  warning: colorWithVariants,
+}
 
 type t_shape = {borderRadius: float}
 

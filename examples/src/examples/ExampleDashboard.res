@@ -12,7 +12,7 @@ let px_of_int = x => x->string_of_int ++ "px"
 let useStyles = Styles.makeStylesWithTheme(theme =>
   {
     "wrapper": {
-      position: "fixed",
+      ReactDOM.Style.position: "fixed",
       width: "100vw",
       height: "100vh",
       zIndex: "999999",
@@ -201,7 +201,7 @@ let make = (~sidebar, ~children) => {
             </main>
           </div>
         </div>
-      : <Mui.Button variant=#outlined color=#primary onClick={_ => setShow(true)}>
+      : <Mui.Button variant=Outlined color=Primary onClick={_ => setShow(true)}>
           {"Open Dashboard"->React.string}
         </Mui.Button>}
   </div>

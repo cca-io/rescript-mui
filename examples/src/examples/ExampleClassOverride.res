@@ -1,6 +1,6 @@
 let useStyles = Mui.Styles.makeStyles({
-  "fontSize": {fontSize: "30px"},
-  "bgColor": {backgroundColor: Mui.Colors.red["300"]},
+  "fontSize": {JsxDOMStyle.fontSize: "30px"},
+  "bgColor": {JsxDOMStyle.backgroundColor: Mui.Colors.red["300"]},
 })
 
 @react.component

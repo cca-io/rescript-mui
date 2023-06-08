@@ -2,18 +2,17 @@ open Mui
 
 let useStyles = Styles.makeStylesWithTheme(theme =>
   {
-    "alignRight": ReactDOM.Style.make(~width="100%", ~textAlign="right", ()),
-    "background": ReactDOM.Style.make(
-      ~color=theme.palette.common.white,
-      ~backgroundColor=theme.palette.primary.main,
-      (),
-    ),
+    "alignRight": {JsxDOMStyle.width: "100%", textAlign: "right"},
+    "background": {
+      JsxDOMStyle.color: theme.palette.common.white,
+      backgroundColor: theme.palette.primary.main,
+    },
   }
 )
 
 @react.component
 let make = () => {
-  let classes = useStyles(.)
+  let classes = useStyles()
 
   <div>
     <div className={classes["alignRight"]}>

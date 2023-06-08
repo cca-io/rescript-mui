@@ -1,65 +1,81 @@
-module Animation: {
-  type t
-  let pulse: t
-  let wave: t
-  let \"false": t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let pulse = Any("pulse")
-  let wave = Any("wave")
-  let \"false" = Any(false)
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `variant="text"`. */
+  text: string,
+  /** Styles applied to the root element if `variant="rectangular"`. */
+  rectangular: string,
+  /** Styles applied to the root element if `variant="rounded"`. */
+  rounded: string,
+  /** Styles applied to the root element if `variant="circular"`. */
+  circular: string,
+  /** Styles applied to the root element if `animation="pulse"`. */
+  pulse: string,
+  /** Styles applied to the root element if `animation="wave"`. */
+  wave: string,
+  /** Styles applied when the component is passed children. */
+  withChildren: string,
+  /** Styles applied when the component is passed children and no width. */
+  fitContent: string,
+  /** Styles applied when the component is passed children and no height. */
+  heightAuto: string,
 }
 
-module Height = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
+@unboxed
+type animation =
+  | @as("pulse") Pulse
+  | @as("wave") Wave
+  | @as(false) False
+
+@unboxed
+type size =
+  | Number(float)
+  | String(string)
+
+@unboxed
+type variant =
+  | @as("text") Text
+  | @as("rectangular") Rectangular
+  | @as("rounded") Rounded
+  | @as("circular") Circular
+
+type props = {
+  ...CommonProps.t,
+  /**
+     * The animation.
+     * If `false` the animation effect is disabled.
+     * @default 'pulse'
+     */
+  animation?: animation,
+  /**
+     * Optional children to infer width and height from.
+     */
+  children?: React.element,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * Height of the skeleton.
+     * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
+     */
+  height?: size,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
+  /**
+     * The type of content that will be rendered.
+     * @default 'text'
+     */
+  variant?: variant,
+  /**
+     * Width of the skeleton.
+     * Useful when the skeleton is inside an inline element with no width of its own.
+     */
+  width?: size,
+  component?: OverridableComponent.t<unknown>,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type variant_enum = [#circular | #rectangular | #rounded | #text]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Width = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~animation: Animation.t=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~height: Height.t=?,
-  ~style: ReactDOM.Style.t=?,
-  ~sx: Sx.t=?,
-  ~variant: Variant.t=?,
-  ~width: Width.t=?,
-  ~id: string=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Skeleton"
+@module("@mui/material")
+external make: props => React.element = "Skeleton"
