@@ -52,12 +52,18 @@ let make = () => {
 
   <Grid container=true spacing=#2>
     <Grid item=true sm=Grid.Sm.\"12" md=Grid.Md.\"6">
-      <Box mb={Box.Value.int(2)} mt={Box.Value.int(2)}>
+      <Box mb={Number(2.)} mt={Number(2.)}>
         <ToggleButtonGroup
           value={Any.fromString(alignment)} exclusive=true onChange=handleAlignment>
-          <ToggleButton value={Any.fromString("left")}> <FormatAlignLeftIcon /> </ToggleButton>
-          <ToggleButton value={Any.fromString("center")}> <FormatAlignCenterIcon /> </ToggleButton>
-          <ToggleButton value={Any.fromString("right")}> <FormatAlignRightIcon /> </ToggleButton>
+          <ToggleButton value={Any.fromString("left")}>
+            <FormatAlignLeftIcon />
+          </ToggleButton>
+          <ToggleButton value={Any.fromString("center")}>
+            <FormatAlignCenterIcon />
+          </ToggleButton>
+          <ToggleButton value={Any.fromString("right")}>
+            <FormatAlignRightIcon />
+          </ToggleButton>
           <ToggleButton value={Any.fromString("justify")} disabled=true>
             <FormatAlignJustifyIcon />
           </ToggleButton>
@@ -73,13 +79,18 @@ let make = () => {
     <Grid item=true sm=Grid.Sm.\"12" md=Grid.Md.\"6">
       <Box mb={Box.Value.int(2)} mt={Box.Value.int(2)}>
         <ToggleButtonGroup value={Any.make(formats)} onChange=handleFormats>
-          <ToggleButton value={Any.fromString("bold")}> <FormatBoldIcon /> </ToggleButton>
-          <ToggleButton value={Any.fromString("italic")}> <FormatItalicIcon /> </ToggleButton>
+          <ToggleButton value={Any.fromString("bold")}>
+            <FormatBoldIcon />
+          </ToggleButton>
+          <ToggleButton value={Any.fromString("italic")}>
+            <FormatItalicIcon />
+          </ToggleButton>
           <ToggleButton value={Any.fromString("underlined")}>
             <FormatUnderlinedIcon />
           </ToggleButton>
           <ToggleButton value={Any.fromString("color")} disabled=true>
-            <FormatColorFillIcon /> <ArrowDropDownIcon />
+            <FormatColorFillIcon />
+            <ArrowDropDownIcon />
           </ToggleButton>
         </ToggleButtonGroup>
       </Box>

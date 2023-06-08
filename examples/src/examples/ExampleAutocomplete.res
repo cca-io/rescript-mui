@@ -110,7 +110,7 @@ let top100Films = [
 
 @react.component
 let make = () => {
-  <MuiLab.Autocomplete
+  <Mui.Autocomplete
     id="combo-box-demo"
     options={top100Films->Belt.Array.map(v => v->Mui.Any.make)}
     getOptionLabel={option => option.title}

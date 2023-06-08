@@ -13,11 +13,7 @@ module ChevronRightIcon = {
 
 @react.component
 let make = () => {
-  <Box
-    height={Box.Value.string("240px")}
-    flexGrow={Box.Value.int(1)}
-    maxWidth={Box.Value.string("400px")}
-    clone=true>
+  <Box height={String("240px")} flexGrow={Number(1.)} maxWidth={String("400px")}>
     <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
       <TreeItem nodeId="1" label={"Applications"->React.string}>
         <TreeItem nodeId="2" label={"Calendar"->React.string} />

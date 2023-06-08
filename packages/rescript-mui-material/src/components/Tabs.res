@@ -1,69 +1,213 @@
-type indicatorColor_enum = [#primary | #secondary]
-
-module IndicatorColor = {
-  type t
-  external enum: indicatorColor_enum => t = "%identity"
-  external string: string => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
+  /** Styles applied to the root element if `orientation="vertical"`. */
+  vertical?: string,
+  /** Styles applied to the flex container element. */
+  flexContainer?: string,
+  /** Styles applied to the flex container element if `orientation="vertical"`. */
+  flexContainerVertical?: string,
+  /** Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
+  centered?: string,
+  /** Styles applied to the tablist element. */
+  scroller?: string,
+  /** Styles applied to the tablist element if `!variant="scrollable"`. */
+  fixed?: string,
+  /** Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`. */
+  scrollableX?: string,
+  /** Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`. */
+  scrollableY?: string,
+  /** Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`. */
+  hideScrollbar?: string,
+  /** Styles applied to the ScrollButtonComponent component. */
+  scrollButtons?: string,
+  /** Styles applied to the ScrollButtonComponent component if `allowScrollButtonsMobile={true}`. */
+  scrollButtonsHideMobile?: string,
+  /** Styles applied to the TabIndicator component. */
+  indicator?: string,
 }
 
-type orientation = [#horizontal | #vertical]
-
-module ScrollButtons: {
-  type t
-  let auto: t
-  let \"false": t
-  let \"true": t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let auto = Any("auto")
-  let \"false" = Any(false)
-  let \"true" = Any(true)
+type tabsActions = {
+  updateIndicator: unit => unit,
+  updateScrollButtons: unit => unit,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type slots = {
+  @as("StartScrollButtonIcon") startScrollButtonIcon?: React.element,
+  @as("EndScrollButtonIcon") endScrollButtonIcon?: React.element,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
+type slotProps = {
+  startScrollButtonIcon?: {..},
+  endScrollButtonIcon?: {..},
 }
 
-type textColor = [#inherit | #primary | #secondary]
+@unboxed
+type indicatorColor =
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | String(string)
 
-type variant = [#fullWidth | #scrollable | #standard]
+type orientation =
+  | @as("vertical") Vertical
+  | @as("horizontal") Horizontal
 
-@react.component @module("@mui/material")
-external make: (
-  ~allowScrollButtonsMobile: bool=?,
-  ~\"aria-label": string=?,
-  ~\"aria-labelledby": string=?,
-  ~centered: bool=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~indicatorColor: IndicatorColor.t=?,
-  ~onChange: (ReactEvent.Form.t, Any.t) => unit=?,
-  ~orientation: orientation=?,
-  ~\"ScrollButtonComponent": React.element=?,
-  ~scrollButtons: ScrollButtons.t=?,
-  ~selectionFollowsFocus: bool=?,
-  ~sx: Sx.t=?,
-  ~\"TabIndicatorProps": {..}=?,
-  ~\"TabScrollButtonProps": {..}=?,
-  ~textColor: textColor=?,
-  ~value: Any.t=?,
-  ~variant: variant=?,
-  ~visibleScrollbar: bool=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Tabs"
+@unboxed
+type scrollButtons =
+  | @as("auto") Auto
+  | @as(true) True
+  | @as(false) False
+
+type tabIndicatorProps = {..}
+
+type tabScrollButtonProps = {..}
+
+type textColor =
+  | @as("secondary") Secondary
+  | @as("primary") Primary
+  | @as("inherit") Inherit
+
+type variant =
+  | @as("standard") Standard
+  | @as("scrollable") Scrollable
+  | @as("fullWidth") FullWidth
+
+type props = {
+  /**
+     * Callback fired when the component mounts.
+     * This is useful when you want to trigger an action programmatically.
+     * It supports two actions: `updateIndicator()` and `updateScrollButtons()`
+     *
+     * @param {object} actions This object contains all possible actions
+     * that can be triggered programmatically.
+     */
+  action?: React.ref<tabsActions>,
+  /**
+     * If `true`, the scroll buttons aren't forced hidden on mobile.
+     * By default the scroll buttons are hidden on mobile and takes precedence over `scrollButtons`.
+     * @default false
+     */
+  allowScrollButtonsMobile?: bool,
+  /**
+     * The label for the Tabs as a string.
+     */
+  @as("aria-label")
+  ariaLabel?: string,
+  /**
+     * An id or list of ids separated by a space that label the Tabs.
+     */
+  @as("aria-labelledby")
+  ariaLabelledby?: string,
+  /**
+     * If `true`, the tabs are centered.
+     * This prop is intended for large views.
+     * @default false
+     */
+  centered?: bool,
+  /**
+     * The content of the component.
+     */
+  children?: React.element,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * The components used for each slot inside.
+     * @default {}
+     */
+  slots?: slots,
+  /**
+     * The extra props for the slot components.
+     * You can override the existing props or add new ones.
+     * @default {}
+     */
+  slotProps?: slotProps,
+  /**
+     * Determines the color of the indicator.
+     * @default 'primary'
+     */
+  indicatorColor?: indicatorColor,
+  /**
+     * Callback fired when the value changes.
+     *
+     * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
+     * @param {any} value We default to the index of the child (number)
+     */
+  onChange?: (ReactEvent.Synthetic.t, Any.t) => unit,
+  /**
+     * The component orientation (layout flow direction).
+     * @default 'horizontal'
+     */
+  orientation?: orientation,
+  /**
+     * The component used to render the scroll buttons.
+     * @default TabScrollButton
+     */
+  @as("ScrollButtonComponent")
+  scrollButtonComponent?: React.element,
+  /**
+     * Determine behavior of scroll buttons when tabs are set to scroll:
+     *
+     * - `auto` will only present them when not all the items are visible.
+     * - `true` will always present them.
+     * - `false` will never present them.
+     *
+     * By default the scroll buttons are hidden on mobile.
+     * This behavior can be disabled with `allowScrollButtonsMobile`.
+     * @default 'auto'
+     */
+  scrollButtons?: scrollButtons,
+  /**
+     * If `true` the selected tab changes on focus. Otherwise it only
+     * changes on activation.
+     */
+  selectionFollowsFocus?: bool,
+  /**
+     * Props applied to the tab indicator element.
+     * @default  {}
+     */
+  @as("TabIndicatorProps")
+  tabIndicatorProps?: tabIndicatorProps,
+  /**
+     * Props applied to the [`TabScrollButton`](/material-ui/api/tab-scroll-button/) element.
+     * @default {}
+     */
+  @as("TabScrollButtonProps")
+  tabScrollButtonProps?: tabScrollButtonProps,
+  /**
+     * Determines the color of the `Tab`.
+     * @default 'primary'
+     */
+  textColor?: textColor,
+  /**
+     * The value of the currently selected `Tab`.
+     * If you don't want any selected `Tab`, you can set this prop to `false`.
+     */
+  value?: Any.t,
+  /**
+     *  Determines additional display behavior of the tabs:
+     *
+     *  - `scrollable` will invoke scrolling properties and allow for horizontally
+     *  scrolling (or swiping) of the tab bar.
+     *  -`fullWidth` will make the tabs grow to use all the available space,
+     *  which should be used for small views, like on mobile.
+     *  - `standard` will render the default state.
+     * @default 'standard'
+     */
+  variant?: variant,
+  /**
+     * If `true`, the scrollbar is visible. It can be useful when displaying
+     * a long vertical list of tabs.
+     * @default false
+     */
+  visibleScrollbar?: bool,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
+  component?: OverridableComponent.t<unknown>,
+}
+
+@module("@mui/material")
+external make: props => React.element = "Tabs"

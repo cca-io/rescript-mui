@@ -30,7 +30,7 @@ module SupervisedUserCircleIcon = {
 let make = () =>
   <div>
     <Mui.ThemeProvider theme>
-      <Mui.Button color=#secondary variant=#outlined>
+      <Mui.Button color=Secondary variant=Outlined>
         <SupervisedUserCircleIcon />
         {"Overriden Outline Styles"->React.string}
       </Mui.Button>

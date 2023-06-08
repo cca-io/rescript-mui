@@ -30,44 +30,64 @@ let rs = React.string
 @react.component
 let make = () => <>
   <div>
-    <Mui.Typography variant=#h6> {"Icon Types:"->rs} </Mui.Typography>
+    <Mui.Typography variant=H6> {"Icon Types:"->rs} </Mui.Typography>
     <Mui.Tooltip title={"Default"->rs} arrow=true placement=#top>
-      <span> <SupervisedUserCircle.Filled /> </span>
+      <span>
+        <SupervisedUserCircle.Filled />
+      </span>
     </Mui.Tooltip>
     <Mui.Tooltip title={"Outlined"->rs} arrow=true placement=#left>
-      <span> <SupervisedUserCircle.Outlined /> </span>
+      <span>
+        <SupervisedUserCircle.Outlined />
+      </span>
     </Mui.Tooltip>
     <Mui.Tooltip title={"Rounded"->rs} arrow=true placement=#"top-end">
-      <span> <SupervisedUserCircle.Rounded /> </span>
+      <span>
+        <SupervisedUserCircle.Rounded />
+      </span>
     </Mui.Tooltip>
     <Mui.Tooltip title={"TwoTone"->rs} arrow=true placement=#bottom>
-      <span> <SupervisedUserCircle.TwoTone /> </span>
+      <span>
+        <SupervisedUserCircle.TwoTone />
+      </span>
     </Mui.Tooltip>
     <Mui.Tooltip title={"Sharp"->rs} arrow=true placement=#right>
-      <span> <SupervisedUserCircle.Sharp /> </span>
+      <span>
+        <SupervisedUserCircle.Sharp />
+      </span>
     </Mui.Tooltip>
   </div>
   <hr />
   <div>
-    <Mui.Typography variant=#h6> {"Icon Colors:"->rs} </Mui.Typography>
+    <Mui.Typography variant=H6> {"Icon Colors:"->rs} </Mui.Typography>
     <Mui.Tooltip title={"Primary"->rs}>
-      <span> <SupervisedUserCircle.Filled color="primary" /> </span>
+      <span>
+        <SupervisedUserCircle.Filled color="primary" />
+      </span>
     </Mui.Tooltip>
     <Mui.Tooltip title={"Secondary"->rs}>
-      <span> <SupervisedUserCircle.Filled color="secondary" /> </span>
+      <span>
+        <SupervisedUserCircle.Filled color="secondary" />
+      </span>
     </Mui.Tooltip>
   </div>
   <hr />
   <div>
-    <Mui.Typography variant=#h6> {"Icon Sizes:"->rs} </Mui.Typography>
+    <Mui.Typography variant=H6> {"Icon Sizes:"->rs} </Mui.Typography>
     <Mui.Tooltip title={"Large"->rs}>
-      <span> <SupervisedUserCircle.Filled fontSize="large" /> </span>
+      <span>
+        <SupervisedUserCircle.Filled fontSize="large" />
+      </span>
     </Mui.Tooltip>
     <Mui.Tooltip title={"Default"->rs}>
-      <span> <SupervisedUserCircle.Filled fontSize="default" /> </span>
+      <span>
+        <SupervisedUserCircle.Filled fontSize="default" />
+      </span>
     </Mui.Tooltip>
     <Mui.Tooltip title={"Small"->rs}>
-      <span> <SupervisedUserCircle.Filled fontSize="small" /> </span>
+      <span>
+        <SupervisedUserCircle.Filled fontSize="small" />
+      </span>
     </Mui.Tooltip>
   </div>
 </>

@@ -12,7 +12,7 @@ let px_of_int = x => x->string_of_int ++ "px"
 let useStyles = Styles.makeStylesWithTheme(theme =>
   {
     "wrapper": {
-      JsxDom.position: "fixed",
+      position: "fixed",
       width: "100vw",
       height: "100vh",
       zIndex: "999999",

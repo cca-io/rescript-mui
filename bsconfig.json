@@ -7,10 +7,12 @@
       "in-source": true
     }
   ],
+  "bs-dev-dependencies": [
+    "@rescript/react"
+  ],
   "bs-dependencies": [
     "@rescript-mui/lab",
     "@rescript-mui/material",
-    "@rescript/react",
     "helpers",
     "rescript-material-ui-examples"
   ],

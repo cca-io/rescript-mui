@@ -10,7 +10,7 @@ let useStyles = Styles.makeStyles({
 
 @react.component
 let make = () => {
-  let classes = useStyles(.)
+  let classes = useStyles()
   let (html, css) = React.useMemo0(() => {
     let sheets = Mui.Core.ServerStyleSheets.make()
     let html = ReactDOMServer.renderToString(
@@ -21,7 +21,7 @@ let make = () => {
   })
 
   <div>
-    <Typography variant=#h5> {"ServerSide render of <ExampleBox />"->React.string} </Typography>
+    <Typography variant=H5> {"ServerSide render of <ExampleBox />"->React.string} </Typography>
     <TextField
       className={classes["code"]}
       rows={TextField.Rows.int(5)}

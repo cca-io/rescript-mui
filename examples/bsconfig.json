@@ -15,5 +15,9 @@
   ],
   "warnings": {
     "number": "-103"
+  },
+  "jsx": {
+    "mode": "automatic",
+    "version": 4
   }
 }

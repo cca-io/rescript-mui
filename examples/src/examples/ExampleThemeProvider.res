@@ -1,16 +1,15 @@
-let theme = Mui.Theme.create({
-  open Mui.ThemeOptions
-  make(~palette=PaletteOptions.make(~primary=Primary.make(~main="#8fe830", ()), ()), ())
-})
+let theme = Mui.Theme.create({Mui.ThemeOptions.palette: {primary: {main: "#8fe830"}}})
 
 @react.component
-let make = () => {
-  open Mui
+let make = () =>
   <div>
-    <Button color=#primary variant=#outlined> {"Default Primary Color"->React.string} </Button>
+    <Mui.Button color=Primary variant=Outlined>
+      {"Default Primary Color"->React.string}
+    </Mui.Button>
     {" "->React.string}
-    <ThemeProvider theme>
-      <Button color=#primary variant=#outlined> {"Themed Primary Color"->React.string} </Button>
-    </ThemeProvider>
+    <Mui.ThemeProvider theme>
+      <Mui.Button color=Primary variant=Outlined>
+        {"Themed Primary Color"->React.string}
+      </Mui.Button>
+    </Mui.ThemeProvider>
   </div>
-}
