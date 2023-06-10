@@ -98,7 +98,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] ScopedCssBaseline
 - [x] Select
 - [x] Skeleton
-- [ ] Slide
+- [x] Slide
 - [ ] Slider
 - [ ] Snackbar
 - [ ] SnackbarContent

@@ -21,9 +21,8 @@ let reducer = (state: state, action: action) =>
 let make = () => {
   let (state, dispatch) = React.useReducer(reducer, {anchorEl: None, popupMessage: ""})
 
-  open Mui
   <div>
-    <Popover
+    <Mui.Popover
       open_={Belt.Option.isSome(state.anchorEl)}
       onClose={(_evt, _) => dispatch(ClosePopup)}
       anchorEl=?{state.anchorEl->Belt.Option.map(el => el->ReactDOM.domElementToObj->Obj.magic)}>
@@ -36,17 +35,17 @@ let make = () => {
         )}>
         {React.string(state.popupMessage)}
       </div>
-    </Popover>
+    </Mui.Popover>
     <Mui.List>
       {messages
       ->Belt.Array.mapWithIndex((i, message) =>
-        <ListItem
+        <Mui.ListItem
           button=true
           key={string_of_int(i)}
           onClick={evt =>
             dispatch(OpenPopup((evt->ReactEvent.Mouse.target->toDomElement, message)))}>
-          <ListItemText> {React.string(message)} </ListItemText>
-        </ListItem>
+          <Mui.ListItemText> {React.string(message)} </Mui.ListItemText>
+        </Mui.ListItem>
       )
       ->React.array}
     </Mui.List>

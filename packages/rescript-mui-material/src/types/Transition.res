@@ -1,3 +1,5 @@
+// TODO
+// https://reactcommunity.org/react-transition-group/transition#Transition-props
 type props
 
 type durationObject = {
