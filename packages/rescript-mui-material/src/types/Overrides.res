@@ -14,6 +14,68 @@ type accordionActionsClassKey = {
   spacing?: ReactDOM.Style.t,
 }
 
+type autocompleteClassKey = {
+  root: ReactDOM.Style.t,
+  fullWidth: ReactDOM.Style.t,
+  expanded: ReactDOM.Style.t,
+  focused: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
+  tag: ReactDOM.Style.t,
+  tagSizeSmall: ReactDOM.Style.t,
+  tagSizeMedium: ReactDOM.Style.t,
+  hasPopupIcon: ReactDOM.Style.t,
+  hasClearIcon: ReactDOM.Style.t,
+  inputRoot: ReactDOM.Style.t,
+  input: ReactDOM.Style.t,
+  inputFocused: ReactDOM.Style.t,
+  endAdornment: ReactDOM.Style.t,
+  clearIndicator: ReactDOM.Style.t,
+  popupIndicator: ReactDOM.Style.t,
+  popupIndicatorOpen: ReactDOM.Style.t,
+  popper: ReactDOM.Style.t,
+  popperDisablePortal: ReactDOM.Style.t,
+  paper: ReactDOM.Style.t,
+  listbox: ReactDOM.Style.t,
+  loading: ReactDOM.Style.t,
+  noOptions: ReactDOM.Style.t,
+  option: ReactDOM.Style.t,
+  groupLabel: ReactDOM.Style.t,
+  groupUl: ReactDOM.Style.t,
+}
+
+type backdropClassKey = {
+  root: ReactDOM.Style.t,
+  invisible: ReactDOM.Style.t,
+}
+
+type badgeClassKey = {
+  root: ReactDOM.Style.t,
+  badge: ReactDOM.Style.t,
+  dot: ReactDOM.Style.t,
+  standard: ReactDOM.Style.t,
+  anchorOriginTopRight: ReactDOM.Style.t,
+  anchorOriginBottomRight: ReactDOM.Style.t,
+  anchorOriginTopLeft: ReactDOM.Style.t,
+  anchorOriginBottomLeft: ReactDOM.Style.t,
+  invisible: ReactDOM.Style.t,
+  colorPrimary: string,
+  colorSecondary: string,
+  colorError: string,
+  colorInfo: string,
+  colorSuccess: string,
+  colorWarning: string,
+  anchorOriginTopRightRectangular: ReactDOM.Style.t,
+  anchorOriginBottomRightRectangular: ReactDOM.Style.t,
+  anchorOriginTopLeftRectangular: ReactDOM.Style.t,
+  anchorOriginBottomLeftRectangular: ReactDOM.Style.t,
+  anchorOriginTopRightCircular: ReactDOM.Style.t,
+  anchorOriginBottomRightCircular: ReactDOM.Style.t,
+  anchorOriginTopLeftCircular: ReactDOM.Style.t,
+  anchorOriginBottomLeftCircular: ReactDOM.Style.t,
+  overlapRectangular: ReactDOM.Style.t,
+  overlapCircular: ReactDOM.Style.t,
+}
+
 type buttonClassKey = {
   root?: ReactDOM.Style.t,
   text?: ReactDOM.Style.t,
@@ -70,6 +132,371 @@ type buttonBaseClassKey = {
   focusVisible?: ReactDOM.Style.t,
 }
 
+type buttonGroupClassKey = {
+  root?: ReactDOM.Style.t,
+  contained?: ReactDOM.Style.t,
+  outlined?: ReactDOM.Style.t,
+  text?: ReactDOM.Style.t,
+  disableElevation?: ReactDOM.Style.t,
+  disabled?: ReactDOM.Style.t,
+  fullWidth?: ReactDOM.Style.t,
+  vertical?: ReactDOM.Style.t,
+  grouped?: ReactDOM.Style.t,
+  groupedHorizontal?: ReactDOM.Style.t,
+  groupedVertical?: ReactDOM.Style.t,
+  groupedText?: ReactDOM.Style.t,
+  groupedTextHorizontal?: ReactDOM.Style.t,
+  groupedTextVertical?: ReactDOM.Style.t,
+  groupedTextPrimary?: ReactDOM.Style.t,
+  groupedTextSecondary?: ReactDOM.Style.t,
+  groupedOutlined?: ReactDOM.Style.t,
+  groupedOutlinedHorizontal?: ReactDOM.Style.t,
+  groupedOutlinedVertical?: ReactDOM.Style.t,
+  groupedOutlinedPrimary?: ReactDOM.Style.t,
+  groupedOutlinedSecondary?: ReactDOM.Style.t,
+  groupedContained?: ReactDOM.Style.t,
+  groupedContainedHorizontal?: ReactDOM.Style.t,
+  groupedContainedVertical?: ReactDOM.Style.t,
+  groupedContainedPrimary?: ReactDOM.Style.t,
+  groupedContainedSecondary?: ReactDOM.Style.t,
+}
+
+type chipClassKey = {
+  root: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  sizeMedium: ReactDOM.Style.t,
+  colorError: string,
+  colorInfo: string,
+  colorPrimary: string,
+  colorSecondary: string,
+  colorSuccess: string,
+  colorWarning: string,
+  disabled: ReactDOM.Style.t,
+  clickable: ReactDOM.Style.t,
+  clickableColorPrimary: ReactDOM.Style.t,
+  clickableColorSecondary: ReactDOM.Style.t,
+  deletable: ReactDOM.Style.t,
+  deletableColorPrimary: ReactDOM.Style.t,
+  deletableColorSecondary: ReactDOM.Style.t,
+  outlined: ReactDOM.Style.t,
+  filled: ReactDOM.Style.t,
+  outlinedPrimary: ReactDOM.Style.t,
+  outlinedSecondary: ReactDOM.Style.t,
+  filledPrimary: ReactDOM.Style.t,
+  filledSecondary: ReactDOM.Style.t,
+  avatar: ReactDOM.Style.t,
+  avatarSmall: ReactDOM.Style.t,
+  avatarMedium: ReactDOM.Style.t,
+  avatarColorPrimary: ReactDOM.Style.t,
+  avatarColorSecondary: ReactDOM.Style.t,
+  icon: ReactDOM.Style.t,
+  iconSmall: ReactDOM.Style.t,
+  iconMedium: ReactDOM.Style.t,
+  iconColorPrimary: ReactDOM.Style.t,
+  iconColorSecondary: ReactDOM.Style.t,
+  label: ReactDOM.Style.t,
+  labelSmall: ReactDOM.Style.t,
+  labelMedium: ReactDOM.Style.t,
+  deleteIcon: ReactDOM.Style.t,
+  deleteIconSmall: ReactDOM.Style.t,
+  deleteIconMedium: ReactDOM.Style.t,
+  deleteIconColorPrimary: ReactDOM.Style.t,
+  deleteIconColorSecondary: ReactDOM.Style.t,
+  deleteIconOutlinedColorPrimary: ReactDOM.Style.t,
+  deleteIconOutlinedColorSecondary: ReactDOM.Style.t,
+  deleteIconFilledColorPrimary: ReactDOM.Style.t,
+  deleteIconFilledColorSecondary: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
+}
+
+type drawerClassKey = {
+  root?: ReactDOM.Style.t,
+  docked?: ReactDOM.Style.t,
+  paper?: ReactDOM.Style.t,
+  paperAnchorLeft?: ReactDOM.Style.t,
+  paperAnchorRight?: ReactDOM.Style.t,
+  paperAnchorTop?: ReactDOM.Style.t,
+  paperAnchorBottom?: ReactDOM.Style.t,
+  paperAnchorDockedLeft?: ReactDOM.Style.t,
+  paperAnchorDockedTop?: ReactDOM.Style.t,
+  paperAnchorDockedRight?: ReactDOM.Style.t,
+  paperAnchorDockedBottom?: ReactDOM.Style.t,
+  modal?: ReactDOM.Style.t,
+}
+
+type fabClassKey = {
+  root: ReactDOM.Style.t,
+  primary: ReactDOM.Style.t,
+  secondary: ReactDOM.Style.t,
+  extended: ReactDOM.Style.t,
+  circular: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  colorInherit: string,
+  sizeSmall: ReactDOM.Style.t,
+  sizeMedium: ReactDOM.Style.t,
+}
+
+type filledInputClassKey = {
+  root: ReactDOM.Style.t,
+  colorSecondary: string,
+  underline: ReactDOM.Style.t,
+  focused: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  adornedStart: ReactDOM.Style.t,
+  adornedEnd: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  multiline: ReactDOM.Style.t,
+  hiddenLabel: ReactDOM.Style.t,
+  input: ReactDOM.Style.t,
+  inputSizeSmall: ReactDOM.Style.t,
+  inputHiddenLabel: ReactDOM.Style.t,
+  inputMultiline: ReactDOM.Style.t,
+  inputAdornedStart: ReactDOM.Style.t,
+  inputAdornedEnd: ReactDOM.Style.t,
+  inputTypeSearch: ReactDOM.Style.t,
+}
+
+type formControlClassKey = {
+  root: ReactDOM.Style.t,
+  marginNormal: ReactDOM.Style.t,
+  marginDense: ReactDOM.Style.t,
+  fullWidth: ReactDOM.Style.t,
+}
+
+type formControlLabelClassKey = {
+  root: ReactDOM.Style.t,
+  labelPlacementStart: ReactDOM.Style.t,
+  labelPlacementTop: ReactDOM.Style.t,
+  labelPlacementBottom: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  label: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+  required: ReactDOM.Style.t,
+  asterisk: ReactDOM.Style.t,
+}
+
+type formHelperTextClassKey = {
+  root: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  contained: ReactDOM.Style.t,
+  focused: ReactDOM.Style.t,
+  filled: ReactDOM.Style.t,
+  required: ReactDOM.Style.t,
+}
+
+type gridClassKey = {
+  root: ReactDOM.Style.t,
+  container: ReactDOM.Style.t,
+  item: ReactDOM.Style.t,
+  zeroMinWidth: ReactDOM.Style.t,
+  @as("direction-xs-column")
+  directionXsColumn: ReactDOM.Style.t,
+  @as("direction-xs-column-reverse")
+  directionXsColumnReverse: ReactDOM.Style.t,
+  @as("direction-xs-row-reverse")
+  directionXsRowReverse: ReactDOM.Style.t,
+  @as("wrap-xs-nowrap")
+  wrapXsNowrap: ReactDOM.Style.t,
+  @as("wrap-xs-wrap-reverse")
+  wrapXsWrapReverse: ReactDOM.Style.t,
+  @as("spacing-xs-1") spacingXs_1: ReactDOM.Style.t,
+  @as("spacing-xs-2") spacingXs_2: ReactDOM.Style.t,
+  @as("spacing-xs-3") spacingXs_3: ReactDOM.Style.t,
+  @as("spacing-xs-4") spacingXs_4: ReactDOM.Style.t,
+  @as("spacing-xs-5") spacingXs_5: ReactDOM.Style.t,
+  @as("spacing-xs-6") spacingXs_6: ReactDOM.Style.t,
+  @as("spacing-xs-7") spacingXs_7: ReactDOM.Style.t,
+  @as("spacing-xs-8") spacingXs_8: ReactDOM.Style.t,
+  @as("spacing-xs-9") spacingXs_9: ReactDOM.Style.t,
+  @as("spacing-xs-10") spacingXs_10: ReactDOM.Style.t,
+  @as("grid-xs-auto") gridXsAuto: ReactDOM.Style.t,
+  @as("grid-xs-true") gridXsTrue: ReactDOM.Style.t,
+  @as("grid-xs-1") gridXs_1: ReactDOM.Style.t,
+  @as("grid-xs-2") gridXs_2: ReactDOM.Style.t,
+  @as("grid-xs-3") gridXs_3: ReactDOM.Style.t,
+  @as("grid-xs-4") gridXs_4: ReactDOM.Style.t,
+  @as("grid-xs-5") gridXs_5: ReactDOM.Style.t,
+  @as("grid-xs-6") gridXs_6: ReactDOM.Style.t,
+  @as("grid-xs-7") gridXs_7: ReactDOM.Style.t,
+  @as("grid-xs-8") gridXs_8: ReactDOM.Style.t,
+  @as("grid-xs-9") gridXs_9: ReactDOM.Style.t,
+  @as("grid-xs-10") gridXs_10: ReactDOM.Style.t,
+  @as("grid-xs-11") gridXs_11: ReactDOM.Style.t,
+  @as("grid-xs-12") gridXs_12: ReactDOM.Style.t,
+}
+
+type iconClassKey = {
+  root: ReactDOM.Style.t,
+  colorPrimary: string,
+  colorSecondary: string,
+  colorAction: string,
+  colorError: string,
+  colorDisabled: string,
+  fontSizeInherit: ReactDOM.Style.t,
+  fontSizeSmall: ReactDOM.Style.t,
+  fontSizeLarge: ReactDOM.Style.t,
+}
+
+type iconButtonClassKey = {
+  root: ReactDOM.Style.t,
+  edgeStart: ReactDOM.Style.t,
+  edgeEnd: ReactDOM.Style.t,
+  colorInherit: string,
+  colorPrimary: string,
+  colorSecondary: string,
+  colorError: string,
+  colorInfo: string,
+  colorSuccess: string,
+  colorWarning: string,
+  disabled: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  sizeMedium: ReactDOM.Style.t,
+  sizeLarge: ReactDOM.Style.t,
+}
+
+type inputClassKey = {
+  root: ReactDOM.Style.t,
+  formControl: ReactDOM.Style.t,
+  focused: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  colorSecondary: string,
+  underline: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  multiline: ReactDOM.Style.t,
+  fullWidth: ReactDOM.Style.t,
+  input: ReactDOM.Style.t,
+  inputSizeSmall: ReactDOM.Style.t,
+  inputMultiline: ReactDOM.Style.t,
+  inputAdornedStart: ReactDOM.Style.t,
+  inputAdornedEnd: ReactDOM.Style.t,
+  inputTypeSearch: ReactDOM.Style.t,
+}
+
+type inputAdornmentClassKey = {
+  root: ReactDOM.Style.t,
+  filled: ReactDOM.Style.t,
+  outlined: ReactDOM.Style.t,
+  standard: ReactDOM.Style.t,
+  positionStart: ReactDOM.Style.t,
+  positionEnd: ReactDOM.Style.t,
+  disablePointerEvents: ReactDOM.Style.t,
+  hiddenLabel: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+}
+
+type inputBaseClassKey = {
+  root: ReactDOM.Style.t,
+  formControl: ReactDOM.Style.t,
+  focused: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  adornedStart: ReactDOM.Style.t,
+  adornedEnd: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  multiline: ReactDOM.Style.t,
+  colorSecondary: string,
+  fullWidth: ReactDOM.Style.t,
+  hiddenLabel: ReactDOM.Style.t,
+  readOnly: ReactDOM.Style.t,
+  input: ReactDOM.Style.t,
+  inputSizeSmall: ReactDOM.Style.t,
+  inputMultiline: ReactDOM.Style.t,
+  inputTypeSearch: ReactDOM.Style.t,
+  inputAdornedStart: ReactDOM.Style.t,
+  inputAdornedEnd: ReactDOM.Style.t,
+  inputHiddenLabel: ReactDOM.Style.t,
+}
+
+type inputLabelClassKey = {
+  root: ReactDOM.Style.t,
+  focused: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+  required: ReactDOM.Style.t,
+  asterisk: ReactDOM.Style.t,
+  formControl: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  shrink: ReactDOM.Style.t,
+  animated: ReactDOM.Style.t,
+  filled: ReactDOM.Style.t,
+  outlined: ReactDOM.Style.t,
+  standard: ReactDOM.Style.t,
+}
+
+type linkClassKey = {
+  root: ReactDOM.Style.t,
+  underlineNone: ReactDOM.Style.t,
+  underlineHover: ReactDOM.Style.t,
+  underlineAlways: ReactDOM.Style.t,
+  button: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
+}
+
+type listClassKey = {
+  root: ReactDOM.Style.t,
+  padding: ReactDOM.Style.t,
+  dense: ReactDOM.Style.t,
+  subheader: ReactDOM.Style.t,
+}
+
+type listItemIconClassKey = {
+  root: ReactDOM.Style.t,
+  alignItemsFlexStart: ReactDOM.Style.t,
+}
+
+type menuClassKey = {
+  root: ReactDOM.Style.t,
+  paper: ReactDOM.Style.t,
+  list: ReactDOM.Style.t,
+}
+
+type menuItemClassKey = {
+  root: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
+  dense: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  divider: ReactDOM.Style.t,
+  gutters: ReactDOM.Style.t,
+  selected: ReactDOM.Style.t,
+}
+
+type modalClassKey = {
+  root: ReactDOM.Style.t,
+  hidden: ReactDOM.Style.t,
+  backdrop: ReactDOM.Style.t,
+}
+
+type outlinedInputClassKey = {
+  root: ReactDOM.Style.t,
+  colorSecondary: string,
+  focused: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  adornedStart: ReactDOM.Style.t,
+  adornedEnd: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  multiline: ReactDOM.Style.t,
+  notchedOutline: ReactDOM.Style.t,
+  input: ReactDOM.Style.t,
+  inputSizeSmall: ReactDOM.Style.t,
+  inputMultiline: ReactDOM.Style.t,
+  inputAdornedStart: ReactDOM.Style.t,
+  inputAdornedEnd: ReactDOM.Style.t,
+  inputTypeSearch: ReactDOM.Style.t,
+}
+
+type paginationClassKey = {
+  root?: ReactDOM.Style.t,
+  ul?: ReactDOM.Style.t,
+  outlined?: ReactDOM.Style.t,
+  text?: ReactDOM.Style.t,
+}
+
 type paperClassKey = {
   root?: ReactDOM.Style.t,
   rounded?: ReactDOM.Style.t,
@@ -102,11 +529,222 @@ type paperClassKey = {
   elevation24?: ReactDOM.Style.t,
 }
 
+type popoverClassKey = {
+  root: ReactDOM.Style.t,
+  paper: ReactDOM.Style.t,
+}
+
+type popperClassKey = {
+  root: ReactDOM.Style.t,
+}
+
+type ratingClassKey = {
+  root: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  sizeMedium: ReactDOM.Style.t,
+  sizeLarge: ReactDOM.Style.t,
+  readOnly: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
+  visuallyHidden: ReactDOM.Style.t,
+  label: ReactDOM.Style.t,
+  labelEmptyValueActive: ReactDOM.Style.t,
+  icon: ReactDOM.Style.t,
+  iconEmpty: ReactDOM.Style.t,
+  iconFilled: ReactDOM.Style.t,
+  iconHover: ReactDOM.Style.t,
+  iconFocus: ReactDOM.Style.t,
+  iconActive: ReactDOM.Style.t,
+  decimal: ReactDOM.Style.t,
+}
+
+type selectClassKey = {
+  select: ReactDOM.Style.t,
+  multiple: ReactDOM.Style.t,
+  filled: ReactDOM.Style.t,
+  outlined: ReactDOM.Style.t,
+  standard: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  icon: ReactDOM.Style.t,
+  iconOpen: ReactDOM.Style.t,
+  iconFilled: ReactDOM.Style.t,
+  iconOutlined: ReactDOM.Style.t,
+  iconStandard: ReactDOM.Style.t,
+  nativeInput: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+}
+
+type skeletonClassKey = {
+  root: ReactDOM.Style.t,
+  text: ReactDOM.Style.t,
+  rectangular: ReactDOM.Style.t,
+  rounded: ReactDOM.Style.t,
+  circular: ReactDOM.Style.t,
+  pulse: ReactDOM.Style.t,
+  wave: ReactDOM.Style.t,
+  withChildren: ReactDOM.Style.t,
+  fitContent: ReactDOM.Style.t,
+  heightAuto: ReactDOM.Style.t,
+}
+
+type speedDialActionClassKey = {
+  fab: ReactDOM.Style.t,
+  fabClosed: ReactDOM.Style.t,
+  staticTooltip: ReactDOM.Style.t,
+  staticTooltipClosed: ReactDOM.Style.t,
+  staticTooltipLabel: ReactDOM.Style.t,
+  tooltipPlacementLeft: ReactDOM.Style.t,
+  tooltipPlacementRight: ReactDOM.Style.t,
+}
+
+type speedDialIconClassKey = {
+  root: ReactDOM.Style.t,
+  icon: ReactDOM.Style.t,
+  iconOpen: ReactDOM.Style.t,
+  iconWithOpenIconOpen: ReactDOM.Style.t,
+  openIcon: ReactDOM.Style.t,
+  openIconOpen: ReactDOM.Style.t,
+}
+
+type stepIconClassKey = {
+  root: ReactDOM.Style.t,
+  text: ReactDOM.Style.t,
+  active: ReactDOM.Style.t,
+  completed: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+}
+
+type svgIconClassKey = {
+  root: ReactDOM.Style.t,
+  colorPrimary: string,
+  colorSecondary: string,
+  colorAction: string,
+  colorError: string,
+  colorDisabled: string,
+  fontSizeInherit: ReactDOM.Style.t,
+  fontSizeSmall: ReactDOM.Style.t,
+  fontSizeMedium: ReactDOM.Style.t,
+  fontSizeLarge: ReactDOM.Style.t,
+}
+
+type tabClassKey = {
+  root: ReactDOM.Style.t,
+  labelIcon: ReactDOM.Style.t,
+  textColorInherit: ReactDOM.Style.t,
+  textColorPrimary: ReactDOM.Style.t,
+  textColorSecondary: ReactDOM.Style.t,
+  selected: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  fullWidth: ReactDOM.Style.t,
+  wrapped: ReactDOM.Style.t,
+  iconWrapper: ReactDOM.Style.t,
+}
+
+type tabsClassKey = {
+  root?: ReactDOM.Style.t,
+  vertical?: ReactDOM.Style.t,
+  flexContainer?: ReactDOM.Style.t,
+  flexContainerVertical?: ReactDOM.Style.t,
+  centered?: ReactDOM.Style.t,
+  scroller?: ReactDOM.Style.t,
+  fixed?: ReactDOM.Style.t,
+  scrollableX?: ReactDOM.Style.t,
+  scrollableY?: ReactDOM.Style.t,
+  hideScrollbar?: ReactDOM.Style.t,
+  scrollButtons?: ReactDOM.Style.t,
+  scrollButtonsHideMobile?: ReactDOM.Style.t,
+  indicator?: ReactDOM.Style.t,
+}
+
+type textFieldClassKey = {
+  root: ReactDOM.Style.t,
+}
+
+type tooltipClassKey = {
+  popper: ReactDOM.Style.t,
+  popperInteractive: ReactDOM.Style.t,
+  popperArrow: ReactDOM.Style.t,
+  popperClose: ReactDOM.Style.t,
+  tooltip: ReactDOM.Style.t,
+  tooltipArrow: ReactDOM.Style.t,
+  arrow: ReactDOM.Style.t,
+  touch: ReactDOM.Style.t,
+  tooltipPlacementLeft: ReactDOM.Style.t,
+  tooltipPlacementRight: ReactDOM.Style.t,
+  tooltipPlacementTop: ReactDOM.Style.t,
+  tooltipPlacementBottom: ReactDOM.Style.t,
+}
+
+type typographyClassKey = {
+  root: ReactDOM.Style.t,
+  body2: ReactDOM.Style.t,
+  body1: ReactDOM.Style.t,
+  caption: ReactDOM.Style.t,
+  button: ReactDOM.Style.t,
+  h1: ReactDOM.Style.t,
+  h2: ReactDOM.Style.t,
+  h3: ReactDOM.Style.t,
+  h4: ReactDOM.Style.t,
+  h5: ReactDOM.Style.t,
+  h6: ReactDOM.Style.t,
+  subtitle1: ReactDOM.Style.t,
+  subtitle2: ReactDOM.Style.t,
+  overline: ReactDOM.Style.t,
+  inherit: ReactDOM.Style.t,
+  alignLeft: ReactDOM.Style.t,
+  alignCenter: ReactDOM.Style.t,
+  alignRight: ReactDOM.Style.t,
+  alignJustify: ReactDOM.Style.t,
+  noWrap: ReactDOM.Style.t,
+  gutterBottom: ReactDOM.Style.t,
+  paragraph: ReactDOM.Style.t,
+}
+
 
 type t = {
   @as("MuiAccordion") muiAccordion: accordionClassKey,
   @as("MuiAccordionActions") muiAccordionActions: accordionActionsClassKey,
+  @as("MuiAutocomplete") muiAutocomplete: autocompleteClassKey,
+  @as("MuiBackdrop") muiBackdrop: backdropClassKey,
+  @as("MuiBadge") muiBadge: badgeClassKey,
   @as("MuiButton") muiButton: buttonClassKey,
   @as("MuiButtonBase") muiButtonBase: buttonBaseClassKey,
+  @as("MuiButtonGroup") muiButtonGroup: buttonGroupClassKey,
+  @as("MuiChip") muiChip: chipClassKey,
+  @as("MuiDrawer") muiDrawer: drawerClassKey,
+  @as("MuiFab") muiFab: fabClassKey,
+  @as("MuiFilledInput") muiFilledInput: filledInputClassKey,
+  @as("MuiFormControl") muiFormControl: formControlClassKey,
+  @as("MuiFormControlLabel") muiFormControlLabel: formControlLabelClassKey,
+  @as("MuiFormHelperText") muiFormHelperText: formHelperTextClassKey,
+  @as("MuiGrid") muiGrid: gridClassKey,
+  @as("MuiIcon") muiIcon: iconClassKey,
+  @as("MuiIconButton") muiIconButton: iconButtonClassKey,
+  @as("MuiInput") muiInput: inputClassKey,
+  @as("MuiInputAdornment") muiInputAdornment: inputAdornmentClassKey,
+  @as("MuiInputBase") muiInputBase: inputBaseClassKey,
+  @as("MuiInputLabel") muiInputLabel: inputLabelClassKey,
+  @as("MuiLink") muiLink: linkClassKey,
+  @as("MuiList") muiList: listClassKey,
+  @as("MuiListItemIcon") muiListItemIcon: listItemIconClassKey,
+  @as("MuiMenu") muiMenu: menuClassKey,
+  @as("MuiMenuItem") muiMenuItem: menuItemClassKey,
+  @as("MuiModal") muiModal: modalClassKey,
+  @as("MuiOutlinedInput") muiOutlinedInput: outlinedInputClassKey,
+  @as("MuiPagination") muiPagination: paginationClassKey,
   @as("MuiPaper") muiPaper: paperClassKey,
+  @as("MuiPopover") muiPopover: popoverClassKey,
+  @as("MuiPopper") muiPopper: popperClassKey,
+  @as("MuiRating") muiRating: ratingClassKey,
+  @as("MuiSelect") muiSelect: selectClassKey,
+  @as("MuiSkeleton") muiSkeleton: skeletonClassKey,
+  @as("MuiSpeedDialAction") muiSpeedDialAction: speedDialActionClassKey,
+  @as("MuiSpeedDialIcon") muiSpeedDialIcon: speedDialIconClassKey,
+  @as("MuiStepIcon") muiStepIcon: stepIconClassKey,
+  @as("MuiSvgIcon") muiSvgIcon: svgIconClassKey,
+  @as("MuiTab") muiTab: tabClassKey,
+  @as("MuiTabs") muiTabs: tabsClassKey,
+  @as("MuiTextField") muiTextField: textFieldClassKey,
+  @as("MuiTooltip") muiTooltip: tooltipClassKey,
+  @as("MuiTypography") muiTypography: typographyClassKey,
 }
