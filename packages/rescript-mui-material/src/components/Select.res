@@ -1,147 +1,172 @@
-module ComponentsProps = {
-  type t = {"input": option<Any.t>, "root": option<Any.t>}
-  @obj external make: (~input: Any.t=?, ~root: Any.t=?, unit) => t = ""
+type classes = {
+  /** Styles applied to the select component `select` class. */
+  select: string,
+  /** Styles applied to the select component if `multiple={true}`. */
+  multiple: string,
+  /** Styles applied to the select component if `variant="filled"`. */
+  filled: string,
+  /** Styles applied to the select component if `variant="outlined"`. */
+  outlined: string,
+  /** Styles applied to the select component if `variant="standard"`. */
+  standard: string,
+  /** State class applied to the select component `disabled` class. */
+  disabled: string,
+  /** Styles applied to the icon component. */
+  icon: string,
+  /** Styles applied to the icon component if the popup is open. */
+  iconOpen: string,
+  /** Styles applied to the icon component if `variant="filled"`. */
+  iconFilled: string,
+  /** Styles applied to the icon component if `variant="outlined"`. */
+  iconOutlined: string,
+  /** Styles applied to the icon component if `variant="standard"`. */
+  iconStandard: string,
+  /** Styles applied to the underlying native input component. */
+  nativeInput: string,
+  /** State class applied to the root element if `error={true}`. */
+  error: string,
 }
 
-type size_enum = [#medium | #small]
+type variant =
+  | @as("standard") Standard
+  | @as("outlined") Outlined
+  | @as("filled") Filled
 
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
+type props<'a> = {
+  ...OutlinedInput.publicProps,
+  /**
+   * If `true`, the width of the popover will automatically be set according to the items inside the
+   * menu, otherwise it will be at least the width of the select input.
+   * @default false
+   */
+  autoWidth?: bool,
+  /**
+   * The option elements to populate the select with.
+   * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
+   *
+   * ⚠️The `MenuItem` elements **must** be direct descendants when `native` is false.
+   */
+  children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   * @default {}
+   */
+  classes?: classes,
+  /**
+   * If `true`, the component is initially open. Use when the component open state is not controlled (i.e. the `open` prop is not defined).
+   * You can only use it when the `native` prop is `false` (default).
+   * @default false
+   */
+  defaultOpen?: bool,
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue?: 'a,
+  /**
+   * If `true`, a value is displayed even if no items are selected.
+   *
+   * In order to display a meaningful value, a function can be passed to the `renderValue` prop which
+   * returns the value to be displayed when no items are selected.
+   *
+   * ⚠️ When using this prop, make sure the label doesn't overlap with the empty displayed value.
+   * The label should either be hidden or forced to a shrunk state.
+   * @default false
+   */
+  displayEmpty?: bool,
+  /**
+   * The icon that displays the arrow.
+   * @default ArrowDropDownIcon
+   */
+  @as("IconComponent")
+  iconComponent?: React.element,
+  /**
+   * An `Input` element, does not have to be a material-ui specific `Input`.
+   */
+  input?: React.element,
+  /**
+   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
+   */
+  label?: React.element,
+  /**
+   * The ID of an element that acts as an additional label. The Select will
+   * be labelled by the additional label and the selected value.
+   */
+  labelId?: string,
+  /**
+   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
+   */
+  @as("MenuProps")
+  menuProps?: Menu.props,
+  /**
+   * If `true`, `value` must be an array and the menu will support multiple selections.
+   * @default false
+   */
+  multiple?: bool,
+  /**
+   * If `true`, the component uses a native `select` element.
+   * @default false
+   */
+  native?: bool,
+  /**
+   * Callback fired when a menu item is selected.
+   *
+   * @param {SelectChangeEvent<T>} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (any).
+   * **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
+   * @param {object} [child] The react element that was selected when `native` is `false` (default).
+   */
+  onChange?: (ReactEvent.Form.t, React.element) => unit,
+  /**
+   * Callback fired when the component requests to be closed.
+   * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapses).
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onClose?: ReactEvent.Synthetic.t => unit,
+  /**
+   * Callback fired when the component requests to be opened.
+   * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select expands).
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onOpen?: ReactEvent.Synthetic.t => unit,
+  /**
+   * If `true`, the component is shown.
+   * You can only use it when the `native` prop is `false` (default).
+   */
+  @as("open")
+  open_?: bool,
+  /**
+   * Render the selected value.
+   * You can only use it when the `native` prop is `false` (default).
+   *
+   * @param {any} value The `value` provided to the component.
+   * @returns {ReactNode}
+   */
+  renderValue?: 'a => React.element,
+  /**
+   * Props applied to the clickable div element.
+   */
+  @as("SelectDisplayProps")
+  selectDisplayProps?: unknown,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
+  /**
+   * The `input` value. Providing an empty string will select no options.
+   * Set to an empty string `''` if you don't want any of the available options to be selected.
+   *
+   * If the value is an object it must have reference equality with the option in order to be selected.
+   * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
+   */
+  value?: 'a,
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant?: variant,
 }
 
-module SlotProps = {
-  type t = {"input": option<Any.t>, "root": option<Any.t>}
-  @obj external make: (~input: Any.t=?, ~root: Any.t=?, unit) => t = ""
-}
-
-type color_enum = [#primary | #secondary]
-
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Components = {
-  type t = {"Input": option<React.element>, "Root": option<React.element>}
-  @obj external make: (~\"Input": React.element=?, ~\"Root": React.element=?, unit) => t = ""
-}
-
-type margin = [#dense | #none]
-
-module MaxRows = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module MinRows = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Rows = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Slots = {
-  type t = {"input": option<React.element>, "root": option<React.element>}
-  @obj external make: (~input: React.element=?, ~root: React.element=?, unit) => t = ""
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-module Value = {
-  type t
-  external string: string => t = "%identity"
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external arrayOf: array<string> => t = "%identity"
-}
-
-type variant = [#filled | #outlined | #standard]
-
-@react.component @module("@mui/material")
-external make: (
-  ~\"aria-describedby": string=?,
-  ~componentsProps: ComponentsProps.t=?,
-  ~disableInjectingGlobalStyles: bool=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onInvalid: Any.t=?,
-  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~renderSuffix: Any.t=?,
-  ~size: Size.t=?,
-  ~slotProps: SlotProps.t=?,
-  ~style: ReactDOM.Style.t=?,
-  ~autoComplete: string=?,
-  ~autoFocus: bool=?,
-  ~color: Color.t=?,
-  ~components: Components.t=?,
-  ~disabled: bool=?,
-  ~endAdornment: React.element=?,
-  ~error: bool=?,
-  ~fullWidth: bool=?,
-  ~inputComponent: React.element=?,
-  ~margin: margin=?,
-  ~maxRows: MaxRows.t=?,
-  ~minRows: MinRows.t=?,
-  ~multiline: bool=?,
-  ~name: string=?,
-  ~notched: bool=?,
-  ~placeholder: string=?,
-  ~readOnly: bool=?,
-  ~required: bool=?,
-  ~rows: Rows.t=?,
-  ~slots: Slots.t=?,
-  ~startAdornment: React.element=?,
-  ~\"type": string=?,
-  ~autoWidth: bool=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~defaultOpen: bool=?,
-  ~defaultValue: Any.t=?,
-  ~displayEmpty: bool=?,
-  ~\"IconComponent": React.element=?,
-  ~id: string=?,
-  ~input: React.element=?,
-  ~inputProps: {..}=?,
-  ~label: React.element=?,
-  ~labelId: string=?,
-  ~\"MenuProps": {..}=?,
-  ~multiple: bool=?,
-  ~native: bool=?,
-  ~onChange: (ReactEvent.Form.t, {..}) => unit=?,
-  ~onClose: ReactEvent.Synthetic.t => unit=?,
-  ~onOpen: ReactEvent.Synthetic.t => unit=?,
-  ~\"open": bool=?,
-  ~renderValue: Any.t => React.element=?,
-  ~\"SelectDisplayProps": {..}=?,
-  ~sx: Sx.t=?,
-  ~value: Value.t=?,
-  ~variant: variant=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Select"
+@module("@mui/material")
+external make: props<'a> => React.element = "Select"

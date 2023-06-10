@@ -61,7 +61,10 @@ type componentsProps = {
   input?: unknown,
 }
 
-type inputBaseComponentProps = unknown
+type inputBaseComponentProps = {
+  name?: string,
+  id?: string,
+} // FIXME: there is more
 
 type margin =
   | @as("dense") Dense
@@ -196,13 +199,6 @@ type publicProps = {
    * Notice that the first argument (event) might be undefined.
    */
   onBlur?: ReactEvent.Focus.t => unit,
-  /**
-   * Callback fired when the value is changed.
-   *
-   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
-   */
-  onChange?: ReactEvent.Synthetic.t => unit,
   onFocus?: ReactEvent.Focus.t => unit,
   onKeyDown?: ReactEvent.Keyboard.t => unit,
   onKeyUp?: ReactEvent.Keyboard.t => unit,
@@ -284,6 +280,13 @@ type props<'a> = {
    * Pass a ref to the `input` element.
    */
   inputRef?: React.ref<'a>,
+  /**
+   * Callback fired when the value is changed.
+   *
+   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
+  onChange?: ReactEvent.Synthetic.t => unit,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

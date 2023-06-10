@@ -2,6 +2,7 @@ type top100 = {
   title: string,
   year: int,
 }
+
 let top100Films = [
   {title: "The Shawshank Redemption", year: 1994},
   {title: "The Godfather", year: 1972},
@@ -112,13 +113,12 @@ let top100Films = [
 let make = () => {
   <Mui.Autocomplete
     id="combo-box-demo"
-    options={top100Films->Belt.Array.map(v => v->Mui.Any.make)}
+    options=top100Films
     getOptionLabel={option => option.title}
     fullWidth=true
-    renderInput={params =>
-      React.createElement(
-        Mui.TextField.make,
-        Js.Obj.assign(params->Obj.magic, {"label": "Combo box", "variant": "outlined"}),
-      )}
+    renderInput={params => {
+      let props = params->Mui.Autocomplete.renderInputParamsToTextFieldProps
+      <Mui.TextField {...props} label={React.string({"Combo box"})} variant=Outlined />
+    }}
   />
 }

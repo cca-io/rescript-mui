@@ -52,6 +52,13 @@ type props<'a> = {
    */
   inputRef?: React.ref<'a>,
   /**
+   * Callback fired when the value is changed.
+   *
+   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
+  onChange?: ReactEvent.Synthetic.t => unit,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: Sx.props,

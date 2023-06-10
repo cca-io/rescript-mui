@@ -48,14 +48,14 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] DialogContentText
 - [ ] DialogTitle
 - [ ] Divider
-- [ ] Drawer
+- [x] Drawer
 - [x] Fab
-- [ ] Fade
-- [ ] FilledInput
-- [ ] FormControl
-- [ ] FormControlLabel
+- [x] Fade
+- [x] FilledInput
+- [x] FormControl
+- [x] FormControlLabel
 - [ ] FormGroup
-- [ ] FormHelperText
+- [x] FormHelperText
 - [ ] FormLabel
 - [ ] GlobalStyles
 - [ ] Grid
@@ -71,7 +71,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [x] InputBase
 - [x] InputLabel
 - [ ] LinearProgress
-- [ ] Link
+- [x] Link
 - [ ] List
 - [ ] ListItem
 - [ ] ListItemAvatar
@@ -81,12 +81,12 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] ListItemText
 - [ ] ListSubheader
 - [ ] Menu
-- [ ] MenuItem
+- [x] MenuItem
 - [ ] MenuList
 - [ ] MobileStepper
-- [ ] Modal
+- [x] Modal
 - [ ] NativeSelect
-- [ ] OutlinedInput
+- [x] OutlinedInput
 - [x] Pagination
 - [ ] PaginationItem
 - [x] Paper
@@ -96,7 +96,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] RadioGroup
 - [x] Rating
 - [ ] ScopedCssBaseline
-- [ ] Select
+- [x] Select
 - [x] Skeleton
 - [ ] Slide
 - [ ] Slider
@@ -117,7 +117,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [x] SvgIcon
 - [ ] SwipeableDrawer
 - [ ] Switch
-- [ ] Tab
+- [x] Tab
 - [ ] Table
 - [ ] TableBody
 - [ ] TableCell
@@ -129,7 +129,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] TableSortLabel
 - [x] Tabs
 - [ ] TabScrollButton
-- [ ] TextField
+- [x] TextField
 - [ ] ToggleButton
 - [ ] ToggleButtonGroup
 - [ ] Toolbar

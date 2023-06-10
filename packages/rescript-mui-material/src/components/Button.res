@@ -123,10 +123,6 @@ type variant =
 type props = {
   ...ButtonBase.publicProps,
   /**
-     * The content of the component.
-     */
-  children?: React.element,
-  /**
      * Override or extend the styles applied to the component.
      */
   classes?: classes,

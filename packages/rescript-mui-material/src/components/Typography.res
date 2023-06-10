@@ -1,4 +1,49 @@
-type classes
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `variant="body2"`. */
+  body2: string,
+  /** Styles applied to the root element if `variant="body1"`. */
+  body1: string,
+  /** Styles applied to the root element if `variant="caption"`. */
+  caption: string,
+  /** Styles applied to the root element if `variant="button"`. */
+  button: string,
+  /** Styles applied to the root element if `variant="h1"`. */
+  h1: string,
+  /** Styles applied to the root element if `variant="h2"`. */
+  h2: string,
+  /** Styles applied to the root element if `variant="h3"`. */
+  h3: string,
+  /** Styles applied to the root element if `variant="h4"`. */
+  h4: string,
+  /** Styles applied to the root element if `variant="h5"`. */
+  h5: string,
+  /** Styles applied to the root element if `variant="h6"`. */
+  h6: string,
+  /** Styles applied to the root element if `variant="subtitle1"`. */
+  subtitle1: string,
+  /** Styles applied to the root element if `variant="subtitle2"`. */
+  subtitle2: string,
+  /** Styles applied to the root element if `variant="overline"`. */
+  overline: string,
+  /** Styles applied to the root element if `variant="inherit"`. */
+  inherit: string,
+  /** Styles applied to the root element if `align="left"`. */
+  alignLeft: string,
+  /** Styles applied to the root element if `align="center"`. */
+  alignCenter: string,
+  /** Styles applied to the root element if `align="right"`. */
+  alignRight: string,
+  /** Styles applied to the root element if `align="justify"`. */
+  alignJustify: string,
+  /** Styles applied to the root element if `nowrap={true}`. */
+  noWrap: string,
+  /** Styles applied to the root element if `gutterBottom={true}`. */
+  gutterBottom: string,
+  /** Styles applied to the root element if `paragraph={true}`. */
+  paragraph: string,
+}
 
 type align =
   | @as("inherit") Inherit
@@ -39,21 +84,13 @@ type variantMapping = {
   inherit: variant,
 }
 
-type props = {
-  ...CommonProps.t,
+type publicProps = {
+  ...System.props,
   /**
        * Set the text-align on the component.
        * @default 'inherit'
        */
   align?: align,
-  /**
-       * The content of the component.
-       */
-  children?: React.element,
-  /**
-       * Override or extend the styles applied to the component.
-       */
-  classes?: classes,
   /**
        * If `true`, the text will have a bottom margin.
        * @default false
@@ -72,10 +109,6 @@ type props = {
        * @default false
        */
   paragraph?: bool,
-  /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-  sx?: Sx.props,
   /**
        * Applies the theme typography styles.
        * @default 'body1'
@@ -102,6 +135,22 @@ type props = {
        */
   variantMapping?: variantMapping,
   component?: OverridableComponent.t<unknown>,
+}
+
+type props = {
+  ...publicProps,
+  /**
+       * The content of the component.
+       */
+  children?: React.element,
+  /**
+       * Override or extend the styles applied to the component.
+       */
+  classes?: classes,
+  /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+  sx?: Sx.props,
 }
 
 @module("@mui/material")

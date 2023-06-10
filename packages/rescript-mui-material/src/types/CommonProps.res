@@ -5,8 +5,11 @@ type t_NoId = {
 }
 
 type t = {
-  id?: string,
   ...t_NoId,
+  id?: string,
 }
 
-type clickableProps = {onClick?: ReactEvent.Synthetic.t => unit}
+type clickableProps = {
+  ...t,
+  onClick?: ReactEvent.Synthetic.t => unit,
+}

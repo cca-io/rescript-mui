@@ -1,7 +1,4 @@
-module Value = System.Value
-
 type props = {
-  ...CommonProps.t,
   ...System.props,
   children?: React.element,
   /**

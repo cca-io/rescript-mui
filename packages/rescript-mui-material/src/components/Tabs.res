@@ -72,7 +72,7 @@ type variant =
   | @as("scrollable") Scrollable
   | @as("fullWidth") FullWidth
 
-type props = {
+type props<'a> = {
   ...CommonProps.t,
   /**
      * Callback fired when the component mounts.
@@ -135,7 +135,7 @@ type props = {
      * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
      * @param {any} value We default to the index of the child (number)
      */
-  onChange?: (ReactEvent.Synthetic.t, Any.t) => unit,
+  onChange?: (ReactEvent.Synthetic.t, 'a) => unit,
   /**
      * The component orientation (layout flow direction).
      * @default 'horizontal'
@@ -185,7 +185,7 @@ type props = {
      * The value of the currently selected `Tab`.
      * If you don't want any selected `Tab`, you can set this prop to `false`.
      */
-  value?: Any.t,
+  value?: 'a,
   /**
      *  Determines additional display behavior of the tabs:
      *
@@ -211,4 +211,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Tabs"
+external make: props<'a> => React.element = "Tabs"

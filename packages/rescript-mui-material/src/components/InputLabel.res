@@ -51,6 +51,7 @@ type variant =
   | @as("filled") Filled
 
 type props = {
+  ...CommonProps.t,
   /**
      * The content of the component.
      */
@@ -103,6 +104,8 @@ type props = {
      * The variant to use.
      */
   variant?: variant,
+  // Native HTML element props
+  htmlFor?: string,
 }
 
 @module("@mui/material")

@@ -1,96 +1,203 @@
-type horizontal = [#left | #right]
-
-type vertical = [#bottom | #top]
-
-module AnchorOrigin = {
-  type t = {"horizontal": option<horizontal>, "vertical": option<vertical>}
-  @obj external make: (~horizontal: horizontal=?, ~vertical: vertical=?, unit) => t = ""
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the badge `span` element. */
+  badge: string,
+  /** Styles applied to the badge `span` element if `variant="dot"`. */
+  dot: string,
+  /** Styles applied to the badge `span` element if `variant="standard"`. */
+  standard: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`. */
+  anchorOriginTopRight: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`. */
+  anchorOriginBottomRight: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }}`. */
+  anchorOriginTopLeft: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`. */
+  anchorOriginBottomLeft: string,
+  /** State class applied to the badge `span` element if `invisible={true}`. */
+  invisible: string,
+  /** Styles applied to the badge `span` element if `color="primary"`. */
+  colorPrimary: string,
+  /** Styles applied to the badge `span` element if `color="secondary"`. */
+  colorSecondary: string,
+  /** Styles applied to the badge `span` element if `color="error"`. */
+  colorError: string,
+  /** Styles applied to the badge `span` element if `color="info"`. */
+  colorInfo: string,
+  /** Styles applied to the badge `span` element if `color="success"`. */
+  colorSuccess: string,
+  /** Styles applied to the badge `span` element if `color="warning"`. */
+  colorWarning: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
+  anchorOriginTopRightRectangular: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
+  anchorOriginBottomRightRectangular: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
+  anchorOriginTopLeftRectangular: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
+  anchorOriginBottomLeftRectangular: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
+  anchorOriginTopRightCircular: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
+  anchorOriginBottomRightCircular: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
+  anchorOriginTopLeftCircular: string,
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
+  anchorOriginBottomLeftCircular: string,
+  /** Styles applied to the badge `span` element if `overlap="rectangular"`. */
+  overlapRectangular: string,
+  /** Styles applied to the badge `span` element if `overlap="circular"`. */
+  overlapCircular: string,
 }
 
-type color_enum = [#default | #primary | #secondary | #error | #info | #success | #warning]
+type vertical =
+  | @as("top") Top
+  | @as("bottom") Bottom
 
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
+type horizontal =
+  | @as("left") Left
+  | @as("right") Right
+
+type badgeOrigin = {
+  vertical: vertical,
+  horizontal: horizontal,
 }
 
-module Components = {
-  type t = {"Badge": option<React.element>, "Root": option<React.element>}
-  @obj external make: (~\"Badge": React.element=?, ~\"Root": React.element=?, unit) => t = ""
+@unboxed
+type variant =
+  | @as("standard") Standard
+  | @as("dot") Dot
+  | String(string)
+
+@unboxed
+type color =
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | @as("default") Default
+  | @as("error") Error
+  | @as("info") Info
+  | @as("success") Success
+  | @as("warning") Warning
+  | String(string)
+
+type slotProps // FIXME
+// {
+//     root?: SlotComponentProps<'span', BadgeRootSlotPropsOverrides, BadgeOwnerState>,
+//     badge?: SlotComponentProps<'span', BadgeBadgeSlotPropsOverrides, BadgeOwnerState>,
+//   }
+
+type badgeSlots = {
+  /**
+   * The component that renders the root.
+   * @default 'span'
+   */
+  root?: React.element,
+  /**
+   * The component that renders the badge.
+   * @default 'span'
+   */
+  badge?: React.element,
 }
 
-module Badge = {
-  type t
-  external badge_func: Any.t => t = "%identity"
-  external any: Any.t => t = "%identity"
+type components = {
+  @as("Root") root?: React.element,
+  @as("Badge") badge?: React.element,
 }
 
-module Root = {
-  type t
-  external root_func: Any.t => t = "%identity"
-  external any: Any.t => t = "%identity"
+type overlap =
+  | @as("rectangular") Rectangular
+  | @as("circular") Circular
+
+type props = {
+  ...CommonProps.t,
+  /**
+   * The content rendered within the badge.
+   */
+  badgeContent?: React.element,
+  /**
+   * The badge will be added relative to this node.
+   */
+  children?: React.element,
+  /**
+   * If `true`, the badge is invisible.
+   * @default false
+   */
+  invisible?: bool,
+  /**
+   * Max count to show.
+   * @default 99
+   */
+  max?: int,
+  /**
+   * The props used for each slot inside the Badge.
+   * @default {}
+   */
+  slotProps?: slotProps,
+  /**
+   * The components used for each slot inside the Badge.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: badgeSlots,
+  /**
+   * Controls whether the badge is hidden when `badgeContent` is zero.
+   * @default false
+   */
+  showZero?: bool,
+  /**
+     * The anchor of the badge.
+     * @default {
+     *   vertical: 'top',
+     *   horizontal: 'right',
+     * }
+     */
+  anchorOrigin?: badgeOrigin,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+     * @default 'default'
+     */
+  color?: color,
+  /**
+     * The extra props for the slot components.
+     * You can override the existing props or add new ones.
+     *
+     * This prop is an alias for the `slotProps` prop.
+     * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+     *
+     * @default {}
+     */
+  componentsProps?: slotProps,
+  /**
+     * The components used for each slot inside.
+     *
+     * This prop is an alias for the `slots` prop.
+     * It's recommended to use the `slots` prop instead.
+     *
+     * @default {}
+     */
+  components?: components,
+  /**
+     * Wrapped shape the badge should overlap.
+     * @default 'rectangular'
+     */
+  overlap?: overlap,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
+  /**
+     * The variant to use.
+     * @default 'standard'
+     */
+  variant?: variant,
 }
 
-module ComponentsProps = {
-  type t = {"badge": option<Badge.t>, "root": option<Root.t>}
-  @obj external make: (~badge: Badge.t=?, ~root: Root.t=?, unit) => t = ""
-}
-
-type overlap = [#circular | #rectangular]
-
-module SlotProps = {
-  type t = {"badge": option<Badge.t>, "root": option<Root.t>}
-  @obj external make: (~badge: Badge.t=?, ~root: Root.t=?, unit) => t = ""
-}
-
-module Slots = {
-  type t = {"badge": option<React.element>, "root": option<React.element>}
-  @obj external make: (~badge: React.element=?, ~root: React.element=?, unit) => t = ""
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type variant_enum = [#dot | #standard]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~anchorOrigin: AnchorOrigin.t=?,
-  ~badgeContent: React.element=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~color: Color.t=?,
-  ~component: React.element=?,
-  ~components: Components.t=?,
-  ~componentsProps: ComponentsProps.t=?,
-  ~invisible: bool=?,
-  ~max: Number.t=?,
-  ~overlap: overlap=?,
-  ~showZero: bool=?,
-  ~slotProps: SlotProps.t=?,
-  ~slots: Slots.t=?,
-  ~sx: Sx.t=?,
-  ~variant: Variant.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Badge"
+@module("@mui/material")
+external make: props => React.element = "Badge"

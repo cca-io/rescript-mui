@@ -21,8 +21,8 @@ function ExampleRating(props) {
                         JsxRuntime.jsx((function (prim) {
                                 return Material.Typography(prim);
                               }), {
-                              children: "Controlled",
-                              component: "legend"
+                              component: "legend",
+                              children: "Controlled"
                             }),
                         JsxRuntime.jsx((function (prim) {
                                 return Material.Rating(prim);
@@ -49,8 +49,8 @@ function ExampleRating(props) {
                         JsxRuntime.jsx((function (prim) {
                                 return Material.Typography(prim);
                               }), {
-                              children: "Read only",
-                              component: "legend"
+                              component: "legend",
+                              children: "Read only"
                             }),
                         JsxRuntime.jsx((function (prim) {
                                 return Material.Rating(prim);
@@ -71,8 +71,8 @@ function ExampleRating(props) {
                         JsxRuntime.jsx((function (prim) {
                                 return Material.Typography(prim);
                               }), {
-                              children: "Disabled",
-                              component: "legend"
+                              component: "legend",
+                              children: "Disabled"
                             }),
                         JsxRuntime.jsx((function (prim) {
                                 return Material.Rating(prim);
@@ -93,8 +93,8 @@ function ExampleRating(props) {
                         JsxRuntime.jsx((function (prim) {
                                 return Material.Typography(prim);
                               }), {
-                              children: "Pristine",
-                              component: "legend"
+                              component: "legend",
+                              children: "Pristine"
                             }),
                         JsxRuntime.jsx((function (prim) {
                                 return Material.Rating(prim);

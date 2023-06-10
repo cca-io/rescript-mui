@@ -1,112 +1,178 @@
-type color_enum = [#primary | #secondary | #error | #info | #success | #warning]
-
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
 }
 
-module DefaultValue = {
-  type t
-  external string: string => t = "%identity"
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
+@unboxed
+type size =
+  | @as("small") Small
+  | @as("medium") Medium
+  | String(string)
+
+@unboxed
+type color =
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | @as("error") Error
+  | @as("info") Info
+  | @as("success") Success
+  | @as("warning") Warning
+  | String(string)
+
+type variant =
+  | @as("standard") Standard
+  | @as("outlined") Outlined
+  | @as("filled") Filled
+
+type props<'a> = {
+  ...FormControl.publicProps,
+  /**
+   * This prop helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusing, as it's more like an autofill.
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   */
+  autoComplete?: string,
+  /**
+   * If `true`, the `input` element is focused during the first mount.
+   * @default false
+   */
+  autoFocus?: bool,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * @default 'primary'
+   */
+  color?: color,
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue?: 'a,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled?: bool,
+  /**
+   * If `true`, the label is displayed in an error state.
+   * @default false
+   */
+  error?: bool,
+  /**
+   * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
+   */
+  @as("FormHelperTextProps")
+  formHelperTextProps?: FormHelperText.props,
+  /**
+   * If `true`, the input will take up the full width of its container.
+   * @default false
+   */
+  fullWidth?: bool,
+  /**
+   * The helper text content.
+   */
+  helperText?: React.element,
+  /**
+   * The id of the `input` element.
+   * Use this prop to make `label` and `helperText` accessible for screen readers.
+   */
+  id?: string,
+  /**
+   * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
+   * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
+   */
+  @as("InputLabelProps")
+  inputLabelProps?: InputLabel.props,
+  /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   */
+  inputProps?: InputBase.inputBaseComponentProps,
+  /**
+   * Props applied to the Input element.
+   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
+   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
+   * component depending on the `variant` prop value.
+   */
+  @as("InputProps")
+  inputProps_?: Input.props<'a>,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef?: React.ref<'a>,
+  /**
+   * The label content.
+   */
+  label?: React.element,
+  /**
+   * If `true`, a `textarea` element is rendered instead of an input.
+   * @default false
+   */
+  multiline?: bool,
+  /**
+   * Name attribute of the `input` element.
+   */
+  name?: string,
+  onChange?: ReactEvent.Synthetic.t => unit,
+  onBlur?: ReactEvent.Focus.t => unit,
+  onFocus?: ReactEvent.Focus.t => unit,
+  /**
+   * The short hint displayed in the `input` before the user enters a value.
+   */
+  placeholder?: string,
+  /**
+   * If `true`, the label is displayed as required and the `input` element is required.
+   * @default false
+   */
+  required?: bool,
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows?: int,
+  /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  maxRows?: int,
+  /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  minRows?: int,
+  /**
+   * Render a [`Select`](/material-ui/api/select/) element while passing the Input element to `Select` as `input` parameter.
+   * If this option is set you must pass the options of the select as children.
+   * @default false
+   */
+  select?: bool,
+  /**
+   * Props applied to the [`Select`](/material-ui/api/select/) element.
+   */
+  @as("SelectProps")
+  selectProps?: Select.props<'a>,
+  /**
+   * The size of the component.
+   */
+  size?: size,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
+  /**
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   */
+  @as("type")
+  type_?: string,
+  /**
+   * The value of the `input` element, required for a controlled component.
+   */
+  value?: 'a,
+  /**
+   * The variant to use.
+   */
+  variant?: variant,
 }
 
-type margin = [#dense | #none | #normal]
-
-module MaxRows = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module MinRows = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Rows = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type size_enum = [#medium | #small]
-
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-module Value = {
-  type t
-  external string: string => t = "%identity"
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-}
-
-type variant = [#filled | #outlined | #standard]
-
-@react.component @module("@mui/material")
-external make: (
-  ~autoComplete: string=?,
-  ~autoFocus: bool=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~color: Color.t=?,
-  ~defaultValue: DefaultValue.t=?,
-  ~disabled: bool=?,
-  ~error: bool=?,
-  ~\"FormHelperTextProps": {..}=?,
-  ~fullWidth: bool=?,
-  ~helperText: React.element=?,
-  ~id: string=?,
-  ~\"InputLabelProps": {..}=?,
-  ~inputProps: {..}=?,
-  ~\"InputProps": {..}=?,
-  ~inputRef: ReactDOM.domRef=?,
-  ~label: React.element=?,
-  ~margin: margin=?,
-  ~maxRows: MaxRows.t=?,
-  ~minRows: MinRows.t=?,
-  ~multiline: bool=?,
-  ~name: string=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onChange: ReactEvent.Form.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~placeholder: string=?,
-  ~required: bool=?,
-  ~rows: Rows.t=?,
-  ~select: bool=?,
-  ~\"SelectProps": {..}=?,
-  ~size: Size.t=?,
-  ~sx: Sx.t=?,
-  ~\"type": string=?,
-  ~value: Value.t=?,
-  ~variant: variant=?,
-  ~style: ReactDOM.Style.t=?,
-  ~onMouseEnter: ReactEvent.Mouse.t => unit=?,
-  ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "TextField"
+@module("@mui/material")
+external make: props<'a> => React.element = "TextField"

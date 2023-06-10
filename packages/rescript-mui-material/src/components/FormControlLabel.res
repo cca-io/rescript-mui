@@ -1,47 +1,104 @@
-module ComponentsProps = {
-  type t = {"typography": option<Any.t>}
-  @obj external make: (~typography: Any.t=?, unit) => t = ""
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `labelPlacement="start"`. */
+  labelPlacementStart: string,
+  /** Styles applied to the root element if `labelPlacement="top"`. */
+  labelPlacementTop: string,
+  /** Styles applied to the root element if `labelPlacement="bottom"`. */
+  labelPlacementBottom: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string,
+  /** Styles applied to the label's Typography component. */
+  label: string,
+  /** State class applied to the root element if `error={true}`. */
+  error: string,
+  /** State class applied to the root element if `required={true}`. */
+  required: string,
+  /** Styles applied to the asterisk element. */
+  asterisk: string,
 }
 
-type labelPlacement = [#bottom | #end | #start | #top]
-
-module SlotProps = {
-  type t = {"typography": option<Any.t>}
-  @obj external make: (~typography: Any.t=?, unit) => t = ""
+type componentsProps = {
+  /**
+     * Props applied to the Typography wrapper of the passed label.
+     * This is unused if disableTypography is true.
+     * @default {}
+     */
+  typography?: Typography.props,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type labelPlacement =
+  | @as("end") End
+  | @as("start") Start
+  | @as("top") Top
+  | @as("bottom") Bottom
+
+type props<'a> = {
+  ...CommonProps.t,
+  /**
+   * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
+   */
+  control: React.element,
+  /**
+   * If `true`, the component appears selected.
+   */
+  checked?: bool,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps?: componentsProps,
+  /**
+   * If `true`, the control is disabled.
+   */
+  disabled?: bool,
+  /**
+   * If `true`, the label is rendered as it is passed without an additional typography node.
+   */
+  disableTypography?: bool,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef?: React.ref<'a>,
+  /**
+   * A text or an element to be used in an enclosing label element.
+   */
+  label: React.element,
+  /**
+   * The position of the label.
+   * @default 'end'
+   */
+  labelPlacement?: labelPlacement,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {React.SyntheticEvent} event The event source of the callback.
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
+  onChange?: (ReactEvent.Synthetic.t, bool) => unit,
+  /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required?: bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps?: componentsProps,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
+  /**
+   * The value of the component.
+   */
+  value?: 'a,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~checked: bool=?,
-  ~className: string=?,
-  ~componentsProps: ComponentsProps.t=?,
-  ~control: React.element,
-  ~disabled: bool=?,
-  ~disableTypography: bool=?,
-  ~inputRef: ReactDOM.domRef=?,
-  ~label: React.element=?,
-  ~labelPlacement: labelPlacement=?,
-  ~name: string=?,
-  ~onChange: ReactEvent.Form.t => unit=?,
-  ~slotProps: SlotProps.t=?,
-  ~sx: Sx.t=?,
-  ~value: Any.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "FormControlLabel"
+@module("@mui/material")
+external make: props<'a> => React.element = "FormControlLabel"

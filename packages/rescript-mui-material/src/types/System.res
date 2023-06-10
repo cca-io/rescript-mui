@@ -75,6 +75,7 @@ module Value = {
 
 /** CSS system properties */
 type props = {
+  ...CommonProps.t,
   border?: Value.t,
   borderBottom?: Value.t,
   borderColor?: Value.t,

@@ -1,90 +1,68 @@
-module Current = {
-  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
-  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** State class applied to the root element if keyboard focused. */
+  focusVisible: string,
+  /** Styles applied to the root element if dense. */
+  dense: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string,
+  /** Styles applied to the root element if `divider={true}`. */
+  divider: string,
+  /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
+  gutters: string,
+  /** State class applied to the root element if `selected={true}`. */
+  selected: string,
 }
 
-module TouchRippleRef_shape = {
-  type t = {"current": option<Current.t>}
-  @obj external make: (~current: Current.t=?, unit) => t = ""
+type props<'a> = {
+  ...ButtonBase.publicProps,
+  /**
+     * If `true`, the list item is focused during the first mount.
+     * Focus will also be triggered if the value changes from false to true.
+     * @default false
+     */
+  autoFocus?: bool,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * The component used for the root node. Either a string to use a HTML element or a component.
+     */
+  component?: OverridableComponent.t<unknown>,
+  /**
+     * If `true`, compact vertical padding designed for keyboard and mouse input is used.
+     * The prop defaults to the value inherited from the parent Menu component.
+     * @default false
+     */
+  dense?: bool,
+  /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+  disabled?: bool,
+  /**
+     * If `true`, the left and right padding is removed.
+     * @default false
+     */
+  disableGutters?: bool,
+  /**
+     * If `true`, a 1px light border is added to the bottom of the menu item.
+     * @default false
+     */
+  divider?: bool,
+  /**
+     * If `true`, the component is selected.
+     * @default false
+     */
+  selected?: bool,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
+  value?: 'a,
 }
 
-module TouchRippleRef = {
-  type t
-  external touchRippleRef_func: Any.t => t = "%identity"
-  external shape: TouchRippleRef_shape.t => t = "%identity"
-}
-
-type type_enum = [#button | #reset | #submit]
-
-module Type = {
-  type t
-  external enum: type_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-module Value = {
-  type t
-  external string: string => t = "%identity"
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external arrayOf: array<string> => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~centerRipple: bool=?,
-  ~disableRipple: bool=?,
-  ~disableTouchRipple: bool=?,
-  ~focusRipple: bool=?,
-  ~href: Any.t=?,
-  ~\"LinkComponent": React.element=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
-  ~onDragLeave: ReactEvent.Mouse.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onFocusVisible: Any.t=?,
-  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~onMouseDown: ReactEvent.Mouse.t => unit=?,
-  ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
-  ~onMouseUp: ReactEvent.Mouse.t => unit=?,
-  ~onTouchEnd: ReactEvent.Touch.t => unit=?,
-  ~onTouchMove: ReactEvent.Touch.t => unit=?,
-  ~onTouchStart: ReactEvent.Touch.t => unit=?,
-  ~\"TouchRippleProps": {..}=?,
-  ~touchRippleRef: TouchRippleRef.t=?,
-  ~\"type": Type.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~autoFocus: bool=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~dense: bool=?,
-  ~disabled: bool=?,
-  ~disableGutters: bool=?,
-  ~divider: bool=?,
-  ~focusVisibleClassName: string=?,
-  ~role: string=?,
-  ~selected: bool=?,
-  ~sx: Sx.t=?,
-  ~tabIndex: Number.t=?,
-  ~value: Value.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "MenuItem"
+@module("@mui/material")
+external make: props<'a> => React.element = "MenuItem"

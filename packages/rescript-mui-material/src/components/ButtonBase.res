@@ -46,7 +46,6 @@ type touchRippleProps = {
 }
 
 type publicProps = {
-  ...CommonProps.t,
   ...CommonProps.clickableProps,
   /**
      * A ref for imperative actions.
@@ -59,6 +58,10 @@ type publicProps = {
      * @default false
      */
   centerRipple?: bool,
+  /**
+     * The content of the component.
+     */
+  children?: React.element,
   /**
      * If `true`, the ripple effect is disabled.
      *
@@ -112,10 +115,6 @@ type publicProps = {
 
 type props = {
   ...publicProps,
-  /**
-     * The content of the component.
-     */
-  children?: React.element,
   /**
      * Override or extend the styles applied to the component.
      */

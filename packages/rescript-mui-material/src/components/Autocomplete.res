@@ -157,6 +157,10 @@ type autocompleteRenderInputParams<'a> = {
   inputProps: unknown,
 }
 
+external renderInputParamsToTextFieldProps: autocompleteRenderInputParams<'a> => TextField.props<
+  'a,
+> = "%identity"
+
 type slotProps = {
   clearIndicator?: IconButton.props,
   paper?: Paper.props,

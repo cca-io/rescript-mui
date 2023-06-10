@@ -128,6 +128,7 @@ let make = (~sidebar, ~children) => {
     | Close => {isOpen: false}
     }
   , {isOpen: true})
+
   let (show, setShow) = React.useReducer((_, v) => v, false)
 
   let classes = useStyles()
@@ -145,7 +146,7 @@ let make = (~sidebar, ~children) => {
               )}>
               <Toolbar disableGutters={!state.isOpen} className={classes["toolbar"]}>
                 <IconButton
-                  color=#inherit
+                  color=Inherit
                   onClick={_event => setState(Open)}
                   className={Js.Array.joinWith(
                     " ",
@@ -154,9 +155,8 @@ let make = (~sidebar, ~children) => {
                   <MenuIcon />
                 </IconButton>
                 <Typography
-                  component={Typography.Component.string("h1")}
-                  variant=#h6
-                  color=#inherit
+                  component={OverridableComponent.string("h1")}
+                  variant=H6
                   noWrap=true
                   className={classes["title"]}>
                   {"Dashboard"->React.string}
@@ -167,26 +167,25 @@ let make = (~sidebar, ~children) => {
                     e->ReactEvent.Mouse.preventDefault
                     setShow(false)
                   }}
-                  color=#secondary>
+                  color=TextSecondary>
                   {"Close Dashboard"->React.string}
                 </Link>
-                <IconButton color=#inherit>
-                  <Badge badgeContent={"4"->React.string} color=#secondary>
+                <IconButton color=Inherit>
+                  <Badge badgeContent={"4"->React.string} color=Secondary>
                     <NotificationsIcon />
                   </Badge>
                 </IconButton>
               </Toolbar>
             </AppBar>
             <Drawer
-              variant=#permanent
-              classes={Drawer.Classes.make(
-                ~paper=Js.Array.joinWith(
+              variant=Permanent
+              classes={
+                paper: Js.Array.joinWith(
                   " ",
                   [classes["drawerPaper"], state.isOpen ? "" : classes["drawerPaperClose"]],
                 ),
-                (),
-              )}
-              \"open"=state.isOpen>
+              }
+              open_=state.isOpen>
               <div className={classes["toolbarIcon"]}>
                 <IconButton onClick={_event => setState(Close)}>
                   <ChevronLeftIcon />
@@ -201,8 +200,8 @@ let make = (~sidebar, ~children) => {
             </main>
           </div>
         </div>
-      : <Mui.Button variant=Outlined color=Primary onClick={_ => setShow(true)}>
+      : <Button variant=Outlined color=Primary onClick={_ => setShow(true)}>
           {"Open Dashboard"->React.string}
-        </Mui.Button>}
+        </Button>}
   </div>
 }

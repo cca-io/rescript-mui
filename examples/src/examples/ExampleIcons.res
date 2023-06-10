@@ -31,27 +31,27 @@ let rs = React.string
 let make = () => <>
   <div>
     <Mui.Typography variant=H6> {"Icon Types:"->rs} </Mui.Typography>
-    <Mui.Tooltip title={"Default"->rs} arrow=true placement=#top>
+    <Mui.Tooltip title={"Default"->rs} arrow=true placement=Top>
       <span>
         <SupervisedUserCircle.Filled />
       </span>
     </Mui.Tooltip>
-    <Mui.Tooltip title={"Outlined"->rs} arrow=true placement=#left>
+    <Mui.Tooltip title={"Outlined"->rs} arrow=true placement=Left>
       <span>
         <SupervisedUserCircle.Outlined />
       </span>
     </Mui.Tooltip>
-    <Mui.Tooltip title={"Rounded"->rs} arrow=true placement=#"top-end">
+    <Mui.Tooltip title={"Rounded"->rs} arrow=true placement=TopEnd>
       <span>
         <SupervisedUserCircle.Rounded />
       </span>
     </Mui.Tooltip>
-    <Mui.Tooltip title={"TwoTone"->rs} arrow=true placement=#bottom>
+    <Mui.Tooltip title={"TwoTone"->rs} arrow=true placement=Bottom>
       <span>
         <SupervisedUserCircle.TwoTone />
       </span>
     </Mui.Tooltip>
-    <Mui.Tooltip title={"Sharp"->rs} arrow=true placement=#right>
+    <Mui.Tooltip title={"Sharp"->rs} arrow=true placement=Right>
       <span>
         <SupervisedUserCircle.Sharp />
       </span>

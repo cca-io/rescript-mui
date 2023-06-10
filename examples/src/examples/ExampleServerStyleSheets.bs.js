@@ -3,7 +3,6 @@
 import * as React from "react";
 import * as ExampleBox from "./ExampleBox.bs.js";
 import * as Styles from "@mui/styles";
-import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Material from "@mui/material";
 import * as Server from "react-dom/server";
 import * as JsxRuntime from "react/jsx-runtime";
@@ -19,8 +18,8 @@ function ExampleServerStyleSheets(props) {
   var classes = useStyles(undefined);
   var match = React.useMemo((function () {
           var sheets = new Styles.ServerStyleSheets();
-          var html = Server.renderToString(sheets.collect(JsxRuntime.jsx(ExampleBox.make, {})));
           var css = sheets.toString();
+          var html = Server.renderToString(sheets.collect(JsxRuntime.jsx(ExampleBox.make, {})));
           return [
                   html,
                   css
@@ -31,21 +30,25 @@ function ExampleServerStyleSheets(props) {
                 JsxRuntime.jsx((function (prim) {
                         return Material.Typography(prim);
                       }), {
-                      children: "ServerSide render of <ExampleBox />",
-                      variant: "h5"
+                      variant: "h5",
+                      children: "ServerSide render of <ExampleBox />"
                     }),
-                JsxRuntime.jsx(Material.TextField, {
+                JsxRuntime.jsx((function (prim) {
+                        return Material.TextField(prim);
+                      }), {
                       className: classes.code,
-                      defaultValue: Caml_option.some(match[0]),
+                      defaultValue: match[0],
                       fullWidth: true,
                       label: "HTML",
                       multiline: true,
                       rows: 5,
                       variant: "outlined"
                     }),
-                JsxRuntime.jsx(Material.TextField, {
+                JsxRuntime.jsx((function (prim) {
+                        return Material.TextField(prim);
+                      }), {
                       className: classes.code,
-                      defaultValue: Caml_option.some(match[1]),
+                      defaultValue: match[1],
                       fullWidth: true,
                       label: "CSS",
                       multiline: true,

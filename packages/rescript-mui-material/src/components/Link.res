@@ -1,90 +1,68 @@
-type align = [#center | #inherit | #justify | #left | #right]
-
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `underline="none"`. */
+  underlineNone: string,
+  /** Styles applied to the root element if `underline="hover"`. */
+  underlineHover: string,
+  /** Styles applied to the root element if `underline="always"`. */
+  underlineAlways: string,
+  /** Styles applied to the root element if `component="button"`. */
+  button: string,
+  /** State class applied to the root element if the link is keyboard focused. */
+  focusVisible: string,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type underline =
+  | @as("none") None
+  | @as("hover") Hover
+  | @as("always") Always
+
+type rel =
+  | @as("alternate") Alternate
+  | @as("author") Author
+  | @as("bookmark") Bookmark
+  | @as("external") External
+  | @as("help") Help
+  | @as("license") License
+  | @as("next") Next
+  | @as("nofollow") Nofollow
+  | @as("noreferrer") Noreferrer
+  | @as("noopener") Noopener
+  | @as("prev") Prev
+  | @as("search") Search
+  | @as("tag") Tag
+
+type props = {
+  ...Typography.publicProps,
+  /**
+       * The content of the component.
+       */
+  children?: React.element,
+  /**
+       * Override or extend the styles applied to the component.
+       */
+  classes?: classes,
+  /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+  sx?: Sx.props,
+  /**
+       * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
+       */
+  @as("TypographyClasses")
+  typographyClasses?: Typography.classes,
+  /**
+       * Controls when the link should have an underline.
+       * @default 'always'
+       */
+  underline?: underline,
+  // HTML anchor attributes
+  href?: string,
+  target?: string,
+  rel?: rel,
+  onClick?: ReactEvent.Mouse.t => unit,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type underline = [#always | #hover | #none]
-
-type variant_enum = [
-  | #body1
-  | #body2
-  | #button
-  | #caption
-  | #h1
-  | #h2
-  | #h3
-  | #h4
-  | #h5
-  | #h6
-  | #inherit
-  | #overline
-  | #subtitle1
-  | #subtitle2
-]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type rel = [
-  | #alternate
-  | #author
-  | #bookmark
-  | #"external"
-  | #help
-  | #license
-  | #next
-  | #nofollow
-  | #noreferrer
-  | #noopener
-  | #prev
-  | #search
-  | #tag
-]
-
-@react.component @module("@mui/material")
-external make: (
-  ~align: align=?,
-  ~gutterBottom: bool=?,
-  ~noWrap: bool=?,
-  ~paragraph: bool=?,
-  ~variantMapping: {..}=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~color: Any.t=?,
-  ~component: Component.t=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~sx: Sx.t=?,
-  ~\"TypographyClasses": {..}=?,
-  ~underline: underline=?,
-  ~variant: Variant.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~href: string=?,
-  ~target: string=?,
-  ~rel: rel=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Link"
+@module("@mui/material")
+external make: props => React.element = "Link"

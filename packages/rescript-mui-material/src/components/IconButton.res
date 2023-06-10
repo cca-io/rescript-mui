@@ -57,10 +57,6 @@ type size =
 type props = {
   ...ButtonBase.publicProps,
   /**
-     * The icon to display.
-     */
-  children?: React.element,
-  /**
      * Override or extend the styles applied to the component.
      */
   classes?: classes,
@@ -99,7 +95,7 @@ type props = {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
   sx?: Sx.props,
-  component: OverridableComponent.t<unknown>,
+  component?: OverridableComponent.t<unknown>,
 }
 
 @module("@mui/material")

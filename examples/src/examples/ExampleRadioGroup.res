@@ -8,7 +8,7 @@ let make = () => {
   <RadioGroup
     name="answer"
     value={Any.make(state)}
-    onChange={e => {
+    onChange={(e, _) => {
       let value = (e->ReactEvent.Form.target)["value"]
       setState(_ => value->Any.unsafeGetValue)
     }}>
