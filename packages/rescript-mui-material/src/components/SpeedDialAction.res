@@ -1,154 +1,65 @@
-module Components = {
-  type t = {
-    "Arrow": option<React.element>,
-    "Popper": option<React.element>,
-    "Tooltip": option<React.element>,
-    "Transition": option<React.element>,
-  }
-  @obj
-  external make: (
-    ~\"Arrow": React.element=?,
-    ~\"Popper": React.element=?,
-    ~\"Tooltip": React.element=?,
-    ~\"Transition": React.element=?,
-    unit,
-  ) => t = ""
+type classes = {
+  /** Styles applied to the Fab component. */
+  fab: string,
+  /** Styles applied to the Fab component if `open={false}`. */
+  fabClosed: string,
+  /** Styles applied to the root element if `tooltipOpen={true}`. */
+  staticTooltip: string,
+  /** Styles applied to the root element if `tooltipOpen={true}` and `open={false}`. */
+  staticTooltipClosed: string,
+  /** Styles applied to the static tooltip label if `tooltipOpen={true}`. */
+  staticTooltipLabel: string,
+  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
+  tooltipPlacementLeft: string,
+  /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
+  tooltipPlacementRight: string,
 }
 
-module ComponentsProps = {
-  type t = {
-    "arrow": option<Any.t>,
-    "popper": option<Any.t>,
-    "tooltip": option<Any.t>,
-    "transition": option<Any.t>,
-  }
-  @obj
-  external make: (
-    ~arrow: Any.t=?,
-    ~popper: Any.t=?,
-    ~tooltip: Any.t=?,
-    ~transition: Any.t=?,
-    unit,
-  ) => t = ""
+type props = {
+  ...Tooltip.publicProps,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * Props applied to the [`Fab`](/material-ui/api/fab/) component.
+   * @default {}
+   */
+  @as("FabProps")
+  fabProps?: Fab.props,
+  /**
+   * Adds a transition delay, to allow a series of SpeedDialActions to be animated.
+   * @default 0
+   */
+  delay?: float,
+  /**
+   * The icon to display in the SpeedDial Fab.
+   */
+  icon?: React.element,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
+  /**
+   * `classes` prop applied to the [`Tooltip`](/material-ui/api/tooltip/) element.
+   */
+  @as("TooltipClasses")
+  tooltipClasses?: Tooltip.classes,
+  /**
+   * Placement of the tooltip.
+   * @default 'left'
+   */
+  tooltipPlacement?: Tooltip.placement,
+  /**
+   * Label to display in the tooltip.
+   */
+  tooltipTitle?: React.element,
+  /**
+   * Make the tooltip always visible when the SpeedDial is open.
+   * @default false
+   */
+  tooltipOpen?: bool,
 }
 
-type placement = [
-  | #"bottom-end"
-  | #"bottom-start"
-  | #bottom
-  | #"left-end"
-  | #"left-start"
-  | #left
-  | #"right-end"
-  | #"right-start"
-  | #right
-  | #"top-end"
-  | #"top-start"
-  | #top
-]
-
-module SlotProps = {
-  type t = {
-    "arrow": option<Any.t>,
-    "popper": option<Any.t>,
-    "tooltip": option<Any.t>,
-    "transition": option<Any.t>,
-  }
-  @obj
-  external make: (
-    ~arrow: Any.t=?,
-    ~popper: Any.t=?,
-    ~tooltip: Any.t=?,
-    ~transition: Any.t=?,
-    unit,
-  ) => t = ""
-}
-
-module Slots = {
-  type t = {
-    "arrow": option<React.element>,
-    "popper": option<React.element>,
-    "tooltip": option<React.element>,
-    "transition": option<React.element>,
-  }
-  @obj
-  external make: (
-    ~arrow: React.element=?,
-    ~popper: React.element=?,
-    ~tooltip: React.element=?,
-    ~transition: React.element=?,
-    unit,
-  ) => t = ""
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type tooltipPlacement = [
-  | #"bottom-end"
-  | #"bottom-start"
-  | #bottom
-  | #"left-end"
-  | #"left-start"
-  | #left
-  | #"right-end"
-  | #"right-start"
-  | #right
-  | #"top-end"
-  | #"top-start"
-  | #top
-]
-
-@react.component @module("@mui/material")
-external make: (
-  ~arrow: bool=?,
-  ~children: React.element=?,
-  ~components: Components.t=?,
-  ~componentsProps: ComponentsProps.t=?,
-  ~describeChild: bool=?,
-  ~disableFocusListener: bool=?,
-  ~disableHoverListener: bool=?,
-  ~disableInteractive: bool=?,
-  ~disableTouchListener: bool=?,
-  ~enterDelay: Number.t=?,
-  ~enterNextDelay: Number.t=?,
-  ~enterTouchDelay: Number.t=?,
-  ~followCursor: bool=?,
-  ~leaveDelay: Number.t=?,
-  ~leaveTouchDelay: Number.t=?,
-  ~onClose: ReactEvent.Synthetic.t => unit=?,
-  ~onOpen: ReactEvent.Synthetic.t => unit=?,
-  ~placement: placement=?,
-  ~\"PopperComponent": React.element=?,
-  ~\"PopperProps": {..}=?,
-  ~slotProps: SlotProps.t=?,
-  ~slots: Slots.t=?,
-  ~title: React.element=?,
-  ~\"TransitionComponent": React.element=?,
-  ~\"TransitionProps": {..}=?,
-  ~className: string=?,
-  ~delay: Number.t=?,
-  ~\"FabProps": {..}=?,
-  ~icon: React.element=?,
-  ~id: string=?,
-  ~\"open": bool=?,
-  ~sx: Sx.t=?,
-  ~\"TooltipClasses": {..}=?,
-  ~tooltipOpen: bool=?,
-  ~tooltipPlacement: tooltipPlacement=?,
-  ~tooltipTitle: React.element=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "SpeedDialAction"
+@module("@mui/material")
+external make: props => React.element = "SpeedDialAction"

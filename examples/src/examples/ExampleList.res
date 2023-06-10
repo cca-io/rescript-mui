@@ -9,8 +9,8 @@ let useStyles = Styles.makeStyles({
     maxHeight: "300px",
     backgroundColor: "#FFFFFF",
   },
-  "listSection": {JsxDOMStyle.backgroundColor="inherit"},
-  "ul": {JsxDOMStyle.backgroundColor:"inherit", padding:"0" },
+  "listSection": {JsxDOMStyle.backgroundColor: "inherit"},
+  "ul": {JsxDOMStyle.backgroundColor: "inherit", padding: "0"},
 })
 
 @react.component

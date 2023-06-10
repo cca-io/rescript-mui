@@ -9,7 +9,6 @@
   "scripts": {
     "build": "rescript build -with-deps",
     "watch": "watchexec --project-origin . -c -w helpers -w packages/rescript-mui-material -w packages/rescript-mui-lab -w examples -i lib -e res,resi 'rescript build -with-deps'",
-    "watch2": "watchexec --project-origin . -c -w helpers -w packages/rescript-mui-material -w packages/rescript-mui-lab -i lib -e res,resi 'rescript build -with-deps'",
     "generateOverrides": "node helpers/src/GenerateOverrides.bs.js",
     "clean": "rescript clean -with-deps",
     "postinstall": "patch-package"

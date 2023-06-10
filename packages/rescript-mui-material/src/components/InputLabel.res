@@ -1,57 +1,109 @@
-type color_enum = [#error | #info | #primary | #secondary | #success | #warning]
-
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** State class applied to the root element if `focused={true}`. */
+  focused: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string,
+  /** State class applied to the root element if `error={true}`. */
+  error: string,
+  /** State class applied to the root element if `required={true}`. */
+  required: string,
+  /** State class applied to the asterisk element. */
+  asterisk: string,
+  /** Styles applied to the root element if the component is a descendant of `FormControl`. */
+  formControl: string,
+  /** Styles applied to the root element if `size="small"`. */
+  sizeSmall: string,
+  /** Styles applied to the input element if `shrink={true}`. */
+  shrink: string,
+  /** Styles applied to the input element unless `disableAnimation={true}`. */
+  animated: string,
+  /** Styles applied to the root element if `variant="filled"`. */
+  filled: string,
+  /** Styles applied to the root element if `variant="outlined"`. */
+  outlined: string,
+  /** Styles applied to the root element if `variant="standard"`. */
+  standard: string,
 }
 
-type margin = [#dense]
+@unboxed
+type color =
+  | @as("error") Error
+  | @as("info") Info
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | @as("success") Success
+  | @as("warning") Warning
+  | String(string)
 
-type size_enum = [#normal | #small]
+type margin = | @as("dense") Dense
 
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
+@unboxed
+type size =
+  | @as("small") Small
+  | @as("normal") Normal
+  | String(string)
+
+type variant =
+  | @as("standard") Standard
+  | @as("outlined") Outlined
+  | @as("filled") Filled
+
+type props = {
+  /**
+     * The content of the component.
+     */
+  children?: React.element,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  color?: color,
+  /**
+     * If `true`, the transition animation is disabled.
+     * @default false
+     */
+  disableAnimation?: bool,
+  /**
+     * If `true`, the component is disabled.
+     */
+  disabled?: bool,
+  /**
+     * If `true`, the label is displayed in an error state.
+     */
+  error?: bool,
+  /**
+     * If `true`, the `input` of this label is focused.
+     */
+  focused?: bool,
+  /**
+     * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+     * FormControl.
+     */
+  margin?: margin,
+  /**
+     * if `true`, the label will indicate that the `input` is required.
+     */
+  required?: bool,
+  /**
+     * If `true`, the label is shrunk.
+     */
+  shrink?: bool,
+  /**
+     * The size of the component.
+     * @default 'normal'
+     */
+  size?: size,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
+  /**
+     * The variant to use.
+     */
+  variant?: variant,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type variant = [#filled | #outlined | #standard]
-
-@react.component @module("@mui/material")
-external make: (
-  ~component: React.element=?,
-  ~filled: bool=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~color: Color.t=?,
-  ~disableAnimation: bool=?,
-  ~disabled: bool=?,
-  ~error: bool=?,
-  ~focused: bool=?,
-  ~margin: margin=?,
-  ~required: bool=?,
-  ~shrink: bool=?,
-  ~size: Size.t=?,
-  ~sx: Sx.t=?,
-  ~variant: variant=?,
-  ~htmlFor: string,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "InputLabel"
+@module("@mui/material")
+external make: props => React.element = "InputLabel"

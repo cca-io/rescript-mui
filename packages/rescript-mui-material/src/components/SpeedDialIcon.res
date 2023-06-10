@@ -1,26 +1,37 @@
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the icon component. */
+  icon: string,
+  /** Styles applied to the icon component if `open={true}`. */
+  iconOpen: string,
+  /** Styles applied to the icon when an `openIcon` is provided and if `open={true}`. */
+  iconWithOpenIconOpen: string,
+  /** Styles applied to the `openIcon` if provided. */
+  openIcon: string,
+  /** Styles applied to the `openIcon` if provided and if `open={true}`. */
+  openIconOpen: string,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
+type props = {
+  ...CommonProps.t,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * The icon to display.
+   */
+  icon?: React.element,
+  /**
+   * The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
+   */
+  openIcon?: React.element,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
 }
 
-@react.component @module("@mui/material")
-external make: (
-  ~className: string=?,
-  ~icon: React.element=?,
-  ~\"open": bool=?,
-  ~openIcon: React.element=?,
-  ~sx: Sx.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "SpeedDialIcon"
+@module("@mui/material")
+external make: props => React.element = "SpeedDialIcon"

@@ -1,112 +1,104 @@
-module Current = {
-  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
-  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `color="primary"`. */
+  primary: string,
+  /** Styles applied to the root element if `color="secondary"`. */
+  secondary: string,
+  /** Styles applied to the root element if `variant="extended"`. */
+  extended: string,
+  /** Styles applied to the root element if `variant="circular"`. */
+  circular: string,
+  /** State class applied to the ButtonBase root element if the button is keyboard focused. */
+  focusVisible: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string,
+  /** Styles applied to the root element if `color="inherit"`. */
+  colorInherit: string,
+  /** Styles applied to the root element if `size="small"``. */
+  sizeSmall: string,
+  /** Styles applied to the root element if `size="medium"``. */
+  sizeMedium: string,
 }
 
-module TouchRippleRef_shape = {
-  type t = {"current": option<Current.t>}
-  @obj external make: (~current: Current.t=?, unit) => t = ""
+@unboxed
+type color =
+  | @as("default") Default
+  | @as("error") Error
+  | @as("info") Info
+  | @as("inherit") Inherit
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | @as("success") Success
+  | @as("warning") Warning
+  | String(string)
+
+@unboxed
+type size =
+  | @a("small") Small
+  | @a("medium") Medium
+  | @a("large") Large
+  | String(string)
+
+@unboxed
+type variant =
+  | @a("circular") Circular
+  | @a("extended") Extended
+  | String(string)
+
+type props = {
+  ...CommonProps.t,
+  /**
+     * The content of the component.
+     */
+  children?: React.element,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+     * @default 'default'
+     */
+  color?: color,
+  /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+  disabled?: bool,
+  /**
+     * If `true`, the  keyboard focus ripple is disabled.
+     * @default false
+     */
+  disableFocusRipple?: bool,
+  /**
+     * If `true`, the ripple effect is disabled.
+     */
+  disableRipple?: bool,
+  /**
+     * The URL to link to when the button is clicked.
+     * If defined, an `a` element will be used as the root node.
+     */
+  href?: string,
+  /**
+     * The size of the component.
+     * `small` is equivalent to the dense button styling.
+     * @default 'large'
+     */
+  size?: size,
+  /**
+     * The variant to use.
+     * @default 'circular'
+     */
+  variant?: variant,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
+  component: OverridableComponent.t<unknown>,
 }
 
-module TouchRippleRef = {
-  type t
-  external touchRippleRef_func: Any.t => t = "%identity"
-  external shape: TouchRippleRef_shape.t => t = "%identity"
-}
-
-type type_enum = [#button | #reset | #submit]
-
-module Type = {
-  type t
-  external enum: type_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type color_enum = [
-  | #default
-  | #error
-  | #info
-  | #inherit
-  | #primary
-  | #secondary
-  | #success
-  | #warning
-]
-
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type size_enum = [#small | #medium | #large]
-
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type variant_enum = [#circular | #extended]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~centerRipple: bool=?,
-  ~disableTouchRipple: bool=?,
-  ~focusRipple: bool=?,
-  ~\"LinkComponent": React.element=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
-  ~onDragLeave: ReactEvent.Mouse.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onFocusVisible: Any.t=?,
-  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~onMouseDown: ReactEvent.Mouse.t => unit=?,
-  ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
-  ~onMouseUp: ReactEvent.Mouse.t => unit=?,
-  ~onTouchEnd: ReactEvent.Touch.t => unit=?,
-  ~onTouchMove: ReactEvent.Touch.t => unit=?,
-  ~onTouchStart: ReactEvent.Touch.t => unit=?,
-  ~tabIndex: Number.t=?,
-  ~\"TouchRippleProps": {..}=?,
-  ~touchRippleRef: TouchRippleRef.t=?,
-  ~\"type": Type.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~color: Color.t=?,
-  ~component: React.element=?,
-  ~disabled: bool=?,
-  ~disableFocusRipple: bool=?,
-  ~disableRipple: bool=?,
-  ~focusVisibleClassName: string=?,
-  ~href: string=?,
-  ~size: Size.t=?,
-  ~sx: Sx.t=?,
-  ~variant: Variant.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Fab"
+@module("@mui/material")
+external make: props => React.element = "Fab"

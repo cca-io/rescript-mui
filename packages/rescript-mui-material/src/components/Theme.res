@@ -114,9 +114,11 @@ type t_transitions = {
 }
 
 type mixins = {
-  toolbar: string,
+  toolbar: JsxDOMStyle.t,
   gutters: string,
 }
+
+type t_zIndex = {drawer: float}
 
 type t_theme = {
   breakpoints: t_breakpoints,
@@ -129,6 +131,7 @@ type t_theme = {
   unstable_sx: Any.t,
   unstable_sxConfig: Any.t,
   mixins: mixins,
+  zIndex: t_zIndex,
 }
 
 type t = t_theme

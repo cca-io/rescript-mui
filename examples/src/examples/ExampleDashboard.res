@@ -12,7 +12,7 @@ let px_of_int = x => x->string_of_int ++ "px"
 let useStyles = Styles.makeStylesWithTheme(theme =>
   {
     "wrapper": {
-      ReactDOM.Style.position: "fixed",
+      JsxDOMStyle.position: "fixed",
       width: "100vw",
       height: "100vh",
       zIndex: "999999",
@@ -20,8 +20,8 @@ let useStyles = Styles.makeStylesWithTheme(theme =>
       top: "0",
       background: "#FFFFFF",
     },
-    "root": {display: "flex"},
-    "toolbar": {paddingRight: "24px"},
+    "root": {JsxDOMStyle.display: "flex"},
+    "toolbar": {JsxDOMStyle.paddingRight: "24px"},
     // keep right padding when drawer closed
     "toolbarIcon": ReactDOM.Style.combine(
       {
@@ -33,7 +33,7 @@ let useStyles = Styles.makeStylesWithTheme(theme =>
       theme.mixins.toolbar,
     ),
     "appBar": {
-      zIndex: (theme.zIndex.drawer +. 1.0)->Belt.Float.toString,
+      JsxDOMStyle.zIndex: (theme.zIndex.drawer +. 1.0)->Belt.Float.toString,
       transition: ThemeHelpers.transitionCreate(
         ~theme,
         ~affectWidth=true,
@@ -44,7 +44,7 @@ let useStyles = Styles.makeStylesWithTheme(theme =>
       ),
     },
     "appBarShift": {
-      marginLeft: drawerWidth->string_of_int ++ "px",
+      JsxDOMStyle.marginLeft: drawerWidth->string_of_int ++ "px",
       width: `calc(100% - $(drawerWidth)px)`,
       transition: ThemeHelpers.transitionCreate(
         ~theme,
@@ -55,11 +55,11 @@ let useStyles = Styles.makeStylesWithTheme(theme =>
         (),
       ),
     },
-    "menuButton": {marginLeft: "12px", marginRight: "36px"},
-    "menuButtonHidden": {display: "none"},
-    "title": {flexGrow: "1"},
+    "menuButton": {JsxDOMStyle.marginLeft: "12px", marginRight: "36px"},
+    "menuButtonHidden": {JsxDOMStyle.display: "none"},
+    "title": {JsxDOMStyle.flexGrow: "1"},
     "drawerPaper": {
-      position: "relative",
+      JsxDOMStyle.position: "relative",
       whiteSpace: "nowrap",
       width: `$(drawerWidth)px`,
       transition: ThemeHelpers.transitionCreate(

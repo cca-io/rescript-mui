@@ -1,125 +1,106 @@
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `edge="start"`. */
+  edgeStart: string,
+  /** Styles applied to the root element if `edge="end"`. */
+  edgeEnd: string,
+  /** Styles applied to the root element if `color="inherit"`. */
+  colorInherit: string,
+  /** Styles applied to the root element if `color="primary"`. */
+  colorPrimary: string,
+  /** Styles applied to the root element if `color="secondary"`. */
+  colorSecondary: string,
+  /** Styles applied to the root element if `color="error"`. */
+  colorError: string,
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo: string,
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess: string,
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string,
+  /** Styles applied to the root element if `size="small"`. */
+  sizeSmall: string,
+  /** Styles applied to the root element if `size="medium"`. */
+  sizeMedium: string,
+  /** Styles applied to the root element if `size="large"`. */
+  sizeLarge: string,
 }
 
-module Current = {
-  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
-  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
+@unboxed
+type color =
+  | @as("inherit") Inherit
+  | @as("default") Default
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | @as("error") Error
+  | @as("info") Info
+  | @as("success") Success
+  | @as("warning") Warning
+  | String(string)
+
+@unboxed
+type edge =
+  | @as("start") Start
+  | @as("end") End
+  | @as(false) False
+
+@unboxed
+type size =
+  | @as("small") Small
+  | @as("medium") Medium
+  | @as("large") Large
+  | String(string)
+
+type props = {
+  ...ButtonBase.publicProps,
+  /**
+     * The icon to display.
+     */
+  children?: React.element,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+     * @default 'default'
+     */
+  color?: color,
+  /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+  disabled?: bool,
+  /**
+     * If `true`, the  keyboard focus ripple is disabled.
+     * @default false
+     */
+  disableFocusRipple?: bool,
+  /**
+     * If given, uses a negative margin to counteract the padding on one
+     * side (this is often helpful for aligning the left or right
+     * side of the icon with content above or below, without ruining the border
+     * size and shape).
+     * @default false
+     */
+  edge?: edge,
+  /**
+     * The size of the component.
+     * `small` is equivalent to the dense button styling.
+     * @default 'medium'
+     */
+  size?: size,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
+  component: OverridableComponent.t<unknown>,
 }
 
-module TouchRippleRef_shape = {
-  type t = {"current": option<Current.t>}
-  @obj external make: (~current: Current.t=?, unit) => t = ""
-}
-
-module TouchRippleRef = {
-  type t
-  external touchRippleRef_func: Any.t => t = "%identity"
-  external shape: TouchRippleRef_shape.t => t = "%identity"
-}
-
-type type_enum = [#button | #reset | #submit]
-
-module Type = {
-  type t
-  external enum: type_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type color_enum = [
-  | #inherit
-  | #default
-  | #primary
-  | #secondary
-  | #error
-  | #info
-  | #success
-  | #warning
-]
-
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Edge: {
-  type t
-  let end: t
-  let start: t
-  let \"false": t
-} = {
-  @unboxed
-  type rec t = Any('a): t
-
-  let end = Any("end")
-  let start = Any("start")
-  let \"false" = Any(false)
-}
-
-type size_enum = [#small | #medium | #large]
-
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~centerRipple: bool=?,
-  ~component: Component.t=?,
-  ~disableTouchRipple: bool=?,
-  ~focusRipple: bool=?,
-  ~focusVisibleClassName: string=?,
-  ~href: Any.t=?,
-  ~\"LinkComponent": React.element=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
-  ~onDragLeave: ReactEvent.Mouse.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onFocusVisible: Any.t=?,
-  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~onMouseDown: ReactEvent.Mouse.t => unit=?,
-  ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
-  ~onMouseUp: ReactEvent.Mouse.t => unit=?,
-  ~onTouchEnd: ReactEvent.Touch.t => unit=?,
-  ~onTouchMove: ReactEvent.Touch.t => unit=?,
-  ~onTouchStart: ReactEvent.Touch.t => unit=?,
-  ~tabIndex: Number.t=?,
-  ~\"TouchRippleProps": {..}=?,
-  ~touchRippleRef: TouchRippleRef.t=?,
-  ~\"type": Type.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~color: Color.t=?,
-  ~disabled: bool=?,
-  ~disableFocusRipple: bool=?,
-  ~disableRipple: bool=?,
-  ~edge: Edge.t=?,
-  ~size: Size.t=?,
-  ~sx: Sx.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "IconButton"
+@module("@mui/material")
+external make: props => React.element = "IconButton"

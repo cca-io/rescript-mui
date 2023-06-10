@@ -18,7 +18,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] Alert
 - [ ] AlertTitle
 - [ ] AppBar
-- [ ] Autocomplete
+- [x] Autocomplete
 - [ ] Avatar
 - [ ] AvatarGroup
 - [ ] Backdrop
@@ -37,7 +37,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] CardHeader
 - [ ] CardMedia
 - [ ] Checkbox
-- [ ] Chip
+- [x] Chip
 - [ ] CircularProgress
 - [ ] Collapse
 - [ ] Container
@@ -49,7 +49,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] DialogTitle
 - [ ] Divider
 - [ ] Drawer
-- [ ] Fab
+- [x] Fab
 - [ ] Fade
 - [ ] FilledInput
 - [ ] FormControl
@@ -61,22 +61,22 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] Grid
 - [ ] Grow
 - [ ] Hidden
-- [ ] Icon
-- [ ] IconButton
+- [x] Icon
+- [x] IconButton
 - [ ] ImageList
 - [ ] ImageListItem
 - [ ] ImageListItemBar
-- [ ] Input
-- [ ] InputAdornment
-- [ ] InputBase
-- [ ] InputLabel
+- [x] Input
+- [x] InputAdornment
+- [x] InputBase
+- [x] InputLabel
 - [ ] LinearProgress
 - [ ] Link
 - [ ] List
 - [ ] ListItem
 - [ ] ListItemAvatar
 - [ ] ListItemButton
-- [ ] ListItemIcon
+- [x] ListItemIcon
 - [ ] ListItemSecondaryAction
 - [ ] ListItemText
 - [ ] ListSubheader
@@ -91,7 +91,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] PaginationItem
 - [x] Paper
 - [ ] Popover
-- [ ] Popper
+- [x] Popper
 - [ ] Radio
 - [ ] RadioGroup
 - [x] Rating
@@ -103,18 +103,18 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] Snackbar
 - [ ] SnackbarContent
 - [ ] SpeedDial
-- [ ] SpeedDialAction
-- [ ] SpeedDialIcon
+- [x] SpeedDialAction
+- [x] SpeedDialIcon
 - [ ] Stack
 - [ ] Step
 - [ ] StepButton
 - [ ] StepConnector
 - [ ] StepContent
-- [ ] StepIcon
+- [x] StepIcon
 - [ ] StepLabel
 - [ ] Stepper
 - [ ] StylesProvider
-- [ ] SvgIcon
+- [x] SvgIcon
 - [ ] SwipeableDrawer
 - [ ] Switch
 - [ ] Tab
@@ -133,7 +133,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] ToggleButton
 - [ ] ToggleButtonGroup
 - [ ] Toolbar
-- [ ] Tooltip
+- [x] Tooltip
 - [x] Typography
 - [ ] Zoom
 

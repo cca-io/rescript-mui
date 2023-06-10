@@ -8,8 +8,8 @@ let make = () => {
   let classes = useStyles()
 
   <Mui.Button
-    color=#primary
-    variant=#contained
+    color=Primary
+    variant=Contained
     classes={root: classes["fontSize"], containedPrimary: classes["bgColor"]}>
     {React.string("Example Button")}
   </Mui.Button>
