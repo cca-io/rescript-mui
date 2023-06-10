@@ -1,5 +1,4 @@
 open Mui
-open MuiLab
 
 module FormatAlignLeftIcon = {
   @react.component @module("@material-ui/icons/FormatAlignLeft")
@@ -50,8 +49,8 @@ let make = () => {
     setFormats(v->Mui.Any.unsafeGetValue)
   }
 
-  <Grid container=true spacing=#2>
-    <Grid item=true sm=Grid.Sm.\"12" md=Grid.Md.\"6">
+  <Grid container=true spacing=Int(2)>
+    <Grid item=true sm=Number(12) md=Number(6)>
       <Box mb={Number(2.)} mt={Number(2.)}>
         <ToggleButtonGroup
           value={Any.fromString(alignment)} exclusive=true onChange=handleAlignment>
@@ -76,8 +75,8 @@ let make = () => {
       deselects any other.`->React.string}
       </Typography>
     </Grid>
-    <Grid item=true sm=Grid.Sm.\"12" md=Grid.Md.\"6">
-      <Box mb={Box.Value.int(2)} mt={Box.Value.int(2)}>
+    <Grid item=true sm=Number(12) md=Number(6)>
+      <Box mb={Number(2.)} mt={Number(2.)}>
         <ToggleButtonGroup value={Any.make(formats)} onChange=handleFormats>
           <ToggleButton value={Any.fromString("bold")}>
             <FormatBoldIcon />

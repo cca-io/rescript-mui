@@ -64,6 +64,11 @@ type componentsProps = {
 type inputBaseComponentProps = {
   name?: string,
   id?: string,
+  step?: int,
+  min?: int,
+  max?: int,
+  @as("type") type_?: string,
+  @as("aria-labelledby") ariaLabelledby?: string,
 } // FIXME: there is more
 
 type margin =
