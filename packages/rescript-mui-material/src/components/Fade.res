@@ -1,25 +1,14 @@
-type timeoutObject = {
-  appear?: int,
-  enter?: int,
-  exit?: int,
-}
-
 @unboxed
-type timeout =
-  | Timeout(int)
-  | Object(timeoutObject)
-
-type easingObject = {
-  enter?: string,
-  exit?: string,
-}
+type duration =
+  | Duration(int)
+  | Object(Transition.durationObject)
 
 @unboxed
 type easing =
   | Easing(string)
-  | Object(easingObject)
+  | Object(Transition.easingObject)
 
-type props = {
+type publicProps = {
   ...CommonProps.t,
   /**
    * Perform the enter transition when it first mounts if `in` is also `true`.
@@ -27,10 +16,6 @@ type props = {
    * @default true
    */
   appear?: bool,
-  /**
-   * A single child content element.
-   */
-  children: React.element,
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
@@ -49,7 +34,15 @@ type props = {
    *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
-  timeout?: timeout,
+  timeout?: duration,
+}
+
+type props = {
+  ...publicProps,
+  /**
+   * A single child content element.
+   */
+  children: React.element,
 }
 
 @module("@mui/material")

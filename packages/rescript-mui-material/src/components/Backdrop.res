@@ -1,98 +1,67 @@
-module Easing_shape = {
-  type t = {"enter": option<string>, "exit": option<string>}
-  @obj external make: (~enter: string=?, ~exit: string=?, unit) => t = ""
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `invisible={true}`. */
+  invisible: string,
 }
 
-module Easing = {
-  type t
-  external shape: Easing_shape.t => t = "%identity"
-  external string: string => t = "%identity"
+type components = {@as("Root") root?: React.element}
+
+type componentsProps = {root?: unknown}
+
+type props = {
+  ...Fade.publicProps,
+  /**
+       * If `true`, the component is shown.
+       */
+  @as("open")
+  open_: bool,
+  /**
+       * The content of the component.
+       */
+  children?: React.element,
+  /**
+       * Override or extend the styles applied to the component.
+       */
+  classes?: classes,
+  /**
+       * The component used for the root node. Either a string to use a HTML element or a component.
+       */
+  component?: OverridableComponent.t<unknown>,
+  /**
+       * If `true`, the backdrop is invisible.
+       * It can be used when rendering a popover or a custom select component.
+       * @default false
+       */
+  invisible?: bool,
+  /**
+       * The extra props for the slot components.
+       * You can override the existing props or add new ones.
+       * @default {}
+       */
+  slotProps?: componentsProps,
+  /**
+       * The components used for each slot inside.
+       * @default {}
+       */
+  slots?: components,
+  /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+  sx?: Sx.props,
+  /**
+       * The component used for the transition.
+       * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+       * @default Fade
+       */
+  @as("TransitionComponent")
+  transitionComponent?: React.component<Transition.props>,
+  /**
+       * The duration for the transition, in milliseconds.
+       * You may specify a single timeout for all transitions, or individually with an object.
+       */
+  transitionDuration?: Fade.duration,
 }
 
-module Timeout_shape = {
-  type t = {"appear": option<Number.t>, "enter": option<Number.t>, "exit": option<Number.t>}
-  @obj external make: (~appear: Number.t=?, ~enter: Number.t=?, ~exit: Number.t=?, unit) => t = ""
-}
-
-module Timeout = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external shape: Timeout_shape.t => t = "%identity"
-}
-
-module Components = {
-  type t = {"Root": option<React.element>}
-  @obj external make: (~\"Root": React.element=?, unit) => t = ""
-}
-
-module ComponentsProps = {
-  type t = {"root": option<Any.t>}
-  @obj external make: (~root: Any.t=?, unit) => t = ""
-}
-
-module SlotProps = {
-  type t = {"root": option<Any.t>}
-  @obj external make: (~root: Any.t=?, unit) => t = ""
-}
-
-module Slots = {
-  type t = {"root": option<React.element>}
-  @obj external make: (~root: React.element=?, unit) => t = ""
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-module TransitionDuration_shape = {
-  type t = {"appear": option<Number.t>, "enter": option<Number.t>, "exit": option<Number.t>}
-  @obj external make: (~appear: Number.t=?, ~enter: Number.t=?, ~exit: Number.t=?, unit) => t = ""
-}
-
-module TransitionDuration = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external shape: TransitionDuration_shape.t => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~addEndListener: Any.t=?,
-  ~appear: bool=?,
-  ~easing: Easing.t=?,
-  ~\"in": bool=?,
-  ~onEnter: ReactEvent.Synthetic.t => unit=?,
-  ~onEntered: ReactEvent.Synthetic.t => unit=?,
-  ~onEntering: ReactEvent.Synthetic.t => unit=?,
-  ~onExit: ReactEvent.Synthetic.t => unit=?,
-  ~onExited: ReactEvent.Synthetic.t => unit=?,
-  ~onExiting: ReactEvent.Synthetic.t => unit=?,
-  ~style: ReactDOM.Style.t=?,
-  ~timeout: Timeout.t=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~components: Components.t=?,
-  ~componentsProps: ComponentsProps.t=?,
-  ~invisible: bool=?,
-  ~\"open": bool,
-  ~slotProps: SlotProps.t=?,
-  ~slots: Slots.t=?,
-  ~sx: Sx.t=?,
-  ~transitionDuration: TransitionDuration.t=?,
-  ~id: string=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Backdrop"
+@module("@mui/material")
+external make: props => React.element = "Backdrop"

@@ -81,11 +81,10 @@ type color =
   | @as("warning") Warning
   | String(string)
 
-type slotProps // FIXME
-// {
-//     root?: SlotComponentProps<'span', BadgeRootSlotPropsOverrides, BadgeOwnerState>,
-//     badge?: SlotComponentProps<'span', BadgeBadgeSlotPropsOverrides, BadgeOwnerState>,
-//   }
+type slotProps = {
+  root?: unknown,
+  badge?: unknown,
+}
 
 type badgeSlots = {
   /**
@@ -164,16 +163,6 @@ type props = {
      * @default 'default'
      */
   color?: color,
-  /**
-     * The extra props for the slot components.
-     * You can override the existing props or add new ones.
-     *
-     * This prop is an alias for the `slotProps` prop.
-     * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-     *
-     * @default {}
-     */
-  componentsProps?: slotProps,
   /**
      * The components used for each slot inside.
      *

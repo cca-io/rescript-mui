@@ -24,11 +24,9 @@ let make = () => {
   open Mui
   <div>
     <Popover
-      \"open"={Belt.Option.isSome(state.anchorEl)}
-      onClose={_evt => dispatch(ClosePopup)}
-      anchorEl=?{state.anchorEl->Belt.Option.map(el =>
-        Popover.AnchorEl.obj(el->ReactDOM.domElementToObj->Obj.magic)
-      )}>
+      open_={Belt.Option.isSome(state.anchorEl)}
+      onClose={(_evt, _) => dispatch(ClosePopup)}
+      anchorEl=?{state.anchorEl->Belt.Option.map(el => el->ReactDOM.domElementToObj->Obj.magic)}>
       <div
         style={ReactDOM.Style.make(
           ~fontSize="6rem",

@@ -1,5 +1,3 @@
-type transitionProps
-
 type classes = {
   /** Styles applied to the root element. */
   root?: string,
@@ -58,13 +56,13 @@ type props = {
    * @default Collapse
    */
   @as("TransitionComponent")
-  transitionComponent?: React.component<transitionProps>,
+  transitionComponent?: React.component<Transition.props>,
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
   @as("TransitionProps")
-  transitionProps?: transitionProps,
+  transitionProps?: Transition.props,
 }
 
 @module("@mui/material")

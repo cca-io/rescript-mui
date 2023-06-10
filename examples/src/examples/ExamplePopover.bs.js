@@ -32,7 +32,10 @@ function ExamplePopover(props) {
   var state = match[0];
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsx(Material.Popover, {
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Popover(prim);
+                      }), {
+                      open: Belt_Option.isSome(state.anchorEl),
                       anchorEl: Belt_Option.map(state.anchorEl, (function (el) {
                               return el;
                             })),
@@ -44,12 +47,13 @@ function ExamplePopover(props) {
                                   margin: "1rem"
                                 }
                               })),
-                      onClose: (function (_evt) {
+                      onClose: (function (_evt, param) {
                           dispatch("ClosePopup");
-                        }),
-                      open: Belt_Option.isSome(state.anchorEl)
+                        })
                     }),
-                JsxRuntime.jsx(Material.List, {
+                JsxRuntime.jsx((function (prim) {
+                        return Material.List(prim);
+                      }), {
                       children: Caml_option.some(Belt_Array.mapWithIndex(messages, (function (i, message) {
                                   return JsxRuntime.jsx(Material.ListItem, {
                                               button: true,

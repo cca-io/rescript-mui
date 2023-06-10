@@ -35,7 +35,10 @@ function ExampleList(props) {
                                 title: "Example Title"
                               }),
                           JsxRuntime.jsx(Material.CardContent, {
-                                children: Caml_option.some(JsxRuntime.jsx(Material.List, {
+                                children: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                            return Material.List(prim);
+                                          }), {
+                                          className: classes.root,
                                           children: Caml_option.some($$Array.map((function (sectionId) {
                                                       return JsxRuntime.jsx("li", {
                                                                   children: JsxRuntime.jsx("ul", {
@@ -63,7 +66,6 @@ function ExampleList(props) {
                                                     3,
                                                     4
                                                   ])),
-                                          className: classes.root,
                                           subheader: Caml_option.some(subheader)
                                         }))
                               }),

@@ -23,43 +23,8 @@ type componentsProps = {
   backdrop?: unknown,
 }
 
-type props = {
+type publicProps = {
   ...CommonProps.t,
-  /**
-   * A single child content element.
-   */
-  children: React.element,
-  /**
-   * If `true`, the component is shown.
-   */
-  @as("open")
-  open_: bool,
-  /**
-     * A backdrop component. This prop enables custom backdrop rendering.
-     * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
-     * Use the `slots.backdrop` prop to make your application ready for the next version of Material UI.
-     * @default styled(Backdrop, {
-     *   name: 'MuiModal',
-     *   slot: 'Backdrop',
-     *   overridesResolver: (props, styles) => {
-     *     return styles.backdrop,
-     *   },
-     * })({
-     *   zIndex: -1,
-     * })
-     */
-  @as("BackdropComponent")
-  backdropComponent?: React.element,
-  /**
-     * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
-     * @deprecated Use `slotProps.backdrop` instead.
-     */
-  @as("BackdropProps")
-  backdropProps?: Backdrop.props,
-  /**
-     * Override or extend the styles applied to the component.
-     */
-  classes?: classes,
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
@@ -69,33 +34,6 @@ type props = {
      * The component used for the root node. Either a string to use a HTML element or a component.
      */
   component?: OverridableComponent.t<unknown>,
-  /**
-     * The components used for each slot inside.
-     *
-     * This prop is an alias for the `slots` prop.
-     * It's recommended to use the `slots` prop instead.
-     *
-     * @default {}
-     */
-  components?: components,
-  /**
-     * The extra props for the slot components.
-     * You can override the existing props or add new ones.
-     *
-     * This prop is an alias for the `slotProps` prop.
-     * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-     *
-     * @default {}
-     */
-  componentsProps?: componentsProps,
-  /**
-   * An HTML element or function that returns one.
-   * The `container` will have the portal children appended to it.
-   *
-   * By default, it uses the body of the top-level document object,
-   * so it's simply `document.body` most of the time.
-   */
-  container?: React.element,
   /**
    * If `true`, the modal will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.
@@ -147,6 +85,31 @@ type props = {
    * @default false
    */
   keepMounted?: bool,
+}
+
+type props = {
+  ...publicProps,
+  /**
+   * If `true`, the component is shown.
+   */
+  @as("open")
+  open_: bool,
+  /**
+   * A single child content element.
+   */
+  children: React.element,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+   * An HTML element or function that returns one.
+   * The `container` will have the portal children appended to it.
+   *
+   * By default, it uses the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  container?: React.element,
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
@@ -156,16 +119,16 @@ type props = {
    */
   onClose?: onClose,
   /**
-   * The props used for each slot inside the Modal.
-   * @default {}
-   */
-  slotProps?: componentsProps,
-  /**
    * The components used for each slot inside the Modal.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
   slots?: components,
+  /**
+   * The props used for each slot inside the Modal.
+   * @default {}
+   */
+  slotProps?: componentsProps,
   /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

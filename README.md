@@ -21,8 +21,8 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [x] Autocomplete
 - [ ] Avatar
 - [ ] AvatarGroup
-- [ ] Backdrop
-- [ ] Badge
+- [x] Backdrop
+- [x] Badge
 - [ ] BottomNavigation
 - [ ] BottomNavigationAction
 - [x] Box
@@ -72,7 +72,7 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [x] InputLabel
 - [ ] LinearProgress
 - [x] Link
-- [ ] List
+- [x] List
 - [ ] ListItem
 - [ ] ListItemAvatar
 - [ ] ListItemButton
@@ -80,9 +80,9 @@ These bindings will only work with ReScript 11 and JSX mode version 4, as it ena
 - [ ] ListItemSecondaryAction
 - [ ] ListItemText
 - [ ] ListSubheader
-- [ ] Menu
+- [x] Menu
 - [x] MenuItem
-- [ ] MenuList
+- [x] MenuList
 - [ ] MobileStepper
 - [x] Modal
 - [ ] NativeSelect
