@@ -59,19 +59,19 @@ type blurOnSelect =
   | @as(true) True
   | @as(false) False
 
-type autocompleteChangeReason =
+type changeReason =
   | @as("createOption") CreateOption
   | @as("selectOption") SelectOption
   | @as("removeOption") RemoveOption
   | @as("clear") Clear
   | @as("blur") Blur
 
-type autocompleteInputChangeReason =
+type inputChangeReason =
   | @as("input") Input
   | @as("reset") Reset
   | @as("clear") Clear
 
-type autocompleteCloseReason =
+type closeReason =
   | @as("createOption") CreateOption
   | @as("toggleInput") ToggleInput
   | @as("escape") Escape
@@ -108,7 +108,7 @@ type size =
   | @as("medium") Medium
   | String(string)
 
-type autocompleteOwnerState = {
+type ownerState = {
   disablePortal: bool,
   expanded: bool,
   focused: bool,
@@ -120,7 +120,7 @@ type autocompleteOwnerState = {
   size: size,
 }
 
-type autocompleteRenderGetTagProps = {
+type renderGetTagProps = {
   key: int,
   className: string,
   disabled: bool,
@@ -129,25 +129,25 @@ type autocompleteRenderGetTagProps = {
   onDelete: ReactEvent.Synthetic.t => unit,
 }
 
-type autocompleteHighlightChangeReason =
+type highlightChangeReason =
   | @as("keyboard") Keyboard
   | @as("mouse") Mouse
   | @as("auto") Auto
   | @as("touch") Touch
 
-type autocompleteRenderOptionState = {
+type renderOptionState = {
   inputValue: string,
   index: int,
   selected: bool,
 }
 
-type autocompleteRenderGroupParams = {
+type renderGroupParams = {
   key: string,
   group: string,
   children?: React.element,
 }
 
-type autocompleteRenderInputParams<'a> = {
+type renderInputParams<'a> = {
   id: string,
   disabled: bool,
   fullWidth: bool,
@@ -180,7 +180,7 @@ type props<'a> = {
    * @param {object} params
    * @returns {ReactNode}
    */
-  renderInput: autocompleteRenderInputParams<'a> => React.element,
+  renderInput: renderInputParams<'a> => React.element,
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.
