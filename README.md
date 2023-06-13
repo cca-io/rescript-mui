@@ -70,11 +70,11 @@ They are still available, check out the old website: https://rescript-material-u
 - [ ] Collapse
 - [ ] Container
 - [ ] CssBaseline
-- [ ] Dialog
-- [ ] DialogActions
-- [ ] DialogContent
-- [ ] DialogContentText
-- [ ] DialogTitle
+- [x] Dialog
+- [x] DialogActions
+- [x] DialogContent
+- [x] DialogContentText
+- [x] DialogTitle
 - [ ] Divider
 - [x] Drawer
 - [x] Fab
