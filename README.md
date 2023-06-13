@@ -41,8 +41,8 @@ They are still available, check out the old website: https://rescript-material-u
 
 - [x] Accordion
 - [x] AccordionActions
-- [ ] AccordionDetails
-- [ ] AccordionSummary
+- [x] AccordionDetails
+- [x] AccordionSummary
 - [ ] Alert
 - [ ] AlertTitle
 - [ ] AppBar
