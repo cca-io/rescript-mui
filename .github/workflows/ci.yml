@@ -10,12 +10,8 @@ on:
 
 jobs:
   build:
-    name: Build ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        # Stay on ubuntu-18.04 because of https://github.com/cca-io/rescript-material-ui/issues/141
-        os: [ubuntu-18.04, windows-latest, macOS-latest]
+    name: Build test
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -24,34 +20,10 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '18.x'
 
       - name: Yarn install
         run: yarn
 
-      - name: JSON schema parser
-        working-directory: tools/json-schema-parser
-        shell: bash
-        run: yarn build
-
-      - name: Component extractor
-        working-directory: tools/component-extractor
-        shell: bash
-        run: ./build.sh
-
-      - name: Binding generator
-        working-directory: tools/binding-generator
-        shell: bash
-        run: ./build.sh
-
-      - name: Compile rescript-material-ui
-        working-directory: public/rescript-material-ui
-        run: yarn build
-
-      - name: Compile rescript-material-ui-lab
-        working-directory: public/rescript-material-ui-lab
-        run: yarn build
-
-      - name: Examples
-        working-directory: examples
+      - name: Compile packages and examples
         run: yarn build
