@@ -21,6 +21,18 @@ They are still available, check out the old website: https://rescript-material-u
 2. It just takes too much time to maintain.
 3. In our opinion, it is much more useful (albeit not as pretty) to just have a look at the [examples folder](./examples/).
 
+# What's inside?
+
+| MUI package         | ReScript bindings package    | Progress |
+| ------------------- | ---------------------------- | -------: |
+| @mui/material       | @rescript-mui/material       |     50 % |
+| @mui/lab            | @rescript-mui/lab            |      0 % |
+| @mui/x-date-pickers | @rescript-mui/x-date-pickers |      0 % |
+| @mui/base           | Not implemented!             |        - |
+| @mui/joy            | Not implemented!             |        - |
+| @mui/system         | Not implemented!             |        - |
+| @mui/x-data-grid    | Not implemented!             |        - |
+
 # Progress
 
 ## MUI-Material
