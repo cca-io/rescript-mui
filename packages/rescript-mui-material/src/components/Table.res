@@ -1,38 +1,57 @@
-type padding = [#checkbox | #none | #normal]
-
-type size_enum = [#medium | #small]
-
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `stickyHeader={true}`. */
+  stickyHeader: string,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+@unboxed
+type size =
+  | @as("small") Small
+  | @as("medium") Medium
+  | String(string)
+
+type padding =
+  | @as("normal") Normal
+  | @as("checkbox") Checkbox
+  | @as("none") None
+
+type props = {
+  ...CommonProps.t,
+  /**
+     * The content of the table, normally `TableHead` and `TableBody`.
+     */
+  children?: React.element,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * The component used for the root node. Either a string to use a HTML element or a component.
+     */
+  component?: OverridableComponent.t<unknown>,
+  /**
+     * Allows TableCells to inherit padding of the Table.
+     * @default 'normal'
+     */
+  padding?: padding,
+  /**
+     * Allows TableCells to inherit size of the Table.
+     * @default 'medium'
+     */
+  size?: size,
+  /**
+     * Set the header sticky.
+     *
+     * ⚠️ It doesn't work with IE11.
+     * @default false
+     */
+  stickyHeader?: bool,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~padding: padding=?,
-  ~size: Size.t=?,
-  ~stickyHeader: bool=?,
-  ~sx: Sx.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Table"
+@module("@mui/material")
+external make: props => React.element = "Table"

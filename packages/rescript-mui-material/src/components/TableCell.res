@@ -1,67 +1,124 @@
-type align = [#center | #inherit | #justify | #left | #right]
-
-type padding = [#checkbox | #none | #normal]
-
-type size_enum = [#medium | #small]
-
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `variant="head"` or `context.table.head`. */
+  head: string,
+  /** Styles applied to the root element if `variant="body"` or `context.table.body`. */
+  body: string,
+  /** Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
+  footer: string,
+  /** Styles applied to the root element if `size="small"`. */
+  sizeSmall: string,
+  /** Styles applied to the root element if `size="medium"`. */
+  sizeMedium: string,
+  /** Styles applied to the root element if `padding="checkbox"`. */
+  paddingCheckbox: string,
+  /** Styles applied to the root element if `padding="none"`. */
+  paddingNone: string,
+  /** Styles applied to the root element if `align="left"`. */
+  alignLeft: string,
+  /** Styles applied to the root element if `align="center"`. */
+  alignCenter: string,
+  /** Styles applied to the root element if `align="right"`. */
+  alignRight: string,
+  /** Styles applied to the root element if `align="justify"`. */
+  alignJustify: string,
+  /** Styles applied to the root element if `context.table.stickyHeader={true}`. */
+  stickyHeader: string,
 }
 
-module SortDirection: {
-  type t
-  let asc: t
-  let desc: t
-  let \"false": t
-} = {
-  @unboxed
-  type rec t = Any('a): t
+type align =
+  | @as("inherit") Inherit
+  | @as("left") Left
+  | @as("center") Center
+  | @as("right") Right
+  | @as("justify") Justify
 
-  let asc = Any("asc")
-  let desc = Any("desc")
-  let \"false" = Any(false)
+type padding =
+  | @as("normal") Normal
+  | @as("checkbox") Checkbox
+  | @as("none") None
+
+@unboxed
+type size =
+  | @as("small") Small
+  | @as("medium") Medium
+
+@unboxed
+type sortDirection =
+  | @as("asc") Asc
+  | @as("desc") Desc
+  | @as(false) False
+
+@unboxed
+type variant =
+  | @as("head") Head
+  | @as("body") Body
+  | @as("footer") Footer
+  | String(string)
+
+type publicProps = {
+  ...CommonProps.t,
+  /**
+   * Set the text-align on the table cell content.
+   *
+   * Monetary or generally number fields **should be right aligned** as that allows
+   * you to add them up quickly in your head without having to worry about decimals.
+   * @default 'inherit'
+   */
+  align?: /**
+   * Set the text-align on the table cell content.
+   *
+   * Monetary or generally number fields **should be right aligned** as that allows
+   * you to add them up quickly in your head without having to worry about decimals.
+   * @default 'inherit'
+   */
+  align,
+  /**
+   * Sets the padding applied to the cell.
+   * The prop defaults to the value (`'default'`) inherited from the parent Table component.
+   */
+  padding?: padding,
+  /**
+   * Set scope attribute.
+   */
+  scope?: string,
+  /**
+   * Specify the size of the cell.
+   * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
+   */
+  size?: size,
+  /**
+   * Set aria-sort direction.
+   */
+  sortDirection?: sortDirection,
+  /**
+   * Specify the cell type.
+   * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
+   */
+  variant?: variant,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type props = {
+  ...publicProps,
+  /**
+   * The content of the component.
+   */
+  children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: React.component<unknown>,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type variant_enum = [#body | #footer | #head]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~align: align=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~padding: padding=?,
-  ~scope: string=?,
-  ~size: Size.t=?,
-  ~sortDirection: SortDirection.t=?,
-  ~sx: Sx.t=?,
-  ~variant: Variant.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~colSpan: int=?,
-  ~rowSpan: int=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "TableCell"
+@module("@mui/material")
+external make: props => React.element = "TableCell"

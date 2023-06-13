@@ -1,29 +1,45 @@
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** State class applied to the root element if `selected={true}`. */
+  selected: string,
+  /** State class applied to the root element if `hover={true}`. */
+  hover: string,
+  /** Styles applied to the root element if table variant="head". */
+  head: string,
+  /** Styles applied to the root element if table variant="footer". */
+  footer: string,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
+type props = {
+  ...CommonProps.t,
+  /**
+     * Should be valid <tr> children such as `TableCell`.
+     */
+  children?: React.element,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * The component used for the root node. Either a string to use a HTML element or a component.
+     */
+  component?: OverridableComponent.t<unknown>,
+  /**
+     * If `true`, the table row will shade on hover.
+     * @default false
+     */
+  hover?: bool,
+  /**
+     * If `true`, the table row will have the selected shading.
+     * @default false
+     */
+  selected?: bool,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
 }
 
-@react.component @module("@mui/material")
-external make: (
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~hover: bool=?,
-  ~selected: bool=?,
-  ~sx: Sx.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onDoubleClick: ReactEvent.Mouse.t => unit=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "TableRow"
+@module("@mui/material")
+external make: props => React.element = "TableRow"

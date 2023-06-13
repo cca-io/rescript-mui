@@ -147,15 +147,15 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] SvgIcon
 - [ ] Switch
 - [x] Tab
-- [ ] Table
-- [ ] TableBody
-- [ ] TableCell
-- [ ] TableContainer
-- [ ] TableFooter
-- [ ] TableHead
-- [ ] TablePagination
-- [ ] TableRow
-- [ ] TableSortLabel
+- [x] Table
+- [x] TableBody
+- [x] TableCell
+- [x] TableContainer
+- [x] TableFooter
+- [x] TableHead
+- [x] TablePagination
+- [x] TableRow
+- [x] TableSortLabel
 - [x] Tabs
 - [ ] TabScrollButton
 - [x] TextField

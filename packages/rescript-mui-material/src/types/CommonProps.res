@@ -4,6 +4,8 @@ type t_NoId = {
   ref?: ReactDOM.domRef,
 }
 
+type classNameOnly = {className: string}
+
 type t = {
   ...t_NoId,
   id?: string,
