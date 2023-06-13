@@ -68,7 +68,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [ ] CardMedia
 - [ ] Checkbox
 - [x] Chip
-- [ ] CircularProgress
+- [x] CircularProgress
 - [ ] Collapse
 - [ ] Container
 - [ ] CssBaseline
@@ -100,7 +100,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] InputAdornment
 - [x] InputBase
 - [x] InputLabel
-- [ ] LinearProgress
+- [x] LinearProgress
 - [x] Link
 - [x] List
 - [ ] ListItem
