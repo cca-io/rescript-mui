@@ -33,6 +33,8 @@ They are still available, check out the old website: https://rescript-material-u
 | @mui/system         | Not implemented!             |        - |
 | @mui/x-data-grid    | Not implemented!             |        - |
 
+NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solution which is not compatible with `React.StrictMode` or React 18.
+
 # Progress
 
 ## MUI-Material
@@ -141,7 +143,7 @@ They are still available, check out the old website: https://rescript-material-u
 - [x] StepIcon
 - [x] StepLabel
 - [x] Stepper
-- [x] StylesProvider
+- [x] StyledEngineProvider
 - [x] SvgIcon
 - [ ] Switch
 - [x] Tab

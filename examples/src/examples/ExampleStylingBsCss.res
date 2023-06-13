@@ -6,8 +6,8 @@ module Styles = {
 
 @react.component
 let make = () =>
-  <Mui.StylesProvider injectFirst=true>
+  <Mui.StyledEngineProvider injectFirst=true>
     <Mui.Button color=Primary classes={root: Styles.categoryButton} onClick=ignore>
       {React.string("Hello, BS-CSS & MUI!")}
     </Mui.Button>
-  </Mui.StylesProvider>
+  </Mui.StyledEngineProvider>

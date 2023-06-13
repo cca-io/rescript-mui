@@ -15,8 +15,8 @@
     "postinstall": "patch-package"
   },
   "devDependencies": {
-    "@mui/lab": "^5.0.0-alpha.128",
-    "@mui/material": "5.12.2",
+    "@mui/lab": "^5.0.0-alpha.134",
+    "@mui/material": "^5.13.5",
     "@rescript/react": "^0.12.0-alpha.2",
     "parcel": "^2.9.2",
     "patch-package": "^7.0.0",
