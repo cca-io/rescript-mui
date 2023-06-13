@@ -143,7 +143,6 @@ They are still available, check out the old website: https://rescript-material-u
 - [x] Stepper
 - [ ] StylesProvider
 - [x] SvgIcon
-- [ ] SwipeableDrawer
 - [ ] Switch
 - [x] Tab
 - [ ] Table
@@ -167,10 +166,10 @@ They are still available, check out the old website: https://rescript-material-u
 
 ### Theming
 
-- [ ] Theme
-- [ ] ThemeHelpers
-- [ ] ThemeOptions
-- [ ] ThemeProvider
+- [x] Theme
+- [x] ThemeHelpers
+- [x] ThemeOptions
+- [x] ThemeProvider
 
 ## MUI-LAB
 

@@ -1,2 +1,7 @@
-@react.component @module("@mui/styles")
-external make: (~children: React.element, ~theme: Theme.t) => React.element = "ThemeProvider"
+type props = {
+  children: React.element,
+  theme: Theme.t,
+}
+
+@module("@mui/material/styles")
+external make: props => React.element = "ThemeProvider"
