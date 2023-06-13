@@ -31,12 +31,6 @@ type anchor =
   | @as("right") Right
   | @as("bottom") Bottom
 
-type transitionDuration = {
-  appear?: int,
-  enter?: int,
-  exit?: int,
-}
-
 type variant =
   | @as("permanent") Permanent
   | @as("persistent") Persistent
@@ -108,7 +102,7 @@ type props = {
    *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
-  transitionDuration?: transitionDuration,
+  transitionDuration?: Transition.duration,
   /**
    * The variant to use.
    * @default 'temporary'

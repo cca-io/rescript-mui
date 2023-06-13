@@ -2,12 +2,14 @@ open Mui
 
 @react.component
 let make = () =>
-  <ThemeProvider theme={Theme.create(ThemeOptions.make())}>
+  <ThemeProvider theme={Theme.create({})}>
     <Box
-      width={Box.Value.string("100%")}
-      height={Box.Value.string("100%")}
-      maxWidth={Box.Value.string("970px")}
-      margin={Box.Value.string("30px auto")}>
-      <CssBaseline /> <Examples /> <ExamplesLab />
+      width={String("100%")}
+      height={String("100%")}
+      maxWidth={String("970px")}
+      margin={String("30px auto")}>
+      <CssBaseline />
+      <Examples />
+      <ExamplesLab />
     </Box>
   </ThemeProvider>

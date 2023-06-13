@@ -46,7 +46,7 @@ type publicProps = {
     * It accepts values between 0 and 24 inclusive.
     * @default 1
   */
-  elevation?: float,
+  elevation?: int,
   /**
     * If `true`, rounded corners are disabled.
     * @default false

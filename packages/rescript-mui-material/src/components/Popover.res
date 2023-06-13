@@ -11,7 +11,7 @@ type actions = {updatePosition: unit => unit}
 type anchorEl =
   | @as(null) Null
   | Virtual(Popper.virtualElement)
-//   | Element(unit => React.element) FIXME
+  | Element(unit => React.element)
 
 @unboxed
 type verticalOrigin =
@@ -51,12 +51,6 @@ type slotProps = {
   root?: unknown,
   paper?: unknown,
 }
-
-@unboxed
-type transitionDuration =
-  | @as("auto") Auto
-  | Duration(int)
-  | Object(Transition.durationObject)
 
 type publicProps = {
   ...Modal.publicProps,
@@ -161,7 +155,7 @@ type publicProps = {
    * Set to 'auto' to automatically calculate transition time based on height.
    * @default 'auto'
    */
-  transitionDuration?: transitionDuration,
+  transitionDuration?: Transition.durationWithAuto,
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.

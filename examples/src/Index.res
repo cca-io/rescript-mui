@@ -1,4 +1,7 @@
-switch ReactDOM.querySelector("#app") {
-| Some(domElement) => ReactDOM.render(<App />, domElement)
+switch ReactDOM.querySelector("#root") {
+| Some(domElement) =>
+  open ReactDOM.Client
+
+  createRoot(domElement)->Root.render(<App />)
 | None => ()
 }

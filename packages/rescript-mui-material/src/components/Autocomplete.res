@@ -157,9 +157,8 @@ type renderInputParams<'a> = {
   inputProps: unknown,
 }
 
-external renderInputParamsToTextFieldProps: autocompleteRenderInputParams<'a> => TextField.props<
-  'a,
-> = "%identity"
+external renderInputParamsToTextFieldProps: renderInputParams<'a> => TextField.props<'a> =
+  "%identity"
 
 type slotProps = {
   clearIndicator?: IconButton.props,
@@ -437,7 +436,7 @@ type props<'a> = {
    * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
-  onChange?: (ReactEvent.Synthetic.t, 'a, autocompleteChangeReason, string) => unit,
+  onChange?: (ReactEvent.Synthetic.t, 'a, changeReason, string) => unit,
   /**
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).
@@ -445,7 +444,7 @@ type props<'a> = {
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"selectOption"`, `"removeOption"`, `"blur"`.
    */
-  onClose?: (ReactEvent.Synthetic.t, autocompleteCloseReason) => unit,
+  onClose?: (ReactEvent.Synthetic.t, closeReason) => unit,
   /**
    * Callback fired when the highlight option changes.
    *
@@ -453,7 +452,7 @@ type props<'a> = {
    * @param {T} option The highlighted option.
    * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
-  onHighlightChange?: (ReactEvent.Synthetic.t, 'a, autocompleteHighlightChangeReason) => unit,
+  onHighlightChange?: (ReactEvent.Synthetic.t, 'a, highlightChangeReason) => unit,
   /**
    * Callback fired when the input value changes.
    *
@@ -461,7 +460,7 @@ type props<'a> = {
    * @param {string} value The new value of the text input.
    * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
-  onInputChange?: (ReactEvent.Synthetic.t, string, autocompleteInputChangeReason) => unit,
+  onInputChange?: (ReactEvent.Synthetic.t, string, inputChangeReason) => unit,
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).
@@ -514,7 +513,7 @@ type props<'a> = {
    * @param {AutocompleteRenderGroupParams} params The group to render.
    * @returns {ReactNode}
    */
-  renderGroup?: autocompleteRenderGroupParams => React.element,
+  renderGroup?: renderGroupParams => React.element,
   /**
    * Render the option, use `getOptionLabel` by default.
    *
@@ -523,7 +522,7 @@ type props<'a> = {
    * @param {object} state The state of the component.
    * @returns {ReactNode}
    */
-  renderOption?: ('a, 'a, autocompleteRenderOptionState) => React.element,
+  renderOption?: ('a, 'a, renderOptionState) => React.element,
   /**
    * Render the selected value.
    *
@@ -532,7 +531,7 @@ type props<'a> = {
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
-  renderTags?: (array<'a>, autocompleteRenderGetTagProps, autocompleteOwnerState) => React.element,
+  renderTags?: (array<'a>, renderGetTagProps, ownerState) => React.element,
   /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.

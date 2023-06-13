@@ -1,24 +1,18 @@
 external styleToString: ReactDOM.Style.t => string = "%identity"
 
 let theme = Mui.Theme.create({
-  open Mui.ThemeOptions
-  make(
-    ~overrides=Overrides.make(
-      ~\"MuiButton"=ButtonClassKey.make(
-        ~outlined={
-          fontSize: "12px",
-          fontWeight: "300",
-          color: "gray",
-        }->ReactDOM.Style.unsafeAddProp(
-          "& svg",
-          {marginRight: "15px", fontSize: "16px"}->styleToString,
-        ),
-        (),
+  overrides: {
+    muiButton: {
+      outlined: {
+        fontSize: "12px",
+        fontWeight: "300",
+        color: "gray",
+      }->ReactDOM.Style.unsafeAddProp(
+        "& svg",
+        {marginRight: "15px", fontSize: "16px"}->styleToString,
       ),
-      (),
-    ),
-    (),
-  )
+    },
+  },
 })
 
 module SupervisedUserCircleIcon = {

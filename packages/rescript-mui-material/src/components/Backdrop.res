@@ -60,7 +60,7 @@ type props = {
        * The duration for the transition, in milliseconds.
        * You may specify a single timeout for all transitions, or individually with an object.
        */
-  transitionDuration?: Fade.duration,
+  transitionDuration?: Transition.duration,
 }
 
 @module("@mui/material")

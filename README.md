@@ -134,13 +134,13 @@ They are still available, check out the old website: https://rescript-material-u
 - [x] SpeedDialAction
 - [x] SpeedDialIcon
 - [ ] Stack
-- [ ] Step
-- [ ] StepButton
-- [ ] StepConnector
-- [ ] StepContent
+- [x] Step
+- [x] StepButton
+- [x] StepConnector
+- [x] StepContent
 - [x] StepIcon
-- [ ] StepLabel
-- [ ] Stepper
+- [x] StepLabel
+- [x] Stepper
 - [ ] StylesProvider
 - [x] SvgIcon
 - [ ] SwipeableDrawer

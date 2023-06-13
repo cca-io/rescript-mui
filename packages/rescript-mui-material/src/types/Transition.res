@@ -8,6 +8,17 @@ type durationObject = {
   exit?: int,
 }
 
+@unboxed
+type duration =
+  | Time(int)
+  | Object(durationObject)
+
+@unboxed
+type durationWithAuto =
+  | @as("auto") Auto
+  | Duration(int)
+  | Object(durationObject)
+
 type easingObject = {
   enter?: string,
   exit?: string,

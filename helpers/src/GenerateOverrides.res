@@ -53,7 +53,7 @@ let getComponentsWithClasses = path => {
               typeName->Js.String2.charAt(0)->Js.String2.toLowerCase ++
               typeName->Js.String2.sliceToEnd(~from=1) ++ "ClassKey"
 
-            let muiName = `  @as("Mui${typeName}") mui${typeName}: ${typeNameLowercaseFirst},`
+            let muiName = `  @as("Mui${typeName}") mui${typeName}?: ${typeNameLowercaseFirst},`
 
             let classesBody = " = {\n" ++ classes->Js.Array2.joinWith("\n") ++ "\n}\n"
 

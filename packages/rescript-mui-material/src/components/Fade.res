@@ -1,9 +1,4 @@
 @unboxed
-type duration =
-  | Duration(int)
-  | Object(Transition.durationObject)
-
-@unboxed
 type easing =
   | Easing(string)
   | Object(Transition.easingObject)
@@ -34,7 +29,7 @@ type publicProps = {
    *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
-  timeout?: duration,
+  timeout?: Transition.duration,
 }
 
 type props = {

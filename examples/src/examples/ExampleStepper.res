@@ -4,14 +4,10 @@ let getSpacing = (theme: Theme.t, num) => theme.spacing(num)->string_of_int ++ "
 
 let useStyles = Styles.makeStylesWithTheme(theme =>
   {
-    "root": ReactDOM.Style.make(~width="90%", ()),
-    "button": ReactDOM.Style.make(
-      ~marginTop=theme->getSpacing(1),
-      ~marginRight=theme->getSpacing(1),
-      (),
-    ),
-    "actionsContainer": ReactDOM.Style.make(~marginBottom=theme->getSpacing(2), ()),
-    "resetContainer": ReactDOM.Style.make(~padding=theme->getSpacing(3), ()),
+    "root": {JsxDOMStyle.width: "90%"},
+    "button": {JsxDOMStyle.marginTop: theme->getSpacing(1), marginRight: theme->getSpacing(1)},
+    "actionsContainer": {JsxDOMStyle.marginBottom: theme->getSpacing(2)},
+    "resetContainer": {JsxDOMStyle.padding: theme->getSpacing(3)},
   }
 )
 
@@ -47,7 +43,7 @@ let make = () => {
   let handleReset = _ => setActiveStep(0)
 
   <div className={classes["root"]}>
-    <Stepper activeStep={Number.int(activeStep)} orientation=#vertical>
+    <Stepper activeStep orientation=Vertical>
       {steps
       ->Belt.Array.mapWithIndex((index, label) =>
         <Step key=label>
@@ -61,10 +57,7 @@ let make = () => {
                   {"Back"->React.string}
                 </Button>
                 <Button
-                  variant=#contained
-                  color=#primary
-                  onClick=handleNext
-                  className={classes["button"]}>
+                  variant=Contained color=Primary onClick=handleNext className={classes["button"]}>
                   {(activeStep === steps->Belt.Array.length - 1 ? "Finish" : "Next")->React.string}
                 </Button>
               </div>
@@ -75,9 +68,9 @@ let make = () => {
       ->React.array}
     </Stepper>
     {activeStep === steps->Belt.Array.length
-      ? <Paper square=true elevation={Number.int(0)} className={classes["resetContainer"]}>
+      ? <Paper square=true elevation=0 className={classes["resetContainer"]}>
           <Typography> {`All steps completed - you're finished`->React.string} </Typography>
-          <Button onClick=handleReset className={classes["button"]} color=#secondary>
+          <Button onClick=handleReset className={classes["button"]} color=Secondary>
             {"Reset"->React.string}
           </Button>
         </Paper>

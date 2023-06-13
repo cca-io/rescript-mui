@@ -16,7 +16,7 @@ type virtualElement = {
 type anchorEl =
   | @as(null) Null
   | Virtual(virtualElement)
-//   | Element(unit => React.element) FIXME
+  | Element(unit => React.element)
 
 type phase =
   | @as("afterMain") AfterMain

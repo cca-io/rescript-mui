@@ -39,7 +39,7 @@ function getComponentsWithClasses(path) {
                   }));
             var typeName = filename.substring(0, filename.length - 4 | 0);
             var typeNameLowercaseFirst = typeName.charAt(0).toLowerCase() + typeName.slice(1) + "ClassKey";
-            var muiName = "  @as(\"Mui" + typeName + "\") mui" + typeName + ": " + typeNameLowercaseFirst + ",";
+            var muiName = "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: " + typeNameLowercaseFirst + ",";
             var classesBody = " = {\n" + classes.join("\n") + "\n}\n";
             muiNames.push(muiName);
             return "type " + typeNameLowercaseFirst + classesBody;
