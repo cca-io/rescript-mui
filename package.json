@@ -10,7 +10,7 @@
     "build": "rescript build -with-deps",
     "format": "rescript format -all",
     "watch": "watchexec --project-origin . -c -w helpers -w packages/rescript-mui-material -w packages/rescript-mui-lab -w examples -i lib -e res,resi 'rescript build -with-deps'",
-    "serve": "cd examples && parcel serve src/index.html",
+    "start": "cd examples && parcel serve src/index.html",
     "generateOverrides": "node helpers/src/GenerateOverrides.bs.js",
     "clean": "rescript clean -with-deps",
     "postinstall": "patch-package"

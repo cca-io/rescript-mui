@@ -11,17 +11,17 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for
 
 These bindings will only work with ReScript 11 and JSX mode version 4, as it enables us to utilize [untagged variants](https://rescript-lang.org/blog/improving-interop#untagged-variants), optional record fields, or record props spread. The latter is especially important, as we are finally able to inherit props from one component to another more easily.
 
-# What happened to the bindings for Material-UI 4?
+## What happened to the bindings for Material-UI 4?
 
 They are still available, check out the old website: https://rescript-material-ui.cca.io/.
 
-# Why no new website?
+## Why no new website?
 
 1. One of the goals of this rewrite is to make the usage of MUI in ReScript more accessible. In the best case you never need to leave your editor, since now we have doc comments for every property.
 2. It just takes too much time to maintain.
 3. In our opinion, it is much more useful (albeit not as pretty) to just have a look at the [examples folder](./examples/).
 
-# What's inside?
+## What's inside?
 
 | MUI package         | ReScript bindings package    | Progress |
 | ------------------- | ---------------------------- | -------: |
@@ -35,11 +35,11 @@ They are still available, check out the old website: https://rescript-material-u
 
 NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solution which is not compatible with `React.StrictMode` or React 18.
 
-# Progress
+## Progress
 
-## MUI-Material
+### MUI-Material
 
-### Components
+#### Components
 
 - [x] Accordion
 - [x] AccordionActions
@@ -84,9 +84,9 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] FilledInput
 - [x] FormControl
 - [x] FormControlLabel
-- [ ] FormGroup
+- [x] FormGroup
 - [x] FormHelperText
-- [ ] FormLabel
+- [x] FormLabel
 - [ ] GlobalStyles
 - [x] Grid
 - [ ] Grow
@@ -166,14 +166,14 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] Typography
 - [ ] Zoom
 
-### Theming
+#### Theming
 
 - [x] Theme
 - [x] ThemeHelpers
 - [x] ThemeOptions
 - [x] ThemeProvider
 
-## MUI-LAB
+### MUI-LAB
 
 - [ ] LoadingButton
 - [ ] Masonry
@@ -190,7 +190,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [ ] TreeItem
 - [ ] TreeView
 
-## MUI-X Date Pickers
+### MUI-X Date Pickers
 
 - [ ] AdapterDateFns
 - [ ] AdapterDateFnsJalali
@@ -227,10 +227,10 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [ ] TimePicker
 - [ ] YearCalendar
 
-# Changelog
+## Changelog
 
 See [CHANGELOG](./CHANGELOG.md).
 
-# Contributing
+## Contributing
 
 See [CONTRIBUTING](./CONTRIBUTING.md).

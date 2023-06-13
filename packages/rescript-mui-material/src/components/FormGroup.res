@@ -1,25 +1,32 @@
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `row={true}`. */
+  row: string,
+  /** State class applied to the root element if `error={true}`. */
+  error: string,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
+type props = {
+  ...CommonProps.t,
+  /**
+   * The content of the component.
+   */
+  children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * Display group of elements in a compact row.
+   * @default false
+   */
+  row?: bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
 }
 
-@react.component @module("@mui/material")
-external make: (
-  ~children: React.element=?,
-  ~className: string=?,
-  ~row: bool=?,
-  ~sx: Sx.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "FormGroup"
+@module("@mui/material")
+external make: props => React.element = "FormGroup"
