@@ -9,6 +9,7 @@
   "scripts": {
     "build": "rescript build -with-deps",
     "watch": "watchexec --project-origin . -c -w helpers -w packages/rescript-mui-material -w packages/rescript-mui-lab -w examples -i lib -e res,resi 'rescript build -with-deps'",
+    "serve": "cd examples && parcel serve src/index.html",
     "generateOverrides": "node helpers/src/GenerateOverrides.bs.js",
     "clean": "rescript clean -with-deps",
     "postinstall": "patch-package"
@@ -17,6 +18,7 @@
     "@mui/lab": "^5.0.0-alpha.128",
     "@mui/material": "5.12.2",
     "@rescript/react": "^0.12.0-alpha.2",
+    "parcel": "^2.9.2",
     "patch-package": "^7.0.0",
     "rescript": "^11.0.0-beta.2"
   }

@@ -9,13 +9,6 @@
     "Florian Hammerschmidt <fh@cca.io>"
   ],
   "license": "MIT",
-  "scripts": {
-    "build": "rescript build -with-deps && parcel build src/index.html",
-    "watch": "rescript build -with-deps -w",
-    "clean": "rescript clean -with-deps",
-    "format": "rescript format -all",
-    "start": "parcel serve src/index.html"
-  },
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
@@ -23,8 +16,5 @@
     "bs-css-emotion": "^5.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "parcel": "^2.8.2"
   }
 }
