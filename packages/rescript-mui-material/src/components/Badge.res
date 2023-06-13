@@ -91,16 +91,11 @@ type badgeSlots = {
    * The component that renders the root.
    * @default 'span'
    */
-  root?: React.element,
+  @as("Root") root?: React.element,
   /**
    * The component that renders the badge.
    * @default 'span'
    */
-  badge?: React.element,
-}
-
-type components = {
-  @as("Root") root?: React.element,
   @as("Badge") badge?: React.element,
 }
 
@@ -163,15 +158,6 @@ type props = {
      * @default 'default'
      */
   color?: color,
-  /**
-     * The components used for each slot inside.
-     *
-     * This prop is an alias for the `slots` prop.
-     * It's recommended to use the `slots` prop instead.
-     *
-     * @default {}
-     */
-  components?: components,
   /**
      * Wrapped shape the badge should overlap.
      * @default 'rectangular'

@@ -158,7 +158,7 @@ type publicProps = {
    * Either a string to use a HTML element or a component.
    * @default 'input'
    */
-  inputComponent?: React.element,
+  inputComponent?: React.component<inputBaseComponentProps>,
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * @default {}

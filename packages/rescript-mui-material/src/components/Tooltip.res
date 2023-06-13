@@ -172,7 +172,7 @@ type publicProps = {
    * @default Popper
    */
   @as("PopperComponent")
-  popperComponent?: React.element,
+  popperComponent?: React.component<Popper.props>,
   /**
    * Props applied to the [`Popper`](/material-ui/api/popper/) element.
    * @default {}
