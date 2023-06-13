@@ -15,7 +15,9 @@ var Styles$1 = {
 };
 
 function ExampleStylingBsCss(props) {
-  return JsxRuntime.jsx(Styles.StylesProvider, {
+  return JsxRuntime.jsx((function (prim) {
+                return Styles.StylesProvider(prim);
+              }), {
               injectFirst: true,
               children: JsxRuntime.jsx((function (prim) {
                       return Material.Button(prim);

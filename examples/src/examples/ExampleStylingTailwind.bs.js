@@ -5,7 +5,9 @@ import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
 
 function ExampleStylingTailwind(props) {
-  return JsxRuntime.jsx(Styles.StylesProvider, {
+  return JsxRuntime.jsx((function (prim) {
+                return Styles.StylesProvider(prim);
+              }), {
               injectFirst: true,
               children: JsxRuntime.jsx((function (prim) {
                       return Material.Button(prim);

@@ -141,7 +141,7 @@ They are still available, check out the old website: https://rescript-material-u
 - [x] StepIcon
 - [x] StepLabel
 - [x] Stepper
-- [ ] StylesProvider
+- [x] StylesProvider
 - [x] SvgIcon
 - [ ] Switch
 - [x] Tab
