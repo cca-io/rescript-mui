@@ -1,31 +1,69 @@
-type direction = [#left | #right]
-
-type orientation = [#horizontal | #vertical]
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** Styles applied to the root element if `orientation="vertical"`. */
+  vertical: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
+type slots = {
+  @as("StartScrollButtonIcon") startScrollButtonIcon?: React.element,
+  @as("EndScrollButtonIcon") endScrollButtonIcon?: React.element,
 }
 
-@react.component @module("@mui/material")
-external make: (
-  ~children: React.element=?,
-  ~className: string=?,
-  ~direction: direction,
-  ~disabled: bool=?,
-  ~orientation: orientation,
-  ~sx: Sx.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "TabScrollButton"
+type slotProps = {
+  startScrollButtonIcon?: SvgIcon.props,
+  endScrollButtonIcon?: SvgIcon.props,
+}
+
+type direction =
+  | @as("left") Left
+  | @as("right") Right
+
+type orientation =
+  | @as("horizontal") Horizontal
+  | @as("vertical") Vertical
+
+type props = {
+  ...CommonProps.clickablePropsWithOnClick,
+  /**
+   * The content of the component.
+   */
+  children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots?: slots,
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   * @default {}
+   */
+  slotProps?: slotProps,
+  /**
+   * The direction the button should indicate.
+   */
+  direction: direction,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled?: bool,
+  /**
+   * The component orientation (layout flow direction).
+   */
+  orientation: orientation,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
+}
+
+@module("@mui/material")
+external make: unit => React.element = "TabScrollButton"

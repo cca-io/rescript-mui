@@ -12,10 +12,10 @@ function ExampleStylingTailwind(props) {
               children: JsxRuntime.jsx((function (prim) {
                       return Material.Button(prim);
                     }), {
+                    children: "Hello, Tailwind & MUI!",
                     onClick: (function (prim) {
                         
                       }),
-                    children: "Hello, Tailwind & MUI!",
                     classes: {
                       root: "normal-case justify-start"
                     },

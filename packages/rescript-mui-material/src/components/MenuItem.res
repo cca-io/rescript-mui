@@ -15,8 +15,8 @@ type classes = {
   selected: string,
 }
 
-type props<'a> = {
-  ...ButtonBase.publicProps,
+type props<'value> = {
+  ...ButtonBase.publicPropsWithOnClick,
   /**
      * If `true`, the list item is focused during the first mount.
      * Focus will also be triggered if the value changes from false to true.
@@ -27,10 +27,6 @@ type props<'a> = {
      * Override or extend the styles applied to the component.
      */
   classes?: classes,
-  /**
-     * The component used for the root node. Either a string to use a HTML element or a component.
-     */
-  component?: OverridableComponent.t<unknown>,
   /**
      * If `true`, compact vertical padding designed for keyboard and mouse input is used.
      * The prop defaults to the value inherited from the parent Menu component.
@@ -61,8 +57,8 @@ type props<'a> = {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
   sx?: Sx.props,
-  value?: 'a,
+  value?: 'value,
 }
 
 @module("@mui/material")
-external make: props<'a> => React.element = "MenuItem"
+external make: props<'value> => React.element = "MenuItem"

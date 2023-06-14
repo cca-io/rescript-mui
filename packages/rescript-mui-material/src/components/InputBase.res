@@ -246,7 +246,7 @@ type publicProps = {
   type_?: string,
 }
 
-type props<'a> = {
+type props<'value> = {
   ...publicProps,
   /**
    * Override or extend the styles applied to the component.
@@ -255,11 +255,11 @@ type props<'a> = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: 'a,
+  defaultValue?: 'value,
   /**
    * Pass a ref to the `input` element.
    */
-  inputRef?: React.ref<'a>,
+  inputRef?: React.ref<'value>,
   /**
    * Callback fired when the value is changed.
    *
@@ -274,8 +274,8 @@ type props<'a> = {
   /**
    * The value of the `input` element, required for a controlled component.
    */
-  value?: 'a,
+  value?: 'value,
 }
 
 @module("@mui/material")
-external make: props<'a> => React.element = "InputBase"
+external make: props<'value> => React.element = "InputBase"

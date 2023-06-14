@@ -1,105 +1,104 @@
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string,
+  /** State class applied to the root element if `selected={true}`. */
+  selected: string,
+  /** State class applied to the root element if `color="standard"`. */
+  standard: string,
+  /** State class applied to the root element if `color="primary"`. */
+  primary: string,
+  /** State class applied to the root element if `color="secondary"`. */
+  secondary: string,
+  /** Styles applied to the root element if `size="small"`. */
+  sizeSmall: string,
+  /** Styles applied to the root element if `size="medium"`. */
+  sizeMedium: string,
+  /** Styles applied to the root element if `size="large"`. */
+  sizeLarge: string,
 }
 
-module Current = {
-  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
-  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
+@unboxed
+type color =
+  | @as("standard") Standard
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | @as("error") Error
+  | @as("info") Info
+  | @as("success") Success
+  | @as("warning") Warning
+  | String(string)
+
+@unboxed
+type size =
+  | @as("small") Small
+  | @as("medium") Medium
+  | @as("large") Large
+  | String(string)
+
+type props<'value> = {
+  ...ButtonBase.publicProps,
+  /**
+     * Override or extend the styles applied to the component.
+     */
+  classes?: classes,
+  /**
+     * The color of the button when it is in an active state.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+     * @default 'standard'
+     */
+  color?: color,
+  /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+  disabled?: bool,
+  /**
+     * If `true`, the  keyboard focus ripple is disabled.
+     * @default false
+     */
+  disableFocusRipple?: bool,
+  /**
+     * If `true`, the button will take up the full width of its container.
+     * @default false
+     */
+  fullWidth?: bool,
+  /**
+     * Callback fired when the state changes.
+     *
+     * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+     * @param {any} value of the selected button.
+     */
+  onChange?: (ReactEvent.Mouse.t, 'value) => unit,
+  /**
+     * Callback fired when the button is clicked.
+     *
+     * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+     * @param {any} value of the selected button.
+     */
+  onClick?: (ReactEvent.Mouse.t, 'value) => unit,
+  /**
+     * If `true`, the button is rendered in an active state.
+     */
+  selected?: bool,
+  /**
+     * The size of the component.
+     * The prop defaults to the value inherited from the parent ToggleButtonGroup component.
+     * @default 'medium'
+     */
+  size?: size,
+  /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+  sx?: Sx.props,
+  /**
+     * The value to associate with the button when selected in a
+     * ToggleButtonGroup.
+     */
+  value: 'value,
 }
 
-module TouchRippleRef_shape = {
-  type t = {"current": option<Current.t>}
-  @obj external make: (~current: Current.t=?, unit) => t = ""
-}
-
-module TouchRippleRef = {
-  type t
-  external touchRippleRef_func: Any.t => t = "%identity"
-  external shape: TouchRippleRef_shape.t => t = "%identity"
-}
-
-type type_enum = [#button | #reset | #submit]
-
-module Type = {
-  type t
-  external enum: type_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type color_enum = [#standard | #primary | #secondary | #error | #info | #success | #warning]
-
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type size_enum = [#small | #medium | #large]
-
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~centerRipple: bool=?,
-  ~component: Component.t=?,
-  ~disableTouchRipple: bool=?,
-  ~focusRipple: bool=?,
-  ~focusVisibleClassName: string=?,
-  ~href: Any.t=?,
-  ~\"LinkComponent": React.element=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
-  ~onDragLeave: ReactEvent.Mouse.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onFocusVisible: Any.t=?,
-  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~onMouseDown: ReactEvent.Mouse.t => unit=?,
-  ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
-  ~onMouseUp: ReactEvent.Mouse.t => unit=?,
-  ~onTouchEnd: ReactEvent.Touch.t => unit=?,
-  ~onTouchMove: ReactEvent.Touch.t => unit=?,
-  ~onTouchStart: ReactEvent.Touch.t => unit=?,
-  ~tabIndex: Number.t=?,
-  ~\"TouchRippleProps": {..}=?,
-  ~touchRippleRef: TouchRippleRef.t=?,
-  ~\"type": Type.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~color: Color.t=?,
-  ~disabled: bool=?,
-  ~disableFocusRipple: bool=?,
-  ~disableRipple: bool=?,
-  ~fullWidth: bool=?,
-  ~onChange: (ReactEvent.Form.t, Any.t) => unit=?,
-  ~onClick: (ReactEvent.Mouse.t, Any.t) => unit=?,
-  ~selected: bool=?,
-  ~size: Size.t=?,
-  ~sx: Sx.t=?,
-  ~value: Any.t,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "ToggleButton"
+@module("@mui/material")
+external make: props<'value> => React.element = "ToggleButton"

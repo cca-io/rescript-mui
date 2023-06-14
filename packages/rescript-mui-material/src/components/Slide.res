@@ -4,18 +4,8 @@ type direction =
   | @as("up") Up
   | @as("down") Down
 
-@unboxed
-type easing =
-  | Easing(string)
-  | Object(Transition.easingObject)
-
-@unboxed
-type duration =
-  | Duration(int)
-  | Object(Transition.durationObject)
-
 type props = {
-  ...CommonProps.t,
+  ...Transition.props,
   /**
    * Perform the enter transition when it first mounts if `in` is also `true`.
    * Set this to `false` to disable this behavior.
@@ -44,7 +34,7 @@ type props = {
    *   exit: theme.transitions.easing.sharp,
    * }
    */
-  easing?: easing,
+  easing?: Transition.easing,
   /**
    * If `true`, the component will transition in.
    */
@@ -58,7 +48,7 @@ type props = {
    *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
-  timeout?: duration,
+  timeout?: Transition.duration,
 }
 
 @module("@mui/material")

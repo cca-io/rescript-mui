@@ -37,9 +37,9 @@ type slots = {
   @as("EndScrollButtonIcon") endScrollButtonIcon?: React.element,
 }
 
-type slotProps<'a> = {
-  startScrollButtonIcon?: 'a,
-  endScrollButtonIcon?: 'a,
+type slotProps<'value> = {
+  startScrollButtonIcon?: 'value,
+  endScrollButtonIcon?: 'value,
 }
 
 @unboxed
@@ -58,9 +58,9 @@ type scrollButtons =
   | @as(true) True
   | @as(false) False
 
-type tabIndicatorProps<'a> = 'a
+type tabIndicatorProps<'value> = 'value
 
-type tabScrollButtonProps<'a> = 'a
+type tabScrollButtonProps<'value> = 'value
 
 type textColor =
   | @as("secondary") Secondary
@@ -72,7 +72,7 @@ type variant =
   | @as("scrollable") Scrollable
   | @as("fullWidth") FullWidth
 
-type props<'a> = {
+type props<'value> = {
   ...CommonProps.t,
   /**
      * Callback fired when the component mounts.
@@ -135,7 +135,7 @@ type props<'a> = {
      * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
      * @param {any} value We default to the index of the child (number)
      */
-  onChange?: (ReactEvent.Synthetic.t, 'a) => unit,
+  onChange?: (ReactEvent.Synthetic.t, 'value) => unit,
   /**
      * The component orientation (layout flow direction).
      * @default 'horizontal'
@@ -185,7 +185,7 @@ type props<'a> = {
      * The value of the currently selected `Tab`.
      * If you don't want any selected `Tab`, you can set this prop to `false`.
      */
-  value?: 'a,
+  value?: 'value,
   /**
      *  Determines additional display behavior of the tabs:
      *
@@ -211,4 +211,4 @@ type props<'a> = {
 }
 
 @module("@mui/material")
-external make: props<'a> => React.element = "Tabs"
+external make: props<'value> => React.element = "Tabs"

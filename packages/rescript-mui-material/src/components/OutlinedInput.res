@@ -41,7 +41,7 @@ type publicProps = {
   notched?: bool,
 }
 
-type props<'a> = {
+type props<'value> = {
   ...publicProps,
   /**
    * Override or extend the styles applied to the component.
@@ -50,11 +50,11 @@ type props<'a> = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: 'a,
+  defaultValue?: 'value,
   /**
    * Pass a ref to the `input` element.
    */
-  inputRef?: React.ref<'a>,
+  inputRef?: React.ref<'value>,
   /**
    * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
    */
@@ -73,8 +73,8 @@ type props<'a> = {
   /**
    * The value of the `input` element, required for a controlled component.
    */
-  value?: 'a,
+  value?: 'value,
 }
 
 @module("@mui/material")
-external make: props<'a> => React.element = "OutlinedInput"
+external make: props<'value> => React.element = "OutlinedInput"

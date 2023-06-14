@@ -13,10 +13,10 @@ function ExampleStylingCss(props) {
                       return Material.Button(prim);
                     }), {
                     className: "my-global-class-name",
+                    children: "Hello, plain CSS & MUI!",
                     onClick: (function (prim) {
                         
                       }),
-                    children: "Hello, plain CSS & MUI!",
                     color: "primary"
                   })
             });

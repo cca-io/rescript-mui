@@ -16,7 +16,7 @@ type direction =
   | @as("desc") Desc
 
 type props = {
-  ...ButtonBase.publicProps,
+  ...ButtonBase.publicPropsWithOnClick,
   /**
      * If `true`, the label will have the active styling (should be true for the sorted column).
      * @default false

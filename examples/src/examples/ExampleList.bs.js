@@ -74,8 +74,8 @@ function ExampleList(props) {
                                             return Material.Button(prim);
                                           }), {
                                           children: "Go to example",
-                                          color: "primary",
                                           href: "#/example/route",
+                                          color: "primary",
                                           variant: "contained"
                                         }))
                               })

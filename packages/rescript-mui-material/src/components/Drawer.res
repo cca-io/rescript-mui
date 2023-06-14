@@ -37,7 +37,7 @@ type variant =
   | @as("temporary") Temporary
 
 type props = {
-  ...CommonProps.t,
+  ...Modal.publicProps,
   /**
    * Side from which the drawer will appear.
    * @default 'left'
@@ -56,11 +56,6 @@ type props = {
    * @default 16
    */
   elevation?: int,
-  /**
-   * If `true`, the backdrop is not rendered.
-   * @default false
-   */
-  hideBackdrop?: bool,
   /**
    * Props applied to the [`Modal`](/material-ui/api/modal/) element.
    * @default {}

@@ -24,7 +24,7 @@ type variant =
   | @as("outlined") Outlined
   | @as("filled") Filled
 
-type props<'a> = {
+type props<'value> = {
   ...FormControl.publicProps,
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
@@ -51,7 +51,7 @@ type props<'a> = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: 'a,
+  defaultValue?: 'value,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -98,11 +98,11 @@ type props<'a> = {
    * component depending on the `variant` prop value.
    */
   @as("InputProps")
-  inputProps_?: Input.props<'a>,
+  inputProps_?: Input.props<'value>,
   /**
    * Pass a ref to the `input` element.
    */
-  inputRef?: React.ref<'a>,
+  inputRef?: React.ref<unknown>,
   /**
    * The label content.
    */
@@ -150,7 +150,7 @@ type props<'a> = {
    * Props applied to the [`Select`](/material-ui/api/select/) element.
    */
   @as("SelectProps")
-  selectProps?: Select.props<'a>,
+  selectProps?: Select.props<'value>,
   /**
    * The size of the component.
    */
@@ -167,7 +167,7 @@ type props<'a> = {
   /**
    * The value of the `input` element, required for a controlled component.
    */
-  value?: 'a,
+  value?: 'value,
   /**
    * The variant to use.
    */
@@ -175,4 +175,4 @@ type props<'a> = {
 }
 
 @module("@mui/material")
-external make: props<'a> => React.element = "TextField"
+external make: props<'value> => React.element = "TextField"

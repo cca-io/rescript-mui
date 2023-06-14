@@ -22,10 +22,10 @@ function ExampleStylingBsCss(props) {
               children: JsxRuntime.jsx((function (prim) {
                       return Material.Button(prim);
                     }), {
+                    children: "Hello, BS-CSS & MUI!",
                     onClick: (function (prim) {
                         
                       }),
-                    children: "Hello, BS-CSS & MUI!",
                     classes: {
                       root: categoryButton
                     },

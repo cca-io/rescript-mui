@@ -17,7 +17,7 @@ They are still available, check out the old website: https://rescript-material-u
 
 ## Why no new website?
 
-1. One of the goals of this rewrite is to make the usage of MUI in ReScript more accessible. In the best case you never need to leave your editor, since now we have doc comments for every property.
+1. One of the goals of this rewrite is to make the usage of MUI in ReScript more accessible. In the best case you never need to leave your editor, since now we have doc comments for (almost) every property.
 2. It just takes too much time to maintain.
 3. In our opinion, it is much more useful (albeit not as pretty) to just have a look at the [examples folder](./examples/).
 
@@ -66,7 +66,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [ ] CardContent
 - [ ] CardHeader
 - [ ] CardMedia
-- [ ] Checkbox
+- [x] Checkbox
 - [x] Chip
 - [x] CircularProgress
 - [ ] Collapse
@@ -87,7 +87,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] FormGroup
 - [x] FormHelperText
 - [x] FormLabel
-- [ ] GlobalStyles
+- [x] GlobalStyles
 - [x] Grid
 - [ ] Grow
 - [ ] Hidden
@@ -120,10 +120,10 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] Pagination
 - [ ] PaginationItem
 - [x] Paper
-- [ ] Popover
+- [x] Popover
 - [x] Popper
-- [ ] Radio
-- [ ] RadioGroup
+- [x] Radio
+- [x] RadioGroup
 - [x] Rating
 - [x] ScopedCssBaseline
 - [x] Select
@@ -135,7 +135,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [ ] SpeedDial
 - [x] SpeedDialAction
 - [x] SpeedDialIcon
-- [ ] Stack
+- [x] Stack
 - [x] Step
 - [x] StepButton
 - [x] StepConnector
@@ -145,7 +145,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] Stepper
 - [x] StyledEngineProvider
 - [x] SvgIcon
-- [ ] Switch
+- [x] Switch
 - [x] Tab
 - [x] Table
 - [x] TableBody
@@ -157,14 +157,14 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] TableRow
 - [x] TableSortLabel
 - [x] Tabs
-- [ ] TabScrollButton
+- [x] TabScrollButton
 - [x] TextField
-- [ ] ToggleButton
-- [ ] ToggleButtonGroup
-- [ ] Toolbar
+- [x] ToggleButton
+- [x] ToggleButtonGroup
+- [x] Toolbar
 - [x] Tooltip
 - [x] Typography
-- [ ] Zoom
+- [x] Zoom
 
 #### Theming
 

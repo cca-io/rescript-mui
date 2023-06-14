@@ -1,29 +1,27 @@
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type props<'value> = {
+  ...FormGroup.props,
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue?: 'value,
+  /**
+   * The name used to reference the value of the control.
+   * If you don't provide this prop, it falls back to a randomly generated name.
+   */
+  name?: string,
+  /**
+   * Callback fired when a radio button is selected.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
+   * @param {string} value The value of the selected radio button.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
+  onChange?: (ReactEvent.Form.t, string) => unit,
+  /**
+   * Value of the selected radio button. The DOM API casts this to a string.
+   */
+  value?: 'value,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~className: string=?,
-  ~row: bool=?,
-  ~sx: Sx.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~children: React.element=?,
-  ~defaultValue: Any.t=?,
-  ~name: string=?,
-  ~onChange: (ReactEvent.Form.t, string) => unit=?,
-  ~value: Any.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "RadioGroup"
+@module("@mui/material")
+external make: props<'value> => React.element = "RadioGroup"

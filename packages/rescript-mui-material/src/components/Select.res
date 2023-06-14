@@ -32,7 +32,7 @@ type variant =
   | @as("outlined") Outlined
   | @as("filled") Filled
 
-type props<'a> = {
+type props<'value> = {
   ...OutlinedInput.publicProps,
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
@@ -61,7 +61,7 @@ type props<'a> = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: 'a,
+  defaultValue?: 'value,
   /**
    * If `true`, a value is displayed even if no items are selected.
    *
@@ -143,7 +143,7 @@ type props<'a> = {
    * @param {any} value The `value` provided to the component.
    * @returns {ReactNode}
    */
-  renderValue?: 'a => React.element,
+  renderValue?: 'value => React.element,
   /**
    * Props applied to the clickable div element.
    */
@@ -160,7 +160,7 @@ type props<'a> = {
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value?: 'a,
+  value?: 'value,
   /**
    * The variant to use.
    * @default 'outlined'
@@ -169,4 +169,4 @@ type props<'a> = {
 }
 
 @module("@mui/material")
-external make: props<'a> => React.element = "Select"
+external make: props<'value> => React.element = "Select"

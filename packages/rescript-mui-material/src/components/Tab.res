@@ -27,7 +27,7 @@ type iconPosition =
   | @as("start") Start
   | @as("end") End
 
-type props<'a> = {
+type props<'value> = {
   ...CommonProps.t,
   /**
      * Override or extend the styles applied to the component.
@@ -63,7 +63,7 @@ type props<'a> = {
   /**
      * You can provide your own value. Otherwise, we fallback to the child position index.
      */
-  value?: 'a,
+  value?: 'value,
   /**
      * Tab labels appear in a single row.
      * They can use a second line if needed.
@@ -73,4 +73,4 @@ type props<'a> = {
 }
 
 @module("@mui/material")
-external make: props<'a> => React.element = "Tab"
+external make: props<'value> => React.element = "Tab"

@@ -1,10 +1,5 @@
-@unboxed
-type easing =
-  | Easing(string)
-  | Object(Transition.easingObject)
-
 type publicProps = {
-  ...CommonProps.t,
+  ...Transition.props,
   /**
    * Perform the enter transition when it first mounts if `in` is also `true`.
    * Set this to `false` to disable this behavior.
@@ -15,7 +10,7 @@ type publicProps = {
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
    */
-  easing?: easing,
+  easing?: Transition.easing,
   /**
    * If `true`, the component will transition in.
    */

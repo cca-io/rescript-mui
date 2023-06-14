@@ -1,109 +1,128 @@
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root: string,
+  /** State class applied to the root element if `checked={true}`. */
+  checked: string,
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string,
+  /** Styles applied to the root element if `color="primary"`. */
+  colorPrimary: string,
+  /** Styles applied to the root element if `color="secondary"`. */
+  colorSecondary: string,
 }
 
-module Current = {
-  type t = {"pulsate": option<Any.t>, "start": option<Any.t>, "stop": option<Any.t>}
-  @obj external make: (~pulsate: Any.t=?, ~start: Any.t=?, ~stop: Any.t=?, unit) => t = ""
+@unboxed
+type color =
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | @as("error") Error
+  | @as("info") Info
+  | @as("success") Success
+  | @as("warning") Warning
+  | @as("default") Default
+  | String(string)
+
+@unboxed
+type size =
+  | @as("small") Small
+  | @as("medium") Medium
+  | String(string)
+
+type edge =
+  | @as("start") Start
+  | @as("end") End
+  | @as(false) False
+
+type props<'value> = {
+  ...ButtonBase.publicPropsWithOnClick,
+  autoFocus?: bool,
+  /**
+   * If `true`, the component is checked.
+   */
+  checked?: bool,
+  /**
+   * The icon to display when the component is checked.
+   * @default <RadioButtonIcon checked />
+   */
+  checkedIcon?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * @default 'primary'
+   */
+  color?: color,
+  /**
+   * The default checked state. Use when the component is not controlled.
+   */
+  defaultChecked?: bool,
+  /**
+   * If `true`, the component is disabled.
+   */
+  disabled?: bool,
+  /**
+   * If `true`, the  keyboard focus ripple is disabled.
+   * @default false
+   */
+  disableFocusRipple?: bool,
+  /**
+   * If given, uses a negative margin to counteract the padding on one
+   * side (this is often helpful for aligning the left or right
+   * side of the icon with content above or below, without ruining the border
+   * size and shape).
+   * @default false
+   */
+  edge?: edge,
+  /**
+   * The icon to display when the component is unchecked.
+   * @default <RadioButtonIcon />
+   */
+  icon?: React.element,
+  /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   */
+  inputProps?: unknown,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef?: React.ref<unknown>,
+  /**
+   * Name attribute of the `input` element.
+   */
+  name?: string,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
+  onChange?: (ReactEvent.Form.t, bool) => unit,
+  readOnly?: bool,
+  /**
+   * If `true`, the `input` element is required.
+   * @default false
+   */
+  required?: bool,
+  /**
+   * The size of the component.
+   * `small` is equivalent to the dense radio styling.
+   * @default 'medium'
+   */
+  size?: size,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
+  /**
+   * The value of the component. The DOM API casts this to a string.
+   */
+  value?: 'value,
 }
 
-module TouchRippleRef_shape = {
-  type t = {"current": option<Current.t>}
-  @obj external make: (~current: Current.t=?, unit) => t = ""
-}
-
-module TouchRippleRef = {
-  type t
-  external touchRippleRef_func: Any.t => t = "%identity"
-  external shape: TouchRippleRef_shape.t => t = "%identity"
-}
-
-type type_enum = [#button | #reset | #submit]
-
-module Type = {
-  type t
-  external enum: type_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type color_enum = [#default | #primary | #secondary | #error | #info | #success | #warning]
-
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type size_enum = [#medium | #small]
-
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~centerRipple: bool=?,
-  ~children: React.element=?,
-  ~component: Component.t=?,
-  ~disableTouchRipple: bool=?,
-  ~focusRipple: bool=?,
-  ~focusVisibleClassName: string=?,
-  ~href: Any.t=?,
-  ~\"LinkComponent": React.element=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onContextMenu: ReactEvent.Mouse.t => unit=?,
-  ~onDragLeave: ReactEvent.Mouse.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onFocusVisible: Any.t=?,
-  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~onMouseDown: ReactEvent.Mouse.t => unit=?,
-  ~onMouseLeave: ReactEvent.Mouse.t => unit=?,
-  ~onMouseUp: ReactEvent.Mouse.t => unit=?,
-  ~onTouchEnd: ReactEvent.Touch.t => unit=?,
-  ~onTouchMove: ReactEvent.Touch.t => unit=?,
-  ~onTouchStart: ReactEvent.Touch.t => unit=?,
-  ~tabIndex: Number.t=?,
-  ~\"TouchRippleProps": {..}=?,
-  ~touchRippleRef: TouchRippleRef.t=?,
-  ~\"type": Type.t=?,
-  ~style: ReactDOM.Style.t=?,
-  ~checked: bool=?,
-  ~checkedIcon: React.element=?,
-  ~className: string=?,
-  ~color: Color.t=?,
-  ~disabled: bool=?,
-  ~disableRipple: bool=?,
-  ~icon: React.element=?,
-  ~id: string=?,
-  ~inputProps: {..}=?,
-  ~inputRef: ReactDOM.domRef=?,
-  ~name: string=?,
-  ~onChange: ReactEvent.Form.t => unit=?,
-  ~required: bool=?,
-  ~size: Size.t=?,
-  ~sx: Sx.t=?,
-  ~value: Any.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Radio"
+@module("@mui/material")
+external make: props<'value> => React.element = "Radio"

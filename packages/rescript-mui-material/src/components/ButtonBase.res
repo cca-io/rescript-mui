@@ -45,6 +45,13 @@ type touchRippleProps = {
   classes?: touchRippleClasses,
 }
 
+@unboxed
+type type_ =
+  | @as("button") Button
+  | @as("reset") Reset
+  | @as("submit") Submit
+  | String(string)
+
 type publicProps = {
   ...CommonProps.clickableProps,
   /**
@@ -62,6 +69,10 @@ type publicProps = {
      * The content of the component.
      */
   children?: React.element,
+  /**
+     * The component used for the root node. Either a string to use a HTML element or a component.
+     */
+  component?: OverridableComponent.t<unknown>,
   /**
      * If `true`, the ripple effect is disabled.
      *
@@ -90,6 +101,11 @@ type publicProps = {
      */
   focusVisibleClassName?: string,
   /**
+     * The URL to link to when the button is clicked.
+     * If defined, an `a` element will be used as the root node.
+     */
+  href?: string,
+  /**
      * The component used to render a link when the `href` prop is provided.
      * @default 'a'
      */
@@ -111,10 +127,16 @@ type publicProps = {
      * A ref that points to the `TouchRipple` element.
      */
   touchRippleRef?: React.ref<touchRippleActions>,
+  @as("type") type_?: type_,
+}
+
+type publicPropsWithOnClick = {
+  ...publicProps,
+  onClick?: ReactEvent.Synthetic.t => unit,
 }
 
 type props = {
-  ...publicProps,
+  ...publicPropsWithOnClick,
   /**
      * Override or extend the styles applied to the component.
      */

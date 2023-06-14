@@ -122,7 +122,10 @@ function ExampleDashboard(props) {
                                       return Material.CssBaseline(prim);
                                     }), {}),
                               JsxRuntime.jsx(Material.AppBar, {
-                                    children: Caml_option.some(JsxRuntime.jsxs(Material.Toolbar, {
+                                    children: Caml_option.some(JsxRuntime.jsxs((function (prim) {
+                                                return Material.Toolbar(prim);
+                                              }), {
+                                              className: classes.toolbar,
                                               children: [
                                                 JsxRuntime.jsx((function (prim) {
                                                         return Material.IconButton(prim);
@@ -131,10 +134,10 @@ function ExampleDashboard(props) {
                                                             classes.menuButton,
                                                             state.isOpen ? classes.menuButtonHidden : ""
                                                           ]),
+                                                      children: Caml_option.some(JsxRuntime.jsx(Menu, {})),
                                                       onClick: (function (_event) {
                                                           setState("Open");
                                                         }),
-                                                      children: Caml_option.some(JsxRuntime.jsx(Menu, {})),
                                                       color: "inherit"
                                                     }),
                                                 JsxRuntime.jsx((function (prim) {
@@ -170,7 +173,6 @@ function ExampleDashboard(props) {
                                                       color: "inherit"
                                                     })
                                               ],
-                                              className: classes.toolbar,
                                               disableGutters: !state.isOpen
                                             })),
                                     className: Js_array.joinWith(" ", [
@@ -187,10 +189,10 @@ function ExampleDashboard(props) {
                                             children: JsxRuntime.jsx((function (prim) {
                                                     return Material.IconButton(prim);
                                                   }), {
+                                                  children: Caml_option.some(JsxRuntime.jsx(ChevronLeft, {})),
                                                   onClick: (function (_event) {
                                                       setState("Close");
-                                                    }),
-                                                  children: Caml_option.some(JsxRuntime.jsx(ChevronLeft, {}))
+                                                    })
                                                 }),
                                             className: classes.toolbarIcon
                                           }),
@@ -226,10 +228,10 @@ function ExampleDashboard(props) {
                     }) : JsxRuntime.jsx((function (prim) {
                         return Material.Button(prim);
                       }), {
+                      children: "Open Dashboard",
                       onClick: (function (param) {
                           setShow(true);
                         }),
-                      children: "Open Dashboard",
                       color: "primary",
                       variant: "outlined"
                     })

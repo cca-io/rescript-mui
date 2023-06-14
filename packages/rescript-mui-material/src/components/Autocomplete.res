@@ -147,17 +147,17 @@ type renderGroupParams = {
   children?: React.element,
 }
 
-type renderInputParams<'a> = {
+type renderInputParams<'value> = {
   id: string,
   disabled: bool,
   fullWidth: bool,
   size: size,
   @as("InputLabelProps") inputLabelProps: InputLabel.props,
-  @as("InputProps") inputProps_: Input.props<'a>,
+  @as("InputProps") inputProps_: Input.props<'value>,
   inputProps: unknown,
 }
 
-external renderInputParamsToTextFieldProps: renderInputParams<'a> => TextField.props<'a> =
+external renderInputParamsToTextFieldProps: renderInputParams<'a> => TextField.props<'value> =
   "%identity"
 
 type slotProps = {
@@ -167,19 +167,19 @@ type slotProps = {
   popupIndicator?: IconButton.props,
 }
 
-type props<'a> = {
+type props<'value> = {
   ...CommonProps.t_NoId,
   /**
    * Array of options.
    */
-  options: array<'a>,
+  options: array<'value>,
   /**
    * Render the input.
    *
    * @param {object} params
    * @returns {ReactNode}
    */
-  renderInput: renderInputParams<'a> => React.element,
+  renderInput: renderInputParams<'value> => React.element,
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -262,7 +262,7 @@ type props<'a> = {
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
-  defaultValue?: 'a,
+  defaultValue?: 'value,
   /**
    * If `true`, the input can't be cleared.
    * @default false
@@ -301,7 +301,7 @@ type props<'a> = {
    * @param {object} state The state of the component.
    * @returns {T[]}
    */
-  filterOptions?: (array<'a>, filterOptionsState<'a>) => array<'a>,
+  filterOptions?: (array<'value>, filterOptionsState<'value>) => array<'value>,
   /**
    * If `true`, hide the selected options from the list box.
    * @default false
@@ -336,7 +336,7 @@ type props<'a> = {
    * @param {T} option The option to test.
    * @returns {boolean}
    */
-  getOptionDisabled?: 'a => bool,
+  getOptionDisabled?: 'value => bool,
   /*
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
@@ -347,7 +347,7 @@ type props<'a> = {
    * @returns {string}
    * @default (option) => option.label ?? option
    */
-  getOptionLabel?: 'a => string,
+  getOptionLabel?: 'value => string,
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
@@ -355,7 +355,7 @@ type props<'a> = {
    * @param {T} options The options to group.
    * @returns {string}
    */
-  groupBy?: 'a => string,
+  groupBy?: 'value => string,
   /**
    * If `true`, the component handles the "Home" and "End" keys when the popup is open.
    * It should move focus to the first option and last option, respectively.
@@ -385,7 +385,7 @@ type props<'a> = {
    * @param {T} value The value to test against.
    * @returns {boolean}
    */
-  isOptionEqualToValue?: ('a, 'a) => bool,
+  isOptionEqualToValue?: ('value, 'value) => bool,
   /**
    * The maximum number of tags that will be visible when not focused.
    * Set `-1` to disable the limit.
@@ -436,7 +436,7 @@ type props<'a> = {
    * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
-  onChange?: (ReactEvent.Synthetic.t, 'a, changeReason, string) => unit,
+  onChange?: (ReactEvent.Synthetic.t, 'value, changeReason, string) => unit,
   /**
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).
@@ -452,7 +452,7 @@ type props<'a> = {
    * @param {T} option The highlighted option.
    * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
-  onHighlightChange?: (ReactEvent.Synthetic.t, 'a, highlightChangeReason) => unit,
+  onHighlightChange?: (ReactEvent.Synthetic.t, 'value, highlightChangeReason) => unit,
   /**
    * Callback fired when the input value changes.
    *
@@ -522,7 +522,7 @@ type props<'a> = {
    * @param {object} state The state of the component.
    * @returns {ReactNode}
    */
-  renderOption?: ('a, 'a, renderOptionState) => React.element,
+  renderOption?: ('value, 'value, renderOptionState) => React.element,
   /**
    * Render the selected value.
    *
@@ -531,7 +531,7 @@ type props<'a> = {
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
-  renderTags?: (array<'a>, renderGetTagProps, ownerState) => React.element,
+  renderTags?: (array<'value>, renderGetTagProps, ownerState) => React.element,
   /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
@@ -558,8 +558,8 @@ type props<'a> = {
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `isOptionEqualToValue` prop.
    */
-  value?: 'a,
+  value?: 'value,
 }
 
 @module("@mui/material")
-external make: props<'a> => React.element = "Autocomplete"
+external make: props<'value> => React.element = "Autocomplete"

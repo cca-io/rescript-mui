@@ -19,5 +19,21 @@ type t = {
 
 type clickableProps = {
   ...t,
+  onBlur?: ReactEvent.Focus.t => unit,
+  onContextMenu?: ReactEvent.Mouse.t => unit,
+  onDragLeave?: ReactEvent.Mouse.t => unit,
+  onFocus?: ReactEvent.Focus.t => unit,
+  onKeyDown?: ReactEvent.Keyboard.t => unit,
+  onKeyUp?: ReactEvent.Keyboard.t => unit,
+  onMouseDown?: ReactEvent.Mouse.t => unit,
+  onMouseLeave?: ReactEvent.Mouse.t => unit,
+  onMouseUp?: ReactEvent.Mouse.t => unit,
+  onTouchEnd?: ReactEvent.Touch.t => unit,
+  onTouchMove?: ReactEvent.Touch.t => unit,
+  onTouchStart?: ReactEvent.Touch.t => unit,
+}
+
+type clickablePropsWithOnClick = {
+  ...clickableProps,
   onClick?: ReactEvent.Synthetic.t => unit,
 }

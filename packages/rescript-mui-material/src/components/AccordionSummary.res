@@ -18,7 +18,7 @@ type classes = {
 }
 
 type props = {
-  ...ButtonBase.publicProps,
+  ...ButtonBase.publicPropsWithOnClick,
   /**
      * Override or extend the styles applied to the component.
      */

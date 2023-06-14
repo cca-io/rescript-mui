@@ -104,16 +104,16 @@ function ExampleStepper(props) {
                                                                               return Material.Button(prim);
                                                                             }), {
                                                                             className: classes.button,
-                                                                            onClick: handleBack,
                                                                             children: "Back",
+                                                                            onClick: handleBack,
                                                                             disabled: activeStep === 0
                                                                           }),
                                                                       JsxRuntime.jsx((function (prim) {
                                                                               return Material.Button(prim);
                                                                             }), {
                                                                             className: classes.button,
-                                                                            onClick: handleNext,
                                                                             children: Caml_option.some(activeStep === (steps.length - 1 | 0) ? "Finish" : "Next"),
+                                                                            onClick: handleNext,
                                                                             color: "primary",
                                                                             variant: "contained"
                                                                           })
@@ -142,8 +142,8 @@ function ExampleStepper(props) {
                                   return Material.Button(prim);
                                 }), {
                                 className: classes.button,
-                                onClick: handleReset,
                                 children: "Reset",
+                                onClick: handleReset,
                                 color: "secondary"
                               })
                         ],

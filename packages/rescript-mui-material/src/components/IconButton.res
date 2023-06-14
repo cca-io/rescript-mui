@@ -55,7 +55,7 @@ type size =
   | String(string)
 
 type props = {
-  ...ButtonBase.publicProps,
+  ...ButtonBase.publicPropsWithOnClick,
   /**
      * Override or extend the styles applied to the component.
      */
@@ -95,7 +95,6 @@ type props = {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
   sx?: Sx.props,
-  component?: OverridableComponent.t<unknown>,
 }
 
 @module("@mui/material")

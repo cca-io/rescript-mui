@@ -121,7 +121,7 @@ type variant =
   | String(string)
 
 type props = {
-  ...ButtonBase.publicProps,
+  ...ButtonBase.publicPropsWithOnClick,
   /**
      * Override or extend the styles applied to the component.
      */
@@ -157,11 +157,6 @@ type props = {
      * @default false
      */
   fullWidth?: bool,
-  /**
-     * The URL to link to when the button is clicked.
-     * If defined, an `a` element will be used as the root node.
-     */
-  href?: string,
   /**
      * The size of the component.
      * `small` is equivalent to the dense button styling.
