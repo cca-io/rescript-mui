@@ -196,7 +196,9 @@ function ExampleDashboard(props) {
                                                 }),
                                             className: classes.toolbarIcon
                                           }),
-                                      JsxRuntime.jsx(Material.Divider, {}),
+                                      JsxRuntime.jsx((function (prim) {
+                                              return Material.Divider(prim);
+                                            }), {}),
                                       JsxRuntime.jsx("div", {
                                             children: props.sidebar
                                           })

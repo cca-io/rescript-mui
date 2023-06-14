@@ -22,11 +22,7 @@ let make = () => {
         <VolumeUpIcon />
       </Grid>
       <Grid item=true xs=True>
-        <Slider
-          value={Slider.Value.int(value)}
-          onChange={(_, v) => setValue(v)}
-          \"aria-labelledby"="input-slider"
-        />
+        <Slider value={value} onChange={(_, v, _) => setValue(v)} ariaLabelledby="input-slider" />
       </Grid>
       <Grid item=true>
         <Input

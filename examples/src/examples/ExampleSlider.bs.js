@@ -48,12 +48,14 @@ function ExampleSlider(props) {
                         JsxRuntime.jsx((function (prim) {
                                 return Material.Grid(prim);
                               }), {
-                              children: Caml_option.some(JsxRuntime.jsx(Material.Slider, {
+                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                          return Material.Slider(prim);
+                                        }), {
                                         "aria-labelledby": "input-slider",
-                                        onChange: (function (param, v) {
+                                        onChange: (function (param, v, param$1) {
                                             setValue(v);
                                           }),
-                                        value: Caml_option.some(value)
+                                        value: value
                                       })),
                               item: true,
                               xs: true

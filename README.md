@@ -25,7 +25,7 @@ They are still available, check out the old website: https://rescript-material-u
 
 | MUI package         | ReScript bindings package    | Progress |
 | ------------------- | ---------------------------- | -------: |
-| @mui/material       | @rescript-mui/material       |     50 % |
+| @mui/material       | @rescript-mui/material       |     80 % |
 | @mui/lab            | @rescript-mui/lab            |      0 % |
 | @mui/x-date-pickers | @rescript-mui/x-date-pickers |      0 % |
 | @mui/base           | Not implemented!             |        - |
@@ -77,7 +77,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] DialogContent
 - [x] DialogContentText
 - [x] DialogTitle
-- [ ] Divider
+- [x] Divider
 - [x] Drawer
 - [x] Fab
 - [x] Fade
@@ -129,7 +129,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] Select
 - [x] Skeleton
 - [x] Slide
-- [ ] Slider
+- [x] Slider
 - [ ] Snackbar
 - [ ] SnackbarContent
 - [ ] SpeedDial

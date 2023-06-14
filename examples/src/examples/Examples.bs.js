@@ -41,7 +41,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -73,7 +75,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -105,7 +109,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -137,7 +143,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -169,7 +177,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -201,7 +211,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -233,7 +245,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -265,7 +279,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -301,7 +317,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -337,7 +355,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -373,7 +393,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -409,7 +431,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -445,7 +469,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -484,7 +510,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
@@ -520,7 +548,9 @@ function Examples(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
+                JsxRuntime.jsx((function (prim) {
+                        return Material.Divider(prim);
+                      }), {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsxs((function (prim) {
