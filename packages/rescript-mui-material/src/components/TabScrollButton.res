@@ -66,4 +66,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: unit => React.element = "TabScrollButton"
+external make: props => React.element = "TabScrollButton"

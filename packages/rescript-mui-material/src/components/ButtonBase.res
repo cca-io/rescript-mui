@@ -132,7 +132,7 @@ type publicProps = {
 
 type publicPropsWithOnClick = {
   ...publicProps,
-  onClick?: ReactEvent.Synthetic.t => unit,
+  onClick?: ReactEvent.Mouse.t => unit,
 }
 
 type props = {

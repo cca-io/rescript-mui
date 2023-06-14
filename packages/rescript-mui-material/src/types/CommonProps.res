@@ -35,5 +35,5 @@ type clickableProps = {
 
 type clickablePropsWithOnClick = {
   ...clickableProps,
-  onClick?: ReactEvent.Synthetic.t => unit,
+  onClick?: ReactEvent.Mouse.t => unit,
 }

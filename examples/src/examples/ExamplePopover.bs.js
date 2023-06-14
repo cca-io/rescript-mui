@@ -55,9 +55,12 @@ function ExamplePopover(props) {
                         return Material.List(prim);
                       }), {
                       children: Caml_option.some(Belt_Array.mapWithIndex(messages, (function (i, message) {
-                                  return JsxRuntime.jsx(Material.ListItem, {
-                                              button: true,
-                                              children: Caml_option.some(JsxRuntime.jsx(Material.ListItemText, {
+                                  return JsxRuntime.jsx((function (prim) {
+                                                return Material.ListItemButton(prim);
+                                              }), {
+                                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                                          return Material.ListItemText(prim);
+                                                        }), {
                                                         children: Caml_option.some(message)
                                                       })),
                                               onClick: (function (evt) {

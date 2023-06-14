@@ -39,13 +39,12 @@ let make = () => {
     <Mui.List>
       {messages
       ->Belt.Array.mapWithIndex((i, message) =>
-        <Mui.ListItem
-          button=true
-          key={string_of_int(i)}
+        <Mui.ListItemButton
+          key={Belt.Int.toString(i)}
           onClick={evt =>
             dispatch(OpenPopup((evt->ReactEvent.Mouse.target->toDomElement, message)))}>
           <Mui.ListItemText> {React.string(message)} </Mui.ListItemText>
-        </Mui.ListItem>
+        </Mui.ListItemButton>
       )
       ->React.array}
     </Mui.List>

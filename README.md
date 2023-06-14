@@ -103,13 +103,13 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] LinearProgress
 - [x] Link
 - [x] List
-- [ ] ListItem
-- [ ] ListItemAvatar
-- [ ] ListItemButton
+- [x] ListItem
+- [x] ListItemAvatar
+- [x] ListItemButton
 - [x] ListItemIcon
-- [ ] ListItemSecondaryAction
-- [ ] ListItemText
-- [ ] ListSubheader
+- [x] ListItemSecondaryAction
+- [x] ListItemText
+- [x] ListSubheader
 - [x] Menu
 - [x] MenuItem
 - [x] MenuList

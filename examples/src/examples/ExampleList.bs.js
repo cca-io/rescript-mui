@@ -42,11 +42,17 @@ function ExampleList(props) {
                                           children: Caml_option.some($$Array.map((function (sectionId) {
                                                       return JsxRuntime.jsx("li", {
                                                                   children: JsxRuntime.jsx("ul", {
-                                                                        children: $$Array.append([JsxRuntime.jsx(Material.ListSubheader, {
+                                                                        children: $$Array.append([JsxRuntime.jsx((function (prim) {
+                                                                                      return Material.ListSubheader(prim);
+                                                                                    }), {
                                                                                     children: Caml_option.some("I'm sticky " + String(sectionId))
                                                                                   }, "header")], $$Array.map((function (item) {
-                                                                                    return JsxRuntime.jsx(Material.ListItem, {
-                                                                                                children: Caml_option.some(JsxRuntime.jsx(Material.ListItemText, {
+                                                                                    return JsxRuntime.jsx((function (prim) {
+                                                                                                  return Material.ListItem(prim);
+                                                                                                }), {
+                                                                                                children: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                                                                                            return Material.ListItemText(prim);
+                                                                                                          }), {
                                                                                                           children: Caml_option.some("Item " + String(item))
                                                                                                         }))
                                                                                               }, "item-" + (String(sectionId) + ("-" + String(item))));
