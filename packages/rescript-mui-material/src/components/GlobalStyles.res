@@ -14,11 +14,10 @@ module Styles = {
   external bool: bool => t = "%identity"
 }
 
-@react.component @module("@mui/material")
-external make: (
-  ~styles: Styles.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "GlobalStyles"
+type props = {
+  ...CommonProps.t,
+  styles: Styles.t,
+}
+
+@module("@mui/material")
+external make: props => React.element = "GlobalStyles"
