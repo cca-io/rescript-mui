@@ -18,7 +18,9 @@ function App(props) {
                     width: "100%",
                     margin: "30px auto",
                     children: [
-                      JsxRuntime.jsx(Material.CssBaseline, {}),
+                      JsxRuntime.jsx((function (prim) {
+                              return Material.CssBaseline(prim);
+                            }), {}),
                       JsxRuntime.jsx(Examples.make, {}),
                       JsxRuntime.jsx(ExamplesLab.make, {})
                     ]

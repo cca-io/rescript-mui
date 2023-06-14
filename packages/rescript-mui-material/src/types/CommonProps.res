@@ -6,6 +6,12 @@ type t_NoId = {
 
 type classNameOnly = {className: string}
 
+type t_NoRef = {
+  className?: string,
+  style?: ReactDOM.Style.t,
+  id?: string,
+}
+
 type t = {
   ...t_NoId,
   id?: string,

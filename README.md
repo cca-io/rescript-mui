@@ -71,7 +71,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] CircularProgress
 - [ ] Collapse
 - [ ] Container
-- [ ] CssBaseline
+- [x] CssBaseline
 - [x] Dialog
 - [x] DialogActions
 - [x] DialogContent
@@ -125,7 +125,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [ ] Radio
 - [ ] RadioGroup
 - [x] Rating
-- [ ] ScopedCssBaseline
+- [x] ScopedCssBaseline
 - [x] Select
 - [x] Skeleton
 - [x] Slide

@@ -118,7 +118,9 @@ function ExampleDashboard(props) {
               children: match$1[0] ? JsxRuntime.jsx("div", {
                       children: JsxRuntime.jsxs("div", {
                             children: [
-                              JsxRuntime.jsx(Material.CssBaseline, {}),
+                              JsxRuntime.jsx((function (prim) {
+                                      return Material.CssBaseline(prim);
+                                    }), {}),
                               JsxRuntime.jsx(Material.AppBar, {
                                     children: Caml_option.some(JsxRuntime.jsxs(Material.Toolbar, {
                                               children: [
