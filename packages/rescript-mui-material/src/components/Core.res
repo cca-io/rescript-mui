@@ -59,15 +59,3 @@ external useMediaQueryString: string => bool = "useMediaQuery"
 
 @module("@mui/material")
 external useMediaQuery: Breakpoint.t => bool = "useMediaQuery"
-
-module ServerStyleSheets = {
-  type t
-  @module("@mui/styles") @new
-  external make: unit => t = "ServerStyleSheets"
-  @module("@mui/styles") @new
-  external makeWithOptions: {..} => t = "ServerStyleSheets"
-
-  @send external collect: (t, React.element) => React.element = "collect"
-  @send external toString: t => string = "toString"
-  @send external getStyleElement: t => React.element = "getStyleElement"
-}

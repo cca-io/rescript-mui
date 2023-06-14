@@ -47,10 +47,7 @@ var Breakpoint = {
   get: get
 };
 
-var ServerStyleSheets = {};
-
 export {
   Breakpoint ,
-  ServerStyleSheets ,
 }
 /* No side effect */

@@ -240,25 +240,6 @@ let make = () => <>
   <br />
   <Grid container=true alignItems=String("center")>
     <Grid item=true md=Number(6)>
-      <Typography variant=H5>
-        <a
-          href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/styles/api/api.md#serverstylesheets"
-          target="_blank">
-          {"ServerStyleSheets"->React.string}
-        </a>
-      </Typography>
-    </Grid>
-    <Grid item=true md=Number(6)>
-      <ExampleServerStyleSheets />
-    </Grid>
-  </Grid>
-  <br />
-  <br />
-  <Divider />
-  <br />
-  <br />
-  <Grid container=true alignItems=String("center")>
-    <Grid item=true md=Number(6)>
       <Typography variant=H5> {"TextField size Prop"->React.string} </Typography>
     </Grid>
     <Grid item=true md=Number(6)>

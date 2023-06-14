@@ -17,7 +17,6 @@ import * as JsxRuntime from "react/jsx-runtime";
 import * as ExampleClassOverride from "./ExampleClassOverride.bs.js";
 import * as ExampleTextFieldSize from "./ExampleTextFieldSize.bs.js";
 import * as ExampleThemeProvider from "./ExampleThemeProvider.bs.js";
-import * as ExampleServerStyleSheets from "./ExampleServerStyleSheets.bs.js";
 import * as ExampleThemeProviderOverride from "./ExampleThemeProviderOverride.bs.js";
 
 function Examples(props) {
@@ -513,42 +512,6 @@ function Examples(props) {
                                 return Material.Grid(prim);
                               }), {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleBox.make, {})),
-                              item: true,
-                              md: 6
-                            })
-                      ],
-                      container: true
-                    }),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx(Material.Divider, {}),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
-                      alignItems: "center",
-                      children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Typography(prim);
-                                        }), {
-                                        variant: "h5",
-                                        children: Caml_option.some(JsxRuntime.jsx("a", {
-                                                  children: "ServerStyleSheets",
-                                                  href: "https://github.com/mui-org/material-ui/blob/master/docs/src/pages/styles/api/api.md#serverstylesheets",
-                                                  target: "_blank"
-                                                }))
-                                      })),
-                              item: true,
-                              md: 6
-                            }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx(ExampleServerStyleSheets.make, {})),
                               item: true,
                               md: 6
                             })
