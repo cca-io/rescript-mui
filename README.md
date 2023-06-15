@@ -2,8 +2,11 @@
 
 ## Installation
 
+1. Install all necessary packages according to the official MUI-Material installation guide: https://mui.com/material-ui/getting-started/installation/.
+2. Install `@rescript-mui/material`
+
 ```sh
-COMING SOON!
+npm install @rescript-mui/material
 ```
 
 This library provides [ReScript](https://rescript-lang.org/) bindings for [MUI](https://mui.com/).
