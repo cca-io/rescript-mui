@@ -4,7 +4,7 @@ import * as App from "./App.bs.js";
 import * as Client from "react-dom/client";
 import * as JsxRuntime from "react/jsx-runtime";
 
-var domElement = document.querySelector("#root");
+var domElement = document.querySelector("#app");
 
 if (!(domElement == null)) {
   Client.createRoot(domElement).render(JsxRuntime.jsx(App.make, {}));

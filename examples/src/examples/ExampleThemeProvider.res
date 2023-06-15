@@ -11,7 +11,7 @@ let make = () =>
       {"Default Primary Color"->React.string}
     </Mui.Button>
     {" "->React.string}
-    <Mui.ThemeProvider theme>
+    <Mui.ThemeProvider theme=Func(theme)>
       <Mui.Button color=Primary variant=Outlined>
         {"Themed Primary Color"->React.string}
       </Mui.Button>

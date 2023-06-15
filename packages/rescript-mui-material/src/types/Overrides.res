@@ -14,6 +14,21 @@ type accordionActionsClassKey = {
   spacing?: ReactDOM.Style.t,
 }
 
+type accordionDetailsClassKey = {
+  root: ReactDOM.Style.t,
+}
+
+type accordionSummaryClassKey = {
+  root: ReactDOM.Style.t,
+  expanded: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  gutters: ReactDOM.Style.t,
+  contentGutters: ReactDOM.Style.t,
+  content: ReactDOM.Style.t,
+  expandIconWrapper: ReactDOM.Style.t,
+}
+
 type autocompleteClassKey = {
   root: ReactDOM.Style.t,
   fullWidth: ReactDOM.Style.t,
@@ -161,6 +176,15 @@ type buttonGroupClassKey = {
   groupedContainedSecondary?: ReactDOM.Style.t,
 }
 
+type checkboxClassKey = {
+  root: ReactDOM.Style.t,
+  checked: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  indeterminate: ReactDOM.Style.t,
+  colorPrimary: string,
+  colorSecondary: string,
+}
+
 type chipClassKey = {
   root: ReactDOM.Style.t,
   sizeSmall: ReactDOM.Style.t,
@@ -207,6 +231,72 @@ type chipClassKey = {
   deleteIconFilledColorPrimary: ReactDOM.Style.t,
   deleteIconFilledColorSecondary: ReactDOM.Style.t,
   focusVisible: ReactDOM.Style.t,
+}
+
+type circularProgressClassKey = {
+  root: ReactDOM.Style.t,
+  determinate: ReactDOM.Style.t,
+  indeterminate: ReactDOM.Style.t,
+  colorPrimary: string,
+  colorSecondary: string,
+  svg: ReactDOM.Style.t,
+  circle: ReactDOM.Style.t,
+  circleDeterminate: ReactDOM.Style.t,
+  circleIndeterminate: ReactDOM.Style.t,
+  circleDisableShrink: ReactDOM.Style.t,
+}
+
+type dialogClassKey = {
+  root: ReactDOM.Style.t,
+  scrollPaper: ReactDOM.Style.t,
+  scrollBody: ReactDOM.Style.t,
+  container: ReactDOM.Style.t,
+  paper: ReactDOM.Style.t,
+  paperScrollPaper: ReactDOM.Style.t,
+  paperScrollBody: ReactDOM.Style.t,
+  paperWidthFalse: ReactDOM.Style.t,
+  paperWidthXs: ReactDOM.Style.t,
+  paperWidthSm: ReactDOM.Style.t,
+  paperWidthMd: ReactDOM.Style.t,
+  paperWidthLg: ReactDOM.Style.t,
+  paperWidthXl: ReactDOM.Style.t,
+  paperFullWidth: ReactDOM.Style.t,
+  paperFullScreen: ReactDOM.Style.t,
+}
+
+type dialogActionsClassKey = {
+  root: ReactDOM.Style.t,
+  spacing: ReactDOM.Style.t,
+}
+
+type dialogContentClassKey = {
+  root: ReactDOM.Style.t,
+  dividers: ReactDOM.Style.t,
+}
+
+type dialogContentTextClassKey = {
+  root: ReactDOM.Style.t,
+}
+
+type dialogTitleClassKey = {
+  root: ReactDOM.Style.t,
+}
+
+type dividerClassKey = {
+  root: ReactDOM.Style.t,
+  absolute: ReactDOM.Style.t,
+  inset: ReactDOM.Style.t,
+  fullWidth: ReactDOM.Style.t,
+  light: ReactDOM.Style.t,
+  middle: ReactDOM.Style.t,
+  vertical: ReactDOM.Style.t,
+  flexItem: ReactDOM.Style.t,
+  withChildren: ReactDOM.Style.t,
+  withChildrenVertical: ReactDOM.Style.t,
+  textAlignRight: ReactDOM.Style.t,
+  textAlignLeft: ReactDOM.Style.t,
+  wrapper: ReactDOM.Style.t,
+  wrapperVertical: ReactDOM.Style.t,
 }
 
 type drawerClassKey = {
@@ -277,6 +367,12 @@ type formControlLabelClassKey = {
   asterisk: ReactDOM.Style.t,
 }
 
+type formGroupClassKey = {
+  root: ReactDOM.Style.t,
+  row: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+}
+
 type formHelperTextClassKey = {
   root: ReactDOM.Style.t,
   error: ReactDOM.Style.t,
@@ -286,6 +382,17 @@ type formHelperTextClassKey = {
   focused: ReactDOM.Style.t,
   filled: ReactDOM.Style.t,
   required: ReactDOM.Style.t,
+}
+
+type formLabelClassKey = {
+  root: ReactDOM.Style.t,
+  colorSecondary: string,
+  focused: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  error: ReactDOM.Style.t,
+  filled: ReactDOM.Style.t,
+  required: ReactDOM.Style.t,
+  asterisk: ReactDOM.Style.t,
 }
 
 type gridClassKey = {
@@ -428,6 +535,27 @@ type inputLabelClassKey = {
   standard: ReactDOM.Style.t,
 }
 
+type linearProgressClassKey = {
+  root: ReactDOM.Style.t,
+  colorPrimary: string,
+  colorSecondary: string,
+  determinate: ReactDOM.Style.t,
+  indeterminate: ReactDOM.Style.t,
+  buffer: ReactDOM.Style.t,
+  query: ReactDOM.Style.t,
+  dashed: ReactDOM.Style.t,
+  dashedColorPrimary: ReactDOM.Style.t,
+  dashedColorSecondary: ReactDOM.Style.t,
+  bar: ReactDOM.Style.t,
+  barColorPrimary: ReactDOM.Style.t,
+  barColorSecondary: ReactDOM.Style.t,
+  bar1Indeterminate: ReactDOM.Style.t,
+  bar1Determinate: ReactDOM.Style.t,
+  bar1Buffer: ReactDOM.Style.t,
+  bar2Indeterminate: ReactDOM.Style.t,
+  bar2Buffer: ReactDOM.Style.t,
+}
+
 type linkClassKey = {
   root: ReactDOM.Style.t,
   underlineNone: ReactDOM.Style.t,
@@ -444,9 +572,63 @@ type listClassKey = {
   subheader: ReactDOM.Style.t,
 }
 
+type listItemClassKey = {
+  root: ReactDOM.Style.t,
+  container: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
+  dense: ReactDOM.Style.t,
+  alignItemsFlexStart: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  divider: ReactDOM.Style.t,
+  gutters: ReactDOM.Style.t,
+  padding: ReactDOM.Style.t,
+  button: ReactDOM.Style.t,
+  secondaryAction: ReactDOM.Style.t,
+  selected: ReactDOM.Style.t,
+}
+
+type listItemAvatarClassKey = {
+  root: ReactDOM.Style.t,
+  alignItemsFlexStart: ReactDOM.Style.t,
+}
+
+type listItemButtonClassKey = {
+  root: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
+  dense: ReactDOM.Style.t,
+  alignItemsFlexStart: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  divider: ReactDOM.Style.t,
+  gutters: ReactDOM.Style.t,
+  selected: ReactDOM.Style.t,
+}
+
 type listItemIconClassKey = {
   root: ReactDOM.Style.t,
   alignItemsFlexStart: ReactDOM.Style.t,
+}
+
+type listItemSecondaryActionClassKey = {
+  root: ReactDOM.Style.t,
+  disableGutters: ReactDOM.Style.t,
+}
+
+type listItemTextClassKey = {
+  root: ReactDOM.Style.t,
+  multiline: ReactDOM.Style.t,
+  dense: ReactDOM.Style.t,
+  inset: ReactDOM.Style.t,
+  primary: ReactDOM.Style.t,
+  secondary: ReactDOM.Style.t,
+}
+
+type listSubheaderClassKey = {
+  root: ReactDOM.Style.t,
+  colorPrimary: string,
+  colorInherit: string,
+  gutters: ReactDOM.Style.t,
+  inset: ReactDOM.Style.t,
+  sticky: ReactDOM.Style.t,
 }
 
 type menuClassKey = {
@@ -538,6 +720,14 @@ type popperClassKey = {
   root: ReactDOM.Style.t,
 }
 
+type radioClassKey = {
+  root: ReactDOM.Style.t,
+  checked: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  colorPrimary: string,
+  colorSecondary: string,
+}
+
 type ratingClassKey = {
   root: ReactDOM.Style.t,
   sizeSmall: ReactDOM.Style.t,
@@ -556,6 +746,10 @@ type ratingClassKey = {
   iconFocus: ReactDOM.Style.t,
   iconActive: ReactDOM.Style.t,
   decimal: ReactDOM.Style.t,
+}
+
+type scopedCssBaselineClassKey = {
+  root: ReactDOM.Style.t,
 }
 
 type selectClassKey = {
@@ -587,6 +781,35 @@ type skeletonClassKey = {
   heightAuto: ReactDOM.Style.t,
 }
 
+type sliderClassKey = {
+  root: ReactDOM.Style.t,
+  colorPrimary: string,
+  colorSecondary: string,
+  marked: ReactDOM.Style.t,
+  vertical: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  dragging: ReactDOM.Style.t,
+  rail: ReactDOM.Style.t,
+  track: ReactDOM.Style.t,
+  trackFalse: ReactDOM.Style.t,
+  trackInverted: ReactDOM.Style.t,
+  thumb: ReactDOM.Style.t,
+  active: ReactDOM.Style.t,
+  focusVisible: ReactDOM.Style.t,
+  mark: ReactDOM.Style.t,
+  markActive: ReactDOM.Style.t,
+  markLabel: ReactDOM.Style.t,
+  markLabelActive: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  thumbColorPrimary: ReactDOM.Style.t,
+  thumbColorSecondary: ReactDOM.Style.t,
+  thumbSizeSmall: ReactDOM.Style.t,
+  valueLabel: ReactDOM.Style.t,
+  valueLabelOpen: ReactDOM.Style.t,
+  valueLabelCircle: ReactDOM.Style.t,
+  valueLabelLabel: ReactDOM.Style.t,
+}
+
 type speedDialActionClassKey = {
   fab: ReactDOM.Style.t,
   fabClosed: ReactDOM.Style.t,
@@ -606,12 +829,36 @@ type speedDialIconClassKey = {
   openIconOpen: ReactDOM.Style.t,
 }
 
+type stackClassKey = {
+  root: ReactDOM.Style.t,
+}
+
 type stepClassKey = {
   root: ReactDOM.Style.t,
   horizontal: ReactDOM.Style.t,
   vertical: ReactDOM.Style.t,
   alternativeLabel: ReactDOM.Style.t,
   completed: ReactDOM.Style.t,
+}
+
+type stepButtonClassKey = {
+  root: ReactDOM.Style.t,
+  horizontal: ReactDOM.Style.t,
+  vertical: ReactDOM.Style.t,
+  touchRipple: ReactDOM.Style.t,
+}
+
+type stepConnectorClassKey = {
+  root: ReactDOM.Style.t,
+  horizontal: ReactDOM.Style.t,
+  vertical: ReactDOM.Style.t,
+  alternativeLabel: ReactDOM.Style.t,
+  active: ReactDOM.Style.t,
+  completed: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  line: ReactDOM.Style.t,
+  lineHorizontal: ReactDOM.Style.t,
+  lineVertical: ReactDOM.Style.t,
 }
 
 type stepContentClassKey = {
@@ -662,6 +909,22 @@ type svgIconClassKey = {
   fontSizeLarge: ReactDOM.Style.t,
 }
 
+type switchClassKey = {
+  root: ReactDOM.Style.t,
+  edgeStart: ReactDOM.Style.t,
+  edgeEnd: ReactDOM.Style.t,
+  switchBase: ReactDOM.Style.t,
+  colorPrimary: string,
+  colorSecondary: string,
+  sizeSmall: ReactDOM.Style.t,
+  sizeMedium: ReactDOM.Style.t,
+  checked: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  input: ReactDOM.Style.t,
+  thumb: ReactDOM.Style.t,
+  track: ReactDOM.Style.t,
+}
+
 type tabClassKey = {
   root: ReactDOM.Style.t,
   labelIcon: ReactDOM.Style.t,
@@ -673,6 +936,79 @@ type tabClassKey = {
   fullWidth: ReactDOM.Style.t,
   wrapped: ReactDOM.Style.t,
   iconWrapper: ReactDOM.Style.t,
+}
+
+type tabScrollButtonClassKey = {
+  root: ReactDOM.Style.t,
+  vertical: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+}
+
+type tableClassKey = {
+  root: ReactDOM.Style.t,
+  stickyHeader: ReactDOM.Style.t,
+}
+
+type tableBodyClassKey = {
+  root: ReactDOM.Style.t,
+}
+
+type tableCellClassKey = {
+  root: ReactDOM.Style.t,
+  head: ReactDOM.Style.t,
+  body: ReactDOM.Style.t,
+  footer: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  sizeMedium: ReactDOM.Style.t,
+  paddingCheckbox: ReactDOM.Style.t,
+  paddingNone: ReactDOM.Style.t,
+  alignLeft: ReactDOM.Style.t,
+  alignCenter: ReactDOM.Style.t,
+  alignRight: ReactDOM.Style.t,
+  alignJustify: ReactDOM.Style.t,
+  stickyHeader: ReactDOM.Style.t,
+}
+
+type tableContainerClassKey = {
+  root: ReactDOM.Style.t,
+}
+
+type tableFooterClassKey = {
+  root: ReactDOM.Style.t,
+}
+
+type tableHeadClassKey = {
+  root: ReactDOM.Style.t,
+}
+
+type tablePaginationClassKey = {
+  root: ReactDOM.Style.t,
+  toolbar: ReactDOM.Style.t,
+  spacer: ReactDOM.Style.t,
+  selectLabel: ReactDOM.Style.t,
+  selectRoot: ReactDOM.Style.t,
+  select: ReactDOM.Style.t,
+  selectIcon: ReactDOM.Style.t,
+  input: ReactDOM.Style.t,
+  menuItem: ReactDOM.Style.t,
+  displayedRows: ReactDOM.Style.t,
+  actions: ReactDOM.Style.t,
+}
+
+type tableRowClassKey = {
+  root: ReactDOM.Style.t,
+  selected: ReactDOM.Style.t,
+  hover: ReactDOM.Style.t,
+  head: ReactDOM.Style.t,
+  footer: ReactDOM.Style.t,
+}
+
+type tableSortLabelClassKey = {
+  root: ReactDOM.Style.t,
+  active: ReactDOM.Style.t,
+  icon: ReactDOM.Style.t,
+  iconDirectionDesc: ReactDOM.Style.t,
+  iconDirectionAsc: ReactDOM.Style.t,
 }
 
 type tabsClassKey = {
@@ -693,6 +1029,34 @@ type tabsClassKey = {
 
 type textFieldClassKey = {
   root: ReactDOM.Style.t,
+}
+
+type toggleButtonClassKey = {
+  root: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  selected: ReactDOM.Style.t,
+  standard: ReactDOM.Style.t,
+  primary: ReactDOM.Style.t,
+  secondary: ReactDOM.Style.t,
+  sizeSmall: ReactDOM.Style.t,
+  sizeMedium: ReactDOM.Style.t,
+  sizeLarge: ReactDOM.Style.t,
+}
+
+type toggleButtonGroupClassKey = {
+  root: ReactDOM.Style.t,
+  vertical: ReactDOM.Style.t,
+  disabled: ReactDOM.Style.t,
+  grouped: ReactDOM.Style.t,
+  groupedHorizontal: ReactDOM.Style.t,
+  groupedVertical: ReactDOM.Style.t,
+}
+
+type toolbarClassKey = {
+  root: ReactDOM.Style.t,
+  gutters: ReactDOM.Style.t,
+  regular: ReactDOM.Style.t,
+  dense: ReactDOM.Style.t,
 }
 
 type tooltipClassKey = {
@@ -739,19 +1103,31 @@ type typographyClassKey = {
 type t = {
   @as("MuiAccordion") muiAccordion?: accordionClassKey,
   @as("MuiAccordionActions") muiAccordionActions?: accordionActionsClassKey,
+  @as("MuiAccordionDetails") muiAccordionDetails?: accordionDetailsClassKey,
+  @as("MuiAccordionSummary") muiAccordionSummary?: accordionSummaryClassKey,
   @as("MuiAutocomplete") muiAutocomplete?: autocompleteClassKey,
   @as("MuiBackdrop") muiBackdrop?: backdropClassKey,
   @as("MuiBadge") muiBadge?: badgeClassKey,
   @as("MuiButton") muiButton?: buttonClassKey,
   @as("MuiButtonBase") muiButtonBase?: buttonBaseClassKey,
   @as("MuiButtonGroup") muiButtonGroup?: buttonGroupClassKey,
+  @as("MuiCheckbox") muiCheckbox?: checkboxClassKey,
   @as("MuiChip") muiChip?: chipClassKey,
+  @as("MuiCircularProgress") muiCircularProgress?: circularProgressClassKey,
+  @as("MuiDialog") muiDialog?: dialogClassKey,
+  @as("MuiDialogActions") muiDialogActions?: dialogActionsClassKey,
+  @as("MuiDialogContent") muiDialogContent?: dialogContentClassKey,
+  @as("MuiDialogContentText") muiDialogContentText?: dialogContentTextClassKey,
+  @as("MuiDialogTitle") muiDialogTitle?: dialogTitleClassKey,
+  @as("MuiDivider") muiDivider?: dividerClassKey,
   @as("MuiDrawer") muiDrawer?: drawerClassKey,
   @as("MuiFab") muiFab?: fabClassKey,
   @as("MuiFilledInput") muiFilledInput?: filledInputClassKey,
   @as("MuiFormControl") muiFormControl?: formControlClassKey,
   @as("MuiFormControlLabel") muiFormControlLabel?: formControlLabelClassKey,
+  @as("MuiFormGroup") muiFormGroup?: formGroupClassKey,
   @as("MuiFormHelperText") muiFormHelperText?: formHelperTextClassKey,
+  @as("MuiFormLabel") muiFormLabel?: formLabelClassKey,
   @as("MuiGrid") muiGrid?: gridClassKey,
   @as("MuiIcon") muiIcon?: iconClassKey,
   @as("MuiIconButton") muiIconButton?: iconButtonClassKey,
@@ -759,9 +1135,16 @@ type t = {
   @as("MuiInputAdornment") muiInputAdornment?: inputAdornmentClassKey,
   @as("MuiInputBase") muiInputBase?: inputBaseClassKey,
   @as("MuiInputLabel") muiInputLabel?: inputLabelClassKey,
+  @as("MuiLinearProgress") muiLinearProgress?: linearProgressClassKey,
   @as("MuiLink") muiLink?: linkClassKey,
   @as("MuiList") muiList?: listClassKey,
+  @as("MuiListItem") muiListItem?: listItemClassKey,
+  @as("MuiListItemAvatar") muiListItemAvatar?: listItemAvatarClassKey,
+  @as("MuiListItemButton") muiListItemButton?: listItemButtonClassKey,
   @as("MuiListItemIcon") muiListItemIcon?: listItemIconClassKey,
+  @as("MuiListItemSecondaryAction") muiListItemSecondaryAction?: listItemSecondaryActionClassKey,
+  @as("MuiListItemText") muiListItemText?: listItemTextClassKey,
+  @as("MuiListSubheader") muiListSubheader?: listSubheaderClassKey,
   @as("MuiMenu") muiMenu?: menuClassKey,
   @as("MuiMenuItem") muiMenuItem?: menuItemClassKey,
   @as("MuiModal") muiModal?: modalClassKey,
@@ -770,20 +1153,40 @@ type t = {
   @as("MuiPaper") muiPaper?: paperClassKey,
   @as("MuiPopover") muiPopover?: popoverClassKey,
   @as("MuiPopper") muiPopper?: popperClassKey,
+  @as("MuiRadio") muiRadio?: radioClassKey,
   @as("MuiRating") muiRating?: ratingClassKey,
+  @as("MuiScopedCssBaseline") muiScopedCssBaseline?: scopedCssBaselineClassKey,
   @as("MuiSelect") muiSelect?: selectClassKey,
   @as("MuiSkeleton") muiSkeleton?: skeletonClassKey,
+  @as("MuiSlider") muiSlider?: sliderClassKey,
   @as("MuiSpeedDialAction") muiSpeedDialAction?: speedDialActionClassKey,
   @as("MuiSpeedDialIcon") muiSpeedDialIcon?: speedDialIconClassKey,
+  @as("MuiStack") muiStack?: stackClassKey,
   @as("MuiStep") muiStep?: stepClassKey,
+  @as("MuiStepButton") muiStepButton?: stepButtonClassKey,
+  @as("MuiStepConnector") muiStepConnector?: stepConnectorClassKey,
   @as("MuiStepContent") muiStepContent?: stepContentClassKey,
   @as("MuiStepIcon") muiStepIcon?: stepIconClassKey,
   @as("MuiStepLabel") muiStepLabel?: stepLabelClassKey,
   @as("MuiStepper") muiStepper?: stepperClassKey,
   @as("MuiSvgIcon") muiSvgIcon?: svgIconClassKey,
+  @as("MuiSwitch") muiSwitch?: switchClassKey,
   @as("MuiTab") muiTab?: tabClassKey,
+  @as("MuiTabScrollButton") muiTabScrollButton?: tabScrollButtonClassKey,
+  @as("MuiTable") muiTable?: tableClassKey,
+  @as("MuiTableBody") muiTableBody?: tableBodyClassKey,
+  @as("MuiTableCell") muiTableCell?: tableCellClassKey,
+  @as("MuiTableContainer") muiTableContainer?: tableContainerClassKey,
+  @as("MuiTableFooter") muiTableFooter?: tableFooterClassKey,
+  @as("MuiTableHead") muiTableHead?: tableHeadClassKey,
+  @as("MuiTablePagination") muiTablePagination?: tablePaginationClassKey,
+  @as("MuiTableRow") muiTableRow?: tableRowClassKey,
+  @as("MuiTableSortLabel") muiTableSortLabel?: tableSortLabelClassKey,
   @as("MuiTabs") muiTabs?: tabsClassKey,
   @as("MuiTextField") muiTextField?: textFieldClassKey,
+  @as("MuiToggleButton") muiToggleButton?: toggleButtonClassKey,
+  @as("MuiToggleButtonGroup") muiToggleButtonGroup?: toggleButtonGroupClassKey,
+  @as("MuiToolbar") muiToolbar?: toolbarClassKey,
   @as("MuiTooltip") muiTooltip?: tooltipClassKey,
   @as("MuiTypography") muiTypography?: typographyClassKey,
 }

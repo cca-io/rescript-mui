@@ -2,7 +2,6 @@
 
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Material from "@mui/material";
-import * as ReactDOMStyle from "@rescript/react/src/ReactDOMStyle.bs.js";
 import * as JsxRuntime from "react/jsx-runtime";
 import * as Styles from "@mui/material/styles";
 import SupervisedUserCircle from "@mui/icons-material/SupervisedUserCircle";
@@ -11,14 +10,11 @@ function theme(outerTheme) {
   var newrecord = Caml_obj.obj_dup(outerTheme);
   return Styles.createTheme((newrecord.overrides = {
                 MuiButton: {
-                  outlined: ReactDOMStyle.unsafeAddProp({
-                        color: "gray",
-                        fontSize: "12px",
-                        fontWeight: "300"
-                      }, "& svg", {
-                        fontSize: "16px",
-                        marginRight: "15px"
-                      })
+                  outlined: {
+                    color: "gray",
+                    fontSize: "12px",
+                    fontWeight: "300"
+                  }
                 }
               }, newrecord));
 }

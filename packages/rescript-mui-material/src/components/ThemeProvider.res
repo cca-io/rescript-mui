@@ -1,6 +1,11 @@
+@unboxed
+type themeOrThemeFunc =
+  | Theme(Theme.t)
+  | Func(ThemeOptions.t => Theme.t)
+
 type props = {
   children: React.element,
-  theme: ThemeOptions.t => Theme.t,
+  theme: themeOrThemeFunc,
 }
 
 @module("@mui/material/styles")

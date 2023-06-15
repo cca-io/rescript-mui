@@ -1,4 +1,4 @@
-switch ReactDOM.querySelector("#root") {
+switch ReactDOM.querySelector("#app") {
 | Some(domElement) =>
   open ReactDOM.Client
 

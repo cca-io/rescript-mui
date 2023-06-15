@@ -1,5 +1,3 @@
-external styleToString: ReactDOM.Style.t => string = "%identity"
-
 let theme = outerTheme =>
   Mui.Theme.create({
     ...outerTheme,
@@ -9,10 +7,7 @@ let theme = outerTheme =>
           fontSize: "12px",
           fontWeight: "300",
           color: "gray",
-        }->ReactDOM.Style.unsafeAddProp(
-          "& svg",
-          {marginRight: "15px", fontSize: "16px"}->styleToString,
-        ),
+        },
       },
     },
   })
@@ -25,7 +20,7 @@ module SupervisedUserCircleIcon = {
 @react.component
 let make = () =>
   <div>
-    <Mui.ThemeProvider theme>
+    <Mui.ThemeProvider theme=Func(theme)>
       <Mui.Button color=Secondary variant=Outlined>
         <SupervisedUserCircleIcon />
         {"Overriden Outline Styles"->React.string}
