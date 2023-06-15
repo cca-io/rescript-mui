@@ -1,14 +1,14 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** State class applied to the root element if `checked={true}`. */
-  checked: string,
+  checked?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string,
+  colorPrimary?: string,
   /** Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: string,
+  colorSecondary?: string,
 }
 
 @unboxed
@@ -125,4 +125,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "Radio"
+external make: React.component<props<'value>> = "Radio"

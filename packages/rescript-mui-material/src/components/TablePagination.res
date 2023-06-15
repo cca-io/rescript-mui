@@ -1,26 +1,26 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the Toolbar component. */
-  toolbar: string,
+  toolbar?: string,
   /** Styles applied to the spacer element. */
-  spacer: string,
+  spacer?: string,
   /** Styles applied to the select label Typography element. */
-  selectLabel: string,
+  selectLabel?: string,
   /** Styles applied to the Select component `root` element. */
-  selectRoot: string,
+  selectRoot?: string,
   /** Styles applied to the Select component `select` class. */
-  select: string,
+  select?: string,
   /** Styles applied to the Select component `icon` class. */
-  selectIcon: string,
+  selectIcon?: string,
   /** Styles applied to the Select component `root` element. */
-  input: string,
+  input?: string,
   /** Styles applied to the MenuItem component. */
-  menuItem: string,
+  menuItem?: string,
   /** Styles applied to the displayed rows Typography element. */
-  displayedRows: string,
+  displayedRows?: string,
   /** Styles applied to the internal `TablePaginationActions` component. */
-  actions: string,
+  actions?: string,
 }
 
 type itemAriaLabelType =
@@ -181,4 +181,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "TablePagination"
+external make: React.component<props> = "TablePagination"

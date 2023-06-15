@@ -41,34 +41,24 @@ function ExampleDashboard(props) {
   return JsxRuntime.jsx("div", {
               children: match$1[0] ? JsxRuntime.jsxs("div", {
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.CssBaseline(prim);
-                              }), {}),
+                        JsxRuntime.jsx(Material.CssBaseline, {}),
                         JsxRuntime.jsx(Material.AppBar, {
-                              children: Caml_option.some(JsxRuntime.jsxs((function (prim) {
-                                          return Material.Toolbar(prim);
-                                        }), {
+                              children: Caml_option.some(JsxRuntime.jsxs(Material.Toolbar, {
                                         children: [
-                                          JsxRuntime.jsx((function (prim) {
-                                                  return Material.IconButton(prim);
-                                                }), {
+                                          JsxRuntime.jsx(Material.IconButton, {
                                                 children: Caml_option.some(JsxRuntime.jsx(Menu, {})),
                                                 onClick: (function (_event) {
                                                     setState("Open");
                                                   }),
                                                 color: "inherit"
                                               }),
-                                          JsxRuntime.jsx((function (prim) {
-                                                  return Material.Typography(prim);
-                                                }), {
+                                          JsxRuntime.jsx(Material.Typography, {
                                                 noWrap: true,
                                                 variant: "h6",
                                                 component: "h1",
                                                 children: "Dashboard"
                                               }),
-                                          JsxRuntime.jsx((function (prim) {
-                                                  return Material.Link(prim);
-                                                }), {
+                                          JsxRuntime.jsx(Material.Link, {
                                                 color: "text.secondary",
                                                 children: "Close Dashboard",
                                                 href: "#",
@@ -77,12 +67,8 @@ function ExampleDashboard(props) {
                                                     setShow(false);
                                                   })
                                               }),
-                                          JsxRuntime.jsx((function (prim) {
-                                                  return Material.IconButton(prim);
-                                                }), {
-                                                children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                                            return Material.Badge(prim);
-                                                          }), {
+                                          JsxRuntime.jsx(Material.IconButton, {
+                                                children: Caml_option.some(JsxRuntime.jsx(Material.Badge, {
                                                           badgeContent: "4",
                                                           children: Caml_option.some(JsxRuntime.jsx(Notifications, {})),
                                                           color: "secondary"
@@ -94,21 +80,15 @@ function ExampleDashboard(props) {
                                       })),
                               position: "absolute"
                             }),
-                        JsxRuntime.jsxs((function (prim) {
-                                return Material.Drawer(prim);
-                              }), {
+                        JsxRuntime.jsxs(Material.Drawer, {
                               children: [
-                                JsxRuntime.jsx((function (prim) {
-                                        return Material.IconButton(prim);
-                                      }), {
+                                JsxRuntime.jsx(Material.IconButton, {
                                       children: Caml_option.some(JsxRuntime.jsx(ChevronLeft, {})),
                                       onClick: (function (_event) {
                                           setState("Close");
                                         })
                                     }),
-                                JsxRuntime.jsx((function (prim) {
-                                        return Material.Divider(prim);
-                                      }), {}),
+                                JsxRuntime.jsx(Material.Divider, {}),
                                 JsxRuntime.jsx("div", {
                                       children: props.sidebar
                                     })
@@ -122,9 +102,7 @@ function ExampleDashboard(props) {
                                   })
                             })
                       ]
-                    }) : JsxRuntime.jsx((function (prim) {
-                        return Material.Button(prim);
-                      }), {
+                    }) : JsxRuntime.jsx(Material.Button, {
                       children: "Open Dashboard",
                       onClick: (function (param) {
                           setShow(true);

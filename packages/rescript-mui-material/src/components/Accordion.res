@@ -66,4 +66,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Accordion"
+external make: React.component<props> = "Accordion"

@@ -1,38 +1,38 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `size="medium"`. */
-  sizeMedium: string,
+  sizeMedium?: string,
   /** Styles applied to the root element if `size="large"`. */
-  sizeLarge: string,
+  sizeLarge?: string,
   /** Styles applied to the root element if `readOnly={true}`. */
-  readOnly: string,
+  readOnly?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** State class applied to the root element if keyboard focused. */
-  focusVisible: string,
+  focusVisible?: string,
   /** Visually hide an element. */
-  visuallyHidden: string,
+  visuallyHidden?: string,
   /** Styles applied to the label elements. */
-  label: string,
+  label?: string,
   /** Styles applied to the label of the "no value" input when it is active. */
-  labelEmptyValueActive: string,
+  labelEmptyValueActive?: string,
   /** Styles applied to the icon wrapping elements. */
-  icon: string,
+  icon?: string,
   /** Styles applied to the icon wrapping elements when empty. */
-  iconEmpty: string,
+  iconEmpty?: string,
   /** Styles applied to the icon wrapping elements when filled. */
-  iconFilled: string,
+  iconFilled?: string,
   /** Styles applied to the icon wrapping elements when hover. */
-  iconHover: string,
+  iconHover?: string,
   /** Styles applied to the icon wrapping elements when focus. */
-  iconFocus: string,
+  iconFocus?: string,
   /** Styles applied to the icon wrapping elements when active. */
-  iconActive: string,
+  iconActive?: string,
   /** Styles applied to the icon wrapping elements when decimals are necessary. */
-  decimal: string,
+  decimal?: string,
 }
 
 @unboxed
@@ -153,4 +153,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Rating"
+external make: React.component<props> = "Rating"

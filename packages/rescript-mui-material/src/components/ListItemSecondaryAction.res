@@ -1,8 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element when the parent `ListItem` has `disableGutters={true}`. */
-  disableGutters: string,
+  disableGutters?: string,
 }
 
 type props = {
@@ -22,4 +22,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: unit => React.element = "ListItemSecondaryAction"
+external make: React.component<props> = "ListItemSecondaryAction"

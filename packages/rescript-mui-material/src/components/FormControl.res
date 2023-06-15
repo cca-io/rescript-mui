@@ -1,12 +1,12 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `margin="normal"`. */
-  marginNormal: string,
+  marginNormal?: string,
   /** Styles applied to the root element if `margin="dense"`. */
-  marginDense: string,
+  marginDense?: string,
   /** Styles applied to the root element if `fullWidth={true}`. */
-  fullWidth: string,
+  fullWidth?: string,
 }
 
 @unboxed
@@ -113,6 +113,6 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "FormControl"
+external make: React.component<props> = "FormControl"
 
 // TODO: useFormControl

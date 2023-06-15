@@ -1,36 +1,36 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if the component is a descendant of `FormControl`. */
-  formControl: string,
+  formControl?: string,
   /** Styles applied to the root element if the component is focused. */
-  focused: string,
+  focused?: string,
   /** Styles applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element if color secondary. */
-  colorSecondary: string,
+  colorSecondary?: string,
   /** Styles applied to the root element unless `disableUnderline={true}`. */
-  underline: string,
+  underline?: string,
   /** State class applied to the root element if `error={true}`. */
-  error: string,
+  error?: string,
   /** Styles applied to the input element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `multiline={true}`. */
-  multiline: string,
+  multiline?: string,
   /** Styles applied to the root element if `fullWidth={true}`. */
-  fullWidth: string,
+  fullWidth?: string,
   /** Styles applied to the input element. */
-  input: string,
+  input?: string,
   /** Styles applied to the input element if `size="small"`. */
-  inputSizeSmall: string,
+  inputSizeSmall?: string,
   /** Styles applied to the input element if `multiline={true}`. */
-  inputMultiline: string,
+  inputMultiline?: string,
   /** Styles applied to the input element if `startAdornment` is provided. */
-  inputAdornedStart: string,
+  inputAdornedStart?: string,
   /** Styles applied to the input element if `endAdornment` is provided. */
-  inputAdornedEnd: string,
+  inputAdornedEnd?: string,
   /** Styles applied to the input element if `type="search"`. */
-  inputTypeSearch: string,
+  inputTypeSearch?: string,
 }
 
 type props<'value> = {
@@ -69,4 +69,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "Input"
+external make: React.component<props<'value>> = "Input"

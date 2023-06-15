@@ -1,16 +1,16 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the icon component. */
-  icon: string,
+  icon?: string,
   /** Styles applied to the icon component if `open={true}`. */
-  iconOpen: string,
+  iconOpen?: string,
   /** Styles applied to the icon when an `openIcon` is provided and if `open={true}`. */
-  iconWithOpenIconOpen: string,
+  iconWithOpenIconOpen?: string,
   /** Styles applied to the `openIcon` if provided. */
-  openIcon: string,
+  openIcon?: string,
   /** Styles applied to the `openIcon` if provided and if `open={true}`. */
-  openIconOpen: string,
+  openIconOpen?: string,
 }
 
 type props = {
@@ -34,4 +34,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "SpeedDialIcon"
+external make: React.component<props> = "SpeedDialIcon"

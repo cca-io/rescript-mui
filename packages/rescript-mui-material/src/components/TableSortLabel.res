@@ -1,14 +1,14 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** State class applied to the root element if `active={true}`. */
-  active: string,
+  active?: string,
   /** Styles applied to the icon component. */
-  icon: string,
+  icon?: string,
   /** Styles applied to the icon component if `direction="desc"`. */
-  iconDirectionDesc: string,
+  iconDirectionDesc?: string,
   /** Styles applied to the icon component if `direction="asc"`. */
-  iconDirectionAsc: string,
+  iconDirectionAsc?: string,
 }
 
 type direction =
@@ -54,4 +54,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "TableSortLabel"
+external make: React.component<props> = "TableSortLabel"

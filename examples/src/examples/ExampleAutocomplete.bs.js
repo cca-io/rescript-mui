@@ -408,15 +408,11 @@ var top100Films = [
 ];
 
 function ExampleAutocomplete(props) {
-  return JsxRuntime.jsx((function (prim) {
-                return Material.Autocomplete(prim);
-              }), {
+  return JsxRuntime.jsx(Material.Autocomplete, {
               options: top100Films,
               renderInput: (function (params) {
                   var newrecord = Caml_obj.obj_dup(params);
-                  return JsxRuntime.jsx((function (prim) {
-                                return Material.TextField(prim);
-                              }), (newrecord.variant = "outlined", newrecord.label = "Combo box", newrecord));
+                  return JsxRuntime.jsx(Material.TextField, (newrecord.variant = "outlined", newrecord.label = "Combo box", newrecord));
                 }),
               fullWidth: true,
               getOptionLabel: (function (option) {

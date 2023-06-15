@@ -1,30 +1,30 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `variant="head"` or `context.table.head`. */
-  head: string,
+  head?: string,
   /** Styles applied to the root element if `variant="body"` or `context.table.body`. */
-  body: string,
+  body?: string,
   /** Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
-  footer: string,
+  footer?: string,
   /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `size="medium"`. */
-  sizeMedium: string,
+  sizeMedium?: string,
   /** Styles applied to the root element if `padding="checkbox"`. */
-  paddingCheckbox: string,
+  paddingCheckbox?: string,
   /** Styles applied to the root element if `padding="none"`. */
-  paddingNone: string,
+  paddingNone?: string,
   /** Styles applied to the root element if `align="left"`. */
-  alignLeft: string,
+  alignLeft?: string,
   /** Styles applied to the root element if `align="center"`. */
-  alignCenter: string,
+  alignCenter?: string,
   /** Styles applied to the root element if `align="right"`. */
-  alignRight: string,
+  alignRight?: string,
   /** Styles applied to the root element if `align="justify"`. */
-  alignJustify: string,
+  alignJustify?: string,
   /** Styles applied to the root element if `context.table.stickyHeader={true}`. */
-  stickyHeader: string,
+  stickyHeader?: string,
 }
 
 type align =
@@ -113,7 +113,7 @@ type props = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component?: React.component<unknown>,
+  component?: OverridableComponent.t<unknown>,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -121,4 +121,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "TableCell"
+external make: React.component<props> = "TableCell"

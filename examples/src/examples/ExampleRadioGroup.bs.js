@@ -10,34 +10,20 @@ function ExampleRadioGroup(props) {
         return "Yes";
       });
   var setState = match[1];
-  return JsxRuntime.jsxs((function (prim) {
-                return Material.RadioGroup(prim);
-              }), {
+  return JsxRuntime.jsxs(Material.RadioGroup, {
               children: [
-                JsxRuntime.jsx((function (prim) {
-                        return Material.FormControlLabel(prim);
-                      }), {
-                      control: JsxRuntime.jsx((function (prim) {
-                              return Material.Radio(prim);
-                            }), {}),
+                JsxRuntime.jsx(Material.FormControlLabel, {
+                      control: JsxRuntime.jsx(Material.Radio, {}),
                       label: "Yes",
                       value: "Yes"
                     }),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.FormControlLabel(prim);
-                      }), {
-                      control: JsxRuntime.jsx((function (prim) {
-                              return Material.Radio(prim);
-                            }), {}),
+                JsxRuntime.jsx(Material.FormControlLabel, {
+                      control: JsxRuntime.jsx(Material.Radio, {}),
                       label: "No",
                       value: "No"
                     }),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.FormControlLabel(prim);
-                      }), {
-                      control: JsxRuntime.jsx((function (prim) {
-                              return Material.Radio(prim);
-                            }), {}),
+                JsxRuntime.jsx(Material.FormControlLabel, {
+                      control: JsxRuntime.jsx(Material.Radio, {}),
                       label: "Maybe",
                       value: "Maybe"
                     })

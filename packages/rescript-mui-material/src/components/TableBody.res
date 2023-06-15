@@ -1,6 +1,6 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
 }
 
 type props = {
@@ -24,4 +24,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "TableBody"
+external make: React.component<props> = "TableBody"

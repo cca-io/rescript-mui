@@ -1,28 +1,28 @@
 type classes = {
   /** Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
-  root: string,
+  root?: string,
   /** Styles applied to the container element if `children` includes `ListItemSecondaryAction`. */
-  container: string,
+  container?: string,
   /** State class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
-  focusVisible: string,
+  focusVisible?: string,
   /** Styles applied to the component element if dense. */
-  dense: string,
+  dense?: string,
   /** Styles applied to the component element if `alignItems="flex-start"`. */
-  alignItemsFlexStart: string,
+  alignItemsFlexStart?: string,
   /** State class applied to the inner `component` element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the inner `component` element if `divider={true}`. */
-  divider: string,
+  divider?: string,
   /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
-  gutters: string,
+  gutters?: string,
   /** Styles applied to the root element unless `disablePadding={true}`. */
-  padding: string,
+  padding?: string,
   /** Styles applied to the inner `component` element if `button={true}`. */
-  button: string,
+  button?: string,
   /** Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
-  secondaryAction: string,
+  secondaryAction?: string,
   /** State class applied to the root element if `selected={true}`. */
-  selected: string,
+  selected?: string,
 }
 
 type alignItems =
@@ -102,4 +102,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "ListItem"
+external make: React.component<props> = "ListItem"

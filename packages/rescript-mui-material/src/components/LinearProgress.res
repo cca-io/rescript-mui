@@ -1,40 +1,40 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant="buffer"`. */
-  colorPrimary: string,
+  colorPrimary?: string,
   /** Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
-  colorSecondary: string,
+  colorSecondary?: string,
   /** Styles applied to the root element if `variant="determinate"`. */
-  determinate: string,
+  determinate?: string,
   /** Styles applied to the root element if `variant="indeterminate"`. */
-  indeterminate: string,
+  indeterminate?: string,
   /** Styles applied to the root element if `variant="buffer"`. */
-  buffer: string,
+  buffer?: string,
   /** Styles applied to the root element if `variant="query"`. */
-  query: string,
+  query?: string,
   /** Styles applied to the additional bar element if `variant="buffer"`. */
-  dashed: string,
+  dashed?: string,
   /** Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`. */
-  dashedColorPrimary: string,
+  dashedColorPrimary?: string,
   /** Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`. */
-  dashedColorSecondary: string,
+  dashedColorSecondary?: string,
   /** Styles applied to the layered bar1 and bar2 elements. */
-  bar: string,
+  bar?: string,
   /** Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer". */
-  barColorPrimary: string,
+  barColorPrimary?: string,
   /** Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer". */
-  barColorSecondary: string,
+  barColorSecondary?: string,
   /** Styles applied to the bar1 element if `variant="indeterminate or query"`. */
-  bar1Indeterminate: string,
+  bar1Indeterminate?: string,
   /** Styles applied to the bar1 element if `variant="determinate"`. */
-  bar1Determinate: string,
+  bar1Determinate?: string,
   /** Styles applied to the bar1 element if `variant="buffer"`. */
-  bar1Buffer: string,
+  bar1Buffer?: string,
   /** Styles applied to the bar2 element if `variant="indeterminate or query"`. */
-  bar2Indeterminate: string,
+  bar2Indeterminate?: string,
   /** Styles applied to the bar2 element if `variant="buffer"`. */
-  bar2Buffer: string,
+  bar2Buffer?: string,
 }
 
 @unboxed
@@ -89,4 +89,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "LinearProgress"
+external make: React.component<props> = "LinearProgress"

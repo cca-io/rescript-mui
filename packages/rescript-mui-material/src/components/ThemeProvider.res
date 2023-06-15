@@ -9,4 +9,4 @@ type props = {
 }
 
 @module("@mui/material/styles")
-external make: props => React.element = "ThemeProvider"
+external make: React.component<props> = "ThemeProvider"

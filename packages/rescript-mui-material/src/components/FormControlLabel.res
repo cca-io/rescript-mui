@@ -1,22 +1,22 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `labelPlacement="start"`. */
-  labelPlacementStart: string,
+  labelPlacementStart?: string,
   /** Styles applied to the root element if `labelPlacement="top"`. */
-  labelPlacementTop: string,
+  labelPlacementTop?: string,
   /** Styles applied to the root element if `labelPlacement="bottom"`. */
-  labelPlacementBottom: string,
+  labelPlacementBottom?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the label's Typography component. */
-  label: string,
+  label?: string,
   /** State class applied to the root element if `error={true}`. */
-  error: string,
+  error?: string,
   /** State class applied to the root element if `required={true}`. */
-  required: string,
+  required?: string,
   /** Styles applied to the asterisk element. */
-  asterisk: string,
+  asterisk?: string,
 }
 
 type componentsProps = {
@@ -101,4 +101,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "FormControlLabel"
+external make: React.component<props<'value>> = "FormControlLabel"

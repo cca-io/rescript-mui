@@ -1,8 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
-  alignItemsFlexStart: string,
+  alignItemsFlexStart?: string,
 }
 
 type props = {
@@ -22,4 +22,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "ListItemAvatar"
+external make: React.component<props> = "ListItemAvatar"

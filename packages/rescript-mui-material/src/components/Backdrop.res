@@ -1,8 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `invisible={true}`. */
-  invisible: string,
+  invisible?: string,
 }
 
 type components = {@as("Root") root?: React.element}
@@ -15,7 +15,7 @@ type props = {
        * If `true`, the component is shown.
        */
   @as("open")
-  open_: bool,
+  open_?: bool,
   /**
        * The content of the component.
        */
@@ -64,4 +64,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Backdrop"
+external make: React.component<props> = "Backdrop"

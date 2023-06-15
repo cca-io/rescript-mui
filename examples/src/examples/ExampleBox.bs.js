@@ -4,9 +4,7 @@ import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
 
 function ExampleBox(props) {
-  return JsxRuntime.jsx((function (prim) {
-                return Material.Box(prim);
-              }), {
+  return JsxRuntime.jsx(Material.Box, {
               style: {
                 boxSizing: "border-box"
               },

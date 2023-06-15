@@ -1,6 +1,6 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
 }
 
 type direction =
@@ -58,4 +58,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Stack"
+external make: React.component<props> = "Stack"

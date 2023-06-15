@@ -5,6 +5,7 @@ import * as Caml_format from "rescript/lib/es6/caml_format.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import Slider from "@mui/material/Slider";
 import VolumeUp from "@mui/icons-material/VolumeUp";
 
 var VolumeUpIcon = {};
@@ -17,29 +18,19 @@ function ExampleSlider(props) {
   var value = match[0];
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Typography(prim);
-                      }), {
+                JsxRuntime.jsx(Material.Typography, {
                       gutterBottom: true,
                       children: "Volume"
                     }),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Grid, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(VolumeUp, {})),
                               item: true
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Slider(prim);
-                                        }), {
+                        JsxRuntime.jsx(Material.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Slider, {
                                         "aria-labelledby": "input-slider",
                                         onChange: (function (param, v, param$1) {
                                             setValue(v);
@@ -49,12 +40,8 @@ function ExampleSlider(props) {
                               item: true,
                               xs: true
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Input(prim);
-                                        }), {
+                        JsxRuntime.jsx(Material.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Material.Input, {
                                         inputProps: {
                                           step: 10,
                                           min: 0,
@@ -73,7 +60,7 @@ function ExampleSlider(props) {
                                             }
                                           }),
                                         onChange: (function (e) {
-                                            setValue(Caml_format.int_of_string(e.target.value));
+                                            setValue(Caml_format.float_of_string(e.target.value));
                                           }),
                                         value: value
                                       })),

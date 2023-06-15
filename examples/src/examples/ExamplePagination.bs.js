@@ -6,26 +6,18 @@ import * as JsxRuntime from "react/jsx-runtime";
 function ExamplePagination(props) {
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Pagination(prim);
-                      }), {
+                JsxRuntime.jsx(Material.Pagination, {
                       count: 10
                     }),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Pagination(prim);
-                      }), {
+                JsxRuntime.jsx(Material.Pagination, {
                       count: 10,
                       color: "primary"
                     }),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Pagination(prim);
-                      }), {
+                JsxRuntime.jsx(Material.Pagination, {
                       count: 10,
                       color: "secondary"
                     }),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Pagination(prim);
-                      }), {
+                JsxRuntime.jsx(Material.Pagination, {
                       count: 10,
                       disabled: true
                     })

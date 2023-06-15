@@ -7,7 +7,7 @@ module VolumeUpIcon = {
 
 @react.component
 let make = () => {
-  let (value, setValue) = React.useReducer((_, v) => v, 0)
+  let (value, setValue) = React.useReducer((_, v) => v, 0.)
 
   <div>
     <Typography gutterBottom=true> {"Volume"->React.string} </Typography>
@@ -16,18 +16,18 @@ let make = () => {
         <VolumeUpIcon />
       </Grid>
       <Grid item=true xs=True>
-        <Slider value={value} onChange={(_, v, _) => setValue(v)} ariaLabelledby="input-slider" />
+        <Slider value onChange={(_, v, _) => setValue(v)} ariaLabelledby="input-slider" />
       </Grid>
       <Grid item=true>
         <Input
           value
           margin=Dense
-          onChange={e => setValue((e->ReactEvent.Form.target)["value"]->int_of_string)}
+          onChange={e => setValue((e->ReactEvent.Form.target)["value"]->float_of_string)}
           onBlur={_ =>
-            if value < 0 {
-              setValue(0)
-            } else if value > 100 {
-              setValue(100)
+            if value < 0. {
+              setValue(0.)
+            } else if value > 100. {
+              setValue(100.)
             }}
           inputProps={
             step: 10,

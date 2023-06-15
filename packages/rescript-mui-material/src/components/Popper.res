@@ -1,6 +1,6 @@
 type classes = {
   /** Class name applied to the root element. */
-  root: string,
+  root?: string,
 }
 
 type components = {@as("Root") root?: React.element}
@@ -181,4 +181,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Popper"
+external make: React.component<props> = "Popper"

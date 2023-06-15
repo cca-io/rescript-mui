@@ -1,12 +1,12 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element unless `disableGutters={true}`. */
-  gutters: string,
+  gutters?: string,
   /** Styles applied to the root element if `variant="regular"`. */
-  regular: string,
+  regular?: string,
   /** Styles applied to the root element if `variant="dense"`. */
-  dense: string,
+  dense?: string,
 }
 
 @unboxed
@@ -47,4 +47,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Toolbar"
+external make: React.component<props> = "Toolbar"

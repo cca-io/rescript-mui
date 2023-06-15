@@ -1,12 +1,12 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element unless `disablePadding={true}`. */
-  padding: string,
+  padding?: string,
   /** Styles applied to the root element if dense. */
-  dense: string,
+  dense?: string,
   /** Styles applied to the root element if a `subheader` is provided. */
-  subheader: string,
+  subheader?: string,
 }
 
 type props = {
@@ -46,4 +46,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "List"
+external make: React.component<props> = "List"

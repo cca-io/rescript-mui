@@ -1,44 +1,44 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if the component is a descendant of `FormControl`. */
-  formControl: string,
+  formControl?: string,
   /** Styles applied to the root element if the component is focused. */
-  focused: string,
+  focused?: string,
   /** Styles applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element if `startAdornment` is provided. */
-  adornedStart: string,
+  adornedStart?: string,
   /** Styles applied to the root element if `endAdornment` is provided. */
-  adornedEnd: string,
+  adornedEnd?: string,
   /** State class applied to the root element if `error={true}`. */
-  error: string,
+  error?: string,
   /** Styles applied to the input element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `multiline={true}`. */
-  multiline: string,
+  multiline?: string,
   /** Styles applied to the root element if the color is secondary. */
-  colorSecondary: string,
+  colorSecondary?: string,
   /** Styles applied to the root element if `fullWidth={true}`. */
-  fullWidth: string,
+  fullWidth?: string,
   /** Styles applied to the root element if `hiddenLabel={true}`. */
-  hiddenLabel: string,
+  hiddenLabel?: string,
   /** State class applied to the root element if `readOnly={true}`. */
-  readOnly: string,
+  readOnly?: string,
   /** Styles applied to the input element. */
-  input: string,
+  input?: string,
   /** Styles applied to the input element if `size="small"`. */
-  inputSizeSmall: string,
+  inputSizeSmall?: string,
   /** Styles applied to the input element if `multiline={true}`. */
-  inputMultiline: string,
+  inputMultiline?: string,
   /** Styles applied to the input element if `type="search"`. */
-  inputTypeSearch: string,
+  inputTypeSearch?: string,
   /** Styles applied to the input element if `startAdornment` is provided. */
-  inputAdornedStart: string,
+  inputAdornedStart?: string,
   /** Styles applied to the input element if `endAdornment` is provided. */
-  inputAdornedEnd: string,
+  inputAdornedEnd?: string,
   /** Styles applied to the input element if `hiddenLabel={true}`. */
-  inputHiddenLabel: string,
+  inputHiddenLabel?: string,
 }
 
 @unboxed
@@ -62,13 +62,15 @@ type componentsProps = {
 }
 
 type inputBaseComponentProps = {
+  ...CommonProps.clickableProps,
   name?: string,
-  id?: string,
   step?: int,
   min?: int,
   max?: int,
   @as("type") type_?: string,
   @as("aria-labelledby") ariaLabelledby?: string,
+  @as("disableunderline") disableUnderline?: string,
+  maxLength?: int,
 } // FIXME: there is more
 
 type margin =
@@ -278,4 +280,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "InputBase"
+external make: React.component<props<'value>> = "InputBase"

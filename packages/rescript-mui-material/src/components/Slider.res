@@ -1,56 +1,56 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string,
+  colorPrimary?: string,
   /** Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: string,
+  colorSecondary?: string,
   /** Styles applied to the root element if `marks` is provided with at least one label. */
-  marked: string,
+  marked?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
-  vertical: string,
+  vertical?: string,
   /** State class applied to the root and thumb element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** State class applied to the root if a thumb is being dragged. */
-  dragging: string,
+  dragging?: string,
   /** Styles applied to the rail element. */
-  rail: string,
+  rail?: string,
   /** Styles applied to the track element. */
-  track: string,
+  track?: string,
   /** Styles applied to the root element if `track={false}`. */
-  trackFalse: string,
+  trackFalse?: string,
   /** Styles applied to the root element if `track="inverted"`. */
-  trackInverted: string,
+  trackInverted?: string,
   /** Styles applied to the thumb element. */
-  thumb: string,
+  thumb?: string,
   /** State class applied to the thumb element if it's active. */
-  active: string,
+  active?: string,
   /** State class applied to the thumb element if keyboard focused. */
-  focusVisible: string,
+  focusVisible?: string,
   /** Styles applied to the mark element. */
-  mark: string,
+  mark?: string,
   /** Styles applied to the mark element if active (depending on the value). */
-  markActive: string,
+  markActive?: string,
   /** Styles applied to the mark label element. */
-  markLabel: string,
+  markLabel?: string,
   /** Styles applied to the mark label element if active (depending on the value). */
-  markLabelActive: string,
+  markLabelActive?: string,
   /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the thumb element if `color="primary"`. */
-  thumbColorPrimary: string,
+  thumbColorPrimary?: string,
   /** Styles applied to the thumb element if `color="secondary"`. */
-  thumbColorSecondary: string,
+  thumbColorSecondary?: string,
   /** Styles applied to the thumb element if `size="small"`. */
-  thumbSizeSmall: string,
+  thumbSizeSmall?: string,
   /** Styles applied to the thumb label element. */
-  valueLabel: string,
+  valueLabel?: string,
   /** Styles applied to the thumb label element if it's open. */
-  valueLabelOpen: string,
+  valueLabelOpen?: string,
   /** Styles applied to the thumb label's circle element. */
-  valueLabelCircle: string,
+  valueLabelCircle?: string,
   /** Styles applied to the thumb label's label element. */
-  valueLabelLabel: string,
+  valueLabelLabel?: string,
 }
 
 @unboxed
@@ -123,7 +123,7 @@ type valueLabelFormat<'value> =
   | String(string)
   | Func(('value, int) => React.element)
 
-type props<'value> = {
+type sliderProps<'value> = {
   ...CommonProps.t,
   /**
      * The label of the slider.
@@ -310,5 +310,12 @@ type props<'value> = {
   valueLabelFormat?: valueLabelFormat<'value>,
 }
 
-@module("@mui/material")
-external make: props<'value> => React.element = "Slider"
+module Ranged = {
+  type props = sliderProps<(float, float)>
+  @module("@mui/material/Slider")
+  external make: React.component<props> = "default"
+}
+
+type props = sliderProps<float>
+@module("@mui/material/Slider")
+external make: React.component<props> = "default"

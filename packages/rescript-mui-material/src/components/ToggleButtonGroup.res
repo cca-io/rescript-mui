@@ -1,16 +1,16 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
-  vertical: string,
+  vertical?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the children. */
-  grouped: string,
+  grouped?: string,
   /** Styles applied to the children if `orientation="horizontal"`. */
-  groupedHorizontal: string,
+  groupedHorizontal?: string,
   /** Styles applied to the children if `orientation="vertical"`. */
-  groupedVertical: string,
+  groupedVertical?: string,
 }
 
 @unboxed
@@ -100,4 +100,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "ToggleButtonGroup"
+external make: React.component<props<'value>> = "ToggleButtonGroup"

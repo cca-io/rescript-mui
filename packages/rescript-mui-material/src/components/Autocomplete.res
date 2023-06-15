@@ -1,56 +1,56 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `fullWidth={true}`. */
-  fullWidth: string,
+  fullWidth?: string,
   /** State class applied to the root element if the listbox is displayed. */
-  expanded: string,
+  expanded?: string,
   /** State class applied to the root element if focused. */
-  focused: string,
+  focused?: string,
   /** Styles applied to the option elements if they are keyboard focused. */
-  focusVisible: string,
+  focusVisible?: string,
   /** Styles applied to the tag elements, e.g. the chips. */
-  tag: string,
+  tag?: string,
   /** Styles applied to the tag elements, e.g. the chips if `size="small"`. */
-  tagSizeSmall: string,
+  tagSizeSmall?: string,
   /** Styles applied to the tag elements, e.g. the chips if `size="medium"`. */
-  tagSizeMedium: string,
+  tagSizeMedium?: string,
   /** Styles applied when the popup icon is rendered. */
-  hasPopupIcon: string,
+  hasPopupIcon?: string,
   /** Styles applied when the clear icon is rendered. */
-  hasClearIcon: string,
+  hasClearIcon?: string,
   /** Styles applied to the Input element. */
-  inputRoot: string,
+  inputRoot?: string,
   /** Styles applied to the input element. */
-  input: string,
+  input?: string,
   /** Styles applied to the input element if the input is focused. */
-  inputFocused: string,
+  inputFocused?: string,
   /** Styles applied to the endAdornment element. */
-  endAdornment: string,
+  endAdornment?: string,
   /** Styles applied to the clear indicator. */
-  clearIndicator: string,
+  clearIndicator?: string,
   /** Styles applied to the popup indicator. */
-  popupIndicator: string,
+  popupIndicator?: string,
   /** Styles applied to the popup indicator if the popup is open. */
-  popupIndicatorOpen: string,
+  popupIndicatorOpen?: string,
   /** Styles applied to the popper element. */
-  popper: string,
+  popper?: string,
   /** Styles applied to the popper element if `disablePortal={true}`. */
-  popperDisablePortal: string,
+  popperDisablePortal?: string,
   /** Styles applied to the Paper component. */
-  paper: string,
+  paper?: string,
   /** Styles applied to the listbox component. */
-  listbox: string,
+  listbox?: string,
   /** Styles applied to the loading wrapper. */
-  loading: string,
+  loading?: string,
   /** Styles applied to the no option wrapper. */
-  noOptions: string,
+  noOptions?: string,
   /** Styles applied to the option elements. */
-  option: string,
+  option?: string,
   /** Styles applied to the group's label elements. */
-  groupLabel: string,
+  groupLabel?: string,
   /** Styles applied to the group's ul elements. */
-  groupUl: string,
+  groupUl?: string,
 }
 
 type blurOnSelect =
@@ -562,4 +562,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "Autocomplete"
+external make: React.component<props<'value>> = "Autocomplete"

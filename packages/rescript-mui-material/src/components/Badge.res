@@ -1,54 +1,54 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the badge `span` element. */
-  badge: string,
+  badge?: string,
   /** Styles applied to the badge `span` element if `variant="dot"`. */
-  dot: string,
+  dot?: string,
   /** Styles applied to the badge `span` element if `variant="standard"`. */
-  standard: string,
+  standard?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`. */
-  anchorOriginTopRight: string,
+  anchorOriginTopRight?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`. */
-  anchorOriginBottomRight: string,
+  anchorOriginBottomRight?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }}`. */
-  anchorOriginTopLeft: string,
+  anchorOriginTopLeft?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`. */
-  anchorOriginBottomLeft: string,
+  anchorOriginBottomLeft?: string,
   /** State class applied to the badge `span` element if `invisible={true}`. */
-  invisible: string,
+  invisible?: string,
   /** Styles applied to the badge `span` element if `color="primary"`. */
-  colorPrimary: string,
+  colorPrimary?: string,
   /** Styles applied to the badge `span` element if `color="secondary"`. */
-  colorSecondary: string,
+  colorSecondary?: string,
   /** Styles applied to the badge `span` element if `color="error"`. */
-  colorError: string,
+  colorError?: string,
   /** Styles applied to the badge `span` element if `color="info"`. */
-  colorInfo: string,
+  colorInfo?: string,
   /** Styles applied to the badge `span` element if `color="success"`. */
-  colorSuccess: string,
+  colorSuccess?: string,
   /** Styles applied to the badge `span` element if `color="warning"`. */
-  colorWarning: string,
+  colorWarning?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
-  anchorOriginTopRightRectangular: string,
+  anchorOriginTopRightRectangular?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
-  anchorOriginBottomRightRectangular: string,
+  anchorOriginBottomRightRectangular?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
-  anchorOriginTopLeftRectangular: string,
+  anchorOriginTopLeftRectangular?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
-  anchorOriginBottomLeftRectangular: string,
+  anchorOriginBottomLeftRectangular?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
-  anchorOriginTopRightCircular: string,
+  anchorOriginTopRightCircular?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
-  anchorOriginBottomRightCircular: string,
+  anchorOriginBottomRightCircular?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
-  anchorOriginTopLeftCircular: string,
+  anchorOriginTopLeftCircular?: string,
   /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
-  anchorOriginBottomLeftCircular: string,
+  anchorOriginBottomLeftCircular?: string,
   /** Styles applied to the badge `span` element if `overlap="rectangular"`. */
-  overlapRectangular: string,
+  overlapRectangular?: string,
   /** Styles applied to the badge `span` element if `overlap="circular"`. */
-  overlapCircular: string,
+  overlapCircular?: string,
 }
 
 type vertical =
@@ -91,12 +91,14 @@ type badgeSlots = {
    * The component that renders the root.
    * @default 'span'
    */
-  @as("Root") root?: React.element,
+  @as("Root")
+  root?: React.element,
   /**
    * The component that renders the badge.
    * @default 'span'
    */
-  @as("Badge") badge?: React.element,
+  @as("Badge")
+  badge?: React.element,
 }
 
 type overlap =
@@ -175,4 +177,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Badge"
+external make: React.component<props> = "Badge"

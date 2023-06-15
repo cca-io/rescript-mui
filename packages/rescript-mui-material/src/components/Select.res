@@ -1,30 +1,30 @@
 type classes = {
   /** Styles applied to the select component `select` class. */
-  select: string,
+  select?: string,
   /** Styles applied to the select component if `multiple={true}`. */
-  multiple: string,
+  multiple?: string,
   /** Styles applied to the select component if `variant="filled"`. */
-  filled: string,
+  filled?: string,
   /** Styles applied to the select component if `variant="outlined"`. */
-  outlined: string,
+  outlined?: string,
   /** Styles applied to the select component if `variant="standard"`. */
-  standard: string,
+  standard?: string,
   /** State class applied to the select component `disabled` class. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the icon component. */
-  icon: string,
+  icon?: string,
   /** Styles applied to the icon component if the popup is open. */
-  iconOpen: string,
+  iconOpen?: string,
   /** Styles applied to the icon component if `variant="filled"`. */
-  iconFilled: string,
+  iconFilled?: string,
   /** Styles applied to the icon component if `variant="outlined"`. */
-  iconOutlined: string,
+  iconOutlined?: string,
   /** Styles applied to the icon component if `variant="standard"`. */
-  iconStandard: string,
+  iconStandard?: string,
   /** Styles applied to the underlying native input component. */
-  nativeInput: string,
+  nativeInput?: string,
   /** State class applied to the root element if `error={true}`. */
-  error: string,
+  error?: string,
 }
 
 type variant =
@@ -169,4 +169,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "Select"
+external make: React.component<props<'value>> = "Select"

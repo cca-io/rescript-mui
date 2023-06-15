@@ -21,6 +21,7 @@ module Breakpoint = {
 module Value = {
   @unboxed
   type rec t =
+    // colors
     | @as("common.black") CommonBlack
     | @as("common.white") CommonWhite
     | @as("primary.light") PrimaryLight
@@ -65,6 +66,25 @@ module Value = {
     | @as("action.activatedOpacity") ActionActivatedOpacity
     | @as("background.default") BackgroundDefault
     | @as("background.paper") BackgroundPaper
+
+    | @as("normal") Normal
+    | @as("stretch") Stretch
+    | @as("center") Center
+    | @as("start") Start
+    | @as("end") End
+    | @as("flex-start") FlexStart
+    | @as("flex-end") FlexEnd
+    | @as("self-start") SelfStart
+    | @as("self-end") SelfEnd
+    | @as("baseline") Baseline
+
+    /* Global values */
+    | @as("inherit") Inherit
+    | @as("initial") Initial
+    | @as("revert") Revert
+    | @as("revert-layer") RevertLayer
+    | @as("unset") Unset
+
     | String(string)
     | @as(true) True
     | @as(false) False

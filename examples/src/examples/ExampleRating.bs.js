@@ -12,21 +12,15 @@ function ExampleRating(props) {
   var value = match[0];
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Box(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Box, {
                       borderColor: "transparent",
                       mb: 3,
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Typography(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Typography, {
                               component: "legend",
                               children: "Controlled"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Rating(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Rating, {
                               name: "simple-controlled",
                               onChange: (function (param, newValue) {
                                   if (typeof newValue !== "number") {
@@ -40,21 +34,15 @@ function ExampleRating(props) {
                       ],
                       component: "fieldset"
                     }),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Box(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Box, {
                       borderColor: "transparent",
                       mb: 3,
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Typography(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Typography, {
                               component: "legend",
                               children: "Read only"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Rating(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Rating, {
                               name: "read-only",
                               readOnly: true,
                               value: value
@@ -62,21 +50,15 @@ function ExampleRating(props) {
                       ],
                       component: "fieldset"
                     }),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Box(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Box, {
                       borderColor: "transparent",
                       mb: 3,
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Typography(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Typography, {
                               component: "legend",
                               children: "Disabled"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Rating(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Rating, {
                               disabled: true,
                               name: "disabled",
                               value: value
@@ -84,21 +66,15 @@ function ExampleRating(props) {
                       ],
                       component: "fieldset"
                     }),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Box(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Box, {
                       borderColor: "transparent",
                       mb: 3,
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Typography(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Typography, {
                               component: "legend",
                               children: "Pristine"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Rating(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Rating, {
                               name: "pristine",
                               value: 0
                             })

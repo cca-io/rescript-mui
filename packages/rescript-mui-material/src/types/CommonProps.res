@@ -24,6 +24,7 @@ type clickableProps = {
   onDragLeave?: ReactEvent.Mouse.t => unit,
   onFocus?: ReactEvent.Focus.t => unit,
   onKeyDown?: ReactEvent.Keyboard.t => unit,
+  onKeyPress?: ReactEvent.Keyboard.t => unit,
   onKeyUp?: ReactEvent.Keyboard.t => unit,
   onMouseDown?: ReactEvent.Mouse.t => unit,
   onMouseLeave?: ReactEvent.Mouse.t => unit,

@@ -4,4 +4,4 @@ type classes
 type t
 
 @module("@mui/x-date-pickers")
-external make: props => React.element = "LocalizationProvider"
+external make: React.component<props> = "LocalizationProvider"

@@ -1,26 +1,26 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `orientation="horizontal"`. */
-  horizontal: string,
+  horizontal?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
-  vertical: string,
+  vertical?: string,
   /** Styles applied to the label element that wraps `children`. */
-  label: string,
+  label?: string,
   /** State class applied to the label element if `active={true}`. */
-  active: string,
+  active?: string,
   /** State class applied to the label element if `completed={true}`. */
-  completed: string,
+  completed?: string,
   /** State class applied to the root and label elements if `error={true}`. */
-  error: string,
+  error?: string,
   /** State class applied to the root and label elements if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the `icon` container element. */
-  iconContainer: string,
+  iconContainer?: string,
   /** State class applied to the root and icon container and label if `alternativeLabel={true}`. */
-  alternativeLabel: string,
+  alternativeLabel?: string,
   /** Styles applied to the container element which wraps label and `optional`. */
-  labelContainer: string,
+  labelContainer?: string,
 }
 
 type slotProps = {
@@ -76,4 +76,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "StepLabel"
+external make: React.component<props> = "StepLabel"

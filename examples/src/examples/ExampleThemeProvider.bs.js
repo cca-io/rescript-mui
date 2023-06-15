@@ -17,20 +17,14 @@ function theme(outerTheme) {
 function ExampleThemeProvider(props) {
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Button(prim);
-                      }), {
+                JsxRuntime.jsx(Material.Button, {
                       children: "Default Primary Color",
                       color: "primary",
                       variant: "outlined"
                     }),
                 " ",
-                JsxRuntime.jsx((function (prim) {
-                        return Styles.ThemeProvider(prim);
-                      }), {
-                      children: JsxRuntime.jsx((function (prim) {
-                              return Material.Button(prim);
-                            }), {
+                JsxRuntime.jsx(Styles.ThemeProvider, {
+                      children: JsxRuntime.jsx(Material.Button, {
                             children: "Themed Primary Color",
                             color: "primary",
                             variant: "outlined"

@@ -12,9 +12,7 @@ var ExpandMoreIcon = {};
 var ChevronRightIcon = {};
 
 function ExampleTreeView(props) {
-  return JsxRuntime.jsx((function (prim) {
-                return Material.Box(prim);
-              }), {
+  return JsxRuntime.jsx(Material.Box, {
               flexGrow: 1,
               height: "240px",
               maxWidth: "400px",

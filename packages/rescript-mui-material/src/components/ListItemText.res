@@ -1,16 +1,16 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the Typography component if primary and secondary are set. */
-  multiline: string,
+  multiline?: string,
   /** Styles applied to the Typography component if dense. */
-  dense: string,
+  dense?: string,
   /** Styles applied to the root element if `inset={true}`. */
-  inset: string,
+  inset?: string,
   /** Styles applied to the primary `Typography` component. */
-  primary: string,
+  primary?: string,
   /** Styles applied to the secondary `Typography` component. */
-  secondary: string,
+  secondary?: string,
 }
 
 type props = {
@@ -62,4 +62,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "ListItemText"
+external make: React.component<props> = "ListItemText"

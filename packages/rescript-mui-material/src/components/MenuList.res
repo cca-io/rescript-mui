@@ -1,5 +1,3 @@
-type classes
-
 type variant =
   | @as("menu") Menu
   | @as("selectedMenu") SelectedMenu
@@ -36,4 +34,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "MenuList"
+external make: React.component<props> = "MenuList"

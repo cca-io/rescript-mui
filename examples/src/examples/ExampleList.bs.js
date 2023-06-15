@@ -15,23 +15,15 @@ function ExampleList(props) {
                                 title: "Example Title"
                               }),
                           JsxRuntime.jsx(Material.CardContent, {
-                                children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                            return Material.List(prim);
-                                          }), {
+                                children: Caml_option.some(JsxRuntime.jsx(Material.List, {
                                           children: Caml_option.some($$Array.map((function (sectionId) {
                                                       return JsxRuntime.jsx("li", {
                                                                   children: JsxRuntime.jsx("ul", {
-                                                                        children: $$Array.append([JsxRuntime.jsx((function (prim) {
-                                                                                      return Material.ListSubheader(prim);
-                                                                                    }), {
+                                                                        children: $$Array.append([JsxRuntime.jsx(Material.ListSubheader, {
                                                                                     children: Caml_option.some("I'm sticky " + String(sectionId))
                                                                                   }, "header")], $$Array.map((function (item) {
-                                                                                    return JsxRuntime.jsx((function (prim) {
-                                                                                                  return Material.ListItem(prim);
-                                                                                                }), {
-                                                                                                children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                                                                                            return Material.ListItemText(prim);
-                                                                                                          }), {
+                                                                                    return JsxRuntime.jsx(Material.ListItem, {
+                                                                                                children: Caml_option.some(JsxRuntime.jsx(Material.ListItemText, {
                                                                                                           children: Caml_option.some("Item " + String(item))
                                                                                                         }))
                                                                                               }, "item-" + (String(sectionId) + ("-" + String(item))));
@@ -53,9 +45,7 @@ function ExampleList(props) {
                                         }))
                               }),
                           JsxRuntime.jsx(Material.CardActions, {
-                                children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                            return Material.Button(prim);
-                                          }), {
+                                children: Caml_option.some(JsxRuntime.jsx(Material.Button, {
                                           children: "Go to example",
                                           href: "#/example/route",
                                           color: "primary",

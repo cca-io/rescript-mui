@@ -1,22 +1,22 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `variant="filled"`. */
-  filled: string,
+  filled?: string,
   /** Styles applied to the root element if `variant="outlined"`. */
-  outlined: string,
+  outlined?: string,
   /** Styles applied to the root element if `variant="standard"`. */
-  standard: string,
+  standard?: string,
   /** Styles applied to the root element if `position="start"`. */
-  positionStart: string,
+  positionStart?: string,
   /** Styles applied to the root element if `position="end"`. */
-  positionEnd: string,
+  positionEnd?: string,
   /** Styles applied to the root element if `disablePointerEvents={true}`. */
-  disablePointerEvents: string,
+  disablePointerEvents?: string,
   /** Styles applied if the adornment is used inside <FormControl hiddenLabel />. */
-  hiddenLabel: string,
+  hiddenLabel?: string,
   /** Styles applied if the adornment is used inside <FormControl size="small" />. */
-  sizeSmall: string,
+  sizeSmall?: string,
 }
 
 type position =
@@ -63,8 +63,8 @@ type props = {
      * you do not have to set this manually.
      */
   variant?: variant,
-  component: OverridableComponent.t<unknown>,
+  component?: OverridableComponent.t<unknown>,
 }
 
 @module("@mui/material")
-external make: props => React.element = "InputAdornment"
+external make: React.component<props> = "InputAdornment"

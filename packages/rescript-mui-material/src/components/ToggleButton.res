@@ -1,22 +1,22 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** State class applied to the root element if `selected={true}`. */
-  selected: string,
+  selected?: string,
   /** State class applied to the root element if `color="standard"`. */
-  standard: string,
+  standard?: string,
   /** State class applied to the root element if `color="primary"`. */
-  primary: string,
+  primary?: string,
   /** State class applied to the root element if `color="secondary"`. */
-  secondary: string,
+  secondary?: string,
   /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `size="medium"`. */
-  sizeMedium: string,
+  sizeMedium?: string,
   /** Styles applied to the root element if `size="large"`. */
-  sizeLarge: string,
+  sizeLarge?: string,
 }
 
 @unboxed
@@ -101,4 +101,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "ToggleButton"
+external make: React.component<props<'value>> = "ToggleButton"

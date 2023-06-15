@@ -6,10 +6,9 @@
 COMING SOON!
 ```
 
-This library provides [ReScript](https://rescript-lang.org/) bindings for
-[MUI](https://mui.com/). From now on, bindings are hand-written and manually maintained.
+This library provides [ReScript](https://rescript-lang.org/) bindings for [MUI](https://mui.com/).
 
-These bindings will only work with ReScript 11 and JSX mode version 4, as it enables us to utilize [untagged variants](https://rescript-lang.org/blog/improving-interop#untagged-variants), optional record fields, or record props spread. The latter is especially important, as we are finally able to inherit props from one component to another more easily.
+These bindings will only work with ReScript 11 (uncurried mode) and JSX version 4, as it enables us to utilize [untagged variants](https://rescript-lang.org/blog/improving-interop#untagged-variants), optional record fields, and record props spread. The latter is especially important, as we are finally able to inherit props from one component to another more easily.
 
 ## What happened to the bindings for Material-UI 4?
 
@@ -23,15 +22,15 @@ They are still available, check out the old website: https://rescript-material-u
 
 ## What's inside?
 
-| MUI package         | ReScript bindings package    | Progress |
-| ------------------- | ---------------------------- | -------: |
-| @mui/material       | @rescript-mui/material       |     80 % |
-| @mui/lab            | @rescript-mui/lab            |      0 % |
-| @mui/x-date-pickers | @rescript-mui/x-date-pickers |      0 % |
-| @mui/base           | Not implemented!             |        - |
-| @mui/joy            | Not implemented!             |        - |
-| @mui/system         | Not implemented!             |        - |
-| @mui/x-data-grid    | Not implemented!             |        - |
+| MUI package         | ReScript bindings package    | Namespace        | Progress |
+| ------------------- | ---------------------------- | ---------------- | -------: |
+| @mui/material       | @rescript-mui/material       | Mui              |     80 % |
+| @mui/lab            | @rescript-mui/lab            | MuiLab           |      0 % |
+| @mui/x-date-pickers | @rescript-mui/x-date-pickers | MuiXDatePickers  |      0 % |
+| @mui/base           | Not implemented!             | MuiBase (?)      |        - |
+| @mui/joy            | Not implemented!             | Joy (?)          |        - |
+| @mui/system         | Not implemented!             | MuiSystem (?)    |        - |
+| @mui/x-data-grid    | Not implemented!             | MuiXDataGrid (?) |        - |
 
 NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solution which is not compatible with `React.StrictMode` or React 18.
 

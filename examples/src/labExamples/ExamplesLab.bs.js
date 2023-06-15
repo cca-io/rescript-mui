@@ -14,15 +14,9 @@ import * as ExampleToggleButton from "./ExampleToggleButton.bs.js";
 function ExamplesLab(props) {
   return JsxRuntime.jsxs(JsxRuntime.Fragment, {
               children: [
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
-                      children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                  return Material.Grid(prim);
-                                }), {
-                                children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                            return Material.Typography(prim);
-                                          }), {
+                JsxRuntime.jsx(Material.Grid, {
+                      children: Caml_option.some(JsxRuntime.jsx(Material.Grid, {
+                                children: Caml_option.some(JsxRuntime.jsx(Material.Typography, {
                                           variant: "h4",
                                           children: "ReScript Material-UI Lab Examples"
                                         })),
@@ -33,31 +27,21 @@ function ExamplesLab(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Divider(prim);
-                      }), {}),
+                JsxRuntime.jsx(Material.Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Grid, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Typography(prim);
-                                        }), {
+                        JsxRuntime.jsx(Material.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Material.Typography, {
                                         variant: "h5",
                                         children: "Alert"
                                       })),
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleAlert.make, {})),
                               item: true,
                               md: 6
@@ -67,31 +51,21 @@ function ExamplesLab(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Divider(prim);
-                      }), {}),
+                JsxRuntime.jsx(Material.Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Grid, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Typography(prim);
-                                        }), {
+                        JsxRuntime.jsx(Material.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Material.Typography, {
                                         variant: "h5",
                                         children: "Autocomplete"
                                       })),
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleAutocomplete.make, {})),
                               item: true,
                               md: 6
@@ -101,31 +75,21 @@ function ExamplesLab(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Divider(prim);
-                      }), {}),
+                JsxRuntime.jsx(Material.Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Grid, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Typography(prim);
-                                        }), {
+                        JsxRuntime.jsx(Material.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Material.Typography, {
                                         variant: "h5",
                                         children: "Pagination"
                                       })),
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExamplePagination.make, {})),
                               item: true,
                               md: 6
@@ -135,31 +99,21 @@ function ExamplesLab(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Divider(prim);
-                      }), {}),
+                JsxRuntime.jsx(Material.Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Grid, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Typography(prim);
-                                        }), {
+                        JsxRuntime.jsx(Material.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Material.Typography, {
                                         variant: "h5",
                                         children: "Rating"
                                       })),
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleRating.make, {})),
                               item: true,
                               md: 6
@@ -169,31 +123,21 @@ function ExamplesLab(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Divider(prim);
-                      }), {}),
+                JsxRuntime.jsx(Material.Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Grid, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Typography(prim);
-                                        }), {
+                        JsxRuntime.jsx(Material.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Material.Typography, {
                                         variant: "h5",
                                         children: "Skeleton"
                                       })),
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleSkeleton.make, {})),
                               item: true,
                               md: 6
@@ -203,31 +147,21 @@ function ExamplesLab(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Divider(prim);
-                      }), {}),
+                JsxRuntime.jsx(Material.Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Grid, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Typography(prim);
-                                        }), {
+                        JsxRuntime.jsx(Material.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Material.Typography, {
                                         variant: "h5",
                                         children: "ToggleButton"
                                       })),
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleToggleButton.make, {})),
                               item: true,
                               md: 6
@@ -237,31 +171,21 @@ function ExamplesLab(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Divider(prim);
-                      }), {}),
+                JsxRuntime.jsx(Material.Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
+                JsxRuntime.jsxs(Material.Grid, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Typography(prim);
-                                        }), {
+                        JsxRuntime.jsx(Material.Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Material.Typography, {
                                         variant: "h5",
                                         children: "TreeView"
                                       })),
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleTreeView.make, {})),
                               item: true,
                               md: 6

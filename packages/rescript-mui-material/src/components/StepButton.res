@@ -1,12 +1,12 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `orientation="horizontal"`. */
-  horizontal: string,
+  horizontal?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
-  vertical: string,
+  vertical?: string,
   /** Styles applied to the `ButtonBase` touch-ripple. */
-  touchRipple: string,
+  touchRipple?: string,
 }
 
 type props = {
@@ -30,4 +30,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "StepButton"
+external make: React.component<props> = "StepButton"

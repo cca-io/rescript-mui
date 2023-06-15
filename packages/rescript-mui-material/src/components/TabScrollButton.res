@@ -1,10 +1,10 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
-  vertical: string,
+  vertical?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
 }
 
 type slots = {
@@ -66,4 +66,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "TabScrollButton"
+external make: React.component<props> = "TabScrollButton"

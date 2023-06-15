@@ -41,6 +41,7 @@ type variant =
   | String(string)
 
 type publicProps = {
+  ...CommonProps.t,
   /**
     * Shadow depth, corresponds to `dp` in the spec.
     * It accepts values between 0 and 24 inclusive.
@@ -65,7 +66,7 @@ type publicProps = {
 }
 
 type props = {
-  ...CommonProps.t,
+  ...publicProps,
   /**
    * The content of the component.
    */
@@ -74,8 +75,7 @@ type props = {
    * Override or extend the styles applied to the component.
    */
   classes?: classes,
-  ...publicProps,
 }
 
-@module("@mui/material")
-external make: props => React.element = "Paper"
+@module("@mui/material/Paper")
+external make: React.component<props> = "default"

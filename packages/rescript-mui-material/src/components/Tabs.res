@@ -211,4 +211,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "Tabs"
+external make: React.component<props<'value>> = "Tabs"

@@ -6,18 +6,14 @@ import * as JsxRuntime from "react/jsx-runtime";
 function ExampleTextFieldSize(props) {
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsx((function (prim) {
-                        return Material.TextField(prim);
-                      }), {
+                JsxRuntime.jsx(Material.TextField, {
                       fullWidth: true,
                       placeholder: "None",
                       variant: "outlined"
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.TextField(prim);
-                      }), {
+                JsxRuntime.jsx(Material.TextField, {
                       fullWidth: true,
                       placeholder: "Medium",
                       size: "medium",
@@ -25,9 +21,7 @@ function ExampleTextFieldSize(props) {
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.TextField(prim);
-                      }), {
+                JsxRuntime.jsx(Material.TextField, {
                       fullWidth: true,
                       placeholder: "Small",
                       size: "small",

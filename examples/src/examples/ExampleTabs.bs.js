@@ -4,6 +4,7 @@ import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import Paper from "@mui/material/Paper";
 
 function ExampleTabs(props) {
   var match = React.useReducer((function (param, v) {
@@ -13,27 +14,18 @@ function ExampleTabs(props) {
   var handleChange = function (param, newValue) {
     setValue(newValue);
   };
-  return JsxRuntime.jsx((function (prim) {
-                return Material.Paper(prim);
-              }), {
-              children: Caml_option.some(JsxRuntime.jsxs((function (prim) {
-                          return Material.Tabs(prim);
-                        }), {
+  return JsxRuntime.jsx(Paper, {
+              square: true,
+              children: Caml_option.some(JsxRuntime.jsxs(Material.Tabs, {
                         children: [
-                          JsxRuntime.jsx((function (prim) {
-                                  return Material.Tab(prim);
-                                }), {
+                          JsxRuntime.jsx(Material.Tab, {
                                 label: "Active"
                               }),
-                          JsxRuntime.jsx((function (prim) {
-                                  return Material.Tab(prim);
-                                }), {
+                          JsxRuntime.jsx(Material.Tab, {
                                 disabled: true,
                                 label: "Disabled"
                               }),
-                          JsxRuntime.jsx((function (prim) {
-                                  return Material.Tab(prim);
-                                }), {
+                          JsxRuntime.jsx(Material.Tab, {
                                 label: "Active"
                               })
                         ],
@@ -41,8 +33,7 @@ function ExampleTabs(props) {
                         onChange: handleChange,
                         textColor: "primary",
                         value: match[0]
-                      })),
-              square: true
+                      }))
             });
 }
 

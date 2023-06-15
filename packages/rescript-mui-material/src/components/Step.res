@@ -1,14 +1,14 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `orientation="horizontal"`. */
-  horizontal: string,
+  horizontal?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
-  vertical: string,
+  vertical?: string,
   /** Styles applied to the root element if `alternativeLabel={true}`. */
-  alternativeLabel: string,
+  alternativeLabel?: string,
   /** State class applied to the root element if `completed={true}`. */
-  completed: string,
+  completed?: string,
 }
 
 type props = {
@@ -60,4 +60,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Step"
+external make: React.component<props> = "Step"

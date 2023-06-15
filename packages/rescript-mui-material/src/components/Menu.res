@@ -1,10 +1,10 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the Paper component. */
-  paper: string,
+  paper?: string,
   /** Styles applied to the List component via `MenuList`. */
-  list: string,
+  list?: string,
 }
 
 type props = {
@@ -52,4 +52,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Menu"
+external make: React.component<props> = "Menu"

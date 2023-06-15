@@ -6,21 +6,15 @@ import * as JsxRuntime from "react/jsx-runtime";
 function ExampleSkeleton(props) {
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Skeleton(prim);
-                      }), {
+                JsxRuntime.jsx(Material.Skeleton, {
                       variant: "text"
                     }),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Skeleton(prim);
-                      }), {
+                JsxRuntime.jsx(Material.Skeleton, {
                       height: 40,
                       variant: "circular",
                       width: 40
                     }),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Skeleton(prim);
-                      }), {
+                JsxRuntime.jsx(Material.Skeleton, {
                       height: 118,
                       variant: "rectangular",
                       width: 210

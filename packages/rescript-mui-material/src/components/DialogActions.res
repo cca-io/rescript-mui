@@ -1,8 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element unless `disableSpacing={true}`. */
-  spacing: string,
+  spacing?: string,
 }
 
 type props = {
@@ -27,4 +27,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "DialogActions"
+external make: React.component<props> = "DialogActions"

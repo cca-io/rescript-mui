@@ -1,24 +1,24 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if both `icon` and `label` are provided. */
-  labelIcon: string,
+  labelIcon?: string,
   /** Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor="inherit"`. */
-  textColorInherit: string,
+  textColorInherit?: string,
   /** Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor="primary"`. */
-  textColorPrimary: string,
+  textColorPrimary?: string,
   /** Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor="secondary"`. */
-  textColorSecondary: string,
+  textColorSecondary?: string,
   /** State class applied to the root element if `selected={true}` (controlled by the Tabs component). */
-  selected: string,
+  selected?: string,
   /** State class applied to the root element if `disabled={true}` (controlled by the Tabs component). */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component). */
-  fullWidth: string,
+  fullWidth?: string,
   /** Styles applied to the root element if `wrapped={true}`. */
-  wrapped: string,
+  wrapped?: string,
   /** Styles applied to the wrapper element of `icon` if `icon` is provided. */
-  iconWrapper: string,
+  iconWrapper?: string,
 }
 
 type iconPosition =
@@ -73,4 +73,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "Tab"
+external make: React.component<props<'value>> = "Tab"

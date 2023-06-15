@@ -1,18 +1,18 @@
 type classes = {
   /** Styles applied to the Fab component. */
-  fab: string,
+  fab?: string,
   /** Styles applied to the Fab component if `open={false}`. */
-  fabClosed: string,
+  fabClosed?: string,
   /** Styles applied to the root element if `tooltipOpen={true}`. */
-  staticTooltip: string,
+  staticTooltip?: string,
   /** Styles applied to the root element if `tooltipOpen={true}` and `open={false}`. */
-  staticTooltipClosed: string,
+  staticTooltipClosed?: string,
   /** Styles applied to the static tooltip label if `tooltipOpen={true}`. */
-  staticTooltipLabel: string,
+  staticTooltipLabel?: string,
   /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
-  tooltipPlacementLeft: string,
+  tooltipPlacementLeft?: string,
   /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
-  tooltipPlacementRight: string,
+  tooltipPlacementRight?: string,
 }
 
 type props = {
@@ -62,4 +62,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "SpeedDialAction"
+external make: React.component<props> = "SpeedDialAction"

@@ -35,25 +35,19 @@ function ExampleIcons(props) {
               children: [
                 JsxRuntime.jsxs("div", {
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Typography(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Typography, {
                               variant: "h6",
                               children: "Icon Types:"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Tooltip(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Tooltip, {
                               children: JsxRuntime.jsx("span", {
                                     children: JsxRuntime.jsx(SupervisedUserCircle, {})
                                   }),
                               arrow: true,
-                              placement: "top,",
+                              placement: "top",
                               title: "Default"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Tooltip(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Tooltip, {
                               children: JsxRuntime.jsx("span", {
                                     children: JsxRuntime.jsx(SupervisedUserCircleOutlined, {})
                                   }),
@@ -61,9 +55,7 @@ function ExampleIcons(props) {
                               placement: "left",
                               title: "Outlined"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Tooltip(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Tooltip, {
                               children: JsxRuntime.jsx("span", {
                                     children: JsxRuntime.jsx(SupervisedUserCircleRounded, {})
                                   }),
@@ -71,9 +63,7 @@ function ExampleIcons(props) {
                               placement: "top-end",
                               title: "Rounded"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Tooltip(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Tooltip, {
                               children: JsxRuntime.jsx("span", {
                                     children: JsxRuntime.jsx(SupervisedUserCircleTwoTone, {})
                                   }),
@@ -81,9 +71,7 @@ function ExampleIcons(props) {
                               placement: "bottom",
                               title: "TwoTone"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Tooltip(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Tooltip, {
                               children: JsxRuntime.jsx("span", {
                                     children: JsxRuntime.jsx(SupervisedUserCircleSharp, {})
                                   }),
@@ -96,15 +84,11 @@ function ExampleIcons(props) {
                 JsxRuntime.jsx("hr", {}),
                 JsxRuntime.jsxs("div", {
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Typography(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Typography, {
                               variant: "h6",
                               children: "Icon Colors:"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Tooltip(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Tooltip, {
                               children: JsxRuntime.jsx("span", {
                                     children: JsxRuntime.jsx(SupervisedUserCircle, {
                                           color: "primary"
@@ -112,9 +96,7 @@ function ExampleIcons(props) {
                                   }),
                               title: "Primary"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Tooltip(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Tooltip, {
                               children: JsxRuntime.jsx("span", {
                                     children: JsxRuntime.jsx(SupervisedUserCircle, {
                                           color: "secondary"
@@ -127,15 +109,11 @@ function ExampleIcons(props) {
                 JsxRuntime.jsx("hr", {}),
                 JsxRuntime.jsxs("div", {
                       children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Typography(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Typography, {
                               variant: "h6",
                               children: "Icon Sizes:"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Tooltip(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Tooltip, {
                               children: JsxRuntime.jsx("span", {
                                     children: JsxRuntime.jsx(SupervisedUserCircle, {
                                           fontSize: "large"
@@ -143,9 +121,7 @@ function ExampleIcons(props) {
                                   }),
                               title: "Large"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Tooltip(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Tooltip, {
                               children: JsxRuntime.jsx("span", {
                                     children: JsxRuntime.jsx(SupervisedUserCircle, {
                                           fontSize: "default"
@@ -153,9 +129,7 @@ function ExampleIcons(props) {
                                   }),
                               title: "Default"
                             }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Tooltip(prim);
-                              }), {
+                        JsxRuntime.jsx(Material.Tooltip, {
                               children: JsxRuntime.jsx("span", {
                                     children: JsxRuntime.jsx(SupervisedUserCircle, {
                                           fontSize: "small"

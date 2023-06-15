@@ -1,8 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the Paper component. */
-  paper: string,
+  paper?: string,
 }
 
 type actions = {updatePosition: unit => unit}
@@ -11,7 +11,7 @@ type actions = {updatePosition: unit => unit}
 type anchorEl =
   | @as(null) Null
   | Virtual(Popper.virtualElement)
-  | Element(unit => React.element)
+  | Element(unit => ReactDOM.domRef)
 
 @unboxed
 type verticalOrigin =
@@ -178,4 +178,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Popover"
+external make: React.component<props> = "Popover"

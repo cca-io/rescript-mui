@@ -1,32 +1,32 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `absolute={true}`. */
-  absolute: string,
+  absolute?: string,
   /** Styles applied to the root element if `variant="inset"`. */
-  inset: string,
+  inset?: string,
   /** Styles applied to the root element if `variant="fullWidth"`. */
-  fullWidth: string,
+  fullWidth?: string,
   /** Styles applied to the root element if `light={true}`. */
-  light: string,
+  light?: string,
   /** Styles applied to the root element if `variant="middle"`. */
-  middle: string,
+  middle?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
-  vertical: string,
+  vertical?: string,
   /** Styles applied to the root element if `flexItem={true}`. */
-  flexItem: string,
+  flexItem?: string,
   /** Styles applied to the root element if divider have text. */
-  withChildren: string,
+  withChildren?: string,
   /** Styles applied to the root element if divider have text and `orientation="vertical"`. */
-  withChildrenVertical: string,
+  withChildrenVertical?: string,
   /** Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */
-  textAlignRight: string,
+  textAlignRight?: string,
   /** Styles applied to the root element if `textAlign="left" orientation="horizontal"`. */
-  textAlignLeft: string,
+  textAlignLeft?: string,
   /** Styles applied to the span children element if `orientation="horizontal"`. */
-  wrapper: string,
+  wrapper?: string,
   /** Styles applied to the span children element if `orientation="vertical"`. */
-  wrapperVertical: string,
+  wrapperVertical?: string,
 }
 
 type textAlign =
@@ -97,4 +97,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Divider"
+external make: React.component<props> = "Divider"

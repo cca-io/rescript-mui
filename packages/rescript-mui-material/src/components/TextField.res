@@ -1,6 +1,6 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
 }
 
 @unboxed
@@ -26,6 +26,7 @@ type variant =
 
 type props<'value> = {
   ...FormControl.publicProps,
+  children?: React.element,
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -116,7 +117,7 @@ type props<'value> = {
    * Name attribute of the `input` element.
    */
   name?: string,
-  onChange?: ReactEvent.Synthetic.t => unit,
+  onChange?: ReactEvent.Form.t => unit,
   onBlur?: ReactEvent.Focus.t => unit,
   onFocus?: ReactEvent.Focus.t => unit,
   /**
@@ -175,4 +176,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "TextField"
+external make: React.component<props<'value>> = "TextField"

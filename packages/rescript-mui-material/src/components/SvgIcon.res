@@ -1,24 +1,24 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string,
+  colorPrimary?: string,
   /** Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: string,
+  colorSecondary?: string,
   /** Styles applied to the root element if `color="action"`. */
-  colorAction: string,
+  colorAction?: string,
   /** Styles applied to the root element if `color="error"`. */
-  colorError: string,
+  colorError?: string,
   /** Styles applied to the root element if `color="disabled"`. */
-  colorDisabled: string,
+  colorDisabled?: string,
   /** Styles applied to the root element if `fontSize="inherit"`. */
-  fontSizeInherit: string,
+  fontSizeInherit?: string,
   /** Styles applied to the root element if `fontSize="small"`. */
-  fontSizeSmall: string,
+  fontSizeSmall?: string,
   /** Styles applied to the root element if `fontSize="medium"`. */
-  fontSizeMedium: string,
+  fontSizeMedium?: string,
   /** Styles applied to the root element if `fontSize="large"`. */
-  fontSizeLarge: string,
+  fontSizeLarge?: string,
 }
 
 @unboxed
@@ -103,4 +103,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "SvgIcon"
+external make: React.component<props> = "SvgIcon"

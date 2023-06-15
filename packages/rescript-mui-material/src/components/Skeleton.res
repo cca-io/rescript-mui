@@ -1,24 +1,24 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `variant="text"`. */
-  text: string,
+  text?: string,
   /** Styles applied to the root element if `variant="rectangular"`. */
-  rectangular: string,
+  rectangular?: string,
   /** Styles applied to the root element if `variant="rounded"`. */
-  rounded: string,
+  rounded?: string,
   /** Styles applied to the root element if `variant="circular"`. */
-  circular: string,
+  circular?: string,
   /** Styles applied to the root element if `animation="pulse"`. */
-  pulse: string,
+  pulse?: string,
   /** Styles applied to the root element if `animation="wave"`. */
-  wave: string,
+  wave?: string,
   /** Styles applied when the component is passed children. */
-  withChildren: string,
+  withChildren?: string,
   /** Styles applied when the component is passed children and no width. */
-  fitContent: string,
+  fitContent?: string,
   /** Styles applied when the component is passed children and no height. */
-  heightAuto: string,
+  heightAuto?: string,
 }
 
 @unboxed
@@ -78,4 +78,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Skeleton"
+external make: React.component<props> = "Skeleton"

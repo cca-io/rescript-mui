@@ -1,10 +1,10 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `last={true}` (controlled by `Step`). */
-  last: string,
+  last?: string,
   /** Styles applied to the Transition component. */
-  transition: string,
+  transition?: string,
 }
 
 type props = {
@@ -45,4 +45,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "StepContent"
+external make: React.component<props> = "StepContent"

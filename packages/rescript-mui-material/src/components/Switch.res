@@ -1,30 +1,30 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `edge="start"`. */
-  edgeStart: string,
+  edgeStart?: string,
   /** Styles applied to the root element if `edge="end"`. */
-  edgeEnd: string,
+  edgeEnd?: string,
   /** Styles applied to the internal `SwitchBase` component's `root` class. */
-  switchBase: string,
+  switchBase?: string,
   /** Styles applied to the internal SwitchBase component's root element if `color="primary"`. */
-  colorPrimary: string,
+  colorPrimary?: string,
   /** Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
-  colorSecondary: string,
+  colorSecondary?: string,
   /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `size="medium"`. */
-  sizeMedium: string,
+  sizeMedium?: string,
   /** State class applied to the internal `SwitchBase` component's `checked` class. */
-  checked: string,
+  checked?: string,
   /** State class applied to the internal SwitchBase component's disabled class. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the internal SwitchBase component's input element. */
-  input: string,
+  input?: string,
   /** Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
-  thumb: string,
+  thumb?: string,
   /** Styles applied to the track element. */
-  track: string,
+  track?: string,
 }
 
 @unboxed
@@ -140,4 +140,4 @@ type props<'value> = {
 }
 
 @module("@mui/material")
-external make: props<'value> => React.element = "Switch"
+external make: React.component<props<'value>> = "Switch"

@@ -1,20 +1,20 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** State class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
-  expanded: string,
+  expanded?: string,
   /** State class applied to the ButtonBase root element if the button is keyboard focused. */
-  focusVisible: string,
+  focusVisible?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element unless `disableGutters={true}`. */
-  gutters: string,
+  gutters?: string,
   /** Styles applied to the children wrapper element unless `disableGutters={true}`. */
-  contentGutters: string,
+  contentGutters?: string,
   /** Styles applied to the children wrapper element. */
-  content: string,
+  content?: string,
   /** Styles applied to the `expandIcon`'s wrapper element. */
-  expandIconWrapper: string,
+  expandIconWrapper?: string,
 }
 
 type props = {
@@ -34,4 +34,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "AccordionSummary"
+external make: React.component<props> = "AccordionSummary"

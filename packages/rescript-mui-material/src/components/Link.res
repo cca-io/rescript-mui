@@ -1,16 +1,16 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `underline="none"`. */
-  underlineNone: string,
+  underlineNone?: string,
   /** Styles applied to the root element if `underline="hover"`. */
-  underlineHover: string,
+  underlineHover?: string,
   /** Styles applied to the root element if `underline="always"`. */
-  underlineAlways: string,
+  underlineAlways?: string,
   /** Styles applied to the root element if `component="button"`. */
-  button: string,
+  button?: string,
   /** State class applied to the root element if the link is keyboard focused. */
-  focusVisible: string,
+  focusVisible?: string,
 }
 
 type underline =
@@ -65,4 +65,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Link"
+external make: React.component<props> = "Link"

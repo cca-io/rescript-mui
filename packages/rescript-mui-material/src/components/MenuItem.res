@@ -1,18 +1,18 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** State class applied to the root element if keyboard focused. */
-  focusVisible: string,
+  focusVisible?: string,
   /** Styles applied to the root element if dense. */
-  dense: string,
+  dense?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element if `divider={true}`. */
-  divider: string,
+  divider?: string,
   /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
-  gutters: string,
+  gutters?: string,
   /** State class applied to the root element if `selected={true}`. */
-  selected: string,
+  selected?: string,
 }
 
 type props<'value> = {
@@ -60,5 +60,5 @@ type props<'value> = {
   value?: 'value,
 }
 
-@module("@mui/material")
-external make: props<'value> => React.element = "MenuItem"
+@module("@mui/material/MenuItem")
+external make: React.component<props<'value>> = "default"

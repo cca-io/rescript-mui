@@ -1,14 +1,14 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** State class applied to the root element if `selected={true}`. */
-  selected: string,
+  selected?: string,
   /** State class applied to the root element if `hover={true}`. */
-  hover: string,
+  hover?: string,
   /** Styles applied to the root element if table variant="head". */
-  head: string,
+  head?: string,
   /** Styles applied to the root element if table variant="footer". */
-  footer: string,
+  footer?: string,
 }
 
 type props = {
@@ -42,4 +42,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "TableRow"
+external make: React.component<props> = "TableRow"

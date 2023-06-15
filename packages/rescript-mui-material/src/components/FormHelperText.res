@@ -1,20 +1,20 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** State class applied to the root element if `error={true}`. */
-  error: string,
+  error?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
-  contained: string,
+  contained?: string,
   /** State class applied to the root element if `focused={true}`. */
-  focused: string,
+  focused?: string,
   /** State class applied to the root element if `filled={true}`. */
-  filled: string,
+  filled?: string,
   /** State class applied to the root element if `required={true}`. */
-  required: string,
+  required?: string,
 }
 
 type margin = | @as("dense") Dense
@@ -78,4 +78,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "FormHelperText"
+external make: React.component<props> = "FormHelperText"

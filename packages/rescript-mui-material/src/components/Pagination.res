@@ -124,4 +124,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Pagination"
+external make: React.component<props> = "Pagination"

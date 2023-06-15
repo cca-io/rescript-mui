@@ -1,10 +1,10 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `row={true}`. */
-  row: string,
+  row?: string,
   /** State class applied to the root element if `error={true}`. */
-  error: string,
+  error?: string,
 }
 
 type props = {
@@ -29,4 +29,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "FormGroup"
+external make: React.component<props> = "FormGroup"

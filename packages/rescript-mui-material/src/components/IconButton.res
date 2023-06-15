@@ -1,32 +1,32 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `edge="start"`. */
-  edgeStart: string,
+  edgeStart?: string,
   /** Styles applied to the root element if `edge="end"`. */
-  edgeEnd: string,
+  edgeEnd?: string,
   /** Styles applied to the root element if `color="inherit"`. */
-  colorInherit: string,
+  colorInherit?: string,
   /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string,
+  colorPrimary?: string,
   /** Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: string,
+  colorSecondary?: string,
   /** Styles applied to the root element if `color="error"`. */
-  colorError: string,
+  colorError?: string,
   /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string,
+  colorInfo?: string,
   /** Styles applied to the root element if `color="success"`. */
-  colorSuccess: string,
+  colorSuccess?: string,
   /** Styles applied to the root element if `color="warning"`. */
-  colorWarning: string,
+  colorWarning?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `size="medium"`. */
-  sizeMedium: string,
+  sizeMedium?: string,
   /** Styles applied to the root element if `size="large"`. */
-  sizeLarge: string,
+  sizeLarge?: string,
 }
 
 @unboxed
@@ -98,4 +98,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "IconButton"
+external make: React.component<props> = "IconButton"

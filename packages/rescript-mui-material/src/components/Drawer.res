@@ -106,4 +106,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Drawer"
+external make: React.component<props> = "Drawer"

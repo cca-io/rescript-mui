@@ -23,12 +23,8 @@ var SupervisedUserCircleIcon = {};
 
 function ExampleThemeProviderOverride(props) {
   return JsxRuntime.jsx("div", {
-              children: JsxRuntime.jsx((function (prim) {
-                      return Styles.ThemeProvider(prim);
-                    }), {
-                    children: JsxRuntime.jsxs((function (prim) {
-                            return Material.Button(prim);
-                          }), {
+              children: JsxRuntime.jsx(Styles.ThemeProvider, {
+                    children: JsxRuntime.jsxs(Material.Button, {
                           children: [
                             JsxRuntime.jsx(SupervisedUserCircle, {}),
                             "Overriden Outline Styles"

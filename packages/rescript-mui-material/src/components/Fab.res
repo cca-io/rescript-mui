@@ -1,24 +1,24 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `color="primary"`. */
-  primary: string,
+  primary?: string,
   /** Styles applied to the root element if `color="secondary"`. */
-  secondary: string,
+  secondary?: string,
   /** Styles applied to the root element if `variant="extended"`. */
-  extended: string,
+  extended?: string,
   /** Styles applied to the root element if `variant="circular"`. */
-  circular: string,
+  circular?: string,
   /** State class applied to the ButtonBase root element if the button is keyboard focused. */
-  focusVisible: string,
+  focusVisible?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element if `color="inherit"`. */
-  colorInherit: string,
+  colorInherit?: string,
   /** Styles applied to the root element if `size="small"``. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `size="medium"``. */
-  sizeMedium: string,
+  sizeMedium?: string,
 }
 
 @unboxed
@@ -97,8 +97,8 @@ type props = {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
   sx?: Sx.props,
-  component: OverridableComponent.t<unknown>,
+  component?: OverridableComponent.t<unknown>,
 }
 
 @module("@mui/material")
-external make: props => React.element = "Fab"
+external make: React.component<props> = "Fab"

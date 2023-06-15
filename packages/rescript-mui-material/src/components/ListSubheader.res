@@ -1,16 +1,16 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string,
+  colorPrimary?: string,
   /** Styles applied to the root element if `color="inherit"`. */
-  colorInherit: string,
+  colorInherit?: string,
   /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
-  gutters: string,
+  gutters?: string,
   /** Styles applied to the root element if `inset={true}`. */
-  inset: string,
+  inset?: string,
   /** Styles applied to the root element unless `disableSticky={true}`. */
-  sticky: string,
+  sticky?: string,
 }
 
 @uboxed
@@ -59,4 +59,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "ListSubheader"
+external make: React.component<props> = "ListSubheader"

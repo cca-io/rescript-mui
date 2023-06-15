@@ -5,6 +5,7 @@ import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import Paper from "@mui/material/Paper";
 
 function getSpacing(theme, num) {
   return String(theme.spacing(num)) + "px";
@@ -54,42 +55,28 @@ function ExampleStepper(props) {
   };
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Stepper(prim);
-                      }), {
+                JsxRuntime.jsx(Material.Stepper, {
                       activeStep: activeStep,
                       children: Caml_option.some(Belt_Array.mapWithIndex(steps, (function (index, label) {
-                                  return JsxRuntime.jsxs((function (prim) {
-                                                return Material.Step(prim);
-                                              }), {
+                                  return JsxRuntime.jsxs(Material.Step, {
                                               children: [
-                                                JsxRuntime.jsx((function (prim) {
-                                                        return Material.StepLabel(prim);
-                                                      }), {
+                                                JsxRuntime.jsx(Material.StepLabel, {
                                                       children: Caml_option.some(label)
                                                     }),
-                                                JsxRuntime.jsxs((function (prim) {
-                                                        return Material.StepContent(prim);
-                                                      }), {
+                                                JsxRuntime.jsxs(Material.StepContent, {
                                                       children: [
-                                                        JsxRuntime.jsx((function (prim) {
-                                                                return Material.Typography(prim);
-                                                              }), {
+                                                        JsxRuntime.jsx(Material.Typography, {
                                                               children: Caml_option.some(getStepContent(index))
                                                             }),
                                                         JsxRuntime.jsx("div", {
                                                               children: JsxRuntime.jsxs("div", {
                                                                     children: [
-                                                                      JsxRuntime.jsx((function (prim) {
-                                                                              return Material.Button(prim);
-                                                                            }), {
+                                                                      JsxRuntime.jsx(Material.Button, {
                                                                             children: "Back",
                                                                             onClick: handleBack,
                                                                             disabled: activeStep === 0
                                                                           }),
-                                                                      JsxRuntime.jsx((function (prim) {
-                                                                              return Material.Button(prim);
-                                                                            }), {
+                                                                      JsxRuntime.jsx(Material.Button, {
                                                                             children: Caml_option.some(activeStep === (steps.length - 1 | 0) ? "Finish" : "Next"),
                                                                             onClick: handleNext,
                                                                             color: "primary",
@@ -105,25 +92,19 @@ function ExampleStepper(props) {
                                 }))),
                       orientation: "vertical"
                     }),
-                activeStep === steps.length ? JsxRuntime.jsxs((function (prim) {
-                          return Material.Paper(prim);
-                        }), {
+                activeStep === steps.length ? JsxRuntime.jsxs(Paper, {
+                        elevation: 0,
+                        square: true,
                         children: [
-                          JsxRuntime.jsx((function (prim) {
-                                  return Material.Typography(prim);
-                                }), {
+                          JsxRuntime.jsx(Material.Typography, {
                                 children: "All steps completed - you're finished"
                               }),
-                          JsxRuntime.jsx((function (prim) {
-                                  return Material.Button(prim);
-                                }), {
+                          JsxRuntime.jsx(Material.Button, {
                                 children: "Reset",
                                 onClick: handleReset,
                                 color: "secondary"
                               })
-                        ],
-                        elevation: 0,
-                        square: true
+                        ]
                       }) : null
               ]
             });

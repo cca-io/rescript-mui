@@ -14,4 +14,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "CssBaseline"
+external make: React.component<props> = "CssBaseline"

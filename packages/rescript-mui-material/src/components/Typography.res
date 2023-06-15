@@ -1,48 +1,48 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `variant="body2"`. */
-  body2: string,
+  body2?: string,
   /** Styles applied to the root element if `variant="body1"`. */
-  body1: string,
+  body1?: string,
   /** Styles applied to the root element if `variant="caption"`. */
-  caption: string,
+  caption?: string,
   /** Styles applied to the root element if `variant="button"`. */
-  button: string,
+  button?: string,
   /** Styles applied to the root element if `variant="h1"`. */
-  h1: string,
+  h1?: string,
   /** Styles applied to the root element if `variant="h2"`. */
-  h2: string,
+  h2?: string,
   /** Styles applied to the root element if `variant="h3"`. */
-  h3: string,
+  h3?: string,
   /** Styles applied to the root element if `variant="h4"`. */
-  h4: string,
+  h4?: string,
   /** Styles applied to the root element if `variant="h5"`. */
-  h5: string,
+  h5?: string,
   /** Styles applied to the root element if `variant="h6"`. */
-  h6: string,
+  h6?: string,
   /** Styles applied to the root element if `variant="subtitle1"`. */
-  subtitle1: string,
+  subtitle1?: string,
   /** Styles applied to the root element if `variant="subtitle2"`. */
-  subtitle2: string,
+  subtitle2?: string,
   /** Styles applied to the root element if `variant="overline"`. */
-  overline: string,
+  overline?: string,
   /** Styles applied to the root element if `variant="inherit"`. */
-  inherit: string,
+  inherit?: string,
   /** Styles applied to the root element if `align="left"`. */
-  alignLeft: string,
+  alignLeft?: string,
   /** Styles applied to the root element if `align="center"`. */
-  alignCenter: string,
+  alignCenter?: string,
   /** Styles applied to the root element if `align="right"`. */
-  alignRight: string,
+  alignRight?: string,
   /** Styles applied to the root element if `align="justify"`. */
-  alignJustify: string,
+  alignJustify?: string,
   /** Styles applied to the root element if `nowrap={true}`. */
-  noWrap: string,
+  noWrap?: string,
   /** Styles applied to the root element if `gutterBottom={true}`. */
-  gutterBottom: string,
+  gutterBottom?: string,
   /** Styles applied to the root element if `paragraph={true}`. */
-  paragraph: string,
+  paragraph?: string,
 }
 
 type align =
@@ -154,4 +154,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Typography"
+external make: React.component<props> = "Typography"

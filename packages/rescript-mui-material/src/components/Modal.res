@@ -1,10 +1,10 @@
 type classes = {
   /** Class name applied to the root element. */
-  root: string,
+  root?: string,
   /** Class name applied to the root element if the `Modal` has exited. */
-  hidden: string,
+  hidden?: string,
   /** Class name applied to the backdrop element. */
-  backdrop: string,
+  backdrop?: string,
 }
 
 type reason =
@@ -20,7 +20,7 @@ type components = {
 
 type componentsProps = {
   root?: unknown,
-  backdrop?: unknown,
+  backdrop?: Backdrop.props,
 }
 
 type publicProps = {
@@ -136,4 +136,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Modal"
+external make: React.component<props> = "Modal"

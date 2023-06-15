@@ -1,24 +1,24 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `variant="determinate"`. */
-  determinate: string,
+  determinate?: string,
   /** Styles applied to the root element if `variant="indeterminate"`. */
-  indeterminate: string,
+  indeterminate?: string,
   /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string,
+  colorPrimary?: string,
   /** Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: string,
+  colorSecondary?: string,
   /** Styles applied to the svg element. */
-  svg: string,
+  svg?: string,
   /** Styles applied to the `circle` svg path. */
-  circle: string,
+  circle?: string,
   /** Styles applied to the `circle` svg path if `variant="determinate"`. */
-  circleDeterminate: string,
+  circleDeterminate?: string,
   /** Styles applied to the `circle` svg path if `variant="indeterminate"`. */
-  circleIndeterminate: string,
+  circleIndeterminate?: string,
   /** Styles applied to the `circle` svg path if `disableShrink={true}`. */
-  circleDisableShrink: string,
+  circleDisableShrink?: string,
 }
 
 @unboxed
@@ -92,4 +92,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "CircularProgress"
+external make: React.component<props> = "CircularProgress"

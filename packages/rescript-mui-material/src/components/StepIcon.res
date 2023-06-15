@@ -1,14 +1,14 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the SVG text element. */
-  text: string,
+  text?: string,
   /** State class applied to the root element if `active={true}`. */
-  active: string,
+  active?: string,
   /** State class applied to the root element if `completed={true}`. */
-  completed: string,
+  completed?: string,
   /** State class applied to the root element if `error={true}`. */
-  error: string,
+  error?: string,
 }
 
 type props = {
@@ -43,4 +43,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "StepIcon"
+external make: React.component<props> = "StepIcon"

@@ -1,30 +1,30 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** State class applied to the root element if `focused={true}`. */
-  focused: string,
+  focused?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** State class applied to the root element if `error={true}`. */
-  error: string,
+  error?: string,
   /** State class applied to the root element if `required={true}`. */
-  required: string,
+  required?: string,
   /** State class applied to the asterisk element. */
-  asterisk: string,
+  asterisk?: string,
   /** Styles applied to the root element if the component is a descendant of `FormControl`. */
-  formControl: string,
+  formControl?: string,
   /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the input element if `shrink={true}`. */
-  shrink: string,
+  shrink?: string,
   /** Styles applied to the input element unless `disableAnimation={true}`. */
-  animated: string,
+  animated?: string,
   /** Styles applied to the root element if `variant="filled"`. */
-  filled: string,
+  filled?: string,
   /** Styles applied to the root element if `variant="outlined"`. */
-  outlined: string,
+  outlined?: string,
   /** Styles applied to the root element if `variant="standard"`. */
-  standard: string,
+  standard?: string,
 }
 
 @unboxed
@@ -109,4 +109,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "InputLabel"
+external make: React.component<props> = "InputLabel"

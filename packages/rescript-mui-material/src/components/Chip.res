@@ -1,94 +1,94 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `size="small"`. */
-  sizeSmall: string,
+  sizeSmall?: string,
   /** Styles applied to the root element if `size="medium"`. */
-  sizeMedium: string,
+  sizeMedium?: string,
   /** Styles applied to the root element if `color="error"`. */
-  colorError: string,
+  colorError?: string,
   /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string,
+  colorInfo?: string,
   /** Styles applied to the root element if `color="primary"`. */
-  colorPrimary: string,
+  colorPrimary?: string,
   /** Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: string,
+  colorSecondary?: string,
   /** Styles applied to the root element if `color="success"`. */
-  colorSuccess: string,
+  colorSuccess?: string,
   /** Styles applied to the root element if `color="warning"`. */
-  colorWarning: string,
+  colorWarning?: string,
   /** State class applied to the root element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
-  clickable: string,
+  clickable?: string,
   /** Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
-  clickableColorPrimary: string,
+  clickableColorPrimary?: string,
   /** Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
-  clickableColorSecondary: string,
+  clickableColorSecondary?: string,
   /** Styles applied to the root element if `onDelete` is defined. */
-  deletable: string,
+  deletable?: string,
   /** Styles applied to the root element if `onDelete` and `color="primary"` is defined. */
-  deletableColorPrimary: string,
+  deletableColorPrimary?: string,
   /** Styles applied to the root element if `onDelete` and `color="secondary"` is defined. */
-  deletableColorSecondary: string,
+  deletableColorSecondary?: string,
   /** Styles applied to the root element if `variant="outlined"`. */
-  outlined: string,
+  outlined?: string,
   /** Styles applied to the root element if `variant="filled"`. */
-  filled: string,
+  filled?: string,
   /** Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
-  outlinedPrimary: string,
+  outlinedPrimary?: string,
   /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
-  outlinedSecondary: string,
+  outlinedSecondary?: string,
   /** Styles applied to the root element if `variant="filled"` and `color="primary"`. */
-  filledPrimary: string,
+  filledPrimary?: string,
   /** Styles applied to the root element if `variant="filled"` and `color="secondary"`. */
-  filledSecondary: string,
+  filledSecondary?: string,
   /** Styles applied to the avatar element. */
-  avatar: string,
+  avatar?: string,
   /** Styles applied to the avatar element if `size="small"`. */
-  avatarSmall: string,
+  avatarSmall?: string,
   /** Styles applied to the avatar element if `size="medium"`. */
-  avatarMedium: string,
+  avatarMedium?: string,
   /** Styles applied to the avatar element if `color="primary"`. */
-  avatarColorPrimary: string,
+  avatarColorPrimary?: string,
   /** Styles applied to the avatar element if `color="secondary"`. */
-  avatarColorSecondary: string,
+  avatarColorSecondary?: string,
   /** Styles applied to the icon element. */
-  icon: string,
+  icon?: string,
   /** Styles applied to the icon element if `size="small"`. */
-  iconSmall: string,
+  iconSmall?: string,
   /** Styles applied to the icon element if `size="medium"`. */
-  iconMedium: string,
+  iconMedium?: string,
   /** Styles applied to the icon element if `color="primary"`. */
-  iconColorPrimary: string,
+  iconColorPrimary?: string,
   /** Styles applied to the icon element if `color="secondary"`. */
-  iconColorSecondary: string,
+  iconColorSecondary?: string,
   /** Styles applied to the label `span` element. */
-  label: string,
+  label?: string,
   /** Styles applied to the label `span` element if `size="small"`. */
-  labelSmall: string,
+  labelSmall?: string,
   /** Styles applied to the label `span` element if `size="medium"`. */
-  labelMedium: string,
+  labelMedium?: string,
   /** Styles applied to the deleteIcon element. */
-  deleteIcon: string,
+  deleteIcon?: string,
   /** Styles applied to the deleteIcon element if `size="small"`. */
-  deleteIconSmall: string,
+  deleteIconSmall?: string,
   /** Styles applied to the deleteIcon element if `size="medium"`. */
-  deleteIconMedium: string,
+  deleteIconMedium?: string,
   /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
-  deleteIconColorPrimary: string,
+  deleteIconColorPrimary?: string,
   /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
-  deleteIconColorSecondary: string,
+  deleteIconColorSecondary?: string,
   /** Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
-  deleteIconOutlinedColorPrimary: string,
+  deleteIconOutlinedColorPrimary?: string,
   /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
-  deleteIconOutlinedColorSecondary: string,
+  deleteIconOutlinedColorSecondary?: string,
   /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
-  deleteIconFilledColorPrimary: string,
+  deleteIconFilledColorPrimary?: string,
   /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
-  deleteIconFilledColorSecondary: string,
+  deleteIconFilledColorSecondary?: string,
   /** State class applied to the root element if keyboard focused. */
-  focusVisible: string,
+  focusVisible?: string,
 }
 
 @unboxed
@@ -158,6 +158,10 @@ type props = {
      */
   label?: React.element,
   /**
+     * Callback fired when the chip is clicked.
+     */
+  onClick?: ReactEvent.Mouse.t => unit,
+  /**
      * Callback fired when the delete icon is clicked.
      * If set, the delete icon will be shown.
      */
@@ -182,8 +186,8 @@ type props = {
      * @default 'filled'
      */
   variant?: variant,
-  component: OverridableComponent.t<unknown>,
+  component?: OverridableComponent.t<unknown>,
 }
 
 @module("@mui/material")
-external make: props => React.element = "Chip"
+external make: React.component<props> = "Chip"

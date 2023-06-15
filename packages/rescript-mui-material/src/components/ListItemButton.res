@@ -1,20 +1,20 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** State class applied to the `component`'s `focusVisibleClassName` prop. */
-  focusVisible: string,
+  focusVisible?: string,
   /** Styles applied to the component element if dense. */
-  dense: string,
+  dense?: string,
   /** Styles applied to the component element if `alignItems="flex-start"`. */
-  alignItemsFlexStart: string,
+  alignItemsFlexStart?: string,
   /** State class applied to the inner `component` element if `disabled={true}`. */
-  disabled: string,
+  disabled?: string,
   /** Styles applied to the inner `component` element if `divider={true}`. */
-  divider: string,
+  divider?: string,
   /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
-  gutters: string,
+  gutters?: string,
   /** State class applied to the root element if `selected={true}`. */
-  selected: string,
+  selected?: string,
 }
 
 type alignItems =
@@ -71,4 +71,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "ListItemButton"
+external make: React.component<props> = "ListItemButton"

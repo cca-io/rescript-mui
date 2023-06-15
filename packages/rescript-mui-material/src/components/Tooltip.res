@@ -1,28 +1,28 @@
 type classes = {
   /** Styles applied to the Popper component. */
-  popper: string,
+  popper?: string,
   /** Styles applied to the Popper component unless `disableInteractive={true}`. */
-  popperInteractive: string,
+  popperInteractive?: string,
   /** Styles applied to the Popper component if `arrow={true}`. */
-  popperArrow: string,
+  popperArrow?: string,
   /** Styles applied to the Popper component unless the tooltip is open. */
-  popperClose: string,
+  popperClose?: string,
   /** Styles applied to the tooltip (label wrapper) element. */
-  tooltip: string,
+  tooltip?: string,
   /** Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
-  tooltipArrow: string,
+  tooltipArrow?: string,
   /** Styles applied to the arrow element. */
-  arrow: string,
+  arrow?: string,
   /** Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
-  touch: string,
+  touch?: string,
   /** Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
-  tooltipPlacementLeft: string,
+  tooltipPlacementLeft?: string,
   /** Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
-  tooltipPlacementRight: string,
+  tooltipPlacementRight?: string,
   /** Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
-  tooltipPlacementTop: string,
+  tooltipPlacementTop?: string,
   /** Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
-  tooltipPlacementBottom: string,
+  tooltipPlacementBottom?: string,
 }
 
 type components = {
@@ -54,7 +54,7 @@ type placement =
   | @as("right") Right
   | @as("top-end") TopEnd
   | @as("top-start") TopStart
-  | @as("top,") Top
+  | @as("top") Top
 
 type slotProps = {
   popper?: Popper.props,
@@ -222,4 +222,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Tooltip"
+external make: React.component<props> = "Tooltip"

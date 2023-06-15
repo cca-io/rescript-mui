@@ -1,40 +1,45 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the container element if `scroll="paper"`. */
-  scrollPaper: string,
+  scrollPaper?: string,
   /** Styles applied to the container element if `scroll="body"`. */
-  scrollBody: string,
+  scrollBody?: string,
   /** Styles applied to the container element. */
-  container: string,
+  container?: string,
   /** Styles applied to the Paper component. */
-  paper: string,
+  paper?: string,
   /** Styles applied to the Paper component if `scroll="paper"`. */
-  paperScrollPaper: string,
+  paperScrollPaper?: string,
   /** Styles applied to the Paper component if `scroll="body"`. */
-  paperScrollBody: string,
+  paperScrollBody?: string,
   /** Styles applied to the Paper component if `maxWidth=false`. */
-  paperWidthFalse: string,
+  paperWidthFalse?: string,
   /** Styles applied to the Paper component if `maxWidth="xs"`. */
-  paperWidthXs: string,
+  paperWidthXs?: string,
   /** Styles applied to the Paper component if `maxWidth="sm"`. */
-  paperWidthSm: string,
+  paperWidthSm?: string,
   /** Styles applied to the Paper component if `maxWidth="md"`. */
-  paperWidthMd: string,
+  paperWidthMd?: string,
   /** Styles applied to the Paper component if `maxWidth="lg"`. */
-  paperWidthLg: string,
+  paperWidthLg?: string,
   /** Styles applied to the Paper component if `maxWidth="xl"`. */
-  paperWidthXl: string,
+  paperWidthXl?: string,
   /** Styles applied to the Paper component if `fullWidth={true}`. */
-  paperFullWidth: string,
+  paperFullWidth?: string,
   /** Styles applied to the Paper component if `fullScreen={true}`. */
-  paperFullScreen: string,
+  paperFullScreen?: string,
 }
 
 @unboxed
 type maxWidth =
+  | @as("xs") Xs
+  | @as("sm") Sm
+  | @as("md") Md
+  | @as("lg") Lg
+  | @as("xl") Xl
   | @as(false) False
-  | Breakpoint(System.Breakpoint.t)
+  | String(string)
 
 type scroll =
   | @as("body") Body
@@ -156,4 +161,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Dialog"
+external make: React.component<props> = "Dialog"

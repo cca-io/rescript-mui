@@ -1,8 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `stickyHeader={true}`. */
-  stickyHeader: string,
+  stickyHeader?: string,
 }
 
 @unboxed
@@ -54,4 +54,4 @@ type props = {
 }
 
 @module("@mui/material")
-external make: props => React.element = "Table"
+external make: React.component<props> = "Table"
