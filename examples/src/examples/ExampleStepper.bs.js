@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
-import * as Styles from "@mui/styles";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
@@ -10,24 +9,6 @@ import * as JsxRuntime from "react/jsx-runtime";
 function getSpacing(theme, num) {
   return String(theme.spacing(num)) + "px";
 }
-
-var useStyles = Styles.makeStyles(function (theme) {
-      return {
-              root: {
-                width: "90%"
-              },
-              button: {
-                marginTop: getSpacing(theme, 1),
-                marginRight: getSpacing(theme, 1)
-              },
-              actionsContainer: {
-                marginBottom: getSpacing(theme, 2)
-              },
-              resetContainer: {
-                padding: getSpacing(theme, 3)
-              }
-            };
-    });
 
 function getSteps() {
   return [
@@ -52,7 +33,6 @@ function getStepContent(step) {
 }
 
 function ExampleStepper(props) {
-  var classes = useStyles(undefined);
   var match = React.useReducer((function (param, step) {
           return step;
         }), 0);
@@ -103,7 +83,6 @@ function ExampleStepper(props) {
                                                                       JsxRuntime.jsx((function (prim) {
                                                                               return Material.Button(prim);
                                                                             }), {
-                                                                            className: classes.button,
                                                                             children: "Back",
                                                                             onClick: handleBack,
                                                                             disabled: activeStep === 0
@@ -111,15 +90,13 @@ function ExampleStepper(props) {
                                                                       JsxRuntime.jsx((function (prim) {
                                                                               return Material.Button(prim);
                                                                             }), {
-                                                                            className: classes.button,
                                                                             children: Caml_option.some(activeStep === (steps.length - 1 | 0) ? "Finish" : "Next"),
                                                                             onClick: handleNext,
                                                                             color: "primary",
                                                                             variant: "contained"
                                                                           })
                                                                     ]
-                                                                  }),
-                                                              className: classes.actionsContainer
+                                                                  })
                                                             })
                                                       ]
                                                     })
@@ -131,7 +108,6 @@ function ExampleStepper(props) {
                 activeStep === steps.length ? JsxRuntime.jsxs((function (prim) {
                           return Material.Paper(prim);
                         }), {
-                        className: classes.resetContainer,
                         children: [
                           JsxRuntime.jsx((function (prim) {
                                   return Material.Typography(prim);
@@ -141,7 +117,6 @@ function ExampleStepper(props) {
                           JsxRuntime.jsx((function (prim) {
                                   return Material.Button(prim);
                                 }), {
-                                className: classes.button,
                                 children: "Reset",
                                 onClick: handleReset,
                                 color: "secondary"
@@ -150,8 +125,7 @@ function ExampleStepper(props) {
                         elevation: 0,
                         square: true
                       }) : null
-              ],
-              className: classes.root
+              ]
             });
 }
 
@@ -159,9 +133,8 @@ var make = ExampleStepper;
 
 export {
   getSpacing ,
-  useStyles ,
   getSteps ,
   getStepContent ,
   make ,
 }
-/* useStyles Not a pure module */
+/* react Not a pure module */

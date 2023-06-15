@@ -8,13 +8,11 @@ import * as ExampleIcons from "./ExampleIcons.bs.js";
 import * as Material from "@mui/material";
 import * as ExampleSelect from "./ExampleSelect.bs.js";
 import * as ExampleSlider from "./ExampleSlider.bs.js";
-import * as ExampleStyles from "./ExampleStyles.bs.js";
 import * as ExamplePopover from "./ExamplePopover.bs.js";
 import * as ExampleStepper from "./ExampleStepper.bs.js";
 import * as ExampleDashboard from "./ExampleDashboard.bs.js";
 import * as ExampleRadioGroup from "./ExampleRadioGroup.bs.js";
 import * as JsxRuntime from "react/jsx-runtime";
-import * as ExampleClassOverride from "./ExampleClassOverride.bs.js";
 import * as ExampleTextFieldSize from "./ExampleTextFieldSize.bs.js";
 import * as ExampleThemeProvider from "./ExampleThemeProvider.bs.js";
 import * as ExampleThemeProviderOverride from "./ExampleThemeProviderOverride.bs.js";
@@ -37,40 +35,6 @@ function Examples(props) {
                                 item: true,
                                 md: 12
                               })),
-                      container: true
-                    }),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Divider(prim);
-                      }), {}),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
-                      alignItems: "center",
-                      children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Typography(prim);
-                                        }), {
-                                        variant: "h5",
-                                        children: "Class Override"
-                                      })),
-                              item: true,
-                              md: 6
-                            }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx(ExampleClassOverride.make, {})),
-                              item: true,
-                              md: 6
-                            })
-                      ],
                       container: true
                     }),
                 JsxRuntime.jsx("br", {}),
@@ -135,40 +99,6 @@ function Examples(props) {
                                 return Material.Grid(prim);
                               }), {
                               children: Caml_option.some(JsxRuntime.jsx(ExamplePopover.make, {})),
-                              item: true,
-                              md: 6
-                            })
-                      ],
-                      container: true
-                    }),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx((function (prim) {
-                        return Material.Divider(prim);
-                      }), {}),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs((function (prim) {
-                        return Material.Grid(prim);
-                      }), {
-                      alignItems: "center",
-                      children: [
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Material.Typography(prim);
-                                        }), {
-                                        variant: "h5",
-                                        children: "Styles"
-                                      })),
-                              item: true,
-                              md: 6
-                            }),
-                        JsxRuntime.jsx((function (prim) {
-                                return Material.Grid(prim);
-                              }), {
-                              children: Caml_option.some(JsxRuntime.jsx(ExampleStyles.make, {})),
                               item: true,
                               md: 6
                             })

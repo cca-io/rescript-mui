@@ -1,22 +1,24 @@
 external styleToString: ReactDOM.Style.t => string = "%identity"
 
-let theme = Mui.Theme.create({
-  overrides: {
-    muiButton: {
-      outlined: {
-        fontSize: "12px",
-        fontWeight: "300",
-        color: "gray",
-      }->ReactDOM.Style.unsafeAddProp(
-        "& svg",
-        {marginRight: "15px", fontSize: "16px"}->styleToString,
-      ),
+let theme = outerTheme =>
+  Mui.Theme.create({
+    ...outerTheme,
+    overrides: {
+      muiButton: {
+        outlined: {
+          fontSize: "12px",
+          fontWeight: "300",
+          color: "gray",
+        }->ReactDOM.Style.unsafeAddProp(
+          "& svg",
+          {marginRight: "15px", fontSize: "16px"}->styleToString,
+        ),
+      },
     },
-  },
-})
+  })
 
 module SupervisedUserCircleIcon = {
-  @react.component @module("@material-ui/icons/SupervisedUserCircle")
+  @react.component @module("@mui/icons-material/SupervisedUserCircle")
   external make: (~color: string=?, ~fontSize: string=?) => React.element = "default"
 }
 

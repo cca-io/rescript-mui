@@ -136,4 +136,6 @@ type t_theme = {
 
 type t = t_theme
 
+external fromOptions: ThemeOptions.t => t = "%identity"
+
 @module("@mui/material/styles") external create: ThemeOptions.t => t = "createTheme"

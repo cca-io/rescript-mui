@@ -1,6 +1,6 @@
 type props = {
   children: React.element,
-  theme: Theme.t,
+  theme: ThemeOptions.t => Theme.t,
 }
 
 @module("@mui/material/styles")

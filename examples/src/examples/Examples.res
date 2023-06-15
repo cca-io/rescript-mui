@@ -14,19 +14,6 @@ let make = () => <>
   <br />
   <Grid container=true alignItems=String("center")>
     <Grid item=true md=Number(6)>
-      <Typography variant=H5> {"Class Override"->React.string} </Typography>
-    </Grid>
-    <Grid item=true md=Number(6)>
-      <ExampleClassOverride />
-    </Grid>
-  </Grid>
-  <br />
-  <br />
-  <Divider />
-  <br />
-  <br />
-  <Grid container=true alignItems=String("center")>
-    <Grid item=true md=Number(6)>
       <Typography variant=H5> {"Icons"->React.string} </Typography>
     </Grid>
     <Grid item=true md=Number(6)>
@@ -44,19 +31,6 @@ let make = () => <>
     </Grid>
     <Grid item=true md=Number(6)>
       <ExamplePopover />
-    </Grid>
-  </Grid>
-  <br />
-  <br />
-  <Divider />
-  <br />
-  <br />
-  <Grid container=true alignItems=String("center")>
-    <Grid item=true md=Number(6)>
-      <Typography variant=H5> {"Styles"->React.string} </Typography>
-    </Grid>
-    <Grid item=true md=Number(6)>
-      <ExampleStyles />
     </Grid>
   </Grid>
   <br />

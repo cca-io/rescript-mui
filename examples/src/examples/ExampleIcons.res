@@ -1,26 +1,26 @@
 module SupervisedUserCircle = {
   module Filled = {
-    @react.component @module("@material-ui/icons/SupervisedUserCircle")
+    @react.component @module("@mui/icons-material/SupervisedUserCircle")
     external make: (~color: string=?, ~fontSize: string=?) => React.element = "default"
   }
 
   module Outlined = {
-    @react.component @module("@material-ui/icons/SupervisedUserCircleOutlined")
+    @react.component @module("@mui/icons-material/SupervisedUserCircleOutlined")
     external make: unit => React.element = "default"
   }
 
   module Rounded = {
-    @react.component @module("@material-ui/icons/SupervisedUserCircleRounded")
+    @react.component @module("@mui/icons-material/SupervisedUserCircleRounded")
     external make: unit => React.element = "default"
   }
 
   module Sharp = {
-    @react.component @module("@material-ui/icons/SupervisedUserCircleSharp")
+    @react.component @module("@mui/icons-material/SupervisedUserCircleSharp")
     external make: unit => React.element = "default"
   }
 
   module TwoTone = {
-    @react.component @module("@material-ui/icons/SupervisedUserCircleTwoTone")
+    @react.component @module("@mui/icons-material/SupervisedUserCircleTwoTone")
     external make: unit => React.element = "default"
   }
 }

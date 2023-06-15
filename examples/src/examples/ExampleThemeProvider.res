@@ -1,4 +1,8 @@
-let theme = Mui.Theme.create({Mui.ThemeOptions.palette: {primary: {main: "#8fe830"}}})
+let theme = outerTheme =>
+  Mui.Theme.create({
+    ...outerTheme,
+    palette: {primary: {main: "#8fe830"}},
+  })
 
 @react.component
 let make = () =>

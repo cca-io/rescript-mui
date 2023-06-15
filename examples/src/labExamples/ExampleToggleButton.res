@@ -1,39 +1,39 @@
 open Mui
 
 module FormatAlignLeftIcon = {
-  @react.component @module("@material-ui/icons/FormatAlignLeft")
+  @react.component @module("@mui/icons-material/FormatAlignLeft")
   external make: unit => React.element = "default"
 }
 module FormatAlignCenterIcon = {
-  @react.component @module("@material-ui/icons/FormatAlignCenter")
+  @react.component @module("@mui/icons-material/FormatAlignCenter")
   external make: unit => React.element = "default"
 }
 module FormatAlignRightIcon = {
-  @react.component @module("@material-ui/icons/FormatAlignRight")
+  @react.component @module("@mui/icons-material/FormatAlignRight")
   external make: unit => React.element = "default"
 }
 module FormatAlignJustifyIcon = {
-  @react.component @module("@material-ui/icons/FormatAlignJustify")
+  @react.component @module("@mui/icons-material/FormatAlignJustify")
   external make: unit => React.element = "default"
 }
 module FormatBoldIcon = {
-  @react.component @module("@material-ui/icons/FormatBold")
+  @react.component @module("@mui/icons-material/FormatBold")
   external make: unit => React.element = "default"
 }
 module FormatItalicIcon = {
-  @react.component @module("@material-ui/icons/FormatItalic")
+  @react.component @module("@mui/icons-material/FormatItalic")
   external make: unit => React.element = "default"
 }
 module FormatUnderlinedIcon = {
-  @react.component @module("@material-ui/icons/FormatUnderlined")
+  @react.component @module("@mui/icons-material/FormatUnderlined")
   external make: unit => React.element = "default"
 }
 module FormatColorFillIcon = {
-  @react.component @module("@material-ui/icons/FormatColorFill")
+  @react.component @module("@mui/icons-material/FormatColorFill")
   external make: unit => React.element = "default"
 }
 module ArrowDropDownIcon = {
-  @react.component @module("@material-ui/icons/ArrowDropDown")
+  @react.component @module("@mui/icons-material/ArrowDropDown")
   external make: unit => React.element = "default"
 }
 

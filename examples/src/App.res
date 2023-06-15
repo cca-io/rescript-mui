@@ -2,7 +2,7 @@ open Mui
 
 @react.component
 let make = () =>
-  <ThemeProvider theme={Theme.create({})}>
+  <ThemeProvider theme={_ => Theme.create({})}>
     <Box
       width={String("100%")}
       height={String("100%")}

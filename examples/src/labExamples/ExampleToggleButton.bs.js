@@ -4,15 +4,15 @@ import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
-import FormatBold from "@material-ui/icons/FormatBold";
-import FormatItalic from "@material-ui/icons/FormatItalic";
-import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
-import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
-import FormatColorFill from "@material-ui/icons/FormatColorFill";
-import FormatAlignRight from "@material-ui/icons/FormatAlignRight";
-import FormatUnderlined from "@material-ui/icons/FormatUnderlined";
-import FormatAlignCenter from "@material-ui/icons/FormatAlignCenter";
-import FormatAlignJustify from "@material-ui/icons/FormatAlignJustify";
+import FormatBold from "@mui/icons-material/FormatBold";
+import FormatItalic from "@mui/icons-material/FormatItalic";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import FormatAlignLeft from "@mui/icons-material/FormatAlignLeft";
+import FormatColorFill from "@mui/icons-material/FormatColorFill";
+import FormatAlignRight from "@mui/icons-material/FormatAlignRight";
+import FormatUnderlined from "@mui/icons-material/FormatUnderlined";
+import FormatAlignCenter from "@mui/icons-material/FormatAlignCenter";
+import FormatAlignJustify from "@mui/icons-material/FormatAlignJustify";
 
 var FormatAlignLeftIcon = {};
 

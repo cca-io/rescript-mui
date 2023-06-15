@@ -2,12 +2,12 @@ open Mui
 open MuiLab
 
 module ExpandMoreIcon = {
-  @react.component @module("@material-ui/icons/ExpandMore")
+  @react.component @module("@mui/icons-material/ExpandMore")
   external make: unit => React.element = "default"
 }
 
 module ChevronRightIcon = {
-  @react.component @module("@material-ui/icons/ChevronRight")
+  @react.component @module("@mui/icons-material/ChevronRight")
   external make: unit => React.element = "default"
 }
 

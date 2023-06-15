@@ -4,8 +4,8 @@ import * as Lab from "@mui/lab";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import ChevronRight from "@material-ui/icons/ChevronRight";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import ChevronRight from "@mui/icons-material/ChevronRight";
 
 var ExpandMoreIcon = {};
 

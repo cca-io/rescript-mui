@@ -2,11 +2,11 @@
 
 import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
-import SupervisedUserCircle from "@material-ui/icons/SupervisedUserCircle";
-import SupervisedUserCircleSharp from "@material-ui/icons/SupervisedUserCircleSharp";
-import SupervisedUserCircleRounded from "@material-ui/icons/SupervisedUserCircleRounded";
-import SupervisedUserCircleTwoTone from "@material-ui/icons/SupervisedUserCircleTwoTone";
-import SupervisedUserCircleOutlined from "@material-ui/icons/SupervisedUserCircleOutlined";
+import SupervisedUserCircle from "@mui/icons-material/SupervisedUserCircle";
+import SupervisedUserCircleSharp from "@mui/icons-material/SupervisedUserCircleSharp";
+import SupervisedUserCircleRounded from "@mui/icons-material/SupervisedUserCircleRounded";
+import SupervisedUserCircleTwoTone from "@mui/icons-material/SupervisedUserCircleTwoTone";
+import SupervisedUserCircleOutlined from "@mui/icons-material/SupervisedUserCircleOutlined";
 
 var Filled = {};
 

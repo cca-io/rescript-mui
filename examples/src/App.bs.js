@@ -25,7 +25,9 @@ function App(props) {
                       JsxRuntime.jsx(ExamplesLab.make, {})
                     ]
                   }),
-              theme: Styles.createTheme({})
+              theme: (function (param) {
+                  return Styles.createTheme({});
+                })
             });
 }
 

@@ -2,15 +2,6 @@ open Mui
 
 let getSpacing = (theme: Theme.t, num) => theme.spacing(num)->string_of_int ++ "px"
 
-let useStyles = Styles.makeStylesWithTheme(theme =>
-  {
-    "root": {JsxDOMStyle.width: "90%"},
-    "button": {JsxDOMStyle.marginTop: theme->getSpacing(1), marginRight: theme->getSpacing(1)},
-    "actionsContainer": {JsxDOMStyle.marginBottom: theme->getSpacing(2)},
-    "resetContainer": {JsxDOMStyle.padding: theme->getSpacing(3)},
-  }
-)
-
 let getSteps = () => ["Select campaign settings", "Create an ad group", "Create an ad"]
 
 let getStepContent = (step: int) => {
@@ -32,7 +23,6 @@ let getStepContent = (step: int) => {
 
 @react.component
 let make = () => {
-  let classes = useStyles()
   let (activeStep, setActiveStep) = React.useReducer((_, step) => step, 0)
   let steps = getSteps()
 
@@ -42,7 +32,7 @@ let make = () => {
 
   let handleReset = _ => setActiveStep(0)
 
-  <div className={classes["root"]}>
+  <div>
     <Stepper activeStep orientation=Vertical>
       {steps
       ->Belt.Array.mapWithIndex((index, label) =>
@@ -50,14 +40,12 @@ let make = () => {
           <StepLabel> {label->React.string} </StepLabel>
           <StepContent>
             <Typography> {getStepContent(index)->React.string} </Typography>
-            <div className={classes["actionsContainer"]}>
+            <div>
               <div>
-                <Button
-                  disabled={activeStep === 0} onClick=handleBack className={classes["button"]}>
+                <Button disabled={activeStep === 0} onClick=handleBack>
                   {"Back"->React.string}
                 </Button>
-                <Button
-                  variant=Contained color=Primary onClick=handleNext className={classes["button"]}>
+                <Button variant=Contained color=Primary onClick=handleNext>
                   {(activeStep === steps->Belt.Array.length - 1 ? "Finish" : "Next")->React.string}
                 </Button>
               </div>
@@ -68,11 +56,9 @@ let make = () => {
       ->React.array}
     </Stepper>
     {activeStep === steps->Belt.Array.length
-      ? <Paper square=true elevation=0 className={classes["resetContainer"]}>
+      ? <Paper square=true elevation=0>
           <Typography> {`All steps completed - you're finished`->React.string} </Typography>
-          <Button onClick=handleReset className={classes["button"]} color=Secondary>
-            {"Reset"->React.string}
-          </Button>
+          <Button onClick=handleReset color=Secondary> {"Reset"->React.string} </Button>
         </Paper>
       : React.null}
   </div>

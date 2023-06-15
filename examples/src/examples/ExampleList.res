@@ -1,30 +1,16 @@
 open Mui
 
-let useStyles = Styles.makeStyles({
-  "root": {
-    JsxDOMStyle.width: "100%",
-    maxWidth: "360px",
-    position: "relative",
-    overflow: "auto",
-    maxHeight: "300px",
-    backgroundColor: "#FFFFFF",
-  },
-  "listSection": {JsxDOMStyle.backgroundColor: "inherit"},
-  "ul": {JsxDOMStyle.backgroundColor: "inherit", padding: "0"},
-})
-
 @react.component
 let make = () => {
-  let classes = useStyles()
   let subheader = <li />
 
   <Card>
     <Card>
       <CardHeader title={React.string("Example Title")} subheader={React.string("A Subtitle")} />
       <CardContent>
-        <List className={classes["root"]} subheader> {React.array(Array.map(sectionId =>
-              <li key={"section-" ++ string_of_int(sectionId)} className={classes["listSection"]}>
-                <ul className={classes["ul"]}>
+        <List subheader> {React.array(Array.map(sectionId =>
+              <li key={"section-" ++ string_of_int(sectionId)}>
+                <ul>
                   {React.array(
                     Array.append(
                       [
