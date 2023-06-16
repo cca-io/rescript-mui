@@ -28,7 +28,9 @@
 
 - For uppercase names, always use @as and write the first letter lowercase
   - if there is a conflict, add a `_` behind the name
-  - Examples: -`InputProps` conflicts with `inputProps` so it becomes `inputProps_` -`MuiSlider` becomes `muiSlider`
+  - Examples:
+    - `InputProps` conflicts with `inputProps` so it becomes `inputProps_`
+    - `MuiSlider` becomes `muiSlider`
 - For props that are ReScript keywords, add a `_` behind the name
   - Examples:
     - `type` becomes `type_`
