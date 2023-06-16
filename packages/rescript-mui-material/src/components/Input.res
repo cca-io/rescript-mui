@@ -69,4 +69,4 @@ type props<'value> = {
 }
 
 @module("@mui/material/Input")
-external make: props<'value> => React.element = "default"
+external make: React.component<props<'value>> = "default"

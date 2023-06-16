@@ -14,13 +14,17 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## master
+
+- :bug: Fix Input element type.
+
 ## 5.0.0-alpha.1
 
 - :boom: Complete rewrite to adapt to MUI v5 (in progress).
 - :boom: Release rescript-mui packages under a new npm organization (`@rescript-mui`).
 - :memo: Rename the repository to rescript-mui.
 - :memo: Deprecate website.
-- :house: - Restructure repo to a ReScript-Monorepo with pinned-packages.
+- :house: Restructure repo to a ReScript-Monorepo with pinned-packages.
 
 ## 3.0.2
 
