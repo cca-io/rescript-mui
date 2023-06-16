@@ -43,9 +43,7 @@ function ExampleSlider(props) {
                               xs: true
                             }),
                         JsxRuntime.jsx(Grid, {
-                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                          return Input(prim);
-                                        }), {
+                              children: Caml_option.some(JsxRuntime.jsx(Input, {
                                         inputProps: {
                                           step: 10,
                                           min: 0,

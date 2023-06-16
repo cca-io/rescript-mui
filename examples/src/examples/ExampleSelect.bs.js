@@ -121,9 +121,7 @@ function ExampleSelect(props) {
                                             value: "30"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                                return Input(prim);
-                                              }), {
+                                    input: Caml_option.some(JsxRuntime.jsx(Input, {
                                               id: "age-helper",
                                               name: "age"
                                             })),
@@ -198,9 +196,7 @@ function ExampleSelect(props) {
                                           })
                                     ],
                                     displayEmpty: true,
-                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                                return Input(prim);
-                                              }), {
+                                    input: Caml_option.some(JsxRuntime.jsx(Input, {
                                               id: "age-label-placeholder",
                                               name: "age"
                                             })),
@@ -239,9 +235,7 @@ function ExampleSelect(props) {
                                             value: "kevin"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                                return Input(prim);
-                                              }), {
+                                    input: Caml_option.some(JsxRuntime.jsx(Input, {
                                               id: "name-disabled",
                                               name: "name"
                                             })),
@@ -282,9 +276,7 @@ function ExampleSelect(props) {
                                             value: "kevin"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                                return Input(prim);
-                                              }), {
+                                    input: Caml_option.some(JsxRuntime.jsx(Input, {
                                               id: "name-error"
                                             })),
                                     onChange: handleChangeName,
@@ -326,9 +318,7 @@ function ExampleSelect(props) {
                                             value: "kevin"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                                return Input(prim);
-                                              }), {
+                                    input: Caml_option.some(JsxRuntime.jsx(Input, {
                                               id: "name-readonly",
                                               name: "name",
                                               readOnly: true
@@ -369,9 +359,7 @@ function ExampleSelect(props) {
                                             value: "30"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
-                                                return Input(prim);
-                                              }), {
+                                    input: Caml_option.some(JsxRuntime.jsx(Input, {
                                               id: "age-auto-width",
                                               name: "age"
                                             })),
