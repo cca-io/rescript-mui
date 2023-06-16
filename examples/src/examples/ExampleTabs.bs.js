@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Material from "@mui/material";
+import Tab from "@mui/material/Tab";
 import * as JsxRuntime from "react/jsx-runtime";
+import Tabs from "@mui/material/Tabs";
 import Paper from "@mui/material/Paper";
 
 function ExampleTabs(props) {
@@ -16,16 +17,16 @@ function ExampleTabs(props) {
   };
   return JsxRuntime.jsx(Paper, {
               square: true,
-              children: Caml_option.some(JsxRuntime.jsxs(Material.Tabs, {
+              children: Caml_option.some(JsxRuntime.jsxs(Tabs, {
                         children: [
-                          JsxRuntime.jsx(Material.Tab, {
+                          JsxRuntime.jsx(Tab, {
                                 label: "Active"
                               }),
-                          JsxRuntime.jsx(Material.Tab, {
+                          JsxRuntime.jsx(Tab, {
                                 disabled: true,
                                 label: "Disabled"
                               }),
-                          JsxRuntime.jsx(Material.Tab, {
+                          JsxRuntime.jsx(Tab, {
                                 label: "Active"
                               })
                         ],

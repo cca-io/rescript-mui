@@ -123,5 +123,5 @@ type props = {
   variant?: variant,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Pagination"
+@module("@mui/material/Pagination")
+external make: React.component<props> = "default"

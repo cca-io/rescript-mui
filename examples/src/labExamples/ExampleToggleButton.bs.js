@@ -2,9 +2,13 @@
 
 import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Material from "@mui/material";
+import Box from "@mui/material/Box";
 import * as JsxRuntime from "react/jsx-runtime";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import ToggleButton from "@mui/material/ToggleButton";
 import FormatBold from "@mui/icons-material/FormatBold";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import FormatItalic from "@mui/icons-material/FormatItalic";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import FormatAlignLeft from "@mui/icons-material/FormatAlignLeft";
@@ -47,28 +51,28 @@ function ExampleToggleButton(props) {
   var handleFormats = function (param, v) {
     setFormats(v);
   };
-  return JsxRuntime.jsxs(Material.Grid, {
+  return JsxRuntime.jsxs(Grid, {
               children: [
-                JsxRuntime.jsxs(Material.Grid, {
+                JsxRuntime.jsxs(Grid, {
                       children: [
-                        JsxRuntime.jsx(Material.Box, {
+                        JsxRuntime.jsx(Box, {
                               mb: 2,
                               mt: 2,
-                              children: Caml_option.some(JsxRuntime.jsxs(Material.ToggleButtonGroup, {
+                              children: Caml_option.some(JsxRuntime.jsxs(ToggleButtonGroup, {
                                         children: [
-                                          JsxRuntime.jsx(Material.ToggleButton, {
+                                          JsxRuntime.jsx(ToggleButton, {
                                                 children: Caml_option.some(JsxRuntime.jsx(FormatAlignLeft, {})),
                                                 value: "left"
                                               }),
-                                          JsxRuntime.jsx(Material.ToggleButton, {
+                                          JsxRuntime.jsx(ToggleButton, {
                                                 children: Caml_option.some(JsxRuntime.jsx(FormatAlignCenter, {})),
                                                 value: "center"
                                               }),
-                                          JsxRuntime.jsx(Material.ToggleButton, {
+                                          JsxRuntime.jsx(ToggleButton, {
                                                 children: Caml_option.some(JsxRuntime.jsx(FormatAlignRight, {})),
                                                 value: "right"
                                               }),
-                                          JsxRuntime.jsx(Material.ToggleButton, {
+                                          JsxRuntime.jsx(ToggleButton, {
                                                 children: Caml_option.some(JsxRuntime.jsx(FormatAlignJustify, {})),
                                                 disabled: true,
                                                 value: "justify"
@@ -79,11 +83,11 @@ function ExampleToggleButton(props) {
                                         value: Caml_option.some(match[0])
                                       }))
                             }),
-                        JsxRuntime.jsx(Material.Typography, {
+                        JsxRuntime.jsx(Typography, {
                               gutterBottom: true,
                               children: "Exclusive Selection"
                             }),
-                        JsxRuntime.jsx(Material.Typography, {
+                        JsxRuntime.jsx(Typography, {
                               children: "Text justification toggle buttons present options for left, right, center, full, and\n      justified text with only one item available for selection at a time. Selecting one option\n      deselects any other."
                             })
                       ],
@@ -91,26 +95,26 @@ function ExampleToggleButton(props) {
                       md: 6,
                       sm: 12
                     }),
-                JsxRuntime.jsxs(Material.Grid, {
+                JsxRuntime.jsxs(Grid, {
                       children: [
-                        JsxRuntime.jsx(Material.Box, {
+                        JsxRuntime.jsx(Box, {
                               mb: 2,
                               mt: 2,
-                              children: Caml_option.some(JsxRuntime.jsxs(Material.ToggleButtonGroup, {
+                              children: Caml_option.some(JsxRuntime.jsxs(ToggleButtonGroup, {
                                         children: [
-                                          JsxRuntime.jsx(Material.ToggleButton, {
+                                          JsxRuntime.jsx(ToggleButton, {
                                                 children: Caml_option.some(JsxRuntime.jsx(FormatBold, {})),
                                                 value: "bold"
                                               }),
-                                          JsxRuntime.jsx(Material.ToggleButton, {
+                                          JsxRuntime.jsx(ToggleButton, {
                                                 children: Caml_option.some(JsxRuntime.jsx(FormatItalic, {})),
                                                 value: "italic"
                                               }),
-                                          JsxRuntime.jsx(Material.ToggleButton, {
+                                          JsxRuntime.jsx(ToggleButton, {
                                                 children: Caml_option.some(JsxRuntime.jsx(FormatUnderlined, {})),
                                                 value: "underlined"
                                               }),
-                                          JsxRuntime.jsxs(Material.ToggleButton, {
+                                          JsxRuntime.jsxs(ToggleButton, {
                                                 children: [
                                                   JsxRuntime.jsx(FormatColorFill, {}),
                                                   JsxRuntime.jsx(ArrowDropDown, {})
@@ -123,11 +127,11 @@ function ExampleToggleButton(props) {
                                         value: Caml_option.some(match$1[0])
                                       }))
                             }),
-                        JsxRuntime.jsx(Material.Typography, {
+                        JsxRuntime.jsx(Typography, {
                               gutterBottom: true,
                               children: "Multiple Selection"
                             }),
-                        JsxRuntime.jsx(Material.Typography, {
+                        JsxRuntime.jsx(Typography, {
                               children: "Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to be\n      selected."
                             })
                       ],

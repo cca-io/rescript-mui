@@ -33,5 +33,5 @@ type props = {
   sx?: Sx.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "SpeedDialIcon"
+@module("@mui/material/SpeedDialIcon")
+external make: React.component<props> = "default"

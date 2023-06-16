@@ -102,5 +102,5 @@ type props = {
   viewBox?: string,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "SvgIcon"
+@module("@mui/material/SvgIcon")
+external make: React.component<props> = "default"

@@ -4,6 +4,11 @@ import * as $$Array from "rescript/lib/es6/array.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import List from "@mui/material/List";
+import Button from "@mui/material/Button";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
 
 function ExampleList(props) {
   var subheader = JsxRuntime.jsx("li", {});
@@ -15,15 +20,15 @@ function ExampleList(props) {
                                 title: "Example Title"
                               }),
                           JsxRuntime.jsx(Material.CardContent, {
-                                children: Caml_option.some(JsxRuntime.jsx(Material.List, {
+                                children: Caml_option.some(JsxRuntime.jsx(List, {
                                           children: Caml_option.some($$Array.map((function (sectionId) {
                                                       return JsxRuntime.jsx("li", {
                                                                   children: JsxRuntime.jsx("ul", {
-                                                                        children: $$Array.append([JsxRuntime.jsx(Material.ListSubheader, {
+                                                                        children: $$Array.append([JsxRuntime.jsx(ListSubheader, {
                                                                                     children: Caml_option.some("I'm sticky " + String(sectionId))
                                                                                   }, "header")], $$Array.map((function (item) {
-                                                                                    return JsxRuntime.jsx(Material.ListItem, {
-                                                                                                children: Caml_option.some(JsxRuntime.jsx(Material.ListItemText, {
+                                                                                    return JsxRuntime.jsx(ListItem, {
+                                                                                                children: Caml_option.some(JsxRuntime.jsx(ListItemText, {
                                                                                                           children: Caml_option.some("Item " + String(item))
                                                                                                         }))
                                                                                               }, "item-" + (String(sectionId) + ("-" + String(item))));
@@ -45,7 +50,7 @@ function ExampleList(props) {
                                         }))
                               }),
                           JsxRuntime.jsx(Material.CardActions, {
-                                children: Caml_option.some(JsxRuntime.jsx(Material.Button, {
+                                children: Caml_option.some(JsxRuntime.jsx(Button, {
                                           children: "Go to example",
                                           href: "#/example/route",
                                           color: "primary",

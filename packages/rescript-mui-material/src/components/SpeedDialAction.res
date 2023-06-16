@@ -61,5 +61,5 @@ type props = {
   tooltipOpen?: bool,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "SpeedDialAction"
+@module("@mui/material/SpeedDialAction")
+external make: React.component<props> = "default"

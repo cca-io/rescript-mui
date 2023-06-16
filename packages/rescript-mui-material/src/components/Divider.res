@@ -96,5 +96,5 @@ type props = {
   role?: string,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Divider"
+@module("@mui/material/Divider")
+external make: React.component<props> = "default"

@@ -61,5 +61,5 @@ type props = {
   sx?: Sx.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "ListItemText"
+@module("@mui/material/ListItemText")
+external make: React.component<props> = "default"

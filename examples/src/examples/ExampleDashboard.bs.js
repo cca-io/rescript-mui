@@ -4,7 +4,16 @@ import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import Link from "@mui/material/Link";
+import Badge from "@mui/material/Badge";
+import Button from "@mui/material/Button";
+import Drawer from "@mui/material/Drawer";
+import Divider from "@mui/material/Divider";
+import Toolbar from "@mui/material/Toolbar";
 import Menu from "@mui/icons-material/Menu";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import CssBaseline from "@mui/material/CssBaseline";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import Notifications from "@mui/icons-material/Notifications";
 
@@ -41,24 +50,24 @@ function ExampleDashboard(props) {
   return JsxRuntime.jsx("div", {
               children: match$1[0] ? JsxRuntime.jsxs("div", {
                       children: [
-                        JsxRuntime.jsx(Material.CssBaseline, {}),
+                        JsxRuntime.jsx(CssBaseline, {}),
                         JsxRuntime.jsx(Material.AppBar, {
-                              children: Caml_option.some(JsxRuntime.jsxs(Material.Toolbar, {
+                              children: Caml_option.some(JsxRuntime.jsxs(Toolbar, {
                                         children: [
-                                          JsxRuntime.jsx(Material.IconButton, {
+                                          JsxRuntime.jsx(IconButton, {
                                                 children: Caml_option.some(JsxRuntime.jsx(Menu, {})),
                                                 onClick: (function (_event) {
                                                     setState("Open");
                                                   }),
                                                 color: "inherit"
                                               }),
-                                          JsxRuntime.jsx(Material.Typography, {
+                                          JsxRuntime.jsx(Typography, {
                                                 noWrap: true,
                                                 variant: "h6",
                                                 component: "h1",
                                                 children: "Dashboard"
                                               }),
-                                          JsxRuntime.jsx(Material.Link, {
+                                          JsxRuntime.jsx(Link, {
                                                 color: "text.secondary",
                                                 children: "Close Dashboard",
                                                 href: "#",
@@ -67,8 +76,8 @@ function ExampleDashboard(props) {
                                                     setShow(false);
                                                   })
                                               }),
-                                          JsxRuntime.jsx(Material.IconButton, {
-                                                children: Caml_option.some(JsxRuntime.jsx(Material.Badge, {
+                                          JsxRuntime.jsx(IconButton, {
+                                                children: Caml_option.some(JsxRuntime.jsx(Badge, {
                                                           badgeContent: "4",
                                                           children: Caml_option.some(JsxRuntime.jsx(Notifications, {})),
                                                           color: "secondary"
@@ -80,15 +89,15 @@ function ExampleDashboard(props) {
                                       })),
                               position: "absolute"
                             }),
-                        JsxRuntime.jsxs(Material.Drawer, {
+                        JsxRuntime.jsxs(Drawer, {
                               children: [
-                                JsxRuntime.jsx(Material.IconButton, {
+                                JsxRuntime.jsx(IconButton, {
                                       children: Caml_option.some(JsxRuntime.jsx(ChevronLeft, {})),
                                       onClick: (function (_event) {
                                           setState("Close");
                                         })
                                     }),
-                                JsxRuntime.jsx(Material.Divider, {}),
+                                JsxRuntime.jsx(Divider, {}),
                                 JsxRuntime.jsx("div", {
                                       children: props.sidebar
                                     })
@@ -102,7 +111,7 @@ function ExampleDashboard(props) {
                                   })
                             })
                       ]
-                    }) : JsxRuntime.jsx(Material.Button, {
+                    }) : JsxRuntime.jsx(Button, {
                       children: "Open Dashboard",
                       onClick: (function (param) {
                           setShow(true);

@@ -46,5 +46,5 @@ type props = {
   variant?: variant,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Toolbar"
+@module("@mui/material/Toolbar")
+external make: React.component<props> = "default"

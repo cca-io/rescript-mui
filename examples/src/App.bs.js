@@ -2,19 +2,20 @@
 
 import * as Examples from "./examples/Examples.bs.js";
 import * as ExamplesLab from "./labExamples/ExamplesLab.bs.js";
-import * as Material from "@mui/material";
+import Box from "@mui/material/Box";
 import * as JsxRuntime from "react/jsx-runtime";
 import * as Styles from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 function App(props) {
   return JsxRuntime.jsx(Styles.ThemeProvider, {
-              children: JsxRuntime.jsxs(Material.Box, {
+              children: JsxRuntime.jsxs(Box, {
                     height: "100%",
                     maxWidth: "970px",
                     width: "100%",
                     margin: "30px auto",
                     children: [
-                      JsxRuntime.jsx(Material.CssBaseline, {}),
+                      JsxRuntime.jsx(CssBaseline, {}),
                       JsxRuntime.jsx(Examples.make, {}),
                       JsxRuntime.jsx(ExamplesLab.make, {})
                     ]

@@ -561,5 +561,5 @@ type props<'value> = {
   value?: 'value,
 }
 
-@module("@mui/material")
-external make: React.component<props<'value>> = "Autocomplete"
+@module("@mui/material/Autocomplete")
+external make: React.component<props<'value>> = "default"

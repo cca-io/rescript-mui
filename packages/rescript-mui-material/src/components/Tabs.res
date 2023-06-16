@@ -210,5 +210,5 @@ type props<'value> = {
   component?: OverridableComponent.t<unknown>,
 }
 
-@module("@mui/material")
-external make: React.component<props<'value>> = "Tabs"
+@module("@mui/material/Tabs")
+external make: React.component<props<'value>> = "default"

@@ -3,9 +3,14 @@
 import * as React from "react";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import Step from "@mui/material/Step";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import Stepper from "@mui/material/Stepper";
+import StepLabel from "@mui/material/StepLabel";
+import Typography from "@mui/material/Typography";
+import StepContent from "@mui/material/StepContent";
 
 function getSpacing(theme, num) {
   return String(theme.spacing(num)) + "px";
@@ -55,28 +60,28 @@ function ExampleStepper(props) {
   };
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsx(Material.Stepper, {
+                JsxRuntime.jsx(Stepper, {
                       activeStep: activeStep,
                       children: Caml_option.some(Belt_Array.mapWithIndex(steps, (function (index, label) {
-                                  return JsxRuntime.jsxs(Material.Step, {
+                                  return JsxRuntime.jsxs(Step, {
                                               children: [
-                                                JsxRuntime.jsx(Material.StepLabel, {
+                                                JsxRuntime.jsx(StepLabel, {
                                                       children: Caml_option.some(label)
                                                     }),
-                                                JsxRuntime.jsxs(Material.StepContent, {
+                                                JsxRuntime.jsxs(StepContent, {
                                                       children: [
-                                                        JsxRuntime.jsx(Material.Typography, {
+                                                        JsxRuntime.jsx(Typography, {
                                                               children: Caml_option.some(getStepContent(index))
                                                             }),
                                                         JsxRuntime.jsx("div", {
                                                               children: JsxRuntime.jsxs("div", {
                                                                     children: [
-                                                                      JsxRuntime.jsx(Material.Button, {
+                                                                      JsxRuntime.jsx(Button, {
                                                                             children: "Back",
                                                                             onClick: handleBack,
                                                                             disabled: activeStep === 0
                                                                           }),
-                                                                      JsxRuntime.jsx(Material.Button, {
+                                                                      JsxRuntime.jsx(Button, {
                                                                             children: Caml_option.some(activeStep === (steps.length - 1 | 0) ? "Finish" : "Next"),
                                                                             onClick: handleNext,
                                                                             color: "primary",
@@ -96,10 +101,10 @@ function ExampleStepper(props) {
                         elevation: 0,
                         square: true,
                         children: [
-                          JsxRuntime.jsx(Material.Typography, {
+                          JsxRuntime.jsx(Typography, {
                                 children: "All steps completed - you're finished"
                               }),
-                          JsxRuntime.jsx(Material.Button, {
+                          JsxRuntime.jsx(Button, {
                                 children: "Reset",
                                 onClick: handleReset,
                                 color: "secondary"

@@ -51,5 +51,5 @@ type props = {
   variant?: MenuList.variant,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Menu"
+@module("@mui/material/Menu")
+external make: React.component<props> = "default"

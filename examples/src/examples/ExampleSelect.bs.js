@@ -2,9 +2,15 @@
 
 import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import Input from "@mui/material/Input";
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import FilledInput from "@mui/material/FilledInput";
+import FormControl from "@mui/material/FormControl";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import FormHelperText from "@mui/material/FormHelperText";
 
 function getSpacing(theme, num) {
   return String(theme.spacing(num)) + "px";
@@ -52,13 +58,13 @@ function ExampleSelect(props) {
   return JsxRuntime.jsx("form", {
               children: JsxRuntime.jsxs("div", {
                     children: [
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsx(Material.InputLabel, {
+                              JsxRuntime.jsx(InputLabel, {
                                     children: "Age",
                                     htmlFor: "age-simple"
                                   }),
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     inputProps: {
                                       id: "age-simple",
                                       name: "age"
@@ -88,13 +94,13 @@ function ExampleSelect(props) {
                                   })
                             ]
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsx(Material.InputLabel, {
+                              JsxRuntime.jsx(InputLabel, {
                                     children: "Age",
                                     htmlFor: "age-helper"
                                   }),
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -115,21 +121,23 @@ function ExampleSelect(props) {
                                             value: "30"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx(Material.Input, {
+                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                                return Input(prim);
+                                              }), {
                                               id: "age-helper",
                                               name: "age"
                                             })),
                                     onChange: handleChangeAge,
                                     value: values.age
                                   }),
-                              JsxRuntime.jsx(Material.FormHelperText, {
+                              JsxRuntime.jsx(FormHelperText, {
                                     children: "Some important helper text"
                                   })
                             ]
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     name: "age",
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
@@ -155,19 +163,19 @@ function ExampleSelect(props) {
                                     onChange: handleChangeAge,
                                     value: values.age
                                   }),
-                              JsxRuntime.jsx(Material.FormHelperText, {
+                              JsxRuntime.jsx(FormHelperText, {
                                     children: "Without label"
                                   })
                             ]
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsx(Material.InputLabel, {
+                              JsxRuntime.jsx(InputLabel, {
                                     children: "Age",
                                     shrink: true,
                                     htmlFor: "age-label-placeholder"
                                   }),
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     name: "age",
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
@@ -190,25 +198,27 @@ function ExampleSelect(props) {
                                           })
                                     ],
                                     displayEmpty: true,
-                                    input: Caml_option.some(JsxRuntime.jsx(Material.Input, {
+                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                                return Input(prim);
+                                              }), {
                                               id: "age-label-placeholder",
                                               name: "age"
                                             })),
                                     onChange: handleChangeAge,
                                     value: values.age
                                   }),
-                              JsxRuntime.jsx(Material.FormHelperText, {
+                              JsxRuntime.jsx(FormHelperText, {
                                     children: "Label + placeholder"
                                   })
                             ]
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsx(Material.InputLabel, {
+                              JsxRuntime.jsx(InputLabel, {
                                     children: "Name",
                                     htmlFor: "name-disabled"
                                   }),
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -229,26 +239,28 @@ function ExampleSelect(props) {
                                             value: "kevin"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx(Material.Input, {
+                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                                return Input(prim);
+                                              }), {
                                               id: "name-disabled",
                                               name: "name"
                                             })),
                                     onChange: handleChangeName,
                                     value: values.name
                                   }),
-                              JsxRuntime.jsx(Material.FormHelperText, {
+                              JsxRuntime.jsx(FormHelperText, {
                                     children: "Disabled"
                                   })
                             ],
                             disabled: true
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsx(Material.InputLabel, {
+                              JsxRuntime.jsx(InputLabel, {
                                     children: "Name",
                                     htmlFor: "name-error"
                                   }),
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     name: "name",
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
@@ -270,7 +282,9 @@ function ExampleSelect(props) {
                                             value: "kevin"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx(Material.Input, {
+                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                                return Input(prim);
+                                              }), {
                                               id: "name-error"
                                             })),
                                     onChange: handleChangeName,
@@ -279,19 +293,19 @@ function ExampleSelect(props) {
                                       }),
                                     value: values.name
                                   }),
-                              JsxRuntime.jsx(Material.FormHelperText, {
+                              JsxRuntime.jsx(FormHelperText, {
                                     children: "Error"
                                   })
                             ],
                             error: true
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsx(Material.InputLabel, {
+                              JsxRuntime.jsx(InputLabel, {
                                     children: "Name",
                                     htmlFor: "name-readonly"
                                   }),
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -312,7 +326,9 @@ function ExampleSelect(props) {
                                             value: "kevin"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx(Material.Input, {
+                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                                return Input(prim);
+                                              }), {
                                               id: "name-readonly",
                                               name: "name",
                                               readOnly: true
@@ -320,18 +336,18 @@ function ExampleSelect(props) {
                                     onChange: handleChangeName,
                                     value: values.name
                                   }),
-                              JsxRuntime.jsx(Material.FormHelperText, {
+                              JsxRuntime.jsx(FormHelperText, {
                                     children: "Read only"
                                   })
                             ]
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsx(Material.InputLabel, {
+                              JsxRuntime.jsx(InputLabel, {
                                     children: "Age",
                                     htmlFor: "age-auto-width"
                                   }),
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     autoWidth: true,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
@@ -353,21 +369,23 @@ function ExampleSelect(props) {
                                             value: "30"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx(Material.Input, {
+                                    input: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                                return Input(prim);
+                                              }), {
                                               id: "age-auto-width",
                                               name: "age"
                                             })),
                                     onChange: handleChangeAge,
                                     value: values.age
                                   }),
-                              JsxRuntime.jsx(Material.FormHelperText, {
+                              JsxRuntime.jsx(FormHelperText, {
                                     children: "Auto width"
                                   })
                             ]
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     name: "age",
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
@@ -392,18 +410,18 @@ function ExampleSelect(props) {
                                     onChange: handleChangeAge,
                                     value: values.age
                                   }),
-                              JsxRuntime.jsx(Material.FormHelperText, {
+                              JsxRuntime.jsx(FormHelperText, {
                                     children: "Placeholder"
                                   })
                             ]
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsx(Material.InputLabel, {
+                              JsxRuntime.jsx(InputLabel, {
                                     children: "Age",
                                     htmlFor: "age-required"
                                   }),
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     inputProps: {
                                       id: "age-required"
                                     },
@@ -431,20 +449,20 @@ function ExampleSelect(props) {
                                     onChange: handleChangeAge,
                                     value: values.age
                                   }),
-                              JsxRuntime.jsx(Material.FormHelperText, {
+                              JsxRuntime.jsx(FormHelperText, {
                                     children: "Required"
                                   })
                             ],
                             required: true
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsx(Material.InputLabel, {
+                              JsxRuntime.jsx(InputLabel, {
                                     ref: Caml_option.some(inputLabel),
                                     children: "Age",
                                     htmlFor: "outlined-age-simple"
                                   }),
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -465,7 +483,7 @@ function ExampleSelect(props) {
                                             value: "30"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx(Material.OutlinedInput, {
+                                    input: Caml_option.some(JsxRuntime.jsx(OutlinedInput, {
                                               id: "outlined-age-simple",
                                               name: "age",
                                               label: Caml_option.some(JsxRuntime.jsx("div", {
@@ -478,13 +496,13 @@ function ExampleSelect(props) {
                             ],
                             variant: "outlined"
                           }),
-                      JsxRuntime.jsxs(Material.FormControl, {
+                      JsxRuntime.jsxs(FormControl, {
                             children: [
-                              JsxRuntime.jsx(Material.InputLabel, {
+                              JsxRuntime.jsx(InputLabel, {
                                     children: "Age",
                                     htmlFor: "filled-age-simple"
                                   }),
-                              JsxRuntime.jsxs(Material.Select, {
+                              JsxRuntime.jsxs(Select, {
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -505,7 +523,7 @@ function ExampleSelect(props) {
                                             value: "30"
                                           })
                                     ],
-                                    input: Caml_option.some(JsxRuntime.jsx(Material.FilledInput, {
+                                    input: Caml_option.some(JsxRuntime.jsx(FilledInput, {
                                               id: "filled-age-simple",
                                               name: "age"
                                             })),

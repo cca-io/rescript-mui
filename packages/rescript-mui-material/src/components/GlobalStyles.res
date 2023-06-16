@@ -19,5 +19,5 @@ type props = {
   styles: Styles.t,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "GlobalStyles"
+@module("@mui/material/GlobalStyles")
+external make: React.component<props> = "default"

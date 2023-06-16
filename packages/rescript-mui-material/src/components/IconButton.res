@@ -97,5 +97,5 @@ type props = {
   sx?: Sx.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "IconButton"
+@module("@mui/material/IconButton")
+external make: React.component<props> = "default"

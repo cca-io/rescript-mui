@@ -2,28 +2,30 @@
 
 import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 function ExampleRadioGroup(props) {
   var match = React.useState(function () {
         return "Yes";
       });
   var setState = match[1];
-  return JsxRuntime.jsxs(Material.RadioGroup, {
+  return JsxRuntime.jsxs(RadioGroup, {
               children: [
-                JsxRuntime.jsx(Material.FormControlLabel, {
-                      control: JsxRuntime.jsx(Material.Radio, {}),
+                JsxRuntime.jsx(FormControlLabel, {
+                      control: JsxRuntime.jsx(Radio, {}),
                       label: "Yes",
                       value: "Yes"
                     }),
-                JsxRuntime.jsx(Material.FormControlLabel, {
-                      control: JsxRuntime.jsx(Material.Radio, {}),
+                JsxRuntime.jsx(FormControlLabel, {
+                      control: JsxRuntime.jsx(Radio, {}),
                       label: "No",
                       value: "No"
                     }),
-                JsxRuntime.jsx(Material.FormControlLabel, {
-                      control: JsxRuntime.jsx(Material.Radio, {}),
+                JsxRuntime.jsx(FormControlLabel, {
+                      control: JsxRuntime.jsx(Radio, {}),
                       label: "Maybe",
                       value: "Maybe"
                     })

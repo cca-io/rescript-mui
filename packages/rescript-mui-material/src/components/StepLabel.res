@@ -75,5 +75,5 @@ type props = {
   sx?: Sx.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "StepLabel"
+@module("@mui/material/StepLabel")
+external make: React.component<props> = "default"

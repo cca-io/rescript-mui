@@ -247,5 +247,5 @@ type props = {
   zeroMinWidth?: bool,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Grid"
+@module("@mui/material/Grid")
+external make: React.component<props> = "default"

@@ -26,5 +26,5 @@ type props = {
   sx?: Sx.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "AccordionActions"
+@module("@mui/material/AccordionActions")
+external make: React.component<props> = "default"

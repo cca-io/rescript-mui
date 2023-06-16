@@ -88,5 +88,5 @@ type props = {
   variant?: variant,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "LinearProgress"
+@module("@mui/material/LinearProgress")
+external make: React.component<props> = "default"

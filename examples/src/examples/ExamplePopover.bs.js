@@ -4,8 +4,11 @@ import * as React from "react";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Belt_Option from "rescript/lib/es6/belt_Option.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import List from "@mui/material/List";
+import Popover from "@mui/material/Popover";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemButton from "@mui/material/ListItemButton";
 
 var messages = ([...'养绌聭']);
 
@@ -32,7 +35,7 @@ function ExamplePopover(props) {
   var state = match[0];
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsx(Material.Popover, {
+                JsxRuntime.jsx(Popover, {
                       open: Belt_Option.isSome(state.anchorEl),
                       anchorEl: Belt_Option.map(state.anchorEl, (function (el) {
                               return el;
@@ -49,10 +52,10 @@ function ExamplePopover(props) {
                           dispatch("ClosePopup");
                         })
                     }),
-                JsxRuntime.jsx(Material.List, {
+                JsxRuntime.jsx(List, {
                       children: Caml_option.some(Belt_Array.mapWithIndex(messages, (function (i, message) {
-                                  return JsxRuntime.jsx(Material.ListItemButton, {
-                                              children: Caml_option.some(JsxRuntime.jsx(Material.ListItemText, {
+                                  return JsxRuntime.jsx(ListItemButton, {
+                                              children: Caml_option.some(JsxRuntime.jsx(ListItemText, {
                                                         children: Caml_option.some(message)
                                                       })),
                                               onClick: (function (evt) {

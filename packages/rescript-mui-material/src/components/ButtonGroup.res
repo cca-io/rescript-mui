@@ -150,3 +150,6 @@ type props = {
      */
   sx?: Sx.props,
 }
+
+@module("@mui/material/ButtonGroup")
+external make: React.component<props> = "default"

@@ -63,5 +63,5 @@ type props = {
   transitionDuration?: Transition.duration,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Backdrop"
+@module("@mui/material/Backdrop")
+external make: React.component<props> = "default"

@@ -57,5 +57,5 @@ type props = {
   useFlexGap?: bool,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Stack"
+@module("@mui/material/Stack")
+external make: React.component<props> = "default"

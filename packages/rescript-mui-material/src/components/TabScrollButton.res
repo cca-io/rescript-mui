@@ -65,5 +65,5 @@ type props = {
   sx?: Sx.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "TabScrollButton"
+@module("@mui/material/TabScrollButton")
+external make: React.component<props> = "default"

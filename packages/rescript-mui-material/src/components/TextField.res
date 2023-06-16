@@ -175,5 +175,5 @@ type props<'value> = {
   variant?: variant,
 }
 
-@module("@mui/material")
-external make: React.component<props<'value>> = "TextField"
+@module("@mui/material/TextField")
+external make: React.component<props<'value>> = "default"

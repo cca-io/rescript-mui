@@ -160,5 +160,5 @@ type props = {
   transitionProps?: Transition.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Dialog"
+@module("@mui/material/Dialog")
+external make: React.component<props> = "default"

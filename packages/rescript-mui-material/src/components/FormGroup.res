@@ -28,5 +28,5 @@ type props = {
   sx?: Sx.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "FormGroup"
+@module("@mui/material/FormGroup")
+external make: React.component<props> = "default"

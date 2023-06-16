@@ -91,5 +91,5 @@ type props = {
   variant?: variant,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "CircularProgress"
+@module("@mui/material/CircularProgress")
+external make: React.component<props> = "default"

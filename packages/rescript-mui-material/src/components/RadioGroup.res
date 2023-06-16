@@ -23,5 +23,5 @@ type props<'value> = {
   value?: 'value,
 }
 
-@module("@mui/material")
-external make: React.component<props<'value>> = "RadioGroup"
+@module("@mui/material/RadioGroup")
+external make: React.component<props<'value>> = "default"

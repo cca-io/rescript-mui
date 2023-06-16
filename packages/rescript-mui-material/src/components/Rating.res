@@ -152,5 +152,5 @@ type props = {
   value?: numberOrNull,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Rating"
+@module("@mui/material/Rating")
+external make: React.component<props> = "default"

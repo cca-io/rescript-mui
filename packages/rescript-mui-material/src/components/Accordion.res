@@ -65,5 +65,5 @@ type props = {
   transitionProps?: Transition.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Accordion"
+@module("@mui/material/Accordion")
+external make: React.component<props> = "default"

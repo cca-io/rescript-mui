@@ -112,7 +112,7 @@ type props = {
   variant?: variant,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "FormControl"
+@module("@mui/material/FormControl")
+external make: React.component<props> = "default"
 
 // TODO: useFormControl

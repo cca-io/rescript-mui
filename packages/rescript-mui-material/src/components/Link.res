@@ -64,5 +64,5 @@ type props = {
   onClick?: ReactEvent.Mouse.t => unit,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Link"
+@module("@mui/material/Link")
+external make: React.component<props> = "default"

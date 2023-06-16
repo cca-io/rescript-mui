@@ -13,5 +13,5 @@ type props = {
   enableColorScheme?: bool,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "CssBaseline"
+@module("@mui/material/CssBaseline")
+external make: React.component<props> = "default"

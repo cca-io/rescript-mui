@@ -77,5 +77,5 @@ type props = {
   variant?: variant,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "FormHelperText"
+@module("@mui/material/FormHelperText")
+external make: React.component<props> = "default"

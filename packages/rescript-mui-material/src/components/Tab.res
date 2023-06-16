@@ -72,5 +72,5 @@ type props<'value> = {
   wrapped?: bool,
 }
 
-@module("@mui/material")
-external make: React.component<props<'value>> = "Tab"
+@module("@mui/material/Tab")
+external make: React.component<props<'value>> = "default"

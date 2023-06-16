@@ -176,5 +176,5 @@ type props = {
   variant?: variant,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Badge"
+@module("@mui/material/Badge")
+external make: React.component<props> = "default"

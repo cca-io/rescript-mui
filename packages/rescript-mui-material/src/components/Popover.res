@@ -177,5 +177,5 @@ type props = {
   sx?: Sx.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Popover"
+@module("@mui/material/Popover")
+external make: React.component<props> = "default"

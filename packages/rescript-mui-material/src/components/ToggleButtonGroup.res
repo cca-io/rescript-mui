@@ -99,5 +99,5 @@ type props<'value> = {
   value?: 'value,
 }
 
-@module("@mui/material")
-external make: React.component<props<'value>> = "ToggleButtonGroup"
+@module("@mui/material/ToggleButtonGroup")
+external make: React.component<props<'value>> = "default"

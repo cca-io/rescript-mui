@@ -73,5 +73,5 @@ type props = {
   sx?: Sx.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "FormLabel"
+@module("@mui/material/FormLabel")
+external make: React.component<props> = "default"

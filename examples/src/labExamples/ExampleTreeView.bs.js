@@ -2,7 +2,7 @@
 
 import * as Lab from "@mui/lab";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Material from "@mui/material";
+import Box from "@mui/material/Box";
 import * as JsxRuntime from "react/jsx-runtime";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import ChevronRight from "@mui/icons-material/ChevronRight";
@@ -12,7 +12,7 @@ var ExpandMoreIcon = {};
 var ChevronRightIcon = {};
 
 function ExampleTreeView(props) {
-  return JsxRuntime.jsx(Material.Box, {
+  return JsxRuntime.jsx(Box, {
               flexGrow: 1,
               height: "240px",
               maxWidth: "400px",

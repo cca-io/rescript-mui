@@ -108,5 +108,5 @@ type props = {
   htmlFor?: string,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "InputLabel"
+@module("@mui/material/InputLabel")
+external make: React.component<props> = "default"

@@ -31,5 +31,5 @@ type props = {
   timeout?: Transition.duration,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Zoom"
+@module("@mui/material/Zoom")
+external make: React.component<props> = "default"

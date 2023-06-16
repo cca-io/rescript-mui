@@ -53,5 +53,5 @@ type props = {
   sx?: Sx.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Table"
+@module("@mui/material/Table")
+external make: React.component<props> = "default"

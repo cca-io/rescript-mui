@@ -3,9 +3,11 @@
 import * as React from "react";
 import * as Caml_format from "rescript/lib/es6/caml_format.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import Grid from "@mui/material/Grid";
+import Input from "@mui/material/Input";
 import Slider from "@mui/material/Slider";
+import Typography from "@mui/material/Typography";
 import VolumeUp from "@mui/icons-material/VolumeUp";
 
 var VolumeUpIcon = {};
@@ -18,18 +20,18 @@ function ExampleSlider(props) {
   var value = match[0];
   return JsxRuntime.jsxs("div", {
               children: [
-                JsxRuntime.jsx(Material.Typography, {
+                JsxRuntime.jsx(Typography, {
                       gutterBottom: true,
                       children: "Volume"
                     }),
-                JsxRuntime.jsxs(Material.Grid, {
+                JsxRuntime.jsxs(Grid, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx(Material.Grid, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(VolumeUp, {})),
                               item: true
                             }),
-                        JsxRuntime.jsx(Material.Grid, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(Slider, {
                                         "aria-labelledby": "input-slider",
                                         onChange: (function (param, v, param$1) {
@@ -40,8 +42,10 @@ function ExampleSlider(props) {
                               item: true,
                               xs: true
                             }),
-                        JsxRuntime.jsx(Material.Grid, {
-                              children: Caml_option.some(JsxRuntime.jsx(Material.Input, {
+                        JsxRuntime.jsx(Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx((function (prim) {
+                                          return Input(prim);
+                                        }), {
                                         inputProps: {
                                           step: 10,
                                           min: 0,

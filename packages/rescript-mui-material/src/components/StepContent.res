@@ -44,5 +44,5 @@ type props = {
   transitionProps?: Transition.props,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "StepContent"
+@module("@mui/material/StepContent")
+external make: React.component<props> = "default"

@@ -180,5 +180,5 @@ type props = {
   transition?: bool,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Popper"
+@module("@mui/material/Popper")
+external make: React.component<props> = "default"

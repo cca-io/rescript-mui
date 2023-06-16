@@ -35,5 +35,5 @@ type props = {
   children: React.element,
 }
 
-@module("@mui/material")
-external make: React.component<props> = "Fade"
+@module("@mui/material/Fade")
+external make: React.component<props> = "default"
