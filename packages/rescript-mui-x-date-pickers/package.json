@@ -1,6 +1,6 @@
 {
   "name": "@rescript-mui/x-date-pickers",
-  "version": "1.0.0",
+  "version": "6.0.0.alpha-1",
   "description": "This library provides ReScript bindings for the MUI-X date and time pickers.",
   "keywords": [
     "rescript",
@@ -23,8 +23,8 @@
     "/bsconfig.json"
   ],
   "peerDependencies": {
-    "@mui/material": "5.12.2",
-    "@mui/x-date-pickers" : "6.6.0",
+    "@mui/material": "^5.13.5",
+    "@mui/x-date-pickers" : "^6.6.0",
     "@rescript/react": "^0.12.0-alpha.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

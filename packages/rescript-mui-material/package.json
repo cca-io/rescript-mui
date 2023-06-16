@@ -1,6 +1,6 @@
 {
   "name": "@rescript-mui/material",
-  "version": "4.0.0",
+  "version": "5.0.0-alpha.1",
   "description": "This library provides ReScript bindings for material-ui (MUI).",
   "keywords": [
     "rescript",
@@ -22,7 +22,7 @@
     "/bsconfig.json"
   ],
   "peerDependencies": {
-    "@mui/material": "5.12.2",
+    "@mui/material": "^5.13.5",
     "@rescript/react": "^0.12.0-alpha.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

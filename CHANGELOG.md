@@ -14,7 +14,7 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
-## master
+## 5.0.0-alpha.1
 
 - :boom: Complete rewrite to adapt to MUI v5 (in progress).
 - :boom: Release rescript-mui packages under a new npm organization (`@rescript-mui`).
