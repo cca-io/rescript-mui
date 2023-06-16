@@ -1,6 +1,6 @@
 {
   "name": "@rescript-mui/x-date-pickers",
-  "namespace": "mui-date-pickers",
+  "namespace": "mui-x-date-pickers",
   "sources": [
     {
       "dir": "src",
