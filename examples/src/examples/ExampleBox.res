@@ -1,21 +1,14 @@
 @react.component
-let make = () => {
-  open Mui
-  <Box
-    component={Box.Component.string("span")}
-    style={ReactDOM.Style.make(~boxSizing="border-box", ())}
-    p={Box.Value.breakpointObj(
-      Box.BreakpointObj.make(~sm=Box.Value.int(2), ~md=Box.Value.int(5), ()),
-    )}
-    m={Box.Value.array({
-      open Box.Value
-      [int(2), int(5)]
-    })}
-    borderTop={Box.Value.int(1)}
-    borderColor={Box.Value.paletteColor(#"error.main")}
-    color={Box.Value.paletteColor(#"text.secondary")}
-    bgcolor={Box.Value.paletteColor(#"background.paper")}
-    fontSize={Box.Value.string("30px")}>
+let make = () =>
+  <Mui.Box
+    component={Mui.OverridableComponent.string("span")}
+    style={JsxDOMStyle.boxSizing: "border-box"}
+    p={Breakpoint({sm: Number(2.), md: Number(5.)})}
+    m={Array([Number(2.), Number(5.)])}
+    borderTop={Number(1.)}
+    borderColor={ErrorMain}
+    color={TextSecondary}
+    bgcolor={BackgroundPaper}
+    fontSize={String("30px")}>
     {"Testbox"->React.string}
-  </Box>
-}
+  </Mui.Box>

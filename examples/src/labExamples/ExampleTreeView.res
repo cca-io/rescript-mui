@@ -2,22 +2,18 @@ open Mui
 open MuiLab
 
 module ExpandMoreIcon = {
-  @react.component @module("@material-ui/icons/ExpandMore")
+  @react.component @module("@mui/icons-material/ExpandMore")
   external make: unit => React.element = "default"
 }
 
 module ChevronRightIcon = {
-  @react.component @module("@material-ui/icons/ChevronRight")
+  @react.component @module("@mui/icons-material/ChevronRight")
   external make: unit => React.element = "default"
 }
 
 @react.component
 let make = () => {
-  <Box
-    height={Box.Value.string("240px")}
-    flexGrow={Box.Value.int(1)}
-    maxWidth={Box.Value.string("400px")}
-    clone=true>
+  <Box height={String("240px")} flexGrow={Number(1.)} maxWidth={String("400px")}>
     <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
       <TreeItem nodeId="1" label={"Applications"->React.string}>
         <TreeItem nodeId="2" label={"Calendar"->React.string} />

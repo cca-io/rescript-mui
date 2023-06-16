@@ -1,0 +1,22 @@
+{
+  "name": "@rescript-mui/material",
+  "namespace": "mui",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "bs-dependencies": ["@rescript/react"],
+  "warnings": {
+    "number": "-103"
+  },
+  "jsx": {
+    "version": 4,
+    "mode": "automatic"
+  }
+}

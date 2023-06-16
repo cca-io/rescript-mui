@@ -10,12 +10,8 @@ on:
 
 jobs:
   build:
-    name: Build ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        # Stay on ubuntu-18.04 because of https://github.com/cca-io/rescript-material-ui/issues/141
-        os: [ubuntu-18.04, windows-latest, macOS-latest]
+    name: Build test
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -24,100 +20,10 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '18.x'
 
       - name: Yarn install
         run: yarn
 
-      - name: JSON schema parser
-        working-directory: tools/json-schema-parser
-        shell: bash
+      - name: Compile packages and examples
         run: yarn build
-
-      - name: Component extractor
-        working-directory: tools/component-extractor
-        shell: bash
-        run: ./build.sh
-
-      - name: Binding generator
-        working-directory: tools/binding-generator
-        shell: bash
-        run: ./build.sh
-
-      - name: Compile rescript-material-ui
-        working-directory: public/rescript-material-ui
-        run: yarn build
-
-      - name: Compile rescript-material-ui-lab
-        working-directory: public/rescript-material-ui-lab
-        run: yarn build
-
-      - name: Examples
-        working-directory: examples
-        run: yarn build
-
-      # PPX
-      - name: Install esy
-        run: npm install -g esy@latest
-
-      - name: Build PPX
-        working-directory: public/rescript-material-ui-ppx
-        run: esy
-
-      - name: Build PPX test project
-        working-directory: ppx-test
-        run: yarn build
-
-      - name: Upload artifacts ${{ matrix.os }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.os }}
-          path: public/rescript-material-ui-ppx/_build/default/src/bin.exe
-        env:
-          CI: true
-
-  publish:
-    if: github.event_name != 'pull_request'
-    needs: build
-    name: Publish
-    runs-on: ubuntu-18.04
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Download linux artifacts
-        uses: actions/download-artifact@master
-        with:
-          name: ubuntu-18.04
-          path: public/rescript-material-ui-ppx/binaries/linux
-
-      - name: Download macOS artifacts
-        uses: actions/download-artifact@master
-        with:
-          name: macOS-latest
-          path: public/rescript-material-ui-ppx/binaries/darwin
-
-      - name: Download windows artifacts
-        uses: actions/download-artifact@master
-        with:
-          name: windows-latest
-          path: public/rescript-material-ui-ppx/binaries/windows
-
-      - name: Move artifacts
-        run: |
-          mkdir -p public/rescript-material-ui-ppx/bin
-          mv public/rescript-material-ui-ppx/binaries/darwin/bin.exe public/rescript-material-ui-ppx/bin/rescript_material_ui_ppx-darwin-x64.exe
-          mv public/rescript-material-ui-ppx/binaries/windows/bin.exe public/rescript-material-ui-ppx/bin/rescript_material_ui_ppx-win-x64.exe
-          mv public/rescript-material-ui-ppx/binaries/linux/bin.exe public/rescript-material-ui-ppx/bin/rescript_material_ui_ppx-linux-x64.exe
-          rm -rf public/rescript-material-ui-ppx/binaries
-
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12.x'
-
-      - name: Publish
-        working-directory: public/rescript-material-ui-ppx
-        run: yarn publish --access public
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

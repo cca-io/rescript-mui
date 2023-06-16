@@ -1,40 +1,29 @@
-external styleToString: ReactDOM.Style.t => string = "%identity"
-
-let theme = Mui.Theme.create({
-  open Mui.ThemeOptions
-  make(
-    ~overrides=Overrides.make(
-      ~\"MuiButton"=ButtonClassKey.make(
-        ~outlined=ReactDOM.Style.make(
-          ~fontSize="12px",
-          ~fontWeight="300",
-          ~color="gray",
-          (),
-        )->ReactDOM.Style.unsafeAddProp(
-          "& svg",
-          ReactDOM.Style.make(~marginRight="15px", ~fontSize="16px", ())->styleToString,
-        ),
-        (),
-      ),
-      (),
-    ),
-    (),
-  )
-})
+let theme = outerTheme =>
+  Mui.Theme.create({
+    ...outerTheme,
+    overrides: {
+      muiButton: {
+        outlined: {
+          fontSize: "12px",
+          fontWeight: "300",
+          color: "gray",
+        },
+      },
+    },
+  })
 
 module SupervisedUserCircleIcon = {
-  @react.component @module("@material-ui/icons/SupervisedUserCircle")
+  @react.component @module("@mui/icons-material/SupervisedUserCircle")
   external make: (~color: string=?, ~fontSize: string=?) => React.element = "default"
 }
 
 @react.component
-let make = () => {
-  open Mui
+let make = () =>
   <div>
-    <ThemeProvider theme>
-      <Button color=#secondary variant=#outlined>
-        <SupervisedUserCircleIcon /> {"Overriden Outline Styles"->React.string}
-      </Button>
-    </ThemeProvider>
+    <Mui.ThemeProvider theme=Func(theme)>
+      <Mui.Button color=Secondary variant=Outlined>
+        <SupervisedUserCircleIcon />
+        {"Overriden Outline Styles"->React.string}
+      </Mui.Button>
+    </Mui.ThemeProvider>
   </div>
-}

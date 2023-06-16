@@ -2,30 +2,20 @@
   "name": "rescript-material-ui-examples",
   "version": "1.0.0",
   "private": true,
-  "description": "Examples for ReScript Material-UI.",
+  "description": "Examples for ReScript-MUI.",
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
   "contributors": [
-    "Christoph Knittel <ck@cca.io>"
+    "Christoph Knittel <ck@cca.io>",
+    "Florian Hammerschmidt <fh@cca.io>"
   ],
   "license": "MIT",
-  "scripts": {
-    "build": "rescript build -with-deps && parcel build src/index.html",
-    "watch": "rescript build -with-deps -w",
-    "clean": "rescript clean -with-deps",
-    "format": "rescript format -all",
-    "start": "parcel serve src/index.html"
-  },
   "dependencies": {
-    "@material-ui/core": "4.12.3",
-    "@material-ui/icons": "4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.60",
-    "@rescript/react": "^0.10.3",
-    "bs-css-emotion": "^4.0.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "rescript": "^9.1.2"
-  },
-  "devDependencies": {
-    "parcel": "^2.0.1"
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@rescript/react": "^0.12.0-alpha.2",
+    "bs-css-emotion": "^5.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

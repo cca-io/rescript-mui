@@ -1,13 +1,11 @@
 @react.component
-let make = () => {
-  open Mui
+let make = () =>
   <div>
-    <TextField variant=#outlined fullWidth=true placeholder="None" />
+    <Mui.TextField variant=Outlined fullWidth=true placeholder="None" />
     <br />
     <br />
-    <TextField size=#medium variant=#outlined fullWidth=true placeholder="Medium" />
+    <Mui.TextField size=Medium variant=Outlined fullWidth=true placeholder="Medium" />
     <br />
     <br />
-    <TextField size=#small variant=#outlined fullWidth=true placeholder="Small" />
+    <Mui.TextField size=Small variant=Outlined fullWidth=true placeholder="Small" />
   </div>
-}

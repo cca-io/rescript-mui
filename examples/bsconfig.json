@@ -1,8 +1,5 @@
 {
   "name": "rescript-material-ui-examples",
-  "reason": {
-    "react-jsx": 3
-  },
   "namespace": false,
   "sources": [
     {
@@ -10,18 +7,17 @@
       "subdirs": true
     }
   ],
-  "package-specs": {
-    "module": "es6",
-    "in-source": true
-  },
   "bs-dependencies": [
     "@rescript/react",
     "bs-css-emotion",
-    "rescript-material-ui",
-    "rescript-material-ui-lab"
+    "@rescript-mui/lab",
+    "@rescript-mui/material"
   ],
   "warnings": {
     "number": "-103"
   },
-  "suffix": ".bs.js"
+  "jsx": {
+    "mode": "automatic",
+    "version": 4
+  }
 }

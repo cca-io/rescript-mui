@@ -1,40 +1,39 @@
 open Mui
-open MuiLab
 
 module FormatAlignLeftIcon = {
-  @react.component @module("@material-ui/icons/FormatAlignLeft")
+  @react.component @module("@mui/icons-material/FormatAlignLeft")
   external make: unit => React.element = "default"
 }
 module FormatAlignCenterIcon = {
-  @react.component @module("@material-ui/icons/FormatAlignCenter")
+  @react.component @module("@mui/icons-material/FormatAlignCenter")
   external make: unit => React.element = "default"
 }
 module FormatAlignRightIcon = {
-  @react.component @module("@material-ui/icons/FormatAlignRight")
+  @react.component @module("@mui/icons-material/FormatAlignRight")
   external make: unit => React.element = "default"
 }
 module FormatAlignJustifyIcon = {
-  @react.component @module("@material-ui/icons/FormatAlignJustify")
+  @react.component @module("@mui/icons-material/FormatAlignJustify")
   external make: unit => React.element = "default"
 }
 module FormatBoldIcon = {
-  @react.component @module("@material-ui/icons/FormatBold")
+  @react.component @module("@mui/icons-material/FormatBold")
   external make: unit => React.element = "default"
 }
 module FormatItalicIcon = {
-  @react.component @module("@material-ui/icons/FormatItalic")
+  @react.component @module("@mui/icons-material/FormatItalic")
   external make: unit => React.element = "default"
 }
 module FormatUnderlinedIcon = {
-  @react.component @module("@material-ui/icons/FormatUnderlined")
+  @react.component @module("@mui/icons-material/FormatUnderlined")
   external make: unit => React.element = "default"
 }
 module FormatColorFillIcon = {
-  @react.component @module("@material-ui/icons/FormatColorFill")
+  @react.component @module("@mui/icons-material/FormatColorFill")
   external make: unit => React.element = "default"
 }
 module ArrowDropDownIcon = {
-  @react.component @module("@material-ui/icons/ArrowDropDown")
+  @react.component @module("@mui/icons-material/ArrowDropDown")
   external make: unit => React.element = "default"
 }
 
@@ -50,14 +49,20 @@ let make = () => {
     setFormats(v->Mui.Any.unsafeGetValue)
   }
 
-  <Grid container=true spacing=#2>
-    <Grid item=true sm=Grid.Sm.\"12" md=Grid.Md.\"6">
-      <Box mb={Box.Value.int(2)} mt={Box.Value.int(2)}>
+  <Grid container=true spacing=Int(2)>
+    <Grid item=true sm=Number(12) md=Number(6)>
+      <Box mb={Number(2.)} mt={Number(2.)}>
         <ToggleButtonGroup
           value={Any.fromString(alignment)} exclusive=true onChange=handleAlignment>
-          <ToggleButton value={Any.fromString("left")}> <FormatAlignLeftIcon /> </ToggleButton>
-          <ToggleButton value={Any.fromString("center")}> <FormatAlignCenterIcon /> </ToggleButton>
-          <ToggleButton value={Any.fromString("right")}> <FormatAlignRightIcon /> </ToggleButton>
+          <ToggleButton value={Any.fromString("left")}>
+            <FormatAlignLeftIcon />
+          </ToggleButton>
+          <ToggleButton value={Any.fromString("center")}>
+            <FormatAlignCenterIcon />
+          </ToggleButton>
+          <ToggleButton value={Any.fromString("right")}>
+            <FormatAlignRightIcon />
+          </ToggleButton>
           <ToggleButton value={Any.fromString("justify")} disabled=true>
             <FormatAlignJustifyIcon />
           </ToggleButton>
@@ -70,16 +75,21 @@ let make = () => {
       deselects any other.`->React.string}
       </Typography>
     </Grid>
-    <Grid item=true sm=Grid.Sm.\"12" md=Grid.Md.\"6">
-      <Box mb={Box.Value.int(2)} mt={Box.Value.int(2)}>
+    <Grid item=true sm=Number(12) md=Number(6)>
+      <Box mb={Number(2.)} mt={Number(2.)}>
         <ToggleButtonGroup value={Any.make(formats)} onChange=handleFormats>
-          <ToggleButton value={Any.fromString("bold")}> <FormatBoldIcon /> </ToggleButton>
-          <ToggleButton value={Any.fromString("italic")}> <FormatItalicIcon /> </ToggleButton>
+          <ToggleButton value={Any.fromString("bold")}>
+            <FormatBoldIcon />
+          </ToggleButton>
+          <ToggleButton value={Any.fromString("italic")}>
+            <FormatItalicIcon />
+          </ToggleButton>
           <ToggleButton value={Any.fromString("underlined")}>
             <FormatUnderlinedIcon />
           </ToggleButton>
           <ToggleButton value={Any.fromString("color")} disabled=true>
-            <FormatColorFillIcon /> <ArrowDropDownIcon />
+            <FormatColorFillIcon />
+            <ArrowDropDownIcon />
           </ToggleButton>
         </ToggleButtonGroup>
       </Box>

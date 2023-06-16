@@ -2,11 +2,25 @@
   "private": true,
   "workspaces": [
     "examples",
-    "public/rescript-material-ui",
-    "public/rescript-material-ui-lab",
-    "ppx-test",
-    "tools/json-schema-parser",
-    "tools/component-extractor",
-    "tools/binding-generator"
-  ]
+    "helpers",
+    "packages/rescript-mui-material",
+    "packages/rescript-mui-lab"
+  ],
+  "scripts": {
+    "build": "rescript build -with-deps",
+    "format": "rescript format -all",
+    "watch": "watchexec --project-origin . -c -w helpers -w packages/rescript-mui-material -w packages/rescript-mui-lab -w examples -i lib -e res,resi 'rescript build -with-deps'",
+    "start": "cd examples && parcel serve src/index.html",
+    "generateOverrides": "node helpers/src/GenerateOverrides.bs.js",
+    "clean": "rescript clean -with-deps",
+    "postinstall": "patch-package"
+  },
+  "devDependencies": {
+    "@mui/lab": "^5.0.0-alpha.134",
+    "@mui/material": "^5.13.5",
+    "@rescript/react": "^0.12.0-alpha.2",
+    "parcel": "^2.9.2",
+    "patch-package": "^7.0.0",
+    "rescript": "^11.0.0-beta.2"
+  }
 }

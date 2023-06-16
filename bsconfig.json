@@ -1,0 +1,30 @@
+{
+  "name": "rescript-mui-monorepo",
+  "sources": [],
+  "package-specs": [
+    {
+      "module": "es6",
+      "in-source": true
+    }
+  ],
+  "bs-dev-dependencies": [
+    "@rescript/react"
+  ],
+  "bs-dependencies": [
+    "@rescript-mui/lab",
+    "@rescript-mui/material",
+    "helpers",
+    "rescript-material-ui-examples"
+  ],
+  "pinned-dependencies": [
+    "@rescript-mui/lab",
+    "@rescript-mui/material",
+    "helpers",
+    "rescript-material-ui-examples"
+  ],
+  "suffix": ".bs.js",
+  "jsx": {
+    "version": 4,
+    "mode": "automatic"
+  }
+}

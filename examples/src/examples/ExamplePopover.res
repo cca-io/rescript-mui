@@ -21,14 +21,11 @@ let reducer = (state: state, action: action) =>
 let make = () => {
   let (state, dispatch) = React.useReducer(reducer, {anchorEl: None, popupMessage: ""})
 
-  open Mui
   <div>
-    <Popover
-      \"open"={Belt.Option.isSome(state.anchorEl)}
-      onClose={_evt => dispatch(ClosePopup)}
-      anchorEl=?{state.anchorEl->Belt.Option.map(el =>
-        Popover.AnchorEl.obj(el->ReactDOM.domElementToObj->Obj.magic)
-      )}>
+    <Mui.Popover
+      open_={Belt.Option.isSome(state.anchorEl)}
+      onClose={(_evt, _) => dispatch(ClosePopup)}
+      anchorEl=?{state.anchorEl->Belt.Option.map(el => el->ReactDOM.domElementToObj->Obj.magic)}>
       <div
         style={ReactDOM.Style.make(
           ~fontSize="6rem",
@@ -38,17 +35,16 @@ let make = () => {
         )}>
         {React.string(state.popupMessage)}
       </div>
-    </Popover>
+    </Mui.Popover>
     <Mui.List>
       {messages
       ->Belt.Array.mapWithIndex((i, message) =>
-        <ListItem
-          button=true
-          key={string_of_int(i)}
+        <Mui.ListItemButton
+          key={Belt.Int.toString(i)}
           onClick={evt =>
             dispatch(OpenPopup((evt->ReactEvent.Mouse.target->toDomElement, message)))}>
-          <ListItemText> {React.string(message)} </ListItemText>
-        </ListItem>
+          <Mui.ListItemText> {React.string(message)} </Mui.ListItemText>
+        </Mui.ListItemButton>
       )
       ->React.array}
     </Mui.List>

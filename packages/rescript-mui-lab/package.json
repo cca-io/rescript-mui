@@ -1,0 +1,36 @@
+{
+  "name": "@rescript-mui/lab",
+  "version": "4.0.0",
+  "description": "This library provides ReScript bindings for material-ui-lab.",
+  "keywords": [
+    "rescript",
+    "bindings",
+    "material-ui",
+    "mui"
+  ],
+  "homepage": "https://rescript-material-ui.cca.io/",
+  "repository": "https://github.com/cca-io/rescript-material-ui",
+  "bugs": "https://github.com/cca-io/rescript-material-ui/issues",
+  "author": "Jonathan Siebern <jsiebern88@gmail.com>",
+  "contributors": [
+    "Christoph Knittel <ck@cca.io>",
+    "Florian Hammerschmidt <fh@cca.io>"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "rescript build -with-deps",
+    "watch": "rescript build -with-deps -w",
+    "clean": "rescript clean -with-deps"
+  },
+  "files": [
+    "/src",
+    "/bsconfig.json"
+  ],
+  "peerDependencies": {
+    "@mui/lab": "^5.0.0-alpha.128",
+    "@mui/material": "5.12.2",
+    "@rescript/react": "^0.12.0-alpha.2",
+    "rescript": "^11.0.0-beta.1",
+    "@rescript-mui/material": "4.0.0"
+  }
+}
