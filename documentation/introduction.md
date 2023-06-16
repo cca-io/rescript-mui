@@ -1,6 +1,4 @@
----
-title: Introduction
----
+# docs are currently OUTDATED!
 
 `rescript-material-ui` provides [ReScript](https://rescript-lang.org/) bindings
 for the Javascript based UI library [MUI](https://mui.com/) (formerly
