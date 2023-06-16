@@ -1,6 +1,6 @@
 {
   "name": "@rescript-mui/x-date-pickers",
-  "version": "1.0.0",
+  "version": "6.0.0.alpha-1",
   "description": "This library provides ReScript bindings for the MUI-X date and time pickers.",
   "keywords": [
     "rescript",
