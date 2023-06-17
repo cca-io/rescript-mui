@@ -63,6 +63,11 @@ type props = {
    */
   @as("TransitionProps")
   transitionProps?: Transition.props,
+  /**
+    * The variant to use.
+    * @default 'elevation'
+  */
+  variant?: Paper.variant,
 }
 
 @module("@mui/material/Accordion")

@@ -57,11 +57,6 @@ type publicProps = {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
   sx?: Sx.props,
-  /**
-    * The variant to use.
-    * @default 'elevation'
-  */
-  variant?: variant,
   component?: OverridableComponent.t<unknown>,
 }
 
@@ -75,6 +70,11 @@ type props = {
    * Override or extend the styles applied to the component.
    */
   classes?: classes,
+  /**
+    * The variant to use.
+    * @default 'elevation'
+  */
+  variant?: variant,
 }
 
 @module("@mui/material/Paper")

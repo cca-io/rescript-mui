@@ -34,6 +34,11 @@ type props = {
    * @default 'alert'
    */
   role?: string,
+  /**
+    * The variant to use.
+    * @default 'elevation'
+  */
+  variant?: Paper.variant,
 }
 
 @module("@mui/material/SnackbarContent")
