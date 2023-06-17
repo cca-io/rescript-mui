@@ -1,38 +1,40 @@
-type variant_enum = [#elevation | #outlined]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
+  /** Styles applied to the message wrapper element. */
+  message?: string,
+  /** Styles applied to the action wrapper element if `action` is provided. */
+  action?: string,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type action = React.element
+
+type message = React.element
+
+type props = {
+  ...Paper.publicProps,
+  /**
+   * The action to display. It renders after the message, at the end of the snackbar.
+   */
+  action?: action,
+  /**
+   * The content of the component.
+   */
+  children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * The message to display.
+   */
+  message?: message,
+  /**
+   * The ARIA role attribute of the element.
+   * @default 'alert'
+   */
+  role?: string,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~children: React.element=?,
-  ~component: React.element=?,
-  ~square: bool=?,
-  ~variant: Variant.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~action: React.element=?,
-  ~className: string=?,
-  ~message: React.element=?,
-  ~role: string=?,
-  ~sx: Sx.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "SnackbarContent"
+@module("@mui/material/SnackbarContent")
+external make: React.component<props> = "default"

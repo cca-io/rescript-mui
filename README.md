@@ -132,8 +132,8 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] Skeleton
 - [x] Slide
 - [x] Slider
-- [ ] Snackbar
-- [ ] SnackbarContent
+- [x] Snackbar
+- [x] SnackbarContent
 - [ ] SpeedDial
 - [x] SpeedDialAction
 - [x] SpeedDialIcon
