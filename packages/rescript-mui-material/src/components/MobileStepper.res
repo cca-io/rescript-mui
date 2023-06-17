@@ -1,20 +1,20 @@
 type classes = {
   /** Styles applied to the root element. */
-  root: string,
+  root?: string,
   /** Styles applied to the root element if `position="bottom"`. */
-  positionBottom: string,
+  positionBottom?: string,
   /** Styles applied to the root element if `position="top"`. */
-  positionTop: string,
+  positionTop?: string,
   /** Styles applied to the root element if `position="static"`. */
-  positionStatic: string,
+  positionStatic?: string,
   /** Styles applied to the dots container if `variant="dots"`. */
-  dots: string,
+  dots?: string,
   /** Styles applied to each dot if `variant="dots"`. */
-  dot: string,
+  dot?: string,
   /** Styles applied to a dot if `variant="dots"` and this is the active step. */
-  dotActive: string,
+  dotActive?: string,
   /** Styles applied to the Linear Progress component if `variant="progress"`. */
-  progress: string,
+  progress?: string,
 }
 
 type position =
