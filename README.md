@@ -117,7 +117,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] MenuList
 - [ ] MobileStepper
 - [x] Modal
-- [ ] NativeSelect
+- [x] NativeSelect
 - [x] OutlinedInput
 - [x] Pagination
 - [x] PaginationItem

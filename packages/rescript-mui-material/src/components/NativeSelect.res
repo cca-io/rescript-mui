@@ -1,126 +1,94 @@
-type size_enum = [#medium | #small]
-
-module Size = {
-  type t
-  external enum: size_enum => t = "%identity"
-  external string: string => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
+  /** Styles applied to the select component `select` class. */
+  select?: string,
+  /** Styles applied to the select component if `multiple={true}`. */
+  multiple?: string,
+  /** Styles applied to the select component if `variant="filled"`. */
+  filled?: string,
+  /** Styles applied to the select component if `variant="outlined"`. */
+  outlined?: string,
+  /** Styles applied to the select component if `variant="standard"`. */
+  standard?: string,
+  /** State class applied to the select component `disabled` class. */
+  disabled?: string,
+  /** Styles applied to the icon component. */
+  icon?: string,
+  /** Styles applied to the icon component if the popup is open. */
+  iconOpen?: string,
+  /** Styles applied to the icon component if `variant="filled"`. */
+  iconFilled?: string,
+  /** Styles applied to the icon component if `variant="outlined"`. */
+  iconOutlined?: string,
+  /** Styles applied to the icon component if `variant="standard"`. */
+  iconStandard?: string,
+  /** Styles applied to the underlying native input component. */
+  nativeInput?: string,
+  /** State class applied to the select component `error` class. */
+  error?: string,
 }
 
-type color_enum = [#primary | #secondary]
+type variant =
+  | @as("filled") Filled
+  | @as("outlined") Outlined
+  | @as("standard") Standard
 
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
+type props<'value> = {
+  ...InputBase.publicProps,
+  /**
+   * The option elements to populate the select with.
+   * Can be some `<option>` elements.
+   */
+  children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   * @default {}
+   */
+  classes?: classes,
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue?: 'value,
+  /**
+   * If `true`, the `input` will not have an underline.
+   */
+  disableUnderline?: bool,
+  /**
+   * The icon that displays the arrow.
+   * @default ArrowDropDownIcon
+   */
+  @as("IconComponent")
+  iconComponent?: React.element,
+  /**
+   * An `Input` element, does not have to be a material-ui specific `Input`.
+   * @default <Input />
+   */
+  input?: React.element,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef?: React.ref<unknown>,
+  /**
+   * Callback fired when a menu item is selected.
+   *
+   * @param {React.ChangeEvent<HTMLSelectElement>} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
+  onChange?: ReactEvent.Form.t => unit,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
+  /**
+   * The `input` value. The DOM API casts this to a string.
+   */
+  value?: 'value,
+  /**
+   * The variant to use.
+   */
+  variant?: variant,
 }
 
-module Components = {
-  type t = {"Input": option<React.element>, "Root": option<React.element>}
-  @obj external make: (~\"Input": React.element=?, ~\"Root": React.element=?, unit) => t = ""
-}
-
-module ComponentsProps = {
-  type t = {"input": option<Any.t>, "root": option<Any.t>}
-  @obj external make: (~input: Any.t=?, ~root: Any.t=?, unit) => t = ""
-}
-
-type margin = [#dense | #none]
-
-module MaxRows = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module MinRows = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Rows = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module SlotProps = {
-  type t = {"input": option<Any.t>, "root": option<Any.t>}
-  @obj external make: (~input: Any.t=?, ~root: Any.t=?, unit) => t = ""
-}
-
-module Slots = {
-  type t = {"input": option<React.element>, "root": option<React.element>}
-  @obj external make: (~input: React.element=?, ~root: React.element=?, unit) => t = ""
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type variant = [#filled | #outlined | #standard]
-
-@react.component @module("@mui/material")
-external make: (
-  ~\"aria-describedby": string=?,
-  ~disableInjectingGlobalStyles: bool=?,
-  ~onBlur: ReactEvent.Focus.t => unit=?,
-  ~onClick: ReactEvent.Mouse.t => unit=?,
-  ~onFocus: ReactEvent.Focus.t => unit=?,
-  ~onInvalid: Any.t=?,
-  ~onKeyDown: ReactEvent.Keyboard.t => unit=?,
-  ~onKeyUp: ReactEvent.Keyboard.t => unit=?,
-  ~renderSuffix: Any.t=?,
-  ~size: Size.t=?,
-  ~style: ReactDOM.Style.t=?,
-  ~autoComplete: string=?,
-  ~autoFocus: bool=?,
-  ~color: Color.t=?,
-  ~components: Components.t=?,
-  ~componentsProps: ComponentsProps.t=?,
-  ~defaultValue: Any.t=?,
-  ~disabled: bool=?,
-  ~disableUnderline: bool=?,
-  ~endAdornment: React.element=?,
-  ~error: bool=?,
-  ~fullWidth: bool=?,
-  ~id: string=?,
-  ~inputComponent: React.element=?,
-  ~margin: margin=?,
-  ~maxRows: MaxRows.t=?,
-  ~minRows: MinRows.t=?,
-  ~multiline: bool=?,
-  ~name: string=?,
-  ~placeholder: string=?,
-  ~readOnly: bool=?,
-  ~required: bool=?,
-  ~rows: Rows.t=?,
-  ~slotProps: SlotProps.t=?,
-  ~slots: Slots.t=?,
-  ~startAdornment: React.element=?,
-  ~\"type": string=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~\"IconComponent": React.element=?,
-  ~input: React.element=?,
-  ~inputProps: {..}=?,
-  ~onChange: ReactEvent.Form.t => unit=?,
-  ~sx: Sx.t=?,
-  ~value: Any.t=?,
-  ~variant: variant=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "NativeSelect"
+@module("@mui/material/NativeSelect")
+external make: React.component<props<'value>> = "default"
