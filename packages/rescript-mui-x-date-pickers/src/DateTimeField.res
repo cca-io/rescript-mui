@@ -1,7 +1,7 @@
 // TODO
 type classes
 
-type t
+type props
 
 @module("@mui/x-date-pickers")
 external make: React.component<props> = "DateTimeField"
