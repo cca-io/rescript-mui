@@ -13,12 +13,14 @@
   "bs-dependencies": [
     "@rescript-mui/lab",
     "@rescript-mui/material",
+    "@rescript-mui/x-date-pickers",
     "helpers",
     "rescript-material-ui-examples"
   ],
   "pinned-dependencies": [
     "@rescript-mui/lab",
     "@rescript-mui/material",
+    "@rescript-mui/x-date-pickers",
     "helpers",
     "rescript-material-ui-examples"
   ],
