@@ -1,7 +1,2 @@
-// TODO
-type classes
-
-type t
-
-@module("@mui/x-date-pickers")
-external make: React.component<props> = "AdapterMomentHijri"
+@module("@mui/x-date-pickers/AdapterMomentHijri")
+external make: LocalizationProvider.dateAdapter = "AdapterMomentHijri"
