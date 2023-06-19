@@ -194,13 +194,13 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 
 ### MUI-X Date Pickers
 
-- [ ] AdapterDateFns
-- [ ] AdapterDateFnsJalali
-- [ ] AdapterDayjs
-- [ ] AdapterLuxon
-- [ ] AdapterMoment
-- [ ] AdapterMomentHijri
-- [ ] AdapterMomentJalaali
+- [x] AdapterDateFns
+- [x] AdapterDateFnsJalali
+- [x] AdapterDayjs
+- [x] AdapterLuxon
+- [x] AdapterMoment
+- [x] AdapterMomentHijri
+- [x] AdapterMomentJalaali
 - [ ] DateCalendar
 - [ ] DateField
 - [ ] DatePicker
@@ -211,7 +211,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [ ] DesktopDateTimePicker
 - [ ] DesktopTimePicker
 - [ ] DigitalClock
-- [ ] LocalizationProvider
+- [x] LocalizationProvider
 - [ ] MobileDatePicker
 - [ ] MobileDateTimePicker
 - [ ] MobileTimePicker
