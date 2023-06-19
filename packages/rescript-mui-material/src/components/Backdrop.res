@@ -5,9 +5,9 @@ type classes = {
   invisible?: string,
 }
 
-type components = {@as("Root") root?: React.element}
+type slots = {@as("Root") root?: React.element}
 
-type componentsProps = {root?: unknown}
+type slotProps = {root?: unknown}
 
 type props = {
   ...Fade.publicProps,
@@ -39,12 +39,12 @@ type props = {
        * You can override the existing props or add new ones.
        * @default {}
        */
-  slotProps?: componentsProps,
+  slotProps?: slotProps,
   /**
        * The components used for each slot inside.
        * @default {}
        */
-  slots?: components,
+  slots?: slots,
   /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */

@@ -19,7 +19,7 @@ type classes = {
   asterisk?: string,
 }
 
-type componentsProps = {
+type slotProps = {
   /**
      * Props applied to the Typography wrapper of the passed label.
      * This is unused if disableTypography is true.
@@ -48,11 +48,6 @@ type props<'value> = {
    * Override or extend the styles applied to the component.
    */
   classes?: classes,
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  componentsProps?: componentsProps,
   /**
    * If `true`, the control is disabled.
    */
@@ -89,7 +84,7 @@ type props<'value> = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps?: componentsProps,
+  slotProps?: slotProps,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

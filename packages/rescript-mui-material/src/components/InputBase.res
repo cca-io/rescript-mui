@@ -51,16 +51,6 @@ type color =
   | @as("warning") Warning
   | String(string)
 
-type components = {
-  @as("Root") root?: React.element,
-  @as("Input") input?: React.element,
-}
-
-type componentsProps = {
-  root?: unknown,
-  input?: unknown,
-}
-
 type inputBaseComponentProps = {
   ...CommonProps.clickableProps,
   name?: string,

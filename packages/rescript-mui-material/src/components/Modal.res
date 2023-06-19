@@ -13,12 +13,12 @@ type reason =
 
 type onClose = (ReactEvent.Synthetic.t, reason) => unit
 
-type components = {
+type slots = {
   @as("Root") root?: React.element,
   @as("Backdrop") backdrop?: React.element,
 }
 
-type componentsProps = {
+type slotProps = {
   root?: unknown,
   backdrop?: Backdrop.props,
 }
@@ -123,12 +123,12 @@ type props = {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: components,
+  slots?: slots,
   /**
    * The props used for each slot inside the Modal.
    * @default {}
    */
-  slotProps?: componentsProps,
+  slotProps?: slotProps,
   /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

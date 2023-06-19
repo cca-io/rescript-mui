@@ -25,23 +25,6 @@ type classes = {
   tooltipPlacementBottom?: string,
 }
 
-type components = {
-  @as("Popper") popper?: React.element,
-  @as("Transition") transition?: React.element,
-  @as("Tooltip") tooltip?: React.element,
-  @as("Arrow") arrow?: React.element,
-}
-
-type tooltipProps // FIXME
-type arrowProps // FIXME
-
-type componentsProps = {
-  popper?: Popper.props,
-  transition?: Transition.props,
-  tooltip?: tooltipProps,
-  arrow?: arrowProps,
-}
-
 type placement =
   | @as("bottom-end") BottomEnd
   | @as("bottom-start") BottomStart
@@ -59,8 +42,8 @@ type placement =
 type slotProps = {
   popper?: Popper.props,
   transition?: Transition.props,
-  tooltip?: tooltipProps,
-  arrow?: arrowProps,
+  tooltip?: unknown, // React.HTMLProps<HTMLDivElement> & MUIStyledCommonProps<Theme> & TooltipComponentsPropsOverrides;
+  arrow?: unknown, // React.HTMLProps<HTMLSpanElement> & MUIStyledCommonProps<Theme> & TooltipComponentsPropsOverrides;
 }
 
 type slots = {

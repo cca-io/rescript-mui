@@ -3,10 +3,6 @@ type classes = {
   root?: string,
 }
 
-type components = {@as("Root") root?: React.element}
-
-type basePopperSlotProps = {root?: unknown}
-
 type virtualElement = {
   getBoundingClientRect: unit => Dom.domRect,
   contextElement?: React.element,
@@ -98,17 +94,6 @@ type props = {
    * Either a string to use a HTML element or a component.
    */
   component?: React.element,
-  /**
-   * The components used for each slot inside the Popper.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: components,
-  /**
-   * The props used for each slot inside the Popper.
-   * @default {}
-   */
-  componentsProps?: basePopperSlotProps,
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
