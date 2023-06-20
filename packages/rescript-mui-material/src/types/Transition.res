@@ -1,13 +1,22 @@
 // https://reactcommunity.org/react-transition-group/transition#Transition-props
-type props = {
+type publicProps = {
   ...CommonProps.t,
   addEndListener?: Any.t,
+  enter?: bool,
+  exit?: bool,
+  mountOnEnter?: bool,
   onEnter?: ReactEvent.Synthetic.t => unit,
   onEntered?: ReactEvent.Synthetic.t => unit,
   onEntering?: ReactEvent.Synthetic.t => unit,
   onExit?: ReactEvent.Synthetic.t => unit,
   onExited?: ReactEvent.Synthetic.t => unit,
   onExiting?: ReactEvent.Synthetic.t => unit,
+  unmountOnExit?: bool,
+}
+
+type props = {
+  ...publicProps,
+  appear?: bool,
 }
 
 type durationObject = {

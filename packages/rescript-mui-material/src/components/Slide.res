@@ -5,7 +5,7 @@ type direction =
   | @as("down") Down
 
 type props = {
-  ...Transition.props,
+  ...Transition.publicProps,
   /**
    * Perform the enter transition when it first mounts if `in` is also `true`.
    * Set this to `false` to disable this behavior.

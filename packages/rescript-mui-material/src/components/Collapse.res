@@ -1,84 +1,75 @@
-module CollapsedSize = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
+  /** State class applied to the root element if `orientation="horizontal"`. */
+  horizontal?: string,
+  /** Styles applied to the root element when the transition has entered. */
+  entered?: string,
+  /** Styles applied to the root element when the transition has exited and `collapsedSize` = 0px. */
+  hidden?: string,
+  /** Styles applied to the outer wrapper element. */
+  wrapper?: string,
+  /** Styles applied to the inner wrapper element. */
+  wrapperInner?: string,
 }
 
-module Component = {
-  type t
-  external string: string => t = "%identity"
-  external callback: (unit => React.element) => t = "%identity"
-  external element: React.element => t = "%identity"
+@unboxed
+type collapsedSize =
+  | String(string)
+  | Number(float)
+
+type orientation =
+  | @as("horizontal") Horizontal
+  | @as("vertical") Vertical
+
+type props = {
+  ...Transition.props,
+  /**
+   * The content node to be collapsed.
+   */
+  children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * The width (horizontal) or height (vertical) of the container when collapsed.
+   * @default '0px'
+   */
+  collapsedSize?: collapsedSize,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: React.component<Transition.props>,
+  /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing?: Transition.easing,
+  /**
+   * If `true`, the component will transition in.
+   */
+  @as("in")
+  in_?: bool,
+  /**
+   * The transition orientation.
+   * @default 'vertical'
+   */
+  orientation?: orientation,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
+   * @default duration.standard
+   */
+  timeout?: Transition.durationWithAuto,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
 }
 
-module Easing_shape = {
-  type t = {"enter": option<string>, "exit": option<string>}
-  @obj external make: (~enter: string=?, ~exit: string=?, unit) => t = ""
-}
-
-module Easing = {
-  type t
-  external shape: Easing_shape.t => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-type orientation = [#horizontal | #vertical]
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type timeout_enum = [#auto]
-
-module Timeout_shape = {
-  type t = {"appear": option<Number.t>, "enter": option<Number.t>, "exit": option<Number.t>}
-  @obj external make: (~appear: Number.t=?, ~enter: Number.t=?, ~exit: Number.t=?, unit) => t = ""
-}
-
-module Timeout = {
-  type t
-  external enum: timeout_enum => t = "%identity"
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external shape: Timeout_shape.t => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~addEndListener: Any.t=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~collapsedSize: CollapsedSize.t=?,
-  ~component: Component.t=?,
-  ~easing: Easing.t=?,
-  ~\"in": bool=?,
-  ~onEnter: ReactEvent.Synthetic.t => unit=?,
-  ~onEntered: ReactEvent.Synthetic.t => unit=?,
-  ~onEntering: ReactEvent.Synthetic.t => unit=?,
-  ~onExit: ReactEvent.Synthetic.t => unit=?,
-  ~onExited: ReactEvent.Synthetic.t => unit=?,
-  ~onExiting: ReactEvent.Synthetic.t => unit=?,
-  ~orientation: orientation=?,
-  ~style: ReactDOM.Style.t=?,
-  ~sx: Sx.t=?,
-  ~timeout: Timeout.t=?,
-  ~id: string=?,
-  ~mountOnEnter: bool=?,
-  ~unmountOnExit: bool=?,
-  ~appear: bool=?,
-  ~enter: bool=?,
-  ~exit: bool=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Collapse"
+@module("@mui/material/Collapse")
+external make: React.component<props> = "default"

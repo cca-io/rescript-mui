@@ -71,7 +71,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] Checkbox
 - [x] Chip
 - [x] CircularProgress
-- [ ] Collapse
+- [x] Collapse
 - [x] Container
 - [x] CssBaseline
 - [x] Dialog
@@ -91,8 +91,8 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] FormLabel
 - [x] GlobalStyles
 - [x] Grid
-- [ ] Grow
-- [ ] Hidden
+- [x] Grow
+- [x] Hidden
 - [x] Icon
 - [x] IconButton
 - [ ] ImageList
