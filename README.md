@@ -27,7 +27,7 @@ They are still available, check out the old website: https://rescript-material-u
 
 | MUI package         | ReScript bindings package    | Namespace        | Progress |
 | ------------------- | ---------------------------- | ---------------- | -------: |
-| @mui/material       | @rescript-mui/material       | Mui              |     85 % |
+| @mui/material       | @rescript-mui/material       | Mui              |     90 % |
 | @mui/lab            | @rescript-mui/lab            | MuiLab           |      0 % |
 | @mui/x-date-pickers | @rescript-mui/x-date-pickers | MuiXDatePickers  |     10 % |
 | @mui/base           | Not implemented!             | MuiBase (?)      |        - |
