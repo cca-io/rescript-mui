@@ -1,8 +1,76 @@
+// In TypeScript:
+// new (...args: any) => MuiPickersAdapter<TDate, TLocale>;
 type dateAdapter
 
-type pickersInputLocaleText<'date>
+type dateView
+
+type timeView
+
+type fieldYearPlaceholderParams = {digitAmount: int}
+type fieldMonthPlaceholderParams = {contentType: Fields.fieldSectionContentType}
+type fieldWeekDayPlaceholderParams = {contentType: Fields.fieldSectionContentType}
+
+type pickersInputLocaleText<'date, 'locale> = {
+  // Calendar navigation
+  previousMonth: string,
+  nextMonth: string,
+  // Calendar week number
+  calendarWeekNumberHeaderLabel: string,
+  calendarWeekNumberHeaderText: string,
+  calendarWeekNumberAriaLabelText: int => string,
+  calendarWeekNumberText: int => string,
+  // View navigation
+  openPreviousView: string,
+  openNextView: string,
+  calendarViewSwitchingButtonAriaLabel: dateView => string,
+  // DateRange placeholders
+  start: string,
+  end: string,
+  // Action bar
+  cancelButtonLabel: string,
+  clearButtonLabel: string,
+  okButtonLabel: string,
+  todayButtonLabel: string,
+  // Clock labels
+  clockLabelText: (
+    timeView,
+    Adapters.date<'date>,
+    Adapters.muiPickersAdapter<'date, 'locale>,
+  ) => string,
+  hoursClockNumberText: string => string,
+  minutesClockNumberText: string => string,
+  secondsClockNumberText: string => string,
+  // Digital clock labels
+  selectViewText: Common.timeViewWithMeridiem => string,
+  // Open picker labels
+  openDatePickerDialogue: (
+    Adapters.date<'date>,
+    Adapters.muiPickersAdapter<'date, 'locale>,
+  ) => string,
+  openTimePickerDialogue: (
+    Adapters.date<'date>,
+    Adapters.muiPickersAdapter<'date, 'locale>,
+  ) => string,
+  // Table labels
+  timeTableLabel: string,
+  dateTableLabel: string,
+  // Field section placeholders
+  fieldYearPlaceholder: fieldYearPlaceholderParams => string,
+  fieldMonthPlaceholder: fieldMonthPlaceholderParams => string,
+  fieldDayPlaceholder: unit => string,
+  fieldWeekDayPlaceholder: fieldWeekDayPlaceholderParams => string,
+  fieldHoursPlaceholder: unit => string,
+  fieldMinutesPlaceholder: unit => string,
+  fieldSecondsPlaceholder: unit => string,
+  fieldMeridiemPlaceholder: unit => string,
+}
 
 type props<'date, 'locale> = {
+  ...Mui.CommonProps.t_NoRef,
+  /**
+   * Locale for the date library you are using
+   */
+  adapterLocale?: 'locale,
   children?: React.element,
   /**
    * Date library adapter class function.
@@ -19,13 +87,9 @@ type props<'date, 'locale> = {
    */
   dateLibInstance?: 'date,
   /**
-   * Locale for the date library you are using
-   */
-  adapterLocale?: 'locale,
-  /**
    * Locale for components texts
    */
-  localeText?: pickersInputLocaleText<'date>,
+  localeText?: pickersInputLocaleText<'date, 'locale>,
 }
 
 @module("@mui/x-date-pickers")

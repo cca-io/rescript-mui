@@ -152,7 +152,17 @@ type formatKey =
 
 type escapedCharacters = {start: string, end: string}
 
-type fieldFormatTokenMap // TODO
+type fieldFormatTokenObj = {
+  sectionType: Fields.fieldSectionType,
+  contentType: Fields.fieldSectionContentType,
+  maxLength?: int,
+}
+
+type fieldFormatToken
+// | Object(fieldFormatTokenObj)
+// | Field(Fields.fieldSectionType)
+
+type fieldFormatTokenMap = Js.Dict.t<fieldFormatToken>
 
 @unboxed
 type date<'date> =
@@ -165,7 +175,7 @@ type meridiem =
   | @as("am") AM
   | @as("pm") PM
 
-type muiPickersAdapter<'date, 'locale, 'value> = {
+type muiPickersAdapter<'date, 'locale> = {
   /**
    * A boolean confirming that the adapter used is an MUI adapter.
    */
@@ -194,7 +204,7 @@ type muiPickersAdapter<'date, 'locale, 'value> = {
    * @param {any} value The optional value to parse.
    * @returns {'date | null} The parsed date.
    */
-  date: option<'value> => date<'date>,
+  date: option<string> => date<'date>,
   /**
    * Create a date in the date library format.
    * If no `value` parameter is provided, creates a date with the current timestamp.
