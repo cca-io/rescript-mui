@@ -146,6 +146,24 @@ type badgeClassKey = {
   overlapCircular?: ReactDOM.Style.t,
 }
 
+type bottomNavigationClassKey = {
+  root?: ReactDOM.Style.t,
+}
+
+type bottomNavigationActionClassKey = {
+  root?: ReactDOM.Style.t,
+  selected?: ReactDOM.Style.t,
+  iconOnly?: ReactDOM.Style.t,
+  label?: ReactDOM.Style.t,
+}
+
+type breadcrumbsClassKey = {
+  root?: ReactDOM.Style.t,
+  ol?: ReactDOM.Style.t,
+  li?: ReactDOM.Style.t,
+  separator?: ReactDOM.Style.t,
+}
+
 type buttonClassKey = {
   root?: ReactDOM.Style.t,
   text?: ReactDOM.Style.t,
@@ -1255,6 +1273,9 @@ type t = {
   @as("MuiAvatarGroup") muiAvatarGroup?: avatarGroupClassKey,
   @as("MuiBackdrop") muiBackdrop?: backdropClassKey,
   @as("MuiBadge") muiBadge?: badgeClassKey,
+  @as("MuiBottomNavigation") muiBottomNavigation?: bottomNavigationClassKey,
+  @as("MuiBottomNavigationAction") muiBottomNavigationAction?: bottomNavigationActionClassKey,
+  @as("MuiBreadcrumbs") muiBreadcrumbs?: breadcrumbsClassKey,
   @as("MuiButton") muiButton?: buttonClassKey,
   @as("MuiButtonBase") muiButtonBase?: buttonBaseClassKey,
   @as("MuiButtonGroup") muiButtonGroup?: buttonGroupClassKey,
