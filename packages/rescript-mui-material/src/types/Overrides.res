@@ -29,6 +29,46 @@ type accordionSummaryClassKey = {
   expandIconWrapper?: ReactDOM.Style.t,
 }
 
+type alertClassKey = {
+  root?: ReactDOM.Style.t,
+  filled?: ReactDOM.Style.t,
+  outlined?: ReactDOM.Style.t,
+  standard?: ReactDOM.Style.t,
+  standardSuccess?: ReactDOM.Style.t,
+  standardInfo?: ReactDOM.Style.t,
+  standardWarning?: ReactDOM.Style.t,
+  standardError?: ReactDOM.Style.t,
+  outlinedSuccess?: ReactDOM.Style.t,
+  outlinedInfo?: ReactDOM.Style.t,
+  outlinedWarning?: ReactDOM.Style.t,
+  outlinedError?: ReactDOM.Style.t,
+  filledSuccess?: ReactDOM.Style.t,
+  filledInfo?: ReactDOM.Style.t,
+  filledWarning?: ReactDOM.Style.t,
+  filledError?: ReactDOM.Style.t,
+  icon?: ReactDOM.Style.t,
+  message?: ReactDOM.Style.t,
+  action?: ReactDOM.Style.t,
+}
+
+type alertTitleClassKey = {
+  root?: ReactDOM.Style.t,
+}
+
+type appBarClassKey = {
+  root?: ReactDOM.Style.t,
+  positionFixed?: ReactDOM.Style.t,
+  positionAbsolute?: ReactDOM.Style.t,
+  positionSticky?: ReactDOM.Style.t,
+  positionStatic?: ReactDOM.Style.t,
+  positionRelative?: ReactDOM.Style.t,
+  colorDefault?: string,
+  colorPrimary?: string,
+  colorSecondary?: string,
+  colorInherit?: string,
+  colorTransparent?: string,
+}
+
 type autocompleteClassKey = {
   root?: ReactDOM.Style.t,
   fullWidth?: ReactDOM.Style.t,
@@ -56,6 +96,21 @@ type autocompleteClassKey = {
   option?: ReactDOM.Style.t,
   groupLabel?: ReactDOM.Style.t,
   groupUl?: ReactDOM.Style.t,
+}
+
+type avatarClassKey = {
+  root?: ReactDOM.Style.t,
+  colorDefault?: string,
+  circular?: ReactDOM.Style.t,
+  rounded?: ReactDOM.Style.t,
+  square?: ReactDOM.Style.t,
+  img?: ReactDOM.Style.t,
+  fallback?: ReactDOM.Style.t,
+}
+
+type avatarGroupClassKey = {
+  root?: ReactDOM.Style.t,
+  avatar?: ReactDOM.Style.t,
 }
 
 type backdropClassKey = {
@@ -1181,7 +1236,12 @@ type t = {
   @as("MuiAccordionActions") muiAccordionActions?: accordionActionsClassKey,
   @as("MuiAccordionDetails") muiAccordionDetails?: accordionDetailsClassKey,
   @as("MuiAccordionSummary") muiAccordionSummary?: accordionSummaryClassKey,
+  @as("MuiAlert") muiAlert?: alertClassKey,
+  @as("MuiAlertTitle") muiAlertTitle?: alertTitleClassKey,
+  @as("MuiAppBar") muiAppBar?: appBarClassKey,
   @as("MuiAutocomplete") muiAutocomplete?: autocompleteClassKey,
+  @as("MuiAvatar") muiAvatar?: avatarClassKey,
+  @as("MuiAvatarGroup") muiAvatarGroup?: avatarGroupClassKey,
   @as("MuiBackdrop") muiBackdrop?: backdropClassKey,
   @as("MuiBadge") muiBadge?: badgeClassKey,
   @as("MuiButton") muiButton?: buttonClassKey,
