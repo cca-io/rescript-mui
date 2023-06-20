@@ -58,7 +58,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] BottomNavigation
 - [x] BottomNavigationAction
 - [x] Box
-- [ ] Breadcrumbs
+- [x] Breadcrumbs
 - [x] Button
 - [x] ButtonBase
 - [x] ButtonGroup
