@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
 import Link from "@mui/material/Link";
 import Badge from "@mui/material/Badge";
+import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
@@ -51,7 +51,7 @@ function ExampleDashboard(props) {
               children: match$1[0] ? JsxRuntime.jsxs("div", {
                       children: [
                         JsxRuntime.jsx(CssBaseline, {}),
-                        JsxRuntime.jsx(Material.AppBar, {
+                        JsxRuntime.jsx(AppBar, {
                               children: Caml_option.some(JsxRuntime.jsxs(Toolbar, {
                                         children: [
                                           JsxRuntime.jsx(IconButton, {

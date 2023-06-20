@@ -40,7 +40,7 @@ let make = (~sidebar, ~children) => {
     {show
       ? <div>
           <CssBaseline />
-          <AppBar position=#absolute>
+          <AppBar position=Absolute>
             <Toolbar disableGutters={!state.isOpen}>
               <IconButton color=Inherit onClick={_event => setState(Open)}>
                 <MenuIcon />

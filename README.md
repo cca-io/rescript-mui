@@ -49,7 +49,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] AccordionSummary
 - [x] Alert
 - [x] AlertTitle
-- [ ] AppBar
+- [x] AppBar
 - [x] Autocomplete
 - [ ] Avatar
 - [ ] AvatarGroup
