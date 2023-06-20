@@ -51,8 +51,8 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] AlertTitle
 - [x] AppBar
 - [x] Autocomplete
-- [ ] Avatar
-- [ ] AvatarGroup
+- [x] Avatar
+- [x] AvatarGroup
 - [x] Backdrop
 - [x] Badge
 - [ ] BottomNavigation

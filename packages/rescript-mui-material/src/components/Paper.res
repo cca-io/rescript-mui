@@ -43,6 +43,11 @@ type variant =
 type publicProps = {
   ...CommonProps.t,
   /**
+  * The component used for the root node.
+  * Either a string to use a HTML element or a component.
+  */
+  component?: OverridableComponent.t<unknown>,
+  /**
     * Shadow depth, corresponds to `dp` in the spec.
     * It accepts values between 0 and 24 inclusive.
     * @default 1
@@ -57,7 +62,6 @@ type publicProps = {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
   sx?: Sx.props,
-  component?: OverridableComponent.t<unknown>,
 }
 
 type props = {

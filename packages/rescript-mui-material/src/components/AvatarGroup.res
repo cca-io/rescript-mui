@@ -1,58 +1,74 @@
-module ComponentsProps = {
-  type t = {"additionalAvatar": option<Any.t>}
-  @obj external make: (~additionalAvatar: Any.t=?, unit) => t = ""
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
+  /** Styles applied to the avatar elements. */
+  avatar?: string,
 }
 
-module SlotProps = {
-  type t = {"additionalAvatar": option<Any.t>}
-  @obj external make: (~additionalAvatar: Any.t=?, unit) => t = ""
+@unboxed
+type spacing =
+  | @as("medium") Medium
+  | @as("small") Small
+  | Number(float)
+
+@unboxed
+type variant =
+  | @as("circular") Circular
+  | @as("rounded") Rounded
+  | @as("square") Square
+  | String(string)
+
+type slotProps = {additionalAvatar: Avatar.props}
+
+type props = {
+  ...CommonProps.t,
+  /**
+   * The avatars to stack.
+   */
+  children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: OverridableComponent.t<unknown>,
+  /**
+   * Max avatars to show before +x.
+   * @default 5
+   */
+  max?: int,
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps?: slotProps,
+  /**
+   * Spacing between avatars.
+   * @default 'medium'
+   */
+  spacing?: spacing,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Sx.props,
+  /**
+   * The total number of avatars. Used for calculating the number of extra avatars.
+   * @default children.length
+   */
+  total?: int,
+  /**
+   * The variant to use.
+   * @default 'circular'
+   */
+  variant?: variant,
 }
 
-type spacing_enum = [#medium | #small]
-
-module Spacing = {
-  type t
-  external enum: spacing_enum => t = "%identity"
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type variant_enum = [#circular | #rounded | #square]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~componentsProps: ComponentsProps.t=?,
-  ~max: Number.t=?,
-  ~slotProps: SlotProps.t=?,
-  ~spacing: Spacing.t=?,
-  ~sx: Sx.t=?,
-  ~total: Number.t=?,
-  ~variant: Variant.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "AvatarGroup"
+@module("@mui/material/AvatarGroup")
+external make: React.component<props> = "default"
