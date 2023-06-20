@@ -301,6 +301,17 @@ type circularProgressClassKey = {
   circleDisableShrink?: ReactDOM.Style.t,
 }
 
+type containerClassKey = {
+  root?: ReactDOM.Style.t,
+  disableGutters?: ReactDOM.Style.t,
+  fixed?: ReactDOM.Style.t,
+  maxWidthXs?: ReactDOM.Style.t,
+  maxWidthSm?: ReactDOM.Style.t,
+  maxWidthMd?: ReactDOM.Style.t,
+  maxWidthLg?: ReactDOM.Style.t,
+  maxWidthXl?: ReactDOM.Style.t,
+}
+
 type dialogClassKey = {
   root?: ReactDOM.Style.t,
   scrollPaper?: ReactDOM.Style.t,
@@ -1250,6 +1261,7 @@ type t = {
   @as("MuiCheckbox") muiCheckbox?: checkboxClassKey,
   @as("MuiChip") muiChip?: chipClassKey,
   @as("MuiCircularProgress") muiCircularProgress?: circularProgressClassKey,
+  @as("MuiContainer") muiContainer?: containerClassKey,
   @as("MuiDialog") muiDialog?: dialogClassKey,
   @as("MuiDialogActions") muiDialogActions?: dialogActionsClassKey,
   @as("MuiDialogContent") muiDialogContent?: dialogContentClassKey,

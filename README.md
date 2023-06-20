@@ -72,7 +72,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] Chip
 - [x] CircularProgress
 - [ ] Collapse
-- [ ] Container
+- [x] Container
 - [x] CssBaseline
 - [x] Dialog
 - [x] DialogActions
