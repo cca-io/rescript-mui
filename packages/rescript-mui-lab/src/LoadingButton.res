@@ -1,38 +1,46 @@
-type loadingPosition = [#start | #end | #center]
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Mui.Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type classes = {
+  ...Mui.Button.classes,
+  /** Styles applied to the root element if `loading={true}`. */
+  loading?: string,
+  /** Styles applied to the loadingIndicator element. */
+  loadingIndicator?: string,
+  /** Styles applied to the loadingIndicator element if `loadingPosition="center"`. */
+  loadingIndicatorCenter?: string,
+  /** Styles applied to the loadingIndicator element if `loadingPosition="start"`. */
+  loadingIndicatorStart?: string,
+  /** Styles applied to the loadingIndicator element if `loadingPosition="end"`. */
+  loadingIndicatorEnd?: string,
+  /** Styles applied to the endIcon element if `loading={true}` and `loadingPosition="end"`. */
+  endIconLoadingEnd?: string,
+  /** Styles applied to the startIcon element if `loading={true}` and `loadingPosition="start"`. */
+  startIconLoadingStart?: string,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Mui.Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
+type loadingPosition =
+  | @a("start") Start
+  | @a("end") End
+  | @a("center") Center
+
+type props = {
+  ...Mui.Button.props,
+  /**
+     * If `true`, the loading indicator is shown.
+     * @default false
+     */
+  loading?: bool,
+  /**
+     * Element placed before the children if the button is in loading state.
+     * The node should contain an element with `role="progressbar"` with an accessible name.
+     * By default we render a `CircularProgress` that is labelled by the button itself.
+     * @default <CircularProgress color="inherit" size={16} />
+     */
+  loadingIndicator?: React.element,
+  /**
+     * The loading indicator can be positioned on the start, end, or the center of the button.
+     * @default 'center'
+     */
+  loadingPosition?: loadingPosition,
 }
 
-type variant_enum = [#contained | #outlined | #text]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-@react.component @module("@mui/lab")
-external make: (
-  ~children: React.element=?,
-  ~disabled: bool=?,
-  ~id: string=?,
-  ~loading: bool=?,
-  ~loadingIndicator: React.element=?,
-  ~loadingPosition: loadingPosition=?,
-  ~sx: Sx.t=?,
-  ~variant: Variant.t=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "LoadingButton"
+@module("@mui/lab/LoadingButton")
+external make: React.component<props> = "default"
