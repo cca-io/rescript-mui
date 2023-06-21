@@ -249,6 +249,40 @@ type buttonGroupClassKey = {
   groupedContainedSecondary?: ReactDOM.Style.t,
 }
 
+type cardClassKey = {
+  root?: ReactDOM.Style.t,
+}
+
+type cardActionAreaClassKey = {
+  root?: ReactDOM.Style.t,
+  focusVisible?: ReactDOM.Style.t,
+  focusHighlight?: ReactDOM.Style.t,
+}
+
+type cardActionsClassKey = {
+  root?: ReactDOM.Style.t,
+  spacing?: ReactDOM.Style.t,
+}
+
+type cardContentClassKey = {
+  root?: ReactDOM.Style.t,
+}
+
+type cardHeaderClassKey = {
+  root?: ReactDOM.Style.t,
+  avatar?: ReactDOM.Style.t,
+  action?: ReactDOM.Style.t,
+  content?: ReactDOM.Style.t,
+  title?: ReactDOM.Style.t,
+  subheader?: ReactDOM.Style.t,
+}
+
+type cardMediaClassKey = {
+  root?: ReactDOM.Style.t,
+  media?: ReactDOM.Style.t,
+  img?: ReactDOM.Style.t,
+}
+
 type checkboxClassKey = {
   root?: ReactDOM.Style.t,
   checked?: ReactDOM.Style.t,
@@ -1320,6 +1354,12 @@ type t = {
   @as("MuiButton") muiButton?: buttonClassKey,
   @as("MuiButtonBase") muiButtonBase?: buttonBaseClassKey,
   @as("MuiButtonGroup") muiButtonGroup?: buttonGroupClassKey,
+  @as("MuiCard") muiCard?: cardClassKey,
+  @as("MuiCardActionArea") muiCardActionArea?: cardActionAreaClassKey,
+  @as("MuiCardActions") muiCardActions?: cardActionsClassKey,
+  @as("MuiCardContent") muiCardContent?: cardContentClassKey,
+  @as("MuiCardHeader") muiCardHeader?: cardHeaderClassKey,
+  @as("MuiCardMedia") muiCardMedia?: cardMediaClassKey,
   @as("MuiCheckbox") muiCheckbox?: checkboxClassKey,
   @as("MuiChip") muiChip?: chipClassKey,
   @as("MuiCircularProgress") muiCircularProgress?: circularProgressClassKey,

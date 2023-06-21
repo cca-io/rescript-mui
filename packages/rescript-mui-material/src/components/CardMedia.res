@@ -1,27 +1,43 @@
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
+  /** Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
+  media?: string,
+  /** Styles applied to the root element if `component="picture or img"`. */
+  img?: string,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
+type props = {
+  /**
+    * The content of the component.
+    */
+  children?: React.element,
+  /**
+    * Override or extend the styles applied to the component.
+    */
+  classes?: classes,
+  /**
+    * The component used for the root node.
+    * Either a string to use a HTML element or a component.
+    */
+  component?: OverridableComponent.t<unknown>,
+  /**
+    * Image to be displayed as a background image.
+    * Either `image` or `src` prop must be specified.
+    * Note that caller must specify height otherwise the image will not be visible.
+    */
+  image?: string,
+  /**
+    * An alias for `image` property.
+    * Available only with media components.
+    * Media components: `video`, `audio`, `picture`, `iframe`, `img`.
+    */
+  src?: string,
+  /**
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
+  sx?: Sx.props,
 }
 
-@react.component @module("@mui/material")
-external make: (
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~image: string=?,
-  ~src: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~sx: Sx.t=?,
-  ~id: string=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "CardMedia"
+@module("@mui/material/CardMedia")
+external make: React.component<props> = "default"

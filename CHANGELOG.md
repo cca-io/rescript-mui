@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## master
+
+- :boom: Finish complete bindings rewrite of the main MUI package.
+
 ## 5.0.0-alpha.2
 
 - :bug: Fix Input element type.

@@ -1,32 +1,67 @@
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
+  /** Styles applied to the avatar element. */
+  avatar?: string,
+  /** Styles applied to the action element. */
+  action?: string,
+  /** Styles applied to the content wrapper element. */
+  content?: string,
+  /** Styles applied to the title Typography element. */
+  title?: string,
+  /** Styles applied to the subheader Typography element. */
+  subheader?: string,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
+type props = {
+  ...CommonProps.t,
+  /**
+    * The action to display in the card header.
+    */
+  action?: React.element,
+  /**
+    * The Avatar element to display.
+    */
+  avatar?: React.element,
+  /**
+    * Override or extend the styles applied to the component.
+    */
+  classes?: classes,
+  /**
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
+  component?: OverridableComponent.t<unknown>,
+  /**
+    * If `true`, `subheader` and `title` won't be wrapped by a Typography component.
+    * This can be useful to render an alternative Typography variant by wrapping
+    * the `title` text, and optional `subheader` text
+    * with the Typography component.
+    * @default false
+    */
+  disableTypography?: bool,
+  /**
+    * The content of the component.
+    */
+  subheader?: React.element,
+  /**
+    * These props will be forwarded to the subheader
+    * (as long as disableTypography is not `true`).
+    */
+  subheaderTypographyProps?: Typography.props,
+  /**
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
+  sx?: Sx.props,
+  /**
+    * The content of the component.
+    */
+  title?: React.element,
+  /**
+    * These props will be forwarded to the title
+    * (as long as disableTypography is not `true`).
+    */
+  titleTypographyProps?: Typography.props,
 }
 
-@react.component @module("@mui/material")
-external make: (
-  ~action: React.element=?,
-  ~avatar: React.element=?,
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~disableTypography: bool=?,
-  ~subheader: React.element=?,
-  ~subheaderTypographyProps: {..}=?,
-  ~sx: Sx.t=?,
-  ~title: React.element=?,
-  ~titleTypographyProps: {..}=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "CardHeader"
+@module("@mui/material/CardHeader")
+external make: React.component<props> = "default"

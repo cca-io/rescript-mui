@@ -27,7 +27,7 @@ They are still available, check out the old website: https://rescript-material-u
 
 | MUI package         | ReScript bindings package    | Namespace        | Progress |
 | ------------------- | ---------------------------- | ---------------- | -------: |
-| @mui/material       | @rescript-mui/material       | Mui              |     90 % |
+| @mui/material       | @rescript-mui/material       | Mui              |     99 % |
 | @mui/lab            | @rescript-mui/lab            | MuiLab           |      0 % |
 | @mui/x-date-pickers | @rescript-mui/x-date-pickers | MuiXDatePickers  |     10 % |
 | @mui/base           | Not implemented!             | MuiBase (?)      |        - |
@@ -62,12 +62,12 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] Button
 - [x] ButtonBase
 - [x] ButtonGroup
-- [ ] Card
-- [ ] CardActionArea
-- [ ] CardActions
-- [ ] CardContent
-- [ ] CardHeader
-- [ ] CardMedia
+- [x] Card
+- [x] CardActionArea
+- [x] CardActions
+- [x] CardContent
+- [x] CardHeader
+- [x] CardMedia
 - [x] Checkbox
 - [x] Chip
 - [x] CircularProgress

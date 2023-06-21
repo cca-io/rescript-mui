@@ -2,24 +2,27 @@
 
 import * as $$Array from "rescript/lib/es6/array.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
-import * as Material from "@mui/material";
 import * as JsxRuntime from "react/jsx-runtime";
+import Card from "@mui/material/Card";
 import List from "@mui/material/List";
 import Button from "@mui/material/Button";
 import ListItem from "@mui/material/ListItem";
+import CardHeader from "@mui/material/CardHeader";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 
 function ExampleList(props) {
   var subheader = JsxRuntime.jsx("li", {});
-  return JsxRuntime.jsx(Material.Card, {
-              children: Caml_option.some(JsxRuntime.jsxs(Material.Card, {
+  return JsxRuntime.jsx(Card, {
+              children: Caml_option.some(JsxRuntime.jsxs(Card, {
                         children: [
-                          JsxRuntime.jsx(Material.CardHeader, {
+                          JsxRuntime.jsx(CardHeader, {
                                 subheader: "A Subtitle",
                                 title: "Example Title"
                               }),
-                          JsxRuntime.jsx(Material.CardContent, {
+                          JsxRuntime.jsx(CardContent, {
                                 children: Caml_option.some(JsxRuntime.jsx(List, {
                                           children: Caml_option.some($$Array.map((function (sectionId) {
                                                       return JsxRuntime.jsx("li", {
@@ -49,7 +52,7 @@ function ExampleList(props) {
                                           subheader: Caml_option.some(subheader)
                                         }))
                               }),
-                          JsxRuntime.jsx(Material.CardActions, {
+                          JsxRuntime.jsx(CardActions, {
                                 children: Caml_option.some(JsxRuntime.jsx(Button, {
                                           children: "Go to example",
                                           href: "#/example/route",
@@ -67,4 +70,4 @@ var make = ExampleList;
 export {
   make ,
 }
-/* @mui/material Not a pure module */
+/* react/jsx-runtime Not a pure module */
