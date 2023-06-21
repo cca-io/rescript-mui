@@ -14,9 +14,13 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
-## master
+## 5.0.0-alpha.3
 
 - :boom: Finish complete bindings rewrite of the main MUI package.
+
+### MUI Lab 5.0.0-alpha.1
+
+- :boom: Complete rewrite to adapt to MUI v5 (in progress).
 
 ## 5.0.0-alpha.2
 
