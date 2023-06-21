@@ -1,25 +1,28 @@
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Mui.Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Mui.Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
+type props = {
+  ...Mui.CommonProps.t,
+  /**
+   * The content of the component.
+   */
+  children?: React.element,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: classes,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: Mui.Sx.props,
+  /**
+   * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
+   * no `value` was passed to `Tab`.
+   */
+  value: string,
 }
 
-@react.component @module("@mui/lab")
-external make: (
-  ~children: React.element=?,
-  ~className: string=?,
-  ~sx: Sx.t=?,
-  ~value: string,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "TabPanel"
+@module("@mui/lab/TabPanel")
+external make: React.component<props> = "default"

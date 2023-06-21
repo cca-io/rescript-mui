@@ -1,9 +1,14 @@
-@react.component @module("@mui/lab")
-external make: (
-  ~children: React.element=?,
-  ~value: string,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "TabContext"
+type props = {
+  ...Mui.CommonProps.t_NoRef,
+  /**
+    * The content of the component.
+    */
+  children?: React.element,
+  /**
+    * The value of the currently selected `Tab`.
+    */
+  value: string,
+}
+
+@module("@mui/lab/TabContext")
+external make: React.component<props> = "default"

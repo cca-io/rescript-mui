@@ -18,6 +18,8 @@ function ExampleTabs(props) {
   return JsxRuntime.jsx(Paper, {
               square: true,
               children: Caml_option.some(JsxRuntime.jsxs(Tabs, {
+                        indicatorColor: "primary",
+                        textColor: "primary",
                         children: [
                           JsxRuntime.jsx(Tab, {
                                 label: "Active"
@@ -30,9 +32,7 @@ function ExampleTabs(props) {
                                 label: "Active"
                               })
                         ],
-                        indicatorColor: "primary",
                         onChange: handleChange,
-                        textColor: "primary",
                         value: match[0]
                       }))
             });

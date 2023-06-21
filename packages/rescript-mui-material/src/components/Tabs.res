@@ -72,7 +72,7 @@ type variant =
   | @as("scrollable") Scrollable
   | @as("fullWidth") FullWidth
 
-type props<'value> = {
+type publicProps = {
   ...CommonProps.t,
   /**
      * Callback fired when the component mounts.
@@ -106,10 +106,6 @@ type props<'value> = {
      */
   centered?: bool,
   /**
-     * The content of the component.
-     */
-  children?: React.element,
-  /**
      * Override or extend the styles applied to the component.
      */
   classes?: classes,
@@ -129,13 +125,6 @@ type props<'value> = {
      * @default 'primary'
      */
   indicatorColor?: indicatorColor,
-  /**
-     * Callback fired when the value changes.
-     *
-     * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
-     * @param {any} value We default to the index of the child (number)
-     */
-  onChange?: (ReactEvent.Synthetic.t, 'value) => unit,
   /**
      * The component orientation (layout flow direction).
      * @default 'horizontal'
@@ -182,11 +171,6 @@ type props<'value> = {
      */
   textColor?: textColor,
   /**
-     * The value of the currently selected `Tab`.
-     * If you don't want any selected `Tab`, you can set this prop to `false`.
-     */
-  value?: 'value,
-  /**
      *  Determines additional display behavior of the tabs:
      *
      *  - `scrollable` will invoke scrolling properties and allow for horizontally
@@ -208,6 +192,26 @@ type props<'value> = {
      */
   sx?: Sx.props,
   component?: OverridableComponent.t<unknown>,
+}
+
+type props<'value> = {
+  ...publicProps,
+  /**
+    * The content of the component.
+    */
+  children?: React.element,
+  /**
+    * Callback fired when the value changes.
+    *
+    * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
+    * @param {any} value We default to the index of the child (number)
+    */
+  onChange?: (ReactEvent.Synthetic.t, 'value) => unit,
+  /**
+    * The value of the currently selected `Tab`.
+    * If you don't want any selected `Tab`, you can set this prop to `false`.
+    */
+  value?: 'value,
 }
 
 @module("@mui/material/Tabs")
