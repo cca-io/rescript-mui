@@ -115,4 +115,26 @@ type props = {
 @module("@mui/material/FormControl")
 external make: React.component<props> = "default"
 
-// TODO: useFormControl
+type formControlState = {
+  color?: color,
+  disabled?: bool,
+  error?: bool,
+  fullWidth?: bool,
+  hiddenLabel?: bool,
+  margin?: margin,
+  onBlur?: ReactEvent.Focus.t => unit,
+  onFocus?: ReactEvent.Focus.t => unit,
+  required?: bool,
+  size?: size,
+  variant?: variant,
+  adornedStart: bool,
+  filled: bool,
+  focused: bool,
+  onEmpty: unit => unit,
+  onFilled: unit => unit,
+  registerEffect: unit => unit,
+  setAdornedStart: (bool => bool) => unit,
+}
+
+@module("@mui/material/FormControl")
+external useFormControl: unit => formControlState = "useFormControl"
