@@ -195,7 +195,6 @@ type muiPickersAdapter<'date, 'locale> = {
    * A map containing all the format that the field components can understand.
    */
   formatTokenMap: fieldFormatTokenMap,
-  // TODO v7: Replace with dateWithTimezone
   /**
    * Create a date in the date library format.
    * If no `value` parameter is provided, creates a date with the current timestamp.
@@ -276,7 +275,6 @@ type muiPickersAdapter<'date, 'locale> = {
    * @returns {string} The expanded format.
    */
   expandFormat: string => string,
-  // TODO v7: Type `value` to be `'date | null` and make sure the `isValid(null)` returns `false`.
   /**
    * Check if the date is valid.
    * @param {any} value The value to test.
@@ -306,7 +304,6 @@ type muiPickersAdapter<'date, 'locale> = {
    * @returns {string} The formatted number.
    */
   formatNumber: string => string,
-  // TODO v7: Type `value` and `comparing` to be `'date | null`.
   /**
    * Check if the two dates are equal (e.g: they represent the same timestamp).
    * @param {any} value The reference date.
@@ -354,7 +351,6 @@ type muiPickersAdapter<'date, 'locale> = {
    * @returns {boolean} `true` if the reference date is after the second date.
    */
   isAfter: ('date, 'date) => bool,
-  // TODO v7: Consider adding a `unit` param to `isAfter` and drop this method.
   /**
    * Check if the year of the reference date is after the year of the second date (using the timezone of the reference date).
    * @template 'date
@@ -363,7 +359,6 @@ type muiPickersAdapter<'date, 'locale> = {
    * @returns {boolean} `true` if the year of the reference date is after the year of the second date.
    */
   isAfterYear: ('date, 'date) => bool,
-  // TODO v7: Consider adding a `unit` param to `isAfter` and drop this method.
   /**
    * Check if the day of the reference date is after the day of the second date (using the timezone of the reference date).
    * @template 'date
@@ -380,7 +375,6 @@ type muiPickersAdapter<'date, 'locale> = {
    * @returns {boolean} `true` if the reference date is before the second date.
    */
   isBefore: ('date, 'date) => bool,
-  // TODO v7: Consider adding a `unit` param to `isBefore` and drop this method.
   /**
    * Check if the year of the reference date is before the year of the second date (using the timezone of the reference date).
    * @template 'date
@@ -389,7 +383,6 @@ type muiPickersAdapter<'date, 'locale> = {
    * @returns {boolean} `true` if the year of the reference date is before the year of the second date.
    */
   isBeforeYear: ('date, 'date) => bool,
-  // TODO v7: Consider adding a `unit` param to `isBefore` and drop this method.
   /**
    * Check if the day of the reference date is before the day of the second date (using the timezone of the reference date).
    * @template 'date
@@ -650,7 +643,6 @@ type muiPickersAdapter<'date, 'locale> = {
    * @returns {number} The number of the week of the given date.
    */
   getWeekNumber: 'date => int,
-  // TODO v7: Replace with a single range param `['date, 'date]`, to be coherent with `isWithingRange`.
   /**
    * Create a list with all the years between the start end the end date.
    * @template 'date
