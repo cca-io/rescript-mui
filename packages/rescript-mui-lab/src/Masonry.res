@@ -1,62 +1,50 @@
-module Columns_arrayOf = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
 }
 
-module Columns = {
-  type t
-  external arrayOf: array<Columns_arrayOf.t> => t = "%identity"
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external string: string => t = "%identity"
+type props = {
+  ...Mui.CommonProps.t,
+  /**
+    * The content of the component.
+    */
+  children: React.element,
+  /**
+    * Override or extend the styles applied to the component.
+    */
+  classes?: classes,
+  /**
+    * Number of columns.
+    * @default 4
+    */
+  columns?: Mui.System.Value.t,
+  /**
+    * The component used for the root node.
+    * Either a string to use a HTML element or a component.
+    */
+  component?: Mui.OverridableComponent.t<unknown>,
+  /**
+    * The default number of columns of the component. This is provided for server-side rendering.
+    */
+  defaultColumns?: int,
+  /**
+    * The default height of the component in px. This is provided for server-side rendering.
+    */
+  defaultHeight?: int,
+  /**
+    * The default spacing of the component. Like `spacing`, it is a factor of the theme's spacing. This is provided for server-side rendering.
+    */
+  defaultSpacing?: int,
+  /**
+    * Defines the space between children. It is a factor of the theme's spacing.
+    * @default 1
+    */
+  spacing?: Mui.System.Value.t,
+  /**
+    * Allows defining system overrides as well as additional CSS styles.
+    */
+  sx?: Mui.Sx.props,
 }
 
-module Spacing_arrayOf = {
-  type t
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Spacing = {
-  type t
-  external arrayOf: array<Spacing_arrayOf.t> => t = "%identity"
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Mui.Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
-}
-
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Mui.Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-@react.component @module("@mui/lab")
-external make: (
-  ~children: React.element=?,
-  ~className: string=?,
-  ~columns: Columns.t=?,
-  ~component: React.element=?,
-  ~defaultColumns: Mui.Number.t=?,
-  ~defaultHeight: Mui.Number.t=?,
-  ~defaultSpacing: Mui.Number.t=?,
-  ~spacing: Spacing.t=?,
-  ~sx: Sx.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "Masonry"
+@module("@mui/lab/Masonry")
+external make: React.component<props> = "default"
