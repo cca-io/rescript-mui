@@ -558,6 +558,38 @@ type iconButtonClassKey = {
   sizeLarge?: ReactDOM.Style.t,
 }
 
+type imageListClassKey = {
+  root?: ReactDOM.Style.t,
+  masonry?: ReactDOM.Style.t,
+  quilted?: ReactDOM.Style.t,
+  standard?: ReactDOM.Style.t,
+  woven?: ReactDOM.Style.t,
+}
+
+type imageListItemClassKey = {
+  root?: ReactDOM.Style.t,
+  img?: ReactDOM.Style.t,
+  standard?: ReactDOM.Style.t,
+  woven?: ReactDOM.Style.t,
+  masonry?: ReactDOM.Style.t,
+  quilted?: ReactDOM.Style.t,
+}
+
+type imageListItemBarClassKey = {
+  root?: ReactDOM.Style.t,
+  positionBottom?: ReactDOM.Style.t,
+  positionTop?: ReactDOM.Style.t,
+  positionBelow?: ReactDOM.Style.t,
+  titleWrap?: ReactDOM.Style.t,
+  titleWrapBelow?: ReactDOM.Style.t,
+  titleWrapActionPosLeft?: ReactDOM.Style.t,
+  titleWrapActionPosRight?: ReactDOM.Style.t,
+  title?: ReactDOM.Style.t,
+  subtitle?: ReactDOM.Style.t,
+  actionIcon?: ReactDOM.Style.t,
+  actionIconActionPosLeft?: ReactDOM.Style.t,
+}
+
 type inputClassKey = {
   root?: ReactDOM.Style.t,
   formControl?: ReactDOM.Style.t,
@@ -1310,6 +1342,9 @@ type t = {
   @as("MuiGrid") muiGrid?: gridClassKey,
   @as("MuiIcon") muiIcon?: iconClassKey,
   @as("MuiIconButton") muiIconButton?: iconButtonClassKey,
+  @as("MuiImageList") muiImageList?: imageListClassKey,
+  @as("MuiImageListItem") muiImageListItem?: imageListItemClassKey,
+  @as("MuiImageListItemBar") muiImageListItemBar?: imageListItemBarClassKey,
   @as("MuiInput") muiInput?: inputClassKey,
   @as("MuiInputAdornment") muiInputAdornment?: inputAdornmentClassKey,
   @as("MuiInputBase") muiInputBase?: inputBaseClassKey,

@@ -95,9 +95,9 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 - [x] Hidden
 - [x] Icon
 - [x] IconButton
-- [ ] ImageList
-- [ ] ImageListItem
-- [ ] ImageListItemBar
+- [x] ImageList
+- [x] ImageListItem
+- [x] ImageListItemBar
 - [x] Input
 - [x] InputAdornment
 - [x] InputBase

@@ -1,45 +1,68 @@
-type rowHeight_enum = [#auto]
-
-module RowHeight = {
-  type t
-  external enum: rowHeight_enum => t = "%identity"
-  external int: int => t = "%identity"
-  external float: float => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
+  /** Styles applied to the root element if `variant="masonry"`. */
+  masonry?: string,
+  /** Styles applied to the root element if `variant="quilted"`. */
+  quilted?: string,
+  /** Styles applied to the root element if `variant="standard"`. */
+  standard?: string,
+  /** Styles applied to the root element if `variant="woven"`. */
+  woven?: string,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+@unboxed
+type variant =
+  | @as("masonry") Masonry
+  | @as("quilted") Quilted
+  | @as("standard") Standard
+  | @as("woven") Woven
+  | String(string)
+
+@unboxed
+type rowHeight =
+  | Number(float)
+  | @as("auto") Auto
+
+type props = {
+  ...CommonProps.t,
+  /**
+    * The content of the component, normally `ImageListItem`s.
+    */
+  children: React.element,
+  /**
+    * Override or extend the styles applied to the component.
+    */
+  classes?: classes,
+  /**
+    * Number of columns.
+    * @default 2
+    */
+  cols?: int,
+  /**
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
+  component?: OverridableComponent.t<unknown>,
+  /**
+    * The gap between items in px.
+    * @default 4
+    */
+  gap?: float,
+  /**
+    * The height of one row in px.
+    * @default 'auto'
+    */
+  rowHeight?: rowHeight,
+  /**
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
+  sx?: Sx.props,
+  /**
+    * The variant to use.
+    * @default 'standard'
+    */
+  variant?: variant,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type variant_enum = [#masonry | #quilted | #standard | #woven]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-@react.component @module("@mui/material")
-external make: (
-  ~children: React.element=?,
-  ~className: string=?,
-  ~component: React.element=?,
-  ~gap: Number.t=?,
-  ~rowHeight: RowHeight.t=?,
-  ~style: ReactDOM.Style.t=?,
-  ~sx: Sx.t=?,
-  ~variant: Variant.t=?,
-  ~id: string=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "ImageList"
+@module("@mui/material/ImageList")
+external make: React.component<props> = "default"
