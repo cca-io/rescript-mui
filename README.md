@@ -35,7 +35,7 @@ They are still available, check out the old website: https://rescript-material-u
 | @mui/system         | Not implemented!             | MuiSystem (?)    |        - |
 | @mui/x-data-grid    | Not implemented!             | MuiXDataGrid (?) |        - |
 
-NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solution which is not compatible with `React.StrictMode` or React 18.
+NOTE: `@mui/styles` will never be implemented, as it is the legacy styling solution which is not compatible with `React.StrictMode` or React 18.
 
 ## Progress
 
@@ -177,7 +177,7 @@ NOTE: "@mui/styles" will never be implemented, as it is the legacy styling solut
 
 ### MUI-LAB
 
-- [ ] LoadingButton
+- [x] LoadingButton
 - [ ] Masonry
 - [ ] TabContext
 - [ ] TabList
