@@ -106,10 +106,6 @@ type publicProps = {
      */
   centered?: bool,
   /**
-     * Override or extend the styles applied to the component.
-     */
-  classes?: classes,
-  /**
      * The components used for each slot inside.
      * @default {}
      */
@@ -200,6 +196,10 @@ type props<'value> = {
     * The content of the component.
     */
   children?: React.element,
+  /**
+    * Override or extend the styles applied to the component.
+    */
+  classes?: classes,
   /**
     * Callback fired when the value changes.
     *
