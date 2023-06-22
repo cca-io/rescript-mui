@@ -1,8 +1,6 @@
 open Belt
 open NodeJs
 
-// let labComponents = Fs.readdirSync("./packages/rescript-mui-lab/src")
-
 let getComponentsWithClasses = path => {
   let components = Fs.readdirSync(path)
 
@@ -16,7 +14,7 @@ let getComponentsWithClasses = path => {
         let fileByLines = fileContent->Js.String2.split("\n")
 
         let classesBegin =
-          fileByLines->Array.getIndexBy(line => line->Js.String2.includes("type classes = {"))
+          fileByLines->Array.getIndexBy(line => line->Js.String2.startsWith("type classes = {"))
 
         switch classesBegin {
         | None => None
@@ -32,7 +30,10 @@ let getComponentsWithClasses = path => {
               ->Array.slice(~offset=1, ~len=end - 1)
               ->Array.map(Js.String.trim)
               ->Array.keepMap(line =>
-                line->Js.String2.startsWith("/*")
+                line->Js.String2.startsWith("//") ||
+                line->Js.String2.startsWith("/*") ||
+                line->Js.String2.startsWith("*") ||
+                line->Js.String2.startsWith("...")
                   ? None
                   : Some({
                       let newLine =
@@ -42,7 +43,6 @@ let getComponentsWithClasses = path => {
                               Js.Re.fromString("string"),
                               "ReactDOM.Style.t",
                             )
-
                       "  " ++ newLine
                     })
               )
@@ -75,10 +75,13 @@ let getComponentsWithClasses = path => {
   muiNames->Js.Array2.joinWith("\n") ++ "\n}\n"
 }
 
-let overrides = getComponentsWithClasses("./packages/rescript-mui-material/src/components")
+let muiOverrides = getComponentsWithClasses("./packages/rescript-mui-material/src/components")
+let labOverrides = getComponentsWithClasses("./packages/rescript-mui-lab/src")
 
 Fs.writeFileSync(
   "./packages/rescript-mui-material/src/types/Overrides.res",
-  overrides,
+  muiOverrides,
   {encoding: "utf8"},
 )
+
+Fs.writeFileSync("./packages/rescript-mui-lab/src/Overrides.res", labOverrides, {encoding: "utf8"})

@@ -16,7 +16,7 @@ function getComponentsWithClasses(path) {
                 });
             var fileByLines = fileContent.split("\n");
             var classesBegin = Belt_Array.getIndexBy(fileByLines, (function (line) {
-                    return line.includes("type classes = {");
+                    return line.startsWith("type classes = {");
                   }));
             if (classesBegin === undefined) {
               return ;
@@ -31,7 +31,7 @@ function getComponentsWithClasses(path) {
             var classes = Belt_Array.keepMap(Belt_Array.map(Belt_Array.slice(beginSlice, 1, classesEnd - 1 | 0), (function (prim) {
                         return prim.trim();
                       })), (function (line) {
-                    if (line.startsWith("/*")) {
+                    if (line.startsWith("//") || line.startsWith("/*") || line.startsWith("*") || line.startsWith("...")) {
                       return ;
                     }
                     var newLine = line.startsWith("color") ? line : line.replace(new RegExp("string"), "ReactDOM.Style.t");
@@ -47,14 +47,21 @@ function getComponentsWithClasses(path) {
   return "// This file is generated automatically by helpers/src/GenerateOverrides.res. Do not edit manually!\n\n" + classKeys + "\n\ntype t = {\n" + muiNames.join("\n") + "\n}\n";
 }
 
-var overrides = getComponentsWithClasses("./packages/rescript-mui-material/src/components");
+var muiOverrides = getComponentsWithClasses("./packages/rescript-mui-material/src/components");
 
-Fs.writeFileSync("./packages/rescript-mui-material/src/types/Overrides.res", overrides, {
+var labOverrides = getComponentsWithClasses("./packages/rescript-mui-lab/src");
+
+Fs.writeFileSync("./packages/rescript-mui-material/src/types/Overrides.res", muiOverrides, {
+      encoding: "utf8"
+    });
+
+Fs.writeFileSync("./packages/rescript-mui-lab/src/Overrides.res", labOverrides, {
       encoding: "utf8"
     });
 
 export {
   getComponentsWithClasses ,
-  overrides ,
+  muiOverrides ,
+  labOverrides ,
 }
-/* overrides Not a pure module */
+/* muiOverrides Not a pure module */
