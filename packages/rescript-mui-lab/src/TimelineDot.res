@@ -1,42 +1,67 @@
-type color_enum = [#error | #grey | #info | #inherit | #primary | #secondary | #success | #warning]
-
-module Color = {
-  type t
-  external enum: color_enum => t = "%identity"
-  external string: string => t = "%identity"
+type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
+  /** Styles applied to the root element if `variant="filled"`. */
+  filled?: string,
+  /** Styles applied to the root element if `variant="outlined"`. */
+  outlined?: string,
+  /** Styles applied to the root element if `color="grey"` and `variant="filled"`. */
+  filledGrey?: string,
+  /** Styles applied to the root element if `color="grey"` and `variant="outlined"`. */
+  outlinedGrey?: string,
+  /** Styles applied to the root element if `color="primary"` and `variant="filled"`. */
+  filledPrimary?: string,
+  /** Styles applied to the root element if `color="primary"` and `variant="outlined"`. */
+  outlinedPrimary?: string,
+  /** Styles applied to the root element if `color="secondary"` and `variant="filled"`. */
+  filledSecondary?: string,
+  /** Styles applied to the root element if `color="secondary"` and `variant="outlined"`. */
+  outlinedSecondary?: string,
 }
 
-module Sx_arrayOf = {
-  type t
-  external sx_arrayOf_func: Mui.Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-  external bool: bool => t = "%identity"
+@unboxed
+type color =
+  | @as("inherit") Inherit
+  | @as("grey") Grey
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | @as("error") Error
+  | @as("info") Info
+  | @as("success") Success
+  | @as("warning") Warning
+  | String(string)
+
+@unboxed
+type variant =
+  | @as("filled") Filled
+  | @as("outlined") Outlined
+  | String(string)
+
+type props = {
+  ...Mui.CommonProps.t,
+  /**
+    * The content of the component.
+    */
+  children?: React.element,
+  /**
+    * Override or extend the styles applied to the component.
+    */
+  classes?: classes,
+  /**
+    * The dot can have a different colors.
+    * @default 'grey'
+    */
+  color?: color,
+  /**
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
+  sx?: Mui.Sx.props,
+  /**
+    * The dot can appear filled or outlined.
+    * @default 'filled'
+    */
+  variant?: variant,
 }
 
-module Sx = {
-  type t
-  external arrayOf: array<Sx_arrayOf.t> => t = "%identity"
-  external sx_func: Mui.Any.t => t = "%identity"
-  external obj: {..} => t = "%identity"
-}
-
-type variant_enum = [#filled | #outlined]
-
-module Variant = {
-  type t
-  external enum: variant_enum => t = "%identity"
-  external string: string => t = "%identity"
-}
-
-@react.component @module("@mui/lab")
-external make: (
-  ~children: React.element=?,
-  ~className: string=?,
-  ~color: Color.t=?,
-  ~sx: Sx.t=?,
-  ~variant: Variant.t=?,
-  ~id: string=?,
-  ~style: ReactDOM.Style.t=?,
-  ~key: string=?,
-  ~ref: ReactDOM.domRef=?,
-) => React.element = "TimelineDot"
+@module("@mui/lab/TimelineDot")
+external make: React.component<props> = "default"

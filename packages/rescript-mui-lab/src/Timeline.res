@@ -9,8 +9,6 @@ type classes = {
   positionAlternate?: string,
   /** Styles applied to the root element if `position="alternate-reverse"`. */
   positionAlternateReverse?: string,
-  /** Styles applied to the root element if TimelineOppositeContent isn't provided. */
-  missingOppositeContent?: string,
 }
 
 type position =
@@ -22,10 +20,6 @@ type position =
 type props = {
   ...Mui.CommonProps.t,
   /**
-    * The position where the timeline's item should appear.
-    */
-  position?: position,
-  /**
     * The content of the component.
     */
   children?: React.element,
@@ -34,10 +28,15 @@ type props = {
     */
   classes?: classes,
   /**
+    * The position where the TimelineContent should appear relative to the time axis.
+    * @default 'right'
+    */
+  position?: position,
+  /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Mui.Sx.props,
 }
 
-@module("@mui/lab/TimelineItem")
+@module("@mui/lab/Timeline")
 external make: React.component<props> = "default"

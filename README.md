@@ -29,7 +29,7 @@ They are still available, check out the old website: https://rescript-material-u
 | ------------------- | ---------------------------- | ---------------- | -------: |
 | @mui/material       | @rescript-mui/material       | Mui              |     99 % |
 | @mui/lab            | @rescript-mui/lab            | MuiLab           |     50 % |
-| @mui/x-date-pickers | @rescript-mui/x-date-pickers | MuiXDatePickers  |     10 % |
+| @mui/x-date-pickers | @rescript-mui/x-date-pickers | MuiXDatePickers  |    100 % |
 | @mui/base           | Not implemented!             | MuiBase (?)      |        - |
 | @mui/joy            | Not implemented!             | Joy (?)          |        - |
 | @mui/system         | Not implemented!             | MuiSystem (?)    |        - |
@@ -182,13 +182,13 @@ NOTE: `@mui/styles` will never be implemented, as it is the legacy styling solut
 - [x] TabContext
 - [x] TabList
 - [x] TabPanel
-- [ ] Timeline
-- [ ] TimelineConnector
-- [ ] TimelineContent
-- [ ] TimelineDot
-- [ ] TimelineItem
-- [ ] TimelineOppositeContent
-- [ ] TimelineSeparator
+- [x] Timeline
+- [x] TimelineConnector
+- [x] TimelineContent
+- [x] TimelineDot
+- [x] TimelineItem
+- [x] TimelineOppositeContent
+- [x] TimelineSeparator
 - [x] TreeItem
 - [x] TreeView
 
