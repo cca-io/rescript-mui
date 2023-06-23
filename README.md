@@ -148,6 +148,7 @@ NOTE: `@mui/styles` will never be implemented, as it is the legacy styling solut
 - [x] StyledEngineProvider
 - [x] SvgIcon
 - [x] Switch
+- [x] SwipeableDrawer
 - [x] Tab
 - [x] Table
 - [x] TableBody

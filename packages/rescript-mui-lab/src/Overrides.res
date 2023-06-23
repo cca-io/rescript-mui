@@ -10,7 +10,9 @@ type loadingButtonClassKey = {
   startIconLoadingStart?: ReactDOM.Style.t,
 }
 
-type masonryClassKey = {root?: ReactDOM.Style.t}
+type masonryClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type tabListClassKey = {
   root?: ReactDOM.Style.t,
@@ -28,7 +30,9 @@ type tabListClassKey = {
   indicator?: ReactDOM.Style.t,
 }
 
-type tabPanelClassKey = {root?: ReactDOM.Style.t}
+type tabPanelClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type timelineClassKey = {
   root?: ReactDOM.Style.t,
@@ -38,7 +42,9 @@ type timelineClassKey = {
   positionAlternateReverse?: ReactDOM.Style.t,
 }
 
-type timelineConnectorClassKey = {root?: ReactDOM.Style.t}
+type timelineConnectorClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type timelineContentClassKey = {
   root?: ReactDOM.Style.t,
@@ -77,7 +83,9 @@ type timelineOppositeContentClassKey = {
   positionAlternateReverse?: ReactDOM.Style.t,
 }
 
-type timelineSeparatorClassKey = {root?: ReactDOM.Style.t}
+type timelineSeparatorClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type treeItemClassKey = {
   root?: ReactDOM.Style.t,
@@ -91,7 +99,10 @@ type treeItemClassKey = {
   label?: ReactDOM.Style.t,
 }
 
-type treeViewClassKey = {root?: ReactDOM.Style.t}
+type treeViewClassKey = {
+  root?: ReactDOM.Style.t,
+}
+
 
 type t = {
   @as("MuiLoadingButton") muiLoadingButton?: loadingButtonClassKey,
