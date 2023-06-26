@@ -28,150 +28,150 @@ type props<'value> = {
   ...FormControl.publicProps,
   children?: React.element,
   /**
-   * This prop helps users to fill forms faster, especially on mobile devices.
-   * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
-   */
+    * This prop helps users to fill forms faster, especially on mobile devices.
+    * The name can be confusing, as it's more like an autofill.
+    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+    */
   autoComplete?: string,
   /**
-   * If `true`, the `input` element is focused during the first mount.
-   * @default false
-   */
+    * If `true`, the `input` element is focused during the first mount.
+    * @default false
+    */
   autoFocus?: bool,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The color of the component.
-   * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-   * @default 'primary'
-   */
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'primary'
+    */
   color?: color,
   /**
-   * The default value. Use when the component is not controlled.
-   */
+    * The default value. Use when the component is not controlled.
+    */
   defaultValue?: 'value,
   /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-   * If `true`, the label is displayed in an error state.
-   * @default false
-   */
+    * If `true`, the label is displayed in an error state.
+    * @default false
+    */
   error?: bool,
   /**
-   * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
-   */
+    * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
+    */
   @as("FormHelperTextProps")
   formHelperTextProps?: FormHelperText.props,
   /**
-   * If `true`, the input will take up the full width of its container.
-   * @default false
-   */
+    * If `true`, the input will take up the full width of its container.
+    * @default false
+    */
   fullWidth?: bool,
   /**
-   * The helper text content.
-   */
+    * The helper text content.
+    */
   helperText?: React.element,
   /**
-   * The id of the `input` element.
-   * Use this prop to make `label` and `helperText` accessible for screen readers.
-   */
+    * The id of the `input` element.
+    * Use this prop to make `label` and `helperText` accessible for screen readers.
+    */
   id?: string,
   /**
-   * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
-   * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
-   */
+    * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
+    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
+    */
   @as("InputLabelProps")
   inputLabelProps?: InputLabel.props,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   */
+    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+    */
   inputProps?: InputBase.inputBaseComponentProps,
   /**
-   * Props applied to the Input element.
-   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
-   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
-   * component depending on the `variant` prop value.
-   */
+    * Props applied to the Input element.
+    * It will be a [`FilledInput`](/material-ui/api/filled-input/),
+    * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
+    * component depending on the `variant` prop value.
+    */
   @as("InputProps")
   inputProps_?: Input.props<'value>,
   /**
-   * Pass a ref to the `input` element.
-   */
+    * Pass a ref to the `input` element.
+    */
   inputRef?: React.ref<unknown>,
   /**
-   * The label content.
-   */
+    * The label content.
+    */
   label?: React.element,
   /**
-   * If `true`, a `textarea` element is rendered instead of an input.
-   * @default false
-   */
+    * If `true`, a `textarea` element is rendered instead of an input.
+    * @default false
+    */
   multiline?: bool,
   /**
-   * Name attribute of the `input` element.
-   */
+    * Name attribute of the `input` element.
+    */
   name?: string,
   onChange?: ReactEvent.Form.t => unit,
   onBlur?: ReactEvent.Focus.t => unit,
   onFocus?: ReactEvent.Focus.t => unit,
   /**
-   * The short hint displayed in the `input` before the user enters a value.
-   */
+    * The short hint displayed in the `input` before the user enters a value.
+    */
   placeholder?: string,
   /**
-   * If `true`, the label is displayed as required and the `input` element is required.
-   * @default false
-   */
+    * If `true`, the label is displayed as required and the `input` element is required.
+    * @default false
+    */
   required?: bool,
   /**
-   * Number of rows to display when multiline option is set to true.
-   */
+    * Number of rows to display when multiline option is set to true.
+    */
   rows?: int,
   /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
+    * Maximum number of rows to display when multiline option is set to true.
+    */
   maxRows?: int,
   /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
+    * Minimum number of rows to display when multiline option is set to true.
+    */
   minRows?: int,
   /**
-   * Render a [`Select`](/material-ui/api/select/) element while passing the Input element to `Select` as `input` parameter.
-   * If this option is set you must pass the options of the select as children.
-   * @default false
-   */
+    * Render a [`Select`](/material-ui/api/select/) element while passing the Input element to `Select` as `input` parameter.
+    * If this option is set you must pass the options of the select as children.
+    * @default false
+    */
   select?: bool,
   /**
-   * Props applied to the [`Select`](/material-ui/api/select/) element.
-   */
+    * Props applied to the [`Select`](/material-ui/api/select/) element.
+    */
   @as("SelectProps")
   selectProps?: Select.props<'value>,
   /**
-   * The size of the component.
-   */
+    * The size of the component.
+    */
   size?: size,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   */
+    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+    */
   @as("type")
   type_?: string,
   /**
-   * The value of the `input` element, required for a controlled component.
-   */
+    * The value of the `input` element, required for a controlled component.
+    */
   value?: 'value,
   /**
-   * The variant to use.
-   */
+    * The variant to use.
+    */
   variant?: variant,
 }
 

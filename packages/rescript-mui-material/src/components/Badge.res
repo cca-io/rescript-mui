@@ -108,71 +108,71 @@ type overlap =
 type props = {
   ...CommonProps.t,
   /**
-   * The content rendered within the badge.
-   */
+    * The content rendered within the badge.
+    */
   badgeContent?: React.element,
   /**
-   * The badge will be added relative to this node.
-   */
+    * The badge will be added relative to this node.
+    */
   children?: React.element,
   /**
-   * If `true`, the badge is invisible.
-   * @default false
-   */
+    * If `true`, the badge is invisible.
+    * @default false
+    */
   invisible?: bool,
   /**
-   * Max count to show.
-   * @default 99
-   */
+    * Max count to show.
+    * @default 99
+    */
   max?: int,
   /**
-   * The props used for each slot inside the Badge.
-   * @default {}
-   */
+    * The props used for each slot inside the Badge.
+    * @default {}
+    */
   slotProps?: slotProps,
   /**
-   * The components used for each slot inside the Badge.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
+    * The components used for each slot inside the Badge.
+    * Either a string to use a HTML element or a component.
+    * @default {}
+    */
   slots?: badgeSlots,
   /**
-   * Controls whether the badge is hidden when `badgeContent` is zero.
-   * @default false
-   */
+    * Controls whether the badge is hidden when `badgeContent` is zero.
+    * @default false
+    */
   showZero?: bool,
   /**
-     * The anchor of the badge.
-     * @default {
-     *   vertical: 'top',
-     *   horizontal: 'right',
-     * }
-     */
+    * The anchor of the badge.
+    * @default {
+    *   vertical: 'top',
+    *   horizontal: 'right',
+    * }
+    */
   anchorOrigin?: badgeOrigin,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The color of the component.
-     * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'default'
-     */
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'default'
+    */
   color?: color,
   /**
-     * Wrapped shape the badge should overlap.
-     * @default 'rectangular'
-     */
+    * Wrapped shape the badge should overlap.
+    * @default 'rectangular'
+    */
   overlap?: overlap,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-     * The variant to use.
-     * @default 'standard'
-     */
+    * The variant to use.
+    * @default 'standard'
+    */
   variant?: variant,
 }
 

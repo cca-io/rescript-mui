@@ -75,117 +75,117 @@ type variant =
 type publicProps = {
   ...CommonProps.t,
   /**
-     * Callback fired when the component mounts.
-     * This is useful when you want to trigger an action programmatically.
-     * It supports two actions: `updateIndicator()` and `updateScrollButtons()`
-     *
-     * @param {object} actions This object contains all possible actions
-     * that can be triggered programmatically.
-     */
+    * Callback fired when the component mounts.
+    * This is useful when you want to trigger an action programmatically.
+    * It supports two actions: `updateIndicator()` and `updateScrollButtons()`
+    *
+    * @param {object} actions This object contains all possible actions
+    * that can be triggered programmatically.
+    */
   action?: React.ref<tabsActions>,
   /**
-     * If `true`, the scroll buttons aren't forced hidden on mobile.
-     * By default the scroll buttons are hidden on mobile and takes precedence over `scrollButtons`.
-     * @default false
-     */
+    * If `true`, the scroll buttons aren't forced hidden on mobile.
+    * By default the scroll buttons are hidden on mobile and takes precedence over `scrollButtons`.
+    * @default false
+    */
   allowScrollButtonsMobile?: bool,
   /**
-     * The label for the Tabs as a string.
-     */
+    * The label for the Tabs as a string.
+    */
   @as("aria-label")
   ariaLabel?: string,
   /**
-     * An id or list of ids separated by a space that label the Tabs.
-     */
+    * An id or list of ids separated by a space that label the Tabs.
+    */
   @as("aria-labelledby")
   ariaLabelledby?: string,
   /**
-     * If `true`, the tabs are centered.
-     * This prop is intended for large views.
-     * @default false
-     */
+    * If `true`, the tabs are centered.
+    * This prop is intended for large views.
+    * @default false
+    */
   centered?: bool,
   /**
-     * The components used for each slot inside.
-     * @default {}
-     */
+    * The components used for each slot inside.
+    * @default {}
+    */
   slots?: slots,
   /**
-     * The extra props for the slot components.
-     * You can override the existing props or add new ones.
-     * @default {}
-     */
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
   slotProps?: slotProps<unknown>,
   /**
-     * Determines the color of the indicator.
-     * @default 'primary'
-     */
+    * Determines the color of the indicator.
+    * @default 'primary'
+    */
   indicatorColor?: indicatorColor,
   /**
-     * The component orientation (layout flow direction).
-     * @default 'horizontal'
-     */
+    * The component orientation (layout flow direction).
+    * @default 'horizontal'
+    */
   orientation?: orientation,
   /**
-     * The component used to render the scroll buttons.
-     * @default TabScrollButton
-     */
+    * The component used to render the scroll buttons.
+    * @default TabScrollButton
+    */
   @as("ScrollButtonComponent")
   scrollButtonComponent?: React.element,
   /**
-     * Determine behavior of scroll buttons when tabs are set to scroll:
-     *
-     * - `auto` will only present them when not all the items are visible.
-     * - `true` will always present them.
-     * - `false` will never present them.
-     *
-     * By default the scroll buttons are hidden on mobile.
-     * This behavior can be disabled with `allowScrollButtonsMobile`.
-     * @default 'auto'
-     */
+    * Determine behavior of scroll buttons when tabs are set to scroll:
+    *
+    * - `auto` will only present them when not all the items are visible.
+    * - `true` will always present them.
+    * - `false` will never present them.
+    *
+    * By default the scroll buttons are hidden on mobile.
+    * This behavior can be disabled with `allowScrollButtonsMobile`.
+    * @default 'auto'
+    */
   scrollButtons?: scrollButtons,
   /**
-     * If `true` the selected tab changes on focus. Otherwise it only
-     * changes on activation.
-     */
+    * If `true` the selected tab changes on focus. Otherwise it only
+    * changes on activation.
+    */
   selectionFollowsFocus?: bool,
   /**
-     * Props applied to the tab indicator element.
-     * @default  {}
-     */
+    * Props applied to the tab indicator element.
+    * @default  {}
+    */
   @as("TabIndicatorProps")
   tabIndicatorProps?: tabIndicatorProps<unknown>,
   /**
-     * Props applied to the [`TabScrollButton`](/material-ui/api/tab-scroll-button/) element.
-     * @default {}
-     */
+    * Props applied to the [`TabScrollButton`](/material-ui/api/tab-scroll-button/) element.
+    * @default {}
+    */
   @as("TabScrollButtonProps")
   tabScrollButtonProps?: tabScrollButtonProps<unknown>,
   /**
-     * Determines the color of the `Tab`.
-     * @default 'primary'
-     */
+    * Determines the color of the `Tab`.
+    * @default 'primary'
+    */
   textColor?: textColor,
   /**
-     *  Determines additional display behavior of the tabs:
-     *
-     *  - `scrollable` will invoke scrolling properties and allow for horizontally
-     *  scrolling (or swiping) of the tab bar.
-     *  -`fullWidth` will make the tabs grow to use all the available space,
-     *  which should be used for small views, like on mobile.
-     *  - `standard` will render the default state.
-     * @default 'standard'
-     */
+    *  Determines additional display behavior of the tabs:
+    *
+    *  - `scrollable` will invoke scrolling properties and allow for horizontally
+    *  scrolling (or swiping) of the tab bar.
+    *  -`fullWidth` will make the tabs grow to use all the available space,
+    *  which should be used for small views, like on mobile.
+    *  - `standard` will render the default state.
+    * @default 'standard'
+    */
   variant?: variant,
   /**
-     * If `true`, the scrollbar is visible. It can be useful when displaying
-     * a long vertical list of tabs.
-     * @default false
-     */
+    * If `true`, the scrollbar is visible. It can be useful when displaying
+    * a long vertical list of tabs.
+    * @default false
+    */
   visibleScrollbar?: bool,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   component?: OverridableComponent.t<unknown>,
 }

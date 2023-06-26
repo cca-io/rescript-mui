@@ -30,46 +30,46 @@ type color =
 type props = {
   ...CommonProps.t,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The color of the component.
-   * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-   */
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    */
   color?: color,
   /**
-     * The component used for the root node. Either a string to use a HTML element or a component.
-     */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-   * If `true`, the label should be displayed in a disabled state.
-   */
+    * If `true`, the label should be displayed in a disabled state.
+    */
   disabled?: bool,
   /**
-   * If `true`, the label is displayed in an error state.
-   */
+    * If `true`, the label is displayed in an error state.
+    */
   error?: bool,
   /**
-   * If `true`, the label should use filled classes key.
-   */
+    * If `true`, the label should use filled classes key.
+    */
   filled?: bool,
   /**
-   * If `true`, the input of this label is focused (used by `FormGroup` components).
-   */
+    * If `true`, the input of this label is focused (used by `FormGroup` components).
+    */
   focused?: bool,
   /**
-   * If `true`, the label will indicate that the `input` is required.
-   */
+    * If `true`, the label will indicate that the `input` is required.
+    */
   required?: bool,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

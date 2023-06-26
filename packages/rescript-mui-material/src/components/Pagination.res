@@ -74,52 +74,52 @@ type props = {
   ...CommonProps.t,
   ...UsePagination.props,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The active color.
-   * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-   * @default 'standard'
-   */
+    * The active color.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'standard'
+    */
   color?: color,
   /**
-   * Accepts a function which returns a string value that provides a user-friendly name for the current page.
-   * This is important for screen reader users.
-   *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
-   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
-   * @param {number} page The page number to format.
-   * @param {bool} selected If true, the current page is selected.
-   * @returns {string}
-   */
+    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+    * This is important for screen reader users.
+    *
+    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
+    * @param {number} page The page number to format.
+    * @param {bool} selected If true, the current page is selected.
+    * @returns {string}
+    */
   getItemAriaLabel?: (getItemAriaLabelType, int, bool) => string,
   /**
-   * Render the item.
-   * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
-   * @returns {ReactNode}
-   * @default (item) => <PaginationItem {...item} />
-   */
+    * Render the item.
+    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
+    * @returns {ReactNode}
+    * @default (item) => <PaginationItem {...item} />
+    */
   renderItem?: paginationRenderItemParams => React.element,
   /**
-   * The shape of the pagination items.
-   * @default 'circular'
-   */
+    * The shape of the pagination items.
+    * @default 'circular'
+    */
   shape?: shape,
   /**
-   * The size of the component.
-   * @default 'medium'
-   */
+    * The size of the component.
+    * @default 'medium'
+    */
   size?: size,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * The variant to use.
-   * @default 'text'
-   */
+    * The variant to use.
+    * @default 'text'
+    */
   variant?: variant,
 }
 

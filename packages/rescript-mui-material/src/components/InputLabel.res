@@ -53,58 +53,57 @@ type variant =
 type props = {
   ...CommonProps.t,
   /**
-     * The content of the component.
-     */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   color?: color,
   /**
-     * If `true`, the transition animation is disabled.
-     * @default false
-     */
+    * If `true`, the transition animation is disabled.
+    * @default false
+    */
   disableAnimation?: bool,
   /**
-     * If `true`, the component is disabled.
-     */
+    * If `true`, the component is disabled.
+    */
   disabled?: bool,
   /**
-     * If `true`, the label is displayed in an error state.
-     */
+    * If `true`, the label is displayed in an error state.
+    */
   error?: bool,
   /**
-     * If `true`, the `input` of this label is focused.
-     */
+    * If `true`, the `input` of this label is focused.
+    */
   focused?: bool,
   /**
-     * If `dense`, will adjust vertical spacing. This is normally obtained via context from
-     * FormControl.
-     */
+    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+    * FormControl.
+    */
   margin?: margin,
   /**
-     * if `true`, the label will indicate that the `input` is required.
-     */
+    * if `true`, the label will indicate that the `input` is required.
+    */
   required?: bool,
   /**
-     * If `true`, the label is shrunk.
-     */
+    * If `true`, the label is shrunk.
+    */
   shrink?: bool,
   /**
-     * The size of the component.
-     * @default 'normal'
-     */
+    * The size of the component.
+    * @default 'normal'
+    */
   size?: size,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-     * The variant to use.
-     */
+    * The variant to use.
+    */
   variant?: variant,
-  // Native HTML element props
   htmlFor?: string,
 }
 

@@ -38,64 +38,64 @@ type size =
 type props<'value> = {
   ...CommonProps.t,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The color of the button when it is selected.
-   * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-   * @default 'standard'
-   */
+    * The color of the button when it is selected.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'standard'
+    */
   color?: color,
   /**
-   * If `true`, the component is disabled. This implies that all ToggleButton children will be disabled.
-   * @default false
-   */
+    * If `true`, the component is disabled. This implies that all ToggleButton children will be disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-   * If `true`, only allow one of the child ToggleButton values to be selected.
-   * @default false
-   */
+    * If `true`, only allow one of the child ToggleButton values to be selected.
+    * @default false
+    */
   exclusive?: bool,
   /**
-   * If `true`, the button group will take up the full width of its container.
-   * @default false
-   */
+    * If `true`, the button group will take up the full width of its container.
+    * @default false
+    */
   fullWidth?: bool,
   /**
-   * Callback fired when the value changes.
-   *
-   * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
-   * @param {any} value of the selected buttons. When `exclusive` is true
-   * this is a single value, when false an array of selected values. If no value
-   * is selected and `exclusive` is true the value is null, when false an empty array.
-   */
+    * Callback fired when the value changes.
+    *
+    * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+    * @param {any} value of the selected buttons. When `exclusive` is true
+    * this is a single value, when false an array of selected values. If no value
+    * is selected and `exclusive` is true the value is null, when false an empty array.
+    */
   onChange?: (ReactEvent.Mouse.t, 'value) => unit,
   /**
-   * The component orientation (layout flow direction).
-   * @default 'horizontal'
-   */
+    * The component orientation (layout flow direction).
+    * @default 'horizontal'
+    */
   orientation?: orientation,
   /**
-   * The size of the component.
-   * @default 'medium'
-   */
+    * The size of the component.
+    * @default 'medium'
+    */
   size?: size,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * The currently selected value within the group or an array of selected
-   * values when `exclusive` is false.
-   *
-   * The value must have reference equality with the option in order to be selected.
-   */
+    * The currently selected value within the group or an array of selected
+    * values when `exclusive` is false.
+    *
+    * The value must have reference equality with the option in order to be selected.
+    */
   value?: 'value,
 }
 

@@ -16,20 +16,20 @@ type classes = {
 type props = {
   ...CommonProps.t,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The icon to display.
-   */
+    * The icon to display.
+    */
   icon?: React.element,
   /**
-   * The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
-   */
+    * The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
+    */
   openIcon?: React.element,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

@@ -12,20 +12,20 @@ type classes = {
 type props = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
-     * Override or extend the styles applied to the component.
-     */
+	  * Override or extend the styles applied to the component.
+	  */
   classes?: classes,
   /**
-     * The icon displayed by the step label.
-     */
+	  * The icon displayed by the step label.
+	  */
   icon?: React.element,
   /**
-     * The optional node to display.
-     */
+	  * The optional node to display.
+	  */
   optional?: React.element,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+		* The system prop that allows defining system overrides as well as additional CSS styles.
+	  */
   sx?: Sx.props,
 }
 

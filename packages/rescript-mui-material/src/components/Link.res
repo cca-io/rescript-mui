@@ -36,26 +36,26 @@ type rel =
 type props = {
   ...Typography.publicProps,
   /**
-       * The content of the component.
-       */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-       * Override or extend the styles applied to the component.
-       */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-       * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
-       */
+    * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
+    */
   @as("TypographyClasses")
   typographyClasses?: Typography.classes,
   /**
-       * Controls when the link should have an underline.
-       * @default 'always'
-       */
+		* Controls when the link should have an underline.
+		* @default 'always'
+		*/
   underline?: underline,
   // HTML anchor attributes
   href?: string,

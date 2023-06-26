@@ -14,30 +14,30 @@ type message = React.element
 type props = {
   ...Paper.publicProps,
   /**
-   * The action to display. It renders after the message, at the end of the snackbar.
-   */
+    * The action to display. It renders after the message, at the end of the snackbar.
+    */
   action?: action,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The message to display.
-   */
+    * The message to display.
+    */
   message?: message,
   /**
-   * The ARIA role attribute of the element.
-   * @default 'alert'
-   */
+    * The ARIA role attribute of the element.
+    * @default 'alert'
+    */
   role?: string,
   /**
     * The variant to use.
     * @default 'elevation'
-  */
+    */
   variant?: Paper.variant,
 }
 

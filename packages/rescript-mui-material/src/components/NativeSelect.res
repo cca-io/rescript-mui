@@ -37,56 +37,56 @@ type variant =
 type props<'value> = {
   ...InputBase.publicProps,
   /**
-   * The option elements to populate the select with.
-   * Can be some `<option>` elements.
-   */
+    * The option elements to populate the select with.
+    * Can be some `<option>` elements.
+    */
   children?: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   * @default {}
-   */
+    * Override or extend the styles applied to the component.
+    * @default {}
+    */
   classes?: classes,
   /**
-   * The default value. Use when the component is not controlled.
-   */
+    * The default value. Use when the component is not controlled.
+    */
   defaultValue?: 'value,
   /**
-   * If `true`, the `input` will not have an underline.
-   */
+    * If `true`, the `input` will not have an underline.
+    */
   disableUnderline?: bool,
   /**
-   * The icon that displays the arrow.
-   * @default ArrowDropDownIcon
-   */
+    * The icon that displays the arrow.
+    * @default ArrowDropDownIcon
+    */
   @as("IconComponent")
   iconComponent?: React.element,
   /**
-   * An `Input` element, does not have to be a material-ui specific `Input`.
-   * @default <Input />
-   */
+    * An `Input` element, does not have to be a material-ui specific `Input`.
+    * @default <Input />
+    */
   input?: React.element,
   /**
-   * Pass a ref to the `input` element.
-   */
+    * Pass a ref to the `input` element.
+    */
   inputRef?: React.ref<unknown>,
   /**
-   * Callback fired when a menu item is selected.
-   *
-   * @param {React.ChangeEvent<HTMLSelectElement>} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
-   */
+    * Callback fired when a menu item is selected.
+    *
+    * @param {React.ChangeEvent<HTMLSelectElement>} event The event source of the callback.
+    * You can pull out the new value by accessing `event.target.value` (string).
+    */
   onChange?: ReactEvent.Form.t => unit,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * The `input` value. The DOM API casts this to a string.
-   */
+    * The `input` value. The DOM API casts this to a string.
+    */
   value?: 'value,
   /**
-   * The variant to use.
-   */
+    * The variant to use.
+    */
   variant?: variant,
 }
 

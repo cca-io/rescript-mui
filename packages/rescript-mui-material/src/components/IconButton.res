@@ -57,43 +57,43 @@ type size =
 type props = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The color of the component.
-     * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'default'
-     */
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'default'
+    */
   color?: color,
   /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-     * If `true`, the  keyboard focus ripple is disabled.
-     * @default false
-     */
+    * If `true`, the  keyboard focus ripple is disabled.
+    * @default false
+    */
   disableFocusRipple?: bool,
   /**
-     * If given, uses a negative margin to counteract the padding on one
-     * side (this is often helpful for aligning the left or right
-     * side of the icon with content above or below, without ruining the border
-     * size and shape).
-     * @default false
-     */
+    * If given, uses a negative margin to counteract the padding on one
+    * side (this is often helpful for aligning the left or right
+    * side of the icon with content above or below, without ruining the border
+    * size and shape).
+    * @default false
+    */
   edge?: edge,
   /**
-     * The size of the component.
-     * `small` is equivalent to the dense button styling.
-     * @default 'medium'
-     */
+    * The size of the component.
+    * `small` is equivalent to the dense button styling.
+    * @default 'medium'
+    */
   size?: size,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

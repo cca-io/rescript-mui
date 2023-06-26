@@ -80,66 +80,66 @@ type variant =
 type props = {
   ...CommonProps.t,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The active color.
-     * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'standard'
-     */
+    * The active color.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'standard'
+    */
   color?: color,
   /**
-       * The component used for the root node. Either a string to use a HTML element or a component.
-       */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-     * The current page number.
-     */
+    * The current page number.
+    */
   page?: React.element,
   /**
-     * If `true` the pagination item is selected.
-     * @default false
-     */
+    * If `true` the pagination item is selected.
+    * @default false
+    */
   selected?: bool,
   /**
-     * The shape of the pagination item.
-     * @default 'circular'
-     */
+    * The shape of the pagination item.
+    * @default 'circular'
+    */
   shape?: shape,
   /**
-     * The size of the component.
-     * @default 'medium'
-     */
+    * The size of the component.
+    * @default 'medium'
+    */
   size?: size,
   /**
-     * The components used for each slot inside.
-     *
-     * This prop is an alias for the `components` prop, which will be deprecated in the future.
-     *
-     * @default {}
-     */
+    * The components used for each slot inside.
+    *
+    * This prop is an alias for the `components` prop, which will be deprecated in the future.
+    *
+    * @default {}
+    */
   slots?: slots,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-     * The type of pagination item.
-     * @default 'page'
-     */
+    * The type of pagination item.
+    * @default 'page'
+    */
   @as("type")
   type_?: type_,
   /**
-     * The variant to use.
-     * @default 'text'
-     */
+    * The variant to use.
+    * @default 'text'
+    */
   variant?: variant,
 }
 

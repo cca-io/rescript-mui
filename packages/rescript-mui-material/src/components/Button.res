@@ -123,58 +123,58 @@ type variant =
 type props = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The color of the component.
-     * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'primary'
-     */
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'primary'
+    */
   color?: color,
   /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-     * If `true`, no elevation is used.
-     * @default false
-     */
+    * If `true`, no elevation is used.
+    * @default false
+    */
   disableElevation?: bool,
   /**
-     * If `true`, the  keyboard focus ripple is disabled.
-     * @default false
-     */
+    * If `true`, the  keyboard focus ripple is disabled.
+    * @default false
+    */
   disableFocusRipple?: bool,
   /**
-     * Element placed after the children.
-     */
+    * Element placed after the children.
+    */
   endIcon?: React.element,
   /**
-     * If `true`, the button will take up the full width of its container.
-     * @default false
-     */
+    * If `true`, the button will take up the full width of its container.
+    * @default false
+    */
   fullWidth?: bool,
   /**
-     * The size of the component.
-     * `small` is equivalent to the dense button styling.
-     * @default 'medium'
-     */
+    * The size of the component.
+    * `small` is equivalent to the dense button styling.
+    * @default 'medium'
+    */
   size?: size,
   /**
-     * Element placed before the children.
-     */
+    * Element placed before the children.
+    */
   startIcon?: React.element,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-     * The variant to use.
-     * @default 'text'
-     */
+    * The variant to use.
+    * @default 'text'
+    */
   variant?: variant,
 }
 

@@ -87,69 +87,73 @@ type variantMapping = {
 type publicProps = {
   ...System.props,
   /**
-       * Set the text-align on the component.
-       * @default 'inherit'
-       */
+    * Set the text-align on the component.
+    * @default 'inherit'
+    */
   align?: align,
   /**
-       * If `true`, the text will have a bottom margin.
-       * @default false
-       */
+    * The component used for the root node.
+    * Either a string to use a HTML element or a component.
+    */
+  component?: OverridableComponent.t<unknown>,
+  /**
+    * If `true`, the text will have a bottom margin.
+    * @default false
+    */
   gutterBottom?: bool,
   /**
-       * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
-       *
-       * Note that text overflow can only happen with block or inline-block level elements
-       * (the element needs to have a width in order to overflow).
-       * @default false
-       */
+    * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
+    *
+    * Note that text overflow can only happen with block or inline-block level elements
+    * (the element needs to have a width in order to overflow).
+    * @default false
+    */
   noWrap?: bool,
   /**
-       * If `true`, the element will be a paragraph element.
-       * @default false
-       */
+    * If `true`, the element will be a paragraph element.
+    * @default false
+    */
   paragraph?: bool,
   /**
-       * Applies the theme typography styles.
-       * @default 'body1'
-       */
+    * Applies the theme typography styles.
+    * @default 'body1'
+    */
   variant?: variant,
   /**
-       * The component maps the variant prop to a range of different HTML element types.
-       * For instance, subtitle1 to `<h6>`.
-       * If you wish to change that mapping, you can provide your own.
-       * Alternatively, you can use the `component` prop.
-       * @default {
-       *   h1: 'h1',
-       *   h2: 'h2',
-       *   h3: 'h3',
-       *   h4: 'h4',
-       *   h5: 'h5',
-       *   h6: 'h6',
-       *   subtitle1: 'h6',
-       *   subtitle2: 'h6',
-       *   body1: 'p',
-       *   body2: 'p',
-       *   inherit: 'p',
-       * }
-       */
+    * The component maps the variant prop to a range of different HTML element types.
+    * For instance, subtitle1 to `<h6>`.
+    * If you wish to change that mapping, you can provide your own.
+    * Alternatively, you can use the `component` prop.
+    * @default {
+    *   h1: 'h1',
+    *   h2: 'h2',
+    *   h3: 'h3',
+    *   h4: 'h4',
+    *   h5: 'h5',
+    *   h6: 'h6',
+    *   subtitle1: 'h6',
+    *   subtitle2: 'h6',
+    *   body1: 'p',
+    *   body2: 'p',
+    *   inherit: 'p',
+    * }
+    */
   variantMapping?: variantMapping,
-  component?: OverridableComponent.t<unknown>,
 }
 
 type props = {
   ...publicProps,
   /**
-       * The content of the component.
-       */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-       * Override or extend the styles applied to the component.
-       */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

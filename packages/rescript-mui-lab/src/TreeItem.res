@@ -72,68 +72,68 @@ type classes = {
 type props = {
   ...Mui.CommonProps.clickablePropsWithOnClick,
   /**
-   * The id of the node.
-   */
+    * The id of the node.
+    */
   nodeId: string,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The icon used to collapse the node.
-   */
+    * The icon used to collapse the node.
+    */
   collapseIcon?: React.element,
   /**
-   * The component used for the content node.
-   * @default TreeItemContent
-   */
+    * The component used for the content node.
+    * @default TreeItemContent
+    */
   @as("ContentComponent")
   contentComponent?: React.component<Content.props>,
   /**
-   * Props applied to ContentComponent
-   */
+    * Props applied to ContentComponent
+    */
   @as("ContentProps")
   contentProps?: Content.props,
   /**
-   * If `true`, the node is disabled.
-   * @default false
-   */
+    * If `true`, the node is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-   * The icon displayed next to a end node.
-   */
+    * The icon displayed next to a end node.
+    */
   endIcon?: React.element,
   /**
-   * The icon used to expand the node.
-   */
+    * The icon used to expand the node.
+    */
   expandIcon?: React.element,
   /**
-   * The icon to display next to the tree node's label.
-   */
+    * The icon to display next to the tree node's label.
+    */
   icon?: React.element,
   /**
-   * The tree node label.
-   */
+    * The tree node label.
+    */
   label?: React.element,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Mui.Sx.props,
   /**
-   * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Collapse
-   */
+    * The component used for the transition.
+    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+    * @default Collapse
+    */
   @as("TransitionComponent")
   transitionComponent?: React.component<Mui.Transition.props>,
   /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-   */
+    * Props applied to the transition element.
+    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+    */
   @as("TransitionProps")
   transitionProps?: Mui.Transition.props,
 }

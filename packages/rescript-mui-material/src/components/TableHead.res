@@ -6,20 +6,20 @@ type classes = {
 type props = {
   ...CommonProps.t,
   /**
-     * The content of the component, normally `TableRow`.
-     */
+    * The content of the component, normally `TableRow`.
+    */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The component used for the root node. Either a string to use a HTML element or a component.
-     */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

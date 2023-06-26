@@ -25,53 +25,53 @@ type classes = {
 
 type slotProps = {
   /**
-     * Props applied to the label element.
-     * @default {}
-     */
+    * Props applied to the label element.
+    * @default {}
+    */
   label?: unknown,
 }
 
 type props = {
   ...CommonProps.t,
   /**
-   * In most cases will simply be a string containing a title for the label.
-   */
+    * In most cases will simply be a string containing a title for the label.
+    */
   children?: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * If `true`, the step is marked as failed.
-   * @default false
-   */
+    * If `true`, the step is marked as failed.
+    * @default false
+    */
   error?: bool,
   /**
-   * Override the default label of the step icon.
-   */
+    * Override the default label of the step icon.
+    */
   icon?: React.element,
   /**
-   * The optional node to display.
-   */
+    * The optional node to display.
+    */
   optional?: React.element,
   /**
-   * The props used for each slot inside.
-   * @default {}
-   */
+    * The props used for each slot inside.
+    * @default {}
+    */
   slotProps?: slotProps,
   /**
-   * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
-   */
+    * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
+    */
   @as("StepIconComponent")
   stepIconComponent?: React.component<StepIcon.props>,
   /**
-   * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
-   */
+    * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
+    */
   @as("StepIconProps")
   stepIconProps?: StepIcon.props,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

@@ -74,94 +74,94 @@ type slots = {root?: React.element}
 type props = {
   ...CommonProps.t,
   /**
-   * If `true`, the component is shown.
-   */
+    * If `true`, the component is shown.
+    */
   @as("open")
   open_: bool,
   /**
-   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
-   * or a function that returns either.
-   * It's used to set the position of the popper.
-   * The return value will passed as the reference object of the Popper instance.
-   */
+    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+    * or a function that returns either.
+    * It's used to set the position of the popper.
+    * The return value will passed as the reference object of the Popper instance.
+    */
   anchorEl?: anchorEl,
   /**
-   * Popper render function or node.
-   */
+    * Popper render function or node.
+    */
   children?: React.element,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
+    * The component used for the root node.
+    * Either a string to use a HTML element or a component.
+    */
   component?: React.element,
   /**
-   * An HTML element or function that returns one.
-   * The `container` will have the portal children appended to it.
-   *
-   * By default, it uses the body of the top-level document object,
-   * so it's simply `document.body` most of the time.
-   */
+    * An HTML element or function that returns one.
+    * The `container` will have the portal children appended to it.
+    *
+    * By default, it uses the body of the top-level document object,
+    * so it's simply `document.body` most of the time.
+    */
   container?: React.element,
   /**
-   * Direction of the text.
-   * @default 'ltr'
-   */
+    * Direction of the text.
+    * @default 'ltr'
+    */
   direction?: direction,
   /**
-   * The `children` will be under the DOM hierarchy of the parent component.
-   * @default false
-   */
+    * The `children` will be under the DOM hierarchy of the parent component.
+    * @default false
+    */
   disablePortal?: bool,
   /**
-   * Always keep the children in the DOM.
-   * This prop can be useful in SEO situation or
-   * when you want to maximize the responsiveness of the Popper.
-   * @default false
-   */
+    * Always keep the children in the DOM.
+    * This prop can be useful in SEO situation or
+    * when you want to maximize the responsiveness of the Popper.
+    * @default false
+    */
   keepMounted?: bool,
   /**
-   * Popper.js is based on a "plugin-like" architecture,
-   * most of its features are fully encapsulated "modifiers".
-   *
-   * A modifier is a function that is called each time Popper.js needs to
-   * compute the position of the popper.
-   * For this reason, modifiers should be very performant to avoid bottlenecks.
-   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
-   */
+    * Popper.js is based on a "plugin-like" architecture,
+    * most of its features are fully encapsulated "modifiers".
+    *
+    * A modifier is a function that is called each time Popper.js needs to
+    * compute the position of the popper.
+    * For this reason, modifiers should be very performant to avoid bottlenecks.
+    * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+    */
   modifiers?: array<modifier>,
   /**
-   * Popper placement.
-   * @default 'bottom'
-   */
+    * Popper placement.
+    * @default 'bottom'
+    */
   placement?: placement,
   /**
-   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
-   * @default {}
-   */
+    * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
+    * @default {}
+    */
   popperOptions?: options,
   /**
-   * A ref that points to the used popper instance.
-   */
+    * A ref that points to the used popper instance.
+    */
   popperRef?: React.ref<unknown>,
   /**
-   * The props used for each slot inside the Popper.
-   * @default {}
-   */
+    * The props used for each slot inside the Popper.
+    * @default {}
+    */
   slotProps?: slotProps,
   /**
-   * The components used for each slot inside the Popper.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
+    * The components used for each slot inside the Popper.
+    * Either a string to use a HTML element or a component.
+    * @default {}
+    */
   slots?: slots,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * Help supporting a react-transition-group/Transition component.
-   * @default false
-   */
+    * Help supporting a react-transition-group/Transition component.
+    * @default false
+    */
   transition?: bool,
 }
 

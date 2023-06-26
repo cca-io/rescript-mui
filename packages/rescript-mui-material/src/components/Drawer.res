@@ -39,69 +39,69 @@ type variant =
 type props = {
   ...Modal.publicProps,
   /**
-   * Side from which the drawer will appear.
-   * @default 'left'
-   */
+    * Side from which the drawer will appear.
+    * @default 'left'
+    */
   anchor?: anchor,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The elevation of the drawer.
-   * @default 16
-   */
+    * The elevation of the drawer.
+    * @default 16
+    */
   elevation?: int,
   /**
-   * Props applied to the [`Modal`](/material-ui/api/modal/) element.
-   * @default {}
-   */
+    * Props applied to the [`Modal`](/material-ui/api/modal/) element.
+    * @default {}
+    */
   @as("ModalProps")
   modalProps?: Modal.props,
   /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback.
-   */
+    * Callback fired when the component requests to be closed.
+    *
+    * @param {object} event The event source of the callback.
+    */
   onClose?: Modal.onClose,
   /**
-   * If `true`, the component is shown.
-   * @default false
-   */
+    * If `true`, the component is shown.
+    * @default false
+    */
   @as("open")
   open_?: bool,
   /**
-   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
-   * @default {}
-   */
+    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+    * @default {}
+    */
   @as("PaperProps")
   paperProps?: Paper.props,
   /**
-   * Props applied to the [`Slide`](/material-ui/api/slide/) element.
-   */
+    * Props applied to the [`Slide`](/material-ui/api/slide/) element.
+    */
   @as("SlideProps")
   slideProps?: Slide.props,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   * @default {
-   *   enter: theme.transitions.duration.enteringScreen,
-   *   exit: theme.transitions.duration.leavingScreen,
-   * }
-   */
+    * The duration for the transition, in milliseconds.
+    * You may specify a single timeout for all transitions, or individually with an object.
+    * @default {
+    *   enter: theme.transitions.duration.enteringScreen,
+    *   exit: theme.transitions.duration.leavingScreen,
+    * }
+    */
   transitionDuration?: Transition.duration,
   /**
-   * The variant to use.
-   * @default 'temporary'
-   */
+    * The variant to use.
+    * @default 'temporary'
+    */
   variant?: variant,
 }
 

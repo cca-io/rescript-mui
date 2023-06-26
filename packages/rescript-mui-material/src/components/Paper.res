@@ -43,41 +43,41 @@ type variant =
 type publicProps = {
   ...CommonProps.t,
   /**
-  * The component used for the root node.
-  * Either a string to use a HTML element or a component.
-  */
+    * The component used for the root node.
+    * Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
     * Shadow depth, corresponds to `dp` in the spec.
     * It accepts values between 0 and 24 inclusive.
     * @default 1
-  */
+    */
   elevation?: int,
   /**
     * If `true`, rounded corners are disabled.
     * @default false
-  */
+    */
   square?: bool,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 
 type props = {
   ...publicProps,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
     * The variant to use.
     * @default 'elevation'
-  */
+    */
   variant?: variant,
 }
 

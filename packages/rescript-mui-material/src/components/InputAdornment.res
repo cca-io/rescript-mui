@@ -31,39 +31,42 @@ type variant =
 type props = {
   ...CommonProps.t,
   /**
-     * The position this adornment should appear relative to the `Input`.
-     */
+    * The position this adornment should appear relative to the `Input`.
+    */
   position: position,
   /**
-     * The content of the component, normally an `IconButton` or string.
-     */
+    * The content of the component, normally an `IconButton` or string.
+    */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * Disable pointer events on the root.
-     * This allows for the content of the adornment to focus the `input` on click.
-     * @default false
-     */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
+  component?: OverridableComponent.t<unknown>,
+  /**
+    * Disable pointer events on the root.
+    * This allows for the content of the adornment to focus the `input` on click.
+    * @default false
+    */
   disablePointerEvents?: bool,
   /**
-     * If children is a string then disable wrapping in a Typography component.
-     * @default false
-     */
+    * If children is a string then disable wrapping in a Typography component.
+    * @default false
+    */
   disableTypography?: bool,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-     * The variant to use.
-     * Note: If you are using the `TextField` component or the `FormControl` component
-     * you do not have to set this manually.
-     */
+    * The variant to use.
+    * Note: If you are using the `TextField` component or the `FormControl` component
+    * you do not have to set this manually.
+    */
   variant?: variant,
-  component?: OverridableComponent.t<unknown>,
 }
 
 @module("@mui/material/InputAdornment")

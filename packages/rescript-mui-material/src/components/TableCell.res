@@ -60,63 +60,63 @@ type variant =
 type publicProps = {
   ...CommonProps.t,
   /**
-   * Set the text-align on the table cell content.
-   *
-   * Monetary or generally number fields **should be right aligned** as that allows
-   * you to add them up quickly in your head without having to worry about decimals.
-   * @default 'inherit'
-   */
+    * Set the text-align on the table cell content.
+    *
+    * Monetary or generally number fields **should be right aligned** as that allows
+    * you to add them up quickly in your head without having to worry about decimals.
+    * @default 'inherit'
+    */
   align?: /**
-   * Set the text-align on the table cell content.
-   *
-   * Monetary or generally number fields **should be right aligned** as that allows
-   * you to add them up quickly in your head without having to worry about decimals.
-   * @default 'inherit'
-   */
+    * Set the text-align on the table cell content.
+    *
+    * Monetary or generally number fields **should be right aligned** as that allows
+    * you to add them up quickly in your head without having to worry about decimals.
+    * @default 'inherit'
+    */
   align,
   /**
-   * Sets the padding applied to the cell.
-   * The prop defaults to the value (`'default'`) inherited from the parent Table component.
-   */
+    * Sets the padding applied to the cell.
+    * The prop defaults to the value (`'default'`) inherited from the parent Table component.
+    */
   padding?: padding,
   /**
-   * Set scope attribute.
-   */
+    * Set scope attribute.
+    */
   scope?: string,
   /**
-   * Specify the size of the cell.
-   * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
-   */
+    * Specify the size of the cell.
+    * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
+    */
   size?: size,
   /**
-   * Set aria-sort direction.
-   */
+    * Set aria-sort direction.
+    */
   sortDirection?: sortDirection,
   /**
-   * Specify the cell type.
-   * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
-   */
+    * Specify the cell type.
+    * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
+    */
   variant?: variant,
 }
 
 type props = {
   ...publicProps,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
+    * The component used for the root node.
+    * Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

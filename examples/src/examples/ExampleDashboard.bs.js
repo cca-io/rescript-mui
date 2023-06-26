@@ -62,9 +62,9 @@ function ExampleDashboard(props) {
                                                 color: "inherit"
                                               }),
                                           JsxRuntime.jsx(Typography, {
+                                                component: "h1",
                                                 noWrap: true,
                                                 variant: "h6",
-                                                component: "h1",
                                                 children: "Dashboard"
                                               }),
                                           JsxRuntime.jsx(Link, {

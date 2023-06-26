@@ -18,38 +18,38 @@ type direction =
 type props = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
-     * If `true`, the label will have the active styling (should be true for the sorted column).
-     * @default false
-     */
+    * If `true`, the label will have the active styling (should be true for the sorted column).
+    * @default false
+    */
   active?: bool,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The current sort direction.
-     * @default 'asc'
-     */
+    * The current sort direction.
+    * @default 'asc'
+    */
   direction?: direction,
   /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-     * Hide sort icon when active is false.
-     * @default false
-     */
+    * Hide sort icon when active is false.
+    * @default false
+    */
   hideSortIcon?: bool,
   /**
-     * Sort icon to use.
-     * @default ArrowDownwardIcon
-     */
+    * Sort icon to use.
+    * @default ArrowDownwardIcon
+    */
   @as("IconComponent")
   iconComponent?: React.component<CommonProps.classNameOnly>,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

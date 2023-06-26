@@ -14,30 +14,30 @@ type classes = {
 type props = {
   ...CommonProps.t,
   /**
-     * Should be valid <tr> children such as `TableCell`.
-     */
+    * Should be valid <tr> children such as `TableCell`.
+    */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The component used for the root node. Either a string to use a HTML element or a component.
-     */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-     * If `true`, the table row will shade on hover.
-     * @default false
-     */
+    * If `true`, the table row will shade on hover.
+    * @default false
+    */
   hover?: bool,
   /**
-     * If `true`, the table row will have the selected shading.
-     * @default false
-     */
+    * If `true`, the table row will have the selected shading.
+    * @default false
+    */
   selected?: bool,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

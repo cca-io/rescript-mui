@@ -50,105 +50,105 @@ type size =
 type props = {
   ...CommonProps.t,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The default value. Use when the component is not controlled.
-   * @default null
-   */
+    * The default value. Use when the component is not controlled.
+    * @default null
+    */
   defaultValue?: float,
   /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-   * The icon to display when empty.
-   * @default <StarBorder fontSize="inherit" />
-   */
+    * The icon to display when empty.
+    * @default <StarBorder fontSize="inherit" />
+    */
   emptyIcon?: React.element,
   /**
-   * The label read when the rating input is empty.
-   * @default 'Empty'
-   */
+    * The label read when the rating input is empty.
+    * @default 'Empty'
+    */
   emptyLabelText?: React.element,
   /**
-   * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
-   * This is important for screen reader users.
-   *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
-   * @param {number} value The rating label's value to format.
-   * @returns {string}
-   * @default function defaultLabelText(value) {
-   *   return `${value} Star${value !== 1 ? 's' : ''}`,
-   * }
-   */
+    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
+    * This is important for screen reader users.
+    *
+    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+    * @param {number} value The rating label's value to format.
+    * @returns {string}
+    * @default function defaultLabelText(value) {
+    *   return `${value} Star${value !== 1 ? 's' : ''}`,
+    * }
+    */
   getLabelText?: float => string,
   /**
-   * If `true`, only the selected icon will be highlighted.
-   * @default false
-   */
+    * If `true`, only the selected icon will be highlighted.
+    * @default false
+    */
   highlightSelectedOnly?: bool,
   /**
-   * The icon to display.
-   * @default <Star fontSize="inherit" />
-   */
+    * The icon to display.
+    * @default <Star fontSize="inherit" />
+    */
   icon?: React.element,
   /**
-   * The component containing the icon.
-   * @default function IconContainer(props) {
-   *   const { value, ...other } = props,
-   *   return <span {...other} />,
-   * }
-   */
+    * The component containing the icon.
+    * @default function IconContainer(props) {
+    *   const { value, ...other } = props,
+    *   return <span {...other} />,
+    * }
+    */
   @as("IconContainerComponent")
   iconContainerComponent?: React.element,
   /**
-   * Maximum rating.
-   * @default 5
-   */
+    * Maximum rating.
+    * @default 5
+    */
   max?: float,
   /**
-   * The name attribute of the radio `input` elements.
-   * This input `name` should be unique within the page.
-   * Being unique within a form is insufficient since the `name` is used to generated IDs.
-   */
+    * The name attribute of the radio `input` elements.
+    * This input `name` should be unique within the page.
+    * Being unique within a form is insufficient since the `name` is used to generated IDs.
+    */
   name?: string,
   /**
-   * Callback fired when the value changes.
-   * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {number|null} value The new value.
-   */
+    * Callback fired when the value changes.
+    * @param {React.SyntheticEvent} event The event source of the callback.
+    * @param {number|null} value The new value.
+    */
   onChange?: (ReactEvent.Synthetic.t, numberOrNull) => unit,
   /**
-   * Callback function that is fired when the hover state changes.
-   * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {number} value The new value.
-   */
+    * Callback function that is fired when the hover state changes.
+    * @param {React.SyntheticEvent} event The event source of the callback.
+    * @param {number} value The new value.
+    */
   onChangeActive?: (ReactEvent.Synthetic.t, float) => unit,
   /**
-   * The minimum increment value change allowed.
-   * @default 1
-   */
+    * The minimum increment value change allowed.
+    * @default 1
+    */
   precision?: float,
   /**
-   * Removes all hover effects and pointer events.
-   * @default false
-   */
+    * Removes all hover effects and pointer events.
+    * @default false
+    */
   readOnly?: bool,
   /**
-   * The size of the component.
-   * @default 'medium'
-   */
+    * The size of the component.
+    * @default 'medium'
+    */
   size?: size,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * The rating value.
-   */
+    * The rating value.
+    */
   value?: numberOrNull,
 }
 

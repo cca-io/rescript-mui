@@ -29,51 +29,51 @@ type variant =
 type props = {
   ...CommonProps.t,
   /**
-     * The content of the component.
-     *
-     * If `' '` is provided, the component reserves one line height for displaying a future message.
-     */
+   * The content of the component.
+   *
+   * If `' '` is provided, the component reserves one line height for displaying a future message.
+   */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+   * Override or extend the styles applied to the component.
+   */
   classes?: classes,
   /**
-     * The component used for the root node. Either a string to use a HTML element or a component.
-     */
+   * The component used for the root node. Either a string to use a HTML element or a component.
+   */
   component?: OverridableComponent.t<unknown>,
   /**
-     * If `true`, the helper text should be displayed in a disabled state.
-     */
+   * If `true`, the helper text should be displayed in a disabled state.
+   */
   disabled?: bool,
   /**
-     * If `true`, helper text should be displayed in an error state.
-     */
+   * If `true`, helper text should be displayed in an error state.
+   */
   error?: bool,
   /**
-     * If `true`, the helper text should use filled classes key.
-     */
+   * If `true`, the helper text should use filled classes key.
+   */
   filled?: bool,
   /**
-     * If `true`, the helper text should use focused classes key.
-     */
+   * If `true`, the helper text should use focused classes key.
+   */
   focused?: bool,
   /**
-     * If `dense`, will adjust vertical spacing. This is normally obtained via context from
-     * FormControl.
-     */
+   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+   * FormControl.
+   */
   margin?: margin,
   /**
-     * If `true`, the helper text should use required classes key.
-     */
+   * If `true`, the helper text should use required classes key.
+   */
   required?: bool,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
   sx?: Sx.props,
   /**
-     * The variant to use.
-     */
+   * The variant to use.
+   */
   variant?: variant,
 }
 

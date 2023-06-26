@@ -62,53 +62,53 @@ type publicProps = {
 type props = {
   ...publicProps,
   /**
-     * The content of the component.
-     */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The color of the component.
-     * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'primary'
-     */
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'primary'
+    */
   color?: color,
   /**
-     * If `true`, the label, input and helper text should be displayed in a disabled state.
-     * @default false
-     */
+    * If `true`, the label, input and helper text should be displayed in a disabled state.
+    * @default false
+    */
   disabled?: bool,
   /**
-     * If `true`, the label is displayed in an error state.
-     * @default false
-     */
+    * If `true`, the label is displayed in an error state.
+    * @default false
+    */
   error?: bool,
   /**
-     * If `true`, the component will take up the full width of its container.
-     * @default false
-     */
+    * If `true`, the component will take up the full width of its container.
+    * @default false
+    */
   fullWidth?: bool,
   /**
-     * If `true`, the label will indicate that the `input` is required.
-     * @default false
-     */
+    * If `true`, the label will indicate that the `input` is required.
+    * @default false
+    */
   required?: bool,
   /**
-     * The size of the component.
-     * @default 'medium'
-     */
+    * The size of the component.
+    * @default 'medium'
+    */
   size?: size,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-     * The variant to use.
-     * @default 'outlined'
-     */
+    * The variant to use.
+    * @default 'outlined'
+    */
   variant?: variant,
 }
 

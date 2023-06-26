@@ -16,57 +16,57 @@ type classes = {
 type props = {
   ...Paper.publicProps,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * If `true`, expands the accordion by default.
-   * @default false
-   */
+    * If `true`, expands the accordion by default.
+    * @default false
+    */
   defaultExpanded?: bool,
   /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-   * If `true`, it removes the margin between two expanded accordion items and the increase of height.
-   * @default false
-   */
+    * If `true`, it removes the margin between two expanded accordion items and the increase of height.
+    * @default false
+    */
   disableGutters?: bool,
   /**
-   * If `true`, expands the accordion, otherwise collapses it.
-   * Setting this prop enables control over the accordion.
-   */
+    * If `true`, expands the accordion, otherwise collapses it.
+    * Setting this prop enables control over the accordion.
+    */
   expanded?: bool,
   /**
-   * Callback fired when the expand/collapse state is changed.
-   *
-   * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
-   * @param {boolean} expanded The `expanded` state of the accordion.
-   */
+    * Callback fired when the expand/collapse state is changed.
+    *
+    * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
+    * @param {boolean} expanded The `expanded` state of the accordion.
+    */
   onChange?: (ReactEvent.Form.t, bool) => unit,
   /**
-   * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Collapse
-   */
+    * The component used for the transition.
+    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+    * @default Collapse
+    */
   @as("TransitionComponent")
   transitionComponent?: React.component<Transition.props>,
   /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-   */
+    * Props applied to the transition element.
+    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+    */
   @as("TransitionProps")
   transitionProps?: Transition.props,
   /**
     * The variant to use.
     * @default 'elevation'
-  */
+    */
   variant?: Paper.variant,
 }
 

@@ -68,27 +68,29 @@ type pickersInputLocaleText<'date, 'locale> = {
 type props<'date, 'locale> = {
   ...Mui.CommonProps.t_NoRef,
   /**
-   * Locale for the date library you are using
-   */
+    * Locale for the date library you are using
+    */
   adapterLocale?: 'locale,
   children?: React.element,
   /**
-   * Date library adapter class function.
-   * @see See the localization provider {@link https://mui.com/x/react-date-pickers/getting-started/#setup-your-date-library-adapter date adapter setup section} for more details.
-   */
+    * Date library adapter class function.
+    * @see See the localization provider {@link https://mui.com/x/react-date-pickers/getting-started/#setup-your-date-library-adapter date adapter setup section} for more details.
+    */
   dateAdapter?: dateAdapter,
-  /** Formats that are used for any child pickers */
+  /** 
+    * Formats that are used for any child pickers 
+    */
   dateFormats?: Adapters.adapterFormats,
   /**
-   * Date library instance you are using, if it has some global overrides
-   * ```jsx
-   * dateLibInstance={momentTimeZone}
-   * ```
-   */
+    * Date library instance you are using, if it has some global overrides
+    * ```jsx
+    * dateLibInstance={momentTimeZone}
+    * ```
+    */
   dateLibInstance?: 'date,
   /**
-   * Locale for components texts
-   */
+    * Locale for components texts
+    */
   localeText?: pickersInputLocaleText<'date, 'locale>,
 }
 

@@ -6,7 +6,6 @@ import * as Styles from "@mui/material/styles";
 
 function ExampleStylingCss(props) {
   return JsxRuntime.jsx(Styles.StyledEngineProvider, {
-              injectFirst: true,
               children: JsxRuntime.jsx(Button, {
                     className: "my-global-class-name",
                     children: "Hello, plain CSS & MUI!",
@@ -14,7 +13,8 @@ function ExampleStylingCss(props) {
                         
                       }),
                     color: "primary"
-                  })
+                  }),
+              injectFirst: true
             });
 }
 

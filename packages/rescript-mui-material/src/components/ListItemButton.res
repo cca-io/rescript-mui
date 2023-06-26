@@ -24,49 +24,49 @@ type alignItems =
 type props = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
-   * Defines the `align-items` style property.
-   * @default 'center'
-   */
+    * Defines the `align-items` style property.
+    * @default 'center'
+    */
   alignItems?: alignItems,
   /**
-   * If `true`, the list item is focused during the first mount.
-   * Focus will also be triggered if the value changes from false to true.
-   * @default false
-   */
+    * If `true`, the list item is focused during the first mount.
+    * Focus will also be triggered if the value changes from false to true.
+    * @default false
+    */
   autoFocus?: bool,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
-   * The prop defaults to the value inherited from the parent List component.
-   * @default false
-   */
+    * If `true`, compact vertical padding designed for keyboard and mouse input is used.
+    * The prop defaults to the value inherited from the parent List component.
+    * @default false
+    */
   dense?: bool,
   /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-   * If `true`, the left and right padding is removed.
-   * @default false
-   */
+    * If `true`, the left and right padding is removed.
+    * @default false
+    */
   disableGutters?: bool,
   /**
-   * If `true`, a 1px light border is added to the bottom of the list item.
-   * @default false
-   */
+    * If `true`, a 1px light border is added to the bottom of the list item.
+    * @default false
+    */
   divider?: bool,
   /**
-   * Use to apply selected styling.
-   * @default false
-   */
+    * Use to apply selected styling.
+    * @default false
+    */
   selected?: bool,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

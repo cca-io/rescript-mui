@@ -28,40 +28,40 @@ type orientation =
 type props = {
   ...CommonProps.clickablePropsWithOnClick,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The components used for each slot inside.
-   * @default {}
-   */
+    * The components used for each slot inside.
+    * @default {}
+    */
   slots?: slots,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   * @default {}
-   */
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
   slotProps?: slotProps,
   /**
-   * The direction the button should indicate.
-   */
+    * The direction the button should indicate.
+    */
   direction: direction,
   /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-   * The component orientation (layout flow direction).
-   */
+    * The component orientation (layout flow direction).
+    */
   orientation: orientation,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

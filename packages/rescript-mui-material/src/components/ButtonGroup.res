@@ -85,69 +85,69 @@ type variant =
 type props = {
   ...CommonProps.t,
   /**
-     * The content of the component.
-     */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The color of the component.
-     * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'primary'
-     */
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'primary'
+    */
   color?: color,
   /**
-  * The component used for the root node.
-  * Either a string to use a HTML element or a component.
-  */
+    * The component used for the root node.
+    * Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-     * If `true`, no elevation is used.
-     * @default false
-     */
+    * If `true`, no elevation is used.
+    * @default false
+    */
   disableElevation?: bool,
   /**
-     * If `true`, the button keyboard focus ripple is disabled.
-     * @default false
-     */
+    * If `true`, the button keyboard focus ripple is disabled.
+    * @default false
+    */
   disableFocusRipple?: bool,
   /**
-     * If `true`, the button ripple effect is disabled.
-     * @default false
-     */
+    * If `true`, the button ripple effect is disabled.
+    * @default false
+    */
   disableRipple?: bool,
   /**
-     * If `true`, the buttons will take up the full width of its container.
-     * @default false
-     */
+    * If `true`, the buttons will take up the full width of its container.
+    * @default false
+    */
   fullWidth?: bool,
   /**
-     * The component orientation (layout flow direction).
-     * @default 'horizontal'
-     */
+    * The component orientation (layout flow direction).
+    * @default 'horizontal'
+    */
   orientation?: orientation,
   /**
-     * The size of the component.
-     * `small` is equivalent to the dense button styling.
-     * @default 'medium'
-     */
+    * The size of the component.
+    * `small` is equivalent to the dense button styling.
+    * @default 'medium'
+    */
   size?: size,
   /**
-     * The variant to use.
-     * @default 'outlined'
-     */
+    * The variant to use.
+    * @default 'outlined'
+    */
   variant?: variant,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

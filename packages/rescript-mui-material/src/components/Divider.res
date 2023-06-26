@@ -60,8 +60,8 @@ type props = {
     */
   classes?: classes,
   /**
-   * The component used for the root node. Either a string to use a HTML element or a component.
-   */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
     * If `true`, a vertical divider will have the correct height when used in flex container.

@@ -30,45 +30,45 @@ type variant =
 type props = {
   ...Paper.publicProps,
   /**
-   * The total steps.
-   */
+    * The total steps.
+    */
   steps: int,
   /**
-   * Set the active step (zero based index).
-   * Defines which dot is highlighted when the variant is 'dots'.
-   * @default 0
-   */
+    * Set the active step (zero based index).
+    * Defines which dot is highlighted when the variant is 'dots'.
+    * @default 0
+    */
   activeStep?: int,
   /**
-   * A back button element. For instance, it can be a `Button` or an `IconButton`.
-   */
+    * A back button element. For instance, it can be a `Button` or an `IconButton`.
+    */
   backButton: React.element,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-   * Props applied to the `LinearProgress` element.
-   */
+    * Props applied to the `LinearProgress` element.
+    */
   @as("LinearProgressProps")
   linearProgressProps?: LinearProgress.props,
   /**
-   * A next button element. For instance, it can be a `Button` or an `IconButton`.
-   */
+    * A next button element. For instance, it can be a `Button` or an `IconButton`.
+    */
   nextButton: React.element,
   /**
-   * Set the positioning type.
-   * @default 'bottom'
-   */
+    * Set the positioning type.
+    * @default 'bottom'
+    */
   position?: position,
   /**
-   * The variant to use.
-   * @default 'dots'
-   */
+    * The variant to use.
+    * @default 'dots'
+    */
   variant?: variant,
 }
 

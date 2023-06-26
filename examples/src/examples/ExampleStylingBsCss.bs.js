@@ -16,7 +16,6 @@ var Styles$1 = {
 
 function ExampleStylingBsCss(props) {
   return JsxRuntime.jsx(Styles.StyledEngineProvider, {
-              injectFirst: true,
               children: JsxRuntime.jsx(Button, {
                     children: "Hello, BS-CSS & MUI!",
                     onClick: (function (prim) {
@@ -26,7 +25,8 @@ function ExampleStylingBsCss(props) {
                       root: categoryButton
                     },
                     color: "primary"
-                  })
+                  }),
+              injectFirst: true
             });
 }
 

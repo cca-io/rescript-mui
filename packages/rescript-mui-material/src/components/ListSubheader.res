@@ -34,8 +34,8 @@ type props = {
     */
   color?: color,
   /**
-   * The component used for the root node. Either a string to use a HTML element or a component.
-   */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
     * If `true`, the List Subheader will not have gutters.

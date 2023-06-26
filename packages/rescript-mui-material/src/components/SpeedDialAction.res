@@ -18,46 +18,46 @@ type classes = {
 type props = {
   ...Tooltip.publicProps,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * Props applied to the [`Fab`](/material-ui/api/fab/) component.
-   * @default {}
-   */
+    * Props applied to the [`Fab`](/material-ui/api/fab/) component.
+    * @default {}
+    */
   @as("FabProps")
   fabProps?: Fab.props,
   /**
-   * Adds a transition delay, to allow a series of SpeedDialActions to be animated.
-   * @default 0
-   */
+    * Adds a transition delay, to allow a series of SpeedDialActions to be animated.
+    * @default 0
+    */
   delay?: float,
   /**
-   * The icon to display in the SpeedDial Fab.
-   */
+    * The icon to display in the SpeedDial Fab.
+    */
   icon?: React.element,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * `classes` prop applied to the [`Tooltip`](/material-ui/api/tooltip/) element.
-   */
+    * `classes` prop applied to the [`Tooltip`](/material-ui/api/tooltip/) element.
+    */
   @as("TooltipClasses")
   tooltipClasses?: Tooltip.classes,
   /**
-   * Placement of the tooltip.
-   * @default 'left'
-   */
+    * Placement of the tooltip.
+    * @default 'left'
+    */
   tooltipPlacement?: Tooltip.placement,
   /**
-   * Label to display in the tooltip.
-   */
+    * Label to display in the tooltip.
+    */
   tooltipTitle?: React.element,
   /**
-   * Make the tooltip always visible when the SpeedDial is open.
-   * @default false
-   */
+    * Make the tooltip always visible when the SpeedDial is open.
+    * @default false
+    */
   tooltipOpen?: bool,
 }
 

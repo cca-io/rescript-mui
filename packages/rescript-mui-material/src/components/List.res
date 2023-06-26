@@ -12,36 +12,36 @@ type classes = {
 type props = {
   ...CommonProps.t,
   /**
-     * The content of the component.
-     */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The component used for the root node. Either a string to use a HTML element or a component.
-     */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-     * If `true`, compact vertical padding designed for keyboard and mouse input is used for
-     * the list and list items.
-     * The prop is available to descendant components as the `dense` context.
-     * @default false
-     */
+    * If `true`, compact vertical padding designed for keyboard and mouse input is used for
+    * the list and list items.
+    * The prop is available to descendant components as the `dense` context.
+    * @default false
+    */
   dense?: bool,
   /**
-     * If `true`, vertical padding is removed from the list.
-     * @default false
-     */
+    * If `true`, vertical padding is removed from the list.
+    * @default false
+    */
   disablePadding?: bool,
   /**
-     * The content of the subheader, normally `ListSubheader`.
-     */
+    * The content of the subheader, normally `ListSubheader`.
+    */
   subheader?: React.element,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

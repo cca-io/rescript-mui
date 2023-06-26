@@ -40,42 +40,42 @@ type classes = {
 type props<'value> = {
   ...InputBase.publicProps,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The default value. Use when the component is not controlled.
-   */
+    * The default value. Use when the component is not controlled.
+    */
   defaultValue?: 'value,
   /**
-   * If `true`, the input will not have an underline.
-   */
+    * If `true`, the input will not have an underline.
+    */
   disableUnderline?: bool,
   /**
-   * If `true`, the label is hidden.
-   * This is used to increase density for a `FilledInput`.
-   * Be sure to add `aria-label` to the `input` element.
-   * @default false
-   */
+    * If `true`, the label is hidden.
+    * This is used to increase density for a `FilledInput`.
+    * Be sure to add `aria-label` to the `input` element.
+    * @default false
+    */
   hiddenLabel?: bool,
   /**
-   * Pass a ref to the `input` element.
-   */
+    * Pass a ref to the `input` element.
+    */
   inputRef?: React.ref<unknown>,
   /**
-   * Callback fired when the value is changed.
-   *
-   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
-   */
+    * Callback fired when the value is changed.
+    *
+    * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
+    * You can pull out the new value by accessing `event.target.value` (string).
+    */
   onChange?: ReactEvent.Synthetic.t => unit,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * The value of the `input` element, required for a controlled component.
-   */
+    * The value of the `input` element, required for a controlled component.
+    */
   value?: 'value,
 }
 

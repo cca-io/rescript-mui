@@ -20,16 +20,16 @@ type classes = {
 type props = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The icon to display as the expand indicator.
-     */
+    * The icon to display as the expand indicator.
+    */
   expandIcon?: React.element,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

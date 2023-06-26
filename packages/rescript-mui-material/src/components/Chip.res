@@ -117,74 +117,74 @@ type variant =
 type props = {
   ...CommonProps.t,
   /**
-     * The Avatar element to display.
-     */
+    * The Avatar element to display.
+    */
   avatar?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * If `true`, the chip will appear clickable, and will raise when pressed,
-     * even if the onClick prop is not defined.
-     * If `false`, the chip will not appear clickable, even if onClick prop is defined.
-     * This can be used, for example,
-     * along with the component prop to indicate an anchor Chip is clickable.
-     * Note: this controls the UI and does not affect the onClick event.
-     */
+    * If `true`, the chip will appear clickable, and will raise when pressed,
+    * even if the onClick prop is not defined.
+    * If `false`, the chip will not appear clickable, even if onClick prop is defined.
+    * This can be used, for example,
+    * along with the component prop to indicate an anchor Chip is clickable.
+    * Note: this controls the UI and does not affect the onClick event.
+    */
   clickable?: bool,
   /**
-     * The color of the component.
-     * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'default'
-     */
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'default'
+    */
   color?: color,
   /**
-     * Override the default delete icon element. Shown only if `onDelete` is set.
-     */
+    * Override the default delete icon element. Shown only if `onDelete` is set.
+    */
   deleteIcon?: React.element,
   /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-     * Icon element.
-     */
+    * Icon element.
+    */
   icon?: React.element,
   /**
-     * The content of the component.
-     */
+    * The content of the component.
+    */
   label?: React.element,
   /**
-     * Callback fired when the chip is clicked.
-     */
+    * Callback fired when the chip is clicked.
+    */
   onClick?: ReactEvent.Mouse.t => unit,
   /**
-     * Callback fired when the delete icon is clicked.
-     * If set, the delete icon will be shown.
-     */
+    * Callback fired when the delete icon is clicked.
+    * If set, the delete icon will be shown.
+    */
   onDelete?: ReactEvent.Synthetic.t => unit,
   /**
-     * The size of the component.
-     * @default 'medium'
-     */
+    * The size of the component.
+    * @default 'medium'
+    */
   size?: size,
   /**
-     * If `true`, allows the disabled chip to escape focus.
-     * If `false`, allows the disabled chip to receive focus.
-     * @default false
-     */
+    * If `true`, allows the disabled chip to escape focus.
+    * If `false`, allows the disabled chip to receive focus.
+    * @default false
+    */
   skipFocusWhenDisabled?: bool,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-     * The variant to use.
-     * @default 'filled'
-     */
+    * The variant to use.
+    * @default 'filled'
+    */
   variant?: variant,
   component?: OverridableComponent.t<unknown>,
 }

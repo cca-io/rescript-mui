@@ -56,35 +56,35 @@ type variant =
 type props = {
   ...CommonProps.t,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The color of the component.
-   * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-   * @default 'primary'
-   */
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'primary'
+    */
   color?: color,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
-   */
+    * The value of the progress indicator for the determinate and buffer variants.
+    * Value between 0 and 100.
+    */
   value?: int,
   /**
-   * The value for the buffer variant.
-   * Value between 0 and 100.
-   */
+    * The value for the buffer variant.
+    * Value between 0 and 100.
+    */
   valueBuffer?: int,
   /**
-   * The variant to use.
-   * Use indeterminate or query when there is no progress value.
-   * @default 'indeterminate'
-   */
+    * The variant to use.
+    * Use indeterminate or query when there is no progress value.
+    * @default 'indeterminate'
+    */
   variant?: variant,
 }
 

@@ -49,55 +49,59 @@ type variant =
 type props = {
   ...CommonProps.t,
   /**
-     * The content of the component.
-     */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The color of the component.
-     * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'default'
-     */
+    * The component used for the root node.
+    * Either a string to use a HTML element or a component.
+    */
+  component?: OverridableComponent.t<unknown>,
+  /**
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'default'
+    */
   color?: color,
   /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-     * If `true`, the  keyboard focus ripple is disabled.
-     * @default false
-     */
+    * If `true`, the  keyboard focus ripple is disabled.
+    * @default false
+    */
   disableFocusRipple?: bool,
   /**
-     * If `true`, the ripple effect is disabled.
-     */
+    * If `true`, the ripple effect is disabled.
+    */
   disableRipple?: bool,
   /**
-     * The URL to link to when the button is clicked.
-     * If defined, an `a` element will be used as the root node.
-     */
+    * The URL to link to when the button is clicked.
+    * If defined, an `a` element will be used as the root node.
+    */
   href?: string,
   /**
-     * The size of the component.
-     * `small` is equivalent to the dense button styling.
-     * @default 'large'
-     */
+    * The size of the component.
+    * `small` is equivalent to the dense button styling.
+    * @default 'large'
+    */
   size?: size,
   /**
-     * The variant to use.
-     * @default 'circular'
-     */
+    * The variant to use.
+    * @default 'circular'
+    */
   variant?: variant,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
-  component?: OverridableComponent.t<unknown>,
 }
 
 @module("@mui/material/Fab")

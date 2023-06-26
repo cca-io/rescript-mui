@@ -19,37 +19,37 @@ type padding =
 type props = {
   ...CommonProps.t,
   /**
-     * The content of the table, normally `TableHead` and `TableBody`.
-     */
+    * The content of the table, normally `TableHead` and `TableBody`.
+    */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The component used for the root node. Either a string to use a HTML element or a component.
-     */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-     * Allows TableCells to inherit padding of the Table.
-     * @default 'normal'
-     */
+    * Allows TableCells to inherit padding of the Table.
+    * @default 'normal'
+    */
   padding?: padding,
   /**
-     * Allows TableCells to inherit size of the Table.
-     * @default 'medium'
-     */
+    * Allows TableCells to inherit size of the Table.
+    * @default 'medium'
+    */
   size?: size,
   /**
-     * Set the header sticky.
-     *
-     * ⚠️ It doesn't work with IE11.
-     * @default false
-     */
+    * Set the header sticky.
+    *
+    * ⚠️ It doesn't work with IE11.
+    * @default false
+    */
   stickyHeader?: bool,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

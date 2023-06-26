@@ -42,31 +42,31 @@ type position =
 type props = {
   ...Paper.publicProps,
   /**
-   * The content of the component.
-   */
+    * The content of the component.
+    */
   children?: React.element,
   /**
-       * Override or extend the styles applied to the component.
-       */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-       * The color of the component.
-       * It supports both default and custom theme colors, which can be added as shown in the
-       * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-       * @default 'primary'
-       */
+    * The color of the component.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'primary'
+    */
   color?: color,
   /**
-       * If true, the `color` prop is applied in dark mode.
-       * @default false
-       */
+    * If true, the `color` prop is applied in dark mode.
+    * @default false
+    */
   enableColorOnDark?: bool,
   /**
-       * The positioning type. The behavior of the different options is described
-       * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
-       * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
-       * @default 'fixed'
-       */
+    * The positioning type. The behavior of the different options is described
+    * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
+    * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
+    * @default 'fixed'
+    */
   position?: position,
 }
 

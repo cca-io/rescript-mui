@@ -6,7 +6,6 @@ import * as Styles from "@mui/material/styles";
 
 function ExampleStylingTailwind(props) {
   return JsxRuntime.jsx(Styles.StyledEngineProvider, {
-              injectFirst: true,
               children: JsxRuntime.jsx(Button, {
                     children: "Hello, Tailwind & MUI!",
                     onClick: (function (prim) {
@@ -16,7 +15,8 @@ function ExampleStylingTailwind(props) {
                       root: "normal-case justify-start"
                     },
                     color: "primary"
-                  })
+                  }),
+              injectFirst: true
             });
 }
 

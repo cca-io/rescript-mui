@@ -19,47 +19,47 @@ type props = {
   square?: bool,
   variant?: Paper.variant,
   /**
-       * Set the active step (zero based index).
-       * Set to -1 to disable all the steps.
-       * @default 0
-       */
+    * Set the active step (zero based index).
+    * Set to -1 to disable all the steps.
+    * @default 0
+    */
   activeStep?: int,
   /**
-       * If set to 'true' and orientation is horizontal,
-       * then the step label will be positioned under the icon.
-       * @default false
-       */
+    * If set to 'true' and orientation is horizontal,
+    * then the step label will be positioned under the icon.
+    * @default false
+    */
   alternativeLabel?: bool,
   /**
-       * Two or more `<Step />` components.
-       */
+    * Two or more `<Step />` components.
+    */
   children?: React.element,
   /**
-       * Override or extend the styles applied to the component.
-       */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-       * The component used for the root node. Either a string to use a HTML element or a component.
-       */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-       * An element to be placed between each step.
-       * @default <StepConnector />
-       */
+    * An element to be placed between each step.
+    * @default <StepConnector />
+    */
   connector?: React.element,
   /**
-       * If set the `Stepper` will not assist in controlling steps for linear flow.
-       * @default false
-       */
+    * If set the `Stepper` will not assist in controlling steps for linear flow.
+    * @default false
+    */
   nonLinear?: bool,
   /**
-       * The component orientation (layout flow direction).
-       * @default 'horizontal'
-       */
+    * The component orientation (layout flow direction).
+    * @default 'horizontal'
+    */
   orientation?: orientation,
   /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
 }
 

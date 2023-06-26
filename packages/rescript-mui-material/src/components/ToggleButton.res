@@ -40,63 +40,63 @@ type size =
 type props<'value> = {
   ...ButtonBase.publicProps,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-     * The color of the button when it is in an active state.
-     * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'standard'
-     */
+    * The color of the button when it is in an active state.
+    * It supports both default and custom theme colors, which can be added as shown in the
+    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+    * @default 'standard'
+    */
   color?: color,
   /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
+    * If `true`, the component is disabled.
+    * @default false
+    */
   disabled?: bool,
   /**
-     * If `true`, the  keyboard focus ripple is disabled.
-     * @default false
-     */
+    * If `true`, the  keyboard focus ripple is disabled.
+    * @default false
+    */
   disableFocusRipple?: bool,
   /**
-     * If `true`, the button will take up the full width of its container.
-     * @default false
-     */
+    * If `true`, the button will take up the full width of its container.
+    * @default false
+    */
   fullWidth?: bool,
   /**
-     * Callback fired when the state changes.
-     *
-     * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
-     * @param {any} value of the selected button.
-     */
+    * Callback fired when the state changes.
+    *
+    * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+    * @param {any} value of the selected button.
+    */
   onChange?: (ReactEvent.Mouse.t, 'value) => unit,
   /**
-     * Callback fired when the button is clicked.
-     *
-     * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
-     * @param {any} value of the selected button.
-     */
+    * Callback fired when the button is clicked.
+    *
+    * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+    * @param {any} value of the selected button.
+    */
   onClick?: (ReactEvent.Mouse.t, 'value) => unit,
   /**
-     * If `true`, the button is rendered in an active state.
-     */
+    * If `true`, the button is rendered in an active state.
+    */
   selected?: bool,
   /**
-     * The size of the component.
-     * The prop defaults to the value inherited from the parent ToggleButtonGroup component.
-     * @default 'medium'
-     */
+    * The size of the component.
+    * The prop defaults to the value inherited from the parent ToggleButtonGroup component.
+    * @default 'medium'
+    */
   size?: size,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-     * The value to associate with the button when selected in a
-     * ToggleButtonGroup.
-     */
+    * The value to associate with the button when selected in a
+    * ToggleButtonGroup.
+    */
   value: 'value,
 }
 

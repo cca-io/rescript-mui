@@ -36,35 +36,35 @@ type position =
 
 type props = {
   /**
-   * An IconButton element to be used as secondary action target
-   * (primary action target is the item itself).
-   */
+    * An IconButton element to be used as secondary action target
+    * (primary action target is the item itself).
+    */
   actionIcon?: React.element,
   /**
-   * Position of secondary action IconButton.
-   * @default 'right'
-   */
+    * Position of secondary action IconButton.
+    * @default 'right'
+    */
   actionPosition?: actionPosition,
   /**
-   * Override or extend the styles applied to the component.
-   */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * Position of the title bar.
-   * @default 'bottom'
-   */
+    * Position of the title bar.
+    * @default 'bottom'
+    */
   position?: position,
   /**
-   * String or element serving as subtitle (support text).
-   */
+    * String or element serving as subtitle (support text).
+    */
   subtitle?: React.element,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-   * Title to be displayed.
-   */
+    * Title to be displayed.
+    */
   title?: React.element,
 }
 

@@ -18,31 +18,31 @@ type variant =
 type props = {
   ...CommonProps.t,
   /**
-     * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
-     * The Toolbar is a flex container, allowing flex item properties to be used to lay out the children.
-     */
+    * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
+    * The Toolbar is a flex container, allowing flex item properties to be used to lay out the children.
+    */
   children?: React.element,
   /**
-     * Override or extend the styles applied to the component.
-     */
+    * Override or extend the styles applied to the component.
+    */
   classes?: classes,
   /**
-   * The component used for the root node. Either a string to use a HTML element or a component.
-   */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-     * If `true`, disables gutter padding.
-     * @default false
-     */
+    * If `true`, disables gutter padding.
+    * @default false
+    */
   disableGutters?: bool,
   /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
+    * The system prop that allows defining system overrides as well as additional CSS styles.
+    */
   sx?: Sx.props,
   /**
-     * The variant to use.
-     * @default 'regular'
-     */
+    * The variant to use.
+    * @default 'regular'
+    */
   variant?: variant,
 }
 
