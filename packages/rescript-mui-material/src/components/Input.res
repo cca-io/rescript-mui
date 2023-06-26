@@ -34,23 +34,15 @@ type classes = {
 }
 
 type props<'value> = {
-  ...InputBase.publicProps,
+  ...InputBase.publicProps<'value>,
   /**
     * Override or extend the styles applied to the component.
     */
   classes?: classes,
   /**
-    * The default value. Use when the component is not controlled.
-    */
-  defaultValue?: 'value,
-  /**
     * If `true`, the `input` will not have an underline.
     */
   disableUnderline?: bool,
-  /**
-    * Pass a ref to the `input` element.
-    */
-  inputRef?: React.ref<unknown>,
   /**
     * Callback fired when the value is changed.
     *
@@ -62,10 +54,6 @@ type props<'value> = {
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,
-  /**
-    * The value of the `input` element, required for a controlled component.
-    */
-  value?: 'value,
 }
 
 @module("@mui/material/Input")

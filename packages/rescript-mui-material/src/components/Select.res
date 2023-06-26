@@ -33,7 +33,7 @@ type variant =
   | @as("filled") Filled
 
 type props<'value> = {
-  ...OutlinedInput.publicProps,
+  ...OutlinedInput.publicProps<'value>,
   /**
     * If `true`, the width of the popover will automatically be set according to the items inside the
     * menu, otherwise it will be at least the width of the select input.
@@ -63,10 +63,6 @@ type props<'value> = {
     * @default false
     */
   defaultOpen?: bool,
-  /**
-    * The default value. Use when the component is not controlled.
-    */
-  defaultValue?: 'value,
   /**
     * If `true`, a value is displayed even if no items are selected.
     *
@@ -158,14 +154,6 @@ type props<'value> = {
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,
-  /**
-    * The `input` value. Providing an empty string will select no options.
-    * Set to an empty string `''` if you don't want any of the available options to be selected.
-    *
-    * If the value is an object it must have reference equality with the option in order to be selected.
-    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
-    */
-  value?: 'value,
   /**
     * The variant to use.
     * @default 'outlined'

@@ -96,7 +96,7 @@ type slots = {
   input?: React.element,
 }
 
-type publicProps = {
+type publicProps<'value> = {
   ...CommonProps.t_NoId,
   @as("aria-describedby") ariaDescribedby?: string,
   /**
@@ -116,6 +116,10 @@ type publicProps = {
     * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
     */
   color?: color,
+  /**
+    * The default value. Use when the component is not controlled.
+    */
+  defaultValue?: 'value,
   /**
     * If `true`, the component is disabled.
     * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -156,6 +160,10 @@ type publicProps = {
     * @default {}
     */
   inputProps?: inputBaseComponentProps,
+  /**
+    * Pass a ref to the `input` element.
+    */
+  inputRef?: React.ref<'value>,
   /**
     * If `dense`, will adjust vertical spacing. This is normally obtained via context from
     * FormControl.
@@ -236,22 +244,18 @@ type publicProps = {
     */
   @as("type")
   type_?: string,
+  /**
+    * The value of the `input` element, required for a controlled component.
+    */
+  value?: 'value,
 }
 
 type props<'value> = {
-  ...publicProps,
+  ...publicProps<'value>,
   /**
     * Override or extend the styles applied to the component.
     */
   classes?: classes,
-  /**
-    * The default value. Use when the component is not controlled.
-    */
-  defaultValue?: 'value,
-  /**
-    * Pass a ref to the `input` element.
-    */
-  inputRef?: React.ref<'value>,
   /**
     * Callback fired when the value is changed.
     *
@@ -263,10 +267,6 @@ type props<'value> = {
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,
-  /**
-    * The value of the `input` element, required for a controlled component.
-    */
-  value?: 'value,
 }
 
 @module("@mui/material/InputBase")

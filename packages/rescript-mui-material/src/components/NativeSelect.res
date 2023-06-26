@@ -35,7 +35,7 @@ type variant =
   | @as("standard") Standard
 
 type props<'value> = {
-  ...InputBase.publicProps,
+  ...InputBase.publicProps<'value>,
   /**
     * The option elements to populate the select with.
     * Can be some `<option>` elements.
@@ -46,10 +46,6 @@ type props<'value> = {
     * @default {}
     */
   classes?: classes,
-  /**
-    * The default value. Use when the component is not controlled.
-    */
-  defaultValue?: 'value,
   /**
     * If `true`, the `input` will not have an underline.
     */
@@ -66,10 +62,6 @@ type props<'value> = {
     */
   input?: React.element,
   /**
-    * Pass a ref to the `input` element.
-    */
-  inputRef?: React.ref<unknown>,
-  /**
     * Callback fired when a menu item is selected.
     *
     * @param {React.ChangeEvent<HTMLSelectElement>} event The event source of the callback.
@@ -80,10 +72,6 @@ type props<'value> = {
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,
-  /**
-    * The `input` value. The DOM API casts this to a string.
-    */
-  value?: 'value,
   /**
     * The variant to use.
     */

@@ -33,8 +33,8 @@ type classes = {
   inputTypeSearch?: string,
 }
 
-type publicProps = {
-  ...InputBase.publicProps,
+type publicProps<'value> = {
+  ...InputBase.publicProps<'value>,
   /**
     * If `true`, the outline is notched to accommodate the label.
     */
@@ -42,19 +42,11 @@ type publicProps = {
 }
 
 type props<'value> = {
-  ...publicProps,
+  ...publicProps<'value>,
   /**
     * Override or extend the styles applied to the component.
     */
   classes?: classes,
-  /**
-    * The default value. Use when the component is not controlled.
-    */
-  defaultValue?: 'value,
-  /**
-    * Pass a ref to the `input` element.
-    */
-  inputRef?: React.ref<'value>,
   /**
     * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
     */
@@ -70,10 +62,6 @@ type props<'value> = {
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,
-  /**
-    * The value of the `input` element, required for a controlled component.
-    */
-  value?: 'value,
 }
 
 @module("@mui/material/OutlinedInput")
