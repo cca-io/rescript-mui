@@ -69,6 +69,7 @@ function ExampleSelect(props) {
                                       id: "age-simple",
                                       name: "age"
                                     },
+                                    value: values.age,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -89,8 +90,7 @@ function ExampleSelect(props) {
                                             value: "30"
                                           })
                                     ],
-                                    onChange: handleChangeAge,
-                                    value: values.age
+                                    onChange: handleChangeAge
                                   })
                             ]
                           }),
@@ -101,6 +101,7 @@ function ExampleSelect(props) {
                                     htmlFor: "age-helper"
                                   }),
                               JsxRuntime.jsxs(Select, {
+                                    value: values.age,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -125,8 +126,7 @@ function ExampleSelect(props) {
                                               id: "age-helper",
                                               name: "age"
                                             })),
-                                    onChange: handleChangeAge,
-                                    value: values.age
+                                    onChange: handleChangeAge
                                   }),
                               JsxRuntime.jsx(FormHelperText, {
                                     children: "Some important helper text"
@@ -137,6 +137,7 @@ function ExampleSelect(props) {
                             children: [
                               JsxRuntime.jsxs(Select, {
                                     name: "age",
+                                    value: values.age,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -158,8 +159,7 @@ function ExampleSelect(props) {
                                           })
                                     ],
                                     displayEmpty: true,
-                                    onChange: handleChangeAge,
-                                    value: values.age
+                                    onChange: handleChangeAge
                                   }),
                               JsxRuntime.jsx(FormHelperText, {
                                     children: "Without label"
@@ -175,6 +175,7 @@ function ExampleSelect(props) {
                                   }),
                               JsxRuntime.jsxs(Select, {
                                     name: "age",
+                                    value: values.age,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -200,8 +201,7 @@ function ExampleSelect(props) {
                                               id: "age-label-placeholder",
                                               name: "age"
                                             })),
-                                    onChange: handleChangeAge,
-                                    value: values.age
+                                    onChange: handleChangeAge
                                   }),
                               JsxRuntime.jsx(FormHelperText, {
                                     children: "Label + placeholder"
@@ -215,6 +215,7 @@ function ExampleSelect(props) {
                                     htmlFor: "name-disabled"
                                   }),
                               JsxRuntime.jsxs(Select, {
+                                    value: values.name,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -239,8 +240,7 @@ function ExampleSelect(props) {
                                               id: "name-disabled",
                                               name: "name"
                                             })),
-                                    onChange: handleChangeName,
-                                    value: values.name
+                                    onChange: handleChangeName
                                   }),
                               JsxRuntime.jsx(FormHelperText, {
                                     children: "Disabled"
@@ -256,6 +256,7 @@ function ExampleSelect(props) {
                                   }),
                               JsxRuntime.jsxs(Select, {
                                     name: "name",
+                                    value: values.name,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -282,8 +283,7 @@ function ExampleSelect(props) {
                                     onChange: handleChangeName,
                                     renderValue: (function (value) {
                                         return "⚠️  - " + value;
-                                      }),
-                                    value: values.name
+                                      })
                                   }),
                               JsxRuntime.jsx(FormHelperText, {
                                     children: "Error"
@@ -298,6 +298,7 @@ function ExampleSelect(props) {
                                     htmlFor: "name-readonly"
                                   }),
                               JsxRuntime.jsxs(Select, {
+                                    value: values.name,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -323,8 +324,7 @@ function ExampleSelect(props) {
                                               name: "name",
                                               readOnly: true
                                             })),
-                                    onChange: handleChangeName,
-                                    value: values.name
+                                    onChange: handleChangeName
                                   }),
                               JsxRuntime.jsx(FormHelperText, {
                                     children: "Read only"
@@ -338,6 +338,7 @@ function ExampleSelect(props) {
                                     htmlFor: "age-auto-width"
                                   }),
                               JsxRuntime.jsxs(Select, {
+                                    value: values.age,
                                     autoWidth: true,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
@@ -363,8 +364,7 @@ function ExampleSelect(props) {
                                               id: "age-auto-width",
                                               name: "age"
                                             })),
-                                    onChange: handleChangeAge,
-                                    value: values.age
+                                    onChange: handleChangeAge
                                   }),
                               JsxRuntime.jsx(FormHelperText, {
                                     children: "Auto width"
@@ -375,6 +375,7 @@ function ExampleSelect(props) {
                             children: [
                               JsxRuntime.jsxs(Select, {
                                     name: "age",
+                                    value: values.age,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: "Placeholder",
@@ -395,8 +396,7 @@ function ExampleSelect(props) {
                                           })
                                     ],
                                     displayEmpty: true,
-                                    onChange: handleChangeAge,
-                                    value: values.age
+                                    onChange: handleChangeAge
                                   }),
                               JsxRuntime.jsx(FormHelperText, {
                                     children: "Placeholder"
@@ -414,6 +414,7 @@ function ExampleSelect(props) {
                                       id: "age-required"
                                     },
                                     name: "age",
+                                    value: values.age,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -434,8 +435,7 @@ function ExampleSelect(props) {
                                             value: "30"
                                           })
                                     ],
-                                    onChange: handleChangeAge,
-                                    value: values.age
+                                    onChange: handleChangeAge
                                   }),
                               JsxRuntime.jsx(FormHelperText, {
                                     children: "Required"
@@ -451,6 +451,7 @@ function ExampleSelect(props) {
                                     htmlFor: "outlined-age-simple"
                                   }),
                               JsxRuntime.jsxs(Select, {
+                                    value: values.age,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -478,8 +479,7 @@ function ExampleSelect(props) {
                                                         width: String(match$2[0])
                                                       }))
                                             })),
-                                    onChange: handleChangeAge,
-                                    value: values.age
+                                    onChange: handleChangeAge
                                   })
                             ],
                             variant: "outlined"
@@ -491,6 +491,7 @@ function ExampleSelect(props) {
                                     htmlFor: "filled-age-simple"
                                   }),
                               JsxRuntime.jsxs(Select, {
+                                    value: values.age,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
@@ -515,8 +516,7 @@ function ExampleSelect(props) {
                                               id: "filled-age-simple",
                                               name: "age"
                                             })),
-                                    onChange: handleChangeAge,
-                                    value: values.age
+                                    onChange: handleChangeAge
                                   })
                             ],
                             variant: "filled"

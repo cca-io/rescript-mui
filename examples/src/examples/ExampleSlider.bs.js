@@ -61,10 +61,10 @@ function ExampleSlider(props) {
                                               return ;
                                             }
                                           }),
+                                        value: value,
                                         onChange: (function (e) {
                                             setValue(Caml_format.float_of_string(e.target.value));
-                                          }),
-                                        value: value
+                                          })
                                       })),
                               item: true
                             })
