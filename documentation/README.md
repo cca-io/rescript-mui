@@ -42,7 +42,6 @@ let make = () =>
 
 The `Mui` namespace contains the following special modules:
 
-- [Any](any-type.md)
 - [Colors](module-colors.md)
 - [Core](module-core.md)
 - [Box](module-box.md)

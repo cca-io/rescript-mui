@@ -6,14 +6,19 @@ type t_size = {
   xs: float,
 }
 
+@unboxed
+type breakpoint =
+  | Point(float)
+  | Func(string => ThemeOptions.t)
+
 type t_breakpoints = {
-  between: Any.t,
-  down: Any.t,
+  between: float,
+  down: float,
   keys: array<string>,
-  not: Any.t,
-  only: Any.t,
+  not: float,
+  only: float,
   unit: string,
-  up: Any.t,
+  up: float,
   values: t_size,
 }
 
@@ -77,7 +82,6 @@ type t_palette = {
   contrastThreshold: float,
   divider: string,
   error: colorWithVariants,
-  getContrastText: Any.t,
   grey: color,
   info: colorWithVariants,
   primary: colorWithVariants,
@@ -122,14 +126,12 @@ type t_zIndex = {drawer: float}
 
 type t_theme = {
   breakpoints: t_breakpoints,
-  components: Any.t,
+  components: Overrides.t,
   direction: string,
   palette: t_palette,
   shape: t_shape,
   spacing: int => int,
   transitions: t_transitions,
-  unstable_sx: Any.t,
-  unstable_sxConfig: Any.t,
   mixins: mixins,
   zIndex: t_zIndex,
 }

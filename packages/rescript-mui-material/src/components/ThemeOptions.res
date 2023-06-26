@@ -7,18 +7,17 @@ type breakpointValues = {
 }
 
 type breakpoints = {
-  between?: Any.t,
-  down?: Any.t,
+  between?: float,
+  down?: float,
   keys?: array<string>,
-  only?: Any.t,
-  step?: float,
+  not?: float,
+  only?: float,
   unit?: string,
-  up?: Any.t,
+  up?: float,
   values?: breakpointValues,
-  width?: Any.t,
 }
 
-type mixinsOptions = {gutters?: Any.t, toolbar?: ReactDOM.Style.t}
+type mixinsOptions = {gutters?: string, toolbar?: ReactDOM.Style.t}
 
 type typeAction = {
   activatedOpacity?: float,
@@ -74,14 +73,16 @@ type colorWithVariants = {
 
 type paletteOptions = {
   action?: typeAction,
+  augmentColor?: unit => string,
   background?: typeBackground,
   common?: commonColors,
   contrastThreshold?: float,
   divider?: string,
   error?: colorWithVariants,
-  getContrastText?: Any.t,
+  getContrastText?: unit => string,
   grey?: color,
   info?: colorWithVariants,
+  mode?: string,
   primary?: colorWithVariants,
   secondary?: colorWithVariants,
   success?: colorWithVariants,
@@ -110,14 +111,51 @@ type easing = {
   sharp?: string,
 }
 
-type transitionsOptions = {
-  create?: Any.t,
-  duration?: duration,
-  easing?: easing,
-  getAutoHeightDuration?: Any.t,
+type transitionCreateOptions = {
+  duration?: string,
+  easing?: string,
+  delay?: string,
 }
 
-type typographyStyleOptions = {\"@font-face"?: Any.t}
+type transitionsOptions = {
+  create?: (array<string>, transitionCreateOptions) => string,
+  getAutoHeightDuration?: float => Transition.duration,
+  easing?: easing,
+  duration?: duration,
+}
+
+type typographyOptions = {
+  fontFamily?: array<string>,
+  fontWeight?: int,
+  fontSize?: int,
+  lineHeight?: float,
+  letterSpacing?: string,
+  textTransform: string,
+}
+
+type typographyStyleOptions = {
+  htmlFontSize?: int,
+  pxToRem?: string => string,
+  fontFamily?: array<string>,
+  fontSize?: int,
+  fontWeightLight?: int,
+  fontWeightRegular?: int,
+  fontWeightMedium?: int,
+  fontWeightBold?: int,
+  h1?: typographyOptions,
+  h2?: typographyOptions,
+  h3?: typographyOptions,
+  h4?: typographyOptions,
+  h5?: typographyOptions,
+  h6?: typographyOptions,
+  subtitle1?: typographyOptions,
+  subtitle2?: typographyOptions,
+  body1?: typographyOptions,
+  body2?: typographyOptions,
+  button?: typographyOptions,
+  caption?: typographyOptions,
+  overline?: typographyOptions,
+}
 
 type typography = {
   body1?: typographyStyleOptions,
@@ -156,12 +194,11 @@ type t = {
   breakpoints?: breakpoints,
   direction?: string,
   mixins?: mixinsOptions,
-  overrides?: Overrides.t,
+  components?: Overrides.t,
   palette?: paletteOptions,
-  props?: Any.t,
   shadows?: array<string>,
   shape?: shape,
-  spacing?: Any.t,
+  spacing?: int => int,
   transitions?: transitionsOptions,
   typography?: typography,
   unstable_strictMode?: bool,

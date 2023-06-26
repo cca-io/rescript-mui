@@ -1,12 +1,14 @@
 let theme = outerTheme =>
   Mui.Theme.create({
     ...outerTheme,
-    overrides: {
+    components: {
       muiButton: {
-        outlined: {
-          fontSize: "12px",
-          fontWeight: "300",
-          color: "gray",
+        styleOverrides: {
+          outlined: {
+            fontSize: "12px",
+            fontWeight: "300",
+            color: "gray",
+          },
         },
       },
     },

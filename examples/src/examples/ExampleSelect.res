@@ -105,7 +105,7 @@ let make = () => {
           value=values.name
           onChange=handleChangeName
           name="name"
-          renderValue={value => `⚠️  - ${value->Any.unsafeToString}`->React.string}
+          renderValue={value => `⚠️  - ${value}`->React.string}
           input={<Input id="name-error" />}>
           <MenuItem value={""}>
             <em> {"None"->React.string} </em>

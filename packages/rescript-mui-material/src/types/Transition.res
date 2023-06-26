@@ -1,7 +1,7 @@
 // https://reactcommunity.org/react-transition-group/transition#Transition-props
 type publicProps = {
   ...CommonProps.t,
-  addEndListener?: Any.t,
+  addEndListener?: ReactEvent.Synthetic.t => unit,
   enter?: bool,
   exit?: bool,
   mountOnEnter?: bool,
@@ -45,5 +45,7 @@ type easingObject = {
 type easing =
   | Easing(string)
   | Object(easingObject)
+
+type delay // TODO
 
 external propsFromObject: {..} => props = "%identity"

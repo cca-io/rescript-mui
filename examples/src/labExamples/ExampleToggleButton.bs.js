@@ -80,7 +80,7 @@ function ExampleToggleButton(props) {
                                         ],
                                         exclusive: true,
                                         onChange: handleAlignment,
-                                        value: Caml_option.some(match[0])
+                                        value: match[0]
                                       }))
                             }),
                         JsxRuntime.jsx(Typography, {
@@ -124,7 +124,7 @@ function ExampleToggleButton(props) {
                                               })
                                         ],
                                         onChange: handleFormats,
-                                        value: Caml_option.some(match$1[0])
+                                        value: match$1[0]
                                       }))
                             }),
                         JsxRuntime.jsx(Typography, {

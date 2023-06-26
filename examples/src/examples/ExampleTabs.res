@@ -2,7 +2,7 @@
 let make = () => {
   let (value, setValue) = React.useReducer((_, v) => v, 2)
 
-  let handleChange = (_, newValue) => setValue(newValue->Mui.Any.unsafeToInt)
+  let handleChange = (_, newValue) => setValue(newValue)
 
   <Mui.Paper square=true>
     <Mui.Tabs value indicatorColor=Primary textColor=Primary onChange=handleChange>

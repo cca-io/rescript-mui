@@ -1,5 +1,10 @@
 // This file is generated automatically by helpers/src/GenerateOverrides.res. Do not edit manually!
 
+type component<'classKey> = {
+  defaultProps?: 'classKey,
+  styleOverrides?: 'classKey,
+}
+
 type loadingButtonClassKey = {
   loading?: ReactDOM.Style.t,
   loadingIndicator?: ReactDOM.Style.t,
@@ -10,9 +15,7 @@ type loadingButtonClassKey = {
   startIconLoadingStart?: ReactDOM.Style.t,
 }
 
-type masonryClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type masonryClassKey = {root?: ReactDOM.Style.t}
 
 type tabListClassKey = {
   root?: ReactDOM.Style.t,
@@ -30,9 +33,7 @@ type tabListClassKey = {
   indicator?: ReactDOM.Style.t,
 }
 
-type tabPanelClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type tabPanelClassKey = {root?: ReactDOM.Style.t}
 
 type timelineClassKey = {
   root?: ReactDOM.Style.t,
@@ -42,9 +43,7 @@ type timelineClassKey = {
   positionAlternateReverse?: ReactDOM.Style.t,
 }
 
-type timelineConnectorClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type timelineConnectorClassKey = {root?: ReactDOM.Style.t}
 
 type timelineContentClassKey = {
   root?: ReactDOM.Style.t,
@@ -83,9 +82,7 @@ type timelineOppositeContentClassKey = {
   positionAlternateReverse?: ReactDOM.Style.t,
 }
 
-type timelineSeparatorClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type timelineSeparatorClassKey = {root?: ReactDOM.Style.t}
 
 type treeItemClassKey = {
   root?: ReactDOM.Style.t,
@@ -99,23 +96,21 @@ type treeItemClassKey = {
   label?: ReactDOM.Style.t,
 }
 
-type treeViewClassKey = {
-  root?: ReactDOM.Style.t,
-}
-
+type treeViewClassKey = {root?: ReactDOM.Style.t}
 
 type t = {
-  @as("MuiLoadingButton") muiLoadingButton?: loadingButtonClassKey,
-  @as("MuiMasonry") muiMasonry?: masonryClassKey,
-  @as("MuiTabList") muiTabList?: tabListClassKey,
-  @as("MuiTabPanel") muiTabPanel?: tabPanelClassKey,
-  @as("MuiTimeline") muiTimeline?: timelineClassKey,
-  @as("MuiTimelineConnector") muiTimelineConnector?: timelineConnectorClassKey,
-  @as("MuiTimelineContent") muiTimelineContent?: timelineContentClassKey,
-  @as("MuiTimelineDot") muiTimelineDot?: timelineDotClassKey,
-  @as("MuiTimelineItem") muiTimelineItem?: timelineItemClassKey,
-  @as("MuiTimelineOppositeContent") muiTimelineOppositeContent?: timelineOppositeContentClassKey,
-  @as("MuiTimelineSeparator") muiTimelineSeparator?: timelineSeparatorClassKey,
-  @as("MuiTreeItem") muiTreeItem?: treeItemClassKey,
-  @as("MuiTreeView") muiTreeView?: treeViewClassKey,
+  @as("MuiLoadingButton") muiLoadingButton?: component<loadingButtonClassKey>,
+  @as("MuiMasonry") muiMasonry?: component<masonryClassKey>,
+  @as("MuiTabList") muiTabList?: component<tabListClassKey>,
+  @as("MuiTabPanel") muiTabPanel?: component<tabPanelClassKey>,
+  @as("MuiTimeline") muiTimeline?: component<timelineClassKey>,
+  @as("MuiTimelineConnector") muiTimelineConnector?: component<timelineConnectorClassKey>,
+  @as("MuiTimelineContent") muiTimelineContent?: component<timelineContentClassKey>,
+  @as("MuiTimelineDot") muiTimelineDot?: component<timelineDotClassKey>,
+  @as("MuiTimelineItem") muiTimelineItem?: component<timelineItemClassKey>,
+  @as("MuiTimelineOppositeContent")
+  muiTimelineOppositeContent?: component<timelineOppositeContentClassKey>,
+  @as("MuiTimelineSeparator") muiTimelineSeparator?: component<timelineSeparatorClassKey>,
+  @as("MuiTreeItem") muiTreeItem?: component<treeItemClassKey>,
+  @as("MuiTreeView") muiTreeView?: component<treeViewClassKey>,
 }

@@ -53,7 +53,7 @@ let getComponentsWithClasses = path => {
               typeName->Js.String2.charAt(0)->Js.String2.toLowerCase ++
               typeName->Js.String2.sliceToEnd(~from=1) ++ "ClassKey"
 
-            let muiName = `  @as("Mui${typeName}") mui${typeName}?: ${typeNameLowercaseFirst},`
+            let muiName = `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}>,`
 
             let classesBody = " = {\n" ++ classes->Js.Array2.joinWith("\n") ++ "\n}\n"
 
@@ -68,11 +68,18 @@ let getComponentsWithClasses = path => {
     )
     ->Js.Array2.joinWith("\n")
 
-  "// This file is generated automatically by helpers/src/GenerateOverrides.res. Do not edit manually!\n\n" ++
-  classKeys ++
-  "\n\n" ++
-  "type t = {\n" ++
-  muiNames->Js.Array2.joinWith("\n") ++ "\n}\n"
+  `// This file is generated automatically by helpers/src/GenerateOverrides.res. Do not edit manually!
+
+type component<'classKey> = {
+  defaultProps?: 'classKey,
+  styleOverrides?: 'classKey,
+}
+
+${classKeys}
+type t = {
+${muiNames->Js.Array2.joinWith("\n")}
+}
+`
 }
 
 let muiOverrides = getComponentsWithClasses("./packages/rescript-mui-material/src/components")

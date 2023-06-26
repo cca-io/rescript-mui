@@ -1,5 +1,8 @@
-@module("@mui/material")
-external useMediaQueryString: string => bool = "useMediaQuery"
+@module("@mui/material/useMediaQuery")
+external useMediaQueryString: string => bool = "default"
 
-@module("@mui/material")
-external useMediaQuery: System.Breakpoint.t => bool = "useMediaQuery"
+@module("@mui/material/useMediaQuery")
+external useMediaQuery: System.Breakpoint.t => bool = "default"
+
+@module("@mui/material/useScrollTrigger")
+external useScrollTrigger: unit => bool = "default"

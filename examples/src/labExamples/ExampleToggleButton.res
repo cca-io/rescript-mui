@@ -43,27 +43,26 @@ let make = () => {
   let (formats, setFormats) = React.useReducer((_, v) => v, ["bold"])
 
   let handleAlignment = (_, v) => {
-    setAlignment(v->Mui.Any.unsafeGetValue)
+    setAlignment(v)
   }
   let handleFormats = (_, v) => {
-    setFormats(v->Mui.Any.unsafeGetValue)
+    setFormats(v)
   }
 
   <Grid container=true spacing=Int(2)>
     <Grid item=true sm=Number(12) md=Number(6)>
       <Box mb={Number(2.)} mt={Number(2.)}>
-        <ToggleButtonGroup
-          value={Any.fromString(alignment)} exclusive=true onChange=handleAlignment>
-          <ToggleButton value={Any.fromString("left")}>
+        <ToggleButtonGroup value={alignment} exclusive=true onChange=handleAlignment>
+          <ToggleButton value={"left"}>
             <FormatAlignLeftIcon />
           </ToggleButton>
-          <ToggleButton value={Any.fromString("center")}>
+          <ToggleButton value={"center"}>
             <FormatAlignCenterIcon />
           </ToggleButton>
-          <ToggleButton value={Any.fromString("right")}>
+          <ToggleButton value={"right"}>
             <FormatAlignRightIcon />
           </ToggleButton>
-          <ToggleButton value={Any.fromString("justify")} disabled=true>
+          <ToggleButton value={"justify"} disabled=true>
             <FormatAlignJustifyIcon />
           </ToggleButton>
         </ToggleButtonGroup>
@@ -77,17 +76,17 @@ let make = () => {
     </Grid>
     <Grid item=true sm=Number(12) md=Number(6)>
       <Box mb={Number(2.)} mt={Number(2.)}>
-        <ToggleButtonGroup value={Any.make(formats)} onChange=handleFormats>
-          <ToggleButton value={Any.fromString("bold")}>
+        <ToggleButtonGroup value={formats} onChange=handleFormats>
+          <ToggleButton value={"bold"}>
             <FormatBoldIcon />
           </ToggleButton>
-          <ToggleButton value={Any.fromString("italic")}>
+          <ToggleButton value={"italic"}>
             <FormatItalicIcon />
           </ToggleButton>
-          <ToggleButton value={Any.fromString("underlined")}>
+          <ToggleButton value={"underlined"}>
             <FormatUnderlinedIcon />
           </ToggleButton>
-          <ToggleButton value={Any.fromString("color")} disabled=true>
+          <ToggleButton value={"color"} disabled=true>
             <FormatColorFillIcon />
             <ArrowDropDownIcon />
           </ToggleButton>

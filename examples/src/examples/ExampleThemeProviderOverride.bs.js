@@ -8,12 +8,14 @@ import SupervisedUserCircle from "@mui/icons-material/SupervisedUserCircle";
 
 function theme(outerTheme) {
   var newrecord = Caml_obj.obj_dup(outerTheme);
-  return Styles.createTheme((newrecord.overrides = {
+  return Styles.createTheme((newrecord.components = {
                 MuiButton: {
-                  outlined: {
-                    color: "gray",
-                    fontSize: "12px",
-                    fontWeight: "300"
+                  styleOverrides: {
+                    outlined: {
+                      color: "gray",
+                      fontSize: "12px",
+                      fontWeight: "300"
+                    }
                   }
                 }
               }, newrecord));

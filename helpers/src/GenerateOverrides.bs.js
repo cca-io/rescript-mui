@@ -39,12 +39,12 @@ function getComponentsWithClasses(path) {
                   }));
             var typeName = filename.substring(0, filename.length - 4 | 0);
             var typeNameLowercaseFirst = typeName.charAt(0).toLowerCase() + typeName.slice(1) + "ClassKey";
-            var muiName = "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: " + typeNameLowercaseFirst + ",";
+            var muiName = "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ">,";
             var classesBody = " = {\n" + classes.join("\n") + "\n}\n";
             muiNames.push(muiName);
             return "type " + typeNameLowercaseFirst + classesBody;
           })).join("\n");
-  return "// This file is generated automatically by helpers/src/GenerateOverrides.res. Do not edit manually!\n\n" + classKeys + "\n\ntype t = {\n" + muiNames.join("\n") + "\n}\n";
+  return "// This file is generated automatically by helpers/src/GenerateOverrides.res. Do not edit manually!\n\ntype component<'classKey> = {\n  defaultProps?: 'classKey,\n  styleOverrides?: 'classKey,\n}\n\n" + classKeys + "\ntype t = {\n" + muiNames.join("\n") + "\n}\n";
 }
 
 var muiOverrides = getComponentsWithClasses("./packages/rescript-mui-material/src/components");
