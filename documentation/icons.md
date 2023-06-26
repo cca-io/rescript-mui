@@ -1,3 +1,5 @@
+## Icons
+
 The MaterialUi icons **do not** have separate bindings. There is a good reason
 for this: Bindings result in thousands of files (or one extremely large one),
 which take a good while to recompile (easily upwards of one minute, this is

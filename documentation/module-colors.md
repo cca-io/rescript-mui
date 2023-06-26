@@ -1,8 +1,4 @@
----
-title: Module - Colors (TODO)
----
-
-## Concept
+## Colors
 
 All colors are available in the special module `Mui.Colors`.
 
@@ -15,7 +11,7 @@ Let's take the color
 as an example. The following table shows the equivalent keys for accessing its
 shades:
 
-## Available Shades
+### Available Shades
 
 | Javascript    | ReScript                 |
 | ------------- | ------------------------ |

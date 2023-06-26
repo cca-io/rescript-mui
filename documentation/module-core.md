@@ -1,3 +1,5 @@
+## Core
+
 The `Mui.Core` module contains a few manual bindings to potentially useful
 functions.
 

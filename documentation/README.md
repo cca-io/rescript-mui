@@ -29,7 +29,7 @@ discussed later. To avoid name clashes, we suggest you stick to typing out
 @react.component
 let make = () =>
   <div>
-    <Mui.Typography variant=#h4 gutterBottom=true>
+    <Mui.Typography variant=H4 gutterBottom=true>
       {"Headline"->React.string}
     </Mui.Typography>
     <Mui.Typography>
@@ -44,7 +44,7 @@ The `Mui` namespace contains the following special modules:
 
 - [Colors](module-colors.md)
 - [Core](module-core.md)
-- [Box](module-box.md)
+- [System](module-system.md)
 - [Theme](theming.md)
 - [ThemeOptions](theming.md)
 - [ThemeHelpers](theming.md)

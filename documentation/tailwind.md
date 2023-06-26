@@ -1,3 +1,5 @@
+## Usage with TailwindCSS
+
 It is important to change the style precedence order with the help of the
 `StyledEngineProvider` component, otherwise the internal MUI classes will overwrite
 your styles.
