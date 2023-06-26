@@ -24,6 +24,11 @@ type props = {
     */
   classes?: classes,
   /**
+    * If `true`, the component is disabled.
+    * @default false
+    */
+  disabled?: bool,
+  /**
     * The icon to display as the expand indicator.
     */
   expandIcon?: React.element,
