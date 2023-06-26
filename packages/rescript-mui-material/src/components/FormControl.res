@@ -38,24 +38,24 @@ type variant =
 type publicProps = {
   ...CommonProps.t_NoId,
   /**
-     * The component used for the root node. Either a string to use a HTML element or a component.
-     */
+    * The component used for the root node. Either a string to use a HTML element or a component.
+    */
   component?: OverridableComponent.t<unknown>,
   /**
-     * If `true`, the component is displayed in focused state.
-     */
+    * If `true`, the component is displayed in focused state.
+    */
   focused?: bool,
   /**
-     * If `true`, the label is hidden.
-     * This is used to increase density for a `FilledInput`.
-     * Be sure to add `aria-label` to the `input` element.
-     * @default false
-     */
+    * If `true`, the label is hidden.
+    * This is used to increase density for a `FilledInput`.
+    * Be sure to add `aria-label` to the `input` element.
+    * @default false
+    */
   hiddenLabel?: bool,
   /**
-     * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
-     * @default 'none'
-     */
+    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
+    * @default 'none'
+    */
   margin?: margin,
 }
 
