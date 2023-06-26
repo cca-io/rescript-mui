@@ -55,6 +55,6 @@ The `Mui` namespace contains the following special modules:
 For styling `@rescript-mui` components, you need to pass CSS class names
 to them. We have documented the following popular options:
 
-- [CSS](css)
-- [Tailwind CSS](tailwind)
-- [a CSS-in-ReScript library like `bs-css`](bs-css)
+- [CSS](css.md)
+- [Tailwind CSS](tailwind.md)
+- [a CSS-in-ReScript library like `bs-css`](bs-css.md)
