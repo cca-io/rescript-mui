@@ -1,16 +1,5 @@
----
-title: Module - Core
----
-
 The `Mui.Core` module contains a few manual bindings to potentially useful
 functions.
-
-### useTheme() => Mui.Theme.t
-
-A [react](https://rescript-lang.org/docs/react/latest/introduction) hook to get
-the current theme. See
-[this page](https://material-ui.com/styles/api/#usetheme-theme) for more
-details.
 
 ### useMediaQuery(Breakpoint.t) => bool
 

@@ -26,7 +26,7 @@ function Examples(props) {
                       children: Caml_option.some(JsxRuntime.jsx(Grid, {
                                 children: Caml_option.some(JsxRuntime.jsx(Typography, {
                                           variant: "h4",
-                                          children: "ReScript Material-UI Examples"
+                                          children: "ReScript-MUI Material Examples"
                                         })),
                                 item: true,
                                 md: 12

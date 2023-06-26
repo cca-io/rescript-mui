@@ -4,7 +4,7 @@ open Mui
 let make = () => <>
   <Grid container=true>
     <Grid item=true md=Number(12)>
-      <Typography variant=H4> {"ReScript Material-UI Examples"->React.string} </Typography>
+      <Typography variant=H4> {"ReScript-MUI Material Examples"->React.string} </Typography>
     </Grid>
   </Grid>
   <br />

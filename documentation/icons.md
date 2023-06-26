@@ -1,7 +1,3 @@
----
-title: Icons
----
-
 The MaterialUi icons **do not** have separate bindings. There is a good reason
 for this: Bindings result in thousands of files (or one extremely large one),
 which take a good while to recompile (easily upwards of one minute, this is
@@ -12,16 +8,12 @@ following example for how this could look like:
 
 ```rescript
 module SupervisedUserCircleOutlined = {
-    @react.component @module("@material-ui/icons/SupervisedUserCircle")
-    external make: (
-        ~color: string=?,
-        ~className: string=?,
-        ~fontSize: string=?,
-    ) => React.element = "default"
+  @react.component @module("@mui/icons-material/SupervisedUserCircle")
+  external make: unit => React.element = "default"
 }
 
 @react.component
 let make = () => {
-    <SupervisedUserCircleOutlined color={Mui.Colors.red.c400} fontSize="26px" />
+  <SupervisedUserCircleOutlined color={Mui.Colors.red.c400} fontSize="26px" />
 }
 ```
