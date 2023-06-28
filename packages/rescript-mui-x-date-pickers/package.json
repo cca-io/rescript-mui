@@ -28,7 +28,7 @@
     "@rescript/react": "^0.12.0-alpha.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "rescript": "^11.0.0-beta.1",
+    "rescript": "^11.0.0-beta.3",
     "@rescript-mui/material": "^5.0.0"
   }
 }
