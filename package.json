@@ -12,7 +12,7 @@
     "format": "rescript format -all",
     "watch": "watchexec --project-origin . -c -w helpers -w packages/rescript-mui-material -w packages/rescript-mui-lab -w packages/rescript-mui-x-date-pickers -w examples -i lib -e res,resi 'rescript build -with-deps'",
     "start": "cd examples && parcel serve src/index.html",
-    "generateOverrides": "node helpers/src/GenerateOverrides.bs.js",
+    "generateOverrides": "node helpers/src/GenerateOverrides.bs.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
     "clean": "rescript clean -with-deps",
     "postinstall": "patch-package"
   },

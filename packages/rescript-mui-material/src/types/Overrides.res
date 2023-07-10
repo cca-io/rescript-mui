@@ -19,9 +19,7 @@ type accordionActionsClassKey = {
   spacing?: ReactDOM.Style.t,
 }
 
-type accordionDetailsClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type accordionDetailsClassKey = {root?: ReactDOM.Style.t}
 
 type accordionSummaryClassKey = {
   root?: ReactDOM.Style.t,
@@ -56,9 +54,7 @@ type alertClassKey = {
   action?: ReactDOM.Style.t,
 }
 
-type alertTitleClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type alertTitleClassKey = {root?: ReactDOM.Style.t}
 
 type appBarClassKey = {
   root?: ReactDOM.Style.t,
@@ -151,9 +147,7 @@ type badgeClassKey = {
   overlapCircular?: ReactDOM.Style.t,
 }
 
-type bottomNavigationClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type bottomNavigationClassKey = {root?: ReactDOM.Style.t}
 
 type bottomNavigationActionClassKey = {
   root?: ReactDOM.Style.t,
@@ -254,9 +248,7 @@ type buttonGroupClassKey = {
   groupedContainedSecondary?: ReactDOM.Style.t,
 }
 
-type cardClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type cardClassKey = {root?: ReactDOM.Style.t}
 
 type cardActionAreaClassKey = {
   root?: ReactDOM.Style.t,
@@ -269,9 +261,7 @@ type cardActionsClassKey = {
   spacing?: ReactDOM.Style.t,
 }
 
-type cardContentClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type cardContentClassKey = {root?: ReactDOM.Style.t}
 
 type cardHeaderClassKey = {
   root?: ReactDOM.Style.t,
@@ -406,13 +396,9 @@ type dialogContentClassKey = {
   dividers?: ReactDOM.Style.t,
 }
 
-type dialogContentTextClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type dialogContentTextClassKey = {root?: ReactDOM.Style.t}
 
-type dialogTitleClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type dialogTitleClassKey = {root?: ReactDOM.Style.t}
 
 type dividerClassKey = {
   root?: ReactDOM.Style.t,
@@ -929,9 +915,7 @@ type popoverClassKey = {
   paper?: ReactDOM.Style.t,
 }
 
-type popperClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type popperClassKey = {root?: ReactDOM.Style.t}
 
 type radioClassKey = {
   root?: ReactDOM.Style.t,
@@ -961,9 +945,7 @@ type ratingClassKey = {
   decimal?: ReactDOM.Style.t,
 }
 
-type scopedCssBaselineClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type scopedCssBaselineClassKey = {root?: ReactDOM.Style.t}
 
 type selectClassKey = {
   select?: ReactDOM.Style.t,
@@ -1069,9 +1051,7 @@ type speedDialIconClassKey = {
   openIconOpen?: ReactDOM.Style.t,
 }
 
-type stackClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type stackClassKey = {root?: ReactDOM.Style.t}
 
 type stepClassKey = {
   root?: ReactDOM.Style.t,
@@ -1189,9 +1169,7 @@ type tableClassKey = {
   stickyHeader?: ReactDOM.Style.t,
 }
 
-type tableBodyClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type tableBodyClassKey = {root?: ReactDOM.Style.t}
 
 type tableCellClassKey = {
   root?: ReactDOM.Style.t,
@@ -1209,17 +1187,11 @@ type tableCellClassKey = {
   stickyHeader?: ReactDOM.Style.t,
 }
 
-type tableContainerClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type tableContainerClassKey = {root?: ReactDOM.Style.t}
 
-type tableFooterClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type tableFooterClassKey = {root?: ReactDOM.Style.t}
 
-type tableHeadClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type tableHeadClassKey = {root?: ReactDOM.Style.t}
 
 type tablePaginationClassKey = {
   root?: ReactDOM.Style.t,
@@ -1267,9 +1239,7 @@ type tabsClassKey = {
   indicator?: ReactDOM.Style.t,
 }
 
-type textFieldClassKey = {
-  root?: ReactDOM.Style.t,
-}
+type textFieldClassKey = {root?: ReactDOM.Style.t}
 
 type toggleButtonClassKey = {
   root?: ReactDOM.Style.t,
@@ -1353,7 +1323,8 @@ type t = {
   @as("MuiBackdrop") muiBackdrop?: component<backdropClassKey>,
   @as("MuiBadge") muiBadge?: component<badgeClassKey>,
   @as("MuiBottomNavigation") muiBottomNavigation?: component<bottomNavigationClassKey>,
-  @as("MuiBottomNavigationAction") muiBottomNavigationAction?: component<bottomNavigationActionClassKey>,
+  @as("MuiBottomNavigationAction")
+  muiBottomNavigationAction?: component<bottomNavigationActionClassKey>,
   @as("MuiBreadcrumbs") muiBreadcrumbs?: component<breadcrumbsClassKey>,
   @as("MuiButton") muiButton?: component<buttonClassKey>,
   @as("MuiButtonBase") muiButtonBase?: component<buttonBaseClassKey>,
@@ -1400,7 +1371,8 @@ type t = {
   @as("MuiListItemAvatar") muiListItemAvatar?: component<listItemAvatarClassKey>,
   @as("MuiListItemButton") muiListItemButton?: component<listItemButtonClassKey>,
   @as("MuiListItemIcon") muiListItemIcon?: component<listItemIconClassKey>,
-  @as("MuiListItemSecondaryAction") muiListItemSecondaryAction?: component<listItemSecondaryActionClassKey>,
+  @as("MuiListItemSecondaryAction")
+  muiListItemSecondaryAction?: component<listItemSecondaryActionClassKey>,
   @as("MuiListItemText") muiListItemText?: component<listItemTextClassKey>,
   @as("MuiListSubheader") muiListSubheader?: component<listSubheaderClassKey>,
   @as("MuiMenu") muiMenu?: component<menuClassKey>,
