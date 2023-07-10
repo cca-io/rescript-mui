@@ -33,15 +33,15 @@ They are still available, check out the old website: https://rescript-material-u
 
 ## What's inside?
 
-| MUI package         | ReScript bindings package    | Namespace        | Progress |
-| ------------------- | ---------------------------- | ---------------- | -------: |
-| @mui/material       | @rescript-mui/material       | Mui              |     99 % |
-| @mui/lab            | @rescript-mui/lab            | MuiLab           |    100 % |
-| @mui/x-date-pickers | @rescript-mui/x-date-pickers | MuiXDatePickers  |     10 % |
-| @mui/base           | Not implemented!             | MuiBase (?)      |        - |
-| @mui/joy            | Not implemented!             | Joy (?)          |        - |
-| @mui/system         | Not implemented!             | MuiSystem (?)    |        - |
-| @mui/x-data-grid    | Not implemented!             | MuiXDataGrid (?) |        - |
+| MUI package         | ReScript bindings package                                               | Namespace        | Progress |
+| ------------------- | ----------------------------------------------------------------------- | ---------------- | -------: |
+| @mui/material       | [@rescript-mui/material](./packages/rescript-mui-material/)             | Mui              |     99 % |
+| @mui/lab            | [@rescript-mui/lab](./packages/rescript-mui-lab/)                       | MuiLab           |    100 % |
+| @mui/x-date-pickers | [@rescript-mui/x-date-pickers](./packages/rescript-mui-x-date-pickers/) | MuiXDatePickers  |     10 % |
+| @mui/base           | Not implemented!                                                        | MuiBase (?)      |        - |
+| @mui/joy            | Not implemented!                                                        | Joy (?)          |        - |
+| @mui/system         | Not implemented!                                                        | MuiSystem (?)    |        - |
+| @mui/x-data-grid    | Not implemented!                                                        | MuiXDataGrid (?) |        - |
 
 NOTE: `@mui/styles` will never be implemented, as it is the legacy styling solution which is not compatible with `React.StrictMode` or React 18.
 
