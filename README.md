@@ -37,7 +37,7 @@ They are still available, check out the old website: https://rescript-material-u
 | ------------------- | ----------------------------------------------------------------------- | ---------------- | -------: |
 | @mui/material       | [@rescript-mui/material](./packages/rescript-mui-material/)             | Mui              |     99 % |
 | @mui/lab            | [@rescript-mui/lab](./packages/rescript-mui-lab/)                       | MuiLab           |    100 % |
-| @mui/x-date-pickers | [@rescript-mui/x-date-pickers](./packages/rescript-mui-x-date-pickers/) | MuiXDatePickers  |     10 % |
+| @mui/x-date-pickers | [@rescript-mui/x-date-pickers](./packages/rescript-mui-x-date-pickers/) | MuiXDatePickers  |     30 % |
 | @mui/base           | Not implemented!                                                        | MuiBase (?)      |        - |
 | @mui/joy            | Not implemented!                                                        | Joy (?)          |        - |
 | @mui/system         | Not implemented!                                                        | MuiSystem (?)    |        - |

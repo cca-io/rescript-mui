@@ -34,7 +34,7 @@ type pickersInputLocaleText<'date, 'locale> = {
   // Clock labels
   clockLabelText: (
     timeView,
-    Adapters.date<'date>,
+    Common.dateValue<'date>,
     Adapters.muiPickersAdapter<'date, 'locale>,
   ) => string,
   hoursClockNumberText: string => string,
@@ -44,11 +44,11 @@ type pickersInputLocaleText<'date, 'locale> = {
   selectViewText: Common.timeViewWithMeridiem => string,
   // Open picker labels
   openDatePickerDialogue: (
-    Adapters.date<'date>,
+    Common.dateValue<'date>,
     Adapters.muiPickersAdapter<'date, 'locale>,
   ) => string,
   openTimePickerDialogue: (
-    Adapters.date<'date>,
+    Common.dateValue<'date>,
     Adapters.muiPickersAdapter<'date, 'locale>,
   ) => string,
   // Table labels

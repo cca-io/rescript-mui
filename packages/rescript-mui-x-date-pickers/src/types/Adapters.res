@@ -164,13 +164,6 @@ type fieldFormatToken
 
 type fieldFormatTokenMap = Js.Dict.t<fieldFormatToken>
 
-@unboxed
-type date<'date> =
-  | Date('date)
-  | @as(null) Null
-
-type pickersTimezone // TODO
-
 type meridiem =
   | @as("am") AM
   | @as("pm") PM
@@ -203,7 +196,7 @@ type muiPickersAdapter<'date, 'locale> = {
    * @param {any} value The optional value to parse.
    * @returns {'date | null} The parsed date.
    */
-  date: option<string> => date<'date>,
+  date: option<string> => Common.dateValue<'date>,
   /**
    * Create a date in the date library format.
    * If no `value` parameter is provided, creates a date with the current timestamp.
@@ -213,13 +206,13 @@ type muiPickersAdapter<'date, 'locale> = {
    * @param {string} timezone The timezone of the date.
    * @returns {'date | null} The parsed date.
    */
-  dateWithTimezone: (option<string>, pickersTimezone) => date<'date>,
+  dateWithTimezone: (option<string>, Common.pickersTimezone) => Common.dateValue<'date>,
   /**
    * Extracts the timezone from a date.
    * @template 'date
    * @param {'date} value The date from which we want to get the timezone.
    */
-  getTimezone: date<'date> => string,
+  getTimezone: Common.dateValue<'date> => string,
   /**
    * Convert a date to another timezone.
    * @template 'date
@@ -227,14 +220,14 @@ type muiPickersAdapter<'date, 'locale> = {
    * @param {string} timezone The timezone to convert the date to.
    * @returns {'date} The converted date.
    */
-  setTimezone: (date<'date>, pickersTimezone) => 'date,
+  setTimezone: (Common.dateValue<'date>, Common.pickersTimezone) => 'date,
   /**
    * Convert a date in the library format into a JavaScript `Date` object.
    * @template 'date
    * @param {'date} value The value to convert.
    * @returns {Date} the JavaScript date.
    */
-  toJsDate: date<'date> => Js.Date.t,
+  toJsDate: Common.dateValue<'date> => Js.Date.t,
   /**
    * Parse an iso string into a date in the date library format.
    * @deprecate Will be removed in v7.
@@ -258,7 +251,7 @@ type muiPickersAdapter<'date, 'locale> = {
    * @param {string} format The format in which the string date is.
    * @returns {'date | null} The parsed date.
    */
-  parse: (string, ~format: string) => date<'date>,
+  parse: (string, ~format: string) => Common.dateValue<'date>,
   /**
    * Get the code of the locale currently used by the adapter.
    * @returns {string} The code of the locale.
