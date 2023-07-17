@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.0.0-alpha.4
+
+- :bug: Fix CardActionArea having no typical button props like onClick.
+
 ## 5.0.0-alpha.3
 
 - :boom: Finish complete bindings rewrite of the main MUI package.
