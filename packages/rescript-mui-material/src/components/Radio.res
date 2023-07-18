@@ -85,11 +85,11 @@ type props<'value> = {
   /**
     * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
     */
-  inputProps?: unknown,
+  inputProps?: InputBase.inputBaseComponentProps,
   /**
     * Pass a ref to the `input` element.
     */
-  inputRef?: React.ref<unknown>,
+  inputRef?: React.ref<'value>,
   /**
     * Name attribute of the `input` element.
     */

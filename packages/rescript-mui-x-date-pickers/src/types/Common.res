@@ -54,6 +54,37 @@ type pickersTimezone =
   | @as("UTC") UTC
   | String(string)
 
+@unboxed
+type fieldSectionType =
+  | @as("year") Year
+  | @as("month") Month
+  | @as("day") Day
+  | @as("weekDay") WeekDay
+  | @as("hours") Hours
+  | @as("minutes") Minutes
+  | @as("seconds") Seconds
+  | @as("meridiem") Meridiem
+
+type fieldSectionContentType =
+  | @as("digit") Digit
+  | @as("digit-with-letter") DigitWithLetter
+  | @as("letter") Letter
+
+type fieldValueType =
+  | @as("date") Date
+  | @as("time") Time
+  | @as("date-time") DateTime
+
+type indexObj = {startIndex: int, endIndex: int}
+
+@unboxed
+type fieldSelectedSections =
+  | Number(float)
+  | @as(null) Null
+  | @as("all") All
+  | ...fieldSectionType
+  | Index(indexObj)
+
 type baseDateValidationProps<'date> = {
   /**
     * Maximal selectable date.
