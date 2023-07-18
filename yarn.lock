@@ -2031,10 +2031,10 @@ regenerator-runtime@^0.13.11, regenerator-runtime@^0.13.7:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
   integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
 
-rescript@^11.0.0-beta.3:
-  version "11.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/rescript/-/rescript-11.0.0-beta.3.tgz#f883a19aa8cb2ab162fd2c9f3d46d2c05cc5710b"
-  integrity sha512-j3YT3VdWMoHgwL4RydKJm9O/VIpN3NTI6keP18rZVJ8ansRKgkHYGLaIwoG6iVqSYYwBjb6d8l8oZ1Jz0fmTeQ==
+rescript@^11.0.0-beta.4:
+  version "11.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/rescript/-/rescript-11.0.0-beta.4.tgz#07433d6d0d7118bec73954241d7a61a32c6e1dbf"
+  integrity sha512-MqTyh9LhDmA++2nemZF+amEO3kOg6a5tR43DuLVocILOAvR17UZcVcS6czGaW6+zOxvPOXVv2i/xiiWCJIDmvw==
 
 resolve-from@^4.0.0:
   version "4.0.0"
