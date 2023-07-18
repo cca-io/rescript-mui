@@ -962,6 +962,11 @@
   resolved "https://registry.yarnpkg.com/@rescript/react/-/react-0.12.0-alpha.2.tgz#9a65668c6056ac1f80917639a96f4ad7887320f7"
   integrity sha512-FkVFU7LFT0c9tT01N08VsbhE7X3IuJvxrTBrbCehRyhw3qZy2qq9+HmMWm87kD4jaO23J7OhCGz5ejf66YOyoQ==
 
+"@rolandpeelen/rewatch@^0.0.11-ab644bd.0":
+  version "0.0.11-ab644bd.0"
+  resolved "https://registry.yarnpkg.com/@rolandpeelen/rewatch/-/rewatch-0.0.11-ab644bd.0.tgz#16848e05dd5c20730e2a660a5cb002c7fae5d7c0"
+  integrity sha512-nHpWg8TGWKPofB06hlFmZjdpEPSiq9ZxeLYqyyK5ufUE8eRX9ShXIEoBwAs/DONyOP8ftFHsjNZxYJog5T/oeg==
+
 "@swc/core-darwin-arm64@1.3.62":
   version "1.3.62"
   resolved "https://registry.yarnpkg.com/@swc/core-darwin-arm64/-/core-darwin-arm64-1.3.62.tgz#dafb50bf784c6b7b40dce6d8cf0605f6729812cb"

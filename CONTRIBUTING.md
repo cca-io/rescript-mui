@@ -1,7 +1,5 @@
 # How to add bindings to rescript-mui
 
-**Note**: For file watching you need to have [watchexec](https://github.com/watchexec/watchexec#install) installed.
-
 1. Checkout this repository
 2. `yarn install`
 3. `yarn watch`

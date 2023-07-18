@@ -10,7 +10,7 @@
   "scripts": {
     "build": "rescript build -with-deps",
     "format": "rescript format -all",
-    "watch": "watchexec --project-origin . -c -w helpers -w packages/rescript-mui-material -w packages/rescript-mui-lab -w packages/rescript-mui-x-date-pickers -w examples -i lib -e res,resi 'rescript build -with-deps'",
+    "watch": "rewatch watch .",
     "start": "cd examples && parcel serve src/index.html",
     "generateOverrides": "node helpers/src/GenerateOverrides.bs.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
     "clean": "rescript clean -with-deps",
@@ -21,6 +21,7 @@
     "@mui/material": "^5.13.5",
     "@mui/x-date-pickers": "^6.6.0",
     "@rescript/react": "^0.12.0-alpha.2",
+    "@rolandpeelen/rewatch": "^0.0.11-ab644bd.0",
     "parcel": "^2.9.2",
     "patch-package": "^7.0.0",
     "rescript": "^11.0.0-beta.4"
