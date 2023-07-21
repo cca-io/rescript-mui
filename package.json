@@ -5,6 +5,7 @@
     "helpers",
     "packages/rescript-mui-material",
     "packages/rescript-mui-lab",
+    "packages/rescript-mui-system",
     "packages/rescript-mui-x-date-pickers"
   ],
   "scripts": {
@@ -18,7 +19,8 @@
   },
   "devDependencies": {
     "@mui/lab": "^5.0.0-alpha.134",
-    "@mui/material": "^5.13.5",
+    "@mui/material": "^5.14.1",
+    "@mui/system": "^5.14.1",
     "@mui/x-date-pickers": "^6.6.0",
     "@rescript/react": "^0.12.0-alpha.2",
     "@rolandpeelen/rewatch": "^0.0.11-ab644bd.0",

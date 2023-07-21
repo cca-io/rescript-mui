@@ -82,7 +82,7 @@ type fieldSelectedSections =
   | Number(float)
   | @as(null) Null
   | @as("all") All
-  | ...fieldSectionType
+  // | ...fieldSectionType
   | Index(indexObj)
 
 type baseDateValidationProps<'date> = {

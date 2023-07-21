@@ -23,12 +23,12 @@
     "/bsconfig.json"
   ],
   "peerDependencies": {
-    "@mui/material": "^5.13.5",
+    "@mui/material": "^5.14.1",
     "@mui/x-date-pickers": "^6.6.0",
     "@rescript/react": "^0.12.0-alpha.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "rescript": "^11.0.0-beta.3",
+    "rescript": "^11.0.0-beta.4",
     "@rescript-mui/material": "^5.0.0"
   }
 }
