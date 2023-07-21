@@ -1,0 +1,32 @@
+{
+  "name": "@rescript-mui/system",
+  "version": "5.0.0-alpha.1",
+  "description": "This library provides ReScript bindings for MUI System.",
+  "keywords": [
+    "rescript",
+    "bindings",
+    "material-ui",
+    "mui",
+    "system"
+  ],
+  "repository": "https://github.com/cca-io/rescript-mui",
+  "bugs": "https://github.com/cca-io/rescript-mui/issues",
+  "author": "Florian Hammerschmidt <fh@cca.io>",
+  "contributors": [
+    "Lukas Deco",
+    "Christoph Knittel <ck@cca.io>"
+  ],
+  "license": "MIT",
+  "files": [
+    "/src",
+    "/bsconfig.json"
+  ],
+  "peerDependencies": {
+    "@mui/material": "^5.14.1",
+    "@mui/system": "^5.13.5",
+    "@rescript/react": "^0.12.0-alpha.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "rescript": "^11.0.0-beta.4"
+  }
+}
