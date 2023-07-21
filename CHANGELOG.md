@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## master
+
+- :rocket: Add scaffolding for MUI System package bindings.
+
 ## 5.0.0-alpha.4
 
 - :bug: Fix CardActionArea having no typical button props like onClick.
