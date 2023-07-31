@@ -14,9 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
-## master
+## 5.0.0-alpha.5
 
 - :rocket: Add scaffolding for MUI System package bindings.
+- :bug: Fix missing clickable props for TableRow.
 
 ## 5.0.0-alpha.4
 
