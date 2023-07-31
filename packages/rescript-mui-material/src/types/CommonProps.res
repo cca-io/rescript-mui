@@ -37,4 +37,5 @@ type clickableProps = {
 type clickablePropsWithOnClick = {
   ...clickableProps,
   onClick?: ReactEvent.Mouse.t => unit,
+  onDoubleClick?: ReactEvent.Mouse.t => unit,
 }
