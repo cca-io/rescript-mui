@@ -19,6 +19,10 @@ title: Changelog
 - :rocket: Add scaffolding for MUI System package bindings.
 - :bug: Fix missing clickable props for TableRow.
 
+### MUI Lab 5.0.0-alpha.2
+
+- :bug: Make MUI lab able to depend on current rescript-mui-material version.
+
 ## 5.0.0-alpha.4
 
 - :bug: Fix CardActionArea having no typical button props like onClick.
