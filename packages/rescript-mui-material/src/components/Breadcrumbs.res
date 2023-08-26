@@ -80,4 +80,4 @@ type props = {
 }
 
 @module("@mui/material/Breadcrumbs")
-external make: unit => React.component<props> = "default"
+external make: React.component<props> = "default"
