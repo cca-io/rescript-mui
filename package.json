@@ -10,11 +10,15 @@
   ],
   "scripts": {
     "build": "rescript build -with-deps",
+    "clean": "rewatch clean .",
     "format": "rescript format -all",
     "watch": "rewatch watch .",
     "start": "cd examples && parcel serve src/index.html",
     "generateOverrides": "node helpers/src/GenerateOverrides.bs.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
-    "clean": "rescript clean -with-deps",
+    "publishLab": "yarn clean && cd packages/rescript-mui-lab && yarn publish --access public",
+    "publishMui": "yarn clean && cd packages/rescript-mui-material && yarn publish --access public",
+    "publishSystem": "yarn clean && cd packages/rescript-mui-system && yarn publish --access public",
+    "publishDatePickers": "yarn clean && cd packages/rescript-mui-x-date-pickers && yarn publish --access public",
     "postinstall": "patch-package"
   },
   "devDependencies": {
@@ -23,7 +27,7 @@
     "@mui/system": "^5.14.1",
     "@mui/x-date-pickers": "^6.6.0",
     "@rescript/react": "^0.12.0-alpha.2",
-    "@rolandpeelen/rewatch": "^0.0.12-08b8bfe.0",
+    "@rolandpeelen/rewatch": "^0.0.12-446452d.0",
     "parcel": "^2.9.2",
     "patch-package": "^7.0.0",
     "rescript": "^11.0.0-beta.4"

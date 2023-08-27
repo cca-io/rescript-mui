@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.0.0-alpha.6
+
+- :bug: Fix Breadcrumbs signature.
+
 ## 5.0.0-alpha.5
 
 - :rocket: Add scaffolding for MUI System package bindings.
