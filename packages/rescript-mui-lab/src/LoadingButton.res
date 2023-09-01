@@ -17,9 +17,9 @@ type classes = {
 }
 
 type loadingPosition =
-  | @a("start") Start
-  | @a("end") End
-  | @a("center") Center
+  | @as("start") Start
+  | @as("end") End
+  | @as("center") Center
 
 type props = {
   ...Mui.Button.props,

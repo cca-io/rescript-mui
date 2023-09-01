@@ -35,15 +35,15 @@ type color =
 
 @unboxed
 type size =
-  | @a("small") Small
-  | @a("medium") Medium
-  | @a("large") Large
+  | @as("small") Small
+  | @as("medium") Medium
+  | @as("large") Large
   | String(string)
 
 @unboxed
 type variant =
-  | @a("circular") Circular
-  | @a("extended") Extended
+  | @as("circular") Circular
+  | @as("extended") Extended
   | String(string)
 
 type props = {
