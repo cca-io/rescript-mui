@@ -18,8 +18,7 @@
     "publishLab": "yarn clean && cd packages/rescript-mui-lab && yarn publish --access public",
     "publishMui": "yarn clean && cd packages/rescript-mui-material && yarn publish --access public",
     "publishSystem": "yarn clean && cd packages/rescript-mui-system && yarn publish --access public",
-    "publishDatePickers": "yarn clean && cd packages/rescript-mui-x-date-pickers && yarn publish --access public",
-    "postinstall": "patch-package"
+    "publishDatePickers": "yarn clean && cd packages/rescript-mui-x-date-pickers && yarn publish --access public"
   },
   "devDependencies": {
     "@mui/lab": "^5.0.0-alpha.134",
@@ -29,7 +28,6 @@
     "@rescript/react": "^0.12.0-alpha.2",
     "@rolandpeelen/rewatch": "^0.0.12-446452d.0",
     "parcel": "^2.9.2",
-    "patch-package": "^7.0.0",
     "rescript": "^11.0.0-beta.4"
   }
 }
