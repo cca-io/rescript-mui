@@ -82,7 +82,14 @@ type fieldSelectedSections =
   | Number(float)
   | @as(null) Null
   | @as("all") All
-  // | ...fieldSectionType
+  | @as("year") Year
+  | @as("month") Month
+  | @as("day") Day
+  | @as("weekDay") WeekDay
+  | @as("hours") Hours
+  | @as("minutes") Minutes
+  | @as("seconds") Seconds
+  | @as("meridiem") Meridiem
   | Index(indexObj)
 
 type baseDateValidationProps<'date> = {
