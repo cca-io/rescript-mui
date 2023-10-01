@@ -532,7 +532,7 @@ type props<'value> = {
     * @param {object} ownerState The state of the Autocomplete component.
     * @returns {ReactNode}
     */
-  renderTags?: (array<'value>, renderGetTagProps, ownerState) => React.element,
+  renderTags?: (array<'value>, JsxDOM.domProps => renderGetTagProps, ownerState) => React.element,
   /**
     * If `true`, the input's text is selected on focus.
     * It helps the user clear the selected value.
