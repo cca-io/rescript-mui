@@ -14,6 +14,14 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.0.0-alpha.7
+
+- :nail_care: - Switch to rescript.json
+
+- :bug: Fix Autocomplete's renderTags signature.
+- :bug: Fix Autocomplete's renderOption signature.
+- :bug: Fix typo '@as' annotations in Fab and LoadingButton.
+
 ## 5.0.0-alpha.6
 
 - :bug: Fix Breadcrumbs signature.
