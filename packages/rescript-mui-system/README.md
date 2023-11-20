@@ -11,7 +11,7 @@ This library provides [ReScript](https://rescript-lang.org/) bindings for the sy
 npm install @rescript-mui/material @rescript-mui/system
 ```
 
-3. Add them to the `dependencies` in your `bsconfig.json`:
+3. Add them to the `dependencies` in your `rescript.json`:
 
 ```json
 {

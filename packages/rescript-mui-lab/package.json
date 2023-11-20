@@ -19,7 +19,7 @@
   "license": "MIT",
   "files": [
     "/src",
-    "/bsconfig.json"
+    "/rescript.json"
   ],
   "peerDependencies": {
     "@mui/lab": "^5.0.0-alpha.134",

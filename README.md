@@ -9,7 +9,7 @@
 npm install @rescript-mui/material
 ```
 
-3. Add it to `dependencies` in your `bsconfig.json`:
+3. Add it to `dependencies` in your `rescript.json`:
 
 ```json
 {

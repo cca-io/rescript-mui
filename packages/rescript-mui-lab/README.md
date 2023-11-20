@@ -11,7 +11,7 @@ This library provides ReScript bindings for the labs part of [MUI](https://mui.c
 npm install @rescript-mui/material @rescript-mui/lab
 ```
 
-3. Add them to `dependencies` in your `bsconfig.json`:
+3. Add them to `dependencies` in your `rescript.json`:
 
 ```json
 {

@@ -20,7 +20,7 @@
   "license": "MIT",
   "files": [
     "/src",
-    "/bsconfig.json"
+    "/rescript.json"
   ],
   "peerDependencies": {
     "@mui/material": "^5.14.1",
