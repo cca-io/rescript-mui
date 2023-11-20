@@ -14,9 +14,17 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.0.0-alpha.8
+
+- :boom: Switch to rescript.json for all packages
+
+### MUI Lab 5.0.0-alpha.3
+
+- :boom: Switch to rescript.json
+
 ## 5.0.0-alpha.7
 
-- :nail_care: - Switch to rescript.json
+- :nail_care: Switch to rescript.json
 
 - :bug: Fix Autocomplete's renderTags signature.
 - :bug: Fix Autocomplete's renderOption signature.
