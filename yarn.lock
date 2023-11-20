@@ -1024,10 +1024,10 @@
   dependencies:
     rescript "^11.0.0-rc.4"
 
-"@rolandpeelen/rewatch@^0.0.12-446452d.0":
-  version "0.0.12-446452d.0"
-  resolved "https://registry.yarnpkg.com/@rolandpeelen/rewatch/-/rewatch-0.0.12-446452d.0.tgz#b4727a36fbfa075a87df522fcdfce27f275001ea"
-  integrity sha512-eL4+zjmyfr7Y7NacffVlw2UvFKBcDdpS/CpByD5znWE43a3oQU/kRwUHXJfs3F1LflhBeZaToYOBlli/o+1kWQ==
+"@rolandpeelen/rewatch@^0.0.12-ff0a51e.0":
+  version "0.0.12-ff0a51e.0"
+  resolved "https://registry.yarnpkg.com/@rolandpeelen/rewatch/-/rewatch-0.0.12-ff0a51e.0.tgz#6fb01e93e5310582ea009d867b5009db459933bf"
+  integrity sha512-Ev9SfYSscjH7BXNZ9h08W/U5Yax5pBG2bEYKPBuI/eHkdee6y2zv8t1j6p5MkxvHX0O690ExYIcNfeFt43Fokw==
 
 "@swc/core-darwin-arm64@1.3.62":
   version "1.3.62"
