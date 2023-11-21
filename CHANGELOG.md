@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.0.0-alpha.9
+
+- :bug: Fix Popper anchorEl signature
+
 ## 5.0.0-alpha.8
 
 - :boom: Switch to rescript.json for all packages
