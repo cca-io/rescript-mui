@@ -11,8 +11,8 @@ type virtualElement = {
 @unboxed
 type anchorEl =
   | @as(null) Null
-  | Virtual(virtualElement)
-  | Element(unit => React.element)
+  | Virtual(Popper.virtualElement)
+  | Element(unit => ReactDOM.domRef)
 
 type phase =
   | @as("afterMain") AfterMain
