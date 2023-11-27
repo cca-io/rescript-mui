@@ -27,6 +27,7 @@ type clickableProps = {
   onKeyPress?: ReactEvent.Keyboard.t => unit,
   onKeyUp?: ReactEvent.Keyboard.t => unit,
   onMouseDown?: ReactEvent.Mouse.t => unit,
+  onMouseEnter?: ReactEvent.Mouse.t => unit,
   onMouseLeave?: ReactEvent.Mouse.t => unit,
   onMouseUp?: ReactEvent.Mouse.t => unit,
   onTouchEnd?: ReactEvent.Touch.t => unit,
