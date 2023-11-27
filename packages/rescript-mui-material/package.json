@@ -1,6 +1,6 @@
 {
   "name": "@rescript-mui/material",
-  "version": "5.0.0-alpha.10",
+  "version": "5.0.0-alpha.11",
   "description": "This library provides ReScript bindings for material-ui (MUI).",
   "keywords": [
     "rescript",

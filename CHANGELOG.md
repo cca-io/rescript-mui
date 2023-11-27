@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.0.0-alpha.11
+
+- :bug: Add missing onMouseEnter to CommonProps.clickableProps
+
 ## 5.0.0-alpha.10
 
 - :bug: Fix Popper anchorEl signature once more.
