@@ -11,7 +11,7 @@ type actions = {updatePosition: unit => unit}
 type anchorEl =
   | @as(null) Null
   | Virtual(Popper.virtualElement)
-  | Element(unit => ReactDOM.domRef)
+  | Element(unit => Js.nullable<Dom.element>)
 
 @unboxed
 type verticalOrigin =
