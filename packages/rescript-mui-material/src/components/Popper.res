@@ -12,7 +12,7 @@ type virtualElement = {
 type anchorEl =
   | @as(null) Null
   | Virtual(virtualElement)
-  | Element(unit => ReactDOM.domRef)
+  | Element(unit => Js.nullable<Dom.element>)
 
 type phase =
   | @as("afterMain") AfterMain
