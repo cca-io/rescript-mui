@@ -47,20 +47,11 @@ type variant =
   | String(string)
 
 type props = {
-  ...CommonProps.t,
-  /**
-    * The content of the component.
-    */
-  children?: React.element,
+  ...ButtonBase.publicProps,
   /**
     * Override or extend the styles applied to the component.
     */
   classes?: classes,
-  /**
-    * The component used for the root node.
-    * Either a string to use a HTML element or a component.
-    */
-  component?: OverridableComponent.t<unknown>,
   /**
     * The color of the component.
     * It supports both default and custom theme colors, which can be added as shown in the
@@ -78,15 +69,6 @@ type props = {
     * @default false
     */
   disableFocusRipple?: bool,
-  /**
-    * If `true`, the ripple effect is disabled.
-    */
-  disableRipple?: bool,
-  /**
-    * The URL to link to when the button is clicked.
-    * If defined, an `a` element will be used as the root node.
-    */
-  href?: string,
   /**
     * The size of the component.
     * `small` is equivalent to the dense button styling.
