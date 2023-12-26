@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.0.0-alpha.13
+
+- :bug: Fab: Actually inherit onClick from ButtonBase
+
 ## 5.0.0-alpha.12
 
 - :bug: Fix anchorEl binding in Popper and Popover
