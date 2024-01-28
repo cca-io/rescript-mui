@@ -1012,17 +1012,22 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
+"@rescript/react@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@rescript/react/-/react-0.12.0.tgz#d72f0561ec9c4ae04c5db0a752087190ba7d3f40"
+  integrity sha512-EBLsf5rD7sJOjgfLLGwuLw/hONszc3UtYnIVgv7OdTyUNR41/m4deVm62PI0agvr3kWakXz4KchKRSd+19/bRA==
+
 "@rescript/react@^0.12.0-alpha.2":
   version "0.12.0-alpha.2"
   resolved "https://registry.yarnpkg.com/@rescript/react/-/react-0.12.0-alpha.2.tgz#9a65668c6056ac1f80917639a96f4ad7887320f7"
   integrity sha512-FkVFU7LFT0c9tT01N08VsbhE7X3IuJvxrTBrbCehRyhw3qZy2qq9+HmMWm87kD4jaO23J7OhCGz5ejf66YOyoQ==
 
-"@rescript/tools@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@rescript/tools/-/tools-0.1.1.tgz#1358a6658dad6a5fdb6ee32a5059a9cc5bce2881"
-  integrity sha512-mq8gnd8kh+SSO9jg9+7GTEYNZdmEcCO9fKRAReP2kWyqKSgFKQm0ToM4jHglQGfycgqGAAETp4K5loHuDL7sNg==
+"@rescript/tools@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@rescript/tools/-/tools-0.4.0.tgz#668291a51fb269780bcb67597b5f313ecf4ed02d"
+  integrity sha512-WDFSpi3NykyXsboKxpwmHRzNboOCq7BXf9MX3hpg1fp5PEAxpeIIewD5FzDr9QTHM7en6yqoDXljbYXAQAJMrw==
   dependencies:
-    rescript "^11.0.0-rc.4"
+    rescript "^11.0.0-rc.7"
 
 "@rolandpeelen/rewatch@^0.0.12-ff0a51e.0":
   version "0.0.12-ff0a51e.0"
@@ -1916,15 +1921,10 @@ regenerator-runtime@^0.13.11, regenerator-runtime@^0.13.7:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
   integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
 
-rescript@^11.0.0-rc.4:
-  version "11.0.0-rc.4"
-  resolved "https://registry.yarnpkg.com/rescript/-/rescript-11.0.0-rc.4.tgz#a7db18239a342dcda586c6f65ba5e6e4298d8d72"
-  integrity sha512-yh82o30J2/B/IwyPZjM+mc82FdyPkXRjXxlsUVEoyc5Z/snlq3Za2PhJhlfacwk+ui5lcOZsH8SndWPiI21vXg==
-
-rescript@^11.0.0-rc.5:
-  version "11.0.0-rc.5"
-  resolved "https://registry.yarnpkg.com/rescript/-/rescript-11.0.0-rc.5.tgz#7432ad57f6baa2d6edaaeb9c795e4c9ad85498dd"
-  integrity sha512-7tiOmhOJ0myaIM9/AEYxiKXha2mn+9AGdkiy5PNOaBjuGxF2Le7qnr/cyOiTTpPq4fYXxZhwpaBF1AKNl5LUPg==
+rescript@^11.0.0, rescript@^11.0.0-rc.7:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/rescript/-/rescript-11.0.1.tgz#c74af134dc8a16d152169b2456d0720324835f54"
+  integrity sha512-7T4PRp/d0+CBNnY6PYKffFqo9tGZlvnZpboF/n+8SKS+JZ6VvXJO7W538VPZXf3EYx1COGAWWvkF9e/HgSAqHg==
 
 resolve-from@^4.0.0:
   version "4.0.0"
