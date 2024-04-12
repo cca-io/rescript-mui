@@ -7,7 +7,10 @@ import Typography from "@mui/material/Typography";
 function ExampleComponentOverride$H7(props) {
   return JsxRuntime.jsx("span", {
               children: props.children,
-              className: "text-small"
+              style: {
+                fontWeight: "bold",
+                marginBottom: "4px"
+              }
             });
 }
 
@@ -18,7 +21,7 @@ var H7 = {
 function ExampleComponentOverride(props) {
   return JsxRuntime.jsx(Typography, {
               component: Caml_option.some(ExampleComponentOverride$H7),
-              children: Caml_option.some(props.children)
+              children: "This is a custom h7"
             });
 }
 

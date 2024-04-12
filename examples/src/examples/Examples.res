@@ -222,6 +222,22 @@ let make = () => <>
   </Grid>
   <br />
   <br />
+  <Divider />
+  <br />
+  <br />
+  <Grid container=true alignItems=String("center")>
+    <Grid item=true md=Number(6)>
+      <Typography variant=H5> {"Component Override"->React.string} </Typography>
+    </Grid>
+    <Grid item=true md=Number(6)>
+      <ExampleComponentOverride />
+    </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
   <br />
   <br />
   <br />
