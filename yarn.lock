@@ -48,7 +48,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7":
   version: 7.22.3
   resolution: "@babel/runtime@npm:7.22.3"
   dependencies:
@@ -57,7 +57,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.9, @babel/runtime@npm:^7.24.4":
+"@babel/runtime@npm:^7.23.9, @babel/runtime@npm:^7.24.0, @babel/runtime@npm:^7.24.4":
   version: 7.24.4
   resolution: "@babel/runtime@npm:7.24.4"
   dependencies:
@@ -145,7 +145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:^11.11.0":
+"@emotion/react@npm:^11.11.4":
   version: 11.11.4
   resolution: "@emotion/react@npm:11.11.4"
   dependencies:
@@ -199,7 +199,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/styled@npm:^11.11.0":
+"@emotion/styled@npm:^11.11.5":
   version: 11.11.5
   resolution: "@emotion/styled@npm:11.11.5"
   dependencies:
@@ -434,7 +434,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/base@npm:^5.0.0-beta.22":
+"@mui/base@npm:^5.0.0-beta.40":
   version: 5.0.0-beta.42
   resolution: "@mui/base@npm:5.0.0-beta.42"
   dependencies:
@@ -463,11 +463,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/icons-material@npm:^5.11.16":
-  version: 5.11.16
-  resolution: "@mui/icons-material@npm:5.11.16"
+"@mui/icons-material@npm:^5.15.15":
+  version: 5.15.15
+  resolution: "@mui/icons-material@npm:5.15.15"
   dependencies:
-    "@babel/runtime": "npm:^7.21.0"
+    "@babel/runtime": "npm:^7.23.9"
   peerDependencies:
     "@mui/material": ^5.0.0
     "@types/react": ^17.0.0 || ^18.0.0
@@ -475,11 +475,11 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/22099e54ccf8aaf0b7972e4626686999048094b8d783b6e293682cdc4b92da6dbd158709dce24e459babf728b17b625a89f6df40ba8a8cd4a28c6279c7a6293b
+  checksum: 10c0/71f352cbd505e2e86793c0e0254276abecf7b7a467f21cff7e2d845994ec60f6b52c2c9b3a582dab159d9f7886f966a401d90bc7ee52555bfd2e98e40aa1e243
   languageName: node
   linkType: hard
 
-"@mui/lab@npm:^5.0.0-alpha.134":
+"@mui/lab@npm:^5.0.0-alpha.170":
   version: 5.0.0-alpha.170
   resolution: "@mui/lab@npm:5.0.0-alpha.170"
   dependencies:
@@ -508,7 +508,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/material@npm:^5.14.1":
+"@mui/material@npm:^5.15.15":
   version: 5.15.15
   resolution: "@mui/material@npm:5.15.15"
   dependencies:
@@ -579,7 +579,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/system@npm:^5.14.1, @mui/system@npm:^5.15.15":
+"@mui/system@npm:^5.15.14, @mui/system@npm:^5.15.15":
   version: 5.15.15
   resolution: "@mui/system@npm:5.15.15"
   dependencies:
@@ -619,7 +619,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/utils@npm:^5.14.16, @mui/utils@npm:^5.15.14":
+"@mui/utils@npm:^5.15.14":
   version: 5.15.14
   resolution: "@mui/utils@npm:5.15.14"
   dependencies:
@@ -655,22 +655,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/x-date-pickers@npm:^6.6.0":
-  version: 6.19.9
-  resolution: "@mui/x-date-pickers@npm:6.19.9"
+"@mui/x-date-pickers@npm:^7.1.1":
+  version: 7.1.1
+  resolution: "@mui/x-date-pickers@npm:7.1.1"
   dependencies:
-    "@babel/runtime": "npm:^7.23.2"
-    "@mui/base": "npm:^5.0.0-beta.22"
-    "@mui/utils": "npm:^5.14.16"
-    "@types/react-transition-group": "npm:^4.4.8"
-    clsx: "npm:^2.0.0"
+    "@babel/runtime": "npm:^7.24.0"
+    "@mui/base": "npm:^5.0.0-beta.40"
+    "@mui/system": "npm:^5.15.14"
+    "@mui/utils": "npm:^5.15.14"
+    "@types/react-transition-group": "npm:^4.4.10"
+    clsx: "npm:^2.1.0"
     prop-types: "npm:^15.8.1"
     react-transition-group: "npm:^4.4.5"
   peerDependencies:
     "@emotion/react": ^11.9.0
     "@emotion/styled": ^11.8.1
-    "@mui/material": ^5.8.6
-    "@mui/system": ^5.8.0
+    "@mui/material": ^5.15.14
     date-fns: ^2.25.0 || ^3.2.0
     date-fns-jalali: ^2.13.0-0
     dayjs: ^1.10.7
@@ -699,7 +699,7 @@ __metadata:
       optional: true
     moment-jalaali:
       optional: true
-  checksum: 10c0/5d5383078c5e8caa28eea454f2d84ad0b3f504d1a3607e1d1556927c57d4e6fee99b55f5ee1d3e3dba7f0e9e7aaa4854177f99a4c0f99de9d0909543467861d6
+  checksum: 10c0/ab35070c0c7d236e7d4ae903ebaf5ae577f801716f97d6b5daf7d21e54e410b917076fc3ea97a5075dcb0ee086e5f450e717eee8012ca61ae9e25977a6d029e1
   languageName: node
   linkType: hard
 
@@ -1505,7 +1505,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rescript/react@npm:^0.12.0, @rescript/react@npm:^0.12.0-alpha.2":
+"@rescript/react@npm:^0.12.1":
   version: 0.12.1
   resolution: "@rescript/react@npm:0.12.1"
   peerDependencies:
@@ -1515,23 +1515,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rescript/tools@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "@rescript/tools@npm:0.4.0"
+"@rescript/tools@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@rescript/tools@npm:0.5.0"
   dependencies:
     rescript: "npm:^11.0.0-rc.7"
   bin:
     rescript-tools: npm/cli.js
-  checksum: 10c0/abde95ebed02da0410b4605f8849e8b9443796628213c9ceb10ab3691d07706d7fa3506a54b5bf1e1a7660ca7897b95337bff71d5ba32681bd535bc61dde74fd
+  checksum: 10c0/5264e4b9624c4981f09331e16b04fa2e579bbbe05d030d4edac19bddd400bc34af11f9f1c9c8402f0711ce4b4f0c9901273480d4b99991942a5bfb2adaede05c
   languageName: node
   linkType: hard
 
-"@rolandpeelen/rewatch@npm:^0.0.12-ff0a51e.0":
-  version: 0.0.12-ff0a51e.0
-  resolution: "@rolandpeelen/rewatch@npm:0.0.12-ff0a51e.0"
+"@rolandpeelen/rewatch@npm:^0.0.15":
+  version: 0.0.15
+  resolution: "@rolandpeelen/rewatch@npm:0.0.15"
   bin:
     rewatch: rewatch
-  checksum: 10c0/6def5c997f93d339a4f82562253de9c6289ef7f00b43ed13d4c0e27b1c6853e5f98300a1f6a0be5f941060ebe52af35b775036ad77dcccbb1753dd699f98ac91
+  checksum: 10c0/e957bc5039da9504747555f10086a65198e9f82307ef99d1cddeb01e01b38e97f6b0b42fe2732090bfa7418d98dddd9e218866ce3f4ac8b8d0f9302b873d6cdb
   languageName: node
   linkType: hard
 
@@ -1686,7 +1686,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-transition-group@npm:^4.4.10, @types/react-transition-group@npm:^4.4.8":
+"@types/react-transition-group@npm:^4.4.10":
   version: 4.4.10
   resolution: "@types/react-transition-group@npm:4.4.10"
   dependencies:
@@ -1858,21 +1858,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bs-css-emotion@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "bs-css-emotion@npm:5.2.0"
+"bs-css-emotion@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "bs-css-emotion@npm:6.0.2"
   dependencies:
     "@emotion/cache": "npm:^11.0.0"
     "@emotion/css": "npm:^11.0.0"
-    bs-css: "npm:16.2.0"
-  checksum: 10c0/d09f6db7ccf69a3b2693505c4267197dc5f629b7507139bbd440185dc7fcdb138506118e02aa290a7b8da9baffdbf6517247984293bdaa1dc1db4f8d1aede4c1
+    bs-css: "npm:17.0.2"
+  checksum: 10c0/c62bbefd0cfc06b1224f7c986c0b4732d57c5b0048bb5d8491bbf57be34b7c8091583b81720c4bcb8c841ea83c3996291d5b9de2fddace94647a8461a2c79f78
   languageName: node
   linkType: hard
 
-"bs-css@npm:16.2.0":
-  version: 16.2.0
-  resolution: "bs-css@npm:16.2.0"
-  checksum: 10c0/56d1438250b62882bc0a01b119cc98dbaf0918614210e0610d9d0b1c591189a70f46e2856a9fa11ddb708bfd3a1800dbec4d560460c2c97d3ee4de15b894286e
+"bs-css@npm:17.0.2":
+  version: 17.0.2
+  resolution: "bs-css@npm:17.0.2"
+  checksum: 10c0/3158fcf2110ba7ac9548798ec9a3dc9a96944c685d0db8207c2dd929ecb45dccafbaeae0503c2982aa982188ef46514694e998ef1a4f39927b007d50d645c383
   languageName: node
   linkType: hard
 
@@ -1959,7 +1959,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^2.0.0, clsx@npm:^2.1.0":
+"clsx@npm:^2.1.0":
   version: 2.1.0
   resolution: "clsx@npm:2.1.0"
   checksum: 10c0/c09c00ad14f638366ca814097e6cab533dfa1972a358da5b557be487168acbb25b4c1395e89ffa842a8a61ba87a462d2b4885bc9d4f8410b598f3cb339599cdb
@@ -3161,7 +3161,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parcel@npm:^2.9.2":
+"parcel@npm:^2.12.0":
   version: 2.12.0
   resolution: "parcel@npm:2.12.0"
   dependencies:
@@ -3405,26 +3405,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rescript-material-ui-examples@workspace:examples"
   dependencies:
-    "@emotion/react": "npm:^11.11.0"
-    "@emotion/styled": "npm:^11.11.0"
-    "@mui/icons-material": "npm:^5.11.16"
-    "@rescript/react": "npm:^0.12.0-alpha.2"
-    bs-css-emotion: "npm:^5.2.0"
+    "@emotion/react": "npm:^11.11.4"
+    "@emotion/styled": "npm:^11.11.5"
+    "@mui/icons-material": "npm:^5.15.15"
+    "@rescript/react": "npm:^0.12.1"
+    bs-css-emotion: "npm:^6.0.2"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
   languageName: unknown
   linkType: soft
-
-"rescript@npm:^11.0.0":
-  version: 11.0.1
-  resolution: "rescript@npm:11.0.1"
-  bin:
-    bsc: bsc
-    bstracing: lib/bstracing
-    rescript: rescript
-  checksum: 10c0/a37dc757a14c57a15fe75a12df52f3d564cc6ef5cacc8356fe70a7d4ab9692736c0fbb56456dff090d8b5b18935a09aed066c623e6764f4c76bed61187e611b7
-  languageName: node
-  linkType: hard
 
 "rescript@npm:^11.0.0-rc.7":
   version: 11.0.0-rc.9
@@ -3434,6 +3423,17 @@ __metadata:
     bstracing: lib/bstracing
     rescript: rescript
   checksum: 10c0/8d4fed5f7416422ca1ab3ad6cd2fbbb0345acac6dbb9f01af22f0910a43a2a9a0d1ecce4ec648a332f404b59f71efaf1e8ff10c09925850951da602cc675dc50
+  languageName: node
+  linkType: hard
+
+"rescript@npm:^11.0.1":
+  version: 11.0.1
+  resolution: "rescript@npm:11.0.1"
+  bin:
+    bsc: bsc
+    bstracing: lib/bstracing
+    rescript: rescript
+  checksum: 10c0/a37dc757a14c57a15fe75a12df52f3d564cc6ef5cacc8356fe70a7d4ab9692736c0fbb56456dff090d8b5b18935a09aed066c623e6764f4c76bed61187e611b7
   languageName: node
   linkType: hard
 
@@ -3481,15 +3481,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@mui/lab": "npm:^5.0.0-alpha.134"
-    "@mui/material": "npm:^5.14.1"
-    "@mui/system": "npm:^5.14.1"
-    "@mui/x-date-pickers": "npm:^6.6.0"
-    "@rescript/react": "npm:^0.12.0"
-    "@rescript/tools": "npm:^0.4.0"
-    "@rolandpeelen/rewatch": "npm:^0.0.12-ff0a51e.0"
-    parcel: "npm:^2.9.2"
-    rescript: "npm:^11.0.0"
+    "@mui/lab": "npm:^5.0.0-alpha.170"
+    "@mui/material": "npm:^5.15.15"
+    "@mui/system": "npm:^5.15.15"
+    "@mui/x-date-pickers": "npm:^7.1.1"
+    "@rescript/react": "npm:^0.12.1"
+    "@rescript/tools": "npm:^0.5.0"
+    "@rolandpeelen/rewatch": "npm:^0.0.15"
+    parcel: "npm:^2.12.0"
+    rescript: "npm:^11.0.1"
   languageName: unknown
   linkType: soft
 
