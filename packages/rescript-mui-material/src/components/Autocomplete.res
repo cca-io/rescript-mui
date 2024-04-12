@@ -167,7 +167,7 @@ type slotProps = {
   popupIndicator?: IconButton.props,
 }
 
-type props<'value> = {
+type autocompleteProps<'value> = {
   ...CommonProps.t_NoId,
   /**
     * Array of options.
@@ -258,11 +258,6 @@ type props<'value> = {
     * @default {}
     */
   componentsProps?: componentsProps,
-  /**
-    * The default value. Use when the component is not controlled.
-    * @default props.multiple ? [] : null
-    */
-  defaultValue?: 'value,
   /**
     * If `true`, the input can't be cleared.
     * @default false
@@ -377,16 +372,6 @@ type props<'value> = {
     */
   inputValue?: string,
   /**
-    * Used to determine if the option represents the given value.
-    * Uses strict equality by default.
-    * ⚠️ Both arguments need to be handled, an option can only match with one value.
-    *
-    * @param {T} option The option to test.
-    * @param {T} value The value to test against.
-    * @returns {boolean}
-    */
-  isOptionEqualToValue?: ('value, 'value) => bool,
-  /**
     * The maximum number of tags that will be visible when not focused.
     * Set `-1` to disable the limit.
     * @default -1
@@ -417,26 +402,12 @@ type props<'value> = {
     */
   loadingText?: React.element,
   /**
-    * If `true`, `value` must be an array and the menu will support multiple selections.
-    * @default false
-    */
-  multiple?: bool,
-  /**
     * Text to display when there are no options.
     *
     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
     * @default 'No options'
     */
   noOptionsText?: React.element,
-  /**
-    * Callback fired when the value changes.
-    *
-    * @param {React.SyntheticEvent} event The event source of the callback.
-    * @param {T|T[]} value The new value of the component.
-    * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
-    * @param {string} [details]
-    */
-  onChange?: (ReactEvent.Synthetic.t, 'value, changeReason, string) => unit,
   /**
     * Callback fired when the popup requests to be closed.
     * Use in controlled mode (see open).
@@ -553,13 +524,90 @@ type props<'value> = {
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,
+}
+
+module Multiple = {
+  @unboxed
+  type multiple = | @as(true) True
+
+  type props<'value> = {
+    ...autocompleteProps<'value>,
+    /**
+      * The default value. Use when the component is not controlled.
+      * @default []
+      */
+    defaultValue?: array<'value>,
+    /**
+      * Must be set to `True` as the `value` must be an array and the menu will support multiple selections.
+      */
+    multiple: multiple,
+    /**
+      * Callback fired when the value changes.
+      *
+      * @param {ReactEvent.Synthetic.t} The event source of the callback.
+      * @param {array<'value>} The new array value of the component.
+      * @param {reason} One of CreateOption | SelectOption | RemoveOption | Clear | Blur
+      * @param {string} [details]
+      */
+    onChange?: (ReactEvent.Synthetic.t, array<'value>, changeReason, string) => unit,
+    /**
+    * Used to determine if the option represents the given value.
+    * Uses strict equality by default.
+    * ⚠️ Both arguments need to be handled, an option can only match with one value.
+    *
+    * @param {T} option The option to test.
+    * @param {T} value The value to test against.
+    * @returns {boolean}
+    */
+    isOptionEqualToValue?: ('value, 'value) => bool,
+    /**
+      * The value of the autocomplete.
+      *
+      * The value must have reference equality with the option in order to be selected.
+      * You can customize the equality behavior with the `isOptionEqualToValue` prop.
+      */
+    value?: array<'value>,
+  }
+
+  @module("@mui/material/Autocomplete")
+  external make: React.component<props<'value>> = "default"
+}
+
+type props<'value> = {
+  ...autocompleteProps<'value>,
+  /**
+    * The default value. Use when the component is not controlled.
+    * @default null
+    */
+  defaultValue?: Js.null<'value>,
+  /**
+    * Callback fired when the value changes.
+    *
+    * @param {ReactEvent.Synthetic.t} The event source of the callback.
+    * @param {'value} The new value of the component.
+    * @param {reason} One of CreateOption | SelectOption | RemoveOption | Clear | Blur
+    * @param {string} [details]
+    */
+  onChange?: (ReactEvent.Synthetic.t, Js.null<'value>, changeReason, string) => unit,
+  /**
+    * Used to determine if the option represents the given value.
+    * Uses strict equality by default.
+    * ⚠️ Both arguments need to be handled, an option can only match with one value.
+    *
+    * @param {T} option The option to test.
+    * @param {T} value The value to test against.
+    * @returns {boolean}
+    */
+  isOptionEqualToValue?: (Js.null<'value>, Js.null<'value>) => bool,
   /**
     * The value of the autocomplete.
     *
     * The value must have reference equality with the option in order to be selected.
     * You can customize the equality behavior with the `isOptionEqualToValue` prop.
+    * It is both an option and nullable, because None compiles to undefined which means that the component is used in uncontrolled mode.
+    * To use it in controlled mode, always set a value or Js.null.
     */
-  value?: 'value,
+  value?: Js.null<'value>,
 }
 
 @module("@mui/material/Autocomplete")

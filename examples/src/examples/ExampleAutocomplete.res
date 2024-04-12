@@ -111,14 +111,71 @@ let top100Films = [
 
 @react.component
 let make = () => {
-  <Mui.Autocomplete
-    id="combo-box-demo"
-    options=top100Films
-    getOptionLabel={option => option.title}
-    fullWidth=true
-    renderInput={params => {
-      let props = params->Mui.Autocomplete.renderInputParamsToTextFieldProps
-      <Mui.TextField {...props} label={React.string({"Combo box"})} variant=Outlined />
-    }}
-  />
+  let (value, setValue) = React.useState(_ => top100Films->Belt.Array.get(0)->Js.Null.fromOption)
+  let (values, setValues) = React.useState(_ => [])
+  let (inputValue, setInputValue) = React.useState(_ => "")
+
+  <>
+    <Mui.Autocomplete
+      id="combo-box-demo"
+      options=top100Films
+      getOptionLabel={option => option.title}
+      fullWidth=true
+      renderInput={params => {
+        let props = params->Mui.Autocomplete.renderInputParamsToTextFieldProps
+        <Mui.TextField
+          {...props} label={React.string({"Combo box (uncontrolled)"})} variant=Outlined
+        />
+      }}
+    />
+    <br />
+    <Mui.Autocomplete
+      value
+      onChange={(_event, newValue, _, _) => setValue(_ => newValue)}
+      inputValue={inputValue}
+      onInputChange={(_event, newInputValue, _) => setInputValue(_ => newInputValue)}
+      id="combo-box-controlled"
+      options=top100Films
+      getOptionLabel={option => option.title}
+      renderInput={params => {
+        let props = params->Mui.Autocomplete.renderInputParamsToTextFieldProps
+        <Mui.TextField {...props} label={React.string("Combo box (controlled)")} variant=Outlined />
+      }}
+    />
+    <br />
+    <Mui.Autocomplete.Multiple
+      multiple=True
+      id="multiple-values-uncontrolled"
+      options=top100Films
+      getOptionLabel={option => option.title}
+      defaultValue={[top100Films[13]]}
+      renderInput={params => {
+        let props = params->Mui.Autocomplete.renderInputParamsToTextFieldProps
+        <Mui.TextField
+          {...props}
+          label={React.string("Multiple values (uncontrolled)")}
+          placeholder="Favorites"
+          variant=Outlined
+        />
+      }}
+    />
+    <br />
+    <Mui.Autocomplete.Multiple
+      value=values
+      onChange={(_event, newValues, _, _) => setValues(_ => newValues)}
+      multiple=True
+      id="multiple-values-controlled"
+      options=top100Films
+      getOptionLabel={option => option.title}
+      renderInput={params => {
+        let props = params->Mui.Autocomplete.renderInputParamsToTextFieldProps
+        <Mui.TextField
+          {...props}
+          label={React.string("Multiple values (controlled)")}
+          placeholder="Favorites"
+          variant=Outlined
+        />
+      }}
+    />
+  </>
 }

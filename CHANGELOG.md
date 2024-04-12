@@ -16,6 +16,7 @@ title: Changelog
 
 ## 5.0.0-rc.1 (Unreleased)
 
+- :boom: Split `Autocomplete` into `Autocomplete` and `Autocomplete.Multiple` and fix their types.
 - :rocket: OverridableComponent: Add `componentWithUnknownProps` type coercion function.
 
 ## 5.0.0-alpha.13
