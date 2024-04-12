@@ -1,11 +1,12 @@
 # How to add bindings to rescript-mui
 
 1. Checkout this repository
-2. `yarn install`
-3. `yarn watch`
-4. Do your changes (see below)
-5. Use `yarn generateOverrides` to add any new classes also to the Overrides module.
-6. Commit and create a Pull Request
+2. Have [corepack](https://nodejs.org/api/corepack.html) enabled: `corepack enable`
+3. `yarn install`
+4. `yarn watch`
+5. Do your changes (see below)
+6. Use `yarn generateOverrides` to add any new classes also to the Overrides module.
+7. Commit and create a Pull Request
 
 ## Use the d.ts as template
 
@@ -20,7 +21,6 @@
 
 - Every main props type needs to inherit from `CommonProps.t`, except if MUI documentation explicitly says that only the listed props are the valid ones.
 - If some component inherits from a MUI parent, the props to inherit from need to be called publicProps, e.g. `Paper.publicProps`. This is necessary, because prop names cannot be overwritten with different types. For instance the `classes` type is different between `Accordion` and `Paper` (of which the former inherits most props).
-- For now, only use **ONE** props spread in a record, and only on the **FIRST** position. There is a [known bug](https://github.com/rescript-lang/rescript-compiler/issues/6293) about this. This means that you don't need to spread `CommonProps.t` if you spread for instance `ButtonBase.props` which already contains the former.
 
 ## Props naming conflicts:
 
@@ -29,7 +29,7 @@
   - Examples:
     - `InputProps` conflicts with `inputProps` so it becomes `inputProps_`
     - `MuiSlider` becomes `muiSlider`
-- For props that are ReScript keywords, add a `_` behind the name
+- For props that are [ReScript keywords](https://rescript-lang.org/docs/manual/latest/reserved-keywords), add a `_` behind the name
   - Examples:
     - `type` becomes `type_`
     - `open` becomes `open_`
