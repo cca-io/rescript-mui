@@ -18,7 +18,7 @@
     "format": "rescript format -all",
     "watch": "rewatch watch .",
     "start": "cd examples && parcel serve src/index.html",
-    "generateOverrides": "node helpers/src/GenerateOverrides.bs.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
+    "generateOverrides": "node helpers/src/GenerateOverrides.res.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
     "publishLab": "yarn clean && cd packages/rescript-mui-lab && yarn publish --access public",
     "publishMui": "yarn clean && cd packages/rescript-mui-material && yarn publish --access public",
     "publishSystem": "yarn clean && cd packages/rescript-mui-system && yarn publish --access public",
@@ -33,6 +33,7 @@
     "@rescript/tools": "^0.5.0",
     "@rolandpeelen/rewatch": "^0.0.15",
     "parcel": "^2.12.0",
+    "process": "^0.11.10",
     "rescript": "^11.0.1"
   }
 }

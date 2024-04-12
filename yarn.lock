@@ -3302,6 +3302,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"process@npm:^0.11.10":
+  version: 0.11.10
+  resolution: "process@npm:0.11.10"
+  checksum: 10c0/40c3ce4b7e6d4b8c3355479df77aeed46f81b279818ccdc500124e6a5ab882c0cc81ff7ea16384873a95a74c4570b01b120f287abbdd4c877931460eca6084b3
+  languageName: node
+  linkType: hard
+
 "promise-retry@npm:^2.0.1":
   version: 2.0.1
   resolution: "promise-retry@npm:2.0.1"
@@ -3489,6 +3496,7 @@ __metadata:
     "@rescript/tools": "npm:^0.5.0"
     "@rolandpeelen/rewatch": "npm:^0.0.15"
     parcel: "npm:^2.12.0"
+    process: "npm:^0.11.10"
     rescript: "npm:^11.0.1"
   languageName: unknown
   linkType: soft
