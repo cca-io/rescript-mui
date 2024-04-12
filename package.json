@@ -8,6 +8,10 @@
     "packages/rescript-mui-system",
     "packages/rescript-mui-x-date-pickers"
   ],
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "yarn@4.1.1",
   "scripts": {
     "build": "rescript build -with-deps",
     "clean": "rewatch clean .",
