@@ -1,4 +1,4 @@
-# ReScript Bindings for MUI (WIP!)
+# ReScript Bindings for MUI
 
 ## Installation
 
@@ -35,7 +35,7 @@ They are still available, check out the old website: https://rescript-material-u
 
 | MUI package         | ReScript bindings package                                               | Namespace        | Progress |
 | ------------------- | ----------------------------------------------------------------------- | ---------------- | -------: |
-| @mui/material       | [@rescript-mui/material](./packages/rescript-mui-material/)             | Mui              |     99 % |
+| @mui/material       | [@rescript-mui/material](./packages/rescript-mui-material/)             | Mui              |    100 % |
 | @mui/lab            | [@rescript-mui/lab](./packages/rescript-mui-lab/)                       | MuiLab           |    100 % |
 | @mui/x-date-pickers | [@rescript-mui/x-date-pickers](./packages/rescript-mui-x-date-pickers/) | MuiXDatePickers  |     30 % |
 | @mui/system         | [@rescript-mui/system](./packages/rescript-mui-system/)                 | MuiSystem        |      0 % |
