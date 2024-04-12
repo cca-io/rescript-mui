@@ -4,7 +4,6 @@ import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as ExampleAlert from "../examples/ExampleAlert.bs.js";
 import * as ExampleRating from "../examples/ExampleRating.bs.js";
 import * as ExampleSkeleton from "../examples/ExampleSkeleton.bs.js";
-import * as ExampleTreeView from "./ExampleTreeView.bs.js";
 import * as ExamplePagination from "../examples/ExamplePagination.bs.js";
 import * as JsxRuntime from "react/jsx-runtime";
 import Grid from "@mui/material/Grid";
@@ -176,25 +175,6 @@ function ExamplesLab(props) {
                 JsxRuntime.jsx(Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs(Grid, {
-                      alignItems: "center",
-                      children: [
-                        JsxRuntime.jsx(Grid, {
-                              children: Caml_option.some(JsxRuntime.jsx(Typography, {
-                                        variant: "h5",
-                                        children: "TreeView"
-                                      })),
-                              item: true,
-                              md: 6
-                            }),
-                        JsxRuntime.jsx(Grid, {
-                              children: Caml_option.some(JsxRuntime.jsx(ExampleTreeView.make, {})),
-                              item: true,
-                              md: 6
-                            })
-                      ],
-                      container: true
-                    }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
