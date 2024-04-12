@@ -14,7 +14,7 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
-## 5.0.0-rc.1
+## 5.0.0-rc.1 (Unreleased)
 
 - :rocket: OverridableComponent: Add `componentWithUnknownProps` type coercion function.
 
