@@ -18,11 +18,11 @@
     "format": "rescript format -all",
     "watch": "rewatch watch .",
     "start": "cd examples && parcel serve src/index.html",
-    "generateOverrides": "node helpers/src/GenerateOverrides.res.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
-    "publishLab": "yarn clean && cd packages/rescript-mui-lab && yarn publish --access public",
-    "publishMui": "yarn clean && cd packages/rescript-mui-material && yarn publish --access public",
-    "publishSystem": "yarn clean && cd packages/rescript-mui-system && yarn publish --access public",
-    "publishDatePickers": "yarn clean && cd packages/rescript-mui-x-date-pickers && yarn publish --access public"
+    "generateOverrides": "node helpers/src/GenerateOverrides.bs.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
+    "publishLab": "yarn clean && cd packages/rescript-mui-lab && npm publish --access public",
+    "publishMui": "yarn clean && cd packages/rescript-mui-material && npm publish --access public",
+    "publishSystem": "yarn clean && cd packages/rescript-mui-system && npm publish --access public",
+    "publishDatePickers": "yarn clean && cd packages/rescript-mui-x-date-pickers && npm publish --access public"
   },
   "devDependencies": {
     "@mui/lab": "^5.0.0-alpha.170",
