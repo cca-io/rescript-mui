@@ -14,6 +14,15 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.0.0-rc.2
+
+- :rocket: Add ARIA props.
+
+## 5.0.0-rc.1
+
+- :boom: Split `Autocomplete` into `Autocomplete` and `Autocomplete.Multiple` and fix their types.
+- :rocket: OverridableComponent: Add `componentWithUnknownProps` type coercion function.
+
 ## 5.0.0-rc.1
 
 - :boom: Split `Autocomplete` into `Autocomplete` and `Autocomplete.Multiple` and fix their types.
