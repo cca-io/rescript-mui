@@ -37,11 +37,6 @@ type openReason =
 type props = {
   ...CommonProps.t,
   /**
-    * The aria-label of the button element.
-    * Also used to provide the `id` for the `SpeedDial` element and its children.
-    */
-  ariaLabel: string,
-  /**
     * SpeedDialActions to display when the SpeedDial is `open`.
     */
   children?: React.element,

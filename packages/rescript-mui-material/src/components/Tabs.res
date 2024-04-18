@@ -90,16 +90,6 @@ type publicProps = {
     */
   allowScrollButtonsMobile?: bool,
   /**
-    * The label for the Tabs as a string.
-    */
-  @as("aria-label")
-  ariaLabel?: string,
-  /**
-    * An id or list of ids separated by a space that label the Tabs.
-    */
-  @as("aria-labelledby")
-  ariaLabelledby?: string,
-  /**
     * If `true`, the tabs are centered.
     * This prop is intended for large views.
     * @default false

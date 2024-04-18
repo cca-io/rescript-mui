@@ -45,11 +45,11 @@ function ExampleSlider(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(Input, {
                                         inputProps: {
+                                          "aria-labelledby": "input-slider",
                                           step: 10,
                                           min: 0,
                                           max: 100,
-                                          type: "number",
-                                          "aria-labelledby": "input-slider"
+                                          type: "number"
                                         },
                                         margin: "dense",
                                         onBlur: (function (param) {

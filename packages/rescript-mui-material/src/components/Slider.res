@@ -126,21 +126,6 @@ type valueLabelFormat<'value> =
 type sliderProps<'value> = {
   ...CommonProps.t,
   /**
-    * The label of the slider.
-    */
-  @as("aria-label")
-  ariaLabel?: string,
-  /**
-    * The id of the element containing a label for the slider.
-    */
-  @as("aria-labelledby")
-  ariaLabelledby?: string,
-  /**
-    * A string value that provides a user-friendly name for the current value of the slider.
-    */
-  @as("aria-valuetext")
-  ariaValuetext?: string,
-  /**
     * Override or extend the styles applied to the component.
     */
   classes?: classes,

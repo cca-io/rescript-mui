@@ -58,7 +58,6 @@ type inputBaseComponentProps = {
   min?: int,
   max?: int,
   @as("type") type_?: string,
-  @as("aria-labelledby") ariaLabelledby?: string,
   @as("disableunderline") disableUnderline?: string,
   maxLength?: int,
 } // FIXME: there is more
@@ -98,7 +97,6 @@ type slots = {
 
 type publicProps<'value> = {
   ...CommonProps.t_NoId,
-  @as("aria-describedby") ariaDescribedby?: string,
   /**
     * This prop helps users to fill forms faster, especially on mobile devices.
     * The name can be confusing, as it's more like an autofill.

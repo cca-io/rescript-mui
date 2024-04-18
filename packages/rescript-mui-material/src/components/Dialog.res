@@ -53,16 +53,6 @@ type props = {
   @as("open")
   open_: bool,
   /**
-    * The id(s) of the element(s) that describe the dialog.
-    */
-  @as("aria-describedby")
-  ariaDescribedby?: string,
-  /**
-    * The id(s) of the element(s) that label the dialog.
-    */
-  @as("aria-labelledby")
-  ariaLabelledby?: string,
-  /**
     * Dialog children, usually the included sub-components.
     */
   children?: React.element,
