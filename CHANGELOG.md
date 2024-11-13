@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.0.0
+
+- :rocket: Main release (no changes)
+
 ## 5.0.0-rc.2
 
 - :rocket: Add ARIA props.
