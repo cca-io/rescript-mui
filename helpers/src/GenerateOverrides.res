@@ -53,7 +53,18 @@ let getComponentsWithClasses = path => {
               typeName->Js.String2.charAt(0)->Js.String2.toLowerCase ++
               typeName->Js.String2.sliceToEnd(~from=1) ++ "ClassKey"
 
-            let muiName = `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}>,`
+            let havePropsTypeParameter =
+              fileByLines->Array.getIndexBy(line =>
+                line->Js.String2.startsWith("type props<'value> = {")
+              )
+
+            let muiName = switch havePropsTypeParameter {
+            | Some(_) =>
+              // Using an abstract type here since we don't know the type parameter.
+              `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props<unknown>>,`
+            | None =>
+              `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props>,`
+            }
 
             let classesBody = " = {\n" ++ classes->Js.Array2.joinWith("\n") ++ "\n}\n"
 
@@ -70,8 +81,8 @@ let getComponentsWithClasses = path => {
 
   `// This file is generated automatically by helpers/src/GenerateOverrides.res. Do not edit manually!
 
-type component<'classKey> = {
-  defaultProps?: 'classKey,
+type component<'classKey, 'props> = {
+  defaultProps?: 'props,
   styleOverrides?: 'classKey,
 }
 
