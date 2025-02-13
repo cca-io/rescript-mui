@@ -75,6 +75,10 @@ type publicProps = {
     */
   align,
   /**
+   Number of columns a cell should span.
+   */
+  colSpan?: int,
+  /**
     * Sets the padding applied to the cell.
     * The prop defaults to the value (`'default'`) inherited from the parent Table component.
     */
