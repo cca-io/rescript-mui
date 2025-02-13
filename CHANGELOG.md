@@ -14,6 +14,12 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.0.1
+
+- :bug: Add missing colSpan to TableCell
+- :bug: Fix disableUnderline not being available in Select & Co.
+- :bug: Fix defaultProps override feature
+
 ## 5.0.0
 
 - :rocket: Main release (no changes)
