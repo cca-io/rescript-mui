@@ -58,7 +58,6 @@ type inputBaseComponentProps = {
   min?: int,
   max?: int,
   @as("type") type_?: string,
-  @as("disableunderline") disableUnderline?: string,
   maxLength?: int,
 } // FIXME: there is more
 
@@ -129,6 +128,11 @@ type publicProps<'value> = {
     * @default false
     */
   disableInjectingGlobalStyles?: bool,
+  /**
+    * If `true`, the input will not have an underline.
+    * @default false
+    */
+  disableUnderline?: bool,
   /**
     * End `InputAdornment` for this component.
     */

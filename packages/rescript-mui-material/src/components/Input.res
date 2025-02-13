@@ -40,10 +40,6 @@ type props<'value> = {
     */
   classes?: classes,
   /**
-    * If `true`, the `input` will not have an underline.
-    */
-  disableUnderline?: bool,
-  /**
     * Callback fired when the value is changed.
     *
     * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.

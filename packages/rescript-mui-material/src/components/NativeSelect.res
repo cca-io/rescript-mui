@@ -47,10 +47,6 @@ type props<'value> = {
     */
   classes?: classes,
   /**
-    * If `true`, the `input` will not have an underline.
-    */
-  disableUnderline?: bool,
-  /**
     * The icon that displays the arrow.
     * @default ArrowDropDownIcon
     */
