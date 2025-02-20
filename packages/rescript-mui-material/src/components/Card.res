@@ -18,6 +18,11 @@ type props = {
     * @default false
     */
   raised?: bool,
+  /**
+  * The variant to use.
+  * @default 'elevation'
+  */
+  variant?: Paper.variant,
 }
 
 @module("@mui/material/Card")
