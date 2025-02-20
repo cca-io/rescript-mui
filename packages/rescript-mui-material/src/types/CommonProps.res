@@ -106,6 +106,7 @@ type t_NoId = {
   className?: string,
   style?: ReactDOM.Style.t,
   ref?: ReactDOM.domRef,
+  @as("data-testid") dataTestId?: string,
 }
 
 type classNameOnly = {className: string}
