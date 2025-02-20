@@ -51,6 +51,31 @@ type color =
   | @as("warning") Warning
   | String(string)
 
+/**
+https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint
+ */
+type enterKeyHint =
+  | @as("enter") Enter
+  | @as("done") Done
+  | @as("go") Go
+  | @as("next") Next
+  | @as("previous") Previous
+  | @as("search") Search
+  | @as("send") Send
+
+/**
+https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode
+ */
+type inputMode =
+  | @as("none") None
+  | @as("text") Text
+  | @as("decimal") Decimal
+  | @as("numeric") Numeric
+  | @as("tel") Tel
+  | @as("search") Search
+  | @as("email") Email
+  | @as("url") Url
+
 type inputBaseComponentProps = {
   ...CommonProps.clickableProps,
   name?: string,
@@ -58,8 +83,10 @@ type inputBaseComponentProps = {
   min?: int,
   max?: int,
   @as("type") type_?: string,
+  enterKeyHint?: enterKeyHint,
+  inputMode?: inputMode,
   maxLength?: int,
-} // FIXME: there is more
+} // FIXME: #213 there are more
 
 type margin =
   | @as("dense") Dense
