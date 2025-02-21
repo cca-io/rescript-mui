@@ -121,9 +121,17 @@ type publicProps = {
     */
   onFocusVisible?: ReactEvent.Focus.t => unit,
   /**
+    * The rel attribute for the link.
+    */
+  rel?: string,
+  /**
     * @default 0
     */
   tabIndex?: int,
+  /**
+   * The target attribute of the link.
+   */
+  target?: string,
   /**
     * Props applied to the `TouchRipple` element.
     */
