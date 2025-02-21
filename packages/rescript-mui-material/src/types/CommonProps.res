@@ -134,20 +134,61 @@ type t = {
 
 type clickableProps = {
   ...t,
+  // Focus Events
   onBlur?: ReactEvent.Focus.t => unit,
-  onContextMenu?: ReactEvent.Mouse.t => unit,
-  onDragLeave?: ReactEvent.Mouse.t => unit,
   onFocus?: ReactEvent.Focus.t => unit,
+
+  // Keyboard Events
   onKeyDown?: ReactEvent.Keyboard.t => unit,
   onKeyPress?: ReactEvent.Keyboard.t => unit,
   onKeyUp?: ReactEvent.Keyboard.t => unit,
+
+  // Mouse Events
+  onContextMenu?: ReactEvent.Mouse.t => unit,
+  onDrag?: ReactEvent.Mouse.t => unit,
+  onDragEnd?: ReactEvent.Mouse.t => unit,
+  onDragEnter?: ReactEvent.Mouse.t => unit,
+  onDragExit?: ReactEvent.Mouse.t => unit,
+  onDragLeave?: ReactEvent.Mouse.t => unit,
+  onDragOver?: ReactEvent.Mouse.t => unit,
+  onDragStart?: ReactEvent.Mouse.t => unit,
+  onDrop?: ReactEvent.Mouse.t => unit,
   onMouseDown?: ReactEvent.Mouse.t => unit,
   onMouseEnter?: ReactEvent.Mouse.t => unit,
   onMouseLeave?: ReactEvent.Mouse.t => unit,
   onMouseUp?: ReactEvent.Mouse.t => unit,
+
+  // Touch Events
+  onTouchCancel?: ReactEvent.Touch.t => unit,
+  onTouchCancelCapture?: ReactEvent.Touch.t => unit,
   onTouchEnd?: ReactEvent.Touch.t => unit,
+  onTouchEndCapture?: ReactEvent.Touch.t => unit,
   onTouchMove?: ReactEvent.Touch.t => unit,
+  onTouchMoveCapture?: ReactEvent.Touch.t => unit,
   onTouchStart?: ReactEvent.Touch.t => unit,
+  onTouchStartCapture?: ReactEvent.Touch.t => unit,
+
+  // Pointer Events
+  onGotPointerCapture?: ReactEvent.Pointer.t => unit,
+  onGotPointerCaptureCapture?: ReactEvent.Pointer.t => unit,
+  onLostPointerCapture?: ReactEvent.Pointer.t => unit,
+  onLostPointerCaptureCapture?: ReactEvent.Pointer.t => unit,
+  onPointerCancel?: ReactEvent.Pointer.t => unit,
+  onPointerCancelCapture?: ReactEvent.Pointer.t => unit,
+  onPointerDown?: ReactEvent.Pointer.t => unit,
+  onPointerDownCapture?: ReactEvent.Pointer.t => unit,
+  onPointerEnter?: ReactEvent.Pointer.t => unit,
+  onPointerEnterCapture?: ReactEvent.Pointer.t => unit,
+  onPointerLeave?: ReactEvent.Pointer.t => unit,
+  onPointerLeaveCapture?: ReactEvent.Pointer.t => unit,
+  onPointerMove?: ReactEvent.Pointer.t => unit,
+  onPointerMoveCapture?: ReactEvent.Pointer.t => unit,
+  onPointerOut?: ReactEvent.Pointer.t => unit,
+  onPointerOutCapture?: ReactEvent.Pointer.t => unit,
+  onPointerOver?: ReactEvent.Pointer.t => unit,
+  onPointerOverCapture?: ReactEvent.Pointer.t => unit,
+  onPointerUp?: ReactEvent.Pointer.t => unit,
+  onPointerUpCapture?: ReactEvent.Pointer.t => unit,
 }
 
 type clickablePropsWithOnClick = {
