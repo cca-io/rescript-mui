@@ -121,9 +121,15 @@ type t_NoRef = {
   id?: string,
 }
 
+type t_NoTitle = {
+  ...t_NoId,
+  id?: string,
+}
+
 type t = {
   ...t_NoId,
   id?: string,
+  title?: string,
 }
 
 type clickableProps = {
