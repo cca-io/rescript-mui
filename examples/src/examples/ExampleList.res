@@ -35,7 +35,7 @@ let make = () => {
             , [0, 1, 2, 3, 4]))} </List>
       </CardContent>
       <CardActions>
-        <Button color=Primary variant=Contained href="#/example/route">
+        <Button color=Primary variant=Contained href="#/example/route" rel="noreferrer noopener" target="_top">
           {React.string("Go to example")}
         </Button>
       </CardActions>

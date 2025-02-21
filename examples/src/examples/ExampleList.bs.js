@@ -56,6 +56,8 @@ function ExampleList(props) {
                                 children: Caml_option.some(JsxRuntime.jsx(Button, {
                                           children: "Go to example",
                                           href: "#/example/route",
+                                          rel: "noreferrer noopener",
+                                          target: "_top",
                                           color: "primary",
                                           variant: "contained"
                                         }))
