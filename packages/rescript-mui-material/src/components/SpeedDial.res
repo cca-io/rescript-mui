@@ -56,11 +56,6 @@ type props = {
   @as("FabProps")
   fabProps?: Fab.props,
   /**
-    * If `true`, the SpeedDial is hidden.
-    * @default false
-    */
-  hidden?: bool,
-  /**
     * The icon to display in the SpeedDial Fab. The `SpeedDialIcon` component
     * provides a default Icon with animation.
     */

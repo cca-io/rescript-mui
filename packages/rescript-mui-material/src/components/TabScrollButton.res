@@ -26,6 +26,7 @@ type orientation =
   | @as("vertical") Vertical
 
 type props = {
+  ...Mui.CommonProps.t,
   ...CommonProps.clickablePropsWithOnClick,
   /**
     * The content of the component.

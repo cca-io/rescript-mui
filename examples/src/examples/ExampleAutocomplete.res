@@ -123,8 +123,8 @@ let make = () => {
       fullWidth=true
       renderInput={params => {
         let props = params->Mui.Autocomplete.renderInputParamsToTextFieldProps
-        <Mui.TextField
-          {...props} label={React.string({"Combo box (uncontrolled)"})} variant=Outlined
+        <Mui.TextField 
+          {...props} maxLength={20} label={React.string({"Combo box (uncontrolled)"})} variant=Outlined
         />
       }}
     />

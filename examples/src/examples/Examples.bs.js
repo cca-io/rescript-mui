@@ -13,9 +13,11 @@ import * as ExampleDashboard from "./ExampleDashboard.bs.js";
 import * as ExampleRadioGroup from "./ExampleRadioGroup.bs.js";
 import * as JsxRuntime from "react/jsx-runtime";
 import Grid from "@mui/material/Grid";
+import Input from "@mui/material/Input";
 import * as ExampleTextFieldSize from "./ExampleTextFieldSize.bs.js";
 import * as ExampleThemeProvider from "./ExampleThemeProvider.bs.js";
 import Divider from "@mui/material/Divider";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as ExampleComponentOverride from "./ExampleComponentOverride.bs.js";
 import * as ExampleThemeProviderOverride from "./ExampleThemeProviderOverride.bs.js";
@@ -371,6 +373,54 @@ function Examples(props) {
                             }),
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleTextFieldSize.make, {})),
+                              item: true,
+                              md: 6
+                            })
+                      ],
+                      container: true
+                    }),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx(Divider, {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsxs(Grid, {
+                      alignItems: "center",
+                      children: [
+                        JsxRuntime.jsx(Grid, {
+                              children: Caml_option.some(JsxRuntime.jsx(Typography, {
+                                        variant: "h5",
+                                        children: "Input textarea"
+                                      })),
+                              item: true,
+                              md: 6
+                            }),
+                        JsxRuntime.jsxs(Grid, {
+                              children: [
+                                JsxRuntime.jsx(Input, {
+                                      multiline: true,
+                                      rows: 80,
+                                      maxLength: 1000,
+                                      minLength: 1,
+                                      wrap: "soft"
+                                    }),
+                                JsxRuntime.jsx(TextField, {
+                                      maxLength: 1000,
+                                      minLength: 1,
+                                      wrap: "soft",
+                                      onBlur: (function (_event) {
+                                          
+                                        }),
+                                      onFocus: (function (_event) {
+                                          
+                                        }),
+                                      multiline: true,
+                                      onChange: (function (_event) {
+                                          
+                                        }),
+                                      rows: 80
+                                    })
+                              ],
                               item: true,
                               md: 6
                             })

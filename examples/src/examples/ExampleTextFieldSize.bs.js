@@ -7,23 +7,23 @@ function ExampleTextFieldSize(props) {
   return JsxRuntime.jsxs("div", {
               children: [
                 JsxRuntime.jsx(TextField, {
-                      fullWidth: true,
                       placeholder: "None",
+                      fullWidth: true,
                       variant: "outlined"
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx(TextField, {
-                      fullWidth: true,
                       placeholder: "Medium",
+                      fullWidth: true,
                       size: "medium",
                       variant: "outlined"
                     }),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx(TextField, {
-                      fullWidth: true,
                       placeholder: "Small",
+                      fullWidth: true,
                       size: "small",
                       variant: "outlined"
                     })

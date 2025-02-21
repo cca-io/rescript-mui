@@ -70,6 +70,7 @@ type classes = {
 }
 
 type props = {
+  ...Mui.CommonProps.t,
   ...Mui.CommonProps.clickablePropsWithOnClick,
   /**
     * The id of the node.

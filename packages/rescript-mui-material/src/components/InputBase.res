@@ -51,42 +51,11 @@ type color =
   | @as("warning") Warning
   | String(string)
 
-/**
-https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint
- */
-type enterKeyHint =
-  | @as("enter") Enter
-  | @as("done") Done
-  | @as("go") Go
-  | @as("next") Next
-  | @as("previous") Previous
-  | @as("search") Search
-  | @as("send") Send
-
-/**
-https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode
- */
-type inputMode =
-  | @as("none") None
-  | @as("text") Text
-  | @as("decimal") Decimal
-  | @as("numeric") Numeric
-  | @as("tel") Tel
-  | @as("search") Search
-  | @as("email") Email
-  | @as("url") Url
-
 type inputBaseComponentProps = {
-  ...CommonProps.clickableProps,
-  name?: string,
-  step?: int,
-  min?: int,
-  max?: int,
-  @as("type") type_?: string,
-  enterKeyHint?: enterKeyHint,
-  inputMode?: inputMode,
-  maxLength?: int,
-} // FIXME: #213 there are more
+  ...CommonProps.t,
+  ...CommonProps.eventHandlerProps,
+  ...CommonProps.inputTextareaProps,
+}
 
 type margin =
   | @as("dense") Dense
@@ -129,10 +98,6 @@ type publicProps<'value> = {
     * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
     */
   autoComplete?: string,
-  /**
-    * If `true`, the `input` element is focused during the first mount.
-    */
-  autoFocus?: bool,
   /**
     * The color of the component.
     * It supports both default and custom theme colors, which can be added as shown in the
@@ -245,9 +210,17 @@ type publicProps<'value> = {
     */
   maxRows?: int,
   /**
+    * Maximum length of the value for the input element.
+    */
+  maxLength?: int,
+  /**
     * Minimum number of rows to display when multiline option is set to true.
     */
   minRows?: int,
+  /**
+    * Minimum length of the value for the input element.
+    */
+  minLength?: int,
   /**
     * The size of the component.
     */
@@ -277,6 +250,10 @@ type publicProps<'value> = {
     * The value of the `input` element, required for a controlled component.
     */
   value?: 'value,
+  /**
+    * The textarea wrapping behavior
+    */
+  wrap?: CommonProps.wrap,
 }
 
 type props<'value> = {

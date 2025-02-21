@@ -98,19 +98,139 @@ type ariaProps = {
   ariaRowspan?: int,
   @as("aria-setsize")
   ariaSetsize?: int,
+  /**
+    * The ARIA role attribute of the element.
+    */
+  role?: string,
+}
+
+type autoCapitalize =
+  | @as("none") None
+  | @as("sentences") Sentences
+  | @as("words") Words
+  | @as("characters") Characters
+
+type autoCorrect = | @as("on") On | @as("off") Off
+type dir = | @as("ltr") Ltr | @as("rtl") Rtl | @as("auto") Auto
+type contentEditable = | @as(true) True | @as(false) False | @as("inherit") Inherit
+
+/**
+https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint
+ */
+type enterKeyHint =
+  | @as("enter") Enter
+  | @as("done") Done
+  | @as("go") Go
+  | @as("next") Next
+  | @as("previous") Previous
+  | @as("search") Search
+  | @as("send") Send
+
+/**
+https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode
+ */
+type inputMode =
+  | @as("none") None
+  | @as("text") Text
+  | @as("decimal") Decimal
+  | @as("numeric") Numeric
+  | @as("tel") Tel
+  | @as("search") Search
+  | @as("email") Email
+  | @as("url") Url
+
+type globalAttributes = {
+  autoCorrect?: autoCorrect,
+  /**
+    * If `true`, the element is focused during the first mount.
+    */
+  autoFocus?: bool,
+  className?: string,
+  contentEditable?: contentEditable,
+  contextMenu?: string,
+  @as("data-testid") dataTestId?: string,
+  dir?: dir,
+  draggable?: bool,
+  enterKeyHint?: enterKeyHint,
+  hidden?: bool,
+  inert?: bool,
+  lang?: string,
+  nonce?: string,
+  slot?: string,
+  spellCheck?: bool,
+  /**
+   * @default 0
+   */
+  tabIndex?: int,
+  // title is defined & overwritten elsewhere
+  style?: ReactDOM.Style.t,
+}
+
+/**
+ https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#wrap
+ */
+type wrap =
+  | @as("hard") Hard
+  | @as("soft") Soft
+  | @as("off") Off
+
+type inputTextareaProps = {
+  /**
+    * This prop helps users to fill forms faster, especially on mobile devices.
+    * The name can be confusing, as it's more like an autofill.
+    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+    */
+  autoComplete?: string,
+  autoCapitalize?: autoCapitalize,
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-inputmode
+  inputMode?: inputMode,
+  /**
+    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+    */
+  @as("type")
+  type_?: string,
+  /**
+    * The maximum value the user can enter in the input. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) for more details.
+    */
+  max?: int,
+  /**
+    * The maximum # of characters the user must enter in the input. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/maxlength) for more details.
+    */
+  maxLength?: int,
+  /**
+    * The minimum value the user can enter in the input. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) for more details.
+    */
+  min?: int,
+  /**
+    * The minimum # of characters the user must enter in the input. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/minlength) for more details.
+    */
+  minLength?: int,
+  name?: string,
+  /**
+    * The step interval for the input. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/step) for more details.
+    */
+  step?: int,
+  /**
+    * A regular expression that the value of the input must match. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern) for more details.
+    */
+  pattern?: string,
+  /**
+    * Defines the text displayed in the input when it is empty. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/placeholder) for more details.
+    */
+  placeholder?: string,
+  /**
+    * Makes the input read-only. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly) for more details.
+    */
+  readOnly?: bool,
+  required?: bool,
+  wrap?: wrap,
 }
 
 type t_NoId = {
   // Cannot spread whole dom props since overwriting is not possible.
   ...ariaProps,
-  className?: string,
-  style?: ReactDOM.Style.t,
+  ...globalAttributes,
   ref?: ReactDOM.domRef,
-  @as("data-testid") dataTestId?: string,
-  /**
-    * @default 0
-    */
-  tabIndex?: int,
 }
 
 type classNameOnly = {className: string}
@@ -132,8 +252,15 @@ type t = {
   title?: string,
 }
 
-type clickableProps = {
-  ...t,
+type eventHandlerProps = {
+  // Form Events
+  // onChange's signature is overridden by some of MUI's components so is omitted here.
+  onBeforeInput?: ReactEvent.Form.t => unit,
+  onInput?: ReactEvent.Form.t => unit,
+  onReset?: ReactEvent.Form.t => unit,
+  onSubmit?: ReactEvent.Form.t => unit,
+  onInvalid?: ReactEvent.Form.t => unit,
+
   // Focus Events
   onBlur?: ReactEvent.Focus.t => unit,
   onFocus?: ReactEvent.Focus.t => unit,
@@ -192,7 +319,7 @@ type clickableProps = {
 }
 
 type clickablePropsWithOnClick = {
-  ...clickableProps,
+  ...eventHandlerProps,
   onClick?: ReactEvent.Mouse.t => unit,
   onDoubleClick?: ReactEvent.Mouse.t => unit,
 }

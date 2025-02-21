@@ -30,11 +30,6 @@ type props = {
     */
   message?: message,
   /**
-    * The ARIA role attribute of the element.
-    * @default 'alert'
-    */
-  role?: string,
-  /**
     * The variant to use.
     * @default 'elevation'
     */

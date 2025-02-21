@@ -12,6 +12,7 @@ type classes = {
 }
 
 type props = {
+  ...Mui.CommonProps.t,
   ...CommonProps.clickablePropsWithOnClick,
   /**
     * Should be valid <tr> children such as `TableCell`.
