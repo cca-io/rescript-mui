@@ -4,7 +4,7 @@ type classes = {
 }
 
 type props = {
-  ...CommonProps.t,
+  ...Typography.publicProps,
   /**
     * The content of the component.
     */
