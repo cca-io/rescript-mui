@@ -107,6 +107,10 @@ type t_NoId = {
   style?: ReactDOM.Style.t,
   ref?: ReactDOM.domRef,
   @as("data-testid") dataTestId?: string,
+  /**
+    * @default 0
+    */
+  tabIndex?: int,
 }
 
 type classNameOnly = {className: string}
