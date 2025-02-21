@@ -79,6 +79,14 @@ type publicProps = {
    */
   colSpan?: int,
   /**
+   A space-separated string of element ids that specify the header cells for this cell.
+   */
+  headers?: string,
+  /**
+   Number of rows a cell should span.
+   */
+  rowSpan?: int,
+  /**
     * Sets the padding applied to the cell.
     * The prop defaults to the value (`'default'`) inherited from the parent Table component.
     */
