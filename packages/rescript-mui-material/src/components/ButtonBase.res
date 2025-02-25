@@ -125,10 +125,6 @@ type publicProps = {
     */
   rel?: string,
   /**
-    * @default 0
-    */
-  tabIndex?: int,
-  /**
    * The target attribute of the link.
    */
   target?: string,

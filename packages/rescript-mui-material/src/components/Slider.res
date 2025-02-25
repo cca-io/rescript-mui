@@ -253,10 +253,6 @@ type sliderProps<'value> = {
     */
   sx?: Sx.props,
   /**
-    * Tab index attribute of the hidden `input` element.
-    */
-  tabIndex?: int,
-  /**
     * The track presentation:
     *
     * - `normal` the track will render a bar representing the slider value.

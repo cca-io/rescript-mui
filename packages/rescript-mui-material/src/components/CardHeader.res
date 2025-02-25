@@ -14,7 +14,7 @@ type classes = {
 }
 
 type props = {
-  ...CommonProps.t,
+  ...CommonProps.t_NoTitle,
   /**
     * The action to display in the card header.
     */
