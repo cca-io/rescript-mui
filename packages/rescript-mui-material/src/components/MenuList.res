@@ -5,11 +5,6 @@ type variant =
 type props = {
   ...List.props,
   /**
-    * If `true`, will focus the `[role="menu"]` container and move into tab order.
-    * @default false
-    */
-  autoFocus?: bool,
-  /**
     * If `true`, will focus the first menuitem if `variant="menu"` or selected item
     * if `variant="selectedMenu"`.
     * @default false

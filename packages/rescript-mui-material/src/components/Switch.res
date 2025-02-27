@@ -51,7 +51,6 @@ type edge =
 
 type props<'value> = {
   ...ButtonBase.publicPropsWithOnClick,
-  autoFocus?: bool,
   /**
     * If `true`, the component is checked.
     */

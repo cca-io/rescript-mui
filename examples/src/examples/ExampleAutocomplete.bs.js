@@ -432,7 +432,7 @@ function ExampleAutocomplete(props) {
                       options: top100Films,
                       renderInput: (function (params) {
                           var newrecord = Caml_obj.obj_dup(params);
-                          return JsxRuntime.jsx(TextField, (newrecord.variant = "outlined", newrecord.label = "Combo box (uncontrolled)", newrecord));
+                          return JsxRuntime.jsx(TextField, (newrecord.variant = "outlined", newrecord.label = "Combo box (uncontrolled)", newrecord.maxLength = 20, newrecord));
                         }),
                       fullWidth: true,
                       getOptionLabel: (function (option) {
@@ -469,7 +469,7 @@ function ExampleAutocomplete(props) {
                       options: top100Films,
                       renderInput: (function (params) {
                           var newrecord = Caml_obj.obj_dup(params);
-                          return JsxRuntime.jsx(TextField, (newrecord.variant = "outlined", newrecord.placeholder = "Favorites", newrecord.label = "Multiple values (uncontrolled)", newrecord));
+                          return JsxRuntime.jsx(TextField, (newrecord.variant = "outlined", newrecord.label = "Multiple values (uncontrolled)", newrecord.placeholder = "Favorites", newrecord));
                         }),
                       getOptionLabel: (function (option) {
                           return option.title;
@@ -483,7 +483,7 @@ function ExampleAutocomplete(props) {
                       options: top100Films,
                       renderInput: (function (params) {
                           var newrecord = Caml_obj.obj_dup(params);
-                          return JsxRuntime.jsx(TextField, (newrecord.variant = "outlined", newrecord.placeholder = "Favorites", newrecord.label = "Multiple values (controlled)", newrecord));
+                          return JsxRuntime.jsx(TextField, (newrecord.variant = "outlined", newrecord.label = "Multiple values (controlled)", newrecord.placeholder = "Favorites", newrecord));
                         }),
                       getOptionLabel: (function (option) {
                           return option.title;

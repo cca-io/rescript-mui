@@ -29,12 +29,6 @@ type props = {
     */
   alignItems?: alignItems,
   /**
-    * If `true`, the list item is focused during the first mount.
-    * Focus will also be triggered if the value changes from false to true.
-    * @default false
-    */
-  autoFocus?: bool,
-  /**
     * Override or extend the styles applied to the component.
     */
   classes?: classes,

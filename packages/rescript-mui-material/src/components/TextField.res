@@ -25,19 +25,11 @@ type variant =
   | @as("filled") Filled
 
 type props<'value> = {
+  ...CommonProps.t,
+  ...CommonProps.inputTextareaProps,
+  ...CommonProps.eventHandlerProps,
   ...FormControl.publicProps,
   children?: React.element,
-  /**
-    * This prop helps users to fill forms faster, especially on mobile devices.
-    * The name can be confusing, as it's more like an autofill.
-    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
-    */
-  autoComplete?: string,
-  /**
-    * If `true`, the `input` element is focused during the first mount.
-    * @default false
-    */
-  autoFocus?: bool,
   /**
     * Override or extend the styles applied to the component.
     */
@@ -78,11 +70,6 @@ type props<'value> = {
     */
   helperText?: React.element,
   /**
-    * The id of the `input` element.
-    * Use this prop to make `label` and `helperText` accessible for screen readers.
-    */
-  id?: string,
-  /**
     * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
     * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
     */
@@ -113,22 +100,7 @@ type props<'value> = {
     * @default false
     */
   multiline?: bool,
-  /**
-    * Name attribute of the `input` element.
-    */
-  name?: string,
   onChange?: ReactEvent.Form.t => unit,
-  onBlur?: ReactEvent.Focus.t => unit,
-  onFocus?: ReactEvent.Focus.t => unit,
-  /**
-    * The short hint displayed in the `input` before the user enters a value.
-    */
-  placeholder?: string,
-  /**
-    * If `true`, the label is displayed as required and the `input` element is required.
-    * @default false
-    */
-  required?: bool,
   /**
     * Number of rows to display when multiline option is set to true.
     */
@@ -160,11 +132,6 @@ type props<'value> = {
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,
-  /**
-    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-    */
-  @as("type")
-  type_?: string,
   /**
     * The value of the `input` element, required for a controlled component.
     */

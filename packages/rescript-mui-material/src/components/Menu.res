@@ -10,14 +10,6 @@ type classes = {
 type props = {
   ...Popover.publicProps,
   /**
-    * If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled
-    * children are not focusable. If you set this prop to `false` focus will be placed
-    * on the parent modal container. This has severe accessibility implications
-    * and should only be considered if you manage focus otherwise.
-    * @default true
-    */
-  autoFocus?: bool,
-  /**
     * Override or extend the styles applied to the component.
     */
   classes?: classes,

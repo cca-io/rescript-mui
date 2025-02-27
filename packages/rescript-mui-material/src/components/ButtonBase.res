@@ -57,7 +57,8 @@ type type_ =
   | String(string)
 
 type publicProps = {
-  ...CommonProps.clickableProps,
+  ...CommonProps.t_NoId,
+  ...CommonProps.eventHandlerProps,
   /**
     * A ref for imperative actions.
     * It currently only supports `focusVisible()` action.

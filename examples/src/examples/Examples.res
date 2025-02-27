@@ -227,6 +227,29 @@ let make = () => <>
   <br />
   <Grid container=true alignItems=String("center")>
     <Grid item=true md=Number(6)>
+      <Typography variant=H5> {"Input textarea"->React.string} </Typography>
+    </Grid>
+    <Grid item=true md=Number(6)>
+      <Input multiline=true rows=80 minLength=1 maxLength=1_000 wrap=Soft />
+      <TextField
+        minLength=1
+        maxLength=1_000
+        wrap=Soft
+        multiline=true
+        rows=80
+        onChange={_event => ()}
+        onBlur={_event => ()}
+        onFocus={_event => ()}
+      />
+    </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
+  <Grid container=true alignItems=String("center")>
+    <Grid item=true md=Number(6)>
       <Typography variant=H5> {"Component Override"->React.string} </Typography>
     </Grid>
     <Grid item=true md=Number(6)>

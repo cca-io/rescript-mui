@@ -46,10 +46,10 @@ function ExampleSlider(props) {
                               children: Caml_option.some(JsxRuntime.jsx(Input, {
                                         inputProps: {
                                           "aria-labelledby": "input-slider",
-                                          step: 10,
-                                          min: 0,
+                                          type: "number",
                                           max: 100,
-                                          type: "number"
+                                          min: 0,
+                                          step: 10
                                         },
                                         margin: "dense",
                                         onBlur: (function (param) {

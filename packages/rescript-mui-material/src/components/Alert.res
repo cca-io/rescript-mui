@@ -124,11 +124,6 @@ type props = {
     */
   onClose?: ReactEvent.Synthetic.t => unit,
   /**
-    * The ARIA role attribute of the element.
-    * @default 'alert'
-    */
-  role?: string,
-  /**
     * The severity of the alert. This defines the color and icon used.
     * @default 'success'
     */

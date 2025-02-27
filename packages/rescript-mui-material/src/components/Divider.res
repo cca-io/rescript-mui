@@ -93,7 +93,6 @@ type props = {
     * @default 'fullWidth'
     */
   variant?: variant,
-  role?: string,
 }
 
 @module("@mui/material/Divider")

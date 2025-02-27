@@ -36,7 +36,6 @@ type variant =
   | @as("filled") Filled
 
 type publicProps = {
-  ...CommonProps.t_NoId,
   /**
     * The component used for the root node. Either a string to use a HTML element or a component.
     */
@@ -60,6 +59,7 @@ type publicProps = {
 }
 
 type props = {
+  ...CommonProps.t_NoId,
   ...publicProps,
   /**
     * The content of the component.
