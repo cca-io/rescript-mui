@@ -33,16 +33,16 @@ type classes = {
   inputTypeSearch?: string,
 }
 
-type publicProps<'value> = {
-  ...InputBase.publicProps<'value>,
+type publicProps<'value, 'inputRef> = {
+  ...InputBase.publicProps<'value, 'inputRef>,
   /**
     * If `true`, the outline is notched to accommodate the label.
     */
   notched?: bool,
 }
 
-type props<'value> = {
-  ...publicProps<'value>,
+type props<'value, 'inputRef> = {
+  ...publicProps<'value, 'inputRef>,
   /**
     * Override or extend the styles applied to the component.
     */
@@ -65,4 +65,4 @@ type props<'value> = {
 }
 
 @module("@mui/material/OutlinedInput")
-external make: React.component<props<'value>> = "default"
+external make: React.component<props<'value, 'inputRef>> = "default"

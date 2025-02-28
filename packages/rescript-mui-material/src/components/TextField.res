@@ -24,7 +24,7 @@ type variant =
   | @as("outlined") Outlined
   | @as("filled") Filled
 
-type props<'value> = {
+type props<'value, 'inputRef> = {
   ...CommonProps.t,
   ...CommonProps.inputTextareaProps,
   ...CommonProps.eventHandlerProps,
@@ -86,11 +86,11 @@ type props<'value> = {
     * component depending on the `variant` prop value.
     */
   @as("InputProps")
-  inputProps_?: Input.props<'value>,
+  inputProps_?: Input.props<'value, 'inputRef>,
   /**
     * Pass a ref to the `input` element.
     */
-  inputRef?: React.ref<unknown>,
+  inputRef?: React.ref<'inputRef>,
   /**
     * The label content.
     */
@@ -123,7 +123,7 @@ type props<'value> = {
     * Props applied to the [`Select`](/material-ui/api/select/) element.
     */
   @as("SelectProps")
-  selectProps?: Select.props<'value>,
+  selectProps?: Select.props<'value, 'inputRef>,
   /**
     * The size of the component.
     */
@@ -143,4 +143,4 @@ type props<'value> = {
 }
 
 @module("@mui/material/TextField")
-external make: React.component<props<'value>> = "default"
+external make: React.component<props<'value, 'inputRef>> = "default"

@@ -147,17 +147,17 @@ type renderGroupParams = {
   children?: React.element,
 }
 
-type renderInputParams<'value> = {
+type renderInputParams<'value, 'inputRef> = {
   id: string,
   disabled: bool,
   fullWidth: bool,
   size: size,
   @as("InputLabelProps") inputLabelProps: InputLabel.props,
-  @as("InputProps") inputProps_: Input.props<'value>,
+  @as("InputProps") inputProps_: Input.props<'value, 'inputRef>,
   inputProps: InputBase.inputBaseComponentProps,
 }
 
-external renderInputParamsToTextFieldProps: renderInputParams<'a> => TextField.props<'value> =
+external renderInputParamsToTextFieldProps: renderInputParams<'a, 'inputRef> => TextField.props<'value, 'inputRef> =
   "%identity"
 
 type slotProps = {
@@ -167,7 +167,7 @@ type slotProps = {
   popupIndicator?: IconButton.props,
 }
 
-type autocompleteProps<'value> = {
+type autocompleteProps<'value, 'inputRef> = {
   ...CommonProps.t_NoId,
   /**
     * Array of options.
@@ -179,7 +179,7 @@ type autocompleteProps<'value> = {
     * @param {object} params
     * @returns {ReactNode}
     */
-  renderInput: renderInputParams<'value> => React.element,
+  renderInput: renderInputParams<'value, 'inputRef> => React.element,
   /**
     * If `true`, the portion of the selected suggestion that has not been typed by the user,
     * known as the completion string, appears inline after the input cursor in the textbox.
@@ -530,8 +530,8 @@ module Multiple = {
   @unboxed
   type multiple = | @as(true) True
 
-  type props<'value> = {
-    ...autocompleteProps<'value>,
+  type props<'value, 'inputRef> = {
+    ...autocompleteProps<'value, 'inputRef>,
     /**
       * The default value. Use when the component is not controlled.
       * @default []
@@ -570,11 +570,11 @@ module Multiple = {
   }
 
   @module("@mui/material/Autocomplete")
-  external make: React.component<props<'value>> = "default"
+  external make: React.component<props<'value, 'inputRef>> = "default"
 }
 
-type props<'value> = {
-  ...autocompleteProps<'value>,
+type props<'value, 'inputRef> = {
+  ...autocompleteProps<'value, 'inputRef>,
   /**
     * The default value. Use when the component is not controlled.
     * @default null
@@ -611,4 +611,4 @@ type props<'value> = {
 }
 
 @module("@mui/material/Autocomplete")
-external make: React.component<props<'value>> = "default"
+external make: React.component<props<'value, 'inputRef>> = "default"

@@ -34,7 +34,7 @@ type labelPlacement =
   | @as("top") Top
   | @as("bottom") Bottom
 
-type props<'value> = {
+type props<'value, 'inputRef> = {
   ...CommonProps.t,
   /**
     * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
@@ -59,7 +59,7 @@ type props<'value> = {
   /**
     * Pass a ref to the `input` element.
     */
-  inputRef?: React.ref<unknown>,
+  inputRef?: React.ref<'inputRef>,
   /**
     * A text or an element to be used in an enclosing label element.
     */
@@ -96,4 +96,4 @@ type props<'value> = {
 }
 
 @module("@mui/material/FormControlLabel")
-external make: React.component<props<'value>> = "default"
+external make: React.component<props<'value, 'inputRef>> = "default"

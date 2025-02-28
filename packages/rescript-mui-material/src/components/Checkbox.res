@@ -35,7 +35,7 @@ type edge =
   | @as("end") End
   | @as(false) False
 
-type props<'value> = {
+type props<'value, 'inputRef> = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
     * If `true`, the component is checked.
@@ -103,7 +103,7 @@ type props<'value> = {
   /**
     * Pass a ref to the `input` element.
     */
-  inputRef?: React.ref<'value>,
+  inputRef?: React.ref<'inputRef>,
   /**
     * Name attribute of the `input` element.
     */
@@ -139,4 +139,4 @@ type props<'value> = {
 }
 
 @module("@mui/material/Checkbox")
-external make: React.component<props<'value>> = "default"
+external make: React.component<props<'value, 'inputRef>> = "default"

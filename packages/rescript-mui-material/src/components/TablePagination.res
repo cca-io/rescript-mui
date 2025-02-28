@@ -67,7 +67,7 @@ type labelDisplayedRowsArgs = {
   page: int,
 }
 
-type props = {
+type props<'inputRef> = {
   ...TableCell.publicProps,
   /**
     * The total number of rows.
@@ -163,7 +163,7 @@ type props = {
     * @default {}
     */
   @as("SelectProps")
-  selectProps?: Select.props<int>,
+  selectProps?: Select.props<int, 'inputRef>,
   /**
     * If `true`, show the first-page button.
     * @default false
@@ -181,4 +181,4 @@ type props = {
 }
 
 @module("@mui/material/TablePagination")
-external make: React.component<props> = "default"
+external make: React.component<props<'inputRef>> = "default"

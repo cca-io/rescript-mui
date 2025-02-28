@@ -90,7 +90,7 @@ type slots = {
   input?: React.element,
 }
 
-type publicProps<'value> = {
+type publicProps<'value, 'inputRef> = {
   ...CommonProps.t_NoId,
   /**
     * This prop helps users to fill forms faster, especially on mobile devices.
@@ -157,7 +157,7 @@ type publicProps<'value> = {
   /**
     * Pass a ref to the `input` element.
     */
-  inputRef?: React.ref<'value>,
+  inputRef?: React.ref<'inputRef>,
   /**
     * If `dense`, will adjust vertical spacing. This is normally obtained via context from
     * FormControl.
@@ -256,8 +256,8 @@ type publicProps<'value> = {
   wrap?: CommonProps.wrap,
 }
 
-type props<'value> = {
-  ...publicProps<'value>,
+type props<'value, 'inputRef> = {
+  ...publicProps<'value, 'inputRef>,
   /**
     * Override or extend the styles applied to the component.
     */
@@ -276,4 +276,4 @@ type props<'value> = {
 }
 
 @module("@mui/material/InputBase")
-external make: React.component<props<'value>> = "default"
+external make: React.component<props<'value, 'inputRef>> = "default"
