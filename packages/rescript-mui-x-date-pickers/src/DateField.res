@@ -26,7 +26,7 @@ type variant =
 
 type fieldChangeHandlerContext<'error>
 
-type props<'value, 'error> = {
+type props<'value, 'error, 'inputRef> = {
   /**
    * If `true`, the `input` element is focused during the first mount.
    * @default false
@@ -116,11 +116,11 @@ type props<'value, 'error> = {
    * component depending on the `variant` prop value.
    */
   @as("InputProps")
-  inputProps_?: Mui.Input.props<'value>,
+  inputProps_?: Mui.Input.props<'value, 'inputRef>,
   /**
    * Pass a ref to the `input` element.
    */
-  inputRef?: React.ref<'value>,
+  inputRef?: React.ref<'inputRef>,
   /**
    * The label content.
    */
@@ -271,4 +271,4 @@ type props<'value, 'error> = {
 }
 
 @module("@mui/x-date-pickers")
-external make: React.component<props<'value, 'error>> = "DateField"
+external make: React.component<props<'value, 'error, 'inputRef>> = "DateField"

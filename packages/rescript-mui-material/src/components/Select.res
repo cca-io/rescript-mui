@@ -32,8 +32,8 @@ type variant =
   | @as("outlined") Outlined
   | @as("filled") Filled
 
-type props<'value> = {
-  ...OutlinedInput.publicProps<'value>,
+type props<'value, 'inputRef> = {
+  ...OutlinedInput.publicProps<'value, 'inputRef>,
   /**
     * If `true`, the width of the popover will automatically be set according to the items inside the
     * menu, otherwise it will be at least the width of the select input.
@@ -162,4 +162,4 @@ type props<'value> = {
 }
 
 @module("@mui/material/Select")
-external make: React.component<props<'value>> = "default"
+external make: React.component<props<'value, 'inputRef>> = "default"

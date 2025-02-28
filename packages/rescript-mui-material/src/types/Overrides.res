@@ -1321,7 +1321,7 @@ type t = {
   @as("MuiAlertTitle") muiAlertTitle?: component<alertTitleClassKey, AlertTitle.props>,
   @as("MuiAppBar") muiAppBar?: component<appBarClassKey, AppBar.props>,
   @as("MuiAutocomplete")
-  muiAutocomplete?: component<autocompleteClassKey, Autocomplete.props<unknown>>,
+  muiAutocomplete?: component<autocompleteClassKey, Autocomplete.props<unknown, unknown>>,
   @as("MuiAvatar") muiAvatar?: component<avatarClassKey, Avatar.props>,
   @as("MuiAvatarGroup") muiAvatarGroup?: component<avatarGroupClassKey, AvatarGroup.props>,
   @as("MuiBackdrop") muiBackdrop?: component<backdropClassKey, Backdrop.props>,
@@ -1344,7 +1344,7 @@ type t = {
   @as("MuiCardContent") muiCardContent?: component<cardContentClassKey, CardContent.props>,
   @as("MuiCardHeader") muiCardHeader?: component<cardHeaderClassKey, CardHeader.props>,
   @as("MuiCardMedia") muiCardMedia?: component<cardMediaClassKey, CardMedia.props>,
-  @as("MuiCheckbox") muiCheckbox?: component<checkboxClassKey, Checkbox.props<unknown>>,
+  @as("MuiCheckbox") muiCheckbox?: component<checkboxClassKey, Checkbox.props<unknown, unknown>>,
   @as("MuiChip") muiChip?: component<chipClassKey, Chip.props>,
   @as("MuiCircularProgress")
   muiCircularProgress?: component<circularProgressClassKey, CircularProgress.props>,
@@ -1359,10 +1359,10 @@ type t = {
   @as("MuiDivider") muiDivider?: component<dividerClassKey, Divider.props>,
   @as("MuiDrawer") muiDrawer?: component<drawerClassKey, Drawer.props>,
   @as("MuiFab") muiFab?: component<fabClassKey, Fab.props>,
-  @as("MuiFilledInput") muiFilledInput?: component<filledInputClassKey, FilledInput.props<unknown>>,
+  @as("MuiFilledInput") muiFilledInput?: component<filledInputClassKey, FilledInput.props<unknown, unknown>>,
   @as("MuiFormControl") muiFormControl?: component<formControlClassKey, FormControl.props>,
   @as("MuiFormControlLabel")
-  muiFormControlLabel?: component<formControlLabelClassKey, FormControlLabel.props<unknown>>,
+  muiFormControlLabel?: component<formControlLabelClassKey, FormControlLabel.props<unknown, unknown>>,
   @as("MuiFormGroup") muiFormGroup?: component<formGroupClassKey, FormGroup.props>,
   @as("MuiFormHelperText")
   muiFormHelperText?: component<formHelperTextClassKey, FormHelperText.props>,
@@ -1374,10 +1374,10 @@ type t = {
   @as("MuiImageListItem") muiImageListItem?: component<imageListItemClassKey, ImageListItem.props>,
   @as("MuiImageListItemBar")
   muiImageListItemBar?: component<imageListItemBarClassKey, ImageListItemBar.props>,
-  @as("MuiInput") muiInput?: component<inputClassKey, Input.props<unknown>>,
+  @as("MuiInput") muiInput?: component<inputClassKey, Input.props<unknown, unknown>>,
   @as("MuiInputAdornment")
   muiInputAdornment?: component<inputAdornmentClassKey, InputAdornment.props>,
-  @as("MuiInputBase") muiInputBase?: component<inputBaseClassKey, InputBase.props<unknown>>,
+  @as("MuiInputBase") muiInputBase?: component<inputBaseClassKey, InputBase.props<unknown, unknown>>,
   @as("MuiInputLabel") muiInputLabel?: component<inputLabelClassKey, InputLabel.props>,
   @as("MuiLinearProgress")
   muiLinearProgress?: component<linearProgressClassKey, LinearProgress.props>,
@@ -1401,20 +1401,20 @@ type t = {
   @as("MuiMobileStepper") muiMobileStepper?: component<mobileStepperClassKey, MobileStepper.props>,
   @as("MuiModal") muiModal?: component<modalClassKey, Modal.props>,
   @as("MuiNativeSelect")
-  muiNativeSelect?: component<nativeSelectClassKey, NativeSelect.props<unknown>>,
+  muiNativeSelect?: component<nativeSelectClassKey, NativeSelect.props<unknown, unknown>>,
   @as("MuiOutlinedInput")
-  muiOutlinedInput?: component<outlinedInputClassKey, OutlinedInput.props<unknown>>,
+  muiOutlinedInput?: component<outlinedInputClassKey, OutlinedInput.props<unknown, unknown>>,
   @as("MuiPagination") muiPagination?: component<paginationClassKey, Pagination.props>,
   @as("MuiPaginationItem")
   muiPaginationItem?: component<paginationItemClassKey, PaginationItem.props>,
   @as("MuiPaper") muiPaper?: component<paperClassKey, Paper.props>,
   @as("MuiPopover") muiPopover?: component<popoverClassKey, Popover.props>,
   @as("MuiPopper") muiPopper?: component<popperClassKey, Popper.props>,
-  @as("MuiRadio") muiRadio?: component<radioClassKey, Radio.props<unknown>>,
+  @as("MuiRadio") muiRadio?: component<radioClassKey, Radio.props<unknown, unknown>>,
   @as("MuiRating") muiRating?: component<ratingClassKey, Rating.props>,
   @as("MuiScopedCssBaseline")
   muiScopedCssBaseline?: component<scopedCssBaselineClassKey, ScopedCssBaseline.props>,
-  @as("MuiSelect") muiSelect?: component<selectClassKey, Select.props<unknown>>,
+  @as("MuiSelect") muiSelect?: component<selectClassKey, Select.props<unknown, unknown>>,
   @as("MuiSkeleton") muiSkeleton?: component<skeletonClassKey, Skeleton.props>,
   @as("MuiSlider") muiSlider?: component<sliderClassKey, Slider.props>,
   @as("MuiSnackbar") muiSnackbar?: component<snackbarClassKey, Snackbar.props>,
@@ -1433,7 +1433,7 @@ type t = {
   @as("MuiStepLabel") muiStepLabel?: component<stepLabelClassKey, StepLabel.props>,
   @as("MuiStepper") muiStepper?: component<stepperClassKey, Stepper.props>,
   @as("MuiSvgIcon") muiSvgIcon?: component<svgIconClassKey, SvgIcon.props>,
-  @as("MuiSwitch") muiSwitch?: component<switchClassKey, Switch.props<unknown>>,
+  @as("MuiSwitch") muiSwitch?: component<switchClassKey, Switch.props<unknown, unknown>>,
   @as("MuiTab") muiTab?: component<tabClassKey, Tab.props<unknown>>,
   @as("MuiTabScrollButton")
   muiTabScrollButton?: component<tabScrollButtonClassKey, TabScrollButton.props>,
@@ -1445,12 +1445,12 @@ type t = {
   @as("MuiTableFooter") muiTableFooter?: component<tableFooterClassKey, TableFooter.props>,
   @as("MuiTableHead") muiTableHead?: component<tableHeadClassKey, TableHead.props>,
   @as("MuiTablePagination")
-  muiTablePagination?: component<tablePaginationClassKey, TablePagination.props>,
+  muiTablePagination?: component<tablePaginationClassKey, TablePagination.props<unknown>>,
   @as("MuiTableRow") muiTableRow?: component<tableRowClassKey, TableRow.props>,
   @as("MuiTableSortLabel")
   muiTableSortLabel?: component<tableSortLabelClassKey, TableSortLabel.props>,
   @as("MuiTabs") muiTabs?: component<tabsClassKey, Tabs.props<unknown>>,
-  @as("MuiTextField") muiTextField?: component<textFieldClassKey, TextField.props<unknown>>,
+  @as("MuiTextField") muiTextField?: component<textFieldClassKey, TextField.props<unknown, unknown>>,
   @as("MuiToggleButton")
   muiToggleButton?: component<toggleButtonClassKey, ToggleButton.props<unknown>>,
   @as("MuiToggleButtonGroup")

@@ -34,8 +34,8 @@ type variant =
   | @as("outlined") Outlined
   | @as("standard") Standard
 
-type props<'value> = {
-  ...InputBase.publicProps<'value>,
+type props<'value, 'inputRef> = {
+  ...InputBase.publicProps<'value, 'inputRef>,
   /**
     * The option elements to populate the select with.
     * Can be some `<option>` elements.
@@ -75,4 +75,4 @@ type props<'value> = {
 }
 
 @module("@mui/material/NativeSelect")
-external make: React.component<props<'value>> = "default"
+external make: React.component<props<'value, 'inputRef>> = "default"

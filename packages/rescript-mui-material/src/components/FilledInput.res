@@ -37,8 +37,8 @@ type classes = {
   inputTypeSearch?: string,
 }
 
-type props<'value> = {
-  ...InputBase.publicProps<'value>,
+type props<'value, 'inputRef> = {
+  ...InputBase.publicProps<'value, 'inputRef>,
   /**
     * Override or extend the styles applied to the component.
     */
@@ -64,4 +64,4 @@ type props<'value> = {
 }
 
 @module("@mui/material/FilledInput")
-external make: React.component<props<'value>> = "default"
+external make: React.component<props<'value, 'inputRef>> = "default"
