@@ -6,23 +6,26 @@ type t_size = {
   xs: float,
 }
 
-@unboxed
-type breakpoint =
-  | Point(float)
-  | Func(string => ThemeOptions.t)
+@deprecated("use Breakpoint.t instead") type breakpoint = Breakpoint.t
 
 type t_breakpoints = {
-  between: float,
-  down: float,
   keys: array<string>,
-  not: float,
-  only: float,
-  unit: string,
-  up: float,
   values: t_size,
+  up: Breakpoint.t => string,
+  down: Breakpoint.t => string,
+  between: (Breakpoint.t, Breakpoint.t) => string,
+  only: Breakpoint.t => string,
+  not: Breakpoint.t => string,
+  unit: option<string>,
 }
 
-type color = {
+type t_mixins = {
+  toolbar: ReactDOM.Style.t,
+  gutters: string,
+}
+@deprecated("Renamed to t_mixins") type mixins = t_mixins
+
+type t_color = {
   \"50": string,
   \"100": string,
   \"200": string,
@@ -38,16 +41,18 @@ type color = {
   \"A400": string,
   \"A700": string,
 }
+@deprecated("renamed to t_color") type color = t_color
 
-type colorWithVariants = {
-  ...color,
+type t_colorWithVariants = {
+  ...t_color,
   contrastText: string,
   dark: string,
   light: string,
   main: string,
 }
+@deprecated("renamed to t_colorWithVariants") type colorWithVariants = t_colorWithVariants
 
-type t_typeAction = {
+type t_action = {
   activatedOpacity: float,
   active: string,
   disabled: string,
@@ -60,37 +65,40 @@ type t_typeAction = {
   selected: string,
   selectedOpacity: float,
 }
+@deprecated("renamed to t_action") type t_typeAction = t_action
 
-type t_typeBackground = {default: string, paper: string}
+type t_background = {default: string, paper: string}
+@deprecated("renamed to t_background") type t_typeBackground = t_background
 
 type t_commonColors = {black: string, white: string}
 
-type t_typeText = {
+type t_text = {
   disabled: string,
   hint: string,
   primary: string,
   secondary: string,
 }
+@deprecated("renamed to t_text") type t_typeText = t_text
 
 type t_tonalOffset = {dark: float, light: float}
 
 type t_palette = {
   mode: string,
-  action: t_typeAction,
-  background: t_typeBackground,
+  action: t_action,
+  background: t_background,
   common: t_commonColors,
   contrastThreshold: float,
   divider: string,
-  error: colorWithVariants,
-  grey: color,
-  info: colorWithVariants,
-  primary: colorWithVariants,
-  secondary: colorWithVariants,
-  success: colorWithVariants,
-  text: t_typeText,
+  error: t_colorWithVariants,
+  grey: t_color,
+  info: t_colorWithVariants,
+  primary: t_colorWithVariants,
+  secondary: t_colorWithVariants,
+  success: t_colorWithVariants,
+  text: t_text,
   tonalOffset: t_tonalOffset,
-  \"type": string,
-  warning: colorWithVariants,
+  @as("type") type_: string,
+  warning: t_colorWithVariants,
 }
 
 type t_shape = {borderRadius: float}
@@ -112,28 +120,71 @@ type t_easing = {
   sharp: string,
 }
 
+type t_transitionCreateOptions = {
+  duration?: string,
+  easing?: string,
+  delay?: string,
+}
+
 type t_transitions = {
+  create: (array<string>, t_transitionCreateOptions) => string,
+  getAutoHeightDuration: float => Transition.duration,
   duration: t_duration,
   easing: t_easing,
 }
 
-type mixins = {
-  toolbar: JsxDOMStyle.t,
-  gutters: string,
+type t_zIndex = {
+  mobileStepper: int,
+  speedDial: int,
+  appBar: int,
+  drawer: int,
+  modal: int,
+  snackbar: int,
+  tooltip: int,
+  fab: int,
 }
 
-type t_zIndex = {drawer: float}
+type t_fontStyle = {
+  fontFamily: string,
+  fontSize: int,
+  fontWeightLight: string,
+  fontWeightRegular: string,
+  fontWeightMedium: string,
+  fontWeightBold: string,
+  htmlFontSize: int,
+}
+
+type t_typography = {
+  ...t_fontStyle,
+  pxToRem: float => string,
+  h1: ReactDOM.Style.t,
+  h2: ReactDOM.Style.t,
+  h3: ReactDOM.Style.t,
+  h4: ReactDOM.Style.t,
+  h5: ReactDOM.Style.t,
+  h6: ReactDOM.Style.t,
+  subtitle1: ReactDOM.Style.t,
+  subtitle2: ReactDOM.Style.t,
+  body1: ReactDOM.Style.t,
+  body2: ReactDOM.Style.t,
+  caption: ReactDOM.Style.t,
+  button: ReactDOM.Style.t,
+  overline: ReactDOM.Style.t,
+}
 
 type t_theme = {
   breakpoints: t_breakpoints,
   components: Overrides.t,
   direction: string,
   palette: t_palette,
+  shadows: array<string>,
   shape: t_shape,
   spacing: int => int,
   transitions: t_transitions,
-  mixins: mixins,
+  typography: t_typography,
+  mixins: t_mixins,
   zIndex: t_zIndex,
+  cssVariables?: bool,
 }
 
 type t = t_theme
