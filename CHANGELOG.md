@@ -14,6 +14,28 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.1.0
+
+- :boom: Theme & ThemeOptions refactor
+  - Makes the naming more consistent between the two (needs another check)
+  - Re-order types to be defined in the same order in each module
+  - Fixes the breakpoints function types on the theme
+  - Removes the now unnecessary runtime overhead of ThemeHelpers.addBreakpoint
+  - Add ThemeHelpers.addBreakpointDown function
+  - Add ExampleTheme.res file to the repo
+  
+- :house: Add `Breakpoint` type
+- :bug: Add a bunch of missing props to `InputBase`, `TextField`
+- :bug: Add a bunch of event handler props to common props
+- :house: Move `title` to common props
+- :house: Move `tabIndex` to common props
+- :bug: Add `Typography` props to `DialogTitle`
+- :bug: Add `rel` and `target` to `ButtonBase` props
+- :bug: Add missing `rowSpan` to `TableCell`
+- :bug: Add `enterKeyHint` and `inputMode` to input props
+- :bug: Add `variant` to `Card` props
+- :bug: Add `data-testid` to common props
+
 ## 5.0.1
 
 - :bug: Add missing colSpan to TableCell
