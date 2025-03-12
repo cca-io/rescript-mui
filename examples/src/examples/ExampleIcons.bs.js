@@ -45,6 +45,7 @@ function ExampleIcons(props) {
                                     children: JsxRuntime.jsx(SupervisedUserCircle, {})
                                   }),
                               arrow: true,
+                              id: "foo",
                               placement: "top",
                               title: "Default"
                             }),
