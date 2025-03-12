@@ -57,7 +57,7 @@ type type_ =
   | String(string)
 
 type publicProps = {
-  ...CommonProps.t_NoId,
+  ...CommonProps.t,
   ...CommonProps.eventHandlerProps,
   /**
     * A ref for imperative actions.
