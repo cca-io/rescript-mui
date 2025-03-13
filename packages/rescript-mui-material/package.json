@@ -22,8 +22,8 @@
     "/rescript.json"
   ],
   "peerDependencies": {
-    "@mui/material": "^5.14.1",
-    "@rescript/react": "^0.12.0-alpha.2",
+    "@mui/material": "^6.4.7",
+    "@rescript/react": "^0.12.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "rescript": "^11.0.0"
