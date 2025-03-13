@@ -14,6 +14,8 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 6.0.0 (Unreleased)
+
 ## 5.1.1
 
 - :bug: restore the accidentally removed id prop of `ButtonBase`
