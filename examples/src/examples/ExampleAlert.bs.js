@@ -7,18 +7,22 @@ function ExampleAlert(props) {
   return JsxRuntime.jsxs("div", {
               children: [
                 JsxRuntime.jsx(Alert, {
+                      id: "error",
                       children: "This is an error alert — check it out!",
                       severity: "error"
                     }),
                 JsxRuntime.jsx(Alert, {
+                      id: "warning",
                       children: "This is a warning alert — check it out!",
                       severity: "warning"
                     }),
                 JsxRuntime.jsx(Alert, {
+                      id: "info",
                       children: "This is an info alert — check it out!",
                       severity: "info"
                     }),
                 JsxRuntime.jsx(Alert, {
+                      id: "success",
                       children: "This is a success alert — check it out!",
                       severity: "success"
                     })

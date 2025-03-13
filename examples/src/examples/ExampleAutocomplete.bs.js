@@ -432,7 +432,7 @@ function ExampleAutocomplete(props) {
                       options: top100Films,
                       renderInput: (function (params) {
                           var newrecord = Caml_obj.obj_dup(params);
-                          return JsxRuntime.jsx(TextField, (newrecord.variant = "outlined", newrecord.label = "Combo box (uncontrolled)", newrecord.maxLength = 20, newrecord));
+                          return JsxRuntime.jsx(TextField, (newrecord.variant = "outlined", newrecord.label = "Combo box (uncontrolled)", newrecord.maxLength = 20, newrecord.id = "combo-box-demo-field", newrecord));
                         }),
                       fullWidth: true,
                       getOptionLabel: (function (option) {

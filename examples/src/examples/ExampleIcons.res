@@ -31,7 +31,7 @@ let rs = React.string
 let make = () => <>
   <div>
     <Mui.Typography variant=H6> {"Icon Types:"->rs} </Mui.Typography>
-    <Mui.Tooltip title={"Default"->rs} arrow=true placement=Top>
+    <Mui.Tooltip id="foo" title={"Default"->rs} arrow=true placement=Top>
       <span>
         <SupervisedUserCircle.Filled />
       </span>

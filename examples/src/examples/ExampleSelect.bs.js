@@ -104,6 +104,7 @@ function ExampleSelect(props) {
                                     value: values.age,
                                     children: [
                                       JsxRuntime.jsx(MenuItem, {
+                                            id: "none",
                                             children: Caml_option.some(JsxRuntime.jsx("em", {
                                                       children: "None"
                                                     })),
@@ -169,6 +170,7 @@ function ExampleSelect(props) {
                       JsxRuntime.jsxs(FormControl, {
                             children: [
                               JsxRuntime.jsx(InputLabel, {
+                                    id: "age-label-placeholder-label",
                                     children: "Age",
                                     shrink: true,
                                     htmlFor: "age-label-placeholder"

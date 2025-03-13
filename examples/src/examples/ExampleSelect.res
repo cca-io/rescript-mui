@@ -47,7 +47,7 @@ let make = () => {
         <InputLabel htmlFor="age-helper"> {"Age"->React.string} </InputLabel>
         <Select
           value=values.age onChange=handleChangeAge input={<Input name="age" id="age-helper" />}>
-          <MenuItem value={""}>
+          <MenuItem id="none" value={""}>
             <em> {"None"->React.string} </em>
           </MenuItem>
           <MenuItem value="10"> {"Ten"->React.string} </MenuItem>
@@ -68,7 +68,7 @@ let make = () => {
         <FormHelperText> {"Without label"->React.string} </FormHelperText>
       </FormControl>
       <FormControl>
-        <InputLabel shrink=true htmlFor="age-label-placeholder"> {"Age"->React.string} </InputLabel>
+        <InputLabel id="age-label-placeholder-label" shrink=true htmlFor="age-label-placeholder"> {"Age"->React.string} </InputLabel>
         <Select
           value=values.age
           onChange=handleChangeAge
