@@ -14,6 +14,11 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.1.1
+
+- :bug: restore the accidentally removed id prop of `ButtonBase`
+- :memo: Add a bunch of examples
+
 ## 5.1.0
 
 - :boom: Theme & ThemeOptions refactor
