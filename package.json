@@ -13,7 +13,7 @@
   },
   "packageManager": "yarn@4.1.1",
   "scripts": {
-    "build": "rescript build -with-deps",
+    "build": "rewatch build .",
     "clean": "rewatch clean .",
     "format": "rescript format -all",
     "watch": "rewatch watch .",
