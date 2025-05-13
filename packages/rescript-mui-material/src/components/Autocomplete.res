@@ -157,8 +157,10 @@ type renderInputParams<'value, 'inputRef> = {
   inputProps: InputBase.inputBaseComponentProps,
 }
 
-external renderInputParamsToTextFieldProps: renderInputParams<'a, 'inputRef> => TextField.props<'value, 'inputRef> =
-  "%identity"
+external renderInputParamsToTextFieldProps: renderInputParams<'a, 'inputRef> => TextField.props<
+  'value,
+  'inputRef,
+> = "%identity"
 
 type slotProps = {
   clearIndicator?: IconButton.props,

@@ -1359,10 +1359,14 @@ type t = {
   @as("MuiDivider") muiDivider?: component<dividerClassKey, Divider.props>,
   @as("MuiDrawer") muiDrawer?: component<drawerClassKey, Drawer.props>,
   @as("MuiFab") muiFab?: component<fabClassKey, Fab.props>,
-  @as("MuiFilledInput") muiFilledInput?: component<filledInputClassKey, FilledInput.props<unknown, unknown>>,
+  @as("MuiFilledInput")
+  muiFilledInput?: component<filledInputClassKey, FilledInput.props<unknown, unknown>>,
   @as("MuiFormControl") muiFormControl?: component<formControlClassKey, FormControl.props>,
   @as("MuiFormControlLabel")
-  muiFormControlLabel?: component<formControlLabelClassKey, FormControlLabel.props<unknown, unknown>>,
+  muiFormControlLabel?: component<
+    formControlLabelClassKey,
+    FormControlLabel.props<unknown, unknown>,
+  >,
   @as("MuiFormGroup") muiFormGroup?: component<formGroupClassKey, FormGroup.props>,
   @as("MuiFormHelperText")
   muiFormHelperText?: component<formHelperTextClassKey, FormHelperText.props>,
@@ -1377,7 +1381,8 @@ type t = {
   @as("MuiInput") muiInput?: component<inputClassKey, Input.props<unknown, unknown>>,
   @as("MuiInputAdornment")
   muiInputAdornment?: component<inputAdornmentClassKey, InputAdornment.props>,
-  @as("MuiInputBase") muiInputBase?: component<inputBaseClassKey, InputBase.props<unknown, unknown>>,
+  @as("MuiInputBase")
+  muiInputBase?: component<inputBaseClassKey, InputBase.props<unknown, unknown>>,
   @as("MuiInputLabel") muiInputLabel?: component<inputLabelClassKey, InputLabel.props>,
   @as("MuiLinearProgress")
   muiLinearProgress?: component<linearProgressClassKey, LinearProgress.props>,
@@ -1450,7 +1455,8 @@ type t = {
   @as("MuiTableSortLabel")
   muiTableSortLabel?: component<tableSortLabelClassKey, TableSortLabel.props>,
   @as("MuiTabs") muiTabs?: component<tabsClassKey, Tabs.props<unknown>>,
-  @as("MuiTextField") muiTextField?: component<textFieldClassKey, TextField.props<unknown, unknown>>,
+  @as("MuiTextField")
+  muiTextField?: component<textFieldClassKey, TextField.props<unknown, unknown>>,
   @as("MuiToggleButton")
   muiToggleButton?: component<toggleButtonClassKey, ToggleButton.props<unknown>>,
   @as("MuiToggleButtonGroup")

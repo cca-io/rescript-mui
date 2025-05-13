@@ -3,6 +3,7 @@
 import * as Fs from "fs";
 import * as Path from "path";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
+import * as Caml_option from "rescript/lib/es6/caml_option.js";
 
 function getComponentsWithClasses(path) {
   var components = Fs.readdirSync(path);
@@ -39,10 +40,27 @@ function getComponentsWithClasses(path) {
                   }));
             var typeName = filename.substring(0, filename.length - 4 | 0);
             var typeNameLowercaseFirst = typeName.charAt(0).toLowerCase() + typeName.slice(1) + "ClassKey";
-            var havePropsTypeParameter = Belt_Array.getIndexBy(fileByLines, (function (line) {
-                    return line.startsWith("type props<'value> = {");
+            var propsTypeLine = Belt_Array.getBy(fileByLines, (function (line) {
+                    return Caml_option.null_to_opt(line.match(new RegExp("^type props<.*> = {"))) !== undefined;
                   }));
-            var muiName = havePropsTypeParameter !== undefined ? "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ", " + typeName + ".props<unknown>>," : "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ", " + typeName + ".props>,";
+            var muiName;
+            if (propsTypeLine !== undefined) {
+              var typeParamsMatchOpt = propsTypeLine.match(new RegExp("^type props<([^>]*)> = {"));
+              if (typeParamsMatchOpt !== null) {
+                if (typeParamsMatchOpt.length !== 2) {
+                  muiName = "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ", " + typeName + ".props>,";
+                } else {
+                  var params = typeParamsMatchOpt[1];
+                  var paramCount = params.length === 0 ? 0 : params.split(",").length;
+                  var unknowns = paramCount > 0 ? Belt_Array.make(paramCount, "unknown").join(", ") : "";
+                  muiName = paramCount > 0 ? "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ", " + typeName + ".props<" + unknowns + ">>," : "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ", " + typeName + ".props>,";
+                }
+              } else {
+                muiName = "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ", " + typeName + ".props>,";
+              }
+            } else {
+              muiName = "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ", " + typeName + ".props>,";
+            }
             var classesBody = " = {\n" + classes.join("\n") + "\n}\n";
             muiNames.push(muiName);
             return "type " + typeNameLowercaseFirst + classesBody;

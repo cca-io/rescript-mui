@@ -58,9 +58,11 @@ type usePaginationItem = {
   disabled: bool,
 }
 
+@unboxed
 type shape =
   | @as("circular") Circular
   | @as("rounded") Rounded
+  | String(string)
 
 type paginationRenderItemParams = {
   ...usePaginationItem,

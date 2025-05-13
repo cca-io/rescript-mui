@@ -120,6 +120,13 @@ type variant =
   | @as("text") Text
   | String(string)
 
+@unboxed
+type loadingPosition =
+  | @as("center") Center
+  | @as("end") End
+  | @as("start") Start
+  | String(string)
+
 type props = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
@@ -176,6 +183,21 @@ type props = {
     * @default 'text'
     */
   variant?: variant,
+  /**
+    * If true, the loading indicator is visible and the button is disabled.
+    * If true | false, the loading wrapper is always rendered before the children to prevent Google Translation Crash.
+    * @default null
+    */
+  loading?: bool,
+  /**
+    * Element placed before the children if the button is in loading state. The node should contain an element with role="progressbar" with an accessible name. By default, it renders a CircularProgress that is labeled by the button itself.
+    */
+  loadingIndicator?: React.element,
+  /**
+    * The loading indicator can be positioned on the start, end, or the center of the button.
+    * @default 'center'
+    */
+  loadingPosition?: loadingPosition,
 }
 
 @module("@mui/material/Button")

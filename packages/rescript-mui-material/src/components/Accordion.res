@@ -13,6 +13,16 @@ type classes = {
   region?: string,
 }
 
+type headingSlotProps = {component?: string}
+
+type slotProps = {
+  /**
+    * Props applied to the heading element that wraps the AccordionSummary.
+    * For example: {component: "h4"}
+    */
+  heading?: headingSlotProps,
+}
+
 type props = {
   ...Paper.publicProps,
   /**
@@ -68,6 +78,11 @@ type props = {
     * @default 'elevation'
     */
   variant?: Paper.variant,
+  /**
+    * The extra props for the slot components, e.g. heading.
+    * @default {}
+    */
+  slotProps?: slotProps,
 }
 
 @module("@mui/material/Accordion")

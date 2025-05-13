@@ -42,7 +42,7 @@ type margin = | @as("dense") Dense
 @unboxed
 type size =
   | @as("small") Small
-  | @as("normal") Normal
+  | @as("medium") Medium
   | String(string)
 
 type variant =

@@ -104,6 +104,7 @@ type badgeSlots = {
 type overlap =
   | @as("rectangular") Rectangular
   | @as("circular") Circular
+  | String(string)
 
 type props = {
   ...CommonProps.t,

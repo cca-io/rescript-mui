@@ -36,8 +36,8 @@ type size =
 type variant =
   | @as("text") Text
   | @as("rectangular") Rectangular
-  | @as("rounded") Rounded
   | @as("circular") Circular
+  | String(string)
 
 type props = {
   ...CommonProps.t,

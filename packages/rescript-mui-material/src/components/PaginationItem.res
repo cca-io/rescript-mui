@@ -44,9 +44,11 @@ type color =
   | @as("secondary") Secondary
   | String(string)
 
+@unboxed
 type shape =
   | @as("circular") Circular
   | @as("rounded") Rounded
+  | String(string)
 
 @unboxed
 type size =

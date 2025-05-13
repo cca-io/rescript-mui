@@ -53,15 +53,43 @@ let getComponentsWithClasses = path => {
               typeName->Js.String2.charAt(0)->Js.String2.toLowerCase ++
               typeName->Js.String2.sliceToEnd(~from=1) ++ "ClassKey"
 
-            let havePropsTypeParameter =
-              fileByLines->Array.getIndexBy(line =>
-                line->Js.String2.startsWith("type props<'value> = {")
+            let propsTypeLine =
+              fileByLines->Belt.Array.getBy(line =>
+                line->Js.String2.match_(Js.Re.fromString("^type props<.*> = {")) != None
               )
 
-            let muiName = switch havePropsTypeParameter {
-            | Some(_) =>
-              // Using an abstract type here since we don't know the type parameter.
-              `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props<unknown>>,`
+            let muiName = switch propsTypeLine {
+            | Some(line) => {
+                let typeParamsMatchOpt =
+                  line->Js.String2.match_(Js.Re.fromString("^type props<([^>]*)> = {"))
+                switch typeParamsMatchOpt {
+                | Some(typeParamsMatch) =>
+                  switch typeParamsMatch {
+                  | [_, params] => {
+                      let paramsStr: string = Obj.magic(params)
+                      let paramCount = if Js.String2.length(paramsStr) == 0 {
+                        0
+                      } else {
+                        paramsStr->Js.String2.split(",")->Array.length
+                      }
+                      let unknowns = if paramCount > 0 {
+                        Array.make(paramCount, "unknown")->Js.Array2.joinWith(", ")
+                      } else {
+                        ""
+                      }
+                      if paramCount > 0 {
+                        `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props<${unknowns}>>,`
+                      } else {
+                        `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props>,`
+                      }
+                    }
+                  | _ =>
+                    `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props>,`
+                  }
+                | None =>
+                  `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props>,`
+                }
+              }
             | None =>
               `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props>,`
             }
