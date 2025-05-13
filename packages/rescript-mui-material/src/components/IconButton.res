@@ -54,13 +54,6 @@ type size =
   | @as("large") Large
   | String(string)
 
-@unboxed
-type loadingPosition =
-  | @as("center") Center
-  | @as("end") End
-  | @as("start") Start
-  | String(string)
-
 type props = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
@@ -104,7 +97,6 @@ type props = {
   sx?: Sx.props,
   loading?: bool,
   loadingIndicator?: React.element,
-  loadingPosition?: loadingPosition,
 }
 
 @module("@mui/material/IconButton")
