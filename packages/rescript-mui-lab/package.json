@@ -1,6 +1,6 @@
 {
   "name": "@rescript-mui/lab",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "This library provides ReScript bindings for material-ui-lab.",
   "keywords": [
     "rescript",
