@@ -78,6 +78,13 @@ module Value = {
     | @as("self-end") SelfEnd
     | @as("baseline") Baseline
 
+    /* Overflow */
+    | @as("auto") Auto
+    | @as("clip") Clip
+    | @as("hidden") Hidden
+    | @as("scroll") Scroll
+    | @as("visible") Visible
+
     /* Global values */
     | @as("inherit") Inherit
     | @as("initial") Initial
@@ -191,4 +198,5 @@ type props = {
   letterSpacing?: Value.t,
   lineHeight?: Value.t,
   textAlign?: Value.t,
+  overflow?: Value.t,
 }
