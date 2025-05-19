@@ -39,7 +39,7 @@ function ExampleSlider(props) {
                                         value: value
                                       })),
                               size: {
-                                xs: "auto"
+                                xs: "grow"
                               }
                             }),
                         JsxRuntime.jsx(Grid2, {

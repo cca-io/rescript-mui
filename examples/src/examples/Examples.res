@@ -3,7 +3,7 @@ open Mui
 @react.component
 let make = () => <>
   <Grid container=true>
-    <Grid size={md: Number(12.)}>
+    <Grid size={md: Int(12)}>
       <Typography variant=H4> {"ReScript-MUI Material Examples"->React.string} </Typography>
     </Grid>
   </Grid>
@@ -13,10 +13,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5> {"Icons"->React.string} </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleIcons />
     </Grid>
   </Grid>
@@ -26,10 +26,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5> {"Popover"->React.string} </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExamplePopover />
     </Grid>
   </Grid>
@@ -39,10 +39,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5> {"Theme Provider"->React.string} </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleThemeProvider />
     </Grid>
   </Grid>
@@ -52,10 +52,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5> {"Theme Provider Override"->React.string} </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleThemeProviderOverride />
     </Grid>
   </Grid>
@@ -65,10 +65,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5> {"List"->React.string} </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleList />
     </Grid>
   </Grid>
@@ -78,7 +78,7 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/tabs/DisabledTabs.tsx"
@@ -87,7 +87,7 @@ let make = () => <>
         </a>
       </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleTabs />
     </Grid>
   </Grid>
@@ -97,7 +97,7 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/steppers/VerticalLinearStepper.tsx"
@@ -106,7 +106,7 @@ let make = () => <>
         </a>
       </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleStepper />
     </Grid>
   </Grid>
@@ -116,7 +116,7 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/selects/SimpleSelect.tsx"
@@ -125,7 +125,7 @@ let make = () => <>
         </a>
       </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleSelect />
     </Grid>
   </Grid>
@@ -135,7 +135,7 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/radio-buttons/RadioButtonsGroup.tsx"
@@ -144,7 +144,7 @@ let make = () => <>
         </a>
       </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleRadioGroup />
     </Grid>
   </Grid>
@@ -154,7 +154,7 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/slider/InputSlider.tsx"
@@ -163,7 +163,7 @@ let make = () => <>
         </a>
       </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleSlider />
     </Grid>
   </Grid>
@@ -173,7 +173,7 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/slider/InputSlider.tsx"
@@ -182,7 +182,7 @@ let make = () => <>
         </a>
       </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleDashboard sidebar={"Sidebar"->React.string}>
         {"Content"->React.string}
       </ExampleDashboard>
@@ -194,7 +194,7 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/box/box.md"
@@ -203,7 +203,7 @@ let make = () => <>
         </a>
       </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleBox />
     </Grid>
   </Grid>
@@ -213,10 +213,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5> {"TextField size Prop"->React.string} </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleTextFieldSize />
     </Grid>
   </Grid>
@@ -226,10 +226,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5> {"Input textarea"->React.string} </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Input multiline=true rows=80 minLength=1 maxLength=1_000 wrap=Soft />
       <TextField
         minLength=1
@@ -249,10 +249,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <Typography variant=H5> {"Component Override"->React.string} </Typography>
     </Grid>
-    <Grid size={md: Number(6.)}>
+    <Grid size={md: Int(6)}>
       <ExampleComponentOverride />
     </Grid>
   </Grid>

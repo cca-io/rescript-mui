@@ -141,7 +141,7 @@ type rec gridSpacing =
 @unboxed
 type rec gridOffset =
   | @as("auto") Auto
-  | Number(float)
+  | Int(int)
   | Array(array<gridOffset>)
   | Object(Js.Dict.t<gridOffset>)
 
@@ -150,7 +150,7 @@ type gridSize =
   | @as("auto") Auto
   | @as("grow") Grow
   | @as(false) False
-  | Number(float)
+  | Int(int)
 
 type size = {
   /**
