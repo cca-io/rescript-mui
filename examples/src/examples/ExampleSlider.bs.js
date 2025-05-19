@@ -28,8 +28,7 @@ function ExampleSlider(props) {
                       alignItems: "center",
                       children: [
                         JsxRuntime.jsx(Grid2, {
-                              children: Caml_option.some(JsxRuntime.jsx(VolumeUp, {})),
-                              item: true
+                              children: Caml_option.some(JsxRuntime.jsx(VolumeUp, {}))
                             }),
                         JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(Slider, {
@@ -39,8 +38,9 @@ function ExampleSlider(props) {
                                           }),
                                         value: value
                                       })),
-                              item: true,
-                              xs: true
+                              size: {
+                                xs: "auto"
+                              }
                             }),
                         JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(Input, {
@@ -65,8 +65,7 @@ function ExampleSlider(props) {
                                         onChange: (function (e) {
                                             setValue(Caml_format.float_of_string(e.target.value));
                                           })
-                                      })),
-                              item: true
+                                      }))
                             })
                       ],
                       container: true,

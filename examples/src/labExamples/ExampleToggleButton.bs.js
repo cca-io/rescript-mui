@@ -91,9 +91,10 @@ function ExampleToggleButton(props) {
                               children: "Text justification toggle buttons present options for left, right, center, full, and\n      justified text with only one item available for selection at a time. Selecting one option\n      deselects any other."
                             })
                       ],
-                      item: true,
-                      md: 6,
-                      sm: 12
+                      size: {
+                        md: 6,
+                        sm: 12
+                      }
                     }),
                 JsxRuntime.jsxs(Grid2, {
                       children: [
@@ -135,9 +136,10 @@ function ExampleToggleButton(props) {
                               children: "Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to be\n      selected."
                             })
                       ],
-                      item: true,
-                      md: 6,
-                      sm: 12
+                      size: {
+                        md: 6,
+                        sm: 12
+                      }
                     })
               ],
               container: true,
