@@ -67,9 +67,12 @@ type changeReason =
   | @as("blur") Blur
 
 type inputChangeReason =
+  | @as("blur") Blur
+  | @as("clear") Clear
   | @as("input") Input
   | @as("reset") Reset
-  | @as("clear") Clear
+  | @as("selectOption") SelectOption
+  | @as("removeOption") RemoveOption
 
 type closeReason =
   | @as("createOption") CreateOption
@@ -157,8 +160,10 @@ type renderInputParams<'value, 'inputRef> = {
   inputProps: InputBase.inputBaseComponentProps,
 }
 
-external renderInputParamsToTextFieldProps: renderInputParams<'a, 'inputRef> => TextField.props<'value, 'inputRef> =
-  "%identity"
+external renderInputParamsToTextFieldProps: renderInputParams<'a, 'inputRef> => TextField.props<
+  'value,
+  'inputRef,
+> = "%identity"
 
 type slotProps = {
   clearIndicator?: IconButton.props,
