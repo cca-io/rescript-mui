@@ -1629,12 +1629,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rolandpeelen/rewatch@npm:^1.0.11":
-  version: 1.0.11
-  resolution: "@rolandpeelen/rewatch@npm:1.0.11"
+"@rolandpeelen/rewatch@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@rolandpeelen/rewatch@npm:1.2.0"
   bin:
     rewatch: rewatch
-  checksum: 10c0/f3433214f1d3de13bf45beb2bdd42cc3682a0f1c87c9ce563b3e4d3939ee0b433c46367e5bc13848cbf2f2766b3b460b8c98be890c6a90a1ea49025a125d1370
+  checksum: 10c0/6e22ffc0d9e761127bca31cce5cece60940029d0e580817f425fa1366304a500b2d6c7513e7bbbf83b155b7c1d2a2b05a968ab0fb1e455120fd7b5f63571c599
   languageName: node
   linkType: hard
 
@@ -3581,7 +3581,7 @@ __metadata:
     "@mui/x-date-pickers": "npm:^7.27.3"
     "@rescript/react": "npm:^0.12.1"
     "@rescript/tools": "npm:^0.6.6"
-    "@rolandpeelen/rewatch": "npm:^1.0.11"
+    "@rolandpeelen/rewatch": "npm:^1.2.0"
     parcel: "npm:^2.13.3"
     rescript: "npm:^11.1.4"
   languageName: unknown
