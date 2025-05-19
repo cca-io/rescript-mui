@@ -31,9 +31,8 @@
     "@mui/x-date-pickers": "^7.1.1",
     "@rescript/react": "^0.12.1",
     "@rescript/tools": "^0.6.6",
-    "@rolandpeelen/rewatch": "^1.0.10",
+    "@rolandpeelen/rewatch": "^1.2.0",
     "parcel": "^2.13.3",
-    "process": "^0.11.10",
     "rescript": "^11.1.4"
   }
 }
