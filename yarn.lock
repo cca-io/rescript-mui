@@ -1543,12 +1543,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rolandpeelen/rewatch@npm:^1.0.10":
-  version: 1.0.10
-  resolution: "@rolandpeelen/rewatch@npm:1.0.10"
+"@rolandpeelen/rewatch@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@rolandpeelen/rewatch@npm:1.2.0"
   bin:
     rewatch: rewatch
-  checksum: 10c0/9474ae0c0eb265e6ad77d15f412310cf443de8b8363ce00f206a2cc6e5fd106cb45b7435d2bb491ebc01e5a8c0950dadc0ebf4d494a612b68d36e9bd8dff3e1c
+  checksum: 10c0/6e22ffc0d9e761127bca31cce5cece60940029d0e580817f425fa1366304a500b2d6c7513e7bbbf83b155b7c1d2a2b05a968ab0fb1e455120fd7b5f63571c599
   languageName: node
   linkType: hard
 
@@ -3314,13 +3314,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"process@npm:^0.11.10":
-  version: 0.11.10
-  resolution: "process@npm:0.11.10"
-  checksum: 10c0/40c3ce4b7e6d4b8c3355479df77aeed46f81b279818ccdc500124e6a5ab882c0cc81ff7ea16384873a95a74c4570b01b120f287abbdd4c877931460eca6084b3
-  languageName: node
-  linkType: hard
-
 "promise-retry@npm:^2.0.1":
   version: 2.0.1
   resolution: "promise-retry@npm:2.0.1"
@@ -3506,9 +3499,8 @@ __metadata:
     "@mui/x-date-pickers": "npm:^7.1.1"
     "@rescript/react": "npm:^0.12.1"
     "@rescript/tools": "npm:^0.6.6"
-    "@rolandpeelen/rewatch": "npm:^1.0.10"
+    "@rolandpeelen/rewatch": "npm:^1.2.0"
     parcel: "npm:^2.13.3"
-    process: "npm:^0.11.10"
     rescript: "npm:^11.1.4"
   languageName: unknown
   linkType: soft
