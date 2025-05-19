@@ -71,26 +71,42 @@ type variant =
   | String(string)
 
 type variantMapping = {
-  h1: variant,
-  h2: variant,
-  h3: variant,
-  h4: variant,
-  h5: variant,
-  h6: variant,
-  subtitle1: variant,
-  subtitle2: variant,
-  body1: variant,
-  body2: variant,
-  inherit: variant,
+  h1: string,
+  h2: string,
+  h3: string,
+  h4: string,
+  h5: string,
+  h6: string,
+  subtitle1: string,
+  subtitle2: string,
+  body1: string,
+  body2: string,
+  inherit: string,
 }
 
+type color =
+  | @as("primary") Primary
+  | @as("secondary") Secondary
+  | @as("success") Success
+  | @as("error") Error
+  | @as("info") Info
+  | @as("warning") Warning
+  | @as("textPrimary") TextPrimary
+  | @as("textSecondary") TextSecondary
+  | @as("textDisabled") TextDisabled
+
 type publicProps = {
-  ...System.props,
+  ...CommonProps.t,
   /**
     * Set the text-align on the component.
     * @default 'inherit'
     */
   align?: align,
+  /**
+    * The color of the component. It supports both default and custom theme colors, 
+    * which can be added as shown in the palette customization guide.
+    */
+  color?: color,
   /**
     * The component used for the root node.
     * Either a string to use a HTML element or a component.
@@ -113,6 +129,7 @@ type publicProps = {
     * If `true`, the element will be a paragraph element.
     * @default false
     */
+  @deprecated("Use the component prop instead. This prop will be removed in v7.")
   paragraph?: bool,
   /**
     * Applies the theme typography styles.

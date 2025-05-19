@@ -68,7 +68,7 @@ function ExampleDashboard(props) {
                                                 children: "Dashboard"
                                               }),
                                           JsxRuntime.jsx(Link, {
-                                                color: "text.secondary",
+                                                color: "textSecondary",
                                                 children: "Close Dashboard",
                                                 href: "#",
                                                 onClick: (function (e) {
