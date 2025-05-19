@@ -11,10 +11,9 @@
   "homepage": "https://rescript-material-ui.cca.io/",
   "repository": "https://github.com/cca-io/rescript-material-ui",
   "bugs": "https://github.com/cca-io/rescript-material-ui/issues",
-  "author": "Jonathan Siebern <jsiebern88@gmail.com>",
+  "author": "Florian Hammerschmidt <fh@cca.io>",
   "contributors": [
-    "Christoph Knittel <ck@cca.io>",
-    "Florian Hammerschmidt <fh@cca.io>"
+    "Christoph Knittel <ck@cca.io>"
   ],
   "license": "MIT",
   "files": [

@@ -3509,6 +3509,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"rescript-mui@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "rescript-mui@workspace:."
+  dependencies:
+    "@mui/lab": "npm:^6.0.0-beta.30"
+    "@mui/material": "npm:^6.4.4"
+    "@mui/system": "npm:^6.4.7"
+    "@mui/x-date-pickers": "npm:^7.27.3"
+    "@rescript/react": "npm:^0.12.1"
+    "@rescript/tools": "npm:^0.6.6"
+    "@rolandpeelen/rewatch": "npm:^1.2.0"
+    parcel: "npm:^2.13.3"
+    rescript: "npm:^11.1.4"
+  languageName: unknown
+  linkType: soft
+
 "rescript@npm:^11.0.0-rc.7":
   version: 11.0.0-rc.9
   resolution: "rescript@npm:11.0.0-rc.9"
@@ -3570,22 +3586,6 @@ __metadata:
   checksum: 10c0/59933e8501727ba13ad73ef4a04d5280b3717fd650408460c987392efe9d7be2040778ed8ebe933c5cbd63da3dcc37919c141ef8af0a54a6e4fca5a2af177bfe
   languageName: node
   linkType: hard
-
-"root-workspace-0b6124@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "root-workspace-0b6124@workspace:."
-  dependencies:
-    "@mui/lab": "npm:^6.0.0-beta.30"
-    "@mui/material": "npm:^6.4.4"
-    "@mui/system": "npm:^6.4.7"
-    "@mui/x-date-pickers": "npm:^7.27.3"
-    "@rescript/react": "npm:^0.12.1"
-    "@rescript/tools": "npm:^0.6.6"
-    "@rolandpeelen/rewatch": "npm:^1.2.0"
-    parcel: "npm:^2.13.3"
-    rescript: "npm:^11.1.4"
-  languageName: unknown
-  linkType: soft
 
 "safe-buffer@npm:^5.0.1":
   version: 5.2.1

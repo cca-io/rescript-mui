@@ -6,7 +6,7 @@ import * as ExampleRating from "../examples/ExampleRating.bs.js";
 import * as ExampleSkeleton from "../examples/ExampleSkeleton.bs.js";
 import * as ExamplePagination from "../examples/ExamplePagination.bs.js";
 import * as JsxRuntime from "react/jsx-runtime";
-import Grid from "@mui/material/Grid";
+import Grid2 from "@mui/material/Grid2";
 import * as ExampleAutocomplete from "../examples/ExampleAutocomplete.bs.js";
 import * as ExampleToggleButton from "./ExampleToggleButton.bs.js";
 import Divider from "@mui/material/Divider";
@@ -15,8 +15,8 @@ import Typography from "@mui/material/Typography";
 function ExamplesLab(props) {
   return JsxRuntime.jsxs(JsxRuntime.Fragment, {
               children: [
-                JsxRuntime.jsx(Grid, {
-                      children: Caml_option.some(JsxRuntime.jsx(Grid, {
+                JsxRuntime.jsx(Grid2, {
+                      children: Caml_option.some(JsxRuntime.jsx(Grid2, {
                                 children: Caml_option.some(JsxRuntime.jsx(Typography, {
                                           variant: "h4",
                                           children: "ReScript-MUI Lab Examples"
@@ -31,10 +31,10 @@ function ExamplesLab(props) {
                 JsxRuntime.jsx(Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs(Grid, {
+                JsxRuntime.jsxs(Grid2, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(Typography, {
                                         variant: "h5",
                                         children: "Alert"
@@ -42,7 +42,7 @@ function ExamplesLab(props) {
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleAlert.make, {})),
                               item: true,
                               md: 6
@@ -55,10 +55,10 @@ function ExamplesLab(props) {
                 JsxRuntime.jsx(Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs(Grid, {
+                JsxRuntime.jsxs(Grid2, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(Typography, {
                                         variant: "h5",
                                         children: "Autocomplete"
@@ -66,7 +66,7 @@ function ExamplesLab(props) {
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleAutocomplete.make, {})),
                               item: true,
                               md: 6
@@ -79,10 +79,10 @@ function ExamplesLab(props) {
                 JsxRuntime.jsx(Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs(Grid, {
+                JsxRuntime.jsxs(Grid2, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(Typography, {
                                         variant: "h5",
                                         children: "Pagination"
@@ -90,7 +90,7 @@ function ExamplesLab(props) {
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(ExamplePagination.make, {})),
                               item: true,
                               md: 6
@@ -103,10 +103,10 @@ function ExamplesLab(props) {
                 JsxRuntime.jsx(Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs(Grid, {
+                JsxRuntime.jsxs(Grid2, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(Typography, {
                                         variant: "h5",
                                         children: "Rating"
@@ -114,7 +114,7 @@ function ExamplesLab(props) {
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleRating.make, {})),
                               item: true,
                               md: 6
@@ -127,10 +127,10 @@ function ExamplesLab(props) {
                 JsxRuntime.jsx(Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs(Grid, {
+                JsxRuntime.jsxs(Grid2, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(Typography, {
                                         variant: "h5",
                                         children: "Skeleton"
@@ -138,7 +138,7 @@ function ExamplesLab(props) {
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleSkeleton.make, {})),
                               item: true,
                               md: 6
@@ -151,10 +151,10 @@ function ExamplesLab(props) {
                 JsxRuntime.jsx(Divider, {}),
                 JsxRuntime.jsx("br", {}),
                 JsxRuntime.jsx("br", {}),
-                JsxRuntime.jsxs(Grid, {
+                JsxRuntime.jsxs(Grid2, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(Typography, {
                                         variant: "h5",
                                         children: "ToggleButton"
@@ -162,7 +162,7 @@ function ExamplesLab(props) {
                               item: true,
                               md: 6
                             }),
-                        JsxRuntime.jsx(Grid, {
+                        JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleToggleButton.make, {})),
                               item: true,
                               md: 6
