@@ -96,7 +96,7 @@ type color =
   | @as("textDisabled") TextDisabled
 
 type publicProps = {
-  ...CommonProps.t,
+  ...System.propsWithoutColor,
   /**
     * Set the text-align on the component.
     * @default 'inherit'
