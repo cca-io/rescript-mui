@@ -99,7 +99,6 @@ type treeItemClassKey = {
 type treeViewClassKey = {root?: ReactDOM.Style.t}
 
 type t = {
-  @as("MuiLoadingButton") muiLoadingButton?: component<loadingButtonClassKey, LoadingButton.props>,
   @as("MuiMasonry") muiMasonry?: component<masonryClassKey, Masonry.props>,
   @as("MuiTabList") muiTabList?: component<tabListClassKey, TabList.props<unknown>>,
   @as("MuiTabPanel") muiTabPanel?: component<tabPanelClassKey, TabPanel.props>,
