@@ -67,6 +67,10 @@ type props = {
     * you do not have to set this manually.
     */
   variant?: variant,
+  /**
+    * Callback fired when the component is clicked.
+    */
+  onClick?: ReactEvent.Mouse.t => unit,
 }
 
 @module("@mui/material/InputAdornment")
