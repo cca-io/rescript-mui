@@ -24,6 +24,13 @@ type variant =
   | @as("outlined") Outlined
   | @as("filled") Filled
 
+type inputSlotProps = {
+  startAdornment?: React.element,
+  endAdornment?: React.element,
+}
+
+type slotProps = {input?: inputSlotProps}
+
 type props<'value, 'inputRef> = {
   ...CommonProps.t,
   ...CommonProps.inputTextareaProps,
@@ -140,6 +147,10 @@ type props<'value, 'inputRef> = {
     * The variant to use.
     */
   variant?: variant,
+  /**
+    * The props used for each slot inside the TextField.
+    */
+  slotProps?: slotProps,
 }
 
 @module("@mui/material/TextField")
