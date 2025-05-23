@@ -73,10 +73,11 @@ type breakpointSizes = {
   xl?: gridSize,
 }
 
+@unboxed
 type size =
   | String(string)
-  | Breakpoint(breakpointSizes)
   | Number(int)
+  | Breakpoint(breakpointSizes)
   | Auto
 
 @unboxed

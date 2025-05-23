@@ -38,10 +38,7 @@ function ExampleSlider(props) {
                                           }),
                                         value: value
                                       })),
-                              size: {
-                                TAG: "String",
-                                _0: "grow"
-                              }
+                              size: "grow"
                             }),
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(Input, {

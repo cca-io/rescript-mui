@@ -22,10 +22,7 @@ function ExamplesLab(props) {
                                           children: "ReScript-MUI Lab Examples"
                                         })),
                                 size: {
-                                  TAG: "Breakpoint",
-                                  _0: {
-                                    md: 12
-                                  }
+                                  md: 12
                                 }
                               })),
                       container: true
@@ -44,19 +41,13 @@ function ExamplesLab(props) {
                                         children: "Alert"
                                       })),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             }),
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleAlert.make, {})),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             })
                       ],
@@ -76,19 +67,13 @@ function ExamplesLab(props) {
                                         children: "Autocomplete"
                                       })),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             }),
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleAutocomplete.make, {})),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             })
                       ],
@@ -108,19 +93,13 @@ function ExamplesLab(props) {
                                         children: "Pagination"
                                       })),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             }),
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExamplePagination.make, {})),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             })
                       ],
@@ -140,19 +119,13 @@ function ExamplesLab(props) {
                                         children: "Rating"
                                       })),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             }),
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleRating.make, {})),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             })
                       ],
@@ -172,19 +145,13 @@ function ExamplesLab(props) {
                                         children: "Skeleton"
                                       })),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             }),
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleSkeleton.make, {})),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             })
                       ],
@@ -204,19 +171,13 @@ function ExamplesLab(props) {
                                         children: "ToggleButton"
                                       })),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             }),
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleToggleButton.make, {})),
                               size: {
-                                TAG: "Breakpoint",
-                                _0: {
-                                  md: 6
-                                }
+                                md: 6
                               }
                             })
                       ],

@@ -92,11 +92,8 @@ function ExampleToggleButton(props) {
                             })
                       ],
                       size: {
-                        TAG: "Breakpoint",
-                        _0: {
-                          sm: 12,
-                          md: 6
-                        }
+                        sm: 12,
+                        md: 6
                       }
                     }),
                 JsxRuntime.jsxs(Grid, {
@@ -140,11 +137,8 @@ function ExampleToggleButton(props) {
                             })
                       ],
                       size: {
-                        TAG: "Breakpoint",
-                        _0: {
-                          sm: 12,
-                          md: 6
-                        }
+                        sm: 12,
+                        md: 6
                       }
                     })
               ],
