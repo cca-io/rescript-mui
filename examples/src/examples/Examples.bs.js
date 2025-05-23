@@ -32,7 +32,8 @@ function Examples(props) {
                                           children: "ReScript-MUI Material Examples"
                                         })),
                                 size: {
-                                  breakpointSizes: {
+                                  TAG: "Breakpoint",
+                                  _0: {
                                     md: 12
                                   }
                                 }
@@ -53,7 +54,8 @@ function Examples(props) {
                                         children: "Icons"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -61,7 +63,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleIcons.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -83,7 +86,8 @@ function Examples(props) {
                                         children: "Popover"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -91,7 +95,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExamplePopover.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -113,7 +118,8 @@ function Examples(props) {
                                         children: "Theme Provider"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -121,7 +127,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleThemeProvider.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -143,7 +150,8 @@ function Examples(props) {
                                         children: "Theme Provider Override"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -151,7 +159,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleThemeProviderOverride.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -173,7 +182,8 @@ function Examples(props) {
                                         children: "List"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -181,7 +191,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleList.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -207,7 +218,8 @@ function Examples(props) {
                                                 }))
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -215,7 +227,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleTabs.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -241,7 +254,8 @@ function Examples(props) {
                                                 }))
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -249,7 +263,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleStepper.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -275,7 +290,8 @@ function Examples(props) {
                                                 }))
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -283,7 +299,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleSelect.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -309,7 +326,8 @@ function Examples(props) {
                                                 }))
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -317,7 +335,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleRadioGroup.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -343,7 +362,8 @@ function Examples(props) {
                                                 }))
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -351,7 +371,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleSlider.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -377,7 +398,8 @@ function Examples(props) {
                                                 }))
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -388,7 +410,8 @@ function Examples(props) {
                                         children: "Content"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -414,7 +437,8 @@ function Examples(props) {
                                                 }))
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -422,7 +446,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleBox.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -444,7 +469,8 @@ function Examples(props) {
                                         children: "TextField size Prop"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -452,7 +478,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleTextFieldSize.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -474,7 +501,8 @@ function Examples(props) {
                                         children: "Input textarea"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -506,7 +534,8 @@ function Examples(props) {
                                     })
                               ],
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -528,7 +557,8 @@ function Examples(props) {
                                         children: "Component Override"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -536,7 +566,8 @@ function Examples(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleComponentOverride.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }

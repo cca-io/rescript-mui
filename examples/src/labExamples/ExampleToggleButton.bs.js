@@ -92,7 +92,8 @@ function ExampleToggleButton(props) {
                             })
                       ],
                       size: {
-                        breakpointSizes: {
+                        TAG: "Breakpoint",
+                        _0: {
                           sm: 12,
                           md: 6
                         }
@@ -139,7 +140,8 @@ function ExampleToggleButton(props) {
                             })
                       ],
                       size: {
-                        breakpointSizes: {
+                        TAG: "Breakpoint",
+                        _0: {
                           sm: 12,
                           md: 6
                         }

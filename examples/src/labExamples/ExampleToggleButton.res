@@ -50,7 +50,7 @@ let make = () => {
   }
 
   <Grid container=true spacing=Int(2)>
-    <Grid size={{breakpointSizes: {sm: Number(12), md: Number(6)}}}>
+    <Grid size={Breakpoint({sm: Number(12), md: Number(6)})}>
       <Box mb={Number(2.)} mt={Number(2.)}>
         <ToggleButtonGroup value={alignment} exclusive=true onChange=handleAlignment>
           <ToggleButton value={"left"}>
@@ -74,7 +74,7 @@ let make = () => {
       deselects any other.`->React.string}
       </Typography>
     </Grid>
-    <Grid size={{breakpointSizes: {sm: Number(12), md: Number(6)}}}>
+    <Grid size={Breakpoint({sm: Number(12), md: Number(6)})}>
       <Box mb={Number(2.)} mt={Number(2.)}>
         <ToggleButtonGroup value={formats} onChange=handleFormats>
           <ToggleButton value={"bold"}>

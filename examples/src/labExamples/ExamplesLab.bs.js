@@ -22,7 +22,8 @@ function ExamplesLab(props) {
                                           children: "ReScript-MUI Lab Examples"
                                         })),
                                 size: {
-                                  breakpointSizes: {
+                                  TAG: "Breakpoint",
+                                  _0: {
                                     md: 12
                                   }
                                 }
@@ -43,7 +44,8 @@ function ExamplesLab(props) {
                                         children: "Alert"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -51,7 +53,8 @@ function ExamplesLab(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleAlert.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -73,7 +76,8 @@ function ExamplesLab(props) {
                                         children: "Autocomplete"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -81,7 +85,8 @@ function ExamplesLab(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleAutocomplete.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -103,7 +108,8 @@ function ExamplesLab(props) {
                                         children: "Pagination"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -111,7 +117,8 @@ function ExamplesLab(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExamplePagination.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -133,7 +140,8 @@ function ExamplesLab(props) {
                                         children: "Rating"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -141,7 +149,8 @@ function ExamplesLab(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleRating.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -163,7 +172,8 @@ function ExamplesLab(props) {
                                         children: "Skeleton"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -171,7 +181,8 @@ function ExamplesLab(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleSkeleton.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -193,7 +204,8 @@ function ExamplesLab(props) {
                                         children: "ToggleButton"
                                       })),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }
@@ -201,7 +213,8 @@ function ExamplesLab(props) {
                         JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleToggleButton.make, {})),
                               size: {
-                                breakpointSizes: {
+                                TAG: "Breakpoint",
+                                _0: {
                                   md: 6
                                 }
                               }

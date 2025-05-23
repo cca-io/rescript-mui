@@ -3,7 +3,7 @@ open Mui
 @react.component
 let make = () => <>
   <Grid container=true>
-    <Grid size={{breakpointSizes: {md: Number(12)}}}>
+    <Grid size={Breakpoint({md: Number(12)})}>
       <Typography variant=H4> {"ReScript-MUI Lab Examples"->React.string} </Typography>
     </Grid>
   </Grid>
@@ -13,10 +13,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <Typography variant=H5> {"Alert"->React.string} </Typography>
     </Grid>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <ExampleAlert />
     </Grid>
   </Grid>
@@ -26,10 +26,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <Typography variant=H5> {"Autocomplete"->React.string} </Typography>
     </Grid>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <ExampleAutocomplete />
     </Grid>
   </Grid>
@@ -39,10 +39,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <Typography variant=H5> {"Pagination"->React.string} </Typography>
     </Grid>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <ExamplePagination />
     </Grid>
   </Grid>
@@ -52,10 +52,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <Typography variant=H5> {"Rating"->React.string} </Typography>
     </Grid>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <ExampleRating />
     </Grid>
   </Grid>
@@ -65,10 +65,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <Typography variant=H5> {"Skeleton"->React.string} </Typography>
     </Grid>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <ExampleSkeleton />
     </Grid>
   </Grid>
@@ -78,10 +78,10 @@ let make = () => <>
   <br />
   <br />
   <Grid container=true alignItems=String("center")>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <Typography variant=H5> {"ToggleButton"->React.string} </Typography>
     </Grid>
-    <Grid size={{breakpointSizes: {md: Number(6)}}}>
+    <Grid size={Breakpoint({md: Number(6)})}>
       <ExampleToggleButton />
     </Grid>
   </Grid>

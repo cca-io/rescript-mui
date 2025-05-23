@@ -73,10 +73,9 @@ type breakpointSizes = {
   xl?: gridSize,
 }
 
-type size = {
-  gridSize?: gridSize,
-  breakpointSizes?: breakpointSizes,
-}
+type size =
+  | String(string)
+  | Breakpoint(breakpointSizes)
 
 @unboxed
 type columns =
