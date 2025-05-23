@@ -76,6 +76,8 @@ type breakpointSizes = {
 type size =
   | String(string)
   | Breakpoint(breakpointSizes)
+  | Number(int)
+  | Auto
 
 @unboxed
 type columns =
