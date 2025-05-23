@@ -62,61 +62,20 @@ type gridWrap =
 @unboxed
 type gridSize =
   | @as("auto") Auto
-  | @as(true) True
-  | @as(false) False
-  | Number(float)
+  | @as("grow") Grow
+  | @as("number") Number(int)
 
-type regularBreakpoints = {
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `lg` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  lg?: gridSize,
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `md` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  md?: gridSize,
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `sm` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  sm?: gridSize,
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `xl` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  xl?: gridSize,
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for all the screen sizes with the lowest priority.
-   * @default false
-   */
+type breakpointSizes = {
   xs?: gridSize,
+  sm?: gridSize,
+  md?: gridSize,
+  lg?: gridSize,
+  xl?: gridSize,
+}
+
+type size = {
+  gridSize?: gridSize,
+  breakpointSizes?: breakpointSizes,
 }
 
 @unboxed
@@ -176,40 +135,10 @@ type props = {
     */
   direction?: gridDirection,
   /**
-    * If `true`, the component will have the flex *item* behavior.
-    * You should be wrapping *items* with a *container*.
-    * @default false
-    */
-  item?: bool,
-  /**
-    * If a number, it sets the number of columns the grid item uses.
-    * It can't be greater than the total number of columns of the container (12 by default).
-    * If 'auto', the grid item's width matches its content. If false, the prop is ignored. 
-    * If true, the grid item's width grows to use the space available in the grid container.
-    * The value is applied for the `lg` breakpoint and wider screens if not overridden.
-    */
-  lg?: autoNumberBool,
-  /**
-    * If a number, it sets the number of columns the grid item uses.
-    * It can't be greater than the total number of columns of the container (12 by default).
-    * If 'auto', the grid item's width matches its content. If false, the prop is ignored. 
-    * If true, the grid item's width grows to use the space available in the grid container.
-    * The value is applied for the `md`` breakpoint and wider screens if not overridden.
-    */
-  md?: autoNumberBool,
-  /**
     * Defines the vertical space between the type `item` components.
     * It overrides the value of the `spacing` prop.
     */
   rowSpacing?: gridSpacing,
-  /**
-    * If a number, it sets the number of columns the grid item uses.
-    * It can't be greater than the total number of columns of the container (12 by default).
-    * If 'auto', the grid item's width matches its content. If false, the prop is ignored. 
-    * If true, the grid item's width grows to use the space available in the grid container.
-    * The value is applied for the `sm` breakpoint and wider screens if not overridden.
-    */
-  sm?: autoNumberBool,
   /**
     * Defines the space between the type `item` components.
     * It can only be used on a type `container` component.
@@ -227,27 +156,13 @@ type props = {
     */
   wrap?: gridWrap,
   /**
-    * If a number, it sets the number of columns the grid item uses.
-    * It can't be greater than the total number of columns of the container (12 by default).
-    * If 'auto', the grid item's width matches its content. If false, the prop is ignored. 
-    * If true, the grid item's width grows to use the space available in the grid container.
-    * The value is applied for the `xl` breakpoint and wider screens if not overridden.
+    * Defines the size of the grid item.
+    * It can be a single value for all breakpoints, or an object with breakpoint-specific values.
+    * - If a number, it sets the number of columns the grid item uses.
+    * - If 'auto', the grid item's width matches its content.
+    * - If 'grow', the grid item's width grows to use the space available in the grid container.
     */
-  xl?: autoNumberBool,
-  /**
-    * If a number, it sets the number of columns the grid item uses.
-    * It can't be greater than the total number of columns of the container (12 by default).
-    * If 'auto', the grid item's width matches its content. If false, the prop is ignored. 
-    * If true, the grid item's width grows to use the space available in the grid container.
-    * The value is applied for all the screen sizes with the lowest priority.
-    */
-  xs?: autoNumberBool,
-  /**
-    * If `true`, it sets `min-width: 0` on the item.
-    * Refer to the limitations section of the documentation to better understand the use case.
-    * @default false
-    */
-  zeroMinWidth?: bool,
+  size?: size,
 }
 
 @module("@mui/material/Grid")
