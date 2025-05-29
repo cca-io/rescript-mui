@@ -79,6 +79,7 @@ type props = {
     * @default 'elevation'
     */
   variant?: variant,
+  onClick?: ReactEvent.Mouse.t => unit,
 }
 
 @module("@mui/material/Paper")

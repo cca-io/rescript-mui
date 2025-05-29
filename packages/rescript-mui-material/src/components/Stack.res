@@ -55,6 +55,7 @@ type props = {
     * @default false
     */
   useFlexGap?: bool,
+  onClick?: ReactEvent.Mouse.t => unit,
 }
 
 @module("@mui/material/Stack")
