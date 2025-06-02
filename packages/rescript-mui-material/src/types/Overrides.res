@@ -1286,6 +1286,7 @@ type tooltipClassKey = {
 
 type typographyClassKey = {
   root?: ReactDOM.Style.t,
+  body3?: ReactDOM.Style.t,
   body2?: ReactDOM.Style.t,
   body1?: ReactDOM.Style.t,
   caption?: ReactDOM.Style.t,

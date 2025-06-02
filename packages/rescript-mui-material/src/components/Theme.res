@@ -167,6 +167,7 @@ type t_typography = {
   subtitle2: ReactDOM.Style.t,
   body1: ReactDOM.Style.t,
   body2: ReactDOM.Style.t,
+  body3: ReactDOM.Style.t,
   caption: ReactDOM.Style.t,
   button: ReactDOM.Style.t,
   overline: ReactDOM.Style.t,

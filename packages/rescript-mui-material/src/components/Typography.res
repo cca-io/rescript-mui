@@ -1,6 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
   root?: string,
+  /** Styles applied to the root element if `variant="body3"`. */
+  body3?: string,
   /** Styles applied to the root element if `variant="body2"`. */
   body2?: string,
   /** Styles applied to the root element if `variant="body1"`. */
@@ -56,6 +58,7 @@ type align =
 type variant =
   | @as("body1") Body1
   | @as("body2") Body2
+  | @as("body3") Body3
   | @as("button") Button
   | @as("caption") Caption
   | @as("h1") H1
@@ -81,6 +84,7 @@ type variantMapping = {
   subtitle2: variant,
   body1: variant,
   body2: variant,
+  body3: variant,
   inherit: variant,
 }
 

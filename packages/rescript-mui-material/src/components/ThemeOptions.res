@@ -50,7 +50,8 @@ type t_colorWithVariantsOptions = {
   light?: string,
   main?: string,
 }
-@deprecated("Renamed to t_colorWithVariantsOptions") type colorWithVariants = t_colorWithVariantsOptions
+@deprecated("Renamed to t_colorWithVariantsOptions")
+type colorWithVariants = t_colorWithVariantsOptions
 
 type t_actionOptions = {
   activatedOpacity?: float,
@@ -105,7 +106,6 @@ type t_paletteOptions = {
   warning?: t_colorWithVariantsOptions,
 }
 @deprecated("Renamed to t_paletteOptions") type paletteOptions = t_paletteOptions
-
 
 type t_shapeOptions = {borderRadius?: float}
 @deprecated("Renamed to t_shapeOptions") type shape = t_shapeOptions
@@ -177,6 +177,7 @@ type t_typographyOptions = {
   subtitle2?: ReactDOM.Style.t,
   body1?: ReactDOM.Style.t,
   body2?: ReactDOM.Style.t,
+  body3?: ReactDOM.Style.t,
   button?: ReactDOM.Style.t,
   caption?: ReactDOM.Style.t,
   overline?: ReactDOM.Style.t,
