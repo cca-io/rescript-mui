@@ -38,13 +38,13 @@ type variant =
 
 type slotProps = {
   /** Props applied to the backdrop element. */
-  backdrop?: ReactDOM.domProps,
+  backdrop?: Backdrop.props,
   /** Props applied to the docked element. */
   docked?: ReactDOM.domProps,
   /** Props applied to the paper element. */
   paper?: Paper.props,
   /** Props applied to the root element. */
-  root?: ReactDOM.domProps,
+  root?: Modal.props,
   /** Props applied to the transition element. */
   transition?: Slide.props,
 }
