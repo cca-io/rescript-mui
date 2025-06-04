@@ -36,6 +36,32 @@ type variant =
   | @as("persistent") Persistent
   | @as("temporary") Temporary
 
+type slotProps = {
+  /** Props applied to the backdrop element. */
+  backdrop?: ReactDOM.domProps,
+  /** Props applied to the docked element. */
+  docked?: ReactDOM.domProps,
+  /** Props applied to the paper element. */
+  paper?: Paper.props,
+  /** Props applied to the root element. */
+  root?: ReactDOM.domProps,
+  /** Props applied to the transition element. */
+  transition?: Slide.props,
+}
+
+type slots = {
+  /** The component used for the backdrop. */
+  backdrop?: OverridableComponent.t<unknown>,
+  /** The component used for the docked element. */
+  docked?: OverridableComponent.t<unknown>,
+  /** The component used for the paper. */
+  paper?: OverridableComponent.t<unknown>,
+  /** The component used for the root element. */
+  root?: OverridableComponent.t<unknown>,
+  /** The component used for the transition. */
+  transition?: OverridableComponent.t<unknown>,
+}
+
 type props = {
   ...Modal.publicProps,
   /**
@@ -77,14 +103,24 @@ type props = {
   /**
     * Props applied to the [`Paper`](/material-ui/api/paper/) element.
     * @default {}
+    * @deprecated Use slotProps.paper instead. This prop will be removed in a future major release.
     */
   @as("PaperProps")
   paperProps?: Paper.props,
   /**
     * Props applied to the [`Slide`](/material-ui/api/slide/) element.
+    * @deprecated Use slotProps.transition instead. This prop will be removed in a future major release.
     */
   @as("SlideProps")
   slideProps?: Slide.props,
+  /**
+    * The props used for each slot inside.
+    */
+  slotProps?: slotProps,
+  /**
+    * The components used for each slot inside.
+    */
+  slots?: slots,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
