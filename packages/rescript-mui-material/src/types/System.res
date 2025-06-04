@@ -226,4 +226,5 @@ type props = {
   listStyleType?: Value.t,
   listStylePosition?: Value.t,
   listStyleImage?: Value.t,
+  textDecoration?: Value.t,
 }
