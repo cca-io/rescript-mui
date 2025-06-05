@@ -31,6 +31,32 @@ type classes = {
   paperFullScreen?: string,
 }
 
+type slotProps = {
+  /** Props applied to the backdrop element. */
+  backdrop?: Backdrop.props,
+  /** Props applied to the container element. */
+  container?: Container.props,
+  /** Props applied to the paper element. */
+  paper?: Paper.props,
+  /** Props applied to the root element. */
+  root?: unknown,
+  /** Props applied to the transition element. */
+  transition?: Collapse.props,
+}
+
+type slots = {
+  /** The component used for the backdrop. */
+  backdrop?: OverridableComponent.t<unknown>,
+  /** The component used for the container. */
+  container?: OverridableComponent.t<unknown>,
+  /** The component used for the paper. */
+  paper?: OverridableComponent.t<unknown>,
+  /** The component used for the root element. */
+  root?: OverridableComponent.t<unknown>,
+  /** The component used for the transition. */
+  transition?: OverridableComponent.t<unknown>,
+}
+
 @unboxed
 type maxWidth =
   | @as("xs") Xs
@@ -116,12 +142,12 @@ type props = {
     * Either a string to use a HTML element or a component.
     * @default {}
     */
-  slots?: Modal.slots,
+  slots?: slots,
   /**
     * The props used for each slot inside the Modal.
     * @default {}
     */
-  slotProps?: Modal.slotProps,
+  slotProps?: slotProps,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
