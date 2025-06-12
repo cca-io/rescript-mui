@@ -196,4 +196,5 @@ type t = {
   typography?: t_typographyOptions,
   unstable_strictMode?: bool,
   zIndex?: t_zIndexOptions,
+  cssVariables?: bool,
 }
