@@ -118,6 +118,7 @@ type publicProps = {
     */
   marginThreshold?: int,
   onClose?: Modal.onClose,
+  onClick?: ReactEvent.Mouse.t => unit,
   /**
     * The components used for each slot inside.
     *
