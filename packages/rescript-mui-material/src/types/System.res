@@ -115,6 +115,8 @@ type props = {
   flexShrink?: Value.t,
   flexWrap?: Value.t,
   justifyContent?: Value.t,
+  justifyItems?: Value.t,
+  justifySelf?: Value.t,
   order?: Value.t,
   gap?: Value.t,
   columnGap?: Value.t,
