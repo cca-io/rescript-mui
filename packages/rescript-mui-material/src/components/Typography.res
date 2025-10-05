@@ -143,6 +143,7 @@ type publicProps = {
 
 type props = {
   ...publicProps,
+  ...CommonProps.clickablePropsWithOnClick,
   /**
     * The content of the component.
     */
