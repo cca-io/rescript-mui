@@ -56,6 +56,10 @@ type props<'value, 'inputRef> = {
     */
   error?: bool,
   /**
+    * If `true`, the underline is disabled for Filled.
+    */
+  disableUnderline?: bool,
+  /**
     * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
     */
   @as("FormHelperTextProps")
