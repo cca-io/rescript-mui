@@ -14,6 +14,10 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 5.1.3
+
+- :bug: Add a few more missing props to `Box`, `Link`, `ListSubHeader`, `Tab`, `TextField` and `Typography`.
+
 ## 5.1.2
 
 - :bug: Add overflow props to `System`
