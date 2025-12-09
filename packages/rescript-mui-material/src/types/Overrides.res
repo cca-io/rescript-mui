@@ -211,6 +211,13 @@ type buttonClassKey = {
   iconSizeSmall?: ReactDOM.Style.t,
   iconSizeMedium?: ReactDOM.Style.t,
   iconSizeLarge?: ReactDOM.Style.t,
+  loading?: ReactDOM.Style.t,
+  loadingWrapper?: ReactDOM.Style.t,
+  loadingIconPlaceholder?: ReactDOM.Style.t,
+  loadingIndicator?: ReactDOM.Style.t,
+  loadingPositionCenter?: ReactDOM.Style.t,
+  loadingPositionStart?: ReactDOM.Style.t,
+  loadingPositionEnd?: ReactDOM.Style.t,
 }
 
 type buttonBaseClassKey = {
@@ -514,6 +521,105 @@ type formLabelClassKey = {
 }
 
 type gridClassKey = {
+  root?: ReactDOM.Style.t,
+  container?: ReactDOM.Style.t,
+  @as("direction-xs-column")
+  directionXsColumn?: ReactDOM.Style.t,
+  @as("direction-xs-column-reverse")
+  directionXsColumnReverse?: ReactDOM.Style.t,
+  @as("direction-xs-row")
+  directionXsRow?: ReactDOM.Style.t,
+  @as("direction-xs-row-reverse")
+  directionXsRowReverse?: ReactDOM.Style.t,
+  @as("wrap-xs-wrap")
+  wrapXsWrap?: ReactDOM.Style.t,
+  @as("wrap-xs-nowrap")
+  wrapXsNowrap?: ReactDOM.Style.t,
+  @as("wrap-xs-wrap-reverse")
+  wrapXsWrapReverse?: ReactDOM.Style.t,
+  @as("spacing-xs-1") spacingXs_1?: ReactDOM.Style.t,
+  @as("spacing-xs-2") spacingXs_2?: ReactDOM.Style.t,
+  @as("spacing-xs-3") spacingXs_3?: ReactDOM.Style.t,
+  @as("spacing-xs-4") spacingXs_4?: ReactDOM.Style.t,
+  @as("spacing-xs-5") spacingXs_5?: ReactDOM.Style.t,
+  @as("spacing-xs-6") spacingXs_6?: ReactDOM.Style.t,
+  @as("spacing-xs-7") spacingXs_7?: ReactDOM.Style.t,
+  @as("spacing-xs-8") spacingXs_8?: ReactDOM.Style.t,
+  @as("spacing-xs-9") spacingXs_9?: ReactDOM.Style.t,
+  @as("spacing-xs-10") spacingXs_10?: ReactDOM.Style.t,
+  @as("grid-xs-auto") gridXsAuto?: ReactDOM.Style.t,
+  @as("grid-xs-true") gridXsTrue?: ReactDOM.Style.t,
+  @as("grid-xs-1") gridXs_1?: ReactDOM.Style.t,
+  @as("grid-xs-2") gridXs_2?: ReactDOM.Style.t,
+  @as("grid-xs-3") gridXs_3?: ReactDOM.Style.t,
+  @as("grid-xs-4") gridXs_4?: ReactDOM.Style.t,
+  @as("grid-xs-5") gridXs_5?: ReactDOM.Style.t,
+  @as("grid-xs-6") gridXs_6?: ReactDOM.Style.t,
+  @as("grid-xs-7") gridXs_7?: ReactDOM.Style.t,
+  @as("grid-xs-8") gridXs_8?: ReactDOM.Style.t,
+  @as("grid-xs-9") gridXs_9?: ReactDOM.Style.t,
+  @as("grid-xs-10") gridXs_10?: ReactDOM.Style.t,
+  @as("grid-xs-11") gridXs_11?: ReactDOM.Style.t,
+  @as("grid-xs-12") gridXs_12?: ReactDOM.Style.t,
+  @as("grid-sm-auto") gridSmAuto?: ReactDOM.Style.t,
+  @as("grid-sm-true") gridSmTrue?: ReactDOM.Style.t,
+  @as("grid-sm-1") gridSm_1?: ReactDOM.Style.t,
+  @as("grid-sm-2") gridSm_2?: ReactDOM.Style.t,
+  @as("grid-sm-3") gridSm_3?: ReactDOM.Style.t,
+  @as("grid-sm-4") gridSm_4?: ReactDOM.Style.t,
+  @as("grid-sm-5") gridSm_5?: ReactDOM.Style.t,
+  @as("grid-sm-6") gridSm_6?: ReactDOM.Style.t,
+  @as("grid-sm-7") gridSm_7?: ReactDOM.Style.t,
+  @as("grid-sm-8") gridSm_8?: ReactDOM.Style.t,
+  @as("grid-sm-9") gridSm_9?: ReactDOM.Style.t,
+  @as("grid-sm-10") gridSm_10?: ReactDOM.Style.t,
+  @as("grid-sm-11") gridSm_11?: ReactDOM.Style.t,
+  @as("grid-sm-12") gridSm_12?: ReactDOM.Style.t,
+  @as("grid-md-auto") gridMdAuto?: ReactDOM.Style.t,
+  @as("grid-md-true") gridMdTrue?: ReactDOM.Style.t,
+  @as("grid-md-1") gridMd_1?: ReactDOM.Style.t,
+  @as("grid-md-2") gridMd_2?: ReactDOM.Style.t,
+  @as("grid-md-3") gridMd_3?: ReactDOM.Style.t,
+  @as("grid-md-4") gridMd_4?: ReactDOM.Style.t,
+  @as("grid-md-5") gridMd_5?: ReactDOM.Style.t,
+  @as("grid-md-6") gridMd_6?: ReactDOM.Style.t,
+  @as("grid-md-7") gridMd_7?: ReactDOM.Style.t,
+  @as("grid-md-8") gridMd_8?: ReactDOM.Style.t,
+  @as("grid-md-9") gridMd_9?: ReactDOM.Style.t,
+  @as("grid-md-10") gridMd_10?: ReactDOM.Style.t,
+  @as("grid-md-11") gridMd_11?: ReactDOM.Style.t,
+  @as("grid-md-12") gridMd_12?: ReactDOM.Style.t,
+  @as("grid-lg-auto") gridLgAuto?: ReactDOM.Style.t,
+  @as("grid-lg-true") gridLgTrue?: ReactDOM.Style.t,
+  @as("grid-lg-1") gridLg_1?: ReactDOM.Style.t,
+  @as("grid-lg-2") gridLg_2?: ReactDOM.Style.t,
+  @as("grid-lg-3") gridLg_3?: ReactDOM.Style.t,
+  @as("grid-lg-4") gridLg_4?: ReactDOM.Style.t,
+  @as("grid-lg-5") gridLg_5?: ReactDOM.Style.t,
+  @as("grid-lg-6") gridLg_6?: ReactDOM.Style.t,
+  @as("grid-lg-7") gridLg_7?: ReactDOM.Style.t,
+  @as("grid-lg-8") gridLg_8?: ReactDOM.Style.t,
+  @as("grid-lg-9") gridLg_9?: ReactDOM.Style.t,
+  @as("grid-lg-10") gridLg_10?: ReactDOM.Style.t,
+  @as("grid-lg-11") gridLg_11?: ReactDOM.Style.t,
+  @as("grid-lg-12") gridLg_12?: ReactDOM.Style.t,
+  @as("grid-xl-auto") gridXlAuto?: ReactDOM.Style.t,
+  @as("grid-xl-true") gridXlTrue?: ReactDOM.Style.t,
+  @as("grid-xl-1") gridXl_1?: ReactDOM.Style.t,
+  @as("grid-xl-2") gridXl_2?: ReactDOM.Style.t,
+  @as("grid-xl-3") gridXl_3?: ReactDOM.Style.t,
+  @as("grid-xl-4") gridXl_4?: ReactDOM.Style.t,
+  @as("grid-xl-5") gridXl_5?: ReactDOM.Style.t,
+  @as("grid-xl-6") gridXl_6?: ReactDOM.Style.t,
+  @as("grid-xl-7") gridXl_7?: ReactDOM.Style.t,
+  @as("grid-xl-8") gridXl_8?: ReactDOM.Style.t,
+  @as("grid-xl-9") gridXl_9?: ReactDOM.Style.t,
+  @as("grid-xl-10") gridXl_10?: ReactDOM.Style.t,
+  @as("grid-xl-11") gridXl_11?: ReactDOM.Style.t,
+  @as("grid-xl-12") gridXl_12?: ReactDOM.Style.t,
+}
+
+type gridLegacyClassKey = {
   root?: ReactDOM.Style.t,
   container?: ReactDOM.Style.t,
   item?: ReactDOM.Style.t,
@@ -1359,15 +1465,20 @@ type t = {
   @as("MuiDivider") muiDivider?: component<dividerClassKey, Divider.props>,
   @as("MuiDrawer") muiDrawer?: component<drawerClassKey, Drawer.props>,
   @as("MuiFab") muiFab?: component<fabClassKey, Fab.props>,
-  @as("MuiFilledInput") muiFilledInput?: component<filledInputClassKey, FilledInput.props<unknown, unknown>>,
+  @as("MuiFilledInput")
+  muiFilledInput?: component<filledInputClassKey, FilledInput.props<unknown, unknown>>,
   @as("MuiFormControl") muiFormControl?: component<formControlClassKey, FormControl.props>,
   @as("MuiFormControlLabel")
-  muiFormControlLabel?: component<formControlLabelClassKey, FormControlLabel.props<unknown, unknown>>,
+  muiFormControlLabel?: component<
+    formControlLabelClassKey,
+    FormControlLabel.props<unknown, unknown>,
+  >,
   @as("MuiFormGroup") muiFormGroup?: component<formGroupClassKey, FormGroup.props>,
   @as("MuiFormHelperText")
   muiFormHelperText?: component<formHelperTextClassKey, FormHelperText.props>,
   @as("MuiFormLabel") muiFormLabel?: component<formLabelClassKey, FormLabel.props>,
   @as("MuiGrid") muiGrid?: component<gridClassKey, Grid.props>,
+  @as("MuiGridLegacy") muiGridLegacy?: component<gridLegacyClassKey, GridLegacy.props>,
   @as("MuiIcon") muiIcon?: component<iconClassKey, Icon.props>,
   @as("MuiIconButton") muiIconButton?: component<iconButtonClassKey, IconButton.props>,
   @as("MuiImageList") muiImageList?: component<imageListClassKey, ImageList.props>,
@@ -1377,7 +1488,8 @@ type t = {
   @as("MuiInput") muiInput?: component<inputClassKey, Input.props<unknown, unknown>>,
   @as("MuiInputAdornment")
   muiInputAdornment?: component<inputAdornmentClassKey, InputAdornment.props>,
-  @as("MuiInputBase") muiInputBase?: component<inputBaseClassKey, InputBase.props<unknown, unknown>>,
+  @as("MuiInputBase")
+  muiInputBase?: component<inputBaseClassKey, InputBase.props<unknown, unknown>>,
   @as("MuiInputLabel") muiInputLabel?: component<inputLabelClassKey, InputLabel.props>,
   @as("MuiLinearProgress")
   muiLinearProgress?: component<linearProgressClassKey, LinearProgress.props>,
@@ -1450,7 +1562,8 @@ type t = {
   @as("MuiTableSortLabel")
   muiTableSortLabel?: component<tableSortLabelClassKey, TableSortLabel.props>,
   @as("MuiTabs") muiTabs?: component<tabsClassKey, Tabs.props<unknown>>,
-  @as("MuiTextField") muiTextField?: component<textFieldClassKey, TextField.props<unknown, unknown>>,
+  @as("MuiTextField")
+  muiTextField?: component<textFieldClassKey, TextField.props<unknown, unknown>>,
   @as("MuiToggleButton")
   muiToggleButton?: component<toggleButtonClassKey, ToggleButton.props<unknown>>,
   @as("MuiToggleButtonGroup")
