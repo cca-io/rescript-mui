@@ -14,6 +14,19 @@ let make = () => <>
   <br />
   <Grid container=true alignItems=String("center")>
     <Grid item=true md=Number(6)>
+      <Typography variant=H5> {"Grid"->React.string} </Typography>
+    </Grid>
+    <Grid item=true md=Number(6)>
+      <ExampleGrid />
+    </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
+  <Grid container=true alignItems=String("center")>
+    <Grid item=true md=Number(6)>
       <Typography variant=H5> {"Icons"->React.string} </Typography>
     </Grid>
     <Grid item=true md=Number(6)>

@@ -67,6 +67,7 @@ module Value = {
     | @as("background.default") BackgroundDefault
     | @as("background.paper") BackgroundPaper
 
+    /* Flexbox and Grid Alignment */
     | @as("normal") Normal
     | @as("stretch") Stretch
     | @as("center") Center
@@ -77,6 +78,22 @@ module Value = {
     | @as("self-start") SelfStart
     | @as("self-end") SelfEnd
     | @as("baseline") Baseline
+    | @as("space-between") SpaceBetween
+    | @as("space-around") SpaceAround
+    | @as("space-evenly") SpaceEvenly
+    | @as("left") Left
+    | @as("right") Right
+
+    /* Flexbox direction */
+    | @as("row") Row
+    | @as("row-reverse") RowReverse
+    | @as("column") Column
+    | @as("column-reverse") ColumnReverse
+
+    /* Flexbox wrap */
+    | @as("nowrap") Nowrap
+    | @as("wrap") Wrap
+    | @as("wrap-reverse") WrapReverse
 
     /* Overflow */
     | @as("auto") Auto
@@ -140,6 +157,8 @@ type props = {
   flexShrink?: Value.t,
   flexWrap?: Value.t,
   justifyContent?: Value.t,
+  justifyItems?: Value.t,
+  justifySelf?: Value.t,
   order?: Value.t,
   gap?: Value.t,
   columnGap?: Value.t,
