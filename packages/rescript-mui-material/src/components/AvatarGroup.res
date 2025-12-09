@@ -18,7 +18,13 @@ type variant =
   | @as("square") Square
   | String(string)
 
-type slotProps = {additionalAvatar: Avatar.props}
+type slots = {
+  surplus?: OverridableComponent.t<Avatar.props>,
+}
+
+type slotProps = {
+  surplus?: Avatar.props,
+}
 
 type props = {
   ...CommonProps.t,
@@ -49,6 +55,12 @@ type props = {
     * @default {}
     */
   slotProps?: slotProps,
+  /**
+    * Custom renderer of extraAvatars
+    * @param {number} surplus number of extra avatars
+    * @returns {React.element} custom element to display
+    */
+  renderSurplus?: int => React.element,
   /**
     * Spacing between avatars.
     * @default 'medium'

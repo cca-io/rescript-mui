@@ -165,8 +165,16 @@ external renderInputParamsToTextFieldProps: renderInputParams<'a, 'inputRef> => 
   'inputRef,
 > = "%identity"
 
+type slots = {
+  listbox?: OverridableComponent.t<JsxDOM.domProps>,
+  paper?: OverridableComponent.t<Paper.props>,
+  popper?: OverridableComponent.t<Popper.props>,
+}
+
 type slotProps = {
+  chip?: React.element,
   clearIndicator?: IconButton.props,
+  listbox?: JsxDOM.domProps,
   paper?: Paper.props,
   popper?: Popper.props,
   popupIndicator?: IconButton.props,
@@ -520,6 +528,11 @@ type autocompleteProps<'value, 'inputRef> = {
     * @default 'medium'
     */
   size?: size,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
   /**
     * The props used for each slot inside.
     * @default {}

@@ -47,10 +47,10 @@ type slotProps = {
 }
 
 type slots = {
-  popper?: React.element,
-  transition?: React.element,
-  tooltip?: React.element,
-  arrow?: React.element,
+  popper?: OverridableComponent.t<Popper.props>,
+  transition?: OverridableComponent.t<Transition.props>,
+  tooltip?: OverridableComponent.t<JsxDOM.domProps>,
+  arrow?: OverridableComponent.t<JsxDOM.domProps>,
 }
 
 type publicProps = {

@@ -14,8 +14,8 @@ type reason =
 type onClose = (ReactEvent.Synthetic.t, reason) => unit
 
 type slots = {
-  @as("Root") root?: React.element,
-  @as("Backdrop") backdrop?: React.element,
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  backdrop?: OverridableComponent.t<Backdrop.props>,
 }
 
 type slotProps = {

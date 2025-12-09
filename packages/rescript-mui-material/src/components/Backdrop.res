@@ -5,9 +5,15 @@ type classes = {
   invisible?: string,
 }
 
-type slots = {@as("Root") root?: React.element}
+type slots = {
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  transition?: OverridableComponent.t<Transition.props>,
+}
 
-type slotProps = {root?: unknown}
+type slotProps = {
+  root?: unknown,
+  transition?: Transition.props,
+}
 
 type props = {
   ...Fade.publicProps,
