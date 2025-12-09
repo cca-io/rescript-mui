@@ -27,6 +27,62 @@ type classes = {
   track?: string,
 }
 
+type slots = {
+  /**
+    * The component that renders the root slot.
+    * @default 'span'
+    */
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the track slot.
+    * @default 'span'
+    */
+  track?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the thumb slot.
+    * @default 'span'
+    */
+  thumb?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the switchBase slot.
+    * @default SwitchBase
+    */
+  switchBase?: OverridableComponent.t<JsxDOM.domProps>, // should be SwitchBase.props, but unbound
+  /**
+    * The component that renders the switchBase's input slot.
+    * @default SwitchBaseInput
+    */
+  input?: OverridableComponent.t<JsxDOM.domProps>, // should be SwitchBaseInput.props, but unbound
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the root slot.
+    * By default, the avaible props are based on the span element.
+    */
+  root?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the track slot.
+    * By default, the avaible props are based on the span element.
+    */
+  track?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the thumb slot.
+    * By default, the avaible props are based on the span element.
+    */
+  thumb?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the switchBase slot.
+    * By default, the avaible props are based on the internal SwitchBase component.
+    */
+  switchBase?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the input slot.
+    * By default, the avaible props are based on the input element.
+    */
+  input?: JsxDOM.domProps,
+}
+
 @unboxed
 type color =
   | @as("primary") Primary
@@ -127,6 +183,16 @@ type props<'value, 'inputRef> = {
     * @default 'medium'
     */
   size?: size,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The props used for each slot inside.
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

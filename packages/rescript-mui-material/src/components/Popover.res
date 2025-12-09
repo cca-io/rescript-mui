@@ -43,13 +43,25 @@ type reference =
   | @as("none") None
 
 type slots = {
-  root?: React.element,
-  paper?: React.element,
+  root?: OverridableComponent.t<Modal.props>,
+  paper?: OverridableComponent.t<Paper.props>,
+  transition?: OverridableComponent.t<Transition.props>,
+  backdrop?: OverridableComponent.t<Backdrop.props>,
 }
 
 type slotProps = {
-  root?: unknown,
-  paper?: unknown,
+  root?: Modal.props,
+  paper?: Paper.props,
+  /**
+    * Props forwarded to the transition slot.
+    * By default, the avaible props are based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
+    */
+  transition?: Transition.props,
+  /**
+    * Props forwarded to the backdrop slot.
+    * By default, the avaible props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
+    */
+  backdrop?: Backdrop.props,
 }
 
 type publicProps = {
@@ -119,19 +131,6 @@ type publicProps = {
   marginThreshold?: int,
   onClose?: Modal.onClose,
   /**
-    * The components used for each slot inside.
-    *
-    * @default {}
-    */
-  slots?: slots,
-  /**
-    * The extra props for the slot components.
-    * You can override the existing props or add new ones.
-    *
-    * @default {}
-    */
-  slotProps?: slotProps,
-  /**
     * This is the point on the popover which
     * will attach to the anchor's origin.
     *
@@ -171,6 +170,19 @@ type props = {
     * Override or extend the styles applied to the component.
     */
   classes?: classes,
+  /**
+    * The components used for each slot inside.
+    *
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    *
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

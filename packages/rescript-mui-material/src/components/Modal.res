@@ -19,7 +19,7 @@ type slots = {
 }
 
 type slotProps = {
-  root?: unknown,
+  root?: JsxDOM.domProps,
   backdrop?: Backdrop.props,
 }
 

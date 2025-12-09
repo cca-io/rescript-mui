@@ -25,6 +25,63 @@ type classes = {
   modal?: string,
 }
 
+type slots = {
+  /**
+    * The component used for the root when the variant is `temporary`.
+    * @default Modal
+    */
+  root?: OverridableComponent.t<Modal.props>,
+  /**
+    * The component used for the Modal backdrop.
+    * @default Backdrop
+    */
+  backdrop?: OverridableComponent.t<Backdrop.props>,
+  /**
+    * The component used for the root element when the variant is `permanent` or `persistent`.
+    * @default div
+    */
+  docked?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the paper.
+    * @default Paper
+    */
+  paper?: OverridableComponent.t<Paper.props>,
+  /**
+    * The component used for the transition.
+    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+    * @default Slide
+    */
+  transition?: OverridableComponent.t<Transition.props>,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the root slot.
+    * By default, the avaible props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
+    */
+  root?: Modal.props,
+  /**
+    * Props forwarded to the backdrop slot.
+    * By default, the avaible props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
+    */
+  backdrop?: Backdrop.props,
+  /**
+    * Props forwarded to the docked slot.
+    * By default, the avaible props are based on a div element.
+    */
+  docked?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the paper slot.
+    * By default, the avaible props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
+    */
+  paper?: Paper.props,
+  /**
+    * Props forwarded to the transition slot.
+    * By default, the avaible props are based on the [Slide](https://mui.com/material-ui/api/slide/#props) component.
+    */
+  transition?: Transition.props,
+}
+
 type anchor =
   | @as("left") Left
   | @as("top") Top
@@ -36,7 +93,7 @@ type variant =
   | @as("persistent") Persistent
   | @as("temporary") Temporary
 
-type props = {
+type publicProps = {
   ...Modal.publicProps,
   /**
     * Side from which the drawer will appear.
@@ -76,12 +133,14 @@ type props = {
   open_?: bool,
   /**
     * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+    * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     * @default {}
     */
   @as("PaperProps")
   paperProps?: Paper.props,
   /**
     * Props applied to the [`Slide`](/material-ui/api/slide/) element.
+    * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     */
   @as("SlideProps")
   slideProps?: Slide.props,
@@ -103,6 +162,20 @@ type props = {
     * @default 'temporary'
     */
   variant?: variant,
+}
+
+type props = {
+  ...publicProps,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The props used for each slot inside.
+    * @default {}
+    */
+  slotProps?: slotProps,
 }
 
 @module("@mui/material/Drawer")

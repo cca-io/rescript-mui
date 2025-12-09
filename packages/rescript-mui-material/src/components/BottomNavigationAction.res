@@ -9,6 +9,30 @@ type classes = {
   label?: string,
 }
 
+type slots = {
+  /**
+    * The component that renders the root slot.
+    * @default ButtonBase
+    */
+  root?: OverridableComponent.t<ButtonBase.props>,
+  /**
+    * The component that renders the label slot.
+    * @default 'span'
+    */
+  label?: OverridableComponent.t<JsxDOM.domProps>,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the root slot.
+    */
+  root?: ButtonBase.props,
+  /**
+    * Props forwarded to the label slot.
+    */
+  label?: JsxDOM.domProps,
+}
+
 type props<'value> = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
@@ -37,6 +61,17 @@ type props<'value> = {
     * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
     */
   showLabel?: bool,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

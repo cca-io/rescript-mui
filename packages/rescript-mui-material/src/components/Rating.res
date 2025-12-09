@@ -47,6 +47,48 @@ type size =
   | @as("large") Large
   | String(string)
 
+type slots = {
+  /**
+    * The component used for the root slot.
+    * @default 'span'
+    */
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the label slot.
+    * @default 'label'
+    */
+  label?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the icon slot.
+    * @default 'span'
+    */
+  icon?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the decimal slot.
+    * @default 'span'
+    */
+  decimal?: OverridableComponent.t<JsxDOM.domProps>,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the root slot.
+    */
+  root?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the label slot.
+    */
+  label?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the icon slot.
+    */
+  icon?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the decimal slot.
+    */
+  decimal?: JsxDOM.domProps,
+}
+
 type props = {
   ...CommonProps.t,
   /**
@@ -97,6 +139,7 @@ type props = {
   icon?: React.element,
   /**
     * The component containing the icon.
+    * @deprecated Use `slotProps.icon.component` instead. This prop will be removed in v7.
     * @default function IconContainer(props) {
     *   const { value, ...other } = props,
     *   return <span {...other} />,
@@ -142,6 +185,17 @@ type props = {
     * @default 'medium'
     */
   size?: size,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

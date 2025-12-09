@@ -4,8 +4,25 @@ type allowSwipeInChildren =
   | @as(false) False
   | Func((ReactEvent.Touch.t, Dom.element, Dom.element) => bool)
 
+type slots = {
+  ...Drawer.slots,
+  /**
+    * The component used for the swipeArea slot.
+    * @default 'div'
+    */
+  swipeArea?: OverridableComponent.t<JsxDOM.domProps>,
+}
+
+type slotProps = {
+  ...Drawer.slotProps,
+  /**
+    * Props forwarded to the swipeArea slot.
+    */
+  swipeArea?: JsxDOM.domProps,
+}
+
 type props = {
-  ...Drawer.props,
+  ...Drawer.publicProps,
   /**
     * If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children.
     * This can be useful in scenarios where the drawer is partially visible.
@@ -57,7 +74,19 @@ type props = {
     */
   onOpen: ReactEvent.Synthetic.t => unit,
   /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
+  /**
     * The element is used to intercept the touch events on the edge.
+    * @deprecated Use `slotProps.swipeArea` instead. This prop will be removed in v7.
     */
   @as("SwipeAreaProps")
   swipeAreaProps?: unknown,

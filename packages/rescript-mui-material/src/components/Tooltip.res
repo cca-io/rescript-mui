@@ -42,8 +42,8 @@ type placement =
 type slotProps = {
   popper?: Popper.props,
   transition?: Transition.props,
-  tooltip?: unknown, // React.HTMLProps<HTMLDivElement> & MUIStyledCommonProps<Theme> & TooltipComponentsPropsOverrides;
-  arrow?: unknown, // React.HTMLProps<HTMLSpanElement> & MUIStyledCommonProps<Theme> & TooltipComponentsPropsOverrides;
+  tooltip?: JsxDOM.domProps, // React.HTMLProps<HTMLDivElement> & MUIStyledCommonProps<Theme> & TooltipComponentsPropsOverrides;
+  arrow?: JsxDOM.domProps, // React.HTMLProps<HTMLSpanElement> & MUIStyledCommonProps<Theme> & TooltipComponentsPropsOverrides;
 }
 
 type slots = {
@@ -163,17 +163,6 @@ type publicProps = {
   @as("PopperProps")
   popperProps?: Popper.props,
   /**
-    * The extra props for the slot components.
-    * You can override the existing props or add new ones.
-    * @default {}
-    */
-  slotProps?: slotProps,
-  /**
-    * The components used for each slot inside.
-    * @default {}
-    */
-  slots?: slots,
-  /**
     * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
     */
   title: React.element,
@@ -198,6 +187,17 @@ type props = {
     * Override or extend the styles applied to the component.
     */
   classes?: classes,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

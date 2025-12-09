@@ -3,6 +3,72 @@ type classes = {
   root?: string,
 }
 
+type slots = {
+  /**
+    * The component that renders the root.
+    * @default FormControl
+    */
+  root?: OverridableComponent.t<FormControl.props>,
+  /**
+    * The component that renders the input.
+    * @default OutlinedInput
+    */
+  input?: OverridableComponent.t<Input.props<unknown, unknown>>,
+  /**
+    * The component that renders the input's label.
+    * @default InputLabel
+    */
+  inputLabel?: OverridableComponent.t<InputLabel.props>,
+  /**
+    * The html input element.
+    * @default 'input'
+    */
+  htmlInput?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the helper text.
+    * @default FormHelperText
+    */
+  formHelperText?: OverridableComponent.t<FormHelperText.props>,
+  /**
+    * The component that renders the select.
+    * @default Select
+    */
+  select?: OverridableComponent.t<Select.props<unknown, unknown>>,
+}
+
+type slotProps<'value, 'inputRef> = {
+  /**
+    * Props forwarded to the root slot.
+    * By default, the avaible props are based on the [FormControl](https://mui.com/material-ui/api/form-control/#props) component.
+    */
+  root?: FormControl.props,
+  /**
+    * Props forwarded to the input slot.
+    * By default, the avaible props are based on the [Input](https://mui.com/material-ui/api/input/#props) component.
+    */
+  input?: Input.props<'value, 'inputRef>,
+  /**
+    * Props forwarded to the input label slot.
+    * By default, the avaible props are based on the [InputLabel](https://mui.com/material-ui/api/input-label/#props) component.
+    */
+  inputLabel?: InputLabel.props,
+  /**
+    * Props forwarded to the html input slot.
+    * By default, the avaible props are based on the html input element.
+    */
+  htmlInput?: InputBase.inputBaseComponentProps,
+  /**
+    * Props forwarded to the form helper text slot.
+    * By default, the avaible props are based on the [FormHelperText](https://mui.com/material-ui/api/form-helper-text/#props) component.
+    */
+  formHelperText?: FormHelperText.props,
+  /**
+    * Props forwarded to the select slot.
+    * By default, the avaible props are based on the [Select](https://mui.com/material-ui/api/select/#props) component.
+    */
+  select?: Select.props<'value, 'inputRef>,
+}
+
 @unboxed
 type size =
   | @as("small") Small
@@ -57,6 +123,7 @@ type props<'value, 'inputRef> = {
   error?: bool,
   /**
     * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
+    * @deprecated Use `slotProps.formHelperText` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     */
   @as("FormHelperTextProps")
   formHelperTextProps?: FormHelperText.props,
@@ -72,11 +139,13 @@ type props<'value, 'inputRef> = {
   /**
     * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
     * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
+    * @deprecated Use `slotProps.inputLabel` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     */
   @as("InputLabelProps")
   inputLabelProps?: InputLabel.props,
   /**
     * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+    * @deprecated Use `slotProps.htmlInput` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     */
   inputProps?: InputBase.inputBaseComponentProps,
   /**
@@ -84,6 +153,7 @@ type props<'value, 'inputRef> = {
     * It will be a [`FilledInput`](/material-ui/api/filled-input/),
     * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
     * component depending on the `variant` prop value.
+    * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     */
   @as("InputProps")
   inputProps_?: Input.props<'value, 'inputRef>,
@@ -121,6 +191,7 @@ type props<'value, 'inputRef> = {
   select?: bool,
   /**
     * Props applied to the [`Select`](/material-ui/api/select/) element.
+    * @deprecated Use `slotProps.select` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     */
   @as("SelectProps")
   selectProps?: Select.props<'value, 'inputRef>,
@@ -128,6 +199,16 @@ type props<'value, 'inputRef> = {
     * The size of the component.
     */
   size?: size,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The props used for each slot inside.
+    * @default {}
+    */
+  slotProps?: slotProps<'value, 'inputRef>,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

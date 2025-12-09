@@ -82,8 +82,8 @@ type color =
   | String(string)
 
 type slotProps = {
-  root?: unknown,
-  badge?: unknown,
+  root?: JsxDOM.domProps,
+  badge?: JsxDOM.domProps,
 }
 
 type badgeSlots = {

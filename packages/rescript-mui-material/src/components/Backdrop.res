@@ -11,7 +11,7 @@ type slots = {
 }
 
 type slotProps = {
-  root?: unknown,
+  root?: JsxDOM.domProps,
   transition?: Transition.props,
 }
 
