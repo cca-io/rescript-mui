@@ -15,6 +15,53 @@ type classes = {
   anchorOriginBottomLeft?: string,
 }
 
+type slots = {
+  /**
+    * The component that renders the root slot.
+    * @default 'div'
+    */
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the content slot.
+    * @default SnackbarContent
+    */
+  content?: OverridableComponent.t<SnackbarContent.props>,
+  /**
+    * The component that renders the clickAwayListener slot.
+    * @default ClickAwayListener
+    */
+  clickAwayListener?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the transition.
+    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+    * @default Grow
+    */
+  transition?: OverridableComponent.t<Transition.props>,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the root slot.
+    * By default, the avaible props are based on the div element.
+    */
+  root?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the content slot.
+    * By default, the avaible props are based on the [SnackbarContent](https://mui.com/material-ui/api/snackbar-content/#props) component.
+    */
+  content?: SnackbarContent.props,
+  /**
+    * Props forwarded to the clickAwayListener slot.
+    * By default, the avaible props are based on the [ClickAwayListener](https://mui.com/material-ui/api/click-away-listener/#props) component.
+    */
+  clickAwayListener?: JsxDOM.domProps,
+  /**
+    * Props applied to the transition element.
+    * By default, the element is based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
+    */
+  transition?: Transition.props,
+}
+
 type vertical =
   | @as("top") Top
   | @as("bottom") Bottom
@@ -70,11 +117,13 @@ type props = {
   classes?: classes,
   /**
     * Props applied to the `ClickAwayListener` element.
+    * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     */
   @as("ClickAwayListenerProps")
   clickAwayListenerProps?: unknown,
   /**
     * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
+    * @deprecated Use `slotProps.content` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     */
   @as("ContentProps")
   contentProps?: SnackbarContent.props,
@@ -122,12 +171,23 @@ type props = {
     */
   resumeHideDuration?: int,
   /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The props used for each slot inside.
+    * @default {}
+    */
+  slotProps?: slotProps,
+  /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,
   /**
     * The component used for the transition.
     * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+    * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     * @default Grow
     */
   @as("TransitionComponent")
@@ -144,6 +204,7 @@ type props = {
   /**
     * Props applied to the transition element.
     * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+    * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     * @default {}
     */
   @as("TransitionProps")

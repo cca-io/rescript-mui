@@ -7,6 +7,22 @@ type classes = {
   transition?: string,
 }
 
+type slots = {
+  /**
+    * The component that renders the transition slot.
+    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+    * @default Collapse
+    */
+  transition?: OverridableComponent.t<Transition.props>,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the transition slot.
+    */
+  transition?: Transition.props,
+}
+
 type props = {
   ...CommonProps.t,
   /**
@@ -18,12 +34,24 @@ type props = {
     */
   classes?: classes,
   /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
+  /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,
   /**
     * The component used for the transition.
     * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+    * @deprecated Use `slots.transition` instead. This prop will be removed in v7.
     * @default Collapse
     */
   @as("TransitionComponent")
@@ -39,6 +67,7 @@ type props = {
   /**
     * Props applied to the transition element.
     * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+    * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7.
     */
   @as("TransitionProps")
   transitionProps?: Transition.props,
