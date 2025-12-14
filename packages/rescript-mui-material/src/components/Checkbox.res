@@ -13,6 +13,32 @@ type classes = {
   colorSecondary?: string,
 }
 
+type slots = {
+  /**
+    * The component that renders the root slot.
+    * @default SwitchBase
+    */
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the input slot.
+    * @default SwitchBase's input
+    */
+  input?: OverridableComponent.t<JsxDOM.domProps>,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the root slot.
+    * By default, the avaible props are based on the div element.
+    */
+  root?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the input slot.
+    * By default, the avaible props are based on the input element.
+    */
+  input?: JsxDOM.domProps,
+}
+
 @unboxed
 type color =
   | @as("primary") Primary
@@ -128,6 +154,16 @@ type props<'value, 'inputRef> = {
     * @default 'medium'
     */
   size?: size,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The props used for each slot inside.
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

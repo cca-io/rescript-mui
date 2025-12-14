@@ -54,11 +54,19 @@ type color =
   | String(string)
 
 type slots = {
-  closeButton?: React.element,
-  closeIcon?: React.element,
+  root?: OverridableComponent.t<Paper.props>,
+  icon?: OverridableComponent.t<JsxDOM.domProps>,
+  message?: OverridableComponent.t<JsxDOM.domProps>,
+  action?: OverridableComponent.t<JsxDOM.domProps>,
+  closeButton?: OverridableComponent.t<IconButton.props>,
+  closeIcon?: OverridableComponent.t<SvgIcon.props>,
 }
 
 type slotProps = {
+  root?: Paper.props,
+  icon?: JsxDOM.domProps,
+  message?: JsxDOM.domProps,
+  action?: JsxDOM.domProps,
   closeButton?: IconButton.props,
   closeIcon?: SvgIcon.props,
 }

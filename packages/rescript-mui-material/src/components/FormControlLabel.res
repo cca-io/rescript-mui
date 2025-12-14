@@ -19,6 +19,10 @@ type classes = {
   asterisk?: string,
 }
 
+type slots = {
+  typography?: OverridableComponent.t<Typography.props>,
+}
+
 type slotProps = {
   /**
     * Props applied to the Typography wrapper of the passed label.
@@ -80,6 +84,11 @@ type props<'value, 'inputRef> = {
     * If `true`, the label will indicate that the `input` is required.
     */
   required?: bool,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
   /**
     * The props used for each slot inside.
     * @default {}

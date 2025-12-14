@@ -33,6 +33,23 @@ type classes = {
   inputTypeSearch?: string,
 }
 
+type slots = {
+  ...InputBase.slots,
+  /**
+    * The component that renders the notchedOutline slot.
+    * @default NotchedOutline
+    */
+  notchedOutline?: OverridableComponent.t<JsxDOM.domProps>,
+}
+
+type slotProps = {
+  ...InputBase.slotProps,
+  /**
+    * Props forwarded to the notchedOutline slot.
+    */
+  notchedOutline?: JsxDOM.domProps,
+}
+
 type publicProps<'value, 'inputRef> = {
   ...InputBase.publicProps<'value, 'inputRef>,
   /**
@@ -58,6 +75,17 @@ type props<'value, 'inputRef> = {
     * You can pull out the new value by accessing `event.target.value` (string).
     */
   onChange?: ReactEvent.Synthetic.t => unit,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

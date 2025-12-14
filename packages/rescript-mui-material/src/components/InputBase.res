@@ -81,13 +81,13 @@ type size =
   | @as("medium") Medium
 
 type slotProps = {
-  root?: unknown,
-  input?: unknown,
+  root?: JsxDOM.domProps,
+  input?: JsxDOM.domProps,
 }
 
 type slots = {
-  root?: React.element,
-  input?: React.element,
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  input?: OverridableComponent.t<JsxDOM.domProps>,
 }
 
 type publicProps<'value, 'inputRef> = {
@@ -226,17 +226,6 @@ type publicProps<'value, 'inputRef> = {
     */
   size?: size,
   /**
-    * The extra props for the slot components.
-    * You can override the existing props or add new ones.
-    * @default {}
-    */
-  slotProps?: slotProps,
-  /**
-    * The components used for each slot inside.
-    * @default {}
-    */
-  slots?: slots,
-  /**
     * Start `InputAdornment` for this component.
     */
   startAdornment?: React.element,
@@ -269,6 +258,17 @@ type props<'value, 'inputRef> = {
     * You can pull out the new value by accessing `event.target.value` (string).
     */
   onChange?: ReactEvent.Synthetic.t => unit,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

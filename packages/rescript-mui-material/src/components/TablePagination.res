@@ -67,6 +67,125 @@ type labelDisplayedRowsArgs = {
   page: int,
 }
 
+type actionsSlots = {
+  /**
+    * The component used for the first page button.
+    * @default IconButton
+    */
+  firstButton?: OverridableComponent.t<IconButton.props>,
+  /**
+    * The component used for the last page button.
+    * @default IconButton
+    */
+  lastButton?: OverridableComponent.t<IconButton.props>,
+  /**
+    * The component used for the next page button.
+    * @default IconButton
+    */
+  nextButton?: OverridableComponent.t<IconButton.props>,
+  /**
+    * The component used for the previous page button.
+    * @default IconButton
+    */
+  previousButton?: OverridableComponent.t<IconButton.props>,
+}
+
+type actionsSlotProps = {
+  /**
+    * Props forwarded to the first page button.
+    */
+  firstButton?: IconButton.props,
+  /**
+    * Props forwarded to the last page button.
+    */
+  lastButton?: IconButton.props,
+  /**
+    * Props forwarded to the next page button.
+    */
+  nextButton?: IconButton.props,
+  /**
+    * Props forwarded to the previous page button.
+    */
+  previousButton?: IconButton.props,
+}
+
+type slots = {
+  /**
+    * The component that renders the root slot.
+    * @default TableCell
+    */
+  root?: OverridableComponent.t<TableCell.props>,
+  /**
+    * The component that renders the toolbar slot.
+    * @default Toolbar
+    */
+  toolbar?: OverridableComponent.t<Toolbar.props>,
+  /**
+    * The component that renders the spacer slot.
+    * @default 'div'
+    */
+  spacer?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the selectLabel slot.
+    * @default 'p'
+    */
+  selectLabel?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the select slot.
+    * @default Select
+    */
+  select?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the menuItem slot.
+    * @default MenuItem
+    */
+  menuItem?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the displayedRows slot.
+    * @default 'p'
+    */
+  displayedRows?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The slots that passed to the actions slot.
+    */
+  actions?: actionsSlots,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the root slot.
+    */
+  root?: TableCell.props,
+  /**
+    * Props forwarded to the toolbar slot.
+    */
+  toolbar?: Toolbar.props,
+  /**
+    * Props forwarded to the spacer slot.
+    */
+  spacer?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the selectLabel slot.
+    */
+  selectLabel?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the select slot.
+    */
+  select?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the menuItem slot.
+    */
+  menuItem?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the displayedRows slot.
+    */
+  displayedRows?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the actions slot.
+    */
+  actions?: actionsSlotProps,
+}
+
 type props<'inputRef> = {
   ...TableCell.publicProps,
   /**
@@ -101,6 +220,7 @@ type props<'inputRef> = {
   actionsComponent?: React.component<actionsProps>,
   /**
     * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
+    * @deprecated Use `slotProps.actions.previousButton` instead. This prop will be removed in v7.
     */
   backIconButtonProps?: IconButton.props,
   /**
@@ -143,6 +263,7 @@ type props<'inputRef> = {
   labelRowsPerPage?: React.element,
   /**
     * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
+    * @deprecated Use `slotProps.actions.nextButton` instead. This prop will be removed in v7.
     */
   nextIconButtonProps?: IconButton.props,
   /**
@@ -160,10 +281,22 @@ type props<'inputRef> = {
   rowsPerPageOptions?: array<rowsPerPageOptions>,
   /**
     * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
+    * @deprecated Use `slotProps.select` instead. This prop will be removed in v7.
     * @default {}
     */
   @as("SelectProps")
   selectProps?: Select.props<int, 'inputRef>,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * If `true`, show the first-page button.
     * @default false

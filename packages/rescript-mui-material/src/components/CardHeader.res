@@ -13,6 +13,66 @@ type classes = {
   subheader?: string,
 }
 
+type slots = {
+  /**
+    * The component that renders the root slot.
+    * @default 'div'
+    */
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the avatar slot.
+    * @default 'div'
+    */
+  avatar?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the action slot.
+    * @default 'div'
+    */
+  action?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the content slot.
+    * @default 'div'
+    */
+  content?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the title slot.
+    * @default Typography
+    */
+  title?: OverridableComponent.t<Typography.props>,
+  /**
+    * The component that renders the subheader slot.
+    * @default Typography
+    */
+  subheader?: OverridableComponent.t<Typography.props>,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the root slot.
+    */
+  root?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the avatar slot.
+    */
+  avatar?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the action slot.
+    */
+  action?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the content slot.
+    */
+  content?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the title slot.
+    */
+  title?: Typography.props,
+  /**
+    * Props forwarded to the subheader slot.
+    */
+  subheader?: Typography.props,
+}
+
 type props = {
   ...CommonProps.t_NoTitle,
   /**
@@ -46,8 +106,20 @@ type props = {
   /**
     * These props will be forwarded to the subheader
     * (as long as disableTypography is not `true`).
+    * @deprecated Use `slotProps.subheader` instead. This prop will be removed in v7.
     */
   subheaderTypographyProps?: Typography.props,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
@@ -59,6 +131,7 @@ type props = {
   /**
     * These props will be forwarded to the title
     * (as long as disableTypography is not `true`).
+    * @deprecated Use `slotProps.title` instead. This prop will be removed in v7.
     */
   titleTypographyProps?: Typography.props,
 }
