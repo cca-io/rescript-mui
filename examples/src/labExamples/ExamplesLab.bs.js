@@ -3,7 +3,9 @@
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as ExampleAlert from "../examples/ExampleAlert.bs.js";
 import * as ExampleRating from "../examples/ExampleRating.bs.js";
+import * as ExampleMasonry from "./ExampleMasonry.bs.js";
 import * as ExampleSkeleton from "../examples/ExampleSkeleton.bs.js";
+import * as ExampleTimeline from "./ExampleTimeline.bs.js";
 import * as ExamplePagination from "../examples/ExamplePagination.bs.js";
 import * as JsxRuntime from "react/jsx-runtime";
 import Grid2 from "@mui/material/Grid2";
@@ -176,6 +178,58 @@ function ExamplesLab(props) {
                             }),
                         JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleToggleButton.make, {})),
+                              size: {
+                                md: 6
+                              }
+                            })
+                      ],
+                      container: true
+                    }),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx(Divider, {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsxs(Grid2, {
+                      alignItems: "center",
+                      children: [
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(Typography, {
+                                        variant: "h5",
+                                        children: "Timeline"
+                                      })),
+                              size: {
+                                md: 6
+                              }
+                            }),
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(ExampleTimeline.make, {})),
+                              size: {
+                                md: 6
+                              }
+                            })
+                      ],
+                      container: true
+                    }),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx(Divider, {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsxs(Grid2, {
+                      alignItems: "center",
+                      children: [
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(Typography, {
+                                        variant: "h5",
+                                        children: "Masonry"
+                                      })),
+                              size: {
+                                md: 6
+                              }
+                            }),
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(ExampleMasonry.make, {})),
                               size: {
                                 md: 6
                               }

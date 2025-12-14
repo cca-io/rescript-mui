@@ -90,6 +90,32 @@ let make = () => <>
   <Divider />
   <br />
   <br />
+  <Grid container=true alignItems=String("center")>
+    <Grid size=Object({md: Int(6)})>
+      <Typography variant=H5> {"Timeline"->React.string} </Typography>
+    </Grid>
+    <Grid size=Object({md: Int(6)})>
+      <ExampleTimeline />
+    </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
+  <Grid container=true alignItems=String("center")>
+    <Grid size=Object({md: Int(6)})>
+      <Typography variant=H5> {"Masonry"->React.string} </Typography>
+    </Grid>
+    <Grid size=Object({md: Int(6)})>
+      <ExampleMasonry />
+    </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
   // TODO: TreeView moved to it's own package.
   // https://mui.com/x/migration/migration-tree-view-v6/
   //
