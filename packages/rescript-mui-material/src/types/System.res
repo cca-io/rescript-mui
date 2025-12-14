@@ -1,4 +1,90 @@
+/**
+The `System` module provides types for MUI's system properties, used primarily
+with the `sx` prop and Box component.
+
+## System.Value.t
+
+All style values in `System.props` must be of type `System.Value.t`. This is an
+unboxed variant type that accepts:
+
+### Predefined Theme Colors
+```rescript
+PrimaryLight      // "primary.light"
+PrimaryMain       // "primary.main"
+SecondaryLight    // "secondary.light"
+ErrorMain         // "error.main"
+TextPrimary       // "text.primary"
+TextSecondary     // "text.secondary"
+BackgroundPaper   // "background.paper"
+BackgroundDefault // "background.default"
+// ... and more
+```
+
+### Predefined CSS Values
+```rescript
+Center      // "center"
+FlexStart   // "flex-start"
+FlexEnd     // "flex-end"
+Baseline    // "baseline"
+Stretch     // "stretch"
+Hidden      // "hidden"
+Visible     // "visible"
+Auto        // "auto"
+Inherit     // "inherit"
+// ... and more
+```
+
+### Dynamic Values
+```rescript
+String("any-css-value")  // For arbitrary string values
+Number(2.)               // For numeric values (often spacing multipliers)
+True                     // For boolean true
+False                    // For boolean false
+Breakpoint({sm: Number(2.), md: Number(4.)})  // For responsive values
+Array([Number(1.), Number(2.)])               // For array values
+```
+
+## Example Usage with Sx.obj
+
+```rescript
+<Box sx={Sx.obj({
+  // Layout
+  display: String("flex"),
+  flexDirection: String("column"),
+  alignItems: Center,
+  justifyContent: FlexStart,
+  gap: String("16px"),
+
+  // Sizing
+  width: String("100%"),
+  maxWidth: String("400px"),
+  height: Number(200.),
+
+  // Spacing (numbers are theme.spacing multipliers)
+  padding: Number(2.),     // theme.spacing(2)
+  margin: Number(1.),      // theme.spacing(1)
+  mt: Number(2.),          // marginTop shorthand
+  px: String("16px"),      // paddingX with explicit px
+
+  // Colors (use predefined variants for theme colors)
+  bgcolor: BackgroundPaper,
+  color: TextPrimary,
+  borderColor: ErrorMain,
+
+  // Or use String for custom colors
+  bgcolor: String("#f5f5f5"),
+  color: String("rgba(0, 0, 0, 0.87)"),
+
+  // Responsive values
+  padding: Breakpoint({xs: Number(1.), sm: Number(2.), md: Number(3.)}),
+})} />
+```
+*/
 module Breakpoint = {
+  /**
+  A breakpoint value that can be a string, boolean, or number.
+  Used within responsive breakpoint objects.
+  */
   @unboxed
   type breakpoint =
     | String(string)
@@ -6,6 +92,14 @@ module Breakpoint = {
     | @as(false) False
     | Number(float)
 
+  /**
+  Responsive breakpoint object for defining different values at different screen sizes.
+
+  ```rescript
+  // Example: different padding at different breakpoints
+  padding: Breakpoint({xs: Number(1.), sm: Number(2.), md: Number(3.)})
+  ```
+  */
   type t = {
     xs?: breakpoint,
     sm?: breakpoint,
@@ -18,6 +112,44 @@ module Breakpoint = {
   external toObj: t => {..} = "%identity"
 }
 
+/**
+The universal value type for all System props. This unboxed variant allows
+type-safe usage of MUI's system values.
+
+## Predefined Variants
+
+Use these instead of raw strings for better type safety and autocompletion:
+
+**Theme Colors:**
+- `PrimaryLight`, `PrimaryMain`, `PrimaryDark`, `PrimaryContrastText`
+- `SecondaryLight`, `SecondaryMain`, `SecondaryDark`, `SecondaryContrastText`
+- `ErrorLight`, `ErrorMain`, `ErrorDark`, `ErrorContrastText`
+- `WarningLight`, `WarningMain`, `WarningDark`, `WarningContrastText`
+- `InfoLight`, `InfoMain`, `InfoDark`, `InfoContrastText`
+- `SuccessLight`, `SuccessMain`, `SuccessDark`, `SuccessContrastText`
+- `TextPrimary`, `TextSecondary`, `TextDisabled`, `TextHint`
+- `BackgroundDefault`, `BackgroundPaper`
+- `Divider`, `ActionActive`, `ActionHover`, etc.
+
+**Layout/Alignment:**
+- `Center`, `Start`, `End`, `FlexStart`, `FlexEnd`
+- `Baseline`, `Stretch`, `Normal`
+- `SelfStart`, `SelfEnd`
+
+**Overflow:**
+- `Auto`, `Hidden`, `Visible`, `Scroll`, `Clip`
+
+**Global CSS:**
+- `Inherit`, `Initial`, `Revert`, `RevertLayer`, `Unset`
+
+## Dynamic Values
+
+- `String("value")` - Any CSS string value
+- `Number(n)` - Numeric value (for spacing, this is a multiplier of theme.spacing)
+- `True` / `False` - Boolean values
+- `Breakpoint({...})` - Responsive values
+- `Array([...])` - Array of values
+*/
 module Value = {
   @unboxed
   type rec t =
@@ -100,6 +232,10 @@ module Value = {
     | Array(array<t>)
 }
 
+/**
+System props without the `color` field. Used by components where `color`
+has a different type (e.g., Button, Typography).
+*/
 type propsWithoutColor = {
   ...CommonProps.t,
   border?: Value.t,
@@ -199,7 +335,19 @@ type propsWithoutColor = {
   overflow?: Value.t,
 }
 
-/** CSS system properties */
+/**
+Full system props record used with `Sx.obj`. All values must be `System.Value.t`.
+
+```rescript
+<Box sx={Sx.obj({
+  display: String("flex"),
+  alignItems: Center,
+  padding: Number(2.),
+  bgcolor: BackgroundPaper,
+  color: TextPrimary,
+})} />
+```
+*/
 type props = {
   ...propsWithoutColor,
   color?: Value.t,

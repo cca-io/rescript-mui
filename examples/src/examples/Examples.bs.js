@@ -5,6 +5,7 @@ import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as ExampleList from "./ExampleList.bs.js";
 import * as ExampleTabs from "./ExampleTabs.bs.js";
 import * as ExampleIcons from "./ExampleIcons.bs.js";
+import * as ExampleSlots from "./ExampleSlots.bs.js";
 import * as ExampleSelect from "./ExampleSelect.bs.js";
 import * as ExampleSlider from "./ExampleSlider.bs.js";
 import * as ExamplePopover from "./ExamplePopover.bs.js";
@@ -14,6 +15,7 @@ import * as ExampleRadioGroup from "./ExampleRadioGroup.bs.js";
 import * as JsxRuntime from "react/jsx-runtime";
 import Grid2 from "@mui/material/Grid2";
 import Input from "@mui/material/Input";
+import * as ExampleButtonLoading from "./ExampleButtonLoading.bs.js";
 import * as ExampleTextFieldSize from "./ExampleTextFieldSize.bs.js";
 import * as ExampleThemeProvider from "./ExampleThemeProvider.bs.js";
 import Divider from "@mui/material/Divider";
@@ -475,6 +477,58 @@ function Examples(props) {
                             }),
                         JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleComponentOverride.make, {})),
+                              size: {
+                                md: 6
+                              }
+                            })
+                      ],
+                      container: true
+                    }),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx(Divider, {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsxs(Grid2, {
+                      alignItems: "center",
+                      children: [
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(Typography, {
+                                        variant: "h5",
+                                        children: "Button Loading (v6)"
+                                      })),
+                              size: {
+                                md: 6
+                              }
+                            }),
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(ExampleButtonLoading.make, {})),
+                              size: {
+                                md: 6
+                              }
+                            })
+                      ],
+                      container: true
+                    }),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx(Divider, {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsxs(Grid2, {
+                      alignItems: "center",
+                      children: [
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(Typography, {
+                                        variant: "h5",
+                                        children: "Slots & SlotProps (v6)"
+                                      })),
+                              size: {
+                                md: 6
+                              }
+                            }),
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(ExampleSlots.make, {})),
                               size: {
                                 md: 6
                               }
