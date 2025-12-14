@@ -5,16 +5,6 @@ type component<'classKey, 'props> = {
   styleOverrides?: 'classKey,
 }
 
-type loadingButtonClassKey = {
-  loading?: ReactDOM.Style.t,
-  loadingIndicator?: ReactDOM.Style.t,
-  loadingIndicatorCenter?: ReactDOM.Style.t,
-  loadingIndicatorStart?: ReactDOM.Style.t,
-  loadingIndicatorEnd?: ReactDOM.Style.t,
-  endIconLoadingEnd?: ReactDOM.Style.t,
-  startIconLoadingStart?: ReactDOM.Style.t,
-}
-
 type masonryClassKey = {root?: ReactDOM.Style.t}
 
 type tabListClassKey = {
