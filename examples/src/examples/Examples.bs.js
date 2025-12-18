@@ -2,6 +2,7 @@
 
 import * as ExampleBox from "./ExampleBox.bs.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
+import * as ExampleGrid from "./ExampleGrid.bs.js";
 import * as ExampleList from "./ExampleList.bs.js";
 import * as ExampleTabs from "./ExampleTabs.bs.js";
 import * as ExampleIcons from "./ExampleIcons.bs.js";
@@ -35,6 +36,32 @@ function Examples(props) {
                                   md: 12
                                 }
                               })),
+                      container: true
+                    }),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx(Divider, {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsxs(Grid2, {
+                      alignItems: "center",
+                      children: [
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(Typography, {
+                                        variant: "h5",
+                                        children: "Grid"
+                                      })),
+                              size: {
+                                md: 6
+                              }
+                            }),
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(ExampleGrid.make, {})),
+                              size: {
+                                md: 6
+                              }
+                            })
+                      ],
                       container: true
                     }),
                 JsxRuntime.jsx("br", {}),
