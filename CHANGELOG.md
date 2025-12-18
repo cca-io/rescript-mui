@@ -16,6 +16,10 @@ title: Changelog
 
 ## 6.0.0 (Unreleased)
 
+## 5.1.3
+
+- :bug: Add a few more missing props to `Box`, `Link`, `ListSubHeader`, `Tab`, `TextField` and `Typography`.
+
 ## 5.1.2
 
 - :bug: Add overflow props to `System`
