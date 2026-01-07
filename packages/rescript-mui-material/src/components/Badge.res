@@ -82,8 +82,8 @@ type color =
   | String(string)
 
 type slotProps = {
-  root?: unknown,
-  badge?: unknown,
+  root?: JsxDOM.domProps,
+  badge?: JsxDOM.domProps,
 }
 
 type badgeSlots = {
@@ -91,14 +91,12 @@ type badgeSlots = {
    * The component that renders the root.
    * @default 'span'
    */
-  @as("Root")
-  root?: React.element,
+  root?: OverridableComponent.t<JsxDOM.domProps>,
   /**
    * The component that renders the badge.
    * @default 'span'
    */
-  @as("Badge")
-  badge?: React.element,
+  badge?: OverridableComponent.t<JsxDOM.domProps>,
 }
 
 type overlap =

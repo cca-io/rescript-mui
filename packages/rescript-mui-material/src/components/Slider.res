@@ -81,25 +81,25 @@ type size =
   | String(string)
 
 type slotProps = {
-  root?: unknown,
-  track?: unknown,
-  rail?: unknown,
-  thumb?: unknown,
-  mark?: unknown,
-  markLabel?: unknown,
-  valueLabel?: unknown,
-  input?: unknown,
+  root?: JsxDOM.domProps,
+  track?: JsxDOM.domProps,
+  rail?: JsxDOM.domProps,
+  thumb?: JsxDOM.domProps,
+  mark?: JsxDOM.domProps,
+  markLabel?: JsxDOM.domProps,
+  valueLabel?: JsxDOM.domProps,
+  input?: JsxDOM.domProps,
 }
 
 type slots = {
-  root?: React.element,
-  track?: React.element,
-  rail?: React.element,
-  thumb?: React.element,
-  mark?: React.element,
-  markLabel?: React.element,
-  valueLabel?: React.element,
-  input?: React.element,
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  track?: OverridableComponent.t<JsxDOM.domProps>,
+  rail?: OverridableComponent.t<JsxDOM.domProps>,
+  thumb?: OverridableComponent.t<JsxDOM.domProps>,
+  mark?: OverridableComponent.t<JsxDOM.domProps>,
+  markLabel?: OverridableComponent.t<JsxDOM.domProps>,
+  valueLabel?: OverridableComponent.t<JsxDOM.domProps>,
+  input?: OverridableComponent.t<JsxDOM.domProps>,
 }
 
 @unboxed
