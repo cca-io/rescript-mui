@@ -13,23 +13,16 @@ npm install @rescript-mui/material
 
 ```json
 {
-  "bs-dependencies": ["@rescript-mui/material"]
+  "dependencies": ["@rescript-mui/material"]
 }
 ```
 
 This library provides [ReScript](https://rescript-lang.org/) bindings for [MUI](https://mui.com/).
 
-These bindings will only work with ReScript 11 (uncurried mode) and JSX version 4, as it enables us to utilize [untagged variants](https://rescript-lang.org/blog/improving-interop#untagged-variants), optional record fields, and record props spread. The latter is especially important, as we are finally able to inherit props from one component to another more easily.
+These bindings will only work with ReScript 11+ (uncurried mode) and JSX version 4, as it enables us to utilize [untagged variants](https://rescript-lang.org/blog/improving-interop#untagged-variants), optional record fields, and record props spread. The latter is especially important, as we are finally able to inherit props from one component to another more easily.
 
-## What happened to the bindings for Material-UI 4?
-
-They are still available, check out the old website: https://rescript-material-ui.cca.io/.
-
-## Why no new website?
-
-1. One of the goals of this rewrite is to make the usage of MUI in ReScript more accessible. In the best case you never need to leave your editor, since now we have doc comments for (almost) every property.
-2. It just takes too much time to maintain.
-3. In our opinion, it is much more useful (albeit not as pretty) to just have a look at the [examples folder](./examples/).
+## Examples
+Have a look at the [examples folder](./examples/).
 
 ## What's inside?
 
