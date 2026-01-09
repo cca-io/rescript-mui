@@ -34,6 +34,7 @@ type rel =
   | @as("tag") Tag
 
 type props = {
+  ...CommonProps.clickablePropsWithOnClick,
   ...Typography.publicProps,
   /**
     * The content of the component.
@@ -57,11 +58,14 @@ type props = {
 		* @default 'always'
 		*/
   underline?: underline,
+  /**
+    * Indicates that the link should be downloaded rather than navigated.
+    */
+  download?: string,
   // HTML anchor attributes
   href?: string,
   target?: string,
   rel?: rel,
-  onClick?: ReactEvent.Mouse.t => unit,
 }
 
 @module("@mui/material/Link")

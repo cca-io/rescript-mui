@@ -20,6 +20,7 @@ type color =
   | @as("primary") Primary
 
 type props = {
+  ...CommonProps.t,
   /**
     * The content of the component.
     */

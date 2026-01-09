@@ -122,6 +122,10 @@ type props<'value, 'inputRef> = {
     */
   error?: bool,
   /**
+    * If `true`, the underline is disabled for Filled.
+    */
+  disableUnderline?: bool,
+  /**
     * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
     * @deprecated Use `slotProps.formHelperText` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
     */
