@@ -111,98 +111,68 @@ type classes = {
   @as("grid-xl-12") gridXl_12?: string,
 }
 
-@unboxed
-type rec gridDirection =
-  | @as("row") Row
-  | @as("row-reverse") RowReverse
-  | @as("column") Column
-  | @as("column-reverse") ColumnReverse
-  | Array(array<gridDirection>)
-  | Dict(Js.Dict.t<gridDirection>)
+type breakpoints<'a> = {
+  lg?: 'a,
+  md?: 'a,
+  sm?: 'a,
+  xl?: 'a,
+  xs?: 'a,
+}
+
+module Direction = {
+  @unboxed
+  type value =
+    | @as("row") Row
+    | @as("row-reverse") RowReverse
+    | @as("column") Column
+    | @as("column-reverse") ColumnReverse
+
+  @unboxed
+  type t = Array(array<value>) | Object(breakpoints<value>) | ...value
+}
 
 type gridWrap =
   | @as("nowrap") Nowrap
   | @as("wrap") Wrap
   | @as("wrap-reverse") WrapReverse
 
-@unboxed
-type columns =
-  | Array(array<int>)
-  | Int(int)
-  | Object(Js.Dict.t<int>)
+module Columns = {
+  @unboxed
+  type t = Array(array<int>) | Object(breakpoints<int>) | Int(int)
+}
 
-@unboxed
-type rec gridSpacing =
-  | Int(int)
-  | String(string)
-  | Array(array<gridSpacing>)
-  | Object(Js.Dict.t<gridSpacing>)
+module Spacing = {
+  @unboxed
+  type value = Int(int)
 
-@unboxed
-type rec gridOffset =
-  | @as("auto") Auto
-  | Int(int)
-  | Array(array<gridOffset>)
-  | Object(Js.Dict.t<gridOffset>)
+  @unboxed
+  type t = Array(array<value>) | Object(breakpoints<value>) | ...value
+}
 
-@unboxed
-type gridSize =
-  | @as("auto") Auto
-  | @as("grow") Grow
-  | @as(false) False
-  | Int(int)
+module Offset = {
+  @unboxed
+  type value =
+    | @as("auto") Auto
+    | Int(int)
 
-type size = {
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `lg` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  lg?: gridSize,
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `md` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  md?: gridSize,
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `sm` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  sm?: gridSize,
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for the `xl` breakpoint and wider screens if not overridden.
-   * @default false
-   */
-  xl?: gridSize,
-  /**
-   * If a number, it sets the number of columns the grid item uses.
-   * It can't be greater than the total number of columns of the container (12 by default).
-   * If 'auto', the grid item's width matches its content.
-   * If false, the prop is ignored.
-   * If true, the grid item's width grows to use the space available in the grid container.
-   * The value is applied for all the screen sizes with the lowest priority.
-   * @default false
-   */
-  xs?: gridSize,
+  type container = breakpoints<value>
+
+  @unboxed
+  type t = Array(array<value>) | Object(container) | ...value
+}
+
+module Size = {
+  @unboxed
+  type value =
+    | @as("auto") Auto
+    | @as("grow") Grow
+    | @as(false) False
+    | Int(int)
+
+  type container = breakpoints<value>
+
+  @unboxed
+  type t = Array(array<value>) | Object(container) | ...value
 }
 
 type props = {
@@ -219,12 +189,12 @@ type props = {
     * The number of columns.
     * @default 12
     */
-  columns?: columns,
+  columns?: Columns.t,
   /**
     * Defines the horizontal space between the type `item` components.
     * It overrides the value of the `spacing` prop.
     */
-  columnSpacing?: gridSpacing,
+  columnSpacing?: Spacing.t,
   /**
     * If `true`, the component will have the flex *container* behavior.
     * You should be wrapping *items* with a *container*.
@@ -236,26 +206,26 @@ type props = {
     * It is applied for all screen sizes.
     * @default 'row'
     */
-  direction?: gridDirection,
+  direction?: Direction.t,
   /**
     * Defines the offset value for the type `item` components.
     */
-  offset?: gridOffset,
+  offset?: Offset.t,
   /**
     * Defines the vertical space between the type `item` components.
     * It overrides the value of the `spacing` prop.
     */
-  rowSpacing?: gridSpacing,
+  rowSpacing?: Spacing.t,
   /**
     * Defines the size of the the type `item` components.
     */
-  size?: size,
+  size?: Size.t,
   /**
     * Defines the space between the type `item` components.
     * It can only be used on a type `container` component.
     * @default 0
     */
-  spacing?: gridSpacing,
+  spacing?: Spacing.t,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

@@ -15,7 +15,7 @@ let make = () => {
       <Grid>
         <VolumeUpIcon />
       </Grid>
-      <Grid size={xs: Grow}>
+      <Grid size=Object({xs: Grow})>
         <Slider value onChange={(_, v, _) => setValue(v)} ariaLabelledby="input-slider" />
       </Grid>
       <Grid>
