@@ -68,13 +68,13 @@ function ExampleDashboard(props) {
                                                 children: "Dashboard"
                                               }),
                                           JsxRuntime.jsx(Link, {
-                                                color: "textSecondary",
-                                                children: "Close Dashboard",
-                                                href: "#",
                                                 onClick: (function (e) {
                                                     e.preventDefault();
                                                     setShow(false);
-                                                  })
+                                                  }),
+                                                color: "textSecondary",
+                                                children: "Close Dashboard",
+                                                href: "#"
                                               }),
                                           JsxRuntime.jsx(IconButton, {
                                                 children: Caml_option.some(JsxRuntime.jsx(Badge, {

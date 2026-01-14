@@ -28,7 +28,7 @@ type iconPosition =
   | @as("end") End
 
 type props<'value> = {
-  ...CommonProps.t,
+  ...ButtonBase.publicProps,
   /**
     * Override or extend the styles applied to the component.
     */

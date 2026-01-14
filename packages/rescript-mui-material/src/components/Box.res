@@ -1,5 +1,6 @@
 type props = {
   ...System.props,
+  ...CommonProps.clickablePropsWithOnClick,
   children?: React.element,
   /**
     * The component used for the root node.
