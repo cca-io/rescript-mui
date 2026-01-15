@@ -3,26 +3,6 @@ type classes = {
   root?: string,
 }
 
-type breakpoints<'a> = {
-  lg?: 'a,
-  md?: 'a,
-  sm?: 'a,
-  xl?: 'a,
-  xs?: 'a,
-}
-
-module Direction = {
-  @unboxed
-  type value =
-    | @as("row") Row
-    | @as("row-reverse") RowReverse
-    | @as("column") Column
-    | @as("column-reverse") ColumnReverse
-
-  @unboxed
-  type t = Array(array<value>) | Object(breakpoints<value>) | ...value
-}
-
 @unboxed
 type rec spacing =
   | Array(array<spacing>)
@@ -45,7 +25,7 @@ type props = {
     * It is applied for all screen sizes.
     * @default 'column'
     */
-  direction?: Direction.t,
+  direction?: StackDirection.t,
   /**
     * Add an element between each child.
     */

@@ -111,69 +111,10 @@ type classes = {
   @as("grid-xl-12") gridXl_12?: string,
 }
 
-type breakpoints<'a> = {
-  lg?: 'a,
-  md?: 'a,
-  sm?: 'a,
-  xl?: 'a,
-  xs?: 'a,
-}
-
-module Direction = {
-  @unboxed
-  type value =
-    | @as("row") Row
-    | @as("row-reverse") RowReverse
-    | @as("column") Column
-    | @as("column-reverse") ColumnReverse
-
-  @unboxed
-  type t = Array(array<value>) | Object(breakpoints<value>) | ...value
-}
-
 type gridWrap =
   | @as("nowrap") Nowrap
   | @as("wrap") Wrap
   | @as("wrap-reverse") WrapReverse
-
-module Columns = {
-  @unboxed
-  type t = Array(array<int>) | Object(breakpoints<int>) | Int(int)
-}
-
-module Spacing = {
-  @unboxed
-  type value = Int(int)
-
-  @unboxed
-  type t = Array(array<value>) | Object(breakpoints<value>) | ...value
-}
-
-module Offset = {
-  @unboxed
-  type value =
-    | @as("auto") Auto
-    | Int(int)
-
-  type container = breakpoints<value>
-
-  @unboxed
-  type t = Array(array<value>) | Object(container) | ...value
-}
-
-module Size = {
-  @unboxed
-  type value =
-    | @as("auto") Auto
-    | @as("grow") Grow
-    | @as(false) False
-    | Int(int)
-
-  type container = breakpoints<value>
-
-  @unboxed
-  type t = Array(array<value>) | Object(container) | ...value
-}
 
 type props = {
   ...System.props,
@@ -189,12 +130,12 @@ type props = {
     * The number of columns.
     * @default 12
     */
-  columns?: Columns.t,
+  columns?: GridColumns.t,
   /**
     * Defines the horizontal space between the type `item` components.
     * It overrides the value of the `spacing` prop.
     */
-  columnSpacing?: Spacing.t,
+  columnSpacing?: GridSpacing.t,
   /**
     * If `true`, the component will have the flex *container* behavior.
     * You should be wrapping *items* with a *container*.
@@ -206,26 +147,26 @@ type props = {
     * It is applied for all screen sizes.
     * @default 'row'
     */
-  direction?: Direction.t,
+  direction?: GridDirection.t,
   /**
     * Defines the offset value for the type `item` components.
     */
-  offset?: Offset.t,
+  offset?: GridOffset.t,
   /**
     * Defines the vertical space between the type `item` components.
     * It overrides the value of the `spacing` prop.
     */
-  rowSpacing?: Spacing.t,
+  rowSpacing?: GridSpacing.t,
   /**
     * Defines the size of the the type `item` components.
     */
-  size?: Size.t,
+  size?: GridSize.t,
   /**
     * Defines the space between the type `item` components.
     * It can only be used on a type `container` component.
     * @default 0
     */
-  spacing?: Spacing.t,
+  spacing?: GridSpacing.t,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
