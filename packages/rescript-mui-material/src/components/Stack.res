@@ -3,12 +3,6 @@ type classes = {
   root?: string,
 }
 
-type direction =
-  | @as("row") Row
-  | @as("row-reverse") RowReverse
-  | @as("column") Column
-  | @as("column-reverse") ColumnReverse
-
 @unboxed
 type rec spacing =
   | Array(array<spacing>)
@@ -31,7 +25,7 @@ type props = {
     * It is applied for all screen sizes.
     * @default 'column'
     */
-  direction?: array<direction>,
+  direction?: StackDirection.t,
   /**
     * Add an element between each child.
     */
