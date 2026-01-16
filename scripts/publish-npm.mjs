@@ -4,6 +4,7 @@ import { join } from "node:path";
 
 const ref = process.env.GITHUB_REF || "";
 const sha = process.env.GITHUB_SHA || "";
+const eventPath = process.env.GITHUB_EVENT_PATH || "";
 
 const isTag = ref.startsWith("refs/tags/v");
 const tagVersion = isTag ? ref.replace("refs/tags/v", "") : null;
@@ -36,14 +37,34 @@ const getBaseVersion = (pkgPath) => {
   return JSON.parse(raw).version;
 };
 
+const EMPTY_SHA = "0000000000000000000000000000000000000000";
+
 const getChangedPaths = () => {
   if (isTag || !sha) return [];
-  try {
-    const output = run(`git diff --name-only ${sha}~1 ${sha}`);
-    return output ? output.split("\n") : [];
-  } catch {
-    return [];
+
+  let before = "";
+  if (eventPath) {
+    try {
+      const payload = JSON.parse(readFileSync(eventPath, "utf8"));
+      before = payload.before || "";
+    } catch {
+      before = "";
+    }
   }
+
+  if (before && before !== EMPTY_SHA) {
+    try {
+      const output = run(`git diff --name-only ${before} ${sha}`);
+      return output ? output.split("\n") : [];
+    } catch {
+      return [];
+    }
+  }
+
+  return [
+    "packages/rescript-mui-material/",
+    "packages/rescript-mui-lab/",
+  ];
 };
 
 const getNextDevVersion = (pkgName, baseVersion) => {
