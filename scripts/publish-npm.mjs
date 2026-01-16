@@ -28,6 +28,7 @@ const fileExistsOnNpm = (pkgName, version) => {
     execSync(`npm view ${pkgName}@${version} version`, { stdio: "ignore" });
     return true;
   } catch {
+    console.warn(`npm view failed for ${pkgName}@${version}`);
     return false;
   }
 };
@@ -48,6 +49,7 @@ const getChangedPaths = () => {
       const payload = JSON.parse(readFileSync(eventPath, "utf8"));
       before = payload.before || "";
     } catch {
+      console.warn("Failed to read GITHUB_EVENT_PATH payload");
       before = "";
     }
   }
@@ -57,7 +59,11 @@ const getChangedPaths = () => {
       const output = run(`git diff --name-only ${before} ${sha}`);
       return output ? output.split("\n") : [];
     } catch {
-      return [];
+      console.warn(`git diff failed for ${before}..${sha}`);
+      return [
+        "packages/rescript-mui-material/",
+        "packages/rescript-mui-lab/",
+      ];
     }
   }
 
@@ -74,6 +80,7 @@ const getNextDevVersion = (pkgName, baseVersion) => {
     const parsed = JSON.parse(raw);
     versions = Array.isArray(parsed) ? parsed : [parsed];
   } catch {
+    console.warn(`Failed to read npm versions for ${pkgName}`);
     versions = [];
   }
 
