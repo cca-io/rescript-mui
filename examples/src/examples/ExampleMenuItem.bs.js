@@ -92,7 +92,7 @@ function ExampleMenuItem(props) {
                                                                   children: "Cut"
                                                                 }),
                                                             JsxRuntime.jsx(Typography, {
-                                                                  color: "text.secondary",
+                                                                  color: "textSecondary",
                                                                   variant: "body2",
                                                                   children: "⌘X"
                                                                 })
@@ -110,7 +110,7 @@ function ExampleMenuItem(props) {
                                                                   children: "Copy"
                                                                 }),
                                                             JsxRuntime.jsx(Typography, {
-                                                                  color: "text.secondary",
+                                                                  color: "textSecondary",
                                                                   variant: "body2",
                                                                   children: "⌘C"
                                                                 })
@@ -128,7 +128,7 @@ function ExampleMenuItem(props) {
                                                                   children: "Paste"
                                                                 }),
                                                             JsxRuntime.jsx(Typography, {
-                                                                  color: "text.secondary",
+                                                                  color: "textSecondary",
                                                                   variant: "body2",
                                                                   children: "⌘V"
                                                                 })

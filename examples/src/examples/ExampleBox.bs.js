@@ -11,7 +11,6 @@ function ExampleBox(props) {
               borderColor: "error.main",
               borderTop: 1,
               bgcolor: "background.paper",
-              color: "text.secondary",
               m: [
                 2,
                 5
@@ -21,6 +20,7 @@ function ExampleBox(props) {
                 md: 5
               },
               fontSize: "30px",
+              color: "text.secondary",
               children: "Testbox",
               component: "span"
             });

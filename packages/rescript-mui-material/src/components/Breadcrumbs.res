@@ -9,7 +9,10 @@ type classes = {
   separator?: string,
 }
 
-type slots = {@as("CollapsedIcon") collapsedIcon?: React.element}
+type slots = {
+  @as("CollapsedIcon")
+  collapsedIcon?: OverridableComponent.t<SvgIcon.props>,
+}
 
 type slotProps = {
   /**

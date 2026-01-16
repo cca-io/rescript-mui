@@ -24,7 +24,7 @@ function ExampleCardActionArea(props) {
                               children: [
                                 JsxRuntime.jsx(Box, {
                                       children: Caml_option.some(JsxRuntime.jsx(Typography, {
-                                                color: "text.secondary",
+                                                color: "textSecondary",
                                                 variant: "body2",
                                                 children: "Image Placeholder"
                                               }))
@@ -38,7 +38,7 @@ function ExampleCardActionArea(props) {
                                               children: "Clickable Card"
                                             }),
                                         JsxRuntime.jsx(Typography, {
-                                              color: "text.secondary",
+                                              color: "textSecondary",
                                               variant: "body2",
                                               children: "This entire card is clickable because it uses CardActionArea."
                                             })

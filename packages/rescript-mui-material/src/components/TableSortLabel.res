@@ -15,6 +15,30 @@ type direction =
   | @as("asc") Asc
   | @as("desc") Desc
 
+type slots = {
+  /**
+    * The component that renders the root slot.
+    * @default 'span'
+    */
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the icon slot.
+    * @default ArrowDownwardIcon
+    */
+  icon?: OverridableComponent.t<JsxDOM.domProps>,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the root slot.
+    */
+  root?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the icon slot.
+    */
+  icon?: JsxDOM.domProps,
+}
+
 type props = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
@@ -47,6 +71,17 @@ type props = {
     */
   @as("IconComponent")
   iconComponent?: React.component<CommonProps.classNameOnly>,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

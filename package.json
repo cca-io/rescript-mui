@@ -14,7 +14,7 @@
   },
   "packageManager": "yarn@4.1.1",
   "scripts": {
-    "build": "rescript build -with-deps",
+    "build": "rewatch build .",
     "clean": "rewatch clean .",
     "format": "rescript format -all",
     "watch": "rewatch watch .",
@@ -26,10 +26,10 @@
     "publishDatePickers": "yarn clean && cd packages/rescript-mui-x-date-pickers && npm publish --access public"
   },
   "devDependencies": {
-    "@mui/lab": "^5.0.0-alpha.170",
-    "@mui/material": "^5.15.15",
-    "@mui/system": "^5.15.15",
-    "@mui/x-date-pickers": "^7.1.1",
+    "@mui/lab": "^6.0.0-beta.30",
+    "@mui/material": "^6.4.4",
+    "@mui/system": "^6.4.7",
+    "@mui/x-date-pickers": "^7.27.3",
     "@rescript/react": "^0.12.1",
     "@rescript/tools": "^0.6.6",
     "@rolandpeelen/rewatch": "^1.2.0",

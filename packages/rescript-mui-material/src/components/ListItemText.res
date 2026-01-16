@@ -13,6 +13,39 @@ type classes = {
   secondary?: string,
 }
 
+type slots = {
+  /**
+    * The component that renders the root slot.
+    * @default 'div'
+    */
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the primary slot.
+    * @default Typography
+    */
+  primary?: OverridableComponent.t<Typography.props>,
+  /**
+    * The component that renders the secondary slot.
+    * @default Typography
+    */
+  secondary?: OverridableComponent.t<Typography.props>,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the root slot.
+    */
+  root?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the primary slot.
+    */
+  primary?: Typography.props,
+  /**
+    * Props forwarded to the secondary slot.
+    */
+  secondary?: Typography.props,
+}
+
 type props = {
   ...CommonProps.t,
   /**
@@ -44,6 +77,7 @@ type props = {
   /**
     * These props will be forwarded to the primary typography component
     * (as long as disableTypography is not `true`).
+    * @deprecated Use `slotProps.primary` instead. This prop will be removed in v7.
     */
   primaryTypographyProps?: Typography.props,
   /**
@@ -53,8 +87,20 @@ type props = {
   /**
     * These props will be forwarded to the secondary typography component
     * (as long as disableTypography is not `true`).
+    * @deprecated Use `slotProps.secondary` instead. This prop will be removed in v7.
     */
   secondaryTypographyProps?: Typography.props,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

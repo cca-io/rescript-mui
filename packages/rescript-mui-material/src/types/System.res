@@ -117,8 +117,7 @@ module Value = {
     | Array(array<t>)
 }
 
-/** CSS system properties */
-type props = {
+type propsWithoutColor = {
   ...CommonProps.t,
   border?: Value.t,
   borderBottom?: Value.t,
@@ -173,7 +172,6 @@ type props = {
   gridTemplateAreas?: Value.t,
   gridArea?: Value.t,
   bgcolor?: Value.t,
-  color?: Value.t,
   bottom?: Value.t,
   left?: Value.t,
   position?: Value.t,
@@ -250,4 +248,10 @@ type props = {
   visibility?: Value.t,
   pointerEvents?: Value.t,
   wordBreak?: Value.t,
+}
+
+/** CSS system properties */
+type props = {
+  ...propsWithoutColor,
+  color?: Value.t,
 }

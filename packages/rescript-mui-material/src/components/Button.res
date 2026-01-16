@@ -93,6 +93,20 @@ type classes = {
   iconSizeMedium?: string,
   /** Styles applied to the icon element if supplied and `size="large"`. */
   iconSizeLarge?: string,
+  /** Styles applied to the root element if `loading={true}`. */
+  loading?: string,
+  /** Styles applied to the loadingWrapper element. */
+  loadingWrapper?: string,
+  /** Styles applied to the loadingIconPlaceholder element. */
+  loadingIconPlaceholder?: string,
+  /** Styles applied to the loadingIndicator element. */
+  loadingIndicator?: string,
+  /** Styles applied to the root element if `loadingPosition="center"`. */
+  loadingPositionCenter?: string,
+  /** Styles applied to the root element if `loadingPosition="start"`. */
+  loadingPositionStart?: string,
+  /** Styles applied to the root element if `loadingPosition="end"`. */
+  loadingPositionEnd?: string,
 }
 
 @unboxed
@@ -104,6 +118,19 @@ type color =
   | @as("error") Error
   | @as("info") Info
   | @as("warning") Warning
+  | String(string)
+
+@unboxed
+type loading =
+  | @as(true) True
+  | @as(false) False
+  | @as(null) Null
+
+@unboxed
+type loadingPosition =
+  | @as("start") Start
+  | @as("end") End
+  | @as("center") Center
   | String(string)
 
 @unboxed
@@ -157,6 +184,24 @@ type props = {
     * @default false
     */
   fullWidth?: bool,
+  /**
+    * If `true`, the loading indicator is shown and the button is disabled.
+    * If `true | false`, the loading wrapper is always rendered before the children to prevent Google Translation Crash.
+    * @default null
+    */
+  loading?: loading,
+  /**
+    * Element placed before the children if the button is in loading state.
+    * The node should contain an element with `role="progressbar"` with an accessible name.
+    * By default we render a `CircularProgress` that is labelled by the button itself.
+    * @default <CircularProgress color="inherit" size={16} />
+    */
+  loadingIndicator?: React.element,
+  /**
+    * The loading indicator can be positioned on the start, end, or the center of the button.
+    * @default 'center'
+    */
+  loadingPosition?: loadingPosition,
   /**
     * The size of the component.
     * `small` is equivalent to the dense button styling.

@@ -12,13 +12,13 @@ let make = () => {
   <div>
     <Typography gutterBottom=true> {"Volume"->React.string} </Typography>
     <Grid container=true spacing=Int(2) alignItems=String("center")>
-      <Grid item=true>
+      <Grid>
         <VolumeUpIcon />
       </Grid>
-      <Grid item=true xs=True>
+      <Grid size=Object({xs: Grow})>
         <Slider value onChange={(_, v, _) => setValue(v)} ariaLabelledby="input-slider" />
       </Grid>
-      <Grid item=true>
+      <Grid>
         <Input
           value
           margin=Dense

@@ -23,12 +23,16 @@ type classes = {
   labelContainer?: string,
 }
 
+type slots = {
+  label?: OverridableComponent.t<Typography.props>,
+}
+
 type slotProps = {
   /**
     * Props applied to the label element.
     * @default {}
     */
-  label?: unknown,
+  label?: Typography.props,
 }
 
 type props = {
@@ -54,6 +58,11 @@ type props = {
     * The optional node to display.
     */
   optional?: React.element,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
   /**
     * The props used for each slot inside.
     * @default {}

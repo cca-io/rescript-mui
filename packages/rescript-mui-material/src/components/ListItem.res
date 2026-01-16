@@ -29,9 +29,9 @@ type alignItems =
   | @as("flex-start") FlexStart
   | @as("center") Center
 
-type slotProps = {root?: unknown}
+type slotProps = {root?: JsxDOM.domProps}
 
-type slots = {root?: React.element}
+type slots = {root?: OverridableComponent.t<JsxDOM.domProps>}
 
 type props = {
   ...CommonProps.t,

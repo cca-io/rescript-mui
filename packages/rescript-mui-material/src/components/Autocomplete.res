@@ -67,9 +67,12 @@ type changeReason =
   | @as("blur") Blur
 
 type inputChangeReason =
+  | @as("blur") Blur
+  | @as("clear") Clear
   | @as("input") Input
   | @as("reset") Reset
-  | @as("clear") Clear
+  | @as("selectOption") SelectOption
+  | @as("removeOption") RemoveOption
 
 type closeReason =
   | @as("createOption") CreateOption
@@ -157,11 +160,21 @@ type renderInputParams<'value, 'inputRef> = {
   inputProps: InputBase.inputBaseComponentProps,
 }
 
-external renderInputParamsToTextFieldProps: renderInputParams<'a, 'inputRef> => TextField.props<'value, 'inputRef> =
-  "%identity"
+external renderInputParamsToTextFieldProps: renderInputParams<'a, 'inputRef> => TextField.props<
+  'value,
+  'inputRef,
+> = "%identity"
+
+type slots = {
+  listbox?: OverridableComponent.t<JsxDOM.domProps>,
+  paper?: OverridableComponent.t<Paper.props>,
+  popper?: OverridableComponent.t<Popper.props>,
+}
 
 type slotProps = {
+  chip?: React.element,
   clearIndicator?: IconButton.props,
+  listbox?: JsxDOM.domProps,
   paper?: Paper.props,
   popper?: Popper.props,
   popupIndicator?: IconButton.props,
@@ -515,6 +528,11 @@ type autocompleteProps<'value, 'inputRef> = {
     * @default 'medium'
     */
   size?: size,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
   /**
     * The props used for each slot inside.
     * @default {}

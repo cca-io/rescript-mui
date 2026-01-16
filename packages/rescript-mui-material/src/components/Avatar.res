@@ -27,6 +27,21 @@ type imgProps = {
   // React.ImgHTMLAttributes<HTMLImageElement>
 }
 
+type slots = {
+  /**
+    * The component that renders the img slot.
+    * @default 'img'
+    */
+  img?: OverridableComponent.t<JsxDOM.domProps>,
+}
+
+type slotProps = {
+  /**
+    * Props forwarded to the img slot.
+    */
+  img?: JsxDOM.domProps,
+}
+
 type props = {
   ...CommonProps.t,
   /**
@@ -51,8 +66,20 @@ type props = {
   /**
     * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
     * It can be used to listen for the loading error event.
+    * @deprecated Use `slotProps.img` instead. This prop will be removed in v7.
     */
   imgProps?: imgProps,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
+  /**
+    * The extra props for the slot components.
+    * You can override the existing props or add new ones.
+    * @default {}
+    */
+  slotProps?: slotProps,
   /**
     * The `sizes` attribute for the `img` element.
     */

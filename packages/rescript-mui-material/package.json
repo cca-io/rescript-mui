@@ -1,6 +1,6 @@
 {
   "name": "@rescript-mui/material",
-  "version": "5.1.3",
+  "version": "6.0.0",
   "description": "This library provides ReScript bindings for material-ui (MUI).",
   "keywords": [
     "rescript",
@@ -11,10 +11,9 @@
   "homepage": "https://rescript-material-ui.cca.io/",
   "repository": "https://github.com/cca-io/rescript-material-ui",
   "bugs": "https://github.com/cca-io/rescript-material-ui/issues",
-  "author": "Jonathan Siebern <jsiebern88@gmail.com>",
+  "author": "Florian Hammerschmidt <fh@cca.io>",
   "contributors": [
-    "Christoph Knittel <ck@cca.io>",
-    "Florian Hammerschmidt <fh@cca.io>"
+    "Christoph Knittel <ck@cca.io>"
   ],
   "license": "MIT",
   "files": [
@@ -22,8 +21,8 @@
     "/rescript.json"
   ],
   "peerDependencies": {
-    "@mui/material": "^5.14.1",
-    "@rescript/react": "^0.12.0-alpha.2",
+    "@mui/material": "^6.4.7",
+    "@rescript/react": "^0.12.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "rescript": "^11.0.0"

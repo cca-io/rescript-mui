@@ -72,7 +72,7 @@ function ExampleDashboard(props) {
                                                     e.preventDefault();
                                                     setShow(false);
                                                   }),
-                                                color: "text.secondary",
+                                                color: "textSecondary",
                                                 children: "Close Dashboard",
                                                 href: "#"
                                               }),
