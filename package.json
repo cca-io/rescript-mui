@@ -10,7 +10,7 @@
     "packages/rescript-mui-x-date-pickers"
   ],
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "packageManager": "yarn@4.1.1",
   "scripts": {

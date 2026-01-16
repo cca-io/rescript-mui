@@ -33,3 +33,9 @@
   - Examples:
     - `type` becomes `type_`
     - `open` becomes `open_`
+
+# Releases
+
+- Keep the base version (e.g. `6.1.0`) in each package `package.json`. Do not add prerelease suffixes there.
+- Merges to `master` publish prereleases for changed packages as `6.1.0-dev.N` with npm dist-tag `next`.
+- Stable releases are triggered by pushing a git tag like `v6.1.0` and publish with npm dist-tag `latest`.

@@ -1,0 +1,115 @@
+import { execSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+const ref = process.env.GITHUB_REF || "";
+const sha = process.env.GITHUB_SHA || "";
+
+const isTag = ref.startsWith("refs/tags/v");
+const tagVersion = isTag ? ref.replace("refs/tags/v", "") : null;
+
+const packages = [
+  {
+    path: "packages/rescript-mui-material",
+    name: "@rescript-mui/material",
+  },
+  {
+    path: "packages/rescript-mui-lab",
+    name: "@rescript-mui/lab",
+  },
+];
+
+const run = (command, options = {}) =>
+  execSync(command, { stdio: "pipe", ...options }).toString().trim();
+
+const fileExistsOnNpm = (pkgName, version) => {
+  try {
+    execSync(`npm view ${pkgName}@${version} version`, { stdio: "ignore" });
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+const getBaseVersion = (pkgPath) => {
+  const raw = readFileSync(join(pkgPath, "package.json"), "utf8");
+  return JSON.parse(raw).version;
+};
+
+const getChangedPaths = () => {
+  if (isTag || !sha) return [];
+  try {
+    const output = run(`git diff --name-only ${sha}~1 ${sha}`);
+    return output ? output.split("\n") : [];
+  } catch {
+    return [];
+  }
+};
+
+const getNextDevVersion = (pkgName, baseVersion) => {
+  let versions = [];
+  try {
+    const raw = run(`npm view ${pkgName} versions --json`);
+    const parsed = JSON.parse(raw);
+    versions = Array.isArray(parsed) ? parsed : [parsed];
+  } catch {
+    versions = [];
+  }
+
+  const prefix = `${baseVersion}-dev.`;
+  const max = versions
+    .filter((v) => v.startsWith(prefix))
+    .map((v) => Number(v.slice(prefix.length)))
+    .filter((n) => Number.isFinite(n))
+    .reduce((a, b) => Math.max(a, b), 0);
+
+  return `${baseVersion}-dev.${max + 1}`;
+};
+
+const publishPackage = ({ path, name }, shouldPublish) => {
+  if (!shouldPublish) {
+    console.log(`No changes in ${name}; skipping`);
+    return;
+  }
+
+  const baseVersion = getBaseVersion(path);
+  let targetVersion = baseVersion;
+  let distTag = "latest";
+
+  if (isTag) {
+    if (tagVersion !== baseVersion) {
+      throw new Error(
+        `Tag ${tagVersion} does not match ${name} version ${baseVersion}`
+      );
+    }
+  } else {
+    distTag = "next";
+    targetVersion = getNextDevVersion(name, baseVersion);
+  }
+
+  if (fileExistsOnNpm(name, targetVersion)) {
+    console.log(`${name}@${targetVersion} already exists, skipping`);
+    return;
+  }
+
+  console.log(`Publishing ${name}@${targetVersion} with dist-tag ${distTag}`);
+  execSync(`npm version --no-git-tag-version ${targetVersion}`, { cwd: path });
+  execSync(`npm publish --access public --tag ${distTag}`, {
+    cwd: path,
+    stdio: "inherit",
+  });
+  execSync(`git checkout -- package.json`, { cwd: path });
+};
+
+const changedPaths = getChangedPaths();
+const changedMaterial =
+  isTag ||
+  changedPaths.some((file) =>
+    file.startsWith("packages/rescript-mui-material/")
+  );
+const changedLab =
+  isTag ||
+  changedPaths.some((file) => file.startsWith("packages/rescript-mui-lab/"));
+
+publishPackage(packages[0], changedMaterial);
+publishPackage(packages[1], changedLab);
