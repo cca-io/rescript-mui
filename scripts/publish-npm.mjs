@@ -5,6 +5,9 @@ import { join } from "node:path";
 const ref = process.env.GITHUB_REF || "";
 const sha = process.env.GITHUB_SHA || "";
 const eventPath = process.env.GITHUB_EVENT_PATH || "";
+console.log(`GITHUB_REF=${ref}`);
+console.log(`GITHUB_SHA=${sha}`);
+console.log(`GITHUB_EVENT_PATH=${eventPath}`);
 
 const isTag = ref.startsWith("refs/tags/v");
 const tagVersion = isTag ? ref.replace("refs/tags/v", "") : null;
@@ -48,6 +51,7 @@ const getChangedPaths = () => {
     try {
       const payload = JSON.parse(readFileSync(eventPath, "utf8"));
       before = payload.before || "";
+      console.log(`payload.before=${before}`);
     } catch {
       console.warn("Failed to read GITHUB_EVENT_PATH payload");
       before = "";
@@ -57,6 +61,7 @@ const getChangedPaths = () => {
   if (before && before !== EMPTY_SHA) {
     try {
       const output = run(`git diff --name-only ${before} ${sha}`);
+      console.log(`git diff output:\n${output}`);
       return output ? output.split("\n") : [];
     } catch {
       console.warn(`git diff failed for ${before}..${sha}`);
@@ -138,6 +143,9 @@ const changedMaterial =
 const changedLab =
   isTag ||
   changedPaths.some((file) => file.startsWith("packages/rescript-mui-lab/"));
+console.log(`changedPaths=${changedPaths.length}`);
+console.log(`changedMaterial=${changedMaterial}`);
+console.log(`changedLab=${changedLab}`);
 
 publishPackage(packages[0], changedMaterial);
 publishPackage(packages[1], changedLab);
