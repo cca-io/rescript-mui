@@ -92,7 +92,7 @@ type props<'value, 'inputRef> = {
     */
   disabled?: bool,
   /**
-    * If `true`, the  keyboard focus ripple is disabled.
+    * If `true`, the keyboard focus ripple is disabled.
     * @default false
     */
   disableFocusRipple?: bool,

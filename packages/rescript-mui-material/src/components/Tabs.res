@@ -141,7 +141,7 @@ type publicProps = {
   selectionFollowsFocus?: bool,
   /**
     * Props applied to the tab indicator element.
-    * @default  {}
+    * @default {}
     */
   @as("TabIndicatorProps")
   tabIndicatorProps?: tabIndicatorProps<unknown>,
@@ -157,13 +157,13 @@ type publicProps = {
     */
   textColor?: textColor,
   /**
-    *  Determines additional display behavior of the tabs:
+    * Determines additional display behavior of the tabs:
     *
-    *  - `scrollable` will invoke scrolling properties and allow for horizontally
-    *  scrolling (or swiping) of the tab bar.
-    *  -`fullWidth` will make the tabs grow to use all the available space,
-    *  which should be used for small views, like on mobile.
-    *  - `standard` will render the default state.
+    * - `scrollable` will invoke scrolling properties and allow for horizontally
+    * scrolling (or swiping) of the tab bar.
+    * - `fullWidth` will make the tabs grow to use all the available space,
+    * which should be used for small views, like on mobile.
+    * - `standard` will render the default state.
     * @default 'standard'
     */
   variant?: variant,

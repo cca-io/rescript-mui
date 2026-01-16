@@ -16,7 +16,7 @@ type props = {
     */
   children?: React.element,
   /**
-    * Specify which implementation to use.  'js' is the default, 'css' works better for
+    * Specify which implementation to use. 'js' is the default, 'css' works better for
     * server-side rendering.
     * @default 'js'
     */

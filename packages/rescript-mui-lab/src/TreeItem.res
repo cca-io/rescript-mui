@@ -18,32 +18,32 @@ module Content = {
 
   type props = {
     /**
-   * className applied to the root element.
-   */
+     * className applied to the root element.
+    */
     className?: string,
     /**
-   * Override or extend the styles applied to the component.
-   */
+     * Override or extend the styles applied to the component.
+    */
     classes: classes,
     /**
-   * The tree node label.
-   */
+     * The tree node label.
+    */
     label?: React.element,
     /**
-   * The id of the node.
-   */
+     * The id of the node.
+    */
     nodeId: string,
     /**
-   * The icon to display next to the tree node's label.
-   */
+     * The icon to display next to the tree node's label.
+    */
     icon?: React.element,
     /**
-   * The icon to display next to the tree node's label. Either an expansion or collapse icon.
-   */
+     * The icon to display next to the tree node's label. Either an expansion or collapse icon.
+    */
     expansionIcon?: React.element,
     /**
-   * The icon to display next to the tree node's label. Either a parent or end icon.
-   */
+     * The icon to display next to the tree node's label. Either a parent or end icon.
+    */
     displayIcon?: React.element,
   }
 }
