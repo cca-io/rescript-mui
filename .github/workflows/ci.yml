@@ -59,6 +59,12 @@ jobs:
           npm --version
           npm config get registry
           npm config get userconfig
+          if [ -f "$HOME/.npmrc" ]; then
+            echo "~/.npmrc contents (redacted):"
+            sed -E 's/(_authToken=).+/\\1***redacted***/' "$HOME/.npmrc"
+          else
+            echo "~/.npmrc not found"
+          fi
 
       - name: Publish packages
         if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
