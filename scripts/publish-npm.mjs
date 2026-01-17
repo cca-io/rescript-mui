@@ -142,6 +142,11 @@ const publishPackage = ({ path, name }, shouldPublish) => {
       delete npmEnv[key];
     }
   }
+  delete npmEnv.NODE_AUTH_TOKEN;
+  const tempNpmrc = join(tmpdir(), `npmrc-${process.pid}.tmp`);
+  writeFileSync(tempNpmrc, "");
+  npmEnv.NPM_CONFIG_USERCONFIG = tempNpmrc;
+  npmEnv.npm_config_userconfig = tempNpmrc;
   console.log(
     `npm_config_workspace=${process.env.npm_config_workspace || ""} npm_config_workspaces=${process.env.npm_config_workspaces || ""}`
   );
@@ -152,7 +157,7 @@ const publishPackage = ({ path, name }, shouldPublish) => {
     const tgzPath = resolve(join(path, tgzName));
     console.log(`Packed tarball: ${tgzPath}`);
     const publishCwd = mkdtempSync(join(tmpdir(), "rescript-mui-publish-"));
-    execSync(`npm publish ${tgzPath} --access public --tag ${distTag}`, {
+    execSync(`npm publish ${tgzPath} --access public --tag ${distTag} --provenance`, {
       cwd: publishCwd,
       stdio: "inherit",
       env: npmEnv,
