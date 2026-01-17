@@ -5,9 +5,11 @@ import { join } from "node:path";
 const ref = process.env.GITHUB_REF || "";
 const sha = process.env.GITHUB_SHA || "";
 const eventPath = process.env.GITHUB_EVENT_PATH || "";
+const forcePublish = process.env.FORCE_PUBLISH === "true";
 console.log(`GITHUB_REF=${ref}`);
 console.log(`GITHUB_SHA=${sha}`);
 console.log(`GITHUB_EVENT_PATH=${eventPath}`);
+console.log(`FORCE_PUBLISH=${forcePublish}`);
 
 const isTag = ref.startsWith("refs/tags/v");
 const tagVersion = isTag ? ref.replace("refs/tags/v", "") : null;
@@ -127,20 +129,25 @@ const publishPackage = ({ path, name }, shouldPublish) => {
 
   console.log(`Publishing ${name}@${targetVersion} with dist-tag ${distTag}`);
   execSync(`npm version --no-git-tag-version ${targetVersion}`, { cwd: path });
-  execSync(`npm publish --access public --tag ${distTag}`, {
-    cwd: path,
-    stdio: "inherit",
-  });
+  execSync(
+    `npm publish --access public --tag ${distTag} --workspaces=false --legacy-peer-deps`,
+    {
+      cwd: path,
+      stdio: "inherit",
+    }
+  );
   execSync(`git checkout -- package.json`, { cwd: path });
 };
 
 const changedPaths = getChangedPaths();
 const changedMaterial =
+  forcePublish ||
   isTag ||
   changedPaths.some((file) =>
     file.startsWith("packages/rescript-mui-material/")
   );
 const changedLab =
+  forcePublish ||
   isTag ||
   changedPaths.some((file) => file.startsWith("packages/rescript-mui-lab/"));
 console.log(`changedPaths=${changedPaths.length}`);

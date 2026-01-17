@@ -43,5 +43,7 @@ jobs:
 
       - name: Publish packages
         if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
+        env:
+          FORCE_PUBLISH: "true"
         run: |
           node scripts/publish-npm.mjs
