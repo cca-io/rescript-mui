@@ -2,6 +2,7 @@ import { execSync } from "node:child_process";
 import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { resolve } from "node:path";
 
 const ref = process.env.GITHUB_REF || "";
 const sha = process.env.GITHUB_SHA || "";
@@ -148,7 +149,8 @@ const publishPackage = ({ path, name }, shouldPublish) => {
   writePackageJson(path, pkgJson);
   try {
     const tgzName = run("npm pack --quiet", { cwd: path, env: npmEnv });
-    const tgzPath = join(path, tgzName);
+    const tgzPath = resolve(join(path, tgzName));
+    console.log(`Packed tarball: ${tgzPath}`);
     const publishCwd = mkdtempSync(join(tmpdir(), "rescript-mui-publish-"));
     execSync(`npm publish ${tgzPath} --access public --tag ${distTag}`, {
       cwd: publishCwd,
