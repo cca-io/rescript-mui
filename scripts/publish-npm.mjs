@@ -149,9 +149,12 @@ const publishPackage = ({ path, name }, shouldPublish) => {
     }
   }
   delete npmEnv.NODE_AUTH_TOKEN;
+  delete npmEnv.NPM_CONFIG_USERCONFIG;
+  delete npmEnv.npm_config_userconfig;
   console.log(
     `npm_config_workspace=${process.env.npm_config_workspace || ""} npm_config_workspaces=${process.env.npm_config_workspaces || ""}`
   );
+  console.log(`NPM_CONFIG_USERCONFIG=${process.env.NPM_CONFIG_USERCONFIG || ""}`);
   const publishRoot = mkdtempSync(join(tmpdir(), "rescript-mui-publish-"));
   const tempPkgPath = join(publishRoot, path);
   cpSync(path, tempPkgPath, { recursive: true });
