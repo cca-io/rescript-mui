@@ -1,11 +1,5 @@
 import { execSync } from "node:child_process";
-import {
-  cpSync,
-  mkdtempSync,
-  readFileSync,
-  rmSync,
-  writeFileSync,
-} from "node:fs";
+import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { resolve } from "node:path";
@@ -149,10 +143,6 @@ const publishPackage = ({ path, name }, shouldPublish) => {
     }
   }
   delete npmEnv.NODE_AUTH_TOKEN;
-  const tempNpmrc = join(tmpdir(), `npmrc-${process.pid}.tmp`);
-  writeFileSync(tempNpmrc, "");
-  npmEnv.NPM_CONFIG_USERCONFIG = tempNpmrc;
-  npmEnv.npm_config_userconfig = tempNpmrc;
   console.log(
     `npm_config_workspace=${process.env.npm_config_workspace || ""} npm_config_workspaces=${process.env.npm_config_workspaces || ""}`
   );
