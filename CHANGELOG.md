@@ -16,6 +16,66 @@ title: Changelog
 
 ## 6.0.0 (Unreleased)
 
+This release updates the bindings to support `@mui/material` v6. See the [MUI v6 migration guide](https://mui.com/material-ui/migration/migration-v5/) for details on upstream changes.
+
+### Breaking Changes
+
+- :boom: `Grid` refactored for MUI v6's new Grid2 component
+  - Now imports from `@mui/material/Grid2`
+  - Removed `item` and `zeroMinWidth` props (items are now implicit in Grid2)
+  - Replaced `xs`, `sm`, `md`, `lg`, `xl` props with a single `size` prop using `GridSize.t`
+  - Added `offset` prop using `GridOffset.t`
+  - Use `GridLegacy` for the deprecated v1 Grid behavior
+
+- :boom: `LoadingButton` removed from `@rescript-mui/lab`
+  - Loading functionality is now built into the standard `Button` component
+  - Use `Button` with `loading`, `loadingIndicator`, and `loadingPosition` props instead
+
+- :boom: `Typography.color` is now a dedicated enum type
+  - Values: `Primary`, `Secondary`, `Success`, `Error`, `Info`, `Warning`, `TextPrimary`, `TextSecondary`, `TextDisabled`
+  - The `paragraph` prop is now deprecated (use `component` prop instead)
+  - `variantMapping` fields now use `string` instead of `variant` type
+
+- :boom: `Autocomplete.inputChangeReason` extended with new values
+  - Added `Blur`, `SelectOption`, and `RemoveOption` variants
+
+- :boom: `Stack.direction` now uses `StackDirection.t` for responsive breakpoint support
+  - Previously was `array<direction>`
+
+### New Features
+
+- :rocket: Add `loading`, `loadingIndicator`, and `loadingPosition` props to `Button`
+  - Button loading styles added to `classes` and `Overrides`
+
+- :rocket: Add `slots` and `slotProps` types to many components for improved customization
+  - Accordion, AccordionSummary, Alert, Autocomplete, Avatar, AvatarGroup, Backdrop, Badge, BottomNavigationAction, Breadcrumbs, CardActionArea, CardHeader, Checkbox, Drawer, FormControlLabel, InputBase, ListItemText, Menu, MobileStepper, Modal, OutlinedInput, Popover, Radio, Rating, Slider, Snackbar, SpeedDial, SpeedDialAction, StepContent, StepLabel, SwipeableDrawer, Switch, TablePagination, TableSortLabel, TextField, Tooltip
+
+- :rocket: Add responsive value types with breakpoint support
+  - `GridSize.t`, `GridSpacing.t`, `GridDirection.t`, `GridOffset.t`, `GridColumns.t`, `StackDirection.t`
+  - Support for value, array, or breakpoint object forms
+
+- :rocket: Add `justifyItems` and `justifySelf` to `System.props`
+
+- :rocket: Add flexbox/grid values to `System.Value.t`
+  - Alignment: `SpaceBetween`, `SpaceAround`, `SpaceEvenly`, `Left`, `Right`
+  - Direction: `Row`, `RowReverse`, `Column`, `ColumnReverse`
+  - Wrap: `Nowrap`, `Wrap`, `WrapReverse`
+
+- :rocket: Add `GridLegacy` component for backwards compatibility with Grid v1
+
+- :rocket: Add `AvatarGroup.renderSurplus` prop
+
+### Bug Fixes
+
+- :bug: Fix slot `@as` decorators to match MUI v6 lowercase naming
+  - Badge, Modal, Backdrop slots now use lowercase keys (`root`, `badge`, `backdrop`)
+  - Breadcrumbs keeps uppercase `CollapsedIcon` to match MUI's exception
+
+### Internal
+
+- :house: Split `System.props` into `propsWithoutColor` and `props` for Typography color handling
+- :house: Add automated npm publish workflow
+
 ## 5.1.3
 
 - :bug: Add a few more missing props to `Box`, `Link`, `ListSubHeader`, `Tab`, `TextField` and `Typography`.
