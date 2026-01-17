@@ -136,9 +136,14 @@ const publishPackage = ({ path, name }, shouldPublish) => {
 
   console.log(`Publishing ${name}@${targetVersion} with dist-tag ${distTag}`);
   const npmEnv = { ...process.env };
-  delete npmEnv.npm_config_workspace;
-  delete npmEnv.npm_config_workspaces;
-  delete npmEnv.npm_config_workspaces_enabled;
+  for (const key of Object.keys(npmEnv)) {
+    if (key.startsWith("npm_config_workspace") || key.startsWith("npm_config_workspaces")) {
+      delete npmEnv[key];
+    }
+  }
+  console.log(
+    `npm_config_workspace=${process.env.npm_config_workspace || ""} npm_config_workspaces=${process.env.npm_config_workspaces || ""}`
+  );
   pkgJson.version = targetVersion;
   writePackageJson(path, pkgJson);
   try {
