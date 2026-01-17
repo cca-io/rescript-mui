@@ -13,7 +13,6 @@ on:
 permissions:
   contents: read
   id-token: write
-  packages: write
 
 jobs:
   build:
@@ -41,10 +40,16 @@ jobs:
       - name: Compile packages and examples
         run: yarn build
 
+      - name: OIDC debug
+        if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
+        run: |
+          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+          echo "ACTIONS_ID_TOKEN_REQUEST_URL=${ACTIONS_ID_TOKEN_REQUEST_URL:-}"
+
       - name: Publish packages
         if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
         env:
-          FORCE_PUBLISH: 'true'
-          NODE_AUTH_TOKEN: ''
+          FORCE_PUBLISH: "true"
+          NODE_AUTH_TOKEN: ""
         run: |
           node scripts/publish-npm.mjs
