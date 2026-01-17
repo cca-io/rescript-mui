@@ -1,5 +1,6 @@
 import { execSync } from "node:child_process";
-import { readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 const ref = process.env.GITHUB_REF || "";
@@ -134,17 +135,18 @@ const publishPackage = ({ path, name }, shouldPublish) => {
   }
 
   console.log(`Publishing ${name}@${targetVersion} with dist-tag ${distTag}`);
-  const npmEnv = {
-    ...process.env,
-    npm_config_workspaces: "false",
-    npm_config_legacy_peer_deps: "true",
-    npm_config_ignore_workspace_root_check: "true",
-  };
+  const npmEnv = { ...process.env };
+  delete npmEnv.npm_config_workspace;
+  delete npmEnv.npm_config_workspaces;
+  delete npmEnv.npm_config_workspaces_enabled;
   pkgJson.version = targetVersion;
   writePackageJson(path, pkgJson);
   try {
-    execSync(`npm publish --access public --tag ${distTag}`, {
-      cwd: path,
+    const tgzName = run("npm pack --quiet", { cwd: path, env: npmEnv });
+    const tgzPath = join(path, tgzName);
+    const publishCwd = mkdtempSync(join(tmpdir(), "rescript-mui-publish-"));
+    execSync(`npm publish ${tgzPath} --access public --tag ${distTag}`, {
+      cwd: publishCwd,
       stdio: "inherit",
       env: npmEnv,
     });
