@@ -1,5 +1,5 @@
 import { execSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const ref = process.env.GITHUB_REF || "";
@@ -38,9 +38,14 @@ const fileExistsOnNpm = (pkgName, version) => {
   }
 };
 
-const getBaseVersion = (pkgPath) => {
+const readPackageJson = (pkgPath) => {
   const raw = readFileSync(join(pkgPath, "package.json"), "utf8");
-  return JSON.parse(raw).version;
+  return JSON.parse(raw);
+};
+
+const writePackageJson = (pkgPath, data) => {
+  const raw = `${JSON.stringify(data, null, 2)}\n`;
+  writeFileSync(join(pkgPath, "package.json"), raw);
 };
 
 const EMPTY_SHA = "0000000000000000000000000000000000000000";
@@ -107,7 +112,8 @@ const publishPackage = ({ path, name }, shouldPublish) => {
     return;
   }
 
-  const baseVersion = getBaseVersion(path);
+  const pkgJson = readPackageJson(path);
+  const baseVersion = pkgJson.version;
   let targetVersion = baseVersion;
   let distTag = "latest";
 
@@ -134,13 +140,17 @@ const publishPackage = ({ path, name }, shouldPublish) => {
     npm_config_legacy_peer_deps: "true",
     npm_config_ignore_workspace_root_check: "true",
   };
-  execSync(`npm version --no-git-tag-version ${targetVersion}`, { cwd: path });
-  execSync(`npm publish --access public --tag ${distTag}`, {
-    cwd: path,
-    stdio: "inherit",
-    env: npmEnv,
-  });
-  execSync(`git checkout -- package.json`, { cwd: path });
+  pkgJson.version = targetVersion;
+  writePackageJson(path, pkgJson);
+  try {
+    execSync(`npm publish --access public --tag ${distTag}`, {
+      cwd: path,
+      stdio: "inherit",
+      env: npmEnv,
+    });
+  } finally {
+    execSync(`git checkout -- package.json`, { cwd: path });
+  }
 };
 
 const changedPaths = getChangedPaths();
