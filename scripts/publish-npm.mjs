@@ -1,5 +1,11 @@
 import { execSync } from "node:child_process";
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  cpSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { resolve } from "node:path";
@@ -150,21 +156,17 @@ const publishPackage = ({ path, name }, shouldPublish) => {
   console.log(
     `npm_config_workspace=${process.env.npm_config_workspace || ""} npm_config_workspaces=${process.env.npm_config_workspaces || ""}`
   );
+  const publishRoot = mkdtempSync(join(tmpdir(), "rescript-mui-publish-"));
+  const tempPkgPath = join(publishRoot, path);
+  cpSync(path, tempPkgPath, { recursive: true });
+  rmSync(join(tempPkgPath, "node_modules"), { recursive: true, force: true });
   pkgJson.version = targetVersion;
-  writePackageJson(path, pkgJson);
-  try {
-    const tgzName = run("npm pack --quiet", { cwd: path, env: npmEnv });
-    const tgzPath = resolve(join(path, tgzName));
-    console.log(`Packed tarball: ${tgzPath}`);
-    const publishCwd = mkdtempSync(join(tmpdir(), "rescript-mui-publish-"));
-    execSync(`npm publish ${tgzPath} --access public --tag ${distTag} --provenance`, {
-      cwd: publishCwd,
-      stdio: "inherit",
-      env: npmEnv,
-    });
-  } finally {
-    execSync(`git checkout -- package.json`, { cwd: path });
-  }
+  writePackageJson(tempPkgPath, pkgJson);
+  execSync(`npm publish --access public --tag ${distTag} --provenance`, {
+    cwd: tempPkgPath,
+    stdio: "inherit",
+    env: npmEnv,
+  });
 };
 
 const changedPaths = getChangedPaths();
