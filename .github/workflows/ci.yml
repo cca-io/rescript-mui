@@ -58,6 +58,7 @@ jobs:
           echo "GITHUB_ACTIONS=$GITHUB_ACTIONS"
           npm --version
           npm config get registry
+          npm config get userconfig
 
       - name: Publish packages
         if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
