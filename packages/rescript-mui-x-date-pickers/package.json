@@ -11,8 +11,8 @@
     "time-picker"
   ],
   "homepage": "https://rescript-material-ui.cca.io/",
-  "repository": "https://github.com/cca-io/rescript-material-ui",
-  "bugs": "https://github.com/cca-io/rescript-material-ui/issues",
+  "repository": "https://github.com/cca-io/rescript-mui",
+  "bugs": "https://github.com/cca-io/rescript-mui/issues",
   "author": "Florian Hammerschmidt <fh@cca.io>",
   "contributors": [
     "Christoph Knittel <ck@cca.io>"
