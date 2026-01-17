@@ -13,6 +13,7 @@ on:
 permissions:
   contents: read
   id-token: write
+  packages: write
 
 jobs:
   build:
@@ -43,7 +44,7 @@ jobs:
       - name: Publish packages
         if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
         env:
-          FORCE_PUBLISH: "true"
-          NODE_AUTH_TOKEN: ""
+          FORCE_PUBLISH: 'true'
+          NODE_AUTH_TOKEN: ''
         run: |
           node scripts/publish-npm.mjs
