@@ -12,6 +12,12 @@ console.log(`GITHUB_REF=${ref}`);
 console.log(`GITHUB_SHA=${sha}`);
 console.log(`GITHUB_EVENT_PATH=${eventPath}`);
 console.log(`FORCE_PUBLISH=${forcePublish}`);
+console.log(
+  `ACTIONS_ID_TOKEN_REQUEST_URL=${process.env.ACTIONS_ID_TOKEN_REQUEST_URL ? "set" : ""}`
+);
+console.log(
+  `ACTIONS_ID_TOKEN_REQUEST_TOKEN=${process.env.ACTIONS_ID_TOKEN_REQUEST_TOKEN ? "set" : ""}`
+);
 
 const isTag = ref.startsWith("refs/tags/v");
 const tagVersion = isTag ? ref.replace("refs/tags/v", "") : null;
