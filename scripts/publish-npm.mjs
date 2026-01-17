@@ -128,14 +128,18 @@ const publishPackage = ({ path, name }, shouldPublish) => {
   }
 
   console.log(`Publishing ${name}@${targetVersion} with dist-tag ${distTag}`);
+  const npmEnv = {
+    ...process.env,
+    npm_config_workspaces: "false",
+    npm_config_legacy_peer_deps: "true",
+    npm_config_ignore_workspace_root_check: "true",
+  };
   execSync(`npm version --no-git-tag-version ${targetVersion}`, { cwd: path });
-  execSync(
-    `npm publish --access public --tag ${distTag} --workspaces=false --legacy-peer-deps`,
-    {
-      cwd: path,
-      stdio: "inherit",
-    }
-  );
+  execSync(`npm publish --access public --tag ${distTag}`, {
+    cwd: path,
+    stdio: "inherit",
+    env: npmEnv,
+  });
   execSync(`git checkout -- package.json`, { cwd: path });
 };
 
