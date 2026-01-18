@@ -40,36 +40,9 @@ jobs:
       - name: Compile packages and examples
         run: yarn build
 
-      - name: OIDC debug
-        if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
-        run: |
-          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
-          echo "GITHUB_REF=$GITHUB_REF"
-          echo "GITHUB_SHA=$GITHUB_SHA"
-          echo "GITHUB_WORKFLOW=$GITHUB_WORKFLOW"
-          echo "GITHUB_WORKFLOW_REF=$GITHUB_WORKFLOW_REF"
-          echo "GITHUB_RUN_ID=$GITHUB_RUN_ID"
-          echo "GITHUB_RUN_NUMBER=$GITHUB_RUN_NUMBER"
-          echo "GITHUB_RUN_ATTEMPT=$GITHUB_RUN_ATTEMPT"
-          echo "GITHUB_EVENT_NAME=$GITHUB_EVENT_NAME"
-          echo "GITHUB_ACTOR=$GITHUB_ACTOR"
-          echo "ACTIONS_ID_TOKEN_REQUEST_URL=${ACTIONS_ID_TOKEN_REQUEST_URL:-}"
-          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN=${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+set}"
-          echo "GITHUB_ACTIONS=$GITHUB_ACTIONS"
-          npm --version
-          npm config get registry
-          npm config get userconfig
-          if [ -f "$HOME/.npmrc" ]; then
-            echo "~/.npmrc contents (redacted):"
-            sed -E 's/(_authToken=).+/\\1***redacted***/' "$HOME/.npmrc"
-          else
-            echo "~/.npmrc not found"
-          fi
-
       - name: Publish packages
         if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/master')
         env:
-          FORCE_PUBLISH: "true"
           NODE_AUTH_TOKEN: ""
         run: |
           node scripts/publish-npm.mjs
