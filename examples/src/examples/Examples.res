@@ -274,6 +274,32 @@ let make = () => <>
   <Divider />
   <br />
   <br />
+  <Grid container=true alignItems=String("center")>
+    <Grid size=Object({md: Int(6)})>
+      <Typography variant=H5> {"Button Loading (v6)"->React.string} </Typography>
+    </Grid>
+    <Grid size=Object({md: Int(6)})>
+      <ExampleButtonLoading />
+    </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
+  <Grid container=true alignItems=String("center")>
+    <Grid size=Object({md: Int(6)})>
+      <Typography variant=H5> {"Slots & SlotProps (v6)"->React.string} </Typography>
+    </Grid>
+    <Grid size=Object({md: Int(6)})>
+      <ExampleSlots />
+    </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
   <br />
   <br />
   <br />
