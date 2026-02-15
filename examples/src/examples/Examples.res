@@ -300,6 +300,16 @@ let make = () => <>
   <Divider />
   <br />
   <br />
+  <Grid container=true>
+    <Grid size=Object({md: Int(12)})>
+      <ExampleContainerQueries />
+    </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
   <br />
   <br />
   <br />

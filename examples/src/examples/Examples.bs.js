@@ -21,6 +21,7 @@ import * as ExampleTextFieldSize from "./ExampleTextFieldSize.bs.js";
 import * as ExampleThemeProvider from "./ExampleThemeProvider.bs.js";
 import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
+import * as ExampleContainerQueries from "./ExampleContainerQueries.bs.js";
 import Typography from "@mui/material/Typography";
 import * as ExampleComponentOverride from "./ExampleComponentOverride.bs.js";
 import * as ExampleThemeProviderOverride from "./ExampleThemeProviderOverride.bs.js";
@@ -561,6 +562,20 @@ function Examples(props) {
                               }
                             })
                       ],
+                      container: true
+                    }),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx(Divider, {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx(Grid2, {
+                      children: Caml_option.some(JsxRuntime.jsx(Grid2, {
+                                children: Caml_option.some(JsxRuntime.jsx(ExampleContainerQueries.make, {})),
+                                size: {
+                                  md: 12
+                                }
+                              })),
                       container: true
                     }),
                 JsxRuntime.jsx("br", {}),
