@@ -21,6 +21,7 @@ import * as ExampleTextFieldSize from "./ExampleTextFieldSize.bs.js";
 import * as ExampleThemeProvider from "./ExampleThemeProvider.bs.js";
 import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
+import * as ExampleTypographyColors from "./ExampleTypographyColors.bs.js";
 import Typography from "@mui/material/Typography";
 import * as ExampleComponentOverride from "./ExampleComponentOverride.bs.js";
 import * as ExampleThemeProviderOverride from "./ExampleThemeProviderOverride.bs.js";
@@ -556,6 +557,32 @@ function Examples(props) {
                             }),
                         JsxRuntime.jsx(Grid2, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleSlots.make, {})),
+                              size: {
+                                md: 6
+                              }
+                            })
+                      ],
+                      container: true
+                    }),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx(Divider, {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsx("br", {}),
+                JsxRuntime.jsxs(Grid2, {
+                      alignItems: "center",
+                      children: [
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(Typography, {
+                                        variant: "h5",
+                                        children: "Typography Colors (v6)"
+                                      })),
+                              size: {
+                                md: 6
+                              }
+                            }),
+                        JsxRuntime.jsx(Grid2, {
+                              children: Caml_option.some(JsxRuntime.jsx(ExampleTypographyColors.make, {})),
                               size: {
                                 md: 6
                               }
