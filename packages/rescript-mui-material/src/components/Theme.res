@@ -172,6 +172,14 @@ type t_typography = {
   overline: ReactDOM.Style.t,
 }
 
+type t_containerQueries = {
+  up: Breakpoint.t => string,
+  down: Breakpoint.t => string,
+  between: (Breakpoint.t, Breakpoint.t) => string,
+  only: Breakpoint.t => string,
+  not: Breakpoint.t => string,
+}
+
 type t_theme = {
   breakpoints: t_breakpoints,
   components: Overrides.t,
@@ -185,6 +193,7 @@ type t_theme = {
   mixins: t_mixins,
   zIndex: t_zIndex,
   cssVariables?: bool,
+  containerQueries: t_containerQueries,
 }
 
 type t = t_theme
@@ -192,3 +201,5 @@ type t = t_theme
 external fromOptions: ThemeOptions.t => t = "%identity"
 
 @module("@mui/material/styles") external create: ThemeOptions.t => t = "createTheme"
+
+@send external containerQueriesNamed: (t, string) => t_containerQueries = "containerQueries"
