@@ -14,7 +14,28 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
-## 6.0.0 (Unreleased)
+## 6.0.0
+
+- :boom: Update `@rescript-mui/material` and `@rescript-mui/lab` to MUI v6 peer dependencies.
+- :boom: Rework `Grid` bindings for the MUI v6 API.
+  - Introduce `GridLegacy` for the previous grid API.
+  - Use dedicated responsive helper types such as `GridColumns`, `GridDirection`, `GridOffset`, `GridSize` and `GridSpacing`.
+  - Use `int` grid sizes where appropriate.
+- :boom: Remove `MuiLab.LoadingButton` now that loading support is part of `Mui.Button`.
+
+- :rocket: Add loading props, loading positions and loading styles to `Mui.Button`.
+- :rocket: Add slot and `slotProps` bindings to more MUI v6 components, including `Autocomplete`.
+- :rocket: Add responsive value support to `Stack`.
+- :rocket: Expand `Mui.System` / `Mui.Sx` bindings with more flexbox, grid, overflow and responsive value support.
+- :rocket: Add or significantly expand bindings for `Typography`, `Accordion`, `AccordionSummary`, `Avatar`, `BottomNavigationAction`, `CardActionArea`, `CardHeader`, `ListItemText`, `Menu`, `MobileStepper`, `OutlinedInput`, `Rating`, `Snackbar`, `SpeedDial`, `SpeedDialAction`, `StepContent`, `TablePagination`, `TableSortLabel` and `TextField`.
+- :rocket: Refresh the examples with new v6-focused examples for `Button` loading states, `Grid`, slots, `Masonry` and `Timeline`.
+
+- :bug: Fix incorrect slot class decorators for `Badge`, `Modal` and `Backdrop`.
+- :bug: Fix typography system props.
+- :bug: Restore zero-cost bindings in more places.
+
+- :house: Switch builds to `rewatch` and raise the repo Node.js requirement to `>=22`.
+- :house: Add automated npm publishing with trusted publishing support.
 
 ## 5.1.3
 
