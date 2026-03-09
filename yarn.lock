@@ -1672,8 +1672,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rescript-mui/system@workspace:packages/rescript-mui-system"
   peerDependencies:
-    "@mui/material": ^7.3.9
-    "@mui/system": ^7.3.9
+    "@mui/material": ^5.14.1
+    "@mui/system": ^5.13.5
     "@rescript/react": ^0.12.0-alpha.2
     react: ^18.0.0
     react-dom: ^18.0.0
@@ -1685,9 +1685,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rescript-mui/x-date-pickers@workspace:packages/rescript-mui-x-date-pickers"
   peerDependencies:
-    "@mui/material": ^7.3.9
-    "@mui/x-date-pickers": ^7.27.3
-    "@rescript-mui/material": ^7.0.0
+    "@mui/material": ^5.14.1
+    "@mui/x-date-pickers": ^6.6.0
+    "@rescript-mui/material": ^5.0.0
     "@rescript/react": ^0.12.0-alpha.2
     react: ^18.0.0
     react-dom: ^18.0.0
