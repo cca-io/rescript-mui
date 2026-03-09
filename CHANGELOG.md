@@ -14,6 +14,8 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 7.0.0 (Unreleased)
+
 ## 6.0.0
 
 - :boom: Update `@rescript-mui/material` and `@rescript-mui/lab` to MUI v6 peer dependencies.
