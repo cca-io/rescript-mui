@@ -300,6 +300,16 @@ let make = () => <>
   <Divider />
   <br />
   <br />
+  <Grid container=true>
+    <Grid size=Object({md: Int(12)})>
+      <ExampleContainerQueries />
+    </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
   <Grid container=true alignItems=String("center")>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Typography Colors (v6)"->React.string} </Typography>
