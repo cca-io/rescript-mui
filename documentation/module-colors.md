@@ -7,7 +7,7 @@ All colors are available as their corresponding name from the
 They are accessible in the same way as in JavaScript.
 
 Let's take the color
-[red](https://github.com/cca-io/rescript-material-ui/blob/master/public/rescript-material-ui/src/Colors.res#L325-L341)
+[red](https://github.com/cca-io/rescript-mui/blob/master/packages/rescript-mui-material/src/components/Colors.res)
 as an example. The following table shows the equivalent keys for accessing its
 shades:
 
