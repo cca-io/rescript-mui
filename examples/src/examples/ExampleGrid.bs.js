@@ -3,7 +3,7 @@
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import Box from "@mui/material/Box";
 import * as JsxRuntime from "react/jsx-runtime";
-import Grid2 from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
@@ -30,9 +30,9 @@ function ExampleGrid(props) {
                       variant: "h6",
                       children: "Basic Grid"
                     }),
-                JsxRuntime.jsxs(Grid2, {
+                JsxRuntime.jsxs(Grid, {
                       children: [
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "{xs: 8}"
                                       })),
@@ -40,7 +40,7 @@ function ExampleGrid(props) {
                                 xs: 8
                               }
                             }),
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "{xs: 4}"
                                       })),
@@ -48,7 +48,7 @@ function ExampleGrid(props) {
                                 xs: 4
                               }
                             }),
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "{xs: 4}"
                                       })),
@@ -56,7 +56,7 @@ function ExampleGrid(props) {
                                 xs: 4
                               }
                             }),
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "{xs: 8}"
                                       })),
@@ -74,9 +74,9 @@ function ExampleGrid(props) {
                       variant: "h6",
                       children: "Responsive Grid"
                     }),
-                JsxRuntime.jsxs(Grid2, {
+                JsxRuntime.jsxs(Grid, {
                       children: [
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "{xs: 6, md: 8}"
                                       })),
@@ -85,7 +85,7 @@ function ExampleGrid(props) {
                                 xs: 6
                               }
                             }),
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "{xs: 6, md: 4}"
                                       })),
@@ -94,7 +94,7 @@ function ExampleGrid(props) {
                                 xs: 6
                               }
                             }),
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "{xs: 6, md: 4}"
                                       })),
@@ -103,7 +103,7 @@ function ExampleGrid(props) {
                                 xs: 6
                               }
                             }),
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "{xs: 6, md: 8}"
                                       })),
@@ -122,14 +122,14 @@ function ExampleGrid(props) {
                       variant: "h6",
                       children: "Grid Direction Column"
                     }),
-                JsxRuntime.jsxs(Grid2, {
+                JsxRuntime.jsxs(Grid, {
                       children: [
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "Column 1"
                                       }))
                             }),
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "Column 2"
                                       }))
@@ -145,10 +145,10 @@ function ExampleGrid(props) {
                       variant: "h6",
                       children: "Alignment - Center"
                     }),
-                JsxRuntime.jsx(Grid2, {
+                JsxRuntime.jsx(Grid, {
                       alignItems: "center",
                       justifyContent: "center",
-                      children: Caml_option.some(JsxRuntime.jsx(Grid2, {
+                      children: Caml_option.some(JsxRuntime.jsx(Grid, {
                                 children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                           children: "Centered"
                                         }))
@@ -165,10 +165,10 @@ function ExampleGrid(props) {
                       variant: "h6",
                       children: "Alignment - Space Between"
                     }),
-                JsxRuntime.jsxs(Grid2, {
+                JsxRuntime.jsxs(Grid, {
                       justifyContent: "space-between",
                       children: [
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "Left"
                                       })),
@@ -176,7 +176,7 @@ function ExampleGrid(props) {
                                 xs: 5
                               }
                             }),
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(ExampleGrid$Item, {
                                         children: "Right"
                                       })),
