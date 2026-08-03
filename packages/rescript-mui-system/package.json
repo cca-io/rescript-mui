@@ -1,6 +1,6 @@
 {
   "name": "@rescript-mui/system",
-  "version": "5.0.0-alpha.1",
+  "version": "9.0.0",
   "description": "This library provides ReScript bindings for MUI System.",
   "keywords": [
     "rescript",
