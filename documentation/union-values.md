@@ -10,51 +10,48 @@ difference between 3 types of union values.
 
 ## String only unions
 
-Whenever a prop on a component consists of a selection of string only literals,
-the generator will create polymorphic variants which just happen to compile to
-JS strings anyway.
+Whenever a prop on a component consists of a selection of string literals, the
+bindings use an `@unboxed` variant. Each case is mapped to its original string
+value with `@as`, and an escape hatch case `String(string)` is added so you can
+still pass custom values (e.g. custom theme colors).
 
-This is an example of the prop `variant`, taken from `Mui.Accordion.res`:
+This is an example of the prop `variant`, taken from `Mui.Paper.res`:
 
 ```rescript
-type variant = [#elevation | #outlined]
+@unboxed
+type variant =
+  | @as("elevation") Elevation
+  | @as("outlined") Outlined
+  | String(string)
 ```
 
 You can use it like so:
 
 ```rescript
-<Mui.Accordion variant=#outlined />
+<Mui.Paper variant=Outlined />
 ```
 
-### Rules for string only unions
+### Rules for string unions
 
-- All polymorphic variants have the same case as the original string value now
-  (mostly lowercase)
-- Some values include invalid characters (like `-`), which makes it necessary to
-  use quotes, e.g.: `#"flex-end"`
+- All variant cases are capitalized (ReScript requires it), while `@as` keeps the
+  original string value (mostly lowercase).
+- The `String(string)` case lets you pass any custom value, e.g.:
+  `variant=String("custom")`.
 
 ### Additional types
 
-In case that you need to pass around the type of a string union prop, the
-generator creates a helper type for you in the module. To continue the example
-from earlier, the following helper type will be added to `Mui.Accordion.res`:
-
-```rescript
-type variant = [#elevation | #outlined]
-```
+In case you need to pass around the type of a string union prop, it is exposed as
+a helper type in the module, e.g. `Mui.Paper.variant`.
 
 ## Numeric unions
 
-Numeric unions now work the same way as string only unions now and don't utilize
-the `@int` directive anymore.
+Numeric unions use `@unboxed` variants with an `Int` case (they no longer use the
+`@int` directive).
 
-These don't happen often - currently the only place where this applies is in the
-`Mui.Grid.res` component.
-
-Example usage:
+Example usage on `Mui.Grid`:
 
 ```rescript
-<Mui.Grid spacing=#2 />
+<Mui.Grid spacing={Int(2)} />
 ```
 
 ## Mixed unions

@@ -111,7 +111,7 @@ module Styles = %makeStyles(
       theme.mixins.toolbar,
     ),
     appBar: ReactDOM.Style.make(
-      ~zIndex=(theme.zIndex.drawer +. 1.0)->int_of_float->string_of_int,
+      ~zIndex=(theme.zIndex.drawer +. 1.0)->int_of_float->Int.toString,
       ~transition=Mui.ThemeHelpers.transitionCreate(
         ~theme,
         ~affectWidth=true,

@@ -16,6 +16,13 @@ title: Changelog
 
 ## 9.0.0 (Unreleased)
 
+- :boom: Update `@rescript-mui/material` to v12 and `@rescript/react` to v0.15.0.
+- :boom: Update `@rescript-mui/material`, `@rescript-mui/lab`, `@rescript-mui/system` and `@rescript-mui/x-date-pickers` to MUI v9 peer dependencies.
+- :boom: Remove Typography color (DOT) notation, working only in sx attribute.
+- :boom: Remove SystemProps, all component use sx attribute.
+- :boom: Remove `GridLegacy`.
+- :rocket: X-Date-Pickers 100% component coverage.
+
 ## 6.0.0
 
 - :boom: Update `@rescript-mui/material` and `@rescript-mui/lab` to MUI v6 peer dependencies.

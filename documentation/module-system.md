@@ -1,6 +1,10 @@
 ## System
 
-The `Mui.System` module contains types for `@mui/system` values and props that are used in components like [`Box`](<(https://mui.com/material-ui/react-box/)>) or [`Grid`](https://mui.com/material-ui/react-grid/).
+The `Mui.System` module contains types for `@mui/system` values and props that
+are used through the [`sx`](https://mui.com/system/getting-started/the-sx-prop/).
+
+Since Material UI v9 removed the standalone system props (like `mt`, `bgcolor`)
+from components, these values are now passed exclusively via `sx`.
 
 The bindings are not complete and therefore do not offer the full functionality
 that the original does. Feel free to
@@ -19,13 +23,15 @@ let make = () =>
   <Mui.Box
     component={Mui.OverridableComponent.string("span")}
     style={JsxDOMStyle.boxSizing: "border-box"}
-    p={Breakpoint({sm: Number(2.), md: Number(5.)})}
-    m={Array([Number(2.), Number(5.)])}
-    borderTop={Number(1.)}
-    borderColor={ErrorMain}
-    color={TextSecondary}
-    bgcolor={BackgroundPaper}
-    fontSize={String("30px")}>
+    sx={Mui.Sx.obj({
+      p: Breakpoint({sm: Number(2.), md: Number(5.)}),
+      m: Array([Number(2.), Number(5.)]),
+      borderTop: Number(1.),
+      borderColor: ErrorMain,
+      color: TextSecondary,
+      bgcolor: BackgroundPaper,
+      fontSize: String("30px"),
+    })}>
     {"Testbox"->React.string}
   </Mui.Box>
 ```
