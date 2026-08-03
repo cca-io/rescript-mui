@@ -11,11 +11,17 @@ type classes = {
   colorSecondary?: string,
   /** Styles applied to the svg element. */
   svg?: string,
+  /** Styles applied to the track slot if `enableTrackSlot={true}`. */
+  track?: string,
   /** Styles applied to the `circle` svg path. */
   circle?: string,
-  /** Styles applied to the `circle` svg path if `variant="determinate"`. */
+  /** Styles applied to the `circle` svg path if `variant="determinate"`.
+  * @deprecated Combine the [.MuiCircularProgress-circle](/material-ui/api/circular-progress/#circular-progress-classes-MuiCircularProgress-circle) and [.MuiCircularProgress-determinate](/material-ui/api/circular-progress/#circular-progress-classes-MuiCircularProgress-determinate) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+  */
   circleDeterminate?: string,
-  /** Styles applied to the `circle` svg path if `variant="indeterminate"`. */
+  /** Styles applied to the `circle` svg path if `variant="indeterminate"`.
+  * @deprecated Combine the [.MuiCircularProgress-circle](/material-ui/api/circular-progress/#circular-progress-classes-MuiCircularProgress-circle) and [.MuiCircularProgress-indeterminate](/material-ui/api/circular-progress/#circular-progress-classes-MuiCircularProgress-indeterminate) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+  */
   circleIndeterminate?: string,
   /** Styles applied to the `circle` svg path if `disableShrink={true}`. */
   circleDisableShrink?: string,
@@ -61,6 +67,11 @@ type props = {
     * @default false
     */
   disableShrink?: bool,
+  /**
+    * If `true`, a track circle slot is mounted to show a subtle background for the progress.
+    * @default false
+    */
+  enableTrackSlot?: bool,
   /**
     * The size of the component.
     * If using a number, the pixel unit is assumed.

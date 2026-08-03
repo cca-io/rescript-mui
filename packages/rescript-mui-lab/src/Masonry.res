@@ -41,6 +41,11 @@ type props = {
     */
   spacing?: Mui.System.Value.t,
   /**
+    * Allows using sequential order rather than adding to the shortest column.
+    * @default false
+    */
+  sequential?: bool,
+  /**
     * Allows defining system overrides as well as additional CSS styles.
     */
   sx?: Mui.Sx.props,

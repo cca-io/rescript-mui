@@ -9,6 +9,8 @@ type classes = {
   colorPrimary?: string,
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary?: string,
+  /** Styles applied to the root element if `size="small"`. */
+  sizeSmall?: string,
 }
 
 type slots<'value, 'inputRef> = {

@@ -16,6 +16,10 @@ title: Changelog
 
 ## 7.0.0 (Unreleased)
 
+- :rocket: Add MUI v7 props and slots for `Accordion`, `Autocomplete`, `Avatar`, `AvatarGroup`, `CircularProgress`, `FormControlLabel`, `Grid`, `IconButton`, `Modal`, `Slider`, `SpeedDialIcon`, `TablePagination` and `Tabs`.
+- :rocket: Add MUI Lab v7 support for sequential `Masonry` layout, persistent `TabPanel` content and the `TabList` list slot class.
+- :bug: Synchronize component class keys and theme override types with MUI v7.
+
 ## 6.1.0
 
 - :rocket: Add MUI container-query helpers to `Theme`, including named container queries.

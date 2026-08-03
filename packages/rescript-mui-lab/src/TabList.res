@@ -7,6 +7,8 @@ type classes = {
   flexContainer?: string,
   /** Styles applied to the flex container element if `orientation="vertical"`. */
   flexContainerVertical?: string,
+  /** Styles applied to the list element. */
+  list?: string,
   /** Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
   centered?: string,
   /** Styles applied to the tablist element. */

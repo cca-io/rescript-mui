@@ -27,6 +27,12 @@ type classes = {
   sizeMedium?: string,
   /** Styles applied to the root element if `size="large"`. */
   sizeLarge?: string,
+  /** Styles applied to the root element if `loading={true}`. */
+  loading?: string,
+  /** Styles applied to the loadingIndicator element. */
+  loadingIndicator?: string,
+  /** Styles applied to the loadingWrapper element. */
+  loadingWrapper?: string,
 }
 
 @unboxed
@@ -53,6 +59,12 @@ type size =
   | @as("medium") Medium
   | @as("large") Large
   | String(string)
+
+@unboxed
+type loading =
+  | @as(true) True
+  | @as(false) False
+  | @as(null) Null
 
 type props = {
   ...ButtonBase.publicPropsWithOnClick,
@@ -85,6 +97,16 @@ type props = {
     * @default false
     */
   edge?: edge,
+  /**
+    * If `true`, the loading indicator is visible and the button is disabled.
+    * If `true | false`, the loading wrapper is always rendered before the children.
+    * @default null
+    */
+  loading?: loading,
+  /**
+    * Element placed before the children if the button is in a loading state.
+    */
+  loadingIndicator?: React.element,
   /**
     * The size of the component.
     * `small` is equivalent to the dense button styling.

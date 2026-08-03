@@ -1,113 +1,71 @@
 ---
-title: Union Values (TODO)
+title: Union Values
 ---
 
 ## Union differences
 
-While is is great to have a consistent usage for passing union values as props,
-it can come at a conversion cost. This is why the current bindings make a
-difference between 3 types of union values.
+The bindings use unboxed variants for values that may be represented by more
+than one JavaScript literal. They compile directly to their underlying value,
+without allocating a tagged JavaScript object.
 
-## String only unions
+## String unions
 
-Whenever a prop on a component consists of a selection of string only literals,
-the generator will create polymorphic variants which just happen to compile to
-JS strings anyway.
+Whenever a prop consists of a selection of string literals, the bindings use an
+`@unboxed` variant. Each case is mapped to its original string value with `@as`.
+Where MUI permits custom values, a `String(string)` escape hatch is included.
 
-This is an example of the prop `variant`, taken from `Mui.Accordion.res`:
-
-```rescript
-type variant = [#elevation | #outlined]
-```
-
-You can use it like so:
+This is the `variant` prop from `Mui.Paper`:
 
 ```rescript
-<Mui.Accordion variant=#outlined />
+@unboxed
+type variant =
+  | @as("elevation") Elevation
+  | @as("outlined") Outlined
+  | String(string)
 ```
 
-### Rules for string only unions
-
-- All polymorphic variants have the same case as the original string value now
-  (mostly lowercase)
-- Some values include invalid characters (like `-`), which makes it necessary to
-  use quotes, e.g.: `#"flex-end"`
-
-### Additional types
-
-In case that you need to pass around the type of a string union prop, the
-generator creates a helper type for you in the module. To continue the example
-from earlier, the following helper type will be added to `Mui.Accordion.res`:
+Usage:
 
 ```rescript
-type variant = [#elevation | #outlined]
+<Mui.Paper variant=Outlined />
 ```
+
+### Rules for string unions
+
+- Cases are capitalized for ReScript and mapped to the original JavaScript
+  string with `@as`.
+- A `String(string)` case accepts custom values when MUI supports them.
+- The component module exposes the type, for example `Mui.Paper.variant`.
 
 ## Numeric unions
 
-Numeric unions now work the same way as string only unions now and don't utilize
-the `@int` directive anymore.
-
-These don't happen often - currently the only place where this applies is in the
-`Mui.Grid.res` component.
+Numeric unions also use unboxed variants. Numeric cases are represented by an
+`Int(int)` or `Number(float)` payload, depending on the MUI API.
 
 Example usage:
 
 ```rescript
-<Mui.Grid spacing=#2 />
+<Mui.Grid spacing={Int(2)} />
 ```
 
 ## Mixed unions
 
-Mixed unions make use of the ReScript's `unboxed` decorator:
-[[unboxed]](https://rescript-lang.org/blog/union-types-in-bucklescript). The
-nice thing about unboxed is, that there is no conversion cost, just as with the
-above ones. Some of the helper functions will leave a function in the generated
-js, that just returns the one argument it gets passed. These can be stripped
-easily with an optimization build step (e.g. with webpack).
-
-Whenever a prop value can be a literal of multiple types, this way of typing it
-is used. A module inside of the component is created, that is simply named after
-the prop (**uppercased**).
-
-Let's use the `component` prop of the `Grid` component as an example. We can
-pass either a string, callback or element as the `component` prop. This will
-generate the following module inside the `Grid` component file:
+Mixed unions combine literal cases and payload cases in one unboxed variant.
+For example, `Mui.Grid.size` accepts the MUI string and boolean literals as well
+as integer grid sizes:
 
 ```rescript
-module Component: {
-  type t
-  let string: string => t
-  let callback: (unit => React.element) => t
-  let element: React.element => t
-} = {
-  @unboxed
-  type rec t =
-    | Any('a): t
-  let string = (v: string) => Any(v)
-  let callback = (v: unit => React.element) => Any(v)
-  let element = (v: React.element) => Any(v)
-}
+@unboxed
+type value =
+  | @as("auto") Auto
+  | @as("grow") Grow
+  | @as(false) False
+  | Int(int)
 ```
 
-You can use it in the following way:
+Example usage:
 
 ```rescript
-open Mui
-<div>
-  <Grid component=Grid.Component.string("div") />
-  <Grid component=Grid.Component.element(<div />) />
-</div>
+<Mui.Grid size={Int(6)} />
+<Mui.Grid size=Grow />
 ```
-
-### Rules for mixed unions
-
-- Always creates a module leveraging `@unboxed` with the uppercased name of the
-  prop
-- Always fills that module with helper functions that are named after the type
-  they represent
-- Literal values don't have helper functions, but are represented as let
-  bindings
-- Numeric literals are always prefixed with `_` (e.g. `Grid.Md._2`)
-- Boolean literals are always prefixed with `_` (e.g. `Grid.Md._false`)
-- String literals are always their lowercased self (e.g. `Grid.Md.auto`)

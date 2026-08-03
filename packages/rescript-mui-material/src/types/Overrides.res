@@ -7,6 +7,7 @@ type component<'classKey, 'props> = {
 
 type accordionClassKey = {
   root?: ReactDOM.Style.t,
+  heading?: ReactDOM.Style.t,
   rounded?: ReactDOM.Style.t,
   expanded?: ReactDOM.Style.t,
   disabled?: ReactDOM.Style.t,
@@ -37,6 +38,10 @@ type alertClassKey = {
   filled?: ReactDOM.Style.t,
   outlined?: ReactDOM.Style.t,
   standard?: ReactDOM.Style.t,
+  colorSuccess?: string,
+  colorInfo?: string,
+  colorWarning?: string,
+  colorError?: string,
   standardSuccess?: ReactDOM.Style.t,
   standardInfo?: ReactDOM.Style.t,
   standardWarning?: ReactDOM.Style.t,
@@ -68,6 +73,10 @@ type appBarClassKey = {
   colorSecondary?: string,
   colorInherit?: string,
   colorTransparent?: string,
+  colorError?: string,
+  colorInfo?: string,
+  colorSuccess?: string,
+  colorWarning?: string,
 }
 
 type autocompleteClassKey = {
@@ -206,11 +215,18 @@ type buttonClassKey = {
   sizeMedium?: ReactDOM.Style.t,
   sizeLarge?: ReactDOM.Style.t,
   fullWidth?: ReactDOM.Style.t,
+  icon?: ReactDOM.Style.t,
   startIcon?: ReactDOM.Style.t,
   endIcon?: ReactDOM.Style.t,
   iconSizeSmall?: ReactDOM.Style.t,
   iconSizeMedium?: ReactDOM.Style.t,
   iconSizeLarge?: ReactDOM.Style.t,
+  colorPrimary?: string,
+  colorSecondary?: string,
+  colorSuccess?: string,
+  colorError?: string,
+  colorInfo?: string,
+  colorWarning?: string,
   loading?: ReactDOM.Style.t,
   loadingWrapper?: ReactDOM.Style.t,
   loadingIconPlaceholder?: ReactDOM.Style.t,
@@ -233,9 +249,13 @@ type buttonGroupClassKey = {
   text?: ReactDOM.Style.t,
   disableElevation?: ReactDOM.Style.t,
   disabled?: ReactDOM.Style.t,
+  firstButton?: ReactDOM.Style.t,
   fullWidth?: ReactDOM.Style.t,
+  horizontal?: ReactDOM.Style.t,
   vertical?: ReactDOM.Style.t,
   grouped?: ReactDOM.Style.t,
+  colorPrimary?: string,
+  colorSecondary?: string,
   groupedHorizontal?: ReactDOM.Style.t,
   groupedVertical?: ReactDOM.Style.t,
   groupedText?: ReactDOM.Style.t,
@@ -253,6 +273,8 @@ type buttonGroupClassKey = {
   groupedContainedVertical?: ReactDOM.Style.t,
   groupedContainedPrimary?: ReactDOM.Style.t,
   groupedContainedSecondary?: ReactDOM.Style.t,
+  lastButton?: ReactDOM.Style.t,
+  middleButton?: ReactDOM.Style.t,
 }
 
 type cardClassKey = {root?: ReactDOM.Style.t}
@@ -292,12 +314,15 @@ type checkboxClassKey = {
   indeterminate?: ReactDOM.Style.t,
   colorPrimary?: string,
   colorSecondary?: string,
+  sizeSmall?: ReactDOM.Style.t,
+  sizeMedium?: ReactDOM.Style.t,
 }
 
 type chipClassKey = {
   root?: ReactDOM.Style.t,
   sizeSmall?: ReactDOM.Style.t,
   sizeMedium?: ReactDOM.Style.t,
+  colorDefault?: string,
   colorError?: string,
   colorInfo?: string,
   colorPrimary?: string,
@@ -349,6 +374,7 @@ type circularProgressClassKey = {
   colorPrimary?: string,
   colorSecondary?: string,
   svg?: ReactDOM.Style.t,
+  track?: ReactDOM.Style.t,
   circle?: ReactDOM.Style.t,
   circleDeterminate?: ReactDOM.Style.t,
   circleIndeterminate?: ReactDOM.Style.t,
@@ -377,6 +403,7 @@ type containerClassKey = {
 
 type dialogClassKey = {
   root?: ReactDOM.Style.t,
+  backdrop?: ReactDOM.Style.t,
   scrollPaper?: ReactDOM.Style.t,
   scrollBody?: ReactDOM.Style.t,
   container?: ReactDOM.Style.t,
@@ -428,6 +455,10 @@ type drawerClassKey = {
   root?: ReactDOM.Style.t,
   docked?: ReactDOM.Style.t,
   paper?: ReactDOM.Style.t,
+  anchorLeft?: ReactDOM.Style.t,
+  anchorRight?: ReactDOM.Style.t,
+  anchorTop?: ReactDOM.Style.t,
+  anchorBottom?: ReactDOM.Style.t,
   paperAnchorLeft?: ReactDOM.Style.t,
   paperAnchorRight?: ReactDOM.Style.t,
   paperAnchorTop?: ReactDOM.Style.t,
@@ -465,12 +496,6 @@ type filledInputClassKey = {
   multiline?: ReactDOM.Style.t,
   hiddenLabel?: ReactDOM.Style.t,
   input?: ReactDOM.Style.t,
-  inputSizeSmall?: ReactDOM.Style.t,
-  inputHiddenLabel?: ReactDOM.Style.t,
-  inputMultiline?: ReactDOM.Style.t,
-  inputAdornedStart?: ReactDOM.Style.t,
-  inputAdornedEnd?: ReactDOM.Style.t,
-  inputTypeSearch?: ReactDOM.Style.t,
 }
 
 type formControlClassKey = {
@@ -523,100 +548,6 @@ type formLabelClassKey = {
 type gridClassKey = {
   root?: ReactDOM.Style.t,
   container?: ReactDOM.Style.t,
-  @as("direction-xs-column")
-  directionXsColumn?: ReactDOM.Style.t,
-  @as("direction-xs-column-reverse")
-  directionXsColumnReverse?: ReactDOM.Style.t,
-  @as("direction-xs-row")
-  directionXsRow?: ReactDOM.Style.t,
-  @as("direction-xs-row-reverse")
-  directionXsRowReverse?: ReactDOM.Style.t,
-  @as("wrap-xs-wrap")
-  wrapXsWrap?: ReactDOM.Style.t,
-  @as("wrap-xs-nowrap")
-  wrapXsNowrap?: ReactDOM.Style.t,
-  @as("wrap-xs-wrap-reverse")
-  wrapXsWrapReverse?: ReactDOM.Style.t,
-  @as("spacing-xs-1") spacingXs_1?: ReactDOM.Style.t,
-  @as("spacing-xs-2") spacingXs_2?: ReactDOM.Style.t,
-  @as("spacing-xs-3") spacingXs_3?: ReactDOM.Style.t,
-  @as("spacing-xs-4") spacingXs_4?: ReactDOM.Style.t,
-  @as("spacing-xs-5") spacingXs_5?: ReactDOM.Style.t,
-  @as("spacing-xs-6") spacingXs_6?: ReactDOM.Style.t,
-  @as("spacing-xs-7") spacingXs_7?: ReactDOM.Style.t,
-  @as("spacing-xs-8") spacingXs_8?: ReactDOM.Style.t,
-  @as("spacing-xs-9") spacingXs_9?: ReactDOM.Style.t,
-  @as("spacing-xs-10") spacingXs_10?: ReactDOM.Style.t,
-  @as("grid-xs-auto") gridXsAuto?: ReactDOM.Style.t,
-  @as("grid-xs-true") gridXsTrue?: ReactDOM.Style.t,
-  @as("grid-xs-1") gridXs_1?: ReactDOM.Style.t,
-  @as("grid-xs-2") gridXs_2?: ReactDOM.Style.t,
-  @as("grid-xs-3") gridXs_3?: ReactDOM.Style.t,
-  @as("grid-xs-4") gridXs_4?: ReactDOM.Style.t,
-  @as("grid-xs-5") gridXs_5?: ReactDOM.Style.t,
-  @as("grid-xs-6") gridXs_6?: ReactDOM.Style.t,
-  @as("grid-xs-7") gridXs_7?: ReactDOM.Style.t,
-  @as("grid-xs-8") gridXs_8?: ReactDOM.Style.t,
-  @as("grid-xs-9") gridXs_9?: ReactDOM.Style.t,
-  @as("grid-xs-10") gridXs_10?: ReactDOM.Style.t,
-  @as("grid-xs-11") gridXs_11?: ReactDOM.Style.t,
-  @as("grid-xs-12") gridXs_12?: ReactDOM.Style.t,
-  @as("grid-sm-auto") gridSmAuto?: ReactDOM.Style.t,
-  @as("grid-sm-true") gridSmTrue?: ReactDOM.Style.t,
-  @as("grid-sm-1") gridSm_1?: ReactDOM.Style.t,
-  @as("grid-sm-2") gridSm_2?: ReactDOM.Style.t,
-  @as("grid-sm-3") gridSm_3?: ReactDOM.Style.t,
-  @as("grid-sm-4") gridSm_4?: ReactDOM.Style.t,
-  @as("grid-sm-5") gridSm_5?: ReactDOM.Style.t,
-  @as("grid-sm-6") gridSm_6?: ReactDOM.Style.t,
-  @as("grid-sm-7") gridSm_7?: ReactDOM.Style.t,
-  @as("grid-sm-8") gridSm_8?: ReactDOM.Style.t,
-  @as("grid-sm-9") gridSm_9?: ReactDOM.Style.t,
-  @as("grid-sm-10") gridSm_10?: ReactDOM.Style.t,
-  @as("grid-sm-11") gridSm_11?: ReactDOM.Style.t,
-  @as("grid-sm-12") gridSm_12?: ReactDOM.Style.t,
-  @as("grid-md-auto") gridMdAuto?: ReactDOM.Style.t,
-  @as("grid-md-true") gridMdTrue?: ReactDOM.Style.t,
-  @as("grid-md-1") gridMd_1?: ReactDOM.Style.t,
-  @as("grid-md-2") gridMd_2?: ReactDOM.Style.t,
-  @as("grid-md-3") gridMd_3?: ReactDOM.Style.t,
-  @as("grid-md-4") gridMd_4?: ReactDOM.Style.t,
-  @as("grid-md-5") gridMd_5?: ReactDOM.Style.t,
-  @as("grid-md-6") gridMd_6?: ReactDOM.Style.t,
-  @as("grid-md-7") gridMd_7?: ReactDOM.Style.t,
-  @as("grid-md-8") gridMd_8?: ReactDOM.Style.t,
-  @as("grid-md-9") gridMd_9?: ReactDOM.Style.t,
-  @as("grid-md-10") gridMd_10?: ReactDOM.Style.t,
-  @as("grid-md-11") gridMd_11?: ReactDOM.Style.t,
-  @as("grid-md-12") gridMd_12?: ReactDOM.Style.t,
-  @as("grid-lg-auto") gridLgAuto?: ReactDOM.Style.t,
-  @as("grid-lg-true") gridLgTrue?: ReactDOM.Style.t,
-  @as("grid-lg-1") gridLg_1?: ReactDOM.Style.t,
-  @as("grid-lg-2") gridLg_2?: ReactDOM.Style.t,
-  @as("grid-lg-3") gridLg_3?: ReactDOM.Style.t,
-  @as("grid-lg-4") gridLg_4?: ReactDOM.Style.t,
-  @as("grid-lg-5") gridLg_5?: ReactDOM.Style.t,
-  @as("grid-lg-6") gridLg_6?: ReactDOM.Style.t,
-  @as("grid-lg-7") gridLg_7?: ReactDOM.Style.t,
-  @as("grid-lg-8") gridLg_8?: ReactDOM.Style.t,
-  @as("grid-lg-9") gridLg_9?: ReactDOM.Style.t,
-  @as("grid-lg-10") gridLg_10?: ReactDOM.Style.t,
-  @as("grid-lg-11") gridLg_11?: ReactDOM.Style.t,
-  @as("grid-lg-12") gridLg_12?: ReactDOM.Style.t,
-  @as("grid-xl-auto") gridXlAuto?: ReactDOM.Style.t,
-  @as("grid-xl-true") gridXlTrue?: ReactDOM.Style.t,
-  @as("grid-xl-1") gridXl_1?: ReactDOM.Style.t,
-  @as("grid-xl-2") gridXl_2?: ReactDOM.Style.t,
-  @as("grid-xl-3") gridXl_3?: ReactDOM.Style.t,
-  @as("grid-xl-4") gridXl_4?: ReactDOM.Style.t,
-  @as("grid-xl-5") gridXl_5?: ReactDOM.Style.t,
-  @as("grid-xl-6") gridXl_6?: ReactDOM.Style.t,
-  @as("grid-xl-7") gridXl_7?: ReactDOM.Style.t,
-  @as("grid-xl-8") gridXl_8?: ReactDOM.Style.t,
-  @as("grid-xl-9") gridXl_9?: ReactDOM.Style.t,
-  @as("grid-xl-10") gridXl_10?: ReactDOM.Style.t,
-  @as("grid-xl-11") gridXl_11?: ReactDOM.Style.t,
-  @as("grid-xl-12") gridXl_12?: ReactDOM.Style.t,
 }
 
 type gridLegacyClassKey = {
@@ -624,40 +555,6 @@ type gridLegacyClassKey = {
   container?: ReactDOM.Style.t,
   item?: ReactDOM.Style.t,
   zeroMinWidth?: ReactDOM.Style.t,
-  @as("direction-xs-column")
-  directionXsColumn?: ReactDOM.Style.t,
-  @as("direction-xs-column-reverse")
-  directionXsColumnReverse?: ReactDOM.Style.t,
-  @as("direction-xs-row-reverse")
-  directionXsRowReverse?: ReactDOM.Style.t,
-  @as("wrap-xs-nowrap")
-  wrapXsNowrap?: ReactDOM.Style.t,
-  @as("wrap-xs-wrap-reverse")
-  wrapXsWrapReverse?: ReactDOM.Style.t,
-  @as("spacing-xs-1") spacingXs_1?: ReactDOM.Style.t,
-  @as("spacing-xs-2") spacingXs_2?: ReactDOM.Style.t,
-  @as("spacing-xs-3") spacingXs_3?: ReactDOM.Style.t,
-  @as("spacing-xs-4") spacingXs_4?: ReactDOM.Style.t,
-  @as("spacing-xs-5") spacingXs_5?: ReactDOM.Style.t,
-  @as("spacing-xs-6") spacingXs_6?: ReactDOM.Style.t,
-  @as("spacing-xs-7") spacingXs_7?: ReactDOM.Style.t,
-  @as("spacing-xs-8") spacingXs_8?: ReactDOM.Style.t,
-  @as("spacing-xs-9") spacingXs_9?: ReactDOM.Style.t,
-  @as("spacing-xs-10") spacingXs_10?: ReactDOM.Style.t,
-  @as("grid-xs-auto") gridXsAuto?: ReactDOM.Style.t,
-  @as("grid-xs-true") gridXsTrue?: ReactDOM.Style.t,
-  @as("grid-xs-1") gridXs_1?: ReactDOM.Style.t,
-  @as("grid-xs-2") gridXs_2?: ReactDOM.Style.t,
-  @as("grid-xs-3") gridXs_3?: ReactDOM.Style.t,
-  @as("grid-xs-4") gridXs_4?: ReactDOM.Style.t,
-  @as("grid-xs-5") gridXs_5?: ReactDOM.Style.t,
-  @as("grid-xs-6") gridXs_6?: ReactDOM.Style.t,
-  @as("grid-xs-7") gridXs_7?: ReactDOM.Style.t,
-  @as("grid-xs-8") gridXs_8?: ReactDOM.Style.t,
-  @as("grid-xs-9") gridXs_9?: ReactDOM.Style.t,
-  @as("grid-xs-10") gridXs_10?: ReactDOM.Style.t,
-  @as("grid-xs-11") gridXs_11?: ReactDOM.Style.t,
-  @as("grid-xs-12") gridXs_12?: ReactDOM.Style.t,
 }
 
 type iconClassKey = {
@@ -687,6 +584,9 @@ type iconButtonClassKey = {
   sizeSmall?: ReactDOM.Style.t,
   sizeMedium?: ReactDOM.Style.t,
   sizeLarge?: ReactDOM.Style.t,
+  loading?: ReactDOM.Style.t,
+  loadingIndicator?: ReactDOM.Style.t,
+  loadingWrapper?: ReactDOM.Style.t,
 }
 
 type imageListClassKey = {
@@ -711,6 +611,8 @@ type imageListItemBarClassKey = {
   positionBottom?: ReactDOM.Style.t,
   positionTop?: ReactDOM.Style.t,
   positionBelow?: ReactDOM.Style.t,
+  actionPositionLeft?: ReactDOM.Style.t,
+  actionPositionRight?: ReactDOM.Style.t,
   titleWrap?: ReactDOM.Style.t,
   titleWrapBelow?: ReactDOM.Style.t,
   titleWrapActionPosLeft?: ReactDOM.Style.t,
@@ -803,6 +705,8 @@ type linearProgressClassKey = {
   dashedColorPrimary?: ReactDOM.Style.t,
   dashedColorSecondary?: ReactDOM.Style.t,
   bar?: ReactDOM.Style.t,
+  bar1?: ReactDOM.Style.t,
+  bar2?: ReactDOM.Style.t,
   barColorPrimary?: ReactDOM.Style.t,
   barColorSecondary?: ReactDOM.Style.t,
   bar1Indeterminate?: ReactDOM.Style.t,
@@ -831,16 +735,12 @@ type listClassKey = {
 type listItemClassKey = {
   root?: ReactDOM.Style.t,
   container?: ReactDOM.Style.t,
-  focusVisible?: ReactDOM.Style.t,
   dense?: ReactDOM.Style.t,
   alignItemsFlexStart?: ReactDOM.Style.t,
-  disabled?: ReactDOM.Style.t,
   divider?: ReactDOM.Style.t,
   gutters?: ReactDOM.Style.t,
   padding?: ReactDOM.Style.t,
-  button?: ReactDOM.Style.t,
   secondaryAction?: ReactDOM.Style.t,
-  selected?: ReactDOM.Style.t,
 }
 
 type listItemAvatarClassKey = {
@@ -982,6 +882,8 @@ type paginationItemClassKey = {
   disabled?: ReactDOM.Style.t,
   selected?: ReactDOM.Style.t,
   icon?: ReactDOM.Style.t,
+  colorPrimary?: string,
+  colorSecondary?: string,
 }
 
 type paperClassKey = {
@@ -1029,6 +931,7 @@ type radioClassKey = {
   disabled?: ReactDOM.Style.t,
   colorPrimary?: string,
   colorSecondary?: string,
+  sizeSmall?: ReactDOM.Style.t,
 }
 
 type ratingClassKey = {
@@ -1054,9 +957,11 @@ type ratingClassKey = {
 type scopedCssBaselineClassKey = {root?: ReactDOM.Style.t}
 
 type selectClassKey = {
+  root?: ReactDOM.Style.t,
   select?: ReactDOM.Style.t,
   multiple?: ReactDOM.Style.t,
   filled?: ReactDOM.Style.t,
+  focused?: ReactDOM.Style.t,
   outlined?: ReactDOM.Style.t,
   standard?: ReactDOM.Style.t,
   disabled?: ReactDOM.Style.t,
@@ -1086,6 +991,10 @@ type sliderClassKey = {
   root?: ReactDOM.Style.t,
   colorPrimary?: string,
   colorSecondary?: string,
+  colorError?: string,
+  colorInfo?: string,
+  colorSuccess?: string,
+  colorWarning?: string,
   marked?: ReactDOM.Style.t,
   vertical?: ReactDOM.Style.t,
   disabled?: ReactDOM.Style.t,
@@ -1104,6 +1013,10 @@ type sliderClassKey = {
   sizeSmall?: ReactDOM.Style.t,
   thumbColorPrimary?: ReactDOM.Style.t,
   thumbColorSecondary?: ReactDOM.Style.t,
+  thumbColorError?: ReactDOM.Style.t,
+  thumbColorInfo?: ReactDOM.Style.t,
+  thumbColorSuccess?: ReactDOM.Style.t,
+  thumbColorWarning?: ReactDOM.Style.t,
   thumbSizeSmall?: ReactDOM.Style.t,
   valueLabel?: ReactDOM.Style.t,
   valueLabelOpen?: ReactDOM.Style.t,
@@ -1219,6 +1132,7 @@ type stepperClassKey = {
   root?: ReactDOM.Style.t,
   horizontal?: ReactDOM.Style.t,
   vertical?: ReactDOM.Style.t,
+  nonLinear?: ReactDOM.Style.t,
   alternativeLabel?: ReactDOM.Style.t,
 }
 
@@ -1262,6 +1176,7 @@ type tabClassKey = {
   fullWidth?: ReactDOM.Style.t,
   wrapped?: ReactDOM.Style.t,
   iconWrapper?: ReactDOM.Style.t,
+  icon?: ReactDOM.Style.t,
 }
 
 type tabScrollButtonClassKey = {
@@ -1323,6 +1238,8 @@ type tableRowClassKey = {
 
 type tableSortLabelClassKey = {
   root?: ReactDOM.Style.t,
+  directionDesc?: ReactDOM.Style.t,
+  directionAsc?: ReactDOM.Style.t,
   active?: ReactDOM.Style.t,
   icon?: ReactDOM.Style.t,
   iconDirectionDesc?: ReactDOM.Style.t,
@@ -1334,6 +1251,7 @@ type tabsClassKey = {
   vertical?: ReactDOM.Style.t,
   flexContainer?: ReactDOM.Style.t,
   flexContainerVertical?: ReactDOM.Style.t,
+  list?: ReactDOM.Style.t,
   centered?: ReactDOM.Style.t,
   scroller?: ReactDOM.Style.t,
   fixed?: ReactDOM.Style.t,
@@ -1357,15 +1275,22 @@ type toggleButtonClassKey = {
   sizeSmall?: ReactDOM.Style.t,
   sizeMedium?: ReactDOM.Style.t,
   sizeLarge?: ReactDOM.Style.t,
+  fullWidth?: ReactDOM.Style.t,
 }
 
 type toggleButtonGroupClassKey = {
   root?: ReactDOM.Style.t,
+  selected?: ReactDOM.Style.t,
+  horizontal?: ReactDOM.Style.t,
   vertical?: ReactDOM.Style.t,
   disabled?: ReactDOM.Style.t,
   grouped?: ReactDOM.Style.t,
   groupedHorizontal?: ReactDOM.Style.t,
   groupedVertical?: ReactDOM.Style.t,
+  fullWidth?: ReactDOM.Style.t,
+  firstButton?: ReactDOM.Style.t,
+  lastButton?: ReactDOM.Style.t,
+  middleButton?: ReactDOM.Style.t,
 }
 
 type toolbarClassKey = {

@@ -1,6 +1,6 @@
 ## System
 
-The `Mui.System` module contains types for `@mui/system` values and props that are used in components like [`Box`](<(https://mui.com/material-ui/react-box/)>) or [`Grid`](https://mui.com/material-ui/react-grid/).
+The `Mui.System` module contains types for `@mui/system` values and props that are used in components like [`Box`](https://mui.com/material-ui/react-box/) or [`Grid`](https://mui.com/material-ui/react-grid/).
 
 The bindings are not complete and therefore do not offer the full functionality
 that the original does. Feel free to

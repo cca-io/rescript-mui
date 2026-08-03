@@ -15,7 +15,7 @@ type classes = {
   adornedEnd?: string,
   /** State class applied to the root element if `error={true}`. */
   error?: string,
-  /** Styles applied to the input element if `size="small"`. */
+  /** Styles applied to the root element if `size="small"`. */
   sizeSmall?: string,
   /** Styles applied to the root element if `multiline={true}`. */
   multiline?: string,
@@ -23,18 +23,6 @@ type classes = {
   hiddenLabel?: string,
   /** Styles applied to the input element. */
   input?: string,
-  /** Styles applied to the input element if `size="small"`. */
-  inputSizeSmall?: string,
-  /** Styles applied to the `input` if in `<FormControl hiddenLabel />`. */
-  inputHiddenLabel?: string,
-  /** Styles applied to the input element if `multiline={true}`. */
-  inputMultiline?: string,
-  /** Styles applied to the input element if `startAdornment` is provided. */
-  inputAdornedStart?: string,
-  /** Styles applied to the input element if `endAdornment` is provided. */
-  inputAdornedEnd?: string,
-  /** Styles applied to the input element if `type="search"`. */
-  inputTypeSearch?: string,
 }
 
 type props<'value, 'inputRef> = {

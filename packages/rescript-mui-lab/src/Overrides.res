@@ -12,6 +12,7 @@ type tabListClassKey = {
   vertical?: ReactDOM.Style.t,
   flexContainer?: ReactDOM.Style.t,
   flexContainerVertical?: ReactDOM.Style.t,
+  list?: ReactDOM.Style.t,
   centered?: ReactDOM.Style.t,
   scroller?: ReactDOM.Style.t,
   fixed?: ReactDOM.Style.t,
@@ -23,7 +24,10 @@ type tabListClassKey = {
   indicator?: ReactDOM.Style.t,
 }
 
-type tabPanelClassKey = {root?: ReactDOM.Style.t}
+type tabPanelClassKey = {
+  root?: ReactDOM.Style.t,
+  hidden?: ReactDOM.Style.t,
+}
 
 type timelineClassKey = {
   root?: ReactDOM.Style.t,

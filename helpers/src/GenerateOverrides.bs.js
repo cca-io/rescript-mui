@@ -39,10 +39,19 @@ function getComponentsWithClasses(path) {
                   }));
             var typeName = filename.substring(0, filename.length - 4 | 0);
             var typeNameLowercaseFirst = typeName.charAt(0).toLowerCase() + typeName.slice(1) + "ClassKey";
-            var havePropsTypeParameter = Belt_Array.getIndexBy(fileByLines, (function (line) {
-                    return line.startsWith("type props<'value> = {");
+            var index = Belt_Array.getIndexBy(fileByLines, (function (line) {
+                    return line.startsWith("type props<");
                   }));
-            var muiName = havePropsTypeParameter !== undefined ? "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ", " + typeName + ".props<unknown>>," : "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ", " + typeName + ".props>,";
+            var propsTypeArguments;
+            if (index !== undefined) {
+              var unknowns = Belt_Array.map(Belt_Array.getExn(fileByLines, index).split(","), (function (param) {
+                        return "unknown";
+                      })).join(", ");
+              propsTypeArguments = "<" + unknowns + ">";
+            } else {
+              propsTypeArguments = "";
+            }
+            var muiName = "  @as(\"Mui" + typeName + "\") mui" + typeName + "?: component<" + typeNameLowercaseFirst + ", " + typeName + ".props" + propsTypeArguments + ">,";
             var classesBody = " = {\n" + classes.join("\n") + "\n}\n";
             muiNames.push(muiName);
             return "type " + typeNameLowercaseFirst + classesBody;

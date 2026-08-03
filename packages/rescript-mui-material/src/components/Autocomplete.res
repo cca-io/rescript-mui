@@ -9,11 +9,11 @@ type classes = {
   focused?: string,
   /** Styles applied to the option elements if they are keyboard focused. */
   focusVisible?: string,
-  /** Styles applied to the tag elements, e.g. the chips. */
+  /** Styles applied to the tag elements, for example the chips. */
   tag?: string,
-  /** Styles applied to the tag elements, e.g. the chips if `size="small"`. */
+  /** Styles applied to the tag elements, for example the chips if `size="small"`. */
   tagSizeSmall?: string,
-  /** Styles applied to the tag elements, e.g. the chips if `size="medium"`. */
+  /** Styles applied to the tag elements, for example the chips if `size="medium"`. */
   tagSizeMedium?: string,
   /** Styles applied when the popup icon is rendered. */
   hasPopupIcon?: string,
@@ -128,6 +128,18 @@ type renderGetTagProps = {
   className: string,
   disabled: bool,
   @as("data-tag-index") dataTagIndex: int,
+  tabIndex: int,
+  onDelete: ReactEvent.Synthetic.t => unit,
+}
+
+type renderValueItemArgs = {index?: int}
+type renderValueItemArgsMultiple = {index: int}
+
+type renderValueItemProps = {
+  key?: int,
+  className: string,
+  disabled: bool,
+  @as("data-item-index") dataItemIndex: int,
   tabIndex: int,
   onDelete: ReactEvent.Synthetic.t => unit,
 }
@@ -446,6 +458,10 @@ type autocompleteProps<'value, 'inputRef> = {
     */
   onInputChange?: (ReactEvent.Synthetic.t, string, inputChangeReason) => unit,
   /**
+    * Callback fired when a key is pressed.
+    */
+  onKeyDown?: ReactEvent.Keyboard.t => unit,
+  /**
     * Callback fired when the popup requests to be opened.
     * Use in controlled mode (see open).
     *
@@ -560,6 +576,14 @@ module Multiple = {
       */
     multiple: multiple,
     /**
+      * Render the selected values.
+      */
+    renderValue?: (
+      array<'value>,
+      renderValueItemArgsMultiple => renderValueItemProps,
+      ownerState,
+    ) => React.element,
+    /**
       * Callback fired when the value changes.
       *
       * @param {ReactEvent.Synthetic.t} The event source of the callback.
@@ -598,6 +622,10 @@ type props<'value, 'inputRef> = {
     * @default null
     */
   defaultValue?: Js.null<'value>,
+  /**
+    * Render the selected value.
+    */
+  renderValue?: ('value, renderValueItemArgs => renderValueItemProps, ownerState) => React.element,
   /**
     * Callback fired when the value changes.
     *

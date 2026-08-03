@@ -41,7 +41,10 @@ type classes = {
   noWrap?: string,
   /** Styles applied to the root element if `gutterBottom={true}`. */
   gutterBottom?: string,
-  /** Styles applied to the root element if `paragraph={true}`. */
+  /**
+  * Styles applied to the root element if `paragraph={true}`.
+  * @deprecated
+  */
   paragraph?: string,
 }
 

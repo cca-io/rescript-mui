@@ -1,6 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
   root?: string,
+  /** State class applied to the root element if `hidden={true}`. */
+  hidden?: string,
 }
 
 type props = {
@@ -13,6 +15,11 @@ type props = {
     * Override or extend the styles applied to the component.
     */
   classes?: classes,
+  /**
+    * If `true`, keeps the contents of the hidden TabPanel in the DOM.
+    * @default false
+    */
+  keepMounted?: bool,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

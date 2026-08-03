@@ -233,6 +233,11 @@ type props<'inputRef> = {
     */
   component?: React.component<unknown>,
   /**
+    * If `true`, the component is disabled.
+    * @default false
+    */
+  disabled?: bool,
+  /**
     * Accepts a function which returns a string value that provides a user-friendly name for the current page.
     * This is important for screen reader users.
     *

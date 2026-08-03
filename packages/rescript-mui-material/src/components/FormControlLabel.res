@@ -19,9 +19,7 @@ type classes = {
   asterisk?: string,
 }
 
-type slots = {
-  typography?: OverridableComponent.t<Typography.props>,
-}
+type slots = {typography?: OverridableComponent.t<Typography.props>}
 
 type slotProps = {
   /**
@@ -73,6 +71,10 @@ type props<'value, 'inputRef> = {
     * @default 'end'
     */
   labelPlacement?: labelPlacement,
+  /**
+    * The name of the `input` element.
+    */
+  name?: string,
   /**
     * Callback fired when the state is changed.
     *

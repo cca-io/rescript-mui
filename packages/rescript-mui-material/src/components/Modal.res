@@ -119,6 +119,14 @@ type props = {
     */
   onClose?: onClose,
   /**
+    * A function called when the transition of the backdrop enters.
+    */
+  onTransitionEnter?: unit => unit,
+  /**
+    * A function called when the transition of the backdrop has exited.
+    */
+  onTransitionExited?: unit => unit,
+  /**
     * The components used for each slot inside the Modal.
     * Either a string to use a HTML element or a component.
     * @default {}

@@ -9,15 +9,23 @@ type classes = {
   sizeLarge?: string,
   /** Styles applied to the root element if `variant="text"`. */
   text?: string,
-  /** Styles applied to the root element if `variant="text"` and `color="primary"`. */
+  /** Styles applied to the root element if `variant="text"` and `color="primary"`.
+  *  @deprecated Combine the [.MuiPaginationItem-text](/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-text) and [.MuiPaginationItem-colorPrimary](/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-colorPrimary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+  */
   textPrimary?: string,
-  /** Styles applied to the root element if `variant="text"` and `color="secondary"`. */
+  /** Styles applied to the root element if `variant="text"` and `color="secondary"`.
+  *  @deprecated Combine the [.MuiPaginationItem-text](/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-text) and [.MuiPaginationItem-colorSecondary](/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-colorSecondary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+  */
   textSecondary?: string,
   /** Styles applied to the root element if `variant="outlined"`. */
   outlined?: string,
-  /** Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+  /** Styles applied to the root element if `variant="outlined"` and `color="primary"`.
+  * @deprecated Combine the [.MuiPaginationItem-outlined](/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-outlined) and [.MuiPaginationItem-colorPrimary](/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-colorPrimary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+  */
   outlinedPrimary?: string,
-  /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+  /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
+  * @deprecated Combine the [.MuiPaginationItem-outlined](/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-outlined) and [.MuiPaginationItem-colorSecondary](/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-colorSecondary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+  */
   outlinedSecondary?: string,
   /** Styles applied to the root element if `rounded="true"`. */
   rounded?: string,
@@ -35,6 +43,10 @@ type classes = {
   selected?: string,
   /** Styles applied to the icon to display. */
   icon?: string,
+  /** Styles applied to the root element if `color="primary"`. */
+  colorPrimary?: string,
+  /** Styles applied to the root element if `color="secondary"`. */
+  colorSecondary?: string,
 }
 
 @unboxed

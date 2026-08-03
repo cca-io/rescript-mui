@@ -29,17 +29,35 @@ type imgProps = {
 
 type slots = {
   /**
+    * The component that renders the root slot.
+    * @default 'div'
+    */
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
     * The component that renders the img slot.
     * @default 'img'
     */
   img?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component that renders the fallback slot.
+    * @default Person icon
+    */
+  fallback?: OverridableComponent.t<SvgIcon.props>,
 }
 
 type slotProps = {
   /**
+    * Props forwarded to the root slot.
+    */
+  root?: JsxDOM.domProps,
+  /**
     * Props forwarded to the img slot.
     */
   img?: JsxDOM.domProps,
+  /**
+    * Props forwarded to the fallback slot.
+    */
+  fallback?: SvgIcon.props,
 }
 
 type props = {

@@ -7,45 +7,6 @@ type classes = {
   item?: string,
   /** Styles applied to the root element if `zeroMinWidth={true}`. */
   zeroMinWidth?: string,
-  /** Styles applied to the root element if `direction="column"`. */
-  @as("direction-xs-column")
-  directionXsColumn?: string,
-  /** Styles applied to the root element if `direction="column-reverse"`. */
-  @as("direction-xs-column-reverse")
-  directionXsColumnReverse?: string,
-  /** Styles applied to the root element if `direction="row-reverse"`. */
-  @as("direction-xs-row-reverse")
-  directionXsRowReverse?: string,
-  /** Styles applied to the root element if `wrap="nowrap"`. */
-  @as("wrap-xs-nowrap")
-  wrapXsNowrap?: string,
-  /** Styles applied to the root element if `wrap="reverse"`. */
-  @as("wrap-xs-wrap-reverse")
-  wrapXsWrapReverse?: string,
-  @as("spacing-xs-1") spacingXs_1?: string,
-  @as("spacing-xs-2") spacingXs_2?: string,
-  @as("spacing-xs-3") spacingXs_3?: string,
-  @as("spacing-xs-4") spacingXs_4?: string,
-  @as("spacing-xs-5") spacingXs_5?: string,
-  @as("spacing-xs-6") spacingXs_6?: string,
-  @as("spacing-xs-7") spacingXs_7?: string,
-  @as("spacing-xs-8") spacingXs_8?: string,
-  @as("spacing-xs-9") spacingXs_9?: string,
-  @as("spacing-xs-10") spacingXs_10?: string,
-  @as("grid-xs-auto") gridXsAuto?: string,
-  @as("grid-xs-true") gridXsTrue?: string,
-  @as("grid-xs-1") gridXs_1?: string,
-  @as("grid-xs-2") gridXs_2?: string,
-  @as("grid-xs-3") gridXs_3?: string,
-  @as("grid-xs-4") gridXs_4?: string,
-  @as("grid-xs-5") gridXs_5?: string,
-  @as("grid-xs-6") gridXs_6?: string,
-  @as("grid-xs-7") gridXs_7?: string,
-  @as("grid-xs-8") gridXs_8?: string,
-  @as("grid-xs-9") gridXs_9?: string,
-  @as("grid-xs-10") gridXs_10?: string,
-  @as("grid-xs-11") gridXs_11?: string,
-  @as("grid-xs-12") gridXs_12?: string,
 }
 
 type gridDirection =

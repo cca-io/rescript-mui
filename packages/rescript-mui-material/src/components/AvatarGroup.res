@@ -18,13 +18,9 @@ type variant =
   | @as("square") Square
   | String(string)
 
-type slots = {
-  surplus?: OverridableComponent.t<Avatar.props>,
-}
+type slots = {surplus?: OverridableComponent.t<Avatar.props>}
 
-type slotProps = {
-  surplus?: Avatar.props,
-}
+type slotProps = {surplus?: Avatar.props}
 
 type props = {
   ...CommonProps.t,
@@ -46,6 +42,11 @@ type props = {
     * @default 5
     */
   max?: int,
+  /**
+    * The components used for each slot inside.
+    * @default {}
+    */
+  slots?: slots,
   /**
     * The extra props for the slot components.
     * You can override the existing props or add new ones.

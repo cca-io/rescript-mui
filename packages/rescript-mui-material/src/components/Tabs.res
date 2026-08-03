@@ -4,9 +4,13 @@ type classes = {
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical?: string,
   /** Styles applied to the flex container element. */
+  /** @deprecated use `list` instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details. */
   flexContainer?: string,
   /** Styles applied to the flex container element if `orientation="vertical"`. */
+  /** @deprecated use a combination of `list` and `vertical` instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details. */
   flexContainerVertical?: string,
+  /** Styles applied to the list element. */
+  list?: string,
   /** Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
   centered?: string,
   /** Styles applied to the tablist element. */
@@ -33,13 +37,65 @@ type tabsActions = {
 }
 
 type slots = {
-  @as("StartScrollButtonIcon") startScrollButtonIcon?: React.element,
-  @as("EndScrollButtonIcon") endScrollButtonIcon?: React.element,
+  /**
+    * The component used for the root.
+    * @default div
+    */
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the scroller.
+    * @default div
+    */
+  scroller?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the list.
+    * @default div
+    */
+  list?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the scrollbar.
+    * @default ScrollbarSize
+    */
+  scrollbar?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the tab indicator.
+    * @default span
+    */
+  indicator?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the scroll button.
+    * @default TabScrollButton
+    */
+  scrollButtons?: OverridableComponent.t<TabScrollButton.props>,
+  /**
+    * The component used for the start scroll button icon.
+    * @default KeyboardArrowLeft
+    */
+  @as("startScrollButtonIcon")
+  startScrollButtonIconSlot?: OverridableComponent.t<SvgIcon.props>,
+  /**
+    * The component used for the end scroll button icon.
+    * @default KeyboardArrowRight
+    */
+  @as("endScrollButtonIcon")
+  endScrollButtonIconSlot?: OverridableComponent.t<SvgIcon.props>,
+  /** @deprecated Use `startScrollButtonIconSlot` instead. */
+  @as("StartScrollButtonIcon")
+  startScrollButtonIconLegacy?: OverridableComponent.t<SvgIcon.props>,
+  /** @deprecated Use `endScrollButtonIconSlot` instead. */
+  @as("EndScrollButtonIcon")
+  endScrollButtonIconLegacy?: OverridableComponent.t<SvgIcon.props>,
 }
 
-type slotProps<'value> = {
-  startScrollButtonIcon?: 'value,
-  endScrollButtonIcon?: 'value,
+type slotProps = {
+  root?: JsxDOM.domProps,
+  scroller?: JsxDOM.domProps,
+  list?: JsxDOM.domProps,
+  scrollbar?: JsxDOM.domProps,
+  indicator?: JsxDOM.domProps,
+  scrollButtons?: TabScrollButton.props,
+  startScrollButtonIcon?: SvgIcon.props,
+  endScrollButtonIcon?: SvgIcon.props,
 }
 
 @unboxed
@@ -105,7 +161,7 @@ type publicProps = {
     * You can override the existing props or add new ones.
     * @default {}
     */
-  slotProps?: slotProps<unknown>,
+  slotProps?: slotProps,
   /**
     * Determines the color of the indicator.
     * @default 'primary'

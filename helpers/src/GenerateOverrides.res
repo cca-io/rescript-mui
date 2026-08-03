@@ -53,18 +53,24 @@ let getComponentsWithClasses = path => {
               typeName->Js.String2.charAt(0)->Js.String2.toLowerCase ++
               typeName->Js.String2.sliceToEnd(~from=1) ++ "ClassKey"
 
-            let havePropsTypeParameter =
-              fileByLines->Array.getIndexBy(line =>
-                line->Js.String2.startsWith("type props<'value> = {")
-              )
+            let propsTypeArguments =
+              switch fileByLines->Array.getIndexBy(line =>
+                line->Js.String2.startsWith("type props<")
+              ) {
+              | Some(index) =>
+                // Use an abstract type for every parameter since overrides don't know
+                // which concrete values a component instance will receive.
+                let unknowns =
+                  fileByLines->Array.getExn(index)
+                  ->Js.String2.split(",")
+                  ->Array.map(_ => "unknown")
+                  ->Js.Array2.joinWith(", ")
+                `<${unknowns}>`
+              | None => ""
+              }
 
-            let muiName = switch havePropsTypeParameter {
-            | Some(_) =>
-              // Using an abstract type here since we don't know the type parameter.
-              `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props<unknown>>,`
-            | None =>
-              `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props>,`
-            }
+            let muiName =
+              `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props${propsTypeArguments}>,`
 
             let classesBody = " = {\n" ++ classes->Js.Array2.joinWith("\n") ++ "\n}\n"
 

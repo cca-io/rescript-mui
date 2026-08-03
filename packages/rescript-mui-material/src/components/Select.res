@@ -1,10 +1,14 @@
 type classes = {
+  /** Styles applied to the root element. */
+  root?: string,
   /** Styles applied to the select component `select` class. */
   select?: string,
   /** Styles applied to the select component if `multiple={true}`. */
   multiple?: string,
   /** Styles applied to the select component if `variant="filled"`. */
   filled?: string,
+  /** Styles applied to the select component if it is focused. */
+  focused?: string,
   /** Styles applied to the select component if `variant="outlined"`. */
   outlined?: string,
   /** Styles applied to the select component if `variant="standard"`. */
@@ -15,11 +19,17 @@ type classes = {
   icon?: string,
   /** Styles applied to the icon component if the popup is open. */
   iconOpen?: string,
-  /** Styles applied to the icon component if `variant="filled"`. */
+  /** Styles applied to the icon component if `variant="filled"`.
+  * @deprecated Combine the [.MuiSelect-icon](/material-ui/api/select/#select-classes-MuiSelect-icon) and [.MuiSelect-filled](/material-ui/api/select/#select-classes-MuiSelect-filled) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+  */
   iconFilled?: string,
-  /** Styles applied to the icon component if `variant="outlined"`. */
+  /** Styles applied to the icon component if `variant="outlined"`.
+  * @deprecated Combine the [.MuiSelect-icon](/material-ui/api/select/#select-classes-MuiSelect-icon) and [.MuiSelect-outlined](/material-ui/api/select/#select-classes-MuiSelect-outlined) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+  */
   iconOutlined?: string,
-  /** Styles applied to the icon component if `variant="standard"`. */
+  /** Styles applied to the icon component if `variant="standard"`.
+  * @deprecated Combine the [.MuiSelect-icon](/material-ui/api/select/#select-classes-MuiSelect-icon) and [.MuiSelect-standard](/material-ui/api/select/#select-classes-MuiSelect-standard) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+  */
   iconStandard?: string,
   /** Styles applied to the underlying native input component. */
   nativeInput?: string,
