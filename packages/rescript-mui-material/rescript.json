@@ -11,12 +11,11 @@
     "module": "esmodule",
     "in-source": true
   },
-  "bs-dependencies": ["@rescript/react"],
+  "dependencies": ["@rescript/react"],
   "warnings": {
     "number": "-103"
   },
   "jsx": {
-    "version": 4,
-    "mode": "automatic"
+    "version": 4
   }
 }

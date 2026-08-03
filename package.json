@@ -14,12 +14,12 @@
   },
   "packageManager": "yarn@4.18.0",
   "scripts": {
-    "build": "rewatch build .",
-    "clean": "rewatch clean .",
-    "format": "rescript format -all",
-    "watch": "rewatch watch .",
+    "build": "rescript build",
+    "clean": "rescript clean",
+    "format": "rescript format",
+    "watch": "rescript watch",
     "start": "cd examples && parcel serve src/index.html",
-    "generateOverrides": "node helpers/src/GenerateOverrides.bs.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
+    "generateOverrides": "node helpers/src/GenerateOverrides.res.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
     "publishLab": "yarn clean && cd packages/rescript-mui-lab && npm publish --access public",
     "publishMui": "yarn clean && cd packages/rescript-mui-material && npm publish --access public",
     "publishSystem": "yarn clean && cd packages/rescript-mui-system && npm publish --access public",
@@ -32,8 +32,7 @@
     "@mui/x-date-pickers": "^7.27.3",
     "@rescript/react": "^0.12.1",
     "@rescript/tools": "^0.6.6",
-    "@rolandpeelen/rewatch": "^1.2.0",
-    "parcel": "^2.13.3",
-    "rescript": "^11.1.4"
+    "parcel": "^2.16.4",
+    "rescript": "^12.3.0"
   }
 }

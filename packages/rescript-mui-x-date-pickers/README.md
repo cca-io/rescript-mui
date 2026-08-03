@@ -15,7 +15,7 @@ npm install @rescript-mui/material @rescript-mui/x-date-pickers
 
 ```json
 {
-  "bs-dependencies": ["@rescript-mui/material", "@rescript-mui/x-date-pickers"]
+  "dependencies": ["@rescript-mui/material", "@rescript-mui/x-date-pickers"]
 }
 ```
 

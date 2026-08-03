@@ -1,10 +1,14 @@
 {
-    "name": "helpers",
-    "namespace": false,
-    "sources": [
-      {
-        "dir": "src",
-        "subdirs": true
-      }
-    ]
+  "name": "helpers",
+  "namespace": false,
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "esmodule",
+    "in-source": true
   }
+}
