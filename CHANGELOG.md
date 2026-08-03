@@ -14,6 +14,11 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 6.1.0
+
+- :rocket: Add MUI container-query helpers to `Theme`, including named container queries.
+- :rocket: Expand `Typography` colors with the complete MUI v6 palette token set and a custom string escape hatch.
+
 ## 6.0.0
 
 - :boom: Update `@rescript-mui/material` and `@rescript-mui/lab` to MUI v6 peer dependencies.

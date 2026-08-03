@@ -101,6 +101,32 @@ const getNextDevVersion = (pkgName, baseVersion) => {
   return `${baseVersion}-dev.${max + 1}`;
 };
 
+const getMajorVersion = (version) => {
+  const major = Number(version.split(".")[0]);
+  if (!Number.isInteger(major) || major < 0) {
+    throw new Error(`Cannot determine major version from ${version}`);
+  }
+  return major;
+};
+
+const getReleaseDistTag = (pkgName, version) => {
+  const overriddenDistTag = process.env.RELEASE_DIST_TAG;
+  if (overriddenDistTag) return overriddenDistTag;
+
+  if (version.includes("-")) return "next";
+
+  const releaseMajor = getMajorVersion(version);
+  try {
+    const latestVersion = run(`npm view ${pkgName} dist-tags.latest`);
+    const latestMajor = getMajorVersion(latestVersion);
+    if (releaseMajor < latestMajor) return `latest-v${releaseMajor}`;
+  } catch {
+    console.warn(`Failed to read the latest dist-tag for ${pkgName}`);
+  }
+
+  return "latest";
+};
+
 const publishPackage = ({ path, name }, shouldPublish) => {
   if (!shouldPublish) {
     console.log(`No changes in ${name}; skipping`);
@@ -110,7 +136,7 @@ const publishPackage = ({ path, name }, shouldPublish) => {
   const pkgJson = readPackageJson(path);
   const baseVersion = pkgJson.version;
   let targetVersion = baseVersion;
-  let distTag = "latest";
+  let distTag;
 
   if (isTag) {
     if (tagVersion !== baseVersion) {
@@ -118,6 +144,7 @@ const publishPackage = ({ path, name }, shouldPublish) => {
         `Tag ${tagVersion} does not match ${name} version ${baseVersion}`
       );
     }
+    distTag = getReleaseDistTag(name, targetVersion);
   } else {
     distTag = "next";
     targetVersion = getNextDevVersion(name, baseVersion);
