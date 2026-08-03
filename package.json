@@ -6,7 +6,6 @@
     "helpers",
     "packages/rescript-mui-material",
     "packages/rescript-mui-lab",
-    "packages/rescript-mui-system",
     "packages/rescript-mui-x-date-pickers"
   ],
   "engines": {
@@ -22,7 +21,6 @@
     "generateOverrides": "node helpers/src/GenerateOverrides.res.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
     "publishLab": "yarn clean && cd packages/rescript-mui-lab && npm publish --access public",
     "publishMui": "yarn clean && cd packages/rescript-mui-material && npm publish --access public",
-    "publishSystem": "yarn clean && cd packages/rescript-mui-system && npm publish --access public",
     "publishDatePickers": "yarn clean && cd packages/rescript-mui-x-date-pickers && npm publish --access public"
   },
   "devDependencies": {

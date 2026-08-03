@@ -17,7 +17,7 @@ title: Changelog
 ## 9.0.0 (Unreleased)
 
 - :boom: Update ReScript to v12 and `@rescript/react` to v0.15.0.
-- :boom: Update `@rescript-mui/material`, `@rescript-mui/lab`, `@rescript-mui/system` and `@rescript-mui/x-date-pickers` to MUI v9 peer dependencies.
+- :boom: Update `@rescript-mui/material`, `@rescript-mui/lab` and `@rescript-mui/x-date-pickers` to MUI v9 peer dependencies.
 - :boom: Remove Typography color dot notation; use the `sx` prop instead.
 - :boom: Remove standalone system props; use the `sx` prop instead.
 - :boom: Remove `GridLegacy`.

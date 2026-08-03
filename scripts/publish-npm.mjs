@@ -22,10 +22,6 @@ const packages = [
     name: "@rescript-mui/lab",
   },
   {
-    path: "packages/rescript-mui-system",
-    name: "@rescript-mui/system",
-  },
-  {
     path: "packages/rescript-mui-x-date-pickers",
     name: "@rescript-mui/x-date-pickers",
   },
@@ -79,7 +75,6 @@ const getChangedPaths = () => {
       return [
         "packages/rescript-mui-material/",
         "packages/rescript-mui-lab/",
-        "packages/rescript-mui-system/",
         "packages/rescript-mui-x-date-pickers/",
       ];
     }
@@ -88,7 +83,6 @@ const getChangedPaths = () => {
   return [
     "packages/rescript-mui-material/",
     "packages/rescript-mui-lab/",
-    "packages/rescript-mui-system/",
     "packages/rescript-mui-x-date-pickers/",
   ];
 };
@@ -113,15 +107,6 @@ const sharedLabReleasePaths = [
   "packages/rescript-mui-lab/",
 ];
 
-const sharedSystemReleasePaths = [
-  "package.json",
-  "yarn.lock",
-  ".github/workflows/ci.yml",
-  "scripts/publish-npm.mjs",
-  "packages/rescript-mui-material/",
-  "packages/rescript-mui-system/",
-];
-
 const sharedDatePickersReleasePaths = [
   "package.json",
   "yarn.lock",
@@ -130,6 +115,17 @@ const sharedDatePickersReleasePaths = [
   "packages/rescript-mui-material/",
   "packages/rescript-mui-x-date-pickers/",
 ];
+
+const getDistTagVersion = (pkgName, tag) => {
+  try {
+    const output = run(`npm dist-tag ls ${pkgName}`);
+    const prefix = `${tag}: `;
+    const line = output.split("\n").find((entry) => entry.startsWith(prefix));
+    return line ? line.slice(prefix.length).trim() : "";
+  } catch {
+    return "";
+  }
+};
 
 const getNextDevVersion = (pkgName, baseVersion) => {
   if (dryRun) return `${baseVersion}-dev.1`;
@@ -142,6 +138,14 @@ const getNextDevVersion = (pkgName, baseVersion) => {
   } catch {
     console.warn(`Failed to read npm versions for ${pkgName}`);
     versions = [];
+  }
+
+  // A package's dist-tags can become visible before its full packument after
+  // the first publish. Include `next` so a follow-up run does not try to reuse
+  // the version that was just published.
+  const nextVersion = getDistTagVersion(pkgName, "next");
+  if (nextVersion && !versions.includes(nextVersion)) {
+    versions.push(nextVersion);
   }
 
   const prefix = `${baseVersion}-dev.`;
@@ -206,13 +210,7 @@ const createPublishPlan = ({ path, name }, shouldPublish) => {
   return { path, name, shouldPublish, baseVersion, targetVersion, distTag };
 };
 
-const getNextVersion = (pkgName) => {
-  try {
-    return run(`npm view ${pkgName} dist-tags.next`);
-  } catch {
-    return "";
-  }
-};
+const getNextVersion = (pkgName) => getDistTagVersion(pkgName, "next");
 
 const publishPackage = (plan, materialDevVersion) => {
   const { path, name, shouldPublish, targetVersion, distTag } = plan;
@@ -276,9 +274,6 @@ const changedMaterial =
 const changedLab =
   isTag ||
   changedIn(changedPaths, sharedLabReleasePaths);
-const changedSystem =
-  isTag ||
-  changedIn(changedPaths, sharedSystemReleasePaths);
 const changedDatePickers =
   isTag ||
   changedIn(changedPaths, sharedDatePickersReleasePaths);
@@ -286,8 +281,7 @@ const changedDatePickers =
 const publishPlans = [
   createPublishPlan(packages[0], changedMaterial),
   createPublishPlan(packages[1], changedLab),
-  createPublishPlan(packages[2], changedSystem),
-  createPublishPlan(packages[3], changedDatePickers),
+  createPublishPlan(packages[2], changedDatePickers),
 ];
 
 const materialDevVersion = isTag
