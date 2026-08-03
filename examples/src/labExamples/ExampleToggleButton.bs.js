@@ -4,7 +4,7 @@ import * as React from "react";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import Box from "@mui/material/Box";
 import * as JsxRuntime from "react/jsx-runtime";
-import Grid2 from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import ToggleButton from "@mui/material/ToggleButton";
 import FormatBold from "@mui/icons-material/FormatBold";
@@ -51,9 +51,9 @@ function ExampleToggleButton(props) {
   var handleFormats = function (param, v) {
     setFormats(v);
   };
-  return JsxRuntime.jsxs(Grid2, {
+  return JsxRuntime.jsxs(Grid, {
               children: [
-                JsxRuntime.jsxs(Grid2, {
+                JsxRuntime.jsxs(Grid, {
                       children: [
                         JsxRuntime.jsx(Box, {
                               mb: 2,
@@ -96,7 +96,7 @@ function ExampleToggleButton(props) {
                         sm: 12
                       }
                     }),
-                JsxRuntime.jsxs(Grid2, {
+                JsxRuntime.jsxs(Grid, {
                       children: [
                         JsxRuntime.jsx(Box, {
                               mb: 2,

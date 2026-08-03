@@ -179,5 +179,5 @@ type props = {
   wrap?: gridWrap,
 }
 
-@module("@mui/material/Grid2")
+@module("@mui/material/Grid")
 external make: React.component<props> = "default"

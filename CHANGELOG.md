@@ -14,6 +14,8 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 7.0.0 (Unreleased)
+
 ## 6.1.0
 
 - :rocket: Add MUI container-query helpers to `Theme`, including named container queries.

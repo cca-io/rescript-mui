@@ -4,7 +4,7 @@ import * as React from "react";
 import * as Caml_format from "rescript/lib/es6/caml_format.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as JsxRuntime from "react/jsx-runtime";
-import Grid2 from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid";
 import Input from "@mui/material/Input";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
@@ -24,13 +24,13 @@ function ExampleSlider(props) {
                       gutterBottom: true,
                       children: "Volume"
                     }),
-                JsxRuntime.jsxs(Grid2, {
+                JsxRuntime.jsxs(Grid, {
                       alignItems: "center",
                       children: [
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(VolumeUp, {}))
                             }),
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(Slider, {
                                         "aria-labelledby": "input-slider",
                                         onChange: (function (param, v, param$1) {
@@ -42,7 +42,7 @@ function ExampleSlider(props) {
                                 xs: "grow"
                               }
                             }),
-                        JsxRuntime.jsx(Grid2, {
+                        JsxRuntime.jsx(Grid, {
                               children: Caml_option.some(JsxRuntime.jsx(Input, {
                                         inputProps: {
                                           "aria-labelledby": "input-slider",
