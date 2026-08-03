@@ -1,9 +1,8 @@
-
 @unboxed
 type styles =
   | SystemProps(System.props)
   | String(string)
-  
+
 type props = {
   ...CommonProps.t_NoRef,
   styles: styles,

@@ -1661,8 +1661,8 @@ __metadata:
     "@mui/material": ^9.2.0
     "@rescript-mui/material": ^9.0.0
     "@rescript/react": ^0.15.0
-    react: ^19.0.0
-    react-dom: ^19.0.0
+    react: ">=19.2.0"
+    react-dom: ">=19.2.0"
     rescript: ^12.0.0
   languageName: unknown
   linkType: soft
@@ -1673,8 +1673,8 @@ __metadata:
   peerDependencies:
     "@mui/material": ^9.2.0
     "@rescript/react": ^0.15.0
-    react: ^19.0.0
-    react-dom: ^19.0.0
+    react: ">=19.2.0"
+    react-dom: ">=19.2.0"
     rescript: ^12.0.0
   languageName: unknown
   linkType: soft
@@ -1685,9 +1685,10 @@ __metadata:
   peerDependencies:
     "@mui/material": ^9.2.0
     "@mui/system": ^9.2.0
+    "@rescript-mui/material": ^9.0.0
     "@rescript/react": ^0.15.0
-    react: ^19.0.0
-    react-dom: ^19.0.0
+    react: ">=19.2.0"
+    react-dom: ">=19.2.0"
     rescript: ^12.0.0
   languageName: unknown
   linkType: soft
@@ -1700,8 +1701,8 @@ __metadata:
     "@mui/x-date-pickers": ^9.10.1
     "@rescript-mui/material": ^9.0.0
     "@rescript/react": ^0.15.0
-    react: ^19.0.0
-    react-dom: ^19.0.0
+    react: ">=19.2.0"
+    react-dom: ">=19.2.0"
     rescript: ^12.0.0
   languageName: unknown
   linkType: soft

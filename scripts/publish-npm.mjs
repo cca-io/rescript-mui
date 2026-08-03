@@ -7,6 +7,7 @@ import { resolve } from "node:path";
 const ref = process.env.GITHUB_REF || "";
 const sha = process.env.GITHUB_SHA || "";
 const eventPath = process.env.GITHUB_EVENT_PATH || "";
+const dryRun = process.env.PUBLISH_DRY_RUN === "true";
 
 const isTag = ref.startsWith("refs/tags/v");
 const tagVersion = isTag ? ref.replace("refs/tags/v", "") : null;
@@ -19,6 +20,14 @@ const packages = [
   {
     path: "packages/rescript-mui-lab",
     name: "@rescript-mui/lab",
+  },
+  {
+    path: "packages/rescript-mui-system",
+    name: "@rescript-mui/system",
+  },
+  {
+    path: "packages/rescript-mui-x-date-pickers",
+    name: "@rescript-mui/x-date-pickers",
   },
 ];
 
@@ -70,6 +79,8 @@ const getChangedPaths = () => {
       return [
         "packages/rescript-mui-material/",
         "packages/rescript-mui-lab/",
+        "packages/rescript-mui-system/",
+        "packages/rescript-mui-x-date-pickers/",
       ];
     }
   }
@@ -77,6 +88,8 @@ const getChangedPaths = () => {
   return [
     "packages/rescript-mui-material/",
     "packages/rescript-mui-lab/",
+    "packages/rescript-mui-system/",
+    "packages/rescript-mui-x-date-pickers/",
   ];
 };
 
@@ -100,7 +113,27 @@ const sharedLabReleasePaths = [
   "packages/rescript-mui-lab/",
 ];
 
+const sharedSystemReleasePaths = [
+  "package.json",
+  "yarn.lock",
+  ".github/workflows/ci.yml",
+  "scripts/publish-npm.mjs",
+  "packages/rescript-mui-material/",
+  "packages/rescript-mui-system/",
+];
+
+const sharedDatePickersReleasePaths = [
+  "package.json",
+  "yarn.lock",
+  ".github/workflows/ci.yml",
+  "scripts/publish-npm.mjs",
+  "packages/rescript-mui-material/",
+  "packages/rescript-mui-x-date-pickers/",
+];
+
 const getNextDevVersion = (pkgName, baseVersion) => {
+  if (dryRun) return `${baseVersion}-dev.1`;
+
   let versions = [];
   try {
     const raw = run(`npm view ${pkgName} versions --json`);
@@ -134,6 +167,7 @@ const getReleaseDistTag = (pkgName, version) => {
   if (overriddenDistTag) return overriddenDistTag;
 
   if (version.includes("-")) return "next";
+  if (dryRun) return "latest";
 
   const releaseMajor = getMajorVersion(version);
   try {
@@ -147,16 +181,15 @@ const getReleaseDistTag = (pkgName, version) => {
   return "latest";
 };
 
-const publishPackage = ({ path, name }, shouldPublish) => {
-  if (!shouldPublish) {
-    console.log(`No changes in ${name}; skipping`);
-    return;
-  }
-
+const createPublishPlan = ({ path, name }, shouldPublish) => {
   const pkgJson = readPackageJson(path);
   const baseVersion = pkgJson.version;
   let targetVersion = baseVersion;
   let distTag;
+
+  if (!shouldPublish) {
+    return { path, name, shouldPublish, baseVersion, targetVersion, distTag };
+  }
 
   if (isTag) {
     if (tagVersion !== baseVersion) {
@@ -170,7 +203,26 @@ const publishPackage = ({ path, name }, shouldPublish) => {
     targetVersion = getNextDevVersion(name, baseVersion);
   }
 
-  if (fileExistsOnNpm(name, targetVersion)) {
+  return { path, name, shouldPublish, baseVersion, targetVersion, distTag };
+};
+
+const getNextVersion = (pkgName) => {
+  try {
+    return run(`npm view ${pkgName} dist-tags.next`);
+  } catch {
+    return "";
+  }
+};
+
+const publishPackage = (plan, materialDevVersion) => {
+  const { path, name, shouldPublish, targetVersion, distTag } = plan;
+  if (!shouldPublish) {
+    console.log(`No changes in ${name}; skipping`);
+    return;
+  }
+  const pkgJson = readPackageJson(path);
+
+  if (!dryRun && fileExistsOnNpm(name, targetVersion)) {
     console.log(`${name}@${targetVersion} already exists, skipping`);
     return;
   }
@@ -190,12 +242,31 @@ const publishPackage = ({ path, name }, shouldPublish) => {
   cpSync(path, tempPkgPath, { recursive: true });
   rmSync(join(tempPkgPath, "node_modules"), { recursive: true, force: true });
   pkgJson.version = targetVersion;
+  if (
+    !isTag &&
+    name !== "@rescript-mui/material" &&
+    pkgJson.peerDependencies?.["@rescript-mui/material"] &&
+    materialDevVersion
+  ) {
+    pkgJson.peerDependencies["@rescript-mui/material"] = materialDevVersion;
+  }
   writePackageJson(tempPkgPath, pkgJson);
-  execSync(`npm publish --access public --tag ${distTag} --provenance`, {
-    cwd: tempPkgPath,
-    stdio: "inherit",
-    env: npmEnv,
-  });
+  if (dryRun) {
+    console.log(
+      `Dry run: ${name}@${targetVersion} (${distTag}), material peer ${pkgJson.peerDependencies?.["@rescript-mui/material"] || "n/a"}`
+    );
+    rmSync(publishRoot, { recursive: true, force: true });
+    return;
+  }
+  try {
+    execSync(`npm publish --access public --tag ${distTag} --provenance`, {
+      cwd: tempPkgPath,
+      stdio: "inherit",
+      env: npmEnv,
+    });
+  } finally {
+    rmSync(publishRoot, { recursive: true, force: true });
+  }
 };
 
 const changedPaths = getChangedPaths();
@@ -205,6 +276,26 @@ const changedMaterial =
 const changedLab =
   isTag ||
   changedIn(changedPaths, sharedLabReleasePaths);
+const changedSystem =
+  isTag ||
+  changedIn(changedPaths, sharedSystemReleasePaths);
+const changedDatePickers =
+  isTag ||
+  changedIn(changedPaths, sharedDatePickersReleasePaths);
 
-publishPackage(packages[0], changedMaterial);
-publishPackage(packages[1], changedLab);
+const publishPlans = [
+  createPublishPlan(packages[0], changedMaterial),
+  createPublishPlan(packages[1], changedLab),
+  createPublishPlan(packages[2], changedSystem),
+  createPublishPlan(packages[3], changedDatePickers),
+];
+
+const materialDevVersion = isTag
+  ? ""
+  : publishPlans[0].shouldPublish
+    ? publishPlans[0].targetVersion
+    : getNextVersion("@rescript-mui/material");
+
+for (const plan of publishPlans) {
+  publishPackage(plan, materialDevVersion);
+}

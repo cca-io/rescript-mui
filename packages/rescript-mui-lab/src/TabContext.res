@@ -1,3 +1,8 @@
+@unboxed
+type value =
+  | Int(int)
+  | String(string)
+
 type props = {
   ...Mui.CommonProps.t_NoRef,
   /**
@@ -7,7 +12,7 @@ type props = {
   /**
     * The value of the currently selected `Tab`.
     */
-  value: string,
+  value: value,
 }
 
 @module("@mui/lab/TabContext")

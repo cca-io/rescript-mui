@@ -7,6 +7,7 @@ type fieldSectionType =
   | @as("minutes") Minutes
   | @as("seconds") Seconds
   | @as("meridiem") Meridiem
+  | @as("empty") Empty
 
 type fieldSectionContentType =
   | @as("digit") Digit
@@ -56,12 +57,6 @@ type fieldSection = {
   /**
    * If `true`, the value of this section is supposed to have leading zeroes when parsed by the date library.
    * For example, the value `1` should be rendered as "01" instead of "1".
-   * @deprecated Will be removed in v7, use `hasLeadingZerosInFormat` instead.
-   */
-  hasLeadingZeros: bool,
-  /**
-   * If `true`, the value of this section is supposed to have leading zeroes when parsed by the date library.
-   * For example, the value `1` should be rendered as "01" instead of "1".
    */
   hasLeadingZerosInFormat: bool,
   /**
@@ -80,24 +75,6 @@ type fieldSection = {
    */
   modified: bool,
   /**
-   * Start index of the section in the format
-   */
-  start: int,
-  /**
-   * End index of the section in the format
-   */
-  end: int,
-  /**
-   * Start index of the section value in the input.
-   * Takes into account invisible unicode characters such as \u2069 but does not include them
-   */
-  startInInput: int,
-  /**
-   * End index of the section value in the input.
-   * Takes into account invisible unicode characters such as \u2069 but does not include them
-   */
-  endInInput: int,
-  /**
    * Separator displayed before the value of the section in the input.
    * If it contains escaped characters, then it must not have the escaping characters.
    * For example, on Day.js, the `year` section of the format `YYYY [year]` has an end separator equal to `year` not `[year]`
@@ -109,4 +86,6 @@ type fieldSection = {
    * For example, on Day.js, the `year` section of the format `[year] YYYY` has a start separator equal to `[year]`
    */
   endSeparator: string,
+  /** Whether `endSeparator` is a format separator such as `/` or `:`. */
+  isEndFormatSeparator?: bool,
 }

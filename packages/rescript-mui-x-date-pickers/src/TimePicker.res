@@ -16,9 +16,15 @@ type props<'date> = {
   /** The date used to generate the new value when both `value` and `defaultValue` are empty. */
   referenceDate?: 'date,
   /** Callback fired when the value changes. */
-  onChange?: (Common.dateValue<'date>, option<Common.pickerSelectionState>) => unit,
+  onChange?: (
+    Common.dateValue<'date>,
+    Common.pickerChangeHandlerContext<Nullable.t<string>>,
+  ) => unit,
   /** Callback fired when the value is accepted. */
-  onAccept?: Common.dateValue<'date> => unit,
+  onAccept?: (
+    Common.dateValue<'date>,
+    Common.pickerChangeHandlerContext<Nullable.t<string>>,
+  ) => unit,
   /** Callback fired when the error associated with the current value changes. */
   onError?: (Nullable.t<string>, Common.dateValue<'date>) => unit,
   /** Choose which timezone to use for the value. */

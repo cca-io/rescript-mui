@@ -47,9 +47,12 @@ npm install @rescript-mui/material @rescript-mui/x-date-pickers
 - [x] MonthCalendar
 - [x] MultiSectionDigitalClock
 - [x] PickersActionBar
-- [x] PickersDay
+- [x] PickersCalendarHeader
+- [x] PickerDay
 - [x] PickersLayout
+- [x] Unstable_PickersSectionList
 - [x] PickersShortcuts
+- [x] PickersTextField
 - [x] StaticDatePicker
 - [x] StaticDateTimePicker
 - [x] StaticTimePicker

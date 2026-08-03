@@ -23,7 +23,7 @@ type props = {
     * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
     * no `value` was passed to `Tab`.
     */
-  value: string,
+  value: TabContext.value,
   /**
     * If `true`, keeps the contents of the hidden TabPanel in the DOM.
     * @default false

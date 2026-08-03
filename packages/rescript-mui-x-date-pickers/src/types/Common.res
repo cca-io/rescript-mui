@@ -42,6 +42,19 @@ type pickerSelectionState =
   | @as("shallow") Shallow
   | @as("finish") Finish
 
+type pickerChangeSource = [#field | #view | #unknown]
+
+type pickerShortcutContext = {
+  label: string,
+  id?: string,
+}
+
+type pickerChangeHandlerContext<'error> = {
+  validationError: 'error,
+  source: pickerChangeSource,
+  shortcut?: pickerShortcutContext,
+}
+
 @unboxed
 type dateValue<'date> =
   | @as(null) Null
@@ -64,6 +77,7 @@ type fieldSectionType =
   | @as("minutes") Minutes
   | @as("seconds") Seconds
   | @as("meridiem") Meridiem
+  | @as("empty") Empty
 
 type fieldSectionContentType =
   | @as("digit") Digit
@@ -75,11 +89,9 @@ type fieldValueType =
   | @as("time") Time
   | @as("date-time") DateTime
 
-type indexObj = {startIndex: int, endIndex: int}
-
 @unboxed
 type fieldSelectedSections =
-  | Number(float)
+  | Number(int)
   | @as(null) Null
   | @as("all") All
   | @as("year") Year
@@ -90,7 +102,7 @@ type fieldSelectedSections =
   | @as("minutes") Minutes
   | @as("seconds") Seconds
   | @as("meridiem") Meridiem
-  | Index(indexObj)
+  | @as("empty") Empty
 
 type baseDateValidationProps<'date> = {
   /**
