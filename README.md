@@ -46,6 +46,40 @@ See [documentation](./documentation/README.md).
 
 See [CHANGELOG](./CHANGELOG.md).
 
+## Maintenance scripts
+
+The [`scripts/`](./scripts/) folder contains two Node helpers used when bumping the bindings to a new MUI version. Both read the actual TypeScript definitions from the installed `@mui/material` package, so first run `yarn install` with the target MUI version, then run them **from the repository root**.
+
+### `scripts/gen-classes.mjs`
+
+Regenerates the `type classes = {...}` block of material components from the real `@mui/material/<Component>/<component>Classes.d.ts` files (doc comments included). Useful whenever MUI adds, removes or renames CSS classes.
+
+```sh
+# dry-run: print the generated block for every component (nothing is written)
+node scripts/gen-classes.mjs
+
+# dry-run for specific components only
+node scripts/gen-classes.mjs Button Chip
+
+# write the changes into the .res files
+node scripts/gen-classes.mjs --apply Button Chip
+
+# ...or regenerate every component at once
+node scripts/gen-classes.mjs --apply
+```
+
+After running with `--apply`, rebuild (`yarn build`) and regenerate the theme overrides (`yarn generateOverrides`) so the `*ClassKey` types stay in sync.
+
+### `scripts/prop-diff2.mjs`
+
+Reports props that exist in the current MUI `.d.ts` but are missing from a binding. It reads each material component's own props (resolving ReScript record spreads such as `...Paper.publicProps` transitively) and diffs them against the component's own-props interface in the `.d.ts`.
+
+```sh
+node scripts/prop-diff2.mjs
+```
+
+Every line lists a component and the props it is missing; no output means everything is in sync. It cannot inspect components whose props are a plain type alias without an `OwnProps`/`Props` interface (e.g. `Box`, `Select`) — those need a manual check.
+
 ## Contributing
 
 See [CONTRIBUTING](./CONTRIBUTING.md).

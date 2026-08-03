@@ -1,4 +1,3 @@
-open Belt
 open NodeJs
 
 let getComponentsWithClasses = path => {
@@ -8,67 +7,79 @@ let getComponentsWithClasses = path => {
 
   let classKeys =
     components
-    ->Array.keepMap(filename =>
-      if filename->Js.String2.endsWith(".res") {
+    ->Array.filterMap(filename =>
+      if filename->String.endsWith(".res") {
         let fileContent = Fs.readFileSync(Path.join([path, filename]), {encoding: "utf8"})
-        let fileByLines = fileContent->Js.String2.split("\n")
+        let fileByLines = fileContent->String.split("\n")
 
         let classesBegin =
-          fileByLines->Array.getIndexBy(line => line->Js.String2.startsWith("type classes = {"))
+          fileByLines->Array.findIndexOpt(line => line->String.startsWith("type classes = {"))
 
         switch classesBegin {
         | None => None
         | Some(begin) =>
-          let beginSlice = fileByLines->Array.sliceToEnd(begin)
-          let classesEnd = beginSlice->Array.getIndexBy(line => line->Js.String2.startsWith("}"))
+          let beginSlice = fileByLines->Array.slice(~start=begin)
+          let classesEnd = beginSlice->Array.findIndexOpt(line => line->String.startsWith("}"))
 
           switch classesEnd {
           | None => None
           | Some(end) =>
             let classes =
               beginSlice
-              ->Array.slice(~offset=1, ~len=end - 1)
-              ->Array.map(Js.String.trim)
-              ->Array.keepMap(line =>
-                line->Js.String2.startsWith("//") ||
-                line->Js.String2.startsWith("/*") ||
-                line->Js.String2.startsWith("*") ||
-                line->Js.String2.startsWith("...")
+              ->Array.slice(~start=1, ~end)
+              ->Array.map(String.trim)
+              ->Array.filterMap(line =>
+                line->String.startsWith("//") ||
+                line->String.startsWith("/*") ||
+                line->String.startsWith("*") ||
+                line->String.startsWith("...")
                   ? None
                   : Some({
                       let newLine =
-                        line->Js.String2.startsWith("color")
+                        line->String.startsWith("color")
                           ? line
-                          : line->Js.String2.replaceByRe(
-                              Js.Re.fromString("string"),
+                          : line->String.replaceRegExp(
+                              RegExp.fromString("string"),
                               "ReactDOM.Style.t",
                             )
                       "  " ++ newLine
                     })
               )
             let typeName =
-              filename->Js.String2.substring(~from=0, ~to_=filename->Js.String2.length - 4)
+              filename->String.substring(~start=0, ~end=filename->String.length - 4)
 
             let typeNameLowercaseFirst =
-              typeName->Js.String2.charAt(0)->Js.String2.toLowerCase ++
-              typeName->Js.String2.sliceToEnd(~from=1) ++ "ClassKey"
+              typeName->String.charAt(0)->String.toLowerCase ++
+              typeName->String.slice(~start=1) ++ "ClassKey"
 
             let havePropsTypeParameter =
-              fileByLines->Array.getIndexBy(line =>
-                line->Js.String2.startsWith("type props<'value> = {")
-              )
+              fileByLines->Array.find(line => line->String.startsWith("type props"))
 
-            let muiName = switch havePropsTypeParameter {
-            | Some(_) =>
-              // Using an abstract type here since we don't know the type parameter.
-              `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props<unknown>>,`
-            | None =>
-              `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props>,`
+            // Emit the right number of `unknown` type arguments based on the props type parameters.
+            let typeArgs = switch havePropsTypeParameter {
+            | None => ""
+            | Some(line) =>
+              let beforeEq = switch line->String.indexOf(" = ") {
+              | -1 => line
+              | idx => line->String.substring(~start=0, ~end=idx)
+              }
+              switch (beforeEq->String.indexOf("<"), beforeEq->String.indexOf(">")) {
+              | (lt, gt) if lt >= 0 && gt > lt =>
+                let count =
+                  beforeEq
+                  ->String.substring(~start=lt + 1, ~end=gt)
+                  ->String.split(",")
+                  ->Array.length
+                "<" ++ Array.make(~length=count, "unknown")->Array.join(", ") ++ ">"
+              | _ => ""
+              }
             }
 
-            let classesBody = " = {\n" ++ classes->Js.Array2.joinWith("\n") ++ "\n}\n"
+            let muiName = `  @as("Mui${typeName}") mui${typeName}?: component<${typeNameLowercaseFirst}, ${typeName}.props${typeArgs}>,`
 
-            muiNames->Js.Array2.push(muiName)->ignore
+            let classesBody = " = {\n" ++ classes->Array.join("\n") ++ "\n}\n"
+
+            muiNames->Array.push(muiName)
 
             Some("type " ++ typeNameLowercaseFirst ++ classesBody)
           }
@@ -77,7 +88,7 @@ let getComponentsWithClasses = path => {
         None
       }
     )
-    ->Js.Array2.joinWith("\n")
+    ->Array.join("\n")
 
   `// This file is generated automatically by helpers/src/GenerateOverrides.res. Do not edit manually!
 
@@ -88,7 +99,7 @@ type component<'classKey, 'props> = {
 
 ${classKeys}
 type t = {
-${muiNames->Js.Array2.joinWith("\n")}
+${muiNames->Array.join("\n")}
 }
 `
 }
