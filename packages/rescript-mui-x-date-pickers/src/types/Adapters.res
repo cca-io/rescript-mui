@@ -162,7 +162,7 @@ type fieldFormatToken
 // | Object(fieldFormatTokenObj)
 // | Field(Fields.fieldSectionType)
 
-type fieldFormatTokenMap = Js.Dict.t<fieldFormatToken>
+type fieldFormatTokenMap = dict<fieldFormatToken>
 
 type meridiem =
   | @as("am") AM
@@ -227,7 +227,7 @@ type muiPickersAdapter<'date, 'locale> = {
    * @param {'date} value The value to convert.
    * @returns {Date} the JavaScript date.
    */
-  toJsDate: Common.dateValue<'date> => Js.Date.t,
+  toJsDate: Common.dateValue<'date> => Date.t,
   /**
    * Parse an iso string into a date in the date library format.
    * @deprecate Will be removed in v7.

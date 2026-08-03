@@ -1,7 +1,10 @@
-// TODO
-type classes
+type displayStaticWrapperAs = [#mobile | #desktop]
 
-type props
+type props<'date> = {
+  ...DateTimePicker.props<'date>,
+  /** Force rendering in particular picker variant. @default 'mobile' */
+  displayStaticWrapperAs?: displayStaticWrapperAs,
+}
 
 @module("@mui/x-date-pickers")
-external make: React.component<props> = "StaticDateTimePicker"
+external make: React.component<props<'date>> = "StaticDateTimePicker"

@@ -74,11 +74,6 @@ type props<'value, 'error, 'inputRef> = {
    */
   formatDensity?: formatDensity,
   /**
-   * Props applied to the [`FormHelperText`](/material-ui/api/form-helper-text/) element.
-   */
-  @as("FormHelperTextProps")
-  formHelperTextProps: Mui.FormHelperText.props,
-  /**
    * If `true`, the input will take up the full width of its container.
    * @default false
    */
@@ -99,24 +94,6 @@ type props<'value, 'error, 'inputRef> = {
    * Use this prop to make `label` and `helperText` accessible for screen readers.
    */
   id?: string,
-  /**
-   * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
-   * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
-   */
-  @as("InputLabelProps")
-  inputLabelProps?: Mui.InputLabel.props,
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   */
-  inputProps?: Mui.InputBase.inputBaseComponentProps,
-  /**
-   * Props applied to the Input element.
-   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
-   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
-   * component depending on the `variant` prop value.
-   */
-  @as("InputProps")
-  inputProps_?: Mui.Input.props<'value, 'inputRef>,
   /**
    * Pass a ref to the `input` element.
    */

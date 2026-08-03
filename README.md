@@ -30,7 +30,7 @@ Have a look at the [examples folder](./examples/).
 | ------------------- | ----------------------------------------------------------------------- | ---------------- | -------: |
 | @mui/material       | [@rescript-mui/material](./packages/rescript-mui-material/)             | Mui              |    100 % |
 | @mui/lab            | [@rescript-mui/lab](./packages/rescript-mui-lab/)                       | MuiLab           |    100 % |
-| @mui/x-date-pickers | [@rescript-mui/x-date-pickers](./packages/rescript-mui-x-date-pickers/) | MuiXDatePickers  |     30 % |
+| @mui/x-date-pickers | [@rescript-mui/x-date-pickers](./packages/rescript-mui-x-date-pickers/) | MuiXDatePickers  |    100 % |
 | @mui/system         | [@rescript-mui/system](./packages/rescript-mui-system/)                 | MuiSystem        |      0 % |
 | @mui/base           | Not implemented!                                                        | MuiBase (?)      |        - |
 | @mui/joy            | Not implemented!                                                        | Joy (?)          |        - |

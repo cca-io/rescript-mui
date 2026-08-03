@@ -1,7 +1,4 @@
-// TODO
-type classes
-
-type props
+type props<'date> = DatePicker.props<'date>
 
 @module("@mui/x-date-pickers")
-external make: React.component<props> = "MobileDatePicker"
+external make: React.component<props<'date>> = "MobileDatePicker"
