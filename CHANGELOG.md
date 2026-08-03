@@ -16,12 +16,26 @@ title: Changelog
 
 ## 9.0.0 (Unreleased)
 
-- :boom: Update `@rescript-mui/material` to v12 and `@rescript/react` to v0.15.0.
+- :boom: Update ReScript to v12 and `@rescript/react` to v0.15.0.
 - :boom: Update `@rescript-mui/material`, `@rescript-mui/lab`, `@rescript-mui/system` and `@rescript-mui/x-date-pickers` to MUI v9 peer dependencies.
-- :boom: Remove Typography color (DOT) notation, working only in sx attribute.
-- :boom: Remove SystemProps, all component use sx attribute.
+- :boom: Remove Typography color dot notation; use the `sx` prop instead.
+- :boom: Remove standalone system props; use the `sx` prop instead.
 - :boom: Remove `GridLegacy`.
-- :rocket: X-Date-Pickers 100% component coverage.
+- :rocket: Expand the MUI X Date Pickers bindings to complete component coverage.
+
+## 7.0.0
+
+- :boom: Update `@rescript-mui/material` and `@rescript-mui/lab` to MUI v7 peer dependencies.
+- :rocket: Add MUI v7 props and slots for `Accordion`, `Autocomplete`, `Avatar`, `AvatarGroup`, `CircularProgress`, `FormControlLabel`, `Grid`, `IconButton`, `Modal`, `Slider`, `SpeedDialIcon`, `TablePagination` and `Tabs`.
+- :rocket: Add MUI Lab v7 support for sequential `Masonry` layout, persistent `TabPanel` content and the `TabList` list slot class.
+- :rocket: Support plain strings in `GlobalStyles` and expose `enableCssLayer` on `StyledEngineProvider`.
+- :bug: Fix the MUI v7 `Grid` module imports.
+- :bug: Synchronize component class keys and theme override types with MUI v7.
+
+## 6.1.0
+
+- :rocket: Add MUI container-query helpers to `Theme`, including named container queries.
+- :rocket: Expand `Typography` colors with the complete MUI v6 palette token set and a custom string escape hatch.
 
 ## 6.0.0
 

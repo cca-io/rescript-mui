@@ -19,9 +19,7 @@ type classes = {
   asterisk?: string,
 }
 
-type slots = {
-  typography?: OverridableComponent.t<Typography.props>,
-}
+type slots = {typography?: OverridableComponent.t<Typography.props>}
 
 type slotProps = {
   /**

@@ -9,11 +9,11 @@ type classes = {
   focused?: string,
   /** Styles applied to the option elements if they are keyboard focused. */
   focusVisible?: string,
-  /** Styles applied to the tag elements, e.g. the chips. */
+  /** Styles applied to the tag elements, for example the chips. */
   tag?: string,
-  /** Styles applied to the tag elements, e.g. the chips if `size="small"`. */
+  /** Styles applied to the tag elements, for example the chips if `size="small"`. */
   tagSizeSmall?: string,
-  /** Styles applied to the tag elements, e.g. the chips if `size="medium"`. */
+  /** Styles applied to the tag elements, for example the chips if `size="medium"`. */
   tagSizeMedium?: string,
   /** Styles applied when the popup icon is rendered. */
   hasPopupIcon?: string,
@@ -116,6 +116,18 @@ type renderGetTagProps = {
   className: string,
   disabled: bool,
   @as("data-tag-index") dataTagIndex: int,
+  tabIndex: int,
+  onDelete: ReactEvent.Synthetic.t => unit,
+}
+
+type renderValueItemArgs = {index?: int}
+type renderValueItemArgsMultiple = {index: int}
+
+type renderValueItemProps = {
+  key?: int,
+  className: string,
+  disabled: bool,
+  @as("data-item-index") dataItemIndex: int,
   tabIndex: int,
   onDelete: ReactEvent.Synthetic.t => unit,
 }
@@ -468,15 +480,6 @@ type autocompleteProps<'value, 'inputRef> = {
     */
   renderOption?: (JsxDOM.domProps, 'value, renderOptionState, ownerState) => React.element,
   /**
-    * Render the selected value.
-    *
-    * @param {Value} value The `value` provided to the component.
-    * @param {function} getItemProps A tag props getter.
-    * @param {object} ownerState The state of the Autocomplete component.
-    * @returns {ReactNode}
-    */
-  renderValue?: (array<'value>, JsxDOM.domProps => renderGetTagProps, ownerState) => React.element,
-  /**
     * If `true`, the input's text is selected on focus.
     * It helps the user clear the selected value.
     * @default !props.freeSolo
@@ -519,6 +522,14 @@ module Multiple = {
       */
     multiple: multiple,
     /**
+      * Render the selected values.
+      */
+    renderValue?: (
+      array<'value>,
+      renderValueItemArgsMultiple => renderValueItemProps,
+      ownerState,
+    ) => React.element,
+    /**
       * Callback fired when the value changes.
       *
       * @param {ReactEvent.Synthetic.t} The event source of the callback.
@@ -557,6 +568,10 @@ type props<'value, 'inputRef> = {
     * @default null
     */
   defaultValue?: Null.t<'value>,
+  /**
+    * Render the selected value.
+    */
+  renderValue?: ('value, renderValueItemArgs => renderValueItemProps, ownerState) => React.element,
   /**
     * Callback fired when the value changes.
     *

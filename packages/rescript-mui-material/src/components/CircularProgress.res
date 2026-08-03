@@ -60,6 +60,11 @@ type props = {
     */
   disableShrink?: bool,
   /**
+    * If `true`, a track circle slot is mounted to show a subtle background for the progress.
+    * @default false
+    */
+  enableTrackSlot?: bool,
+  /**
     * The size of the component.
     * If using a number, the pixel unit is assumed.
     * If using a string, you need to provide the CSS unit, e.g '3rem'.
