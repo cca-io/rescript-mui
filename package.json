@@ -26,11 +26,11 @@
     "publishDatePickers": "yarn clean && cd packages/rescript-mui-x-date-pickers && npm publish --access public"
   },
   "devDependencies": {
-    "@mui/lab": "^6.0.0-beta.30",
-    "@mui/material": "^6.4.4",
-    "@mui/system": "^6.4.7",
-    "@mui/x-date-pickers": "^7.27.3",
-    "@rescript/react": "^0.12.1",
+    "@mui/lab": "^9.0.0-beta.6",
+    "@mui/material": "^9.2.0",
+    "@mui/system": "^9.2.0",
+    "@mui/x-date-pickers": "^9.10.1",
+    "@rescript/react": "^0.15.0",
     "@rescript/tools": "^0.6.6",
     "parcel": "^2.16.4",
     "rescript": "^12.3.0"
