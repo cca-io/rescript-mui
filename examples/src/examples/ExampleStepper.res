@@ -1,6 +1,6 @@
 open Mui
 
-let getSpacing = (theme: Theme.t, num) => theme.spacing(num)->string_of_int ++ "px"
+let getSpacing = (theme: Theme.t, num) => theme.spacing(num)->Int.toString ++ "px"
 
 let getSteps = () => ["Select campaign settings", "Create an ad group", "Create an ad"]
 

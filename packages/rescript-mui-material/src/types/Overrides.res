@@ -20,7 +20,9 @@ type accordionActionsClassKey = {
   spacing?: ReactDOM.Style.t,
 }
 
-type accordionDetailsClassKey = {root?: ReactDOM.Style.t}
+type accordionDetailsClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type accordionSummaryClassKey = {
   root?: ReactDOM.Style.t,
@@ -28,7 +30,6 @@ type accordionSummaryClassKey = {
   focusVisible?: ReactDOM.Style.t,
   disabled?: ReactDOM.Style.t,
   gutters?: ReactDOM.Style.t,
-  contentGutters?: ReactDOM.Style.t,
   content?: ReactDOM.Style.t,
   expandIconWrapper?: ReactDOM.Style.t,
 }
@@ -42,24 +43,14 @@ type alertClassKey = {
   colorInfo?: string,
   colorWarning?: string,
   colorError?: string,
-  standardSuccess?: ReactDOM.Style.t,
-  standardInfo?: ReactDOM.Style.t,
-  standardWarning?: ReactDOM.Style.t,
-  standardError?: ReactDOM.Style.t,
-  outlinedSuccess?: ReactDOM.Style.t,
-  outlinedInfo?: ReactDOM.Style.t,
-  outlinedWarning?: ReactDOM.Style.t,
-  outlinedError?: ReactDOM.Style.t,
-  filledSuccess?: ReactDOM.Style.t,
-  filledInfo?: ReactDOM.Style.t,
-  filledWarning?: ReactDOM.Style.t,
-  filledError?: ReactDOM.Style.t,
   icon?: ReactDOM.Style.t,
   message?: ReactDOM.Style.t,
   action?: ReactDOM.Style.t,
 }
 
-type alertTitleClassKey = {root?: ReactDOM.Style.t}
+type alertTitleClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type appBarClassKey = {
   root?: ReactDOM.Style.t,
@@ -156,7 +147,9 @@ type badgeClassKey = {
   overlapCircular?: ReactDOM.Style.t,
 }
 
-type bottomNavigationClassKey = {root?: ReactDOM.Style.t}
+type bottomNavigationClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type bottomNavigationActionClassKey = {
   root?: ReactDOM.Style.t,
@@ -175,42 +168,12 @@ type breadcrumbsClassKey = {
 type buttonClassKey = {
   root?: ReactDOM.Style.t,
   text?: ReactDOM.Style.t,
-  textInherit?: ReactDOM.Style.t,
-  textPrimary?: ReactDOM.Style.t,
-  textSecondary?: ReactDOM.Style.t,
-  textSuccess?: ReactDOM.Style.t,
-  textError?: ReactDOM.Style.t,
-  textInfo?: ReactDOM.Style.t,
-  textWarning?: ReactDOM.Style.t,
   outlined?: ReactDOM.Style.t,
-  outlinedInherit?: ReactDOM.Style.t,
-  outlinedPrimary?: ReactDOM.Style.t,
-  outlinedSecondary?: ReactDOM.Style.t,
-  outlinedSuccess?: ReactDOM.Style.t,
-  outlinedError?: ReactDOM.Style.t,
-  outlinedInfo?: ReactDOM.Style.t,
-  outlinedWarning?: ReactDOM.Style.t,
   contained?: ReactDOM.Style.t,
-  containedInherit?: ReactDOM.Style.t,
-  containedPrimary?: ReactDOM.Style.t,
-  containedSecondary?: ReactDOM.Style.t,
-  containedSuccess?: ReactDOM.Style.t,
-  containedInfo?: ReactDOM.Style.t,
-  containedError?: ReactDOM.Style.t,
-  containedWarning?: ReactDOM.Style.t,
   disableElevation?: ReactDOM.Style.t,
   focusVisible?: ReactDOM.Style.t,
   disabled?: ReactDOM.Style.t,
   colorInherit?: string,
-  textSizeSmall?: ReactDOM.Style.t,
-  textSizeMedium?: ReactDOM.Style.t,
-  textSizeLarge?: ReactDOM.Style.t,
-  outlinedSizeSmall?: ReactDOM.Style.t,
-  outlinedSizeMedium?: ReactDOM.Style.t,
-  outlinedSizeLarge?: ReactDOM.Style.t,
-  containedSizeSmall?: ReactDOM.Style.t,
-  containedSizeMedium?: ReactDOM.Style.t,
-  containedSizeLarge?: ReactDOM.Style.t,
   sizeSmall?: ReactDOM.Style.t,
   sizeMedium?: ReactDOM.Style.t,
   sizeLarge?: ReactDOM.Style.t,
@@ -218,9 +181,6 @@ type buttonClassKey = {
   icon?: ReactDOM.Style.t,
   startIcon?: ReactDOM.Style.t,
   endIcon?: ReactDOM.Style.t,
-  iconSizeSmall?: ReactDOM.Style.t,
-  iconSizeMedium?: ReactDOM.Style.t,
-  iconSizeLarge?: ReactDOM.Style.t,
   colorPrimary?: string,
   colorSecondary?: string,
   colorSuccess?: string,
@@ -256,28 +216,13 @@ type buttonGroupClassKey = {
   grouped?: ReactDOM.Style.t,
   colorPrimary?: string,
   colorSecondary?: string,
-  groupedHorizontal?: ReactDOM.Style.t,
-  groupedVertical?: ReactDOM.Style.t,
-  groupedText?: ReactDOM.Style.t,
-  groupedTextHorizontal?: ReactDOM.Style.t,
-  groupedTextVertical?: ReactDOM.Style.t,
-  groupedTextPrimary?: ReactDOM.Style.t,
-  groupedTextSecondary?: ReactDOM.Style.t,
-  groupedOutlined?: ReactDOM.Style.t,
-  groupedOutlinedHorizontal?: ReactDOM.Style.t,
-  groupedOutlinedVertical?: ReactDOM.Style.t,
-  groupedOutlinedPrimary?: ReactDOM.Style.t,
-  groupedOutlinedSecondary?: ReactDOM.Style.t,
-  groupedContained?: ReactDOM.Style.t,
-  groupedContainedHorizontal?: ReactDOM.Style.t,
-  groupedContainedVertical?: ReactDOM.Style.t,
-  groupedContainedPrimary?: ReactDOM.Style.t,
-  groupedContainedSecondary?: ReactDOM.Style.t,
   lastButton?: ReactDOM.Style.t,
   middleButton?: ReactDOM.Style.t,
 }
 
-type cardClassKey = {root?: ReactDOM.Style.t}
+type cardClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type cardActionAreaClassKey = {
   root?: ReactDOM.Style.t,
@@ -290,7 +235,9 @@ type cardActionsClassKey = {
   spacing?: ReactDOM.Style.t,
 }
 
-type cardContentClassKey = {root?: ReactDOM.Style.t}
+type cardContentClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type cardHeaderClassKey = {
   root?: ReactDOM.Style.t,
@@ -331,39 +278,13 @@ type chipClassKey = {
   colorWarning?: string,
   disabled?: ReactDOM.Style.t,
   clickable?: ReactDOM.Style.t,
-  clickableColorPrimary?: ReactDOM.Style.t,
-  clickableColorSecondary?: ReactDOM.Style.t,
   deletable?: ReactDOM.Style.t,
-  deletableColorPrimary?: ReactDOM.Style.t,
-  deletableColorSecondary?: ReactDOM.Style.t,
   outlined?: ReactDOM.Style.t,
   filled?: ReactDOM.Style.t,
-  outlinedPrimary?: ReactDOM.Style.t,
-  outlinedSecondary?: ReactDOM.Style.t,
-  filledPrimary?: ReactDOM.Style.t,
-  filledSecondary?: ReactDOM.Style.t,
   avatar?: ReactDOM.Style.t,
-  avatarSmall?: ReactDOM.Style.t,
-  avatarMedium?: ReactDOM.Style.t,
-  avatarColorPrimary?: ReactDOM.Style.t,
-  avatarColorSecondary?: ReactDOM.Style.t,
   icon?: ReactDOM.Style.t,
-  iconSmall?: ReactDOM.Style.t,
-  iconMedium?: ReactDOM.Style.t,
-  iconColorPrimary?: ReactDOM.Style.t,
-  iconColorSecondary?: ReactDOM.Style.t,
   label?: ReactDOM.Style.t,
-  labelSmall?: ReactDOM.Style.t,
-  labelMedium?: ReactDOM.Style.t,
   deleteIcon?: ReactDOM.Style.t,
-  deleteIconSmall?: ReactDOM.Style.t,
-  deleteIconMedium?: ReactDOM.Style.t,
-  deleteIconColorPrimary?: ReactDOM.Style.t,
-  deleteIconColorSecondary?: ReactDOM.Style.t,
-  deleteIconOutlinedColorPrimary?: ReactDOM.Style.t,
-  deleteIconOutlinedColorSecondary?: ReactDOM.Style.t,
-  deleteIconFilledColorPrimary?: ReactDOM.Style.t,
-  deleteIconFilledColorSecondary?: ReactDOM.Style.t,
   focusVisible?: ReactDOM.Style.t,
 }
 
@@ -376,8 +297,6 @@ type circularProgressClassKey = {
   svg?: ReactDOM.Style.t,
   track?: ReactDOM.Style.t,
   circle?: ReactDOM.Style.t,
-  circleDeterminate?: ReactDOM.Style.t,
-  circleIndeterminate?: ReactDOM.Style.t,
   circleDisableShrink?: ReactDOM.Style.t,
 }
 
@@ -408,8 +327,6 @@ type dialogClassKey = {
   scrollBody?: ReactDOM.Style.t,
   container?: ReactDOM.Style.t,
   paper?: ReactDOM.Style.t,
-  paperScrollPaper?: ReactDOM.Style.t,
-  paperScrollBody?: ReactDOM.Style.t,
   paperWidthFalse?: ReactDOM.Style.t,
   paperWidthXs?: ReactDOM.Style.t,
   paperWidthSm?: ReactDOM.Style.t,
@@ -430,21 +347,23 @@ type dialogContentClassKey = {
   dividers?: ReactDOM.Style.t,
 }
 
-type dialogContentTextClassKey = {root?: ReactDOM.Style.t}
+type dialogContentTextClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
-type dialogTitleClassKey = {root?: ReactDOM.Style.t}
+type dialogTitleClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type dividerClassKey = {
   root?: ReactDOM.Style.t,
   absolute?: ReactDOM.Style.t,
   inset?: ReactDOM.Style.t,
   fullWidth?: ReactDOM.Style.t,
-  light?: ReactDOM.Style.t,
   middle?: ReactDOM.Style.t,
   vertical?: ReactDOM.Style.t,
   flexItem?: ReactDOM.Style.t,
   withChildren?: ReactDOM.Style.t,
-  withChildrenVertical?: ReactDOM.Style.t,
   textAlignRight?: ReactDOM.Style.t,
   textAlignLeft?: ReactDOM.Style.t,
   wrapper?: ReactDOM.Style.t,
@@ -459,14 +378,6 @@ type drawerClassKey = {
   anchorRight?: ReactDOM.Style.t,
   anchorTop?: ReactDOM.Style.t,
   anchorBottom?: ReactDOM.Style.t,
-  paperAnchorLeft?: ReactDOM.Style.t,
-  paperAnchorRight?: ReactDOM.Style.t,
-  paperAnchorTop?: ReactDOM.Style.t,
-  paperAnchorBottom?: ReactDOM.Style.t,
-  paperAnchorDockedLeft?: ReactDOM.Style.t,
-  paperAnchorDockedTop?: ReactDOM.Style.t,
-  paperAnchorDockedRight?: ReactDOM.Style.t,
-  paperAnchorDockedBottom?: ReactDOM.Style.t,
   modal?: ReactDOM.Style.t,
 }
 
@@ -550,13 +461,6 @@ type gridClassKey = {
   container?: ReactDOM.Style.t,
 }
 
-type gridLegacyClassKey = {
-  root?: ReactDOM.Style.t,
-  container?: ReactDOM.Style.t,
-  item?: ReactDOM.Style.t,
-  zeroMinWidth?: ReactDOM.Style.t,
-}
-
 type iconClassKey = {
   root?: ReactDOM.Style.t,
   colorPrimary?: string,
@@ -614,13 +518,9 @@ type imageListItemBarClassKey = {
   actionPositionLeft?: ReactDOM.Style.t,
   actionPositionRight?: ReactDOM.Style.t,
   titleWrap?: ReactDOM.Style.t,
-  titleWrapBelow?: ReactDOM.Style.t,
-  titleWrapActionPosLeft?: ReactDOM.Style.t,
-  titleWrapActionPosRight?: ReactDOM.Style.t,
   title?: ReactDOM.Style.t,
   subtitle?: ReactDOM.Style.t,
   actionIcon?: ReactDOM.Style.t,
-  actionIconActionPosLeft?: ReactDOM.Style.t,
 }
 
 type inputClassKey = {
@@ -635,10 +535,6 @@ type inputClassKey = {
   multiline?: ReactDOM.Style.t,
   fullWidth?: ReactDOM.Style.t,
   input?: ReactDOM.Style.t,
-  inputSizeSmall?: ReactDOM.Style.t,
-  inputMultiline?: ReactDOM.Style.t,
-  inputAdornedStart?: ReactDOM.Style.t,
-  inputAdornedEnd?: ReactDOM.Style.t,
   inputTypeSearch?: ReactDOM.Style.t,
 }
 
@@ -669,12 +565,7 @@ type inputBaseClassKey = {
   hiddenLabel?: ReactDOM.Style.t,
   readOnly?: ReactDOM.Style.t,
   input?: ReactDOM.Style.t,
-  inputSizeSmall?: ReactDOM.Style.t,
-  inputMultiline?: ReactDOM.Style.t,
   inputTypeSearch?: ReactDOM.Style.t,
-  inputAdornedStart?: ReactDOM.Style.t,
-  inputAdornedEnd?: ReactDOM.Style.t,
-  inputHiddenLabel?: ReactDOM.Style.t,
 }
 
 type inputLabelClassKey = {
@@ -702,18 +593,9 @@ type linearProgressClassKey = {
   buffer?: ReactDOM.Style.t,
   query?: ReactDOM.Style.t,
   dashed?: ReactDOM.Style.t,
-  dashedColorPrimary?: ReactDOM.Style.t,
-  dashedColorSecondary?: ReactDOM.Style.t,
   bar?: ReactDOM.Style.t,
   bar1?: ReactDOM.Style.t,
   bar2?: ReactDOM.Style.t,
-  barColorPrimary?: ReactDOM.Style.t,
-  barColorSecondary?: ReactDOM.Style.t,
-  bar1Indeterminate?: ReactDOM.Style.t,
-  bar1Determinate?: ReactDOM.Style.t,
-  bar1Buffer?: ReactDOM.Style.t,
-  bar2Indeterminate?: ReactDOM.Style.t,
-  bar2Buffer?: ReactDOM.Style.t,
 }
 
 type linkClassKey = {
@@ -734,7 +616,6 @@ type listClassKey = {
 
 type listItemClassKey = {
   root?: ReactDOM.Style.t,
-  container?: ReactDOM.Style.t,
   dense?: ReactDOM.Style.t,
   alignItemsFlexStart?: ReactDOM.Style.t,
   divider?: ReactDOM.Style.t,
@@ -849,10 +730,6 @@ type outlinedInputClassKey = {
   multiline?: ReactDOM.Style.t,
   notchedOutline?: ReactDOM.Style.t,
   input?: ReactDOM.Style.t,
-  inputSizeSmall?: ReactDOM.Style.t,
-  inputMultiline?: ReactDOM.Style.t,
-  inputAdornedStart?: ReactDOM.Style.t,
-  inputAdornedEnd?: ReactDOM.Style.t,
   inputTypeSearch?: ReactDOM.Style.t,
 }
 
@@ -869,11 +746,7 @@ type paginationItemClassKey = {
   sizeSmall?: ReactDOM.Style.t,
   sizeLarge?: ReactDOM.Style.t,
   text?: ReactDOM.Style.t,
-  textPrimary?: ReactDOM.Style.t,
-  textSecondary?: ReactDOM.Style.t,
   outlined?: ReactDOM.Style.t,
-  outlinedPrimary?: ReactDOM.Style.t,
-  outlinedSecondary?: ReactDOM.Style.t,
   rounded?: ReactDOM.Style.t,
   ellipsis?: ReactDOM.Style.t,
   firstLast?: ReactDOM.Style.t,
@@ -923,7 +796,9 @@ type popoverClassKey = {
   paper?: ReactDOM.Style.t,
 }
 
-type popperClassKey = {root?: ReactDOM.Style.t}
+type popperClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type radioClassKey = {
   root?: ReactDOM.Style.t,
@@ -954,7 +829,9 @@ type ratingClassKey = {
   decimal?: ReactDOM.Style.t,
 }
 
-type scopedCssBaselineClassKey = {root?: ReactDOM.Style.t}
+type scopedCssBaselineClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type selectClassKey = {
   root?: ReactDOM.Style.t,
@@ -967,9 +844,6 @@ type selectClassKey = {
   disabled?: ReactDOM.Style.t,
   icon?: ReactDOM.Style.t,
   iconOpen?: ReactDOM.Style.t,
-  iconFilled?: ReactDOM.Style.t,
-  iconOutlined?: ReactDOM.Style.t,
-  iconStandard?: ReactDOM.Style.t,
   nativeInput?: ReactDOM.Style.t,
   error?: ReactDOM.Style.t,
 }
@@ -1011,13 +885,6 @@ type sliderClassKey = {
   markLabel?: ReactDOM.Style.t,
   markLabelActive?: ReactDOM.Style.t,
   sizeSmall?: ReactDOM.Style.t,
-  thumbColorPrimary?: ReactDOM.Style.t,
-  thumbColorSecondary?: ReactDOM.Style.t,
-  thumbColorError?: ReactDOM.Style.t,
-  thumbColorInfo?: ReactDOM.Style.t,
-  thumbColorSuccess?: ReactDOM.Style.t,
-  thumbColorWarning?: ReactDOM.Style.t,
-  thumbSizeSmall?: ReactDOM.Style.t,
   valueLabel?: ReactDOM.Style.t,
   valueLabelOpen?: ReactDOM.Style.t,
   valueLabelCircle?: ReactDOM.Style.t,
@@ -1070,7 +937,9 @@ type speedDialIconClassKey = {
   openIconOpen?: ReactDOM.Style.t,
 }
 
-type stackClassKey = {root?: ReactDOM.Style.t}
+type stackClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type stepClassKey = {
   root?: ReactDOM.Style.t,
@@ -1096,8 +965,6 @@ type stepConnectorClassKey = {
   completed?: ReactDOM.Style.t,
   disabled?: ReactDOM.Style.t,
   line?: ReactDOM.Style.t,
-  lineHorizontal?: ReactDOM.Style.t,
-  lineVertical?: ReactDOM.Style.t,
 }
 
 type stepContentClassKey = {
@@ -1175,7 +1042,6 @@ type tabClassKey = {
   disabled?: ReactDOM.Style.t,
   fullWidth?: ReactDOM.Style.t,
   wrapped?: ReactDOM.Style.t,
-  iconWrapper?: ReactDOM.Style.t,
   icon?: ReactDOM.Style.t,
 }
 
@@ -1190,7 +1056,9 @@ type tableClassKey = {
   stickyHeader?: ReactDOM.Style.t,
 }
 
-type tableBodyClassKey = {root?: ReactDOM.Style.t}
+type tableBodyClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type tableCellClassKey = {
   root?: ReactDOM.Style.t,
@@ -1208,11 +1076,17 @@ type tableCellClassKey = {
   stickyHeader?: ReactDOM.Style.t,
 }
 
-type tableContainerClassKey = {root?: ReactDOM.Style.t}
+type tableContainerClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
-type tableFooterClassKey = {root?: ReactDOM.Style.t}
+type tableFooterClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
-type tableHeadClassKey = {root?: ReactDOM.Style.t}
+type tableHeadClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type tablePaginationClassKey = {
   root?: ReactDOM.Style.t,
@@ -1242,15 +1116,11 @@ type tableSortLabelClassKey = {
   directionAsc?: ReactDOM.Style.t,
   active?: ReactDOM.Style.t,
   icon?: ReactDOM.Style.t,
-  iconDirectionDesc?: ReactDOM.Style.t,
-  iconDirectionAsc?: ReactDOM.Style.t,
 }
 
 type tabsClassKey = {
   root?: ReactDOM.Style.t,
   vertical?: ReactDOM.Style.t,
-  flexContainer?: ReactDOM.Style.t,
-  flexContainerVertical?: ReactDOM.Style.t,
   list?: ReactDOM.Style.t,
   centered?: ReactDOM.Style.t,
   scroller?: ReactDOM.Style.t,
@@ -1263,7 +1133,9 @@ type tabsClassKey = {
   indicator?: ReactDOM.Style.t,
 }
 
-type textFieldClassKey = {root?: ReactDOM.Style.t}
+type textFieldClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type toggleButtonClassKey = {
   root?: ReactDOM.Style.t,
@@ -1285,8 +1157,6 @@ type toggleButtonGroupClassKey = {
   vertical?: ReactDOM.Style.t,
   disabled?: ReactDOM.Style.t,
   grouped?: ReactDOM.Style.t,
-  groupedHorizontal?: ReactDOM.Style.t,
-  groupedVertical?: ReactDOM.Style.t,
   fullWidth?: ReactDOM.Style.t,
   firstButton?: ReactDOM.Style.t,
   lastButton?: ReactDOM.Style.t,
@@ -1337,129 +1207,93 @@ type typographyClassKey = {
   alignJustify?: ReactDOM.Style.t,
   noWrap?: ReactDOM.Style.t,
   gutterBottom?: ReactDOM.Style.t,
-  paragraph?: ReactDOM.Style.t,
 }
 
 type t = {
   @as("MuiAccordion") muiAccordion?: component<accordionClassKey, Accordion.props>,
-  @as("MuiAccordionActions")
-  muiAccordionActions?: component<accordionActionsClassKey, AccordionActions.props>,
-  @as("MuiAccordionDetails")
-  muiAccordionDetails?: component<accordionDetailsClassKey, AccordionDetails.props>,
-  @as("MuiAccordionSummary")
-  muiAccordionSummary?: component<accordionSummaryClassKey, AccordionSummary.props>,
+  @as("MuiAccordionActions") muiAccordionActions?: component<accordionActionsClassKey, AccordionActions.props>,
+  @as("MuiAccordionDetails") muiAccordionDetails?: component<accordionDetailsClassKey, AccordionDetails.props>,
+  @as("MuiAccordionSummary") muiAccordionSummary?: component<accordionSummaryClassKey, AccordionSummary.props>,
   @as("MuiAlert") muiAlert?: component<alertClassKey, Alert.props>,
   @as("MuiAlertTitle") muiAlertTitle?: component<alertTitleClassKey, AlertTitle.props>,
   @as("MuiAppBar") muiAppBar?: component<appBarClassKey, AppBar.props>,
-  @as("MuiAutocomplete")
-  muiAutocomplete?: component<autocompleteClassKey, Autocomplete.props<unknown, unknown>>,
+  @as("MuiAutocomplete") muiAutocomplete?: component<autocompleteClassKey, Autocomplete.props<unknown, unknown>>,
   @as("MuiAvatar") muiAvatar?: component<avatarClassKey, Avatar.props>,
   @as("MuiAvatarGroup") muiAvatarGroup?: component<avatarGroupClassKey, AvatarGroup.props>,
   @as("MuiBackdrop") muiBackdrop?: component<backdropClassKey, Backdrop.props>,
   @as("MuiBadge") muiBadge?: component<badgeClassKey, Badge.props>,
-  @as("MuiBottomNavigation")
-  muiBottomNavigation?: component<bottomNavigationClassKey, BottomNavigation.props<unknown>>,
-  @as("MuiBottomNavigationAction")
-  muiBottomNavigationAction?: component<
-    bottomNavigationActionClassKey,
-    BottomNavigationAction.props<unknown>,
-  >,
+  @as("MuiBottomNavigation") muiBottomNavigation?: component<bottomNavigationClassKey, BottomNavigation.props<unknown>>,
+  @as("MuiBottomNavigationAction") muiBottomNavigationAction?: component<bottomNavigationActionClassKey, BottomNavigationAction.props<unknown>>,
   @as("MuiBreadcrumbs") muiBreadcrumbs?: component<breadcrumbsClassKey, Breadcrumbs.props>,
   @as("MuiButton") muiButton?: component<buttonClassKey, Button.props>,
   @as("MuiButtonBase") muiButtonBase?: component<buttonBaseClassKey, ButtonBase.props>,
   @as("MuiButtonGroup") muiButtonGroup?: component<buttonGroupClassKey, ButtonGroup.props>,
   @as("MuiCard") muiCard?: component<cardClassKey, Card.props>,
-  @as("MuiCardActionArea")
-  muiCardActionArea?: component<cardActionAreaClassKey, CardActionArea.props>,
+  @as("MuiCardActionArea") muiCardActionArea?: component<cardActionAreaClassKey, CardActionArea.props>,
   @as("MuiCardActions") muiCardActions?: component<cardActionsClassKey, CardActions.props>,
   @as("MuiCardContent") muiCardContent?: component<cardContentClassKey, CardContent.props>,
   @as("MuiCardHeader") muiCardHeader?: component<cardHeaderClassKey, CardHeader.props>,
   @as("MuiCardMedia") muiCardMedia?: component<cardMediaClassKey, CardMedia.props>,
-  @as("MuiCheckbox") muiCheckbox?: component<checkboxClassKey, Checkbox.props<unknown, unknown>>,
+  @as("MuiCheckbox") muiCheckbox?: component<checkboxClassKey, Checkbox.props<unknown>>,
   @as("MuiChip") muiChip?: component<chipClassKey, Chip.props>,
-  @as("MuiCircularProgress")
-  muiCircularProgress?: component<circularProgressClassKey, CircularProgress.props>,
+  @as("MuiCircularProgress") muiCircularProgress?: component<circularProgressClassKey, CircularProgress.props>,
   @as("MuiCollapse") muiCollapse?: component<collapseClassKey, Collapse.props>,
   @as("MuiContainer") muiContainer?: component<containerClassKey, Container.props>,
   @as("MuiDialog") muiDialog?: component<dialogClassKey, Dialog.props>,
   @as("MuiDialogActions") muiDialogActions?: component<dialogActionsClassKey, DialogActions.props>,
   @as("MuiDialogContent") muiDialogContent?: component<dialogContentClassKey, DialogContent.props>,
-  @as("MuiDialogContentText")
-  muiDialogContentText?: component<dialogContentTextClassKey, DialogContentText.props>,
+  @as("MuiDialogContentText") muiDialogContentText?: component<dialogContentTextClassKey, DialogContentText.props>,
   @as("MuiDialogTitle") muiDialogTitle?: component<dialogTitleClassKey, DialogTitle.props>,
   @as("MuiDivider") muiDivider?: component<dividerClassKey, Divider.props>,
   @as("MuiDrawer") muiDrawer?: component<drawerClassKey, Drawer.props>,
   @as("MuiFab") muiFab?: component<fabClassKey, Fab.props>,
-  @as("MuiFilledInput")
-  muiFilledInput?: component<filledInputClassKey, FilledInput.props<unknown, unknown>>,
+  @as("MuiFilledInput") muiFilledInput?: component<filledInputClassKey, FilledInput.props<unknown, unknown>>,
   @as("MuiFormControl") muiFormControl?: component<formControlClassKey, FormControl.props>,
-  @as("MuiFormControlLabel")
-  muiFormControlLabel?: component<
-    formControlLabelClassKey,
-    FormControlLabel.props<unknown, unknown>,
-  >,
+  @as("MuiFormControlLabel") muiFormControlLabel?: component<formControlLabelClassKey, FormControlLabel.props<unknown, unknown>>,
   @as("MuiFormGroup") muiFormGroup?: component<formGroupClassKey, FormGroup.props>,
-  @as("MuiFormHelperText")
-  muiFormHelperText?: component<formHelperTextClassKey, FormHelperText.props>,
+  @as("MuiFormHelperText") muiFormHelperText?: component<formHelperTextClassKey, FormHelperText.props>,
   @as("MuiFormLabel") muiFormLabel?: component<formLabelClassKey, FormLabel.props>,
   @as("MuiGrid") muiGrid?: component<gridClassKey, Grid.props>,
-  @as("MuiGridLegacy") muiGridLegacy?: component<gridLegacyClassKey, GridLegacy.props>,
   @as("MuiIcon") muiIcon?: component<iconClassKey, Icon.props>,
   @as("MuiIconButton") muiIconButton?: component<iconButtonClassKey, IconButton.props>,
   @as("MuiImageList") muiImageList?: component<imageListClassKey, ImageList.props>,
   @as("MuiImageListItem") muiImageListItem?: component<imageListItemClassKey, ImageListItem.props>,
-  @as("MuiImageListItemBar")
-  muiImageListItemBar?: component<imageListItemBarClassKey, ImageListItemBar.props>,
+  @as("MuiImageListItemBar") muiImageListItemBar?: component<imageListItemBarClassKey, ImageListItemBar.props>,
   @as("MuiInput") muiInput?: component<inputClassKey, Input.props<unknown, unknown>>,
-  @as("MuiInputAdornment")
-  muiInputAdornment?: component<inputAdornmentClassKey, InputAdornment.props>,
-  @as("MuiInputBase")
-  muiInputBase?: component<inputBaseClassKey, InputBase.props<unknown, unknown>>,
+  @as("MuiInputAdornment") muiInputAdornment?: component<inputAdornmentClassKey, InputAdornment.props>,
+  @as("MuiInputBase") muiInputBase?: component<inputBaseClassKey, InputBase.props<unknown, unknown>>,
   @as("MuiInputLabel") muiInputLabel?: component<inputLabelClassKey, InputLabel.props>,
-  @as("MuiLinearProgress")
-  muiLinearProgress?: component<linearProgressClassKey, LinearProgress.props>,
+  @as("MuiLinearProgress") muiLinearProgress?: component<linearProgressClassKey, LinearProgress.props>,
   @as("MuiLink") muiLink?: component<linkClassKey, Link.props>,
   @as("MuiList") muiList?: component<listClassKey, List.props>,
   @as("MuiListItem") muiListItem?: component<listItemClassKey, ListItem.props>,
-  @as("MuiListItemAvatar")
-  muiListItemAvatar?: component<listItemAvatarClassKey, ListItemAvatar.props>,
-  @as("MuiListItemButton")
-  muiListItemButton?: component<listItemButtonClassKey, ListItemButton.props>,
+  @as("MuiListItemAvatar") muiListItemAvatar?: component<listItemAvatarClassKey, ListItemAvatar.props>,
+  @as("MuiListItemButton") muiListItemButton?: component<listItemButtonClassKey, ListItemButton.props>,
   @as("MuiListItemIcon") muiListItemIcon?: component<listItemIconClassKey, ListItemIcon.props>,
-  @as("MuiListItemSecondaryAction")
-  muiListItemSecondaryAction?: component<
-    listItemSecondaryActionClassKey,
-    ListItemSecondaryAction.props,
-  >,
+  @as("MuiListItemSecondaryAction") muiListItemSecondaryAction?: component<listItemSecondaryActionClassKey, ListItemSecondaryAction.props>,
   @as("MuiListItemText") muiListItemText?: component<listItemTextClassKey, ListItemText.props>,
   @as("MuiListSubheader") muiListSubheader?: component<listSubheaderClassKey, ListSubheader.props>,
   @as("MuiMenu") muiMenu?: component<menuClassKey, Menu.props>,
   @as("MuiMenuItem") muiMenuItem?: component<menuItemClassKey, MenuItem.props<unknown>>,
   @as("MuiMobileStepper") muiMobileStepper?: component<mobileStepperClassKey, MobileStepper.props>,
   @as("MuiModal") muiModal?: component<modalClassKey, Modal.props>,
-  @as("MuiNativeSelect")
-  muiNativeSelect?: component<nativeSelectClassKey, NativeSelect.props<unknown, unknown>>,
-  @as("MuiOutlinedInput")
-  muiOutlinedInput?: component<outlinedInputClassKey, OutlinedInput.props<unknown, unknown>>,
+  @as("MuiNativeSelect") muiNativeSelect?: component<nativeSelectClassKey, NativeSelect.props<unknown, unknown>>,
+  @as("MuiOutlinedInput") muiOutlinedInput?: component<outlinedInputClassKey, OutlinedInput.props<unknown, unknown>>,
   @as("MuiPagination") muiPagination?: component<paginationClassKey, Pagination.props>,
-  @as("MuiPaginationItem")
-  muiPaginationItem?: component<paginationItemClassKey, PaginationItem.props>,
+  @as("MuiPaginationItem") muiPaginationItem?: component<paginationItemClassKey, PaginationItem.props>,
   @as("MuiPaper") muiPaper?: component<paperClassKey, Paper.props>,
   @as("MuiPopover") muiPopover?: component<popoverClassKey, Popover.props>,
   @as("MuiPopper") muiPopper?: component<popperClassKey, Popper.props>,
-  @as("MuiRadio") muiRadio?: component<radioClassKey, Radio.props<unknown, unknown>>,
+  @as("MuiRadio") muiRadio?: component<radioClassKey, Radio.props<unknown>>,
   @as("MuiRating") muiRating?: component<ratingClassKey, Rating.props>,
-  @as("MuiScopedCssBaseline")
-  muiScopedCssBaseline?: component<scopedCssBaselineClassKey, ScopedCssBaseline.props>,
+  @as("MuiScopedCssBaseline") muiScopedCssBaseline?: component<scopedCssBaselineClassKey, ScopedCssBaseline.props>,
   @as("MuiSelect") muiSelect?: component<selectClassKey, Select.props<unknown, unknown>>,
   @as("MuiSkeleton") muiSkeleton?: component<skeletonClassKey, Skeleton.props>,
   @as("MuiSlider") muiSlider?: component<sliderClassKey, Slider.props>,
   @as("MuiSnackbar") muiSnackbar?: component<snackbarClassKey, Snackbar.props>,
-  @as("MuiSnackbarContent")
-  muiSnackbarContent?: component<snackbarContentClassKey, SnackbarContent.props>,
+  @as("MuiSnackbarContent") muiSnackbarContent?: component<snackbarContentClassKey, SnackbarContent.props>,
   @as("MuiSpeedDial") muiSpeedDial?: component<speedDialClassKey, SpeedDial.props>,
-  @as("MuiSpeedDialAction")
-  muiSpeedDialAction?: component<speedDialActionClassKey, SpeedDialAction.props>,
+  @as("MuiSpeedDialAction") muiSpeedDialAction?: component<speedDialActionClassKey, SpeedDialAction.props>,
   @as("MuiSpeedDialIcon") muiSpeedDialIcon?: component<speedDialIconClassKey, SpeedDialIcon.props>,
   @as("MuiStack") muiStack?: component<stackClassKey, Stack.props>,
   @as("MuiStep") muiStep?: component<stepClassKey, Step.props>,
@@ -1470,29 +1304,22 @@ type t = {
   @as("MuiStepLabel") muiStepLabel?: component<stepLabelClassKey, StepLabel.props>,
   @as("MuiStepper") muiStepper?: component<stepperClassKey, Stepper.props>,
   @as("MuiSvgIcon") muiSvgIcon?: component<svgIconClassKey, SvgIcon.props>,
-  @as("MuiSwitch") muiSwitch?: component<switchClassKey, Switch.props<unknown, unknown>>,
+  @as("MuiSwitch") muiSwitch?: component<switchClassKey, Switch.props<unknown>>,
   @as("MuiTab") muiTab?: component<tabClassKey, Tab.props<unknown>>,
-  @as("MuiTabScrollButton")
-  muiTabScrollButton?: component<tabScrollButtonClassKey, TabScrollButton.props>,
+  @as("MuiTabScrollButton") muiTabScrollButton?: component<tabScrollButtonClassKey, TabScrollButton.props>,
   @as("MuiTable") muiTable?: component<tableClassKey, Table.props>,
   @as("MuiTableBody") muiTableBody?: component<tableBodyClassKey, TableBody.props>,
   @as("MuiTableCell") muiTableCell?: component<tableCellClassKey, TableCell.props>,
-  @as("MuiTableContainer")
-  muiTableContainer?: component<tableContainerClassKey, TableContainer.props>,
+  @as("MuiTableContainer") muiTableContainer?: component<tableContainerClassKey, TableContainer.props>,
   @as("MuiTableFooter") muiTableFooter?: component<tableFooterClassKey, TableFooter.props>,
   @as("MuiTableHead") muiTableHead?: component<tableHeadClassKey, TableHead.props>,
-  @as("MuiTablePagination")
-  muiTablePagination?: component<tablePaginationClassKey, TablePagination.props<unknown>>,
+  @as("MuiTablePagination") muiTablePagination?: component<tablePaginationClassKey, TablePagination.props>,
   @as("MuiTableRow") muiTableRow?: component<tableRowClassKey, TableRow.props>,
-  @as("MuiTableSortLabel")
-  muiTableSortLabel?: component<tableSortLabelClassKey, TableSortLabel.props>,
+  @as("MuiTableSortLabel") muiTableSortLabel?: component<tableSortLabelClassKey, TableSortLabel.props>,
   @as("MuiTabs") muiTabs?: component<tabsClassKey, Tabs.props<unknown>>,
-  @as("MuiTextField")
-  muiTextField?: component<textFieldClassKey, TextField.props<unknown, unknown>>,
-  @as("MuiToggleButton")
-  muiToggleButton?: component<toggleButtonClassKey, ToggleButton.props<unknown>>,
-  @as("MuiToggleButtonGroup")
-  muiToggleButtonGroup?: component<toggleButtonGroupClassKey, ToggleButtonGroup.props<unknown>>,
+  @as("MuiTextField") muiTextField?: component<textFieldClassKey, TextField.props<unknown, unknown>>,
+  @as("MuiToggleButton") muiToggleButton?: component<toggleButtonClassKey, ToggleButton.props<unknown>>,
+  @as("MuiToggleButtonGroup") muiToggleButtonGroup?: component<toggleButtonGroupClassKey, ToggleButtonGroup.props<unknown>>,
   @as("MuiToolbar") muiToolbar?: component<toolbarClassKey, Toolbar.props>,
   @as("MuiTooltip") muiTooltip?: component<tooltipClassKey, Tooltip.props>,
   @as("MuiTypography") muiTypography?: component<typographyClassKey, Typography.props>,

@@ -116,18 +116,6 @@ type props = {
     */
   classes?: classes,
   /**
-    * Props applied to the `ClickAwayListener` element.
-    * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    */
-  @as("ClickAwayListenerProps")
-  clickAwayListenerProps?: unknown,
-  /**
-    * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
-    * @deprecated Use `slotProps.content` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    */
-  @as("ContentProps")
-  contentProps?: SnackbarContent.props,
-  /**
     * When displaying multiple consecutive Snackbars from a parent rendering a single
     * <Snackbar/>, add the key prop to ensure independent treatment of each message.
     * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
@@ -185,14 +173,6 @@ type props = {
     */
   sx?: Sx.props,
   /**
-    * The component used for the transition.
-    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-    * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    * @default Grow
-    */
-  @as("TransitionComponent")
-  transitionComponent?: React.component<Transition.props>,
-  /**
     * The duration for the transition, in milliseconds.
     * You may specify a single timeout for all transitions, or individually with an object.
     * @default {
@@ -201,14 +181,6 @@ type props = {
     * }
     */
   transitionDuration?: Transition.duration,
-  /**
-    * Props applied to the transition element.
-    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-    * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    * @default {}
-    */
-  @as("TransitionProps")
-  transitionProps?: Transition.props,
 }
 
 @module("@mui/material/Snackbar")

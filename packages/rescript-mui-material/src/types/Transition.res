@@ -2,6 +2,7 @@
 type publicProps = {
   ...CommonProps.t,
   addEndListener?: ReactEvent.Synthetic.t => unit,
+  disablePrefersReducedMotion?: bool,
   enter?: bool,
   exit?: bool,
   mountOnEnter?: bool,

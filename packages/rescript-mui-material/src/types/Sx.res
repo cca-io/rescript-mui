@@ -64,7 +64,7 @@ module Array = {
   external obj: System.props => t = "%identity"
 
   /** Create a style dict in an array context */
-  external dict: Js.Dict.t<System.props> => t = "%identity"
+  external dict: dict<System.props> => t = "%identity"
 }
 
 /** The type for the `sx` prop on MUI components */
@@ -127,4 +127,4 @@ let styles = dict{"&:hover": System.props{bgcolor: PrimaryMain}}
 <Box sx={Sx.dict(styles)} />
 ```
 */
-external dict: Js.Dict.t<System.props> => props = "%identity"
+external dict: dict<System.props> => props = "%identity"

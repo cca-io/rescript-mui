@@ -1,6 +1,8 @@
 /**
-The `System` module provides types for MUI's system properties, used primarily
-with the `sx` prop and Box component.
+The `System` module provides types for MUI's system properties. Since Material
+UI v9 removed the standalone system props from components (`Box`, `Stack`,
+`Typography`, ...), these types are used exclusively through the `sx` prop (via
+`Sx.obj`, `Sx.dict`, `Sx.array`).
 
 ## System.Value.t
 
@@ -250,11 +252,10 @@ module Value = {
 }
 
 /**
-System props without the `color` field. Used by components where `color`
-has a different type (e.g., Button, Typography).
+Style props without the `color` field. Used internally to build the full `sx`
+props record. Kept separate because some contexts type `color` differently.
 */
 type propsWithoutColor = {
-  ...CommonProps.t,
   border?: Value.t,
   borderBottom?: Value.t,
   borderColor?: Value.t,
@@ -387,7 +388,9 @@ type propsWithoutColor = {
 }
 
 /**
-Full system props record used with `Sx.obj`. All values must be `System.Value.t`.
+Full style props record used with `Sx.obj`. All values must be `System.Value.t`.
+This is a pure style type: it only accepts style-related properties, not DOM
+attributes like `className`, `id` or `ref`.
 
 ```rescript
 <Box sx={Sx.obj({

@@ -5,7 +5,7 @@ type classes = {
   viewTransitionContainer?: string,
 }
 
-type exportedDayCalendarProps = {
+type exportedDayCalendarProps<'date> = {
   /**
     * If `true`, calls `renderLoading` instead of rendering the day calendar.
     * Can be used to preload information and show it in calendar.
@@ -14,11 +14,11 @@ type exportedDayCalendarProps = {
   loading?: bool,
   /**
     * Formats the day of week displayed in the calendar header.
-    * @param {string} day The day of week provided by the adapter's method `getWeekdays`.
+    * @param {'date} date The date supplied by the adapter.
     * @returns {string} The name to display.
     * @default (day) => day.charAt(0).toUpperCase()
     */
-  dayOfWeekFormatter?: string => string,
+  dayOfWeekFormatter?: 'date => string,
   /**
     * If `true`, the week number will be display in the calendar.
     */
@@ -42,7 +42,7 @@ type dayValidationProps<'date> = {
 }
 
 type exportedDateCalendarProps<'date> = {
-  ...exportedDayCalendarProps,
+  ...exportedDayCalendarProps<'date>,
   ...MonthCalendar.publicProps,
   ...YearCalendar.publicProps,
   ...Common.baseDateValidationProps<'date>,
@@ -113,12 +113,32 @@ type props<'date> = {
     * @param {'date | null} value The new value.
     * @param {PickerSelectionState | undefined} selectionState Indicates if the date selection is complete.
     */
-  onChange?: (Common.dateValue<'date>, option<Common.pickerSelectionState>) => unit,
+  onChange?: (
+    Common.dateValue<'date>,
+    option<Common.pickerSelectionState>,
+    option<Common.dateView>,
+  ) => unit,
+  /** Available views. */
+  views?: array<Common.dateView>,
+  /** The visible view. */
+  view?: Common.dateView,
+  /** The default visible view. */
+  openTo?: Common.dateView,
+  /** Callback fired when the visible view changes. */
+  onViewChange?: Common.dateView => unit,
+  /** The controlled focused view, or `null`. */
+  focusedView?: Nullable.t<Common.dateView>,
+  /** Callback fired when a view gains or loses focus. */
+  onFocusedViewChange?: (Common.dateView, bool) => unit,
   classes?: classes,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Mui.Sx.props,
+  /** Overridable component slots. */
+  slots?: {.},
+  /** Props passed to component slots. */
+  slotProps?: {.},
 }
 
 @module("@mui/x-date-pickers")

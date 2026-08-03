@@ -1,6 +1,12 @@
 type classes = {
   /** Styles applied to the root element. */
   root?: string,
+  /** Styles applied to the button element that represents a single month */
+  button?: string,
+  /** Styles applied to a disabled button element. */
+  disabled?: string,
+  /** Styles applied to a selected button element. */
+  selected?: string,
 }
 
 type publicProps = {

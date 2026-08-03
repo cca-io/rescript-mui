@@ -8,10 +8,10 @@ type rec spacing =
   | Array(array<spacing>)
   | String(string)
   | Number(float)
-  | Object(Js.Dict.t<spacing>)
+  | Object(dict<spacing>)
 
 type props = {
-  ...System.props,
+  ...CommonProps.t,
   /**
     * The content of the component.
     */

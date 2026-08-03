@@ -53,11 +53,6 @@ type publicProps = {
     */
   disableEnforceFocus?: bool,
   /**
-    * If `true`, hitting escape will not fire the `onClose` callback.
-    * @default false
-    */
-  disableEscapeKeyDown?: bool,
-  /**
     * The `children` will be under the DOM hierarchy of the parent component.
     * @default false
     */

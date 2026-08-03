@@ -1,6 +1,6 @@
 {
   "name": "@rescript-mui/system",
-  "namespace": "MuiSystem",
+  "namespace": "mui-system",
   "sources": [
     {
       "dir": "src",
@@ -11,12 +11,11 @@
     "module": "esmodule",
     "in-source": true
   },
-  "bs-dependencies": ["@rescript/react", "@rescript-mui/material"],
+  "dependencies": ["@rescript/react", "@rescript-mui/material"],
   "warnings": {
     "number": "-103"
   },
   "jsx": {
-    "version": 4,
-    "mode": "automatic"
+    "version": 4
   }
 }

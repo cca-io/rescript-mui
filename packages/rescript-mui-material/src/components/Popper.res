@@ -12,7 +12,7 @@ type virtualElement = {
 type anchorEl =
   | @as(null) Null
   | Virtual(virtualElement)
-  | Element(unit => Js.nullable<Dom.element>)
+  | Element(unit => Nullable.t<Dom.element>)
 
 type phase =
   | @as("afterMain") AfterMain
@@ -26,12 +26,12 @@ type phase =
   | @as("write") Write
 
 type modifier = {
-  data?: Js.Dict.t<string>,
+  data?: dict<string>,
   effect?: unit => unit,
   enabled?: bool,
   fn?: unit => unit,
   name?: string,
-  options?: Js.Dict.t<string>,
+  options?: dict<string>,
   phase: phase,
 }
 

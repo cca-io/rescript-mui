@@ -41,7 +41,7 @@ type props = {
     */
   spacing?: Mui.System.Value.t,
   /**
-    * Allows using sequential order rather than adding to the shortest column.
+    * Allows using sequential order rather than adding to shortest column
     * @default false
     */
   sequential?: bool,

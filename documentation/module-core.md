@@ -21,7 +21,7 @@ let make = () => {
     open Mui.Core
     let theme = useTheme()
     let matches = useMediaQuery(Breakpoint.get(theme, #up(#sm)))
-    Js.log(matches)
+    Console.log(matches)
 
     <div />
 }

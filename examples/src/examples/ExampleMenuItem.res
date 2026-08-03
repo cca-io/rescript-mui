@@ -2,15 +2,15 @@ open Mui
 
 @react.component
 let make = () => {
-  let (anchorEl, setAnchorEl) = React.useState(_ => Js.Nullable.null)
-  let open_ = !Js.Nullable.isNullable(anchorEl)
+  let (anchorEl, setAnchorEl) = React.useState(_ => Nullable.null)
+  let open_ = !Nullable.isNullable(anchorEl)
   
   let handleClick = (event) => {
-    setAnchorEl(_ => ReactEvent.Mouse.currentTarget(event)->Js.Nullable.return)
+    setAnchorEl(_ => ReactEvent.Mouse.currentTarget(event)->Nullable.make)
   }
   
   let handleClose = () => {
-    setAnchorEl(_ => Js.Nullable.null)
+    setAnchorEl(_ => Nullable.null)
   }
 
   <div>

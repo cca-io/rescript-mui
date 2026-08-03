@@ -1,6 +1,6 @@
 {
   "name": "@rescript-mui/lab",
-  "version": "7.0.0",
+  "version": "9.0.0",
   "description": "This library provides ReScript bindings for material-ui-lab.",
   "keywords": [
     "rescript",
@@ -22,12 +22,12 @@
     "/rescript.json"
   ],
   "peerDependencies": {
-    "@mui/lab": "^7.0.0-beta.17",
-    "@mui/material": "^7.3.9",
-    "@rescript-mui/material": "^7.0.0",
-    "@rescript/react": "^0.12.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "rescript": "^11.0.0"
+    "@mui/lab": "^9.0.0-beta.6",
+    "@mui/material": "^9.2.0",
+    "@rescript-mui/material": "^9.0.0",
+    "@rescript/react": "^0.15.0",
+    "react": ">=19.2.0",
+    "react-dom": ">=19.2.0",
+    "rescript": "^12.0.0"
   }
 }

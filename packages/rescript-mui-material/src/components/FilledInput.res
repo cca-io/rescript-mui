@@ -46,6 +46,10 @@ type props<'value, 'inputRef> = {
     */
   onChange?: ReactEvent.Synthetic.t => unit,
   /**
+    * If `true`, the outline is notched to accommodate the label. Used internally by `TextField`.
+    */
+  notched?: bool,
+  /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,

@@ -1,5 +1,5 @@
 type props = {
-  ...System.props,
+  ...CommonProps.t,
   ...CommonProps.clickablePropsWithOnClick,
   children?: React.element,
   /**

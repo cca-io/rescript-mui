@@ -10,7 +10,8 @@ module Item = {
           textAlign: Center,
           color: TextSecondary,
         }),
-      ])}>
+      ])}
+    >
       children
     </Paper>
 }
@@ -50,23 +51,13 @@ let make = () => {
       </Grid>
     </Grid>
     <br />
-    <Typography variant=H6 gutterBottom=true> {"Grid Direction Column"->React.string} </Typography>
-    <Grid container=true spacing={Int(2)} direction=Column>
-      <Grid>
-        <Item> {"Column 1"->React.string} </Item>
-      </Grid>
-      <Grid>
-        <Item> {"Column 2"->React.string} </Item>
-      </Grid>
-    </Grid>
     <br />
     <Typography variant=H6 gutterBottom=true> {"Alignment - Center"->React.string} </Typography>
     <Grid
       container=true
       spacing={Int(2)}
-      justifyContent=Center
-      alignItems=Center
-      sx={Sx.obj({minHeight: String("100px")})}>
+      sx={Sx.obj({justifyContent: Center, alignItems: Center, minHeight: String("100px")})}
+    >
       <Grid>
         <Item> {"Centered"->React.string} </Item>
       </Grid>
@@ -78,8 +69,8 @@ let make = () => {
     <Grid
       container=true
       spacing={Int(2)}
-      justifyContent=SpaceBetween
-      sx={Sx.obj({minHeight: String("100px")})}>
+      sx={Sx.obj({justifyContent: SpaceBetween, minHeight: String("100px")})}
+    >
       <Grid size=Object({xs: Int(5)})>
         <Item> {"Left"->React.string} </Item>
       </Grid>

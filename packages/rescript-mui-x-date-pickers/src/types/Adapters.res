@@ -21,6 +21,11 @@ type adapterFormats = {
    */
   dayOfMonth: string,
   /**
+   * The day of the month with letters.
+   * @example "2nd"
+   */
+  dayOfMonthFull: string,
+  /**
    * The name of the day of the week.
    * @example "Wednesday"
    */
@@ -87,12 +92,6 @@ type adapterFormats = {
   normalDateWithWeekday: string,
   // Time formats
   /**
-   * The hours and the minutes.
-   * Used for the aria-label of the opening button of the `TimePicker`.
-   * @example "11:44 PM" for locales with meridiem, "23:44" for locales without meridiem.
-   */
-  fullTime: string,
-  /**
    * The hours with the meridiem and minutes.
    * @example "11:44 PM"
    */
@@ -104,12 +103,6 @@ type adapterFormats = {
   fullTime24h: string,
   // Date & Time formats
 
-  /**
-   * A keyboard input friendly time format.
-   * Used in the date-time fields.
-   * @example "02/13/2020 11:44 PM" for locales with meridiem, "02/13/2020 23:44" for locales without meridiem.
-   */
-  keyboardDateTime: string,
   /**
    * A keyboard input friendly time format for 12-hour clock.
    * Used in the date-time fields.
@@ -130,6 +123,7 @@ type formatKey =
   | @as("month") Month
   | @as("monthShort") MonthShort
   | @as("dayOfMonth") DayOfMonth
+  | @as("dayOfMonthFull") DayOfMonthFull
   | @as("weekday") Weekday
   | @as("weekdayShort") WeekdayShort
   | @as("hours24h") Hours24h
@@ -142,10 +136,8 @@ type formatKey =
   | @as("shortDate") ShortDate
   | @as("normalDate") NormalDate
   | @as("normalDateWithWeekday") NormalDateWithWeekday
-  | @as("fullTime") FullTime
   | @as("fullTime12h") FullTime12h
   | @as("fullTime24h") FullTime24h
-  | @as("keyboardDateTime") KeyboardDateTime
   | @as("keyboardDateTime12h") KeyboardDateTime12h
   | @as("keyboardDateTime24h") KeyboardDateTime24h
   | String(string)
@@ -158,11 +150,12 @@ type fieldFormatTokenObj = {
   maxLength?: int,
 }
 
-type fieldFormatToken
-// | Object(fieldFormatTokenObj)
-// | Field(Fields.fieldSectionType)
+@unboxed
+type fieldFormatToken =
+  | Object(fieldFormatTokenObj)
+  | Section(string)
 
-type fieldFormatTokenMap = Js.Dict.t<fieldFormatToken>
+type fieldFormatTokenMap = dict<fieldFormatToken>
 
 type meridiem =
   | @as("am") AM
@@ -196,23 +189,18 @@ type muiPickersAdapter<'date, 'locale> = {
    * @param {any} value The optional value to parse.
    * @returns {'date | null} The parsed date.
    */
-  date: option<string> => Common.dateValue<'date>,
-  /**
-   * Create a date in the date library format.
-   * If no `value` parameter is provided, creates a date with the current timestamp.
-   * If a `value` parameter is provided, pass it to the date library to try to parse it.
-   * @template 'date
-   * @param {string | null | undefined} value The optional value to parse.
-   * @param {string} timezone The timezone of the date.
-   * @returns {'date | null} The parsed date.
-   */
-  dateWithTimezone: (option<string>, Common.pickersTimezone) => Common.dateValue<'date>,
+  date: (
+    ~value: string=?,
+    ~timezone: Common.pickersTimezone=?,
+  ) => Common.dateValue<'date>,
+  /** Create an invalid date in the date library format. */
+  getInvalidDate: unit => 'date,
   /**
    * Extracts the timezone from a date.
    * @template 'date
    * @param {'date} value The date from which we want to get the timezone.
    */
-  getTimezone: Common.dateValue<'date> => string,
+  getTimezone: Common.dateValue<'date> => Common.pickersTimezone,
   /**
    * Convert a date to another timezone.
    * @template 'date
@@ -220,30 +208,14 @@ type muiPickersAdapter<'date, 'locale> = {
    * @param {string} timezone The timezone to convert the date to.
    * @returns {'date} The converted date.
    */
-  setTimezone: (Common.dateValue<'date>, Common.pickersTimezone) => 'date,
+  setTimezone: ('date, Common.pickersTimezone) => 'date,
   /**
    * Convert a date in the library format into a JavaScript `Date` object.
    * @template 'date
    * @param {'date} value The value to convert.
    * @returns {Date} the JavaScript date.
    */
-  toJsDate: Common.dateValue<'date> => Js.Date.t,
-  /**
-   * Parse an iso string into a date in the date library format.
-   * @deprecate Will be removed in v7.
-   * @template 'date
-   * @param {string} isoString The iso string to parse.
-   * @returns {'date} the parsed date.
-   */
-  parseISO: string => 'date,
-  /**
-   * Stringify a date in the date library format into an ISO string.
-   * @deprecate Will be removed in v7.
-   * @template 'date
-   * @param {'date} value The date to stringify.
-   * @returns {string} the iso string representing the date.
-   */
-  toISO: 'date => string,
+  toJsDate: 'date => Date.t,
   /**
    * Parse a string date in a specific format.
    * @template 'date
@@ -273,7 +245,7 @@ type muiPickersAdapter<'date, 'locale> = {
    * @param {any} value The value to test.
    * @returns {boolean} `true` if the value is valid.
    */
-  isValid: 'date => bool,
+  isValid: Common.dateValue<'date> => bool,
   /**
    * Format a date using an adapter format string (see the `AdapterFormats` interface)
    * @template 'date
@@ -303,7 +275,7 @@ type muiPickersAdapter<'date, 'locale> = {
    * @param {any} comparing The date to compare with the reference date.
    * @returns {boolean} `true` if the two dates are equal.
    */
-  isEqual: ('date, 'date) => bool,
+  isEqual: (Common.dateValue<'date>, Common.dateValue<'date>) => bool,
   /**
    * Check if the two dates are in the same year (using the timezone of the reference date).
    * @template 'date
@@ -618,11 +590,6 @@ type muiPickersAdapter<'date, 'locale> = {
    */
   getDaysInMonth: 'date => int,
   /**
-   * Get the label of each day of a week.
-   * @returns {string[]} The label of each day of a week.
-   */
-  getWeekdays: unit => array<string>,
-  /**
    * Create a nested list with all the days of the month of the given date grouped by week.
    * @template 'date
    * @param {'date} value The given date.
@@ -636,6 +603,8 @@ type muiPickersAdapter<'date, 'locale> = {
    * @returns {number} The number of the week of the given date.
    */
   getWeekNumber: 'date => int,
+  /** Get the 1-based day-of-week number for the given date. */
+  getDayOfWeek: 'date => int,
   /**
    * Create a list with all the years between the start end the end date.
    * @template 'date
@@ -643,11 +612,5 @@ type muiPickersAdapter<'date, 'locale> = {
    * @param {'date} end The end of the range.
    * @returns {'date[]} List of all the years between the start end the end date.
    */
-  getYearRange: (~start: 'date, ~end: 'date) => array<'date>,
-  /**
-   * Allow to customize how the "am"` and "pm" strings are rendered.
-   * @param {"am" | "pm"} meridiem The string to render.
-   * @return {string} The formatted string.
-   */
-  getMeridiemText: meridiem => string,
+  getYearRange: (('date, 'date)) => array<'date>,
 }

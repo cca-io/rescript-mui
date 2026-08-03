@@ -13,38 +13,6 @@ type classes = {
   anchorTop?: string,
   /** Styles applied to the root element if `anchor="bottom"`. */
   anchorBottom?: string,
-  /** Styles applied to the Paper component if `anchor="left"`.
-  *  @deprecated Combine the [.MuiDrawer-anchorLeft](/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorLeft) and [.MuiDrawer-paper](/material-ui/api/drawer/#Drawer-css-MuiDrawer-paper) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-  */
-  paperAnchorLeft?: string,
-  /** Styles applied to the Paper component if `anchor="right"`.
-  *  @deprecated Combine the [.MuiDrawer-anchorRight](/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorRight) and [.MuiDrawer-paper](/material-ui/api/drawer/#Drawer-css-MuiDrawer-paper) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-  */
-  paperAnchorRight?: string,
-  /** Styles applied to the Paper component if `anchor="top"`.
-  *  @deprecated Combine the [.MuiDrawer-anchorTop](/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorTop) and [.MuiDrawer-paper](/material-ui/api/drawer/#Drawer-css-MuiDrawer-paper) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-  */
-  paperAnchorTop?: string,
-  /** Styles applied to the Paper component if `anchor="bottom"`.
-  *  @deprecated Combine the [.MuiDrawer-anchorBottom](/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorBottom) and [.MuiDrawer-paper](/material-ui/api/drawer/#Drawer-css-MuiDrawer-paper) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-  */
-  paperAnchorBottom?: string,
-  /** Styles applied to the Paper component if `anchor="left"` and `variant` is not "temporary".
-  * @deprecated Combine the [.MuiDrawer-anchorLeft](/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorLeft), [.MuiDrawer-docked](/material-ui/api/drawer/#Drawer-css-MuiDrawer-docked) and [.MuiDrawer-paper](/material-ui/api/drawer/#Drawer-css-MuiDrawer-paper) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-  */
-  paperAnchorDockedLeft?: string,
-  /** Styles applied to the Paper component if `anchor="top"` and `variant` is not "temporary".
-  * @deprecated Combine the [.MuiDrawer-anchorTop](/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorTop), [.MuiDrawer-docked](/material-ui/api/drawer/#Drawer-css-MuiDrawer-docked) and [.MuiDrawer-paper](/material-ui/api/drawer/#Drawer-css-MuiDrawer-paper) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-  */
-  paperAnchorDockedTop?: string,
-  /** Styles applied to the Paper component if `anchor="right"` and `variant` is not "temporary".
-  * @deprecated Combine the [.MuiDrawer-anchorRight](/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorRight), [.MuiDrawer-docked](/material-ui/api/drawer/#Drawer-css-MuiDrawer-docked) and [.MuiDrawer-paper](/material-ui/api/drawer/#Drawer-css-MuiDrawer-paper) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-  */
-  paperAnchorDockedRight?: string,
-  /** Styles applied to the Paper component if `anchor="bottom"` and `variant` is not "temporary".
-  * @deprecated Combine the [.MuiDrawer-anchorBottom](/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorBottom), [.MuiDrawer-docked](/material-ui/api/drawer/#Drawer-css-MuiDrawer-docked) and [.MuiDrawer-paper](/material-ui/api/drawer/#Drawer-css-MuiDrawer-paper) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-  */
-  paperAnchorDockedBottom?: string,
   /** Styles applied to the Modal component. */
   modal?: string,
 }
@@ -155,19 +123,6 @@ type publicProps = {
     */
   @as("open")
   open_?: bool,
-  /**
-    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
-    * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    * @default {}
-    */
-  @as("PaperProps")
-  paperProps?: Paper.props,
-  /**
-    * Props applied to the [`Slide`](/material-ui/api/slide/) element.
-    * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    */
-  @as("SlideProps")
-  slideProps?: Slide.props,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

@@ -1,0 +1,21 @@
+{
+  "name": "@rescript-mui/x-date-pickers",
+  "namespace": "mui-x-date-pickers",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "esmodule",
+    "in-source": true
+  },
+  "dependencies": ["@rescript/react", "@rescript-mui/material"],
+  "warnings": {
+    "number": "-103"
+  },
+  "jsx": {
+    "version": 4
+  }
+}

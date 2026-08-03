@@ -25,14 +25,15 @@ let make = () => {
     <Mui.Popover
       open_={Belt.Option.isSome(state.anchorEl)}
       onClose={(_evt, _) => dispatch(ClosePopup)}
-      anchorEl=?{state.anchorEl->Belt.Option.map(el => el->ReactDOM.domElementToObj->Obj.magic)}>
+      anchorEl=?{state.anchorEl->Belt.Option.map(el => el->ReactDOM.domElementToObj->Obj.magic)}
+    >
       <div
-        style={ReactDOM.Style.make(
-          ~fontSize="6rem",
-          ~margin="1rem",
-          ~backgroundColor="salmon",
-          (),
-        )}>
+        style={{
+          fontSize: "6rem",
+          margin: "1rem",
+          backgroundColor: "salmon",
+        }}
+      >
         {React.string(state.popupMessage)}
       </div>
     </Mui.Popover>
@@ -40,9 +41,10 @@ let make = () => {
       {messages
       ->Belt.Array.mapWithIndex((i, message) =>
         <Mui.ListItemButton
-          key={Belt.Int.toString(i)}
+          key={Int.toString(i)}
           onClick={evt =>
-            dispatch(OpenPopup((evt->ReactEvent.Mouse.target->toDomElement, message)))}>
+            dispatch(OpenPopup((evt->ReactEvent.Mouse.target->toDomElement, message)))}
+        >
           <Mui.ListItemText> {React.string(message)} </Mui.ListItemText>
         </Mui.ListItemButton>
       )

@@ -5,13 +5,13 @@ type component<'classKey, 'props> = {
   styleOverrides?: 'classKey,
 }
 
-type masonryClassKey = {root?: ReactDOM.Style.t}
+type masonryClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type tabListClassKey = {
   root?: ReactDOM.Style.t,
   vertical?: ReactDOM.Style.t,
-  flexContainer?: ReactDOM.Style.t,
-  flexContainerVertical?: ReactDOM.Style.t,
   list?: ReactDOM.Style.t,
   centered?: ReactDOM.Style.t,
   scroller?: ReactDOM.Style.t,
@@ -37,7 +37,9 @@ type timelineClassKey = {
   positionAlternateReverse?: ReactDOM.Style.t,
 }
 
-type timelineConnectorClassKey = {root?: ReactDOM.Style.t}
+type timelineConnectorClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type timelineContentClassKey = {
   root?: ReactDOM.Style.t,
@@ -76,7 +78,9 @@ type timelineOppositeContentClassKey = {
   positionAlternateReverse?: ReactDOM.Style.t,
 }
 
-type timelineSeparatorClassKey = {root?: ReactDOM.Style.t}
+type timelineSeparatorClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type treeItemClassKey = {
   root?: ReactDOM.Style.t,
@@ -90,26 +94,21 @@ type treeItemClassKey = {
   label?: ReactDOM.Style.t,
 }
 
-type treeViewClassKey = {root?: ReactDOM.Style.t}
+type treeViewClassKey = {
+  root?: ReactDOM.Style.t,
+}
 
 type t = {
   @as("MuiMasonry") muiMasonry?: component<masonryClassKey, Masonry.props>,
   @as("MuiTabList") muiTabList?: component<tabListClassKey, TabList.props<unknown>>,
   @as("MuiTabPanel") muiTabPanel?: component<tabPanelClassKey, TabPanel.props>,
   @as("MuiTimeline") muiTimeline?: component<timelineClassKey, Timeline.props>,
-  @as("MuiTimelineConnector")
-  muiTimelineConnector?: component<timelineConnectorClassKey, TimelineConnector.props>,
-  @as("MuiTimelineContent")
-  muiTimelineContent?: component<timelineContentClassKey, TimelineContent.props>,
+  @as("MuiTimelineConnector") muiTimelineConnector?: component<timelineConnectorClassKey, TimelineConnector.props>,
+  @as("MuiTimelineContent") muiTimelineContent?: component<timelineContentClassKey, TimelineContent.props>,
   @as("MuiTimelineDot") muiTimelineDot?: component<timelineDotClassKey, TimelineDot.props>,
   @as("MuiTimelineItem") muiTimelineItem?: component<timelineItemClassKey, TimelineItem.props>,
-  @as("MuiTimelineOppositeContent")
-  muiTimelineOppositeContent?: component<
-    timelineOppositeContentClassKey,
-    TimelineOppositeContent.props,
-  >,
-  @as("MuiTimelineSeparator")
-  muiTimelineSeparator?: component<timelineSeparatorClassKey, TimelineSeparator.props>,
+  @as("MuiTimelineOppositeContent") muiTimelineOppositeContent?: component<timelineOppositeContentClassKey, TimelineOppositeContent.props>,
+  @as("MuiTimelineSeparator") muiTimelineSeparator?: component<timelineSeparatorClassKey, TimelineSeparator.props>,
   @as("MuiTreeItem") muiTreeItem?: component<treeItemClassKey, TreeItem.props>,
   @as("MuiTreeView") muiTreeView?: component<treeViewClassKey, TreeView.props>,
 }

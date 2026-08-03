@@ -20,7 +20,7 @@ let options = [(Yes, "Yes"), (No, "No"), (Maybe, "Maybe")]
 
 // Helper: combine base System.props with theme-dependent dynamic key entries.
 // Wraps Sx.array + Sx.Array.obj/func/dict into a single call.
-let sxWithQueries = (base: System.props, f: Theme.t => Js.Dict.t<System.props>): Sx.props =>
+let sxWithQueries = (base: System.props, f: Theme.t => Dict.t<System.props>): Sx.props =>
   Sx.array([Sx.Array.obj(base), Sx.Array.func((theme: Theme.t) => Sx.Array.dict(f(theme)))])
 
 // -- Example 1: Unnamed container query (radio → select) --
@@ -30,11 +30,11 @@ module RadioToSelect = {
     let (value, setValue) = React.useState(() => Yes)
 
     let radioSx = sxWithQueries({display: String("none")}, theme =>
-      Js.Dict.fromArray([(theme.containerQueries.up(Sm), {System.display: String("block")})])
+      Dict.fromArray([(theme.containerQueries.up(Sm), {System.display: String("block")})])
     )
 
     let selectSx = sxWithQueries({display: String("block")}, theme =>
-      Js.Dict.fromArray([(theme.containerQueries.up(Sm), {System.display: String("none")})])
+      Dict.fromArray([(theme.containerQueries.up(Sm), {System.display: String("none")})])
     )
 
     // Resizable container with inline-size containment
@@ -46,13 +46,13 @@ module RadioToSelect = {
         padding: Number(2.),
         overflow: Hidden,
       })}
-      style={ReactDOM.Style.make(
-        ~resize="horizontal",
-        ~minWidth="180px",
-        ~maxWidth="100%",
-        ~width="100%",
-        (),
-      )->ReactDOM.Style.unsafeAddProp("containerType", "inline-size")}>
+      style={{
+        resize: "horizontal",
+        minWidth: "180px",
+        maxWidth: "100%",
+        width: "100%",
+      }->ReactDOM.Style.unsafeAddProp("containerType", "inline-size")}
+    >
       // Radio version: hidden below sm, shown at sm+
       <Box sx=radioSx>
         <FormLabel> {"Pick one (radio)"->React.string} </FormLabel>
@@ -61,7 +61,8 @@ module RadioToSelect = {
           onChange={(e, _) => {
             let v: string = (e->ReactEvent.Form.target)["value"]
             setValue(_ => answerFromString(v))
-          }}>
+          }}
+        >
           {options
           ->Belt.Array.map(((v, label)) =>
             <FormControlLabel
@@ -84,7 +85,8 @@ module RadioToSelect = {
             onChange={(e, _) => {
               let v: string = (e->ReactEvent.Form.target)["value"]
               setValue(_ => answerFromString(v))
-            }}>
+            }}
+          >
             {options
             ->Belt.Array.map(((v, label)) =>
               <MenuItem key={answerToString(v)} value={answerToString(v)}>
@@ -113,7 +115,7 @@ module NamedContainer = {
       },
       theme => {
         let card = theme->Theme.containerQueriesNamed("card")
-        Js.Dict.fromArray([
+        Dict.fromArray([
           (card.up(Sm), {System.flexDirection: Row, alignItems: Center, gap: Number(3.)}),
         ])
       },
@@ -127,15 +129,15 @@ module NamedContainer = {
         borderRadius: Number(1.),
         overflow: Hidden,
       })}
-      style={ReactDOM.Style.make(
-        ~resize="horizontal",
-        ~minWidth="180px",
-        ~maxWidth="100%",
-        ~width="100%",
-        (),
-      )
+      style={{
+        resize: "horizontal",
+        minWidth: "180px",
+        maxWidth: "100%",
+        width: "100%",
+      }
       ->ReactDOM.Style.unsafeAddProp("containerType", "inline-size")
-      ->ReactDOM.Style.unsafeAddProp("containerName", "card")}>
+      ->ReactDOM.Style.unsafeAddProp("containerName", "card")}
+    >
       <Box sx=cardSx>
         <Box
           sx={Sx.obj({
@@ -165,7 +167,7 @@ module DownAndBetween = {
       {padding: Number(2.), bgcolor: BackgroundPaper, borderRadius: Number(1.)},
       theme => {
         let cq = theme.containerQueries
-        Js.Dict.fromArray([
+        Dict.fromArray([
           // down: applies below the breakpoint
           (cq.down(Sm), {System.bgcolor: ErrorMain, color: String("white")}),
           // between: applies within a breakpoint range
@@ -183,8 +185,13 @@ module DownAndBetween = {
         borderRadius: Number(1.),
         overflow: Hidden,
       })}
-      style={ReactDOM.Style.make(~resize="horizontal", ~minWidth="180px", ~maxWidth="100%", ~width="100%", ())
-      ->ReactDOM.Style.unsafeAddProp("containerType", "inline-size")}>
+      style={{
+        resize: "horizontal",
+        minWidth: "180px",
+        maxWidth: "100%",
+        width: "100%",
+      }->ReactDOM.Style.unsafeAddProp("containerType", "inline-size")}
+    >
       <Box sx>
         <Typography variant=Body1>
           {"down(Sm) = red, between(Sm, Md) = amber, up(Md) = green"->React.string}
@@ -196,8 +203,8 @@ module DownAndBetween = {
 
 @react.component
 let make = () => {
-  <Box display={String("flex")} flexDirection={Column} gap={Number(2.)}>
-    <Typography variant=H6> {"Container Queries (v6)"->React.string} </Typography>
+  <Box sx={Sx.obj({display: String("flex"), flexDirection: Column, gap: Number(2.)})}>
+    <Typography variant=H6> {"Container Queries (v9)"->React.string} </Typography>
     <Typography variant=Body2>
       {"Drag the bottom-right corner of each box to resize and observe the layout change."->React.string}
     </Typography>
@@ -209,9 +216,7 @@ let make = () => {
       {"Named container: Column \u2194 Row"->React.string}
     </Typography>
     <NamedContainer />
-    <Typography variant=Subtitle2>
-      {"down / between / up"->React.string}
-    </Typography>
+    <Typography variant=Subtitle2> {"down / between / up"->React.string} </Typography>
     <DownAndBetween />
   </Box>
 }

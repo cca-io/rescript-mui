@@ -65,7 +65,7 @@ type edge =
   | @as("end") End
   | @as(false) False
 
-type props<'value, 'inputRef> = {
+type props<'value> = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
     * If `true`, the component is checked.
@@ -127,14 +127,6 @@ type props<'value, 'inputRef> = {
     */
   indeterminateIcon?: React.element,
   /**
-    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-    */
-  inputProps?: InputBase.inputBaseComponentProps,
-  /**
-    * Pass a ref to the `input` element.
-    */
-  inputRef?: React.ref<'inputRef>,
-  /**
     * Name attribute of the `input` element.
     */
   name?: string,
@@ -179,4 +171,4 @@ type props<'value, 'inputRef> = {
 }
 
 @module("@mui/material/Checkbox")
-external make: React.component<props<'value, 'inputRef>> = "default"
+external make: React.component<props<'value>> = "default"

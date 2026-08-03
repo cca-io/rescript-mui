@@ -40,13 +40,6 @@ type props = {
     */
   disableAutoFocusItem?: bool,
   /**
-    * Props applied to the [`MenuList`](/material-ui/api/menu-list/) element.
-    * @deprecated use the `slotProps.list` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    * @default {}
-    */
-  @as("MenuListProps")
-  menuListProps?: MenuList.props,
-  /**
     * `classes` prop applied to the [`Popover`](/material-ui/api/popover/) element.
     */
   @as("PopoverClasses")

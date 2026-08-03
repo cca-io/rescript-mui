@@ -21,9 +21,9 @@ let make = () => {
         {itemHeights
         ->Belt.Array.mapWithIndex((i, height) =>
           <Paper
-            key={Belt.Int.toString(i)}
+            key={Int.toString(i)}
             sx={Sx.obj({
-              height: String(Belt.Int.toString(height) ++ "px"),
+              height: String(Int.toString(height) ++ "px"),
               display: String("flex"),
               alignItems: Center,
               justifyContent: Center,
@@ -34,7 +34,7 @@ let make = () => {
               | _ => WarningLight
               },
             })}>
-            <Typography> {(Belt.Int.toString(i + 1) ++ " (" ++ Belt.Int.toString(height) ++ "px)")->React.string} </Typography>
+            <Typography> {(Int.toString(i + 1) ++ " (" ++ Int.toString(height) ++ "px)")->React.string} </Typography>
           </Paper>
         )
         ->React.array}
@@ -51,15 +51,15 @@ let make = () => {
         ->Belt.Array.slice(~offset=0, ~len=8)
         ->Belt.Array.mapWithIndex((i, height) =>
           <Paper
-            key={Belt.Int.toString(i)}
+            key={Int.toString(i)}
             elevation=3
             sx={Sx.obj({
-              height: String(Belt.Int.toString(height) ++ "px"),
+              height: String(Int.toString(height) ++ "px"),
               display: String("flex"),
               alignItems: Center,
               justifyContent: Center,
             })}>
-            <Typography variant=H6> {Belt.Int.toString(i + 1)->React.string} </Typography>
+            <Typography variant=H6> {Int.toString(i + 1)->React.string} </Typography>
           </Paper>
         )
         ->React.array}
@@ -75,13 +75,13 @@ let make = () => {
         {itemHeights
         ->Belt.Array.slice(~offset=0, ~len=6)
         ->Belt.Array.mapWithIndex((i, height) =>
-          <Card key={Belt.Int.toString(i)} sx={Sx.obj({height: String(Belt.Int.toString(height) ++ "px")})}>
+          <Card key={Int.toString(i)} sx={Sx.obj({height: String(Int.toString(height) ++ "px")})}>
             <CardContent>
               <Typography variant=H5 component={OverridableComponent.string("div")}>
-                {("Card " ++ Belt.Int.toString(i + 1))->React.string}
+                {("Card " ++ Int.toString(i + 1))->React.string}
               </Typography>
               <Typography variant=Body2 color=TextSecondary>
-                {("Height: " ++ Belt.Int.toString(height) ++ "px")->React.string}
+                {("Height: " ++ Int.toString(height) ++ "px")->React.string}
               </Typography>
             </CardContent>
           </Card>
@@ -109,9 +109,9 @@ let make = () => {
         ]
         ->Belt.Array.mapWithIndex((i, (color, height)) =>
           <Box
-            key={Belt.Int.toString(i)}
+            key={Int.toString(i)}
             sx={Sx.obj({
-              height: String(Belt.Int.toString(height) ++ "px"),
+              height: String(Int.toString(height) ++ "px"),
               bgcolor: String(color),
               borderRadius: String("8px"),
             })}

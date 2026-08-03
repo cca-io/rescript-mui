@@ -75,21 +75,9 @@ type props = {
     */
   primary?: React.element,
   /**
-    * These props will be forwarded to the primary typography component
-    * (as long as disableTypography is not `true`).
-    * @deprecated Use `slotProps.primary` instead. This prop will be removed in v7.
-    */
-  primaryTypographyProps?: Typography.props,
-  /**
     * The secondary content element.
     */
   secondary?: React.element,
-  /**
-    * These props will be forwarded to the secondary typography component
-    * (as long as disableTypography is not `true`).
-    * @deprecated Use `slotProps.secondary` instead. This prop will be removed in v7.
-    */
-  secondaryTypographyProps?: Typography.props,
   /**
     * The components used for each slot inside.
     * @default {}

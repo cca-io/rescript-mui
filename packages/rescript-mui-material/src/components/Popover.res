@@ -11,7 +11,7 @@ type actions = {updatePosition: unit => unit}
 type anchorEl =
   | @as(null) Null
   | Virtual(Popper.virtualElement)
-  | Element(unit => Js.nullable<Dom.element>)
+  | Element(unit => Nullable.t<Dom.element>)
 
 @unboxed
 type verticalOrigin =
@@ -144,24 +144,10 @@ type publicProps = {
     */
   transformOrigin?: origin,
   /**
-    * The component used for the transition.
-    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-    * @default Grow
-    */
-  @as("TransitionComponent")
-  transitionComponent?: React.component<Transition.props>,
-  /**
     * Set to 'auto' to automatically calculate transition time based on height.
     * @default 'auto'
     */
   transitionDuration?: Transition.durationWithAuto,
-  /**
-    * Props applied to the transition element.
-    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-    * @default {}
-    */
-  @as("TransitionProps")
-  transitionProps?: Transition.props,
 }
 
 type props = {

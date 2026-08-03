@@ -12,7 +12,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Alert"->React.string} </Typography>
     </Grid>
@@ -25,7 +25,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Autocomplete"->React.string} </Typography>
     </Grid>
@@ -38,7 +38,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Pagination"->React.string} </Typography>
     </Grid>
@@ -51,7 +51,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Rating"->React.string} </Typography>
     </Grid>
@@ -64,7 +64,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Skeleton"->React.string} </Typography>
     </Grid>
@@ -77,7 +77,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"ToggleButton"->React.string} </Typography>
     </Grid>
@@ -90,7 +90,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Timeline"->React.string} </Typography>
     </Grid>
@@ -103,7 +103,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Masonry"->React.string} </Typography>
     </Grid>
@@ -119,7 +119,7 @@ let make = () => <>
   // TODO: TreeView moved to it's own package.
   // https://mui.com/x/migration/migration-tree-view-v6/
   //
-  // <Grid container=true alignItems=String("center")>
+  // <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
   //   <Grid item=true size={md:Int(6)}>
   //     <Typography variant=H5> {"TreeView"->React.string} </Typography>
   //   </Grid>

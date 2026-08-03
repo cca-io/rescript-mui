@@ -64,13 +64,6 @@ type props = {
     */
   classes?: classes,
   /**
-    * Props applied to the [`Fab`](/material-ui/api/fab/) component.
-    * @deprecated Use `slotProps.fab` instead. This prop will be removed in v7.
-    * @default {}
-    */
-  @as("FabProps")
-  fabProps?: Fab.props,
-  /**
     * Adds a transition delay, to allow a series of SpeedDialActions to be animated.
     * @default 0
     */
@@ -94,29 +87,6 @@ type props = {
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Sx.props,
-  /**
-    * `classes` prop applied to the [`Tooltip`](/material-ui/api/tooltip/) element.
-    * @deprecated Use `slotProps.tooltip.classes` instead. This prop will be removed in v7.
-    */
-  @as("TooltipClasses")
-  tooltipClasses?: Tooltip.classes,
-  /**
-    * Placement of the tooltip.
-    * @deprecated Use `slotProps.tooltip.placement` instead. This prop will be removed in v7.
-    * @default 'left'
-    */
-  tooltipPlacement?: Tooltip.placement,
-  /**
-    * Label to display in the tooltip.
-    * @deprecated Use `slotProps.tooltip.title` instead. This prop will be removed in v7.
-    */
-  tooltipTitle?: React.element,
-  /**
-    * Make the tooltip always visible when the SpeedDial is open.
-    * @deprecated Use `slotProps.tooltip.open` instead. This prop will be removed in v7.
-    * @default false
-    */
-  tooltipOpen?: bool,
 }
 
 @module("@mui/material/SpeedDialAction")

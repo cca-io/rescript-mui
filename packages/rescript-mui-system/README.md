@@ -15,6 +15,6 @@ npm install @rescript-mui/material @rescript-mui/system
 
 ```json
 {
-  "bs-dependencies": ["@rescript-mui/material", "@rescript-mui/system"]
+  "dependencies": ["@rescript-mui/material", "@rescript-mui/system"]
 }
 ```

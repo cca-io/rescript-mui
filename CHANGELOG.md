@@ -14,6 +14,15 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
+## 9.0.0 (Unreleased)
+
+- :boom: Update ReScript to v12 and `@rescript/react` to v0.15.0.
+- :boom: Update `@rescript-mui/material`, `@rescript-mui/lab`, `@rescript-mui/system` and `@rescript-mui/x-date-pickers` to MUI v9 peer dependencies.
+- :boom: Remove Typography color dot notation; use the `sx` prop instead.
+- :boom: Remove standalone system props; use the `sx` prop instead.
+- :boom: Remove `GridLegacy`.
+- :rocket: Expand the MUI X Date Pickers bindings to complete component coverage.
+
 ## 7.0.0
 
 - :boom: Update `@rescript-mui/material` and `@rescript-mui/lab` to MUI v7 peer dependencies.

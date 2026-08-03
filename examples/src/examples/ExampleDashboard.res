@@ -2,7 +2,7 @@ open Mui
 
 let drawerWidth = 240
 
-let px_of_int = x => x->string_of_int ++ "px"
+let px_of_int = x => x->Int.toString ++ "px"
 
 module MenuIcon = {
   @react.component @module("@mui/icons-material/Menu")

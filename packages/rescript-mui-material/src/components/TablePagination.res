@@ -186,7 +186,7 @@ type slotProps = {
   actions?: actionsSlotProps,
 }
 
-type props<'inputRef> = {
+type props = {
   ...TableCell.publicProps,
   /**
     * The total number of rows.
@@ -218,11 +218,6 @@ type props<'inputRef> = {
     */
   @as("ActionsComponent")
   actionsComponent?: React.component<actionsProps>,
-  /**
-    * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
-    * @deprecated Use `slotProps.actions.previousButton` instead. This prop will be removed in v7.
-    */
-  backIconButtonProps?: IconButton.props,
   /**
     * Override or extend the styles applied to the component.
     */
@@ -267,11 +262,6 @@ type props<'inputRef> = {
     */
   labelRowsPerPage?: React.element,
   /**
-    * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
-    * @deprecated Use `slotProps.actions.nextButton` instead. This prop will be removed in v7.
-    */
-  nextIconButtonProps?: IconButton.props,
-  /**
     * Callback fired when the number of rows per page is changed.
     *
     * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
@@ -284,13 +274,6 @@ type props<'inputRef> = {
     * @default [10, 25, 50, 100]
     */
   rowsPerPageOptions?: array<rowsPerPageOptions>,
-  /**
-    * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
-    * @deprecated Use `slotProps.select` instead. This prop will be removed in v7.
-    * @default {}
-    */
-  @as("SelectProps")
-  selectProps?: Select.props<int, 'inputRef>,
   /**
     * The components used for each slot inside.
     * @default {}
@@ -319,4 +302,4 @@ type props<'inputRef> = {
 }
 
 @module("@mui/material/TablePagination")
-external make: React.component<props<'inputRef>> = "default"
+external make: React.component<props> = "default"

@@ -21,22 +21,6 @@ type classes = {
   fullWidth?: string,
   /** Styles applied to the input element. */
   input?: string,
-  /** Styles applied to the input element if `size="small"`.
-  * @deprecated Combine the [.MuiInputBase-input](/material-ui/api/input-base/#input-base-classes-MuiInputBase-input) and [.MuiInputBase-sizeSmall](/material-ui/api/input-base/#input-base-classes-MuiInputBase-sizeSmall) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-  */
-  inputSizeSmall?: string,
-  /** Styles applied to the input element if `multiline={true}`.
-  * @deprecated Combine the [.MuiInputBase-input](/material-ui/api/input-base/#input-base-classes-MuiInputBase-input) and [.MuiInputBase-multiline](/material-ui/api/input-base/#input-base-classes-MuiInputBase-multiline) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-  */
-  inputMultiline?: string,
-  /** Styles applied to the input element if `startAdornment` is provided.
-  * @deprecated Combine the [.MuiInputBase-input](/material-ui/api/input-base/#input-base-classes-MuiInputBase-input) and [.MuiInputBase-adornedStart](/material-ui/api/input-base/#input-base-classes-MuiInputBase-adornedStart) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-  */
-  inputAdornedStart?: string,
-  /** Styles applied to the input element if `endAdornment` is provided.
-  * @deprecated Combine the [.MuiInputBase-input](/material-ui/api/input-base/#input-base-classes-MuiInputBase-input) and [.MuiInputBase-adornedEnd](/material-ui/api/input-base/#input-base-classes-MuiInputBase-adornedEnd) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-  */
-  inputAdornedEnd?: string,
   /** Styles applied to the input element if `type="search"`. */
   inputTypeSearch?: string,
 }
@@ -54,6 +38,10 @@ type props<'value, 'inputRef> = {
     * You can pull out the new value by accessing `event.target.value` (string).
     */
   onChange?: ReactEvent.Form.t => unit,
+  /**
+    * If `true`, the outline is notched to accommodate the label. Used internally by `TextField`.
+    */
+  notched?: bool,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

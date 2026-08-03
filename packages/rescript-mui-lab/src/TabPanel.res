@@ -1,7 +1,7 @@
 type classes = {
   /** Styles applied to the root element. */
   root?: string,
-  /** State class applied to the root element if `hidden={true}`. */
+  /** State class applied to the root `div` element if `hidden={true}`. */
   hidden?: string,
 }
 
@@ -16,11 +16,6 @@ type props = {
     */
   classes?: classes,
   /**
-    * If `true`, keeps the contents of the hidden TabPanel in the DOM.
-    * @default false
-    */
-  keepMounted?: bool,
-  /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
   sx?: Mui.Sx.props,
@@ -28,7 +23,12 @@ type props = {
     * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
     * no `value` was passed to `Tab`.
     */
-  value: string,
+  value: TabContext.value,
+  /**
+    * If `true`, keeps the contents of the hidden TabPanel in the DOM.
+    * @default false
+    */
+  keepMounted?: bool,
 }
 
 @module("@mui/lab/TabPanel")

@@ -22,11 +22,6 @@ type variant =
   | @as("square") Square
   | String(string)
 
-type imgProps = {
-  ...System.props,
-  // React.ImgHTMLAttributes<HTMLImageElement>
-}
-
 type slots = {
   /**
     * The component that renders the root slot.
@@ -81,12 +76,6 @@ type props = {
     * Either a string to use a HTML element or a component.
     */
   component?: OverridableComponent.t<unknown>,
-  /**
-    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
-    * It can be used to listen for the loading error event.
-    * @deprecated Use `slotProps.img` instead. This prop will be removed in v7.
-    */
-  imgProps?: imgProps,
   /**
     * The components used for each slot inside.
     * @default {}

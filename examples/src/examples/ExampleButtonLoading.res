@@ -7,7 +7,7 @@ let make = () => {
   let handleClick = _ => {
     setLoading(_ => true)
     // Simulate async operation
-    let _ = Js.Global.setTimeout(() => setLoading(_ => false), 2000)
+    let _ = setTimeout(() => setLoading(_ => false), 2000)
   }
 
   <div>
