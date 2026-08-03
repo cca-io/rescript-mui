@@ -8,9 +8,15 @@
     "material-ui",
     "mui"
   ],
-  "homepage": "https://rescript-material-ui.cca.io/",
-  "repository": "https://github.com/cca-io/rescript-mui",
-  "bugs": "https://github.com/cca-io/rescript-mui/issues",
+  "homepage": "https://github.com/cca-io/rescript-mui/tree/master/packages/rescript-mui-lab#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cca-io/rescript-mui.git",
+    "directory": "packages/rescript-mui-lab"
+  },
+  "bugs": {
+    "url": "https://github.com/cca-io/rescript-mui/issues"
+  },
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
   "contributors": [
     "Christoph Knittel <ck@cca.io>",

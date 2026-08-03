@@ -1,6 +1,6 @@
 # @rescript-mui documentation
 
-### Naming
+## Naming
 
 `@rescript-mui/material` provides all components in individual files. The file
 pattern is:
@@ -19,11 +19,11 @@ this:
 The component names map one to one to the ones found in the `Component API`
 section of the MUI documentation.
 
-### Global module
+## Namespace
 
-For convenience, the `Mui` module includes a few special modules, which will be
-discussed later. To avoid name clashes, we suggest you stick to typing out
-`Mui.[COMPONENT_NAME]` instead of using `open`.
+The material package uses the `Mui` namespace. To avoid name clashes, prefer
+qualified component names such as `Mui.Typography` over opening the whole
+namespace.
 
 ```rescript
 @react.component
@@ -38,22 +38,20 @@ let make = () =>
   </div>
 ```
 
-### Special modules
+## Supporting modules
 
-The `Mui` namespace contains the following special modules:
+The `Mui` namespace also contains bindings and types used across components:
 
 - [Colors](module-colors.md)
-- [Core](module-core.md)
-- [System](module-system.md)
-- [Theme](theming.md)
-- [ThemeOptions](theming.md)
-- [ThemeHelpers](theming.md)
+- [System and `sx`](module-system.md)
+- [Theming](theming.md)
+- [Union values](union-values.md)
 
 ## Styling
 
-For styling `@rescript-mui` components, you need to pass CSS class names
-to them. We have documented the following popular options:
+MUI components accept `className`, `classes`, and `sx`, depending on the
+component. The following pages show common styling approaches:
 
 - [CSS](css.md)
 - [Tailwind CSS](tailwind.md)
-- [a CSS-in-ReScript library like `bs-css`](bs-css.md)
+- [CSS-in-ReScript libraries such as `bs-css`](bs-css.md)

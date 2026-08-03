@@ -2898,7 +2898,6 @@ __metadata:
     "@mui/icons-material": "npm:^9.2.0"
     "@mui/lab": "npm:^9.0.0-beta.6"
     "@mui/material": "npm:^9.2.0"
-    "@mui/system": "npm:^9.2.0"
     "@rescript/react": "npm:^0.15.0"
     bs-css-emotion: "npm:^7.1.1"
     react: "npm:^19.2.8"

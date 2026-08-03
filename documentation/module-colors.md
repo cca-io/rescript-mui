@@ -3,7 +3,7 @@
 All colors are available in the special module `Mui.Colors`.
 
 All colors are available as their corresponding name from the
-[MUI Color Palette](https://material-ui.com/customization/color/#color-palette).
+[MUI color documentation](https://mui.com/material-ui/customization/color/).
 They are accessible in the same way as in JavaScript.
 
 Let's take the color
@@ -33,7 +33,7 @@ shades:
 ## Available colors
 
 All colors from the
-[MUI Color Palette](https://material-ui.com/customization/color/#color-palette)
+[MUI color documentation](https://mui.com/material-ui/customization/color/)
 are available:
 
 - blueGrey

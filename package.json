@@ -18,10 +18,7 @@
     "format": "rescript format",
     "watch": "rescript watch",
     "start": "cd examples && parcel serve src/index.html",
-    "generateOverrides": "node helpers/src/GenerateOverrides.res.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res",
-    "publishLab": "yarn clean && cd packages/rescript-mui-lab && npm publish --access public",
-    "publishMui": "yarn clean && cd packages/rescript-mui-material && npm publish --access public",
-    "publishDatePickers": "yarn clean && cd packages/rescript-mui-x-date-pickers && npm publish --access public"
+    "generateOverrides": "node helpers/src/GenerateOverrides.res.js && rescript format ./packages/rescript-mui-material/src/types/Overrides.res && rescript format ./packages/rescript-mui-lab/src/Overrides.res"
   },
   "devDependencies": {
     "@mui/lab": "^9.0.0-beta.6",

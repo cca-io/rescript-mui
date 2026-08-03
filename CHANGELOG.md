@@ -1,7 +1,3 @@
----
-title: Changelog
----
-
 **Tags:**
 
 - :boom: - Breaking Change

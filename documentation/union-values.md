@@ -1,7 +1,3 @@
----
-title: Union Values
----
-
 ## Union differences
 
 The bindings use unboxed variants for values that may be represented by more

@@ -2,7 +2,7 @@
   "name": "rescript-material-ui-examples",
   "version": "1.0.0",
   "private": true,
-  "description": "Examples for ReScript-MUI.",
+  "description": "Compile fixtures and examples for ReScript-MUI.",
   "author": "Jonathan Siebern <jsiebern88@gmail.com>",
   "contributors": [
     "Christoph Knittel <ck@cca.io>",
@@ -15,7 +15,6 @@
     "@mui/icons-material": "^9.2.0",
     "@mui/lab": "^9.0.0-beta.6",
     "@mui/material": "^9.2.0",
-    "@mui/system": "^9.2.0",
     "@rescript/react": "^0.15.0",
     "bs-css-emotion": "^7.1.1",
     "react": "^19.2.8",
