@@ -1,6 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
   root?: string,
+  /** State class applied to the root `div` element if `hidden={true}`. */
+  hidden?: string,
 }
 
 type props = {
@@ -22,6 +24,11 @@ type props = {
     * no `value` was passed to `Tab`.
     */
   value: string,
+  /**
+    * If `true`, keeps the contents of the hidden TabPanel in the DOM.
+    * @default false
+    */
+  keepMounted?: bool,
 }
 
 @module("@mui/lab/TabPanel")
