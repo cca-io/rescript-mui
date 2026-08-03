@@ -80,6 +80,26 @@ const getChangedPaths = () => {
   ];
 };
 
+const changedIn = (changedPaths, prefixes) =>
+  changedPaths.some((file) => prefixes.some((prefix) => file.startsWith(prefix)));
+
+const sharedMaterialReleasePaths = [
+  "package.json",
+  "yarn.lock",
+  ".github/workflows/ci.yml",
+  "scripts/publish-npm.mjs",
+  "packages/rescript-mui-material/",
+];
+
+const sharedLabReleasePaths = [
+  "package.json",
+  "yarn.lock",
+  ".github/workflows/ci.yml",
+  "scripts/publish-npm.mjs",
+  "packages/rescript-mui-material/",
+  "packages/rescript-mui-lab/",
+];
+
 const getNextDevVersion = (pkgName, baseVersion) => {
   let versions = [];
   try {
@@ -154,12 +174,10 @@ const publishPackage = ({ path, name }, shouldPublish) => {
 const changedPaths = getChangedPaths();
 const changedMaterial =
   isTag ||
-  changedPaths.some((file) =>
-    file.startsWith("packages/rescript-mui-material/")
-  );
+  changedIn(changedPaths, sharedMaterialReleasePaths);
 const changedLab =
   isTag ||
-  changedPaths.some((file) => file.startsWith("packages/rescript-mui-lab/"));
+  changedIn(changedPaths, sharedLabReleasePaths);
 
 publishPackage(packages[0], changedMaterial);
 publishPackage(packages[1], changedLab);
