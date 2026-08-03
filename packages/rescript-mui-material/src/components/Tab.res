@@ -17,8 +17,8 @@ type classes = {
   fullWidth?: string,
   /** Styles applied to the root element if `wrapped={true}`. */
   wrapped?: string,
-  /** Styles applied to the wrapper element of `icon` if `icon` is provided. */
-  iconWrapper?: string,
+  /** Styles applied to the `icon` HTML element if both `icon` and `label` are provided. */
+  icon?: string,
 }
 
 type iconPosition =

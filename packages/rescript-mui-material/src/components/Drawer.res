@@ -5,22 +5,14 @@ type classes = {
   docked?: string,
   /** Styles applied to the Paper component. */
   paper?: string,
-  /** Styles applied to the Paper component if `anchor="left"`. */
-  paperAnchorLeft?: string,
-  /** Styles applied to the Paper component if `anchor="right"`. */
-  paperAnchorRight?: string,
-  /** Styles applied to the Paper component if `anchor="top"`. */
-  paperAnchorTop?: string,
-  /** Styles applied to the Paper component if `anchor="bottom"`. */
-  paperAnchorBottom?: string,
-  /** Styles applied to the Paper component if `anchor="left"` and `variant` is not "temporary". */
-  paperAnchorDockedLeft?: string,
-  /** Styles applied to the Paper component if `anchor="top"` and `variant` is not "temporary". */
-  paperAnchorDockedTop?: string,
-  /** Styles applied to the Paper component if `anchor="right"` and `variant` is not "temporary". */
-  paperAnchorDockedRight?: string,
-  /** Styles applied to the Paper component if `anchor="bottom"` and `variant` is not "temporary". */
-  paperAnchorDockedBottom?: string,
+  /** Styles applied to the root element if `anchor="left"`. */
+  anchorLeft?: string,
+  /** Styles applied to the root element if `anchor="right"`. */
+  anchorRight?: string,
+  /** Styles applied to the root element if `anchor="top"`. */
+  anchorTop?: string,
+  /** Styles applied to the root element if `anchor="bottom"`. */
+  anchorBottom?: string,
   /** Styles applied to the Modal component. */
   modal?: string,
 }
@@ -131,19 +123,6 @@ type publicProps = {
     */
   @as("open")
   open_?: bool,
-  /**
-    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
-    * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    * @default {}
-    */
-  @as("PaperProps")
-  paperProps?: Paper.props,
-  /**
-    * Props applied to the [`Slide`](/material-ui/api/slide/) element.
-    * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    */
-  @as("SlideProps")
-  slideProps?: Slide.props,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

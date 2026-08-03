@@ -5,6 +5,14 @@ type classes = {
   colorPrimary?: string,
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary?: string,
+  /** Styles applied to the root element if `color="error"`. */
+  colorError?: string,
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo?: string,
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess?: string,
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning?: string,
   /** Styles applied to the root element if `marks` is provided with at least one label. */
   marked?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
@@ -37,12 +45,6 @@ type classes = {
   markLabelActive?: string,
   /** Styles applied to the root element if `size="small"`. */
   sizeSmall?: string,
-  /** Styles applied to the thumb element if `color="primary"`. */
-  thumbColorPrimary?: string,
-  /** Styles applied to the thumb element if `color="secondary"`. */
-  thumbColorSecondary?: string,
-  /** Styles applied to the thumb element if `size="small"`. */
-  thumbSizeSmall?: string,
   /** Styles applied to the thumb label element. */
   valueLabel?: string,
   /** Styles applied to the thumb label element if it's open. */
@@ -248,6 +250,11 @@ type sliderProps<'value> = {
     * @default 1
     */
   step?: step,
+  /**
+    * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+    * @default 10
+    */
+  shiftStep?: float,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

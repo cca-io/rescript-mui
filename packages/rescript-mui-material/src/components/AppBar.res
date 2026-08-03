@@ -21,6 +21,14 @@ type classes = {
   colorInherit?: string,
   /** Styles applied to the root element if `color="transparent"`. */
   colorTransparent?: string,
+  /** Styles applied to the root element if `color="error"`. */
+  colorError?: string,
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo?: string,
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess?: string,
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning?: string,
 }
 
 @unboxed

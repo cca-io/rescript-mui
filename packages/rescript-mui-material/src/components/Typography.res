@@ -41,8 +41,6 @@ type classes = {
   noWrap?: string,
   /** Styles applied to the root element if `gutterBottom={true}`. */
   gutterBottom?: string,
-  /** Styles applied to the root element if `paragraph={true}`. */
-  paragraph?: string,
 }
 
 type align =
@@ -84,6 +82,18 @@ type variantMapping = {
   inherit: string,
 }
 
+/**
+The color of the component.
+
+Since Material UI v9, `Typography`'s `color` prop is no longer resolved through
+the system. It only accepts the top-level palette color names below (each mapped
+to its `main` shade) and the `text*` colors. For palette shades like
+`"primary.dark"`, tokens like `divider`/`background.*`, or raw CSS colors, use
+`sx` instead — e.g. `<Typography sx={Sx.obj({color: PrimaryDark})} />`.
+
+`String(_)` is only for custom top-level palette colors added to the theme, not
+for arbitrary CSS color values.
+*/
 @unboxed
 type color =
   | @as("inherit") Inherit
@@ -96,48 +106,10 @@ type color =
   | @as("textPrimary") TextPrimary
   | @as("textSecondary") TextSecondary
   | @as("textDisabled") TextDisabled
-  | @as("common.black") CommonBlack
-  | @as("common.white") CommonWhite
-  | @as("primary.light") PrimaryLight
-  | @as("primary.main") PrimaryMain
-  | @as("primary.dark") PrimaryDark
-  | @as("primary.contrastText") PrimaryContrastText
-  | @as("secondary.light") SecondaryLight
-  | @as("secondary.main") SecondaryMain
-  | @as("secondary.dark") SecondaryDark
-  | @as("secondary.contrastText") SecondaryContrastText
-  | @as("error.light") ErrorLight
-  | @as("error.main") ErrorMain
-  | @as("error.dark") ErrorDark
-  | @as("error.contrastText") ErrorContrastText
-  | @as("warning.light") WarningLight
-  | @as("warning.main") WarningMain
-  | @as("warning.dark") WarningDark
-  | @as("warning.contrastText") WarningContrastText
-  | @as("info.light") InfoLight
-  | @as("info.main") InfoMain
-  | @as("info.dark") InfoDark
-  | @as("info.contrastText") InfoContrastText
-  | @as("success.light") SuccessLight
-  | @as("success.main") SuccessMain
-  | @as("success.dark") SuccessDark
-  | @as("success.contrastText") SuccessContrastText
-  | @as("text.primary") TextDotPrimary
-  | @as("text.secondary") TextDotSecondary
-  | @as("text.disabled") TextDotDisabled
-  | @as("divider") Divider
-  | @as("action.active") ActionActive
-  | @as("action.hover") ActionHover
-  | @as("action.selected") ActionSelected
-  | @as("action.disabled") ActionDisabled
-  | @as("action.disabledBackground") ActionDisabledBackground
-  | @as("action.focus") ActionFocus
-  | @as("background.default") BackgroundDefault
-  | @as("background.paper") BackgroundPaper
   | String(string)
 
 type publicProps = {
-  ...System.propsWithoutColor,
+  ...CommonProps.t,
   /**
     * Set the text-align on the component.
     * @default 'inherit'
@@ -166,12 +138,6 @@ type publicProps = {
     * @default false
     */
   noWrap?: bool,
-  /**
-    * If `true`, the element will be a paragraph element.
-    * @default false
-    */
-  @deprecated("Use the component prop instead. This prop will be removed in v7.")
-  paragraph?: bool,
   /**
     * Applies the theme typography styles.
     * @default 'body1'

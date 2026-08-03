@@ -7,8 +7,6 @@ type classes = {
   inset?: string,
   /** Styles applied to the root element if `variant="fullWidth"`. */
   fullWidth?: string,
-  /** Styles applied to the root element if `light={true}`. */
-  light?: string,
   /** Styles applied to the root element if `variant="middle"`. */
   middle?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
@@ -17,8 +15,6 @@ type classes = {
   flexItem?: string,
   /** Styles applied to the root element if divider have text. */
   withChildren?: string,
-  /** Styles applied to the root element if divider have text and `orientation="vertical"`. */
-  withChildrenVertical?: string,
   /** Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */
   textAlignRight?: string,
   /** Styles applied to the root element if `textAlign="left" orientation="horizontal"`. */
@@ -69,11 +65,6 @@ type props = {
     * @default false
     */
   flexItem?: bool,
-  /**
-    * If `true`, the divider will have a lighter color.
-    * @default false
-    */
-  light?: bool,
   /**
     * The component orientation.
     * @default 'horizontal'

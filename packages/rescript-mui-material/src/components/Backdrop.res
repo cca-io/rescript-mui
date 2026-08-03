@@ -56,13 +56,6 @@ type props = {
     */
   sx?: Sx.props,
   /**
-    * The component used for the transition.
-    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-    * @default Fade
-    */
-  @as("TransitionComponent")
-  transitionComponent?: React.component<Transition.props>,
-  /**
     * The duration for the transition, in milliseconds.
     * You may specify a single timeout for all transitions, or individually with an object.
     */

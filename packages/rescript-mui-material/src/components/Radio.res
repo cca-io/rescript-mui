@@ -9,14 +9,16 @@ type classes = {
   colorPrimary?: string,
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary?: string,
+  /** Styles applied to the root element if `size="small"`. */
+  sizeSmall?: string,
 }
 
-type slots<'value, 'inputRef> = {
+type slots<'value> = {
   /**
     * The component that renders the root slot.
     * @default SwitchBase
     */
-  root?: OverridableComponent.t<Switch.props<'value, 'inputRef>>,
+  root?: OverridableComponent.t<Switch.props<'value>>,
   /**
     * The component that renders the input slot.
     * @default SwitchBase's input
@@ -24,12 +26,12 @@ type slots<'value, 'inputRef> = {
   input?: OverridableComponent.t<JsxDOM.domProps>,
 }
 
-type slotProps<'value, 'inputRef> = {
+type slotProps<'value> = {
   /**
     * Props forwarded to the root slot.
     * By default, the avaible props are based on the span element.
     */
-  root?: Switch.props<'value, 'inputRef>,
+  root?: Switch.props<'value>,
   /**
     * Props forwarded to the input slot.
     * By default, the avaible props are based on the input element.
@@ -59,7 +61,7 @@ type edge =
   | @as("end") End
   | @as(false) False
 
-type props<'value, 'inputRef> = {
+type props<'value> = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
     * If `true`, the component is checked.
@@ -108,14 +110,6 @@ type props<'value, 'inputRef> = {
     */
   icon?: React.element,
   /**
-    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-    */
-  inputProps?: InputBase.inputBaseComponentProps,
-  /**
-    * Pass a ref to the `input` element.
-    */
-  inputRef?: React.ref<'inputRef>,
-  /**
     * Name attribute of the `input` element.
     */
   name?: string,
@@ -143,12 +137,12 @@ type props<'value, 'inputRef> = {
     * The components used for each slot inside.
     * @default {}
     */
-  slots?: slots<'value, 'inputRef>,
+  slots?: slots<'value>,
   /**
     * The props used for each slot inside.
     * @default {}
     */
-  slotProps?: slotProps<'value, 'inputRef>,
+  slotProps?: slotProps<'value>,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */
@@ -160,4 +154,4 @@ type props<'value, 'inputRef> = {
 }
 
 @module("@mui/material/Radio")
-external make: React.component<props<'value, 'inputRef>> = "default"
+external make: React.component<props<'value>> = "default"

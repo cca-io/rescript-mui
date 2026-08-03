@@ -9,16 +9,8 @@ type classes = {
   sizeLarge?: string,
   /** Styles applied to the root element if `variant="text"`. */
   text?: string,
-  /** Styles applied to the root element if `variant="text"` and `color="primary"`. */
-  textPrimary?: string,
-  /** Styles applied to the root element if `variant="text"` and `color="secondary"`. */
-  textSecondary?: string,
   /** Styles applied to the root element if `variant="outlined"`. */
   outlined?: string,
-  /** Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
-  outlinedPrimary?: string,
-  /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
-  outlinedSecondary?: string,
   /** Styles applied to the root element if `rounded="true"`. */
   rounded?: string,
   /** Styles applied to the root element if `type="start-ellipsis"` or `type="end-ellipsis"`. */
@@ -35,6 +27,10 @@ type classes = {
   selected?: string,
   /** Styles applied to the icon to display. */
   icon?: string,
+  /** Styles applied to the root element if `color="primary"`. */
+  colorPrimary?: string,
+  /** Styles applied to the root element if `color="secondary"`. */
+  colorSecondary?: string,
 }
 
 @unboxed

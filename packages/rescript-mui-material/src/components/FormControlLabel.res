@@ -74,6 +74,10 @@ type props<'value, 'inputRef> = {
     */
   labelPlacement?: labelPlacement,
   /**
+    * The name of the `input` element.
+    */
+  name?: string,
+  /**
     * Callback fired when the state is changed.
     *
     * @param {React.SyntheticEvent} event The event source of the callback.

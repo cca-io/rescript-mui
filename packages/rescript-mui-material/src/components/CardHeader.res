@@ -104,12 +104,6 @@ type props = {
     */
   subheader?: React.element,
   /**
-    * These props will be forwarded to the subheader
-    * (as long as disableTypography is not `true`).
-    * @deprecated Use `slotProps.subheader` instead. This prop will be removed in v7.
-    */
-  subheaderTypographyProps?: Typography.props,
-  /**
     * The components used for each slot inside.
     * @default {}
     */
@@ -128,12 +122,6 @@ type props = {
     * The content of the component.
     */
   title?: React.element,
-  /**
-    * These props will be forwarded to the title
-    * (as long as disableTypography is not `true`).
-    * @deprecated Use `slotProps.title` instead. This prop will be removed in v7.
-    */
-  titleTypographyProps?: Typography.props,
 }
 
 @module("@mui/material/CardHeader")

@@ -11,12 +11,10 @@ type classes = {
   colorSecondary?: string,
   /** Styles applied to the svg element. */
   svg?: string,
+  /** Styles applied to the track slot if `enableTrackSlot={true}`. */
+  track?: string,
   /** Styles applied to the `circle` svg path. */
   circle?: string,
-  /** Styles applied to the `circle` svg path if `variant="determinate"`. */
-  circleDeterminate?: string,
-  /** Styles applied to the `circle` svg path if `variant="indeterminate"`. */
-  circleIndeterminate?: string,
   /** Styles applied to the `circle` svg path if `disableShrink={true}`. */
   circleDisableShrink?: string,
 }

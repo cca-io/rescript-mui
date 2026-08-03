@@ -87,18 +87,6 @@ type filterOptionsState<'a> = {
   getOptionLabel: 'a => string,
 }
 
-type componentsProps = {
-  clearIndicator?: IconButton.props,
-  paper?: Paper.props,
-  popper?: Popper.props,
-  popupIndicator?: IconButton.props,
-}
-
-type listboxProps = {
-  sx?: Sx.props,
-  ref?: React.ref<React.element>,
-}
-
 @unboxed
 type forcePopupIcon =
   | @as(true) True
@@ -226,11 +214,6 @@ type autocompleteProps<'value, 'inputRef> = {
     */
   blurOnSelect?: blurOnSelect,
   /**
-    * Props applied to the [`Chip`](/material-ui/api/chip/) element.
-    */
-  @as("ChipProps")
-  chipProps?: Chip.props,
-  /**
     * Override or extend the styles applied to the component.
     */
   classes?: classes,
@@ -266,11 +249,6 @@ type autocompleteProps<'value, 'inputRef> = {
     * @default 'Close'
     */
   closeText?: string,
-  /**
-    * The props used for each slot inside.
-    * @default {}
-    */
-  componentsProps?: componentsProps,
   /**
     * If `true`, the input can't be cleared.
     * @default false
@@ -391,17 +369,6 @@ type autocompleteProps<'value, 'inputRef> = {
     */
   limitTags?: int,
   /**
-    * The component used to render the listbox.
-    * @default 'ul'
-    */
-  @as("ListboxComponent")
-  listboxComponent?: OverridableComponent.t<listboxProps>,
-  /**
-    * Props applied to the Listbox element.
-    */
-  @as("ListboxProps")
-  listboxProps?: listboxProps,
-  /**
     * If `true`, the component is in a loading state.
     * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
     * @default false
@@ -446,6 +413,10 @@ type autocompleteProps<'value, 'inputRef> = {
     */
   onInputChange?: (ReactEvent.Synthetic.t, string, inputChangeReason) => unit,
   /**
+    * Callback fired when a key is pressed.
+    */
+  onKeyDown?: ReactEvent.Keyboard.t => unit,
+  /**
     * Callback fired when the popup requests to be opened.
     * Use in controlled mode (see open).
     *
@@ -469,18 +440,6 @@ type autocompleteProps<'value, 'inputRef> = {
     * @default 'Open'
     */
   openText?: string,
-  /**
-    * The component used to render the body of the popup.
-    * @default Paper
-    */
-  @as("PaperComponent")
-  paperComponent?: OverridableComponent.t<unknown>,
-  /**
-    * The component used to position the popup.
-    * @default Popper
-    */
-  @as("PopperComponent")
-  popperComponent?: OverridableComponent.t<Popper.props>,
   /**
     * The icon to display in place of the default popup icon.
     * @default <ArrowDropDownIcon />
@@ -511,12 +470,12 @@ type autocompleteProps<'value, 'inputRef> = {
   /**
     * Render the selected value.
     *
-    * @param {T[]} value The `value` provided to the component.
-    * @param {function} getTagProps A tag props getter.
+    * @param {Value} value The `value` provided to the component.
+    * @param {function} getItemProps A tag props getter.
     * @param {object} ownerState The state of the Autocomplete component.
     * @returns {ReactNode}
     */
-  renderTags?: (array<'value>, JsxDOM.domProps => renderGetTagProps, ownerState) => React.element,
+  renderValue?: (array<'value>, JsxDOM.domProps => renderGetTagProps, ownerState) => React.element,
   /**
     * If `true`, the input's text is selected on focus.
     * It helps the user clear the selected value.
@@ -597,7 +556,7 @@ type props<'value, 'inputRef> = {
     * The default value. Use when the component is not controlled.
     * @default null
     */
-  defaultValue?: Js.null<'value>,
+  defaultValue?: Null.t<'value>,
   /**
     * Callback fired when the value changes.
     *
@@ -606,7 +565,7 @@ type props<'value, 'inputRef> = {
     * @param {reason} One of CreateOption | SelectOption | RemoveOption | Clear | Blur
     * @param {string} [details]
     */
-  onChange?: (ReactEvent.Synthetic.t, Js.null<'value>, changeReason, string) => unit,
+  onChange?: (ReactEvent.Synthetic.t, Null.t<'value>, changeReason, string) => unit,
   /**
     * Used to determine if the option represents the given value.
     * Uses strict equality by default.
@@ -616,16 +575,16 @@ type props<'value, 'inputRef> = {
     * @param {T} value The value to test against.
     * @returns {boolean}
     */
-  isOptionEqualToValue?: (Js.null<'value>, Js.null<'value>) => bool,
+  isOptionEqualToValue?: (Null.t<'value>, Null.t<'value>) => bool,
   /**
     * The value of the autocomplete.
     *
     * The value must have reference equality with the option in order to be selected.
     * You can customize the equality behavior with the `isOptionEqualToValue` prop.
     * It is both an option and nullable, because None compiles to undefined which means that the component is used in uncontrolled mode.
-    * To use it in controlled mode, always set a value or Js.null.
+    * To use it in controlled mode, always set a value or Null.
     */
-  value?: Js.null<'value>,
+  value?: Null.t<'value>,
 }
 
 @module("@mui/material/Autocomplete")

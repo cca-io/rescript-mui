@@ -3,15 +3,13 @@ type classes = {
   root?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical?: string,
-  /** Styles applied to the flex container element. */
-  flexContainer?: string,
-  /** Styles applied to the flex container element if `orientation="vertical"`. */
-  flexContainerVertical?: string,
+  /** Styles applied to the list element. */
+  list?: string,
   /** Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
   centered?: string,
   /** Styles applied to the tablist element. */
   scroller?: string,
-  /** Styles applied to the tablist element if `!variant="scrollable"`. */
+  /** Styles applied to the tablist element if `!variant="scrollable"`. */
   fixed?: string,
   /** Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`. */
   scrollableX?: string,
@@ -33,13 +31,57 @@ type tabsActions = {
 }
 
 type slots = {
-  @as("StartScrollButtonIcon") startScrollButtonIcon?: React.element,
-  @as("EndScrollButtonIcon") endScrollButtonIcon?: React.element,
+  /**
+    * The component used for the root.
+    * @default div
+    */
+  root?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the scroller.
+    * @default div
+    */
+  scroller?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the flex container.
+    * @default div
+    */
+  list?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the scrollbar.
+    * @default ScrollbarSize
+    */
+  scrollbar?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the tab indicator.
+    * @default span
+    */
+  indicator?: OverridableComponent.t<JsxDOM.domProps>,
+  /**
+    * The component used for the scroll button.
+    * @default TabScrollButton
+    */
+  scrollButtons?: OverridableComponent.t<TabScrollButton.props>,
+  /**
+    * The component used for the start scroll button icon.
+    * @default KeyboardArrowLeft
+    */
+  startScrollButtonIcon?: OverridableComponent.t<SvgIcon.props>,
+  /**
+    * The component used for the end scroll button icon.
+    * @default KeyboardArrowRight
+    */
+  endScrollButtonIcon?: OverridableComponent.t<SvgIcon.props>,
 }
 
-type slotProps<'value> = {
-  startScrollButtonIcon?: 'value,
-  endScrollButtonIcon?: 'value,
+type slotProps = {
+  root?: JsxDOM.domProps,
+  scroller?: JsxDOM.domProps,
+  list?: JsxDOM.domProps,
+  scrollbar?: JsxDOM.domProps,
+  indicator?: JsxDOM.domProps,
+  scrollButtons?: TabScrollButton.props,
+  startScrollButtonIcon?: SvgIcon.props,
+  endScrollButtonIcon?: SvgIcon.props,
 }
 
 @unboxed
@@ -57,10 +99,6 @@ type scrollButtons =
   | @as("auto") Auto
   | @as(true) True
   | @as(false) False
-
-type tabIndicatorProps<'value> = 'value
-
-type tabScrollButtonProps<'value> = 'value
 
 type textColor =
   | @as("secondary") Secondary
@@ -101,11 +139,10 @@ type publicProps = {
     */
   slots?: slots,
   /**
-    * The extra props for the slot components.
-    * You can override the existing props or add new ones.
+    * The props used for each slot inside.
     * @default {}
     */
-  slotProps?: slotProps<unknown>,
+  slotProps?: slotProps,
   /**
     * Determines the color of the indicator.
     * @default 'primary'
@@ -116,12 +153,6 @@ type publicProps = {
     * @default 'horizontal'
     */
   orientation?: orientation,
-  /**
-    * The component used to render the scroll buttons.
-    * @default TabScrollButton
-    */
-  @as("ScrollButtonComponent")
-  scrollButtonComponent?: React.element,
   /**
     * Determine behavior of scroll buttons when tabs are set to scroll:
     *
@@ -139,18 +170,6 @@ type publicProps = {
     * changes on activation.
     */
   selectionFollowsFocus?: bool,
-  /**
-    * Props applied to the tab indicator element.
-    * @default {}
-    */
-  @as("TabIndicatorProps")
-  tabIndicatorProps?: tabIndicatorProps<unknown>,
-  /**
-    * Props applied to the [`TabScrollButton`](/material-ui/api/tab-scroll-button/) element.
-    * @default {}
-    */
-  @as("TabScrollButtonProps")
-  tabScrollButtonProps?: tabScrollButtonProps<unknown>,
   /**
     * Determines the color of the `Tab`.
     * @default 'primary'

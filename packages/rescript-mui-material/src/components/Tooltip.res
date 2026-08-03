@@ -151,34 +151,9 @@ type publicProps = {
     */
   placement?: placement,
   /**
-    * The component used for the popper.
-    * @default Popper
-    */
-  @as("PopperComponent")
-  popperComponent?: React.component<Popper.props>,
-  /**
-    * Props applied to the [`Popper`](/material-ui/api/popper/) element.
-    * @default {}
-    */
-  @as("PopperProps")
-  popperProps?: Popper.props,
-  /**
     * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
     */
   title: React.element,
-  /**
-    * The component used for the transition.
-    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-    * @default Grow
-    */
-  @as("TransitionComponent")
-  transitionComponent?: React.component<Transition.props>,
-  /**
-    * Props applied to the transition element.
-    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-    */
-  @as("TransitionProps")
-  transitionProps?: Transition.props,
 }
 
 type props = {

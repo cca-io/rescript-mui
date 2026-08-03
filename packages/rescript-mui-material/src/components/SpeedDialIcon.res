@@ -24,6 +24,11 @@ type props = {
     */
   icon?: React.element,
   /**
+    * If `true`, the SpeedDial is open.
+    */
+  @as("open")
+  open_?: bool,
+  /**
     * The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
     */
   openIcon?: React.element,

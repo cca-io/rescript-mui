@@ -1,6 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
   root?: string,
+  /** Styles applied to the heading element. */
+  heading?: string,
   /** Styles applied to the root element unless `square={true}`. */
   rounded?: string,
   /** State class applied to the root element if `expanded={true}`. */
@@ -30,6 +32,11 @@ type slots = {
     * @default Collapse
     */
   transition?: OverridableComponent.t<Transition.props>,
+  /**
+    * The component that renders the region.
+    * @default 'div'
+    */
+  region?: OverridableComponent.t<JsxDOM.domProps>,
 }
 
 type slotProps = {
@@ -48,6 +55,11 @@ type slotProps = {
     * By default, the avaible props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component.
     */
   transition?: Transition.props,
+  /**
+    * Props forwarded to the region slot.
+    * By default, the available props are based on the div element.
+    */
+  region?: JsxDOM.domProps,
 }
 
 type props = {
@@ -97,21 +109,6 @@ type props = {
     * @default {}
     */
   slotProps?: slotProps,
-  /**
-    * The component used for the transition.
-    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-    * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    * @default Collapse
-    */
-  @as("TransitionComponent")
-  transitionComponent?: React.component<Transition.props>,
-  /**
-    * Props applied to the transition element.
-    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-    * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-    */
-  @as("TransitionProps")
-  transitionProps?: Transition.props,
   /**
     * The variant to use.
     * @default 'elevation'

@@ -10,8 +10,6 @@ type breakpoints<'a> = {
 type value =
   | @as("row") Row
   | @as("row-reverse") RowReverse
-  | @as("column") Column
-  | @as("column-reverse") ColumnReverse
 
 @unboxed
 type t = Array(array<value>) | Object(breakpoints<value>) | ...value

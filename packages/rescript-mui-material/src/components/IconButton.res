@@ -27,6 +27,12 @@ type classes = {
   sizeMedium?: string,
   /** Styles applied to the root element if `size="large"`. */
   sizeLarge?: string,
+  /** Styles applied to the root element if `loading={true}`. */
+  loading?: string,
+  /** Styles applied to the loadingIndicator element. */
+  loadingIndicator?: string,
+  /** Styles applied to the loadingWrapper element. */
+  loadingWrapper?: string,
 }
 
 @unboxed

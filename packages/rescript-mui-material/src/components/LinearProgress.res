@@ -15,26 +15,12 @@ type classes = {
   query?: string,
   /** Styles applied to the additional bar element if `variant="buffer"`. */
   dashed?: string,
-  /** Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`. */
-  dashedColorPrimary?: string,
-  /** Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`. */
-  dashedColorSecondary?: string,
   /** Styles applied to the layered bar1 and bar2 elements. */
   bar?: string,
-  /** Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer". */
-  barColorPrimary?: string,
-  /** Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer". */
-  barColorSecondary?: string,
-  /** Styles applied to the bar1 element if `variant="indeterminate or query"`. */
-  bar1Indeterminate?: string,
-  /** Styles applied to the bar1 element if `variant="determinate"`. */
-  bar1Determinate?: string,
-  /** Styles applied to the bar1 element if `variant="buffer"`. */
-  bar1Buffer?: string,
-  /** Styles applied to the bar2 element if `variant="indeterminate or query"`. */
-  bar2Indeterminate?: string,
-  /** Styles applied to the bar2 element if `variant="buffer"`. */
-  bar2Buffer?: string,
+  /** Styles applied to the bar1 element. */
+  bar1?: string,
+  /** Styles applied to the bar2 element. */
+  bar2?: string,
 }
 
 @unboxed

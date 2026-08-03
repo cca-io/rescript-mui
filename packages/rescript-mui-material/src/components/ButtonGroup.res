@@ -11,46 +11,24 @@ type classes = {
   disableElevation?: string,
   /** State class applied to the child elements if `disabled={true}`. */
   disabled?: string,
+  /** Styles applied to the first button in the button group. */
+  firstButton?: string,
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth?: string,
+  /** Styles applied to the root element if `orientation="horizontal"`. */
+  horizontal?: string,
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical?: string,
   /** Styles applied to the children. */
   grouped?: string,
-  /** Styles applied to the children if `orientation="horizontal"`. */
-  groupedHorizontal?: string,
-  /** Styles applied to the children if `orientation="vertical"`. */
-  groupedVertical?: string,
-  /** Styles applied to the children if `variant="text"`. */
-  groupedText?: string,
-  /** Styles applied to the children if `variant="text"` and `orientation="horizontal"`. */
-  groupedTextHorizontal?: string,
-  /** Styles applied to the children if `variant="text"` and `orientation="vertical"`. */
-  groupedTextVertical?: string,
-  /** Styles applied to the children if `variant="text"` and `color="primary"`. */
-  groupedTextPrimary?: string,
-  /** Styles applied to the children if `variant="text"` and `color="secondary"`. */
-  groupedTextSecondary?: string,
-  /** Styles applied to the children if `variant="outlined"`. */
-  groupedOutlined?: string,
-  /** Styles applied to the children if `variant="outlined"` and `orientation="horizontal"`. */
-  groupedOutlinedHorizontal?: string,
-  /** Styles applied to the children if `variant="outlined"` and `orientation="vertical"`. */
-  groupedOutlinedVertical?: string,
-  /** Styles applied to the children if `variant="outlined"` and `color="primary"`. */
-  groupedOutlinedPrimary?: string,
-  /** Styles applied to the children if `variant="outlined"` and `color="secondary"`. */
-  groupedOutlinedSecondary?: string,
-  /** Styles applied to the children if `variant="contained"`. */
-  groupedContained?: string,
-  /** Styles applied to the children if `variant="contained"` and `orientation="horizontal"`. */
-  groupedContainedHorizontal?: string,
-  /** Styles applied to the children if `variant="contained"` and `orientation="vertical"`. */
-  groupedContainedVertical?: string,
-  /** Styles applied to the children if `variant="contained"` and `color="primary"`. */
-  groupedContainedPrimary?: string,
-  /** Styles applied to the children if `variant="contained"` and `color="secondary"`. */
-  groupedContainedSecondary?: string,
+  /** Styles applied to the children if `color="primary"`. */
+  colorPrimary?: string,
+  /** Styles applied to the children if `color="secondary"`. */
+  colorSecondary?: string,
+  /** Styles applied to the last button in the button group. */
+  lastButton?: string,
+  /** Styles applied to the buttons in the middle of the button group. */
+  middleButton?: string,
 }
 
 @unboxed

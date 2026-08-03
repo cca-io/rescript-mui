@@ -138,16 +138,6 @@ type props = {
     */
   icon?: React.element,
   /**
-    * The component containing the icon.
-    * @deprecated Use `slotProps.icon.component` instead. This prop will be removed in v7.
-    * @default function IconContainer(props) {
-    *   const { value, ...other } = props,
-    *   return <span {...other} />,
-    * }
-    */
-  @as("IconContainerComponent")
-  iconContainerComponent?: React.element,
-  /**
     * Maximum rating.
     * @default 5
     */

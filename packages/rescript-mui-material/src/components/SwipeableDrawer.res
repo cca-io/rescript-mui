@@ -85,12 +85,6 @@ type props = {
     */
   slotProps?: slotProps,
   /**
-    * The element is used to intercept the touch events on the edge.
-    * @deprecated Use `slotProps.swipeArea` instead. This prop will be removed in v7.
-    */
-  @as("SwipeAreaProps")
-  swipeAreaProps?: unknown,
-  /**
     * The width of the left most (or right most) area in `px` that
     * the drawer can be swiped open from.
     * @default 20

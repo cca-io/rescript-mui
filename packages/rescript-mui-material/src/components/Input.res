@@ -21,14 +21,6 @@ type classes = {
   fullWidth?: string,
   /** Styles applied to the input element. */
   input?: string,
-  /** Styles applied to the input element if `size="small"`. */
-  inputSizeSmall?: string,
-  /** Styles applied to the input element if `multiline={true}`. */
-  inputMultiline?: string,
-  /** Styles applied to the input element if `startAdornment` is provided. */
-  inputAdornedStart?: string,
-  /** Styles applied to the input element if `endAdornment` is provided. */
-  inputAdornedEnd?: string,
   /** Styles applied to the input element if `type="search"`. */
   inputTypeSearch?: string,
 }
@@ -46,6 +38,10 @@ type props<'value, 'inputRef> = {
     * You can pull out the new value by accessing `event.target.value` (string).
     */
   onChange?: ReactEvent.Form.t => unit,
+  /**
+    * If `true`, the outline is notched to accommodate the label. Used internally by `TextField`.
+    */
+  notched?: bool,
   /**
     * The system prop that allows defining system overrides as well as additional CSS styles.
     */

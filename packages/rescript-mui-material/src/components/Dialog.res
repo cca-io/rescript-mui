@@ -1,6 +1,8 @@
 type classes = {
   /** Styles applied to the root element. */
   root?: string,
+  /** Styles applied to the backdrop element. */
+  backdrop?: string,
   /** Styles applied to the container element if `scroll="paper"`. */
   scrollPaper?: string,
   /** Styles applied to the container element if `scroll="body"`. */
@@ -9,10 +11,6 @@ type classes = {
   container?: string,
   /** Styles applied to the Paper component. */
   paper?: string,
-  /** Styles applied to the Paper component if `scroll="paper"`. */
-  paperScrollPaper?: string,
-  /** Styles applied to the Paper component if `scroll="body"`. */
-  paperScrollBody?: string,
   /** Styles applied to the Paper component if `maxWidth=false`. */
   paperWidthFalse?: string,
   /** Styles applied to the Paper component if `maxWidth="xs"`. */
@@ -101,12 +99,6 @@ type props = {
   @as("PaperComponent")
   paperComponent?: React.component<Paper.props>,
   /**
-    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
-    * @default {}
-    */
-  @as("PaperProps")
-  paperProps?: Paper.props,
-  /**
     * Determine the container for scrolling the dialog.
     * @default 'paper'
     */
@@ -127,13 +119,6 @@ type props = {
     */
   sx?: Sx.props,
   /**
-    * The component used for the transition.
-    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-    * @default Fade
-    */
-  @as("TransitionComponent")
-  transitionComponent?: React.component<Transition.props>,
-  /**
     * The duration for the transition, in milliseconds.
     * You may specify a single timeout for all transitions, or individually with an object.
     * @default {
@@ -142,12 +127,6 @@ type props = {
     * }
     */
   transitionDuration?: Transition.duration,
-  /**
-    * Props applied to the transition element.
-    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-    */
-  @as("TransitionProps")
-  transitionProps?: Transition.props,
 }
 
 @module("@mui/material/Dialog")

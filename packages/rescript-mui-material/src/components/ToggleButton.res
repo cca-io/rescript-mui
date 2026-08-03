@@ -17,6 +17,8 @@ type classes = {
   sizeMedium?: string,
   /** Styles applied to the root element if `size="large"`. */
   sizeLarge?: string,
+  /** Styles applied to the root element if `fullWidth={true}`. */
+  fullWidth?: string,
 }
 
 @unboxed

@@ -1,5 +1,5 @@
 type classes = {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root?: string,
   /** State class applied to the root element if `checked={true}`. */
   checked?: string,
@@ -7,10 +7,14 @@ type classes = {
   disabled?: string,
   /** State class applied to the root element if `indeterminate={true}`. */
   indeterminate?: string,
-  /** Styles applied to the root element if `color="primary"`. */
+  /** State class applied to the root element if `color="primary"`. */
   colorPrimary?: string,
-  /** Styles applied to the root element if `color="secondary"`. */
+  /** State class applied to the root element if `color="secondary"`. */
   colorSecondary?: string,
+  /** State class applied to the root element if `size="small"`. */
+  sizeSmall?: string,
+  /** State class applied to the root element if `size="medium"`. */
+  sizeMedium?: string,
 }
 
 type slots = {
@@ -61,7 +65,7 @@ type edge =
   | @as("end") End
   | @as(false) False
 
-type props<'value, 'inputRef> = {
+type props<'value> = {
   ...ButtonBase.publicPropsWithOnClick,
   /**
     * If `true`, the component is checked.
@@ -123,14 +127,6 @@ type props<'value, 'inputRef> = {
     */
   indeterminateIcon?: React.element,
   /**
-    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-    */
-  inputProps?: InputBase.inputBaseComponentProps,
-  /**
-    * Pass a ref to the `input` element.
-    */
-  inputRef?: React.ref<'inputRef>,
-  /**
     * Name attribute of the `input` element.
     */
   name?: string,
@@ -175,4 +171,4 @@ type props<'value, 'inputRef> = {
 }
 
 @module("@mui/material/Checkbox")
-external make: React.component<props<'value, 'inputRef>> = "default"
+external make: React.component<props<'value>> = "default"

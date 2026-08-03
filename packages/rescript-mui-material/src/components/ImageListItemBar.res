@@ -7,22 +7,18 @@ type classes = {
   positionTop?: string,
   /** Styles applied to the root element if `position="below"`. */
   positionBelow?: string,
+  /** Styles applied to the action container element if `actionPosition="left"`. */
+  actionPositionLeft?: string,
+  /** Styles applied to the action container element if `actionPosition="right"`. */
+  actionPositionRight?: string,
   /** Styles applied to the title and subtitle container element. */
   titleWrap?: string,
-  /** Styles applied to the title and subtitle container element if `position="below"`. */
-  titleWrapBelow?: string,
-  /** Styles applied to the container element if `actionPosition="left"`. */
-  titleWrapActionPosLeft?: string,
-  /** Styles applied to the container element if `actionPosition="right"`. */
-  titleWrapActionPosRight?: string,
   /** Styles applied to the title container element. */
   title?: string,
   /** Styles applied to the subtitle container element. */
   subtitle?: string,
   /** Styles applied to the actionIcon if supplied. */
   actionIcon?: string,
-  /** Styles applied to the actionIcon if `actionPosition="left"`. */
-  actionIconActionPosLeft?: string,
 }
 
 type actionPosition =

@@ -117,6 +117,11 @@ type publicProps = {
   @as("LinkComponent")
   linkComponent?: React.element,
   /**
+    * Whether the custom component is expected to render a native `<button>` element
+    * when passing a React component to the `component` or `slots` prop.
+    */
+  nativeButton?: bool,
+  /**
     * Callback fired when the component is focused with a keyboard.
     * We trigger a `onFocus` callback too.
     */

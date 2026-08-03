@@ -94,12 +94,6 @@ type props = {
     */
   children?: React.element,
   /**
-    * Props applied to the `LinearProgress` element.
-    * @deprecated Use `slotProps.progress` instead. This prop will be removed in v7.
-    */
-  @as("LinearProgressProps")
-  linearProgressProps?: LinearProgress.props,
-  /**
     * The components used for each slot inside.
     * @default {}
     */

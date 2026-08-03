@@ -15,10 +15,6 @@ type classes = {
   disabled?: string,
   /** Styles applied to the line element. */
   line?: string,
-  /** Styles applied to the root element if `orientation="horizontal"`. */
-  lineHorizontal?: string,
-  /** Styles applied to the root element if `orientation="vertical"`. */
-  lineVertical?: string,
 }
 
 type props = {

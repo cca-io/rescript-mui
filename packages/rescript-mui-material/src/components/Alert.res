@@ -7,30 +7,14 @@ type classes = {
   outlined?: string,
   /** Styles applied to the root element if `variant="standard"`. */
   standard?: string,
-  /** Styles applied to the root element if `variant="standard"` and `color="success"`. */
-  standardSuccess?: string,
-  /** Styles applied to the root element if `variant="standard"` and `color="info"`. */
-  standardInfo?: string,
-  /** Styles applied to the root element if `variant="standard"` and `color="warning"`. */
-  standardWarning?: string,
-  /** Styles applied to the root element if `variant="standard"` and `color="error"`. */
-  standardError?: string,
-  /** Styles applied to the root element if `variant="outlined"` and `color="success"`. */
-  outlinedSuccess?: string,
-  /** Styles applied to the root element if `variant="outlined"` and `color="info"`. */
-  outlinedInfo?: string,
-  /** Styles applied to the root element if `variant="outlined"` and `color="warning"`. */
-  outlinedWarning?: string,
-  /** Styles applied to the root element if `variant="outlined"` and `color="error"`. */
-  outlinedError?: string,
-  /** Styles applied to the root element if `variant="filled"` and `color="success"`. */
-  filledSuccess?: string,
-  /** Styles applied to the root element if `variant="filled"` and `color="info"`. */
-  filledInfo?: string,
-  /** Styles applied to the root element if `variant="filled"` and `color="warning"`. */
-  filledWarning?: string,
-  /** Styles applied to the root element if `variant="filled"` and `color="error"`. */
-  filledError?: string,
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess?: string,
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo?: string,
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning?: string,
+  /** Styles applied to the root element if `color="error"`. */
+  colorError?: string,
   /** Styles applied to the icon wrapper element. */
   icon?: string,
   /** Styles applied to the message wrapper element. */
@@ -137,19 +121,12 @@ type props = {
     */
   severity?: severity,
   /**
-    * The extra props for the slot components.
-    * You can override the existing props or add new ones.
-    *
-    * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-    *
+    * The props used for each slot inside.
     * @default {}
     */
   slotProps?: slotProps,
   /**
     * The components used for each slot inside.
-    *
-    * This prop is an alias for the `components` prop, which will be deprecated in the future.
-    *
     * @default {}
     */
   slots?: slots,

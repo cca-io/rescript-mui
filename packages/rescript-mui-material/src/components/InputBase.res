@@ -27,18 +27,7 @@ type classes = {
   readOnly?: string,
   /** Styles applied to the input element. */
   input?: string,
-  /** Styles applied to the input element if `size="small"`. */
-  inputSizeSmall?: string,
-  /** Styles applied to the input element if `multiline={true}`. */
-  inputMultiline?: string,
-  /** Styles applied to the input element if `type="search"`. */
   inputTypeSearch?: string,
-  /** Styles applied to the input element if `startAdornment` is provided. */
-  inputAdornedStart?: string,
-  /** Styles applied to the input element if `endAdornment` is provided. */
-  inputAdornedEnd?: string,
-  /** Styles applied to the input element if `hiddenLabel={true}`. */
-  inputHiddenLabel?: string,
 }
 
 @unboxed
