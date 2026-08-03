@@ -11,7 +11,7 @@ type data = {
 
 let createData = (name, calories, fat, carbs, protein) => {
   {
-    id: name->Js.String2.length,
+    id: name->String.length,
     name: name,
     calories: calories,
     fat: fat,
@@ -103,10 +103,10 @@ let make = () => {
               ->Belt.Array.map(row => 
                 <TableRow key={row.name}>
                   <TableCell scope="row"> {row.name->React.string} </TableCell>
-                  <TableCell align=Right> {row.calories->Belt.Int.toString->React.string} </TableCell>
-                  <TableCell align=Right> {row.fat->Js.Float.toString->React.string} </TableCell>
-                  <TableCell align=Right> {row.carbs->Belt.Int.toString->React.string} </TableCell>
-                  <TableCell align=Right> {row.protein->Js.Float.toString->React.string} </TableCell>
+                  <TableCell align=Right> {row.calories->Int.toString->React.string} </TableCell>
+                  <TableCell align=Right> {row.fat->Float.toString->React.string} </TableCell>
+                  <TableCell align=Right> {row.carbs->Int.toString->React.string} </TableCell>
+                  <TableCell align=Right> {row.protein->Float.toString->React.string} </TableCell>
                 </TableRow>
               )
               ->React.array}

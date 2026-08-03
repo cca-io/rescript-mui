@@ -3,7 +3,7 @@ open Mui
 @react.component
 let make = () => {
   <div>
-    <Typography variant=H6> {"Slots and SlotProps Examples (MUI v6):"->React.string} </Typography>
+    <Typography variant=H6> {"Slots and SlotProps Examples (MUI v9):"->React.string} </Typography>
     <Typography variant=Body2 sx={Sx.obj({marginBottom: String("16px")})}>
       {"The slots/slotProps pattern allows customizing internal component parts."->React.string}
     </Typography>
@@ -12,18 +12,26 @@ let make = () => {
     <Typography variant=Subtitle2 sx={Sx.obj({marginTop: String("16px")})}>
       {"Alert with slotProps:"->React.string}
     </Typography>
-    <Box sx={Sx.obj({display: String("flex"), flexDirection: String("column"), gap: String("8px"), marginBottom: String("16px")})}>
+    <Box
+      sx={Sx.obj({
+        display: String("flex"),
+        flexDirection: String("column"),
+        gap: String("8px"),
+        marginBottom: String("16px"),
+      })}
+    >
       <Alert
         id="alert-slotprops-basic"
         severity=Info
         slotProps={
           root: {
-            style: ReactDOM.Style.make(~border="2px solid blue", ()),
+            style: {border: "2px solid blue"},
           },
           message: {
-            style: ReactDOM.Style.make(~fontStyle="italic", ()),
+            style: {fontStyle: "italic"},
           },
-        }>
+        }
+      >
         {"Alert with custom root and message styles via slotProps"->React.string}
       </Alert>
       <Alert
@@ -31,25 +39,34 @@ let make = () => {
         severity=Success
         slotProps={
           icon: {
-            style: ReactDOM.Style.make(~fontSize="32px", ()),
+            style: {fontSize: "32px"},
           },
-        }>
+        }
+      >
         {"Alert with larger icon via slotProps"->React.string}
       </Alert>
     </Box>
 
     // Badge with slotProps
     <Typography variant=Subtitle2> {"Badge with slotProps:"->React.string} </Typography>
-    <Box sx={Sx.obj({display: String("flex"), gap: String("24px"), marginBottom: String("16px"), alignItems: Center})}>
+    <Box
+      sx={Sx.obj({
+        display: String("flex"),
+        gap: String("24px"),
+        marginBottom: String("16px"),
+        alignItems: Center,
+      })}
+    >
       <Badge
         id="badge-slotprops-basic"
         badgeContent={"5"->React.string}
         color=Primary
         slotProps={
           badge: {
-            style: ReactDOM.Style.make(~transform="scale(1.2)", ()),
+            style: {transform: "scale(1.2)"},
           },
-        }>
+        }
+      >
         <Box
           sx={Sx.obj({
             width: String("40px"),
@@ -65,9 +82,10 @@ let make = () => {
         color=Error
         slotProps={
           root: {
-            style: ReactDOM.Style.make(~padding="8px", ~backgroundColor="#f5f5f5", ()),
+            style: {padding: "8px", backgroundColor: "#f5f5f5"},
           },
-        }>
+        }
+      >
         <Box
           sx={Sx.obj({
             width: String("40px"),
@@ -79,16 +97,23 @@ let make = () => {
       </Badge>
     </Box>
 
-    // TextField with slotProps (new v6 pattern)
+    // TextField with slotProps (new v9 pattern)
     <Typography variant=Subtitle2> {"TextField with slotProps:"->React.string} </Typography>
-    <Box sx={Sx.obj({display: String("flex"), flexDirection: String("column"), gap: String("16px"), maxWidth: String("300px")})}>
+    <Box
+      sx={Sx.obj({
+        display: String("flex"),
+        flexDirection: String("column"),
+        gap: String("16px"),
+        maxWidth: String("300px"),
+      })}
+    >
       <TextField
         id="textfield-slotprops-label"
         label={"Styled Label"->React.string}
         variant=Outlined
         slotProps={
           inputLabel: {
-            style: ReactDOM.Style.make(~color="purple", ~fontWeight="bold", ()),
+            style: {color: "purple", fontWeight: "bold"},
           },
         }
       />
@@ -99,7 +124,7 @@ let make = () => {
         variant=Outlined
         slotProps={
           formHelperText: {
-            style: ReactDOM.Style.make(~color="green", ~fontStyle="italic", ()),
+            style: {color: "green", fontStyle: "italic"},
           },
         }
       />
@@ -110,7 +135,7 @@ let make = () => {
         defaultValue="Custom input style"
         slotProps={
           htmlInput: {
-            style: ReactDOM.Style.make(~backgroundColor="#fff8e1", ()),
+            style: {backgroundColor: "#fff8e1"},
           },
         }
       />

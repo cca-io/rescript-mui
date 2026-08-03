@@ -10,14 +10,15 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/icons-material": "^6.5.0",
-    "@mui/material": "^6.5.0",
-    "@mui/system": "^6.5.0",
-    "@rescript/react": "^0.12.1",
-    "bs-css-emotion": "^6.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.2.0",
+    "@mui/lab": "^9.0.0-beta.6",
+    "@mui/material": "^9.2.0",
+    "@mui/system": "^9.2.0",
+    "@rescript/react": "^0.15.0",
+    "bs-css-emotion": "^7.1.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   }
 }

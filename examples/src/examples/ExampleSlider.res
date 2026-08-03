@@ -11,7 +11,7 @@ let make = () => {
 
   <div>
     <Typography gutterBottom=true> {"Volume"->React.string} </Typography>
-    <Grid container=true spacing=Int(2) alignItems=String("center")>
+    <Grid container=true spacing=Int(2) sx={Sx.obj({alignItems: String("center")})}>
       <Grid>
         <VolumeUpIcon />
       </Grid>
@@ -22,7 +22,7 @@ let make = () => {
         <Input
           value
           margin=Dense
-          onChange={e => setValue((e->ReactEvent.Form.target)["value"]->float_of_string)}
+          onChange={e => setValue((e->ReactEvent.Form.target)["value"]->Float.parseFloat)}
           onBlur={_ =>
             if value < 0. {
               setValue(0.)

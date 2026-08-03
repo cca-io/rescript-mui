@@ -1,6 +1,6 @@
 open Mui
 
-let getSpacing = (theme: Theme.t, num) => theme.spacing(num)->string_of_int ++ "px"
+let getSpacing = (theme: Theme.t, num) => theme.spacing(num)->Int.toString ++ "px"
 
 type state = {
   age: string,
@@ -12,9 +12,10 @@ let make = () => {
   let (values, setValues) = React.useReducer((_, v) => v, {age: "", name: "hai"})
 
   let (inputLabelEl, setInputLabelEl) = React.useReducer((_, v) => v, None)
-  let inputLabel = React.useCallback0((el: Js.Nullable.t<Dom.element>) =>
-    setInputLabelEl(el->Js.toOption)
-  )
+  let inputLabel = React.useCallback0((el: Nullable.t<Dom.element>) => {
+    setInputLabelEl(el->Nullable.toOption)
+    None
+  })
   let (labelWidth, setLabelWidth) = React.useReducer((_, l) => l, 0)
   React.useEffect1(() => {
     switch inputLabelEl {
@@ -34,7 +35,8 @@ let make = () => {
       <FormControl>
         <InputLabel htmlFor="age-simple"> {"Age"->React.string} </InputLabel>
         <Select
-          value=values.age onChange=handleChangeAge inputProps={id: "age-simple", name: "age"}>
+          value=values.age onChange=handleChangeAge inputProps={id: "age-simple", name: "age"}
+        >
           <MenuItem value="">
             <em> {"None"->React.string} </em>
           </MenuItem>
@@ -46,7 +48,8 @@ let make = () => {
       <FormControl>
         <InputLabel htmlFor="age-helper"> {"Age"->React.string} </InputLabel>
         <Select
-          value=values.age onChange=handleChangeAge input={<Input name="age" id="age-helper" />}>
+          value=values.age onChange=handleChangeAge input={<Input name="age" id="age-helper" />}
+        >
           <MenuItem id="none" value={""}>
             <em> {"None"->React.string} </em>
           </MenuItem>
@@ -68,13 +71,16 @@ let make = () => {
         <FormHelperText> {"Without label"->React.string} </FormHelperText>
       </FormControl>
       <FormControl>
-        <InputLabel id="age-label-placeholder-label" shrink=true htmlFor="age-label-placeholder"> {"Age"->React.string} </InputLabel>
+        <InputLabel id="age-label-placeholder-label" shrink=true htmlFor="age-label-placeholder">
+          {"Age"->React.string}
+        </InputLabel>
         <Select
           value=values.age
           onChange=handleChangeAge
           input={<Input name="age" id="age-label-placeholder" />}
           displayEmpty=true
-          name="age">
+          name="age"
+        >
           <MenuItem value="">
             <em> {"None"->React.string} </em>
           </MenuItem>
@@ -89,7 +95,8 @@ let make = () => {
         <Select
           value=values.name
           onChange=handleChangeName
-          input={<Input name="name" id="name-disabled" />}>
+          input={<Input name="name" id="name-disabled" />}
+        >
           <MenuItem value="">
             <em> {"None"->React.string} </em>
           </MenuItem>
@@ -106,7 +113,8 @@ let make = () => {
           onChange=handleChangeName
           name="name"
           renderValue={value => `⚠️  - ${value}`->React.string}
-          input={<Input id="name-error" />}>
+          input={<Input id="name-error" />}
+        >
           <MenuItem value={""}>
             <em> {"None"->React.string} </em>
           </MenuItem>
@@ -121,7 +129,8 @@ let make = () => {
         <Select
           value=values.name
           onChange=handleChangeName
-          input={<Input name="name" id="name-readonly" readOnly=true />}>
+          input={<Input name="name" id="name-readonly" readOnly=true />}
+        >
           <MenuItem value="">
             <em> {"None"->React.string} </em>
           </MenuItem>
@@ -137,7 +146,8 @@ let make = () => {
           value=values.age
           onChange=handleChangeAge
           input={<Input name="age" id="age-auto-width" />}
-          autoWidth=true>
+          autoWidth=true
+        >
           <MenuItem value={""}>
             <em> {"None"->React.string} </em>
           </MenuItem>
@@ -159,7 +169,8 @@ let make = () => {
       <FormControl required=true>
         <InputLabel htmlFor="age-required"> {"Age"->React.string} </InputLabel>
         <Select
-          value=values.age onChange=handleChangeAge name="age" inputProps={id: "age-required"}>
+          value=values.age onChange=handleChangeAge name="age" inputProps={id: "age-required"}
+        >
           <MenuItem value={""}>
             <em> {"None"->React.string} </em>
           </MenuItem>
@@ -179,8 +190,9 @@ let make = () => {
           input={<OutlinedInput
             name="age"
             id="outlined-age-simple"
-            label={<div width={labelWidth->Belt.Int.toString} />}
-          />}>
+            label={<div width={labelWidth->Int.toString} />}
+          />}
+        >
           <MenuItem value={""}>
             <em> {"None"->React.string} </em>
           </MenuItem>
@@ -194,7 +206,8 @@ let make = () => {
         <Select
           value=values.age
           onChange=handleChangeAge
-          input={<FilledInput name="age" id="filled-age-simple" />}>
+          input={<FilledInput name="age" id="filled-age-simple" />}
+        >
           <MenuItem value={""}>
             <em> {"None"->React.string} </em>
           </MenuItem>

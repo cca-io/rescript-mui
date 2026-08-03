@@ -7,8 +7,7 @@ let make = () => {
   <div>
     <Box
       component={OverridableComponent.string("fieldset")}
-      mb={Number(3.)}
-      borderColor={String("transparent")}>
+      sx={Sx.obj({mb: Number(3.), borderColor: String("transparent")})}>
       <Typography component={OverridableComponent.string("legend")}>
         {"Controlled"->React.string}
       </Typography>
@@ -24,8 +23,7 @@ let make = () => {
     </Box>
     <Box
       component={OverridableComponent.string("fieldset")}
-      mb={Number(3.)}
-      borderColor={String("transparent")}>
+      sx={Sx.obj({mb: Number(3.), borderColor: String("transparent")})}>
       <Typography component={OverridableComponent.string("legend")}>
         {"Read only"->React.string}
       </Typography>
@@ -33,8 +31,7 @@ let make = () => {
     </Box>
     <Box
       component={OverridableComponent.string("fieldset")}
-      mb={Number(3.)}
-      borderColor={String("transparent")}>
+      sx={Sx.obj({mb: Number(3.), borderColor: String("transparent")})}>
       <Typography component={OverridableComponent.string("legend")}>
         {"Disabled"->React.string}
       </Typography>
@@ -42,8 +39,7 @@ let make = () => {
     </Box>
     <Box
       component={OverridableComponent.string("fieldset")}
-      mb={Number(3.)}
-      borderColor={String("transparent")}>
+      sx={Sx.obj({mb: Number(3.), borderColor: String("transparent")})}>
       <Typography component={OverridableComponent.string("legend")}>
         {"Pristine"->React.string}
       </Typography>

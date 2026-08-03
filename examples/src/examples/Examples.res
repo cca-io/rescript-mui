@@ -12,7 +12,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Grid"->React.string} </Typography>
     </Grid>
@@ -25,7 +25,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Icons"->React.string} </Typography>
     </Grid>
@@ -38,7 +38,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Popover"->React.string} </Typography>
     </Grid>
@@ -51,7 +51,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Theme Provider"->React.string} </Typography>
     </Grid>
@@ -64,7 +64,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Theme Provider Override"->React.string} </Typography>
     </Grid>
@@ -77,7 +77,22 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
+    <Grid size=Object({md: Int(6)})>
+      <Typography variant=H5>
+        {"Theme Overrides (defaultProps + styleOverrides)"->React.string}
+      </Typography>
+    </Grid>
+    <Grid size=Object({md: Int(6)})>
+      <ExampleThemeOverrides />
+    </Grid>
+  </Grid>
+  <br />
+  <br />
+  <Divider />
+  <br />
+  <br />
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"List"->React.string} </Typography>
     </Grid>
@@ -90,12 +105,13 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/tabs/DisabledTabs.tsx"
-          target="_blank">
+          target="_blank"
+        >
           {"Tabs"->React.string}
         </a>
       </Typography>
@@ -109,12 +125,13 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/steppers/VerticalLinearStepper.tsx"
-          target="_blank">
+          target="_blank"
+        >
           {"Stepper"->React.string}
         </a>
       </Typography>
@@ -128,12 +145,13 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/selects/SimpleSelect.tsx"
-          target="_blank">
+          target="_blank"
+        >
           {"Select"->React.string}
         </a>
       </Typography>
@@ -147,12 +165,13 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/radio-buttons/RadioButtonsGroup.tsx"
-          target="_blank">
+          target="_blank"
+        >
           {"RadioGroup"->React.string}
         </a>
       </Typography>
@@ -166,12 +185,13 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/slider/InputSlider.tsx"
-          target="_blank">
+          target="_blank"
+        >
           {"Slider"->React.string}
         </a>
       </Typography>
@@ -185,12 +205,13 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/slider/InputSlider.tsx"
-          target="_blank">
+          target="_blank"
+        >
           {"Dashboard"->React.string}
         </a>
       </Typography>
@@ -206,12 +227,13 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5>
         <a
           href="https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/box/box.md"
-          target="_blank">
+          target="_blank"
+        >
           {"Box"->React.string}
         </a>
       </Typography>
@@ -225,7 +247,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"TextField size Prop"->React.string} </Typography>
     </Grid>
@@ -238,7 +260,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Input textarea"->React.string} </Typography>
     </Grid>
@@ -261,7 +283,7 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
       <Typography variant=H5> {"Component Override"->React.string} </Typography>
     </Grid>
@@ -274,9 +296,9 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
-      <Typography variant=H5> {"Button Loading (v6)"->React.string} </Typography>
+      <Typography variant=H5> {"Button Loading (v9)"->React.string} </Typography>
     </Grid>
     <Grid size=Object({md: Int(6)})>
       <ExampleButtonLoading />
@@ -287,9 +309,9 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
-      <Typography variant=H5> {"Slots & SlotProps (v6)"->React.string} </Typography>
+      <Typography variant=H5> {"Slots & SlotProps (v9)"->React.string} </Typography>
     </Grid>
     <Grid size=Object({md: Int(6)})>
       <ExampleSlots />
@@ -310,9 +332,9 @@ let make = () => <>
   <Divider />
   <br />
   <br />
-  <Grid container=true alignItems=String("center")>
+  <Grid container=true sx={Sx.obj({alignItems: String("center")})}>
     <Grid size=Object({md: Int(6)})>
-      <Typography variant=H5> {"Typography Colors (v6)"->React.string} </Typography>
+      <Typography variant=H5> {"Typography Colors (v9)"->React.string} </Typography>
     </Grid>
     <Grid size=Object({md: Int(6)})>
       <ExampleTypographyColors />

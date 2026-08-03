@@ -4,10 +4,12 @@ open Mui
 let make = () =>
   <ThemeProvider theme={Theme(Theme.create({}))}>
     <Box
-      width={String("100%")}
-      height={String("100%")}
-      maxWidth={String("970px")}
-      margin={String("30px auto")}>
+      sx={Sx.obj({
+        width: String("100%"),
+        height: String("100%"),
+        maxWidth: String("970px"),
+        margin: String("30px auto"),
+      })}>
       <CssBaseline />
       <Examples />
       <ExamplesLab />

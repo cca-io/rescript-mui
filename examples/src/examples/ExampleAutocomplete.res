@@ -111,7 +111,7 @@ let top100Films = [
 
 @react.component
 let make = () => {
-  let (value, setValue) = React.useState(_ => top100Films->Belt.Array.get(0)->Js.Null.fromOption)
+  let (value, setValue) = React.useState(_ => top100Films->Belt.Array.get(0)->Null.fromOption)
   let (values, setValues) = React.useState(_ => [])
   let (inputValue, setInputValue) = React.useState(_ => "")
 
@@ -123,8 +123,12 @@ let make = () => {
       fullWidth=true
       renderInput={params => {
         let props = params->Mui.Autocomplete.renderInputParamsToTextFieldProps
-        <Mui.TextField 
-          {...props} id="combo-box-demo-field" maxLength={20} label={React.string({"Combo box (uncontrolled)"})} variant=Outlined
+        <Mui.TextField
+          {...props}
+          id="combo-box-demo-field"
+          maxLength={20}
+          label={React.string({"Combo box (uncontrolled)"})}
+          variant=Outlined
         />
       }}
     />
@@ -148,7 +152,7 @@ let make = () => {
       id="multiple-values-uncontrolled"
       options=top100Films
       getOptionLabel={option => option.title}
-      defaultValue={[top100Films[13]]}
+      defaultValue={[top100Films->Array.getUnsafe(13)]}
       renderInput={params => {
         let props = params->Mui.Autocomplete.renderInputParamsToTextFieldProps
         <Mui.TextField
