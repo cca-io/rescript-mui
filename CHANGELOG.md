@@ -14,10 +14,13 @@ title: Changelog
 (_Tags are copied from
 [babel](https://github.com/babel/babel/blob/master/CHANGELOG.md)_)
 
-## 7.0.0 (Unreleased)
+## 7.0.0
 
+- :boom: Update `@rescript-mui/material` and `@rescript-mui/lab` to MUI v7 peer dependencies.
 - :rocket: Add MUI v7 props and slots for `Accordion`, `Autocomplete`, `Avatar`, `AvatarGroup`, `CircularProgress`, `FormControlLabel`, `Grid`, `IconButton`, `Modal`, `Slider`, `SpeedDialIcon`, `TablePagination` and `Tabs`.
 - :rocket: Add MUI Lab v7 support for sequential `Masonry` layout, persistent `TabPanel` content and the `TabList` list slot class.
+- :rocket: Support plain strings in `GlobalStyles` and expose `enableCssLayer` on `StyledEngineProvider`.
+- :bug: Fix the MUI v7 `Grid` module imports.
 - :bug: Synchronize component class keys and theme override types with MUI v7.
 
 ## 6.1.0
