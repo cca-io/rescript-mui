@@ -2,7 +2,7 @@ open XDatePickerExampleSupport
 
 let dateErrorMessage = error =>
   switch error {
-  | MuiXDatePickers.DateValidationError.None => ""
+  | MuiXDatePickers.DateValidationError.NoError => ""
   | InvalidDate => "Enter a valid date"
   | DisableFuture => "Future dates are disabled"
   | DisablePast => "Past dates are disabled"
@@ -16,7 +16,7 @@ let dateErrorMessage = error =>
 module ErrorUnderField = {
   @react.component
   let make = () => {
-    let (error, setError) = React.useState(() => MuiXDatePickers.DateValidationError.None)
+    let (error, setError) = React.useState(() => MuiXDatePickers.DateValidationError.NoError)
     let message = dateErrorMessage(error)
 
     <MuiXDatePickers.DatePicker

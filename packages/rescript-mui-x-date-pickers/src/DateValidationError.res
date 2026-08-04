@@ -1,7 +1,7 @@
 /** Validation errors emitted by date pickers and date fields. */
 @unboxed
 type t =
-  | @as(null) None
+  | @as(null) NoError
   | @as("invalidDate") InvalidDate
   | @as("disableFuture") DisableFuture
   | @as("disablePast") DisablePast

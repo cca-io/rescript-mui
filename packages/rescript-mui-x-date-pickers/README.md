@@ -152,7 +152,7 @@ JavaScript receives a string or `null`, while TypeScript describes those values 
 ```rescript
 let validationMessage = error =>
   switch error {
-  | DateValidationError.None => ""
+  | DateValidationError.NoError => ""
   | InvalidDate => "Enter a valid date"
   | MinDate => "The date is too early"
   | MaxDate => "The date is too late"
@@ -167,6 +167,8 @@ let validationMessage = error =>
   onError={(error, _value) => setError(_ => validationMessage(error))}
 />
 ```
+
+`NoError` is represented as JavaScript `null`; the other constructors are represented as MUI X's validation-error strings.
 
 Use the error module matching the component family. Time validation additionally distinguishes hour, minute, and second failures such as `ShouldDisableHours`; date-time validation contains both the date and time cases.
 
