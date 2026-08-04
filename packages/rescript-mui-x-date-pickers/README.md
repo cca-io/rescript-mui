@@ -19,31 +19,53 @@ npm install @rescript-mui/material @rescript-mui/x-date-pickers
 }
 ```
 
-## Migration gotchas
+## Translating JavaScript and TypeScript examples to ReScript
 
-### Install the date library separately
+Most examples in the upstream MUI X documentation port directly. The main differences are how ReScript represents nullable picker values, string unions, component-valued slots, and JavaScript object literals.
 
-The adapter bindings do not bundle their underlying date library. Install the library that
-matches your adapter—for example, `dayjs` for `AdapterDayjs` or `date-fns` for
-`AdapterDateFns`—and pass the adapter to `LocalizationProvider`:
+A picker file normally uses several modules from this package, so the examples below assume it is opened once at the top of the file:
 
 ```rescript
-<MuiXDatePickers.LocalizationProvider
-  dateAdapter={MuiXDatePickers.AdapterDayjs.make}
->
-  {children}
-</MuiXDatePickers.LocalizationProvider>
+open MuiXDatePickers
 ```
 
-### Avoid constructing `Common.dateValue` directly
+| JavaScript / TypeScript                       | ReScript                                              |
+| --------------------------------------------- | ----------------------------------------------------- |
+| A date-library value or `null`                | `DateValue.t<'date>` with nullable and option helpers |
+| A validation-error string union or `null`     | A typed validation-error variant                      |
+| An open `slots` or `slotProps` object         | A component-specific typed record                     |
+| A React component assigned directly to a slot | An `OverridableComponent` conversion                  |
+| A locale imported from the date library       | An application-owned ReScript external                |
 
-Picker values are the date-library value or `null`. Use `DateValue` to avoid ambiguous
-`Date` constructors in `Common` and to convert to standard nullable or option
-representations:
+### Pass the bound adapter module
+
+The adapter bindings do not bundle their underlying date library. Install the library that matches your adapter—for example, `dayjs` for `AdapterDayjs` or `date-fns` for `AdapterDateFns`.
+
+JavaScript and TypeScript pass the imported adapter class:
+
+```tsx
+<LocalizationProvider dateAdapter={AdapterDayjs}>
+  {children}
+</LocalizationProvider>
+```
+
+ReScript passes the binding's adapter module value:
 
 ```rescript
-let value = dayjsValue->MuiXDatePickers.DateValue.fromDate
-let maybeValue = value->MuiXDatePickers.DateValue.toOption
+<LocalizationProvider
+  dateAdapter={AdapterDayjs.make}
+>
+  {children}
+</LocalizationProvider>
+```
+
+### Represent nullable picker values with `DateValue`
+
+JavaScript and TypeScript APIs expose picker values as the date-library value or `null`. ReScript exposes the same runtime representation as `DateValue.t<'date>`. Use `DateValue` instead of constructing `Common.dateValue` directly; this avoids ambiguous `Date` constructors and converts cleanly to standard nullable or option representations:
+
+```rescript
+let value = dayjsValue->DateValue.fromDate
+let maybeValue = value->DateValue.toOption
 
 let label = switch maybeValue {
 | Some(date) => formatDate(date)
@@ -51,25 +73,20 @@ let label = switch maybeValue {
 }
 ```
 
-`DateValue` also provides `fromNullable`, `toNullable`, `fromOption`, `toOption`,
-`fromNull`, and `toNull`.
+`DateValue` also provides `fromNullable`, `toNullable`, `fromOption`, `toOption`, `fromNull`, and `toNull`.
 
-The picker `value`, `defaultValue`, and callback value use `DateValue.t<'date>`. Validation
-boundaries such as `minDate`, `maxDate`, `minTime`, and `maxTime` take the non-null date-library
-value.
+The picker `value`, `defaultValue`, and callback value use `DateValue.t<'date>`. Validation boundaries such as `minDate`, `maxDate`, `minTime`, and `maxTime` take the non-null date-library value.
 
-### Use component-specific `slotProps`
+### Write `slots` and `slotProps` as typed records
 
-MUI X moved customization props into named slots. These bindings provide typed slot
-records for common customizations, including `calendarHeader`, `textField`, `actionBar`,
-`field`, `toolbar`, and `openPickerButton`:
+MUI X exposes customization through named slots. These bindings provide typed slot records for common customizations, including `calendarHeader`, `textField`, `actionBar`, `field`, `toolbar`, and `openPickerButton`:
 
 ```rescript
-<MuiXDatePickers.DateCalendar
+<DateCalendar
   slotProps={calendarHeader: {format: "MM/YYYY"}}
 />
 
-<MuiXDatePickers.DateTimePicker
+<DateTimePicker
   slotProps={
     textField: {
       helperText: "Choose a local date and time"->React.string,
@@ -84,7 +101,7 @@ records for common customizations, including `calendarHeader`, `textField`, `act
 Field behavior that belongs to the picker field is nested under `field`:
 
 ```rescript
-<MuiXDatePickers.DesktopDatePicker
+<DesktopDatePicker
   slotProps={
     field: {
       clearable: true,
@@ -94,14 +111,13 @@ Field behavior that belongs to the picker field is nested under `field`:
 />
 ```
 
-The picker text field has its own slots. This replaces the old capitalization-sensitive
-`InputProps` versus `inputProps` distinction:
+The picker text field has its own nested slots. The two input layers map as follows:
 
-- old `InputProps` → `slotProps.textField.slotProps.input`
-- old `inputProps` → `slotProps.textField.slotProps.htmlInput`
+- MUI input layer → `slotProps.textField.slotProps.input`
+- native HTML input → `slotProps.textField.slotProps.htmlInput`
 
 ```rescript
-<MuiXDatePickers.DatePicker
+<DatePicker
   slotProps={
     textField: {
       slotProps: {
@@ -118,11 +134,10 @@ The picker text field has its own slots. This replaces the old capitalization-se
 />
 ```
 
-When replacing a slot component, convert the React component to MUI's overridable component
-representation:
+When replacing a slot component, convert the React component to MUI's overridable component representation:
 
 ```rescript
-<MuiXDatePickers.DatePicker
+<DatePicker
   slots={
     openPickerIcon:
       Mui.OverridableComponent.componentWithUnknownProps(MyCalendarIcon.make),
@@ -130,15 +145,14 @@ representation:
 />
 ```
 
-### Validation errors are typed
+### Pattern-match validation errors
 
-Validation callbacks expose `DateValidationError.t`, `TimeValidationError.t`, or
-`DateTimeValidationError.t` rather than `Nullable.t<string>`:
+JavaScript receives a string or `null`, while TypeScript describes those values with string unions. ReScript validation callbacks expose `DateValidationError.t`, `TimeValidationError.t`, or `DateTimeValidationError.t` so callers can exhaustively pattern-match them:
 
 ```rescript
 let validationMessage = error =>
   switch error {
-  | MuiXDatePickers.DateValidationError.None => ""
+  | DateValidationError.None => ""
   | InvalidDate => "Enter a valid date"
   | MinDate => "The date is too early"
   | MaxDate => "The date is too late"
@@ -149,29 +163,25 @@ let validationMessage = error =>
   | ShouldDisableYear => "That year is unavailable"
   }
 
-<MuiXDatePickers.DatePicker
+<DatePicker
   onError={(error, _value) => setError(_ => validationMessage(error))}
 />
 ```
 
-Use the error module matching the component family. Time validation additionally distinguishes
-hour, minute, and second failures such as `ShouldDisableHours`; date-time validation contains
-both the date and time cases.
+Use the error module matching the component family. Time validation additionally distinguishes hour, minute, and second failures such as `ShouldDisableHours`; date-time validation contains both the date and time cases.
 
-### Callback arities follow current MUI X
+### Accept the complete callback arguments
 
-The current callback signatures include context that older bindings may have omitted:
+The bindings expose all callback arguments documented by MUI X. Use `_` for an argument you completely ignore, or prefix a descriptive name with `_` when the name still helps explain the callback:
 
 ```rescript
-<MuiXDatePickers.DateCalendar
-  onChange={(value, selectionState, view) => {
-    handleCalendarChange(value, selectionState, view)
-  }}
+<DateCalendar
+  onChange={(value, _selectionState, _view) => handleCalendarChange(value)}
 />
 
-<MuiXDatePickers.DateTimePicker
+<DateTimePicker
   onChange={(value, context) => handleChange(value, context.validationError)}
-  onAccept={(value, context) => handleAccept(value, context.validationError)}
+  onAccept={(value, _) => handleAccept(value)}
 />
 ```
 
@@ -179,26 +189,23 @@ The current callback signatures include context that older bindings may have omi
 - Picker `onChange` and `onAccept` receive `(value, context)`.
 - Field `onChange` receives `(value, {validationError})`.
 
-### `DateTimePicker` has no `classes` prop
+### Component props mirror upstream availability
 
-This mirrors upstream MUI X: `DateTimePicker` accepts `className` and `sx`, but not `classes`.
-Apply a generated root class with `className`:
-
-```rescript
-<MuiXDatePickers.DateTimePicker className=classes.root />
-```
-
-Components that expose upstream utility classes, such as `DateCalendar`, still have a typed
-`classes` prop:
+This mirrors upstream MUI X: `DateTimePicker` accepts `className` and `sx`, but not `classes`. Apply a generated root class with `className`:
 
 ```rescript
-<MuiXDatePickers.DateCalendar classes={root: classes.calendarRoot} />
+<DateTimePicker className=classes.root />
 ```
 
-### Date-library locales come from the application
+Components that expose upstream utility classes, such as `DateCalendar`, still have a typed `classes` prop:
 
-The adapter is bound here, but locale values remain owned by the corresponding date library.
-For date-fns, bind the named exports your application uses:
+```rescript
+<DateCalendar classes={root: classes.calendarRoot} />
+```
+
+### Bind date-library locales in the application
+
+JavaScript and TypeScript applications import locale values from the corresponding date library. The ReScript adapter is bound here, while applications declare externals for the locale exports they use. For date-fns:
 
 ```rescript
 module DateFnsLocale = {
@@ -209,12 +216,12 @@ module DateFnsLocale = {
   @module("date-fns/locale") external fr: t = "fr"
 }
 
-<MuiXDatePickers.LocalizationProvider
-  dateAdapter={MuiXDatePickers.AdapterDateFns.make}
+<LocalizationProvider
+  dateAdapter={AdapterDateFns.make}
   adapterLocale={DateFnsLocale.de}
 >
   {children}
-</MuiXDatePickers.LocalizationProvider>
+</LocalizationProvider>
 ```
 
 Day.js locales must be loaded by the application before passing the locale key:
@@ -224,27 +231,21 @@ Day.js locales must be loaded by the application before passing the locale key:
 
 let _ = germanLocale
 
-<MuiXDatePickers.LocalizationProvider
-  dateAdapter={MuiXDatePickers.AdapterDayjs.make}
+<LocalizationProvider
+  dateAdapter={AdapterDayjs.make}
   adapterLocale="de"
 >
   {children}
-</MuiXDatePickers.LocalizationProvider>
+</LocalizationProvider>
 ```
 
 ### Community package scope
 
-These bindings target `@mui/x-date-pickers`. Range pickers and other Pro-only APIs from
-`@mui/x-date-pickers-pro` are not included. Headless MUI X hooks are also not currently part
-of this package.
+These bindings target `@mui/x-date-pickers`. Range pickers and other Pro-only APIs from `@mui/x-date-pickers-pro` are not included. Headless MUI X hooks are also not currently part of this package.
 
 ## Examples
 
-The repository contains a gallery of 47 runnable Community examples covering picker families,
-fields, calendars, clocks, validation, localization, lifecycle callbacks, and slot
-customization. See the
-[example gallery](../../examples/src/xDatePickerExamples/ExamplesXDatePickers.res) and its
-[coverage notes](../../examples/src/xDatePickerExamples/README.md).
+The repository contains a gallery of 47 runnable Community examples covering picker families, fields, calendars, clocks, validation, localization, lifecycle callbacks, and slot customization. See the [example gallery](../../examples/src/xDatePickerExamples/ExamplesXDatePickers.res) and its [coverage notes](../../examples/src/xDatePickerExamples/README.md).
 
 ## Progress
 
