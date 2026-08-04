@@ -265,13 +265,13 @@ let make = () => <>
       <Typography variant=H5> {"Input textarea"->React.string} </Typography>
     </Grid>
     <Grid size=Object({md: Int(6)})>
-      <Input multiline=true rows=80 minLength=1 maxLength=1_000 wrap=Soft />
+      <Input multiline=true rows=4 minLength=1 maxLength=1_000 wrap=Soft />
       <TextField
         minLength=1
         maxLength=1_000
         wrap=Soft
         multiline=true
-        rows=80
+        rows=4
         onChange={_event => ()}
         onBlur={_event => ()}
         onFocus={_event => ()}

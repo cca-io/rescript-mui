@@ -1679,7 +1679,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rescript-mui/x-date-pickers@workspace:packages/rescript-mui-x-date-pickers":
+"@rescript-mui/x-date-pickers@workspace:*, @rescript-mui/x-date-pickers@workspace:packages/rescript-mui-x-date-pickers":
   version: 0.0.0-use.local
   resolution: "@rescript-mui/x-date-pickers@workspace:packages/rescript-mui-x-date-pickers"
   peerDependencies:
@@ -2118,6 +2118,13 @@ __metadata:
   version: 3.2.3
   resolution: "csstype@npm:3.2.3"
   checksum: 10c0/cd29c51e70fa822f1cecd8641a1445bed7063697469d35633b516e60fe8c1bde04b08f6c5b6022136bb669b64c63d4173af54864510fbb4ee23281801841a3ce
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.13":
+  version: 1.11.21
+  resolution: "dayjs@npm:1.11.21"
+  checksum: 10c0/bd97dfdc4bfea3c66268635690313828b386faa040fbc1f829ff42a2bd748b72c9d9b3c8f9616ce9e61fcb78923f1461a462c969c54b1084458ae1b715898fb0
   languageName: node
   linkType: hard
 
@@ -2898,8 +2905,11 @@ __metadata:
     "@mui/icons-material": "npm:^9.2.0"
     "@mui/lab": "npm:^9.0.0-beta.6"
     "@mui/material": "npm:^9.2.0"
+    "@mui/x-date-pickers": "npm:^9.10.1"
+    "@rescript-mui/x-date-pickers": "workspace:*"
     "@rescript/react": "npm:^0.15.0"
     bs-css-emotion: "npm:^7.1.1"
+    dayjs: "npm:^1.11.13"
     react: "npm:^19.2.8"
     react-dom: "npm:^19.2.8"
   languageName: unknown

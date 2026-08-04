@@ -29,6 +29,10 @@ type exportedDayCalendarProps<'date> = {
     * @default undefined
     */
   fixedWeekNumber?: int,
+  /** If `true`, days outside the current month are rendered. */
+  showDaysOutsideCurrentMonth?: bool,
+  /** If `true`, today's date is rendered without the highlight. */
+  disableHighlightToday?: bool,
 }
 
 type dayValidationProps<'date> = {
@@ -136,9 +140,9 @@ type props<'date> = {
     */
   sx?: Mui.Sx.props,
   /** Overridable component slots. */
-  slots?: {.},
+  slots?: PickerSlots.dateCalendarSlots,
   /** Props passed to component slots. */
-  slotProps?: {.},
+  slotProps?: PickerSlots.dateCalendarSlotProps<'date>,
 }
 
 @module("@mui/x-date-pickers")

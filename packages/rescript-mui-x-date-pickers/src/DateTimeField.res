@@ -1,21 +1,21 @@
-type props<'value, 'error, 'inputRef> = {
-  ...DateField.commonProps<'value, 'error, 'inputRef>,
+type props<'date, 'inputRef> = {
+  ...DateField.commonProps<'date, DateTimeValidationError.t, 'inputRef>,
   ampm?: bool,
   disableFuture?: bool,
   disablePast?: bool,
-  minDate?: 'value,
-  maxDate?: 'value,
-  shouldDisableDate?: 'value => bool,
-  shouldDisableMonth?: 'value => bool,
-  shouldDisableYear?: 'value => bool,
-  minTime?: 'value,
-  maxTime?: 'value,
+  minDate?: 'date,
+  maxDate?: 'date,
+  shouldDisableDate?: 'date => bool,
+  shouldDisableMonth?: 'date => bool,
+  shouldDisableYear?: 'date => bool,
+  minTime?: 'date,
+  maxTime?: 'date,
   minutesStep?: int,
-  shouldDisableTime?: ('value, Common.timeView) => bool,
+  shouldDisableTime?: ('date, Common.timeView) => bool,
   disableIgnoringDatePartForTimeValidation?: bool,
-  minDateTime?: 'value,
-  maxDateTime?: 'value,
+  minDateTime?: 'date,
+  maxDateTime?: 'date,
 }
 
 @module("@mui/x-date-pickers")
-external make: React.component<props<'value, 'error, 'inputRef>> = "DateTimeField"
+external make: React.component<props<'date, 'inputRef>> = "DateTimeField"

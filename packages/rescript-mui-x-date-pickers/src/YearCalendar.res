@@ -10,6 +10,8 @@ type classes = {
 }
 
 type publicProps = {
+  /** Years are displayed in ascending or descending order. @default 'asc' */
+  yearsOrder?: [#asc | #desc],
   /**
     * Years rendered per row.
     * @default 3

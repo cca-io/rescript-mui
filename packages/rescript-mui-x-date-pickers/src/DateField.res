@@ -23,12 +23,12 @@ type buttonPosition = [#start | #end]
 type fieldChangeHandlerContext<'error> = {validationError: 'error}
 type fieldRef<'value>
 
-type commonProps<'value, 'error, 'inputRef> = {
+type commonProps<'date, 'error, 'inputRef> = {
   ...Mui.CommonProps.t_NoRef,
   ref?: ReactDOM.domRef,
   autoFocus?: bool,
   color?: color,
-  defaultValue?: 'value,
+  defaultValue?: Common.dateValue<'date>,
   disabled?: bool,
   error?: bool,
   focused?: bool,
@@ -42,21 +42,21 @@ type commonProps<'value, 'error, 'inputRef> = {
   margin?: margin,
   name?: string,
   onBlur?: ReactEvent.Focus.t => unit,
-  onChange?: ('value, fieldChangeHandlerContext<'error>) => unit,
-  onError?: ('error, 'value) => unit,
+  onChange?: (Common.dateValue<'date>, fieldChangeHandlerContext<'error>) => unit,
+  onError?: ('error, Common.dateValue<'date>) => unit,
   onSelectedSectionsChange?: Common.fieldSelectedSections => unit,
   readOnly?: bool,
-  referenceDate?: 'value,
+  referenceDate?: 'date,
   required?: bool,
   selectedSections?: Common.fieldSelectedSections,
   shouldRespectLeadingZeros?: bool,
   size?: size,
-  slotProps?: {.},
-  slots?: {.},
+  slotProps?: PickerSlots.fieldComponentSlotProps,
+  slots?: PickerSlots.fieldSlots,
   sx?: Mui.Sx.props,
   timezone?: Common.pickersTimezone,
-  fieldRef?: React.ref<fieldRef<'value>>,
-  value?: 'value,
+  fieldRef?: React.ref<fieldRef<Common.dateValue<'date>>>,
+  value?: Common.dateValue<'date>,
   variant?: variant,
   clearable?: bool,
   onClear?: ReactEvent.Mouse.t => unit,
@@ -64,16 +64,16 @@ type commonProps<'value, 'error, 'inputRef> = {
   openPickerButtonPosition?: buttonPosition,
 }
 
-type props<'value, 'error, 'inputRef> = {
-  ...commonProps<'value, 'error, 'inputRef>,
+type props<'date, 'inputRef> = {
+  ...commonProps<'date, DateValidationError.t, 'inputRef>,
   disableFuture?: bool,
   disablePast?: bool,
-  maxDate?: 'value,
-  minDate?: 'value,
-  shouldDisableDate?: 'value => bool,
-  shouldDisableMonth?: 'value => bool,
-  shouldDisableYear?: 'value => bool,
+  maxDate?: 'date,
+  minDate?: 'date,
+  shouldDisableDate?: 'date => bool,
+  shouldDisableMonth?: 'date => bool,
+  shouldDisableYear?: 'date => bool,
 }
 
 @module("@mui/x-date-pickers")
-external make: React.component<props<'value, 'error, 'inputRef>> = "DateField"
+external make: React.component<props<'date, 'inputRef>> = "DateField"

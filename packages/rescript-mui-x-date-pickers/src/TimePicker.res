@@ -18,15 +18,15 @@ type props<'date> = {
   /** Callback fired when the value changes. */
   onChange?: (
     Common.dateValue<'date>,
-    Common.pickerChangeHandlerContext<Nullable.t<string>>,
+    Common.pickerChangeHandlerContext<TimeValidationError.t>,
   ) => unit,
   /** Callback fired when the value is accepted. */
   onAccept?: (
     Common.dateValue<'date>,
-    Common.pickerChangeHandlerContext<Nullable.t<string>>,
+    Common.pickerChangeHandlerContext<TimeValidationError.t>,
   ) => unit,
   /** Callback fired when the error associated with the current value changes. */
-  onError?: (Nullable.t<string>, Common.dateValue<'date>) => unit,
+  onError?: (TimeValidationError.t, Common.dateValue<'date>) => unit,
   /** Choose which timezone to use for the value. */
   timezone?: Common.pickersTimezone,
   /** The label content. */
@@ -83,14 +83,18 @@ type props<'date> = {
   onClose?: unit => unit,
   /** If `true`, the popup will close after submitting the full time. */
   closeOnSelect?: bool,
+  /** Keep the picker open while the field has focus. @default false */
+  keepOpenDuringFieldFocus?: bool,
+  /** Media query used to choose the desktop picker variant. */
+  desktopModeMediaQuery?: string,
   /** If `true`, the open picker button will not be rendered. @default false */
   disableOpenPicker?: bool,
   /** The orientation of the picker. */
   orientation?: orientation,
   /** Overridable component slots. @default {} */
-  slots?: {.},
+  slots?: PickerSlots.timePickerSlots,
   /** The props used for each component slot. @default {} */
-  slotProps?: {.},
+  slotProps?: PickerSlots.timePickerSlotProps<'date>,
   /** The system prop for defining system overrides and additional CSS styles. */
   sx?: Mui.Sx.props,
 }

@@ -15,7 +15,8 @@
     "@rescript/react",
     "bs-css-emotion",
     "@rescript-mui/lab",
-    "@rescript-mui/material"
+    "@rescript-mui/material",
+    "@rescript-mui/x-date-pickers"
   ],
   "warnings": {
     "number": "-103"

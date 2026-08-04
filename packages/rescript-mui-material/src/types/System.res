@@ -376,6 +376,7 @@ type propsWithoutColor = {
   overflow?: Value.t,
   overflowX?: Value.t,
   overflowY?: Value.t,
+  scrollMarginTop?: Value.t,
   opacity?: Value.t,
   transform?: Value.t,
   whiteSpace?: Value.t,
